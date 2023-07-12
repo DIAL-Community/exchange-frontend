@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
 import { prependUrlWithProtocol } from '../../../lib/utilities'
@@ -10,7 +9,7 @@ import { useUser } from '../../../lib/hooks'
 import { CandidateStatusType } from '../../../lib/constants'
 import EditButton from '../../shared/EditButton'
 
-const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
+const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-sunshine'
 
 const ProductCard = ({ product, listType }) => {
   const { formatMessage } = useIntl()
@@ -20,26 +19,23 @@ const ProductCard = ({ product, listType }) => {
   const [status, setStatus] = useState('')
   const [comment, setComment] = useState('')
 
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
-
   const shouldFlipCard = (status) => [CandidateStatusType.REJECTION, CandidateStatusType.APPROVAL].indexOf(status) >= 0
 
   const listView =
     <div className={classNames('card', { 'flip-horizontal': shouldFlipCard(status) })}>
       <div className='card-body border-3 border-transparent'>
-        <div className={classNames('card-front border border-dial-gray card-drop-shadow bg-white h-full',
+        <div className={classNames('card-front border border-dial-gray shadow-md bg-white h-full',
           { 'bg-red-50': product.rejected === true || status === CandidateStatusType.REJECTED },
           { 'bg-emerald-50': product.rejected === false || status === CandidateStatusType.APPROVED }
         )}>
           <div className='flex flex-col xl:flex-row gap-3 p-3'>
             <div className='flex flex-col gap-3 w-full xl:w-2/3 '>
               <div className='my-auto line-clamp-1 font-semibold'>
-                <Link href={`/candidate/products/${product.slug}`}>
-                  <a className='border-b-2 border-transparent hover:border-dial-yellow'>
-                    {product.name}
-                  </a>
+                <Link
+                  href={`/candidate/products/${product.slug}`}
+                  className='border-b-2 border-transparent hover:border-dial-sunshine'
+                >
+                  {product.name}
                 </Link>
               </div>
               <div className='my-auto line-clamp-1 text-dial-blue'>
@@ -124,7 +120,7 @@ const ProductCard = ({ product, listType }) => {
   const cardView =
     <div className={classNames('card', { 'flip-vertical': shouldFlipCard(status) })}>
       <div className='card-body border-3 border-transparent text-product h-full'>
-        <div className='card-front h-full flex flex-col border border-dial-gray  card-drop-shadow'>
+        <div className='card-front h-full flex flex-col border border-dial-gray  shadow-md'>
           <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
             {
               (product.rejected === true || status === CandidateStatusType.REJECTED) &&
@@ -150,10 +146,11 @@ const ProductCard = ({ product, listType }) => {
           </div>
           <div className='flex flex-col h-64 p-4'>
             <div className='text-2xl font-semibold'>
-              <Link href={`/candidate/products/${product.slug}`}>
-                <a className='border-b-2 border-transparent hover:border-dial-yellow'>
-                  {product.name}
-                </a>
+              <Link
+                href={`/candidate/products/${product.slug}`}
+                className='border-b-2 border-transparent hover:border-dial-sunshine'
+              >
+                {product.name}
               </Link>
             </div>
             <div className='mt-3 line-clamp-6'>

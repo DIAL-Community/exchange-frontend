@@ -49,8 +49,8 @@ export const WIZARD_QUERY = gql`
 `
 
 export const WIZARD_USE_CASES_FOR_SECTOR = gql`
-  query UseCasesForSector ($sectorsSlugs: [String!]!) {
-    useCasesForSector (sectorsSlugs: $sectorsSlugs) {
+  query UseCasesForSector ($sectorSlugs: [String!]!) {
+    useCasesForSector (sectorSlugs: $sectorSlugs) {
       name
     }
   }
@@ -252,6 +252,43 @@ export const WIZARD_COUNTRY_QUERY = gql`
 export const WIZARD_TAG_QUERY = gql`
   query Tags {
     tags {
+      id
+      name
+      slug
+    }
+  }
+`
+
+export const WIZARD_PARAMS_QUERY = gql`
+  query WizardParamsQuery($locale: String) {
+    tags {
+      id
+      name
+      slug
+    }
+    countries {
+      id
+      name
+      slug
+    }
+    sdgs {
+      id
+      name
+      slug
+    }
+    sectors(locale: $locale) {
+      id
+      name
+      slug
+    }
+    buildingBlocks {
+      id
+      name
+      slug
+      imageFile
+      maturity
+    }
+    useCases {
       id
       name
       slug

@@ -16,7 +16,8 @@ const BuildingBlockDetail = ({ slug, locale }) => {
     skip: !slug
   })
 
-  const { isAdminUser: canEdit } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   if (loading) {
     return <Loading />

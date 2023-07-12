@@ -82,7 +82,7 @@ const Carousel = () => {
               </p>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/DGrrxAnW'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/DGrrxAnW'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -90,7 +90,7 @@ const Carousel = () => {
               </a>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/P53p9r7G'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/P53p9r7G'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -98,7 +98,7 @@ const Carousel = () => {
               </a>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/CFvP6bww'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/CFvP6bww'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -106,14 +106,14 @@ const Carousel = () => {
               </a>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/k4jKPf9A'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/k4jKPf9A'
                 target='_blank' rel='noreferrer'
               >
                 {format('definition.tutorial.products')}
               </a>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/z7NDG7BS'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/z7NDG7BS'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -121,7 +121,7 @@ const Carousel = () => {
               </a>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/ZRURfBN4'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/ZRURfBN4'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -129,7 +129,7 @@ const Carousel = () => {
               </a>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/wosCpaFc'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/wosCpaFc'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -137,7 +137,7 @@ const Carousel = () => {
               </a>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/tMS1kGMs'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/tMS1kGMs'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -145,7 +145,7 @@ const Carousel = () => {
               </a>
               <a
                 className='block px-3 py-1 text-dial-teal'
-                href='https://solutions-catalog.atlassian.net/l/cp/yfSzEQHT'
+                href='https://digital-impact-exchange.atlassian.net/l/cp/yfSzEQHT'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -153,7 +153,7 @@ const Carousel = () => {
               </a>
               <div className='pt-3 text-center'>
                 <a
-                  className='py-3' href='https://solutions-catalog.atlassian.net/l/cp/KLWML6M1'
+                  className='py-3' href='https://digital-impact-exchange.atlassian.net/l/cp/KLWML6M1'
                   target='_blank'
                   rel='noreferrer'
                 >
@@ -234,7 +234,7 @@ const Carousel = () => {
                 {format('definition.contact')}
               </p>
               <div className='text-center'>
-                <a href='mailto:issues@solutions.dial.community' target='_blank' rel='noreferrer'>
+                <a href='mailto:issues@exchange.dial.global' target='_blank' rel='noreferrer'>
                   <button
                     className={`
                       my-auto px-3 py-4 my-3 font-semibold ml-auto

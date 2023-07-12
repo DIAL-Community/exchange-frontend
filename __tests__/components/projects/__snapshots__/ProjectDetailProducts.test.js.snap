@@ -13,7 +13,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -25,7 +25,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -50,7 +50,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-16oyauc-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
               class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -95,11 +95,12 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
                 class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +109,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -120,77 +120,65 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 1
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 3
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 2
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
@@ -231,7 +219,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -243,7 +231,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -268,7 +256,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-16oyauc-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
               class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -313,11 +301,12 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
                 class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -326,7 +315,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -338,77 +326,65 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 1
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 3
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 2
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
@@ -449,7 +425,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -457,18 +433,31 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         class="gap-3"
       >
         <button
-          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          class="mr-2 cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
           data-testid="edit-button"
           type="button"
         >
-          <img
-            alt="Edit"
-            height="12px"
-            src="/icons/edit.svg"
-            width="12px"
-          />
+          <svg
+            class="inline pb-0.5"
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 20h9"
+            />
+            <path
+              d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+            />
+          </svg>
           <span
-            class="text-sm"
+            class="text-sm px-1"
           >
             Edit
           </span>
@@ -482,14 +471,13 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_1"
       >
         <div
-          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4"
             >
               <div
                 class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
@@ -497,18 +485,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 <div
                   class="block w-8 relative"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Product 1"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="Logo for: Product 1"
+                    class="object-contain"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
                 <div
                   class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
@@ -534,14 +521,13 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_3"
       >
         <div
-          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4"
             >
               <div
                 class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
@@ -549,18 +535,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 <div
                   class="block w-8 relative"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Product 3"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="Logo for: Product 3"
+                    class="object-contain"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
                 <div
                   class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
@@ -600,7 +585,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -612,7 +597,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -637,7 +622,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-16oyauc-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
               class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -682,11 +667,12 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -695,7 +681,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -707,52 +692,29 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 1
-          <svg
-            class="ml-3 text-2xl cursor-pointer"
-            data-testid="remove-button"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-            />
-          </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 3
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
@@ -794,7 +756,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -809,14 +771,13 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_1"
       >
         <div
-          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4"
             >
               <div
                 class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
@@ -824,18 +785,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 <div
                   class="block w-8 relative"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Product 1"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="Logo for: Product 1"
+                    class="object-contain"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
                 <div
                   class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
@@ -861,14 +821,13 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_3"
       >
         <div
-          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4"
             >
               <div
                 class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
@@ -876,18 +835,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 <div
                   class="block w-8 relative"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Product 3"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="Logo for: Product 3"
+                    class="object-contain"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
                 <div
                   class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
@@ -927,7 +885,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -939,7 +897,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -964,7 +922,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-16oyauc-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
               class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -1009,11 +967,12 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
                 class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -1022,7 +981,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -1034,29 +992,10 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
-          Product 3
-          <svg
-            class="ml-3 text-2xl cursor-pointer"
-            data-testid="remove-button"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-            />
-          </svg>
+          Product 1
         </div>
       </div>
       <div
@@ -1095,7 +1034,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -1107,7 +1046,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -1132,7 +1071,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-16oyauc-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
               class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -1177,11 +1116,12 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
                 class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -1190,7 +1130,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -1202,33 +1141,29 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 1
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 3
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>

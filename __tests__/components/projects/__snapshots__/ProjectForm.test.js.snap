@@ -80,7 +80,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -108,7 +108,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Project
             </div>
@@ -123,7 +123,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -141,7 +141,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -157,7 +157,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -173,7 +173,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -194,7 +194,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -323,7 +323,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -351,7 +351,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Project
             </div>
@@ -366,7 +366,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -384,7 +384,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -400,7 +400,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -416,7 +416,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -437,7 +437,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -510,7 +510,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -538,7 +538,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -553,7 +553,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -571,7 +571,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -587,7 +587,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -603,7 +603,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -620,7 +620,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   data-testid="project-product"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -638,7 +638,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
+                      class="react-select__control react-select__control--menu-is-open css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -685,11 +685,12 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -698,7 +699,6 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -713,7 +713,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       >
                         <div
                           aria-disabled="false"
-                          class="react-select__option react-select__option--is-focused css-1keuksx-option"
+                          class="react-select__option react-select__option--is-focused css-o0hax1-option"
                           id="react-select-:r0:-option-0"
                           tabindex="-1"
                         >
@@ -721,7 +721,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                         </div>
                         <div
                           aria-disabled="false"
-                          class="react-select__option css-kzqu8f-option"
+                          class="react-select__option css-l88m9j-option"
                           id="react-select-:r0:-option-1"
                           tabindex="-1"
                         >
@@ -729,7 +729,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                         </div>
                         <div
                           aria-disabled="false"
-                          class="react-select__option css-kzqu8f-option"
+                          class="react-select__option css-l88m9j-option"
                           id="react-select-:r0:-option-2"
                           tabindex="-1"
                         >
@@ -744,7 +744,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -762,7 +762,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
+                      class="react-select__control react-select__control--menu-is-open css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -809,11 +809,12 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -822,7 +823,6 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -837,7 +837,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       >
                         <div
                           aria-disabled="false"
-                          class="react-select__option react-select__option--is-focused css-1keuksx-option"
+                          class="react-select__option react-select__option--is-focused css-o0hax1-option"
                           id="react-select-:r1:-option-0"
                           tabindex="-1"
                         >
@@ -845,7 +845,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                         </div>
                         <div
                           aria-disabled="false"
-                          class="react-select__option css-kzqu8f-option"
+                          class="react-select__option css-l88m9j-option"
                           id="react-select-:r1:-option-1"
                           tabindex="-1"
                         >
@@ -864,7 +864,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -937,7 +937,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -965,7 +965,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -980,7 +980,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -998,7 +998,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -1014,7 +1014,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -1030,7 +1030,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -1047,7 +1047,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   data-testid="project-product"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -1065,7 +1065,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -1110,11 +1110,12 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -1123,7 +1124,6 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -1136,7 +1136,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -1154,7 +1154,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -1199,11 +1199,12 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -1212,7 +1213,6 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -1229,7 +1229,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -1302,7 +1302,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -1330,7 +1330,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -1345,7 +1345,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -1363,7 +1363,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -1379,7 +1379,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -1395,7 +1395,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -1412,7 +1412,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   data-testid="project-product"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -1430,7 +1430,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
+                      class="react-select__control react-select__control--menu-is-open css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -1477,11 +1477,12 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -1490,7 +1491,6 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -1504,9 +1504,28 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                         class="react-select__menu-list css-1n6sfyn-MenuList"
                       >
                         <div
-                          class="react-select__menu-notice react-select__menu-notice--no-options css-1wlit7h-NoOptionsMessage"
+                          aria-disabled="false"
+                          class="react-select__option react-select__option--is-focused css-o0hax1-option"
+                          id="react-select-:r4:-option-0"
+                          tabindex="-1"
                         >
-                          No options
+                          Product 1
+                        </div>
+                        <div
+                          aria-disabled="false"
+                          class="react-select__option css-l88m9j-option"
+                          id="react-select-:r4:-option-1"
+                          tabindex="-1"
+                        >
+                          Product 2
+                        </div>
+                        <div
+                          aria-disabled="false"
+                          class="react-select__option css-l88m9j-option"
+                          id="react-select-:r4:-option-2"
+                          tabindex="-1"
+                        >
+                          Product 3
                         </div>
                       </div>
                     </div>
@@ -1517,7 +1536,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -1535,7 +1554,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -1580,11 +1599,12 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -1593,7 +1613,6 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -1610,7 +1629,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -1668,7 +1687,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
 </div>
 `;
 
-exports[`Unit tests for ProjectForm component. Should render ProjectForm with read-only input for Organization and select for Product. 1`] = `
+exports[`Unit tests for ProjectForm component. Should render with read-only input for Organization and select for Product. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -1683,7 +1702,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -1711,7 +1730,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -1726,7 +1745,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -1749,7 +1768,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -1765,7 +1784,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -1781,7 +1800,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -1798,7 +1817,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   data-testid="project-product"
                 >
                   <label
-                    class="required-field text-xl text-dial-blue"
+                    class="required-field text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -1816,7 +1835,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
@@ -1859,11 +1878,12 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -1872,7 +1892,6 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -1885,7 +1904,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -1906,7 +1925,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -1984,7 +2003,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -2012,7 +2031,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -2027,7 +2046,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -2045,7 +2064,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -2061,7 +2080,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -2077,7 +2096,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -2094,7 +2113,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   data-testid="project-product"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -2112,7 +2131,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -2157,11 +2176,12 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -2170,7 +2190,6 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -2183,7 +2202,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -2201,7 +2220,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -2246,11 +2265,12 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                           class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -2259,7 +2279,6 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -2276,7 +2295,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>

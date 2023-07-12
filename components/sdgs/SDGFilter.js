@@ -34,7 +34,7 @@ const SDGFilter = () => {
                 alt='Informational hint'
               />
             </div>
-            <span className='py-1 border-b-2 border-transparent hover:border-dial-yellow'>
+            <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
               {format('filter.hint.text.an')} {format('sdg.shortLabel')}
             </span>
           </a>

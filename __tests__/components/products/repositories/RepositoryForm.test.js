@@ -1,7 +1,7 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
-import { UPDATE_PRODUCT_REPOSITORY } from '../../../../mutations/product'
+import { CREATE_PRODUCT_REPOSITORY, UPDATE_PRODUCT_REPOSITORY } from '../../../../mutations/product'
 import { render } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import RepositoryForm from '../../../../components/products/repositories/RepositoryForm'
@@ -20,7 +20,7 @@ describe('RepositoryForm component.', () => {
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
   describe('Should match snapshot:', () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     test('Create.', () => {
       const { container } = render(
         <CustomMockedProvider>
@@ -31,7 +31,7 @@ describe('RepositoryForm component.', () => {
     })
 
     test('Edit.', () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const { container } = render(
         <CustomMockedProvider>
           <RepositoryForm productRepository={productRepository} productSlug={productSlug} />
@@ -43,43 +43,67 @@ describe('RepositoryForm component.', () => {
 
   test('Should not show validation errors for mandatory fields.', async () => {
     const user = userEvent.setup()
+    const mockVars = {
+      slug: 'product',
+      name: 'test repository name',
+      absoluteUrl: '',
+      description: '',
+      mainRepository:false
+    }
+    const mockData = {
+      data: {
+        createProductRepository: {
+          slug: 'test_repository_name'
+        }
+      }
+    }
+    const mockCreateRepository = generateMockApolloData(CREATE_PRODUCT_REPOSITORY, mockVars, null, mockData)
     const { getByTestId } = render(
-      <CustomMockedProvider>
-        <RepositoryForm />
+      <CustomMockedProvider mocks={[mockCreateRepository]}>
+        <RepositoryForm productSlug={productSlug} />
       </CustomMockedProvider>
     )
     await user.type(screen.getByLabelText(/Name/), 'test repository name')
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
+    const mockVars = {
+      slug: 'product',
+      name: 'test repository name 2',
+      absoluteUrl: '',
+      description: '',
+      mainRepository:false
+    }
+    const mockData = {
+      data: {
+        createProductRepository: {
+          slug: 'test_repository_name_2'
+        }
+      }
+    }
+    const mockCreateRepository = generateMockApolloData(CREATE_PRODUCT_REPOSITORY, mockVars, null, mockData)
     const { getByTestId } = render(
-      <CustomMockedProvider>
-        <RepositoryForm />
+      <CustomMockedProvider mocks={[mockCreateRepository]}>
+        <RepositoryForm productSlug={productSlug}/>
       </CustomMockedProvider>
     )
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test repository name')
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test repository name 2')
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
 
@@ -95,9 +119,7 @@ describe('RepositoryForm component.', () => {
         <RepositoryForm productRepository={productRepository} productSlug={productSlug} />
       </CustomMockedProvider>
     )
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findByText('Repository submitted successfully')
     expect(container).toMatchSnapshot()
   })

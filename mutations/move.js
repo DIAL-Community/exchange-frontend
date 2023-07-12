@@ -1,22 +1,69 @@
 import { gql } from '@apollo/client'
 
-export const UPDATE_MOVE_ORDER = gql`
+export const CREATE_MOVE_RESOURCE = gql`
   mutation (
-    $playSlug: String!
-    $moveSlug: String!
-    $operation: String!
-    $distance: Int
+    $playSlug: String!,
+    $moveSlug: String!,
+    $url: String!,
+    $name: String!,
+    $description: String!,
+    $index: Int!
   ) {
-    updateMoveOrder (
-      playSlug: $playSlug
-      moveSlug: $moveSlug
-      operation: $operation
-      distance: $distance
+    createMoveResource(
+      playSlug: $playSlug,
+      moveSlug: $moveSlug,
+      url: $url,
+      name: $name,
+      description: $description,
+      index: $index
     ) {
       move {
         id
-        slug
         name
+        slug
+      }
+      errors
+    }
+  }
+`
+const generateMutationText = (mutationFunc) => {
+  return `
+    mutation (
+      $playSlug: String!,
+      $moveSlug: String!,
+      $name: String!,
+      $description: String!,
+      $resources: JSON!
+    ) {
+      ${mutationFunc} (
+        playSlug: $playSlug,
+        moveSlug: $moveSlug,
+        name: $name,
+        description: $description,
+        resources: $resources
+      ) {
+        move {
+          id
+          name
+          slug
+          play {
+            slug
+          }
+        }
+        errors
+      }
+    }
+  `
+}
+
+export const CREATE_MOVE = gql(generateMutationText('createMove'))
+export const AUTOSAVE_MOVE = gql(generateMutationText('autoSaveMove'))
+
+export const UNASSIGN_PLAY_MOVE = gql`
+  mutation DeletePlayMove ($playSlug: String!, $moveSlug: String!) {
+    deletePlayMove(playSlug: $playSlug, moveSlug: $moveSlug) {
+      play {
+        id
       }
       errors
     }

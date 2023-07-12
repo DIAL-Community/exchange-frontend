@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { HiQuestionMarkCircle } from 'react-icons/hi'
@@ -19,18 +20,21 @@ const TabNav = (props) => {
             <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
               <span className='bg-white px-3 intro-overview-sdg-framework'>
                 <span className='text-sm font-bold text-gray-500'>{format('digiInvestment.title')}</span>
-                <HiQuestionMarkCircle className='ml-1 inline' data-tip={format('digiInvestment.tooltip')} data-html />
+                <HiQuestionMarkCircle
+                  className='ml-1 inline'
+                  data-tooltip-id='react-tooltip'
+                  data-tooltip-html={format('digiInvestment.tooltip')}
+                />
               </span>
             </div>
           </div>
-          <div className='text-sm text-right -mt-3'>
-            <Link href='/wizard'>
-              <a
-                href='/navigate-to-wizard'
-                className='border-b-2 border-transparent text-dial-yellow font-bold hover:border-dial-yellow'
-              >
-                {format('filter.launchWizard')}
-              </a>
+          <div className='text-sm text-dial-sunshine text-right -mt-3'>
+            <Link
+              href='/#wizard-anchor'
+              scroll={false}
+              className='border-b-2 border-transparent font-semibold hover:border-dial-sunshine'
+            >
+              {format('filter.launchWizard')}
             </Link>
           </div>
         </div>
@@ -48,32 +52,32 @@ const TabNav = (props) => {
                 return (
                   <li
                     key={`menu-${filterItem}`}
-                    className={`
-                      -mb-px whitespace-nowrap
-                      ${index === activeTab ? 'bg-dial-yellow rounded-t' : 'pb-2 overflow-hidden'}
-                    `}
+                    className={classNames(
+                      '-mb-px whitespace-nowrap',
+                      index === activeTab ? 'bg-dial-sunshine rounded-t' : 'pb-2 overflow-hidden'
+                    )}
                     style={{ flex: '1 1 0px' }}
                   >
-                    <Link href={`/${href}`}>
-                      <a
-                        className={`
-                          block px-3 py-3
-                          ${index === activeTab ? 'bg-dial-yellow rounded-t' : 'bg-dial-alice-blue rounded'}
-                        `}
-                        data-toggle='tab'
-                        href={`/${href}`}
+                    <Link
+                      href={`/${href}`}
+                      className={classNames(
+                        'block p-3',
+                        index === activeTab
+                          ? 'bg-dial-sunshine rounded-t hover:bg-dial-sunshine'
+                          : 'bg-dial-alice-blue rounded hover:bg-dial-eggshell'
+                      )}
+                      data-toggle='tab'
+                    >
+                      <div
+                        className={classNames(
+                          index === activeTab ? '' : 'truncate',
+                          filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : '',
+                          filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : '',
+                          'text-center font-semibold text-dial-gray-dark'
+                        )}
                       >
-                        <div
-                          className={`
-                            ${index === activeTab ? '' : 'truncate'}
-                            ${filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : ''}
-                            ${filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : ''}
-                            text-center font-semibold text-dial-gray-dark
-                          `}
-                        >
-                          {format(filterItem)}
-                        </div>
-                      </a>
+                        {format(filterItem)}
+                      </div>
                     </Link>
                   </li>
                 )
@@ -82,8 +86,8 @@ const TabNav = (props) => {
           </ul>
         </div>
       </div>
-      <div className='hidden md:block md:sticky md:sticky-bar filter card-drop-shadow-lg'>
-        <div className='border-b-8 border-dial-yellow max-w-catalog mx-auto' />
+      <div className='hidden md:block md:sticky md:sticky-bar filter shadow-md-lg'>
+        <div className='border-b-8 border-dial-sunshine max-w-catalog mx-auto' />
       </div>
     </>
   )

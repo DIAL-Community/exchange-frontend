@@ -8,7 +8,7 @@ import {
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import ReactTooltip from 'react-tooltip'
+import { Tooltip } from 'react-tooltip'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -48,14 +48,18 @@ const MaturityCategory = ({ category }) => {
           <div className='h5 inline'>{category.name}</div>
           <div className='h5 float-right inline'>
             {format('product.category-score')}:
-            {Math.round(category.overall_score * MATURITY_SCORE_MULTIPLIER)} / {MAX_MATURITY_SCORE}
+            {Math.round(category.overallScore / category.maximumScore * MAX_MATURITY_SCORE)} / {MAX_MATURITY_SCORE}
+          </div>
+          <div className='text-xs pl-4 pt-3'>
+            {category.description && parse(category.description)}
           </div>
         </AccordionItemButton>
       </AccordionItemHeading>
       <AccordionItemPanel>
-        {category.indicator_scores.map((indicator, indicatorIdx) => {
-          let indicatorScore = Math.round(indicator.score * category.indicator_scores.length * MATURITY_SCORE_MULTIPLIER)
+        {category.categoryIndicators.map((indicator, indicatorIdx) => {
+          let indicatorScore = Math.round(indicator.score / indicator.weight) * MATURITY_SCORE_MULTIPLIER
           indicatorScore = indicatorScore > MAX_MATURITY_SCORE ? MAX_MATURITY_SCORE : indicatorScore
+          const scoreText = `${Math.round(indicatorScore)}/${MAX_MATURITY_SCORE}`
 
           return (
             <Accordion key={indicatorIdx} allowMultipleExpanded allowZeroExpanded>
@@ -64,13 +68,16 @@ const MaturityCategory = ({ category }) => {
                   <AccordionItemButton>
                     <div className='h5 inline'>{indicator.name}</div>
                     <div className='h5 float-right inline'>
-                      {format('product.indicator-score')}: {indicatorScore} / {MAX_MATURITY_SCORE}
+                      {`${format('product.indicator-score')}: ${isNaN(indicatorScore) ? 'N/A' : scoreText}`}
                     </div>
                   </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
-                  <div className='text-sm text-button-gray pl-6'>
+                  <div className='text-sm text-dial-stratos pl-4'>
                     {parse(indicator.description)}
+                  </div>
+                  <div className='text-sm text-dial-stratos pl-4'>
+                    {format('categoryIndicator.weight')}: {indicator.weight}
                   </div>
                 </AccordionItemPanel>
               </AccordionItem>
@@ -82,24 +89,20 @@ const MaturityCategory = ({ category }) => {
   )
 }
 
-const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails }) => {
+const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScoreDetails }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
   const { locale } = useRouter()
-
   const { showToast } = useContext(ToastContext)
 
   const scaleOptions = useMemo(() => getCategoryIndicatorScaleOptions(format), [format])
-
   const booleanOptions = useMemo(() => getCategoryIndicatorBooleanOptions(format), [format])
-
   const numericOptions = useMemo(() => getCategoryIndicatorNumericOptions(), [])
 
   const { isAdminUser, user } = useUser()
 
   const { handleSubmit, setValue, control, reset } = useForm()
-
   const { fields: categoryIndicators } = useFieldArray({
     control,
     name: CATEGORY_INDICATORS_FIELD_ARRAY_NAME
@@ -110,17 +113,22 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
   const [isMaturityScoreDetailsDialogOpen, setIsMaturityScoreDetailsDialogOpen] = useState(false)
   const toggleMaturityScoreDetailsDialog = () => setIsMaturityScoreDetailsDialogOpen(!isMaturityScoreDetailsDialogOpen)
 
-  const [overallMaturityScore, setOverallMaturityScore] = useState(maturityScore?.overallScore)
+  const [maturityScore, setMaturityScore] = useState(overallMaturityScore)
 
-  const sortMaturityScoreDetails = useCallback((data) => data?.filter(({ overall_score }) => overall_score > 0)
-    .sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name)), [])
+  const sortMaturityScoreDetails = useCallback(
+    (data) => data?.filter(({ overallScore }) => overallScore > 0)
+      .sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name)),
+    []
+  )
 
   const [validMaturityScores, setValidMaturityScores] = useState(sortMaturityScoreDetails(maturityScoreDetails))
 
   const chartLabels = useMemo(() => validMaturityScores?.map(({ name }) => name), [validMaturityScores])
 
   const chartValues = useMemo(
-    () => validMaturityScores?.map(({ overall_score }) => overall_score * MATURITY_SCORE_MULTIPLIER),
+    () => validMaturityScores?.map(
+      ({ overallScore, maximumScore }) => overallScore / maximumScore * MAX_MATURITY_SCORE
+    ),
     [validMaturityScores]
   )
 
@@ -196,7 +204,7 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
         if (response?.product && response?.errors?.length === 0) {
           refetchCategoryIndicators()
           setValidMaturityScores(sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails))
-          setOverallMaturityScore(data.updateProductIndicators.product.maturityScore.overallScore)
+          setMaturityScore(data.updateProductIndicators.product.overallMaturityScore)
           showToast(format('toast.category-indicator.update.success'), 'success', 'top-center')
           setIsDirty(false)
         } else {
@@ -269,11 +277,12 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
       {validMaturityScores?.length ? (
         <>
           <div className='pb-5 mr-6 h4' data-testid='maturity-overall-score'>
-            {format('product.overall-score')}: {overallMaturityScore} / {MAX_MATURITY_SCORE}
+            {format('product.overall-score')}: {Math.round(maturityScore)} / {MAX_MATURITY_SCORE}
           </div>
           <div
             className='cursor-pointer min-h-[20rem] h-[25vh]'
-            data-tip={format('product.maturity-chart-tooltip')}
+            data-tooltip-id='react-tooltip'
+            data-tooltip-content={format('product.maturity-chart-tooltip')}
             onClick={toggleMaturityScoreDetailsDialog}
             data-testid='maturity-scores-chart'
           >
@@ -282,7 +291,7 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
               : <RadarChart labels={chartLabels} values={chartValues} maxScaleValue={MAX_MATURITY_SCORE} />
             }
           </div>
-          <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+          <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
           <Dialog
             isOpen={isMaturityScoreDetailsDialogOpen}
             onClose={toggleMaturityScoreDetailsDialog}

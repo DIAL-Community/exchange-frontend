@@ -90,7 +90,7 @@ const OrganizationDetailContacts = ({ organization }) => {
 
   const displayModeBody = organization && contacts.length > 0
     ? (
-      <div className='grid grid-cols-1 lg:grid-cols-2'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
         {contacts.map((contact, index) => <ContactCard key={index} contact={contact} listType='list'/>)}
       </div>
     ) : (
@@ -100,7 +100,7 @@ const OrganizationDetailContacts = ({ organization }) => {
   const editModeBody =
     <>
       <form onSubmit={handleSubmit(addContact)}>
-        <p className='card-title text-dial-blue mb-3'>
+        <p className='card-title text-dial-stratos mb-3'>
           {format('app.assign')} {format('contact.header')}
         </p>
         <div className='flex flex-col md:flex-row justify-between'>

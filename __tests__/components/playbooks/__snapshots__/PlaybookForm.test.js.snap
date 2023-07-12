@@ -71,7 +71,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -99,7 +99,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Playbook
             </div>
@@ -209,7 +209,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                     class="mb-2"
                   >
                     <div
-                      class=" css-l45kjq-container"
+                      class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
@@ -222,7 +222,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-16oyauc-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
                           class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -268,11 +268,12 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                             class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -281,7 +282,6 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -417,39 +417,6 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                 </div>
               </div>
             </div>
-            <div
-              class="flex flex-col gap-y-2 mt-4"
-            >
-              <div
-                class="text-xl text-dial-blue font-bold"
-              >
-                Plays
-              </div>
-              <div
-                class="text-sm text-dial-blue"
-              >
-                Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.
-              </div>
-              <div
-                class="flex flex-col gap-2 text-dial-purple-light"
-              >
-                <div
-                  class="text-sm font-medium opacity-80"
-                >
-                  No play results found
-                </div>
-              </div>
-            </div>
-            <div
-              class="font-semibold text-sm ml-auto"
-            >
-              <button
-                class="bg-blue-500 text-dial-gray-light py-2 px-4 rounded"
-                type="button"
-              >
-                Assign Play
-              </button>
-            </div>
             <label
               class="flex gap-x-2 mb-2 items-center self-start form-field-label"
             >
@@ -467,28 +434,12 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
               <button
                 class="submit-button"
                 data-testid="submit-button"
-                disabled=""
                 type="submit"
               >
                 Save as Draft
-                <svg
-                  class="spinner ml-3 inline"
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 512 512"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                  />
-                </svg>
               </button>
               <button
                 class="cancel-button"
-                disabled=""
                 type="button"
               >
                 Cancel
@@ -517,7 +468,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -545,7 +496,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Playbook
             </div>
@@ -655,7 +606,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                     class="mb-2"
                   >
                     <div
-                      class=" css-l45kjq-container"
+                      class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
@@ -668,7 +619,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-16oyauc-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
                           class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -714,11 +665,12 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                             class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -727,7 +679,6 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -863,39 +814,6 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                 </div>
               </div>
             </div>
-            <div
-              class="flex flex-col gap-y-2 mt-4"
-            >
-              <div
-                class="text-xl text-dial-blue font-bold"
-              >
-                Plays
-              </div>
-              <div
-                class="text-sm text-dial-blue"
-              >
-                Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.
-              </div>
-              <div
-                class="flex flex-col gap-2 text-dial-purple-light"
-              >
-                <div
-                  class="text-sm font-medium opacity-80"
-                >
-                  No play results found
-                </div>
-              </div>
-            </div>
-            <div
-              class="font-semibold text-sm ml-auto"
-            >
-              <button
-                class="bg-blue-500 text-dial-gray-light py-2 px-4 rounded"
-                type="button"
-              >
-                Assign Play
-              </button>
-            </div>
             <label
               class="flex gap-x-2 mb-2 items-center self-start form-field-label"
             >
@@ -947,7 +865,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -975,7 +893,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Example Playbook
             </div>
@@ -1085,7 +1003,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                     class="mb-2"
                   >
                     <div
-                      class=" css-l45kjq-container"
+                      class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
@@ -1098,7 +1016,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-16oyauc-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
                           class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -1144,11 +1062,12 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                             class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1157,7 +1076,6 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -1292,92 +1210,6 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              class="flex flex-col gap-y-2 mt-4"
-            >
-              <div
-                class="text-xl text-dial-blue font-bold"
-              >
-                Plays
-              </div>
-              <div
-                class="text-sm text-dial-blue"
-              >
-                Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.
-              </div>
-              <div
-                class="flex flex-col gap-2 text-dial-purple-light"
-              >
-                <div
-                  class="inline overflow-hidden"
-                  data-handler-id="T0"
-                >
-                  <div
-                    class="flex flex-row gap-3"
-                  >
-                    <div
-                      class="py-4 font-semibold text-lg"
-                    >
-                      1
-                      )
-                    </div>
-                    <div
-                      class="w-full"
-                    >
-                      <div
-                        class="
-    bg-white cursor-move card-drop-shadow overflow-hidden
-    border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
-   flex flex-row gap-3 px-3 py-4 h-16"
-                        draggable="true"
-                      >
-                        <div
-                          class="w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis"
-                        >
-                          D4D: Understand the Problem
-                        </div>
-                        <div
-                          class="w-full line-clamp-1 fr-view my-1"
-                        >
-                          The play description goes here.
-                        </div>
-                        <div
-                          class="w-2/6 my-auto flex gap-2 text-sm"
-                        >
-                          <button
-                            class="ml-auto bg-dial-orange-light text-dial-purple py-1.5 px-3 rounded disabled:opacity-50"
-                            type="button"
-                          >
-                            Preview
-                          </button>
-                          <button
-                            class="bg-dial-purple-light text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50"
-                            type="button"
-                          >
-                            Unassign
-                          </button>
-                          <img
-                            alt="Logo for: Move Order."
-                            class="h-6 my-auto"
-                            src="/icons/move/move.png"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="font-semibold text-sm ml-auto"
-            >
-              <button
-                class="bg-blue-500 text-dial-gray-light py-2 px-4 rounded"
-                type="button"
-              >
-                Assign Play
-              </button>
             </div>
             <label
               class="flex gap-x-2 mb-2 items-center self-start form-field-label"

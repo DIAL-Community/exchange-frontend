@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import Image from 'next/image'
-import ReactTooltip from 'react-tooltip'
 import { BsQuestionCircleFill } from 'react-icons/bs'
 import Breadcrumb from '../shared/breadcrumb'
 import { HtmlViewer } from '../shared/HtmlViewer'
@@ -38,8 +37,6 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
     return map
   })()
 
-  useEffect(() => ReactTooltip.rebuild(), [])
-
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
@@ -50,7 +47,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           <div className='card-title text-dial-gray-dark inline'>{format('product.website')}</div>
           <div className='text-base text-dial-teal flex'>
             <a href={prependUrlWithProtocol(product.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b-2 border-transparent hover:border-dial-yellow'>
+              <div className='border-b-2 border-transparent hover:border-dial-sunshine'>
                 {product.website} ⧉
               </div>
             </a>
@@ -100,9 +97,8 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
               <div className='flex flex-row gap-3'>
                 <div className='block w-8 relative'>
                   <Image
-                    layout='fill'
-                    objectFit='scale-down'
-                    objectPosition='left'
+                    fill
+                    className='object-contain'
                     src={'/images/origins/' + origin.slug + '.png'}
                     alt={format('image.alt.logoFor', { name: origin.name })}
                   />
@@ -122,8 +118,12 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                   target='_blank'
                   rel='noreferrer'
                 >
-                  <div className='inline text-dial-teal text-sm' data-tip={format('product.view-DPGA-data')}>
-                    <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-yellow' />
+                  <div
+                    className='inline text-dial-teal text-sm'
+                    data-tooltip-id='react-tooltip'
+                    data-tooltip-content={format('product.view-DPGA-data')}
+                  >
+                    <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-sunshine' />
                   </div>
                 </a>
               )}
@@ -143,7 +143,8 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                   <Image
                     height={20} width={20}
                     alt={format('image.alt.logoFor', { name: endorser.name })}
-                    data-tip={format('product.endorsed-by')}
+                    data-tooltip-id='react-tooltip'
+                    data-tooltip-content={format('product.endorsed-by')}
                     src={'/images/origins/' + endorser.slug + '.png'}
                     className='inline'
                   />
@@ -207,7 +208,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       </div>
       <ProductDetailMaturityScores
         slug={product.slug}
-        maturityScore={product.maturityScore}
+        overallMaturityScore={product.overallMaturityScore}
         maturityScoreDetails={product.maturityScoreDetails}
       />
       <CommentsSection

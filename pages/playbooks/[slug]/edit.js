@@ -4,29 +4,16 @@ import { useQuery } from '@apollo/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
-import PlayPreview from '../../../components/plays/PlayPreview'
 import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
-import { PlayListProvider } from '../../../components/plays/PlayListContext'
-import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
 import ClientOnly from '../../../lib/ClientOnly'
 import NotFound from '../../../components/shared/NotFound'
 import { useUser } from '../../../lib/hooks'
 import { PLAYBOOK_QUERY } from '../../../queries/playbook'
 
-const EditFormProvider = ({ children }) => {
-  return (
-    <PlayListProvider>
-      <PlayPreviewProvider>
-        {children}
-      </PlayPreviewProvider>
-    </PlayListProvider>
-  )
-}
-
 function EditPlaybook () {
   const router = useRouter()
 
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const { locale } = router
   const { slug } = router.query
@@ -55,14 +42,10 @@ function EditPlaybook () {
         <ClientOnly>
           {loadingUserSession
             ? <Loading />
-            : isAdminUser
-              ? (
-                <EditFormProvider>
-                  <PlayPreview />
-                  <PlaybookForm playbook={data.playbook} />
-                </EditFormProvider>
-              )
-              : <Unauthorized />}
+            : isAdminUser || isEditorUser
+              ? <PlaybookForm playbook={data.playbook} />
+              : <Unauthorized />
+          }
         </ClientOnly>
       )}
       <Footer />

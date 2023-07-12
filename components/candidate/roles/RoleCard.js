@@ -2,10 +2,9 @@ import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import parse from 'html-react-parser'
 import classNames from 'classnames'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import { CandidateActionType, CandidateStatusType } from '../../../lib/constants'
 import { ToastContext } from '../../../lib/ToastContext'
 import { APPROVE_CANDIDATE_ROLE, REJECT_CANDIDATE_ROLE } from '../../../mutations/candidate'
@@ -18,10 +17,6 @@ const RoleCard = ({ role, listType }) => {
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
   const [comment, setComment] = useState('')
-
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
 
   return (
     <>
@@ -122,7 +117,7 @@ const RoleCard = ({ role, listType }) => {
           : (
             <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-vertical' : ''}`}>
               <div className='card-body border-3 border-transparent text-dial-purple cursor-pointer h-full'>
-                <div className='card-front h-full flex flex-col border border-dial-gray card-drop-shadow'>
+                <div className='card-front h-full flex flex-col border border-dial-gray shadow-md'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                     {
                       (String(role.rejected) === 'true' || status === 'rejected') &&

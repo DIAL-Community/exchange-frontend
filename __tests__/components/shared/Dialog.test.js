@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils'
 import { fireEvent } from '@testing-library/react'
 import Dialog, { DialogType } from '../../../components/shared/Dialog'
 import { mockObserverImplementation, render } from '../../test-utils'
@@ -15,21 +16,22 @@ describe('Unit test for the Dialog component.', () => {
   const mockOnClose = jest.fn()
 
   beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 
-  test('Should not be visible when is not open.', () => {
-    const { queryByTestId } = render(
+  test('Should not be visible when is not open.', async () => {
+    const { queryByTestId } = await act(() => render(
       <CustomMockedProvider>
         <Dialog isOpen={false} />
       </CustomMockedProvider>
-    )
+    ))
     expect(queryByTestId(DIALOG_TEST_ID)).not.toBeInTheDocument()
   })
 
   describe('Should match snapshot -', () => {
     test('when Dialog has form type with submit and cancel button.', async () => {
-      const { getByTestId, queryByTestId } = render(
+      const { getByTestId, queryByTestId, container } = await act(() => render(
         <CustomMockedProvider>
           <Dialog
             submitButton
@@ -41,16 +43,16 @@ describe('Unit test for the Dialog component.', () => {
             {mockDialogBody}
           </Dialog>
         </CustomMockedProvider>
-      )
+      ))
       expect(getByTestId(DIALOG_BODY_TEST_ID)).toHaveTextContent(mockDialogBody)
       expect(getByTestId(SUBMIT_BUTTON_TEST_ID)).toHaveTextContent('Submit')
       expect(getByTestId(CANCEL_BUTTON_TEST_ID)).toHaveTextContent('Cancel')
       expect(queryByTestId(CLOSE_BUTTON_TEST_ID)).not.toBeInTheDocument()
-      expect(getByTestId(DIALOG_TEST_ID)).toMatchSnapshot()
+      expect(container).toMatchSnapshot()
     })
 
-    test('when Dialog has default type and has close button.', () => {
-      const { getByTestId, queryByTestId } = render(
+    test('when Dialog has default type and has close button.', async () => {
+      const { getByTestId, queryByTestId, container } = await act(() => render(
         <CustomMockedProvider>
           <Dialog
             closeButton
@@ -60,18 +62,18 @@ describe('Unit test for the Dialog component.', () => {
             {mockDialogBody}
           </Dialog>
         </CustomMockedProvider>
-      )
+      ))
       expect(getByTestId(DIALOG_BODY_TEST_ID)).toHaveTextContent(mockDialogBody)
       expect(getByTestId(CLOSE_BUTTON_TEST_ID)).toHaveTextContent('Close')
       expect(queryByTestId(SUBMIT_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(queryByTestId(CANCEL_BUTTON_TEST_ID)).not.toBeInTheDocument()
-      expect(getByTestId(DIALOG_TEST_ID)).toMatchSnapshot()
+      expect(container).toMatchSnapshot()
     })
   })
 
   describe('Should call', () => {
-    test('the onClose function after clicking the "Cancel" button.', () => {
-      const { getByTestId } = render(
+    test('the onClose function after clicking the "Cancel" button.', async () => {
+      const { getByTestId } = await act(() => render(
         <CustomMockedProvider>
           <Dialog
             submitButton
@@ -83,13 +85,13 @@ describe('Unit test for the Dialog component.', () => {
             {mockDialogBody}
           </Dialog>
         </CustomMockedProvider>
-      )
-      fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
+      ))
+      await act(() => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
       expect(mockOnClose).toHaveBeenCalled()
     })
 
-    test('the onClose function after clicking the "Close" button.', () => {
-      const { getByTestId } = render(
+    test('the onClose function after clicking the "Close" button.', async () => {
+      const { getByTestId } = await act(() => render(
         <CustomMockedProvider>
           <Dialog
             closeButton
@@ -99,8 +101,8 @@ describe('Unit test for the Dialog component.', () => {
             {mockDialogBody}
           </Dialog>
         </CustomMockedProvider>
-      )
-      fireEvent.click(getByTestId(CLOSE_BUTTON_TEST_ID))
+      ))
+      await act(() => fireEvent.click(getByTestId(CLOSE_BUTTON_TEST_ID)))
       expect(mockOnClose).toHaveBeenCalled()
     })
   })

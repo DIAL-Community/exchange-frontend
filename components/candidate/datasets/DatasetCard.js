@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import parse from 'html-react-parser'
@@ -11,7 +10,7 @@ import { CANDIDATE_DATASET_ACTION } from '../../../queries/candidate'
 import { useUser } from '../../../lib/hooks'
 import { CandidateActionType, CandidateStatusType } from '../../../lib/constants'
 
-const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
+const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-sunshine'
 
 const DatasetCard = ({ dataset, listType }) => {
   const { formatMessage } = useIntl()
@@ -26,10 +25,6 @@ const DatasetCard = ({ dataset, listType }) => {
       .find((datasetOption) => dataset.dataType === datasetOption.value)
   , [dataset.dataType, format])
 
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
-
   const shouldFlipCard = (status) =>
     [CandidateStatusType.REJECTION, CandidateStatusType.APPROVAL].indexOf(status) >= 0
 
@@ -40,7 +35,7 @@ const DatasetCard = ({ dataset, listType }) => {
           ? (
             <div className={classNames('card', { 'flip-horizontal':  shouldFlipCard(status) })}>
               <div className='card-body border-3 border-transparent'>
-                <div className={classNames('card-front border border-dial-gray card-drop-shadow bg-white',
+                <div className={classNames('card-front border border-dial-gray shadow-md bg-white',
                   { 'bg-red-50': dataset.rejected === true || status === CandidateStatusType.REJECTED },
                   { 'bg-emerald-50': dataset.rejected === false || status === CandidateStatusType.APPROVED }
                 )}>
@@ -124,7 +119,7 @@ const DatasetCard = ({ dataset, listType }) => {
           : (
             <div className={classNames('card', { 'flip-vertical':  shouldFlipCard(status) })}>
               <div className='card-body border-3 border-transparent text-dial-purple h-full'>
-                <div className='card-front h-full flex flex-col border border-dial-gray card-drop-shadow'>
+                <div className='card-front h-full flex flex-col border border-dial-gray shadow-md'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray dataset-card-header'>
                     {
                       (dataset.rejected === true || status === CandidateStatusType.REJECTED) &&

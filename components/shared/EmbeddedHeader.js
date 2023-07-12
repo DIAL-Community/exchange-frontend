@@ -8,7 +8,7 @@ const LANGUAGE_MENU = 'switchLanguage'
 const NONE = ''
 
 const menuItemStyles = `
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-sunshine
   `
 
 const dropdownMenuStyles = `
@@ -91,9 +91,9 @@ const EmbeddedHeader = () => {
             <div className='text-dial-blue-darkest text-xs'>
               Powered By
             </div>
-            <div className='font-bold text-xl text-dial-blue-darkest'>
+            <div className='font-bold text-dial-sapphire-darkest'>
               <span className='block'>
-                <a href='https://solutions.dial.community' target='_blank' rel='noreferrer'>
+                <a href='https://exchange.dial.global' target='_blank' rel='noreferrer'>
                   {format('app.title')}
                 </a>
               </span>

@@ -77,7 +77,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
       updateUseCaseStepWorkflows({
         variables: {
           slug: useCaseStep.slug,
-          workflowsSlugs: workflows.map(({ slug }) => slug)
+          workflowSlugs: workflows.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -97,7 +97,9 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
   const displayModeBody = workflows.length
     ? (
       <div className='flex flex-col gap-2'>
-        {workflows.map((workflow, workflowIdx) => <WorkflowCard key={workflowIdx} workflow={workflow} listType='list' />)}
+        {workflows.map((workflow, workflowIdx) =>
+          <WorkflowCard key={workflowIdx} workflow={workflow} listType='list' />)
+        }
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
@@ -107,7 +109,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('workflow.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='workflow-search'>

@@ -30,7 +30,10 @@ const basePathMappings = {
   users: 'user.header',
   moves: 'move.header',
   countries: 'country.header',
-  rubric_categories: 'rubric-categories.header'
+  rubric_categories: 'rubric-categories.header',
+  opportunities: 'opportunity.header',
+  resources: 'resource.header',
+  storefronts: 'storefront.header'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
@@ -64,17 +67,18 @@ const Breadcrumb = (props) => {
   return (
     // Use this to make this sticky: <div className='bg-white sticky py-4' style={{ top: '66px', zIndex: 1 }}>
     <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
-      <Link href='/'>
-        <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+      <Link href='/' className='inline text-dial-sapphire h5'>
+        {format('app.home')}
       </Link>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
           <div key={i} className='inline h5'>
             {BREADCRUMB_SEPARATOR}
-            <Link href={breadcrumb.href}>
-              <a className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'}`}>
-                {convertBreadcrumb(breadcrumb.breadcrumb)}
-              </a>
+            <Link
+              href={breadcrumb.href}
+              className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-sapphire'}`}
+            >
+              {convertBreadcrumb(breadcrumb.breadcrumb)}
             </Link>
           </div>
         )

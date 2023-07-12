@@ -23,7 +23,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
 
   const slug = useCase?.slug ?? ''
 
-  const { user, isAdminUser, loadingUserSession } = useUser()
+  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -89,7 +89,8 @@ const UseCaseForm = React.memo(({ useCase }) => {
     defaultValues: {
       name: useCase?.name,
       maturity: maturityOptions.find(({ value }) => value === useCase?.maturity),
-      description: useCase?.useCaseDescription?.description
+      description: useCase?.useCaseDescription?.description,
+      markdownUrl: useCase?.markdownUrl
     }
   })
 
@@ -115,13 +116,14 @@ const UseCaseForm = React.memo(({ useCase }) => {
     if (user) {
       setMutating(true)
       const { userEmail, userToken } = user
-      const { name, sector, maturity, imageFile, description } = data
+      const { name, sector, maturity, imageFile, description, markdownUrl } = data
       const variables = {
         name,
         slug,
         sectorSlug: sector.slug,
         maturity: maturity.value,
-        description
+        description,
+        markdownUrl
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -145,7 +147,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
   }
 
   return (
-    (loadingUserSession || loadingSectors) ? <Loading /> : isAdminUser ? (
+    (loadingUserSession || loadingSectors) ? <Loading /> : isAdminUser || isEditorUser ? (
       <div className='flex flex-col'>
         <div className='hidden lg:block px-8'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
@@ -154,7 +156,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
           <div id='content' className='sm:px-0 max-w-full mx-auto'>
             <form onSubmit={handleSubmit(doUpsert)}>
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-                <div className='text-2xl font-bold text-dial-blue pb-4'>
+                <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {useCase
                     ? format('app.edit-entity', { entity: useCase.name })
                     : `${format('app.create-new')} ${format('useCase.label')}`
@@ -163,7 +165,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
                 <div className='flex flex-col lg:flex-row gap-4'>
                   <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
                     <div className='flex flex-col gap-y-2 mb-2' data-testid='use-case-name'>
-                      <label className='text-xl text-dial-blue required-field' htmlFor='name'>
+                      <label className='text-dial-sapphire required-field' htmlFor='name'>
                         {format('useCase.name')}
                       </label>
                       <Input
@@ -175,7 +177,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
                       {errors.name && <ValidationError value={errors.name?.message} />}
                     </div>
                     <div className='flex flex-col gap-y-2 mb-2' data-testid='use-case-sector'>
-                      <label className='required-field text-xl text-dial-blue'>
+                      <label className='required-field text-dial-sapphire'>
                         {format('useCase.sector')}
                       </label>
                       <Controller
@@ -197,7 +199,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
                       {errors.sector && <ValidationError value={errors.sector?.message} />}
                     </div>
                     <div className='flex flex-col gap-y-2 mb-2' data-testid='use-case-maturity'>
-                      <label className='required-field text-xl text-dial-blue'>
+                      <label className='required-field text-dial-sapphire'>
                         {format('useCase.maturity')}
                       </label>
                       <Controller
@@ -218,7 +220,17 @@ const UseCaseForm = React.memo(({ useCase }) => {
                       {errors.maturity && <ValidationError value={errors.maturity?.message} />}
                     </div>
                     <div className='flex flex-col gap-y-2 mb-2'>
-                      <label className='text-xl text-dial-blue'>
+                      <label className='text-dial-sapphire' htmlFor='markdownUrl'>
+                        {format('useCase.markdownUrl')}
+                      </label>
+                      <Input
+                        {...register('markdownUrl')}
+                        id='markdownUrl'
+                        placeholder={format('useCase.markdownUrl')}
+                      />
+                    </div>
+                    <div className='flex flex-col gap-y-2 mb-2'>
+                      <label className='text-dial-sapphire'>
                         {format('useCase.imageFile')}
                       </label>
                       <FileUploader {...register('imageFile')} />
@@ -226,7 +238,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
                   </div>
                   <div className='w-full lg:w-2/3'>
                     <div className='block flex flex-col gap-y-2' data-testid='use-case-description'>
-                      <label className='text-xl text-dial-blue required-field'>
+                      <label className='text-dial-sapphire required-field'>
                         {format('useCase.description')}
                       </label>
                       <Controller
@@ -267,6 +279,11 @@ const UseCaseForm = React.memo(({ useCase }) => {
                     {reverting && <FaSpinner className='spinner ml-3' />}
                   </button>
                 </div>
+                { useCase?.markdownUrl &&
+                  <div className='text-sm italic text-red-500'>
+                    {format('useCase.markdownWarning')}
+                  </div>
+                }
               </div>
             </form>
           </div>

@@ -4,6 +4,7 @@ import Breadcrumb from '../shared/breadcrumb'
 import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
+import { prependUrlWithProtocol } from '../../lib/utilities'
 import ProjectDetailSectors from './ProjectDetailSectors'
 import ProjectDetailOrganizations from './ProjectDetailOrganizations'
 import ProjectDetailCountries from './ProjectDetailCountries'
@@ -26,17 +27,19 @@ const ProjectDetailRight = ({ project, canEdit, commentsSectionRef }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='card-title text-dial-gray-dark'>{format('project.description')}</div>
+      <div className='card-title text-dial-sapphire mb-3'>{format('project.description')}</div>
       <HtmlViewer
         initialContent={project?.projectDescription?.description}
         editorId='project-detail'
       />
-      <div className='card-title mb-3 text-dial-gray-dark'>{format('project.url')}</div>
+      <div className='card-title mb-3 text-dial-sapphire'>{format('project.url')}</div>
       <div className='text-dial-blue text-sm pb-5'>
-        <a href={`${project.projectWebsite}`} target='_blank' rel='noreferrer'>{project.projectWebsite}</a>
+        <a href={prependUrlWithProtocol(project.projectWebsite)} target='_blank' rel='noreferrer'>
+          {project.projectWebsite}
+        </a>
       </div>
       <div className='mt-12'>
-        <div className='card-title mb-3 text-dial-gray-dark'>{format('project.source')}</div>
+        <div className='card-title mb-3 text-dial-sapphire'>{format('project.source')}</div>
         <div className='text-sm text-button-gray pb-5'>{project.origin.name}</div>
       </div>
       {project.organizations && <ProjectDetailOrganizations project={project} canEdit={canEdit} />}

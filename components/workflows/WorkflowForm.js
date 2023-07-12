@@ -22,7 +22,8 @@ const WorkflowForm = React.memo(({ workflow }) => {
 
   const router = useRouter()
 
-  const { user, isAdminUser, loadingUserSession } = useUser()
+  const { user, loadingUserSession } = useUser()
+  const canEdit = user?.isAdminUser || user?.isEditorUser
 
   const [mutating, setMutating] = useState(false)
 
@@ -89,7 +90,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
   }, [workflow, format])
 
   const doUpsert = async (data) => {
-    if (user) {
+    if (canEdit) {
       setMutating(true)
       const { userEmail, userToken } = user
       const { name, imageFile, description } = data
@@ -120,7 +121,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
   }
 
   return (
-    loadingUserSession ? <Loading /> : isAdminUser ? (
+    loadingUserSession ? <Loading /> : canEdit ? (
       <div className='flex flex-col'>
         <div className='hidden lg:block px-8'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
@@ -129,7 +130,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
           <div id='content' className='sm:px-0 max-w-full mx-auto'>
             <form onSubmit={handleSubmit(doUpsert)}>
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-                <div className='text-2xl font-bold text-dial-blue pb-4'>
+                <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {workflow
                     ? format('app.edit-entity', { entity: workflow.name })
                     : `${format('app.create-new')} ${format('workflow.label')}`

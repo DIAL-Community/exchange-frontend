@@ -25,7 +25,7 @@ const TagCard = ({ tag, listType, displayEditButtons = false }) => {
             className='border-3 border-transparent text-button-gray'
             data-testid='tag-card'
           >
-            <div className='border border-dial-gray card-drop-shadow'>
+            <div className='border border-dial-gray shadow-md'>
               <div className='flex gap-3 my-5 px-4'>
                 <div className={classNames('card-title text-button-gray', { 'w-2/6': displayEditButtons })}>
                   {isAdminUser && displayEditButtons ? (

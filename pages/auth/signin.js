@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { getCsrfToken, getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { useState, useRef, useEffect, useCallback } from 'react'
@@ -11,12 +12,20 @@ export default function SignIn ({ csrfToken }) {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
-  const formEl = useRef()
+  const [requireConfirmation, setRequireConfirmation] = useState(false)
 
   const handleSubmit = () => {
     setLoading(true)
   }
 
+  const { query } = useRouter()
+  useEffect(() => {
+    if (query?.error === 'CredentialsSignin') {
+      setRequireConfirmation(true)
+    }
+  }, [query])
+
+  const formEl = useRef()
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0') {
       formEl.current && formEl.current.submit()
@@ -26,7 +35,7 @@ export default function SignIn ({ csrfToken }) {
   return (
     <>
       <Header isOnAuthPage />
-      <div className='bg-dial-gray-dark pt-40 pb-40'>
+      <div className='bg-dial-gray-dark pt-40 pb-40 text-dial-sapphire'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <form
             ref={formEl}
@@ -40,9 +49,9 @@ export default function SignIn ({ csrfToken }) {
           >
             <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
             {process.env.NEXT_PUBLIC_AUTH_TYPE !== 'auth0' && (
-              <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-                <div className='mb-4'>
-                  <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='username'>
+              <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-6'>
+                <div className='flex flex-col gap-2'>
+                  <label className='block text-sm font-bold' htmlFor='username'>
                     {format('signIn.email')}
                   </label>
                   <input
@@ -50,44 +59,52 @@ export default function SignIn ({ csrfToken }) {
                     id='username' name='username' type='text' placeholder={format('signIn.email.placeholder')}
                   />
                 </div>
-                <div className='mb-6'>
-                  <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='password'>
+                <div className='flex flex-col gap-2'>
+                  <label className='block text-sm font-bold' htmlFor='password'>
                     {format('signIn.password')}
                   </label>
                   <input
-                    className='shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3'
+                    className='shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker'
                     id='password' name='password' type='password' placeholder='******************'
                   />
                   <p className='text-red text-xs italic'>{format('signIn.password.hint')}</p>
                 </div>
                 <div className='flex items-center justify-between text-sm font-semibold'>
                   <button
-                    className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex disabled:opacity-50'
+                    className='bg-dial-sapphire text-white py-2 px-4 rounded flex disabled:opacity-50'
                     type='submit' disabled={loading}
                   >
                     {format('app.signIn')}
-                    {loading && <FaSpinner className='spinner ml-3' />}
+                    {loading && <FaSpinner className='spinner ml-3 my-auto' />}
                   </button>
-                  <div>
-                    <Link href='/auth/signup'>
-                      <a
-                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
-                        href='navigate-to-signup'
-                      >
-                        {format('app.signUp')}
-                      </a>
+                  <div className='ml-auto flex gap-2'>
+                    <Link
+                      href='/auth/signup'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('app.signUp')}
                     </Link>
-                    <span className='border-r-2 border-dial-gray-dark mx-2' />
-                    <Link href='/auth/reset-password'>
-                      <a
-                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
-                        href='navigate-to-reset'
-                      >
-                        {format('signIn.forgetPassword')}
-                      </a>
+                    <span className='border-r-2 border-dial-gray-dark' />
+                    <Link
+                      href='/auth/reset-password'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('signIn.forgetPassword')}
                     </Link>
                   </div>
                 </div>
+                {
+                  requireConfirmation &&
+                  <div className='text-xs text-red-500 flex gap-1 italic'>
+                    {format('signIn.confirmation.required')}
+                    <Link
+                      href='/auth/confirmation-email'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('signIn.confirmationEmail')}
+                    </Link>
+                  </div>
+                }
               </div>
             )}
           </form>

@@ -15,7 +15,7 @@ import ProjectListQuery from '../../components/projects/ProjectList'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { ProjectFilterContext, ProjectFilterDispatchContext } from '../../components/context/ProjectFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const Projects = () => {
   const { formatMessage } = useIntl()
@@ -37,7 +37,7 @@ const Projects = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         <TabNav activeTab='filter.entity.projects' />
         <MobileNav activeTab='filter.entity.projects' />

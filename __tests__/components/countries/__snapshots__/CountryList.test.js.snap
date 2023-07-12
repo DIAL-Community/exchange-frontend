@@ -150,13 +150,14 @@ exports[`Unit test for the CountryList component Should render list of countries
             class="grid grid-cols-1"
           >
             <a
+              data-testid="country-card"
               href="/countries/af"
             >
               <div
-                class="border-3 border-transparent hover:border-dial-yellow"
+                class="border-3 border-transparent hover:border-dial-sunshine rounded-md"
               >
                 <div
-                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                  class="bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md"
                 >
                   <div
                     class="p-4 font-semibold text-button-gray"
@@ -167,13 +168,14 @@ exports[`Unit test for the CountryList component Should render list of countries
               </div>
             </a>
             <a
+              data-testid="country-card"
               href="/countries/al"
             >
               <div
-                class="border-3 border-transparent hover:border-dial-yellow"
+                class="border-3 border-transparent hover:border-dial-sunshine rounded-md"
               >
                 <div
-                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                  class="bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md"
                 >
                   <div
                     class="p-4 font-semibold text-button-gray"
@@ -208,13 +210,14 @@ exports[`Unit test for the CountryList component Should render list of countries
           class="grid grid-cols-1"
         >
           <a
+            data-testid="country-card"
             href="/countries/af"
           >
             <div
-              class="border-3 border-transparent hover:border-dial-yellow"
+              class="border-3 border-transparent hover:border-dial-sunshine rounded-md"
             >
               <div
-                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                class="bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md"
               >
                 <div
                   class="p-4 font-semibold text-button-gray"
@@ -225,13 +228,14 @@ exports[`Unit test for the CountryList component Should render list of countries
             </div>
           </a>
           <a
+            data-testid="country-card"
             href="/countries/al"
           >
             <div
-              class="border-3 border-transparent hover:border-dial-yellow"
+              class="border-3 border-transparent hover:border-dial-sunshine rounded-md"
             >
               <div
-                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                class="bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md"
               >
                 <div
                   class="p-4 font-semibold text-button-gray"
@@ -323,13 +327,14 @@ exports[`Unit test for the CountryList component Should render text with anchor 
             class="grid grid-cols-1"
           >
             <a
+              data-testid="country-card"
               href="/countries/af"
             >
               <div
-                class="border-3 border-transparent hover:border-dial-yellow"
+                class="border-3 border-transparent hover:border-dial-sunshine rounded-md"
               >
                 <div
-                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                  class="bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md"
                 >
                   <div
                     class="p-4 font-semibold text-button-gray"
@@ -340,13 +345,14 @@ exports[`Unit test for the CountryList component Should render text with anchor 
               </div>
             </a>
             <a
+              data-testid="country-card"
               href="/countries/al"
             >
               <div
-                class="border-3 border-transparent hover:border-dial-yellow"
+                class="border-3 border-transparent hover:border-dial-sunshine rounded-md"
               >
                 <div
-                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                  class="bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md"
                 >
                   <div
                     class="p-4 font-semibold text-button-gray"
@@ -381,13 +387,14 @@ exports[`Unit test for the CountryList component Should render text with anchor 
           class="grid grid-cols-1"
         >
           <a
+            data-testid="country-card"
             href="/countries/af"
           >
             <div
-              class="border-3 border-transparent hover:border-dial-yellow"
+              class="border-3 border-transparent hover:border-dial-sunshine rounded-md"
             >
               <div
-                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                class="bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md"
               >
                 <div
                   class="p-4 font-semibold text-button-gray"
@@ -398,13 +405,14 @@ exports[`Unit test for the CountryList component Should render text with anchor 
             </div>
           </a>
           <a
+            data-testid="country-card"
             href="/countries/al"
           >
             <div
-              class="border-3 border-transparent hover:border-dial-yellow"
+              class="border-3 border-transparent hover:border-dial-sunshine rounded-md"
             >
               <div
-                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                class="bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md"
               >
                 <div
                   class="p-4 font-semibold text-button-gray"
@@ -499,7 +507,7 @@ exports[`Unit test for the CountryList component Should render text without anch
               class="border-3 border-transparent"
             >
               <div
-                class="bg-white border border-dial-gray card-drop-shadow"
+                class="bg-white border border-dial-gray shadow-md"
               >
                 <div
                   class="p-4 font-semibold text-button-gray"
@@ -512,7 +520,7 @@ exports[`Unit test for the CountryList component Should render text without anch
               class="border-3 border-transparent"
             >
               <div
-                class="bg-white border border-dial-gray card-drop-shadow"
+                class="bg-white border border-dial-gray shadow-md"
               >
                 <div
                   class="p-4 font-semibold text-button-gray"
@@ -549,7 +557,7 @@ exports[`Unit test for the CountryList component Should render text without anch
             class="border-3 border-transparent"
           >
             <div
-              class="bg-white border border-dial-gray card-drop-shadow"
+              class="bg-white border border-dial-gray shadow-md"
             >
               <div
                 class="p-4 font-semibold text-button-gray"
@@ -562,7 +570,7 @@ exports[`Unit test for the CountryList component Should render text without anch
             class="border-3 border-transparent"
           >
             <div
-              class="bg-white border border-dial-gray card-drop-shadow"
+              class="bg-white border border-dial-gray shadow-md"
             >
               <div
                 class="p-4 font-semibold text-button-gray"

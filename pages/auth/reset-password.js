@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
 import { getCsrfToken, getSession } from 'next-auth/react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+import { ToastContext } from '../../lib/ToastContext'
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const ResetPassword = () => {
   const router = useRouter()
@@ -16,8 +17,9 @@ const ResetPassword = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
-  const [created, setCreated] = useState(false)
   const [email, setEmail] = useState('')
+
+  const { showToast } = useContext(ToastContext)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -36,35 +38,38 @@ const ResetPassword = () => {
       }
     })
 
+    setLoading(false)
     if (response.status === 201) {
       setEmail('')
-      setCreated(true)
-      setTimeout(() => {
-        router.push('/products')
-      }, 3000)
+      showToast(
+        format('reset.created'),
+        'success',
+        'top-center',
+        3000,
+        null,
+        () => router.push('/auth/signin')
+      )
     }
-
-    setLoading(false)
   }
 
   return (
     <>
       <Header isOnAuthPage />
-      <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
+      <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-28 simple-form-height'>
-        <div className={`mx-4 ${created ? 'visible' : 'invisible'} text-center bg-dial-gray-dark`}>
-          <div className='my-auto text-emerald-500'>{format('reset.created')}</div>
-        </div>
-        <div className='pt-4'>
+        <div className='pt-4 text-dial-sapphire'>
           <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
             <form method='post' onSubmit={handleSubmit}>
-              <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-                <div className='mb-4'>
-                  <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='email'>
+              <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-4'>
+                <div className='flex flex-col gap-2'>
+                  <label className='block text-grey-darker text-sm font-bold' htmlFor='email'>
                     {format('reset.email')}
                   </label>
                   <input
-                    id='email' name='email' type='email' placeholder={format('reset.email.placeholder')}
+                    id='email'
+                    name='email'
+                    type='email'
+                    placeholder={format('reset.email.placeholder')}
                     className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                     value={email} onChange={(e) => setEmail(e.target.value)}
                   />
@@ -72,30 +77,26 @@ const ResetPassword = () => {
                 <div className='flex items-center justify-between font-semibold text-sm mt-2'>
                   <div className='flex'>
                     <button
-                      className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex disabled:opacity-50'
+                      className='bg-dial-sapphire text-white py-2 px-4 rounded flex disabled:opacity-50'
                       type='submit' disabled={loading}
                     >
                       {format('app.resetPassword')}
-                      {loading && <FaSpinner className='spinner ml-3' />}
+                      {loading && <FaSpinner className='spinner ml-3 my-auto' />}
                     </button>
                   </div>
-                  <div className='flex'>
-                    <Link href='/auth/signin'>
-                      <a
-                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
-                        href='navigate-to-signin'
-                      >
-                        {format('app.signIn')}
-                      </a>
+                  <div className='flex gap-2'>
+                    <Link
+                      href='/auth/signin'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('app.signIn')}
                     </Link>
-                    <div className='border-r-2 border-dial-gray-dark mx-2' />
-                    <Link href='/auth/signup'>
-                      <a
-                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
-                        href='navigate-to-signup'
-                      >
-                        {format('app.signUp')}
-                      </a>
+                    <div className='border-r-2 border-dial-gray-dark' />
+                    <Link
+                      href='/auth/signup'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('app.signUp')}
                     </Link>
                   </div>
                 </div>

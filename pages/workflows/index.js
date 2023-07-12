@@ -15,7 +15,7 @@ import WorkflowActiveFilter from '../../components/workflows/WorkflowActiveFilte
 import SearchFilter from '../../components/shared/SearchFilter'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../components/context/WorkflowFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const Workflows = () => {
   const { formatMessage } = useIntl()
@@ -38,7 +38,7 @@ const Workflows = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         <TabNav activeTab='filter.entity.workflows' />
         <MobileNav activeTab='filter.entity.workflows' />

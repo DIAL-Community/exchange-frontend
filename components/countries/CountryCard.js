@@ -7,7 +7,7 @@ const CountryCard = ({ country, listType }) => {
 
   const noAuthCardContent =
     <div className='border-3 border-transparent'>
-      <div className='bg-white border border-dial-gray card-drop-shadow'>
+      <div className='bg-white border border-dial-gray shadow-md'>
         <div className='p-4 font-semibold text-button-gray'>
           {country.name}
         </div>
@@ -15,16 +15,14 @@ const CountryCard = ({ country, listType }) => {
     </div>
 
   const withAuthCardContent =
-    <Link data-testid='country-card' className='card-link' href={`/countries/${country.slug}`}>
-      <a href={`/countries/${country.slug}`}>
-        <div className='border-3 border-transparent hover:border-dial-yellow'>
-          <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-            <div className='p-4 font-semibold text-button-gray'>
-              {country.name}
-            </div>
+    <Link data-testid='country-card' href={`/countries/${country.slug}`}>
+      <div className='border-3 border-transparent hover:border-dial-sunshine rounded-md'>
+        <div className='bg-white border border-dial-gray hover:border-transparent rounded-md shadow-md'>
+          <div className='p-4 font-semibold text-button-gray'>
+            {country.name}
           </div>
         </div>
-      </a>
+      </div>
     </Link>
 
   return (

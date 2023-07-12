@@ -1,4 +1,4 @@
-export const maturityScore = { overallScore: 80 }
+export const overallMaturityScore = 80
 
 export const maturityScoreDetails = [
   {
@@ -6,7 +6,7 @@ export const maturityScoreDetails = [
     name: 'Global Utility',
     weight: '1.0',
     description: 'Global Utility',
-    indicator_scores: [
+    categoryIndicators: [
       {
         id: 1,
         name: 'Country Utilization',
@@ -43,15 +43,15 @@ export const maturityScoreDetails = [
         score: '1.0'
       }
     ],
-    missing_score: 0,
-    overall_score: '8.0'
+    missingScore: 0,
+    overallScore: '8.0'
   },
   {
     id: 2,
     name: 'Community Support',
     weight: '1.0',
     description: 'Community Support',
-    indicator_scores: [
+    categoryIndicators: [
       {
         id: 6,
         name: 'Developer, Contributor and Implementor Community Engagement',
@@ -88,15 +88,15 @@ export const maturityScoreDetails = [
         score: '2.0'
       }
     ],
-    missing_score: 0,
-    overall_score: '9.0'
+    missingScore: 0,
+    overallScore: '9.0'
   },
   {
     id: 3,
     name: 'Software Maturity',
     weight: '1.0',
     description: 'Software Maturity',
-    indicator_scores: [
+    categoryIndicators: [
       {
         id: 11,
         name: 'Technical Documentation',
@@ -133,15 +133,15 @@ export const maturityScoreDetails = [
         score: '2.0'
       }
     ],
-    missing_score: 0,
-    overall_score: '9.0'
+    missingScore: 0,
+    overallScore: '9.0'
   },
   {
     id: 11,
     name: 'Impact',
     weight: '1.0',
     description: 'Impact',
-    indicator_scores: [
+    categoryIndicators: [
       {
         id: 72,
         name: 'IM10',
@@ -157,17 +157,17 @@ export const maturityScoreDetails = [
         score: 0
       }
     ],
-    missing_score: 0,
-    overall_score: 0
+    missingScore: 0,
+    overallScore: 0
   },
   {
     id: 12,
     name: 'Financial Sustainability',
     weight: '1.0',
     description: 'Another description text.',
-    indicator_scores: [],
-    missing_score: 0,
-    overall_score: 0
+    categoryIndicators: [],
+    missingScore: 0,
+    overallScore: 0
   }
 ]
 

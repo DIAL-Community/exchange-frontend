@@ -36,6 +36,46 @@ export const PLAYS_QUERY = gql`
   }
 `
 
+export const REFRESH_PLAY_QUERY =   gql`
+  query Play($slug: String!) {
+    play(slug: $slug) {
+      id
+      name
+      slug
+      playMoves {
+        id
+        name
+      }
+    }
+  }
+`
+
+export const PLAYBOOK_QUERY = gql`
+  query Playbook($playbookSlug: String!) {
+    playbook(slug: $playbookSlug) {
+      id
+      name
+      slug
+    }
+  }
+`
+
+export const MOVE_PREVIEW_QUERY = gql`
+  query Move($playSlug: String!, $slug: String!) {
+    move(playSlug: $playSlug, slug: $slug) {
+      id
+      slug
+      name
+      resources
+      moveOrder
+      moveDescription {
+        id
+        description
+      }
+    }
+  }
+`
+
 export const PLAY_QUERY = gql`
   query Play($playbookSlug: String!, $playSlug: String!) {
     play(slug: $playSlug) {
@@ -63,10 +103,12 @@ export const PLAY_QUERY = gql`
       products {
         name
         slug
+        imageFile
       }
       buildingBlocks {
         name
         slug
+        imageFile
       }
     }
     playbook(slug: $playbookSlug) {

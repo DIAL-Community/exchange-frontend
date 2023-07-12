@@ -15,7 +15,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -43,7 +43,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Organization
             </div>
@@ -58,7 +58,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -76,7 +76,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Aliases
                   </label>
@@ -95,7 +95,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       data-testid="alias-add"
                     >
                       <button
-                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                         data-testid="icon-button"
                         type="button"
                       >
@@ -121,7 +121,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-website"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="website"
                   >
                     Website
@@ -142,7 +142,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-logo"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -192,7 +192,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </div>
                 </div>
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-endorser"
                 >
                   <input
@@ -207,7 +207,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Endorsed Date
                   </label>
@@ -225,7 +225,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-endorser-level"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Endorser Level
                   </label>
@@ -243,7 +243,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
@@ -303,7 +303,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </div>
                 </div>
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-mni"
                 >
                   <input
@@ -314,6 +314,18 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   />
                   MNI
                 </label>
+                <label
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
+                  data-testid="organization-has-storefront"
+                >
+                  <input
+                    class="h-8 w-8"
+                    data-testid="checkbox"
+                    name="hasStorefront"
+                    type="checkbox"
+                  />
+                  Organization has a storefront
+                </label>
               </div>
               <div
                 class="w-full lg:w-1/2"
@@ -323,7 +335,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -396,7 +408,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -424,7 +436,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Organization
             </div>
@@ -439,7 +451,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -457,7 +469,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Aliases
                   </label>
@@ -476,7 +488,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       data-testid="alias-remove"
                     >
                       <button
-                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                         data-testid="icon-button"
                         type="button"
                       >
@@ -511,7 +523,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       data-testid="alias-add"
                     >
                       <button
-                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                         data-testid="icon-button"
                         type="button"
                       >
@@ -534,7 +546,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       data-testid="alias-remove"
                     >
                       <button
-                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                         data-testid="icon-button"
                         type="button"
                       >
@@ -560,7 +572,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-website"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="website"
                   >
                     Website
@@ -586,7 +598,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-logo"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -636,7 +648,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </div>
                 </div>
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-endorser"
                 >
                   <input
@@ -651,7 +663,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Endorsed Date
                   </label>
@@ -669,7 +681,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-endorser-level"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Endorser Level
                   </label>
@@ -687,7 +699,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
@@ -747,7 +759,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </div>
                 </div>
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-mni"
                 >
                   <input
@@ -758,6 +770,18 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   />
                   MNI
                 </label>
+                <label
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
+                  data-testid="organization-has-storefront"
+                >
+                  <input
+                    class="h-8 w-8"
+                    data-testid="checkbox"
+                    name="hasStorefront"
+                    type="checkbox"
+                  />
+                  Organization has a storefront
+                </label>
               </div>
               <div
                 class="w-full lg:w-1/2"
@@ -767,7 +791,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>

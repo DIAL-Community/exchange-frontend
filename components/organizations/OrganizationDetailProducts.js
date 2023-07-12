@@ -7,7 +7,7 @@ import Select from '../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../queries/product'
 import EditableSection from '../shared/EditableSection'
 import { ToastContext } from '../../lib/ToastContext'
-import { UPDATE_ORGANIZATION_PRODUCT } from '../../mutations/organization'
+import { UPDATE_ORGANIZATION_PRODUCTS } from '../../mutations/organization'
 import { fetchSelectOptions } from '../../queries/utils'
 import ProductCard from '../products/ProductCard'
 import { useUser } from '../../lib/hooks'
@@ -22,7 +22,7 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateOrganizationProducts, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PRODUCT)
+  const [updateOrganizationProducts, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PRODUCTS)
 
   const { user } = useUser()
 
@@ -63,7 +63,7 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
       updateOrganizationProducts({
         variables: {
           slug: organization.slug,
-          productsSlugs: products.map(({ slug }) => slug)
+          productSlugs: products.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -93,7 +93,7 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('product.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='product-search'>

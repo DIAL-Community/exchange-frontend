@@ -3,6 +3,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
   from '../context/BuildingBlockFilterContext'
+import { CategoryTypeSelect } from '../filter/element/CategoryType'
 import { SDGAutocomplete } from '../filter/element/SDG'
 import { UseCaseAutocomplete } from '../filter/element/UseCase'
 import { WorkflowAutocomplete } from '../filter/element/Workflow'
@@ -15,6 +16,9 @@ const BuildingBlockFilter = () => {
 
   const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
   const { setShowMature, setSDGs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
+
+  const { categoryTypes } = useContext(BuildingBlockFilterContext)
+  const { setCategoryTypes } = useContext(BuildingBlockFilterDispatchContext)
 
   const toggleWithMaturity = () => {
     setShowMature(!showMature)
@@ -41,7 +45,7 @@ const BuildingBlockFilter = () => {
                 alt='Informational hint'
               />
             </div>
-            <span className='py-1 border-b-2 border-transparent hover:border-dial-yellow'>
+            <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
               {format('filter.hint.text')} {format('building-block.label')}
             </span>
           </a>
@@ -72,6 +76,23 @@ const BuildingBlockFilter = () => {
               {format('filter.buildingBlock.matureOnly')}
             </span>
           </label>
+        </div>
+        <div className='text-sm flex flex-col gap-3 px-6'>
+          <div className='flex gap-2'>
+            <div className='grow'>
+              <CategoryTypeSelect {...{ categoryTypes, setCategoryTypes }} />
+            </div>
+            <span className='w-6 my-auto image-block-hack'>
+              <Image
+                width={34}
+                height={34}
+                src='/assets/info.png'
+                alt='Informational hint'
+                data-tooltip-id='react-tooltip'
+                data-tooltip-html={format('filter.product.dpiDefinition')}
+              />
+            </span>
+          </div>
         </div>
       </div>
     </div>

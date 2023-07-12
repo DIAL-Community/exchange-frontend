@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react'
+import { isMobile } from 'react-device-detect'
 
 export const convertToKey = (s) => s.replace(/\s+/g, '_').toLowerCase()
 const FilterContext = createContext()
@@ -32,7 +33,7 @@ const initialCounts = (() => {
 
 const FilterContextProvider = ({ children }) => {
   const [resultCounts, setResultCounts] = useState(initialCounts)
-  const [displayType, setDisplayType] = useState('card')
+  const [displayType, setDisplayType] = useState(isMobile ? 'list' : 'card')
   const [filterDisplayed, setFilterDisplayed] = useState(true)
   const [hintDisplayed, setHintDisplayed] = useState(false)
 

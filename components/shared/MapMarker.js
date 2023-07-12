@@ -16,7 +16,7 @@ const createIcon = (imageSrc, altText, isEndorser) => divIcon({
 
 const MapMarker = ({ position, title, body, markerImage, markerImageAltText, initialZoom = 10, isEndorser }) => {
   return (
-    <MapContainer center={position} zoom={initialZoom} className='w-full 2xl:w-3/6 h-80 z-10'>
+    <MapContainer center={position} zoom={initialZoom} className='h-80 z-10 mt-12'>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

@@ -1,14 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
 import { prependUrlWithProtocol } from '../../../lib/utilities'
 import { CandidateStatusType } from '../../../lib/constants'
 import { useUser } from '../../../lib/hooks'
 
-const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
+const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-sunshine'
 
 const OrganizationCard = ({ organization, listType }) => {
   const { formatMessage } = useIntl()
@@ -18,10 +17,6 @@ const OrganizationCard = ({ organization, listType }) => {
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
-
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
 
   const approveCandidateOrganization = async (e) => {
     const { userEmail, userToken } = user
@@ -89,7 +84,7 @@ const OrganizationCard = ({ organization, listType }) => {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent'>
-              <div className={classNames('border border-dial-gray card-drop-shadow bg-white',
+              <div className={classNames('border border-dial-gray shadow-md bg-white',
                 { 'bg-red-50': organization.rejected === true || status === CandidateStatusType.REJECTED },
                 { 'bg-emerald-50': organization.rejected === false || status === CandidateStatusType.APPROVED }
               )}
@@ -153,7 +148,7 @@ const OrganizationCard = ({ organization, listType }) => {
           )
           : (
             <div className='border-3 border-transparent text-dial-purple h-full'>
-              <div className='h-full flex flex-col border border-dial-gray card-drop-shadow'>
+              <div className='h-full flex flex-col border border-dial-gray shadow-md'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                   {
                     (organization.rejected === true || status === CandidateStatusType.REJECTED) &&

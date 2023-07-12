@@ -5,6 +5,7 @@ export const CREATE_BUILDING_BLOCK = gql`
     $name: String!
     $slug: String!
     $maturity: String!
+    $category: String
     $imageFile: Upload
     $description: String!
     $specUrl: String
@@ -13,6 +14,7 @@ export const CREATE_BUILDING_BLOCK = gql`
       name: $name
       slug: $slug
       maturity: $maturity
+      category: $category
       imageFile: $imageFile
       description: $description
       specUrl: $specUrl
@@ -28,11 +30,11 @@ export const CREATE_BUILDING_BLOCK = gql`
 export const UPDATE_BUILDING_BLOCK_WORKFLOWS = gql`
    mutation UpdateBuildingBlockWorkflows(
     $slug: String!
-    $workflowsSlugs: [String!]!
+    $workflowSlugs: [String!]!
   ) {
     updateBuildingBlockWorkflows(
       slug: $slug,
-      workflowsSlugs: $workflowsSlugs
+      workflowSlugs: $workflowSlugs
     ) {
       buildingBlock {
         slug
@@ -51,12 +53,12 @@ export const UPDATE_BUILDING_BLOCK_PRODUCTS = gql`
  mutation UpdateBuildingBlockProducts(
     $slug: String!
     $mappingStatus: String!
-    $productsSlugs: [String!]!
+    $productSlugs: [String!]!
   ) {
     updateBuildingBlockProducts(
       slug: $slug
       mappingStatus: $mappingStatus
-      productsSlugs: $productsSlugs
+      productSlugs: $productSlugs
     ) {
       buildingBlock {
         slug

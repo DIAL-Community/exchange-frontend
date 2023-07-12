@@ -5,6 +5,8 @@ import { DELETE_COMMENT } from '../../../mutations/comment'
 import { mockObserverImplementation, render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { COMMENTS_COUNT_QUERY } from '../../../queries/comment'
+import { COMMENTS_QUERY } from '../../../queries/comment'
 import { comments, deleteCommentFailure, deleteCommentSuccess } from './data/CommentsList'
 
 mockNextUseRouter()
@@ -17,6 +19,7 @@ describe('Unit test for the CommentsList component.', () => {
   const mockRefetch = jest.fn()
 
   beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 
@@ -60,7 +63,7 @@ describe('Unit test for the CommentsList component.', () => {
     })
   })
 
-  test('Should open ConfirmActionDialog after user clicks "Delete" button.', () => {
+  test('Should open ConfirmActionDialog after user clicks "Delete" button.', async () => {
     const { getByTestId, getAllByTestId } = render(
       <CustomMockedProvider addTypename={false}>
         <CommentsList
@@ -71,7 +74,7 @@ describe('Unit test for the CommentsList component.', () => {
         />
       </CustomMockedProvider>
     )
-    fireEvent.click(getAllByTestId(DELETE_BUTTON_TEST_ID)[0])
+    await act(() => fireEvent.click(getAllByTestId(DELETE_BUTTON_TEST_ID)[0]))
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toMatchSnapshot()
   })
@@ -87,9 +90,9 @@ describe('Unit test for the CommentsList component.', () => {
         />
       </CustomMockedProvider>
     )
-    fireEvent.click(getAllByTestId(DELETE_BUTTON_TEST_ID)[0])
+    await act(() => fireEvent.click(getAllByTestId(DELETE_BUTTON_TEST_ID)[0]))
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
-    await act(async () => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
     expect(queryByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeNull()
   })
 
@@ -101,8 +104,15 @@ describe('Unit test for the CommentsList component.', () => {
         null,
         deleteCommentSuccess
       )
+      const commentCountVars = { }
+      const commentCountData = { 'data': { 'countComments': 0 } }
+      const mockCommentCount = generateMockApolloData(COMMENTS_COUNT_QUERY, commentCountVars, null, commentCountData)
+
+      const commentVars = { }
+      const commentData = { 'data': { 'comments': null } }
+      const mockComments = generateMockApolloData(COMMENTS_QUERY, commentVars, null, commentData)
       const { getByTestId, getAllByTestId, findByText } = render(
-        <CustomMockedProvider mocks={[mockDeleteComment]} addTypename={false}>
+        <CustomMockedProvider mocks={[mockDeleteComment, mockCommentCount, mockComments]}>
           <CommentsList
             comments={comments}
             refetch={mockRefetch}
@@ -111,8 +121,8 @@ describe('Unit test for the CommentsList component.', () => {
           />
         </CustomMockedProvider>
       )
-      fireEvent.click(getAllByTestId(DELETE_BUTTON_TEST_ID)[0])
-      await act(async () => fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID)))
+      await act(() => fireEvent.click(getAllByTestId(DELETE_BUTTON_TEST_ID)[0]))
+      await act(() => fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID)))
       expect(await findByText('Comment deleted successfully')).toBeInTheDocument()
     })
 
@@ -133,8 +143,8 @@ describe('Unit test for the CommentsList component.', () => {
           />
         </CustomMockedProvider>
       )
-      fireEvent.click(getAllByTestId(DELETE_BUTTON_TEST_ID)[0])
-      await act(async () => fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID)))
+      await act(() => fireEvent.click(getAllByTestId(DELETE_BUTTON_TEST_ID)[0]))
+      await act(() => fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID)))
       expect(await findByText('Comment deletion failed')).toBeInTheDocument()
     })
   })

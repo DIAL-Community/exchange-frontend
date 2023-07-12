@@ -6,7 +6,7 @@ import { commercialProduct } from './data/ProductPricing'
 mockNextUseRouter()
 describe('Unit test for the ProductDetailOrganizations component.', () => {
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
   })
 
   test('Should render pricing data structure for commercial product.', async () => {

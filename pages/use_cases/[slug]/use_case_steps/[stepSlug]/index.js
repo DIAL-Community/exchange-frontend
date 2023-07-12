@@ -24,16 +24,14 @@ const UseCaseHeader = ({ useCase }) => {
     <div className='border'>
       <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{useCase.maturity}</div>
       <Link href={`/use_cases/${useCase.slug}`}>
-        <a href='navigate-to-usecase'>
-          <div className='cursor-pointer px-4 py-6 flex items-center'>
-            <img
-              className='use-case-filter w-8 h-full'
-              alt={format('image.alt.logoFor', { name: useCase.name })}
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-            />
-            <div className='text-xl text-use-case font-semibold px-4'>{useCase.name}</div>
-          </div>
-        </a>
+        <div className='cursor-pointer px-4 py-6 flex items-center'>
+          <img
+            className='use-case-filter w-8 h-full'
+            alt={format('image.alt.logoFor', { name: useCase.name })}
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+          />
+          <div className='text-xl text-use-case font-semibold px-4'>{useCase.name}</div>
+        </div>
       </Link>
     </div>
   )
@@ -43,12 +41,13 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
   const { locale } = useRouter()
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 
   const generateEditLink = () => {
-    if (!isAdminUser) {
+    if (!canEdit) {
       return '/edit-not-available'
     }
 
@@ -78,7 +77,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        {isAdminUser &&
+        {canEdit && !data.useCase.markdownUrl &&
           <div className='flex flex-row justify-between mb-2'>
             <EditButton type='link' href={generateEditLink()} />
             <CreateButton
@@ -92,7 +91,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
         <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
       </div>
       <div className='w-full lg:w-2/3 xl:w-3/4'>
-        <StepDetail stepSlug={stepSlug} locale={locale} />
+        <StepDetail useCaseSlug={slug} stepSlug={stepSlug} locale={locale} />
       </div>
     </div>
   )

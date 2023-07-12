@@ -47,37 +47,36 @@ const Landing = () => {
               </div>
               <div className='px-4 mt-8 pt-60 lg:pt-0 sm:flex md:justify-start sm:text-xs md:text-sm lg:text-lg'>
                 <div className='text-white lg:py-1'>
-                  <Link href='/products'>
-                    <a className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-dial-blue`}>
-                      {format('landing.catalog.title')}
-                    </a>
+                  <Link
+                    href='/products'
+                    className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-dial-blue`}
+                  >
+                    {format('landing.catalog.title')}
                   </Link>
                 </div>
                 <div className='px-4 mt-3 sm:mt-0 sm:ml-3 lg:py-1'>
-                  <Link href='/wizard'>
-                    <a className={`${buttonAnchorStyle} shadow-2xl pl-4 pr-8 text-button-gray bg-dial-yellow`}>
-                      <img src='/icons/wizard.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
-                      {format('landing.wizard.title')}
-                    </a>
+                  <Link
+                    href='/wizard'
+                    className={`${buttonAnchorStyle} shadow-2xl pl-4 pr-8 text-button-gray bg-dial-sunshine`}
+                  >
+                    <img src='/icons/wizard.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
+                    {format('landing.wizard.title')}
                   </Link>
                 </div>
               </div>
               <div className='px-4 mt-3 sm:flex md:justify-start sm:text-xs md:text-sm lg:text-lg'>
                 <div className='text-white lg:py-1'>
-                  <Link
+                  <a
                     href={
                       'https://digitalimpactalliance.us11.list-manage.com/subscribe' +
                       '?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
                     }
+                    target='_blank'
+                    rel='noreferrer'
+                    className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-sdg-target`}
                   >
-                    <a
-                      target='_blank'
-                      rel='noreferrer'
-                      className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-sdg-target`}
-                    >
-                      {format('landing.newsletter')}
-                    </a>
-                  </Link>
+                    {format('landing.newsletter')}
+                  </a>
                 </div>
               </div>
             </div>

@@ -7,7 +7,6 @@ export const CREATE_USE_CASE_STEP = gql`
     $stepNumber: Int!,
     $description: String
     $useCaseId: Int!
-    $markdownUrl: String
   ) {
     createUseCaseStep(
       name: $name
@@ -15,7 +14,6 @@ export const CREATE_USE_CASE_STEP = gql`
       stepNumber: $stepNumber
       description: $description
       useCaseId: $useCaseId
-      markdownUrl: $markdownUrl
     ) {
       useCaseStep {
         id
@@ -32,11 +30,11 @@ export const CREATE_USE_CASE_STEP = gql`
 
 export const UPDATE_USE_CASE_SDG_TARGETS = gql`
   mutation UpdateUseCaseSdgTargets (
-    $sdgTargetsIds: [Int!]!
+    $sdgTargetIds: [Int!]!
     $slug: String!
   ) {
     updateUseCaseSdgTargets (
-      sdgTargetsIds: $sdgTargetsIds
+      sdgTargetIds: $sdgTargetIds
       slug: $slug
     ) {
       useCase {
@@ -46,9 +44,7 @@ export const UPDATE_USE_CASE_SDG_TARGETS = gql`
           id
           name
           targetNumber
-          sustainableDevelopmentGoal {
-           slug
-          }
+          sdgNumber
         }
       }
       errors
@@ -64,6 +60,7 @@ export const CREATE_USE_CASE = gql`
     $maturity: String!
     $imageFile: Upload
     $description: String!
+    $markdownUrl: String
   ) {
     createUseCase(
       name: $name
@@ -72,6 +69,7 @@ export const CREATE_USE_CASE = gql`
       maturity: $maturity
       imageFile: $imageFile
       description: $description
+      markdownUrl: $markdownUrl
     ) {
       useCase {
         id
@@ -96,7 +94,7 @@ export const UPDATE_USE_CASE_TAGS = gql`
         tags
       }
       errors
-    }  
+    }
   }
 `
 

@@ -3,7 +3,7 @@ import { useIntl, FormattedMessage } from 'react-intl'
 import { useRouter } from 'next/router'
 import { WizardStage1, WizardStage2, WizardStage3 } from './StageContent'
 
-const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) => {
+const WizardContent = ({ stage, setStage, wizardData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const router = useRouter()
@@ -39,13 +39,17 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
   const getContent = () => {
     switch (stage) {
     case 0:
-      return (<div className='xl:w-1/2 text-sm'><FormattedMessage id='wizard.intro' values={{ linebreak: <br /> }} /></div>)
+      return (
+        <div className='xl:w-1/2 text-sm'>
+          <FormattedMessage id='wizard.intro' values={{ linebreak: <br /> }} />
+        </div>
+      )
     case 1:
-      return (<WizardStage1 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
+      return <WizardStage1 {...{ wizardData, allValues, setAllValues }} />
     case 2:
-      return (<WizardStage2 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
+      return <WizardStage2 {...{ wizardData, allValues, setAllValues }} />
     case 3:
-      return (<WizardStage3 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
+      return <WizardStage3 {...{ wizardData, allValues, setAllValues }} />
     }
   }
 
@@ -67,34 +71,32 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
 
   return (
     <>
-      <div className='bg-dial-gray-dark text-dial-gray-light p-5 w-full relative wizard-content xl:wizard-content-xl'>
+      <div className='text-dial-stratos p-5 w-full relative wizard-content xl:wizard-content-xl'>
         <div className='flex gap-4'>
           <div className='w-5/6 flex flex-col mb-24 gap-3 mx-6 lg:mx-6 xl:mx-16'>
-            <div className='text-2xl'>{getTitle()}</div>
+            <div className='text-2xl text-dial-sapphire'>{getTitle()}</div>
             <div className='flex-grow'>{getContent()}</div>
-            <div className='text-button-gray-light absolute bottom-8'>
+            <div className='text-dial-stratos absolute bottom-8 flex gap-2'>
               <button
                 onClick={() => { stage > 0 && setStage(stage - 1) }}
                 className={`
-                  ${hideBack() === true && 'hidden'}
-                  bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4
+                  ${hideBack() && 'hidden'}
+                  border border-button-gray rounded p-3
                 `}
               >
-                <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
                 {format('wizard.back')}
               </button>
               <button
                 onClick={() => { stage < 4 && setStage(stage + 1) }}
                 className={`
                   ${hideNext() === true && 'hidden'}
-                  bg-button-gray border border-dial-yellow rounded p-4 my-4 lg:mr-4
+                  border border-button-gray rounded p-3
                 `}
               >
                 {stage === 3
                   ? format('wizard.seeResults')
                   : <div>
                     {format('wizard.next')}
-                    <img src='/icons/right-arrow.svg' className='inline ml-2' alt='Next' height='20px' width='20px' />
                   </div>
                 }
               </button>
@@ -102,12 +104,9 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
           </div>
           <div className='ml-auto'>
             <button
-              onClick={() => {
-                router.push('/products')
-              }}
-              className='bg-button-gray p-4 rounded text-button-gray-light'
+              onClick={() => { router.push('/products') }}
+              className='border border-button-gray p-4 rounded text-dial-stratos'
             >
-              <img src='/icons/close.svg' className='inline mr-2' alt='Close' height='20px' width='20px' />
               <div className='hidden lg:inline'>{format('wizard.close')}</div>
             </button>
           </div>

@@ -39,6 +39,7 @@ export const WorkflowAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('workflow.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, WORKFLOW_SEARCH_QUERY, fetchedWorkflowsCallback)}

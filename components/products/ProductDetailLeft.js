@@ -12,7 +12,7 @@ import { useProductOwnerUser, useUser } from '../../lib/hooks'
 import CommentsCount from '../shared/CommentsCount'
 import { ObjectType } from '../../lib/constants'
 import { APPLY_AS_OWNER } from '../../mutations/users'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
 import DeleteProduct from './DeleteProduct'
 
@@ -128,7 +128,8 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
       setContactState(CONTACT_STATES[2])
       if (response.status === 200) {
         const ownerData = await response.json()
-        setEmailAddress(ownerData.owner.email)
+        const [ownerInformation] = ownerData.owner
+        setEmailAddress(ownerInformation.email)
       } else {
         setContactState(CONTACT_STATES[3])
       }
@@ -146,6 +147,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           </div>,
           'error',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -155,6 +157,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           format('toast.applyAsOwner.submit.success', { entity: format('product.label') }),
           'success',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -167,6 +170,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
         </div>,
         'error',
         'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY,
         null,
         () => setLoading(false)
       )
@@ -221,8 +225,8 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative' >
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='p-2 m-auto object-contain'
               alt={`${product.name} Logo`}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
             />
@@ -236,9 +240,9 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
         {format('product.owner')}
         <div className='flex flex-row gap-3'>
           <a
-            className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
+            className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
             target='_blank' rel='noreferrer'
-            href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/product_owner.html`}
+            href={`https://docs.dial.community/projects/product-registry/${locale}/latest/product_owner.html`}
           >
             {format('product.owner-link')}
           </a>
@@ -247,8 +251,9 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
               <>
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
-                  className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
-                  onClick={onSubmit} disabled={loading}
+                  className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
+                  onClick={onSubmit}
+                  disabled={loading}
                 >
                   {format('ownership.apply')}
                   {loading && <FaSpinner className='inline spinner ml-1' />}
@@ -264,19 +269,19 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                 </div>
               </>
           }
-          {
-            user && product.owner && contactState === CONTACT_STATES[0] &&
-              <>
-                <div className='border-l border-dial-gray-light mt-2' />
-                <button
-                  className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
-                  href='/apply-product-owner' onClick={() => setContactState(CONTACT_STATES[1])}
-                >
-                  {format('ownership.reveal')}
-                </button>
-              </>
-          }
         </div>
+        {
+          user && product.owner && contactState === CONTACT_STATES[0] &&
+            <>
+              <div className='border-l border-dial-gray-light mt-2' />
+              <button
+                className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
+                onClick={() => setContactState(CONTACT_STATES[1])}
+              >
+                {format('ownership.reveal')}
+              </button>
+            </>
+        }
         {
           user && product.owner &&
             <>
@@ -293,7 +298,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                   <div className='mt-2'>
                     {format('ownership.label')}:
                     <a
-                      className='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine mx-2 mt-2 border-b border-transparent hover:border-dial-sunshine'
                       href={`mailto:${emailAddress}`}
                       target='_blank'
                       rel='noreferrer'

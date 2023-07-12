@@ -11,7 +11,7 @@ describe('Unit test for the TagCard component', () => {
 
   describe('Should match snapshot -', () => {
     test('user is NOT an admin, displayEditButtons not passed.', () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <TagCard
@@ -26,7 +26,7 @@ describe('Unit test for the TagCard component', () => {
     })
 
     test('user is NOT an admin, displayEditButtons passed.', () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <TagCard
@@ -42,7 +42,7 @@ describe('Unit test for the TagCard component', () => {
     })
 
     test('user is an admin, displayEditButtons not passed.', () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <TagCard
@@ -57,7 +57,7 @@ describe('Unit test for the TagCard component', () => {
     })
 
     test('user is an admin, displayEditButtons passed.', () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const { container, getByTestId } = render(
         <CustomMockedProvider>
           <TagCard

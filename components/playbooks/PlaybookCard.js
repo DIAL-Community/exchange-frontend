@@ -1,123 +1,137 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 import HorizontalItemList from '../shared/HorizontalItemList'
 const collectionPath = convertToKey('Playbooks')
 
-const ellipsisTextStyle = `
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-`
-const containerElementStyle = `
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-`
+const containerElementStyle = classNames(
+  'cursor-pointer hover:rounded-lg hover:shadow-lg',
+  'border-3 border-transparent hover:border-dial-sunshine'
+)
 
-const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, canEdit }) => {
+const PlaybookCard = ({ playbook, listType, newTab = false, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const isPlaybookPublished = !playbook.draft
 
-  useEffect(() => ReactTooltip.rebuild(), [])
+  const listDisplayType = () =>
+    <div className={`${containerElementStyle}`}>
+      <div className='bg-white border border-dial-gray shadow-lg rounded-md'>
+        <div className='relative flex flex-row gap-x-2 lg:gap-x-4 px-4 py-6'>
+          <div className='w-10/12 lg:w-6/12 flex gap-3 text-dial-gray-dark my-auto'>
+            <div className='block w-8 relative'>
+              <Image
+                fill
+                className='object-contain'
+                data-tooltip-id='react-tooltip'
+                data-tooltip-content={format(
+                  'tooltip.forEntity',
+                  { entity: format('playbooks.label'), name: playbook.name }
+                )}
+                alt={format('image.alt.logoFor', { name: playbook.name })}
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+              />
+            </div>
+            <div className='ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1'>
+              {playbook.name}
+            </div>
+          </div>
+          <div className='flex gap-1.5 text-sm lg:ml-auto'>
+            <HorizontalItemList
+              itemBgClassname='bg-dial-alice-blue'
+              restTooltipMessage={
+                format('tooltip.ellipsisFor', { entity: format('playbooks.label') })
+              }
+            >
+              {playbook.tags.map((tag, tagIdx) => (
+                <div
+                  key={`playbook-${tagIdx}`}
+                  className='bg-dial-alice-blue px-2 py-1.5 rounded'
+                >
+                  {tag}
+                </div>
+              ))}
+            </HorizontalItemList>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  const cardDisplayType = () =>
+    <div className={containerElementStyle}>
+      <div
+        className={classNames(
+          'bg-white shadow-lg rounded-lg h-full',
+          'border border-dial-gray hover:border-transparent'
+        )}
+      >
+        <div className='flex flex-col'>
+          <div className='relative'>
+            <div className='absolute top-1 right-2'>
+              <div className='text-sm font-semibold my-auto text-dial-angel'>
+                {canEdit && !isPlaybookPublished && format('playbook.status.draft')}
+              </div>
+              <div className='text-sm font-semibold my-auto text-dial-lavender'>
+                {canEdit && isPlaybookPublished && format('playbook.status.published')}
+              </div>
+            </div>
+          </div>
+          <div className='flex text-dial-sapphire bg-dial-alice-blue h-20 rounded-t-lg'>
+            <div className='px-4 text-sm text-center font-semibold m-auto'>
+              {playbook.name}
+            </div>
+          </div>
+          <div className='mx-auto py-6'>
+            <img
+              className='object-contain h-20 w-20'
+              layout='fill'
+              alt={format('image.alt.logoFor', { name: playbook.name })}
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+              data-testid={`playbook-card-image-${playbook.id}`}
+            />
+          </div>
+          <div className='bg-dial-alice-blue flex flex-col h-44 rounded-b-md'>
+            <div className='px-3 py-3 text-sm line-clamp-4'>
+              <div className='line-clamp-4'>
+                {playbook.playbookDescription && parse(playbook.playbookDescription.overview)}
+              </div>
+            </div>
+            {playbook?.tags.length > 0 && (
+              <div className='flex flex-col bg-dial-alice-blue px-3 pb-3 text-sm gap-1'>
+                <div className='font-semibold'>{format('tag.header')}</div>
+                <HorizontalItemList
+                  restTooltipMessage={
+                    format('tooltip.ellipsisFor', { entity: format('playbooks.label') })
+                  }
+                >
+                  {playbook.tags.map((tag, tagIdx) => (
+                    <div
+                      key={`playbook-${tagIdx}`}
+                      className='bg-white px-2 py-1.5 rounded'
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </HorizontalItemList>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
 
   return (
-    <Link href={`/${collectionPath}/${playbook.slug}`}>
-      <a {... newTab && { target: '_blank' }}>
-        {listType === 'list' ? (
-          <div className={`group ${containerElementStyle}`}>
-            <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-              <div className='flex flex-col md:flex-row flex-wrap my-5 px-4 gap-2'>
-                <div
-                  className={` ${ellipsisTextStyle} pr-3 text-base font-semibold group-hover:text-dial-yellow`}
-                >
-                  <div className='m-auto w-3/5 h-3/5 relative' >
-                    <Image
-                      layout='fill'
-                      objectFit='scale-down'
-                      objectPosition='left'
-                      sizes='1vw'
-                      data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: playbook.name })}
-                      alt={format('image.alt.logoFor', { name: playbook.name })}
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
-                    />
-                  </div>
-                  {playbook.name}
-                </div>
-                <div className={`${filterDisplayed ? 'flex gap-1.5 text-sm lg:ml-auto' : 'md:ml-auto'}`}>
-                  {playbook.tags?.map((tag, index) => {
-                    return (<div key={index} className='bg-dial-gray-light px-2 py-1.5 rounded'>{tag}</div>)
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className={`group ${containerElementStyle} h-full`}>
-            <div className='border border-dial-gray hover:border-transparent card-drop-shadow h-full'>
-              <div className='flex flex-col h-full'>
-                {canEdit &&
-                <div
-                  className={`
-                    flex flex-row gap-x-1.5 p-1.5 border-b border-dial-gray
-                    playbook-card-header font-semibold text-dial-cyan
-                  `}
-                >
-                  <div>
-                    {format('app.status')}
-                    {format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')}
-                  </div>
-                </div>
-                }
-                <div className='flex flex-col p-4 group-hover:text-dial-yellow'>
-                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
-                    {playbook.name}
-                  </div>
-                  <div className='mx-auto mt-5 pt-20 w-40 h-60 relative'>
-                    <Image
-                      layout='fill'
-                      objectFit='contain'
-                      alt={format('image.alt.logoFor', { name: playbook.name })}
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
-                      data-testid={`playbook-card-image-${playbook.id}`}
-                    />
-                  </div>
-                </div>
-                <div className='bg-dial-gray-light flex flex-col h-full'>
-                  <div className='px-3 py-3 text-sm'>
-                    <div className='line-clamp-3'>
-                      {playbook.playbookDescription && parse(playbook.playbookDescription.overview)}
-                    </div>
-                  </div>
-                  {playbook?.tags.length > 0 && (
-                    <div className='flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1'>
-                      <div className='font-semibold'>{format('tag.header')}</div>
-                      <HorizontalItemList
-                        restTooltipMessage={
-                          format('tooltip.ellipsisFor', { entity: format('playbooks.label') })
-                        }
-                      >
-                        {playbook.tags.map((tag, tagIdx) => (
-                          <div
-                            key={`playbook-${tagIdx}`}
-                            className='bg-white px-2 py-1.5 rounded'
-                          >
-                            {tag}
-                          </div>
-                        ))}
-                      </HorizontalItemList>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+    !newTab
+      ? <Link href={`/${collectionPath}/${playbook.slug}`}>
+        { listType === 'list' ? listDisplayType() : cardDisplayType() }
+      </Link>
+      : <a href={`/${collectionPath}/${playbook.slug}`} target='_blank' rel='noreferrer' role='menuitem'>
+        { listType === 'list' ? listDisplayType() : cardDisplayType() }
       </a>
-    </Link>
   )
 }
 

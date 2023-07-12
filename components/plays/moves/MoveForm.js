@@ -1,72 +1,14 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import Breadcrumb from '../../shared/breadcrumb'
-import { ToastContext } from '../../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
-
-const CREATE_RESOURCE = gql`
-  mutation (
-    $playSlug: String!,
-    $moveSlug: String!,
-    $url: String!,
-    $name: String!,
-    $description: String!,
-    $index: Int!
-  ) {
-    createResource(
-      playSlug: $playSlug,
-      moveSlug: $moveSlug,
-      url: $url,
-      name: $name,
-      description: $description,
-      index: $index
-    ) {
-      move {
-        id
-        name
-        slug
-      }
-      errors
-    }
-  }
-`
-const generateMutationText = (mutationFunc) => {
-  return `
-    mutation (
-      $playSlug: String!,
-      $moveSlug: String!,
-      $name: String!,
-      $description: String!,
-      $resources: JSON!
-    ) {
-      ${mutationFunc} (
-        playSlug: $playSlug,
-        moveSlug: $moveSlug,
-        name: $name,
-        description: $description,
-        resources: $resources
-      ) {
-        move {
-          id
-          name
-          slug
-          play {
-            slug
-          }
-        }
-        errors
-      }
-    }
-  `
-}
-
-const CREATE_MOVE = gql(generateMutationText('createMove'))
-const AUTOSAVE_MOVE = gql(generateMutationText('autoSaveMove'))
+import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../../mutations/move'
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
   const [mutating, setMutating] = useState(false)
@@ -76,16 +18,29 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
 
   const { user } = useUser()
   const { locale } = useRouter()
-  const [createResource, { data }] = useMutation(CREATE_RESOURCE)
   const { showToast } = useContext(ToastContext)
 
-  useEffect(() => {
-    if (data && data.createResource.errors.length === 0 && data.createResource.move) {
+  const [createMoveResource, { reset }] = useMutation(CREATE_MOVE_RESOURCE, {
+    onCompleted: (data) => {
+      const { createMoveResource: response } = data
+      if (response.errors.length === 0 && response.move) {
+        setEditing(false)
+        setMutating(false)
+        showToast(format('toast.products.update.success'), 'success', 'top-center')
+      } else {
+        setEditing(false)
+        setMutating(false)
+        showToast(format('resource.submitted'), 'success', 'top-center')
+        reset()
+      }
+    },
+    onError: () => {
       setEditing(false)
       setMutating(false)
       showToast(format('resource.submitted'), 'success', 'top-center')
+      reset()
     }
-  }, [data, setEditing, showToast, setMutating, format])
+  })
 
   const { handleSubmit, register } = useForm({
     mode: 'onBlur',
@@ -107,7 +62,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
 
       updateResource(index, { name, description: resourceDescription, url })
       if (moveSlug) {
-        createResource({
+        createMoveResource({
           variables: {
             playSlug,
             moveSlug,
@@ -198,7 +153,7 @@ const ResourceViewer = ({ index, resource, removeResource, setEditing }) => {
   return (
     <div className='flex flex-row gap-3 px-3'>
       <div className='py-3 font-semibold my-auto'>{index + 1})</div>
-      <div className='bg-white border border-dial-gray border-opacity-50 card-drop-shadow w-full'>
+      <div className='bg-white border border-dial-gray border-opacity-50 shadow-md w-full'>
         <div className='flex gap-4 px-3 py-3 w-full'>
           <div className='w-3/12 font-semibold my-auto overflow-hidden text-ellipsis'>
             {resource.name}
@@ -254,7 +209,7 @@ const FormTextEditor = ({ control, fieldLabel, fieldName }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+    <label className='block text-dial-sapphire flex flex-col gap-y-2'>
       {format(fieldLabel)}
       <Controller
         name={fieldName}
@@ -284,14 +239,66 @@ export const MoveForm = ({ playbook, play, move }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const [moveSlug] = useState(move ? move.slug : '')
+  const [moveSlug, setMoveSlug] = useState(move ? move.slug : '')
   const [playSlug] = useState(play ? play.slug : move ? move.play.slug : '')
   const [resources, setResources] = useState(
     move ? move.resources.map((resource, i) => ({ ...resource, i })) : []
   )
-  const [createMove, { data }] = useMutation(CREATE_MOVE)
-  const [autoSaveMove, { data: autoSaveData }] = useMutation(AUTOSAVE_MOVE)
+
   const { showToast } = useContext(ToastContext)
+  const [createMove, { reset }] = useMutation(CREATE_MOVE, {
+    onCompleted: (data) => {
+      setMutating(false)
+      const { locale } = router
+      const { createMove: response } = data
+      if (response?.errors.length === 0 && response.move) {
+        showToast(
+          format('move.submitted.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(`/${locale}/playbooks/${playbook.slug}`)
+        )
+      } else {
+        setMutating(false)
+        showToast(
+          <div className='flex flex-col'>
+            <span>{response.errors}</span>
+          </div>,
+          'error',
+          'top-center'
+        )
+        reset()
+      }
+    },
+    onError: (error) => {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center'
+      )
+      reset()
+    }
+  })
+
+  const [autoSaveMove, { reset: resetAutoSave }] = useMutation(AUTOSAVE_MOVE, {
+    onError: () => {
+      setMutating(false)
+      resetAutoSave()
+    },
+    onCompleted: (data) => {
+      const { autoSaveMove: response } = data
+      if (response.errors.length === 0 && response.move) {
+        setMutating(false)
+        setMoveSlug(response.move.slug)
+        showToast(format('move.autoSaved'), 'success', 'top-right')
+      }
+    }
+  })
 
   const { handleSubmit, register, control, watch } = useForm({
     mode: 'onBlur',
@@ -312,9 +319,9 @@ export const MoveForm = ({ playbook, play, move }) => {
 
       createMove({
         variables: {
+          name,
           moveSlug,
           playSlug,
-          name,
           description,
           resources
         },
@@ -350,54 +357,47 @@ export const MoveForm = ({ playbook, play, move }) => {
   })()
 
   useEffect(() => {
-    const { locale } = router
-    if (data && data.createMove.errors.length === 0 && data.createMove.move) {
-      setMutating(false)
-      showToast(format('move.submitted'), 'success', 'top-center')
-      const navigateToPlay = setTimeout(() => {
-        router.push(`/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`)
-      }, 2000)
-
-      return () => clearTimeout(navigateToPlay)
-    } else if (autoSaveData?.autoSaveMove?.errors.length === 0 && autoSaveData?.autoSaveMove?.move) {
-      setMutating(false)
-      showToast(format('move.autoSaved'), 'success', 'top-right')
-    }
-  }, [data, autoSaveData, play, playbook, router, showToast, format])
-
-  useEffect(() => {
     const doAutoSave = () => {
       const { locale } = router
-      if (user) {
-        // Set the loading indicator.
-        setMutating(true)
-        // Pull all needed data from session and form.
-        const { userEmail, userToken } = user
-        const { name, description } = watch()
-        // Send graph query to the backend. Set the base variables needed to perform update.
-        const variables = {
-          moveSlug,
-          playSlug,
-          name,
-          description,
-          resources
-        }
-        autoSaveMove({
-          variables,
-          context: {
-            headers: {
-              'Accept-Language': locale,
-              Authorization: `${userEmail} ${userToken}`
-            }
-          }
-        })
+
+      if (!user || !watch) {
+        return
       }
+
+      // Set the loading indicator.
+      setMutating(true)
+      // Pull all needed data from session and form.
+      const { userEmail, userToken } = user
+      const { name, description } = watch()
+      if (!name || !description) {
+        // Minimum required fields are name and description.
+        setMutating(false)
+
+        return
+      }
+
+      // Send graph query to the backend. Set the base variables needed to perform update.
+      const variables = {
+        name,
+        moveSlug,
+        playSlug,
+        description,
+        resources
+      }
+
+      autoSaveMove({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
 
     const interval = setInterval(() => {
-      if (moveSlug) {
-        doAutoSave()
-      }
+      doAutoSave()
     }, 60000)
 
     return () => clearInterval(interval)
@@ -405,7 +405,7 @@ export const MoveForm = ({ playbook, play, move }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    const route = `/${router.locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`
+    const route = `/${router.locale}/playbooks/${playbook.slug}`
     router.push(route)
   }
 
@@ -441,13 +441,13 @@ export const MoveForm = ({ playbook, play, move }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {move && format('app.edit-entity', { entity: move.name })}
                 {!move && `${format('app.create-new')} ${format('move.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
-                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
+                  <label className='flex flex-col gap-y-2 text-dial-sapphire mb-2'>
                     {format('plays.name')}
                     <input
                       {...register('name', { required: true })}
@@ -460,7 +460,7 @@ export const MoveForm = ({ playbook, play, move }) => {
                 </div>
               </div>
               <div className='flex flex-col gap-y-2 mt-4'>
-                <div className='text-xl text-dial-blue font-bold'>
+                <div className='text-dial-sapphire font-bold'>
                   {format('resource.header')}
                 </div>
                 <div className='text-sm text-dial-blue'>

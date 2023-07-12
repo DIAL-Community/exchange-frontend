@@ -39,7 +39,7 @@ const PaginatedUseCaseList = ({ itemsPerPage, items }) => {
         renderOnZeroPageCount={null}
         containerClassName='flex mb-3 mt-3 ml-auto border-3 border-transparent'
         pageLinkClassName='relative block py-1.5 px-3 border border-dial-gray -ml-px'
-        activeLinkClassName='bg-dial-yellow border-dial-yellow'
+        activeLinkClassName='bg-dial-sunshine border-dial-sunshine'
         previousLinkClassName='relative block py-1.5 px-3 border border-dial-gray'
         nextLinkClassName='relative block py-1.5 px-3 border border-dial-gray -ml-px'
         disabledLinkClassName='text-dial-gray'

@@ -8,7 +8,7 @@ import CountryCard from '../countries/CountryCard'
 import { COUNTRY_SEARCH_QUERY } from '../../queries/country'
 import EditableSection from '../shared/EditableSection'
 import { ToastContext } from '../../lib/ToastContext'
-import { UPDATE_ORGANIZATION_COUNTRY } from '../../mutations/organization'
+import { UPDATE_ORGANIZATION_COUNTRIES } from '../../mutations/organization'
 import { fetchSelectOptions } from '../../queries/utils'
 import { useUser } from '../../lib/hooks'
 
@@ -22,7 +22,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateOrganizationCountry, { data, loading }] = useMutation(UPDATE_ORGANIZATION_COUNTRY)
+  const [updateOrganizationCountry, { data, loading }] = useMutation(UPDATE_ORGANIZATION_COUNTRIES)
 
   const { user } = useUser()
 
@@ -63,7 +63,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
       updateOrganizationCountry({
         variables: {
           slug: organization.slug,
-          countriesSlugs: countries.map(({ slug }) => slug)
+          countrySlugs: countries.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -82,7 +82,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
 
   const displayModeBody = countries.length > 0
     ? (
-      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
+      <div className='grid grid-cols-1 md:grid-cols-2'>
         {countries.map((country, countryIdx) => <CountryCard key={countryIdx} country={country} listType='list' />)}
       </div>
     ) : (
@@ -93,7 +93,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('country.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='country-search'>

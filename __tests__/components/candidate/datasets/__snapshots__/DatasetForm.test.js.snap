@@ -51,7 +51,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Candidate Open Data
             </div>
@@ -144,7 +144,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useIntl, IntlProvider } from 'react-intl'
-import { PDFDownloadLink, Document, Page, Text, StyleSheet, Link } from '@react-pdf/renderer'
+import { PDFDownloadLink, Document, Page, Text, StyleSheet } from '@react-pdf/renderer'
 import { gql, useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
@@ -116,12 +116,12 @@ const MoveContent = ({ move, format }) => {
                   {
                     move?.resources.map(resource => {
                       return (
-                        <Link key={resource.i} target='_blank' rel='noreferrer' href={resource.url}>
+                        <a key={resource.i} target='_blank' rel='noreferrer' href={resource.url}>
                           <div
                             key={resource.i}
                             className={`
-                              group border-2 border-gray-300 hover:border-dial-yellow
-                              card-drop-shadow
+                              group border-2 border-gray-300 hover:border-dial-sunshine
+                              shadow-md
                             `}
                           >
                             <div className='flex'>
@@ -135,7 +135,7 @@ const MoveContent = ({ move, format }) => {
                               <HiExternalLink className='ml-auto px-2' size='2.2em' />
                             </div>
                           </div>
-                        </Link>
+                        </a>
                       )
                     })
                   }

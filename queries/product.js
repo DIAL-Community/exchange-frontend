@@ -73,6 +73,7 @@ export const PRODUCT_QUERY = gql`
         name
         slug
         imageFile
+        number
       }
       sustainableDevelopmentGoalsMappingStatus
       sectors {
@@ -87,7 +88,7 @@ export const PRODUCT_QUERY = gql`
         slug
         license
       }
-      maturityScore
+      overallMaturityScore
       maturityScoreDetails
       playbooks {
         name
@@ -95,6 +96,7 @@ export const PRODUCT_QUERY = gql`
         imageFile
         tags
       }
+      isLinkedWithDpi
     }
   }
 `
@@ -136,6 +138,7 @@ export const PRODUCTS_QUERY = gql`
     $productDeployable: Boolean
     $isEndorsed: Boolean
     $licenseTypes: [String!]
+    $isLinkedWithDpi: Boolean
     $search: String!
   ) {
     searchProducts (
@@ -154,6 +157,7 @@ export const PRODUCTS_QUERY = gql`
       productDeployable: $productDeployable
       isEndorsed: $isEndorsed
       licenseTypes: $licenseTypes
+      isLinkedWithDpi: $isLinkedWithDpi
       search: $search
     ) {
       totalCount
@@ -167,10 +171,9 @@ export const PRODUCTS_QUERY = gql`
         id
         name
         slug
-        imageFile
-        isLaunchable
-        maturityScore
         tags
+        imageFile
+        overallMaturityScore
         commercialProduct
         endorsers {
           name
@@ -196,9 +199,7 @@ export const PRODUCTS_QUERY = gql`
         mainRepository {
           license
         }
-        organizations {
-          isEndorser
-        }
+        isLinkedWithDpi
       }
     }
   }

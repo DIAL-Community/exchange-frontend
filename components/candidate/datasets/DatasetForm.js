@@ -126,15 +126,13 @@ const DatasetForm = () => {
     <div className='flex flex-col'>
       <div className='hidden lg:block px-8'>
         <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
-          <Link href='/'>
-            <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+          <Link href='/' className='inline text-dial-blue h5'>
+            {format('app.home')}
           </Link>
           <div className='inline h5'>
             {BREADCRUMB_SEPARATOR}
-            <Link href='/datasets'>
-              <a className='text-dial-blue'>
-                {format('dataset.header')}
-              </a>
+            <Link href='/datasets' className='text-dial-blue'>
+              {format('dataset.header')}
             </Link>
             {BREADCRUMB_SEPARATOR}
             <span className='text-dial-gray-dark'>
@@ -147,7 +145,7 @@ const DatasetForm = () => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {format('candidateDataset.label')}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
+import { Tooltip } from 'react-tooltip'
 import zxcvbn from 'zxcvbn'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
@@ -114,7 +114,7 @@ const PasswordAction = () => {
   return (
     <>
       <Header />
-      <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
+      <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-20 simple-form-height'>
         <div className={`mx-4 ${applied ? 'visible' : 'invisible'} text-center bg-dial-gray-dark`}>
           <div className='my-auto text-emerald-500'>{format('reset.applied')}</div>

@@ -5,11 +5,11 @@ const Card = ({ onClick, href, children, className }) => {
 
   const cardContainerStyles = classNames(
     'border-3 border-transparent',
-    { 'hover:border-dial-yellow cursor-pointer': onClick || href }
+    { 'hover:border-dial-sunshine cursor-pointer': onClick || href }
   )
 
   const CardBody = () => (
-    <div className={classNames(className, 'grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow')}>
+    <div className={classNames(className, 'grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md')}>
       {children}
     </div>
   )

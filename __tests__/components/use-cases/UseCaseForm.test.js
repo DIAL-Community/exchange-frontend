@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -23,13 +23,14 @@ describe('Unit tests for UseCaseForm component.', () => {
     slug: 'test_use_case',
     sectorSlug: 'test_sector',
     maturity: 'DRAFT',
-    description: 'Test Use Case Description'
+    description: 'Test Use Case Description',
+    markdownUrl: 'Some-Markdown-URL'
   }
 
   test('Should render Unauthorized component for unauthorized user.', async () => {
     mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { container } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockSectors]}>
         <UseCaseForm />
       </CustomMockedProvider>
     )
@@ -39,7 +40,7 @@ describe('Unit tests for UseCaseForm component.', () => {
   })
 
   test('Should match snapshot - create.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
     const { container } = render(
       <CustomMockedProvider mocks={[mockSectors]} addTypename={false}>
         <UseCaseForm />
@@ -51,9 +52,9 @@ describe('Unit tests for UseCaseForm component.', () => {
   })
 
   test('Should match snapshot - edit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockSectors]}>
         <UseCaseForm useCase={useCase} />
       </CustomMockedProvider>
     )
@@ -62,7 +63,7 @@ describe('Unit tests for UseCaseForm component.', () => {
   })
 
   test('Should show validation errors for mandatory fields on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockSectors]} addTypename={false}>
         <UseCaseForm />
@@ -88,7 +89,7 @@ describe('Unit tests for UseCaseForm component.', () => {
   })
 
   test('Should show validation errors for mandatory fields on submit and hide them on input value change.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const user = userEvent.setup()
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockSectors]} addTypename={false}>
@@ -107,9 +108,7 @@ describe('Unit tests for UseCaseForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test user case name')
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test user case name 2')
@@ -127,7 +126,7 @@ describe('Unit tests for UseCaseForm component.', () => {
   })
 
   test('Should display success toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const mockCreateUseCase = generateMockApolloData(
       CREATE_USE_CASE,
       mockCreateUseCaseVariables,
@@ -147,7 +146,7 @@ describe('Unit tests for UseCaseForm component.', () => {
   })
 
   test('Should display failure toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const errorMessage = 'An error occurred'
     const mockCreateUseCase = generateMockApolloData(
       CREATE_USE_CASE,

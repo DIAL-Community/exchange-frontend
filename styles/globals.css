@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 @font-face {
   font-family: 'Poppins';
   src: url('/public/assets/fonts/Poppins/Poppins-Regular.ttf');
   src: url('/public/assets/fonts/Poppins/Poppins-SemiBold.ttf');
+  src: url('/public/assets/fonts/Poppins/Poppins-Bold.ttf');
 }
 
 html,
@@ -49,12 +51,6 @@ body {
   line-height: 1.125rem;
   text-transform: uppercase;
   font-weight: normal;
-}
-
-.card-title {
-  font-size: 1.125rem;
-  line-height: 1.375rem;
-  font-weight: bold;
 }
 
 .body-large {
@@ -140,10 +136,6 @@ body {
   background-size: 10px 10px;
 }
 
-.bg-edit {
-  background-color: #f7fcff;
-}
-
 .repository-progress-padding {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -165,14 +157,25 @@ body {
 }
 
 @layer components {
+  .card-title {
+    @apply font-semibold;
+    @apply text-lg;
+  }
+
+  .bg-edit {
+    @apply bg-gradient-to-l;
+    @apply from-dial-angel;
+    @apply to-dial-blue-chalk;
+    @apply rounded-md
+  }
+
   /* native HTML inputs */
   input:not(.url, [type=checkbox], [type=radio]),
   textarea.textarea,
   .url-input {
     @apply border;
     @apply border-transparent;
-    @apply hover:border-dial-blue;
-    @apply text-lg;
+    @apply hover:border-dial-sapphire;
     @apply text-dial-gray-dark;
     @apply shadow-md;
     @apply rounded-md;
@@ -184,7 +187,7 @@ body {
   }
 
   .url-input:has(input:focus) {
-    @apply border-dial-blue;
+    @apply border-dial-sapphire;
   }
 
   input:not(.validation-error),
@@ -206,7 +209,7 @@ body {
 
   input[type=checkbox] {
     @apply border;
-    @apply border-dial-blue;
+    @apply border-dial-sapphire;
     @apply shadow-md;
     @apply rounded-md;
   }
@@ -228,7 +231,7 @@ body {
   input[type]:focus,
   textarea.textarea:focus {
     @apply ring-offset-[-1px];
-    @apply border-dial-blue
+    @apply border-dial-sapphire
   }
 
   /* native HTML button */
@@ -248,12 +251,12 @@ body {
     @apply rounded-md;
     @apply border;
     @apply border-transparent;
-    @apply hover:border-dial-blue;
+    @apply hover:border-dial-sapphire;
   }
 
   .html-editor .tox-tinymce.focused,
   .html-editor.validation-error .tox-tinymce.focused {
-    @apply border-dial-blue;
+    @apply border-dial-sapphire;
   }
 
   .html-editor.validation-error .tox-tinymce {
@@ -310,9 +313,9 @@ body {
 
   .overlay button.loginBtn,
   .overlay button.signBtn {
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
     @apply disabled:bg-dial-gray;
-    @apply hover:bg-dial-blue;
+    @apply hover:bg-dial-sapphire;
     @apply hover:text-white;
   }
 
@@ -363,7 +366,7 @@ body {
   }
 
   .form .advanced-btns button.advanced-post {
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
     @apply disabled:bg-dial-gray;
   }
 
@@ -385,7 +388,7 @@ body {
 
   .form-field-label {
     @apply text-xl;
-    @apply text-dial-blue;
+    @apply text-dial-sapphire;
   }
 
   .form-field-wrapper {
@@ -401,9 +404,9 @@ body {
     @apply py-2;
     @apply px-5;
     @apply rounded-md;
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
     @apply text-white;
-    @apply disabled:bg-dial-gray;
+    @apply disabled:bg-dial-amethyst-smoke;
   }
 
   button.secondary-button {
@@ -413,11 +416,11 @@ body {
     @apply px-5;
     @apply rounded-md;
     @apply border-2;
-    @apply border-dial-blue;
-    @apply hover:border-transparent;
-    @apply text-dial-blue;
-    @apply hover:bg-dial-blue;
-    @apply hover:text-white;
+    @apply border-dial-sapphire;
+    @apply enabled:hover:border-transparent;
+    @apply text-dial-sapphire;
+    @apply enabled:hover:bg-dial-sapphire;
+    @apply enabled:hover:text-white;
     @apply disabled:opacity-50;
   }
 
@@ -428,7 +431,8 @@ body {
     @apply py-2;
     @apply px-5;
     @apply rounded-md;
-    @apply bg-button-gray-light;
+    @apply bg-dial-amethyst-smoke;
+    @apply enabled:hover:bg-dial-sapphire;
     @apply text-white;
     @apply disabled:opacity-50;
   }
@@ -449,12 +453,12 @@ body {
     @apply py-1;
     @apply px-2;
     @apply rounded-md;
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
     @apply text-white;
   }
 
   button.create-button {
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
   }
 
   .username-avatar {
@@ -479,3 +483,18 @@ body {
     @apply rounded-full;
   }
 }
+
+#wizard-anchor {
+  display: block;
+  position: relative;
+  top: -100px;
+  visibility: hidden;
+}
+
+.introjs-skipbutton { 
+  color: #fff !important; 
+  right: 20px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+

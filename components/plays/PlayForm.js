@@ -3,11 +3,11 @@ import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
-import { FaSpinner, FaPlusCircle } from 'react-icons/fa'
+import { FaSpinner } from 'react-icons/fa'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import Breadcrumb from '../shared/breadcrumb'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import Input from '../shared/Input'
 import ValidationError from '../shared/ValidationError'
 import { AUTOSAVE_PLAY, CREATE_PLAY } from '../../mutations/play'
@@ -17,7 +17,6 @@ import Pill from '../shared/Pill'
 import { fetchSelectOptions } from '../../queries/utils'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../queries/building-block'
 import { useUser } from '../../lib/hooks'
-import MoveListDraggable from './moves/MoveListDraggable'
 
 export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
@@ -32,7 +31,6 @@ export const PlayForm = ({ playbook, play }) => {
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
-  const [navigateToMove, setNavigateToMove] = useState(false)
 
   const fetchedProductsCallback = (data) => (
     data?.products?.map((product) => ({
@@ -56,58 +54,39 @@ export const PlayForm = ({ playbook, play }) => {
           <span>{error?.message}</span>
         </div>,
         'error',
-        'top-center',
-        1000
+        'top-center'
       )
       reset()
     },
-    onCompleted: (data) => {
-      if (!navigateToMove) {
-        showToast(
-          format('play.submitted'),
-          'success',
-          'top-center',
-          1000,
-          null,
-          () => router.push(`/${locale}/playbooks/${playbook.slug}/edit`)
-        )
-      } else {
-        showToast(
-          format('play.submittedToCreateMove'),
-          'success',
-          'top-center',
-          1000,
-          null,
-          () => router.push(
-            `/${locale}` +
-            `/playbooks/${playbook.slug}` +
-            `/plays/${data.createPlay.play.slug}/moves/create`
-          )
-        )
-      }
+    onCompleted: () => {
+      setMutating(false)
+      showToast(
+        format('play.submitted'),
+        'success',
+        'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY,
+        null,
+        () => router.push(`/${locale}/playbooks/${playbook.slug}`)
+      )
     }
   })
 
   const [autoSavePlay, { reset: resetAutoSave }] = useMutation(AUTOSAVE_PLAY, {
-    onError: (error) => {
+    onError: () => {
       setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{error?.message}</span>
-        </div>,
-        'error',
-        'top-center',
-        1000
-      )
       resetAutoSave()
     },
-    onCompleted: () => {
-      setMutating(false)
-      showToast(format('play.autoSaved'), 'success', 'top-right')
+    onCompleted: (data) => {
+      const { autoSavePlay: response } = data
+      if (response.errors.length === 0 && response.play) {
+        setMutating(false)
+        setSlug(response.play.slug)
+        showToast(format('play.autoSaved'), 'success', 'top-right')
+      }
     }
   })
 
-  const [slug] = useState(play?.slug ?? '')
+  const [slug, setSlug] = useState(play?.slug ?? '')
   const [tags, setTags] = useState(play?.tags.map(tag => ({ label: tag })) ?? [])
   const [products, setProducts] = useState(
     play?.products?.map(
@@ -142,8 +121,8 @@ export const PlayForm = ({ playbook, play }) => {
         description,
         tags: tags.map(tag => tag.label),
         playbookSlug: playbook.slug,
-        productsSlugs: products.map(({ slug }) => slug),
-        buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
+        productSlugs: products.map(({ slug }) => slug),
+        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
       }
 
       createPlay({
@@ -161,50 +140,59 @@ export const PlayForm = ({ playbook, play }) => {
   useEffect(() => {
     const doAutoSave = () => {
       const { locale } = router
-      if (user) {
-        setMutating(true)
 
-        const { userEmail, userToken } = user
-        const { name, description } = watch()
-        const variables = {
-          name,
-          slug,
-          description,
-          tags: tags.map(tag => tag.label),
-          productsSlugs: products.map(({ slug }) => slug),
-          buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
-        }
-        autoSavePlay({
-          variables,
-          context: {
-            headers: {
-              'Accept-Language': locale,
-              Authorization: `${userEmail} ${userToken}`
-            }
-          }
-        })
+      if (!user || !watch) {
+        return
       }
+
+      setMutating(true)
+
+      const { userEmail, userToken } = user
+      const { name, description } = watch()
+      if (!name || !description) {
+        // Minimum required fields are name and description.
+        setMutating(false)
+
+        return
+      }
+
+      const variables = {
+        name,
+        slug,
+        description,
+        tags: tags.map(tag => tag.label),
+        playbookSlug: playbook.slug,
+        productSlugs: products.map(({ slug }) => slug),
+        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
+      }
+
+      autoSavePlay({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
 
     const interval = setInterval(() => {
-      if (slug) {
-        doAutoSave()
-      }
+      doAutoSave()
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tags, products, buildingBlocks, router, watch, autoSavePlay])
+  }, [user, slug, tags, products, buildingBlocks, playbook, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${router.locale}/playbooks/${playbook.slug}/edit`)
+    router.push(`/${router.locale}/playbooks/${playbook.slug}`)
   }
 
   const slugNameMapping = (() => {
     const map = {}
 
     map[play?.slug] = play?.name
-
     map[playbook?.slug] = playbook?.name
 
     map.edit = format('app.edit')
@@ -212,14 +200,6 @@ export const PlayForm = ({ playbook, play }) => {
 
     return map
   })()
-
-  const saveAndCreateMove = () => {
-    setNavigateToMove(true)
-  }
-
-  const saveAndAssignPlay = () => {
-    setNavigateToMove(false)
-  }
 
   const addProduct =
     (product) =>
@@ -256,13 +236,13 @@ export const PlayForm = ({ playbook, play }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {play && format('app.edit-entity', { entity: play.name })}
                 {!play && `${format('app.create-new')} ${format('plays.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3' data-testid='play-name'>
-                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
+                  <label className='flex flex-col gap-y-2 text-dial-sapphire mb-2'>
                     <p className='required-field'>{format('plays.name')}</p>
                     <Input
                       {...register('name', { required: format('validation.required') })}
@@ -272,7 +252,7 @@ export const PlayForm = ({ playbook, play }) => {
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </label>
                   <div className='flex flex-col gap-y-2' data-testid='play-tags'>
-                    <label className='text-xl text-dial-blue flex flex-col gap-y-2' htmlFor='name'>
+                    <label className='text-dial-sapphire flex flex-col gap-y-2' htmlFor='name'>
                       {format('plays.tags')}
                       <TagAutocomplete
                         {...{ tags, setTags }}
@@ -285,7 +265,7 @@ export const PlayForm = ({ playbook, play }) => {
                     </div>
                   </div>
                   <div className='flex flex-col gap-y-2' data-testid='play-products'>
-                    <label className='text-xl text-dial-blue flex flex-col gap-y-2'>
+                    <label className='text-dial-sapphire flex flex-col gap-y-2'>
                       {format('plays.products')}
                       <Select
                         async
@@ -320,7 +300,7 @@ export const PlayForm = ({ playbook, play }) => {
                     </div>
                   </div>
                   <div className='flex flex-col gap-y-2' data-testid='play-buildingBlocks'>
-                    <label className='text-xl text-dial-blue flex flex-col gap-y-2'>
+                    <label className='text-dial-sapphire flex flex-col gap-y-2'>
                       {format('plays.buildingBlocks')}
                       <Select
                         async
@@ -360,7 +340,7 @@ export const PlayForm = ({ playbook, play }) => {
                   style={{ minHeight: '20rem' }}
                   data-testid='play-description'
                 >
-                  <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+                  <label className='block text-dial-sapphire flex flex-col gap-y-2'>
                     <p className='required-field'> {format('plays.description')}</p>
                     <Controller
                       name='description'
@@ -384,28 +364,10 @@ export const PlayForm = ({ playbook, play }) => {
                   </label>
                 </div>
               </div>
-              <div className='flex flex-col gap-y-2 mt-4'>
-                <div className='text-xl text-dial-blue font-bold'>
-                  {format('move.header')}
-                </div>
-                <div className='text-sm text-dial-blue'>
-                  {format('play.assignedMoves')}
-                </div>
-                <MoveListDraggable playbook={playbook} play={play} />
-              </div>
-              <div className='block'>
-                <button className='flex gap-2' onClick={saveAndCreateMove}>
-                  <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
-                  <div className='text-dial-blue'>
-                    {`${format('app.create-new')} ${format('move.label')}`}
-                  </div>
-                </button>
-              </div>
               <div className='flex flex-wrap font-semibold text-xl lg:mt-8 gap-3'>
                 <button
                   type='submit'
                   data-testid='submit-button'
-                  onClick={saveAndAssignPlay}
                   className='submit-button'
                   disabled={mutating || reverting}
                 >

@@ -41,15 +41,13 @@ const ProductDetail = ({ productSlug, locale }) => {
 
   const generateBreadcrumb = (product) => (
     <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
-      <Link href='/'>
-        <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+      <Link href='/' className='inline text-dial-blue h5'>
+        {format('app.home')}
       </Link>
       <div className='inline h5'>
         {BREADCRUMB_SEPARATOR}
-        <Link href='/candidate/products'>
-          <a className='text-dial-blue'>
-            {format('candidateProduct.label')}
-          </a>
+        <Link href='/candidate/products' className='text-dial-blue'>
+          {format('candidateProduct.label')}
         </Link>
         {BREADCRUMB_SEPARATOR}
         {product.name}

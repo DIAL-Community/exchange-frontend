@@ -24,7 +24,7 @@ export default NextAuth({
         username: { label: 'Username', type: 'text', placeholder: 'email' },
         password: { label: 'Password', type: 'password' }
       },
-      async authorize (credentials) {
+      authorize: async (credentials) => {
         const authBody = {
           user: {
             email: credentials.username,
@@ -42,8 +42,7 @@ export default NextAuth({
             headers: {
               'Content-Type': 'application/json',
               'X-Requested-With': 'XMLHttpRequest',
-              'Access-Control-Allow-Origin':
-                process.env.NEXT_PUBLIC_AUTH_SERVER,
+              'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
               'Access-Control-Allow-Credentials': true,
               'Access-Control-Allow-Headers': 'Set-Cookie'
               // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
@@ -61,14 +60,14 @@ export default NextAuth({
             body: JSON.stringify(authBody) // body data type must match "Content-Type" header
           }
         )
-
-        const user = await response.json()
-
-        if (user) {
-          // Any user object returned here will be saved in the JSON Web Token
-          return user
+        if (response.status === 200) {
+          // 200: User is good, confirmed.
+          return response.json()
+        } else if (response.status === 403) {
+          // 304: User is good, unconfirmed.
+          return null
         } else {
-          return false
+          return new Error('Unable to authenticate')
         }
       }
     })
@@ -107,12 +106,14 @@ export default NextAuth({
 
           if (response.status === 200) {
             token.expired = true
-            console.log(`(Auth) User '${session.user.userEmail}' session's invalidated.`)
           }
         }
 
         return {}
       }
+    },
+    signIn: async({ user }) => {
+      return !(user instanceof Error)
     }
   },
   pages: {

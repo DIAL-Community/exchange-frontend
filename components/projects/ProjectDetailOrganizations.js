@@ -82,7 +82,7 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
       updateProjectOrganizations({
         variables: {
           slug: project.slug,
-          organizationsSlugs: organizations.map(({ slug }) => slug)
+          organizationSlugs: organizations.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -115,7 +115,7 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('organization.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='organization-search'>

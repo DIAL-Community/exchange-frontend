@@ -19,7 +19,8 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
 
   const router = useRouter()
 
-  const { user, isAdminUser, loadingUserSession } = useUser()
+  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -73,12 +74,11 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
       name: useCaseStep?.name,
       stepNumber: useCaseStep?.stepNumber,
       description: useCaseStep?.useCaseStepDescription?.description,
-      markdownUrl: useCaseStep?.markdownUrl,
     }
   })
 
   const slug = useCaseStep?.slug ?? ''
-  const useCaseId = parseInt(slug ? useCaseStep?.useCase.id : useCase?.id)
+  const useCaseId = parseInt(useCase?.id)
 
   const slugNameMapping = useMemo(() => {
     const map = {
@@ -88,7 +88,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
 
     if (useCaseStep) {
       map[useCaseStep.slug] = useCaseStep.name
-      map[useCaseStep.useCase.slug] = useCaseStep.useCase.name
+      map[useCase.slug] = useCase.name
     }
 
     if (useCase) {
@@ -99,22 +99,20 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   }, [useCaseStep, useCase, format])
 
   const doUpsert = async (data) => {
-    if (user) {
+    if (canEdit) {
       setMutating(true)
 
       const stepNumber = parseInt(data.stepNumber)
 
       const { userEmail, userToken } = user
-
-      const { name, description, markdownUrl } = data
+      const { name, description } = data
 
       const variables = {
         name,
         slug,
         stepNumber,
         description,
-        useCaseId,
-        markdownUrl
+        useCaseId
       }
       updateUseCaseStep({
         variables,
@@ -134,7 +132,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   }
 
   return (
-    loadingUserSession  ? <Loading /> : isAdminUser ? (
+    loadingUserSession  ? <Loading /> : canEdit ? (
       <div className='flex flex-col'>
         <div className='hidden lg:block px-8'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
@@ -143,14 +141,14 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
           <div id='content' className='sm:px-0 max-w-full mx-auto'>
             <form onSubmit={handleSubmit(doUpsert)}>
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-                <div className='text-2xl font-bold text-dial-blue pb-4'>
+                <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {useCaseStep?.slug
                     ? format('app.edit-entity', { entity: useCaseStep?.name })
                     : `${format('app.create-new')} ${format('use-case-step.label')}`
                   }
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
-                  <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
+                  <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
                     <div className='form-field-wrapper' data-testid='use-case-step-name'>
                       <label className='form-field-label required-field' htmlFor='name'>
                         {format('use-case-step.name')}
@@ -176,42 +174,29 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
                       />
                       {errors.stepNumber && <ValidationError value={errors.stepNumber?.message} />}
                     </div>
-                    <div className='form-field-wrapper' data-testid='use-case-step-markdown-url'>
-                      <label className='form-field-label required-field' htmlFor='markdownUrl'>
-                        {format('use-case-step.markdownUrl')}
+                  </div>
+                  <div className='w-full lg:w-2/3'>
+                    <div className='block flex flex-col gap-y-2' data-testid='use-case-step-description'>
+                      <label className='form-field-label required-field'>
+                        {format('use-case-step.description')}
                       </label>
-                      <Input
-                        {...register('markdownUrl')}
-                        id='markdownUrl'
-                        placeholder={format('use-case-step.markdownUrl')}
+                      <Controller
+                        name='description'
+                        control={control}
+                        render={({ field: { value, onChange } }) => (
+                          <HtmlEditor
+                            editorId='description-editor'
+                            onChange={onChange}
+                            initialContent={value}
+                            placeholder={format('use-case-step.description')}
+                            isInvalid={errors.description}
+                          />
+                        )}
+                        rules={{ required: format('validation.required') }}
                       />
+                      {errors.description && <ValidationError value={errors.description?.message} />}
                     </div>
                   </div>
-                  {
-                    !useCaseStep?.markdownUrl &&
-                      <div className='w-full lg:w-1/2'>
-                        <div className='block flex flex-col gap-y-2' data-testid='use-case-step-description'>
-                          <label className='form-field-label required-field'>
-                            {format('use-case-step.description')}
-                          </label>
-                          <Controller
-                            name='description'
-                            control={control}
-                            render={({ field: { value, onChange } }) => (
-                              <HtmlEditor
-                                editorId='description-editor'
-                                onChange={onChange}
-                                initialContent={value}
-                                placeholder={format('use-case-step.description')}
-                                isInvalid={errors.description}
-                              />
-                            )}
-                            rules={{ required: format('validation.required') }}
-                          />
-                          {errors.description && <ValidationError value={errors.description?.message} />}
-                        </div>
-                      </div>
-                  }
                 </div>
                 <div className='flex flex-wrap text-xl mt-8 gap-3'>
                   <button
@@ -233,6 +218,11 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
                     {reverting && <FaSpinner className='spinner ml-3' />}
                   </button>
                 </div>
+                { useCase.markdownUrl &&
+                  <div className='text-sm italic text-red-500'>
+                    {format('useCaseStep.markdownWarning')}
+                  </div>
+                }
               </div>
             </form>
           </div>

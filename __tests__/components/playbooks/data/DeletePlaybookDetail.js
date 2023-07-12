@@ -4,6 +4,7 @@ export const playbookDetail = {
   name: 'Example Playbook',
   imageFile: '/assets/playbooks/playbook_placeholder.png',
   author: 'Test Author',
+  tags: [],
   playbookDescription: {
     id: 4,
     overview: 'Just an example of playbook.',
@@ -15,7 +16,7 @@ export const playbookDetail = {
     id: 827,
     playSlug: 'd4d_understand_the_problem',
     playName: 'D4D: Understand the Problem',
-    order: 0,
+    playOrder: 0,
   }],
   plays: [{
     id: 10,

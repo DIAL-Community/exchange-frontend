@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useEffect } from 'react'
-import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
 import { convertToKey } from '../../context/FilterContext'
 const useCasesPath = convertToKey('Use Cases')
@@ -11,21 +9,17 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
-
   // Style the card based on the list style
   const cardContainerStyles = () => {
     if (listStyle === 'compact') {
       return [
-        'text-use-case cursor-pointer border-transparent hover:border-r-2 hover:border-dial-yellow',
+        'text-use-case cursor-pointer border-transparent hover:border-r-2 hover:border-dial-sunshine',
         'border border-t-0'
       ]
     } else {
       return [
-        'text-use-case border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer',
-        'border border-dial-gray hover:border-transparent card-drop-shadow'
+        'text-use-case border-3 border-transparent hover:border-dial-sunshine hover:text-dial-sunshine cursor-pointer',
+        'border border-dial-gray hover:border-transparent shadow-md'
       ]
     }
   }
@@ -33,7 +27,7 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
   const [hoverStyle, containerStyle] = cardContainerStyles()
 
   return (
-    <Link href={`/${useCasesPath}/${useCaseStep.useCase.slug}/${stepsPath}/${useCaseStep.slug}`} passHref>
+    <Link href={`/${useCasesPath}/${useCaseStep.useCase.slug}/${stepsPath}/${useCaseStep.slug}`}>
       <div className={hoverStyle}>
         <div className={containerStyle}>
           <div className='flex flex-row'>
@@ -66,7 +60,8 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
                             <Image
                               height={25}
                               width={25}
-                              data-tip={
+                              data-tooltip-id='react-tooltip'
+                              data-tooltip-content={
                                 format(
                                   'tooltip.forEntity',
                                   { entity: format('workflow.label'), name: workflow.name }

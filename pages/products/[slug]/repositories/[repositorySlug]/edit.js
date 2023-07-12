@@ -38,16 +38,14 @@ const ProductHeader = ({ product }) => {
   return (
     <div className='border'>
       <Link href={`/products/${product.slug}`}>
-        <a href='navigate-to-product'>
-          <div className='cursor-pointer px-4 py-6 flex items-center'>
-            <img
-              className='w-8 h-full'
-              alt={format('image.alt.logoFor', { name: product.name })}
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-            />
-            <div className='text-xl text-product font-semibold px-4'>{product.name}</div>
-          </div>
-        </a>
+        <div className='cursor-pointer px-4 py-6 flex items-center'>
+          <img
+            className='w-8 h-full'
+            alt={format('image.alt.logoFor', { name: product.name })}
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+          />
+          <div className='text-xl text-product font-semibold px-4'>{product.name}</div>
+        </div>
       </Link>
     </div>
   )
@@ -60,7 +58,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
   const { data, loading, error } = useQuery(REPOSITORY_QUERY, { variables: { slug: repositorySlug } })
 
   const { isAdminUser, loadingUserSession } = useUser()
-  const { isProductOwner } = useProductOwnerUser(data?.product, [], loadingUserSession || isAdminUser)
+  const { isProductOwner } = useProductOwnerUser(data?.productRepository?.product, [], isAdminUser)
 
   const isAuthorized = isAdminUser || isProductOwner
 

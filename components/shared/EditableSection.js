@@ -19,7 +19,6 @@ const EditableSection = ({
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [isInEditMode, setIsInEditMode] = useState(false)
-
   const [isSubmitInProgress, setIsSubmitInProgress] = useState(false)
 
   useEffect(() => {
@@ -33,12 +32,12 @@ const EditableSection = ({
   return (
     <div className='mt-12' data-testid='editable-section'>
       <div className='flex justify-between items-center mb-3'>
-        <div className='card-title text-dial-gray-dark'>{sectionHeader}</div>
+        <div className='card-title text-dial-sapphire'>{sectionHeader}</div>
         <div className='gap-3'>
           {canEdit && !isInEditMode &&
             <EditButton onClick={() => setIsInEditMode(true)} className='mr-2' />
           }
-          {createAction && !isInEditMode &&
+          {createAction && canEdit && !isInEditMode &&
             <CreateButton label={format('app.create-new')} onClick={createAction} className='mr-2' />
           }
         </div>

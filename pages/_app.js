@@ -10,7 +10,6 @@ import { DefaultSeo } from 'next-seo'
 import { CookieConsentProvider } from '@use-cookie-consent/react'
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
-import * as matomo from '../lib/matomo'
 import '../styles/globals.css'
 import '../styles/editor.css'
 import '../styles/filter.css'
@@ -29,6 +28,7 @@ import '../styles/govstack.css'
 import '../styles/prismjs-highlight.css'
 import '../styles/swagger-ui.css'
 import '../styles/overrides.css'
+import 'react-tooltip/dist/react-tooltip.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'handsontable/dist/handsontable.full.css'
 import 'intro.js/introjs.css'
@@ -64,7 +64,7 @@ const ApplicationDefaultContexts = ({ children }) => {
           <DefaultSeo
             titleTemplate={`%s | ${format('app.title')}`}
             defaultTitle={format('app.title')}
-            description={format('landing.blurb')}
+            description={format('wizard.getStarted.firstLine')}
             additionalLinkTags={[{
               rel: 'icon',
               href: '/favicon.ico'
@@ -74,10 +74,10 @@ const ApplicationDefaultContexts = ({ children }) => {
               type: 'website',
               images: [
                 {
-                  url: 'https://solutions.dial.community/images/hero-image/hero-image.png',
+                  url: 'https://exchange.dial.global/images/hero-image/exchange-hero.png',
                   width: 700,
                   height: 380,
-                  alt: 'Banner of DIAL Catalog of Digital Solutions'
+                  alt: 'Banner of Digital Impact Exchange'
                 }
               ]
             }}
@@ -102,7 +102,6 @@ const App = ({ Component, pageProps }) => {
   useEffect(() => {
     const handleRouteChange = (url) => {
       gtag.pageview(url)
-      matomo.pageview(url)
     }
 
     router.events.on('routeChangeComplete', handleRouteChange)

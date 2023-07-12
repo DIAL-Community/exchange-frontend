@@ -125,17 +125,13 @@ const ProductForm = ({ candidateProduct }) => {
   const parentBreadcrumb = () =>
     isAdminUser
       ? (
-        <Link href='/candidate/products'>
-          <a className='text-dial-blue'>
-            {format('candidateProduct.label')}
-          </a>
+        <Link href='/candidate/products' className='text-dial-blue'>
+          {format('candidateProduct.label')}
         </Link>
       )
       : (
-        <Link href='/products'>
-          <a className='text-dial-blue'>
-            {format('product.header')}
-          </a>
+        <Link href='/products' className='text-dial-blue'>
+          {format('product.header')}
         </Link>
       )
 
@@ -148,10 +144,8 @@ const ProductForm = ({ candidateProduct }) => {
       )
       : (
         <>
-          <Link href={`/candidate/products/${candidateProduct.slug}`}>
-            <a className='text-dial-blue'>
-              {candidateProduct?.name}
-            </a>
+          <Link href={`/candidate/products/${candidateProduct.slug}`} className='text-dial-blue'>
+            {candidateProduct?.name}
           </Link>
           {BREADCRUMB_SEPARATOR}
           <span className='text-dial-gray-dark'>
@@ -162,10 +156,8 @@ const ProductForm = ({ candidateProduct }) => {
 
   const generateBreadcrumb = (candidateProduct) => (
     <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
-      <Link href='/'>
-        <a className='inline text-dial-blue h5'>
-          {format('app.home')}
-        </a>
+      <Link href='/' className='inline text-dial-blue h5'>
+        {format('app.home')}
       </Link>
       <div className='inline h5'>
         {BREADCRUMB_SEPARATOR}
@@ -189,7 +181,7 @@ const ProductForm = ({ candidateProduct }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {format('candidateProduct.label')}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
@@ -261,7 +253,7 @@ const ProductForm = ({ candidateProduct }) => {
                     {errors.email && <ValidationError value={errors.email?.message} />}
                   </div>
                   <div className='form-field-wrapper' data-testid='building-block-maturity'>
-                    <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
+                    <label className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'>
                       {format('product.license')}
                     </label>
                     <Controller
@@ -286,7 +278,7 @@ const ProductForm = ({ candidateProduct }) => {
                   {errors.captcha && <ValidationError value={errors.captcha?.message} />}
                 </div>
                 <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='candidate-product-description'>
-                  <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+                  <label className='block text-dial-sapphire flex flex-col gap-y-2'>
                     <p className='required-field'> {format('candidateProduct.description')}</p>
                     <Controller
                       name='description'

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
+import { isMobile } from 'react-device-detect'
 import dynamic from 'next/dynamic'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import Header from '../components/Header'
-import WizardDescription from '../components/WizardDescription'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
 import TabNav from '../components/main/TabNav'
@@ -13,12 +13,15 @@ import ProductFilter from '../components/products/ProductFilter'
 import ProductActiveFilter from '../components/products/ProductActiveFilter'
 import ProductListQuery from '../components/products/ProductList'
 import SearchFilter from '../components/shared/SearchFilter'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
+import { ProductFilterContext, ProductFilterDispatchContext }
+  from '../components/context/ProductFilterContext'
 import ClientOnly from '../lib/ClientOnly'
-import Intro, { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../components/Intro'
+import Intro from '../components/Intro'
 import QueryNotification from '../components/shared/QueryNotification'
 import HeroSection from '../components/Hero'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+import Wizard from '../components/wizard/Wizard'
+import { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../lib/intro'
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const HomePage = () => {
   const { search } = useContext(ProductFilterContext)
@@ -29,7 +32,7 @@ const HomePage = () => {
 
   const [enableIntro, setEnableIntro] = useState(false)
   useEffect(() => {
-    const enableIntro = String(cookie.load(OVERVIEW_INTRO_KEY)) !== 'true'
+    const enableIntro = String(Cookies.get(OVERVIEW_INTRO_KEY)) !== 'true'
     setEnableIntro(enableIntro)
   }, [setEnableIntro])
 
@@ -37,28 +40,31 @@ const HomePage = () => {
     <>
       <Header />
       <HeroSection />
-      <WizardDescription />
+      <Wizard />
       <CatalogTitle />
       <QueryNotification />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <TabNav activeTab='filter.entity.products' />
       <MobileNav activeTab='filter.entity.products' />
       <ClientOnly>
         <PageContent
           activeTab='filter.entity.products'
           filter={<ProductFilter />}
+          mobileFilter={<ProductFilter inMobileView={true} />}
           content={<ProductListQuery />}
           searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
           activeFilter={<ProductActiveFilter />}
           hint={<ProductHint />}
         />
-        <Intro
-          enabled={enableIntro}
-          steps={OVERVIEW_INTRO_STEPS}
-          startIndex={STEP_INDEX_START}
-          endIndex={STEP_INDEX_END}
-          completedKey={OVERVIEW_INTRO_KEY}
-        />
+        {!isMobile &&
+          <Intro
+            enabled={enableIntro}
+            steps={OVERVIEW_INTRO_STEPS}
+            startIndex={STEP_INDEX_START}
+            endIndex={STEP_INDEX_END}
+            completedKey={OVERVIEW_INTRO_KEY}
+          />
+        }
       </ClientOnly>
       <Footer />
     </>

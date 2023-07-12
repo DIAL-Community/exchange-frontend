@@ -77,7 +77,7 @@ const RoleList = (props) => {
               <RoleCard key={role.id} listType={displayType} {...{ filterDisplayed, role }} />
             ))
             : (
-              <div className='flex justify-self-center text-dial-gray-dark'>{
+              <div className='text-dial-gray-dark'>{
                 format('noResults.entity', { entity: format('candidate.role.label').toLowerCase() })
               }
               </div>

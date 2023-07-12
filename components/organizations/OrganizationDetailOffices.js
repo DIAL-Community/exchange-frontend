@@ -104,7 +104,7 @@ const OrganizationDetailOffices = ({ organization, canEdit }) => {
 
   const displayModeBody = offices.length
     ? (
-      <div className='grid grid-cols-1 lg:grid-cols-2'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
         {offices.map((office, officeIdx) => <CityCard key={officeIdx} city={office} listType='list' />)}
       </div>
     ) : (
@@ -115,7 +115,7 @@ const OrganizationDetailOffices = ({ organization, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('office.locations.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2'>

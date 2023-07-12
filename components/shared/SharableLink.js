@@ -69,7 +69,7 @@ const SharableLink = ({ sharableLink }) => {
           <div className='opacity-50'>
             <a
               href='/generate-sharable-link' onClick={copyToClipboard}
-              className='border-b-2 border-transparent hover:border-dial-yellow'
+              className='border-b-2 border-transparent hover:border-dial-sunshine'
             >
               {format('app.shareLink')}
             </a>

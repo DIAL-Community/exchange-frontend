@@ -79,7 +79,8 @@ const OrganizationForm = React.memo(({ organization }) => {
       endorserLevel:
         endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ?? defaultEndorserLevel,
       isMni: organization?.isMni,
-      description: organization?.organizationDescription?.description
+      description: organization?.organizationDescription?.description,
+      hasStorefront: organization?.hasStorefront,
     }
   })
 
@@ -114,7 +115,18 @@ const OrganizationForm = React.memo(({ organization }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, imageFile, website, isEndorser, whenEndorsed, endorserLevel, isMni, description, aliases } = data
+      const {
+        name,
+        imageFile,
+        website,
+        isEndorser,
+        whenEndorsed,
+        endorserLevel,
+        isMni,
+        description,
+        aliases,
+        hasStorefront
+      } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
@@ -125,7 +137,8 @@ const OrganizationForm = React.memo(({ organization }) => {
         whenEndorsed: whenEndorsed || null,
         endorserLevel: endorserLevel.value,
         isMni,
-        description
+        description,
+        hasStorefront
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -162,7 +175,7 @@ const OrganizationForm = React.memo(({ organization }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {organization
                   ? format('app.edit-entity', { entity: organization.name })
                   : `${format('app.create-new')} ${format('organization.label')}`
@@ -171,7 +184,7 @@ const OrganizationForm = React.memo(({ organization }) => {
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-name'>
-                    <label className='text-xl text-dial-blue required-field' htmlFor='name'>
+                    <label className='text-dial-sapphire required-field' htmlFor='name'>
                       {format('organization.name')}
                     </label>
                     <Input
@@ -183,7 +196,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue'>
+                    <label className='text-dial-sapphire'>
                       {format('organization.aliases')}
                     </label>
                     {aliases.map((alias, aliasIdx) => (
@@ -213,7 +226,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                     ))}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-website'>
-                    <label className='text-xl text-dial-blue required-field' htmlFor='website'>
+                    <label className='text-dial-sapphire required-field' htmlFor='website'>
                       {format('organization.website')}
                     </label>
                     <Controller
@@ -233,20 +246,20 @@ const OrganizationForm = React.memo(({ organization }) => {
                     {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-logo'>
-                    <label className='text-xl text-dial-blue'>
+                    <label className='text-dial-sapphire'>
                       {format('organization.imageFile')}
                     </label>
                     <FileUploader {...register('imageFile')} />
                   </div>
                   <label
-                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'
                     data-testid='organization-is-endorser'
                   >
                     <Checkbox {...register('isEndorser')} />
                     {format('organization.isEndorser')}
                   </label>
                   <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue'>
+                    <label className='text-dial-sapphire'>
                       {format('organization.whenEndorsed')}
                     </label>
                     <Input
@@ -257,7 +270,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                     />
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-endorser-level'>
-                    <label className='text-xl text-dial-blue'>
+                    <label className='text-dial-sapphire'>
                       {format('organization.endorserLevel')}
                     </label>
                     <Controller
@@ -274,16 +287,23 @@ const OrganizationForm = React.memo(({ organization }) => {
                     />
                   </div>
                   <label
-                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'
                     data-testid='organization-is-mni'
                   >
                     <Checkbox {...register('isMni')} />
                     {format('organization.isMni')}
                   </label>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'
+                    data-testid='organization-has-storefront'
+                  >
+                    <Checkbox {...register('hasStorefront')} />
+                    {format('organization.hasStorefront')}
+                  </label>
                 </div>
                 <div className='w-full lg:w-1/2'>
                   <div className='block flex flex-col gap-y-2' data-testid='organization-description'>
-                    <label className='text-xl text-dial-blue required-field'>
+                    <label className='text-dial-sapphire required-field'>
                       {format('organization.description')}
                     </label>
                     <Controller

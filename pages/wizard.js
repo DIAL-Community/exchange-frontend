@@ -65,7 +65,7 @@ const WizardPageDefinition = () => {
     'USSD',
     'Voice'
   ]
-  const projData = {
+  const wizardData = {
     sectors: sectorData?.sectors.map((sector) => ({ label: sector.name, value: sector.name, slug: sector.slug })) ?? [],
     sdgs: sdgData.sdgs.map((sdg) => ({ label: sdg.name, value: sdg.name, slug: sdg.slug })) ?? [],
     countries: countryData.countries.map((country) => ({ label: country.name, value: country.name })) ?? [],
@@ -84,7 +84,7 @@ const WizardPageDefinition = () => {
         ? <WizardContent
           stage={stage}
           setStage={setStage}
-          projData={projData}
+          wizardData={wizardData}
           allValues={allValues}
           setAllValues={setAllValues}
         />

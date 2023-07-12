@@ -38,13 +38,11 @@ const ApiViewer = ({ repositoryName }) => {
     <div className='flex flex-col gap-3 my-4'>
       <div className='px-4 flex flex-col md:flex-row gap-3'>
         <div className='flex flex-row gap-2 w-full'>
-          <Link href='/govstack/building-blocks'>
-            <a className='opacity-50'>
-              <div className='flex gap-2 my-auto'>
-                <AiOutlineArrowLeft className='my-auto'/>
-                <span className='my-auto font-semibold'>{format('app.back')}</span>
-              </div>
-            </a>
+          <Link href='/govstack/building-blocks' className='opacity-50'>
+            <div className='flex gap-2 my-auto'>
+              <AiOutlineArrowLeft className='my-auto'/>
+              <span className='my-auto font-semibold'>{format('app.back')}</span>
+            </div>
           </Link>
           <div className='ml-auto my-auto'>
             <EditButton type='link' href={`${repositoryName}/edit`} />

@@ -77,7 +77,7 @@ const ProductDetailProjects = ({ product, canEdit }) => {
       updateProductProjects({
         variables: {
           slug: product.slug,
-          projectsSlugs: projects.map(({ slug }) => slug)
+          projectSlugs: projects.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -107,7 +107,7 @@ const ProductDetailProjects = ({ product, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('project.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='project-search'>

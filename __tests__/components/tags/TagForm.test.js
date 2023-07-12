@@ -16,7 +16,8 @@ describe('Unit tests for the TagForm component.', () => {
   const mockOnClose = jest.fn()
 
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 
@@ -62,7 +63,7 @@ describe('Unit tests for the TagForm component.', () => {
         </CustomMockedProvider>
       )
       await waitForAllEffects()
-      await act(async () => fireEvent.click(getByText('Submit')))
+      await act(() => fireEvent.click(getByText('Submit')))
       expect(getByTestId(TAG_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
       expect(container).toMatchSnapshot()
     })
@@ -78,7 +79,7 @@ describe('Unit tests for the TagForm component.', () => {
         </CustomMockedProvider>
       )
       await waitForAllEffects()
-      await act(async () => fireEvent.click(getByText('Submit')))
+      await act(() => fireEvent.click(getByText('Submit')))
       expect(getByTestId(TAG_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
       await user.type(screen.getByLabelText(/Name/), 'test tag name')

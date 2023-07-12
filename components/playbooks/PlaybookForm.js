@@ -2,109 +2,21 @@ import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
+import { FaSpinner } from 'react-icons/fa'
 import { Controller, useForm } from 'react-hook-form'
-import dynamic from 'next/dynamic'
 import classNames from 'classnames'
 import Breadcrumb from '../shared/breadcrumb'
 import { HtmlEditor } from '../shared/HtmlEditor'
-import { SOURCE_TYPE_ASSIGNING } from '../plays/PlayList'
-import { PlayListContext } from '../plays/PlayListContext'
-import PlayListDraggable from '../plays/PlayListDraggable'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
-import { PlayFilterContext, PlayFilterDispatchContext } from '../context/PlayFilterContext'
-import { ToastContext } from '../../lib/ToastContext'
-import { SearchInput } from '../../components/shared/SearchInput'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import Checkbox from '../shared/Checkbox'
 import Input from '../shared/Input'
 import { AUTOSAVE_PLAYBOOK, CREATE_PLAYBOOK } from '../../mutations/playbook'
 import ValidationError from '../shared/ValidationError'
 import FileUploader from '../shared/FileUploader'
 import { useUser } from '../../lib/hooks'
-const PlayListQuery = dynamic(() => import('../plays/PlayList'), { ssr: false })
 
 const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
-
-const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { search, tags } = useContext(PlayFilterContext)
-  const { setSearch, setTags } = useContext(PlayFilterDispatchContext)
-
-  const [showPlayForm, setShowPlayForm] = useState(false)
-  const handleChange = (e) => setSearch(e.target.value)
-
-  return (
-    <>
-      <div className='flex flex-col gap-y-2 mt-4'>
-        <div className='text-xl text-dial-blue font-bold'>
-          {format('playbooks.plays')}
-        </div>
-        <div className='text-sm text-dial-blue'>
-          {format('playbooks.assignedPlays')}
-        </div>
-        <PlayListDraggable playbook={playbook} />
-      </div>
-      {
-        showPlayForm &&
-          <div className='flex flex-col gap-3 mt-4'>
-            <div className='flex flex-col gap-y-3'>
-              <div className='flex flex-wrap gap-2'>
-                <div className='text-sm text-dial-blue my-auto'>
-                  {format('playbook.assignAnotherPlay')}
-                </div>
-                <span className='sr-only'>{format('search.input.label')}</span>
-                <SearchInput
-                  value={search}
-                  onChange={handleChange}
-                  className='w-56 2xl:w-96'
-                  placeholder={`${format('app.search')} ${format('play.header')}`}
-                />
-                <TagAutocomplete
-                  isSearch
-                  tags={tags}
-                  setTags={setTags}
-                  containerStyles='w-56 2xl:w-96'
-                />
-              </div>
-              <div className='flex flex-row flex-wrap gap-3'>
-                <TagFilters tags={tags} setTags={setTags} />
-              </div>
-            </div>
-            <PlayListQuery playbook={playbook} sourceType={SOURCE_TYPE_ASSIGNING} />
-            <div className='flex'>
-              <button className='flex gap-2' onClick={saveAndCreatePlay}>
-                <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
-                <div className='text-dial-blue my-auto'>
-                  {`${format('app.create-new')} ${format('plays.label')}`}
-                </div>
-              </button>
-              <button
-                type='button'
-                className='ml-auto bg-button-gray-light text-white py-2 px-4 rounded'
-                onClick={() => { setShowPlayForm(false) }}
-              >
-                {format('app.close')}
-              </button>
-            </div>
-          </div>
-      }
-      {
-        !showPlayForm &&
-          <div className='font-semibold text-sm ml-auto'>
-            <button
-              type='button'
-              className='bg-blue-500 text-dial-gray-light py-2 px-4 rounded'
-              onClick={() => { setShowPlayForm(true) }}
-            >
-              {format('playbooks.assignPlay')}
-            </button>
-          </div>
-      }
-    </>
-  )
-}
 
 const FormTextEditor = ({ control, name, placeholder = null, required = false, isInvalid = false }) => {
   const { formatMessage } = useIntl()
@@ -147,11 +59,62 @@ export const PlaybookForm = React.memo(({ playbook }) => {
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
-  const [navigateToPlay, setNavigateToPlay] = useState(false)
 
   const { locale } = useRouter()
-  const [updatePlaybook, { data }] = useMutation(CREATE_PLAYBOOK)
-  const [autoSavePlaybook, { data: autoSaveData }] = useMutation(AUTOSAVE_PLAYBOOK)
+  const [updatePlaybook, { reset }] = useMutation(CREATE_PLAYBOOK, {
+    onError: (error) => {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center'
+      )
+      reset()
+    },
+    onCompleted: (data) => {
+      setMutating(false)
+      const { createPlaybook: response } = data
+      if (response.errors.length === 0 && response.playbook) {
+        setSlug(response.playbook.slug)
+        showToast(
+          format('playbook.submitted'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(`/${router.locale}/playbooks/${response.playbook.slug}`)
+        )
+      } else {
+        setMutating(false)
+        showToast(
+          <div className='flex flex-col'>
+            <span>{response.errors}</span>
+          </div>,
+          'error',
+          'top-center'
+        )
+        reset()
+      }
+    }
+  })
+
+  const [autoSavePlaybook, { reset: resetAutoSave }] = useMutation(AUTOSAVE_PLAYBOOK, {
+    onError: () => {
+      setMutating(false)
+      resetAutoSave()
+    },
+    onCompleted: (data) => {
+      setMutating(false)
+      const { autoSavePlaybook: response } = data
+      if (response.errors.length === 0 && response.playbook) {
+        setSlug(response.playbook.slug)
+        showToast(format('playbook.autoSaved'), 'success', 'top-right')
+      }
+    }
+  })
+
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -167,38 +130,10 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   })
   const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
 
-  const [slug] = useState(playbook ? playbook.slug : '')
+  const [slug, setSlug] = useState(playbook ? playbook.slug : '')
   const [tags, setTags] = useState(playbook?.tags.map(tag => ({ label: tag, value: tag })) ?? [])
 
   const { showToast } = useContext(ToastContext)
-  const { currentPlays } = useContext(PlayListContext)
-
-  const notifyAndNavigateAway = useCallback(() => {
-    if (!navigateToPlay) {
-      showToast(format('playbook.submitted'), 'success', 'top-center')
-      const navigateToPlaybook = setTimeout(() => {
-        router.push(`/${router.locale}/playbooks/${data.createPlaybook.playbook.slug}`)
-      }, 800)
-
-      return () => clearTimeout(navigateToPlaybook)
-    } else {
-      showToast(format('playbook.submittedToCreatePlay'), 'success', 'top-center')
-      const navigateToPlay = setTimeout(() => {
-        router.push(`/${router.locale}/playbooks/${data.createPlaybook.playbook.slug}/plays/create`)
-      }, 800)
-
-      return () => clearTimeout(navigateToPlay)
-    }
-  }, [data, router, format, showToast, navigateToPlay])
-
-  useEffect(() => {
-    if (data?.createPlaybook?.errors.length === 0 && data?.createPlaybook?.playbook) {
-      notifyAndNavigateAway()
-    } else if (autoSaveData?.autoSavePlaybook?.errors.length === 0 && autoSaveData?.autoSavePlaybook?.playbook) {
-      setMutating(false)
-      showToast(format('playbook.autoSaved'), 'success', 'top-right')
-    }
-  }, [data, autoSaveData, notifyAndNavigateAway, showToast, format])
 
   const doUpsert = async (data) => {
     if (user) {
@@ -217,7 +152,6 @@ export const PlaybookForm = React.memo(({ playbook }) => {
         audience,
         outcomes,
         cover: coverFile,
-        plays: currentPlays,
         tags: tags.map(tag => tag.label),
         draft: !published
       }
@@ -236,44 +170,51 @@ export const PlaybookForm = React.memo(({ playbook }) => {
 
   useEffect(() => {
     const doAutoSave = () => {
-      if (user) {
-        // Set the loading indicator.
-        setMutating(true)
-        // Pull all needed data from session and form.
-        const { userEmail, userToken } = user
-        const { name, author, overview, audience, outcomes } = watch()
-        // Send graph query to the backend. Set the base variables needed to perform update.
-        // Auto save will not save the cover file since it could be expensive.
-        const variables = {
-          name,
-          slug,
-          author,
-          overview,
-          audience,
-          outcomes,
-          plays: currentPlays,
-          tags: tags.map(tag => tag.label)
-        }
-        autoSavePlaybook({
-          variables,
-          context: {
-            headers: {
-              'Accept-Language': locale,
-              Authorization: `${userEmail} ${userToken}`
-            }
-          }
-        })
+      if (!user || !watch) {
+        return
       }
+
+      // Set the loading indicator.
+      setMutating(true)
+      // Pull all needed data from session and form.
+      const { userEmail, userToken } = user
+      const { name, author, overview, audience, outcomes } = watch()
+
+      if (!name && !overview) {
+        // Minimum required fields are name and overview.
+        setMutating(false)
+
+        return
+      }
+
+      // Send graph query to the backend. Set the base variables needed to perform update.
+      // Auto save will not save the cover file since it could be expensive.
+      const variables = {
+        name,
+        slug,
+        author,
+        overview,
+        audience,
+        outcomes,
+        tags: tags.map(tag => tag.label)
+      }
+      autoSavePlaybook({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
 
     const interval = setInterval(() => {
-      if (slug) {
-        doAutoSave()
-      }
+      doAutoSave()
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, currentPlays, tags, locale, watch, autoSavePlaybook])
+  }, [user, slug, tags, locale, watch, autoSavePlaybook])
 
   const cancelForm = () => {
     setReverting(true)
@@ -297,14 +238,6 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     return map
   })()
 
-  const saveAndCreatePlay = () => {
-    setNavigateToPlay(true)
-  }
-
-  const savePlaybook = () => {
-    setNavigateToPlay(false)
-  }
-
   return (
     <div className='flex flex-col'>
       <div className='hidden lg:block px-8'>
@@ -314,7 +247,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {playbook && format('app.edit-entity', { entity: playbook.name })}
                 {!playbook && `${format('app.create-new')} ${format('playbooks.label')}`}
               </div>
@@ -386,7 +319,6 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   />
                 </div>
               </div>
-              <FormPlayList playbook={playbook} saveAndCreatePlay={saveAndCreatePlay} />
               <label className='flex gap-x-2 mb-2 items-center self-start form-field-label'>
                 <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
                 {format('playbook.published')}
@@ -394,7 +326,6 @@ export const PlaybookForm = React.memo(({ playbook }) => {
               <div className='flex font-semibold text-xl gap-3'>
                 <button
                   type='submit'
-                  onClick={savePlaybook}
                   className='submit-button'
                   disabled={mutating || reverting}
                   data-testid='submit-button'

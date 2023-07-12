@@ -16,16 +16,16 @@ import DatasetCard from './DatasetCard'
 const DEFAULT_PAGE_SIZE = 20
 /* Minimum width per dataset card. This will decide how many column we have in the page. */
 /* The value is based on the minimum required to render Bahmni card. */
-const MIN_PRODUCT_CARD_WIDTH = 380
+const MIN_PRODUCT_CARD_WIDTH = 260
 /* Default height of the dataset card. */
-const MIN_PRODUCT_CARD_HEIGHT = 540
+const MIN_PRODUCT_CARD_HEIGHT = 320
 /* Default spacing between dataset card in a row. This is 0.5 rem. */
-const PRODUCT_CARD_GUTTER_SIZE = 8
+const PRODUCT_CARD_GUTTER_SIZE = 16
 /* Height of the dataset's single list element when viewing the list view. */
 const MIN_PRODUCT_LIST_SIZE = 80
 
 const DatasetListQuery = () => {
-  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, datasetTypes, search
   } = useContext(DatasetFilterContext)
@@ -102,19 +102,19 @@ const DatasetListQuery = () => {
     <>
       {
         displayType === 'list' &&
-          <div className='flex flex-row my-3 px-4 gap-x-4'>
-            <div className='w-4/12 text-sm font-semibold opacity-70'>
+          <div className='flex flex-row my-3 px-4 gap-x-4 text-sm font-semibold '>
+            <div className='w-4/12 opacity-80'>
               {format('dataset.header').toUpperCase()}
             </div>
-            <div className='hidden lg:block w-4/12 text-sm font-semibold opacity-50'>
+            <div className='hidden lg:block w-6/12 opacity-50'>
               {format('origin.header').toUpperCase()}
             </div>
-            <div className='hidden lg:block w-2/12 text-sm text-right px-2 font-semibold opacity-50'>
+            <div className='hidden lg:block ml-auto opacity-50'>
               {format('dataset.card.dataset').toUpperCase()}
             </div>
           </div>
       }
-      <div style={{ height: '80vh' }}>
+      <div className={`${displayType === 'card' && '-mr-4' }`} style={{ height: '80vh' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -168,14 +168,14 @@ const DatasetListQuery = () => {
                               style={{
                                 ...style,
                                 left: style.left,
-                                top: style.top + PRODUCT_CARD_GUTTER_SIZE,
-                                width: style.width,
+                                top: style.top,
+                                width: style.width - PRODUCT_CARD_GUTTER_SIZE,
                                 height: style.height - PRODUCT_CARD_GUTTER_SIZE
                               }}
                             >
                               {
                                 currentIndex < nodes.length && dataset &&
-                                <DatasetCard listType={displayType} {...{ dataset, filterDisplayed }} />
+                                <DatasetCard listType={displayType} dataset={dataset} />
                               }
                               {currentIndex < nodes.length && !dataset && <Loading />}
                             </div>
@@ -212,9 +212,8 @@ const DatasetListQuery = () => {
 
                           return (
                             <div style={style}>
-                              {
-                                index < nodes.length && dataset &&
-                                <DatasetCard listType={displayType} {...{ dataset, filterDisplayed }} />
+                              {index < nodes.length && dataset &&
+                                <DatasetCard listType={displayType} dataset={dataset} />
                               }
                               {index < nodes.length && !dataset && <Loading />}
                             </div>

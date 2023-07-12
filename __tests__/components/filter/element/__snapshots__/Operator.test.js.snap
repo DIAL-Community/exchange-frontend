@@ -10,7 +10,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should match snapshot
     data-testid="operator-search"
   >
     <div
-      class=" css-l45kjq-container"
+      class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
     >
       <span
         class="css-1f43avz-a11yText-A11yText"
@@ -23,7 +23,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should match snapshot
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class="react-select__control css-16oyauc-control"
+        class="react-select__control css-qv4grc-control"
       >
         <div
           class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -98,7 +98,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should render a drop 
     data-testid="operator-search"
   >
     <div
-      class=" css-l45kjq-container"
+      class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
     >
       <span
         class="css-1f43avz-a11yText-A11yText"
@@ -111,7 +111,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should render a drop 
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
+        class="react-select__control react-select__control--menu-is-open css-qv4grc-control"
       >
         <div
           class="react-select__value-container css-17t7gkf-ValueContainer"
@@ -182,7 +182,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should render a drop 
         >
           <div
             aria-disabled="false"
-            class="react-select__option react-select__option--is-focused css-1keuksx-option"
+            class="react-select__option react-select__option--is-focused css-o0hax1-option"
             id="react-select-:r1:-option-0"
             tabindex="-1"
           >
@@ -190,7 +190,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should render a drop 
           </div>
           <div
             aria-disabled="false"
-            class="react-select__option css-kzqu8f-option"
+            class="react-select__option css-l88m9j-option"
             id="react-select-:r1:-option-1"
             tabindex="-1"
           >

@@ -11,10 +11,11 @@ const WorkflowDetailLeft = ({ workflow }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user, isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const generateEditLink = () => {
-    if (!user) {
+    if (!canEdit) {
       return '/edit-not-available'
     }
 
@@ -35,7 +36,7 @@ const WorkflowDetailLeft = ({ workflow }) => {
       </div>
       <div className='flex flex-col'>
         <div className='flex flex-row gap-3 w-full'>
-          {isAdminUser && <EditButton type='link' href={generateEditLink()}/>}
+          {canEdit && <EditButton type='link' href={generateEditLink()}/>}
           {isAdminUser && <DeleteWorkflow workflow={workflow} />}
           <div className='flex flex-row gap-1 text-dial-blue '>
             <BiCommentDetail className='my-auto' />
@@ -51,8 +52,8 @@ const WorkflowDetailLeft = ({ workflow }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative workflow-filter' >
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='p-2 m-auto object-contain'
               sizes='100vw'
               alt={format('image.alt.logoFor', { name: workflow.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}

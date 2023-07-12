@@ -23,19 +23,26 @@ const AboutMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       {
         currentOpenMenu === ABOUT_MENU &&
           <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={aboutPopover} role='menu'>
-            <Link href='/about'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.about')}
-              </a>
+            <Link href='/about' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.about')}
             </Link>
             <a
               className={DEFAULT_DROPDOWN_MENU_STYLES}
-              href='//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview'
+              href='//digital-impact-exchange.atlassian.net/wiki/spaces/SOLUTIONS/overview'
               target='_blank'
               rel='noreferrer'
               role='menuitem'
             >
               {format('header.confluence')}
+            </a>
+            <a
+              className={DEFAULT_DROPDOWN_MENU_STYLES}
+              href='//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
+              target='_blank'
+              rel='noreferrer'
+              role='menuitem'
+            >
+              {format('header.newsletter')}
             </a>
           </div>
       }

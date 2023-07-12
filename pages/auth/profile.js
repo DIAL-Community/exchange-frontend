@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { useUser } from '../../lib/hooks'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const UserProfile = () => {
   const { formatMessage } = useIntl()
@@ -15,14 +15,14 @@ const UserProfile = () => {
   return (
     <>
       <Header />
-      <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
+      <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       {user &&
         <div className='flex flex-col lg:flex-row gap-3 xl:pb-8'>
           <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
             <div className='bg-white border-2 border-dial-gray shadow-lg'>
               <div className='flex flex-col h-80 p-4'>
                 <div className='text-2xl font-semibold absolute line-clamp-1 text-dial-purple'>
-                  {user.name}
+                  {user.userName}
                 </div>
                 <div className='pt-8 m-auto align-middle w-48'>
                   <img

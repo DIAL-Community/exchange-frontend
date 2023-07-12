@@ -1,15 +1,11 @@
 import { useRef, useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useDrag, useDrop } from 'react-dnd'
-import parse from 'html-react-parser'
+import { FiMove } from 'react-icons/fi'
 import update from 'immutability-helper'
-import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 
-const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
+const DraggableCard = ({ id, play, index, movePlay }) => {
   const ref = useRef(null)
 
   const [{ handlerId }, drop] = useDrop({
@@ -75,45 +71,21 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
   drag(drop(ref))
 
   const dndBorderStyles = `
-    bg-white cursor-move card-drop-shadow overflow-hidden
+    bg-white cursor-move shadow-md overflow-hidden
     border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
   `
 
   return (
-    <div style={{ opacity }} data-handler-id={handlerId} className='inline overflow-hidden'>
-      <div className='flex flex-row gap-3'>
-        <div className='py-4 font-semibold text-lg'>{index + 1})</div>
+    <div style={{ opacity }} data-handler-id={handlerId}>
+      <div className='flex gap-3'>
+        <div className='py-4 font-semibold w-4'>{index + 1})</div>
         <div ref={preview} className='w-full'>
           <div ref={ref} className={`${dndBorderStyles} flex flex-row gap-3 px-3 py-4 h-16`}>
-            <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
+            <div className='font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
               {play.name}
             </div>
-            {
-              // Manual alignment for the description because can't do my-auto to center the text.
-              // The original text is large and we're using playbook-list-description to force it to become 1 line.
-            }
-            <div className='w-full line-clamp-1 fr-view my-1'>
-              {play.playDescription && parse(play.playDescription.description)}
-            </div>
-            <div className='w-2/6 my-auto flex gap-2 text-sm'>
-              <button
-                type='button'
-                className='ml-auto bg-dial-orange-light text-dial-purple py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => previewPlay(play)}
-              >
-                {format('play.preview')}
-              </button>
-              <button
-                type='button'
-                className='bg-dial-purple-light text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => unassignPlay(play)}
-              >
-                {format('play.unassign')}
-              </button>
-              <img
-                alt={format('image.alt.logoFor', { name: format('move.reOrder') })}
-                className='h-6 my-auto' src='/icons/move/move.png'
-              />
+            <div className='my-auto ml-auto'>
+              <FiMove />
             </div>
           </div>
         </div>
@@ -127,22 +99,11 @@ const PlayListDraggable = ({ playbook }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { currentPlays } = useContext(PlayListContext)
-  const { setCurrentPlays } = useContext(PlayListDispatchContext)
-  const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
-
-  const unassignPlay = useCallback(
-    (play) => setCurrentPlays(currentPlays.filter((currentPlay) => currentPlay.slug !== play.slug)),
-    [currentPlays, setCurrentPlays]
-  )
-
-  const previewPlay = useCallback((play) => {
-    setPreviewDisplayed(true)
-    setPreviewContext(playbook.slug)
-    setPreviewSlug(play.slug)
-  }, [playbook, setPreviewContext, setPreviewSlug, setPreviewDisplayed])
+  const { setCurrentPlays, setDirty } = useContext(PlayListDispatchContext)
 
   const movePlay = useCallback(
-    (dragIndex, hoverIndex) =>
+    (dragIndex, hoverIndex) => {
+      setDirty(true)
       setCurrentPlays((prevCards) =>
         update(prevCards, {
           $splice: [
@@ -150,13 +111,14 @@ const PlayListDraggable = ({ playbook }) => {
             [hoverIndex, 0, prevCards[dragIndex]]
           ]
         })
-      ),
-    [setCurrentPlays]
+      )
+    },
+    [setCurrentPlays, setDirty]
   )
 
   const renderCard = useCallback((play, index) => (
-    <DraggableCard key={index} id={play.id} {...{ index, play, movePlay, unassignPlay, previewPlay }} />
-  ), [movePlay, previewPlay, unassignPlay])
+    <DraggableCard key={index} id={play.id} {...{ index, play, movePlay }} />
+  ), [movePlay])
 
   useEffect(() => {
     if (playbook) {

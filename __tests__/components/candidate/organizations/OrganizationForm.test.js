@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import OrganizationForm from '../../../../components/candidate/organizations/OrganizationForm'
@@ -52,7 +52,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
     await user.type(screen.getByLabelText(/Website/), 'test.com')
     await user.type(screen.getByLabelText(/Title/), 'CEO')
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(CANDIDATE_ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_EMAIL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -69,9 +69,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
         <OrganizationForm />
       </CustomMockedProvider>
     )
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(CANDIDATE_ORGANIZATION_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_ORGANIZATION_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_WEBSITE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -81,9 +79,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
 
     await user.type(screen.getByLabelText(/Your Name/), 'test organization name')
     expect(getByTestId(CANDIDATE_ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Your Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Your Name/))
     expect(getByTestId(CANDIDATE_ORGANIZATION_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Your Name/), 'test organziation name 2')
@@ -101,9 +97,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
     await user.type(screen.getByLabelText(/Website/), 'test.com')
     expect(getByTestId(CANDIDATE_ORGANIZATION_WEBSITE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(CANDIDATE_ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_EMAIL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)

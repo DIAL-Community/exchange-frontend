@@ -39,6 +39,7 @@ export const OriginAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('origin.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, ORIGIN_SEARCH_QUERY, fetchedOriginsCallback)}

@@ -30,7 +30,7 @@ export const PLAYBOOK_QUERY = gql`
         id
         playSlug
         playName
-        order
+        playOrder
       }
       plays {
         id
@@ -83,6 +83,47 @@ export const PLAYBOOKS_QUERY = gql`
           overview
         }
         draft
+      }
+    }
+  }
+`
+
+export const PLAYBOOK_PLAYS_QUERY = gql`
+  query SearchPlaybookPlays($first: Int, $after: String, $slug: String!) {
+    searchPlaybookPlays(first: $first, after: $after, slug: $slug) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        slug
+        name
+        imageFile
+        playDescription {
+          id
+          description
+        }
+        playMoves {
+          id
+          slug
+          name
+        }
+        products {
+          id
+          name
+          slug
+          imageFile
+        }
+        buildingBlocks {
+          id
+          name
+          slug
+          imageFile
+        }
       }
     }
   }

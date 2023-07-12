@@ -206,7 +206,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
         path: markdownUrl,
         message: 'Updates markdown specification.',
         committer: {
-          name: user.name,
+          name: user.userName,
           email: user.userEmail
         },
         content: Buffer.from(markdown).toString('base64'),
@@ -244,7 +244,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
         format('toast.markdown.submit.success'),
         'success',
         'top-center',
-        null,
+        500,
         null,
         () => {
           setBranchUpdateDates(branchUpdateDates => ({
@@ -304,7 +304,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
         />
         <MdRefresh
           onClick={() => updateBranchOptions()}
-          className='text-2xl my-auto fill-dial-blue cursor-pointer'
+          className='text-2xl my-auto fill-dial-sapphire cursor-pointer'
         />
         <div
           className={`

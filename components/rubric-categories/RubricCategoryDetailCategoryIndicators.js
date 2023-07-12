@@ -127,7 +127,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
 
   const editModeBody = (
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('categoryIndicators.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='indicator-search'>
@@ -165,7 +165,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
       isMutating={loading}
       displayModeBody={displayModeBody}
       editModeBody={editModeBody}
-      createAction={() => router.push(`/rubric_categories/${rubricCategorySlug}/create_category_indicator`)}
+      createAction={() => router.push(`/rubric_categories/${rubricCategorySlug}/create`)}
     />
   )
 }

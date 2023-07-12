@@ -23,13 +23,13 @@ const MIN_PRODUCT_CARD_HEIGHT = 360
 /* Because we're adding this spacing, make sure the container right margin is offsetted by 1rem. */
 const PRODUCT_CARD_GUTTER_SIZE = 16
 /* Height of the product's single list element when viewing the list view. */
-const MIN_PRODUCT_LIST_SIZE = 80
+const MIN_PRODUCT_LIST_SIZE = 68
 
 const ProductListQuery = () => {
   const { displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks,
-    endorsers, productDeployable, isEndorsed, search, licenseTypes
+    endorsers, productDeployable, isEndorsed, search, licenseTypes, isLinkedWithDpi
   } = useContext(ProductFilterContext)
 
   const { locale } = useRouter()
@@ -52,6 +52,7 @@ const ProductListQuery = () => {
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
       productDeployable,
       isEndorsed,
+      isLinkedWithDpi,
       search
     },
     context: { headers: { 'Accept-Language': locale } },
@@ -77,6 +78,7 @@ const ProductListQuery = () => {
         licenseTypes: licenseTypes.map(licenseType => licenseType.value),
         productDeployable,
         isEndorsed,
+        isLinkedWithDpi,
         search
       }
     })
@@ -128,7 +130,7 @@ const ProductListQuery = () => {
             </div>
           </div>
       }
-      <div className='-mr-4' style={{ height: 'calc(100vh + 600px)' }}>
+      <div className={`${displayType === 'card' && '-mr-4'}`} style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -199,8 +201,6 @@ const ProductListQuery = () => {
                             <div
                               style={{
                                 ...style,
-                                left: style.left,
-                                top: style.top,
                                 width: style.width - PRODUCT_CARD_GUTTER_SIZE,
                                 height: style.height - PRODUCT_CARD_GUTTER_SIZE
                               }}

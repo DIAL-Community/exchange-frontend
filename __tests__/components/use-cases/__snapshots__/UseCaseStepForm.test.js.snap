@@ -80,7 +80,7 @@ exports[`Unit tests for UseCaseStepForm component. Should display failure toast 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -108,7 +108,7 @@ exports[`Unit tests for UseCaseStepForm component. Should display failure toast 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Use Case Step
             </div>
@@ -116,7 +116,7 @@ exports[`Unit tests for UseCaseStepForm component. Should display failure toast 
               class="flex flex-col lg:flex-row gap-4"
             >
               <div
-                class="w-full lg:w-1/2 flex flex-col gap-y-3"
+                class="w-full lg:w-1/3 flex flex-col gap-y-3"
               >
                 <div
                   class="form-field-wrapper"
@@ -156,28 +156,9 @@ exports[`Unit tests for UseCaseStepForm component. Should display failure toast 
                     value=""
                   />
                 </div>
-                <div
-                  class="form-field-wrapper"
-                  data-testid="use-case-step-markdown-url"
-                >
-                  <label
-                    class="form-field-label required-field"
-                    for="markdownUrl"
-                  >
-                    Markdown Filename
-                  </label>
-                  <input
-                    class="w-full"
-                    id="markdownUrl"
-                    name="markdownUrl"
-                    placeholder="Markdown Filename"
-                    type="text"
-                    value=""
-                  />
-                </div>
               </div>
               <div
-                class="w-full lg:w-1/2"
+                class="w-full lg:w-2/3"
               >
                 <div
                   class="block flex flex-col gap-y-2"
@@ -313,7 +294,7 @@ exports[`Unit tests for UseCaseStepForm component. Should display success toast 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -341,7 +322,7 @@ exports[`Unit tests for UseCaseStepForm component. Should display success toast 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Use Case Step
             </div>
@@ -349,7 +330,7 @@ exports[`Unit tests for UseCaseStepForm component. Should display success toast 
               class="flex flex-col lg:flex-row gap-4"
             >
               <div
-                class="w-full lg:w-1/2 flex flex-col gap-y-3"
+                class="w-full lg:w-1/3 flex flex-col gap-y-3"
               >
                 <div
                   class="form-field-wrapper"
@@ -389,28 +370,9 @@ exports[`Unit tests for UseCaseStepForm component. Should display success toast 
                     value=""
                   />
                 </div>
-                <div
-                  class="form-field-wrapper"
-                  data-testid="use-case-step-markdown-url"
-                >
-                  <label
-                    class="form-field-label required-field"
-                    for="markdownUrl"
-                  >
-                    Markdown Filename
-                  </label>
-                  <input
-                    class="w-full"
-                    id="markdownUrl"
-                    name="markdownUrl"
-                    placeholder="Markdown Filename"
-                    type="text"
-                    value=""
-                  />
-                </div>
               </div>
               <div
-                class="w-full lg:w-1/2"
+                class="w-full lg:w-2/3"
               >
                 <div
                   class="block flex flex-col gap-y-2"
@@ -490,7 +452,7 @@ exports[`Unit tests for UseCaseStepForm component. Should render StepForm compon
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -518,7 +480,7 @@ exports[`Unit tests for UseCaseStepForm component. Should render StepForm compon
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Use Case Step
             </div>
@@ -526,7 +488,7 @@ exports[`Unit tests for UseCaseStepForm component. Should render StepForm compon
               class="flex flex-col lg:flex-row gap-4"
             >
               <div
-                class="w-full lg:w-1/2 flex flex-col gap-y-3"
+                class="w-full lg:w-1/3 flex flex-col gap-y-3"
               >
                 <div
                   class="form-field-wrapper"
@@ -566,28 +528,9 @@ exports[`Unit tests for UseCaseStepForm component. Should render StepForm compon
                     value=""
                   />
                 </div>
-                <div
-                  class="form-field-wrapper"
-                  data-testid="use-case-step-markdown-url"
-                >
-                  <label
-                    class="form-field-label required-field"
-                    for="markdownUrl"
-                  >
-                    Markdown Filename
-                  </label>
-                  <input
-                    class="w-full"
-                    id="markdownUrl"
-                    name="markdownUrl"
-                    placeholder="Markdown Filename"
-                    type="text"
-                    value=""
-                  />
-                </div>
               </div>
               <div
-                class="w-full lg:w-1/2"
+                class="w-full lg:w-2/3"
               >
                 <div
                   class="block flex flex-col gap-y-2"

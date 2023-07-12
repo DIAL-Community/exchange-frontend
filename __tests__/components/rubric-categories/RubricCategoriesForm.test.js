@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import userEvent from '@testing-library/user-event'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -17,7 +17,7 @@ describe('Unit tests for RubricCategoryForm component.', () => {
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
   test('Should render RubricCategoryForm component for admin user.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
       <CustomMockedProvider>
         <RubricCategoryForm />
@@ -29,23 +29,21 @@ describe('Unit tests for RubricCategoryForm component.', () => {
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { getByTestId } = render(
       <CustomMockedProvider>
         <RubricCategoryForm />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(RUBRIC_CATEGORY_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(RUBRIC_CATEGORY_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(RUBRIC_CATEGORY_WEIGHT_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test rubric category name')
     expect(getByTestId(RUBRIC_CATEGORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(RUBRIC_CATEGORY_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test rubric category name 2')
@@ -56,7 +54,7 @@ describe('Unit tests for RubricCategoryForm component.', () => {
     await user.type(screen.getByLabelText(/Weight/), '1')
     expect(getByTestId(RUBRIC_CATEGORY_WEIGHT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(RUBRIC_CATEGORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(RUBRIC_CATEGORY_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(RUBRIC_CATEGORY_WEIGHT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -64,7 +62,7 @@ describe('Unit tests for RubricCategoryForm component.', () => {
 
   describe('Should display toast on submit -', () => {
     test('Success.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const mockCreateRubricCategory = generateMockApolloData(
         CREATE_RUBRIC_CATEGORY,
         {
@@ -83,15 +81,13 @@ describe('Unit tests for RubricCategoryForm component.', () => {
       )
 
       await waitForAllEffects()
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       await screen.findByText('Rubric Category submitted successfully')
       expect(container).toMatchSnapshot()
     })
 
     test('Failure.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const mockCreateRubricCategory = generateMockApolloData(
         CREATE_RUBRIC_CATEGORY,
         {
@@ -109,9 +105,7 @@ describe('Unit tests for RubricCategoryForm component.', () => {
       )
 
       await waitForAllEffects()
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       await screen.findByText('Rubric Category submission failed')
       expect(container).toMatchSnapshot()
     })

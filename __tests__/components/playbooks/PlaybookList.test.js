@@ -8,8 +8,6 @@ import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { PLAYBOOKS_QUERY } from '../../../queries/playbook'
 import { searchPlaybooks } from './data/PlaybookList'
 
-const NEXT_IMAGE_CUSTOM_PROPS = ['src', 'srcset', 'sizes']
-
 describe('Unit tests for playbook list interaction.', () => {
   const eventsOnSpy = jest.fn()
   beforeAll(() => {
@@ -49,10 +47,10 @@ describe('Unit tests for playbook list interaction.', () => {
       </CustomMockedProvider>
     )
     await waitFor(() => {
-      NEXT_IMAGE_CUSTOM_PROPS.forEach(prop => {
+      searchPlaybooks.data.searchPlaybooks.nodes.forEach(playbook => {
         expect(
-          screen.getByTestId(`playbook-card-image-${searchPlaybooks.data.searchPlaybooks.nodes?.[0]?.id}`)
-        ).toHaveAttribute(prop)
+          screen.getByTestId(`playbook-card-image-${playbook.id}`)
+        ).toBeInTheDocument()
       })
     })
     // Each section in the playbook detail should not show any error.

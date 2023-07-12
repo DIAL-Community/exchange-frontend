@@ -1,14 +1,12 @@
-module.exports = {
-  'countries': {
-    'data': {
-      'countries': [
-        {
-          'id': 2,
-          'name': 'Another Country',
-          'slug': 'ac',
-          '__typename': 'Country'
-        },
-      ]
-    }
+export const countries = {
+  data: {
+    countries: [
+      {
+        id: 2,
+        name: 'Another Country',
+        slug: 'ac',
+        codeLonger: 'AC'
+      }
+    ]
   }
 }

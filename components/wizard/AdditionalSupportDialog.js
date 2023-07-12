@@ -14,7 +14,7 @@ const MESSAGE_MIN_LENGTH = 20
 const MESSAGE_MAX_LENGTH = 1000
 const TEXTAREA_DEFAULT_ROWS = 6
 
-const WizardRequestAdditionalSupportDialog = ({ isOpen, onClose }) => {
+const AdditionalSupportDialog = ({ isOpen, onClose }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -53,7 +53,7 @@ const WizardRequestAdditionalSupportDialog = ({ isOpen, onClose }) => {
       <div className='w-full'>
         <form onSubmit={handleSubmit(doUpsert)} id='wizard-request-additional-support-form'>
           <div className='pb-12 mb-4 flex flex-col gap-3'>
-            <div className='text-2xl font-bold text-dial-blue pb-4'>
+            <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {format('wizard.request-additional-support')}
             </div>
             <div className='form-field-wrapper' data-testid='name'>
@@ -123,4 +123,4 @@ const WizardRequestAdditionalSupportDialog = ({ isOpen, onClose }) => {
   )
 }
 
-export default WizardRequestAdditionalSupportDialog
+export default AdditionalSupportDialog

@@ -56,7 +56,10 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
   )
 
   const addDataset = (dataset) => {
-    setDatasets([...datasets.filter(({ slug }) => slug !== dataset.slug), { name: dataset.label, slug: dataset.slug }])
+    setDatasets([
+      ...datasets.filter(({ slug }) => slug !== dataset.slug),
+      { name: dataset.label, slug: dataset.slug }
+    ])
     setIsDirty(true)
   }
 
@@ -72,7 +75,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
       updateUseCaseStepDatasets({
         variables: {
           slug: useCaseStep.slug,
-          datasetsSlugs: datasets.map(({ slug }) => slug)
+          datasetSlugs: datasets.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -102,7 +105,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('dataset.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='dataset-search'>

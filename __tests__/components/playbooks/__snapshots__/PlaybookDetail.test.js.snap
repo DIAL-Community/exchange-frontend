@@ -12,7 +12,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
         class="sticky sticky-under-header flex flex-col"
       >
         <div
-          class="bg-dial-yellow sticky sticky-under-header"
+          class="bg-dial-sunshine sticky sticky-under-header"
         >
           <div
             class="flex flex-wrap gap-3"
@@ -24,12 +24,13 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 class="text-sm"
               >
                 <a
-                  href="back-to-playbooks"
+                  href="/playbooks"
                 >
                   <img
                     alt="Logo for: {name}"
                     class="m-auto h-6 inline mr-2"
-                    data-tip="{entity}: {name}"
+                    data-tooltip-content="{entity}: {name}"
+                    data-tooltip-id="react-tooltip"
                     src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                   />
                   Playbook
@@ -96,12 +97,12 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 <div
                   class="
             border-r-4 border-dial-gray-dark
-            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
-            border-dial-purple text-dial-yellow
+            hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
+            border-dial-purple text-dial-sunshine
           "
                 >
                   <div
-                    class="border-l-8 bg-dial-purple border-dial-yellow"
+                    class="border-l-8 bg-dial-purple border-dial-sunshine"
                   >
                     <a
                       class="block py-4 px-8"
@@ -114,7 +115,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 <div
                   class="
                   border-r-4 border-dial-gray-dark
-                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+                  hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
                   border-dial-gray-dark
                 "
                 >
@@ -151,7 +152,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                     class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
                   >
                     <a
-                      class="inline text-dial-blue h5"
+                      class="inline text-dial-sapphire h5"
                       href="/"
                     >
                       Home
@@ -168,117 +169,233 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                   </div>
                 </div>
                 <div
-                  class="ml-auto flex items-center gap-3"
+                  class="flex flex-col gap-3 ml-auto mt-3"
                 >
                   <div
-                    class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
+                    class="ml-auto flex items-center gap-2"
                   >
-                    <svg
-                      class="mr-1"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      class="inline-flex items-center text-dial-sapphire text-sm cursor-pointer"
                     >
-                      <path
-                        d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
-                      />
-                    </svg>
-                    <span>
-                      Start a Conversation
-                    </span>
+                      <svg
+                        class="mr-1"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
+                        />
+                      </svg>
+                      <span>
+                        Start a Conversation
+                      </span>
+                    </div>
+                    <a
+                      class="bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                      href="/en/playbooks/example_playbook/pdf"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <svg
+                        class="inline pb-px"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 384 512"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM332.1 128H256V51.9l76.1 76.1zM48 464V48h160v104c0 13.3 10.7 24 24 24h104v288H48zm250.2-143.7c-12.2-12-47-8.7-64.4-6.5-17.2-10.5-28.7-25-36.8-46.3 3.9-16.1 10.1-40.6 5.4-56-4.2-26.2-37.8-23.6-42.6-5.9-4.4 16.1-.4 38.5 7 67.1-10 23.9-24.9 56-35.4 74.4-20 10.3-47 26.2-51 46.2-3.3 15.8 26 55.2 76.1-31.2 22.4-7.4 46.8-16.5 68.4-20.1 18.9 10.2 41 17 55.8 17 25.5 0 28-28.2 17.5-38.7zm-198.1 77.8c5.1-13.7 24.5-29.5 30.4-35-19 30.3-30.4 35.7-30.4 35zm81.6-190.6c7.4 0 6.7 32.1 1.8 40.8-4.4-13.9-4.3-40.8-1.8-40.8zm-24.4 136.6c9.7-16.9 18-37 24.7-54.7 8.3 15.1 18.9 27.2 30.1 35.5-20.8 4.3-38.9 13.1-54.8 19.2zm131.6-5s-5 6-37.3-7.8c35.1-2.6 40.9 5.4 37.3 7.8z"
+                        />
+                      </svg>
+                      <span
+                        class="text-sm px-1"
+                      >
+                        Print PDF
+                      </span>
+                    </a>
+                    <a
+                      class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                    >
+                      <svg
+                        class="inline pb-px"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        version="1.1"
+                        viewBox="0 0 16 16"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 11.5l1.5 1.5 5-5-5-5-1.5 1.5 3.5 3.5z"
+                        />
+                        <path
+                          d="M7 4.5l-1.5-1.5-5 5 5 5 1.5-1.5-3.5-3.5z"
+                        />
+                      </svg>
+                      <span
+                        class="text-sm px-1"
+                      >
+                        Create Embed
+                      </span>
+                    </a>
                   </div>
-                  <a
-                    class="bg-dial-blue px-2 py-0.5 rounded text-white"
-                    href="/en/playbooks/example_playbook/pdf"
-                    rel="noreferrer"
-                    target="_blank"
+                  <div
+                    class="ml-auto flex items-center gap-2"
                   >
-                    <img
-                      alt="Print PDF"
-                      class="inline mr-2 pb-1"
-                      height="12px"
-                      src="/icons/pdf.svg"
-                      width="12px"
-                    />
-                    <span
-                      class="text-sm px-2"
+                    <a
+                      class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                      data-testid="create-link"
+                      href="/en/playbooks/example_playbook/plays/create"
                     >
-                      Print PDF
-                    </span>
-                  </a>
-                  <a
-                    class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white"
-                  >
-                    <svg
-                      class="inline"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 640 512"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
+                      <svg
+                        class="inline pb-0.5"
+                        fill="none"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                        />
+                        <line
+                          x1="12"
+                          x2="12"
+                          y1="8"
+                          y2="16"
+                        />
+                        <line
+                          x1="8"
+                          x2="16"
+                          y1="12"
+                          y2="12"
+                        />
+                      </svg>
+                      <span
+                        class="text-sm px-1"
+                      >
+                        Add Play
+                      </span>
+                    </a>
+                    <button
+                      class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                      type="button"
                     >
-                      <path
-                        d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
-                      />
-                    </svg>
-                    <span
-                      class="text-sm px-2"
+                      <svg
+                        class="inline pb-0.5"
+                        fill="none"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <polyline
+                          points="5 9 2 12 5 15"
+                        />
+                        <polyline
+                          points="9 5 12 2 15 5"
+                        />
+                        <polyline
+                          points="15 19 12 22 9 19"
+                        />
+                        <polyline
+                          points="19 9 22 12 19 15"
+                        />
+                        <line
+                          x1="2"
+                          x2="22"
+                          y1="12"
+                          y2="12"
+                        />
+                        <line
+                          x1="12"
+                          x2="12"
+                          y1="2"
+                          y2="22"
+                        />
+                      </svg>
+                      <span
+                        class="text-sm px-1"
+                      >
+                        Rearrange Plays
+                      </span>
+                    </button>
+                    <a
+                      class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                      data-testid="edit-link"
+                      href="/en/playbooks/example_playbook/edit"
                     >
-                      Create Embed
-                    </span>
-                  </a>
-                  <a
-                    class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-                    data-testid="edit-link"
-                    href="/en/playbooks/example_playbook/edit"
-                  >
-                    <img
-                      alt="Edit"
-                      height="12px"
-                      src="/icons/edit.svg"
-                      width="12px"
-                    />
-                    <span
-                      class="text-sm"
+                      <svg
+                        class="inline pb-0.5"
+                        fill="none"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 20h9"
+                        />
+                        <path
+                          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                        />
+                      </svg>
+                      <span
+                        class="text-sm px-1"
+                      >
+                        Edit
+                      </span>
+                    </a>
+                    <button
+                      class="delete-button gap-x-1.5"
+                      data-testid="delete-button"
+                      type="button"
                     >
-                      Edit
-                    </span>
-                  </a>
-                  <button
-                    class="delete-button gap-x-1.5"
-                    data-testid="delete-button"
-                    type="button"
-                  >
-                    <svg
-                      class="text-sm"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 16 16"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                      />
-                      <path
-                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                        fill-rule="evenodd"
-                      />
-                    </svg>
-                    <span
-                      class="text-sm"
-                    >
-                      Delete
-                    </span>
-                  </button>
+                      <svg
+                        class="text-sm"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 448 512"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+                        />
+                      </svg>
+                      <span
+                        class="text-sm"
+                      >
+                        Delete
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div
@@ -400,7 +517,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                   data-testid="tag-card"
                 >
                   <div
-                    class="border border-dial-gray card-drop-shadow"
+                    class="border border-dial-gray shadow-md"
                   >
                     <div
                       class="flex gap-3 my-5 px-4"
@@ -423,7 +540,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                   data-testid="tag-card"
                 >
                   <div
-                    class="border border-dial-gray card-drop-shadow"
+                    class="border border-dial-gray shadow-md"
                   >
                     <div
                       class="flex gap-3 my-5 px-4"
@@ -460,9 +577,72 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                       class="h-px border-b"
                     />
                     <div
-                      class="font-semibold text-2xl py-4"
+                      class="flex"
                     >
-                      Play 1. D4D: Understand the Problem
+                      <div
+                        class="font-semibold text-2xl py-4"
+                      >
+                        Play 1. D4D: Understand the Problem
+                      </div>
+                      <div
+                        class="ml-auto my-auto flex gap-2"
+                      >
+                        <a
+                          class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                          data-testid="edit-link"
+                          href="/en/playbooks/example_playbook/plays/d4d_understand_the_problem/edit"
+                        >
+                          <svg
+                            class="inline pb-0.5"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 20h9"
+                            />
+                            <path
+                              d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                            />
+                          </svg>
+                          <span
+                            class="text-sm px-1"
+                          >
+                            Edit
+                          </span>
+                        </a>
+                        <button
+                          class="delete-button gap-x-1.5"
+                          data-testid="delete-button"
+                          type="button"
+                        >
+                          <svg
+                            class="text-sm"
+                            fill="currentColor"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 448 512"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+                            />
+                          </svg>
+                          <span
+                            class="text-sm"
+                          >
+                            Unassign
+                          </span>
+                        </button>
+                      </div>
                     </div>
                     <div
                       class="relative"
@@ -494,46 +674,197 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                       class="flex flex-col gap-3"
                     >
                       <div
+                        class="flex gap-2 ml-auto"
+                      >
+                        <a
+                          class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                          data-testid="create-link"
+                          href="/en/playbooks/example_playbook/plays/d4d_understand_the_problem/moves/create"
+                        >
+                          <svg
+                            class="inline pb-0.5"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="10"
+                            />
+                            <line
+                              x1="12"
+                              x2="12"
+                              y1="8"
+                              y2="16"
+                            />
+                            <line
+                              x1="8"
+                              x2="16"
+                              y1="12"
+                              y2="12"
+                            />
+                          </svg>
+                          <span
+                            class="text-sm px-1"
+                          >
+                            Add Move
+                          </span>
+                        </a>
+                        <button
+                          class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                          type="button"
+                        >
+                          <svg
+                            class="inline pb-0.5"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <polyline
+                              points="5 9 2 12 5 15"
+                            />
+                            <polyline
+                              points="9 5 12 2 15 5"
+                            />
+                            <polyline
+                              points="15 19 12 22 9 19"
+                            />
+                            <polyline
+                              points="19 9 22 12 19 15"
+                            />
+                            <line
+                              x1="2"
+                              x2="22"
+                              y1="12"
+                              y2="12"
+                            />
+                            <line
+                              x1="12"
+                              x2="12"
+                              y1="2"
+                              y2="22"
+                            />
+                          </svg>
+                          <span
+                            class="text-sm px-1"
+                          >
+                            Rearrange Moves
+                          </span>
+                        </button>
+                      </div>
+                      <div
                         class="flex flex-col border border-dial-orange-light"
                       >
                         <div
-                          class="move-header cursor-pointer"
+                          class="move-header"
                         >
                           <div
-                            class="move-animation-base bg-dial-yellow-light h-14"
+                            class="move-animation-base bg-dial-biscotti h-14"
                           />
                           <div
-                            class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                            class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                           />
                           <div
                             class="flex move-header"
                           >
                             <div
-                              class="font-semibold px-4 py-4 my-auto"
+                              class="font-semibold px-4 py-4 my-auto cursor-pointer flex-grow"
                             >
                               Considerations
                             </div>
                             <div
                               class="ml-auto my-auto px-4"
                             >
-                              <svg
-                                fill="currentColor"
-                                height="1em"
-                                stroke="currentColor"
-                                stroke-width="0"
-                                viewBox="0 0 16 16"
-                                width="1em"
-                                xmlns="http://www.w3.org/2000/svg"
+                              <div
+                                class="flex gap-2"
                               >
-                                <path
-                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                                  fill-rule="evenodd"
-                                />
-                              </svg>
+                                <a
+                                  class="cursor-pointer bg-white px-2 py-0.5 rounded"
+                                  href="/en/playbooks/example_playbook/plays/d4d_understand_the_problem/moves/considerations/edit"
+                                >
+                                  <svg
+                                    class="inline pb-0.5"
+                                    fill="none"
+                                    height="1em"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M12 20h9"
+                                    />
+                                    <path
+                                      d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                                    />
+                                  </svg>
+                                  <span
+                                    class="text-sm px-1"
+                                  >
+                                    Edit
+                                  </span>
+                                </a>
+                                <button
+                                  class="cursor-pointer bg-white px-2 py-0.5 rounded"
+                                  type="button"
+                                >
+                                  <svg
+                                    class="inline pb-0.5 text-red-500"
+                                    fill="currentColor"
+                                    height="1em"
+                                    stroke="currentColor"
+                                    stroke-width="0"
+                                    viewBox="0 0 448 512"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+                                    />
+                                  </svg>
+                                  <span
+                                    class="text-sm px-1 text-red-500"
+                                  >
+                                    Unassign
+                                  </span>
+                                </button>
+                                <button
+                                  class="cursor-pointer bg-white px-2 py-1.5 rounded"
+                                  type="button"
+                                >
+                                  <svg
+                                    class="cursor-pointer p-0.5 text-dial-stratos"
+                                    fill="currentColor"
+                                    height="1em"
+                                    stroke="currentColor"
+                                    stroke-width="0"
+                                    viewBox="0 0 16 16"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                      fill-rule="evenodd"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -542,91 +873,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                         >
                           <div
                             class="px-4 py-4"
-                          >
-                            <div
-                              class="relative"
-                            >
-                              <svg
-                                class="absolute text-lg inset-x-1/2 top-10 spinner"
-                                fill="currentColor"
-                                height="2em"
-                                stroke="currentColor"
-                                stroke-width="0"
-                                viewBox="0 0 512 512"
-                                width="2em"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                                />
-                              </svg>
-                              <div
-                                class="html-viewer"
-                              >
-                                <textarea
-                                  id="move-considerations-desc"
-                                  style="visibility: hidden;"
-                                />
-                              </div>
-                            </div>
-                            <div
-                              class="font-semibold py-2"
-                            >
-                              Resources
-                            </div>
-                            <div
-                              class="flex flex-wrap gap-3"
-                            >
-                              <a
-                                href="https://www.example.com/"
-                                rel="noreferrer"
-                                target="_blank"
-                              >
-                                <div
-                                  class="
-                                      group border-2 border-gray-300 hover:border-dial-yellow
-                                      card-drop-shadow
-                                    "
-                                >
-                                  <div
-                                    class="flex"
-                                  >
-                                    <div
-                                      class="flex flex-col gap-2 px-3 py-4"
-                                    >
-                                      <div
-                                        class="font-semibold"
-                                      >
-                                        Nyoman Ribeka
-                                      </div>
-                                      <div
-                                        class="text-sm"
-                                      >
-                                        Adadadada
-                                      </div>
-                                    </div>
-                                    <svg
-                                      class="ml-auto px-2"
-                                      fill="currentColor"
-                                      height="2.2em"
-                                      stroke="currentColor"
-                                      stroke-width="0"
-                                      viewBox="0 0 20 20"
-                                      width="2.2em"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                                      />
-                                      <path
-                                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                                      />
-                                    </svg>
-                                  </div>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
+                          />
                         </div>
                       </div>
                     </div>
@@ -652,7 +899,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
       class="sticky sticky-under-header flex flex-col"
     >
       <div
-        class="bg-dial-yellow sticky sticky-under-header"
+        class="bg-dial-sunshine sticky sticky-under-header"
       >
         <div
           class="flex flex-wrap gap-3"
@@ -664,12 +911,13 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               class="text-sm"
             >
               <a
-                href="back-to-playbooks"
+                href="/playbooks"
               >
                 <img
                   alt="Logo for: {name}"
                   class="m-auto h-6 inline mr-2"
-                  data-tip="{entity}: {name}"
+                  data-tooltip-content="{entity}: {name}"
+                  data-tooltip-id="react-tooltip"
                   src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                 />
                 Playbook
@@ -736,12 +984,12 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               <div
                 class="
             border-r-4 border-dial-gray-dark
-            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
-            border-dial-purple text-dial-yellow
+            hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
+            border-dial-purple text-dial-sunshine
           "
               >
                 <div
-                  class="border-l-8 bg-dial-purple border-dial-yellow"
+                  class="border-l-8 bg-dial-purple border-dial-sunshine"
                 >
                   <a
                     class="block py-4 px-8"
@@ -754,7 +1002,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               <div
                 class="
                   border-r-4 border-dial-gray-dark
-                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+                  hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
                   border-dial-gray-dark
                 "
               >
@@ -791,7 +1039,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                   class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
                 >
                   <a
-                    class="inline text-dial-blue h5"
+                    class="inline text-dial-sapphire h5"
                     href="/"
                   >
                     Home
@@ -808,117 +1056,233 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 </div>
               </div>
               <div
-                class="ml-auto flex items-center gap-3"
+                class="flex flex-col gap-3 ml-auto mt-3"
               >
                 <div
-                  class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
+                  class="ml-auto flex items-center gap-2"
                 >
-                  <svg
-                    class="mr-1"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <div
+                    class="inline-flex items-center text-dial-sapphire text-sm cursor-pointer"
                   >
-                    <path
-                      d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
-                    />
-                  </svg>
-                  <span>
-                    Start a Conversation
-                  </span>
+                    <svg
+                      class="mr-1"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
+                      />
+                    </svg>
+                    <span>
+                      Start a Conversation
+                    </span>
+                  </div>
+                  <a
+                    class="bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                    href="/en/playbooks/example_playbook/pdf"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      class="inline pb-px"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 384 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM332.1 128H256V51.9l76.1 76.1zM48 464V48h160v104c0 13.3 10.7 24 24 24h104v288H48zm250.2-143.7c-12.2-12-47-8.7-64.4-6.5-17.2-10.5-28.7-25-36.8-46.3 3.9-16.1 10.1-40.6 5.4-56-4.2-26.2-37.8-23.6-42.6-5.9-4.4 16.1-.4 38.5 7 67.1-10 23.9-24.9 56-35.4 74.4-20 10.3-47 26.2-51 46.2-3.3 15.8 26 55.2 76.1-31.2 22.4-7.4 46.8-16.5 68.4-20.1 18.9 10.2 41 17 55.8 17 25.5 0 28-28.2 17.5-38.7zm-198.1 77.8c5.1-13.7 24.5-29.5 30.4-35-19 30.3-30.4 35.7-30.4 35zm81.6-190.6c7.4 0 6.7 32.1 1.8 40.8-4.4-13.9-4.3-40.8-1.8-40.8zm-24.4 136.6c9.7-16.9 18-37 24.7-54.7 8.3 15.1 18.9 27.2 30.1 35.5-20.8 4.3-38.9 13.1-54.8 19.2zm131.6-5s-5 6-37.3-7.8c35.1-2.6 40.9 5.4 37.3 7.8z"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-1"
+                    >
+                      Print PDF
+                    </span>
+                  </a>
+                  <a
+                    class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                  >
+                    <svg
+                      class="inline pb-px"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      version="1.1"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 11.5l1.5 1.5 5-5-5-5-1.5 1.5 3.5 3.5z"
+                      />
+                      <path
+                        d="M7 4.5l-1.5-1.5-5 5 5 5 1.5-1.5-3.5-3.5z"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-1"
+                    >
+                      Create Embed
+                    </span>
+                  </a>
                 </div>
-                <a
-                  class="bg-dial-blue px-2 py-0.5 rounded text-white"
-                  href="/en/playbooks/example_playbook/pdf"
-                  rel="noreferrer"
-                  target="_blank"
+                <div
+                  class="ml-auto flex items-center gap-2"
                 >
-                  <img
-                    alt="Print PDF"
-                    class="inline mr-2 pb-1"
-                    height="12px"
-                    src="/icons/pdf.svg"
-                    width="12px"
-                  />
-                  <span
-                    class="text-sm px-2"
+                  <a
+                    class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                    data-testid="create-link"
+                    href="/en/playbooks/example_playbook/plays/create"
                   >
-                    Print PDF
-                  </span>
-                </a>
-                <a
-                  class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white"
-                >
-                  <svg
-                    class="inline"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 640 512"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
+                    <svg
+                      class="inline pb-0.5"
+                      fill="none"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                      />
+                      <line
+                        x1="12"
+                        x2="12"
+                        y1="8"
+                        y2="16"
+                      />
+                      <line
+                        x1="8"
+                        x2="16"
+                        y1="12"
+                        y2="12"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-1"
+                    >
+                      Add Play
+                    </span>
+                  </a>
+                  <button
+                    class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                    type="button"
                   >
-                    <path
-                      d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
-                    />
-                  </svg>
-                  <span
-                    class="text-sm px-2"
+                    <svg
+                      class="inline pb-0.5"
+                      fill="none"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <polyline
+                        points="5 9 2 12 5 15"
+                      />
+                      <polyline
+                        points="9 5 12 2 15 5"
+                      />
+                      <polyline
+                        points="15 19 12 22 9 19"
+                      />
+                      <polyline
+                        points="19 9 22 12 19 15"
+                      />
+                      <line
+                        x1="2"
+                        x2="22"
+                        y1="12"
+                        y2="12"
+                      />
+                      <line
+                        x1="12"
+                        x2="12"
+                        y1="2"
+                        y2="22"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-1"
+                    >
+                      Rearrange Plays
+                    </span>
+                  </button>
+                  <a
+                    class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                    data-testid="edit-link"
+                    href="/en/playbooks/example_playbook/edit"
                   >
-                    Create Embed
-                  </span>
-                </a>
-                <a
-                  class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-                  data-testid="edit-link"
-                  href="/en/playbooks/example_playbook/edit"
-                >
-                  <img
-                    alt="Edit"
-                    height="12px"
-                    src="/icons/edit.svg"
-                    width="12px"
-                  />
-                  <span
-                    class="text-sm"
+                    <svg
+                      class="inline pb-0.5"
+                      fill="none"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 20h9"
+                      />
+                      <path
+                        d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-1"
+                    >
+                      Edit
+                    </span>
+                  </a>
+                  <button
+                    class="delete-button gap-x-1.5"
+                    data-testid="delete-button"
+                    type="button"
                   >
-                    Edit
-                  </span>
-                </a>
-                <button
-                  class="delete-button gap-x-1.5"
-                  data-testid="delete-button"
-                  type="button"
-                >
-                  <svg
-                    class="text-sm"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 16 16"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                    />
-                    <path
-                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  <span
-                    class="text-sm"
-                  >
-                    Delete
-                  </span>
-                </button>
+                    <svg
+                      class="text-sm"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 448 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm"
+                    >
+                      Delete
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
             <div
@@ -1040,7 +1404,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 data-testid="tag-card"
               >
                 <div
-                  class="border border-dial-gray card-drop-shadow"
+                  class="border border-dial-gray shadow-md"
                 >
                   <div
                     class="flex gap-3 my-5 px-4"
@@ -1063,7 +1427,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 data-testid="tag-card"
               >
                 <div
-                  class="border border-dial-gray card-drop-shadow"
+                  class="border border-dial-gray shadow-md"
                 >
                   <div
                     class="flex gap-3 my-5 px-4"
@@ -1100,9 +1464,72 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                     class="h-px border-b"
                   />
                   <div
-                    class="font-semibold text-2xl py-4"
+                    class="flex"
                   >
-                    Play 1. D4D: Understand the Problem
+                    <div
+                      class="font-semibold text-2xl py-4"
+                    >
+                      Play 1. D4D: Understand the Problem
+                    </div>
+                    <div
+                      class="ml-auto my-auto flex gap-2"
+                    >
+                      <a
+                        class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                        data-testid="edit-link"
+                        href="/en/playbooks/example_playbook/plays/d4d_understand_the_problem/edit"
+                      >
+                        <svg
+                          class="inline pb-0.5"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 20h9"
+                          />
+                          <path
+                            d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                          />
+                        </svg>
+                        <span
+                          class="text-sm px-1"
+                        >
+                          Edit
+                        </span>
+                      </a>
+                      <button
+                        class="delete-button gap-x-1.5"
+                        data-testid="delete-button"
+                        type="button"
+                      >
+                        <svg
+                          class="text-sm"
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 448 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+                          />
+                        </svg>
+                        <span
+                          class="text-sm"
+                        >
+                          Unassign
+                        </span>
+                      </button>
+                    </div>
                   </div>
                   <div
                     class="relative"
@@ -1134,46 +1561,197 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                     class="flex flex-col gap-3"
                   >
                     <div
+                      class="flex gap-2 ml-auto"
+                    >
+                      <a
+                        class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                        data-testid="create-link"
+                        href="/en/playbooks/example_playbook/plays/d4d_understand_the_problem/moves/create"
+                      >
+                        <svg
+                          class="inline pb-0.5"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                          />
+                          <line
+                            x1="12"
+                            x2="12"
+                            y1="8"
+                            y2="16"
+                          />
+                          <line
+                            x1="8"
+                            x2="16"
+                            y1="12"
+                            y2="12"
+                          />
+                        </svg>
+                        <span
+                          class="text-sm px-1"
+                        >
+                          Add Move
+                        </span>
+                      </a>
+                      <button
+                        class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                        type="button"
+                      >
+                        <svg
+                          class="inline pb-0.5"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <polyline
+                            points="5 9 2 12 5 15"
+                          />
+                          <polyline
+                            points="9 5 12 2 15 5"
+                          />
+                          <polyline
+                            points="15 19 12 22 9 19"
+                          />
+                          <polyline
+                            points="19 9 22 12 19 15"
+                          />
+                          <line
+                            x1="2"
+                            x2="22"
+                            y1="12"
+                            y2="12"
+                          />
+                          <line
+                            x1="12"
+                            x2="12"
+                            y1="2"
+                            y2="22"
+                          />
+                        </svg>
+                        <span
+                          class="text-sm px-1"
+                        >
+                          Rearrange Moves
+                        </span>
+                      </button>
+                    </div>
+                    <div
                       class="flex flex-col border border-dial-orange-light"
                     >
                       <div
-                        class="move-header cursor-pointer"
+                        class="move-header"
                       >
                         <div
-                          class="move-animation-base bg-dial-yellow-light h-14"
+                          class="move-animation-base bg-dial-biscotti h-14"
                         />
                         <div
-                          class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                          class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                         />
                         <div
                           class="flex move-header"
                         >
                           <div
-                            class="font-semibold px-4 py-4 my-auto"
+                            class="font-semibold px-4 py-4 my-auto cursor-pointer flex-grow"
                           >
                             Considerations
                           </div>
                           <div
                             class="ml-auto my-auto px-4"
                           >
-                            <svg
-                              fill="currentColor"
-                              height="1em"
-                              stroke="currentColor"
-                              stroke-width="0"
-                              viewBox="0 0 16 16"
-                              width="1em"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="flex gap-2"
                             >
-                              <path
-                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                                fill-rule="evenodd"
-                              />
-                            </svg>
+                              <a
+                                class="cursor-pointer bg-white px-2 py-0.5 rounded"
+                                href="/en/playbooks/example_playbook/plays/d4d_understand_the_problem/moves/considerations/edit"
+                              >
+                                <svg
+                                  class="inline pb-0.5"
+                                  fill="none"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 20h9"
+                                  />
+                                  <path
+                                    d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                                  />
+                                </svg>
+                                <span
+                                  class="text-sm px-1"
+                                >
+                                  Edit
+                                </span>
+                              </a>
+                              <button
+                                class="cursor-pointer bg-white px-2 py-0.5 rounded"
+                                type="button"
+                              >
+                                <svg
+                                  class="inline pb-0.5 text-red-500"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 448 512"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+                                  />
+                                </svg>
+                                <span
+                                  class="text-sm px-1 text-red-500"
+                                >
+                                  Unassign
+                                </span>
+                              </button>
+                              <button
+                                class="cursor-pointer bg-white px-2 py-1.5 rounded"
+                                type="button"
+                              >
+                                <svg
+                                  class="cursor-pointer p-0.5 text-dial-stratos"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 16 16"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                    fill-rule="evenodd"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1182,91 +1760,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                       >
                         <div
                           class="px-4 py-4"
-                        >
-                          <div
-                            class="relative"
-                          >
-                            <svg
-                              class="absolute text-lg inset-x-1/2 top-10 spinner"
-                              fill="currentColor"
-                              height="2em"
-                              stroke="currentColor"
-                              stroke-width="0"
-                              viewBox="0 0 512 512"
-                              width="2em"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                              />
-                            </svg>
-                            <div
-                              class="html-viewer"
-                            >
-                              <textarea
-                                id="move-considerations-desc"
-                                style="visibility: hidden;"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="font-semibold py-2"
-                          >
-                            Resources
-                          </div>
-                          <div
-                            class="flex flex-wrap gap-3"
-                          >
-                            <a
-                              href="https://www.example.com/"
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              <div
-                                class="
-                                      group border-2 border-gray-300 hover:border-dial-yellow
-                                      card-drop-shadow
-                                    "
-                              >
-                                <div
-                                  class="flex"
-                                >
-                                  <div
-                                    class="flex flex-col gap-2 px-3 py-4"
-                                  >
-                                    <div
-                                      class="font-semibold"
-                                    >
-                                      Nyoman Ribeka
-                                    </div>
-                                    <div
-                                      class="text-sm"
-                                    >
-                                      Adadadada
-                                    </div>
-                                  </div>
-                                  <svg
-                                    class="ml-auto px-2"
-                                    fill="currentColor"
-                                    height="2.2em"
-                                    stroke="currentColor"
-                                    stroke-width="0"
-                                    viewBox="0 0 20 20"
-                                    width="2.2em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                                    />
-                                    <path
-                                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -1480,7 +1974,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
         class="sticky sticky-under-header flex flex-col"
       >
         <div
-          class="bg-dial-yellow sticky sticky-under-header"
+          class="bg-dial-sunshine sticky sticky-under-header"
         >
           <div
             class="flex flex-wrap gap-3"
@@ -1492,12 +1986,13 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 class="text-sm"
               >
                 <a
-                  href="back-to-playbooks"
+                  href="/playbooks"
                 >
                   <img
                     alt="Logo for: {name}"
                     class="m-auto h-6 inline mr-2"
-                    data-tip="{entity}: {name}"
+                    data-tooltip-content="{entity}: {name}"
+                    data-tooltip-id="react-tooltip"
                     src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                   />
                   Playbook
@@ -1557,12 +2052,12 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 <div
                   class="
             border-r-4 border-dial-gray-dark
-            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
-            border-dial-purple text-dial-yellow
+            hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
+            border-dial-purple text-dial-sunshine
           "
                 >
                   <div
-                    class="border-l-8 bg-dial-purple border-dial-yellow"
+                    class="border-l-8 bg-dial-purple border-dial-sunshine"
                   >
                     <a
                       class="block py-4 px-8"
@@ -1575,7 +2070,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 <div
                   class="
                   border-r-4 border-dial-gray-dark
-                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+                  hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
                   border-dial-gray-dark
                 "
                 >
@@ -1612,7 +2107,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                     class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
                   >
                     <a
-                      class="inline text-dial-blue h5"
+                      class="inline text-dial-sapphire h5"
                       href="/"
                     >
                       Home
@@ -1629,71 +2124,89 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                   </div>
                 </div>
                 <div
-                  class="ml-auto flex items-center gap-3"
+                  class="flex flex-col gap-3 ml-auto mt-3"
                 >
                   <div
-                    class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
+                    class="ml-auto flex items-center gap-2"
                   >
-                    <svg
-                      class="mr-1"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      class="inline-flex items-center text-dial-sapphire text-sm cursor-pointer"
                     >
-                      <path
-                        d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
-                      />
-                    </svg>
-                    <span>
-                      Start a Conversation
-                    </span>
+                      <svg
+                        class="mr-1"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
+                        />
+                      </svg>
+                      <span>
+                        Start a Conversation
+                      </span>
+                    </div>
+                    <a
+                      class="bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                      href="/en/playbooks/example_playbook/pdf"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <svg
+                        class="inline pb-px"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 384 512"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM332.1 128H256V51.9l76.1 76.1zM48 464V48h160v104c0 13.3 10.7 24 24 24h104v288H48zm250.2-143.7c-12.2-12-47-8.7-64.4-6.5-17.2-10.5-28.7-25-36.8-46.3 3.9-16.1 10.1-40.6 5.4-56-4.2-26.2-37.8-23.6-42.6-5.9-4.4 16.1-.4 38.5 7 67.1-10 23.9-24.9 56-35.4 74.4-20 10.3-47 26.2-51 46.2-3.3 15.8 26 55.2 76.1-31.2 22.4-7.4 46.8-16.5 68.4-20.1 18.9 10.2 41 17 55.8 17 25.5 0 28-28.2 17.5-38.7zm-198.1 77.8c5.1-13.7 24.5-29.5 30.4-35-19 30.3-30.4 35.7-30.4 35zm81.6-190.6c7.4 0 6.7 32.1 1.8 40.8-4.4-13.9-4.3-40.8-1.8-40.8zm-24.4 136.6c9.7-16.9 18-37 24.7-54.7 8.3 15.1 18.9 27.2 30.1 35.5-20.8 4.3-38.9 13.1-54.8 19.2zm131.6-5s-5 6-37.3-7.8c35.1-2.6 40.9 5.4 37.3 7.8z"
+                        />
+                      </svg>
+                      <span
+                        class="text-sm px-1"
+                      >
+                        Print PDF
+                      </span>
+                    </a>
+                    <a
+                      class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                    >
+                      <svg
+                        class="inline pb-px"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        version="1.1"
+                        viewBox="0 0 16 16"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 11.5l1.5 1.5 5-5-5-5-1.5 1.5 3.5 3.5z"
+                        />
+                        <path
+                          d="M7 4.5l-1.5-1.5-5 5 5 5 1.5-1.5-3.5-3.5z"
+                        />
+                      </svg>
+                      <span
+                        class="text-sm px-1"
+                      >
+                        Create Embed
+                      </span>
+                    </a>
                   </div>
-                  <a
-                    class="bg-dial-blue px-2 py-0.5 rounded text-white"
-                    href="/en/playbooks/example_playbook/pdf"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <img
-                      alt="Print PDF"
-                      class="inline mr-2 pb-1"
-                      height="12px"
-                      src="/icons/pdf.svg"
-                      width="12px"
-                    />
-                    <span
-                      class="text-sm px-2"
-                    >
-                      Print PDF
-                    </span>
-                  </a>
-                  <a
-                    class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white"
-                  >
-                    <svg
-                      class="inline"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 640 512"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
-                      />
-                    </svg>
-                    <span
-                      class="text-sm px-2"
-                    >
-                      Create Embed
-                    </span>
-                  </a>
+                  <div
+                    class="ml-auto flex items-center gap-2"
+                  />
                 </div>
               </div>
               <div
@@ -1815,7 +2328,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                   data-testid="tag-card"
                 >
                   <div
-                    class="border border-dial-gray card-drop-shadow"
+                    class="border border-dial-gray shadow-md"
                   >
                     <div
                       class="flex gap-3 my-5 px-4"
@@ -1838,7 +2351,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                   data-testid="tag-card"
                 >
                   <div
-                    class="border border-dial-gray card-drop-shadow"
+                    class="border border-dial-gray shadow-md"
                   >
                     <div
                       class="flex gap-3 my-5 px-4"
@@ -1875,9 +2388,16 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                       class="h-px border-b"
                     />
                     <div
-                      class="font-semibold text-2xl py-4"
+                      class="flex"
                     >
-                      Play 1. D4D: Understand the Problem
+                      <div
+                        class="font-semibold text-2xl py-4"
+                      >
+                        Play 1. D4D: Understand the Problem
+                      </div>
+                      <div
+                        class="ml-auto my-auto flex gap-2"
+                      />
                     </div>
                     <div
                       class="relative"
@@ -1909,46 +2429,55 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                       class="flex flex-col gap-3"
                     >
                       <div
+                        class="flex gap-2 ml-auto"
+                      />
+                      <div
                         class="flex flex-col border border-dial-orange-light"
                       >
                         <div
-                          class="move-header cursor-pointer"
+                          class="move-header"
                         >
                           <div
-                            class="move-animation-base bg-dial-yellow-light h-14"
+                            class="move-animation-base bg-dial-biscotti h-14"
                           />
                           <div
-                            class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                            class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                           />
                           <div
                             class="flex move-header"
                           >
                             <div
-                              class="font-semibold px-4 py-4 my-auto"
+                              class="font-semibold px-4 py-4 my-auto cursor-pointer flex-grow"
                             >
                               Considerations
                             </div>
                             <div
                               class="ml-auto my-auto px-4"
                             >
-                              <svg
-                                fill="currentColor"
-                                height="1em"
-                                stroke="currentColor"
-                                stroke-width="0"
-                                viewBox="0 0 16 16"
-                                width="1em"
-                                xmlns="http://www.w3.org/2000/svg"
+                              <div
+                                class="flex gap-2"
                               >
-                                <path
-                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                                  fill-rule="evenodd"
-                                />
-                              </svg>
+                                <button
+                                  class="cursor-pointer bg-white px-2 py-1.5 rounded"
+                                  type="button"
+                                >
+                                  <svg
+                                    class="cursor-pointer p-0.5 text-dial-stratos"
+                                    fill="currentColor"
+                                    height="1em"
+                                    stroke="currentColor"
+                                    stroke-width="0"
+                                    viewBox="0 0 16 16"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                      fill-rule="evenodd"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1957,91 +2486,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                         >
                           <div
                             class="px-4 py-4"
-                          >
-                            <div
-                              class="relative"
-                            >
-                              <svg
-                                class="absolute text-lg inset-x-1/2 top-10 spinner"
-                                fill="currentColor"
-                                height="2em"
-                                stroke="currentColor"
-                                stroke-width="0"
-                                viewBox="0 0 512 512"
-                                width="2em"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                                />
-                              </svg>
-                              <div
-                                class="html-viewer"
-                              >
-                                <textarea
-                                  id="move-considerations-desc"
-                                  style="visibility: hidden;"
-                                />
-                              </div>
-                            </div>
-                            <div
-                              class="font-semibold py-2"
-                            >
-                              Resources
-                            </div>
-                            <div
-                              class="flex flex-wrap gap-3"
-                            >
-                              <a
-                                href="https://www.example.com/"
-                                rel="noreferrer"
-                                target="_blank"
-                              >
-                                <div
-                                  class="
-                                      group border-2 border-gray-300 hover:border-dial-yellow
-                                      card-drop-shadow
-                                    "
-                                >
-                                  <div
-                                    class="flex"
-                                  >
-                                    <div
-                                      class="flex flex-col gap-2 px-3 py-4"
-                                    >
-                                      <div
-                                        class="font-semibold"
-                                      >
-                                        Nyoman Ribeka
-                                      </div>
-                                      <div
-                                        class="text-sm"
-                                      >
-                                        Adadadada
-                                      </div>
-                                    </div>
-                                    <svg
-                                      class="ml-auto px-2"
-                                      fill="currentColor"
-                                      height="2.2em"
-                                      stroke="currentColor"
-                                      stroke-width="0"
-                                      viewBox="0 0 20 20"
-                                      width="2.2em"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                                      />
-                                      <path
-                                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                                      />
-                                    </svg>
-                                  </div>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
+                          />
                         </div>
                       </div>
                     </div>
@@ -2067,7 +2512,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
       class="sticky sticky-under-header flex flex-col"
     >
       <div
-        class="bg-dial-yellow sticky sticky-under-header"
+        class="bg-dial-sunshine sticky sticky-under-header"
       >
         <div
           class="flex flex-wrap gap-3"
@@ -2079,12 +2524,13 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               class="text-sm"
             >
               <a
-                href="back-to-playbooks"
+                href="/playbooks"
               >
                 <img
                   alt="Logo for: {name}"
                   class="m-auto h-6 inline mr-2"
-                  data-tip="{entity}: {name}"
+                  data-tooltip-content="{entity}: {name}"
+                  data-tooltip-id="react-tooltip"
                   src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                 />
                 Playbook
@@ -2144,12 +2590,12 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               <div
                 class="
             border-r-4 border-dial-gray-dark
-            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
-            border-dial-purple text-dial-yellow
+            hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
+            border-dial-purple text-dial-sunshine
           "
               >
                 <div
-                  class="border-l-8 bg-dial-purple border-dial-yellow"
+                  class="border-l-8 bg-dial-purple border-dial-sunshine"
                 >
                   <a
                     class="block py-4 px-8"
@@ -2162,7 +2608,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               <div
                 class="
                   border-r-4 border-dial-gray-dark
-                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+                  hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
                   border-dial-gray-dark
                 "
               >
@@ -2199,7 +2645,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                   class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
                 >
                   <a
-                    class="inline text-dial-blue h5"
+                    class="inline text-dial-sapphire h5"
                     href="/"
                   >
                     Home
@@ -2216,71 +2662,89 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 </div>
               </div>
               <div
-                class="ml-auto flex items-center gap-3"
+                class="flex flex-col gap-3 ml-auto mt-3"
               >
                 <div
-                  class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
+                  class="ml-auto flex items-center gap-2"
                 >
-                  <svg
-                    class="mr-1"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <div
+                    class="inline-flex items-center text-dial-sapphire text-sm cursor-pointer"
                   >
-                    <path
-                      d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
-                    />
-                  </svg>
-                  <span>
-                    Start a Conversation
-                  </span>
+                    <svg
+                      class="mr-1"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M144 208c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zm112 0c-17.7 0-32 14.3-32 32s14.3 32 32 32 32-14.3 32-32-14.3-32-32-32zM256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
+                      />
+                    </svg>
+                    <span>
+                      Start a Conversation
+                    </span>
+                  </div>
+                  <a
+                    class="bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                    href="/en/playbooks/example_playbook/pdf"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      class="inline pb-px"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 384 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM332.1 128H256V51.9l76.1 76.1zM48 464V48h160v104c0 13.3 10.7 24 24 24h104v288H48zm250.2-143.7c-12.2-12-47-8.7-64.4-6.5-17.2-10.5-28.7-25-36.8-46.3 3.9-16.1 10.1-40.6 5.4-56-4.2-26.2-37.8-23.6-42.6-5.9-4.4 16.1-.4 38.5 7 67.1-10 23.9-24.9 56-35.4 74.4-20 10.3-47 26.2-51 46.2-3.3 15.8 26 55.2 76.1-31.2 22.4-7.4 46.8-16.5 68.4-20.1 18.9 10.2 41 17 55.8 17 25.5 0 28-28.2 17.5-38.7zm-198.1 77.8c5.1-13.7 24.5-29.5 30.4-35-19 30.3-30.4 35.7-30.4 35zm81.6-190.6c7.4 0 6.7 32.1 1.8 40.8-4.4-13.9-4.3-40.8-1.8-40.8zm-24.4 136.6c9.7-16.9 18-37 24.7-54.7 8.3 15.1 18.9 27.2 30.1 35.5-20.8 4.3-38.9 13.1-54.8 19.2zm131.6-5s-5 6-37.3-7.8c35.1-2.6 40.9 5.4 37.3 7.8z"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-1"
+                    >
+                      Print PDF
+                    </span>
+                  </a>
+                  <a
+                    class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
+                  >
+                    <svg
+                      class="inline pb-px"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      version="1.1"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 11.5l1.5 1.5 5-5-5-5-1.5 1.5 3.5 3.5z"
+                      />
+                      <path
+                        d="M7 4.5l-1.5-1.5-5 5 5 5 1.5-1.5-3.5-3.5z"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-1"
+                    >
+                      Create Embed
+                    </span>
+                  </a>
                 </div>
-                <a
-                  class="bg-dial-blue px-2 py-0.5 rounded text-white"
-                  href="/en/playbooks/example_playbook/pdf"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <img
-                    alt="Print PDF"
-                    class="inline mr-2 pb-1"
-                    height="12px"
-                    src="/icons/pdf.svg"
-                    width="12px"
-                  />
-                  <span
-                    class="text-sm px-2"
-                  >
-                    Print PDF
-                  </span>
-                </a>
-                <a
-                  class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white"
-                >
-                  <svg
-                    class="inline"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 640 512"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
-                    />
-                  </svg>
-                  <span
-                    class="text-sm px-2"
-                  >
-                    Create Embed
-                  </span>
-                </a>
+                <div
+                  class="ml-auto flex items-center gap-2"
+                />
               </div>
             </div>
             <div
@@ -2402,7 +2866,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 data-testid="tag-card"
               >
                 <div
-                  class="border border-dial-gray card-drop-shadow"
+                  class="border border-dial-gray shadow-md"
                 >
                   <div
                     class="flex gap-3 my-5 px-4"
@@ -2425,7 +2889,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 data-testid="tag-card"
               >
                 <div
-                  class="border border-dial-gray card-drop-shadow"
+                  class="border border-dial-gray shadow-md"
                 >
                   <div
                     class="flex gap-3 my-5 px-4"
@@ -2462,9 +2926,16 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                     class="h-px border-b"
                   />
                   <div
-                    class="font-semibold text-2xl py-4"
+                    class="flex"
                   >
-                    Play 1. D4D: Understand the Problem
+                    <div
+                      class="font-semibold text-2xl py-4"
+                    >
+                      Play 1. D4D: Understand the Problem
+                    </div>
+                    <div
+                      class="ml-auto my-auto flex gap-2"
+                    />
                   </div>
                   <div
                     class="relative"
@@ -2496,46 +2967,55 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                     class="flex flex-col gap-3"
                   >
                     <div
+                      class="flex gap-2 ml-auto"
+                    />
+                    <div
                       class="flex flex-col border border-dial-orange-light"
                     >
                       <div
-                        class="move-header cursor-pointer"
+                        class="move-header"
                       >
                         <div
-                          class="move-animation-base bg-dial-yellow-light h-14"
+                          class="move-animation-base bg-dial-biscotti h-14"
                         />
                         <div
-                          class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                          class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                         />
                         <div
                           class="flex move-header"
                         >
                           <div
-                            class="font-semibold px-4 py-4 my-auto"
+                            class="font-semibold px-4 py-4 my-auto cursor-pointer flex-grow"
                           >
                             Considerations
                           </div>
                           <div
                             class="ml-auto my-auto px-4"
                           >
-                            <svg
-                              fill="currentColor"
-                              height="1em"
-                              stroke="currentColor"
-                              stroke-width="0"
-                              viewBox="0 0 16 16"
-                              width="1em"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="flex gap-2"
                             >
-                              <path
-                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                                fill-rule="evenodd"
-                              />
-                            </svg>
+                              <button
+                                class="cursor-pointer bg-white px-2 py-1.5 rounded"
+                                type="button"
+                              >
+                                <svg
+                                  class="cursor-pointer p-0.5 text-dial-stratos"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 16 16"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                    fill-rule="evenodd"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -2544,91 +3024,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                       >
                         <div
                           class="px-4 py-4"
-                        >
-                          <div
-                            class="relative"
-                          >
-                            <svg
-                              class="absolute text-lg inset-x-1/2 top-10 spinner"
-                              fill="currentColor"
-                              height="2em"
-                              stroke="currentColor"
-                              stroke-width="0"
-                              viewBox="0 0 512 512"
-                              width="2em"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                              />
-                            </svg>
-                            <div
-                              class="html-viewer"
-                            >
-                              <textarea
-                                id="move-considerations-desc"
-                                style="visibility: hidden;"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="font-semibold py-2"
-                          >
-                            Resources
-                          </div>
-                          <div
-                            class="flex flex-wrap gap-3"
-                          >
-                            <a
-                              href="https://www.example.com/"
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              <div
-                                class="
-                                      group border-2 border-gray-300 hover:border-dial-yellow
-                                      card-drop-shadow
-                                    "
-                              >
-                                <div
-                                  class="flex"
-                                >
-                                  <div
-                                    class="flex flex-col gap-2 px-3 py-4"
-                                  >
-                                    <div
-                                      class="font-semibold"
-                                    >
-                                      Nyoman Ribeka
-                                    </div>
-                                    <div
-                                      class="text-sm"
-                                    >
-                                      Adadadada
-                                    </div>
-                                  </div>
-                                  <svg
-                                    class="ml-auto px-2"
-                                    fill="currentColor"
-                                    height="2.2em"
-                                    stroke="currentColor"
-                                    stroke-width="0"
-                                    viewBox="0 0 20 20"
-                                    width="2.2em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                                    />
-                                    <path
-                                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>

@@ -3,13 +3,14 @@ import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
+import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import { ObjectType } from '../../lib/constants'
 import CommentsCount from '../shared/CommentsCount'
 import { APPLY_AS_OWNER } from '../../mutations/users'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
 import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
 import DeleteOrganization from './DeleteOrganization'
@@ -97,6 +98,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           format('toast.applyAsOwner.submit.success', { entity: format('organization.label') }),
           'success',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -107,6 +109,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           </div>,
           'error',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -120,6 +123,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         </div>,
         'error',
         'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY,
         null,
         () => setLoading(false)
       )
@@ -171,7 +175,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         </div>
         <div className='h4 font-bold py-4'>{format('organization.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray lg:mr-6 shadow-lg'>
+      <div className='bg-white border-t border-l border-r border-dial-gray lg:mr-6 shadow-lg'>
         {
           organization.whenEndorsed && (
             <div className='flex flex-row p-1.5 border-b border-dial-gray text-xs font-semibold text-dial-cyan'>
@@ -191,9 +195,8 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative' >
             <Image
-              layout='fill'
-              objectFit='contain'
-              className='w-40'
+              fill
+              className='w-40 object-contain'
               alt={format('image.alt.logoFor', { name: organization.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
             />
@@ -204,8 +207,8 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         {format('organization.owner')}
         <div className='flex flex-row gap-3'>
           <a
-            className='text-dial-yellow block mt-2'
-            href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/org_owner.html`}
+            className='text-dial-sunshine block mt-2'
+            href={`https://docs.dial.community/projects/product-registry/${locale}/latest/org_owner.html`}
             target='_blank' rel='noreferrer'
           >
             {format('organization.owner-link')}
@@ -215,7 +218,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
               <>
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
-                  className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
+                  className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
                   onClick={onSubmit} disabled={loading}
                 >
                   {format('ownership.apply')}
@@ -234,6 +237,15 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           }
         </div>
       </div>
+      {organization.hasStorefront &&
+        <Link href={`/storefronts/${organization.slug}`}>
+          <div className='bg-dial-gray-dark text-dial-sunshine shadow-md rounded lg:mr-6 mt-2'>
+            <div className='py-3 px-4 text-center '>
+              View Storefront
+            </div>
+          </div>
+        </Link>
+      }
     </>
   )
 }

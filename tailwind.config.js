@@ -10,15 +10,19 @@ module.exports = {
         'dial-sapphire': {
           DEFAULT: '#2e3192'
         },
+        'govstack-blue': {
+          DEFAULT: '#0539e3',
+          light: '#007aff'
+        },
+        'dial-christmas': {
+          DEFAULT: '#00873e'
+        },
         'dial-white-beech': {
           light: '#e2e8f0',
           DEFAULT: '#faf4ef'
         },
         'dial-stratos': {
           DEFAULT: '#000542'
-        },
-        'dial-blue-chalk': {
-          DEFAULT: '#e6e9fc'
         },
         'dial-sunshine': {
           DEFAULT: '#faa92b'
@@ -29,6 +33,36 @@ module.exports = {
         },
         'dial-solitude': {
           DEFAULT: '#e2e8f0'
+        },
+        'dial-iris-blue': {
+          DEFAULT: '#485cd5'
+        },
+        'dial-eggshell': {
+          DEFAULT: '#faeedc'
+        },
+        'dial-mint': {
+          DEFAULT: '#c0fed7'
+        },
+        'dial-ice': {
+          DEFAULT: '#d4ffef'
+        },
+        'dial-blue-chalk': {
+          DEFAULT: '#e6e9fc'
+        },
+        'dial-angel': {
+          DEFAULT: '#c7ccf4'
+        },
+        'dial-lavender': {
+          DEFAULT: '#96a2ef'
+        },
+        'dial-amethyst-smoke': {
+          DEFAULT: '#9996ef'
+        },
+        'dial-blueberry': {
+          DEFAULT: '#574f8a'
+        },
+        'dial-biscotti': {
+          DEFAULT: '#fad3a2'
         },
         'footer-delimiter': {
           DEFAULT: '#c7cefa'

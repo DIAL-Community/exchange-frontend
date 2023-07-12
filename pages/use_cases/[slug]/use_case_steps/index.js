@@ -23,16 +23,14 @@ const UseCaseHeader = ({ useCase }) => {
     <div className='border'>
       <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{useCase.maturity}</div>
       <Link href={`/use_cases/${useCase.slug}`}>
-        <a href='navigate-to-usecase'>
-          <div className='cursor-pointer px-4 py-6 flex items-center'>
-            <img
-              className='use-case-filter w-8 h-full'
-              alt={format('image.alt.logoFor', { name: useCase.name })}
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-            />
-            <div className='text-xl text-use-case font-semibold px-4'>{useCase.name}</div>
-          </div>
-        </a>
+        <div className='cursor-pointer px-4 py-6 flex items-center'>
+          <img
+            className='use-case-filter w-8 h-full'
+            alt={format('image.alt.logoFor', { name: useCase.name })}
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+          />
+          <div className='text-xl text-use-case font-semibold px-4'>{useCase.name}</div>
+        </div>
       </Link>
     </div>
   )
@@ -42,7 +40,8 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 
@@ -70,7 +69,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
         <div className='w-full mb-2'>
-          {isAdminUser &&
+          {canEdit &&
             <CreateButton
               type='link'
               label={format('use-case-step.create')}

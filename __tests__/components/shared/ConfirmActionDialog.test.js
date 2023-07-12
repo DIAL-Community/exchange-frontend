@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils'
 import { fireEvent } from '@testing-library/react'
 import ConfirmActionDialog from '../../../components/shared/ConfirmActionDialog'
 import { mockObserverImplementation, render } from '../../test-utils'
@@ -16,12 +17,13 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
   const mockOnConfirm = jest.fn()
   const CONFIRM_ACTION_DIALOG_TEST_ID = 'confirm-action-dialog'
 
-  beforeAll(
+  beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
-  )
+  })
 
-  test('Should match snapshot.', () => {
-    const { getByTestId } = render(
+  test('Should match snapshot.', async () => {
+    const { getByTestId } = await act(() => render(
       <ConfirmActionDialog
         title={mockDialogTitle}
         message={mockDialogMessage}
@@ -29,7 +31,7 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
         isOpen={mockIsDialogOpen}
         onClose={mockSetIsDialogOpen}
       />
-    )
+    ))
     expect(getByTestId(TITLE_TEST_ID)).toHaveTextContent(mockDialogTitle)
     expect(getByTestId(MESSAGE_TEST_ID)).toHaveTextContent(mockDialogMessage)
     expect(getByTestId(CONFIRM_BUTTON_TEST_ID)).toHaveTextContent('Confirm')
@@ -37,8 +39,8 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toMatchSnapshot()
   })
 
-  test('Should call the onClose function after clicking the "Cancel" button.', () => {
-    const { getByTestId } = render(
+  test('Should call the onClose function after clicking the "Cancel" button.', async () => {
+    const { getByTestId } = await act(() => render(
       <ConfirmActionDialog
         title={mockDialogTitle}
         message={mockDialogMessage}
@@ -46,13 +48,13 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
         isOpen={mockIsDialogOpen}
         onClose={mockSetIsDialogOpen}
       />
-    )
-    fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
+    ))
+    await act(() => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
     expect(mockSetIsDialogOpen).toHaveBeenCalled()
   })
 
-  test('Should call the onConfirm function after clicking the "Confirm" button.', () => {
-    const { getByTestId } = render(
+  test('Should call the onConfirm function after clicking the "Confirm" button.', async () => {
+    const { getByTestId } = await act(() => render(
       <ConfirmActionDialog
         title={mockDialogTitle}
         message={mockDialogMessage}
@@ -60,8 +62,8 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
         isOpen={mockIsDialogOpen}
         onClose={mockSetIsDialogOpen}
       />
-    )
-    fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID))
+    ))
+    await act(() => fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID)))
     expect(mockOnConfirm).toHaveBeenCalled()
   })
 })

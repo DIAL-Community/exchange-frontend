@@ -56,7 +56,7 @@ const UseCaseList = (props) => {
 
 const UseCaseListQuery = () => {
   const { displayType, setResultCounts } = useContext(FilterContext)
-  const { sdgs, showBeta, search } = useContext(UseCaseFilterContext)
+  const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -66,6 +66,7 @@ const UseCaseListQuery = () => {
       first: DEFAULT_PAGE_SIZE,
       sdgs: sdgs.map(sdg => sdg.value),
       showBeta,
+      govStackOnly,
       search
     },
     fetchPolicy: 'network-only',
@@ -78,7 +79,9 @@ const UseCaseListQuery = () => {
         after: pageInfo.endCursor,
         first: DEFAULT_PAGE_SIZE,
         sdgs: sdgs.map(sdg => sdg.value),
-        showBeta
+        showBeta,
+        govStackOnly,
+        search
       }
     })
   }

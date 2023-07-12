@@ -10,7 +10,7 @@ import Dialog, { DialogType } from '../shared/Dialog'
 import Checkbox from '../shared/Checkbox'
 import Select from '../shared/Select'
 import { SECTOR_SEARCH_QUERY } from '../../queries/sector'
-import { CREATE_SECTOR } from '../../mutations/sectors'
+import { CREATE_SECTOR } from '../../mutations/sector'
 import { getLanguageOptions } from '../../lib/utilities'
 import { useUser } from '../../lib/hooks'
 
@@ -146,14 +146,14 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
       <div className='w-full'>
         <form onSubmit={handleSubmit(doUpsert)} id='sector-form'>
           <div className='pb-12 mb-4 flex flex-col gap-3'>
-            <div className='text-2xl font-bold text-dial-blue pb-4'>
+            <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {sector
                 ? format('app.edit-entity', { entity: sector.name })
                 : `${format('app.create-new')} ${format('sector.label')}`
               }
             </div>
             <div className='flex flex-col gap-y-2 mb-2' data-testid='sector-name'>
-              <label className='text-xl text-dial-blue required-field' htmlFor='name'>
+              <label className='text-dial-sapphire required-field' htmlFor='name'>
                 {format('app.name')}
               </label>
               <Input
@@ -165,7 +165,7 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
             <div className='flex flex-col gap-y-2 mb-2' data-testid='sector-locale'>
-              <label className='text-xl text-dial-blue required-field' htmlFor='locale'>
+              <label className='text-dial-sapphire required-field' htmlFor='locale'>
                 {format('locale.label')}
               </label>
               <Controller
@@ -189,7 +189,7 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
               {errors.locale && <ValidationError value={errors.locale?.message} />}
             </div>
             <div className='flex flex-col gap-y-2 mb-2' data-testid='sector-parent'>
-              <label className='text-xl text-dial-blue' htmlFor='parent'>
+              <label className='text-dial-sapphire' htmlFor='parent'>
                 {format('sector.parent-sector.label')}
               </label>
               <Controller

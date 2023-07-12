@@ -8,7 +8,7 @@ import NotFound from '../../../components/shared/NotFound'
 import { WORKFLOW_DETAIL_QUERY } from '../../../queries/workflow'
 import WorkflowForm from '../../../components/workflows/WorkflowForm'
 
-const CreateWorkflow = () => {
+const EditWorkflow = () => {
   const router = useRouter()
 
   const { locale } = router
@@ -39,4 +39,4 @@ const CreateWorkflow = () => {
   )
 }
 
-export default CreateWorkflow
+export default EditWorkflow

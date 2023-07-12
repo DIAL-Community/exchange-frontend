@@ -1,49 +1,10 @@
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
 
 const Steps = dynamic(() => import('intro.js-react').then(mod => mod.Steps), { ssr: false })
-
-export const OVERVIEW_INTRO_KEY = 'intro.overview.completed'
-export const OVERVIEW_INTRO_STEPS = [
-  {
-    element: '.intro-overview-element',
-    i18nKey: 'intro.overview'
-  }, {
-    element: '.intro-overview-sdg-framework',
-    i18nKey: 'intro.overview.sdgFramework',
-    position: 'right'
-  }, {
-    element: '.intro-overview-entity-product',
-    i18nKey: 'intro.overview.entityProduct'
-  }, {
-    element: '.intro-overview-entity-help',
-    i18nKey: 'intro.overview.entityHelp',
-    position: 'right'
-  }, {
-    element: '.intro-overview-search',
-    i18nKey: 'intro.overview.search'
-  }, {
-    element: '.intro-overview-filter',
-    i18nKey: 'intro.overview.filter'
-  }, {
-    element: '.intro-overview-card-view',
-    i18nKey: 'intro.overview.cardView',
-    position: 'top'
-  }, {
-    element: '.intro-overview-entity-playbook',
-    i18nKey: 'intro.overview.entityPlaybook',
-    position: 'left'
-  }, {
-    element: '.intro-overview-wizard',
-    i18nKey: 'intro.overview.wizard'
-  }, {
-    element: '.intro-overview-signup',
-    i18nKey: 'intro.overview.signUp'
-  }
-]
 
 const Intro = ({ enabled, steps, startIndex, endIndex, previousPath, nextPath, completedKey }) => {
   const router = useRouter()
@@ -66,8 +27,7 @@ const Intro = ({ enabled, steps, startIndex, endIndex, previousPath, nextPath, c
   }
 
   const onExitHandler = () => {
-    console.log('Dismissing intro and marking them as completed.')
-    cookie.save(completedKey, true)
+    Cookies.set(completedKey, true)
   }
 
   return (
@@ -77,7 +37,7 @@ const Intro = ({ enabled, steps, startIndex, endIndex, previousPath, nextPath, c
       initialStep={startIndex}
       onBeforeChange={onBeforeChangeHandler}
       onExit={onExitHandler}
-      options={{ disableInteraction: true, exitOnOverlayClick: false }}
+      options={{ disableInteraction: true, exitOnOverlayClick: false, skipLabel: 'Skip' }}
     />
   )
 }

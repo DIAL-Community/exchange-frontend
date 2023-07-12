@@ -2,8 +2,10 @@ import { fireEvent } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import DeleteTag from '../../../components/tags/DeleteTag'
 import { mockObserverImplementation, render } from '../../test-utils'
-import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
+import { DELETE_TAG } from '../../../mutations/tag'
+import { TAGS_LIST_QUERY } from '../../../queries/tag'
 import { tag } from './data/TagCard'
 
 mockNextUseRouter()
@@ -13,8 +15,23 @@ describe('Unit tests for the DeletTag component.', () => {
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const CONFIRM_BUTTON_TEST_ID = 'confirm-button'
 
+  const deleteVars = { id: 1 }
+  const deleteData = {
+    data: {
+      deleteTag: {
+        tag: null,
+        errors: []
+      }
+    }
+  }
+  const mockDelete = generateMockApolloData(DELETE_TAG, deleteVars, null, deleteData)
+
+  const tagListData = { data: { searchTags: {} } }
+  const mockTagList = generateMockApolloData(TAGS_LIST_QUERY, { search: '' }, null, tagListData)
+
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 
@@ -46,7 +63,7 @@ describe('Unit tests for the DeletTag component.', () => {
 
     test('"Confirm" button', async () => {
       const { container, getByTestId, queryByTestId } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockDelete, mockTagList]}>
           <DeleteTag tag={tag} />
         </CustomMockedProvider>
       )

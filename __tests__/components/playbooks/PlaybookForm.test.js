@@ -1,6 +1,4 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { DndProvider } from 'react-dnd'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -8,10 +6,11 @@ import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
 import { PlayListProvider } from '../../../components/plays/PlayListContext'
 import { PlayFilterProvider } from '../../../components/context/PlayFilterContext'
-import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
 import { CREATE_PLAYBOOK } from '../../../mutations/playbook'
+import { TAG_SEARCH_QUERY } from '../../../queries/tag'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { createPlaybookSuccess, draftPlaybook, publishedPlaybook, testPlaybook } from './data/PlaybookForm'
+import { tags } from './data/PlaybookTags'
 
 mockNextUseRouter()
 describe('Unit tests for PlaybookForm component.', () => {
@@ -23,18 +22,18 @@ describe('Unit tests for PlaybookForm component.', () => {
   const PLAYBOOK_OVERVIEW_TEST_ID = 'playbook-overview'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
+  const mockTags = generateMockApolloData(TAG_SEARCH_QUERY, { search: '' }, null, tags)
+
   beforeAll(() => {
     mockNextAuthUseSession(statuses.AUTHENTICATED)
   })
 
   test('Should match snapshot - create.', async () => {
     const { container } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
+            <PlaybookForm />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -45,14 +44,10 @@ describe('Unit tests for PlaybookForm component.', () => {
 
   test('Should match snapshot - edit.', async () => {
     const { container } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <DndProvider backend={HTML5Backend}>
-                <PlaybookForm playbook={draftPlaybook} />
-              </DndProvider>
-            </PlayPreviewProvider>
+            <PlaybookForm playbook={draftPlaybook} />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -64,12 +59,10 @@ describe('Unit tests for PlaybookForm component.', () => {
   test('Should not show validation errors for mandatory fields.', async () => {
     const user = userEvent.setup()
     const { container, getByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
+            <PlaybookForm />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -80,7 +73,7 @@ describe('Unit tests for PlaybookForm component.', () => {
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_OVERVIEW_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_OVERVIEW_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
@@ -88,37 +81,29 @@ describe('Unit tests for PlaybookForm component.', () => {
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
     const { container, getByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
+            <PlaybookForm />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
     )
     await waitForAllEffectsAndSelectToLoad(container)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_OVERVIEW_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name 2')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_OVERVIEW_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
@@ -133,7 +118,6 @@ describe('Unit tests for PlaybookForm component.', () => {
         overview: 'Test Playbook Overview',
         audience: '',
         outcomes: '',
-        plays: [],
         tags: [],
         draft: true
       },
@@ -141,22 +125,16 @@ describe('Unit tests for PlaybookForm component.', () => {
       createPlaybookSuccess
     )
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreatePlaybook]}>
+      <CustomMockedProvider mocks={[mockCreatePlaybook, mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <DndProvider backend={HTML5Backend}>
-                <PlaybookForm playbook={testPlaybook} />
-              </DndProvider>
-            </PlayPreviewProvider>
+            <PlaybookForm playbook={testPlaybook} />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
     )
     await waitForAllEffectsAndSelectToLoad(container)
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findByText('Playbook submitted.')
     expect(container).toMatchSnapshot()
   })
@@ -165,12 +143,10 @@ describe('Unit tests for PlaybookForm component.', () => {
     'Should render unchecked "Published" checkbox and "Save as Draft" submit button by default - create Playbook.',
     async () => {
       const { container, getByLabelText } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockTags]}>
           <PlayListProvider>
             <PlayFilterProvider>
-              <PlayPreviewProvider>
-                <PlaybookForm />
-              </PlayPreviewProvider>
+              <PlaybookForm />
             </PlayFilterProvider>
           </PlayListProvider>
         </CustomMockedProvider>
@@ -186,12 +162,10 @@ describe('Unit tests for PlaybookForm component.', () => {
 
   test('Should check "Published" checkbox and change submit button label from "Save as Draft" to "Published".', async () => {
     const { container, getByLabelText } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
+            <PlaybookForm />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -214,14 +188,10 @@ describe('Unit tests for PlaybookForm component.', () => {
 
   test('Should render unchecked "Published" checkbox and "Save as Draft" submit button for draft Playbook.', async () => {
     const { container, getByLabelText } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <DndProvider backend={HTML5Backend}>
-                <PlaybookForm playbook={draftPlaybook} />
-              </DndProvider>
-            </PlayPreviewProvider>
+            <PlaybookForm playbook={draftPlaybook} />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -238,14 +208,10 @@ describe('Unit tests for PlaybookForm component.', () => {
     'Should render checked "Published" checkbox and "Publish Playbook" submit button for published Playbook.',
     async () => {
       const { container, getByLabelText } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockTags]}>
           <PlayListProvider>
             <PlayFilterProvider>
-              <PlayPreviewProvider>
-                <DndProvider backend={HTML5Backend}>
-                  <PlaybookForm playbook={publishedPlaybook} />
-                </DndProvider>
-              </PlayPreviewProvider>
+              <PlaybookForm playbook={publishedPlaybook} />
             </PlayFilterProvider>
           </PlayListProvider>
         </CustomMockedProvider>

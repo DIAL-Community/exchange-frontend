@@ -17,6 +17,7 @@ const ProductFilterProvider = ({ children }) => {
   const [buildingBlocks, setBuildingBlocks] = useState([])
   const [endorsers, setEndorsers] = useState([])
   const [licenseTypes, setLicenseTypes] = useState([])
+  const [isLinkedWithDpi, setIsLinkedWithDpi] = useState(false)
 
   const [search, setSearch] = useState('')
   const [sortColumn, setSortColumn] = useState('name')
@@ -36,6 +37,7 @@ const ProductFilterProvider = ({ children }) => {
     buildingBlocks,
     endorsers,
     licenseTypes,
+    isLinkedWithDpi,
     search,
     sortColumn,
     sortDirection
@@ -54,6 +56,7 @@ const ProductFilterProvider = ({ children }) => {
     setBuildingBlocks,
     setEndorsers,
     setLicenseTypes,
+    setIsLinkedWithDpi,
     setSearch,
     setSortColumn,
     setSortDirection

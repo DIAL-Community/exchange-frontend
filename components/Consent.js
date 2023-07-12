@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useCookieConsentContext } from '@use-cookie-consent/react'
 import { useState } from 'react'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 
 const Consent = () => {
   const { formatMessage } = useIntl()
@@ -41,9 +41,9 @@ const Consent = () => {
     })
     if (!statistics) {
       // Disable Google Analytics if they do not accept statistics
-      cookie.remove('_ga', { path: '/' })
-      cookie.remove(`_ga_${process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID.replaceAll('-', '_')}`, { path: '/' })
-      cookie.remove('_gid', { path: '/' })
+      Cookies.remove('_ga', { path: '/' })
+      Cookies.remove(`_ga_${process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID.replaceAll('-', '_')}`, { path: '/' })
+      Cookies.remove('_gid', { path: '/' })
     }
   }
 
@@ -58,19 +58,20 @@ const Consent = () => {
               </div>
               <div className='flex justify-center gap-4'>
                 <button
-                  className='text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4'
+                  className='text-button-gray bg-dial-sunshine rounded inline-flex items-center py-2 px-4'
                   onClick={handleAccept}
                 >
                   {format('consent.acceptAll')}
                 </button>
                 <button
-                  className='text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4'
+                  className='text-button-gray bg-dial-sunshine rounded inline-flex items-center py-2 px-4'
                   onClick={toggleShowCookies}
                 >
                   {format('consent.cookieDetails')}
                 </button>
                 <a
-                  className='my-auto text-dial-yellow border-b-2 border-transparent hover:border-dial-yellow' target='_blank'
+                  className='my-auto text-dial-sunshine border-b-2 border-transparent hover:border-dial-sunshine'
+                  target='_blank'
                   href='/privacy-policy'
                 >
                   {format('consent.privacyPolicy')}
@@ -94,7 +95,7 @@ const Consent = () => {
                   <span className='ml-2 text-white'>{format('consent.statistics')}</span>
                 </label>
                 <button
-                  className='text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4'
+                  className='text-button-gray bg-dial-sunshine rounded inline-flex items-center py-2 px-4'
                   onClick={saveCookies}
                 >
                   {format('consent.save')}

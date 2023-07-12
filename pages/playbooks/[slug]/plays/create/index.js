@@ -1,38 +1,16 @@
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
 import { PlayForm } from '../../../../../components/plays/PlayForm'
-import { MoveListProvider } from '../../../../../components/plays/moves/MoveListContext'
-import { MovePreviewProvider } from '../../../../../components/plays/moves/MovePreviewContext'
-import MovePreview from '../../../../../components/plays/moves/MovePreview'
 import { Loading, Error, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../lib/ClientOnly'
 import NotFound from '../../../../../components/shared/NotFound'
 import { useUser } from '../../../../../lib/hooks'
-
-const PLAY_QUERY = gql`
-  query Play($playbookSlug: String!) {
-    playbook(slug: $playbookSlug) {
-      id
-      name
-      slug
-    }
-  }
-`
-
-const CreateFormProvider = ({ children }) => {
-  return (
-    <MoveListProvider>
-      <MovePreviewProvider>
-        {children}
-      </MovePreviewProvider>
-    </MoveListProvider>
-  )
-}
+import { PLAYBOOK_QUERY } from '../../../../../queries/play'
 
 const CreatePlayInformation = ({ slug, locale }) => {
-  const { loading, error, data } = useQuery(PLAY_QUERY, {
+  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
     variables: { playbookSlug: slug },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
@@ -48,18 +26,13 @@ const CreatePlayInformation = ({ slug, locale }) => {
 
   return (
     <>
-      {data?.playbook &&
-        <CreateFormProvider>
-          <MovePreview />
-          <PlayForm playbook={data.playbook} />
-        </CreateFormProvider>
-      }
+      {data?.playbook && <PlayForm playbook={data.playbook} />}
     </>
   )
 }
 
 function CreatePlay () {
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const router = useRouter()
   const { locale } = router
@@ -71,7 +44,7 @@ function CreatePlay () {
       <ClientOnly>
         {loadingUserSession
           ? <Loading />
-          : isAdminUser
+          : isAdminUser || isEditorUser
             ? <CreatePlayInformation slug={slug} locale={locale} />
             : <Unauthorized />}
       </ClientOnly>

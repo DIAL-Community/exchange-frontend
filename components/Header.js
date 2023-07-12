@@ -1,8 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import cookie from 'react-cookies'
-import classNames from 'classnames'
-import { useRouter } from 'next/router'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -19,6 +16,7 @@ import AboutMenu from './shared/menu/AboutMenu'
 import HelpMenu from './shared/menu/HelpMenu'
 import LanguageMenu from './shared/menu/LanguageMenu'
 import { NONE } from './shared/menu/MenuCommon'
+import MarketplaceMenu from './shared/menu/Marketplace'
 
 const dropdownMenuStyles = `
     block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
@@ -32,7 +30,6 @@ const Header = ({ isOnAuthPage = false }) => {
 
   const router = useRouter()
   const { user, isAdminUser } = useUser()
-
   const signInUser = (e) => {
     e.preventDefault()
     process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0'
@@ -60,6 +57,18 @@ const Header = ({ isOnAuthPage = false }) => {
         const id = closestAnchor.getAttribute('id')
         if (!id || (id !== currentOpenMenu && currentOpenMenu !== NONE)) {
           setCurrentOpenMenu(NONE)
+        }
+      }
+
+      if (!closestAnchor) {
+        const closestSvg = target.closest('svg')
+        if (!closestSvg) {
+          setCurrentOpenMenu(NONE)
+        } else {
+          const id = closestSvg.getAttribute('id')
+          if (!id || (`svg-down-${currentOpenMenu}` !== id && `svg-up-${currentOpenMenu}` !== id)) {
+            setCurrentOpenMenu(NONE)
+          }
         }
       }
     }
@@ -93,12 +102,6 @@ const Header = ({ isOnAuthPage = false }) => {
     )
   }
 
-  const startOverviewTour = (e) => {
-    e.preventDefault()
-    cookie.save(OVERVIEW_INTRO_KEY, false)
-    router.push('/')
-  }
-
   const withUser =
     <>
       <li className='relative mt-2 xl:mt-0 text-right'>
@@ -127,15 +130,13 @@ const Header = ({ isOnAuthPage = false }) => {
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-8 xl:px-16'>
-        <Link href='/'>
-          <a className='flex py-6'>
-            <Image
-              width={154}
-              height={44}
-              src='/assets/exchange/exchange-logo.png'
-              alt='Digital Impact Exchage Logo.'
-            />
-          </a>
+        <Link href='/' className='flex py-6 image-block-hack'>
+          <Image
+            width={154}
+            height={44}
+            src='/assets/exchange/exchange-logo.png'
+            alt='Digital Impact Exchage Logo.'
+          />
         </Link>
         <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
           <svg
@@ -158,16 +159,7 @@ const Header = ({ isOnAuthPage = false }) => {
                 && (
                   <>
                     <li className='relative mt-2 xl:mt-0 text-right'>
-                      <a
-                        href='startOverviewTour'
-                        className={classNames(
-                          'xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer',
-                          'border-b-2 border-transparent hover:border-dial-yellow'
-                        )}
-                        onClick={(e) => startOverviewTour(e)}
-                      >
-                        {format('intro.overview.startTour')}
-                      </a>
+                      <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     <li className='relative mt-2 xl:mt-0 text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />

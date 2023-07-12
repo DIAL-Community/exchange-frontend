@@ -1,11 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { waitForAllEffectsAndSelectToLoad,  render } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../../queries/building-block'
 import UseCaseStepDetailBuildingBlocks from '../../../../components/use-cases/steps/UseCaseStepDetailBuildingBlocks'
 import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { buildingBlocks } from './data/UseCaseStepDetailBuildingBlocks'
-import { useCaseStep } from './data/UseCaseStepForm'
+import { useCaseStep, useCase } from './data/UseCaseStepForm'
 
 mockNextUseRouter()
 describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => {
@@ -23,10 +25,13 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
     test('without edit permission.', () => {
       const { container } = render(
         <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-          <UseCaseStepDetailBuildingBlocks
-            canEdit={false}
-            useCaseStep={useCaseStep}
-          />
+          <DndProvider backend={HTML5Backend}>
+            <UseCaseStepDetailBuildingBlocks
+              canEdit={false}
+              useCase={useCase}
+              useCaseStep={useCaseStep}
+            />
+          </DndProvider>
         </CustomMockedProvider>
       )
       expect(container).toMatchSnapshot()
@@ -35,10 +40,13 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
     test('with edit permission.', () => {
       const { container } = render(
         <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-          <UseCaseStepDetailBuildingBlocks
-            canEdit={true}
-            useCaseStep={useCaseStep}
-          />
+          <DndProvider backend={HTML5Backend}>
+            <UseCaseStepDetailBuildingBlocks
+              canEdit={true}
+              useCase={useCase}
+              useCaseStep={useCaseStep}
+            />
+          </DndProvider>
         </CustomMockedProvider>
       )
       expect(container).toMatchSnapshot()
@@ -47,10 +55,13 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
     test('with open editable section', async () => {
       const { container, getByTestId } = render(
         <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-          <UseCaseStepDetailBuildingBlocks
-            canEdit={true}
-            useCaseStep={useCaseStep}
-          />
+          <DndProvider backend={HTML5Backend}>
+            <UseCaseStepDetailBuildingBlocks
+              canEdit={true}
+              useCase={useCase}
+              useCaseStep={useCaseStep}
+            />
+          </DndProvider>
         </CustomMockedProvider>
       )
       fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
@@ -62,10 +73,13 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
   test('Should remove a pill', async () => {
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-        <UseCaseStepDetailBuildingBlocks
-          canEdit={true}
-          useCaseStep={useCaseStep}
-        />
+        <DndProvider backend={HTML5Backend}>
+          <UseCaseStepDetailBuildingBlocks
+            canEdit={true}
+            useCase={useCase}
+            useCaseStep={useCaseStep}
+          />
+        </DndProvider>
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
@@ -78,10 +92,13 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
   test('Should add a pill and revert changes on "Cancel" button click', async () => {
     const { container, getByTestId, getByText } = render(
       <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-        <UseCaseStepDetailBuildingBlocks
-          canEdit={true}
-          useCaseStep={useCaseStep}
-        />
+        <DndProvider backend={HTML5Backend}>
+          <UseCaseStepDetailBuildingBlocks
+            canEdit={true}
+            useCase={useCase}
+            useCaseStep={useCaseStep}
+          />
+        </DndProvider>
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))

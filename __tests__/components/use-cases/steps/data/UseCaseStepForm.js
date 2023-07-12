@@ -32,6 +32,16 @@ export const useCaseStep = {
   ]
 }
 
+export const useCase = {
+  buildingBlocks: [
+    {
+      id: 1,
+      name: 'Test Building Block',
+      slug: 'tbb'
+    }
+  ]
+}
+
 export const createUseCaseStepSuccess = {
   data: {
     createUseCaseStep: {

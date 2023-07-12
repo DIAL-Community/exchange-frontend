@@ -53,8 +53,8 @@ export const createPlaySuccess = {
         slug: 'play',
         description: 'desc',
         tags: ['Tag1','Tag2'],
-        productsSlugs: ['product_1', 'product_2'],
-        buildingBlocksSlugs: ['bb_1', 'bb_2'],
+        productSlugs: ['product_1', 'product_2'],
+        buildingBlockSlugs: ['bb_1', 'bb_2'],
         playbookSlug: 'playbook_1'
       },
       errors: []

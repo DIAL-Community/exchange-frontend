@@ -1,16 +1,20 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
 import { Fragment, useContext, useState } from 'react'
-import { FaCode, FaCopy } from 'react-icons/fa'
+import { FaCopy, FaRegFilePdf } from 'react-icons/fa'
+import { ImEmbed } from 'react-icons/im'
 import { VscClose } from 'react-icons/vsc'
 import { useIntl } from 'react-intl'
+import { FiMove } from 'react-icons/fi'
 import { ToastContext } from '../../lib/ToastContext'
 import Breadcrumb from '../shared/breadcrumb'
+import CreateButton from '../shared/CreateButton'
 import EditButton from '../shared/EditButton'
 import CommentsCount from '../shared/CommentsCount'
 import { ObjectType } from '../../lib/constants'
 import { useUser } from '../../lib/hooks'
 import DeletePlaybook from './DeletePlaybook'
+import RearrangePlay from './RearrangePlay'
 
 const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
   const { formatMessage } = useIntl()
@@ -101,15 +105,29 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { user, isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
   const [displayEmbedDialog, setDisplayEmbedDialog] = useState(false)
 
+  const [displayDragable, setDisplayDragable] = useState(false)
+  const onDragableClose = () => {
+    setDisplayDragable(false)
+  }
+
   const generateEditLink = () => {
-    if (!user) {
+    if (!canEdit) {
       return '/edit-not-available'
     }
 
     return `/${locale}/playbooks/${playbook.slug}/edit`
+  }
+
+  const generateAddPlayLink = () => {
+    if (!canEdit) {
+      return '/add-play-not-available'
+    }
+
+    return `/${locale}/playbooks/${playbook.slug}/plays/create`
   }
 
   const generatePdfLink = () => {
@@ -132,29 +150,51 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
         <div className='hidden lg:block'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        <div className='ml-auto flex items-center gap-3'>
-          <CommentsCount
-            commentsSectionRef={commentsSectionRef}
-            objectId={playbook.id}
-            objectType={ObjectType.PLAYBOOK}
-          />
-          <a
-            href={generatePdfLink()}
-            target='_blank'
-            rel='noreferrer'
-            className='bg-dial-blue px-2 py-0.5 rounded text-white'
-          >
-            <img src='/icons/pdf.svg' className='inline mr-2 pb-1' alt='Print PDF' height='12px' width='12px' />
-            <span className='text-sm px-2'>{format('app.print-pdf')}</span>
-          </a>
-          {allowEmbedCreation &&
-            <a onClick={openEmbedDialog} className='cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white'>
-              <FaCode className='inline' />
-              <span className='text-sm px-2'>{format('playbook.openEmbedDialog')}</span>
+        <div className='flex flex-col gap-3 ml-auto mt-3'>
+          <div className='ml-auto flex items-center gap-2'>
+            <CommentsCount
+              commentsSectionRef={commentsSectionRef}
+              objectId={playbook.id}
+              objectType={ObjectType.PLAYBOOK}
+            />
+            <a
+              href={generatePdfLink()}
+              target='_blank'
+              rel='noreferrer'
+              className='bg-dial-iris-blue px-2 py-0.5 rounded text-white'
+            >
+              <FaRegFilePdf className='inline pb-px' />
+              <span className='text-sm px-1'>{format('app.print-pdf')}</span>
             </a>
-          }
-          {isAdminUser && <EditButton type='link' href={generateEditLink()} />}
-          {isAdminUser && <DeletePlaybook playbook={playbook} />}
+            {allowEmbedCreation &&
+              <a onClick={openEmbedDialog} className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'>
+                <ImEmbed className='inline pb-px' />
+                <span className='text-sm px-1'>{format('playbook.openEmbedDialog')}</span>
+              </a>
+            }
+          </div>
+          <div className='ml-auto flex items-center gap-2'>
+            {canEdit && <CreateButton label={format('play.add')} type='link' href={generateAddPlayLink()} />}
+            {canEdit &&
+              <button
+                type='button'
+                onClick={() => setDisplayDragable(!displayDragable)}
+                className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
+              >
+                <FiMove className='inline pb-0.5' />
+                <span className='text-sm px-1'>
+                  {format('play.rearrange')}
+                </span>
+              </button>
+            }
+            {canEdit && <EditButton type='link' href={generateEditLink()} />}
+            {isAdminUser && <DeletePlaybook playbook={playbook} />}
+          </div>
+          <RearrangePlay
+            playbook={playbook}
+            displayDragable={displayDragable}
+            onDragableClose={onDragableClose}
+          />
         </div>
       </div>
     </>

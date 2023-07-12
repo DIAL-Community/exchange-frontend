@@ -24,7 +24,7 @@ const CreateCategoryIndicator = () => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (data?.rubricCategory) {
+  } else if (!data?.rubricCategory) {
     return <NotFound />
   }
 

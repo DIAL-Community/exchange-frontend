@@ -12,11 +12,15 @@ const UseCaseFilter = () => {
 
   const [openingDetail, setOpeningDetail] = useState(false)
 
-  const { sdgs, showBeta } = useContext(UseCaseFilterContext)
-  const { setSDGs, setShowBeta } = useContext(UseCaseFilterDispatchContext)
+  const { sdgs, showBeta, govStackOnly } = useContext(UseCaseFilterContext)
+  const { setSDGs, setShowBeta, setShowGovStack } = useContext(UseCaseFilterDispatchContext)
 
   const toggleShowBeta = () => {
     setShowBeta(!showBeta)
+  }
+
+  const toggleShowGovStack = () => {
+    setShowGovStack(!govStackOnly)
   }
 
   const toggleHintDetail = () => {
@@ -39,7 +43,7 @@ const UseCaseFilter = () => {
                 alt='Informational hint'
               />
             </div>
-            <span className='py-1 border-b-2 border-transparent hover:border-dial-yellow'>
+            <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
               {format('filter.hint.text')} {format('useCase.label')}
             </span>
           </a>
@@ -64,8 +68,16 @@ const UseCaseFilter = () => {
         <div className='px-6'>
           <label className='inline'>
             <Checkbox onChange={toggleShowBeta} value={showBeta} />
-            <span className='mx-2 my-auto'>
+            <span className='mx-2 my-auto text-sm'>
               {format('filter.useCase.showDraft')}
+            </span>
+          </label>
+        </div>
+        <div className='px-6'>
+          <label className='inline'>
+            <Checkbox onChange={toggleShowGovStack} value={govStackOnly} />
+            <span className='mx-2 my-auto text-sm'>
+              {format('filter.useCase.govStackOnly')}
             </span>
           </label>
         </div>

@@ -33,7 +33,7 @@ const MapFilter = () => {
 
   const routeDecoration = (expectedText) => {
     if (routeContains(expectedText)) {
-      return 'border-4 border-dial-yellow'
+      return 'border-4 border-dial-sunshine'
     }
 
     return ''

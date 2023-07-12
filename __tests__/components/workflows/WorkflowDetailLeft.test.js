@@ -1,18 +1,23 @@
 import { render } from '../../test-utils'
-import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import WorkflowDetailLeft from '../../../components/workflows/WorkflowDetailLeft'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
+import { COMMENTS_COUNT_QUERY } from '../../../queries/comment'
 import { workflow } from './data/WorkflowForm'
 
 mockNextUseRouter()
 describe('Unit test for the WorkflowDetailLeft component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-link'
 
+  const commentVars = { commentObjectId: 1, commentObjectType:'WORKFLOW' }
+  const commentData = { 'data': { 'countComments': 0 } }
+  const mockComment = generateMockApolloData(COMMENTS_COUNT_QUERY, commentVars, null, commentData)
+
   test('Should Edit button not be visible for user without admin or edit privileges', () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
 
     const { queryByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockComment]}>
         <WorkflowDetailLeft workflow={workflow} />
       </CustomMockedProvider>
     )
@@ -21,10 +26,10 @@ describe('Unit test for the WorkflowDetailLeft component.', () => {
   })
 
   test('Should Edit button be visible for user with admin or edit privileges', () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
 
     const { getByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockComment]}>
         <WorkflowDetailLeft workflow={workflow} />
       </CustomMockedProvider>
     )
@@ -33,10 +38,10 @@ describe('Unit test for the WorkflowDetailLeft component.', () => {
   })
 
   test('Should redirect to workflow edit form', () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
 
     const { getByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockComment]}>
         <WorkflowDetailLeft workflow={workflow} />
       </CustomMockedProvider>
     )

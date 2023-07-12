@@ -14,11 +14,11 @@ import OrganizationCard from './OrganizationCard'
 const DEFAULT_PAGE_SIZE = 20
 /* Minimum width per product card. This will decide how many column we have in the page. */
 /* The value is based on the minimum required to render Bahmni card. */
-const MIN_ORGANIZATION_CARD_WIDTH = 380
+const MIN_ORGANIZATION_CARD_WIDTH = 280
 /* Default height of the product card. */
-const MIN_ORGANIZATION_CARD_HEIGHT = 420
+const MIN_ORGANIZATION_CARD_HEIGHT = 310
 /* Default spacing between product card in a row. This is 0.5 rem. */
-const ORGANIZATION_CARD_GUTTER_SIZE = 8
+const ORGANIZATION_CARD_GUTTER_SIZE = 16
 /* Height of the product's single list element when viewing the list view. */
 const MIN_ORGANIZATION_LIST_SIZE = 80
 
@@ -70,7 +70,7 @@ query SearchOrganizations(
 `
 
 const OrganizationListQuery = () => {
-  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { displayType, setResultCounts } = useContext(FilterContext)
   const { aggregator, endorser, endorserLevel, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
@@ -142,15 +142,12 @@ const OrganizationListQuery = () => {
       {
         displayType === 'list' &&
         <div className='flex flex-row my-3 px-4 gap-x-4'>
-          <div className='w-4/12 text-sm font-semibold opacity-70'>
+          <div className='text-sm font-semibold opacity-70'>
             {format('organization.header').toUpperCase()}
-          </div>
-          <div className='hidden lg:block w-4/12 text-sm font-semibold opacity-50'>
-            {format('sector.header').toUpperCase()}
           </div>
         </div>
       }
-      <div style={{ height: 'calc(100vh + 600px)' }}>
+      <div className={`${displayType === 'card' && '-mr-4'}`} style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -203,15 +200,13 @@ const OrganizationListQuery = () => {
                               <div
                                 style={{
                                   ...style,
-                                  left: style.left,
-                                  top: style.top + ORGANIZATION_CARD_GUTTER_SIZE,
-                                  width: style.width,
+                                  width: style.width - ORGANIZATION_CARD_GUTTER_SIZE,
                                   height: style.height - ORGANIZATION_CARD_GUTTER_SIZE
                                 }}
                               >
                                 {
                                   currentIndex < nodes.length && organization &&
-                                    <OrganizationCard listType={displayType} {...{ organization, filterDisplayed }} />
+                                    <OrganizationCard listType={displayType} {...{ organization }} />
                                 }
                                 {currentIndex < nodes.length && !organization && <Loading />}
                               </div>
@@ -250,7 +245,7 @@ const OrganizationListQuery = () => {
                               <div style={style}>
                                 {
                                   index < nodes.length && organization &&
-                                    <OrganizationCard listType={displayType} {...{ organization, filterDisplayed }} />
+                                    <OrganizationCard listType={displayType} {...{ organization }} />
                                 }
                                 {index < nodes.length && !organization && <Loading />}
                               </div>

@@ -6,8 +6,8 @@ const PoweredBy = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <a href='https://solutions.dial.community' target='_blank' rel='noreferrer'>
-      <span className='text-dial-yellow h5 pt-5'>{format('app.powered')}</span>
+    <a href='https://exchange.dial.global' target='_blank' rel='noreferrer'>
+      <span className='text-dial-sunshine h5 pt-5'>{format('app.powered')}</span>
     </a>
   )
 }

@@ -95,7 +95,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
         variables: {
           slug: buildingBlock.slug,
           mappingStatus: mappingStatus.value,
-          productsSlugs: products.map(({ slug }) => slug)
+          productSlugs: products.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -131,7 +131,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('product.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2'>

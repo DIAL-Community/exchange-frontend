@@ -15,7 +15,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -43,7 +43,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Dataset
             </div>
@@ -92,7 +92,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -176,7 +176,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
@@ -466,7 +466,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -494,7 +494,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Dataset
             </div>
@@ -543,7 +543,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -637,7 +637,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-16oyauc-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
                         class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"

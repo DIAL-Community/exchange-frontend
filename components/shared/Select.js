@@ -54,15 +54,13 @@ const Select = React.forwardRef(({
       boxShadow: 'none',
       cursor: 'pointer',
       borderRadius: '0.375rem',
-      border: 0,
-      fontSize: '1.125rem'
+      border: 0
     }),
     option: (provided, { isFocused, isSelected }) => ({
       ...provided,
       cursor: 'pointer',
       backgroundColor: isSelected ? '#3F9EDD' : isFocused && '#b2daf5',
-      color: isSelected ? 'white' : '#46465a',
-      fontSize: '1.125rem'
+      color: isSelected ? 'white' : '#46465a'
     }),
     menuPortal: (provided) => ({
       ...provided,

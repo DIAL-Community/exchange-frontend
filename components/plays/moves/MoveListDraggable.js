@@ -1,22 +1,12 @@
 import { useRef, useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
 import { useDrag, useDrop } from 'react-dnd'
 import update from 'immutability-helper'
-import parse from 'html-react-parser'
-import { UPDATE_MOVE_ORDER } from '../../../mutations/move'
-import { MovePreviewDispatchContext } from './MovePreviewContext'
+import { FiMove } from 'react-icons/fi'
 import { MoveListContext, MoveListDispatchContext } from './MoveListContext'
 
-const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
+const DraggableCard = ({ id, move, index, swapMove }) => {
   const ref = useRef(null)
-
-  const openPreviewMove = (move) => {
-    previewMove(move)
-  }
 
   const [{ handlerId }, drop] = useDrop({
     accept: 'move',
@@ -81,45 +71,21 @@ const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove })
   drag(drop(ref))
 
   const dndBorderStyles = `
-    bg-white cursor-move card-drop-shadow overflow-hidden
-    border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
+    bg-white cursor-move shadow-md
+    border border-transparent hover:border-dial-sapphire border-opacity-80
   `
 
   return (
-    <div style={{ opacity }} data-handler-id={handlerId} className='inline overflow-hidden'>
-      <div className='flex flex-row gap-3'>
-        <div className='py-4 font-semibold text-lg'>{index + 1})</div>
+    <div style={{ opacity }} data-handler-id={handlerId}>
+      <div className='flex gap-3'>
+        <div className='py-4 font-semibold w-4'>{index + 1})</div>
         <div ref={preview} className='w-full'>
-          <div ref={ref} className={`${dndBorderStyles} flex flex-row gap-3 px-3 py-4 h-16 w-full`}>
-            <div className='w-3/12 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
+          <div ref={ref} className={`${dndBorderStyles} flex flex-nowrap gap-3 px-3 py-4 h-16`}>
+            <div className='font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
               {move.name}
             </div>
-            {
-              // Manual alignment for the description because can't do my-auto to center the text.
-              // The original text is large and we're using play-list-description to force it to become 1 line.
-            }
-            <div className='w-6/12 fr-view line-clamp-1 my-1'>
-              {move.moveDescription && parse(move.moveDescription.description)}
-            </div>
-            <div className='w-3/12 my-auto flex gap-2 text-sm'>
-              <button
-                type='button'
-                className='ml-auto bg-dial-orange-light text-dial-purple py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => openPreviewMove(move)}
-              >
-                {format('move.preview')}
-              </button>
-              <button
-                type='button'
-                className='bg-dial-purple-light text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => unassignMove(move)}
-              >
-                {format('move.unassign')}
-              </button>
-              <img
-                alt={format('image.alt.logoFor', { name: format('move.reOrder') })}
-                className='h-6 my-auto' src='/icons/move/move.png'
-              />
+            <div className='my-auto ml-auto'>
+              <FiMove />
             </div>
           </div>
         </div>
@@ -128,63 +94,23 @@ const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove })
   )
 }
 
-const MoveListDraggable = ({ playbook, play }) => {
+const MoveListDraggable = ({ play }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { currentMoves } = useContext(MoveListContext)
-  const { setCurrentMoves } = useContext(MoveListDispatchContext)
-  const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(MovePreviewDispatchContext)
-
-  const [updateMoveOrder] = useMutation(UPDATE_MOVE_ORDER)
-
-  const unassignMove = useCallback((move) => {
-    // Mark move as un-assigned. This will trigger deletion from the context component.
-    setCurrentMoves(currentMoves.filter(
-      currentMove => currentMove.slug !== move.slug)
-    )
-    if (move) {
-      updateMoveOrder({
-        variables: {
-          playSlug: play.slug,
-          moveSlug: move.slug,
-          operation: 'UNASSIGN',
-          distance: 0
-        }
-      })
-    }
-  }, [currentMoves, setCurrentMoves, play, updateMoveOrder])
-
-  const previewMove = useCallback((move) => {
-    setPreviewDisplayed(true)
-    setPreviewSlug(move.slug)
-    setPreviewContext([playbook.slug, play.slug])
-  }, [play, playbook, setPreviewContext, setPreviewSlug, setPreviewDisplayed])
+  const { setCurrentMoves, setDirty } = useContext(MoveListDispatchContext)
 
   const swapMove = useCallback((dragIndex, hoverIndex) => {
-    setCurrentMoves((prevCards) => update(prevCards, {
-      $splice: [
-        [dragIndex, 1],
-        [hoverIndex, 0, prevCards[dragIndex]]
-      ]
+    setDirty(true)
+    setCurrentMoves((currentMoves) => update(currentMoves, {
+      $splice: [[dragIndex, 1], [hoverIndex, 0, currentMoves[dragIndex]]]
     }))
-    if (play && dragIndex >= 0 && hoverIndex >= 0) {
-      updateMoveOrder({
-        variables: {
-          playSlug: play.slug,
-          moveSlug: currentMoves[dragIndex].slug,
-          operation: 'SWAP',
-          distance: hoverIndex - dragIndex
-        }
-      })
-    }
-  }, [currentMoves, setCurrentMoves, play, updateMoveOrder])
+  }, [setCurrentMoves, setDirty])
 
   const renderCard = useCallback((move, index) => (
-    <div key={index}>
-      <DraggableCard id={move.id} {...{ index, move, swapMove, unassignMove, previewMove }} />
-    </div>
-  ), [swapMove, previewMove, unassignMove])
+    <DraggableCard key={index} id={move.id} {...{ index, move, swapMove }} />
+  ), [swapMove])
 
   useEffect(() => {
     if (play) {
@@ -192,17 +118,19 @@ const MoveListDraggable = ({ playbook, play }) => {
     }
   }, [play, setCurrentMoves])
 
+  const displayNoData = () =>
+    <div className='text-sm font-medium opacity-80'>
+      {format('noResults.entity', { entity: format('move.label').toString().toLowerCase() })}
+    </div>
+
+  const displayRearrangeMoves = () =>
+    <div className='flex flex-col gap-2'>
+      {currentMoves.map((move, index) => renderCard(move, index))}
+    </div>
+
   return (
     <div className='flex flex-col gap-2 text-dial-purple-light'>
-      {
-        currentMoves.length > 0
-          ? currentMoves.map((move, index) => renderCard(move, index))
-          : (
-            <div className='text-sm font-medium opacity-80'>
-              {format('noResults.entity', { entity: format('move.label').toString().toLowerCase() })}
-            </div>
-          )
-      }
+      {currentMoves.length > 0 ? displayRearrangeMoves() : displayNoData()}
     </div>
   )
 }

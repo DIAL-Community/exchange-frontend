@@ -40,7 +40,7 @@ const MobileNav = ({ activeTab }) => {
         ref={tabPopoverButton} onClick={toggleTabs}
       >
         <div className='w-full'>
-          <div className='whitespace-nowrap bg-dial-yellow flex'>
+          <div className='whitespace-nowrap bg-dial-sunshine flex'>
             <div className='font-semibold text-xl px-3 py-4 text-dial-gray-dark'>
               {format(activeTab)}
               <div className='inline mx-4 py-2 px-2 rounded text-sm text-dial-gray-dark bg-white'>
@@ -75,15 +75,14 @@ const MobileNav = ({ activeTab }) => {
                       key={`menu-${filterItem}`}
                       className='mx-2 whitespace-nowrap overflow-hidden'
                     >
-                      <Link href={`/${href}`}>
-                        <a
-                          className='block px-3 py-1 bg-dial-gray rounded'
-                          data-toggle='tab' href={`/${href}`}
-                        >
-                          <div className='font-semibold my-2 mx-1 text-dial-gray-dark'>
-                            {format(filterItem)}
-                          </div>
-                        </a>
+                      <Link
+                        href={`/${href}`}
+                        className='block px-3 py-1 bg-dial-gray rounded'
+                        data-toggle='tab'
+                      >
+                        <div className='font-semibold my-2 mx-1 text-dial-gray-dark'>
+                          {format(filterItem)}
+                        </div>
                       </Link>
                     </li>
                   )

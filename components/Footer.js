@@ -37,7 +37,7 @@ const Footer = () => {
             <div>
               <a
                 href='//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
-                className='py-2 px-5 rounded-md bg-dial-yellow font-semibold'
+                className='py-2 px-5 rounded-md bg-dial-sunshine font-semibold'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -98,7 +98,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className='w-36 h-20 bg-white rounded-md flex'>
-                <div className='self-center px-12 mt-3'>
+                <div className='self-center px-12'>
                   <a
                     href='//www.gov.uk/government/organisations/foreign-commonwealth-development-office'
                     target='_blank' rel='noreferrer'
@@ -143,7 +143,7 @@ const Footer = () => {
                   href='/privacy-policy'
                   target='_blank'
                   rel='noreferrer'
-                  className='border-b-2 border-transparent group-hover:border-dial-yellow'
+                  className='border-b-2 border-transparent group-hover:border-dial-sunshine'
                 >
                   {format('footer.privacyPolicy')}
                 </a>
@@ -152,7 +152,7 @@ const Footer = () => {
               <div className='group rounded-md hover:cursor-pointer'>
                 <a
                   onClick={(e) => { e.preventDefault(); showFeedbackForm('footer.contactUs') }}
-                  className='border-b-2 border-transparent group-hover:border-dial-yellow'
+                  className='border-b-2 border-transparent group-hover:border-dial-sunshine'
                 >
                   {format('footer.contactUs')}
                 </a>

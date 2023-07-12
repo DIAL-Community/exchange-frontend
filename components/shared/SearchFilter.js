@@ -58,7 +58,7 @@ const SearchFilter = ({
 
   const generateCreateLink = () => {
     const withCandidatePaths = ['products', 'organizations', 'datasets']
-    if (!user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
+    if (!user.isAdminUser && withCandidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
     }
 
@@ -66,19 +66,42 @@ const SearchFilter = ({
       return 'projects/create'
     }
 
-    if (user.canEdit && linkPath.includes('candidate')) {
+    if (user.isAdminUser && linkPath.includes('candidate')) {
       return `/candidate/${linkPath[1]}/create`
     }
 
-    if (user.canEdit && linkPath.includes('users')) {
+    if (user.isAdminUser && linkPath.includes('users')) {
       return '/users/create'
     }
 
-    const reactEditPaths = [
-      'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
-      'countries', 'rubric_categories'
+    const editorEditPaths = [
+      'building_blocks',
+      'use_cases',
+      'playbooks',
+      'workflows',
+      'resources'
     ]
-    if (user.canEdit && reactEditPaths.some(el => linkPath.includes(el))) {
+    if (user.isEditorUser && editorEditPaths.some(el => linkPath.includes(el))) {
+      // These create functions are in React, not Rails
+      return `/${linkPath[0]}/create`
+    }
+
+    const adminEditPaths = [
+      'playbooks',
+      'plays',
+      'organizations',
+      'products',
+      'datasets',
+      'use_cases',
+      'building_blocks',
+      'workflows',
+      'countries',
+      'rubric_categories',
+      'opportunities',
+      'resources',
+      'storefronts'
+    ]
+    if (user.isAdminUser && adminEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`
     }
@@ -217,7 +240,7 @@ const SearchFilter = ({
           <div className='h1 my-auto'>{format(hint)}</div>
           <span
             data-testid='list-counter'
-            className='px-2 py-1.5 rounded text-dial-gray-dark bg-dial-yellow'
+            className='px-2 py-1.5 rounded text-dial-gray-dark bg-dial-sunshine'
           >
             {resultCounts[hint]}
           </span>
@@ -244,7 +267,7 @@ const SearchFilter = ({
         {user && (
           <div className='flex flex-wrap gap-2 text-xs text-dial-stratos'>
             {createNew &&
-              <a className='bg-dial-blue px-2 py-1 rounded-md text-white'
+              <a className='bg-dial-iris-blue px-2 py-1 rounded-md text-white'
                 data-testid='create-new'
                 href={generateCreateLink()}
                 onClick={(event) => {
@@ -259,7 +282,7 @@ const SearchFilter = ({
             }
             {exportJson && (
               <a
-                className='bg-dial-yellow px-2 py-1 rounded-md'
+                className='bg-dial-sunshine px-2 py-1 rounded-md'
                 href='/export-as-json'
                 onClick={(e) => exportAsJson(e)}
               >
@@ -268,7 +291,7 @@ const SearchFilter = ({
             )}
             {exportCsv && (
               <a
-                className='bg-dial-yellow px-2 py-1 rounded-md'
+                className='bg-dial-sunshine px-2 py-1 rounded-md'
                 href='/export-as-csv'
                 onClick={(e) => exportAsCsv(e)}
               >

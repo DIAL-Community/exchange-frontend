@@ -37,7 +37,7 @@ const DatasetList = ({ datasetList, displayType, filterDisplayed }) => {
               <DatasetCard key={dataset.id} listType={displayType} {...{ filterDisplayed, dataset }} />
             ))
             : (
-              <div className='flex justify-self-center text-dial-gray-dark'>{
+              <div className='text-dial-gray-dark'>{
                 format('noResults.entity', { entity: format('datasets.label') })
               }
               </div>

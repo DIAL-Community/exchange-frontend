@@ -7,6 +7,7 @@ export const USE_CASE_QUERY = gql`
       name
       slug
       maturity
+      markdownUrl
       sector {
         slug
         name
@@ -31,10 +32,11 @@ export const USE_CASE_DETAIL_QUERY = gql`
         id
       }
       maturity
+      imageFile
+      markdownUrl
       useCaseDescription {
         description
       }
-      imageFile
       useCaseDescription {
         description
         locale
@@ -43,9 +45,7 @@ export const USE_CASE_DETAIL_QUERY = gql`
         id
         name
         targetNumber
-        sustainableDevelopmentGoal {
-          slug
-        }
+        sdgNumber
       }
       workflows {
         name
@@ -56,6 +56,7 @@ export const USE_CASE_DETAIL_QUERY = gql`
         name
         slug
         maturity
+        category
         imageFile
       }
       useCaseHeaders {
@@ -82,6 +83,7 @@ export const USE_CASES_QUERY = gql`
     $after: String,
     $sdgs: [String!],
     $showBeta: Boolean,
+    $govStackOnly: Boolean,
     $search: String!
   ) {
     searchUseCases(
@@ -89,6 +91,7 @@ export const USE_CASES_QUERY = gql`
       after: $after,
       sdgs: $sdgs,
       showBeta: $showBeta,
+      govStackOnly: $govStackOnly,
       search: $search
     ) {
       totalCount
@@ -104,6 +107,7 @@ export const USE_CASES_QUERY = gql`
         slug
         imageFile
         maturity
+        markdownUrl
         sdgTargets {
           id
           name
