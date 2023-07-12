@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import Link from 'next/link'
 
-const Header = () => {
+const GovStackHeader = () => {
   return (
     <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
       <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto'>
@@ -32,4 +32,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default GovStackHeader

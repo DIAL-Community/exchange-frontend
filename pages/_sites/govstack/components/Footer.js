@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 
 const Consent = dynamic(() => import('../../../../components/Consent'), { ssr: false })
 
-const Footer = () => {
+const GovStackFooter = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -60,4 +60,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default GovStackFooter

@@ -2,11 +2,9 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
-import Header from './components/Header'
+import GovStackHeader from './components/Header'
 import Landing from './components/Landing'
-import Footer from './components/Footer'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+import GovStackFooter from './components/Footer'
 
 const HomePage = () => {
   const { formatMessage } = useIntl()
@@ -18,9 +16,8 @@ const HomePage = () => {
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Header />
+      <GovStackHeader />
       <Landing />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <div className='p-24'>
         <div className='inline-block p-8 bg-blue-900 text-3xl text-bold text-white'>Context and Challenge</div>
         <div className='w-full py-4 pl-16 flex'>
@@ -32,7 +29,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <GovStackFooter />
     </>
   )
 }
