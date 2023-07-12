@@ -7,7 +7,6 @@ import { useQuery } from '@apollo/client'
 import { useUser } from '../lib/hooks'
 import { ToastContext } from '../lib/ToastContext'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../queries/user'
-import { OVERVIEW_INTRO_KEY } from './Intro'
 import MobileMenu from './MobileMenu'
 import AdminMenu from './shared/menu/AdminMenu'
 import UserMenu from './shared/menu/UserMenu'
@@ -28,7 +27,6 @@ const Header = ({ isOnAuthPage = false }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const router = useRouter()
   const { user, isAdminUser } = useUser()
   const signInUser = (e) => {
     e.preventDefault()
