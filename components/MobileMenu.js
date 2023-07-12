@@ -139,18 +139,13 @@ const InternalLink = ({ menuExpanded, setMenuExpanded, link, label }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const router = useRouter()
-
-  const closeMenu = (e, link) => {
-    e.preventDefault()
-
+  const closeMenu = () => {
     setMenuExpanded(!menuExpanded)
-    router.push(link)
   }
 
   return (
     <li className='py-3'>
-      <Link className='mx-8' onClick={(e) => closeMenu(e, link)}>
+      <Link href={link} className='mx-8' onClick={closeMenu}>
         {format(label)}
       </Link>
     </li>
