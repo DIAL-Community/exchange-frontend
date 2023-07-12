@@ -84,8 +84,7 @@ const subMenus = {
       },
       {
         label: 'storefront.header',
-        link: '/storefronts',
-        external: true
+        link: '/storefronts'
       }
     ]
   },
@@ -274,7 +273,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
     <>
       {
         !parent &&
-          <ul className='block xl:hidden mt-6 text-sm text-dial-white-beech' style={{ minHeight: user ? '405px' : '370px' }}>
+          <ul className='block lg:hidden mt-6 text-sm text-dial-white-beech' style={{ minHeight: user ? '405px' : '370px' }}>
             <li className='py-4 border-b'>
               <a
                 className='mx-6 font-semibold' href='/expand-marketplace'
