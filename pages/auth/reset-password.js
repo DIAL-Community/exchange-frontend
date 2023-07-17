@@ -56,7 +56,7 @@ const ResetPassword = () => {
     <>
       <Header isOnAuthPage />
       <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
-      <div className='bg-dial-gray-dark pt-28 simple-form-height'>
+      <div className='bg-dial-gray-dark pt-28 max-w-catalog mx-auto min-h-[70vh]'>
         <div className='pt-4 text-dial-sapphire'>
           <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
             <form method='post' onSubmit={handleSubmit}>

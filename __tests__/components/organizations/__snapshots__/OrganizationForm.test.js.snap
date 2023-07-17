@@ -130,7 +130,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website"
                       value=""
@@ -586,7 +586,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       https://
                     </span>
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website"
                       value="testorganization.com"

@@ -35,7 +35,7 @@ export default function SignIn ({ csrfToken }) {
   return (
     <>
       <Header isOnAuthPage />
-      <div className='bg-dial-gray-dark pt-40 pb-40 text-dial-sapphire'>
+      <div className='bg-dial-gray-dark pt-40 pb-40 text-dial-sapphire max-w-catalog mx-auto min-h-[70vh]'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <form
             ref={formEl}

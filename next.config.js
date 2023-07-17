@@ -1,4 +1,3 @@
-const withTranspileModules = require('next-transpile-modules')(['react-comments-section'])
 const removeImports = require('next-remove-imports')()
 
 const AnyContentSecurityPolicy = `
@@ -9,7 +8,7 @@ const SelfContentSecurityPolicy = `
   frame-ancestors 'self';
 `
 
-module.exports = removeImports(withTranspileModules({
+module.exports = removeImports({
   i18n: {
     locales: ['en', 'fr', 'de', 'cs', 'es', 'pt', 'sw'],
     defaultLocale: 'en',
@@ -46,4 +45,4 @@ module.exports = removeImports(withTranspileModules({
       }
     ]
   }
-}))
+})

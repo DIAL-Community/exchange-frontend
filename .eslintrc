@@ -1,13 +1,25 @@
 {
+  "root": true,
   "plugins": [
     "jest",
     "cypress"
   ],
   "extends": [
     "eslint:recommended",
-    "next",
+    "next/core-web-vitals",
     "plugin:jest/recommended",
     "plugin:cypress/recommended"
+  ],
+  "overrides": [
+    {
+      // Adapt to your needs (e.g. some might want to only override "next.config.js")
+      "files": ["*.js"],
+      // This is the default parser of ESLint
+      "parser": "espree",
+      "parserOptions": {
+        "ecmaVersion": 2020
+      }
+    }
   ],
   "ignorePatterns": [
     "build/",

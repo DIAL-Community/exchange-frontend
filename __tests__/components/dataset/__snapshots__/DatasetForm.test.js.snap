@@ -126,7 +126,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Data URL"
                       value=""
@@ -147,7 +147,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="visualizationUrl"
                       placeholder="Dataset Visualization URL"
                       value=""
@@ -582,7 +582,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       https://
                     </span>
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Data URL"
                       value="www.testdataset.org"
@@ -608,7 +608,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       https://
                     </span>
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="visualizationUrl"
                       placeholder="Dataset Visualization URL"
                       value="www.visualization.testdataset.org"

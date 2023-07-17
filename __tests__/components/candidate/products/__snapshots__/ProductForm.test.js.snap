@@ -94,7 +94,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website of the candidate product."
                       value=""
@@ -115,7 +115,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="repository"
                       placeholder="Code repository of the candidate product"
                       value=""
