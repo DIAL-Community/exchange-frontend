@@ -1,4 +1,4 @@
-image: node:lts-gallium
+image: node:lts-hydrogen
 
 stages:
   - lint
