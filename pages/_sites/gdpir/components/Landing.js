@@ -4,9 +4,9 @@ const Landing = () => {
   return (
     <div className='relative overflow-hidden landing-with-menu'>
       <div className='m-6 text-xl text-dial-gray-dark'>
-        Mapping deployments of digital technologies in Sierra Leone and West Africa
+        Tracking the Development and Use of Digital Public Infrastructure around the world
       </div>
-      <ProjectMap initialCountry='Sierra Leone' center={[8,-10]} zoom={6} />
+      <ProjectMap />
     </div>
   )
 }

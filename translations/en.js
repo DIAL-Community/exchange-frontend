@@ -1702,6 +1702,7 @@ export const en = {
   'certification.header': 'Certifications',
 
   'header.marketplace': 'Marketplace',
+  'header.countries': 'Countries',
 
   'storefront.no-specialty': "Organization storefront's doesn't have specialty information.",
   'storefront.no-resource': "Organization storefront's doesn't have resource information.",

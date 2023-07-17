@@ -1,3 +1,4 @@
+'use client'
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
@@ -41,7 +42,6 @@ export const SDGAutocomplete = ({
         aria-label={format('filter.byEntity', { entity: format('sdg.shortLabel') })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
-        defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, SDG_SEARCH_QUERY, fetchedSdgsCallback)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg.shortHeader') })}
         onChange={selectSDG}
