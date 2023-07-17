@@ -3,17 +3,18 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa'
 import WorkflowCard from '../workflow/WorkflowCard'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType, ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import BuildingBlockCard from '../building-block/BuildingBlockCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CreateButton from '../shared/form/CreateButton'
+import CommentsSection from '../shared/comment/CommentsSection'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './fragments/UseCaseDetailTags'
 import DeleteUseCase from './DeleteUseCase'
 
-const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
+const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -154,6 +155,11 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
       <div className='flex flex-col gap-y-3'>
         <UseCaseDetailTags useCase={useCase} canEdit={canEdit} headerRef={tagRef} />
       </div>
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={useCase.id}
+        objectType={ObjectType.USE_CASE}
+      />
     </div>
   )
 })

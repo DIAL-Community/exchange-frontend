@@ -28,4 +28,16 @@ export const LicenseTypeFilter = {
   OPEN_SOURCE:'oss_only'
 }
 
+export const ObjectType = {
+  PRODUCT: 'PRODUCT',
+  PROJECT: 'PROJECT',
+  ORGANIZATION: 'ORGANIZATION',
+  OPEN_DATA: 'OPEN_DATA',
+  USE_CASE: 'USE_CASE',
+  BUILDING_BLOCK: 'BUILDING_BLOCK',
+  PLAYBOOK: 'PLAYBOOK',
+  DATASET: 'DATASET',
+  OPPORTUNITY: 'OPPORTUNITY'
+}
+
 export const DEFAULT_PAGE_SIZE = 8

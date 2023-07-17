@@ -13,8 +13,8 @@ export const Loading = () => {
           <FaSpinner size='3em' className='spinner mx-auto' />
           <div className='text-center mt-5'>{format('general.fetchingData')}</div>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   )
 }
 
@@ -29,8 +29,8 @@ export const Error = () => {
           <FaExclamationCircle size='3em' className='mx-auto' />
           <div className='text-center mt-5'>{format('general.fetchError')}</div>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   )
 }
 
