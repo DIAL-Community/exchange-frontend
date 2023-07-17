@@ -125,21 +125,19 @@ const Play = ({ playbookSlug, play, index }) => {
         </div>
         {
           play.playMoves.map((move, i) =>
-            <>
+            <div key={i}>
               <PlayPreviewMove
-                key={`move-${i}`}
                 playSlug={play.slug}
                 moveSlug={move.slug}
                 moveName={move.name}
                 playbookSlug={playbookSlug}
               />
               <RearrangeMoves
-                key={`rearrange-${i}`}
                 play={play}
                 displayDragable={displayDragable}
                 onDragableClose={onDragableClose}
               />
-            </>
+            </div>
           )
         }
       </div>

@@ -87,9 +87,8 @@ const PlayDetail = ({ playbook, play }) => {
             }
           </div>
           {play.playMoves.map((move, i) =>
-            <>
+            <div key={i}>
               <PlayPreviewMove
-                key={i}
                 playSlug={play.slug}
                 moveSlug={move.slug}
                 moveName={move.name}
@@ -100,7 +99,7 @@ const PlayDetail = ({ playbook, play }) => {
                 displayDragable={displayDragable}
                 setDisplayDragable={setDisplayDragable}
               />
-            </>
+            </div>
           )}
         </div>
         {play.buildingBlocks && play.buildingBlocks.length > 0 &&
