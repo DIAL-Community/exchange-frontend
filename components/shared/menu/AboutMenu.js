@@ -28,7 +28,7 @@ const AboutMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             </Link>
             <a
               className={DEFAULT_DROPDOWN_MENU_STYLES}
-              href='//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview'
+              href='//digital-impact-exchange.atlassian.net/wiki/spaces/SOLUTIONS/overview'
               target='_blank'
               rel='noreferrer'
               role='menuitem'

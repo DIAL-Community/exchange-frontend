@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import classNames from 'classnames'
+import Image from 'next/image'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -130,17 +131,18 @@ const Header = ({ isOnAuthPage = false }) => {
 
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
-      <div className='flex flex-wrap header-min-height px-8 xl:px-16'>
-        <Link href='/' className='flex py-5'>
-          <img
-            className='object-center object-contain'
+      <div className='flex flex-wrap header-min-height px-3 xl:px-16'>
+        <Link href='/' className='flex py-6 image-block-hack'>
+          <Image
+            width={154}
+            height={44}
             src='/assets/exchange/exchange-logo.png'
             alt='Digital Impact Exchage Logo.'
           />
         </Link>
-        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
+        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block lg:hidden'>
           <svg
-            className='fill-current text-gray-900'
+            className='fill-current text-white'
             xmlns='http://www.w3.org/2000/svg'
             width='16'
             height='16'
@@ -151,10 +153,10 @@ const Header = ({ isOnAuthPage = false }) => {
           </svg>
         </label>
         <input className='hidden' type='checkbox' id='menu-toggle' checked={menuExpanded} onChange={toggleMenu} />
-        <div className='hidden xl:flex xl:items-center xl:w-auto w-full ml-auto mx-2' id='menu'>
+        <div className='hidden lg:flex lg:items-center lg:w-auto w-full ml-auto xl:mr-2' id='menu'>
           <nav>
             <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
-            <ul className='hidden xl:flex items-center text-dial-white-beech gap-x-3'>
+            <ul className='hidden lg:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2'>
               {!isOnAuthPage
                 && (
                   <>
