@@ -105,11 +105,9 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   useEffect(() => {
     if (data?.comments) {
       const commentData = []
-      // eslint-disable-next-line no-unused-vars
-      data.comments.forEach(({ replies, __typename, ...otherCommentProps }) => {
+      data.comments.forEach(({ replies, ...otherCommentProps }) => {
         commentData.push({
-          // eslint-disable-next-line no-unused-vars
-          replies: replies.map(({ __typename, ...otherReplyProps }) => otherReplyProps),
+          replies: replies.map(({ ...otherReplyProps }) => otherReplyProps),
           ...otherCommentProps
         })
       })
@@ -122,7 +120,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode)
 
   return (
-    <div ref={commentsSectionRef} className={classNames(className)}>
+    <div ref={commentsSectionRef} className={classNames(className, 'text-dial-sapphire')}>
       {loadingUserSession && <Loading />}
       {isInEditMode ? (
         <CommentsList
@@ -156,8 +154,10 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
             onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
             onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
             advancedInput
+            removeEmoji
             hrStyle={{ borderColor: '#dfdfea' }}
-            formStyle={{ backgroundColor: 'white' }}
+            formStyle={{ backgroundColor: 'white', fontFamily: 'Poppins' }}
+            imgStyle={{ margin: 'auto' }}
           />
         </div>
       )}
