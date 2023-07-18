@@ -25,6 +25,7 @@ export function middleware(req) {
   if (
     currentHost !== 'default' &&
     !pathname.includes('.') && // exclude all files in the public folder
+    !pathname.includes('/image') && // exclude all images
     !pathname.startsWith('/api') && // exclude all API routes
     !pathname.startsWith('/auth')
   ) {
