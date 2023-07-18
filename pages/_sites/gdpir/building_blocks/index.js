@@ -10,10 +10,8 @@ import SearchFilter from '../../../../components/shared/SearchFilter'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../../../../components/context/BuildingBlockFilterContext'
 import ClientOnly from '../../../../lib/ClientOnly'
 import Header from '../components/Header'
-import TabNav from '../components/TabNav'
 import Footer from '../components/Footer'
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const BuildingBlockListQuery = dynamic(() => import('../../../../components/building-blocks/BuildingBlockList'), { ssr: false })
 
 const BuildingBlocks = () => {
@@ -30,7 +28,6 @@ const BuildingBlocks = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <div className='container py-6'>
         <div className='w-[17rem] p-3 text-4xl bg-blue-900 text-white'>
           Our Offerings
@@ -61,7 +58,6 @@ const BuildingBlocks = () => {
           <div className='w-[51rem] p-3 text-4xl bg-blue-900 text-white'>
             GovSpecs: Specifications for Building Blocks
           </div>
-          <TabNav activeTab='filter.entity.buildingBlocks' />
           <ClientOnly>
             <PageContent
               activeTab='filter.entity.buildingBlocks'
