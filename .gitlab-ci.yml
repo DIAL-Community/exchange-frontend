@@ -48,13 +48,17 @@ build_react:
   tags:
     - docker
   stage: build
-  script:
-    - yarn install
-    - yarn build
-  artifacts:
-    expire_in: 1 hour
+  cache:
+    key:
+      files:
+        - yarn.lock
     paths:
-      - build
+      - .yarn-cache/
+  script:
+    - echo 'yarn-offline-mirror ".yarn-cache/"' >> .yarnrc
+    - echo 'yarn-offline-mirror-pruning true' >> .yarnrc
+    - yarn install --frozen-lockfile --no-progress
+    - yarn build
 
 test:
   tags:
@@ -62,10 +66,6 @@ test:
   stage: test
   script:
     - yarn test --maxWorkers=2
-  artifacts:
-    expire_in: 1 hour
-    paths:
-      - node_modules/
 
 deploy:
   tags:
