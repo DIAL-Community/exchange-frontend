@@ -38,3 +38,10 @@
 .image-h-full-hack > span {
   height: 100% !important;
 }
+
+/*
+  React comments section overrides
+ */
+.rdw-editor-main {
+  overflow: auto !important;
+}

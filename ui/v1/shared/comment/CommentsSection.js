@@ -19,6 +19,8 @@ const INPUT_BORDERED_WRAPPER_CLASSNAME = 'advanced-border'
 const FOCUSED_CLASSNAME = 'focused'
 const FIRST_ELEMENT_INDEX = 0
 
+const UI_AVATAR_PARAMS = 'background=2e3192&color=fff&format=svg'
+
 const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }) => {
   const { locale } = useRouter()
   const innerRef = useRef(null)
@@ -139,7 +141,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
             commentData={commentData}
             currentUser={user ? {
               currentUserId: String(user.id),
-              currentUserImg: `https://ui-avatars.com/api/name=${user.userName}&background=random`,
+              currentUserImg: `https://ui-avatars.com/api/name=${user.userName}&${UI_AVATAR_PARAMS}`,
               currentUserFullName: user.userName
             } : null}
             logIn={{
