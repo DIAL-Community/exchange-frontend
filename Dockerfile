@@ -12,7 +12,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY . .
 COPY --from=base /app/node_modules ./node_modules
-RUN yarn build && yarn sitemap && yarn install
+RUN yarn build && yarn sitemap && yarn workspaces focus --production
 
 FROM node:18.16-alpine AS prod
 ENV NODE_ENV=production
