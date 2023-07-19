@@ -25,6 +25,7 @@ COPY --from=build /app/next.config.js ./
 COPY --from=build /app/.env.production ./
 COPY --from=build /app/public ./public
 COPY --from=build --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/package.json ./package.json
 
 USER nextjs
