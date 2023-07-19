@@ -46,9 +46,8 @@
     "js-cookie": "^3.0.5",
     "js-yaml": "^4.1.0",
     "leaflet": "^1.7.1",
-    "moment": "^2.29.3",
-    "qs": "^6.10.3",
     "lodash.debounce": "^4.0.8",
+    "moment": "^2.29.3",
     "next": "^13.4.1",
     "next-auth": "^4.10.3",
     "next-remove-imports": "^1.0.7",
@@ -56,6 +55,7 @@
     "next-sitemap": "^4.0.9",
     "next-transpile-modules": "^10.0.0",
     "prismjs": "^1.29.0",
+    "qs": "^6.10.3",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",
     "react-chartjs-2": "^5.2.0",
@@ -68,11 +68,11 @@
     "react-hook-form": "^7.27.1",
     "react-icons": "^4.2.0",
     "react-infinite-scroll-component": "^6.0.0",
-    "react-markdown": "^8.0.3",
-    "react-moment": "^1.1.2",
     "react-intl": "^6.1.1",
     "react-leaflet": "^4.0.2",
     "react-lite-yt-embed": "^1.2.7",
+    "react-markdown": "^8.0.3",
+    "react-moment": "^1.1.2",
     "react-paginate": "^8.1.0",
     "react-select": "^5.1.0",
     "react-simple-code-editor": "^0.13.1",
@@ -132,5 +132,6 @@
       "/translations/**/*.json",
       "/translations/**/*.js"
     ]
-  }
+  },
+  "packageManager": "yarn@3.6.1"
 }

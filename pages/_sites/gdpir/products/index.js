@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import dynamic from 'next/dynamic'
 import PageContent from '../../../../components/main/PageContent'
 import ProductHint from '../../../../components/filter/hint/ProductHint'
+import ProductFilter from '../../../../components/products/ProductFilter'
 import ProductActiveFilter from '../../../../components/products/ProductActiveFilter'
 import SearchFilter from '../../../../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../../../../components/context/ProductFilterContext'
@@ -23,6 +24,7 @@ const Products = () => {
       <ClientOnly>
         <PageContent
           activeTab='filter.entity.products'
+          filter={<ProductFilter />}
           content={<ProductListQuery />}
           searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
           activeFilter={<ProductActiveFilter />}

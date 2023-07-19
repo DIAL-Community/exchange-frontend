@@ -15,7 +15,7 @@ import ProductActiveFilter from '../../../../../components/products/ProductActiv
 import SearchFilter from '../../../../../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../../../../../components/context/ProductFilterContext'
 import ClientOnly from '../../../../../lib/ClientOnly'
-const ProductListQuery = dynamic(() => import('../../../../../components/products/ProductList'), { ssr: false })
+const ProductListQuery = dynamic(() => import('../../components/ProductList'), { ssr: false })
 
 const Products = () => {
   const router = useRouter()
@@ -38,7 +38,7 @@ const Products = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <div className='text-dial-gray-dark my-5 mx-10 text-xl'>The following products have been identified by {country} as Digital Public Infrastructure</div>
+      <div className='text-dial-gray-dark my-5 mx-10 text-xl'>The following products have been developed by {country}</div>
       <ClientOnly>
         <PageContent
           activeTab='filter.entity.products'
