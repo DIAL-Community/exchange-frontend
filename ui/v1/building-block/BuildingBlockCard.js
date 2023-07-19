@@ -30,7 +30,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
             />
           </div>
         }
-        <div className='flex flex-col gap-y-3 max-w-3xl'>
+        <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-ochre'>
             {buildingBlock.name}
           </div>
