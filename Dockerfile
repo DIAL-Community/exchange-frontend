@@ -1,7 +1,7 @@
 FROM node:18.16-alpine AS base
-RUN apk add --no-cache libc6-compat python3
+RUN apk add --no-cache libc6-compat python3 git
 WORKDIR /app
-COPY package.json yarn.lock ./
+COPY package.json .yarnrc.yml yarn.lock ./
 RUN yarn install
 
 FROM base AS build
