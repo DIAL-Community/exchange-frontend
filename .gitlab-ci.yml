@@ -6,6 +6,13 @@ stages:
   - test
   - deploy
 
+cache:
+  key:
+    files:
+      - yarn.lock
+  paths:
+    - node_modules/
+
 variables:
   SERVER_IP: "$SERVER_IP"
   SSH_PRIVATE_KEY: "$SSH_PRIVATE_KEY"
@@ -25,24 +32,8 @@ eslint:
   tags:
     - docker
   script:
-    # Install eslint
-    - |
-      npm install eslint --legacy-peer-deps \
-      eslint-config-airbnb \
-      eslint-config-prettier \
-      eslint-plugin-import \
-      eslint-plugin-jsx-a11y \
-      eslint-plugin-prettier \
-      eslint-plugin-react
-    # Run eslint
-    - node_modules/eslint/bin/eslint.js .
-
-cache:
-  key:
-    files:
-      - yarn.lock
-  paths:
-    - node_modules/
+    - yarn install
+    - yarn lint
 
 build_react:
   tags:
