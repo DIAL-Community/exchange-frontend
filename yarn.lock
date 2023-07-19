@@ -17423,7 +17423,7 @@ __metadata:
 
 "react-comments-section@https://github.com/nribeka/react-comments-section.git#development":
   version: 2.0.10
-  resolution: "react-comments-section@https://github.com/nribeka/react-comments-section.git#commit=6bed9cc87cfeba2a9261f13ad7b050c5d8c6570c"
+  resolution: "react-comments-section@https://github.com/nribeka/react-comments-section.git#commit=04dfbd067a405789c8584d8275326eb95b9242f9"
   dependencies:
     "@emotion/react": ^11.11.1
     "@szhsin/react-menu": ^4.0.1
@@ -17440,7 +17440,7 @@ __metadata:
     sass: ^1.63.6
   peerDependencies:
     react: ^18.0.0
-  checksum: bfcf9e0b9929f9dd69b72bdfb45839aa5d84c437470a4b7f7d5599f42146c675d2ce829f690fa854fad820d55592452550af5e7b08591ba4048ee40e88803986
+  checksum: baf92d6e534ac25144b29bf70a00f2206b789319a9c98d3831089e1247db89e9f3a1a88563ed40fe834e9d49dbc856e821d9073176a7240034b84cf96897c97e
   languageName: node
   linkType: hard
 
