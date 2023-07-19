@@ -5,14 +5,14 @@ COPY package.json .yarnrc.yml yarn.lock ./
 COPY .yarn ./.yarn
 
 RUN yarn set version berry
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 
 FROM base AS build
 ENV NODE_ENV=production
 WORKDIR /app
 COPY . .
 COPY --from=base /app/node_modules ./node_modules
-RUN yarn build && yarn sitemap && yarn install --production --ignore-scripts --prefer-offline
+RUN yarn build && yarn sitemap && yarn install --production
 
 FROM node:18.16-alpine AS prod
 ENV NODE_ENV=production
