@@ -8,6 +8,7 @@ import BuildingBlockDetailLeft from './BuildingBlockDetailLeft'
 
 const BuildingBlockDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
     variables: { slug }
@@ -40,7 +41,11 @@ const BuildingBlockDetail = ({ slug }) => {
           <BuildingBlockDetailLeft scrollRef={scrollRef} buildingBlock={buildingBlock} />
         </div>
         <div className='basis-2/3'>
-          <BuildingBlockDetailRight ref={scrollRef} buildingBlock={buildingBlock} />
+          <BuildingBlockDetailRight
+            ref={scrollRef}
+            commentsSectionRef={commentsSectionRef}
+            buildingBlock={buildingBlock}
+          />
         </div>
       </div>
     </div>

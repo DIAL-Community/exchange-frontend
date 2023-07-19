@@ -15,7 +15,7 @@ const ProductCard = ({ displayType, index, product }) => {
           <div className='w-20 h-20 mx-auto bg-white border'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
               className='object-contain w-16 h-16 mx-auto my-2'
             />
           </div>
@@ -24,12 +24,12 @@ const ProductCard = ({ displayType, index, product }) => {
           <div className='w-20 h-20 mx-auto'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
               className='object-contain w-16 h-16'
             />
           </div>
         }
-        <div className='flex flex-col gap-y-3 max-w-3xl'>
+        <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-meadow'>
             {product.name}
           </div>

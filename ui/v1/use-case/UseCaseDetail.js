@@ -8,7 +8,7 @@ import UseCaseDetailLeft from './UseCaseDetailLeft'
 
 const UseCaseDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef()
+  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(USE_CASE_DETAIL_QUERY, {
     variables: { slug }

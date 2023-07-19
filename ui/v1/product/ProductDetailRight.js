@@ -1,9 +1,10 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType, ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
+import CommentsSection from '../shared/comment/CommentsSection'
 import ProductDetailTags from './fragments/ProductDetailTags'
 import DeleteProduct from './DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
@@ -11,7 +12,7 @@ import ProductDetailSdgs from './fragments/ProductDetailSdgs'
 import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
 import ProductCard from './ProductCard'
 
-const ProductDetailRight = forwardRef(({ product }, ref) => {
+const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -126,6 +127,11 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           }
         </div>
       </div>
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={product.id}
+        objectType={ObjectType.PRODUCT}
+      />
     </div>
   )
 })

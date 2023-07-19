@@ -1,14 +1,15 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { REBRAND_BASE_PATH } from '../utils/constants'
+import { ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
+import CommentsSection from '../shared/comment/CommentsSection'
 import DeleteBuildingBlock from './DeleteBuildingBlock'
 import BuildingBlockDetailWorkflows from './fragments/BuildingBlockDetailWorkflows'
 import BuildingBlockDetailProducts from './fragments/BuildingBlockDetailProducts'
 
-const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
+const BuildingBlockDetailRight = forwardRef(({ buildingBlock, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -62,6 +63,11 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
             headerRef={workflowRef}
           />
         </div>
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={buildingBlock.id}
+          objectType={ObjectType.BUILDING_BLOCK}
+        />
       </div>
     </div>
   )
