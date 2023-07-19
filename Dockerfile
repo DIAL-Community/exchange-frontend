@@ -2,6 +2,8 @@ FROM node:18.16-alpine AS base
 RUN apk add --no-cache libc6-compat python3 git
 WORKDIR /app
 COPY package.json .yarnrc.yml yarn.lock .yarn ./
+
+RUN yarn set version berry
 RUN yarn install --frozen-lockfile
 
 FROM base AS build
