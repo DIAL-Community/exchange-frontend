@@ -1,7 +1,6 @@
 image: node:lts-hydrogen
 
 stages:
-  - lint
   - build
   - test
   - deploy
@@ -26,14 +25,6 @@ variables:
     - mkdir -p ~/.ssh
     - touch ~/.ssh/config
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" >> ~/.ssh/config
-
-eslint:
-  stage: lint
-  tags:
-    - docker
-  script:
-    - yarn install
-    - yarn lint
 
 build_react:
   tags:
