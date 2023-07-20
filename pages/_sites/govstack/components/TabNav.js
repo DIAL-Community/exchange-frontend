@@ -36,26 +36,23 @@ const TabNav = (props) => {
                     `}
                     style={{ flex: '1 1 0px' }}
                   >
-                    <Link href={`/frame?activeTab=${MAPPED_FILTER_ITEMS_URL[filterItem]}`}>
-                      <a
+                    <Link href={`/frame?activeTab=${MAPPED_FILTER_ITEMS_URL[filterItem]}`}
+                      className={`
+                        block px-3 py-3
+                        ${index === activeTab ? 'bg-dial-yellow rounded-t' : 'bg-dial-alice-blue rounded'}
+                      `}
+                      data-toggle='tab'
+                    >
+                      <div
                         className={`
-                          block px-3 py-3
-                          ${index === activeTab ? 'bg-dial-yellow rounded-t' : 'bg-dial-alice-blue rounded'}
+                          ${index === activeTab ? '' : 'truncate'}
+                          ${filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : ''}
+                          ${filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : ''}
+                          text-center font-semibold text-dial-gray-dark
                         `}
-                        data-toggle='tab'
-                        href={`/frame?activeTab=${MAPPED_FILTER_ITEMS_URL[filterItem]}`}
                       >
-                        <div
-                          className={`
-                            ${index === activeTab ? '' : 'truncate'}
-                            ${filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : ''}
-                            ${filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : ''}
-                            text-center font-semibold text-dial-gray-dark
-                          `}
-                        >
-                          {format(filterItem)}
-                        </div>
-                      </a>
+                        {format(filterItem)}
+                      </div>
                     </Link>
                   </li>
                 )

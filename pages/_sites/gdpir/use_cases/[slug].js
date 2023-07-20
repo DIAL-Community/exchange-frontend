@@ -6,7 +6,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import UseCaseDetail from '../../../../components/use-cases/UseCaseDetail'
 import ClientOnly from '../../../../lib/ClientOnly'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const UseCase = () => {
   const { formatMessage } = useIntl()
@@ -23,7 +22,6 @@ const UseCase = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <ClientOnly>
         <UseCaseDetail slug={slug} locale={locale} />
       </ClientOnly>

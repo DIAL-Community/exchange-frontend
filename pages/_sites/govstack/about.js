@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Header from './components/Header'
 import Footer from './components/Footer'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const AboutPage = () => {
   const { formatMessage } = useIntl()
@@ -17,7 +16,6 @@ const AboutPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <div className='container py-6'>
         <div className='w-[15rem] p-3 text-4xl bg-blue-900 text-white'>
           Who we are

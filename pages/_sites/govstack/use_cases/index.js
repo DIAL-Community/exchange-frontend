@@ -13,7 +13,6 @@ import Header from '../components/Header'
 import TabNav from '../components/TabNav'
 import Footer from '../components/Footer'
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const UseCaseListQuery = dynamic(() => import('../../../../components/use-cases/UseCaseList'), { ssr: false })
 
 const UseCases = () => {
@@ -30,7 +29,6 @@ const UseCases = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <div className='container py-6'>
         <div className='w-[17rem] p-3 text-4xl bg-blue-900 text-white'>
           Our Offerings

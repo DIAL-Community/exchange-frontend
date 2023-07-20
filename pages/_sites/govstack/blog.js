@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Blog = () => {
   const { formatMessage } = useIntl()
@@ -27,7 +26,6 @@ const Blog = () => {
           </div>
         </div>
       </div>
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Footer />
     </>
   )

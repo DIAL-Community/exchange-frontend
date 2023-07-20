@@ -18,7 +18,6 @@ import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '
 import ClientOnly from '../../../lib/ClientOnly'
 import TabNav from './components/TabNav'
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const ProductListQuery = dynamic(() => import('../../../components/products/ProductList'), { ssr: false })
 const UseCaseListQuery = dynamic(() => import('../../../components/use-cases/UseCaseList'), { ssr: false })
 const BuildingBlockListQuery = dynamic(() => import('../../../components/building-blocks/BuildingBlockList'), { ssr: false })
@@ -49,7 +48,6 @@ const EmbedPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='min-h-[72px]'></div>
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <div className='container'>
         <TabNav activeTab={activeTab === 'useCases' ? 'filter.entity.useCases' : activeTab === 'products' ? 'filter.entity.products' : 'filter.entity.buildingBlocks'} />
         <ClientOnly>
