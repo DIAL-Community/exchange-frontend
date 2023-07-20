@@ -1,15 +1,18 @@
 FROM node:18.16-alpine AS base
 RUN apk add --no-cache libc6-compat python3
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json .yarnrc.yml yarn.lock ./
+COPY .yarn ./.yarn
+
+RUN yarn set version berry
+RUN yarn install --immutable
 
 FROM base AS build
 ENV NODE_ENV=production
 WORKDIR /app
 COPY . .
 COPY --from=base /app/node_modules ./node_modules
-RUN yarn build && yarn sitemap && yarn install --production --ignore-scripts --prefer-offline
+RUN yarn build && yarn sitemap && yarn workspaces focus --production
 
 FROM node:18.16-alpine AS prod
 ENV NODE_ENV=production
