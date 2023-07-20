@@ -6,6 +6,7 @@ COPY .yarn ./.yarn
 
 RUN yarn set version berry
 RUN yarn install --immutable
+RUN yarn plugin import workspace-tools
 
 FROM base AS build
 ENV NODE_ENV=production
