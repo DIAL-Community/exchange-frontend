@@ -1,6 +1,7 @@
 import Bookmark from '../shared/common/Bookmark'
 import Comment from '../shared/common/Comment'
 import Share from '../shared/common/Share'
+import { ObjectType } from '../utils/constants'
 import ProductDetailHeader from './fragments/ProductDetailHeader'
 import ProductDetailNav from './fragments/ProductDetailNav'
 
@@ -12,7 +13,7 @@ const ProductDetailLeft = ({ scrollRef, product }) => {
         <hr className='bg-slate-200'/>
         <ProductDetailNav product={product} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
-        <Bookmark object={product} objectType='PRODUCT' />
+        <Bookmark object={product} objectType={ObjectType.PRODUCT} />
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>

@@ -3,9 +3,10 @@ import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
+import { IoClose } from 'react-icons/io5'
 import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 
-const UseCaseCard = ({ displayType, index, useCase }) => {
+const UseCaseCard = ({ displayType, index, useCase, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -75,10 +76,17 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}/use-cases/${useCase.slug}`}>
-      {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
-      {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
-    </Link>
+    <div className='relative'>
+      <Link href={`${REBRAND_BASE_PATH}/use-cases/${useCase.slug}`}>
+        {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+        {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
+      </Link>
+      {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
+        <button className='absolute p-2 top-0 right-0 text-dial-sapphire'>
+          <IoClose size='1rem' onClick={dismissCardHandler} />
+        </button>
+      }
+    </div>
   )
 }
 

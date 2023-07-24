@@ -7,8 +7,19 @@ const UserBookmarkLeft = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { displayUseCases, displayProducts, displayBuildingBlocks } = useContext(BookmarkDisplayContext)
-  const { setDisplayUseCases, setDisplayProducts, setDisplayBuildingBlocks } = useContext(BookmarkDisplayContext)
+  const {
+    displayUseCases,
+    displayProducts,
+    displayBuildingBlocks,
+    displayUrls
+  } = useContext(BookmarkDisplayContext)
+
+  const {
+    setDisplayUseCases,
+    setDisplayProducts,
+    setDisplayBuildingBlocks,
+    setDisplayUrls
+  } = useContext(BookmarkDisplayContext)
 
   const toggleDisplayUseCases = () => {
     setDisplayUseCases(!displayUseCases)
@@ -20,6 +31,10 @@ const UserBookmarkLeft = () => {
 
   const toggleDisplayProducts = () => {
     setDisplayProducts(!displayProducts)
+  }
+
+  const toggleDisplayUrls = () => {
+    setDisplayUrls(!displayUrls)
   }
 
   return (
@@ -50,6 +65,13 @@ const UserBookmarkLeft = () => {
           <Checkbox  onChange={toggleDisplayProducts} value={displayProducts}/>
           <span className='mx-2 my-auto text-sm'>
             {format('ui.product.header')}
+          </span>
+        </label>
+        <hr className='bg-slate-200'/>
+        <label className='flex'>
+          <Checkbox  onChange={toggleDisplayUrls} value={displayUrls}/>
+          <span className='mx-2 my-auto text-sm'>
+            {format('ui.url.header')}
           </span>
         </label>
         <hr className='bg-slate-200'/>

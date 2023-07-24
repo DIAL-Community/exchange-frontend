@@ -24,6 +24,7 @@ export const ADD_BOOKMARK = gql`
           slug
           imageFile
         }
+        bookmarkedUrls
       }
       errors
     }
@@ -54,6 +55,7 @@ export const REMOVE_BOOKMARK = gql`
           slug
           imageFile
         }
+        bookmarkedUrls
       }
       errors
     }

@@ -10,10 +10,8 @@ const Bookmark = ({ object, objectType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const router = useRouter()
-  const { locale } = router
-
   const { user } = useUser()
+  const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
   const [addBookmark, { reset }] = useMutation(ADD_BOOKMARK, {
@@ -37,7 +35,7 @@ const Bookmark = ({ object, objectType }) => {
       const { userEmail, userToken } = user
       addBookmark({
         variables: {
-          data: object.id,
+          data: Object.prototype.hasOwnProperty.call(object, 'id') ? object.id : object,
           type: objectType
         },
         context: {
@@ -55,7 +53,7 @@ const Bookmark = ({ object, objectType }) => {
       <div className='text-lg text-dial-sapphire font-semibold'>
         {format('ui.bookmark.title')}
       </div>
-      <div className='flex flex-row gap-x-3'>
+      <button onClick={bookmarkThis} className='flex flex-row gap-x-3'>
         <img
           src='/ui/v1/bookmark-icon.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.bookmark.title') })}
@@ -63,12 +61,10 @@ const Bookmark = ({ object, objectType }) => {
           height={40}
           className='object-contain'
         />
-        <button onClick={bookmarkThis}>
-          <div className='text-sm my-auto border-b border-transparent hover:border-dial-slate-500'>
-            {format('ui.bookmark.bookmarkThis')}
-          </div>
-        </button>
-      </div>
+        <div className='text-sm my-auto border-b border-transparent hover:border-dial-slate-500'>
+          {format('ui.bookmark.bookmarkThis')}
+        </div>
+      </button>
       <div className='text-sm text-dial-stratos'>
         {format('ui.bookmark.subtitle')}
       </div>

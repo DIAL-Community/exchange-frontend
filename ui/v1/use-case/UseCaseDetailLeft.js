@@ -1,6 +1,7 @@
 import Bookmark from '../shared/common/Bookmark'
 import Comment from '../shared/common/Comment'
 import Share from '../shared/common/Share'
+import { ObjectType } from '../utils/constants'
 import UseCaseDetailHeader from './fragments/UseCaseDetailHeader'
 import UseCaseDetailNav from './fragments/UseCaseDetailNav'
 
@@ -12,7 +13,7 @@ const UseCaseDetailLeft = ({ scrollRef, useCase }) => {
         <hr className='bg-slate-200'/>
         <UseCaseDetailNav useCase={useCase} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
-        <Bookmark object={useCase} objectType='USE-CASE' />
+        <Bookmark object={useCase} objectType={ObjectType.USE_CASE} />
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>

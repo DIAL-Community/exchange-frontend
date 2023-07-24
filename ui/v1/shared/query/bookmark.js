@@ -23,6 +23,7 @@ export const BOOKMARK_DETAIL_QUERY = gql`
         slug
         imageFile
       }
+      bookmarkedUrls
     }
   }
 `

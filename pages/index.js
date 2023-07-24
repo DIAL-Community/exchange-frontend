@@ -1,4 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import dynamic from 'next/dynamic'
 import Cookies from 'js-cookie'
@@ -24,6 +26,9 @@ import { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../lib/intro'
 const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const HomePage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)
 
@@ -38,6 +43,10 @@ const HomePage = () => {
 
   return (
     <>
+      <NextSeo
+        title={format('app.title')}
+        description={format('seo.description.about')}
+      />
       <Header />
       <HeroSection />
       <Wizard />

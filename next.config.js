@@ -1,4 +1,7 @@
-const removeImports = require('next-remove-imports')()
+const withRemoveImports = require('next-remove-imports')()
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const AnyContentSecurityPolicy = `
   frame-ancestors *;
@@ -8,7 +11,7 @@ const SelfContentSecurityPolicy = `
   frame-ancestors 'self';
 `
 
-module.exports = removeImports({
+module.exports = withBundleAnalyzer(withRemoveImports({
   i18n: {
     locales: ['en', 'fr', 'de', 'cs', 'es', 'pt', 'sw'],
     defaultLocale: 'en',
@@ -45,4 +48,4 @@ module.exports = removeImports({
       }
     ]
   }
-})
+}))

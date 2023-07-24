@@ -18,13 +18,8 @@ const LandingPage = () => {
   return (
     <>
       <NextSeo
-        title={format('use-case.header')}
-        description={
-          format(
-            'shared.metadata.description.listOfKey',
-            { entities: format('use-case.header')?.toLocaleLowerCase() }
-          )
-        }
+        title={format('app.title')}
+        description={format('seo.description.about')}
       />
       <ClientOnly>
         <QueryNotification />

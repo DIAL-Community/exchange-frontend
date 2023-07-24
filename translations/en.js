@@ -1873,5 +1873,6 @@ export const en = {
 
   'ui.tool.getStarted': `Let's get started`,
 
-  'ui.user.label': 'User'
+  'ui.url.label': 'URL',
+  'ui.url.header': 'URLs'
 }
