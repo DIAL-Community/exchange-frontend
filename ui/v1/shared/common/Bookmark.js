@@ -6,12 +6,12 @@ import { ADD_BOOKMARK } from '../mutation/bookmark'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 
-const Bookmark = ({ object, objectType }) => {
+const Bookmark = ({ object, sharableLink, objectType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { user } = useUser()
-  const { locale } = useRouter()
+  const { locale, pathname } = useRouter()
   const { showToast } = useContext(ToastContext)
 
   const [addBookmark, { reset }] = useMutation(ADD_BOOKMARK, {
@@ -31,11 +31,15 @@ const Bookmark = ({ object, objectType }) => {
   })
 
   const bookmarkThis = () => {
-    if (user && object && objectType) {
+    if (user && objectType) {
       const { userEmail, userToken } = user
       addBookmark({
         variables: {
-          data: Object.prototype.hasOwnProperty.call(object, 'id') ? object.id : object,
+          data: object?.id
+            ? object.id
+            : sharableLink
+              ? sharableLink()
+              : pathname,
           type: objectType
         },
         context: {

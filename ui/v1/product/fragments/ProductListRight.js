@@ -34,7 +34,6 @@ const ProductListRight = () => {
   useEffect(() => {
     setPageNumber(0)
     setPageOffset(0)
-    console.log('tags: ', tags)
   }, [search, origins, sectors, tags, licenseTypes])
 
   const { loading, error, data } = useQuery(PRODUCT_PAGINATION_ATTRIBUTES_QUERY, {

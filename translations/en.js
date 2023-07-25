@@ -1746,7 +1746,9 @@ export const en = {
   'ui.bookmark.bookmarkThis': 'Bookmark this page.',
   'ui.bookmark.object.subtitle': 'The following are bookmarked {objects}.',
   'toast.addBookmark.success': 'Page bookmarked.',
-  'toast.addBookmark.failure': 'Unable to bookmarke page.',
+  'toast.addBookmark.failure': 'Unable to bookmark page.',
+  'toast.removeBookmark.success': 'Bookmark removed.',
+  'toast.removeBookmark.failure': 'Unable to remove bookmark.',
 
   'ui.comment.title': 'Post a comment',
   'ui.comment.subTitle': `

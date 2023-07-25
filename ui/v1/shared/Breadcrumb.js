@@ -40,14 +40,14 @@ const basePathMappings = {
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
 
 const Breadcrumb = ({ slugNameMapping }) => {
-  const { asPath } = useRouter()
+  const { pathname, query } = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState([])
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
-    const linkPath = asPath
+    const linkPath = window.location.pathname
       .replace(REBRAND_BASE_PATH, '')
       .split('/')
       .filter(path => path)
@@ -65,7 +65,7 @@ const Breadcrumb = ({ slugNameMapping }) => {
       })
 
     setBreadcrumbs(pathArray)
-  }, [slugNameMapping, asPath, format])
+  }, [slugNameMapping, pathname, query, format])
 
   if (!breadcrumbs) {
     return null

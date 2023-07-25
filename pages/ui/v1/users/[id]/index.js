@@ -11,7 +11,7 @@ import UserMain from '../../../../../ui/v1/user/UserMain'
 import { useUser } from '../../../../../lib/hooks'
 import { Loading, Unauthorized } from '../../../../../ui/v1/shared/FetchStatus'
 
-const UiReroutePage = () => {
+const UserPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -50,4 +50,4 @@ const UiReroutePage = () => {
   )
 }
 
-export default UiReroutePage
+export default UserPage

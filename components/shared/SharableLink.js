@@ -64,16 +64,16 @@ const SharableLink = ({ sharableLink }) => {
 
   return (
     <>
-      {
-        navigator.clipboard &&
-          <div className='opacity-50'>
-            <a
-              href='/generate-sharable-link' onClick={copyToClipboard}
-              className='border-b-2 border-transparent hover:border-dial-sunshine'
-            >
-              {format('app.shareLink')}
-            </a>
-          </div>
+      {navigator.clipboard &&
+        <div className='opacity-50'>
+          <a
+            href='/generate-sharable-link'
+            onClick={copyToClipboard}
+            className='border-b-2 border-transparent hover:border-dial-sunshine'
+          >
+            {format('app.shareLink')}
+          </a>
+        </div>
       }
     </>
   )

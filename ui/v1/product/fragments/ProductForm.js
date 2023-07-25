@@ -231,7 +231,7 @@ const ProductForm = React.memo(({ product }) => {
               {errors.description && <ValidationError value={errors.description?.message} />}
             </div>
             <hr className='my-3' />
-            <iv className='text-2xl font-semibold pb-4'>{format('product.pricingInformation')}</iv>
+            <div className='text-2xl font-semibold pb-4'>{format('product.pricingInformation')}</div>
             <label className='flex gap-x-2 mb-2 items-center self-start'>
               <Checkbox {...register('commercialProduct')} />
               {format('product.commercialProduct')}

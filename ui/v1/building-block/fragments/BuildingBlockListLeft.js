@@ -1,24 +1,76 @@
 import { useRouter } from 'next/router'
+import { useContext, useEffect } from 'react'
+import {
+  BuildingBlockFilterContext,
+  BuildingBlockFilterDispatchContext
+} from '../../../../components/context/BuildingBlockFilterContext'
+import { QueryParamContext } from '../../../../components/context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Comment from '../../shared/common/Comment'
 import Share from '../../shared/common/Share'
-import { ObjectType } from '../../utils/constants'
+import { parseQuery } from '../../utils/share'
+import { ObjectType, REBRAND_BASE_PATH } from '../../utils/constants'
 import BuildingBlockFilter from './BuildingBlockFilter'
 
 const BuildingBlockListLeft = () => {
-  const { pathname } = useRouter()
+  const { query } = useRouter()
+  const { interactionDetected } = useContext(QueryParamContext)
+
+  const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
+  const { setShowMature, setSDGs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
+
+  const { categoryTypes } = useContext(BuildingBlockFilterContext)
+  const { setCategoryTypes } = useContext(BuildingBlockFilterDispatchContext)
+
+  const sharableLink = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL
+    const basePath = `${REBRAND_BASE_PATH}/building-blocks`
+
+    const showMatureFilter = showMature ? 'showMature=true' : ''
+    const sdgFilters = sdgs.map((sdg) => `sdgs=${sdg.value}--${sdg.label}`)
+    const useCaseFilters = useCases.map((useCase) => `useCases=${useCase.value}--${useCase.label}`)
+    const workflowFilters = workflows.map((workflow) => `workflows=${workflow.value}--${workflow.label}`)
+    const categoryTypeFilters = categoryTypes.map(
+      (categoryType) => `categoryTypes=${categoryType.value}--${categoryType.label}`
+    )
+
+    const activeFilter = 'shareCatalog=true'
+    const filterParameters = [
+      activeFilter,
+      showMatureFilter,
+      ...sdgFilters,
+      ...useCaseFilters,
+      ...workflowFilters,
+      ...categoryTypeFilters
+    ]
+      .filter((f) => f)
+      .join('&')
+
+    return `${baseUrl}${basePath}?${filterParameters}`
+  }
+
+  useEffect(() => {
+    // Only apply this if the use have not interact with the UI and the url is a sharable link
+    if (query?.shareCatalog && Object.getOwnPropertyNames(query).length > 1 && !interactionDetected) {
+      setShowMature(query.showMature === 'true')
+      parseQuery(query, 'sdgs', sdgs, setSDGs)
+      parseQuery(query, 'useCases', useCases, setUseCases)
+      parseQuery(query, 'workflows', workflows, setWorkflows)
+      parseQuery(query, 'categoryTypes', categoryTypes, setCategoryTypes)
+    }
+  })
 
   return (
     <div className='bg-dial-slate-100 h-full'>
       <div className='flex flex-col gap-y-3 px-6 py-3'>
         <BuildingBlockFilter />
-        <hr className='bg-slate-200'/>
-        <Bookmark object={pathname} objectType={ObjectType.URL}/>
-        <hr className='bg-slate-200'/>
+        <hr className='bg-slate-200' />
+        <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
+        <hr className='bg-slate-200' />
         <Share />
-        <hr className='bg-slate-200'/>
+        <hr className='bg-slate-200' />
         <Comment />
-        <hr className='bg-slate-200'/>
+        <hr className='bg-slate-200' />
       </div>
     </div>
   )

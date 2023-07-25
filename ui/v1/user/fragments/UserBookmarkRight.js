@@ -19,7 +19,7 @@ const UrlCard = ({ url, dismissCardHandler }) => {
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
-        <div className='text-sm font-semibold text-dial-meadow my-auto'>
+        <div className='text-sm font-semibold text-dial-meadow my-auto line-clamp-1'>
           {url}
         </div>
       </div>
@@ -30,7 +30,7 @@ const UrlCard = ({ url, dismissCardHandler }) => {
       <Link href={url}>
         {displaySmallCard()}
       </Link>
-      {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
+      {dismissCardHandler && typeof dismissCardHandler === 'function' &&
         <button className='absolute p-2 top-0 right-0 text-dial-sapphire'>
           <IoClose size='1rem' onClick={dismissCardHandler} />
         </button>
@@ -181,7 +181,7 @@ const UserBookmarkRight = () => {
           <div className='text-sm text-dial-stratos'>
             {format('ui.bookmark.object.subtitle', { objects: format('ui.url.header') })}
           </div>
-          <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid gap-x-8 gap-y-4'>
             {bookmark?.bookmarkedUrls?.map((url, index) =>
               <div key={`url-${index}`}>
                 <UrlCard

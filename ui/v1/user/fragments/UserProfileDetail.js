@@ -8,7 +8,6 @@ const UserProfileDetail = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { user } =  useUser()
-  console.log(user)
 
   return (
     <div className='grid grid-cols-6 gap-8 px-8 py-8'>

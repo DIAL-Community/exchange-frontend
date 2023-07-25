@@ -9,7 +9,7 @@ import Header from '../../../../ui/v1/shared/Header'
 import Footer from '../../../../ui/v1/shared/Footer'
 import { Loading } from '../../../../ui/v1/shared/FetchStatus'
 
-const UiReroutePage = () => {
+const UserListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -40,4 +40,4 @@ const UiReroutePage = () => {
   )
 }
 
-export default UiReroutePage
+export default UserListPage
