@@ -201,3 +201,22 @@ export const UPDATE_PRODUCT_SDGS = gql`
     }
   }
 `
+
+export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
+  mutation UpdateProductIndicators(
+    $slug: String!
+    $indicatorsData: [JSON!]!
+  ) {
+    updateProductIndicators(
+      slug: $slug
+      indicatorsData: $indicatorsData
+    ) {
+      product {
+        id
+        overallMaturityScore
+        maturityScoreDetails
+      }
+      errors
+    }
+  }
+`

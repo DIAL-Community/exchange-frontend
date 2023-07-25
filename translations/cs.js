@@ -141,8 +141,8 @@ export const cs = {
   "definition.explore-usecase": "Prozkoumejte Případy užití",
   "definition.explore-workflow": "Prozkoumejte pracovní postupy",
 
-  "products.header": "Produkty",
-  "products.label": "Produkt",
+  "product.header": "Produkty",
+  "product.label": "Produkt",
   "product.languages": "Jazyky",
   "product.website": "Webová stránka",
   "product.description": "Popis",
@@ -182,7 +182,6 @@ export const cs = {
   "product.category-score": "Hodnocení kategorie",
   "product.indicator-score": "Hodnocení ukazatele",
   "product.discussion": "Diskuse",
-  "product.noforum": "Žádné příspěvky ani diskusní témata k zobrazení",
   "product.post": "Příspěvek",
   "product.forum.login": "Pro odesílání příspěvků musíte být přihlášen.",
   "product.forum.createAccount": "Chcete-li vytvořit nový příspěvek, musíte si nejprve vytvořit účet na našem fóru. Klikněte na tlačítko níže a zaregistrujte si účet pod uživatelským jménem",

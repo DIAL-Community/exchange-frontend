@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
-import Link from 'next/link'
 import { IoClose } from 'react-icons/io5'
 import { useCallback, useContext } from 'react'
 import { useUser } from '../../../../lib/hooks'
@@ -27,9 +26,9 @@ const UrlCard = ({ url, dismissCardHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={url}>
+      <a href={url} target='_blank' rel='noreferrer'>
         {displaySmallCard()}
-      </Link>
+      </a>
       {dismissCardHandler && typeof dismissCardHandler === 'function' &&
         <button className='absolute p-2 top-0 right-0 text-dial-sapphire'>
           <IoClose size='1rem' onClick={dismissCardHandler} />

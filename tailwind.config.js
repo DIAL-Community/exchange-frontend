@@ -6,8 +6,8 @@ module.exports = {
   ],
   theme: {
     extend: {
-      borderWidth: {
-        3: '3px'
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       colors: {
         'dial-sapphire': {
@@ -173,54 +173,32 @@ module.exports = {
         'building-block': {
           DEFAULT: '#647883'
         },
-        sdg: {
+        'sdg': {
           DEFAULT: '#7c5048'
         },
-        product: {
+        'product': {
           DEFAULT: '#46465a'
         },
         'sdg-target': {
           DEFAULT: '#4b9f38'
         },
-        workflow: {
+        'workflow': {
           light: '#85b8d6',
           DEFAULT: '#3e81a8'
         },
-        carousel: {
+        'carousel': {
           DEFAULT: '#3f9edd',
           light: '#eef6fc'
-        },
-        'dial-hero-graphic': {
-          light: '#f5f6fa',
-          dark: '#646375'
         },
         'validation-error': {
           DEFAULT: '#e11d48'
         },
         'button-red': {
           DEFAULT: '#e11d48'
-        },
-      },
-      fontSize: {
-        'landing-title': ['66px', {
-          lineHeight: '76px'
-        }]
-      },
-      lineHeight: {
-        landing: '2.625rem'
+        }
       },
       maxWidth: {
-        '1/3': '33.33%',
-        '2/3': '66.67%',
-        '1/4': '25%',
-        '1/2': '50%',
-        '3/4': '75%',
         catalog: '2120px'
-      },
-      maxHeight: {
-        lg: '28rem',
-        xl: '32rem'
-
       },
       zIndex: {
         60: '60',
@@ -228,10 +206,6 @@ module.exports = {
         80: '80',
         90: '90',
         100: '100'
-      },
-      inset: {
-        // This should be set to the value of our top bar height.
-        '66px': '66px'
       },
       fontFamily: {
         DEFAULT: '"Poppins", sans-serif'

@@ -100,9 +100,11 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
   const displayModeBody = organizations.length
     ? <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
       {organizations?.map((organization, index) =>
-        <div key={`organization-${index}`}>
-          <OrganizationCard organization={organization} displayType={DisplayType.SMALL_CARD} />
-        </div>
+        <OrganizationCard
+          key={index}
+          organization={organization}
+          displayType={DisplayType.SMALL_CARD}
+        />
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>

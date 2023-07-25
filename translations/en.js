@@ -201,8 +201,8 @@ export const en = {
   'definition.explore-usecase': 'Explore Use Cases',
   'definition.explore-workflow': 'Explore Workflows',
 
-  'products.header': 'Products',
-  'products.label': 'Product',
+  'product.header': 'Products',
+  'product.label': 'Product',
   'product.languages': 'Languages',
   'product.website': 'Website',
   'product.description': 'Description',
@@ -244,7 +244,6 @@ export const en = {
   'product.category-score': 'Category score',
   'product.indicator-score': 'Indicator score',
   'product.discussion': 'Discussion',
-  'product.noforum': 'No posts or discussion topics to view',
   'product.post': 'Post',
   'product.forum.login': 'You must be logged in to post',
   'product.forum.createAccount': 'In order to create a new post, you must first create an account on our forum. Click the button below and register an account with the username',
@@ -1806,7 +1805,15 @@ export const en = {
   'ui.product.pricing.hostingModel': 'Hosting Model',
   'ui.product.pricing.pricingModel': 'PricingModel Model',
   'ui.product.pricing.detailPricing': 'Detail Pricing Information',
-
+  'ui.product.details': 'Product Details',
+  
+  'ui.maturityScore.label': 'Maturity Score',
+  'ui.maturityScore.header': 'Maturity Scores',
+  'ui.maturityScore.subtitle': `
+    These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center.
+    These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For
+    more information visit the Exchange Documentation
+  `,
 
   'ui.dataset.label': 'Dataset',
   'ui.dataset.header': 'Datasets',

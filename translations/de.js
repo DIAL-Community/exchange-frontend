@@ -141,8 +141,8 @@ export const de = {
   "definition.explore-usecase": "Anwendungsfälle entdecken",
   "definition.explore-workflow": "Workflows entdecken",
 
-  "products.header": "Produkte",
-  "products.label": "Produkt",
+  "product.header": "Produkte",
+  "product.label": "Produkt",
   "product.languages": "Sprachen",
   "product.website": "Website",
   "product.description": "Beschreibung",
@@ -182,7 +182,6 @@ export const de = {
   "product.category-score": "Kategorie-Score",
   "product.indicator-score": "Indikator-Score",
   "product.discussion": "Diskussion",
-  "product.noforum": "Keine Beiträge oder Diskussionsthemen zur Ansicht",
   "product.post": "Beitrag verfassen",
   "product.forum.login": "Sie müssen angemeldet sein, um einen Beitrag zu verfassen",
   "product.forum.createAccount": "Um einen neuen Beitrag zu verfassen, müssen Sie zuerst ein Konto in unserem Forum erstellen. Klicken Sie auf die nachstehende Schaltfläche und melden Sie ein Konto mit dem Benutzernamen an",

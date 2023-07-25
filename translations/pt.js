@@ -141,8 +141,8 @@ export const pt = {
   "definition.explore-usecase": "Explorar Casos de Utilização",
   "definition.explore-workflow": "Explorar os Workflows",
 
-  "products.header": "Produtos",
-  "products.label": "Produto",
+  "product.header": "Produtos",
+  "product.label": "Produto",
   "product.languages": "Idiomas",
   "product.website": "Site",
   "product.description": "Descrição",
@@ -182,7 +182,6 @@ export const pt = {
   "product.category-score": "Classificação de categoria",
   "product.indicator-score": "Classificação do indicador",
   "product.discussion": "Discussão",
-  "product.noforum": "Sem publicações ou tópicos de discussão para visualizar",
   "product.post": "Publicar",
   "product.forum.login": "Tem de ter sessão iniciada para publicar",
   "product.forum.createAccount": "A fim de criar uma nova publicação, deve primeiro criar uma conta no nosso fórum. Clique no botão abaixo e registe uma conta com o nome de utilizador",

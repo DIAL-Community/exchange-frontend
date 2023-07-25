@@ -129,9 +129,7 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
 
   const displayModeBody = sdgs.length
     ? sdgs?.map((sdg, index) =>
-      <div key={`sdg-${index}`}>
-        <SdgCard sdg={sdg} displayType={DisplayType.SMALL_CARD} />
-      </div>
+      <SdgCard key={index} sdg={sdg} displayType={DisplayType.SMALL_CARD} />
     )
     : <div className='text-sm text-dial-stratos'>
       {format('ui.common.detail.noData', {

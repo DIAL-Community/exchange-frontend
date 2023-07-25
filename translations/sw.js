@@ -141,8 +141,8 @@ export const sw = {
   "definition.explore-usecase": "Chunguza Hali ambapo Zinazweza Kutumiwa",
   "definition.explore-workflow": "Chunguza Mitiririko ya Kazi",
 
-  "products.header": "Bidhaa",
-  "products.label": "Bidhaa",
+  "product.header": "Bidhaa",
+  "product.label": "Bidhaa",
   "product.languages": "Lugha",
   "product.website": "Tovuti",
   "product.description": "Maelezo",
@@ -182,7 +182,6 @@ export const sw = {
   "product.category-score": "Alama ya kitengo",
   "product.indicator-score": "Alama ya kiashiria",
   "product.discussion": "Majadiliano",
-  "product.noforum": "Hakuna machapisho au mada za majadiliano za kutazama",
   "product.post": "Chapisho",
   "product.forum.login": "Lazima uwe umeingia ili uchapishe",
   "product.forum.createAccount": "Ili uandike chapisho jipya, lazima kwanza ufungue akaunti kwenye jukwaa letu. Bofya kitufe kilicho hapa chini na usajili akaunti kwa jina la mtumiaji",

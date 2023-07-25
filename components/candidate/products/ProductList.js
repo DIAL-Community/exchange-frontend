@@ -78,7 +78,7 @@ const ProductList = (props) => {
             ))
             : (
               <div className='text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('products.label') })
+                format('noResults.entity', { entity: format('product.label') })
               }
               </div>
             )

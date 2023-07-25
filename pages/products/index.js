@@ -27,11 +27,11 @@ const Products = () => {
   return (
     <>
       <NextSeo
-        title={format('products.header')}
+        title={format('product.header')}
         description={
           format(
             'shared.metadata.description.comprehensiveListOf',
-            { entities: format('products.header')?.toLocaleLowerCase() }
+            { entities: format('product.header')?.toLocaleLowerCase() }
           )
         }
       />

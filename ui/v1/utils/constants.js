@@ -41,4 +41,10 @@ export const ObjectType = {
   URL: 'URL'
 }
 
+export const CategoryIndicatorType = {
+  NUMERIC: 'numeric',
+  SCALE: 'scale',
+  BOOLEAN: 'boolean'
+}
+
 export const DEFAULT_PAGE_SIZE = 8

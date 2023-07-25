@@ -141,8 +141,8 @@
   "definition.explore-usecase": "Explorar los casos de uso",
   "definition.explore-workflow": "Explorar los flujos de trabajo",
 
-  "products.header": "Productos",
-  "products.label": "Producto",
+  "product.header": "Productos",
+  "product.label": "Producto",
   "product.languages": "Idiomas",
   "product.website": "Sitio web",
   "product.description": "Descripción",
@@ -182,7 +182,6 @@
   "product.category-score": "Valoración de la categoría",
   "product.indicator-score": "Valoración del indicador",
   "product.discussion": "Discusión",
-  "product.noforum": "No hay mensajes o temas de discusión para ver",
   "product.post": "Publicar",
   "product.forum.login": "Debe estar conectado para publicar",
   "product.forum.createAccount": "Para crear un nuevo mensaje, primero debe crear una cuenta en nuestro foro. Haga clic en el botón siguiente y registre una cuenta con el nombre de usuario",
