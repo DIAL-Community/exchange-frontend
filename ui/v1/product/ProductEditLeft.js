@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import Bookmark from '../shared/common/Bookmark'
 import Comment from '../shared/common/Comment'
 import Share from '../shared/common/Share'
@@ -6,14 +5,12 @@ import { ObjectType } from '../utils/constants'
 import ProductDetailHeader from './fragments/ProductDetailHeader'
 
 const ProductEditLeft = ({ product }) => {
-  const { pathname } = useRouter()
-
   return (
     <div className='bg-dial-slate-100 h-full'>
       <div className='flex flex-col gap-y-3 px-6 py-8'>
         <ProductDetailHeader product={product}/>
         <hr className='bg-slate-200'/>
-        <Bookmark object={pathname} objectType={ObjectType.URL}/>
+        <Bookmark object={product} objectType={ObjectType.PRODUCT}/>
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>
