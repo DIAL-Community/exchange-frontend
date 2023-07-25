@@ -69,9 +69,9 @@ export const ProductActiveFilters = ({ products, setProducts }) => {
       {products?.map((product, productIndex) => (
         <div key={productIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
           <div className='flex flex-row gap-1'>
-            <div className='flex gap-x-1 text-white'>
+            <div className='text-white'>
               {product.label}
-              <div className='inline opacity-40'>
+              <div className='mx-2 inline opacity-40'>
                 ({format('ui.product.label')})
               </div>
             </div>

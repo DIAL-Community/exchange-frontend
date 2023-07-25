@@ -65,9 +65,9 @@ export const CategoryTypeActiveFilters = ({ categoryTypes, setCategoryTypes }) =
       {categoryTypes?.map((categoryType, categoryTypeIndex) => (
         <div key={categoryTypeIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
           <div className='flex flex-row gap-1'>
-            <div className='flex gap-x-1 text-white'>
+            <div className='text-white'>
               {categoryType.label}
-              <div className='inline opacity-40'>
+              <div className='mx-2 inline opacity-40'>
                 ({format('ui.categoryType.label')})
               </div>
             </div>

@@ -69,9 +69,9 @@ export const SdgActiveFilters = ({ sdgs, setSdgs }) => {
       {sdgs?.map((sdg, sdgIndex) => (
         <div key={sdgIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
           <div className='flex flex-row gap-1'>
-            <div className='flex gap-x-1 text-white'>
+            <div className='text-white'>
               {sdg.label}
-              <div className='inline opacity-40'>
+              <div className='mx-2 inline opacity-40'>
                 ({format('ui.sdg.label')})
               </div>
             </div>
