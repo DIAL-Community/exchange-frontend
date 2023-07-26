@@ -26,7 +26,6 @@ import BarChart from '../../shared/BarChart'
 import RadarChart from '../../shared/RadarChart'
 import Dialog from '../../shared/Dialog'
 import Select from '../../shared/form/Select'
-import Card from '../../shared/Card'
 import { CategoryIndicatorType } from '../../utils/constants'
 
 const MATURITY_SCORE_MULTIPLIER = 10
@@ -42,13 +41,15 @@ const MaturityCategory = ({ category }) => {
 
   return (
     <AccordionItem>
-      <AccordionItemHeading>
+      <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
         <AccordionItemButton>
-          <div className='h5 inline'>{category.name}</div>
-          <div className='h5 float-right inline'>
-            {format('product.maturity.categoryScore')}:
-            {Math.round((category.overallScore / category.maximumScore) * MAX_MATURITY_SCORE)} /{' '}
-            {MAX_MATURITY_SCORE}
+          <div className='h5 my-auto'>{category.name}</div>
+          <div className='h5 ml-auto my-auto'>
+            {`
+              ${format('product.maturity.categoryScore')}:
+              ${Math.round((category.overallScore / category.maximumScore) * MAX_MATURITY_SCORE)} /
+              ${MAX_MATURITY_SCORE}
+            `}
           </div>
           <div className='text-xs pl-4 pt-3'>
             {category.description && parse(category.description)}
@@ -57,21 +58,21 @@ const MaturityCategory = ({ category }) => {
       </AccordionItemHeading>
       <AccordionItemPanel>
         {category.categoryIndicators.map((indicator, indicatorIdx) => {
-          let indicatorScore =
-            Math.round(indicator.score / indicator.weight) * MATURITY_SCORE_MULTIPLIER
+          let indicatorScore = Math.round(indicator.score / indicator.weight) * MATURITY_SCORE_MULTIPLIER
           indicatorScore = indicatorScore > MAX_MATURITY_SCORE ? MAX_MATURITY_SCORE : indicatorScore
-          const scoreText = `${Math.round(indicatorScore)}/${MAX_MATURITY_SCORE}`
+          const scoreText = `${Math.round(indicatorScore)} / ${MAX_MATURITY_SCORE}`
 
           return (
             <Accordion key={indicatorIdx} allowMultipleExpanded allowZeroExpanded>
               <AccordionItem>
-                <AccordionItemHeading>
+                <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
                   <AccordionItemButton>
                     <div className='h5 inline'>{indicator.name}</div>
                     <div className='h5 float-right inline'>
-                      {`${format('product.maturity.indicatorScore')}: ${
-                        isNaN(indicatorScore) ? 'N/A' : scoreText
-                      }`}
+                      {`
+                        ${format('product.maturity.indicatorScore')}:
+                        ${isNaN(indicatorScore) ? 'N/A' : scoreText}
+                      `}
                     </div>
                   </AccordionItemButton>
                 </AccordionItemHeading>
@@ -376,7 +377,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             closeButton
           >
             <div className='flex flex-col w-full'>
-              <div className='h4 inline mb-2'>{format('product.maturity.detailLabel')}</div>
+              <div className='h4 inline mb-6'>{format('product.maturity.detailLabel')}</div>
               <Accordion
                 allowMultipleExpanded
                 allowZeroExpanded
@@ -402,17 +403,17 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
     return (
       !!indicators[indicatorsGroup].length && (
         <>
-          <label className='font-semibold m-2'>
-            {format(`shared.category-indicator.${indicatorsGroup}`)}
-          </label>
+          <div className='text-sm font-semibold py-4 mx-6 px-6 border-t border-dial-slate-400'>
+            {format(`shared.categoryIndicator.${indicatorsGroup}`)}
+          </div>
           {indicators[indicatorsGroup]
             .sort((indicatorA, indicatorB) => indicatorA.name.localeCompare(indicatorB.name))
             .map(({ id, indicatorType, name, description }, indicatorIdx) => (
-              <Card key={indicatorIdx}>
+              <div key={indicatorIdx} className='py-4 mx-6 px-6 border-t border-dial-slate-400'>
                 <div className='grid grid-cols-4 gap-8'>
-                  <div className='col-span-3'>
+                  <div className='text-sm col-span-3'>
                     {name}
-                    <div className='text-sm text-dial-gray-dark'>{parse(description)}</div>
+                    <div className='text-dial-stratos'>{parse(description)}</div>
                   </div>
                   <div className='col-span-1'>
                     <Controller
@@ -452,7 +453,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
                     />
                   </div>
                 </div>
-              </Card>
+              </div>
             ))}
         </>
       )
@@ -461,15 +462,15 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
 
   const editModeBody = loadingCategoryIndicators
     ? <Loading />
-    : <Accordion allowMultipleExpanded allowZeroExpanded className='bg-white'>
+    : <Accordion allowMultipleExpanded allowZeroExpanded>
       {categoryIndicators.map(({ indicators, rubricCategoryName }, categoryIdx) => (
         <AccordionItem key={categoryIdx}>
-          <AccordionItemHeading>
+          <AccordionItemHeading className='text-dial-stratos'>
             <AccordionItemButton>
-              <div className='h5 inline'>{rubricCategoryName}</div>
+              <div className='text-sm my-auto'>{rubricCategoryName}</div>
             </AccordionItemButton>
           </AccordionItemHeading>
-          <AccordionItemPanel className='p-3'>
+          <AccordionItemPanel className='p-0'>
             {!!indicators[ASSIGNED_INDICATORS_ARRAY_NAME].length && (
               <IndicatorsList categoryIdx={categoryIdx} indicators={indicators} />
             )}

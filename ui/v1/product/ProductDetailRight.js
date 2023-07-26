@@ -80,7 +80,7 @@ const ProductEndorser = ({ product }) => {
                 data-tooltip-id='react-tooltip'
                 data-tooltip-content={format('product.endorsed-by')}
                 src={'/images/origins/' + endorser.slug + '.png'}
-                className='object-contain w-16'
+                className='object-contain w-12'
               />
             </div>
             <div className='text-sm inline'>{format('product.endorsed-by') + endorser.name}</div>

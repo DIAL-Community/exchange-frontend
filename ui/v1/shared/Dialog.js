@@ -42,7 +42,7 @@ const Dialog = ({
             <DialogHeadlessui.Panel
               className={classNames({
                 'max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8': dialogType === DialogType.FORM,
-                'w-4/5 sm:w-4/5 md:w-3/5 lg:w-2/5 xl:w-2/6 p-2 sm:p-4': dialogType === DialogType.DETAILS
+                'w-4/5 xl:w-2/6 p-2 sm:p-4': dialogType === DialogType.DETAILS
               }, 'transform bg-white shadow-xl rounded-2xl flex flex-col')}>
               <DialogHeadlessui.Description
                 as='div'
@@ -54,7 +54,7 @@ const Dialog = ({
                 <div className='flex justify-start text-xl' data-testid='dialog-body'>
                   {children}
                 </div>
-                <div className='flex justify-start gap-3 text-xl' >
+                <div className='flex justify-start gap-3 text-base' >
                   {submitButton && (
                     <button
                       type='submit'
@@ -81,7 +81,7 @@ const Dialog = ({
                   )}
                 </div>
                 {closeButton && (
-                  <div className='flex justify-end text-xl' >
+                  <div className='flex justify-end text-base' >
                     <button
                       ref={initialFocusRef}
                       type='button'

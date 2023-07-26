@@ -318,7 +318,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
 
     return !!indicators[indicatorsGroup].length && (
       <>
-        <label className='font-semibold m-2'>{format(`shared.category-indicator.${indicatorsGroup}`)}</label>
+        <label className='font-semibold m-2'>{format(`shared.categoryIndicator.${indicatorsGroup}`)}</label>
         {indicators[indicatorsGroup]
           .sort((indicatorA, indicatorB) => indicatorA.name.localeCompare(indicatorB.name))
           .map(({ id, indicatorType, name, description }, indicatorIdx) => (
