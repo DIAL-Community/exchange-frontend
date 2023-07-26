@@ -248,8 +248,8 @@ export const PlaybookForm = React.memo(({ playbook }) => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                {playbook && format('app.edit-entity', { entity: playbook.name })}
-                {!playbook && `${format('app.create-new')} ${format('playbooks.label')}`}
+                {playbook && format('app.editEntity', { entity: playbook.name })}
+                {!playbook && `${format('app.createNew')} ${format('playbooks.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>

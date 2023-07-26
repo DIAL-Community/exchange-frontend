@@ -120,8 +120,8 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
           <div className='flex flex-col gap-y-4'>
             <div className='text-2xl font-semibold text-dial-sapphire'>
               {useCaseStep?.slug
-                ? format('app.edit-entity', { entity: useCaseStep?.name })
-                : `${format('app.create-new')} ${format('use-case-step.label')}`
+                ? format('app.editEntity', { entity: useCaseStep?.name })
+                : `${format('app.createNew')} ${format('use-case-step.label')}`
               }
             </div>
             <div className='form-field-wrapper'>

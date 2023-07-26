@@ -77,7 +77,7 @@ const DeletePlaybook = ({ playbook }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog}/>
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: playbook.name })}
+        title={format('app.deletingEntity', { entity: playbook.name })}
         message={format('playbook.delete.confirm.message')}
         isOpen={isConfirmDialogOpen}
         onClose={toggleConfirmDialog}

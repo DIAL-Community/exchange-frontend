@@ -158,8 +158,8 @@ const ProductForm = React.memo(({ product }) => {
           <div className='flex flex-col gap-y-4 text-dial-meadow'>
             <div className='text-xl font-semibold'>
               {product
-                ? format('app.edit-entity', { entity: product.name })
-                : `${format('app.create-new')} ${format('product.label')}`}
+                ? format('app.editEntity', { entity: product.name })
+                : `${format('app.createNew')} ${format('product.label')}`}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>

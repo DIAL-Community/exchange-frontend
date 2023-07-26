@@ -169,8 +169,8 @@ const OpportunityForm = React.memo(({ opportunity }) => {
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {opportunity
-                  ? format('app.edit-entity', { entity: opportunity.name })
-                  : `${format('app.create-new')} ${format('opportunity.label')}`
+                  ? format('app.editEntity', { entity: opportunity.name })
+                  : `${format('app.createNew')} ${format('opportunity.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>

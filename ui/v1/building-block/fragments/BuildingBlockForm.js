@@ -132,8 +132,8 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
           <div className='flex flex-col gap-y-4'>
             <div className='text-xl font-semibold'>
               {buildingBlock
-                ? format('app.edit-entity', { entity: buildingBlock.name })
-                : `${format('app.create-new')} ${format('buildingBlock.label')}`}
+                ? format('app.editEntity', { entity: buildingBlock.name })
+                : `${format('app.createNew')} ${format('buildingBlock.label')}`}
             </div>
             <div className='form-field-wrapper'>
               <label className='required-field' htmlFor='name'>

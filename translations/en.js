@@ -5,15 +5,15 @@ export const en = {
   'app.title': 'Digital Impact Exchange',
   'app.edit': 'Edit',
   'app.comment': 'Comments',
-  'app.nocomment': 'Start a Conversation',
+  'app.noComment': 'Start a Conversation',
   'app.home': 'Home',
   'app.save': 'Save',
   'app.saving': 'Saving',
   'app.submit': 'Submit',
   'app.submitting': 'Submitting',
   'app.search': 'Search',
-  'app.create-new': 'Create New',
-  'app.edit-entity': 'Edit {entity}',
+  'app.createNew': 'Create New',
+  'app.editEntity': 'Edit {entity}',
   'app.create': 'Create',
   'app.cancel': 'Cancel',
   'app.duplicate': 'Duplicate',
@@ -22,15 +22,15 @@ export const en = {
   'app.reportIssue': 'Report Issue',
   'app.delete': 'Delete',
   'app.assign': 'Assign',
-  'app.deleting-entity': 'Deleting {entity}',
+  'app.deletingEntity': 'Deleting {entity}',
   'app.searchAndAssign': 'Search and Assign',
-  'app.print-pdf': 'Print PDF',
+  'app.printPdf': 'Print PDF',
   'app.status': 'Status:',
   'app.confirm': 'Confirm',
   'app.mappingStatus': 'Mapping Status',
   'app.name': 'Name',
   'app.description': 'Description',
-  'app.internal-server-error': "500 - Internal Server Error",
+  'app.serverError': "500 - Internal Server Error",
   'app.menu': 'Menu',
   'app.back': 'Back',
   'app.email': 'Email Address',
@@ -96,8 +96,6 @@ export const en = {
   'header.admin.candidate_datasets': 'Candidate Open Data',
   'header.admin.candidate_roles': 'Candidate Roles',
   'header.admin.deploys': 'Deploys',
-  'header.admin.portal_views': 'Portal Views',
-  'header.admin.maturity_rubrics': 'Maturity Rubrics',
   'header.newsletter': 'Join Our Newsletter',
 
   'footer.text.firstLine': `
@@ -110,9 +108,9 @@ export const en = {
   `,
   'footer.organizationName': 'Digital Impact Alliance',
   'footer.privacyPolicy': 'Privacy Policy',
-  'footer.sign-up': 'Sign up for our Newsletter',
+  'footer.signup': 'Sign up for our Newsletter',
   'footer.discuss': 'Discuss on the Open Source Center Forum',
-  'footer.view-gitlab': 'View this project on GitLab',
+  'footer.viewGitLab': 'View this project on GitLab',
   'footer.follow': 'Follow DIAL on social media',
   'footer.icons': 'Icons provided unmodified by ',
 
@@ -127,11 +125,11 @@ export const en = {
   'definition.goal': 'Our goal: ',
   'definition.subtitle': 'Informed decision-making and greater coordination in digital investments, planning & implementations across sectors',
   'definition.donors': 'Donors',
-  'definition.policy-makers': 'Policy Makers',
+  'definition.policyMakers': 'Policy Makers',
   'definition.implementers': 'Implementing Partners',
   'definition.ministers': 'Technology and ICT Ministers',
   'definition.procurers': 'Procurers',
-  'definition.product-owners': 'Product Owners',
+  'definition.productOwners': 'Product Owners',
   'definition.sections.what': 'What is the Exchange',
   'definition.sections.who': 'Who is it For?',
   'definition.sections.how': 'How can I use it?',
@@ -142,36 +140,60 @@ export const en = {
   'definition.buttons.tutorials': 'View All Tutorials',
   'definition.buttons.contact': 'Contact Us',
   'definition.who': `
-      <p>
-      <strong>Implementers and policy makers</strong> who need quality digital tools and guidance to support their development programming or improve development outcomes.
+    <p>
+      <strong>
+        Implementers and policy makers
+      </strong>
+      who need quality digital tools and guidance to support their development programming or improve
+      development outcomes.
       <br /><br />
-      <strong>Donors</strong> that need to coordinate and measure their investments.
+      
+      <strong>
+        Donors
+      </strong> that need to coordinate and measure their investments.
       <br /><br />
-      <strong>Technology and ICT ministers</strong> that need to map their tech stack to ICT building blocks to understand what other use cases can be supported or where critical gaps exist.
+      
+      <strong>
+        Technology and ICT ministers
+      </strong> that need to map their tech stack to ICT building blocks to understand what other
+      use cases can be supported or where critical gaps exist.
       <br /><br />
-      <strong>Product owners</strong> of Digital Public Goods that want connect to potential users and supply the development ecosystem with innovative products.
-      </p>
-      `,
+      
+      <strong>
+        Product owners
+      </strong>
+      of Digital Public Goods that want connect to potential users and supply the development ecosystem
+      with innovative products.
+    </p>
+  `,
   'definition.how': 'Watch our demo and tutorial videos to learn how to use the Exchange',
   'definition.approach': `
-      The Exchange promotes a Whole-of-Government approach to investing in digital technologies to achieve the SDGs.
-      <br /><br />
-      This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
-      `,
+    The Exchange promotes a Whole-of-Government approach to investing in digital technologies to achieve the SDGs.
+    <br /><br />
+    This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
+  `,
   'definition.featured': `
-      More Data! In many sectors, access to open data and and content is a critical part
-      of any digital project. The Exchange has a new tab called 'Open Data' that
-      provides links to over a hundred different open datasets allowing users to find valuable
-      information on population, agriculture, climate, and much more.
-      <br /><br />
-      Read our <a href='https://dial.global/using-open-datasets-to-fertilize-agriculture-development-announcing-the-catalogs-newest-feature/' target='_blank' rel='noreferrer'>blog</a> to learn more about the open datasets feature
-      <br /><br />
-      We are also happy to introduce new commenting and dialog functionality in the Exchange. Users
-      can now easily ask questions, post comments, and engage in dialog about digital products,
-      use cases, or building blocks. The Exchange community has immense knowledge and
-      experience in digital development, and this new feature allows users to share advice,
-      resources and best practices with each other.
-      `,
+    More Data! In many sectors, access to open data and and content is a critical part
+    of any digital project. The Exchange has a new tab called 'Open Data' that
+    provides links to over a hundred different open datasets allowing users to find valuable
+    information on population, agriculture, climate, and much more.
+    <br /><br />
+    
+    Read our 
+    <a
+      href='https://dial.global/using-open-datasets-to-fertilize-agriculture-development-announcing-the-catalogs-newest-feature/'
+      target='_blank' rel='noreferrer'
+    >
+      blog
+    </a> to learn more about the open datasets feature
+    <br /><br />
+    
+    We are also happy to introduce new commenting and dialog functionality in the Exchange. Users
+    can now easily ask questions, post comments, and engage in dialog about digital products,
+    use cases, or building blocks. The Exchange community has immense knowledge and
+    experience in digital development, and this new feature allows users to share advice,
+    resources and best practices with each other.
+  `,
   'definition.contact': 'We welcome questions or feedback on the Digital Impact Exchange. Please feel free to reach out to us.',
   'definition.tutorial.intro': 'Tutorial: Introduction',
   'definition.tutorial.started': 'Tutorial: Getting Started with the Exchange',
@@ -251,7 +273,7 @@ export const en = {
   'product.name': 'Name',
   'product.aliases': 'Aliases',
   'product.alias': 'Alias',
-  'product.webiste': 'Website',
+  'product.website': 'Website',
   'product.imageFile': 'Logo',
   'product.mappingStatus': 'Mapping Status',
   'product.submit.success': 'Product submitted successfully',

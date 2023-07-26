@@ -169,8 +169,8 @@ export const UserForm = ({ user }) => {
             >
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {user
-                  ? format('app.edit-entity', { entity: user.username })
-                  : `${format('app.create-new')} ${format('user.label')}`}
+                  ? format('app.editEntity', { entity: user.username })
+                  : `${format('app.createNew')} ${format('user.label')}`}
               </div>
               <div className='flex flex-col lg:flex-col gap-4'>
                 <div className='form-field-wrapper' data-testid='email-label'>

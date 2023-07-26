@@ -102,8 +102,8 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
           <div className='bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {productRepository
-                ? format('app.edit-entity', { entity: productRepository.name })
-                : `${format('app.create-new')} ${format('productRepository.label')}`
+                ? format('app.editEntity', { entity: productRepository.name })
+                : `${format('app.createNew')} ${format('productRepository.label')}`
               }
             </div>
             <div className='mb-4'>

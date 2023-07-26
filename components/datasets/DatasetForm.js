@@ -189,8 +189,8 @@ const DatasetForm = React.memo(({ dataset }) => {
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {dataset
-                  ? format('app.edit-entity', { entity: dataset.name })
-                  : `${format('app.create-new')} ${format('dataset.label')}`
+                  ? format('app.editEntity', { entity: dataset.name })
+                  : `${format('app.createNew')} ${format('dataset.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>

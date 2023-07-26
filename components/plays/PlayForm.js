@@ -237,8 +237,8 @@ export const PlayForm = ({ playbook, play }) => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                {play && format('app.edit-entity', { entity: play.name })}
-                {!play && `${format('app.create-new')} ${format('plays.label')}`}
+                {play && format('app.editEntity', { entity: play.name })}
+                {!play && `${format('app.createNew')} ${format('plays.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3' data-testid='play-name'>

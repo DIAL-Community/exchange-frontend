@@ -74,7 +74,7 @@ const DeleteUseCase = ({ useCase }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: useCase.name })}
+        title={format('app.deletingEntity', { entity: useCase.name })}
         message={format('use-case.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}

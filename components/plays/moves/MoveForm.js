@@ -442,8 +442,8 @@ export const MoveForm = ({ playbook, play, move }) => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                {move && format('app.edit-entity', { entity: move.name })}
-                {!move && `${format('app.create-new')} ${format('move.label')}`}
+                {move && format('app.editEntity', { entity: move.name })}
+                {!move && `${format('app.createNew')} ${format('move.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
@@ -477,7 +477,7 @@ export const MoveForm = ({ playbook, play, move }) => {
               <div className='block'>
                 <button type='button' className='flex gap-2' onClick={() => addResource({})}>
                   <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
-                  <div className='text-dial-blue'>{`${format('app.create-new')} ${format('resource.label')}`}</div>
+                  <div className='text-dial-blue'>{`${format('app.createNew')} ${format('resource.label')}`}</div>
                 </button>
               </div>
               <div className='flex font-semibold text-xl lg:mt-8 gap-3'>

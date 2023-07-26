@@ -20,7 +20,7 @@ const CommentCount = ({ objectId, objectType, commentsSectionRef }) => {
   return (
     <div className='inline-flex items-center text-dial-sapphire text-sm cursor-pointer' onClick={scrollToCommentsSection}>
       <FaRegCommentDots className='mr-1'/>
-      <span>{data?.countComments > 0 ? `${data.countComments} - ${format('app.comment')}` : format('app.nocomment')}</span>
+      <span>{data?.countComments > 0 ? `${data.countComments} - ${format('app.comment')}` : format('app.noComment')}</span>
     </div>
   )
 }

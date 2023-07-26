@@ -158,8 +158,8 @@ const UseCaseForm = React.memo(({ useCase }) => {
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
                 <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {useCase
-                    ? format('app.edit-entity', { entity: useCase.name })
-                    : `${format('app.create-new')} ${format('useCase.label')}`
+                    ? format('app.editEntity', { entity: useCase.name })
+                    : `${format('app.createNew')} ${format('useCase.label')}`
                   }
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>

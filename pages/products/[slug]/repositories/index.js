@@ -69,7 +69,7 @@ const PageDefinition = ({ slug, repositorySlug, product }) => {
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
         <div className='w-full mb-2'>
-          {canEdit && <CreateButton type='link' label={format('app.create-new')} href='repositories/create' />}
+          {canEdit && <CreateButton type='link' label={format('app.createNew')} href='repositories/create' />}
         </div>
         <ProductHeader product={product} />
         <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />

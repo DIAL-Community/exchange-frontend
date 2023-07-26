@@ -177,8 +177,8 @@ const OrganizationForm = React.memo(({ organization }) => {
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {organization
-                  ? format('app.edit-entity', { entity: organization.name })
-                  : `${format('app.create-new')} ${format('organization.label')}`
+                  ? format('app.editEntity', { entity: organization.name })
+                  : `${format('app.createNew')} ${format('organization.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>

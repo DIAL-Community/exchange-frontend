@@ -275,7 +275,7 @@ const SearchFilter = ({
                   }
                 }}
               >
-                <span>{format('app.create-new')}</span>
+                <span>{format('app.createNew')}</span>
               </a>
             }
             {exportJson && (

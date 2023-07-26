@@ -178,8 +178,8 @@ const ProductForm = React.memo(({ product }) => {
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {product
-                  ? format('app.edit-entity', { entity: product.name })
-                  : `${format('app.create-new')} ${format('product.label')}`
+                  ? format('app.editEntity', { entity: product.name })
+                  : `${format('app.createNew')} ${format('product.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-x-16'>

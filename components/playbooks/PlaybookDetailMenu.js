@@ -164,7 +164,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
               className='bg-dial-iris-blue px-2 py-0.5 rounded text-white'
             >
               <FaRegFilePdf className='inline pb-px' />
-              <span className='text-sm px-1'>{format('app.print-pdf')}</span>
+              <span className='text-sm px-1'>{format('app.printPdf')}</span>
             </a>
             {allowEmbedCreation &&
               <a onClick={openEmbedDialog} className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'>

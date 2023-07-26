@@ -64,7 +64,7 @@ const DeleteTag = ({ tag }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDeleteDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: tag.name })}
+        title={format('app.deletingEntity', { entity: tag.name })}
         message={format('tag.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDeleteDialog}

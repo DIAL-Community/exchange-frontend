@@ -157,8 +157,8 @@ const ResourceForm = React.memo(({ resource, organization }) => {
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
                 <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {resource
-                    ? format('app.edit-entity', { entity: resource.name })
-                    : `${format('app.create-new')} ${format('resource.label')}`
+                    ? format('app.editEntity', { entity: resource.name })
+                    : `${format('app.createNew')} ${format('resource.label')}`
                   }
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
