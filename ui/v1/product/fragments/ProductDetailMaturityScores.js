@@ -8,7 +8,6 @@ import {
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { Tooltip } from 'react-tooltip'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -47,7 +46,7 @@ const MaturityCategory = ({ category }) => {
         <AccordionItemButton>
           <div className='h5 inline'>{category.name}</div>
           <div className='h5 float-right inline'>
-            {format('product.category-score')}:
+            {format('product.maturity.categoryScore')}:
             {Math.round((category.overallScore / category.maximumScore) * MAX_MATURITY_SCORE)} /{' '}
             {MAX_MATURITY_SCORE}
           </div>
@@ -70,7 +69,7 @@ const MaturityCategory = ({ category }) => {
                   <AccordionItemButton>
                     <div className='h5 inline'>{indicator.name}</div>
                     <div className='h5 float-right inline'>
-                      {`${format('product.indicator-score')}: ${
+                      {`${format('product.maturity.indicatorScore')}: ${
                         isNaN(indicatorScore) ? 'N/A' : scoreText
                       }`}
                     </div>
@@ -93,7 +92,7 @@ const MaturityCategory = ({ category }) => {
   )
 }
 
-const ProductDetailMaturityScores = ({ slug, maturityScoreDetails }) => {
+const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScoreDetails }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
@@ -105,6 +104,8 @@ const ProductDetailMaturityScores = ({ slug, maturityScoreDetails }) => {
   const numericOptions = useMemo(() => getCategoryIndicatorNumericOptions(), [])
 
   const { isAdminUser, user } = useUser()
+
+  const [maturityScore, setMaturityScore] = useState(overallMaturityScore)
 
   const { handleSubmit, setValue, control, reset } = useForm()
   const { fields: categoryIndicators } = useFieldArray({
@@ -252,9 +253,8 @@ const ProductDetailMaturityScores = ({ slug, maturityScoreDetails }) => {
         const { updateProductIndicators: response } = data
         if (response?.product && response?.errors?.length === 0) {
           refetchCategoryIndicators()
-          setValidMaturityScores(
-            sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails)
-          )
+          setValidMaturityScores(sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails))
+          setMaturityScore(data.updateProductIndicators.product.overallMaturityScore)
           showToast(format('toast.category-indicator.update.success'), 'success', 'top-center')
           setIsDirty(false)
         } else {
@@ -326,12 +326,32 @@ const ProductDetailMaturityScores = ({ slug, maturityScoreDetails }) => {
 
   const displayModeBody = (
     <>
-      {validMaturityScores?.length ? (
-        <>
+      {validMaturityScores?.length
+        ? <div className='grid grid-cols-1 xl:grid-cols-3 gap-12'>
+          <div className='text-dial-meadow'>
+            <div className='flex flex-col gap-y-6'>
+              <div className='text-lg text-center font-semibold'>
+                {format('product.maturity.overallScore')}
+              </div>
+              <div className="flex mx-auto">
+                <div className='w-48 h-48 rounded-full overflow-hidden'>
+                  <div className="bg-gradient-radial from-dial-mint to-dial-mint-dark h-full">
+                    <div className='text-center text-dial-sapphire h-full'>
+                      <div className='flex justify-center py-16'>
+                        <div className='text-5xl text-dial-sapphire'>{Math.round(maturityScore)}</div>
+                        <div className='text-7xl font-thin text-dial-slate-400'>/</div>
+                        <div className='text-xl mt-auto pb-1'>{MAX_MATURITY_SCORE}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div
-            className='cursor-pointer min-h-[20rem] h-[25vh]'
+            className='xl:col-span-2 cursor-pointer min-h-[20rem] h-[25vh]'
             data-tooltip-id='react-tooltip'
-            data-tooltip-content={format('product.maturity-chart-tooltip')}
+            data-tooltip-content={format('product.maturity.chartTooltip')}
             onClick={toggleMaturityScoreDetailsDialog}
             data-testid='maturity-scores-chart'
           >
@@ -350,14 +370,13 @@ const ProductDetailMaturityScores = ({ slug, maturityScoreDetails }) => {
               />
             )}
           </div>
-          <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
           <Dialog
             isOpen={isMaturityScoreDetailsDialogOpen}
             onClose={toggleMaturityScoreDetailsDialog}
             closeButton
           >
             <div className='flex flex-col w-full'>
-              <div className='h4 inline mb-2'>{format('product.maturity-details-label')}</div>
+              <div className='h4 inline mb-2'>{format('product.maturity.detailLabel')}</div>
               <Accordion
                 allowMultipleExpanded
                 allowZeroExpanded
@@ -369,10 +388,9 @@ const ProductDetailMaturityScores = ({ slug, maturityScoreDetails }) => {
               </Accordion>
             </div>
           </Dialog>
-        </>
-      ) : (
-        <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
-      )}
+        </div>
+        : <div className='text-sm pb-5 text-button-gray'>{format('product.noMaturity')}</div>
+      }
     </>
   )
 

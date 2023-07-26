@@ -244,7 +244,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
             target='_blank' rel='noreferrer'
             href={`https://docs.dial.community/projects/product-registry/${locale}/latest/product_owner.html`}
           >
-            {format('product.owner-link')}
+            {format('product.ownerLink')}
           </a>
           {
             showApplyLink &&

@@ -117,7 +117,8 @@ module.exports = {
           DEFAULT: '#faeedc'
         },
         'dial-mint': {
-          DEFAULT: '#c0fed7'
+          DEFAULT: '#c0fed7',
+          dark: '#c0f69a'
         },
         'dial-ice': {
           DEFAULT: '#d4ffef'

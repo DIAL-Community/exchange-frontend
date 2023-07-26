@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-@font-face {
-  font-family: 'Poppins';
-  src: url('/public/assets/fonts/Poppins/Poppins-Regular.ttf');
-  src: url('/public/assets/fonts/Poppins/Poppins-SemiBold.ttf');
-  src: url('/public/assets/fonts/Poppins/Poppins-Bold.ttf');
-}
-
 html,
 body {
   padding: 0;

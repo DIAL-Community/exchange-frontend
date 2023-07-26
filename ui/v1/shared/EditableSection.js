@@ -34,7 +34,7 @@ const EditableSection = ({
     <div className='flex flex-col gap-y-3'>
       <div className='flex justify-between items-center'>
         {sectionHeader}
-        <div className='gap-3'>
+        <div className='gap-3 ml-auto'>
           {canEdit && !isInEditMode &&
             <EditButton onClick={() => setIsInEditMode(true)} className='mr-2' />
           }

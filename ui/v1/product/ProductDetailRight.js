@@ -250,29 +250,15 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
       <div className='text-sm italic'>
         <div
           className='text-sm mb-3 text-dial-gray-dark highlight-link'
-          dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }}
+          dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
         />
       </div>
       <div className='mt-6'>
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
-          <div className='flex flex-col'>
-            <div className='text-dial-meadow text-center'>
-              Overall Maturity Score
-            </div>
-          </div>
-          <div className='flex flex-col'>
-            <div className='text-dial-meadow text-center'>
-              Overall Maturity Score
-            </div>
-            <div>
-              <ProductDetailMaturityScores
-                slug={product.slug}
-                overallMaturityScore={product.overallMaturityScore}
-                maturityScoreDetails={product.maturityScoreDetails}
-              />
-            </div>
-          </div>
-        </div>
+        <ProductDetailMaturityScores
+          slug={product.slug}
+          overallMaturityScore={product.overallMaturityScore}
+          maturityScoreDetails={product.maturityScoreDetails}
+        />
       </div>
       <CommentsSection
         commentsSectionRef={commentsSectionRef}

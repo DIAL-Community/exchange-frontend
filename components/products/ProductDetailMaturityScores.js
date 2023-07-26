@@ -47,7 +47,7 @@ const MaturityCategory = ({ category }) => {
         <AccordionItemButton>
           <div className='h5 inline'>{category.name}</div>
           <div className='h5 float-right inline'>
-            {format('product.category-score')}:
+            {format('product.maturity.categoryScore')}:
             {Math.round(category.overallScore / category.maximumScore * MAX_MATURITY_SCORE)} / {MAX_MATURITY_SCORE}
           </div>
           <div className='text-xs pl-4 pt-3'>
@@ -68,7 +68,7 @@ const MaturityCategory = ({ category }) => {
                   <AccordionItemButton>
                     <div className='h5 inline'>{indicator.name}</div>
                     <div className='h5 float-right inline'>
-                      {`${format('product.indicator-score')}: ${isNaN(indicatorScore) ? 'N/A' : scoreText}`}
+                      {`${format('product.maturity.indicatorScore')}: ${isNaN(indicatorScore) ? 'N/A' : scoreText}`}
                     </div>
                   </AccordionItemButton>
                 </AccordionItemHeading>
@@ -272,17 +272,17 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
     <>
       <div
         className='text-sm mb-3 text-dial-gray-dark highlight-link'
-        dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }}
+        dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
       />
       {validMaturityScores?.length ? (
         <>
           <div className='pb-5 mr-6 h4' data-testid='maturity-overall-score'>
-            {format('product.overall-score')}: {Math.round(maturityScore)} / {MAX_MATURITY_SCORE}
+            {format('product.maturity.overallScore')}: {Math.round(maturityScore)} / {MAX_MATURITY_SCORE}
           </div>
           <div
             className='cursor-pointer min-h-[20rem] h-[25vh]'
             data-tooltip-id='react-tooltip'
-            data-tooltip-content={format('product.maturity-chart-tooltip')}
+            data-tooltip-content={format('product.maturity.chartTooltip')}
             onClick={toggleMaturityScoreDetailsDialog}
             data-testid='maturity-scores-chart'
           >
@@ -299,7 +299,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
           >
             <div className='flex flex-col w-full'>
               <div className='h4 inline mb-2'>
-                {format('product.maturity-details-label')}
+                {format('product.maturity.detailLabel')}
               </div>
               <Accordion allowMultipleExpanded allowZeroExpanded className='max-h-[60vh] overflow-auto'>
                 {validMaturityScores?.map((category, categoryIdx) => (
@@ -309,7 +309,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             </div>
           </Dialog>
         </>
-      ) : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>}
+      ) : <div className='text-sm pb-5 text-button-gray'>{format('product.noMaturity')}</div>}
     </>
   )
 
@@ -405,7 +405,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
   return (
     <EditableSection
       canEdit={isAdminUser}
-      sectionHeader={format('product.maturity-scores')}
+      sectionHeader={format('product.maturity.scores')}
       editModeBody={editModeBody}
       displayModeBody={displayModeBody}
       isDirty={isDirty}
