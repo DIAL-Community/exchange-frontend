@@ -98,7 +98,7 @@ const ProductDetailSectors = ({ product, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('product.no-sector')}
+        {format('product.noSector')}
       </div>
     )
 

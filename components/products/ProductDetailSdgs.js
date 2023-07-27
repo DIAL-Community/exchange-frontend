@@ -124,7 +124,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('product.no-sdgs', { entity: format('sdg.label') })}
+        {format('product.noSdg', { entity: format('sdg.label') })}
       </div>
     )
 

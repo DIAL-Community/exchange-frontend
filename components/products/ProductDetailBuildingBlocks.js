@@ -135,7 +135,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
         </div>
       ) : (
         <div className='text-sm pb-5 text-button-gray'>
-          {format('product.no-building-block')}
+          {format('product.noBuildingBlock')}
         </div>
       )}
     </>

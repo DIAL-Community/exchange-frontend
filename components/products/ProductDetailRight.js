@@ -185,7 +185,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                 </div>
               )
               : <div className='text-sm pb-5 text-button-gray'>
-                {format('product.no-interop')}
+                {format('product.noInteroperableProduct')}
               </div>
           }
         </div>
@@ -201,7 +201,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                 </div>
               )
               : <div className='text-sm pb-5 text-button-gray'>
-                {format('product.no-include')}
+                {format('product.noIncludedProduct')}
               </div>
           }
         </div>

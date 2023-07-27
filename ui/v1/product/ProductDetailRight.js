@@ -22,30 +22,27 @@ const ProductSource = ({ product }) => {
     <div className='flex flex-col gap-y-3'>
       <div className='text-lg font-semibold text-dial-meadow'>{format('product.source')}</div>
       <div className='flex flex-col gap-3'>
+        {product.origins?.length <= 0 && <div className='text-sm'>{format('product.noDatasource')}</div>}
         {product.origins.map((origin, i) => {
           return (
-            <div key={i} className='flex gap-2 my-auto relative'>
-              <div className='flex flex-row gap-3'>
-                <div className='block w-12 relative'>
-                  <img
-                    className='object-contain'
-                    src={'/images/origins/' + origin.slug + '.png'}
-                    alt={format('image.alt.logoFor', { name: origin.name })}
-                  />
-                </div>
-                <div className='inline mt-0.5 text-sm'>{origin.name}</div>
+            <div key={i} className='flex flex-row gap-3'>
+              <div className='block w-12 relative'>
+                <img
+                  className='object-contain'
+                  src={'/images/origins/' + origin.slug + '.png'}
+                  alt={format('image.alt.logoFor', { name: origin.name })}
+                />
               </div>
+              <div className='inline my-auto text-sm'>{origin.name}</div>
               {origin.slug === 'dpga' && product.endorsers.length === 0 && (
-                <div className='inline ml-2 h5'>{format('product.nominee')}</div>
+                <div className='inline my-auto text-xs italic'>{format('product.nominee')}</div>
               )}
               {origin.slug === 'dpga' && (
                 <a
-                  href={`https://digitalpublicgoods.net/registry/${product.slug.replaceAll(
-                    '_',
-                    '-'
-                  )}`}
+                  href={`https://digitalpublicgoods.net/registry/${product.slug.replaceAll('_', '-')}`}
                   target='_blank'
                   rel='noreferrer'
+                  className='my-auto'
                 >
                   <div
                     className='inline text-dial-teal text-sm'
@@ -70,20 +67,25 @@ const ProductEndorser = ({ product }) => {
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <div className='text-lg font-semibold text-dial-meadow'>{format('product.endorsers')}</div>
+      <div className='text-lg font-semibold text-dial-meadow'>
+        {format('product.endorsers')}
+      </div>
+      {product.endorsers?.length <= 0 && <div className='text-sm'>{format('product.noEndorser')}</div>}
       {product.endorsers.map((endorser, i) => {
         return (
-          <div key={i} className='flex gap-3'>
-            <div className='block relative'>
+          <div key={i} className='flex flex-row gap-3'>
+            <div className='min-w-[3rem]'>
               <img
                 alt={format('image.alt.logoFor', { name: endorser.name })}
                 data-tooltip-id='react-tooltip'
                 data-tooltip-content={format('product.endorsed-by')}
                 src={'/images/origins/' + endorser.slug + '.png'}
-                className='object-contain w-12'
+                className='w-12'
               />
             </div>
-            <div className='text-sm inline'>{format('product.endorsed-by') + endorser.name}</div>
+            <div className='text-sm whitespace-normal'>
+              {format('product.endorsed-by') + endorser.name}
+            </div>
           </div>
         )
       })}
@@ -194,14 +196,30 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
         <div className='text-xl font-semibold text-dial-meadow py-3' ref={pricingRef}>
           {format('ui.product.pricing.title')}
         </div>
-        <div className='text-sm'>
-          {format('ui.product.pricing.hostingModel')}
+        <div className='text-sm flex flex-row gap-2'>
+          {format('ui.product.pricing.hostingModel')}:
+          <div className='font-semibold inline'>
+            {product.hostingModel || format('general.na')}
+          </div>
         </div>
-        <div className='text-sm'>
-          {format('ui.product.pricing.pricingModel')}
+        <div className='text-sm flex flex-row gap-2'>
+          {format('ui.product.pricing.pricingModel')}:
+          <div className='font-semibold inline'>
+            {product.pricingModel || format('general.na')}
+          </div>
         </div>
-        <div className='text-sm'>
-          {format('ui.product.pricing.detailPricing')}
+        <div className='text-sm flex flex-row gap-2'>
+          {format('ui.product.pricing.detailPricing')}:
+          <div className='inline'>
+            {product.pricingDetails
+              ? <HtmlViewer
+                className='-mb-12'
+                initialContent={product?.pricingDetails}
+                editorId='pricing-details'
+              />
+              : <div className='font-semibold inline'>{format('general.na')}</div>
+            }
+          </div>
         </div>
       </div>
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
