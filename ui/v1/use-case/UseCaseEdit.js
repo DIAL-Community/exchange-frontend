@@ -39,11 +39,11 @@ const UseCaseEdit = ({ slug }) => {
       <div className='px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
-      <div className='flex flex-row gap-x-8'>
-        <div className='basis-1/3'>
+      <div className='flex flex-col lg:flex-row gap-x-8'>
+        <div className='lg:basis-1/3'>
           <UseCaseEditLeft useCase={useCase} />
         </div>
-        <div className='basis-2/3'>
+        <div className='lg:basis-2/3'>
           <UseCaseForm useCase={useCase} />
         </div>
       </div>

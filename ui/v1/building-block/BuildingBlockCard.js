@@ -59,7 +59,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissCardHandl
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-building-block-bg-light to-building-block-bg'>
       <div className='flex flex-row gap-x-3 px-6 py-3'>
-        <div className='rounded-full bg-dial-orange w-10 h-10'>
+        <div className='rounded-full bg-dial-orange w-10 h-10 min-w-[2.5rem]'>
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}

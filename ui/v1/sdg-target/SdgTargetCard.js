@@ -39,25 +39,23 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
     </div>
 
   const displaySmallCard = () =>
-    <div className='flex flex-row gap-x-3 px-6'>
-      <div className='basis-1/6'>
+    <div className='flex flex-col lg:flex-row gap-x-3'>
+      <div className='min-w-[8rem]'>
         <img
           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.sdg.imageFile}
           alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
-          className='object-contain w-32 h-32'
+          className='object-contain w-32 h-32 mx-auto'
         />
       </div>
-      <div className='basis-5/6'>
-        <div className='flex flex-col gap-y-1'>
-          <div className='font-semibold text-dial-blueberry pt-1 pb-3'>
-            {`${sdgTarget.sdg.number}. ${sdgTarget.sdg.name}`}
-          </div>
-          <div className='text-sm font-semibold text-dial-blueberry my-auto'>
-            {`${format('ui.sdgTarget.target')} ${sdgTarget.targetNumber}`}
-          </div>
-          <div className='text-sm text-dial-stratos my-auto'>
-            {sdgTarget.name}
-          </div>
+      <div className='flex flex-col gap-y-1'>
+        <div className='font-semibold text-dial-blueberry pt-1 pb-3'>
+          {`${sdgTarget.sdg.number}. ${sdgTarget.sdg.name}`}
+        </div>
+        <div className='text-sm font-semibold text-dial-blueberry my-auto'>
+          {`${format('ui.sdgTarget.target')} ${sdgTarget.targetNumber}`}
+        </div>
+        <div className='text-sm text-dial-stratos my-auto'>
+          {sdgTarget.name}
         </div>
       </div>
     </div>

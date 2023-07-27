@@ -98,7 +98,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
   }
 
   const displayModeBody = products.length
-    ? <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
       {products?.map((product, index) =>
         <div key={`product-${index}`}>
           <ProductCard product={product} displayType={DisplayType.SMALL_CARD} />

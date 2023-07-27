@@ -93,7 +93,7 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
                   <div className='text-base'>
                     {`${index + 1}. ${useCaseStep.name}`}
                   </div>
-                  <div className='flex gap-x-2 text-xs text-dial-stratos'>
+                  <div className='flex flex-col lg:flex-row gap-2 text-xs text-dial-stratos'>
                     <div className='text-sm'>
                       {format('ui.workflow.header')} ({useCaseStep.workflows?.length ?? 0})
                     </div>
@@ -118,7 +118,7 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={workflowRef}>
           {format('ui.workflow.header')}
         </div>
-        <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
           {useCase?.workflows?.map((workflow, index) =>
             <div key={`workflow-${index}`}>
               <WorkflowCard
@@ -139,7 +139,7 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={buildingBlockRef}>
           {format('ui.buildingBlock.header')}
         </div>
-        <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
           {useCase?.buildingBlocks?.map((buildingBlock, index) =>
             <div key={`building-block-${index}`}>
               <BuildingBlockCard
