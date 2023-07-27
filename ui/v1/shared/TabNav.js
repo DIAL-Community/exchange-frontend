@@ -36,8 +36,12 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
                     : 'bg-dial-slate-300 text-dial-slate-500'
                 )}
               >
-                <a href='#' onClick={(e) => handleTabClicked(e, index)}>
-                  <div className='px-4 py-3'>
+                <a
+                  href='#'
+                  className='h-full'
+                  onClick={(e) => handleTabClicked(e, index)}
+                >
+                  <div className='px-4 py-3 h-full'>
                     {format(tabName)}
                   </div>
                 </a>
