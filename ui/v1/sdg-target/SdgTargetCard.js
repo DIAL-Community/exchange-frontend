@@ -8,13 +8,11 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const filename = `0${sdgTarget.sdg.number}`.slice(-2)
-
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
       <div className='flex flex-row gap-x-6'>
         <img
-          src={`/assets/sdg/sdg_${filename}.png`}
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.sdg.imageFile}
           alt={format('ui.image.logoAlt', { name:  format('ui.sdgTarget.header') })}
           width={70}
           height={70}
@@ -44,7 +42,7 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
     <div className='flex flex-row gap-x-3 px-6'>
       <div className='basis-1/6'>
         <img
-          src={`/assets/sdg/sdg_${filename}.png`}
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.sdg.imageFile}
           alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
           className='object-contain w-32 h-32'
         />

@@ -8,17 +8,14 @@ const SdgCard = ({ displayType, index, sdg }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const filename = `0${sdg.number}`.slice(-2)
-
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
       <div className='flex flex-row gap-x-6'>
         <img
-          src={`/assets/sdg/sdg_${('0' + sdg.number).slice(-2)}.png`}
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
           alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
           width={70}
           height={70}
-          className='object-contain'
         />
         <div className='flex flex-col gap-y-3'>
           <div className='text-lg font-semibold text-dial-blueberry'>
@@ -44,7 +41,7 @@ const SdgCard = ({ displayType, index, sdg }) => {
     <div className='flex flex-row gap-x-3 px-6'>
       <div className='basis-1/6'>
         <img
-          src={`/assets/sdg/sdg_${filename}.png`}
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
           alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
           className='object-contain w-24 h-24'
         />

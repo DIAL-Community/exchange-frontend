@@ -233,13 +233,13 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
         {format('ui.product.details')}
       </div>
       <div className='mt-6'>
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
           <ProductSource product={product} />
           <ProductEndorser product={product} />
         </div>
       </div>
       <div className='mt-6'>
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
           <ProductInteroperable product={product} />
           <ProductIncluded product={product} />
         </div>
