@@ -36,11 +36,11 @@ const ProductDetail = ({ slug }) => {
       <div className='px-6 py-4 bg-dial-spearmint text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
-      <div className='flex flex-row gap-x-8'>
-        <div className='basis-1/3'>
+      <div className='flex flex-col lg:flex-row gap-x-8'>
+        <div className='lg:basis-1/3'>
           <ProductDetailLeft scrollRef={scrollRef} product={product} />
         </div>
-        <div className='basis-2/3'>
+        <div className='lg:basis-2/3'>
           <ProductDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} product={product} />
         </div>
       </div>

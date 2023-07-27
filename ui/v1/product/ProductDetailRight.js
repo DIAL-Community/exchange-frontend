@@ -243,10 +243,6 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
         />
       </div>
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
-      <div className='flex flex-col gap-y-3'>
-        <ProductDetailTags product={product} canEdit={canEdit} headerRef={tagRef} />
-      </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <div className='text-dial-meadow text-xl font-semibold'>
         {format('ui.product.details')}
       </div>
@@ -277,6 +273,10 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <div className='flex flex-col gap-y-3'>
+        <ProductDetailTags product={product} canEdit={canEdit} headerRef={tagRef} />
       </div>
       <CommentsSection
         commentsSectionRef={commentsSectionRef}

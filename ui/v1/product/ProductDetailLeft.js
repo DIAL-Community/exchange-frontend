@@ -7,7 +7,7 @@ import ProductDetailNav from './fragments/ProductDetailNav'
 
 const ProductDetailLeft = ({ scrollRef, product }) => {
   return (
-    <div className='bg-dial-slate-100 h-full'>
+    <div className='bg-dial-slate-100 lg:h-full'>
       <div className='flex flex-col gap-y-3 px-6 py-3'>
         <ProductDetailHeader product={product}/>
         <hr className='bg-slate-200'/>
