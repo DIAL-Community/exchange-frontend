@@ -1,6 +1,7 @@
 import { render } from '../../test-utils'
 import UserDetail from '../../../components/users/UserDetail'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
+import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import { basicUser, user, userWithProducts } from './data/UserDetail'
 
 mockNextUseRouter()
@@ -10,7 +11,10 @@ describe('Unit test for the UserDetail component', () => {
   })
 
   test('should not render 0 for user not owning any product.', () => {
-    const component = render(<UserDetail user={user} />)
+    const component = render(
+      <CustomMockedProvider>
+        <UserDetail user={user} />
+      </CustomMockedProvider>)
 
     // Should not display the products section.
     expect(component.queryByText(/0/)).not.toBeInTheDocument()
@@ -23,7 +27,10 @@ describe('Unit test for the UserDetail component', () => {
   })
 
   test('should render element of the user owning product.', () => {
-    const component = render(<UserDetail user={userWithProducts} />)
+    const component = render(
+      <CustomMockedProvider>
+        <UserDetail user={userWithProducts} />
+      </CustomMockedProvider>)
 
     // Should correctly format both roles.
     expect(component.getByText(/ORG_USER, PRODUCT_USER/)).toBeInTheDocument()
@@ -35,7 +42,10 @@ describe('Unit test for the UserDetail component', () => {
   })
 
   test('should render element of basic user not owning product or organization.', () => {
-    const component = render(<UserDetail user={basicUser} />)
+    const component = render(
+      <CustomMockedProvider>
+        <UserDetail user={basicUser} />
+      </CustomMockedProvider>)
 
     expect(component.getByText(/USER/)).toBeInTheDocument()
     // Should not display the products and organizations section.

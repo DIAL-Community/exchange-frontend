@@ -71,6 +71,13 @@ const OrganizationForm = () => {
     }
   })
 
+  useEffect(() => {
+    if (user) {
+      const { userEmail } = user
+      setValue('email', userEmail )
+    }
+  }, [user])
+
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
