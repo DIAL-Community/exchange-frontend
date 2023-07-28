@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import { FaSliders } from 'react-icons/fa6'
 import { currentActiveNav, navOptions } from '../utils/header'
 import Select from './form/Select'
 import Breadcrumb from './Breadcrumb'
 
-const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
+const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb, startFiltering }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -43,6 +44,11 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
                   {format(titleKey)}
                 </div>
               </div>
+            </div>
+            <div className='block lg:hidden relative'>
+              <button onClick={startFiltering} className='my-auto h-full'>
+                <FaSliders className={`text-2xl ${titleColor} mx-auto`} />
+              </button>
             </div>
             <div className='basis-1/4 ml-auto my-auto z-40 hidden lg:block'>
               <div className='flex flex-col gap-1 text-sm w-prose'>
