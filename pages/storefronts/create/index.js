@@ -6,7 +6,7 @@ import { useUser } from '../../../lib/hooks'
 import StorefrontForm from '../../../components/organizations/storefronts/StorefrontForm'
 
 const CreateStorefront = () => {
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { user, loadingUserSession } = useUser()
 
   return (
     <>
@@ -14,7 +14,7 @@ const CreateStorefront = () => {
       <ClientOnly>
         {loadingUserSession
           ? <Loading />
-          : isAdminUser
+          : user
             ? <StorefrontForm />
             : <Unauthorized />}
       </ClientOnly>

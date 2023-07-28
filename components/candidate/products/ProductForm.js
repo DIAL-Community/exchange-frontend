@@ -83,6 +83,13 @@ const ProductForm = ({ candidateProduct }) => {
     }
   })
 
+  useEffect(() => {
+    if (user) {
+      const { userEmail } = user
+      setValue('submitterEmail', userEmail )
+    }
+  }, [user])
+
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)

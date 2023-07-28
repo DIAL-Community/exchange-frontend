@@ -65,7 +65,7 @@ const StorefrontForm = React.memo(({ organization }) => {
       aliases: organization?.aliases?.length ? organization?.aliases.map(value => ({ value })) : [{ value: '' }],
       website: organization?.website ?? '',
       description: organization?.organizationDescription?.description,
-      hasStorefront: organization?.hasStorefront
+      hasStorefront: true
     }
   })
 
@@ -152,7 +152,7 @@ const StorefrontForm = React.memo(({ organization }) => {
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {organization
                   ? format('app.edit-entity', { entity: organization.name })
-                  : `${format('app.create-new')} ${format('organization.label')}`
+                  : `${format('app.create-new')} ${format('storefront.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>

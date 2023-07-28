@@ -15,7 +15,7 @@ const StorefrontDetailLeft = ({ organization, commentsSectionRef }) => {
 
   const { locale } = useRouter()
 
-  const { user, isAdminUser } = useUser()
+  const { user } = useUser()
   const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
 
   const generateEditLink = () => {
@@ -40,14 +40,14 @@ const StorefrontDetailLeft = ({ organization, commentsSectionRef }) => {
       </div>
       <div className='h-20'>
         <div className='w-full inline-flex gap-3'>
-          {(isOrganizationOwner || isAdminUser) && <EditButton type='link' href={generateEditLink()}/>}
+          {(isOrganizationOwner || user) && <EditButton type='link' href={generateEditLink()}/>}
           <CommentsCount
             commentsSectionRef={commentsSectionRef}
             objectId={organization.id}
             objectType={ObjectType.ORGANIZATION}
           />
         </div>
-        <div className='h4 font-bold py-4'>{format('organization.label')}</div>
+        <div className='h4 font-bold py-4'>{format('storefront.label')}</div>
       </div>
       <div className='bg-white border-t border-l border-r border-dial-gray lg:mr-6 shadow-lg'>
         {
