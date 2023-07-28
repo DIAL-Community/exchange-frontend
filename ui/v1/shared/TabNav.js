@@ -1,10 +1,13 @@
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
+import { useUser } from '../../../lib/hooks'
 
 const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { user } = useUser()
 
   const handleTabClicked = (e, index) => {
     e.preventDefault()
@@ -13,12 +16,16 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
 
   const exportCsvClicked = (e) => {
     e.preventDefault()
-    exportCsvFn()
+    if (user) {
+      exportCsvFn()
+    }
   }
 
   const exportJsonClicked = (e) => {
     e.preventDefault()
-    exportJsonFn()
+    if (user) {
+      exportJsonFn()
+    }
   }
 
   return (
@@ -51,7 +58,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
           <div className='hidden lg:block ml-auto my-auto'>
             <div className='text-xs text-white font-semibold'>
               <div className='flex flex-row gap-x-2'>
-                {exportJsonFn && activeTab == 0 &&
+                {exportJsonFn && activeTab == 0 && user &&
                   <div className='bg-dial-iris-blue rounded-md'>
                     <a href='#' onClick={exportJsonClicked}>
                       <div className='px-5 py-1.5'>
@@ -60,7 +67,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
                     </a>
                   </div>
                 }
-                {exportCsvFn && activeTab == 0 &&
+                {exportCsvFn && activeTab == 0 && user &&
                   <div className='bg-dial-iris-blue rounded-md'>
                     <a href='#' onClick={exportCsvClicked}>
                       <div className='px-5 py-1.5'>
@@ -79,7 +86,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
         <div className='block lg:hidden ml-auto my-auto mt-6'>
           <div className='text-xs text-white font-semibold'>
             <div className='flex flex-row gap-x-2'>
-              {exportJsonFn && activeTab == 0 &&
+              {exportJsonFn && activeTab == 0 && user &&
                 <div className='bg-dial-iris-blue rounded-md'>
                   <a href='#' onClick={exportJsonClicked}>
                     <div className='px-5 py-1.5'>
@@ -88,7 +95,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
                   </a>
                 </div>
               }
-              {exportCsvFn && activeTab == 0 &&
+              {exportCsvFn && activeTab == 0 && user &&
                 <div className='bg-dial-iris-blue rounded-md'>
                   <a href='#' onClick={exportCsvClicked}>
                     <div className='px-5 py-1.5'>

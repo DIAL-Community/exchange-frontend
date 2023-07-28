@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { FaSpinner, FaExclamationCircle, FaDownload } from 'react-icons/fa'
+import { FaSpinner, FaCircleExclamation, FaDownload } from 'react-icons/fa6'
 import { useCallback } from 'react'
 
 export const Loading = () => {
@@ -26,7 +26,7 @@ export const Error = () => {
     <div className='h-[60vh]'>
       <div className='flex bg-dial-alice-blue h-full'>
         <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
-          <FaExclamationCircle size='3em' className='mx-auto' />
+          <FaCircleExclamation size='3em' className='mx-auto' />
           <div className='text-center mt-5'>{format('general.fetchError')}</div>
         </div>
       </div>
@@ -42,7 +42,7 @@ export const Unauthorized = () => {
     <div className='h-[60vh]'>
       <div className='flex bg-dial-alice-blue h-full'>
         <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
-          <FaExclamationCircle size='3em' className='mx-auto' />
+          <FaCircleExclamation size='3em' className='mx-auto' />
           <div className='text-center mt-5'>{format('general.unauthorized')}</div>
         </div>
       </div>
@@ -74,7 +74,7 @@ export const NotFound = () => {
     <div className='h-[60vh]'>
       <div className='flex bg-gradient-to-b from-dial-gray-light to-white h-full'>
         <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
-          <FaExclamationCircle size='3em' className='mx-auto' />
+          <FaCircleExclamation size='3em' className='mx-auto' />
           <div className='font-semibold text-center'>{format('app.notFound')}</div>
         </div>
       </div>

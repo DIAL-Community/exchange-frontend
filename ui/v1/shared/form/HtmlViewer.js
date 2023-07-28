@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 import classNames from 'classnames'
-import { FaSpinner } from 'react-icons/fa'
+import { FaSpinner } from 'react-icons/fa6'
 
 export const HtmlViewer = ({ initialContent, editorId, className }) => {
   const editorRef = useRef(null)

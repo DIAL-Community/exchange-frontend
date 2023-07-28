@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo, useContext, useEffect } from 're
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
+import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'

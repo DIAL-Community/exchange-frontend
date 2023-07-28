@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback } from 'react'
-import { FaSpinner } from 'react-icons/fa'
+import { FaSpinner } from 'react-icons/fa6'
 import EditButton from './form/EditButton'
 import CreateButton from './form/CreateButton'
 

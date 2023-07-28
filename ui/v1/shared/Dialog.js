@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
+import { FaSpinner } from 'react-icons/fa6'
 import { Dialog as DialogHeadlessui, Transition } from '@headlessui/react'
 import { Fragment, useCallback, useRef } from 'react'
 import classNames from 'classnames'

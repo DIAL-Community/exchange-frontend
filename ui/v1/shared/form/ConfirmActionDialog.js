@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import classNames from 'classnames'
 import { Fragment, useCallback, useRef } from 'react'
-import { FaSpinner } from 'react-icons/fa'
+import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 
 const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isConfirming }) => {

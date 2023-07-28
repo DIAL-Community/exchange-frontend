@@ -57,7 +57,7 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
       <div className='text-lg text-dial-sapphire font-semibold'>
         {format('ui.bookmark.title')}
       </div>
-      <button onClick={bookmarkThis} className='flex flex-row gap-x-3'>
+      <button onClick={bookmarkThis} className='group flex flex-row gap-x-3'>
         <img
           src='/ui/v1/bookmark-icon.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.bookmark.title') })}
@@ -65,7 +65,7 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
           height={40}
           className='object-contain'
         />
-        <div className='text-sm my-auto border-b border-transparent hover:border-dial-slate-500'>
+        <div className='text-sm my-auto border-b border-transparent group-hover:border-dial-slate-500'>
           {format('ui.bookmark.bookmarkThis')}
         </div>
       </button>

@@ -1,11 +1,11 @@
 import { MdClose } from 'react-icons/md'
 
 export const SearchInput = ({ value, placeholder, onChange }) => (
-  <label htmlFor='search-bar' className='relative block'>
+  <label htmlFor='search-bar' className='relative'>
     <input
       id='search-bar'
       type='text'
-      className='text-sm form-input w-full'
+      className='form-input w-full border'
       placeholder={placeholder}
       onChange={onChange}
       value={value}

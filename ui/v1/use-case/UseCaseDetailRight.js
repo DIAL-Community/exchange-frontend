@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
-import { FaArrowRight } from 'react-icons/fa'
+import { FaArrowRight } from 'react-icons/fa6'
 import WorkflowCard from '../workflow/WorkflowCard'
 import { DisplayType, ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'

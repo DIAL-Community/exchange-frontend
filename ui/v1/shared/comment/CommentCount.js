@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { FaRegCommentDots } from 'react-icons/fa'
+import { FaRegCommentDots } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { COMMENTS_COUNT_QUERY } from '../query/comment'

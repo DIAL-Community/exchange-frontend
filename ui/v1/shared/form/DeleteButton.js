@@ -1,11 +1,11 @@
-import { FaRegTrashAlt } from 'react-icons/fa'
+import { FaTrashAlt } from 'react-icons/fa6'
 import classNames from 'classnames'
 import { FormattedMessage } from 'react-intl'
 
 const DeleteButton = ({ type = 'button', title = 'app.delete', onClick, href, className }) => {
   const innerHtml =
     <>
-      <FaRegTrashAlt className='text-sm'/>
+      <FaTrashAlt className='text-sm'/>
       <span className='text-sm'>
         <FormattedMessage id={title} />
       </span>
