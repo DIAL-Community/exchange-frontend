@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useCallback, useEffect, useState } from 'react'
 import { SearchInput } from './form/SearchInput'
 
-const SearchBar = ({ search, setSearch }) => {
+const SearchBar = ({ search, setSearch, tabletFilter }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -21,6 +21,7 @@ const SearchBar = ({ search, setSearch }) => {
 
   return (
     <div className='flex flex-row gap-3'>
+      {tabletFilter}
       <div className='ml-auto w-full max-w-prose'>
         <SearchInput
           value={searchTerm}

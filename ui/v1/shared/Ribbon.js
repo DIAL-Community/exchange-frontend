@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { FaSliders } from 'react-icons/fa6'
 import { currentActiveNav, navOptions } from '../utils/header'
 import Select from './form/Select'
 import Breadcrumb from './Breadcrumb'
 
-const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb, startFiltering }) => {
+const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb, mobileFilter }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -35,8 +34,8 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb, startF
         <div className='mr-auto px-8 xl:px-56 my-3'>
           <Breadcrumb slugNameMapping={breadcrumb} />
         </div>
-        <div className='ribbon-inner w-full px-8 xl:px-56 my-auto'>
-          <div className='flex'>
+        <div className='ribbon-inner w-full my-auto'>
+          <div className='flex px-8 xl:px-56'>
             <div className='basis-full lg:basis-3/4 flex flex-col gap-4'>
               <div className='flex gap-4 my-auto'>
                 {titleImage}
@@ -45,12 +44,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb, startF
                 </div>
               </div>
             </div>
-            <div className='block lg:hidden relative'>
-              <button onClick={startFiltering} className='my-auto h-full'>
-                <FaSliders className={`text-2xl ${titleColor} mx-auto`} />
-              </button>
-            </div>
-            <div className='basis-1/4 ml-auto my-auto z-40 hidden lg:block'>
+            <div className='basis-1/4 my-auto z-40 hidden lg:block'>
               <div className='flex flex-col gap-1 text-sm w-prose'>
                 <div className='text-dial-slate-600 font-semibold'>
                   {format('ui.shared.navigateTools')}
@@ -68,6 +62,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb, startF
               </div>
             </div>
           </div>
+          {mobileFilter}
         </div>
       </div>
     </div>

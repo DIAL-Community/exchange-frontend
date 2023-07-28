@@ -32,7 +32,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
     <div className='sticky-under-ribbon bg-white z-30'>
       <div className='px-8 xl:px-56'>
         <div className='flex flex-row'>
-          <ul className='flex flex-row list-none pt-2 gap-x-1'>
+          <ul className='flex flex-row list-none gap-x-1'>
             {tabNames.map((tabName, index) => {
               return <li
                 key={`tab-menu-${tabName}`}
@@ -83,30 +83,32 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
         <div className='shadow-md-lg'>
           <div className='border-b-8 border-dial-slate-500' />
         </div>
-        <div className='block lg:hidden ml-auto my-auto mt-6'>
-          <div className='text-xs text-white font-semibold'>
-            <div className='flex flex-row gap-x-2'>
-              {exportJsonFn && activeTab == 0 && user &&
-                <div className='bg-dial-iris-blue rounded-md'>
-                  <a href='#' onClick={exportJsonClicked}>
-                    <div className='px-5 py-1.5'>
-                      {format('ui.shared.exportJson').toUpperCase()}
-                    </div>
-                  </a>
-                </div>
-              }
-              {exportCsvFn && activeTab == 0 && user &&
-                <div className='bg-dial-iris-blue rounded-md'>
-                  <a href='#' onClick={exportCsvClicked}>
-                    <div className='px-5 py-1.5'>
-                      {format('ui.shared.exportCsv').toUpperCase()}
-                    </div>
-                  </a>
-                </div>
-              }
+        {activeTab === 0 && user &&
+          <div className='block lg:hidden ml-auto my-auto mt-3'>
+            <div className='text-xs text-white font-semibold'>
+              <div className='flex flex-row gap-x-2'>
+                {exportJsonFn &&
+                  <div className='bg-dial-iris-blue rounded-md'>
+                    <a href='#' onClick={exportJsonClicked}>
+                      <div className='px-5 py-1.5'>
+                        {format('ui.shared.exportJson').toUpperCase()}
+                      </div>
+                    </a>
+                  </div>
+                }
+                {exportCsvFn &&
+                  <div className='bg-dial-iris-blue rounded-md'>
+                    <a href='#' onClick={exportCsvClicked}>
+                      <div className='px-5 py-1.5'>
+                        {format('ui.shared.exportCsv').toUpperCase()}
+                      </div>
+                    </a>
+                  </div>
+                }
+              </div>
             </div>
           </div>
-        </div>
+        }
       </div>
     </div>
   )

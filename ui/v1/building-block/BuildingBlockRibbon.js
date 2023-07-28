@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import Ribbon from '../shared/Ribbon'
+import MobileFilter from '../shared/MobileFilter'
+import BuildingBlockFilter from './fragments/BuildingBlockFilter'
 
 const BuildingBlockRibbon = () => {
   const { formatMessage } = useIntl()
@@ -15,12 +17,20 @@ const BuildingBlockRibbon = () => {
       className='object-contain'
     />
 
+  const mobileFilter =
+    <MobileFilter
+      bgColor='bg-dial-warm-beech'
+      iconColor='text-dial-ochre'
+      entityFilter={<BuildingBlockFilter />}
+    />
+
   return (
     <Ribbon
       ribbonBg='bg-dial-warm-beech'
       titleImage={titleImage}
       titleKey={'ui.buildingBlock.header'}
       titleColor='text-dial-ochre'
+      mobileFilter={mobileFilter}
     />
   )
 }
