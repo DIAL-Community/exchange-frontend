@@ -57,3 +57,15 @@ export const APPLY_AS_OWNER = gql`
     }
   }
 `
+
+export const DELETE_USER = gql`
+  mutation DeleteUser($id: ID!) {
+    deleteUser(id: $id) {
+      user {
+       id
+       email
+      }
+      errors
+    }
+  }
+`
