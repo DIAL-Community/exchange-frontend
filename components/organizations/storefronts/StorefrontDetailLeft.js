@@ -15,7 +15,7 @@ const StorefrontDetailLeft = ({ organization, commentsSectionRef }) => {
 
   const { locale } = useRouter()
 
-  const { user, isAdminUser } = useUser()
+  const { user } = useUser()
   const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
 
   const generateEditLink = () => {
