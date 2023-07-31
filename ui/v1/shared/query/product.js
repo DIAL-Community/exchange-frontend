@@ -2,17 +2,27 @@ import { gql } from '@apollo/client'
 
 export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeProduct(
-    $licenseTypes: [String!]
-    $origins: [String!]
+    $useCases: [String!]
+    $buildingBlocks: [String!]
     $sectors: [String!]
     $tags: [String!]
+    $licenseTypes: [String!]
+    $workflows: [String!]
+    $sdgs: [String!]
+    $origins: [String!]
+    $isLinkedWithDpi: Boolean
     $search: String!
   ) {
     paginationAttributeProduct(
-      licenseTypes: $licenseTypes
-      origins: $origins
+      useCases: $useCases
+      buildingBlocks: $buildingBlocks
       sectors: $sectors
       tags: $tags
+      licenseTypes: $licenseTypes
+      workflows: $workflows
+      sdgs: $sdgs
+      origins: $origins
+      isLinkedWithDpi: $isLinkedWithDpi
       search: $search
     ) {
       totalCount
@@ -22,19 +32,29 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
 
 export const PAGINATED_PRODUCTS_QUERY = gql`
   query PaginatedProductsRedux(
-    $licenseTypes: [String!]
-    $origins: [String!]
+    $useCases: [String!]
+    $buildingBlocks: [String!]
     $sectors: [String!]
     $tags: [String!]
+    $licenseTypes: [String!]
+    $workflows: [String!]
+    $sdgs: [String!]
+    $origins: [String!]
+    $isLinkedWithDpi: Boolean
     $search: String!
     $limit: Int!
     $offset: Int!
   ) {
     paginatedProductsRedux(
-      licenseTypes: $licenseTypes
-      origins: $origins
+      useCases: $useCases
+      buildingBlocks: $buildingBlocks
       sectors: $sectors
       tags: $tags
+      licenseTypes: $licenseTypes
+      workflows: $workflows
+      sdgs: $sdgs
+      origins: $origins
+      isLinkedWithDpi: $isLinkedWithDpi
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {

@@ -30,7 +30,7 @@
 
 .sticky-under-tab {
   position: sticky;
-  top: 400px;
+  top: calc(var(--header-height) + var(--ribbon-inner-height));
 
   padding-top: var(--spacer-padding);
 }

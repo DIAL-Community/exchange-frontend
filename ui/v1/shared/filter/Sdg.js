@@ -25,6 +25,7 @@ export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
     data?.sdgs.map((sdg) => ({
       label: `${sdg.number}. ${sdg.name}`,
       value: sdg.id,
+      number: sdg.number,
       slug: sdg.slug
     }))
   )

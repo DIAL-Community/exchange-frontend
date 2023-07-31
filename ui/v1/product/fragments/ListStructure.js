@@ -12,15 +12,22 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(ProductFilterContext)
 
-  const { origins, sectors, tags, licenseTypes } = useContext(ProductFilterContext)
+  const { isLinkedWithDpi } = useContext(ProductFilterContext)
+  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
+  const { licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PRODUCTS_QUERY, {
     variables: {
       search,
-      origins: origins.map(origin => origin.value),
+      useCases: useCases.map(useCase => useCase.value),
+      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
+      sdgs: sdgs.map(sdg => sdg.number),
+      workflows: workflows.map(workflow => workflow.id),
+      origins: origins.map(origin => origin.value),
+      isLinkedWithDpi,
       limit: defaultPageSize,
       offset: pageOffset
     },
