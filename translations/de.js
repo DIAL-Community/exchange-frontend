@@ -860,8 +860,8 @@ export const de = {
   "app.exportAsCSV": "Export von Daten (CSV)",
   "app.notFound": "404 - Seite nicht gefunden",
 
-  "ownership.reveal": "Kontakt zum Eigentümer",
-  "ownership.label": "E-Mail-Adresse des Eigentümers",
+  "product.owner.revealContact": "Kontakt zum Eigentümer",
+  "product.owner.contactLabel": "E-Mail-Adresse des Eigentümers",
   "endorser.label": "Förderorganisation",
   "endorser.header": "Förderorganisationen",
 

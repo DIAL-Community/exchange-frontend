@@ -4,12 +4,15 @@ import Share from '../shared/common/Share'
 import { ObjectType } from '../utils/constants'
 import ProductDetailHeader from './fragments/ProductDetailHeader'
 import ProductDetailNav from './fragments/ProductDetailNav'
+import ProductOwner from './fragments/ProductOwner'
 
 const ProductDetailLeft = ({ scrollRef, product }) => {
   return (
     <div className='bg-dial-slate-100 lg:h-full'>
       <div className='flex flex-col gap-y-3 px-6 py-3'>
         <ProductDetailHeader product={product}/>
+        <hr className='bg-slate-200'/>
+        <ProductOwner product={product}/>
         <hr className='bg-slate-200'/>
         <ProductDetailNav product={product} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>

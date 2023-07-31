@@ -688,8 +688,8 @@
   "app.exportAsCSV": "Export Data (CSV)",
   "app.notFound": "404 - Page Not Found",
 
-  "ownership.reveal": "Contact Owner",
-  "ownership.label": "Owner Email",
+  "product.owner.revealContact": "Contact Owner",
+  "product.owner.contactLabel": "Owner Email",
   "endorser.label": "Endorsing Organization",
   "endorser.header": "Endorsing Organizations",
 

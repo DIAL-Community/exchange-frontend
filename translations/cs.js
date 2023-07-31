@@ -860,8 +860,8 @@ export const cs = {
   "app.exportAsCSV": "Export dat (CSV)",
   "app.notFound": "404 - Stránka nenalezena",
 
-  "ownership.reveal": "Kontakt na vlastníka",
-  "ownership.label": "E-mail vlastníka",
+  "product.owner.revealContact": "Kontakt na vlastníka",
+  "product.owner.contactLabel": "E-mail vlastníka",
   "endorser.label": "Podporující organizace",
   "endorser.header": "Schvalující organizace",
 

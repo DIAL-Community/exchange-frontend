@@ -860,8 +860,8 @@
   "app.exportAsCSV": "Exporter les données (CSV)",
   "app.notFound": "404 - Page introuvable",
 
-  "ownership.reveal": "Contacter le rédacteur",
-  "ownership.label": "E-mail du rédacteur",
+  "product.owner.revealContact": "Contacter le rédacteur",
+  "product.owner.contactLabel": "E-mail du rédacteur",
   "endorser.label": "Organisation de soutien",
   "endorser.header": "Organisation de soutien",
 

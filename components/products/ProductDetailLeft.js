@@ -278,7 +278,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                 className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
                 onClick={() => setContactState(CONTACT_STATES[1])}
               >
-                {format('ownership.reveal')}
+                {format('product.owner.revealContact')}
               </button>
             </>
         }
@@ -296,7 +296,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
               {
                 contactState === CONTACT_STATES[2] &&
                   <div className='mt-2'>
-                    {format('ownership.label')}:
+                    {format('product.owner.contactLabel')}:
                     <a
                       className='text-dial-sunshine mx-2 mt-2 border-b border-transparent hover:border-dial-sunshine'
                       href={`mailto:${emailAddress}`}

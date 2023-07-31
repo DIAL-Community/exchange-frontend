@@ -860,8 +860,8 @@ export const es = {
   "app.exportAsCSV": "Exportar datos (CSV)",
   "app.notFound": "404 - Página no encontrada",
 
-  "ownership.reveal": "Contactar al propietario",
-  "ownership.label": "Correo electrónico del propietario",
+  "product.owner.revealContact": "Contactar al propietario",
+  "product.owner.contactLabel": "Correo electrónico del propietario",
   "endorser.label": "Organización que avala",
   "endorser.header": "Organizaciones que avalan",
 

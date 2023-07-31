@@ -860,8 +860,8 @@
   "app.exportAsCSV": "Hamisha Data (CSV)",
   "app.notFound": "404 - Ukurasa Haukupatikana",
 
-  "ownership.reveal": "Wasiliana na Mmiliki",
-  "ownership.label": "Barua pepe ya Mmiliki",
+  "product.owner.revealContact": "Wasiliana na Mmiliki",
+  "product.owner.contactLabel": "Barua pepe ya Mmiliki",
   "endorser.label": "Shirika Linaloidhinisha",
   "endorser.header": "Mashirika Yanayoidhinisha",
 
