@@ -1904,8 +1904,9 @@ export const en = {
   'ui.compareTool.header': 'Comparison Tools',
 
   'ui.filter.filteredBy': 'Filtered by',
-  'ui.filter.title': 'Filter your results by',
-  'ui.filter.subtitle': 'Refine with {entity} filters',
+  'ui.filter.primary.title': 'Filter your results by',
+  'ui.filter.secondary.title': 'Refine with {entity} filters',
+  'ui.filter.additional.title': 'Refine with more filters',
   'ui.filter.clearAll': 'Clear all',
 
   'ui.tool.getStarted': `Let's get started`,

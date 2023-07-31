@@ -14,7 +14,6 @@ const UseCaseSearchBar = forwardRef((_, ref) => {
       bgColor='bg-dial-blue-chalk'
       iconColor='text-dial-blueberry'
       entityFilter={<UseCaseFilter/>}
-      onRibbon={false}
     />
 
   return (
@@ -22,7 +21,7 @@ const UseCaseSearchBar = forwardRef((_, ref) => {
       <SearchBar
         search={search}
         setSearch={setSearch}
-        tabletFilter={mobileFilter}
+        mobileFilter={mobileFilter}
       />
     </div>
   )

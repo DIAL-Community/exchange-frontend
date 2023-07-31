@@ -26,7 +26,7 @@ export const LicenseTypeAutocomplete = ({ licenseTypes, setLicenseTypes, placeho
   return (
     <div className='flex flex-col gap-y-3'>
       <button className='flex' onClick={() => setShowFilter(!showFilter)}>
-        <div className='text-dial-stratos text-sm ml-4'>
+        <div className='text-dial-stratos text-sm ml-4 py-2'>
           {format('ui.licenseType.label')}
         </div>
         <BsPlus className='ml-auto' />

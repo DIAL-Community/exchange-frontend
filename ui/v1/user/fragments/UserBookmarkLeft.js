@@ -44,7 +44,7 @@ const UserBookmarkLeft = () => {
           {format('ui.profile.bookmark')}
         </div>
         <div className='text-sm text-dial-sapphire'>
-          {format('ui.filter.title')}:
+          {format('ui.filter.primary.title')}:
         </div>
         <hr className='bg-slate-200'/>
         <label className='flex'>

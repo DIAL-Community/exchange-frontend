@@ -78,26 +78,26 @@ const UseCaseFilter = () => {
           </div>
         </div>
       }
-      <div className='flex flex-col gap-y-4'>
+      <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          {format('ui.filter.title')}:
+          {format('ui.filter.primary.title')}:
         </div>
         <hr className='bg-slate-200'/>
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
         <hr className='bg-slate-200'/>
       </div>
-      <div className='flex flex-col gap-y-4'>
+      <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          {format('ui.filter.subtitle', { entity: format('ui.useCase.label').toLowerCase() })}:
+          {format('ui.filter.secondary.title', { entity: format('ui.useCase.label').toLowerCase() })}:
         </div>
-        <label className='flex pl-4'>
+        <label className='flex pl-4 py-2'>
           <Checkbox onChange={toggleShowBeta} value={showBeta} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.useCase.filter.showDraft')}
           </span>
         </label>
         <hr className='bg-slate-200'/>
-        <label className='flex pl-4'>
+        <label className='flex pl-4 py-2'>
           <Checkbox onChange={toggleShowGovStack} value={govStackOnly} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.useCase.filter.govStackOnly')}

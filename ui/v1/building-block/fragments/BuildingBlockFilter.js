@@ -69,9 +69,9 @@ const BuildingBlockFilter = () => {
           </div>
         </div>
       }
-      <div className='flex flex-col gap-y-4'>
+      <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          {format('ui.filter.title')}
+          {format('ui.filter.primary.title')}
         </div>
         <hr className='bg-slate-200'/>
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
@@ -81,13 +81,13 @@ const BuildingBlockFilter = () => {
         <WorkflowAutocomplete workflows={workflows} setWorkflows={setWorkflows} />
         <hr className='bg-slate-200'/>
       </div>
-      <div className='flex flex-col gap-y-4'>
+      <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          {format('ui.filter.subtitle', { entity: format('ui.buildingBlock.label').toLowerCase() })}:
+          {format('ui.filter.secondary.title', { entity: format('ui.buildingBlock.label').toLowerCase() })}:
         </div>
         <CategoryTypeAutocomplete categoryTypes={categoryTypes} setCategoryTypes={setCategoryTypes} />
         <hr className='bg-slate-200'/>
-        <label className='flex pl-4'>
+        <label className='flex pl-4 py-2'>
           <Checkbox onChange={toggleShowMature} value={showMature} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.buildingBlock.filter.showMature')}

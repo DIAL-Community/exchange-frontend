@@ -1,5 +1,7 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { IoClose } from 'react-icons/io5'
+import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
 import { ProductFilterContext, ProductFilterDispatchContext }
   from '../../../../components/context/ProductFilterContext'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
@@ -9,19 +11,47 @@ import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sec
 import { WorkflowActiveFilters, WorkflowAutocomplete } from '../../shared/filter/Workflow'
 import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
+import { BuildingBlockAutocomplete, BuildingBlockActiveFilters } from '../../shared/filter/BuildingBlock'
+import Checkbox from '../../shared/form/Checkbox'
+
+const COVID_19_LABEL = 'COVID-19'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { origins, sectors, tags, licenseTypes } = useContext(ProductFilterContext)
-  const { setOrigins, setSectors, setTags, setLicenseTypes } = useContext(ProductFilterDispatchContext)
+  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
+  const { setUseCases, setBuildingBlocks, setSectors, setTags } = useContext(ProductFilterDispatchContext)
 
-  const { sdgs, useCases, workflows, buildingBlocks } = useContext(ProductFilterContext)
-  const { setSdgs, setUseCases, setWorkflows, setBuildingBlocks } = useContext(ProductFilterDispatchContext)
+  const { licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const { setLicenseTypes, setSdgs, setOrigins, setWorkflows } = useContext(ProductFilterDispatchContext)
+
+  const { isLinkedWithDpi } = useContext(ProductFilterContext)
+  const { setIsLinkedWithDpi } = useContext(ProductFilterDispatchContext)
+
+  const [expanded, setExpanded] = useState(false)
+
+  const toggleIsLinkedWithDpi = () => {
+    setIsLinkedWithDpi(!isLinkedWithDpi)
+  }
+
+  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
+
+  const toggleCovid19Tag = () => {
+    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_LABEL)
+    setTags(isCovid19TagActive
+      ? tagsWithoutCovid19
+      : [
+        ...tagsWithoutCovid19,
+        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_LABEL }
+      ]
+    )
+  }
 
   const clearFilter = (e) => {
     e.preventDefault()
+
+    setIsLinkedWithDpi(false)
 
     setSdgs([])
     setUseCases([])
@@ -35,7 +65,9 @@ const ProductFilter = () => {
   }
 
   const filteringProduct = () => {
-    return sdgs.length +
+
+    return isLinkedWithDpi ? 1 : 0 +
+      sdgs.length +
       workflows.length +
       buildingBlocks +
       useCases.length +
@@ -60,38 +92,81 @@ const ProductFilter = () => {
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
-            <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             <UseCaseActiveFilters useCases={useCases} setUseCases={setUseCases} />
-            <WorkflowActiveFilters workflows={workflows} setWorkflows={setWorkflows} />
-            <OriginActiveFilters origins={origins} setOrigins={setOrigins} />
-            <LicenseTypeActiveFilters licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
+            <BuildingBlockActiveFilters buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />
             <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
             <TagActiveFilters tags={tags} setTags={setTags} />
+            <LicenseTypeActiveFilters licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
+            <WorkflowActiveFilters workflows={workflows} setWorkflows={setWorkflows} />
+            <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
+            <OriginActiveFilters origins={origins} setOrigins={setOrigins} />
+            {isLinkedWithDpi && (
+              <div className='bg-dial-slate-400 px-2 py-1 rounded'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('filter.product.linkedWithDpi')}
+                    <button onClick={toggleIsLinkedWithDpi}>
+                      <IoClose size='1rem' />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       }
-      <div className='flex flex-col gap-y-4'>
+      <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          {format('ui.filter.title')}
+          {format('ui.filter.primary.title')}
         </div>
-        <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
-        <hr className='bg-slate-200'/>
         <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
         <hr className='bg-slate-200'/>
-        <WorkflowAutocomplete workflows={workflows} setWorkflows={setWorkflows} />
-        <hr className='bg-slate-200'/>
-      </div>
-      <div className='flex flex-col gap-y-4'>
-        <div className='text-sm font-semibold text-dial-sapphire'>
-          {format('ui.filter.subtitle', { entity: format('ui.product.label').toLowerCase() })}:
-        </div>
-        <LicenseTypeAutocomplete licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
-        <hr className='bg-slate-200'/>
-        <OriginAutocomplete origins={origins} setOrigins={setOrigins} />
+        <BuildingBlockAutocomplete buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />
         <hr className='bg-slate-200'/>
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
         <hr className='bg-slate-200'/>
         <TagAutocomplete tags={tags} setTags={setTags} />
+        <hr className='bg-slate-200'/>
+        <label className='flex pl-4 py-2'>
+          <Checkbox value={isLinkedWithDpi} onChange={toggleIsLinkedWithDpi} />
+          <span className='mx-2 my-auto text-sm'>
+            {format('filter.product.linkedWithDpi')}
+          </span>
+        </label>
+        <hr className='bg-slate-200'/>
+      </div>
+      <div className='flex flex-col gap-y-2'>
+        <div className='text-sm font-semibold text-dial-sapphire'>
+          <button className='w-full' onClick={() => setExpanded(!expanded)}>
+            <div className='flex w-full gap-3'>
+              <div className='my-auto'>
+                {format('ui.filter.additional.title')}
+              </div>
+              <div className='ml-auto py-2 text-xl'>
+                {expanded ? <FaAngleUp /> : <FaAngleDown />}
+              </div>
+            </div>
+          </button>
+        </div>
+        {expanded &&
+          <>
+            <label className='flex pl-4 py-2'>
+              <Checkbox value={isCovid19TagActive} onChange={toggleCovid19Tag} />
+              <span className='mx-2 my-auto text-sm'>
+                {format('filter.product.forCovid')}
+              </span>
+            </label>
+            <hr className='bg-slate-200'/>
+            <LicenseTypeAutocomplete licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
+            <hr className='bg-slate-200'/>
+            <WorkflowAutocomplete workflows={workflows} setWorkflows={setWorkflows} />
+            <hr className='bg-slate-200'/>
+            <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
+            <hr className='bg-slate-200'/>
+            <OriginAutocomplete origins={origins} setOrigins={setOrigins} />
+            <hr className='bg-slate-200'/>
+          </>
+        }
       </div>
     </div>
   )

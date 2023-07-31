@@ -5,7 +5,7 @@ import { currentActiveNav, navOptions } from '../utils/header'
 import Select from './form/Select'
 import Breadcrumb from './Breadcrumb'
 
-const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb, mobileFilter }) => {
+const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -62,7 +62,6 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb, mobile
               </div>
             </div>
           </div>
-          {mobileFilter}
         </div>
       </div>
     </div>

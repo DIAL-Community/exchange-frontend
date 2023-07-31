@@ -2,19 +2,25 @@ import { useCallback, useState } from 'react'
 import { FaSliders } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 
-const MobileFilter = ({ iconColor, bgColor, entityFilter, onRibbon = true }) => {
+const MobileFilter = ({ iconColor, bgColor, entityFilter }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [startFiltering, setStartFiltering] = useState(false)
 
   const toggleFiltering = () => setStartFiltering(!startFiltering)
-  const mobileFilterStyle = onRibbon
-    ? 'block lg:hidden absolute top-6 right-8'
-    : 'hidden lg:block xl:hidden relative'
+  const mobileFilterStyle = 'block xl:hidden relative'
 
-  const layerStyle = onRibbon ? {} : { width: 'calc(100% - 4rem)' }
-  const layerClassname = onRibbon ? 'top-[6rem] w-full' : 'top-[19rem] left-8'
+  const layerStyle = {
+    top: `
+      calc(var(--header-height)
+      + var(--ribbon-inner-height)
+      + var(--tab-height))
+      + var(--spacer-padding)
+      + var(--spacer-padding)
+    `,
+    width: 'calc(100% - 4rem)'
+  }
 
   return (
     <>
@@ -25,7 +31,7 @@ const MobileFilter = ({ iconColor, bgColor, entityFilter, onRibbon = true }) => 
       </div>
       {startFiltering &&
         <div
-          className={`absolute ${layerClassname} ${bgColor} z-[10]`}
+          className={`absolute border-2 ${bgColor} z-[10]`}
           style={layerStyle}
         >
           <div className='px-6 py-3 flex flex-col'>

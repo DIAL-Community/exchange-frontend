@@ -14,7 +14,6 @@ const ProductSearchBar = forwardRef((_, ref) => {
       bgColor='bg-dial-spearmint'
       iconColor='text-dial-meadow'
       entityFilter={<ProductFilter/>}
-      onRibbon={false}
     />
 
   return (
@@ -22,7 +21,7 @@ const ProductSearchBar = forwardRef((_, ref) => {
       <SearchBar
         search={search}
         setSearch={setSearch}
-        tabletFilter={mobileFilter}
+        mobileFilter={mobileFilter}
       />
     </div>
   )

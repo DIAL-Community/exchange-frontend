@@ -14,7 +14,6 @@ const BuildingBlockSearchBar = forwardRef((_, ref) => {
       bgColor='bg-dial-warm-beech'
       iconColor='text-dial-ochre'
       entityFilter={<BuildingBlockFilter/>}
-      onRibbon={false}
     />
 
   return (
@@ -22,7 +21,7 @@ const BuildingBlockSearchBar = forwardRef((_, ref) => {
       <SearchBar
         search={search}
         setSearch={setSearch}
-        tabletFilter={mobileFilter}
+        mobileFilter={mobileFilter}
       />
     </div>
   )
