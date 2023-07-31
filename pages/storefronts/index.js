@@ -22,7 +22,7 @@ const Storefronts = () => {
   const { search } = useContext(OrganizationFilterContext)
   const { setSearch } = useContext(OrganizationFilterDispatchContext)
 
-  const { isAdminUser } = useUser()
+  const { user } = useUser()
 
   return (
     <>
@@ -49,7 +49,7 @@ const Storefronts = () => {
               hint='filter.entity.storefronts'
               exportCsv={false}
               exportJson={false}
-              createNew={isAdminUser}
+              createNew={user}
             />
           }
           activeFilter={<StorefrontActiveFilter />}

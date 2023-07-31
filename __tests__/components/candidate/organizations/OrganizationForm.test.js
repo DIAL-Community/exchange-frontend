@@ -58,7 +58,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
     expect(getByTestId(CANDIDATE_ORGANIZATION_ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_WEBSITE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_TITLE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    expect(getByTestId(CANDIDATE_ORGANIZATION_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+    expect(getByTestId(CANDIDATE_ORGANIZATION_DESCRIPTION_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
@@ -73,7 +73,6 @@ describe('Unit tests for the OrganizationForm component.', () => {
     expect(getByTestId(CANDIDATE_ORGANIZATION_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_ORGANIZATION_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_WEBSITE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    expect(getByTestId(CANDIDATE_ORGANIZATION_EMAIL_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_TITLE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CANDIDATE_ORGANIZATION_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 

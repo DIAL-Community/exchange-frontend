@@ -38,10 +38,10 @@ const EditStorefront = () => {
     context: { headers: { 'Accept-Language': locale } }
   })
 
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { user, loadingUserSession } = useUser()
   const { isOrganizationOwner } = useOrganizationOwnerUser(data?.organization)
 
-  const canEdit = isAdminUser || isOrganizationOwner
+  const canEdit = user || isOrganizationOwner
 
   useEffect(() => {
     refetch()

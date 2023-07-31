@@ -65,7 +65,7 @@ const StorefrontForm = React.memo(({ organization }) => {
       aliases: organization?.aliases?.length ? organization?.aliases.map(value => ({ value })) : [{ value: '' }],
       website: organization?.website ?? '',
       description: organization?.organizationDescription?.description,
-      hasStorefront: organization?.hasStorefront
+      hasStorefront: true
     }
   })
 

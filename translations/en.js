@@ -382,6 +382,10 @@ export const en = {
   'toast.use-case.delete.success': 'Use case record deleted successfully.',
   'toast.use-case.delete.failure': 'Use case record deletion failed.',
 
+  'user.delete.confirm.message': 'Are you sure you want to delete this user record?',
+  'toast.user.delete.success': 'User record deleted successfully.',
+  'toast.user.delete.failure': 'User record deletion failed.',
+
   'workflow.delete.confirm.message': 'Are you sure you want to delete this workflow record?',
   'toast.workflow.delete.success': 'Workflow record deleted successfully.',
   'toast.workflow.delete.failure': 'Workflow record deletion failed.',

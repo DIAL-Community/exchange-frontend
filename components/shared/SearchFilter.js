@@ -64,6 +64,10 @@ const SearchFilter = ({
       return 'projects/create'
     }
 
+    if (user && linkPath.includes('storefronts')) {
+      return 'storefronts/create'
+    }
+
     if (user.isAdminUser && linkPath.includes('candidate')) {
       return `/candidate/${linkPath[1]}/create`
     }
