@@ -22,7 +22,7 @@ export const navOptions = (format) => {
   })
 
   const supportingNavItems = Object.entries(SUPPORTING_NAVIGATION_ITEMS).map(([key, value]) => {
-    return { label: format(key), value }
+    return { label: format(key), value: `${REBRAND_BASE_PATH}/${value}` }
   })
 
   const navItems = [{

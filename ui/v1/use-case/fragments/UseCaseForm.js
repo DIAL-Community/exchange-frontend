@@ -65,25 +65,18 @@ const UseCaseForm = React.memo(({ useCase }) => {
       const { createUseCase: response } = data
       if (response?.useCase && response?.errors?.length === 0) {
         setMutating(false)
-        showToast(format('useCase.submit.success'), 'success', 'top-center', 1000, null, () =>
-          router.push(`/${router.locale}${REBRAND_BASE_PATH}/use-cases/${response?.useCase?.slug}`)
-        )
+        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}/use-cases/${response?.useCase?.slug}`
+        const redirectHandler = () => router.push(redirectPath)
+        showToast(format('useCase.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
         setMutating(false)
         showToast(format('useCase.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
-    onError: (error) => {
+    onError: () => {
       setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('useCase.submit.failure')}</span>
-          <span>{error?.message}</span>
-        </div>,
-        'error',
-        'top-center'
-      )
+      showToast(format('useCase.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
@@ -154,7 +147,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
     : isAdminUser || isEditorUser ?
       <form onSubmit={handleSubmit(doUpsert)}>
         <div className='px-4 py-4 lg:py-6'>
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col gap-y-6 text-sm'>
             <div className='text-xl font-semibold text-dial-blueberry'>
               {useCase
                 ? format('app.editEntity', { entity: useCase.name })

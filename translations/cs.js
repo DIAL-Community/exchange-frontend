@@ -430,7 +430,7 @@ export const cs = {
   "organization.detail.whenEndorsed": "Schváleno na",
   "organization.detail.endorserLevel": "Úroveň schvalovatele",
   "organization.owner": "Pokud jste vlastníkem této organizace, můžete tyto informace o organizaci aktualizovat.",
-  "organization.owner-link": "Další informace najdete zde",
+  "organization.ownerLink": "Další informace najdete zde",
 
   "aggregator.header": "Agregující organizace",
 
@@ -522,7 +522,7 @@ export const cs = {
   "use-case-step.name": "Název",
   "use-case-step.description": "Popis",
   "use-case-step.step-number": "číslo kroku",
-  "use-case-step.submit.failure": "Odeslání kroku případu použití se nezdařilo",
+  "useCaseStep.submit.failure": "Odeslání kroku případu použití se nezdařilo",
   "use-case-step.submit.success": "Krok případu užití byl úspěšně odeslán",
   "use-case-step.no-workflow": "Pro tento krok případu užití nemáme žádné informace o pracovním postupu.",
   "use-case-step.no-product": "Pro tento krok případu užití nemáme žádné informace o produktu.",

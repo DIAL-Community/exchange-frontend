@@ -430,7 +430,7 @@
   "organization.detail.whenEndorsed": "Endorsed On",
   "organization.detail.endorserLevel": "Endorser Level",
   "organization.owner": "If you are the owner of this organization, you can update this organization information.",
-  "organization.owner-link": "Find more information here",
+  "organization.ownerLink": "Find more information here",
 
   "aggregator.header": "Aggregator Organization",
 
@@ -522,7 +522,7 @@
   "use-case-step.name": "Name",
   "use-case-step.description": "Description",
   "use-case-step.step-number": "Step Number",
-  "use-case-step.submit.failure": "Use Case Step submission failed",
+  "useCaseStep.submit.failure": "Use Case Step submission failed",
   "use-case-step.submit.success": "Use Case Step submitted successfully",
   "use-case-step.no-workflow": "We do not have any Workflow information for this Use Case Step.",
   "use-case-step.no-product": "We do not have any Product information for this Use Case Step.",

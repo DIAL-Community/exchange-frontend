@@ -354,7 +354,6 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             data-tooltip-id='react-tooltip'
             data-tooltip-content={format('product.maturity.chartTooltip')}
             onClick={toggleMaturityScoreDetailsDialog}
-            data-testid='maturity-scores-chart'
           >
             {validMaturityScores.length <= MIN_RADAR_CHART_CATEGORIES ? (
               <BarChart

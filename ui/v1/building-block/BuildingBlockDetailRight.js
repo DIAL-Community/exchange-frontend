@@ -29,15 +29,15 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock, commentsSectionRef
   return (
     <div className='px-4 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        <div className='flex gap-x-3 ml-auto'>
-          {canEdit &&
+        {canEdit &&
+          <div className='flex gap-x-3 ml-auto'>
             <EditButton
               type='link'
               href={`${REBRAND_BASE_PATH}/building-blocks/${buildingBlock.slug}/edit`}
             />
-          }
-          {isAdminUser && <DeleteBuildingBlock buildingBlock={buildingBlock} />}
-        </div>
+            {isAdminUser && <DeleteBuildingBlock buildingBlock={buildingBlock} />}
+          </div>
+        }
         <div className='text-xl font-semibold text-dial-ochre py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>

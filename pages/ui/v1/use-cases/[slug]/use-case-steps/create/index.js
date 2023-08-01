@@ -8,7 +8,7 @@ import ClientOnly from '../../../../../../../lib/ClientOnly'
 import Footer from '../../../../../../../ui/v1/shared/Footer'
 import UseCaseStepCreate from '../../../../../../../ui/v1/use-case/use-case-step/UseCaseStepCreate'
 
-const EditUseCaseStepPage = () => {
+const CreateUseCaseStepPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -36,4 +36,4 @@ const EditUseCaseStepPage = () => {
   )
 }
 
-export default EditUseCaseStepPage
+export default CreateUseCaseStepPage

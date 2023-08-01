@@ -19,7 +19,6 @@ const DeleteButton = ({ type = 'button', title = 'app.delete', onClick, href, cl
         type='button'
         onClick={onClick}
         className={classNames(className, style)}
-        data-testid='delete-button'
       >
         {innerHtml}
       </button>
@@ -27,7 +26,6 @@ const DeleteButton = ({ type = 'button', title = 'app.delete', onClick, href, cl
       <a
         href={href}
         className={classNames(className, style)}
-        data-testid='delete-link'
       >
         {innerHtml}
       </a>

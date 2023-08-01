@@ -37,32 +37,18 @@ const ProductForm = React.memo(({ product }) => {
     onCompleted: (data) => {
       if (data.createProduct.product && data.createProduct.errors.length === 0) {
         setMutating(false)
-        showToast(format('product.submit.success'), 'success', 'top-center', 1000, null, () =>
-          router.push(`/${router.locale}/products/${data.createProduct.product.slug}`)
-        )
+        const redirectPath = `/${router.locale}/products/${data.createProduct.product.slug}`
+        const redirectHandler = () => router.push(redirectPath)
+        showToast(format('product.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
         setMutating(false)
-        showToast(
-          <div className='flex flex-col'>
-            <span>{format('product.submit.failure')}</span>
-          </div>,
-          'error',
-          'top-center',
-          1000
-        )
+        showToast(format('product.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('product.submit.failure')}</span>
-        </div>,
-        'error',
-        'top-center',
-        1000
-      )
+      showToast(format('product.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
@@ -155,7 +141,7 @@ const ProductForm = React.memo(({ product }) => {
     : isAdminUser || isEditorUser ?
       <form onSubmit={handleSubmit(doUpsert)}>
         <div className='px-4 py-4 lg:py-6 text-dial-meadow'>
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col gap-y-6 text-sm'>
             <div className='text-xl font-semibold'>
               {product
                 ? format('app.editEntity', { entity: product.name })

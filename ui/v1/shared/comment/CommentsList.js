@@ -34,7 +34,6 @@ const CommentsList = ({ comments, loading, onClose }) => {
             type='button'
             onClick={onClose}
             className='cancel-button'
-            data-testid='close-button'
           >
             {format('app.close')}
           </button>

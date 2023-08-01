@@ -7,7 +7,7 @@ import ClientOnly from '../../../../../lib/ClientOnly'
 import Footer from '../../../../../ui/v1/shared/Footer'
 import UseCaseCreate from '../../../../../ui/v1/use-case/UseCaseCreate'
 
-const EditUseCasePage = () => {
+const CreateUseCasePage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -34,4 +34,4 @@ const EditUseCasePage = () => {
   )
 }
 
-export default EditUseCasePage
+export default CreateUseCasePage

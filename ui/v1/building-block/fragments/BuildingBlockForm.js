@@ -53,25 +53,18 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
       const { createBuildingBlock: response } = data
       if (response?.buildingBlock && response?.errors?.length === 0) {
         setMutating(false)
-        showToast(format('buildingBlock.submit.success'), 'success', 'top-center', 1000, null, () =>
-          router.push(`/${router.locale}${REBRAND_BASE_PATH}/building-blocks/${response?.buildingBlock?.slug}`)
-        )
+        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}/building-blocks/${response?.buildingBlock?.slug}`
+        const redirectHandler = () => router.push(redirectPath)
+        showToast(format('buildingBlock.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
         setMutating(false)
         showToast(format('buildingBlock.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
-    onError: (error) => {
+    onError: () => {
       setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('buildingBlock.submit.failure')}</span>
-          <span>{error?.message}</span>
-        </div>,
-        'error',
-        'top-center'
-      )
+      showToast(format('buildingBlock.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
@@ -129,7 +122,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
     : isAdminUser || isEditorUser ?
       <form onSubmit={handleSubmit(doUpsert)}>
         <div className='px-4 py-4 lg:py-6 text-dial-ochre'>
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col gap-y-6 text-sm'>
             <div className='text-xl font-semibold'>
               {buildingBlock
                 ? format('app.editEntity', { entity: buildingBlock.name })

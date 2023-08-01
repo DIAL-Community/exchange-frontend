@@ -36,7 +36,7 @@ const ProductDetail = ({ slug }) => {
       <div className='px-4 lg:px-6 py-4 bg-dial-spearmint text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
-      <div className='flex flex-col lg:flex-row'>
+      <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
           <ProductDetailLeft scrollRef={scrollRef} product={product} />
         </div>

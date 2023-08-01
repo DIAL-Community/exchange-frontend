@@ -430,7 +430,7 @@
   "organization.detail.whenEndorsed": "Gefördert am",
   "organization.detail.endorserLevel": "Förderungsstufe",
   "organization.owner": "Wenn Sie der Verantwortliche für diese Organisation sind, können Sie diese Organisationsinformationen aktualisieren.",
-  "organization.owner-link": "Hier weitere Informationen finden",
+  "organization.ownerLink": "Hier weitere Informationen finden",
 
   "aggregator.header": "Aggregator Organisation",
 
@@ -522,7 +522,7 @@
   "use-case-step.name": "Name",
   "use-case-step.description": "Beschreibung",
   "use-case-step.step-number": "Schrittnummer",
-  "use-case-step.submit.failure": "Übermittlung des Anwendungsfallschritts fehlgeschlagen",
+  "useCaseStep.submit.failure": "Übermittlung des Anwendungsfallschritts fehlgeschlagen",
   "use-case-step.submit.success": "Anwendungsfallschritt erfolgreich übermittelt",
   "use-case-step.no-workflow": "Wir haben keine Workflow-Informationen für diesen Anwendungsfallschritt.",
   "use-case-step.no-product": "Wir haben keine Produktinformationen für diesen Anwendungsfallschritt.",

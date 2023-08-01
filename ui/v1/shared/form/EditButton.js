@@ -19,7 +19,6 @@ const EditButton = ({ type = 'button', onClick, href, className }) => {
         type='button'
         onClick={onClick}
         className={classNames(className, style)}
-        data-testid='edit-button'
       >
         {innerHtml}
       </button>
@@ -27,7 +26,6 @@ const EditButton = ({ type = 'button', onClick, href, className }) => {
       <a
         href={href}
         className={classNames(className, style)}
-        data-testid='edit-link'
       >
         {innerHtml}
       </a>

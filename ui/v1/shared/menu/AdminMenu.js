@@ -21,7 +21,6 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           <div
             className={DEFAULT_DROPDOWN_PANEL_STYLES}
             role='menu'
-            data-testid='menu-admin-items'
           >
             <Link href='/users' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.admin.users')}

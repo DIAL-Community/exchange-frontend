@@ -107,8 +107,7 @@ const Header = ({ isOnAuthPage = false }) => {
   const withoutUser =
     <li className='text-right intro-overview-signup'>
       <a
-        data-testid='login'
-        href='signin'
+        href='signIn'
         role='menuitem'
         className={dropdownMenuStyles}
         onClick={signInUser}

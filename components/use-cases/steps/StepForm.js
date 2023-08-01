@@ -33,7 +33,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
       setMutating(false)
       showToast(
         <div className='flex flex-col'>
-          <span>{format('use-case-step.submit.failure')}</span>
+          <span>{format('useCaseStep.submit.failure')}</span>
           <span>{error?.message}</span>
         </div>,
         'error',
@@ -60,7 +60,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
         )
       } else {
         setMutating(false)
-        showToast(format('use-case-step.submit.failure'), 'error', 'top-center', 1000)
+        showToast(format('useCaseStep.submit.failure'), 'error', 'top-center', 1000)
         reset()
       }
     }

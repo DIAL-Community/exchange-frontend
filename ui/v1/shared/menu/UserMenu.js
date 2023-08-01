@@ -29,7 +29,6 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       <a
         id={USER_MENU}
         href={USER_MENU}
-        data-testid='user-menu'
         onClick={toggleSwitcher}
       >
         <div id={USER_MENU} className='username-avatar'>

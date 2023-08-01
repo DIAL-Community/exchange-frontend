@@ -430,7 +430,7 @@
   "organization.detail.whenEndorsed": "Imeidhinishwa Mnamo",
   "organization.detail.endorserLevel": "Kiwango cha Mwidhinishaji",
   "organization.owner": "Ikiwa unamiliki shirika hili, unaweza kusasisha taarifa ya shirika hili.",
-  "organization.owner-link": "Pata maelezo zaidi hapa",
+  "organization.ownerLink": "Pata maelezo zaidi hapa",
 
   "aggregator.header": "Shirika Linalokusanya maelezo",
 
@@ -522,7 +522,7 @@
   "use-case-step.name": "Jina",
   "use-case-step.description": "Maelezo",
   "use-case-step.step-number": "Nambari ya Hatua",
-  "use-case-step.submit.failure": "Uwasilishaji wa Hatua ya Kesi ya Matumizi haukufaulu",
+  "useCaseStep.submit.failure": "Uwasilishaji wa Hatua ya Kesi ya Matumizi haukufaulu",
   "use-case-step.submit.success": "Hatua ya Kesi ya Matumizi imewasilishwa kwa ufanisi",
   "use-case-step.no-workflow": "Hatuna maelezo yoyote ya Mtiririko wa Kazi kwa Hatua hii ya Kesi ya Matumizi.",
   "use-case-step.no-product": "Hatuna maelezo yoyote ya Bidhaa kwa Hatua hii ya Kesi ya Matumizi.",

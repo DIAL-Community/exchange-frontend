@@ -430,7 +430,7 @@
   "organization.detail.whenEndorsed": "Avalado en",
   "organization.detail.endorserLevel": "Nivel del avalista",
   "organization.owner": "Si usted es el propietario de esta organización, puede actualizar la información de esta organización.",
-  "organization.owner-link": "Encuentre más información aquí",
+  "organization.ownerLink": "Encuentre más información aquí",
 
   "aggregator.header": "Organización agregadora",
 
@@ -522,7 +522,7 @@
   "use-case-step.name": "Nombre",
   "use-case-step.description": "Descripción",
   "use-case-step.step-number": "Número de paso",
-  "use-case-step.submit.failure": "Fallo en el envío del paso del caso de uso",
+  "useCaseStep.submit.failure": "Fallo en el envío del paso del caso de uso",
   "use-case-step.submit.success": "Paso del caso de uso presentado con éxito",
   "use-case-step.no-workflow": "No tenemos ninguna información sobre el flujo de trabajo para este paso del caso de uso.",
   "use-case-step.no-product": "No tenemos ninguna información de producto para este paso de caso de uso.",

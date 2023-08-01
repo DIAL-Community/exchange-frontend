@@ -57,10 +57,9 @@ const EditableSection = ({
                 }}
                 className='submit-button'
                 disabled={!isDirty || isSubmitInProgress}
-                data-testid='submit-button'
               >
                 {format(`${isSubmitInProgress ? 'app.submitting' : 'app.submit'}`)}
-                {isSubmitInProgress && <FaSpinner className='spinner ml-3 inline' data-testid='submit-spinner' />}
+                {isSubmitInProgress && <FaSpinner className='spinner ml-3 inline' />}
               </button>
               <button
                 type='button'
@@ -70,7 +69,6 @@ const EditableSection = ({
                 }}
                 className='cancel-button'
                 disabled={isSubmitInProgress}
-                data-testid='cancel-button'
               >
                 {format('app.cancel')}
               </button>

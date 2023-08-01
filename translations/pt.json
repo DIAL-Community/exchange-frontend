@@ -430,7 +430,7 @@
   "organization.detail.whenEndorsed": "Aprovado Em",
   "organization.detail.endorserLevel": "Nível do Patrocinador",
   "organization.owner": "Se for o proprietário desta organização, pode atualizar esta informação da organização.",
-  "organization.owner-link": "Encontre mais informação aqui",
+  "organization.ownerLink": "Encontre mais informação aqui",
 
   "aggregator.header": "Organização Agregadora",
 
@@ -522,7 +522,7 @@
   "use-case-step.name": "Nome",
   "use-case-step.description": "Descrição",
   "use-case-step.step-number": "Número de etapa",
-  "use-case-step.submit.failure": "Falha ao submeter a etapa do caso de utilização",
+  "useCaseStep.submit.failure": "Falha ao submeter a etapa do caso de utilização",
   "use-case-step.submit.success": "Etapa do caso de utilização submetido com sucesso",
   "use-case-step.no-workflow": "Não dispomos de qualquer informação de Fluxo de trabalho para esta Etapa do Caso de Utilização.",
   "use-case-step.no-product": "Não dispomos de qualquer informação de Produto para esta Etapa do Caso de Utilização.",

@@ -6,7 +6,6 @@ const IconButton = ({ icon, onClick, className, ...otherProps }) => (
     type='button'
     className={classNames(className, 'shadow-md px-3 py-2.5 hover:bg-dial-angel')}
     onClick={onClick}
-    data-testid='icon-button'
   >
     {icon}
   </button>

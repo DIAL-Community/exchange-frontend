@@ -173,14 +173,14 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
   )
 
   return (
-    <div className='flex flex-col gap-y-4 py-4'>
+    <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
       <div className='flex flex-col gap-y-3'>
-        <div className='flex gap-x-3 ml-auto'>
-          {canEdit && (
+        {canEdit && (
+          <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={`${REBRAND_BASE_PATH}/products/${product.slug}/edit`} />
-          )}
-          {isAdminUser && <DeleteProduct product={product} />}
-        </div>
+            {isAdminUser && <DeleteProduct product={product} />}
+          </div>
+        )}
         <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>

@@ -29,17 +29,9 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
   const { locale } = useRouter()
 
   const [updateUseCaseStep, { reset }] = useMutation(CREATE_USE_CASE_STEP, {
-    onError: (error) => {
+    onError: () => {
       setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('use-case-step.submit.failure')}</span>
-          <span>{error?.message}</span>
-        </div>,
-        'error',
-        'top-center',
-        1000
-      )
+      showToast(format('useCaseStep.submit.failure'), 'error', 'top-center')
       reset()
     },
     onCompleted: (data) => {
@@ -60,7 +52,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
         )
       } else {
         setMutating(false)
-        showToast(format('use-case-step.submit.failure'), 'error', 'top-center', 1000)
+        showToast(format('useCaseStep.submit.failure'), 'error', 'top-center', 1000)
         reset()
       }
     }
@@ -117,7 +109,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
     loadingUserSession  ? <Loading /> : canEdit ? (
       <form onSubmit={handleSubmit(doUpsert)}>
         <div className='px-4 py-4 lg:py-6'>
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col gap-y-6 text-sm'>
             <div className='text-2xl font-semibold text-dial-sapphire'>
               {useCaseStep?.slug
                 ? format('app.editEntity', { entity: useCaseStep?.name })

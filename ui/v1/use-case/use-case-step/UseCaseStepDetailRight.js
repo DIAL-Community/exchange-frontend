@@ -33,8 +33,8 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   return (
     <div className='flex flex-col gap-y-4 pt-4 pb-8'>
       <div className='flex flex-col gap-y-3'>
-        <div className='flex gap-x-3 ml-auto'>
-          {canEdit &&
+        {canEdit &&
+          <div className='flex gap-x-3 ml-auto'>
             <EditButton
               type='link'
               href={
@@ -43,8 +43,8 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
                 `/use-case-steps/${useCaseStep.slug}/edit`
               }
             />
-          }
-        </div>
+          </div>
+        }
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>

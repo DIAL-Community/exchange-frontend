@@ -7,7 +7,7 @@ import ClientOnly from '../../../../../lib/ClientOnly'
 import Footer from '../../../../../ui/v1/shared/Footer'
 import ProductCreate from '../../../../../ui/v1/product/ProductCreate'
 
-const EditProductPage = () => {
+const CreateProductPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -34,4 +34,4 @@ const EditProductPage = () => {
   )
 }
 
-export default EditProductPage
+export default CreateProductPage

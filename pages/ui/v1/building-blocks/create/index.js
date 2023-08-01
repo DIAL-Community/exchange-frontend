@@ -7,7 +7,7 @@ import ClientOnly from '../../../../../lib/ClientOnly'
 import Footer from '../../../../../ui/v1/shared/Footer'
 import BuildingBlockCreate from '../../../../../ui/v1/building-block/BuildingBlockCreate'
 
-const EditBuildingBlockPage = () => {
+const CreateBuildingBlockPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -34,4 +34,4 @@ const EditBuildingBlockPage = () => {
   )
 }
 
-export default EditBuildingBlockPage
+export default CreateBuildingBlockPage

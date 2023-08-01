@@ -26,7 +26,6 @@ export const MenuHeader = ({ id, href, title, onToggleDropdown, currentOpenMenu 
       // Adding pl-1 to balance out the right padding on the chevron icon
       className='pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
       onClick={onClickHandler}
-      data-testid={id}
     >
       {formatMessage({ id: title })}
       {

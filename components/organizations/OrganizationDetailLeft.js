@@ -211,7 +211,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
             href={`https://docs.dial.community/projects/product-registry/${locale}/latest/org_owner.html`}
             target='_blank' rel='noreferrer'
           >
-            {format('organization.owner-link')}
+            {format('organization.ownerLink')}
           </a>
           {
             showApplyLink &&

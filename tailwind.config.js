@@ -199,7 +199,7 @@ module.exports = {
         }
       },
       maxWidth: {
-        catalog: '2120px'
+        catalog: '120rem'
       },
       zIndex: {
         60: '60',

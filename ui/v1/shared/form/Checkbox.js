@@ -10,7 +10,6 @@ const Checkbox = React.forwardRef(({ value, onChange, onBlur, className, ...othe
     onChange={onChange}
     onBlur={onBlur}
     className={classNames(className, 'h-6 w-6')}
-    data-testid='checkbox'
   />
 ))
 

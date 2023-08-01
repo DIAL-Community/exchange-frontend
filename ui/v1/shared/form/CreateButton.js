@@ -24,7 +24,6 @@ const CreateButton = ({
         type='button'
         onClick={onClick}
         className={classNames(className, style)}
-        data-testid='create-button'
       >
         {innerHtml}
       </button>
@@ -32,7 +31,6 @@ const CreateButton = ({
       <a
         href={href}
         className={classNames(className, style)}
-        data-testid='create-link'
       >
         {innerHtml}
       </a>

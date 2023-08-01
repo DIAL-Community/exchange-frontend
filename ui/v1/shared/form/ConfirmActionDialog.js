@@ -12,7 +12,7 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
   let initialFocusRef = useRef(null)
 
   return (
-    <Transition appear show={isOpen} as={Fragment} data-testid='confirm-action-dialog'>
+    <Transition appear show={isOpen} as={Fragment}>
       <Dialog initialFocus={initialFocusRef} as='div' className='fixed z-100' onClose={onClose} >
         <div className="fixed inset-0 bg-dial-gray opacity-80" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
@@ -42,7 +42,6 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
                   type='button'
                   className='submit-button'
                   onClick={onConfirm}
-                  data-testid='confirm-button'
                   disabled={isConfirming}
                 >
                   {format('app.confirm')}
@@ -53,7 +52,6 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
                   type='button'
                   className='cancel-button'
                   onClick={onClose}
-                  data-testid='cancel-button'
                 >
                   {format('app.cancel')}
                 </button>

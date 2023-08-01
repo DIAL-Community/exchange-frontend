@@ -36,7 +36,7 @@ const MobileFilter = ({ iconColor, bgColor, entityFilter }) => {
         >
           <div className='px-6 py-3 flex flex-col'>
             {entityFilter}
-            <div className='ml-auto text-sm text-dial-sapphire'>
+            <div className='ml-auto text-sm text-dial-sapphire pb-3'>
               <button
                 onClick={toggleFiltering}
                 className='submit-button'
