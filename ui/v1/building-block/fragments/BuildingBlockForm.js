@@ -128,7 +128,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
     ? <Loading />
     : isAdminUser || isEditorUser ?
       <form onSubmit={handleSubmit(doUpsert)}>
-        <div className='py-4 text-dial-ochre'>
+        <div className='px-4 py-4 lg:py-6 text-dial-ochre'>
           <div className='flex flex-col gap-y-4'>
             <div className='text-xl font-semibold'>
               {buildingBlock

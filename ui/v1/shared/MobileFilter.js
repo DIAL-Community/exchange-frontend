@@ -19,7 +19,7 @@ const MobileFilter = ({ iconColor, bgColor, entityFilter }) => {
       + var(--spacer-padding)
       + var(--spacer-padding)
     `,
-    width: 'calc(100% - 4rem)'
+    width: 'calc(100% - var(--search-bar-padding))'
   }
 
   return (

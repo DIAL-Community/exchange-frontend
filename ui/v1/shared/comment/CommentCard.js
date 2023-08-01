@@ -10,19 +10,23 @@ const CommentCard = ({ commentId, authorFullName, authorAvatarUrl, text, replies
 
   return (
     <div className={classNames('bg-white border border-dial-gray shadow-md', className)}>
-      <div className='flex flex-row flex-wrap gap-x-8 p-4 items-center'>
-        <div className='inline-flex gap-x-2 items-center text-dial-gray-dark font-bold self-start'>
-          <img
-            className='rounded-full w-8'
-            alt={format('image.alt.logoFor', { name: authorFullName })}
-            src={authorAvatarUrl}
-          />
-          {authorFullName}
+      <div className='flex flex-col gap-y-3 py-6'>
+        <div className='flex flex-row gap-x-8 px-6 items-center'>
+          <div className='inline-flex gap-x-2 items-center self-start'>
+            <img
+              className='rounded-full w-8'
+              alt={format('image.alt.logoFor', { name: authorFullName })}
+              src={authorAvatarUrl}
+            />
+            {authorFullName}
+          </div>
+          <div className='flex-1 text-justify'>
+            {parse(text)}
+          </div>
         </div>
-        <div className='flex-1 text-justify'>
-          {parse(text)}
+        <div className='flex ml-auto px-6'>
+          <DeleteComment commentId={commentId} />
         </div>
-        <DeleteComment commentId={commentId} />
       </div>
       {!!replies?.length && (
         <div className='pl-10 p-3 flex flex-col gap-3'>

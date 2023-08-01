@@ -146,7 +146,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
     </div>
 
   const editModeBody =
-    <div className='px-8 py-4 flex flex-col gap-y-3 text-sm'>
+    <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2 mb-2'>
         {format('app.mappingStatus')}
         <Select

@@ -8,7 +8,7 @@ const ToolDefinition = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='px-8 xl:px-56 text-dial-stratos'>
+    <div className='lg:px-8 xl:px-56 text-dial-stratos'>
       <div className='flex flex-col gap-y-8'>
         <div className='text-2xl font-semibold'>
           {format('ui.tool.getStarted')} ...

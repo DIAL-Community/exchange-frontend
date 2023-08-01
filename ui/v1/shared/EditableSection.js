@@ -34,12 +34,12 @@ const EditableSection = ({
     <div className='flex flex-col gap-y-3'>
       <div className='flex justify-between items-center'>
         {sectionHeader}
-        <div className='gap-3 ml-auto'>
+        <div className='flex gap-3 ml-auto'>
           {canEdit && !isInEditMode &&
-            <EditButton onClick={() => setIsInEditMode(true)} className='mr-2' />
+            <EditButton onClick={() => setIsInEditMode(true)} />
           }
           {createAction && canEdit && !isInEditMode &&
-            <CreateButton label={format('app.createNew')} onClick={createAction} className='mr-2' />
+            <CreateButton label={format('app.createNew')} onClick={createAction} />
           }
         </div>
       </div>
@@ -48,7 +48,7 @@ const EditableSection = ({
         ? (
           <div className='bg-edit'>
             {editModeBody}
-            <div className='px-6 py-4 flex justify-end gap-3'>
+            <div className='px-4 lg:px-6 py-4 flex justify-end gap-3'>
               <button
                 type='submit'
                 onClick={() => {

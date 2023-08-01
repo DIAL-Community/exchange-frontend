@@ -7,7 +7,7 @@ const ProductSimpleLeft = () => {
 
   return (
     <div className='bg-dial-slate-100 h-full'>
-      <div className='flex flex-col gap-y-3 px-6 py-4'>
+      <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <div className='text-xl font-semibold text-dial-meadow'>
           {format('ui.product.label')}
         </div>

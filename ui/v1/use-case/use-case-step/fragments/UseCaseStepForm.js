@@ -116,7 +116,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
   return (
     loadingUserSession  ? <Loading /> : canEdit ? (
       <form onSubmit={handleSubmit(doUpsert)}>
-        <div className='py-8'>
+        <div className='px-4 py-4 lg:py-6'>
           <div className='flex flex-col gap-y-4'>
             <div className='text-2xl font-semibold text-dial-sapphire'>
               {useCaseStep?.slug

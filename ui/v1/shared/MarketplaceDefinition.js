@@ -7,7 +7,7 @@ const MarketplaceDefinition = () => {
 
   return (
     <div className='bg-dial-blueberry'>
-      <div className='px-8 xl:px-56 pt-8 pb-12 text-white'>
+      <div className='lg:px-8 xl:px-56 pt-8 pb-12 text-white'>
         <div className='flex flex-col gap-y-3'>
           <div className='text-2xl font-semibold'>
             {format('ui.exchange.title')}

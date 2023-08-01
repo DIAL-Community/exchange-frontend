@@ -17,15 +17,15 @@ const UseCaseCreate = () => {
   })()
 
   return (
-    <div className='px-8 xl:px-56 flex flex-col'>
-      <div className='px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40'>
+    <div className='lg:px-8 xl:px-56 flex flex-col'>
+      <div className='px-4 lg:px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
-      <div className='grid grid-cols-3 gap-x-8'>
-        <div className='col-span-1'>
+      <div className='flex flex-col lg:flex-row'>
+        <div className='lg:basis-1/3'>
           <UseCaseSimpleLeft />
         </div>
-        <div className='col-span-2'>
+        <div className='lg:basis-2/3'>
           <UseCaseForm />
         </div>
       </div>

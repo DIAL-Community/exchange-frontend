@@ -6,7 +6,7 @@ const UserMain = ({ activeTab }) => {
 
   return (
     <BookmarkDisplayContextProvider>
-      <div className='px-8 xl:px-56'>
+      <div className='lg:px-8 xl:px-56'>
         <div className='grid grid-cols-3 gap-x-8'>
           {activeTab > 0 &&
             <div className='hidden xl:block col-span-1'>
