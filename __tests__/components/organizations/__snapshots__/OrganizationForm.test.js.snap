@@ -201,7 +201,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isEndorser"
                     type="checkbox"
                   />
-                  Endorser
+                  Organization is a Principal for Digital Development Endorser
                 </label>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -312,7 +312,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isMni"
                     type="checkbox"
                   />
-                  MNI
+                  Organization is an MNI organization
                 </label>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
@@ -657,7 +657,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isEndorser"
                     type="checkbox"
                   />
-                  Endorser
+                  Organization is a Principal for Digital Development Endorser
                 </label>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -768,7 +768,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isMni"
                     type="checkbox"
                   />
-                  MNI
+                  Organization is an MNI organization
                 </label>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"

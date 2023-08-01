@@ -38,7 +38,7 @@ const OrganizationOwner = ({ organization }) => {
         variables: {
           email: userEmail,
           organizationId: organization.id,
-          organizationId: '',
+          productId: '',
           datasetId: ''
         }
       })

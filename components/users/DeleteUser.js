@@ -69,7 +69,7 @@ const DeleteUser = ({ deletedUser }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: deletedUser.email })}
+        title={format('app.deletingEntity', { entity: deletedUser.email })}
         message={format('user.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
