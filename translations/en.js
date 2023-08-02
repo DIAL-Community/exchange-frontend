@@ -1826,6 +1826,9 @@ export const en = {
   'ui.product.label': 'Product',
   'ui.product.header': 'Products',
 
+  'ui.project.label': 'Project',
+  'ui.project.header': 'Projects',
+
   'ui.product.whatIs': 'What is a Product?',
   'ui.product.createNew': 'Create a new Product',
 
@@ -1845,6 +1848,9 @@ export const en = {
 
   'ui.dataset.label': 'Dataset',
   'ui.dataset.header': 'Datasets',
+  'ui.dataset.whatIs': 'What is an Open Data?',
+  'ui.dataset.createNew': 'Create a new Open Data',
+  'dataset.hint.title': 'What is a Open Data?',
 
   'ui.workflow.label': 'Workflow',
   'ui.workflow.header': 'Workflows',
@@ -1857,6 +1863,9 @@ export const en = {
 
   'ui.organization.label': 'Organization',
   'ui.organization.header': 'Organizations',
+  'ui.organization.whatIs': 'What is an Organization?',
+  'ui.organization.createNew': 'Create a new Organization',
+  'organization.hint.title': 'What is an Organization?',
   'ui.organization.disclaimer': `
     The following organizations support the development and / or implementation of this product.
   `,
@@ -1899,6 +1908,9 @@ export const en = {
 
   'ui.storefront.label': 'Storefront',
   'ui.storefront.header': 'Storefronts',
+
+  'ui.country.label': 'Country',
+  'ui.country.header': 'Countries',
 
   'ui.compareTool.label': 'Comparison Tool',
   'ui.compareTool.header': 'Comparison Tools',

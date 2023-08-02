@@ -46,6 +46,15 @@ export const PAGINATED_ORGANIZATIONS_QUERY = gql`
         description
         locale
       }
+      sectors {
+        id
+      }
+      countries {
+        id
+      }
+      projects {
+        id
+      }
     }
   }
 `

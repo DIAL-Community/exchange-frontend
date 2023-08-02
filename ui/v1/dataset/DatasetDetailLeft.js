@@ -16,7 +16,7 @@ const DatasetDetailLeft = ({ scrollRef, dataset }) => {
         <hr className='bg-slate-200'/>
         <DatasetDetailNav dataset={dataset} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
-        <Bookmark object={dataset} objectType={ObjectType.ORGANIZATION} />
+        <Bookmark object={dataset} objectType={ObjectType.DATASET} />
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>

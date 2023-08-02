@@ -5,8 +5,8 @@ import { useRouter } from 'next/router'
 import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../utils/constants'
 import { ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
-import { DELETE_ORGANIZATION } from '../shared/mutation/dataset'
-import { PAGINATED_ORGANIZATIONS_QUERY, ORGANIZATION_DETAIL_QUERY } from '../shared/query/dataset'
+import { DELETE_DATASET } from '../shared/mutation/dataset'
+import { PAGINATED_DATASETS_QUERY, DATASET_DETAIL_QUERY } from '../shared/query/dataset'
 import DeleteButton from '../shared/form/DeleteButton'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 
@@ -24,12 +24,12 @@ const DeleteDataset = ({ dataset }) => {
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
 
-  const [deleteDataset, { called, reset }] = useMutation(DELETE_ORGANIZATION, {
+  const [deleteDataset, { called, reset }] = useMutation(DELETE_DATASET, {
     refetchQueries: [{
-      query: ORGANIZATION_DETAIL_QUERY,
+      query: DATASET_DETAIL_QUERY,
       variables: { slug: dataset.slug }
     }, {
-      query: PAGINATED_ORGANIZATIONS_QUERY,
+      query: PAGINATED_DATASETS_QUERY,
       variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
     }],
     onCompleted: (data) => {

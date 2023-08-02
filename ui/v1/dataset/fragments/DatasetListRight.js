@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { DatasetFilterContext } from '../../../../components/context/DatasetFilterContext'
-import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/dataset'
+import { DATASET_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/dataset'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
 import ListStructure from './ListStructure'
@@ -37,7 +37,7 @@ const DatasetListRight = () => {
     setPageOffset(0)
   }, [search, sectors])
 
-  const { loading, error, data } = useQuery(ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
+  const { loading, error, data } = useQuery(DATASET_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
       sectors: sectors.map(sector => sector.value),

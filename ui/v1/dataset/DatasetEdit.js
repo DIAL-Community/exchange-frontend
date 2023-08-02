@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/dataset'
+import { DATASET_DETAIL_QUERY } from '../shared/query/dataset'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import DatasetForm from './fragments/DatasetForm'
@@ -11,7 +11,7 @@ const DatasetEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(DATASET_DETAIL_QUERY, {
     variables: { slug }
   })
 

@@ -10,23 +10,23 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {dataset.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='w-20 h-20 mx-auto bg-white border'>
+          <div className='w-16 h-16 mx-auto bg-white border'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.dataset.label') })}
-              className='object-contain w-16 h-16 mx-auto my-2'
+              className='object-contain w-10 h-10 mx-auto my-2'
             />
           </div>
         }
         {dataset.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20 mx-auto'>
+          <div className='w-16 h-16 mx-auto bg-dial-plum rounded-full'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.dataset.label') })}
-              className='object-contain w-16 h-16'
+              className='object-contain w-10 h-10 white-filter mt-3 mx-auto'
             />
           </div>
         }
@@ -43,7 +43,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
             </div>
             <div className='border border-r text-dial-stratos-300' />
             <div className='text-sm'>
-              {format('ui.buildingBlock.header')} ({dataset.buildingBlocks?.length ?? 0})
+              {format('ui.sector.header')} ({dataset.sectors?.length ?? 0})
             </div>
           </div>
         </div>

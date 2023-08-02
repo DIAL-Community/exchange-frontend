@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/dataset'
+import { DATASET_DETAIL_QUERY } from '../shared/query/dataset'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import DatasetDetailRight from './DatasetDetailRight'
@@ -10,7 +10,7 @@ const DatasetDetail = ({ slug }) => {
   const scrollRef = useRef(null)
   const commentsSectionRef = useRef(null)
 
-  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(DATASET_DETAIL_QUERY, {
     variables: { slug }
   })
 

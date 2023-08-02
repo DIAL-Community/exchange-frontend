@@ -13,7 +13,7 @@ const DatasetRibbon = () => {
         alt={format('ui.image.logoAlt', { name: format('ui.dataset.label') })}
         width={40}
         height={40}
-        className='object-contain mt-[12px] ml-[14px] white-filter'
+        className='object-contain mt-3 mx-auto white-filter'
       />
     </div>
 

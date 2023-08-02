@@ -18,14 +18,6 @@ const DatasetDefinition = () => {
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-plum'>
-          {format('dataset.hint.characteristicTitle')}
-        </div>
-        <div className='text-sm text-dial-stratos fr-view'>
-          {parse(format('dataset.hint.characteristics'))}
-        </div>
-      </div>
-      <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-plum'>
           {format('dataset.hint.descriptionTitle')}
         </div>
         <div className='text-sm text-dial-stratos'>

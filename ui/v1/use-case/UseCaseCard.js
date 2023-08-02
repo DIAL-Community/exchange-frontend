@@ -11,7 +11,7 @@ const UseCaseCard = ({ displayType, index, useCase, dismissCardHandler }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-cotton'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {useCase.imageFile.indexOf('placeholder.svg') < 0 &&
           <div className='w-16 h-16 mx-auto px-1 py-1 rounded-full bg-dial-blueberry'>

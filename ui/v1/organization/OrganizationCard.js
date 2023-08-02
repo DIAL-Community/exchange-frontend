@@ -10,7 +10,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {organization.imageFile.indexOf('placeholder.svg') < 0 &&
           <div className='w-20 h-20 mx-auto bg-white border'>
@@ -39,11 +39,15 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sdg.header')} ({organization.sustainableDevelopmentGoals?.length ?? 0})
+              {format('ui.sector.header')} ({organization.sectors?.length ?? 0})
             </div>
             <div className='border border-r text-dial-stratos-300' />
             <div className='text-sm'>
-              {format('ui.buildingBlock.header')} ({organization.buildingBlocks?.length ?? 0})
+              {format('ui.country.header')} ({organization.countries?.length ?? 0})
+            </div>
+            <div className='border border-r text-dial-stratos-300' />
+            <div className='text-sm'>
+              {format('ui.project.header')} ({organization.projects?.length ?? 0})
             </div>
           </div>
         </div>

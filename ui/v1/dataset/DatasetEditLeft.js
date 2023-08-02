@@ -10,7 +10,7 @@ const DatasetEditLeft = ({ dataset }) => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <DatasetDetailHeader dataset={dataset}/>
         <hr className='bg-slate-200'/>
-        <Bookmark object={dataset} objectType={ObjectType.ORGANIZATION}/>
+        <Bookmark object={dataset} objectType={ObjectType.DATASET}/>
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>

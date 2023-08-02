@@ -57,7 +57,7 @@ const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => 
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={dataset.id}
-        objectType={ObjectType.ORGANIZATION}
+        objectType={ObjectType.DATASET}
       />
     </div>
   )

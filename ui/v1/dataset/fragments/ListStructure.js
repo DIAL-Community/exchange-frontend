@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
-import { PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/dataset'
+import { PAGINATED_DATASETS_QUERY } from '../../shared/query/dataset'
 import { DatasetFilterContext } from '../../../../components/context/DatasetFilterContext'
 import DatasetCard from '../DatasetCard'
 import { DisplayType } from '../../utils/constants'
@@ -14,7 +14,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
 
   const { sectors } = useContext(DatasetFilterContext)
 
-  const { loading, error, data } = useQuery(PAGINATED_ORGANIZATIONS_QUERY, {
+  const { loading, error, data } = useQuery(PAGINATED_DATASETS_QUERY, {
     variables: {
       search,
       sectors: sectors.map(sector => sector.value),
@@ -23,7 +23,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     },
     onCompleted: (data) => {
       setResultCounts(resultCount => {
-        return { ...resultCount, 'filter.entity.datasets': data.paginatedDatasets.length }
+        return { ...resultCount, 'filter.entity.datasets': data.paginatedDatasetsRedux.length }
       })
     }
   })
@@ -32,11 +32,11 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedDatasets) {
+  } else if (!data?.paginatedDatasetsRedux) {
     return <NotFound />
   }
 
-  const { paginatedDatasets: datasets } = data
+  const { paginatedDatasetsRedux: datasets } = data
 
   return (
     <div className='flex flex-col gap-3'>

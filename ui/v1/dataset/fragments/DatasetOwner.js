@@ -145,7 +145,7 @@ const DatasetOwner = ({ dataset }) => {
 
       applyAsOwner({
         variables: {
-          entity: ObjectType.ORGANIZATION,
+          entity: ObjectType.DATASET,
           entityId: parseInt(dataset.id)
         },
         context: {
