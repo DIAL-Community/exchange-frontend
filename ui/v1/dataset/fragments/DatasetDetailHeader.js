@@ -22,11 +22,11 @@ const DatasetDetailHeader = ({ dataset }) => {
           </div>
         }
         {dataset.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20'>
+          <div className='w-20 h-20 rounded-full bg-dial-plum'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.dataset.label') })}
-              className='object-contain dial-plum-filter'
+              className='object-contain w-12 h-12 mx-auto white-filter mt-3'
             />
           </div>
         }
