@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client'
 
+export const PRODUCT_CONTACT_QUERY = gql`
+  query ProductOwners($slug: String!, $type: String!, $captcha: String!) {
+    owners(slug: $slug, type: $type, captcha: $captcha) {
+      email
+    }
+  }
+`
+
 export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeProduct(
     $useCases: [String!]
@@ -97,13 +105,13 @@ export const PRODUCT_DETAIL_QUERY = gql`
       slug
       imageFile
       website
-      owner
-      tags
       commercialProduct
       pricingModel
       pricingDetails
       hostingModel
       languages
+      haveOwner
+      tags
       productDescription {
         id
         description

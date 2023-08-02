@@ -1,14 +1,15 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useLazyQuery, useMutation } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useRef, useState } from 'react'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useOrganizationOwnerUser, useUser } from '../../../../lib/hooks'
 import { ObjectType } from '../../utils/constants'
 import { CANDIDATE_ROLE_QUERY } from '../../shared/query/candidate'
 import { APPLY_AS_OWNER } from '../../shared/mutation/user'
+import { ORGANIZATION_CONTACT_QUERY } from '../../shared/query/organization'
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
@@ -30,88 +31,54 @@ const OrganizationOwner = ({ organization }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [fetchCandidateRole, { data, error }] = useLazyQuery(CANDIDATE_ROLE_QUERY)
-  useEffect(() => {
-    if (user) {
-      const { userEmail } = user
-      fetchCandidateRole({
-        variables: {
-          email: userEmail,
-          organizationId: organization.id,
-          productId: '',
-          datasetId: ''
-        }
-      })
+  useQuery(CANDIDATE_ROLE_QUERY, {
+    variables: {
+      email: user?.userEmail,
+      organizationId: organization.id
+    },
+    skip: !user || !user.userEmail,
+    onCompleted: (data) => {
+      const { candidateRole } = data
+      const showApplyLink = candidateRole === null || candidateRole?.rejected
+      setShowApplyLink(showApplyLink)
+
+      if (isOrganizationOwner) {
+        return setOwnershipText('owner')
+      }
+
+      if (candidateRole?.rejected === null) {
+        // Applying to be the owner of the organization
+        setOwnershipText('applied-to-own')
+      }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  })
 
-  const displayApplyOwnershipLink = (user) => {
-    if (!user || isOrganizationOwner) {
-      return false
+  const [revealContact] = useLazyQuery(ORGANIZATION_CONTACT_QUERY, {
+    onCompleted: (data) => {
+      const [firstOwner] = data.owners
+      setEmailAddress(firstOwner.email)
+      setContactState(CONTACT_STATES[2])
+    },
+    onError: () => {
+      setContactState(CONTACT_STATES[3])
     }
-
-    return data?.candidateRole === null || data?.candidateRole?.rejected
-  }
-
-  const staticOwnershipTextSelection = (user) => {
-    if (!user) {
-      // Not logged in, don't display anything.
-      return ''
-    }
-
-    if (isOrganizationOwner) {
-      return 'owner'
-    }
-
-    if (data?.candidateRole?.rejected === null) {
-      // Applying to be the owner of the organization
-      return 'applied-to-own'
-    }
-  }
-
-  useEffect(() => {
-    setShowApplyLink(displayApplyOwnershipLink(user))
-    setOwnershipText(staticOwnershipTextSelection(user))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, error, data])
+  })
 
   const updateContactInfo = async (captchaValue) => {
     const { userEmail, userToken } = user
-    const requestBody = {
-      user_email: userEmail,
-      user_token: userToken,
-      captcha: captchaValue,
-      organization: organization.slug
-    }
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_RAILS_SERVER}/api/v1/organizations/owners`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'omit',
+    revealContact({
+      variables: {
+        slug: organization.slug,
+        type: ObjectType.ORGANIZATION,
+        captcha: captchaValue
+      },
+      context: {
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Set-Cookie'
-        },
-        body: JSON.stringify(requestBody)
+          'Accept-Language': locale,
+          Authorization: `${userEmail} ${userToken}`
+        }
       }
-    )
-
-    if (response) {
-      setContactState(CONTACT_STATES[2])
-      if (response.status === 200) {
-        const ownerData = await response.json()
-        const [ownerInformation] = ownerData.owner
-        setEmailAddress(ownerInformation.email)
-      } else {
-        setContactState(CONTACT_STATES[3])
-      }
-    }
+    })
   }
 
   const [applyAsOwner, { reset }] = useMutation(APPLY_AS_OWNER, {
@@ -161,7 +128,7 @@ const OrganizationOwner = ({ organization }) => {
   return (
     <div className='flex flex-col gap-y-4 py-3'>
       <div className='text-xs'>{format('organization.owner')}</div>
-      <div className='flex text-xs text-dial-stratos'>
+      <div className='flex gap-3 text-xs text-dial-stratos'>
         <a
           href={`https://docs.dial.community/projects/organization-registry/${locale}/latest/organization_owner.html`}
           target='_blank'
@@ -169,25 +136,31 @@ const OrganizationOwner = ({ organization }) => {
         >
           <div className='border-b border-dial-iris-blue'>{format('organization.ownerLink')} ⧉</div>
         </a>
+        {showApplyLink && (
+          <>
+            <div className='border-r border-dial-slate-400' />
+            <div className='flex text-xs text-dial-stratos'>
+              <button
+                className='border-b border-dial-iris-blue'
+                onClick={onSubmit}
+                disabled={loading}
+              >
+                {format('ownership.apply')}
+                {loading && <FaSpinner className='inline spinner mx-1' />}
+              </button>
+            </div>
+          </>
+        )}
+        {ownershipText && (
+          <>
+            <div className='border-r border-dial-slate-400' />
+            <div className='text-xs text-dial-plum font-semibold'>
+              {ownershipText === 'owner' ? format('ownership.owned') : format('ownership.applied')}
+            </div>
+          </>
+        )}
       </div>
-      {showApplyLink && (
-        <div className='flex text-xs text-dial-stratos'>
-          <button
-            className='border-b border-dial-iris-blue'
-            onClick={onSubmit}
-            disabled={loading}
-          >
-            {format('ownership.apply')}
-            {loading && <FaSpinner className='inline spinner mx-1' />}
-          </button>
-        </div>
-      )}
-      {ownershipText && (
-        <div className='text-xs text-dial-plum font-semibold'>
-          {ownershipText === 'owner' ? format('ownership.owned') : format('ownership.applied')}
-        </div>
-      )}
-      {user && organization.owner && (
+      {user && organization.haveOwner && (
         <div className='flex text-xs text-dial-plum font-semibold'>
           {contactState === CONTACT_STATES[0] &&
             <button
@@ -205,7 +178,7 @@ const OrganizationOwner = ({ organization }) => {
             />
           )}
           {contactState === CONTACT_STATES[2] && (
-            <div className='flex gap-1'>
+            <div className='flex gap-2'>
               {format('organization.owner.contactLabel')}:
               <a
                 className='border-b border-dial-iris-blue'

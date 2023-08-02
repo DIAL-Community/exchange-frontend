@@ -594,6 +594,8 @@ export const en = {
   'organization.detail.endorserLevel': 'Endorser Level',
   'organization.owner': 'If you are the owner of this organization, you can update this organization information.',
   'organization.ownerLink': 'Find more information here',
+  'organization.owner.revealContact': 'Contact Owner',
+  'organization.owner.contactLabel': 'Owner Email',
 
   'aggregator.header': 'Aggregator Organization',
 

@@ -11,6 +11,14 @@ export const ORGANIZATION_SEARCH_QUERY = gql`
   }
 `
 
+export const ORGANIZATION_CONTACT_QUERY = gql`
+  query OrganizationOwners($slug: String!, $type: String!, $captcha: String!) {
+    owners(slug: $slug, type: $type, captcha: $captcha) {
+      email
+    }
+  }
+`
+
 export const ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeOrganization(
     $sectors: [String!]
@@ -67,13 +75,14 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
       slug
       isMni
       website
+      heroFile
       imageFile
       isEndorser
       whenEndorsed
       endorserLevel
       specialties
       hasStorefront
-      heroFile
+      haveOwner
       organizationDescription {
         id
         description
