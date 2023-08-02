@@ -1,0 +1,56 @@
+import { useContext } from 'react'
+import { useQuery } from '@apollo/client'
+import { Error, Loading } from '../../../../components/shared/FetchStatus'
+import { PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/dataset'
+import { DatasetFilterContext } from '../../../../components/context/DatasetFilterContext'
+import DatasetCard from '../DatasetCard'
+import { DisplayType } from '../../utils/constants'
+import { FilterContext } from '../../../../components/context/FilterContext'
+import { NotFound } from '../../shared/FetchStatus'
+
+const ListStructure = ({ pageOffset, defaultPageSize }) => {
+  const { setResultCounts } = useContext(FilterContext)
+  const { search } = useContext(DatasetFilterContext)
+
+  const { sectors } = useContext(DatasetFilterContext)
+
+  const { loading, error, data } = useQuery(PAGINATED_ORGANIZATIONS_QUERY, {
+    variables: {
+      search,
+      sectors: sectors.map(sector => sector.value),
+      limit: defaultPageSize,
+      offset: pageOffset
+    },
+    onCompleted: (data) => {
+      setResultCounts(resultCount => {
+        return { ...resultCount, 'filter.entity.datasets': data.paginatedDatasets.length }
+      })
+    }
+  })
+
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.paginatedDatasets) {
+    return <NotFound />
+  }
+
+  const { paginatedDatasets: datasets } = data
+
+  return (
+    <div className='flex flex-col gap-3'>
+      {datasets.map((dataset, index) =>
+        <div key={index}>
+          <DatasetCard
+            index={index}
+            dataset={dataset}
+            displayType={DisplayType.LARGE_CARD}
+          />
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default ListStructure

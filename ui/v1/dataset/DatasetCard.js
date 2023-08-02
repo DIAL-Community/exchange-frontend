@@ -2,42 +2,48 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
+import { IoClose } from 'react-icons/io5'
 import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 
-const DatasetCard = ({ displayType, index, dataset }) => {
+const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
-      <div className='flex flex-row gap-x-6'>
-        <img
-          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
-          src='/ui/v1/dataset-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.dataset.header') })}
-          width={70}
-          height={70}
-          className='object-contain'
-        />
-        <div className='flex flex-col gap-y-3'>
-          <div className='text-lg font-semibold text-dial-meadow'>
+    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-violet'}`}>
+      <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
+        {dataset.imageFile.indexOf('placeholder.svg') < 0 &&
+          <div className='w-20 h-20 mx-auto bg-white border'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.dataset.label') })}
+              className='object-contain w-16 h-16 mx-auto my-2'
+            />
+          </div>
+        }
+        {dataset.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='w-20 h-20 mx-auto'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.dataset.label') })}
+              className='object-contain w-16 h-16'
+            />
+          </div>
+        }
+        <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
+          <div className='text-lg font-semibold text-dial-plum'>
             {dataset.name}
           </div>
-          <div className='line-clamp-4 max-w-3xl'>
-            {dataset?.datasetDescription && parse(dataset?.datasetDescription?.description)}
+          <div className='line-clamp-4 text-dial-stratos'>
+            {dataset?.datasetDescription && parse(dataset?.datasetDescription.description)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sdgTarget.header')} ({dataset.sdgTargets?.length ?? 0})
+              {format('ui.sdg.header')} ({dataset.sustainableDevelopmentGoals?.length ?? 0})
             </div>
-            <div className='border border-r border-dial-slate-300' />
+            <div className='border border-r text-dial-stratos-300' />
             <div className='text-sm'>
               {format('ui.buildingBlock.header')} ({dataset.buildingBlocks?.length ?? 0})
-            </div>
-          </div>
-          <div className='flex text-[10px] text-white'>
-            <div className='px-6 py-1 rounded-lg bg-dial-slate-500'>
-              {dataset.maturity}
             </div>
           </div>
         </div>
@@ -46,13 +52,13 @@ const DatasetCard = ({ displayType, index, dataset }) => {
 
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-dataset-bg-light to-dataset-bg h-16'>
-      <div className='flex flex-row gap-x-3 px-6 py-3 h-full'>
+      <div className='flex flex-row gap-x-3 px-6 h-full'>
         {dataset.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='rounded-full bg-dial-blueberry w-10 h-10'>
+          <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
-              className='object-contain w-6 h-6 my-2 mx-auto white-filter'
+              alt={format('ui.image.logoAlt', { name: format('ui.dataset.header') })}
+              className='object-contain w-10 h-10 my-auto'
             />
           </div>
         }
@@ -60,22 +66,27 @@ const DatasetCard = ({ displayType, index, dataset }) => {
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.dataset.header') })}
-            width={40}
-            height={40}
-            className='object-contain'
+            className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
           />
         }
-        <div className='text-sm font-semibold text-dial-blueberry my-auto'>
+        <div className='text-sm font-semibold text-dial-plum my-auto'>
           {dataset.name}
         </div>
       </div>
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}/datasets/${dataset.slug}`}>
-      {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
-      {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
-    </Link>
+    <div className='relative'>
+      <Link href={`${REBRAND_BASE_PATH}/datasets/${dataset.slug}`}>
+        {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+        {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
+      </Link>
+      {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
+        <button className='absolute p-2 top-0 right-0 text-dial-sapphire'>
+          <IoClose size='1rem' onClick={dismissCardHandler} />
+        </button>
+      }
+    </div>
   )
 }
 
