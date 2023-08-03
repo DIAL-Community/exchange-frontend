@@ -26,7 +26,7 @@ const LandingPage = () => {
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
-          <div className='xl:h-screen'>
+          <div className='xl:min-h-screen'>
             <HeroCarousel />
             <div className='py-12'>
               <ToolDefinition />
