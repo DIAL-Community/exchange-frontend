@@ -10,7 +10,7 @@ const UserProfileDetail = () => {
   const { user } =  useUser()
 
   return (
-    <div className='grid grid-cols-6 gap-8 px-8 py-8'>
+    <div className='grid lg:grid-cols-6 gap-8 px-8 py-8'>
       <div className='flex mb-auto mx-auto'>
         <img
           src='/ui/v1/user-header.svg'
@@ -20,9 +20,9 @@ const UserProfileDetail = () => {
           className='object-contain object-center'
         />
       </div>
-      <div className='col-span-5'>
+      <div className='lg:col-span-5'>
         <div className='flex flex-col'>
-          <div className='grid grid-cols-2'>
+          <div className='grid lg:grid-cols-2'>
             <div className='flex flex-col gap-8'>
               <div className='flex flex-col gap-3'>
                 <div className='text-lg text-dial-sapphire'>

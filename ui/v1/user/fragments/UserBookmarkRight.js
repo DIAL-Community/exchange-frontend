@@ -111,7 +111,7 @@ const UserBookmarkRight = () => {
           <div className='text-sm text-dial-stratos'>
             {format('ui.bookmark.object.subtitle', { objects: format('ui.useCase.header') })}
           </div>
-          <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid lg:grid-cols-2 gap-x-8 gap-y-4'>
             {bookmark?.bookmarkedUseCases?.map((useCase, index) =>
               <div key={`use-case-${index}`}>
                 <UseCaseCard
@@ -134,7 +134,7 @@ const UserBookmarkRight = () => {
           <div className='text-sm text-dial-stratos'>
             {format('ui.bookmark.object.subtitle', { objects: format('ui.buildingBlock.header') })}
           </div>
-          <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid lg:grid-cols-2 gap-x-8 gap-y-4'>
             {bookmark?.bookmarkedBuildingBlocks?.map((buildingBlock, index) =>
               <div key={`building-block-${index}`}>
                 <BuildingBlockCard
@@ -157,7 +157,7 @@ const UserBookmarkRight = () => {
           <div className='text-sm text-dial-stratos'>
             {format('ui.bookmark.object.subtitle', { objects: format('ui.product.header') })}
           </div>
-          <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid lg:grid-cols-2 gap-x-8 gap-y-4'>
             {bookmark?.bookmarkedProducts?.map((product, index) =>
               <div key={`product-${index}`}>
                 <ProductCard
