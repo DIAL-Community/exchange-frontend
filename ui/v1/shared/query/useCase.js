@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const USE_CASE_SEARCH_QUERY = gql`
-  query UseCases($search: String!, $mature: Boolean!) {
+  query UseCases($search: String, $mature: Boolean!) {
     useCases(search: $search, mature: $mature) {
       id
       name
@@ -12,7 +12,7 @@ export const USE_CASE_SEARCH_QUERY = gql`
 
 export const USE_CASE_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeUseCase(
-    $search: String!
+    $search: String
     $sdgs: [String!]
     $showBeta: Boolean
     $govStackOnly: Boolean
@@ -30,7 +30,7 @@ export const USE_CASE_PAGINATION_ATTRIBUTES_QUERY = gql`
 
 export const PAGINATED_USE_CASES_QUERY = gql`
   query PaginatedUseCases(
-    $search: String!
+    $search: String
     $sdgs: [String!]
     $showBeta: Boolean
     $govStackOnly: Boolean

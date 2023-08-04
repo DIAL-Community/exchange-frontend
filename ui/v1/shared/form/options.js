@@ -27,3 +27,20 @@ export const generateCategoryTypeOptions = (format) => [
   { label: format('buildingBlock.category.dpi'), value: CategoryType.DPI },
   { label: format('buildingBlock.category.functional'), value: CategoryType.FUNCTIONAL }
 ]
+
+export const generateDatasetTypeOptions = (format) => [
+  { label: format('dataset.type.dataset'), value: 'dataset' },
+  { label: format('dataset.type.content'), value: 'content' },
+  { label: format('dataset.type.standard'), value: 'standard' },
+  { label: format('dataset.type.aiModel'), value: 'ai_model' }
+]
+
+export const generateLanguageOptions = (format) => [
+  { label: format('locale.english.label'), value: 'en' },
+  { label: format('locale.german.label'), value: 'de' },
+  { label: format('locale.spanish.label'), value: 'es' },
+  { label: format('locale.french.label'), value: 'fr' },
+  { label: format('locale.portuguese.label'), value: 'pt' },
+  { label: format('locale.swahili.label'), value: 'sw' },
+  { label: format('locale.czech.label'), value: 'cs' }
+]

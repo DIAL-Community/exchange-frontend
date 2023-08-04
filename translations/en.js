@@ -1926,5 +1926,8 @@ export const en = {
   'ui.tool.getStarted': `Let's get started`,
 
   'ui.url.label': 'URL',
-  'ui.url.header': 'URLs'
+  'ui.url.header': 'URLs',
+
+  'ui.candidate.label': 'Candidate',
+  'ui.candidate.header': 'Candidates'
 }

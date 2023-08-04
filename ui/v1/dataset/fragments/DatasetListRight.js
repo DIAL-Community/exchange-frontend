@@ -13,7 +13,7 @@ const DatasetListRight = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(DatasetFilterContext)
-  const {  sectors } = useContext(DatasetFilterContext)
+  const { sectors } = useContext(DatasetFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)

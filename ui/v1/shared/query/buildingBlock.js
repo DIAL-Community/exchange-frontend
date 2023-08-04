@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 export const BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeBuildingBlock(
-    $search: String!
+    $search: String
     $sdgs: [String!]
     $useCases: [String!]
     $workflows: [String!]
@@ -29,7 +29,7 @@ export const PAGINATED_BUILDING_BLOCKS_QUERY = gql`
     $workflows: [String!]
     $categoryTypes: [String!]
     $showMature: Boolean
-    $search: String!
+    $search: String
     $limit: Int!
     $offset: Int!
   ) {
@@ -96,7 +96,7 @@ export const BUILDING_BLOCK_DETAIL_QUERY = gql`
 `
 
 export const BUILDING_BLOCK_SEARCH_QUERY = gql`
-  query BuildingBlocks($search: String!) {
+  query BuildingBlocks($search: String) {
     buildingBlocks(search: $search) {
       id
       name

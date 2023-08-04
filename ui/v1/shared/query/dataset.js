@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const DATASET_SEARCH_QUERY = gql`
-  query Datasets($search: String!) {
+  query Datasets($search: String) {
     datasets(search: $search) {
       id
       name
@@ -13,7 +13,7 @@ export const DATASET_SEARCH_QUERY = gql`
 export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeDataset(
     $sectors: [String!]
-    $search: String!
+    $search: String
   ) {
     paginationAttributeDataset(
       sectors: $sectors
@@ -27,7 +27,7 @@ export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
 export const PAGINATED_DATASETS_QUERY = gql`
   query PaginatedDatasetsRedux(
     $sectors: [String!]
-    $search: String!
+    $search: String
     $limit: Int!
     $offset: Int!
   ) {

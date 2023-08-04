@@ -33,7 +33,7 @@ const CommentsList = ({ comments, loading, onClose }) => {
           <button
             type='button'
             onClick={onClose}
-            className='cancel-button'
+            className='cancel-button text-sm'
           >
             {format('app.close')}
           </button>

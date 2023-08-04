@@ -26,7 +26,7 @@ export const CANDIDATE_DATASETS_QUERY = gql`
   query SearchCandidateDatasets(
     $first: Int,
     $after: String,
-    $search: String!
+    $search: String
     ) {
     searchCandidateDatasets(
       first: $first,

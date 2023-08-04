@@ -16,25 +16,28 @@ const convertBreadcrumb = string => {
 }
 
 const basePathMappings = {
-  'sdgs': 'ui.sdg.header',
-  'use-cases': 'ui.useCase.header',
-  'use-case-steps': 'ui.useCaseStep.header',
-  'workflows': 'ui.workflow.header',
   'building-blocks': 'ui.buildingBlock.header',
-  'products': 'ui.product.header',
+  'countries': 'ui.country.header',
   'datasets': 'ui.dataset.header',
-  'repositories': 'productRepository.header',
-  'projects': 'ui.project.header',
+  'moves': 'ui.move.header',
+  'opportunities': 'ui.opportunity.header',
   'organizations': 'ui.organization.header',
   'playbooks': 'ui.playbook.header',
   'plays': 'ui.play.header',
-  'users': 'ui.user.header',
-  'moves': 'ui.move.header',
-  'countries': 'ui.country.header',
-  'rubric-categories': 'ui.rubricCategories.header',
-  'opportunities': 'ui.opportunity.header',
+  'products': 'ui.product.header',
+  'projects': 'ui.project.header',
+  'repositories': 'productRepository.header',
   'resources': 'ui.resource.header',
-  'storefronts': 'ui.storefront.header'
+  'rubric-categories': 'ui.rubricCategories.header',
+  'sdgs': 'ui.sdg.header',
+  'sectors': 'ui.sector.header',
+  'storefronts': 'ui.storefront.header',
+  'tags': 'ui.tag.header',
+  'users': 'ui.user.header',
+  'use-case-steps': 'ui.useCaseStep.header',
+  'use-cases': 'ui.useCase.header',
+  'workflows': 'ui.workflow.header',
+  'candidate': 'ui.candidate.header'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>

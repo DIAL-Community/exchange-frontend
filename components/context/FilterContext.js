@@ -32,16 +32,19 @@ const initialCounts = (() => {
 })()
 
 const FilterContextProvider = ({ children }) => {
+  const [search, setSearch] = useState('')
   const [resultCounts, setResultCounts] = useState(initialCounts)
   const [displayType, setDisplayType] = useState(isMobile ? 'list' : 'card')
   const [filterDisplayed, setFilterDisplayed] = useState(true)
   const [hintDisplayed, setHintDisplayed] = useState(false)
 
   const props = {
+    search,
     resultCounts,
     displayType,
     filterDisplayed,
     hintDisplayed,
+    setSearch,
     setResultCounts,
     setDisplayType,
     setFilterDisplayed,

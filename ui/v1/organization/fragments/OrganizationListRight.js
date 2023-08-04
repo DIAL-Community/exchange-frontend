@@ -13,7 +13,7 @@ const OrganizationListRight = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(OrganizationFilterContext)
-  const {  sectors } = useContext(OrganizationFilterContext)
+  const { sectors } = useContext(OrganizationFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)

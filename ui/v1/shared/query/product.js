@@ -19,7 +19,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
     $sdgs: [String!]
     $origins: [String!]
     $isLinkedWithDpi: Boolean
-    $search: String!
+    $search: String
   ) {
     paginationAttributeProduct(
       useCases: $useCases
@@ -49,7 +49,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $sdgs: [String!]
     $origins: [String!]
     $isLinkedWithDpi: Boolean
-    $search: String!
+    $search: String
     $limit: Int!
     $offset: Int!
   ) {
@@ -214,7 +214,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
 `
 
 export const PRODUCT_SEARCH_QUERY = gql`
-  query Products($search: String!) {
+  query Products($search: String) {
     products(search: $search) {
       id
       name

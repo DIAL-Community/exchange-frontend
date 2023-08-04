@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const ORGANIZATION_SEARCH_QUERY = gql`
-  query Organizations($search: String!, $aggregatorOnly: Boolean) {
+  query Organizations($search: String, $aggregatorOnly: Boolean) {
     organizations(search: $search, aggregatorOnly: $aggregatorOnly) {
       id
       name
@@ -22,7 +22,7 @@ export const ORGANIZATION_CONTACT_QUERY = gql`
 export const ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeOrganization(
     $sectors: [String!]
-    $search: String!
+    $search: String
   ) {
     paginationAttributeOrganization(
       sectors: $sectors
@@ -36,7 +36,7 @@ export const ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY = gql`
 export const PAGINATED_ORGANIZATIONS_QUERY = gql`
   query PaginatedOrganizations(
     $sectors: [String!]
-    $search: String!
+    $search: String
     $limit: Int!
     $offset: Int!
   ) {

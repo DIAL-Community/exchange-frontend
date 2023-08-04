@@ -15,8 +15,8 @@ import { CREATE_DATASET } from '../../shared/mutation/dataset'
 import { REBRAND_BASE_PATH } from '../../utils/constants'
 import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
-import Checkbox from '../../shared/form/Checkbox'
 import Select from '../../shared/form/Select'
+import { generateDatasetTypeOptions } from '../../shared/form/options'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -61,39 +61,24 @@ const DatasetForm = React.memo(({ dataset }) => {
     }
   })
 
-  const endorserLevelOptions = [
-    { label: format('dataset.endorserLevel.none'), value: 'none' },
-    { label: format('dataset.endorserLevel.bronze'), value: 'bronze' },
-    { label: format('dataset.endorserLevel.silver'), value: 'silver' },
-    { label: format('dataset.endorserLevel.gold'), value: 'gold' }
-  ]
+  const datasetTypeOptions = useMemo(() => generateDatasetTypeOptions(format), [format])
 
-  const [defaultEndorserLevel] = endorserLevelOptions
-
-  const {
-    handleSubmit,
-    register,
-    control,
-    formState: { errors }
-  } = useForm({
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
       name: dataset?.name,
-      aliases: dataset?.aliases?.length
-        ? dataset?.aliases.map(value => ({ value }))
-        : [{ value: '' }],
-      website: dataset?.website ?? '',
-      isEndorser: dataset?.isEndorser,
-      whenEndorsed: dataset?.whenEndorsed ?? null,
-      endorserLevel:
-        endorserLevelOptions.find(
-          ({ value }) => value === dataset?.endorserLevel
-        ) ?? defaultEndorserLevel,
-      isMni: dataset?.isMni,
-      description: dataset?.datasetDescription?.description,
-      hasStorefront: dataset?.hasStorefront,
+      aliases: dataset?.aliases?.length ? dataset?.aliases.map(value => ({ value })) : [{ value: '' }],
+      datasetType: datasetTypeOptions.find(({ value }) => value === dataset?.datasetType) ?? datasetTypeOptions[0],
+      website: dataset?.website,
+      visualizationUrl: dataset?.visualizationUrl,
+      geographicCoverage: dataset?.geographicCoverage,
+      timeRange: dataset?.timeRange,
+      license: dataset?.license,
+      languages: dataset?.languages,
+      dataFormat: dataset?.dataFormat,
+      description: dataset?.datasetDescription?.description
     }
   })
 
@@ -118,15 +103,17 @@ const DatasetForm = React.memo(({ dataset }) => {
       const { userEmail, userToken } = user
       const {
         name,
-        imageFile,
-        website,
-        isEndorser,
-        whenEndorsed,
-        endorserLevel,
-        isMni,
-        description,
         aliases,
-        hasStorefront
+        website,
+        visualizationUrl,
+        geographicCoverage,
+        timeRange,
+        datasetType,
+        license,
+        languages,
+        dataFormat,
+        description,
+        imageFile
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -134,12 +121,14 @@ const DatasetForm = React.memo(({ dataset }) => {
         slug,
         aliases: aliases.map(({ value }) => value),
         website,
-        isEndorser,
-        whenEndorsed: whenEndorsed || null,
-        endorserLevel: endorserLevel.value,
-        isMni,
-        description,
-        hasStorefront
+        visualizationUrl,
+        geographicCoverage,
+        timeRange,
+        datasetType: datasetType.value,
+        license,
+        languages,
+        dataFormat,
+        description
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -150,7 +139,7 @@ const DatasetForm = React.memo(({ dataset }) => {
         context: {
           headers: {
             'Accept-Language': locale,
-            'Authorization': `${userEmail} ${userToken}`
+            Authorization: `${userEmail} ${userToken}`
           }
         }
       })
@@ -227,43 +216,93 @@ const DatasetForm = React.memo(({ dataset }) => {
             {errors.website && <ValidationError value={errors.website?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('dataset.imageFile')}</label>
-            <FileUploader {...register('imageFile')} />
-          </div>
-          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-            <Checkbox {...register('isEndorser')} />
-            {format('dataset.isEndorser')}
-          </label>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('dataset.whenEndorsed')}</label>
-            <Input
-              {...register('whenEndorsed')}
-              type='date'
-              placeholder={format('dataset.whenEndorsed')}
-            />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('dataset.endorserLevel')}</label>
+            <label className='text-dial-sapphire' htmlFor='visualizationUrl'>
+              {format('dataset.visualizationUrl')}
+            </label>
             <Controller
-              name='endorserLevel'
+              name='visualizationUrl'
               control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={endorserLevelOptions}
-                  placeholder={format('dataset.endorserLevel')}
+              render={({ field: { value, onChange } }) => (
+                <UrlInput
+                  value={value}
+                  onChange={onChange}
+                  id='visualizationUrl'
+                  placeholder={format('dataset.visualizationUrl')}
                 />
               )}
             />
           </div>
-          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-            <Checkbox {...register('isMni')} />
-            {format('dataset.isMni')}
-          </label>
-          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-            <Checkbox {...register('hasStorefront')} />
-            {format('dataset.hasStorefront')}
-          </label>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire'>
+              {format('dataset.datasetType')}
+            </label>
+            <Controller
+              name='datasetType'
+              control={control}
+              render={({ field }) =>
+                <Select {...field}
+                  options={datasetTypeOptions}
+                  placeholder={format('dataset.datasetType')}
+                />
+              }
+            />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire'>
+              {format('dataset.imageFile')}
+            </label>
+            <FileUploader {...register('imageFile')} />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire' htmlFor='geographicCoverage'>
+              {format('dataset.coverage')}
+            </label>
+            <Input
+              {...register('geographicCoverage')}
+              id='geographicCoverage'
+              placeholder={format('dataset.coverage')}
+            />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire' htmlFor='timeRange'>
+              {format('dataset.timeRange')}
+            </label>
+            <Input
+              {...register('timeRange')}
+              id='timeRange'
+              placeholder={format('dataset.timeRange')}
+            />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire' htmlFor='license'>
+              {format('dataset.license')}
+            </label>
+            <Input
+              {...register('license')}
+              id='license'
+              placeholder={format('dataset.license')}
+            />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire' htmlFor='languages'>
+              {format('dataset.languages')}
+            </label>
+            <Input
+              {...register('languages')}
+              id='languages'
+              placeholder={format('dataset.languages')}
+            />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire' htmlFor='dataFormat'>
+              {format('dataset.dataFormat')}
+            </label>
+            <Input
+              {...register('dataFormat')}
+              id='dataFormat'
+              placeholder={format('dataset.dataFormat')}
+            />
+          </div>
           <div className='block flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field'>
               {format('dataset.description')}
