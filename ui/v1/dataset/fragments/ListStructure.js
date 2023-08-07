@@ -5,11 +5,9 @@ import { PAGINATED_DATASETS_QUERY } from '../../shared/query/dataset'
 import { DatasetFilterContext } from '../../../../components/context/DatasetFilterContext'
 import DatasetCard from '../DatasetCard'
 import { DisplayType } from '../../utils/constants'
-import { FilterContext } from '../../../../components/context/FilterContext'
 import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(DatasetFilterContext)
 
   const { sectors } = useContext(DatasetFilterContext)
@@ -20,11 +18,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       sectors: sectors.map(sector => sector.value),
       limit: defaultPageSize,
       offset: pageOffset
-    },
-    onCompleted: (data) => {
-      setResultCounts(resultCount => {
-        return { ...resultCount, 'filter.entity.datasets': data.paginatedDatasetsRedux.length }
-      })
     }
   })
 

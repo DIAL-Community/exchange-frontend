@@ -18,7 +18,7 @@ const EditCategoryIndicator = () => {
 
   const { loading, error, data: categoryIndicatorData } = useQuery(CATEGORY_INDICATOR_QUERY, {
     variables: { slug: categoryIndicatorSlug },
-    context: { headers: { 'Accept-Language': locale } },
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   const { data: rubricCategoryData } = useQuery(RUBRIC_CATEGORY_QUERY, { variables: { slug } })

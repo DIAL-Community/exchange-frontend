@@ -35,7 +35,9 @@ const ProductSource = ({ product }) => {
               </div>
               <div className='inline my-auto text-sm'>{origin.name}</div>
               {origin.slug === 'dpga' && product.endorsers.length === 0 && (
-                <div className='inline my-auto text-xs italic'>{format('product.nominee')}</div>
+                <div className='inline my-auto text-xs italic'>
+                  {format('product.nominee')}
+                </div>
               )}
               {origin.slug === 'dpga' && (
                 <a

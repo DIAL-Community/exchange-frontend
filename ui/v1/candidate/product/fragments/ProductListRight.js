@@ -49,7 +49,7 @@ const ProductListRight = () => {
       sdgs: sdgs.map(sdg => sdg.number),
       workflows: workflows.map(workflow => workflow.id),
       origins: origins.map(origin => origin.value),
-      isLinkedWithDpi,
+      isLinkedWithDpi
     }
   })
 

@@ -34,7 +34,7 @@ export const UserForm = ({ user }) => {
   const { data: userRolesData } = useQuery(USER_ROLES)
 
   const { data: organizationsData } = useQuery(ORGANIZATION_SEARCH_QUERY, {
-    variables: { search: '' },
+    variables: { search: '' }
   })
 
   const { isUniqueUserEmail } = useEmailValidation()

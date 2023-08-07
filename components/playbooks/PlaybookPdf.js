@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingVertical: 25,
     paddingHorizontal: 20,
-    color: '#46465A',
+    color: '#46465A'
   },
   h1: {
     fontSize: 24,

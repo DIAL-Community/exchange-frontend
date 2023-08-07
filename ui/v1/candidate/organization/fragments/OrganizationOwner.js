@@ -7,7 +7,7 @@ import { useCallback, useContext, useRef, useState } from 'react'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useOrganizationOwnerUser, useUser } from '../../../../../lib/hooks'
 import { ObjectType } from '../../../utils/constants'
-import { CANDIDATE_ROLE_QUERY } from '../../../shared/query/candidate'
+import { CANDIDATE_ROLE_QUERY } from '../../../shared/query/candidateRole'
 import { APPLY_AS_OWNER } from '../../../shared/mutation/user'
 import { ORGANIZATION_CONTACT_QUERY } from '../../../shared/query/organization'
 

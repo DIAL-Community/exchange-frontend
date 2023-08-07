@@ -303,7 +303,7 @@ const ApproveButton = ({ dataset, setStatus, loading, setLoading }) => {
       candidateDatasetApproval({
         variables: {
           slug: dataset.slug,
-          action: CandidateActionType.APPROVE,
+          action: CandidateActionType.APPROVE
         },
         context: {
           headers: {
@@ -368,7 +368,7 @@ const DeclineButton = ({ dataset, setStatus, loading, setLoading }) => {
       const { userEmail, userToken } = user
       const variables = {
         slug: dataset.slug,
-        action: CandidateActionType.REJECT,
+        action: CandidateActionType.REJECT
       }
 
       candidateDatasetApproval({

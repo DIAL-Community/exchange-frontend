@@ -93,7 +93,7 @@ const OrganizationForm = React.memo(({ organization }) => {
         ) ?? defaultEndorserLevel,
       isMni: organization?.isMni,
       description: organization?.organizationDescription?.description,
-      hasStorefront: organization?.hasStorefront,
+      hasStorefront: organization?.hasStorefront
     }
   })
 

@@ -5,11 +5,9 @@ import { PAGINATED_BUILDING_BLOCKS_QUERY } from '../../shared/query/buildingBloc
 import { BuildingBlockFilterContext } from '../../../../components/context/BuildingBlockFilterContext'
 import BuildingBlockCard from '../BuildingBlockCard'
 import { DisplayType } from '../../utils/constants'
-import { FilterContext } from '../../../../components/context/FilterContext'
 import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { setResultCounts } = useContext(FilterContext)
   const { search, sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_BUILDING_BLOCKS_QUERY, {
@@ -22,11 +20,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       showMature,
       limit: defaultPageSize,
       offset: pageOffset
-    },
-    onCompleted: (data) => {
-      setResultCounts(resultCount => {
-        return { ...resultCount, 'filter.entity.buildingBlocks': data.paginatedBuildingBlocks.length }
-      })
     }
   })
 

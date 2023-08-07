@@ -1,42 +1,28 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
-import { PAGINATED_SDGS_QUERY } from '../../shared/query/sdg'
-import { SdgFilterContext } from '../../../../components/context/SdgFilterContext'
+import { SDG_LIST_QUERY } from '../../shared/query/sdg'
+import { SDGFilterContext } from '../../../../components/context/SDGFilterContext'
 import SdgCard from '../SdgCard'
 import { DisplayType } from '../../utils/constants'
-import { FilterContext } from '../../../../components/context/FilterContext'
 import { NotFound } from '../../shared/FetchStatus'
 
-const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { setResultCounts } = useContext(FilterContext)
-  const { search } = useContext(SdgFilterContext)
+const ListStructure = () => {
+  const { search } = useContext(SDGFilterContext)
 
-  const { sectors } = useContext(SdgFilterContext)
-
-  const { loading, error, data } = useQuery(PAGINATED_SDGS_QUERY, {
-    variables: {
-      search,
-      sectors: sectors.map(sector => sector.value),
-      limit: defaultPageSize,
-      offset: pageOffset
-    },
-    onCompleted: (data) => {
-      setResultCounts(resultCount => {
-        return { ...resultCount, 'filter.entity.sdgs': data.paginatedSdgs.length }
-      })
-    }
+  const { loading, error, data } = useQuery(SDG_LIST_QUERY, {
+    variables: { search }
   })
 
   if (loading) {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedSdgs) {
+  } else if (!data?.sdgs) {
     return <NotFound />
   }
 
-  const { paginatedSdgs: sdgs } = data
+  const { sdgs } = data
 
   return (
     <div className='flex flex-col gap-3'>

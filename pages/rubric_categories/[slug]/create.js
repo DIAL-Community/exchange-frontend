@@ -17,7 +17,7 @@ const CreateCategoryIndicator = () => {
 
   const { loading, error, data } = useQuery(RUBRIC_CATEGORY_QUERY, {
     variables: { slug },
-    context: { headers: { 'Accept-Language': locale } },
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   if (loading) {

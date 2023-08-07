@@ -40,7 +40,7 @@ const OrganizationListRight = () => {
   const { loading, error, data } = useQuery(ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
-      sectors: sectors.map(sector => sector.value),
+      sectors: sectors.map(sector => sector.value)
     }
   })
 

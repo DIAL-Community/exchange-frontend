@@ -5,11 +5,9 @@ import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
 import { ProductFilterContext } from '../../../../components/context/ProductFilterContext'
 import ProductCard from '../ProductCard'
 import { DisplayType } from '../../utils/constants'
-import { FilterContext } from '../../../../components/context/FilterContext'
 import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(ProductFilterContext)
 
   const { isLinkedWithDpi } = useContext(ProductFilterContext)
@@ -30,11 +28,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       isLinkedWithDpi,
       limit: defaultPageSize,
       offset: pageOffset
-    },
-    onCompleted: (data) => {
-      setResultCounts(resultCount => {
-        return { ...resultCount, 'filter.entity.products': data.paginatedProductsRedux.length }
-      })
     }
   })
 

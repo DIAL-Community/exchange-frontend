@@ -212,7 +212,9 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
               </button>
             </div>
             {buildingBlock?.markdownUrl && (
-              <div className='text-sm italic text-red-500 -mt-3'>{format('buildingBlock.markdownWarning')}</div>
+              <div className='text-sm italic text-red-500 -mt-3'>
+                {format('buildingBlock.markdownWarning')}
+              </div>
             )}
           </div>
         </div>

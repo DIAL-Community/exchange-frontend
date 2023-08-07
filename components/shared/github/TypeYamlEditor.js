@@ -70,7 +70,7 @@ const TypeYamlEditor = ({ allowEditing = true, maxHeight = '60vh' }) => {
               fontFamily: '"Fira code", "Fira Mono", monospace',
               minHeight: '100%',
               maxHeight: '100%',
-              fontSize: 12,
+              fontSize: 12
             }}
           />
         </div>

@@ -252,7 +252,9 @@ const UseCaseForm = React.memo(({ useCase }) => {
               </button>
             </div>
             {useCase?.markdownUrl && (
-              <div className='text-sm italic text-red-500 -mt-3'>{format('useCase.markdownWarning')}</div>
+              <div className='text-sm italic text-red-500 -mt-3'>
+                {format('useCase.markdownWarning')}
+              </div>
             )}
           </div>
         </div>

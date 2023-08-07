@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { prependUrlWithProtocol } from '../../utils/utilities'
 
 const SdgDetailHeader = ({ sdg }) => {
   const { formatMessage } = useIntl()
@@ -30,31 +29,6 @@ const SdgDetailHeader = ({ sdg }) => {
             />
           </div>
         }
-      </div>
-      <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-sapphire'>
-            {format('sdg.website')}
-          </div>
-          <div className='flex text-dial-stratos'>
-            <a href={prependUrlWithProtocol(sdg.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue'>
-                {sdg.website} ⧉
-              </div>
-            </a>
-          </div>
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-sapphire'>
-            {format('ui.sector.header')}
-          </div>
-          <div className='flex flex-col gap-y-2 text-dial-stratos'>
-            {sdg.sectors.length === 0 && format('general.na')}
-            {sdg.sectors.map((sector, index) => {
-              return <div key={index}>{sector.name}</div>
-            })}
-          </div>
-        </div>
       </div>
     </div>
   )

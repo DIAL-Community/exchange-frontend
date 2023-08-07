@@ -8,18 +8,13 @@ import { FilterContext } from '../../../../components/context/FilterContext'
 import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search, setResultCounts } = useContext(FilterContext)
+  const { search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_SECTORS_QUERY, {
     variables: {
       search,
       limit: defaultPageSize,
       offset: pageOffset
-    },
-    onCompleted: (data) => {
-      setResultCounts(resultCount => {
-        return { ...resultCount, 'filter.entity.sectors': data.paginatedSectors.length }
-      })
     }
   })
 

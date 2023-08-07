@@ -65,7 +65,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissCardHandl
             alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
             className={classNames(
               'object-contain w-6 h-6 my-2 mx-auto',
-              buildingBlock.imageFile.indexOf('placeholder.svg') <= 0 ? 'w-6 h-6 my-2 white-filter' : '',
+              buildingBlock.imageFile.indexOf('placeholder.svg') <= 0 ? 'w-6 h-6 my-2 white-filter' : ''
             )}
           />
         </div>

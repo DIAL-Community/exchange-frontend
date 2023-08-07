@@ -1,30 +1,19 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../../../../../components/shared/FetchStatus'
-import { PAGINATED_ORGANIZATIONS_QUERY } from '../../../shared/query/organization'
-import { OrganizationFilterContext } from '../../../../../components/context/OrganizationFilterContext'
+import { PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY } from '../../../shared/query/candidateOrganization'
 import OrganizationCard from '../OrganizationCard'
 import { DisplayType } from '../../../utils/constants'
 import { FilterContext } from '../../../../../components/context/FilterContext'
 import { NotFound } from '../../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { setResultCounts } = useContext(FilterContext)
-  const { search } = useContext(OrganizationFilterContext)
-
-  const { sectors } = useContext(OrganizationFilterContext)
-
-  const { loading, error, data } = useQuery(PAGINATED_ORGANIZATIONS_QUERY, {
+  const { search } = useContext(FilterContext)
+  const { loading, error, data } = useQuery(PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY, {
     variables: {
       search,
-      sectors: sectors.map(sector => sector.value),
       limit: defaultPageSize,
       offset: pageOffset
-    },
-    onCompleted: (data) => {
-      setResultCounts(resultCount => {
-        return { ...resultCount, 'filter.entity.organizations': data.paginatedOrganizations.length }
-      })
     }
   })
 
@@ -32,11 +21,11 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedOrganizations) {
+  } else if (!data?.paginatedCandidateOrganizations) {
     return <NotFound />
   }
 
-  const { paginatedOrganizations: organizations } = data
+  const { paginatedCandidateOrganizations: organizations } = data
 
   return (
     <div className='flex flex-col gap-3'>

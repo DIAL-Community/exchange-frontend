@@ -65,7 +65,7 @@ const UseCaseCard = ({ displayType, index, useCase, dismissCardHandler }) => {
             alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
             className={classNames(
               'object-contain mx-auto',
-              useCase.imageFile.indexOf('placeholder.svg') <= 0 ? 'w-6 h-6 my-2 white-filter' : '',
+              useCase.imageFile.indexOf('placeholder.svg') <= 0 ? 'w-6 h-6 my-2 white-filter' : ''
             )}
           />
         </div>

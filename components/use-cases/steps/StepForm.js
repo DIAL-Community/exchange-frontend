@@ -73,7 +73,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
     defaultValues: {
       name: useCaseStep?.name,
       stepNumber: useCaseStep?.stepNumber,
-      description: useCaseStep?.useCaseStepDescription?.description,
+      description: useCaseStep?.useCaseStepDescription?.description
     }
   })
 

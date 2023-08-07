@@ -17,7 +17,7 @@ module.exports = {
           maturity: 'BETA',
           imageFile: '/building-block-2.png',
           __typename: 'BuildingBlock'
-        },
+        }
       ]
     }
   }

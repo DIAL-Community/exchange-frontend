@@ -9,7 +9,7 @@ import RubricCategoryDetailRight from './RubricCategoryDetailRight'
 const RubricCategoryDetail = ({ slug, locale }) => {
   const { loading, error, data, refetch } = useQuery(RUBRIC_CATEGORY_QUERY, {
     variables: { slug },
-    context: { headers: { 'Accept-Language': locale } },
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   useEffect(

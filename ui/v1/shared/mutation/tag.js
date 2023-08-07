@@ -26,6 +26,10 @@ export const CREATE_TAG = gql`
         id
         name
         slug
+        tagDescription {
+          description
+          locale
+        }
       }
       errors
     }

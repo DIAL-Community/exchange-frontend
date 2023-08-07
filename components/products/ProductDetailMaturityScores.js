@@ -135,7 +135,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
   const {
     loading: loadingCategoryIndicators,
     data: categoryIndicatorsData,
-    refetch: refetchCategoryIndicators,
+    refetch: refetchCategoryIndicators
   } = useQuery(PRODUCT_CATEGORY_INDICATORS_QUERY, {
     variables: { slug },
     skip: !isAdminUser
@@ -175,8 +175,8 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
               rubricCategoryName,
               indicators: {
                 [ASSIGNED_INDICATORS_ARRAY_NAME]: isAssigned ? [indicator] : [],
-                [NOT_ASSIGNED_INDICATORS_ARRAY_NAME]: isAssigned ? [] : [indicator],
-              },
+                [NOT_ASSIGNED_INDICATORS_ARRAY_NAME]: isAssigned ? [] : [indicator]
+              }
             })
           } else {
             groupedIndicators[groupIdx].indicators[

@@ -127,6 +127,7 @@
         "code": 125,
         "comments": 125
       }
-    ]
+    ],
+    "comma-dangle": ["error", "never"]
   }
 }

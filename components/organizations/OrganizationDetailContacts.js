@@ -42,7 +42,7 @@ const OrganizationDetailContacts = ({ organization }) => {
       name: '',
       email: '',
       title: ''
-    },
+    }
   })
 
   const addContact = (contact) => {

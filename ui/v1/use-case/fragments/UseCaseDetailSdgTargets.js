@@ -55,7 +55,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
       name: sdgTarget.name,
       label: `${sdgTarget.targetNumber}. ${sdgTarget.name}`,
       targetNumber: sdgTarget.targetNumber,
-      sdgNumber: sdgTarget.sdgNumber,
+      sdgNumber: sdgTarget.sdgNumber
     }))
   )
 

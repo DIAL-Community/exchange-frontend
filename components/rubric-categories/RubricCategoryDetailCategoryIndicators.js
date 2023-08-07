@@ -32,7 +32,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
     dataCategoryIndicators?.categoryIndicators.map((indicator) => ({
       label: indicator.name,
       id: indicator.id,
-      slug: indicator.slug,
+      slug: indicator.slug
     }))
   ), [dataCategoryIndicators])
 

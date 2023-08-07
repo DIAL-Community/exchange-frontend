@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
 import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 
@@ -35,19 +34,11 @@ const SdgCard = ({ displayType, index, sdg, dismissCardHandler }) => {
             {sdg.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {sdg?.sdgDescription && parse(sdg?.sdgDescription.description)}
+            {sdg?.longTitle}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sector.header')} ({sdg.sectors?.length ?? 0})
-            </div>
-            <div className='border border-r text-dial-stratos-300' />
-            <div className='text-sm'>
-              {format('ui.country.header')} ({sdg.countries?.length ?? 0})
-            </div>
-            <div className='border border-r text-dial-stratos-300' />
-            <div className='text-sm'>
-              {format('ui.project.header')} ({sdg.projects?.length ?? 0})
+              {format('ui.sdgTarget.header')} ({sdg.sdgTargets?.length ?? 0})
             </div>
           </div>
         </div>

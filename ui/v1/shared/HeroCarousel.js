@@ -49,7 +49,7 @@ const HeroCarousel = () => {
         pagination={true}
         autoplay={{
           delay: 5000,
-          disableOnInteraction: false,
+          disableOnInteraction: false
         }}
         modules={[Autoplay, Pagination, Navigation]}
       >

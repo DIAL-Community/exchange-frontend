@@ -8,6 +8,7 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DefaultSeo } from 'next-seo'
 import { CookieConsentProvider } from '@use-cookie-consent/react'
+import { Poppins } from 'next/font/google'
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
 import 'react-tooltip/dist/react-tooltip.css'
@@ -55,6 +56,12 @@ export function reportWebVitals (metric) {
     })
   }
 }
+
+const poppins = Poppins({
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin']
+})
 
 const ApplicationDefaultContexts = ({ children }) => {
   const { formatMessage } = useIntl()
@@ -115,7 +122,7 @@ const App = ({ Component, pageProps }) => {
   }, [router.events])
 
   return (
-    <>
+    <main className={poppins.className}>
       <Head>
         <meta
           name='viewport'
@@ -135,7 +142,7 @@ const App = ({ Component, pageProps }) => {
           </SessionProvider>
         </ApolloProvider>
       </IntlProvider>
-    </>
+    </main>
   )
 }
 

@@ -158,7 +158,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
             advancedInput
             removeEmoji
             hrStyle={{ borderColor: '#dfdfea' }}
-            formStyle={{ backgroundColor: 'white', fontFamily: 'Poppins' }}
+            formStyle={{ backgroundColor: 'white', fontFamily: 'Poppins, sans-serif' }}
             imgStyle={{ margin: 'auto' }}
           />
         </div>

@@ -13,7 +13,7 @@ const EditUseCaseStep = () => {
 
   const { loading, error, data } = useQuery(USE_CASE_STEP_QUERY, {
     variables: { slug: stepSlug, useCaseSlug: slug },
-    skip: !stepSlug,
+    skip: !stepSlug
   })
 
   if (loading) {

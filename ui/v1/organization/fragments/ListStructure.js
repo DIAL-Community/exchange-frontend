@@ -5,11 +5,9 @@ import { PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/organization'
 import { OrganizationFilterContext } from '../../../../components/context/OrganizationFilterContext'
 import OrganizationCard from '../OrganizationCard'
 import { DisplayType } from '../../utils/constants'
-import { FilterContext } from '../../../../components/context/FilterContext'
 import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(OrganizationFilterContext)
 
   const { sectors } = useContext(OrganizationFilterContext)
@@ -20,11 +18,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       sectors: sectors.map(sector => sector.value),
       limit: defaultPageSize,
       offset: pageOffset
-    },
-    onCompleted: (data) => {
-      setResultCounts(resultCount => {
-        return { ...resultCount, 'filter.entity.organizations': data.paginatedOrganizations.length }
-      })
     }
   })
 

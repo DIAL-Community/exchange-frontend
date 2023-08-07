@@ -40,7 +40,7 @@ const GovStackIssueForm = ({ referer }) => {
       ['bb-esignature', 'SIG'],
       ['bb-emarketplace', 'MKT'],
       ['bb-cms', 'CMS'],
-      ['bb-cloud-infrastructure-hosting', 'INF'],
+      ['bb-cloud-infrastructure-hosting', 'INF']
     ])
     const match = issuePage.match('(bb-[a-z|-]*)')
 

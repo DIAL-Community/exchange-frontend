@@ -25,7 +25,7 @@ const TagDetailRight = forwardRef(({ tag, commentsSectionRef }, ref) => {
       { value: 'ui.common.detail.description', ref: descRef },
       { value: 'ui.tag.pricing.title', ref: pricingRef },
       { value: 'ui.sdg.header', ref: sdgRef },
-      { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
+      { value: 'ui.buildingBlock.header', ref: buildingBlockRef }
     ],
     []
   )

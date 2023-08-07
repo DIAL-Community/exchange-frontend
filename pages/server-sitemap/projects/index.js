@@ -12,7 +12,7 @@ export const getServerSideProps = async (ctx) => {
 
   const fields = data.data.projects.map((project) => ({
     loc: `${process.env.NEXT_PUBLIC_RAILS_SERVER}/projects/${project.slug}`,
-    lastmod: new Date().toISOString(),
+    lastmod: new Date().toISOString()
   }))
 
   return getServerSideSitemap(ctx, fields)

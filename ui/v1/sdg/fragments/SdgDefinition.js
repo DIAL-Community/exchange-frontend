@@ -18,14 +18,6 @@ const SdgDefinition = () => {
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-plum'>
-          {format('sdg.hint.characteristicTitle')}
-        </div>
-        <div className='text-sm text-dial-stratos fr-view'>
-          {parse(format('sdg.hint.characteristics'))}
-        </div>
-      </div>
-      <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-plum'>
           {format('sdg.hint.descriptionTitle')}
         </div>
         <div className='text-sm text-dial-stratos'>

@@ -68,7 +68,7 @@ const DatasetActiveFilter = () => {
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter, ...originFilters, ...countryFilters, ...datasetTypeFilters,
-      ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
+      ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`

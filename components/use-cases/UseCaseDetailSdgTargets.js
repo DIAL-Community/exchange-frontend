@@ -58,7 +58,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
       name: sdgTarget.name,
       label: `${sdgTarget.targetNumber}. ${sdgTarget.name}`,
       targetNumber: sdgTarget.targetNumber,
-      sdgNumber: sdgTarget.sdgNumber,
+      sdgNumber: sdgTarget.sdgNumber
     }))
   )
 

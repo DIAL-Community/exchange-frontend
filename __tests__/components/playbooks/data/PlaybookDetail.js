@@ -52,7 +52,7 @@ export const move = {
       moveDescription: {
         id: 7,
         description: 'Description of the move goes here.'
-      },
+      }
     }
   }
 }

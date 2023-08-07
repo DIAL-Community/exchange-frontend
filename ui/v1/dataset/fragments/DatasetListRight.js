@@ -40,7 +40,7 @@ const DatasetListRight = () => {
   const { loading, error, data } = useQuery(DATASET_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
-      sectors: sectors.map(sector => sector.value),
+      sectors: sectors.map(sector => sector.value)
     }
   })
 

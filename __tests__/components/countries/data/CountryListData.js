@@ -6,17 +6,17 @@ export const countryListData = {
         endCursor: 'MjA',
         startCursor: 'MQ',
         hasPreviousPage: false,
-        hasNextPage: true,
+        hasNextPage: true
       },
       nodes: [{
         id: '36',
         name: 'Afghanistan',
-        slug: 'af',
+        slug: 'af'
       }, {
         id: '120',
         name: 'Albania',
-        slug: 'al',
-      }],
+        slug: 'al'
+      }]
     }
   }
 }

@@ -49,7 +49,7 @@ const ProductForm = React.memo(({ product }) => {
           </div>,
           'error',
           'top-center',
-          1000,
+          1000
         )
         reset()
       }
@@ -62,7 +62,7 @@ const ProductForm = React.memo(({ product }) => {
         </div>,
         'error',
         'top-center',
-        1000,
+        1000
       )
       reset()
     }
