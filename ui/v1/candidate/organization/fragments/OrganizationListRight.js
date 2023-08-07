@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { OrganizationFilterContext } from '../../../../../components/context/OrganizationFilterContext'
-import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/organization'
+import { CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/candidateOrganization'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import Pagination from '../../../shared/Pagination'
 import ListStructure from './ListStructure'
@@ -37,7 +37,7 @@ const OrganizationListRight = () => {
     setPageOffset(0)
   }, [search, sectors])
 
-  const { loading, error, data } = useQuery(ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
+  const { loading, error, data } = useQuery(CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
       sectors: sectors.map(sector => sector.value)
@@ -56,7 +56,7 @@ const OrganizationListRight = () => {
       { data &&
         <Pagination
           pageNumber={pageNumber}
-          totalCount={data.paginationAttributeOrganization.totalCount}
+          totalCount={data.paginationAttributeCandidateOrganization.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
           pageClickHandler={handlePageClick}
         />

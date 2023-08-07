@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../../shared/query/organization'
+import { CANDIDATE_ORGANIZATION_DETAIL_QUERY } from '../../shared/query/candidateOrganization'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import OrganizationForm from './fragments/OrganizationForm'
@@ -11,7 +11,7 @@ const OrganizationEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
     variables: { slug }
   })
 
@@ -19,17 +19,17 @@ const OrganizationEdit = ({ slug }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.organization) {
+  } else if (!data?.candidateOrganization) {
     return <NotFound />
   }
 
-  const { organization } = data
+  const { candidateOrganization: organization } = data
 
   const slugNameMapping = (() => {
     const map = {
       edit: format('app.edit')
     }
-    map[organization.slug] = data.organization.name
+    map[organization.slug] = organization.name
 
     return map
   })()

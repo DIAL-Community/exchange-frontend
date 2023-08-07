@@ -34,12 +34,14 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
     []
   )
 
+  const editPath = `${REBRAND_BASE_PATH}/candidate/organizations/${organization.slug}/edit`
+
   return (
     <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={`${REBRAND_BASE_PATH}/organizations/${organization.slug}/edit`} />
+            <EditButton type='link' href={editPath} />
             {isAdminUser && <DeleteOrganization organization={organization} />}
           </div>
         )}
@@ -48,7 +50,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
         </div>
         <div className='block'>
           <HtmlViewer
-            initialContent={organization?.organizationDescription?.description}
+            initialContent={organization?.description}
             editorId='organization-description'
           />
         </div>

@@ -12,30 +12,19 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        {organization.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='w-20 h-20 mx-auto bg-white border'>
-            <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
-              className='object-contain w-16 h-16 mx-auto my-2'
-            />
-          </div>
-        }
-        {organization.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20 mx-auto'>
-            <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
-              className='object-contain w-16 h-16'
-            />
-          </div>
-        }
+        <div className='w-20 h-20 mx-auto'>
+          <img
+            src='/ui/v1/organization-header.svg'
+            alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+            className='object-contain w-16 h-16'
+          />
+        </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-plum'>
             {organization.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {organization?.organizationDescription && parse(organization?.organizationDescription.description)}
+            {organization?.description && parse(organization?.description)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
@@ -81,7 +70,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
 
   return (
     <div className='relative'>
-      <Link href={`${REBRAND_BASE_PATH}/organizations/${organization.slug}`}>
+      <Link href={`${REBRAND_BASE_PATH}/candidate/organizations/${organization.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

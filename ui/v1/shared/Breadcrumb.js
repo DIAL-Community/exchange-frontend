@@ -36,8 +36,12 @@ const basePathMappings = {
   'users': 'ui.user.header',
   'use-case-steps': 'ui.useCaseStep.header',
   'use-cases': 'ui.useCase.header',
-  'workflows': 'ui.workflow.header',
-  'candidate': 'ui.candidate.header'
+  'workflows': 'ui.workflow.header'
+}
+
+const candidatePathMappings = {
+  'organizations': 'ui.candidateOrganization.header',
+  'products': 'ui.candidateProduct.header'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
@@ -55,17 +59,29 @@ const Breadcrumb = ({ slugNameMapping }) => {
       .split('/')
       .filter(path => path)
 
+    let candidatePath = false
     const pathArray = linkPath
       .map((path, i) => {
-        const label = basePathMappings[path]
+        if (path.indexOf('candidate') >= 0) {
+          candidatePath = true
+
+          return {}
+        }
+
+        const label = !candidatePath && basePathMappings[path]
           ? format(basePathMappings[path])
-          : slugNameMapping[path]
+          : candidatePath && candidatePathMappings[path]
+            ? format(candidatePathMappings[path])
+            : slugNameMapping[path]
 
         return {
           breadcrumb: label,
           href: `${REBRAND_BASE_PATH}/${linkPath.slice(0, i + 1).join('/')}`
         }
       })
+      .filter(path => path.breadcrumb && path.href)
+
+    console.log('Path Array: ', pathArray)
 
     setBreadcrumbs(pathArray)
   }, [slugNameMapping, pathname, query, format])

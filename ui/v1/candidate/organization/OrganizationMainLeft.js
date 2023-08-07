@@ -7,7 +7,6 @@ const OrganizationMainLeft = ({ activeTab }) => {
     <>
       { activeTab === 0 && <OrganizationListLeft /> }
       { activeTab === 1 && <OrganizationSimpleLeft />}
-      { activeTab === 2 && <OrganizationSimpleLeft /> }
     </>
   )
 }
