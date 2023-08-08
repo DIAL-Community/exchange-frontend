@@ -14,7 +14,7 @@ const CreateCountryPage = () => {
   return (
     <>
       <NextSeo
-        title={format('country.header')}
+        title={format('ui.country.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

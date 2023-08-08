@@ -17,7 +17,7 @@ const EditDatasetPage = () => {
   return (
     <>
       <NextSeo
-        title={format('dataset.header')}
+        title={format('ui.candidateDataset.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

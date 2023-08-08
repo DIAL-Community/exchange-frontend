@@ -5,7 +5,6 @@ import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
-import DeleteProduct from './DeleteProduct'
 
 const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
@@ -28,19 +27,20 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
       { value: 'ui.product.pricing.title', ref: pricingRef },
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-      { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.candidateOrganization.header', ref: organizationRef },
       { value: 'ui.tag.header', ref: tagRef }
     ],
     []
   )
+
+  const editPath = `${REBRAND_BASE_PATH}/candidate/products/${product.slug}/edit`
 
   return (
     <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={`${REBRAND_BASE_PATH}/candidate/products/${product.slug}/edit`} />
-            {isAdminUser && <DeleteProduct product={product} />}
+            <EditButton type='link' href={editPath} />
           </div>
         )}
         <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>

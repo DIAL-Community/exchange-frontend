@@ -9,12 +9,12 @@ const DatasetSimpleLeft = () => {
     <div className='bg-dial-slate-100 h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <div className='text-xl font-semibold text-dial-meadow'>
-          {format('ui.dataset.label')}
+          {format('ui.candidateDataset.label')}
         </div>
         <div className='flex justify-center items-center py-16 bg-white rounded'>
           <img
             src='/ui/v1/dataset-header.svg'
-            alt={format('ui.image.logoAlt', { name: format('ui.dataset.label') })}
+            alt={format('ui.image.logoAlt', { name: format('ui.candidateDataset.label') })}
             width={100}
             height={100}
             className='object-contain object-center'

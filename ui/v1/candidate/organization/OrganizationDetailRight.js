@@ -5,7 +5,6 @@ import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
-import DeleteOrganization from './DeleteOrganization'
 
 const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
@@ -28,7 +27,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
       { value: 'ui.organization.pricing.title', ref: pricingRef },
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-      { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.candidateOrganization.header', ref: organizationRef },
       { value: 'ui.tag.header', ref: tagRef }
     ],
     []
@@ -42,7 +41,6 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteOrganization organization={organization} />}
           </div>
         )}
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>

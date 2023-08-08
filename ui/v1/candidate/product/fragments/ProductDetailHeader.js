@@ -14,7 +14,7 @@ const ProductDetailHeader = ({ product }) => {
       <div className='w-20 h-20'>
         <img
           src='/ui/v1/product-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+          alt={format('ui.image.logoAlt', { name: format('ui.candidateProduct.label') })}
           className='object-contain dial-meadow-filter'
         />
       </div>

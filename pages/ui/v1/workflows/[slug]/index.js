@@ -17,7 +17,7 @@ const WorkflowPage = () => {
   return (
     <>
       <NextSeo
-        title={format('workflow.header')}
+        title={format('ui.workflow.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

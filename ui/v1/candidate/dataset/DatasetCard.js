@@ -15,7 +15,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
         <div className='w-20 h-20 mx-auto'>
           <img
             src='/ui/v1/dataset-header.svg'
-            alt={format('ui.image.logoAlt', { name: format('ui.dataset.label') })}
+            alt={format('ui.image.logoAlt', { name: format('ui.candidateDataset.label') })}
             className='object-contain w-16 h-16'
           />
         </div>
@@ -35,7 +35,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         <img
           src='/ui/v1/dataset-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.dataset.header') })}
+          alt={format('ui.image.logoAlt', { name: format('ui.candidateDataset.header') })}
           className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
         />
         <div className='text-sm font-semibold text-dial-meadow my-auto'>

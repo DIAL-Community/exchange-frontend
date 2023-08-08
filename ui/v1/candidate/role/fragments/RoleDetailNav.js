@@ -19,8 +19,8 @@ const RoleDetailNav = ({ scrollRef }) => {
     label: format('ui.buildingBlock.header'),
     value: 'ui.buildingBlock.header'
   }, {
-    label: format('ui.organization.header'),
-    value: 'ui.organization.header'
+    label: format('ui.candidateOrganization.header'),
+    value: 'ui.candidateOrganization.header'
   }, {
     label: format('ui.tag.header'),
     value: 'ui.tag.header'

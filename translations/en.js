@@ -1929,10 +1929,18 @@ export const en = {
   'ui.url.header': 'URLs',
 
   'ui.candidateProduct.label': 'Candidate Product',
-  'ui.candidateProduct.header': 'Candidates Products',
+  'ui.candidateProduct.header': 'Candidate Products',
   'ui.candidateProduct.createNew': 'Create a new Candidate Product',
 
   'ui.candidateOrganization.label': 'Candidate Organization',
-  'ui.candidateOrganization.header': 'Candidates Organizations',
-  'ui.candidateOrganization.createNew': 'Create a new Candidate Organization'
+  'ui.candidateOrganization.header': 'Candidate Organizations',
+  'ui.candidateOrganization.createNew': 'Create a new Candidate Organization',
+
+  'ui.candidateDataset.label': 'Candidate Dataset',
+  'ui.candidateDataset.header': 'Candidate Datasets',
+  'ui.candidateDataset.createNew': 'Create a new Candidate Dataset',
+
+  'ui.candidateRole.label': 'Candidate Role',
+  'ui.candidateRole.header': 'Candidate Roles',
+  'ui.candidateRole.createNew': 'Create a new Candidate Role'
 }

@@ -14,7 +14,7 @@ const CreateOrganizationPage = () => {
   return (
     <>
       <NextSeo
-        title={format('organization.header')}
+        title={format('ui.organization.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

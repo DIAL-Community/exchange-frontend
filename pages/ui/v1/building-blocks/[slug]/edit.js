@@ -17,7 +17,7 @@ const EditBuildingBlockPage = () => {
   return (
     <>
       <NextSeo
-        title={format('building-block.header')}
+        title={format('ui.buildingBlock.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

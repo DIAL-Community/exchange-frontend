@@ -15,7 +15,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
         <div className='w-20 h-20 mx-auto'>
           <img
             src='/ui/v1/organization-header.svg'
-            alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+            alt={format('ui.image.logoAlt', { name: format('ui.candidateOrganization.label') })}
             className='object-contain w-16 h-16'
           />
         </div>
@@ -37,7 +37,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
           <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.organization.header') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.candidateOrganization.header') })}
               className='object-contain w-10 h-10 my-auto'
             />
           </div>
@@ -45,7 +45,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
         {organization.imageFile.indexOf('placeholder.svg') < 0 &&
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-            alt={format('ui.image.logoAlt', { name: format('ui.organization.header') })}
+            alt={format('ui.image.logoAlt', { name: format('ui.candidateOrganization.header') })}
             className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
           />
         }

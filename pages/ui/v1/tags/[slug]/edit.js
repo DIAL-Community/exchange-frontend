@@ -17,7 +17,7 @@ const EditTagPage = () => {
   return (
     <>
       <NextSeo
-        title={format('tag.header')}
+        title={format('ui.tag.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

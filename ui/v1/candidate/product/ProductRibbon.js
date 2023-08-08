@@ -9,7 +9,7 @@ const ProductRibbon = () => {
   const titleImage =
     <img
       src='/ui/v1/product-header.svg'
-      alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+      alt={format('ui.image.logoAlt', { name: format('ui.candidateProduct.label') })}
       width={70}
       height={70}
       className='object-contain'
@@ -19,7 +19,7 @@ const ProductRibbon = () => {
     <Ribbon
       ribbonBg='bg-dial-spearmint'
       titleImage={titleImage}
-      titleKey={'ui.product.header'}
+      titleKey={'ui.candidateProduct.header'}
       titleColor='text-dial-meadow'
     />
   )

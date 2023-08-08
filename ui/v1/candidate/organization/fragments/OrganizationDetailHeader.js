@@ -15,7 +15,7 @@ const OrganizationDetailHeader = ({ organization }) => {
         <div className='w-20 h-20'>
           <img
             src='/ui/v1/organization-header.svg'
-            alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+            alt={format('ui.image.logoAlt', { name: format('ui.candidateOrganization.label') })}
             className='object-contain dial-plum-filter w-20 h-20'
           />
         </div>

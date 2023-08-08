@@ -17,7 +17,7 @@ const SdgPage = () => {
   return (
     <>
       <NextSeo
-        title={format('sdg.header')}
+        title={format('ui.sdg.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

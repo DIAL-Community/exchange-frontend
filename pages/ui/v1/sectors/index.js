@@ -19,7 +19,7 @@ const SectorListPage = () => {
   return (
     <>
       <NextSeo
-        title={format('sector.header')}
+        title={format('ui.sector.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

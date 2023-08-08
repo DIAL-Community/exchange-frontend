@@ -15,7 +15,7 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
         <div className='w-20 h-20 mx-auto'>
           <img
             src='/ui/v1/product-header.svg'
-            alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+            alt={format('ui.image.logoAlt', { name: format('ui.candidateProduct.label') })}
             className='object-contain w-16 h-16'
           />
         </div>
@@ -35,7 +35,7 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         <img
           src='/ui/v1/product-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.product.header') })}
+          alt={format('ui.image.logoAlt', { name: format('ui.candidateProduct.header') })}
           className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
         />
         <div className='text-sm font-semibold text-dial-meadow my-auto'>

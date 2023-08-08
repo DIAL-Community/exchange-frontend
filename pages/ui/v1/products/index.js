@@ -19,7 +19,7 @@ const ProductListPage = () => {
   return (
     <>
       <NextSeo
-        title={format('product.header')}
+        title={format('ui.product.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

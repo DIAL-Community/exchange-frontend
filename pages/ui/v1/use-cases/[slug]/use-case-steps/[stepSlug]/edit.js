@@ -18,7 +18,7 @@ const EditUseCaseStepPage = () => {
   return (
     <>
       <NextSeo
-        title={format('use-case.header')}
+        title={format('ui.useCase.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',

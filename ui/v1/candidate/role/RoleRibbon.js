@@ -9,7 +9,7 @@ const RoleRibbon = () => {
   const titleImage =
     <img
       src='/ui/v1/role-header.svg'
-      alt={format('ui.image.logoAlt', { name: format('ui.role.label') })}
+      alt={format('ui.image.logoAlt', { name: format('ui.candidateRole.label') })}
       width={70}
       height={70}
       className='object-contain'
@@ -19,7 +19,7 @@ const RoleRibbon = () => {
     <Ribbon
       ribbonBg='bg-dial-spearmint'
       titleImage={titleImage}
-      titleKey={'ui.role.header'}
+      titleKey={'ui.candidateRole.header'}
       titleColor='text-dial-meadow'
     />
   )

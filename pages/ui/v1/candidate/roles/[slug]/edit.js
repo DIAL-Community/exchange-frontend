@@ -17,7 +17,7 @@ const EditRolePage = () => {
   return (
     <>
       <NextSeo
-        title={format('role.header')}
+        title={format('ui.candidateRole.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
