@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useContext, useMemo } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
-import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
 import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
@@ -11,9 +11,8 @@ import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import FileUploader from '../../../shared/form/FileUploader'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_ORGANIZATION } from '../../../shared/mutation/organization'
+import { CREATE_CANDIDATE_ORGANIZATION } from '../../../shared/mutation/candidateOrganization'
 import { REBRAND_BASE_PATH } from '../../../utils/constants'
-import IconButton from '../../../shared/form/IconButton'
 import UrlInput from '../../../shared/form/UrlInput'
 
 const OrganizationForm = React.memo(({ organization }) => {
@@ -32,14 +31,16 @@ const OrganizationForm = React.memo(({ organization }) => {
   const router = useRouter()
   const { locale } = router
 
-  const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
+  const [updateOrganization, { reset }] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
     onCompleted: (data) => {
-      if (data.createOrganization.organization && data.createOrganization.errors.length === 0) {
-        const redirectPath = `/${router.locale}/organizations/${data.createOrganization.organization.slug}`
+      const { createCandidateOrganization: response } = data
+      if (response.candidateOrganization && response.errors.length === 0) {
+        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}` +
+                             `/candidate/organizations/${response.candidateOrganization.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
-          format('organization.submit.success'),
+          format('candidateOrganization.submit.success'),
           'success',
           'top-center',
           1000,
@@ -48,13 +49,13 @@ const OrganizationForm = React.memo(({ organization }) => {
         )
       } else {
         setMutating(false)
-        showToast(format('organization.submit.failure'), 'error', 'top-center')
+        showToast(format('candidateOrganization.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(format('organization.submit.failure'), 'error', 'top-center')
+      showToast(format('candidateOrganization.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
@@ -70,26 +71,10 @@ const OrganizationForm = React.memo(({ organization }) => {
     shouldUnregister: true,
     defaultValues: {
       name: organization?.name,
-      aliases: organization?.aliases?.length
-        ? organization?.aliases.map(value => ({ value }))
-        : [{ value: '' }],
       website: organization?.website ?? '',
       description: organization?.organizationDescription?.description
     }
   })
-
-  const {
-    fields: aliases,
-    append,
-    remove
-  } = useFieldArray({
-    control,
-    name: 'aliases',
-    shouldUnregister: true
-  })
-
-  const isSingleAlias = useMemo(() => aliases.length === 1, [aliases])
-  const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
 
   const doUpsert = async (data) => {
     if (user) {
@@ -101,14 +86,12 @@ const OrganizationForm = React.memo(({ organization }) => {
         name,
         imageFile,
         website,
-        description,
-        aliases
+        description
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
-        aliases: aliases.map(({ value }) => value),
         website,
         description
       }
@@ -155,27 +138,6 @@ const OrganizationForm = React.memo(({ organization }) => {
               isInvalid={errors.name}
             />
             {errors.name && <ValidationError value={errors.name?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('organization.aliases')}</label>
-            {aliases.map((alias, aliasIdx) => (
-              <div key={alias.id} className='flex gap-x-2'>
-                <Input
-                  {...register(`aliases.${aliasIdx}.value`)}
-                  placeholder={format('organization.alias')}
-                />
-                {isLastAlias(aliasIdx) && (
-                  <span>
-                    <IconButton icon={<FaPlus />} onClick={() => append({ value: '' })} />
-                  </span>
-                )}
-                {!isSingleAlias && (
-                  <span>
-                    <IconButton icon={<FaMinus />} onClick={() => remove(aliasIdx)} />
-                  </span>
-                )}
-              </div>
-            ))}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='website'>

@@ -23,7 +23,7 @@ const ProductListPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('product.header')?.toLocaleLowerCase() }
+            { entities: format('ui.product.header')?.toLocaleLowerCase() }
           )
         }
       />

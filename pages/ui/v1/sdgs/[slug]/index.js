@@ -21,7 +21,7 @@ const SdgPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('sdg.header')?.toLocaleLowerCase() }
+            { entities: format('ui.sdg.header')?.toLocaleLowerCase() }
           )
         }
       />

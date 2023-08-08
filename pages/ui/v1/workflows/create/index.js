@@ -18,7 +18,7 @@ const CreateWorkflowPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('workflow.header')?.toLocaleLowerCase() }
+            { entities: format('ui.workflow.header')?.toLocaleLowerCase() }
           )
         }
       />

@@ -1,49 +1,17 @@
 import { useIntl } from 'react-intl'
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType, REBRAND_BASE_PATH } from '../../utils/constants'
-import EditButton from '../../shared/form/EditButton'
+import { useCallback } from 'react'
+import { ObjectType } from '../../utils/constants'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
 
-const RoleDetailRight = forwardRef(({ role, commentsSectionRef }, ref) => {
+const RoleDetailRight = ({ role, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !role.markdownUrl
-
-  const descRef = useRef()
-  const pricingRef = useRef()
-  const sdgRef = useRef()
-  const buildingBlockRef = useRef()
-  const organizationRef = useRef()
-  const tagRef = useRef()
-
-  useImperativeHandle(
-    ref,
-    () => [
-      { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.role.pricing.title', ref: pricingRef },
-      { value: 'ui.sdg.header', ref: sdgRef },
-      { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-      { value: 'ui.candidateOrganization.header', ref: organizationRef },
-      { value: 'ui.tag.header', ref: tagRef }
-    ],
-    []
-  )
-
-  const editPath = `${REBRAND_BASE_PATH}/candidate/roles/${role.slug}/edit`
 
   return (
     <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-          </div>
-        )}
-        <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
+        <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}
         </div>
         <div className='block'>
@@ -60,8 +28,6 @@ const RoleDetailRight = forwardRef(({ role, commentsSectionRef }, ref) => {
       />
     </div>
   )
-})
-
-RoleDetailRight.displayName = 'RoleDetailRight'
+}
 
 export default RoleDetailRight

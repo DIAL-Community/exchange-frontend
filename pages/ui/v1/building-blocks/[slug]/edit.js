@@ -21,7 +21,7 @@ const EditBuildingBlockPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('building-block.header')?.toLocaleLowerCase() }
+            { entities: format('ui.buildingBlock.header')?.toLocaleLowerCase() }
           )
         }
       />

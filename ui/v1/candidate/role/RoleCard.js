@@ -46,7 +46,7 @@ const RoleCard = ({ displayType, index, role, dismissCardHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={`${REBRAND_BASE_PATH}/candidate/roles/${role.slug}`}>
+      <Link href={`${REBRAND_BASE_PATH}/candidate/roles/${role.id}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

@@ -23,7 +23,7 @@ const RoleListPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('role.header')?.toLocaleLowerCase() }
+            { entities: format('ui.candidateRole.header')?.toLocaleLowerCase() }
           )
         }
       />

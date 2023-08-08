@@ -18,7 +18,7 @@ const CreateDatasetPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('dataset.header')?.toLocaleLowerCase() }
+            { entities: format('ui.dataset.header')?.toLocaleLowerCase() }
           )
         }
       />

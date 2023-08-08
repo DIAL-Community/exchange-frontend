@@ -2,12 +2,14 @@ import { gql } from '@apollo/client'
 
 export const CANDIDATE_ROLE_DETAIL_QUERY = gql`
   query CandidateRole(
-    $email: String!
+    $id: ID
+    $email: String
     $productId: String
     $organizationId: String
     $datasetId: String
   ) {
     candidateRole(
+      id: $id
       email: $email
       productId: $productId
       organizationId: $organizationId

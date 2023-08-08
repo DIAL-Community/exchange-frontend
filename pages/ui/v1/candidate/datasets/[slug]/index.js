@@ -21,7 +21,7 @@ const DatasetPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('dataset.header')?.toLocaleLowerCase() }
+            { entities: format('ui.candidateDataset.header')?.toLocaleLowerCase() }
           )
         }
       />

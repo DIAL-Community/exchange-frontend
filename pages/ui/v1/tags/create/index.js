@@ -18,7 +18,7 @@ const CreateTagPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('tag.header')?.toLocaleLowerCase() }
+            { entities: format('ui.tag.header')?.toLocaleLowerCase() }
           )
         }
       />

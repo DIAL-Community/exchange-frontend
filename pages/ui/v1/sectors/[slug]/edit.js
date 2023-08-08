@@ -21,7 +21,7 @@ const EditSectorPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('sector.header')?.toLocaleLowerCase() }
+            { entities: format('ui.sector.header')?.toLocaleLowerCase() }
           )
         }
       />

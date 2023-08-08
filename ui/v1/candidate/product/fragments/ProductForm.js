@@ -11,7 +11,7 @@ import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import FileUploader from '../../../shared/form/FileUploader'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_PRODUCT } from '../../../shared/mutation/product'
+import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
 import { REBRAND_BASE_PATH } from '../../../utils/constants'
 import UrlInput from '../../../shared/form/UrlInput'
 
@@ -31,22 +31,24 @@ const ProductForm = React.memo(({ product }) => {
   const router = useRouter()
   const { locale } = router
 
-  const [updateProduct, { reset }] = useMutation(CREATE_PRODUCT, {
+  const [updateProduct, { reset }] = useMutation(CREATE_CANDIDATE_PRODUCT, {
     onCompleted: (data) => {
-      if (data.createProduct.product && data.createProduct.errors.length === 0) {
+      const { createCandidateProduct: response } = data
+      if (response.candidateProduct && response.errors.length === 0) {
         setMutating(false)
-        const redirectPath = `/${router.locale}/products/${data.createProduct.product.slug}`
+        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}` +
+                             `/products/${response.createProduct.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        showToast(format('product.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
+        showToast(format('candidateProduct.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
         setMutating(false)
-        showToast(format('product.submit.failure'), 'error', 'top-center')
+        showToast(format('candidateProduct.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(format('product.submit.failure'), 'error', 'top-center')
+      showToast(format('candidateProduct.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

@@ -23,6 +23,9 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
     ) {
       candidateProduct {
         id
+        name
+        slug
+        description
       }
       errors
     }

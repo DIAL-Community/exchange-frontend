@@ -18,7 +18,7 @@ const CreateCountryPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('country.header')?.toLocaleLowerCase() }
+            { entities: format('ui.country.header')?.toLocaleLowerCase() }
           )
         }
       />

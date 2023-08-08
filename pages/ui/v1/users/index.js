@@ -26,7 +26,7 @@ const UserListPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('use-case.header')?.toLocaleLowerCase() }
+            { entities: format('ui.useCase.header')?.toLocaleLowerCase() }
           )
         }
       />

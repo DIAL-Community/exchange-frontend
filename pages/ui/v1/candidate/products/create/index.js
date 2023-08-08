@@ -18,7 +18,7 @@ const CreateProductPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('product.header')?.toLocaleLowerCase() }
+            { entities: format('ui.candidateProduct.header')?.toLocaleLowerCase() }
           )
         }
       />

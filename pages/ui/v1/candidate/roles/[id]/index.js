@@ -1,15 +1,18 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
+import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
 import Header from '../../../../../../ui/v1/shared/Header'
 import ClientOnly from '../../../../../../lib/ClientOnly'
 import Footer from '../../../../../../ui/v1/shared/Footer'
-import RoleCreate from '../../../../../../ui/v1/candidate/role/RoleCreate'
+import RoleDetail from '../../../../../../ui/v1/candidate/role/RoleDetail'
 
-const CreateRolePage = () => {
+const RolePage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { query: { id } } = useRouter()
 
   return (
     <>
@@ -18,20 +21,18 @@ const CreateRolePage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('role.header')?.toLocaleLowerCase() }
+            { entities: format('ui.candidateRole.header')?.toLocaleLowerCase() }
           )
         }
       />
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <RoleCreate />
-        </div>
+        <RoleDetail id={id} />
         <Footer />
       </ClientOnly>
     </>
   )
 }
 
-export default CreateRolePage
+export default RolePage

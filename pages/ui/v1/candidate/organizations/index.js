@@ -23,7 +23,7 @@ const OrganizationListPage = () => {
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('organization.header')?.toLocaleLowerCase() }
+            { entities: format('ui.candidateOrganization.header')?.toLocaleLowerCase() }
           )
         }
       />
