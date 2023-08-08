@@ -6,7 +6,10 @@ import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../../utils/constants'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
 import { DELETE_PRODUCT } from '../../shared/mutation/product'
-import { PAGINATED_PRODUCTS_QUERY, PRODUCT_DETAIL_QUERY } from '../../shared/query/product'
+import {
+  CANDIDATE_PRODUCT_DETAIL_QUERY,
+  PAGINATED_CANDIDATE_PRODUCTS_QUERY
+} from '../../shared/query/candidateProduct'
 import DeleteButton from '../../shared/form/DeleteButton'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 
@@ -26,10 +29,10 @@ const DeleteProduct = ({ product }) => {
 
   const [deleteProduct, { called, reset }] = useMutation(DELETE_PRODUCT, {
     refetchQueries: [{
-      query: PRODUCT_DETAIL_QUERY,
+      query: CANDIDATE_PRODUCT_DETAIL_QUERY,
       variables: { slug: product.slug }
     }, {
-      query: PAGINATED_PRODUCTS_QUERY,
+      query: PAGINATED_CANDIDATE_PRODUCTS_QUERY,
       variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
     }],
     onCompleted: (data) => {

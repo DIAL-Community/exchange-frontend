@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PRODUCT_DETAIL_QUERY } from '../../shared/query/product'
+import { CANDIDATE_PRODUCT_DETAIL_QUERY } from '../../shared/query/candidateProduct'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import ProductForm from './fragments/ProductForm'
@@ -11,7 +11,7 @@ const ProductEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(PRODUCT_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
     variables: { slug }
   })
 
@@ -19,17 +19,17 @@ const ProductEdit = ({ slug }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.product) {
+  } else if (!data?.candidateProduct) {
     return <NotFound />
   }
 
-  const { product } = data
+  const { candidateProduct: product } = data
 
   const slugNameMapping = (() => {
     const map = {
       edit: format('app.edit')
     }
-    map[product.slug] = data.product.name
+    map[product.slug] = product.name
 
     return map
   })()

@@ -19,9 +19,7 @@ const SectorTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  return (
-    <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
-  )
+  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
 }
 
 export default SectorTabNav

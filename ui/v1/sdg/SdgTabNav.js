@@ -8,9 +8,7 @@ const SdgTabNav = ({ activeTab, setActiveTab }) => {
     'ui.sdg.whatIs'
   ])
 
-  return (
-    <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
-  )
+  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
 }
 
 export default SdgTabNav

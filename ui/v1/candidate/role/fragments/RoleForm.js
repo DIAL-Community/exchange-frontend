@@ -1,0 +1,288 @@
+import React, { useState, useCallback, useContext, useMemo } from 'react'
+import { useRouter } from 'next/router'
+import { useMutation } from '@apollo/client'
+import { useIntl } from 'react-intl'
+import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { ToastContext } from '../../../../../lib/ToastContext'
+import { useUser } from '../../../../../lib/hooks'
+import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
+import Input from '../../../shared/form/Input'
+import ValidationError from '../../../shared/form/ValidationError'
+import FileUploader from '../../../shared/form/FileUploader'
+import { HtmlEditor } from '../../../shared/form/HtmlEditor'
+import { CREATE_ROLE } from '../../../shared/mutation/role'
+import { REBRAND_BASE_PATH } from '../../../utils/constants'
+import IconButton from '../../../shared/form/IconButton'
+import UrlInput from '../../../shared/form/UrlInput'
+import Checkbox from '../../../shared/form/Checkbox'
+
+const RoleForm = React.memo(({ role }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const slug = role?.slug ?? ''
+
+  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
+
+  const [mutating, setMutating] = useState(false)
+  const [reverting, setReverting] = useState(false)
+
+  const { showToast } = useContext(ToastContext)
+
+  const router = useRouter()
+  const { locale } = router
+
+  const [updateRole, { reset }] = useMutation(CREATE_ROLE, {
+    onCompleted: (data) => {
+      if (data.createRole.role && data.createRole.errors.length === 0) {
+        setMutating(false)
+        const redirectPath = `/${router.locale}/roles/${data.createRole.role.slug}`
+        const redirectHandler = () => router.push(redirectPath)
+        showToast(format('role.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
+      } else {
+        setMutating(false)
+        showToast(format('role.submit.failure'), 'error', 'top-center')
+        reset()
+      }
+    },
+    onError: () => {
+      setMutating(false)
+      showToast(format('role.submit.failure'), 'error', 'top-center')
+      reset()
+    }
+  })
+
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors }
+  } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      name: role?.name,
+      aliases: role?.aliases?.length ? role?.aliases.map((value) => ({ value })) : [{ value: '' }],
+      website: role?.website,
+      description: role?.roleDescription?.description,
+      commercialRole: role?.commercialRole,
+      hostingModel: role?.hostingModel,
+      pricingModel: role?.pricingModel,
+      pricingDetails: role?.pricingDetails,
+      pricingUrl: role?.pricingUrl
+    }
+  })
+
+  const { fields: aliases, append, remove } = useFieldArray({
+    control,
+    name: 'aliases',
+    shouldUnregister: true
+  })
+
+  const isSingleAlias = useMemo(() => aliases.length === 1, [aliases])
+  const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
+
+  const doUpsert = async (data) => {
+    if (user) {
+      // Set the loading indicator.
+      setMutating(true)
+      // Pull all needed data from session and form.
+      const { userEmail, userToken } = user
+      const {
+        name,
+        imageFile,
+        website,
+        description,
+        aliases,
+        commercialRole,
+        pricingUrl,
+        hostingModel,
+        pricingModel,
+        pricingDetails
+      } = data
+      // Send graph query to the backend. Set the base variables needed to perform update.
+      const variables = {
+        name,
+        slug,
+        aliases: aliases.map(({ value }) => value),
+        website,
+        description,
+        commercialRole,
+        pricingUrl,
+        hostingModel,
+        pricingModel,
+        pricingDetails
+      }
+      if (imageFile) {
+        variables.imageFile = imageFile[0]
+      }
+
+      updateRole({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
+  const cancelForm = () => {
+    setReverting(true)
+    router.push(`${REBRAND_BASE_PATH}/candidate/roles/${slug}`)
+  }
+
+  return loadingUserSession
+    ? <Loading />
+    : isAdminUser || isEditorUser ?
+      <form onSubmit={handleSubmit(doUpsert)}>
+        <div className='px-4 py-4 lg:py-6 text-dial-meadow'>
+          <div className='flex flex-col gap-y-6 text-sm'>
+            <div className='text-xl font-semibold'>
+              {role
+                ? format('app.editEntity', { entity: role.name })
+                : `${format('app.createNew')} ${format('role.label')}`}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='name'>
+                {format('role.name')}
+              </label>
+              <Input
+                {...register('name', { required: format('validation.required') })}
+                id='name'
+                placeholder={format('role.name')}
+                isInvalid={errors.name}
+              />
+              {errors.name && <ValidationError value={errors.name?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label>{format('role.aliases')}</label>
+              {aliases.map((alias, aliasIdx) => (
+                <div key={alias.id} className='flex gap-x-2'>
+                  <Input {...register(`aliases.${aliasIdx}.value`)} placeholder={format('role.alias')} />
+                  {isLastAlias(aliasIdx) &&
+                    <IconButton
+                      className='bg-dial-meadow'
+                      icon={<FaPlus className='text-sm' />}
+                      onClick={() => append({ value: '' })}
+                    />
+                  }
+                  {!isSingleAlias &&
+                    <IconButton
+                      className='bg-dial-meadow'
+                      icon={<FaMinus className='text-sm' />}
+                      onClick={() => remove(aliasIdx)}
+                    />
+                  }
+                </div>
+              ))}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='website'>
+                {format('role.website')}
+              </label>
+              <Controller
+                id='website'
+                name='website'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <UrlInput value={value} onChange={onChange} id='website' placeholder={format('role.website')} />
+                )}
+              />
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label>{format('role.imageFile')}</label>
+              <FileUploader {...register('imageFile')} />
+            </div>
+            <div className='block flex flex-col gap-y-2'>
+              <label className='required-field'>{format('role.description')}</label>
+              <Controller
+                name='description'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <HtmlEditor
+                    editorId='description-editor'
+                    onChange={onChange}
+                    initialContent={value}
+                    placeholder={format('role.description')}
+                    isInvalid={errors.description}
+                  />
+                )}
+                rules={{ required: format('validation.required') }}
+              />
+              {errors.description && <ValidationError value={errors.description?.message} />}
+            </div>
+            <hr className='my-3' />
+            <div className='text-2xl font-semibold pb-4'>{format('role.pricingInformation')}</div>
+            <label className='flex gap-x-2 mb-2 items-center self-start'>
+              <Checkbox {...register('commercialRole')} />
+              {format('role.commercialRole')}
+            </label>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='pricingUrl'>
+                {format('role.pricingUrl')}
+              </label>
+              <Controller
+                name='pricingUrl'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <UrlInput
+                    value={value}
+                    onChange={onChange}
+                    id='pricingUrl'
+                    placeholder={format('role.pricingUrl')}
+                  />
+                )}
+              />
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='hostingModel'>
+                {format('role.hostingModel')}
+              </label>
+              <Input {...register('hostingModel')} id='hostingModel' placeholder={format('role.hostingModel')} />
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='pricingModel'>
+                {format('role.pricingModel')}
+              </label>
+              <Input {...register('pricingModel')} id='pricingModel' placeholder={format('role.pricingModel')} />
+            </div>
+            <div className='block flex flex-col gap-y-2'>
+              <label>{format('role.pricing.details')}</label>
+              <Controller
+                name='pricingDetails'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <HtmlEditor
+                    editorId='pricing-details-editor'
+                    onChange={onChange}
+                    initialContent={value}
+                    placeholder={format('role.pricing.details')}
+                    isInvalid={errors.pricingDetails}
+                  />
+                )}
+              />
+            </div>
+            <div className='flex flex-wrap text-base mt-6 gap-3'>
+              <button type='submit' className='submit-button' disabled={mutating || reverting}>
+                {`${format('app.submit')} ${format('role.label')}`}
+                {mutating && <FaSpinner className='spinner ml-3' />}
+              </button>
+              <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>
+                {format('app.cancel')}
+                {reverting && <FaSpinner className='spinner ml-3' />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      : <Unauthorized />
+})
+
+RoleForm.displayName = 'RoleForm'
+
+export default RoleForm

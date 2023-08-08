@@ -13,7 +13,6 @@ const OrganizationListRight = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(OrganizationFilterContext)
-  const { sectors } = useContext(OrganizationFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -35,12 +34,11 @@ const OrganizationListRight = () => {
   useEffect(() => {
     setPageNumber(0)
     setPageOffset(0)
-  }, [search, sectors])
+  }, [search])
 
   const { loading, error, data } = useQuery(CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
-      search,
-      sectors: sectors.map(sector => sector.value)
+      search
     }
   })
 

@@ -19,9 +19,7 @@ const CountryTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  return (
-    <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
-  )
+  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
 }
 
 export default CountryTabNav

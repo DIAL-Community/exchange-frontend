@@ -6,7 +6,10 @@ import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../../utils/constants'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
 import { DELETE_ORGANIZATION } from '../../shared/mutation/organization'
-import { PAGINATED_ORGANIZATIONS_QUERY, ORGANIZATION_DETAIL_QUERY } from '../../shared/query/organization'
+import {
+  CANDIDATE_ORGANIZATION_DETAIL_QUERY,
+  PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY
+} from '../../shared/query/candidateOrganization'
 import DeleteButton from '../../shared/form/DeleteButton'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 
@@ -26,10 +29,10 @@ const DeleteOrganization = ({ organization }) => {
 
   const [deleteOrganization, { called, reset }] = useMutation(DELETE_ORGANIZATION, {
     refetchQueries: [{
-      query: ORGANIZATION_DETAIL_QUERY,
+      query: CANDIDATE_ORGANIZATION_DETAIL_QUERY,
       variables: { slug: organization.slug }
     }, {
-      query: PAGINATED_ORGANIZATIONS_QUERY,
+      query: PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY,
       variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
     }],
     onCompleted: (data) => {

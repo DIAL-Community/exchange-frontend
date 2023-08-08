@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const CANDIDATE_ROLE_QUERY = gql`
+export const CANDIDATE_ROLE_DETAIL_QUERY = gql`
   query CandidateRole(
     $email: String!
     $productId: String
@@ -14,6 +14,8 @@ export const CANDIDATE_ROLE_QUERY = gql`
       datasetId: $datasetId
     ) {
       id
+      roles
+      description
       productId
       organizationId
       datasetId
@@ -23,12 +25,8 @@ export const CANDIDATE_ROLE_QUERY = gql`
 `
 
 export const CANDIDATE_ROLE_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeRole(
-    $search: String
-  ) {
-    paginationAttributeRole(
-      search: $search
-    ) {
+  query PaginationAttributeCandidateRole($search: String) {
+    paginationAttributeCandidateRole(search: $search) {
       totalCount
     }
   }
@@ -45,8 +43,9 @@ export const PAGINATED_CANDIDATE_ROLES_QUERY = gql`
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
-      name
-      slug
+      email
+      roles
+      description
     }
   }
 `

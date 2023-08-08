@@ -1928,6 +1928,11 @@ export const en = {
   'ui.url.label': 'URL',
   'ui.url.header': 'URLs',
 
-  'ui.candidate.label': 'Candidate {entity}',
-  'ui.candidate.header': 'Candidates {entity}'
+  'ui.candidateProduct.label': 'Candidate Product',
+  'ui.candidateProduct.header': 'Candidates Products',
+  'ui.candidateProduct.createNew': 'Create a new Candidate Product',
+
+  'ui.candidateOrganization.label': 'Candidate Organization',
+  'ui.candidateOrganization.header': 'Candidates Organizations',
+  'ui.candidateOrganization.createNew': 'Create a new Candidate Organization'
 }

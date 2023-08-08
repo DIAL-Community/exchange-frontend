@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useContext, useMemo } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
-import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
 import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
@@ -13,9 +13,7 @@ import FileUploader from '../../../shared/form/FileUploader'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_PRODUCT } from '../../../shared/mutation/product'
 import { REBRAND_BASE_PATH } from '../../../utils/constants'
-import IconButton from '../../../shared/form/IconButton'
 import UrlInput from '../../../shared/form/UrlInput'
-import Checkbox from '../../../shared/form/Checkbox'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -64,25 +62,10 @@ const ProductForm = React.memo(({ product }) => {
     shouldUnregister: true,
     defaultValues: {
       name: product?.name,
-      aliases: product?.aliases?.length ? product?.aliases.map((value) => ({ value })) : [{ value: '' }],
       website: product?.website,
-      description: product?.productDescription?.description,
-      commercialProduct: product?.commercialProduct,
-      hostingModel: product?.hostingModel,
-      pricingModel: product?.pricingModel,
-      pricingDetails: product?.pricingDetails,
-      pricingUrl: product?.pricingUrl
+      description: product?.description
     }
   })
-
-  const { fields: aliases, append, remove } = useFieldArray({
-    control,
-    name: 'aliases',
-    shouldUnregister: true
-  })
-
-  const isSingleAlias = useMemo(() => aliases.length === 1, [aliases])
-  const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
 
   const doUpsert = async (data) => {
     if (user) {
@@ -94,26 +77,14 @@ const ProductForm = React.memo(({ product }) => {
         name,
         imageFile,
         website,
-        description,
-        aliases,
-        commercialProduct,
-        pricingUrl,
-        hostingModel,
-        pricingModel,
-        pricingDetails
+        description
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
-        aliases: aliases.map(({ value }) => value),
         website,
-        description,
-        commercialProduct,
-        pricingUrl,
-        hostingModel,
-        pricingModel,
-        pricingDetails
+        description
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -133,7 +104,7 @@ const ProductForm = React.memo(({ product }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/products/${slug}`)
+    router.push(`${REBRAND_BASE_PATH}/candidate/products/${slug}`)
   }
 
   return loadingUserSession
@@ -158,28 +129,6 @@ const ProductForm = React.memo(({ product }) => {
                 isInvalid={errors.name}
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label>{format('product.aliases')}</label>
-              {aliases.map((alias, aliasIdx) => (
-                <div key={alias.id} className='flex gap-x-2'>
-                  <Input {...register(`aliases.${aliasIdx}.value`)} placeholder={format('product.alias')} />
-                  {isLastAlias(aliasIdx) &&
-                    <IconButton
-                      className='bg-dial-meadow'
-                      icon={<FaPlus className='text-sm' />}
-                      onClick={() => append({ value: '' })}
-                    />
-                  }
-                  {!isSingleAlias &&
-                    <IconButton
-                      className='bg-dial-meadow'
-                      icon={<FaMinus className='text-sm' />}
-                      onClick={() => remove(aliasIdx)}
-                    />
-                  }
-                </div>
-              ))}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label htmlFor='website'>
@@ -215,57 +164,6 @@ const ProductForm = React.memo(({ product }) => {
                 rules={{ required: format('validation.required') }}
               />
               {errors.description && <ValidationError value={errors.description?.message} />}
-            </div>
-            <hr className='my-3' />
-            <div className='text-2xl font-semibold pb-4'>{format('product.pricingInformation')}</div>
-            <label className='flex gap-x-2 mb-2 items-center self-start'>
-              <Checkbox {...register('commercialProduct')} />
-              {format('product.commercialProduct')}
-            </label>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='pricingUrl'>
-                {format('product.pricingUrl')}
-              </label>
-              <Controller
-                name='pricingUrl'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <UrlInput
-                    value={value}
-                    onChange={onChange}
-                    id='pricingUrl'
-                    placeholder={format('product.pricingUrl')}
-                  />
-                )}
-              />
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='hostingModel'>
-                {format('product.hostingModel')}
-              </label>
-              <Input {...register('hostingModel')} id='hostingModel' placeholder={format('product.hostingModel')} />
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='pricingModel'>
-                {format('product.pricingModel')}
-              </label>
-              <Input {...register('pricingModel')} id='pricingModel' placeholder={format('product.pricingModel')} />
-            </div>
-            <div className='block flex flex-col gap-y-2'>
-              <label>{format('product.pricing.details')}</label>
-              <Controller
-                name='pricingDetails'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <HtmlEditor
-                    editorId='pricing-details-editor'
-                    onChange={onChange}
-                    initialContent={value}
-                    placeholder={format('product.pricing.details')}
-                    isInvalid={errors.pricingDetails}
-                  />
-                )}
-              />
             </div>
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button type='submit' className='submit-button' disabled={mutating || reverting}>

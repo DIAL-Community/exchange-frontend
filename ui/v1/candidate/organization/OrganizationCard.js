@@ -26,19 +26,6 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
           <div className='line-clamp-4 text-dial-stratos'>
             {organization?.description && parse(organization?.description)}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
-            <div className='text-sm'>
-              {format('ui.sector.header')} ({organization.sectors?.length ?? 0})
-            </div>
-            <div className='border border-r text-dial-stratos-300' />
-            <div className='text-sm'>
-              {format('ui.country.header')} ({organization.countries?.length ?? 0})
-            </div>
-            <div className='border border-r text-dial-stratos-300' />
-            <div className='text-sm'>
-              {format('ui.project.header')} ({organization.projects?.length ?? 0})
-            </div>
-          </div>
         </div>
       </div>
     </div>

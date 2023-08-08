@@ -130,7 +130,7 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/organizations/${slug}`)
+    router.push(`${REBRAND_BASE_PATH}/candidate/organizations/${slug}`)
   }
 
   return loadingUserSession ? (

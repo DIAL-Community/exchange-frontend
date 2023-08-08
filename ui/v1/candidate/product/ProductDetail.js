@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { PRODUCT_DETAIL_QUERY } from '../../shared/query/product'
+import { CANDIDATE_PRODUCT_DETAIL_QUERY } from '../../shared/query/candidateProduct'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import ProductDetailRight from './ProductDetailRight'
@@ -10,7 +10,7 @@ const ProductDetail = ({ slug }) => {
   const scrollRef = useRef(null)
   const commentsSectionRef = useRef(null)
 
-  const { loading, error, data } = useQuery(PRODUCT_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
     variables: { slug }
   })
 
@@ -18,11 +18,11 @@ const ProductDetail = ({ slug }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.product) {
+  } else if (!data?.candidateProduct) {
     return <NotFound />
   }
 
-  const { product } = data
+  const { candidateProduct: product } = data
 
   const slugNameMapping = (() => {
     const map = {}

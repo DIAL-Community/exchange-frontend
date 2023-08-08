@@ -40,8 +40,10 @@ const basePathMappings = {
 }
 
 const candidatePathMappings = {
+  'datasets': 'ui.candidateDataset.header',
   'organizations': 'ui.candidateOrganization.header',
-  'products': 'ui.candidateProduct.header'
+  'products': 'ui.candidateProduct.header',
+  'roles': 'ui.candidateRole.header'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>

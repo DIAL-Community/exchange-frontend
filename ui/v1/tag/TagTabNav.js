@@ -19,9 +19,7 @@ const TagTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  return (
-    <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
-  )
+  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
 }
 
 export default TagTabNav
