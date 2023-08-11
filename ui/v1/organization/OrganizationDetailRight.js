@@ -6,6 +6,8 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import DeleteOrganization from './DeleteOrganization'
+import OrganizationDetailProducts from './fragments/OrganizationDetailProducts'
+import OrganizationDetailCountries from './fragments/OrganizationDetailCountries'
 
 const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
@@ -15,8 +17,8 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
   const canEdit = (isAdminUser || isEditorUser) && !organization.markdownUrl
 
   const descRef = useRef()
-  const pricingRef = useRef()
-  const sdgRef = useRef()
+  const productRef = useRef()
+  const countryRef = useRef()
   const buildingBlockRef = useRef()
   const organizationRef = useRef()
   const tagRef = useRef()
@@ -25,8 +27,8 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.organization.pricing.title', ref: pricingRef },
-      { value: 'ui.sdg.header', ref: sdgRef },
+      { value: 'ui.product.header', ref: productRef },
+      { value: 'ui.countryRef.header', ref: countryRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
       { value: 'ui.organization.header', ref: organizationRef },
       { value: 'ui.tag.header', ref: tagRef }
@@ -52,6 +54,22 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
             editorId='organization-description'
           />
         </div>
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <div className='flex flex-col gap-y-3'>
+        <OrganizationDetailProducts
+          organization={organization}
+          canEdit={canEdit}
+          headerRef={productRef}
+        />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <div className='flex flex-col gap-y-3'>
+        <OrganizationDetailCountries
+          organization={organization}
+          canEdit={canEdit}
+          headerRef={countryRef}
+        />
       </div>
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
