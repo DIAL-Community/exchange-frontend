@@ -44,6 +44,9 @@ export const PAGINATED_WORKFLOWS_QUERY = gql`
       buildingBlocks {
         id
       }
+      useCases {
+        id
+      }
     }
   }
 `
@@ -59,15 +62,11 @@ export const WORKFLOW_DETAIL_QUERY = gql`
         description
         locale
       }
-      useCaseSteps {
+      useCases {
         slug
         name
-        useCase {
-          slug
-          name
-          maturity
-          imageFile
-        }
+        maturity
+        imageFile
       }
       buildingBlocks {
         name

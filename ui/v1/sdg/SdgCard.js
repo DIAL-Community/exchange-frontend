@@ -9,10 +9,10 @@ const SdgCard = ({ displayType, index, sdg, dismissCardHandler }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[8rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {sdg.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='w-20 h-20 mx-auto bg-white border'>
+          <div className='w-20 h-20 mx-auto bg-white border my-auto'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.sdg.label') })}
@@ -21,7 +21,7 @@ const SdgCard = ({ displayType, index, sdg, dismissCardHandler }) => {
           </div>
         }
         {sdg.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20 mx-auto'>
+          <div className='w-20 h-20 mx-auto my-auto'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.sdg.label') })}

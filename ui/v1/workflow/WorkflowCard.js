@@ -39,15 +39,11 @@ const WorkflowCard = ({ displayType, index, workflow, dismissCardHandler }) => {
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sector.header')} ({workflow.sectors?.length ?? 0})
+              {format('ui.useCase.header')} ({workflow.useCases?.length ?? 0})
             </div>
             <div className='border border-r text-dial-stratos-300' />
             <div className='text-sm'>
-              {format('ui.country.header')} ({workflow.countries?.length ?? 0})
-            </div>
-            <div className='border border-r text-dial-stratos-300' />
-            <div className='text-sm'>
-              {format('ui.project.header')} ({workflow.projects?.length ?? 0})
+              {format('ui.buildingBlock.header')} ({workflow.buildingBlocks?.length ?? 0})
             </div>
           </div>
         </div>
@@ -58,7 +54,7 @@ const WorkflowCard = ({ displayType, index, workflow, dismissCardHandler }) => {
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         {workflow.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>
+          <div className='rounded-full bg-dial-plum w-10 h-10 my-auto'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
@@ -67,11 +63,13 @@ const WorkflowCard = ({ displayType, index, workflow, dismissCardHandler }) => {
           </div>
         }
         {workflow.imageFile.indexOf('placeholder.svg') < 0 &&
-          <img
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
-            alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
-            className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
-          />
+          <div className='rounded-full bg-dial-plum w-10 h-10 my-auto'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
+              className='object-contain w-6 h-6 mx-auto mt-2 white-filter'
+            />
+          </div>
         }
         <div className='text-sm font-semibold text-dial-plum my-auto'>
           {workflow.name}

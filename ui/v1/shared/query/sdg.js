@@ -39,15 +39,8 @@ export const SDG_DETAIL_QUERY = gql`
       sdgTargets {
         id
         name
-        imageFile
         targetNumber
-        useCases {
-          id
-          slug
-          name
-          imageFile
-          maturity
-        }
+        imageFile
       }
     }
   }

@@ -16,7 +16,7 @@ const SdgDetailHeader = ({ sdg }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.sdg.label') })}
-              className='object-contain w-20 h-20'
+              className='object-contain w-48 h-48'
             />
           </div>
         }
