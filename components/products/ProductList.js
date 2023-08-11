@@ -107,7 +107,7 @@ const ProductListQuery = () => {
   if (nodes.length <= 0) {
     return (
       <div className='px-3 py-4'>
-        {format('noResults.entity', { entity: format('product.label').toLowerCase() })}
+        {format('noResults.entity', { entity: format('ui.product.label').toLowerCase() })}
       </div>
     )
   }
@@ -120,7 +120,7 @@ const ProductListQuery = () => {
         displayType === 'list' &&
           <div className='flex flex-row my-3 px-4 gap-x-4'>
             <div className='w-4/12 text-sm font-semibold opacity-70'>
-              {format('product.header').toUpperCase()}
+              {format('ui.product.header').toUpperCase()}
             </div>
             <div className='hidden lg:block w-4/12 text-sm font-semibold opacity-50'>
               {format('origin.header').toUpperCase()}

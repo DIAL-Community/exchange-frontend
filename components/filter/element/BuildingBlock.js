@@ -20,7 +20,7 @@ export const BuildingBlockAutocomplete = ({
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('buildingBlock.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.buildingBlock.label') })
 
   const selectBuildingBlock = (buildingBlock) => {
     setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug), buildingBlock])
@@ -38,14 +38,14 @@ export const BuildingBlockAutocomplete = ({
     <div className={classNames(containerStyles)} data-testid='building-block-search'>
       <Select
         async
-        aria-label={format('filter.byEntity', { entity: format('buildingBlock.label') })}
+        aria-label={format('filter.byEntity', { entity: format('ui.buildingBlock.label') })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) =>
           fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
         }
-        noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.buildingBlock.header') })}
         onChange={selectBuildingBlock}
         placeholder={controlPlaceholder}
         value=''
@@ -72,7 +72,7 @@ export const BuildingBlockFilters = (props) => {
         <div className='py-1' key={buildingBlockIdx}>
           <Pill
             key={`filter-${buildingBlockIdx}`}
-            label={`${format('buildingBlock.label')}: ${buildingBlock.label}`}
+            label={`${format('ui.buildingBlock.label')}: ${buildingBlock.label}`}
             onRemove={() => removeBuildingBlock(buildingBlock.slug)}
           />
         </div>

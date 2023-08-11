@@ -138,7 +138,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
           loadOptions={(input) =>
             fetchSelectOptions(client, input, SDG_TARGET_SEARCH_QUERY, fetchedSdgTargetsCallback)
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg-target.label') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.sdgTarget.label') })}
           onChange={addSdgTargets}
           value={null}
         />

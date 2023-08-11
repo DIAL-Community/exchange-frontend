@@ -130,7 +130,7 @@ const OrganizationListQuery = () => {
   if (nodes.length <= 0) {
     return (
       <div className='px-3 py-4'>
-        {format('noResults.entity', { entity: format('organization.label').toLowerCase() })}
+        {format('noResults.entity', { entity: format('ui.organization.label').toLowerCase() })}
       </div>
     )
   }
@@ -143,7 +143,7 @@ const OrganizationListQuery = () => {
         displayType === 'list' &&
         <div className='flex flex-row my-3 px-4 gap-x-4'>
           <div className='text-sm font-semibold opacity-70'>
-            {format('organization.header').toUpperCase()}
+            {format('ui.organization.header').toUpperCase()}
           </div>
         </div>
       }

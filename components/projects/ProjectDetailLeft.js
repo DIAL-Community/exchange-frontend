@@ -37,7 +37,7 @@ const ProjectDetailLeft = ({ project, canEdit, commentsSectionRef }) => {
         {canEdit && <EditButton type='link' href={generateEditLink()}/>}
         <CommentsCount commentsSectionRef={commentsSectionRef} objectId={project.id} objectType={ObjectType.PROJECT}/>
       </div>
-      <div className='h4 font-bold py-4'>{format('project.label')}</div>
+      <div className='h4 font-bold py-4'>{format('ui.project.label')}</div>
       <div className='bg-white border-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
         <div id='header' className='mb-4'>
           <div className='h2 p-2 text-dial-purple text-clip'>

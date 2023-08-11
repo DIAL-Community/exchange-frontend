@@ -113,7 +113,7 @@ const SectorForm = React.memo(({ sector }) => {
           <div className='text-xl font-semibold'>
             {sector
               ? format('app.editEntity', { entity: sector.name })
-              : `${format('app.createNew')} ${format('sector.label')}`}
+              : `${format('app.createNew')} ${format('ui.sector.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='name'>
@@ -156,7 +156,7 @@ const SectorForm = React.memo(({ sector }) => {
           </label>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('sector.label')}`}
+              {`${format('app.submit')} ${format('ui.sector.label')}`}
               {mutating && <FaSpinner className='spinner ml-3' />}
             </button>
             <button

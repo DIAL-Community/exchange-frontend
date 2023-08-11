@@ -77,7 +77,7 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
                 </div>
                 {useCaseStep.products.length > 0 &&
                   <div className='flex flex-row px-4 py-2 bg-dial-gray-light'>
-                    <div className='text-sm text-workflow my-auto mr-2'>{format('product.header')}</div>
+                    <div className='text-sm text-workflow my-auto mr-2'>{format('ui.product.header')}</div>
                     <div className='flex flex-row flex-wrap font-semibold overflow-hidden'>
                       <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
                         {useCaseStep.products.map(p => p.name).join(', ')}

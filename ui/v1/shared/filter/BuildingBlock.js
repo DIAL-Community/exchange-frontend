@@ -19,7 +19,7 @@ export const BuildingBlockAutocomplete = ({
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('buildingBlock.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.buildingBlock.label') })
 
   const selectBuildingBlock = (buildingBlock) => {
     setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug), buildingBlock])

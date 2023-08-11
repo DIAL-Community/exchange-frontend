@@ -26,7 +26,7 @@ const SectorList = ({ displayType, sectorList }) => {
           ))
           : (
             <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-6'>
-              {format('noResults.entity', { entity: format('sector.label') })}
+              {format('noResults.entity', { entity: format('ui.sector.label') })}
             </div>
           )
       }

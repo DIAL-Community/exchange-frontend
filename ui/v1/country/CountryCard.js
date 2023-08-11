@@ -37,7 +37,7 @@ const CountryCard = ({ displayType, index, country, dismissCardHandler }) => {
     </div>
 
   const displaySmallCard = () =>
-    <div className='rounded-lg bg-gradient-to-r from-country-bg-light to-country-bg h-16'>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         <div className='text-sm font-semibold text-dial-plum my-auto'>
           {country.name}

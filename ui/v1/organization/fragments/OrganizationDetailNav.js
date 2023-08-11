@@ -10,17 +10,14 @@ const OrganizationDetailNav = ({ scrollRef }) => {
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
   }, {
-    label: format('ui.organization.pricing.title'),
-    value: 'ui.organization.pricing.title'
+    label: format('ui.project.header'),
+    value: 'ui.project.header'
   }, {
-    label: format('ui.sdg.header'),
-    value: 'ui.sdg.header'
+    label: format('ui.product.header'),
+    value: 'ui.product.header'
   }, {
-    label: format('ui.buildingBlock.header'),
-    value: 'ui.buildingBlock.header'
-  }, {
-    label: format('ui.organization.header'),
-    value: 'ui.organization.header'
+    label: format('ui.country.header'),
+    value: 'ui.country.header'
   }, {
     label: format('ui.tag.header'),
     value: 'ui.tag.header'

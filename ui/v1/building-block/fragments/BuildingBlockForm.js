@@ -126,7 +126,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
             <div className='text-xl font-semibold'>
               {buildingBlock
                 ? format('app.editEntity', { entity: buildingBlock.name })
-                : `${format('app.createNew')} ${format('buildingBlock.label')}`}
+                : `${format('app.createNew')} ${format('ui.buildingBlock.label')}`}
             </div>
             <div className='form-field-wrapper'>
               <label className='required-field' htmlFor='name'>
@@ -203,7 +203,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
             </div>
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                {`${format('app.submit')} ${format('buildingBlock.label')}`}
+                {`${format('app.submit')} ${format('ui.buildingBlock.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>
               <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>

@@ -110,10 +110,10 @@ const OpportunityDetailSectors = ({ opportunity, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('sector.header')}
+        {format('app.assign')} {format('ui.sector.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='sector-search'>
-        {`${format('app.searchAndAssign')} ${format('sector.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.sector.header')}`}
         <Select
           async
           isSearch
@@ -123,7 +123,7 @@ const OpportunityDetailSectors = ({ opportunity, canEdit }) => {
           loadOptions={(input) =>
             fetchSelectOptions(client, input, SECTOR_SEARCH_QUERY, fetchedSectorsCallback, locale)
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('sector.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.sector.header') })}
           onChange={addSector}
           value={null}
         />
@@ -143,7 +143,7 @@ const OpportunityDetailSectors = ({ opportunity, canEdit }) => {
     <div data-testid='opportunity-sectors'>
       <EditableSection
         canEdit={canEdit}
-        sectionHeader={format('sector.header')}
+        sectionHeader={format('ui.sector.header')}
         onSubmit={onSubmit}
         onCancel={onCancel}
         isDirty={isDirty}

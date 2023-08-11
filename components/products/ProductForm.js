@@ -179,7 +179,7 @@ const ProductForm = React.memo(({ product }) => {
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {product
                   ? format('app.editEntity', { entity: product.name })
-                  : `${format('app.createNew')} ${format('product.label')}`
+                  : `${format('app.createNew')} ${format('ui.product.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-x-16'>
@@ -345,7 +345,7 @@ const ProductForm = React.memo(({ product }) => {
                   disabled={mutating || reverting}
                   data-testid='submit-button'
                 >
-                  {`${format('app.submit')} ${format('product.label')}`}
+                  {`${format('app.submit')} ${format('ui.product.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>
                 <button

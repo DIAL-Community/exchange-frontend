@@ -138,7 +138,7 @@ const ProductForm = ({ candidateProduct }) => {
       )
       : (
         <Link href='/products' className='text-dial-blue'>
-          {format('product.header')}
+          {format('ui.product.header')}
         </Link>
       )
 

@@ -143,7 +143,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('building-block.header')}
+        {format('app.assign')} {format('ui.buildingBlock.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2'>
         {format('product.mappingStatus')}
@@ -155,7 +155,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
         />
       </label>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='building-block-search'>
-        {`${format('app.searchAndAssign')} ${format('building-block.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.buildingBlock.header')}`}
         <Select
           async
           isSearch
@@ -172,7 +172,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
               )
           }
           noOptionsMessage={() =>
-            format('filter.searchFor', { entity: format('building-block.header') })
+            format('filter.searchFor', { entity: format('ui.buildingBlock.header') })
           }
           onChange={addBuildingBlock}
           value={null}
@@ -192,7 +192,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('building-block.header')}
+      sectionHeader={format('ui.buildingBlock.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

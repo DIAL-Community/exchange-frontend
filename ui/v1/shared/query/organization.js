@@ -91,6 +91,7 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
       offices {
         id
         name
+        slug
         city
         region
         country {
@@ -141,6 +142,7 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
       contacts {
         id
         name
+        slug
         email
         title
       }

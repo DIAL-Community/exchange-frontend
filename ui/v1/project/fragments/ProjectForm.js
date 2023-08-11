@@ -145,7 +145,7 @@ const ProjectForm = React.memo(({ project }) => {
             <div className='text-xl font-semibold'>
               {project
                 ? format('app.editEntity', { entity: project.name })
-                : `${format('app.createNew')} ${format('project.label')}`}
+                : `${format('app.createNew')} ${format('ui.project.label')}`}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>
@@ -269,7 +269,7 @@ const ProjectForm = React.memo(({ project }) => {
             </div>
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                {`${format('app.submit')} ${format('project.label')}`}
+                {`${format('app.submit')} ${format('ui.project.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>
               <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>

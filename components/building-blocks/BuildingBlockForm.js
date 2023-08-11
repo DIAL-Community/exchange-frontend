@@ -139,7 +139,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                 <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {buildingBlock
                     ? format('app.editEntity', { entity: buildingBlock.name })
-                    : `${format('app.createNew')} ${format('building-block.label')}`
+                    : `${format('app.createNew')} ${format('ui.buildingBlock.label')}`
                   }
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
@@ -236,7 +236,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                     disabled={mutating || reverting}
                     data-testid='submit-button'
                   >
-                    {`${format('app.submit')} ${format('building-block.label')}`}
+                    {`${format('app.submit')} ${format('ui.buildingBlock.label')}`}
                     {mutating && <FaSpinner className='spinner ml-3' />}
                   </button>
                   <button

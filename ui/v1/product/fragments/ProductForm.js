@@ -145,7 +145,7 @@ const ProductForm = React.memo(({ product }) => {
             <div className='text-xl font-semibold'>
               {product
                 ? format('app.editEntity', { entity: product.name })
-                : `${format('app.createNew')} ${format('product.label')}`}
+                : `${format('app.createNew')} ${format('ui.product.label')}`}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>
@@ -269,7 +269,7 @@ const ProductForm = React.memo(({ product }) => {
             </div>
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                {`${format('app.submit')} ${format('product.label')}`}
+                {`${format('app.submit')} ${format('ui.product.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>
               <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>

@@ -104,11 +104,11 @@ const subMenus = {
         link: '/workflows'
       },
       {
-        label: 'building-block.header',
+        label: 'ui.buildingBlock.header',
         link: '/building_blocks'
       },
       {
-        label: 'product.header',
+        label: 'ui.product.header',
         link: '/products'
       },
       {
@@ -116,7 +116,7 @@ const subMenus = {
         link: '/datasets'
       },
       {
-        label: 'project.header',
+        label: 'ui.project.header',
         link: '/projects'
       },
       {

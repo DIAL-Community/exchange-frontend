@@ -27,11 +27,11 @@ const UseCases = () => {
   return (
     <>
       <NextSeo
-        title={format('use-case.header')}
+        title={format('ui.useCase.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('use-case.header')?.toLocaleLowerCase() }
+            { entities: format('ui.useCase.header')?.toLocaleLowerCase() }
           )
         }
       />

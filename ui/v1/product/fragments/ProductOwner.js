@@ -7,7 +7,7 @@ import { useCallback, useContext, useRef, useState } from 'react'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useProductOwnerUser, useUser } from '../../../../lib/hooks'
 import { ObjectType } from '../../utils/constants'
-import { CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
+import { OWNER_CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
 import { APPLY_AS_OWNER } from '../../shared/mutation/user'
 import { PRODUCT_CONTACT_QUERY } from '../../shared/query/product'
 
@@ -31,7 +31,7 @@ const ProductOwner = ({ product }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  useQuery(CANDIDATE_ROLE_DETAIL_QUERY, {
+  useQuery(OWNER_CANDIDATE_ROLE_DETAIL_QUERY, {
     variables: {
       email: user?.userEmail,
       productId: product.id
@@ -91,7 +91,7 @@ const ProductOwner = ({ product }) => {
         reset()
       } else {
         showToast(
-          format('toast.applyAsOwner.submit.success', { entity: format('product.label') }),
+          format('toast.applyAsOwner.submit.success', { entity: format('ui.product.label') }),
           'success',
           'top-center'
         )

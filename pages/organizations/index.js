@@ -26,11 +26,11 @@ const Organizations = () => {
   return (
     <>
       <NextSeo
-        title={format('organization.header')}
+        title={format('ui.organization.header')}
         description={
           format(
             'shared.metadata.description.comprehensiveListOf',
-            { entities: format('organization.header')?.toLocaleLowerCase() }
+            { entities: format('ui.organization.header')?.toLocaleLowerCase() }
           )
         }
       />

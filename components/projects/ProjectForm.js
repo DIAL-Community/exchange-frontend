@@ -201,7 +201,7 @@ const ProjectForm = React.memo(({ project, organization }) => {
                 <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {project
                     ? format('app.editEntity', { entity: project.name })
-                    : `${format('app.createNew')} ${format('project.label')}`
+                    : `${format('app.createNew')} ${format('ui.project.label')}`
                   }
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
@@ -340,7 +340,7 @@ const ProjectForm = React.memo(({ project, organization }) => {
                     disabled={mutating || reverting}
                     data-testid='submit-button'
                   >
-                    {`${format('app.submit')} ${format('project.label')}`}
+                    {`${format('app.submit')} ${format('ui.project.label')}`}
                     {mutating && <FaSpinner className='spinner ml-3' />}
                   </button>
                   <button

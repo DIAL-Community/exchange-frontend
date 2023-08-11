@@ -223,8 +223,8 @@ export const en = {
   'definition.explore-usecase': 'Explore Use Cases',
   'definition.explore-workflow': 'Explore Workflows',
 
-  'product.header': 'Products',
-  'product.label': 'Product',
+  'ui.product.header': 'Products',
+  'ui.product.label': 'Product',
   'product.languages': 'Languages',
   'product.website': 'Website',
   'product.description': 'Description',
@@ -295,8 +295,8 @@ export const en = {
   'product.pricing.details': 'Pricing Details',
 
 
-  'project.header': 'Projects',
-  'project.label': 'Project',
+  'ui.project.header': 'Projects',
+  'ui.project.label': 'Project',
   'project.url': 'Project URL',
   'project.source': 'Origin',
   'project.description': 'Description',
@@ -313,8 +313,8 @@ export const en = {
   'project.no-tag': 'We do not have any Tag information for this Project.',
   'project.no-product': 'We do not have any Product information for this Project.',
 
-  'organization.header': 'Organizations',
-  'organization.label': 'Organization',
+  'ui.organization.header': 'Organizations',
+  'ui.organization.label': 'Organization',
   'organization.endorsed-in': 'Endorsed in',
   'organization.name': 'Name',
   'organization.aliases': 'Aliases',
@@ -322,14 +322,14 @@ export const en = {
   'organization.description': 'Description',
   'organization.website': 'Website',
   'organization.imageFile': 'Logo',
-  'organization.isEndorser': 'Organization is a Principal for Digital Development Endorser',
+  'organization.isEndorser': 'Organization is a Principal for Digital Development endorser.',
   'organization.whenEndorsed': 'Endorsed Date',
   'organization.endorserLevel': 'Endorser Level',
   'organization.endorserLevel.none': 'None',
   'organization.endorserLevel.bronze': 'Bronze',
   'organization.endorserLevel.silver': 'Silver',
   'organization.endorserLevel.gold': 'Gold',
-  'organization.isMni': 'Organization is an MNI organization',
+  'organization.isMni': 'Organization is a mobile network integrator organization.',
   'organization.submit': 'Submit',
   'organization.submit.success': 'Organization submitted successfully',
   'organization.submit.failure': 'Organization submission failed',
@@ -346,10 +346,10 @@ export const en = {
   'organization.no-office-locations': 'We do not have any Office Locations information for this Organization.',
   'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
 
-  'building-block.header': 'Building Blocks',
-  'building-block.label': 'Building Block',
-  'buildingBlock.label': 'Building Block',
-  'buildingBlock.header': 'Building Blocks',
+  'ui.buildingBlock.header': 'Building Blocks',
+  'ui.buildingBlock.label': 'Building Block',
+  'ui.buildingBlock.label': 'Building Block',
+  'ui.buildingBlock.header': 'Building Blocks',
   'building-block.no-product': 'We do not have any Product information for this Building Block.',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
@@ -390,14 +390,14 @@ export const en = {
   'toast.workflow.delete.success': 'Workflow record deleted successfully.',
   'toast.workflow.delete.failure': 'Workflow record deletion failed.',
 
-  'contact.header': 'Contacts',
-  'contact.label': 'Contact',
-  'contact.name.label': 'Name:',
-  'contact.email.label': 'Email:',
-  'contact.title.label': 'Title:',
+  'ui.contact.header': 'Contacts',
+  'ui.contact.label': 'Contact',
+  'ui.contact.name.label': 'Name',
+  'ui.contact.email.label': 'Email',
+  'ui.contact.title.label': 'Title',
 
-  'sector.header': 'Sectors',
-  'sector.label': 'Sector',
+  'ui.sector.header': 'Sectors',
+  'ui.sector.label': 'Sector',
   'sector.parent-sector.label': 'Parent Sector',
   'sector.is-displayable.label': 'Is displayable',
   'sector.delete.confirm.message': 'Are you sure you want to delete this Sector? All associations will also be removed.',
@@ -407,11 +407,11 @@ export const en = {
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
 
-  'sdg-target.header': 'SDG Targets',
-  'sdg-target.label': 'SDG Target',
+  'ui.sdgTarget.header': 'SDG Targets',
+  'ui.sdgTarget.label': 'SDG Target',
 
-  'use-case.header': 'Use Cases',
-  'use-case.label': 'Use Case',
+  'ui.useCase.header': 'Use Cases',
+  'ui.useCase.label': 'Use Case',
   'use-case.sdg-targets': 'SDG Targets',
   'use-case.workflow': 'Workflows',
   'use-case.no-sdg-targets': 'We do not have any SDG Target information for this Use Case.',
@@ -582,11 +582,11 @@ export const en = {
   'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
 
   'workflow.header': 'Workflows',
-  'product.header': 'Products',
+  'ui.product.header': 'Products',
   'dataset.header': 'Open Data',
 
   'workflow.label': 'Workflow',
-  'product.label': 'Product',
+  'ui.product.label': 'Product',
   'dataset.label': 'Dataset',
 
   'organization.detail.website': 'Website',
@@ -1745,7 +1745,7 @@ export const en = {
   'storefront.no-certification': "Organization storefront's doesn't have certification information.",
 
   'organization.heroImage': 'Hero image file',
-  'organization.hasStorefront': 'Organization has a storefront',
+  'organization.hasStorefront': 'Organization has a storefront.',
 
   'ui.shared.jumpTo': 'Jump To',
   'ui.shared.navigateTools': 'Navigate Tools',
@@ -1927,6 +1927,12 @@ export const en = {
 
   'ui.url.label': 'URL',
   'ui.url.header': 'URLs',
+
+  'ui.office.label': 'Office',
+  'ui.office.header': 'Offices',
+
+  'ui.city.label': 'City',
+  'ui.city.header': 'Cities',
 
   'ui.candidateProduct.label': 'Candidate Product',
   'ui.candidateProduct.header': 'Candidate Products',

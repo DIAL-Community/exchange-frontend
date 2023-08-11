@@ -201,7 +201,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isEndorser"
                     type="checkbox"
                   />
-                  Organization is a Principal for Digital Development Endorser
+                  Organization is a Principal for Digital Development endorser.
                 </label>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -312,7 +312,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isMni"
                     type="checkbox"
                   />
-                  Organization is an MNI organization
+                  Organization is a mobile network integrator organization.
                 </label>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
@@ -324,7 +324,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="hasStorefront"
                     type="checkbox"
                   />
-                  Organization has a storefront
+                  Organization has a storefront.
                 </label>
               </div>
               <div
@@ -657,7 +657,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isEndorser"
                     type="checkbox"
                   />
-                  Organization is a Principal for Digital Development Endorser
+                  Organization is a Principal for Digital Development endorser.
                 </label>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -768,7 +768,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isMni"
                     type="checkbox"
                   />
-                  Organization is an MNI organization
+                  Organization is a mobile network integrator organization.
                 </label>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
@@ -780,7 +780,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="hasStorefront"
                     type="checkbox"
                   />
-                  Organization has a storefront
+                  Organization has a storefront.
                 </label>
               </div>
               <div

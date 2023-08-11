@@ -115,10 +115,10 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('building-block.header')}
+        {format('app.assign')} {format('ui.buildingBlock.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='building-block-search'>
-        {`${format('app.searchAndAssign')} ${format('building-block.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.buildingBlock.header')}`}
         <Select
           async
           isSearch
@@ -136,7 +136,7 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
           noOptionsMessage={
             () => format(
               'filter.searchFor',
-              { entity: format('building-block.header') }
+              { entity: format('ui.buildingBlock.header') }
             )
           }
           onChange={addBuildingBlock}
@@ -157,7 +157,7 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('building-block.header')}
+      sectionHeader={format('ui.buildingBlock.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

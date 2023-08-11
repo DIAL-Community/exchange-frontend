@@ -29,7 +29,7 @@ const ContactCard = ({ contact, listType }) => {
           </div>
         </div>
       )
-      : <div data-testid='contactLabel'>{format('contact.label')}</div>
+      : <div data-testid='contactLabel'>{format('ui.contact.label')}</div>
   )
 }
 

@@ -26,11 +26,11 @@ const Projects = () => {
   return (
     <>
       <NextSeo
-        title={format('project.header')}
+        title={format('ui.project.header')}
         description={
           format(
             'shared.metadata.description.comprehensiveListOf',
-            { entities: format('project.header')?.toLocaleLowerCase() }
+            { entities: format('ui.project.header')?.toLocaleLowerCase() }
           )
         }
       />

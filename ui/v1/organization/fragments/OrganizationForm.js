@@ -171,7 +171,7 @@ const OrganizationForm = React.memo(({ organization }) => {
           <div className='text-xl font-semibold'>
             {organization
               ? format('app.editEntity', { entity: organization.name })
-              : `${format('app.createNew')} ${format('organization.label')}`}
+              : `${format('app.createNew')} ${format('ui.organization.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='name'>
@@ -286,7 +286,7 @@ const OrganizationForm = React.memo(({ organization }) => {
           </div>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('organization.label')}`}
+              {`${format('app.submit')} ${format('ui.organization.label')}`}
               {mutating && <FaSpinner className='spinner ml-3' />}
             </button>
             <button

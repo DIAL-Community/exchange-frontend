@@ -10,7 +10,7 @@ const ProjectHint = () => {
   return (
     <div className='flex flex-col gap-2 text-dial-stratos'>
       <div className='text-xl font-semibold'>
-        {format('project.label')}
+        {format('ui.project.label')}
       </div>
       <div className='text-base'>
         {format('project.hint.subtitle')}

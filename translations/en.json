@@ -172,14 +172,14 @@
   "product.forum.createAccount": "In order to create a new post, you must first create an account on our forum. Click the button below and register an account with the username",
   "product.manualUpdate": "(Note: this data has been manually updated by the product owner)",
 
-  "project.header": "Projects",
-  "project.label": "Project",
+  "ui.project.header": "Projects",
+  "ui.project.label": "Project",
   "project.url": "Project URL",
   "project.source": "Origin",
   "project.description": "Description",
 
-  "organization.header": "Organizations",
-  "organization.label": "Organization",
+  "ui.organization.header": "Organizations",
+  "ui.organization.label": "Organization",
   "organization.endorsed-in": "Endorsed in",
   "organization.name": "Name",
   "organization.aliases": "Aliases",
@@ -199,24 +199,24 @@
   "organization.submitted": "Organization submitted.",
   "organization.countries.updated": "Countries updated successfully",
 
-  "building-block.header": "Building Blocks",
-  "building-block.label": "Building Block",
+  "ui.buildingBlock.header": "Building Blocks",
+  "ui.buildingBlock.label": "Building Block",
   "buildingBlock.label": "Building Block",
   "building-block.disclaimer": "Note: As part of the <a href='https://govstack.global'>GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are 'Beta' and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.",
 
-  "contact.header": "Contacts",
-  "contact.label": "Contact",
-  "contact.name.label": "Name:",
-  "contact.email.label": "Email:",
-  "contact.title.label": "Title:",
+  "ui.contact.header": "Contacts",
+  "ui.contact.label": "Contact",
+  "ui.contact.name.label": "Name",
+  "ui.contact.email.label": "Email",
+  "ui.contact.title.label": "Title",
 
-  "sector.header": "Sectors",
-  "sector.label": "Sector",
+  "ui.sector.header": "Sectors",
+  "ui.sector.label": "Sector",
 
   "sdg.header": "Sustainable Development Goals",
   "sdg.label": "Sustainable Development Goal",
 
-  "use-case.label": "Use Case",
+  "ui.useCase.label": "Use Case",
   "use-case.sdg-targets": "SDG Targets",
   "use-case.workflow": "Workflows",
 
@@ -324,7 +324,7 @@
   "country.header": "Countries",
   "workflow.header": "Workflows",
   "useCase.header": "Use Cases",
-  "product.header": "Products",
+  "ui.product.header": "Products",
 
   "organization.detail.website": "Website",
   "organization.detail.whenEndorsed": "Endorsed On",
@@ -341,7 +341,7 @@
   "useCase.label": "Use Case",
   "useCase.description": "Description",
   "workflow.label": "Workflow",
-  "product.label": "Product",
+  "ui.product.label": "Product",
   "country.label": "Country",
 
   "error.auth": "Error in authentication",

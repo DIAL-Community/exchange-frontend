@@ -9,7 +9,7 @@ const ProjectCard = ({ displayType, index, project }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
+    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-workflow'}`}>
       <div className='flex flex-row gap-x-6'>
         <div className='flex flex-col gap-y-3 max-w-3xl'>
           <div className='text-lg font-semibold text-dial-meadow'>
@@ -32,7 +32,7 @@ const ProjectCard = ({ displayType, index, project }) => {
     </div>
 
   const displaySmallCard = () =>
-    <div className='rounded-lg bg-gradient-to-r from-project-bg-light to-project-bg h-16'>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         <div className='text-sm font-semibold text-dial-stratos my-auto'>
           {project.name}

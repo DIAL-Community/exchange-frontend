@@ -60,7 +60,7 @@ const OrganizationList = (props) => {
           displayType === 'list' &&
             <div className='grid grid-cols-12 gap-4 my-3 px-4'>
               <div className='col-span-4 ml-2 text-sm font-semibold opacity-70'>
-                {format('organization.header').toUpperCase()}
+                {format('ui.organization.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
               <div className='hidden md:block col-span-4 text-sm font-semibold opacity-50'>
@@ -76,7 +76,7 @@ const OrganizationList = (props) => {
             ))
             : (
               <div className='text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('organization.label') })
+                format('noResults.entity', { entity: format('ui.organization.label') })
               }
               </div>
             )

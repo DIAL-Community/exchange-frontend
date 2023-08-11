@@ -154,7 +154,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
         reset()
       } else {
         showToast(
-          format('toast.applyAsOwner.submit.success', { entity: format('product.label') }),
+          format('toast.applyAsOwner.submit.success', { entity: format('ui.product.label') }),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -216,7 +216,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           {isAdminUser && <DeleteProduct product={product} />}
           <CommentsCount commentsSectionRef={commentsSectionRef} objectId={product.id} objectType={ObjectType.PRODUCT}/>
         </div>
-        <div className='h4 font-bold py-4'>{format('product.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.product.label')}</div>
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 shadow-lg'>
         <div id='header' className='flex flex-col h-80 p-2'>

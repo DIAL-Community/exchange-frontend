@@ -283,7 +283,7 @@ export const PlayForm = ({ playbook, play }) => {
                             )
                         }
                         noOptionsMessage={() =>
-                          format('filter.searchFor', { entity: format('product.header') })
+                          format('filter.searchFor', { entity: format('ui.product.header') })
                         }
                         onChange={addProduct}
                         value={null}

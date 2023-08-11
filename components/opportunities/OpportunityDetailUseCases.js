@@ -112,10 +112,10 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('use-case.header')}
+        {format('app.assign')} {format('ui.useCase.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='use-case-search'>
-        {`${format('app.searchAndAssign')} ${format('use-case.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.useCase.header')}`}
         <Select
           async
           isSearch
@@ -132,7 +132,7 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit }) => {
               )
           }
           noOptionsMessage={() =>
-            format('filter.searchFor', { entity: format('use-case.header') })
+            format('filter.searchFor', { entity: format('ui.useCase.header') })
           }
           onChange={addUseCase}
           value={null}
@@ -152,7 +152,7 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('use-case.header')}
+      sectionHeader={format('ui.useCase.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

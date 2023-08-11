@@ -26,6 +26,27 @@ export const CANDIDATE_ROLE_DETAIL_QUERY = gql`
   }
 `
 
+export const OWNER_CANDIDATE_ROLE_DETAIL_QUERY = gql`
+  query CandidateRole(
+    $id: ID
+    $email: String
+    $productId: String
+    $organizationId: String
+    $datasetId: String
+  ) {
+    candidateRole(
+      id: $id
+      email: $email
+      productId: $productId
+      organizationId: $organizationId
+      datasetId: $datasetId
+    ) {
+      id
+      rejected
+    }
+  }
+`
+
 export const CANDIDATE_ROLE_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeCandidateRole($search: String) {
     paginationAttributeCandidateRole(search: $search) {

@@ -62,7 +62,7 @@ const ProductList = (props) => {
           displayType === 'list' &&
             <div className='grid grid-cols-12 gap-x-4 my-3 px-4'>
               <div className='col-span-3 ml-2 text-sm font-semibold opacity-70'>
-                {format('product.header').toUpperCase()}
+                {format('ui.product.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
               <div className='hidden xl:block col-span-3 text-sm font-semibold opacity-50'>
@@ -78,7 +78,7 @@ const ProductList = (props) => {
             ))
             : (
               <div className='text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('product.label') })
+                format('noResults.entity', { entity: format('ui.product.label') })
               }
               </div>
             )

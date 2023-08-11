@@ -144,7 +144,7 @@ const Play = ({ playbookSlug, play, index }) => {
       {
         play.buildingBlocks && play.buildingBlocks.length > 0 &&
           <div className='flex flex-col gap-3 my-3'>
-            <div className='h4'>{format('building-block.header')}</div>
+            <div className='h4'>{format('ui.buildingBlock.header')}</div>
             <div
               className='text-sm'
               dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
@@ -159,7 +159,7 @@ const Play = ({ playbookSlug, play, index }) => {
       {
         play.products && play.products.length > 0 &&
           <div className='flex flex-col gap-3 my-3'>
-            <div className='h4'>{format('product.header')}</div>
+            <div className='h4'>{format('ui.product.header')}</div>
             <div
               className='text-sm'
               dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}

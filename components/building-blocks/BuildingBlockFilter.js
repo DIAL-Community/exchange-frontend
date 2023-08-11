@@ -46,7 +46,7 @@ const BuildingBlockFilter = () => {
               />
             </div>
             <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
-              {format('filter.hint.text')} {format('building-block.label')}
+              {format('filter.hint.text')} {format('ui.buildingBlock.label')}
             </span>
           </a>
         </div>
@@ -59,7 +59,7 @@ const BuildingBlockFilter = () => {
           {format('filter.framework.title').toUpperCase()}
         </div>
         <div className='px-6'>
-          {format('filter.framework.subTitle', { entity: format('building-block.header') })}
+          {format('filter.framework.subTitle', { entity: format('ui.buildingBlock.header') })}
         </div>
         <div className='text-sm flex flex-col gap-3 px-6'>
           <SDGAutocomplete {...{ sdgs, setSDGs }} />
@@ -67,7 +67,7 @@ const BuildingBlockFilter = () => {
           <WorkflowAutocomplete {...{ workflows, setWorkflows }} />
         </div>
         <div className='text-xl px-6'>
-          {format('filter.entity', { entity: format('buildingBlock.label') }).toUpperCase()}
+          {format('filter.entity', { entity: format('ui.buildingBlock.label') }).toUpperCase()}
         </div>
         <div className='px-6'>
           <label className='inline'>

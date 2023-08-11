@@ -22,7 +22,7 @@ export const OrganizationAutocomplete = ({
 
   const controlPlaceholder = placeholder ??
     format('filter.byEntity', {
-      entity: format(aggregatorOnly ? 'aggregator.label' : 'organization.label')
+      entity: format(aggregatorOnly ? 'aggregator.label' : 'ui.organization.label')
     })
 
   const fetchOptions = async (input, aggregatorOnly, callback, query) => {
@@ -58,7 +58,7 @@ export const OrganizationAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', {
-          entity: aggregatorOnly ? format('aggregator.label') : format('organization.label')
+          entity: aggregatorOnly ? format('aggregator.label') : format('ui.organization.label')
         })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
@@ -69,7 +69,7 @@ export const OrganizationAutocomplete = ({
         placeholder={controlPlaceholder}
         noOptionsMessage={() => {
           format('filter.searchFor', {
-            entity: format(aggregatorOnly ? 'aggregator.header' : 'organization.header')
+            entity: format(aggregatorOnly ? 'aggregator.header' : 'ui.organization.header')
           })
         }}
         controlSize={controlSize}
@@ -95,7 +95,7 @@ export const OrganizationFilters = (props) => {
         <div className='py-1' key={organizationIdx}>
           <Pill
             key={`organization-${organizationIdx}`}
-            label={`${aggregatorOnly ? format('aggregator.label') : format('organization.label')}: ${organization.label}`}
+            label={`${aggregatorOnly ? format('aggregator.label') : format('ui.organization.label')}: ${organization.label}`}
             onRemove={() => removeOrganization(organization.slug)}
           />
         </div>
