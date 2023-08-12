@@ -9,7 +9,7 @@ const ProjectCard = ({ displayType, index, project }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-workflow'}`}>
+    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
       <div className='flex flex-row gap-x-6'>
         <div className='flex flex-col gap-y-3 max-w-3xl'>
           <div className='text-lg font-semibold text-dial-meadow'>
@@ -20,11 +20,11 @@ const ProjectCard = ({ displayType, index, project }) => {
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sdg.header')} ({project.sustainableDevelopmentGoals?.length ?? 0})
+              {format('ui.organization.header')} ({project.organizations?.length ?? 0})
             </div>
             <div className='border border-r text-dial-stratos-300' />
             <div className='text-sm'>
-              {format('ui.buildingBlock.header')} ({project.buildingBlocks?.length ?? 0})
+              {format('ui.product.header')} ({project.products?.length ?? 0})
             </div>
           </div>
         </div>

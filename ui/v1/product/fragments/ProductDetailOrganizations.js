@@ -121,7 +121,7 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
 
   const sectionDisclaimer =
     <div className='text-xs italic text-dial-stratos'>
-      {format('ui.organization.disclaimer')}
+      {format('ui.organization.disclaimer', { entity: format('ui.product.label') })}
     </div>
 
   const editModeBody =

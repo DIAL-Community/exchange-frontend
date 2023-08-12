@@ -92,12 +92,7 @@ export const PROJECT_DETAIL_QUERY = gql`
         id
         slug
         name
-        website
-        whenEndorsed
         imageFile
-        sectors {
-          name
-        }
       }
       products {
         id

@@ -7,13 +7,15 @@ const ProjectRibbon = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const titleImage =
-    <img
-      src='/ui/v1/project-header.svg'
-      alt={format('ui.image.logoAlt', { name: format('ui.project.label') })}
-      width={70}
-      height={70}
-      className='object-contain'
-    />
+    <div className='bg-dial-meadow rounded-full w-[70px] h-[70px]'>
+      <img
+        src='/ui/v1/project-header.svg'
+        alt={format('ui.image.logoAlt', { name: format('ui.project.label') })}
+        width={40}
+        height={40}
+        className='object-contain white-filter mx-auto mt-4'
+      />
+    </div>
 
   return (
     <Ribbon

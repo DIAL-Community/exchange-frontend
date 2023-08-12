@@ -55,7 +55,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
     </div>
 
   const displaySmallCard = () =>
-    <div className='rounded-lg bg-gradient-to-r from-organization-bg-light to-organization-bg h-16'>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         {organization.imageFile.indexOf('placeholder.svg') >= 0 &&
           <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>

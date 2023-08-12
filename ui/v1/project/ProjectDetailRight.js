@@ -8,6 +8,8 @@ import CommentsSection from '../shared/comment/CommentsSection'
 import ProjectDetailTags from './fragments/ProjectDetailTags'
 import DeleteProject from './DeleteProject'
 import ProjectDetailOrganizations from './fragments/ProjectDetailOrganizations'
+import ProjectDetailProducts from './fragments/ProjectDetailProducts'
+import ProjectDetailCountries from './fragments/ProjectDetailCountries'
 
 const ProjectDetailRight = forwardRef(({ project, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
@@ -17,20 +19,18 @@ const ProjectDetailRight = forwardRef(({ project, commentsSectionRef }, ref) => 
   const canEdit = (isAdminUser || isEditorUser) && !project.markdownUrl
 
   const descRef = useRef()
-  const pricingRef = useRef()
-  const sdgRef = useRef()
-  const buildingBlockRef = useRef()
   const organizationRef = useRef()
+  const productRef = useRef()
+  const countryRef = useRef()
   const tagRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.project.pricing.title', ref: pricingRef },
-      { value: 'ui.sdg.header', ref: sdgRef },
-      { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
       { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.product.header', ref: productRef },
+      { value: 'ui.country.header', ref: countryRef },
       { value: 'ui.tag.header', ref: tagRef }
     ],
     []
@@ -65,7 +65,27 @@ const ProjectDetailRight = forwardRef(({ project, commentsSectionRef }, ref) => 
       </div>
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <div className='flex flex-col gap-y-3'>
-        <ProjectDetailTags project={project} canEdit={canEdit} headerRef={tagRef} />
+        <ProjectDetailProducts
+          project={project}
+          canEdit={canEdit}
+          headerRef={productRef}
+        />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <div className='flex flex-col gap-y-3'>
+        <ProjectDetailCountries
+          project={project}
+          canEdit={canEdit}
+          headerRef={countryRef}
+        />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <div className='flex flex-col gap-y-3'>
+        <ProjectDetailTags
+          project={project}
+          canEdit={canEdit}
+          headerRef={tagRef}
+        />
       </div>
       <CommentsSection
         commentsSectionRef={commentsSectionRef}

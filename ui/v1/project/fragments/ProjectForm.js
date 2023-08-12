@@ -1,21 +1,18 @@
-import React, { useState, useCallback, useContext, useMemo } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
-import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
 import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
-import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_PROJECT } from '../../shared/mutation/project'
 import { REBRAND_BASE_PATH } from '../../utils/constants'
-import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
-import Checkbox from '../../shared/form/Checkbox'
 
 const ProjectForm = React.memo(({ project }) => {
   const { formatMessage } = useIntl()
@@ -65,24 +62,10 @@ const ProjectForm = React.memo(({ project }) => {
     defaultValues: {
       name: project?.name,
       aliases: project?.aliases?.length ? project?.aliases.map((value) => ({ value })) : [{ value: '' }],
-      website: project?.website,
-      description: project?.projectDescription?.description,
-      commercialProject: project?.commercialProject,
-      hostingModel: project?.hostingModel,
-      pricingModel: project?.pricingModel,
-      pricingDetails: project?.pricingDetails,
-      pricingUrl: project?.pricingUrl
+      projectUrl: project?.projectWebsite,
+      description: project?.projectDescription?.description
     }
   })
-
-  const { fields: aliases, append, remove } = useFieldArray({
-    control,
-    name: 'aliases',
-    shouldUnregister: true
-  })
-
-  const isSingleAlias = useMemo(() => aliases.length === 1, [aliases])
-  const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
 
   const doUpsert = async (data) => {
     if (user) {
@@ -93,27 +76,15 @@ const ProjectForm = React.memo(({ project }) => {
       const {
         name,
         imageFile,
-        website,
-        description,
-        aliases,
-        commercialProject,
-        pricingUrl,
-        hostingModel,
-        pricingModel,
-        pricingDetails
+        projectUrl,
+        description
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
-        aliases: aliases.map(({ value }) => value),
-        website,
-        description,
-        commercialProject,
-        pricingUrl,
-        hostingModel,
-        pricingModel,
-        pricingDetails
+        projectUrl,
+        description
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -160,43 +131,17 @@ const ProjectForm = React.memo(({ project }) => {
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label>{format('project.aliases')}</label>
-              {aliases.map((alias, aliasIdx) => (
-                <div key={alias.id} className='flex gap-x-2'>
-                  <Input {...register(`aliases.${aliasIdx}.value`)} placeholder={format('project.alias')} />
-                  {isLastAlias(aliasIdx) &&
-                    <IconButton
-                      className='bg-dial-meadow'
-                      icon={<FaPlus className='text-sm' />}
-                      onClick={() => append({ value: '' })}
-                    />
-                  }
-                  {!isSingleAlias &&
-                    <IconButton
-                      className='bg-dial-meadow'
-                      icon={<FaMinus className='text-sm' />}
-                      onClick={() => remove(aliasIdx)}
-                    />
-                  }
-                </div>
-              ))}
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='website'>
-                {format('project.website')}
+              <label htmlFor='projectUrl'>
+                {format('project.projectUrl')}
               </label>
               <Controller
-                id='website'
-                name='website'
+                id='projectUrl'
+                name='projectUrl'
                 control={control}
                 render={({ field: { value, onChange } }) => (
-                  <UrlInput value={value} onChange={onChange} id='website' placeholder={format('project.website')} />
+                  <UrlInput value={value} onChange={onChange} id='projectUrl' placeholder={format('project.projectUrl')} />
                 )}
               />
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label>{format('project.imageFile')}</label>
-              <FileUploader {...register('imageFile')} />
             </div>
             <div className='block flex flex-col gap-y-2'>
               <label className='required-field'>{format('project.description')}</label>
@@ -215,57 +160,6 @@ const ProjectForm = React.memo(({ project }) => {
                 rules={{ required: format('validation.required') }}
               />
               {errors.description && <ValidationError value={errors.description?.message} />}
-            </div>
-            <hr className='my-3' />
-            <div className='text-2xl font-semibold pb-4'>{format('project.pricingInformation')}</div>
-            <label className='flex gap-x-2 mb-2 items-center self-start'>
-              <Checkbox {...register('commercialProject')} />
-              {format('project.commercialProject')}
-            </label>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='pricingUrl'>
-                {format('project.pricingUrl')}
-              </label>
-              <Controller
-                name='pricingUrl'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <UrlInput
-                    value={value}
-                    onChange={onChange}
-                    id='pricingUrl'
-                    placeholder={format('project.pricingUrl')}
-                  />
-                )}
-              />
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='hostingModel'>
-                {format('project.hostingModel')}
-              </label>
-              <Input {...register('hostingModel')} id='hostingModel' placeholder={format('project.hostingModel')} />
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='pricingModel'>
-                {format('project.pricingModel')}
-              </label>
-              <Input {...register('pricingModel')} id='pricingModel' placeholder={format('project.pricingModel')} />
-            </div>
-            <div className='block flex flex-col gap-y-2'>
-              <label>{format('project.pricing.details')}</label>
-              <Controller
-                name='pricingDetails'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <HtmlEditor
-                    editorId='pricing-details-editor'
-                    onChange={onChange}
-                    initialContent={value}
-                    placeholder={format('project.pricing.details')}
-                    isInvalid={errors.pricingDetails}
-                  />
-                )}
-              />
             </div>
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button type='submit' className='submit-button' disabled={mutating || reverting}>

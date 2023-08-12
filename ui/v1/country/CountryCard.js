@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
 import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 
@@ -10,22 +9,18 @@ const CountryCard = ({ displayType, index, country, dismissCardHandler }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg h-[10rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-plum'>
             {country.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {country?.countryDescription && parse(country?.countryDescription.description)}
+            {country?.code} / {country?.codeLonger}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sector.header')} ({country.sectors?.length ?? 0})
-            </div>
-            <div className='border border-r text-dial-stratos-300' />
-            <div className='text-sm'>
-              {format('ui.country.header')} ({country.countries?.length ?? 0})
+              {format('ui.organization.header')} ({country.organizations?.length ?? 0})
             </div>
             <div className='border border-r text-dial-stratos-300' />
             <div className='text-sm'>

@@ -44,6 +44,14 @@ export const PAGINATED_COUNTRIES_QUERY = gql`
       id
       name
       slug
+      code
+      codeLonger
+      organizations {
+        id
+      }
+      projects {
+        id
+      }
     }
   }
 `

@@ -1869,7 +1869,7 @@ export const en = {
   'ui.organization.createNew': 'Create a new Organization',
   'organization.hint.title': 'What is an Organization?',
   'ui.organization.disclaimer': `
-    The following organizations support the development and / or implementation of this product.
+    The following organizations support the development and / or implementation of this {entity}.
   `,
 
   'ui.sector.label': 'Sector',
