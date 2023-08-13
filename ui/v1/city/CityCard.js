@@ -13,7 +13,7 @@ const CityCard = ({ displayType, index, city, dismissCardHandler }) => {
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='w-20 h-20 mx-auto'>
           <img
-            src='/ui/v1/user-header.svg'
+            src='/ui/v1/map-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.city.label') })}
             className='object-contain w-16 h-16'
           />

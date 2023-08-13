@@ -164,12 +164,8 @@ export const UPDATE_ORGANIZATION_PRODUCTS = gql`
 `
 
 export const DELETE_ORGANIZATION = gql`
-  mutation DeleteOrganization(
-    $id: ID!
-  ) {
-    deleteOrganization(
-      id: $id
-    ) {
+  mutation DeleteOrganization($id: ID!) {
+    deleteOrganization(id: $id) {
       organization {
        id
        slug

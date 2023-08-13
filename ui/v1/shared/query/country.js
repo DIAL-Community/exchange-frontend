@@ -20,12 +20,8 @@ export const COUNTRY_CODES_QUERY = gql`
 `
 
 export const COUNTRY_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeCountry(
-    $search: String
-  ) {
-    paginationAttributeCountry(
-      search: $search
-    ) {
+  query PaginationAttributeCountry($search: String) {
+    paginationAttributeCountry(search: $search) {
       totalCount
     }
   }
