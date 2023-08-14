@@ -3,6 +3,7 @@ image: node:lts-hydrogen
 stages:
   - build
   - test
+  - staging
   - deploy
 
 cache:
@@ -50,3 +51,16 @@ deploy:
    - 'ssh "$SERVER_IP" /root/gitlab-deploy.sh'
   only:
    - development
+
+build_docker:
+  image: docker:20.10.16
+  stage: staging
+  services:
+    - docker:20.10.16-dind
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  script:
+    - docker login -u $CI_DOCKER_HUB_USERNAME -p $CI_DOCKER_HUB_PASSWORD docker.io
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+
