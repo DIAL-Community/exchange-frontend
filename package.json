@@ -82,7 +82,7 @@
     "react-window-infinite-loader": "^1.0.9",
     "sharp": "^0.32.4",
     "styled-jsx": "^5.1.2",
-    "swagger-ui-react": "^5.3.1",
+    "swagger-ui-react": "^5.3.2",
     "swiper": "^10.1.0",
     "zxcvbn": "^4.4.2"
   },
@@ -91,7 +91,7 @@
     "@testing-library/dom": "^9.2.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.2.0",
+    "@testing-library/user-event": "^14.4.3",
     "autoprefixer": "^10.4.15",
     "babel-jest": "^29.6.2",
     "cypress": "^12.17.3",
