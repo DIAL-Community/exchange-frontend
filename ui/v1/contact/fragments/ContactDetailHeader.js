@@ -19,6 +19,16 @@ const ContactDetailHeader = ({ contact }) => {
           />
         </div>
       </div>
+      <div className='text-sm'>
+        <a
+          className='border-b border-dial-iris-blue'
+          href={`mailto:${contact.email}`}
+          target='_blank'
+          rel='noreferrer'
+        >
+          {contact.email} ⧉
+        </a>
+      </div>
     </div>
   )
 }

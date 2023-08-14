@@ -9,18 +9,29 @@ const CityCard = ({ displayType, index, city, dismissCardHandler }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        <div className='w-20 h-20 mx-auto'>
+        <div className='bg-dial-plum rounded-full w-14 h-14'>
           <img
             src='/ui/v1/map-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.city.label') })}
-            className='object-contain w-16 h-16'
+            className='object-contain w-8 h-8 mx-auto white-filter mt-2.5'
           />
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-plum'>
-            {city.name}
+            {[city.name, city.region.name, city.region.country.name].filter(name => name).join(', ')}
+          </div>
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.city.description', {
+              regionName: city.region.name,
+              countryName: city.region.country.name
+            })}
+          </div>
+          <div className='flex gap-x-2 text-dial-stratos'>
+            <div className='text-sm'>
+              {format('ui.organization.header')} ({city.organizations?.length ?? 0})
+            </div>
           </div>
         </div>
       </div>

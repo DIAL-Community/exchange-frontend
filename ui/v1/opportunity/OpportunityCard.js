@@ -41,7 +41,7 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissCardHandler }
             <div className='text-sm'>
               {format('ui.sdg.header')} ({opportunity.sustainableDevelopmentGoals?.length ?? 0})
             </div>
-            <div className='border border-r text-dial-stratos-300' />
+            <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
               {format('ui.buildingBlock.header')} ({opportunity.buildingBlocks?.length ?? 0})
             </div>

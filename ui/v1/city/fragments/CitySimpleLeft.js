@@ -13,7 +13,7 @@ const CitySimpleLeft = () => {
         </div>
         <div className='flex justify-center items-center py-16 bg-white rounded'>
           <img
-            src='/ui/v1/city-header.svg'
+            src='/ui/v1/map-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.city.label') })}
             width={100}
             height={100}

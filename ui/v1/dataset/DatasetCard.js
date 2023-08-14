@@ -41,7 +41,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
             <div className='text-sm'>
               {format('ui.sdg.header')} ({dataset.sustainableDevelopmentGoals?.length ?? 0})
             </div>
-            <div className='border border-r text-dial-stratos-300' />
+            <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
               {format('ui.sector.header')} ({dataset.sectors?.length ?? 0})
             </div>

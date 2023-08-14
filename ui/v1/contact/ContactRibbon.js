@@ -7,15 +7,13 @@ const ContactRibbon = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const titleImage =
-    <div className='bg-dial-plum rounded-full w-[70px] h-[70px]'>
-      <img
-        src='/ui/v1/user-header.svg'
-        alt={format('ui.image.logoAlt', { name: format('ui.contact.label') })}
-        width={40}
-        height={40}
-        className='object-contain mt-3 mx-auto white-filter'
-      />
-    </div>
+    <img
+      src='/ui/v1/user-header.svg'
+      alt={format('ui.image.logoAlt', { name: format('ui.contact.label') })}
+      width={70}
+      height={70}
+      className='object-contain mx-auto'
+    />
 
   return (
     <Ribbon

@@ -1,11 +1,15 @@
+import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType, ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
-import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
+import OrganizationCard from '../organization/OrganizationCard'
+import ProjectCard from '../project/ProjectCard'
 import DeleteCountry from './DeleteCountry'
+
+const CountryMarker = dynamic(() => import('./fragments/CountryMarker'), { ssr:false })
 
 const CountryDetailRight = forwardRef(({ country, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
@@ -15,21 +19,15 @@ const CountryDetailRight = forwardRef(({ country, commentsSectionRef }, ref) => 
   const canEdit = (isAdminUser || isEditorUser) && !country.markdownUrl
 
   const descRef = useRef()
-  const pricingRef = useRef()
-  const sdgRef = useRef()
-  const buildingBlockRef = useRef()
-  const countryRef = useRef()
-  const tagRef = useRef()
+  const organizationRef = useRef()
+  const projectRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.country.pricing.title', ref: pricingRef },
-      { value: 'ui.sdg.header', ref: sdgRef },
-      { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-      { value: 'ui.country.header', ref: countryRef },
-      { value: 'ui.tag.header', ref: tagRef }
+      { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.project.header', ref: projectRef }
     ],
     []
   )
@@ -46,11 +44,48 @@ const CountryDetailRight = forwardRef(({ country, commentsSectionRef }, ref) => 
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
-          <HtmlViewer
-            initialContent={country?.countryDescription?.description}
-            editorId='country-description'
-          />
+        <CountryMarker country={country} />
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-sm text-dial-stratos'>
+            {format('country.code')}: {country?.code}
+          </div>
+          <div className='text-sm text-dial-stratos'>
+            {format('country.codeLonger')}: {country?.codeLonger}
+          </div>
+        </div>
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6'/>
+      <div className='flex flex-col gap-y-3'>
+        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
+          {format('ui.organization.header')}
+        </div>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          {country?.organizations?.map((organization, index) =>
+            <div key={`organization-${index}`}>
+              <OrganizationCard
+                index={index}
+                organization={organization}
+                displayType={DisplayType.SMALL_CARD}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6'/>
+      <div className='flex flex-col gap-y-3'>
+        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={projectRef}>
+          {format('ui.project.header')}
+        </div>
+        <div className='flex flex-col gap-y-4'>
+          {country?.projects?.map((project, index) =>
+            <div key={`project-${index}`}>
+              <ProjectCard
+                index={index}
+                project={project}
+                displayType={DisplayType.SMALL_CARD}
+              />
+            </div>
+          )}
         </div>
       </div>
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />

@@ -58,6 +58,21 @@ export const COUNTRY_DETAIL_QUERY = gql`
       id
       name
       slug
+      code
+      codeLonger
+      latitude
+      longitude
+      organizations {
+        id
+        name
+        slug
+        imageFile
+      }
+      projects {
+        id
+        name
+        slug
+      }
     }
   }
 `

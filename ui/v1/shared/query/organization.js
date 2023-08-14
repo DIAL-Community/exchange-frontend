@@ -92,10 +92,11 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
         id
         name
         slug
-        city
         region
-        country {
-          codeLonger
+        cityData {
+          id
+          name
+          slug
         }
         latitude
         longitude
@@ -123,6 +124,7 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
         id
         name
         slug
+        code
       }
       products {
         id

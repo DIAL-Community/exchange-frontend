@@ -21,6 +21,11 @@ export const PAGINATED_CONTACTS_QUERY = gql`
       id
       name
       slug
+      email
+      title
+      organizations {
+        id
+      }
     }
   }
 `
@@ -31,6 +36,14 @@ export const CONTACT_DETAIL_QUERY = gql`
       id
       name
       slug
+      email
+      title
+      organizations {
+        id
+        name
+        slug
+        imageFile
+      }
     }
   }
 `

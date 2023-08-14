@@ -6,8 +6,7 @@ const ContactTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.contact.header',
-    'ui.contact.whatIs'
+    'ui.contact.header'
   ])
 
   useEffect(() => {

@@ -10,20 +10,8 @@ const ContactDetailNav = ({ scrollRef }) => {
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
   }, {
-    label: format('ui.contact.pricing.title'),
-    value: 'ui.contact.pricing.title'
-  }, {
-    label: format('ui.sdg.header'),
-    value: 'ui.sdg.header'
-  }, {
-    label: format('ui.buildingBlock.header'),
-    value: 'ui.buildingBlock.header'
-  }, {
-    label: format('ui.contact.header'),
-    value: 'ui.contact.header'
-  }, {
-    label: format('ui.tag.header'),
-    value: 'ui.tag.header'
+    label: format('ui.organization.header'),
+    value: 'ui.organization.header'
   }]
 
   const onNavigationChange = (selectedNav) => {

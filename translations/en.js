@@ -395,6 +395,7 @@ export const en = {
   'ui.contact.name.label': 'Name',
   'ui.contact.email.label': 'Email',
   'ui.contact.title.label': 'Title',
+  'ui.contact.createNew': 'Create New Contact Information',
 
   'ui.sector.header': 'Sectors',
   'ui.sector.label': 'Sector',
@@ -1913,6 +1914,7 @@ export const en = {
 
   'ui.country.label': 'Country',
   'ui.country.header': 'Countries',
+  'ui.country.logoAlt': 'Flag for country: {countryName}.',
 
   'ui.compareTool.label': 'Comparison Tool',
   'ui.compareTool.header': 'Comparison Tools',
@@ -1933,6 +1935,7 @@ export const en = {
 
   'ui.city.label': 'City',
   'ui.city.header': 'Cities',
+  'ui.city.description': 'City in {regionName} inside {countryName}.',
 
   'ui.candidateProduct.label': 'Candidate Product',
   'ui.candidateProduct.header': 'Candidate Products',

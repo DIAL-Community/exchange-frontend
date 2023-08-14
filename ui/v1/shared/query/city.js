@@ -21,6 +21,19 @@ export const PAGINATED_CITIES_QUERY = gql`
       id
       name
       slug
+      region {
+        id
+        name
+        slug
+        country {
+          id
+          name
+          slug
+        }
+      }
+      organizations {
+        id
+      }
     }
   }
 `
@@ -31,6 +44,24 @@ export const CITY_DETAIL_QUERY = gql`
       id
       name
       slug
+      latitude
+      longitude
+      region {
+        id
+        name
+        slug
+        country {
+          id
+          name
+          slug
+        }
+      }
+      organizations {
+        id
+        name
+        slug
+        imageFile
+      }
     }
   }
 `

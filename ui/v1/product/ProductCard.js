@@ -41,7 +41,7 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
             <div className='text-sm'>
               {format('ui.sdg.header')} ({product.sustainableDevelopmentGoals?.length ?? 0})
             </div>
-            <div className='border border-r text-dial-stratos-300' />
+            <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
               {format('ui.buildingBlock.header')} ({product.buildingBlocks?.length ?? 0})
             </div>

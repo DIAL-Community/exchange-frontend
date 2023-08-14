@@ -10,20 +10,8 @@ const CityDetailNav = ({ scrollRef }) => {
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
   }, {
-    label: format('ui.city.pricing.title'),
-    value: 'ui.city.pricing.title'
-  }, {
-    label: format('ui.sdg.header'),
-    value: 'ui.sdg.header'
-  }, {
-    label: format('ui.buildingBlock.header'),
-    value: 'ui.buildingBlock.header'
-  }, {
-    label: format('ui.city.header'),
-    value: 'ui.city.header'
-  }, {
-    label: format('ui.tag.header'),
-    value: 'ui.tag.header'
+    label: format('ui.organization.header'),
+    value: 'ui.organization.header'
   }]
 
   const onNavigationChange = (selectedNav) => {

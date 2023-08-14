@@ -5,7 +5,7 @@ import Auth0Provider from 'next-auth/providers/auth0'
 // Session expiration in millis
 const TOKEN_EXPIRATION = 24 * 60 * 60 * 1000
 
-export default NextAuth({
+const handler = NextAuth({
   secret: process.env.SECRET,
   // Configure one or more authentication providers
   providers: [
@@ -140,3 +140,5 @@ export default NextAuth({
     }
   }
 })
+
+export default handler

@@ -9,7 +9,7 @@ const ContactCard = ({ displayType, index, contact, dismissCardHandler }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='w-20 h-20 mx-auto'>
           <img
@@ -21,6 +21,19 @@ const ContactCard = ({ displayType, index, contact, dismissCardHandler }) => {
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-plum'>
             {contact.name}
+          </div>
+          <div className='flex flex-col gap-y-1'>
+            <div className='text-sm text-dial-stratos'>
+              {contact.email ?? format('general.na')}
+            </div>
+            <div className='text-sm text-dial-stratos'>
+              {contact.title ?? format('general.na')}
+            </div>
+          </div>
+          <div className='flex gap-x-2 text-dial-stratos'>
+            <div className='text-sm'>
+              {format('ui.organization.header')} ({contact.organizations?.length ?? 0})
+            </div>
           </div>
         </div>
       </div>

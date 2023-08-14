@@ -17,10 +17,10 @@ const OrganizationDetailOffices = ({ organization, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const mapOfficeCallback = ({ name, slug, city, country, region, latitude, longitude }) => ({
+  const mapOfficeCallback = ({ name, cityData, country, region, latitude, longitude }) => ({
     name,
-    slug,
-    cityName: city,
+    slug: cityData.slug,
+    cityName: cityData.name,
     regionName: region,
     countryCode: country?.codeLonger,
     latitude,

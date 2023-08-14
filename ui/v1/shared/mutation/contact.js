@@ -17,15 +17,21 @@ export const CREATE_CONTACT = gql`
   mutation CreateContact(
     $name: String!
     $slug: String!
+    $email: String!
+    $title: String!
   ) {
     createContact(
       name: $name
       slug: $slug
+      email: $email
+      title: $title
     ) {
-      country {
+      contact {
         id
         name
         slug
+        email
+        title
       }
       errors
     }

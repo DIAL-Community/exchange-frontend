@@ -41,11 +41,11 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
             <div className='text-sm'>
               {format('ui.sector.header')} ({organization.sectors?.length ?? 0})
             </div>
-            <div className='border border-r text-dial-stratos-300' />
+            <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
               {format('ui.country.header')} ({organization.countries?.length ?? 0})
             </div>
-            <div className='border border-r text-dial-stratos-300' />
+            <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
               {format('ui.project.header')} ({organization.projects?.length ?? 0})
             </div>
