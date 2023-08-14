@@ -44,7 +44,7 @@ export const CANDIDATE_DATASETS_QUERY = gql`
         id
         slug
         name
-        dataUrl
+        website
         dataType
         submitterEmail
         rejected

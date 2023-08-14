@@ -45,8 +45,8 @@ const DatasetCard = ({ dataset, listType }) => {
                         {dataset.name}
                       </div>
                       <div className='my-auto line-clamp-1 text-dial-blue'>
-                        <a href={prependUrlWithProtocol(dataset.dataUrl)} target='_blank' rel='noreferrer'>
-                          {dataset.dataUrl} ⧉
+                        <a href={prependUrlWithProtocol(dataset.website)} target='_blank' rel='noreferrer'>
+                          {dataset.website} ⧉
                         </a>
                       </div>
                       <div className='line-clamp-2'>
@@ -154,16 +154,16 @@ const DatasetCard = ({ dataset, listType }) => {
                     </div>
                     <div className='px-3 ml-auto flex flex-row'>
                       {
-                        dataset.dataUrl
+                        dataset.website
                           ? (
                             <a
-                              href={prependUrlWithProtocol(dataset.dataUrl)}
+                              href={prependUrlWithProtocol(dataset.website)}
                               target='_blank'
                               rel='noreferrer'
                               className={'py-1 px-2 bg-white text-dial-blue break-all line-clamp-1'}
                             >
                               <span className={hoverEffectTextStyle}>
-                                {dataset.dataUrl} ⧉
+                                {dataset.website} ⧉
                               </span>
                             </a>
                           )

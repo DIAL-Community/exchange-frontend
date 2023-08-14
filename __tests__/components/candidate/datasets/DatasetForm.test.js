@@ -10,7 +10,7 @@ mockNextUseRouter()
 describe('Unit tests for the DatasetForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const CANDIDATE_DATASET_NAME_TEST_ID = 'candidate-dataset-name'
-  const CANDIDATE_DATASET_URL_TEST_ID = 'candidate-dataset-dataUrl'
+  const CANDIDATE_DATASET_URL_TEST_ID = 'candidate-dataset-website'
   const CANDIDATE_DATASET_EMAIL_TEST_ID = 'candidate-dataset-email'
   const CANDIDATE_DATASET_DESCRIPTION_TEST_ID = 'candidate-dataset-description'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'

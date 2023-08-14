@@ -4,28 +4,28 @@ export const CREATE_CANDIDATE_DATASET = gql`
   mutation CreateCandidateDataset(
     $name: String!
     $slug: String!
-    $dataUrl: String!
-    $dataType: String!
+    $website: String!
+    $datasetType: String!
     $description: String!
-    $dataVisualizationUrl: String
+    $visualizationUrl: String
     $submitterEmail: String!
     $captcha: String!
   ) {
     createCandidateDataset (
       name: $name
       slug: $slug
-      dataUrl: $dataUrl
-      dataType: $dataType
+      website: $website
+      datasetType: $datasetType
       description: $description
-      dataVisualizationUrl: $dataVisualizationUrl
+      visualizationUrl: $visualizationUrl
       submitterEmail: $submitterEmail
       captcha: $captcha
     ) {
       candidateDataset {
         name
         slug
-        dataUrl
-        dataVisualizationUrl
+        website
+        visualizationUrl
         description
       }
       errors

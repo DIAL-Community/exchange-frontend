@@ -29,9 +29,9 @@ export const PAGINATED_CANDIDATE_DATASETS_QUERY = gql`
   }
 `
 
-export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
-  query CandidateProduct($slug: String!) {
-    candidateProduct(slug: $slug) {
+export const CANDIDATE_DATASET_DETAIL_QUERY = gql`
+  query CandidateDataset($slug: String!) {
+    candidateDataset(slug: $slug) {
       id
       name
       slug

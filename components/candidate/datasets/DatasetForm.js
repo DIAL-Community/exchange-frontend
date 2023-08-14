@@ -67,9 +67,9 @@ const DatasetForm = () => {
     shouldUnregister: true,
     defaultValues: {
       name: '',
-      dataUrl: '',
-      dataVisualizationUrl: '',
-      dataType: datasetTypeOptions[0],
+      website: '',
+      visualizationUrl: '',
+      datasetType: datasetTypeOptions[0],
       submitterEmail: '',
       description: '',
       captcha: null
@@ -85,9 +85,9 @@ const DatasetForm = () => {
       const { userEmail, userToken } = user
       const {
         name,
-        dataUrl,
-        dataVisualizationUrl,
-        dataType,
+        website,
+        visualizationUrl,
+        datasetType,
         submitterEmail,
         description
       } = data
@@ -96,9 +96,9 @@ const DatasetForm = () => {
         variables: {
           name,
           slug: '',
-          dataUrl,
-          dataVisualizationUrl,
-          dataType: dataType.value,
+          website,
+          visualizationUrl,
+          datasetType: datasetType.value,
           submitterEmail,
           description,
           captcha
@@ -163,25 +163,25 @@ const DatasetForm = () => {
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
-                  <div className='form-field-wrapper' data-testid='candidate-dataset-dataUrl'>
-                    <label className='form-field-label required-field' htmlFor='dataUrl'>
+                  <div className='form-field-wrapper' data-testid='candidate-dataset-website'>
+                    <label className='form-field-label required-field' htmlFor='website'>
                       {format('dataset.website')}
                     </label>
                     <Controller
-                      name='dataUrl'
+                      name='website'
                       control={control}
                       render={({ field: { value, onChange } }) => (
                         <UrlInput
                           value={value}
                           onChange={onChange}
-                          id='dataUrl'
-                          isInvalid={errors.dataUrl}
+                          id='website'
+                          isInvalid={errors.website}
                           placeholder={format('dataset.website')}
                         />
                       )}
                       rules={{ required: format('validation.required') }}
                     />
-                    {errors.dataUrl && <ValidationError value={errors.dataUrl?.message} />}
+                    {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
                   <div className='form-field-wrapper'>
                     <label className='form-field-label' htmlFor='dataVisualizationUrl'>
