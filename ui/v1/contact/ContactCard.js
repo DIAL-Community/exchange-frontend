@@ -42,21 +42,19 @@ const ContactCard = ({ displayType, index, contact, dismissCardHandler }) => {
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-24'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
-        <div className='rounded-full bg-dial-plum w-10 h-10 my-auto'>
-          <img
-            src='/ui/v1/user-header.svg'
-            alt={format('ui.image.logoAlt', { name: format('ui.contact.header') })}
-            className='object-contain w-10 h-10 my-auto'
-          />
-        </div>
+        <img
+          src='/ui/v1/user-header.svg'
+          alt={format('ui.image.logoAlt', { name: format('ui.contact.header') })}
+          className='object-contain w-10 h-10 my-auto'
+        />
         <div className='flex flex-col gap-y-2 py-3 text-dial-stratos'>
           <div className='text-sm font-semibold text-dial-iris-blue'>
             {contact.name}
           </div>
-          <div className='text-xs'>
+          <div className='text-xs line-clamp-1'>
             {contact.email}
           </div>
-          <div className='text-xs'>
+          <div className='text-xs line-clamp-1'>
             {contact.title}
           </div>
         </div>
