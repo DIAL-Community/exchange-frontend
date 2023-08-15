@@ -1,15 +1,15 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useState, useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
+import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
 import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
-import FileUploader from '../../../shared/form/FileUploader'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../shared/mutation/candidateOrganization'
 import UrlInput from '../../../shared/form/UrlInput'
@@ -17,6 +17,9 @@ import UrlInput from '../../../shared/form/UrlInput'
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const captchaRef = useRef()
+  const [captchaValue, setCaptchaValue] = useState()
 
   const slug = organization?.slug ?? ''
 
@@ -59,6 +62,8 @@ const OrganizationForm = React.memo(({ organization }) => {
     }
   })
 
+  const [submitter] = organization ? organization.contacts : []
+
   const {
     handleSubmit,
     register,
@@ -69,9 +74,12 @@ const OrganizationForm = React.memo(({ organization }) => {
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: organization?.name,
+      organizationName: organization?.name,
       website: organization?.website ?? '',
-      description: organization?.organizationDescription?.description
+      description: organization?.description,
+      name: submitter?.name,
+      email: submitter?.email,
+      title: submitter?.title
     }
   })
 
@@ -82,20 +90,23 @@ const OrganizationForm = React.memo(({ organization }) => {
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
       const {
-        name,
-        imageFile,
         website,
-        description
+        description,
+        organizationName,
+        name,
+        email,
+        title
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
-        name,
         slug,
+        organizationName,
         website,
-        description
-      }
-      if (imageFile) {
-        variables.imageFile = imageFile[0]
+        description,
+        name,
+        email,
+        title,
+        captcha: captchaValue
       }
 
       updateOrganization({
@@ -108,6 +119,10 @@ const OrganizationForm = React.memo(({ organization }) => {
         }
       })
     }
+  }
+
+  const updateCaptchaData = (value) => {
+    setCaptchaValue(value)
   }
 
   const cancelForm = () => {
@@ -127,16 +142,16 @@ const OrganizationForm = React.memo(({ organization }) => {
               : `${format('app.createNew')} ${format('ui.organization.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('organization.name')}
+            <label className='text-dial-sapphire required-field' htmlFor='organizationName'>
+              {format('ui.candidateOrganization.organizationName')}
             </label>
             <Input
-              {...register('name', { required: format('validation.required') })}
-              id='name'
-              placeholder={format('organization.name')}
-              isInvalid={errors.name}
+              id='organizationName'
+              {...register('organizationName', { required: format('validation.required') })}
+              placeholder={format('ui.candidateOrganization.organizationName.placeholder')}
+              isInvalid={errors.organizationName}
             />
-            {errors.name && <ValidationError value={errors.name?.message} />}
+            {errors.organizationName && <ValidationError value={errors.organizationName?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='website'>
@@ -147,20 +162,16 @@ const OrganizationForm = React.memo(({ organization }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <UrlInput
+                  id='website'
                   value={value}
                   onChange={onChange}
-                  id='website'
                   isInvalid={errors.website}
-                  placeholder={format('organization.website')}
+                  placeholder={format('ui.candidateOrganization.website.placeholder')}
                 />
               )}
               rules={{ required: format('validation.required') }}
             />
             {errors.website && <ValidationError value={errors.website?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('organization.imageFile')}</label>
-            <FileUploader {...register('imageFile')} />
           </div>
           <div className='block flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field'>
@@ -174,7 +185,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                   editorId='description-editor'
                   onChange={onChange}
                   initialContent={value}
-                  placeholder={format('organization.description')}
+                  placeholder={format('ui.candidateOrganization.description.placeholder')}
                   isInvalid={errors.description}
                 />
               )}
@@ -182,6 +193,46 @@ const OrganizationForm = React.memo(({ organization }) => {
             />
             {errors.description && <ValidationError value={errors.description?.message} />}
           </div>
+          <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='name'>
+              {format('ui.candidateOrganization.name')}
+            </label>
+            <Input
+              id='name'
+              {...register('name', { required: format('validation.required') })}
+              placeholder={format('ui.candidateOrganization.name.placeholder')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='email'>
+              {format('ui.candidateOrganization.email')}
+            </label>
+            <Input
+              id='email'
+              {...register('email', { required: format('validation.required') })}
+              placeholder={format('ui.candidateOrganization.email.placeholder')}
+              isInvalid={errors.email}
+            />
+            {errors.email && <ValidationError value={errors.email?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label htmlFor='title'>
+              {format('ui.candidateOrganization.title')}
+            </label>
+            <Input
+              id='title'
+              {...register('title')}
+              placeholder={format('ui.candidateOrganization.title.placeholder')}
+            />
+          </div>
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+            onChange={updateCaptchaData}
+            ref={captchaRef}
+          />
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>
               {`${format('app.submit')} ${format('ui.organization.label')}`}

@@ -21,13 +21,14 @@ const DatasetForm = React.memo(({ dataset }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const captchaRef = useRef()
+  const [captchaValue, setCaptchaValue] = useState()
+
   const slug = dataset?.slug ?? ''
 
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
-  const [captchaValue, setCaptchaValue] = useState()
 
   const { showToast } = useContext(ToastContext)
 

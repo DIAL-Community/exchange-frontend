@@ -23,6 +23,9 @@ export const PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY = gql`
       slug
       website
       description
+      contacts {
+        id
+      }
     }
   }
 `
@@ -35,6 +38,12 @@ export const CANDIDATE_ORGANIZATION_DETAIL_QUERY = gql`
       slug
       website
       description
+      contacts {
+        id
+        name
+        email
+        title
+      }
     }
   }
 `

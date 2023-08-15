@@ -2,19 +2,21 @@ import { gql } from '@apollo/client'
 
 export const CREATE_CANDIDATE_ORGANIZATION = gql`
   mutation CreateCandidateOrganization(
-    $organizationName: String!
+    $slug: String
     $website: String!
-    $name: String!
     $description: String!
+    $organizationName: String!
+    $name: String!
     $email: String!
-    $title: String!
+    $title: String
     $captcha: String!
   ) {
     createCandidateOrganization(
-      organizationName: $organizationName
+      slug: $slug
       website: $website
-      name: $name
       description: $description
+      organizationName: $organizationName
+      name: $name
       email: $email
       title: $title
       captcha: $captcha

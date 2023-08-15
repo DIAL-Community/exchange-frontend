@@ -62,7 +62,7 @@ export const HtmlEditor = ({
               }
               body {
                 font-family: 'Poppins', sans-serif;
-                font-size: 14pt;
+                font-size: 12pt;
               }
               .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
                 margin-left: 1rem;
