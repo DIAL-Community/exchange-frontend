@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import Breadcrumb from '../Breadcrumb'
+import Breadcrumb from '../../shared/Breadcrumb'
 import { CANDIDATE_PRODUCT_DETAIL_QUERY } from '../../shared/query/candidateProduct'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import ProductDetailRight from './ProductDetailRight'

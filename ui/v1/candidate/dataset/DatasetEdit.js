@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import Breadcrumb from '../Breadcrumb'
+import Breadcrumb from '../../shared/Breadcrumb'
 import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import DatasetForm from './fragments/DatasetForm'

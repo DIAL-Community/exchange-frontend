@@ -37,15 +37,14 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
     { value: 'ui.tag.header', ref: tagRef }
   ]), [])
 
+  const editPath = `${REBRAND_BASE_PATH}/use-cases/${useCase.slug}/edit`
+
   return (
     <div className='flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
       <div className='flex flex-col gap-y-3'>
         {canEdit &&
           <div className='flex gap-x-3 ml-auto'>
-            <EditButton
-              type='link'
-              href={`${REBRAND_BASE_PATH}/use-cases/${useCase.slug}/edit`}
-            />
+            <EditButton type='link' href={editPath} />
             {isAdminUser && <DeleteUseCase useCase={useCase} />}
           </div>
         }
