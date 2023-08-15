@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react'
 import Bookmark from '../../shared/common/Bookmark'
 import Comment from '../../shared/common/Comment'
 import Share from '../../shared/common/Share'
-import { ObjectType, REBRAND_BASE_PATH } from '../../utils/constants'
+import { ObjectType } from '../../utils/constants'
 import {
   ProjectFilterContext,
   ProjectFilterDispatchContext
@@ -24,7 +24,7 @@ const ProjectListLeft = () => {
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = `${REBRAND_BASE_PATH}/projects`
+    const basePath = '/projects'
 
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const productFilters = products.map(product => `countries=${product.value}--${product.label}`)

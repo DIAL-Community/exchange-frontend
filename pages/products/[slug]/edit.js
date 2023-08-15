@@ -1,73 +1,40 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import NotFound from '../../../components/shared/NotFound'
-import ProductForm from '../../../components/products/ProductForm'
-import { useProductOwnerUser, useUser } from '../../../lib/hooks'
+import Footer from '../../../ui/v1/shared/Footer'
+import ProductEdit from '../../../ui/v1/product/ProductEdit'
 
-const PRODUCT_QUERY = gql`
-  query Product($slug: String!) {
-    product(slug: $slug) {
-      id
-      name
-      slug
-      website
-      aliases
-      hostingModel
-      pricingModel
-      pricingDetails
-      commercialProduct
-      productDescription {
-        description
-        locale
-      }
-    }
-  }
-`
+const EditProductPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-const EditProduct = () => {
-  const router = useRouter()
-
-  const { locale } = router
-  const { slug } = router.query
-  const { loading, error, data } = useQuery(PRODUCT_QUERY, {
-    variables: { slug, locale },
-    skip: !slug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  const { isAdminUser, loadingUserSession } = useUser()
-  const { isProductOwner } = useProductOwnerUser(data?.product, [], loadingUserSession || isAdminUser)
-
-  const isAuthorized = isAdminUser || isProductOwner
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.product) {
-    return <NotFound />
-  }
+  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
-      {data?.product && (
-        <ClientOnly>
-          {loadingUserSession
-            ? <Loading />
-            : isAuthorized
-              ? <ProductForm product={data.product} />
-              : <Unauthorized />
-          }
-        </ClientOnly>
-      )}
-      <Footer />
+      <NextSeo
+        title={format('ui.product.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.product.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
+      <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ProductEdit slug={slug} locale={locale} />
+        </div>
+        <Footer />
+      </ClientOnly>
     </>
   )
 }
 
-export default EditProduct
+export default EditProductPage

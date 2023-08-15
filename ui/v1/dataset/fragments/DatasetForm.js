@@ -12,7 +12,6 @@ import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_DATASET } from '../../shared/mutation/dataset'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
 import Select from '../../shared/form/Select'
@@ -37,7 +36,7 @@ const DatasetForm = React.memo(({ dataset }) => {
   const [updateDataset, { reset }] = useMutation(CREATE_DATASET, {
     onCompleted: (data) => {
       if (data.createDataset.dataset && data.createDataset.errors.length === 0) {
-        const redirectPath = `/${router.locale}/datasets/${data.createDataset.dataset.slug}`
+        const redirectPath = `/${locale}/datasets/${data.createDataset.dataset.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
@@ -148,7 +147,7 @@ const DatasetForm = React.memo(({ dataset }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/datasets/${slug}`)
+    router.push(`/${locale}/datasets/${slug}`)
   }
 
   return loadingUserSession ? (

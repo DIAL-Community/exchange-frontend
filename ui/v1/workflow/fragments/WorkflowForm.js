@@ -12,7 +12,6 @@ import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_WORKFLOW } from '../../shared/mutation/workflow'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 
 const WorkflowForm = React.memo(({ workflow }) => {
   const { formatMessage } = useIntl()
@@ -33,7 +32,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
   const [updateWorkflow, { reset }] = useMutation(CREATE_WORKFLOW, {
     onCompleted: (data) => {
       if (data.createWorkflow.workflow && data.createWorkflow.errors.length === 0) {
-        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}/workflows/${data.createWorkflow.workflow.slug}`
+        const redirectPath = `/${locale}/workflows/${data.createWorkflow.workflow.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
@@ -95,7 +94,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/workflows/${slug}`)
+    router.push(`/${locale}/workflows/${slug}`)
   }
 
   return loadingUserSession ? (

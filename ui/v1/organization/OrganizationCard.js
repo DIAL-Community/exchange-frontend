@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType } from '../utils/constants'
 
 const OrganizationCard = ({ displayType, index, organization, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
@@ -81,7 +81,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
 
   return (
     <div className='relative'>
-      <Link href={`${REBRAND_BASE_PATH}/organizations/${organization.slug}`}>
+      <Link href={`/organizations/${organization.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

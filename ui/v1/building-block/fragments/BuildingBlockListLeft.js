@@ -9,7 +9,7 @@ import Bookmark from '../../shared/common/Bookmark'
 import Comment from '../../shared/common/Comment'
 import Share from '../../shared/common/Share'
 import { parseQuery } from '../../utils/share'
-import { ObjectType, REBRAND_BASE_PATH } from '../../utils/constants'
+import { ObjectType } from '../../utils/constants'
 import BuildingBlockFilter from './BuildingBlockFilter'
 
 const BuildingBlockListLeft = () => {
@@ -24,7 +24,7 @@ const BuildingBlockListLeft = () => {
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = `${REBRAND_BASE_PATH}/building-blocks`
+    const basePath = '/building-blocks'
 
     const showMatureFilter = showMature ? 'showMature=true' : ''
     const sdgFilters = sdgs.map((sdg) => `sdgs=${sdg.value}--${sdg.label}`)

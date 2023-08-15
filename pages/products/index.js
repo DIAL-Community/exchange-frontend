@@ -1,28 +1,20 @@
-import { useCallback, useContext } from 'react'
-import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { NextSeo } from 'next-seo'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import GradientBackground from '../../components/shared/GradientBackground'
-import QueryNotification from '../../components/shared/QueryNotification'
-import TabNav from '../../components/main/TabNav'
-import MobileNav from '../../components/main/MobileNav'
-import PageContent from '../../components/main/PageContent'
-import ProductFilter from '../../components/products/ProductFilter'
-import ProductActiveFilter from '../../components/products/ProductActiveFilter'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../components/context/ProductFilterContext'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
-const ProductListQuery = dynamic(() => import('../../components/products/ProductList'), { ssr: false })
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import ProductRibbon from '../../ui/v1/product/ProductRibbon'
+import ProductTabNav from '../../ui/v1/product/ProductTabNav'
+import ProductMain from '../../ui/v1/product/ProductMain'
 
-const Products = () => {
+const ProductListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(ProductFilterContext)
-  const { setSearch } = useContext(ProductFilterDispatchContext)
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
@@ -30,34 +22,24 @@ const Products = () => {
         title={format('ui.product.header')}
         description={
           format(
-            'shared.metadata.description.comprehensiveListOf',
+            'shared.metadata.description.listOfKey',
             { entities: format('ui.product.header')?.toLocaleLowerCase() }
           )
         }
       />
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
-        <TabNav activeTab='filter.entity.products' />
-        <MobileNav activeTab='filter.entity.products' />
-        <PageContent
-          activeTab='filter.entity.products'
-          filter={<ProductFilter />}
-          content={<ProductListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              hint='filter.entity.products'
-            />
-          }
-          activeFilter={<ProductActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ProductRibbon />
+          <ProductTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProductMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Products
+export default ProductListPage

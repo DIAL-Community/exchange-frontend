@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType } from '../utils/constants'
 
 const WorkflowCard = ({ displayType, index, workflow, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
@@ -79,7 +79,7 @@ const WorkflowCard = ({ displayType, index, workflow, dismissCardHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={`${REBRAND_BASE_PATH}/workflows/${workflow.slug}`}>
+      <Link href={`/workflows/${workflow.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

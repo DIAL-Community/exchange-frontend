@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../utils/constants'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 import { ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 import { DELETE_COUNTRY } from '../shared/mutation/country'
@@ -42,7 +42,7 @@ const DeleteCountry = ({ country }) => {
           'top-center',
           1000,
           null,
-          () => router.push(`${REBRAND_BASE_PATH}/countries`)
+          () => router.push(`/${locale}/countries`)
         )
       } else {
         setDisplayConfirmDialog(false)

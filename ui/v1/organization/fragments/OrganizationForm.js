@@ -12,7 +12,6 @@ import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_ORGANIZATION } from '../../shared/mutation/organization'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
 import Checkbox from '../../shared/form/Checkbox'
@@ -37,7 +36,7 @@ const OrganizationForm = React.memo(({ organization }) => {
   const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
     onCompleted: (data) => {
       if (data.createOrganization.organization && data.createOrganization.errors.length === 0) {
-        const redirectPath = `/${router.locale}/organizations/${data.createOrganization.organization.slug}`
+        const redirectPath = `/${locale}/organizations/${data.createOrganization.organization.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
@@ -159,7 +158,7 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/organizations/${slug}`)
+    router.push(`/${locale}/organizations/${slug}`)
   }
 
   return loadingUserSession ? (

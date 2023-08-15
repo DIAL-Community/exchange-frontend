@@ -3,7 +3,7 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa6'
 import WorkflowCard from '../workflow/WorkflowCard'
-import { DisplayType, ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import BuildingBlockCard from '../building-block/BuildingBlockCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
@@ -37,7 +37,7 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
     { value: 'ui.tag.header', ref: tagRef }
   ]), [])
 
-  const editPath = `${REBRAND_BASE_PATH}/use-cases/${useCase.slug}/edit`
+  const editPath = `${useCase.slug}/edit`
 
   return (
     <div className='flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
@@ -70,7 +70,6 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
               className='ml-auto'
               label={format('app.create')}
               href={
-                `${REBRAND_BASE_PATH}` +
                 `/use-cases/${useCase.slug}` +
                 '/use-case-steps/create'
               }
@@ -82,7 +81,6 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
             <Link
               key={index}
               href={
-                `${REBRAND_BASE_PATH}` +
                 `/use-cases/${useCase.slug}` +
                 `/use-case-steps/${useCaseStep.slug}`
               }

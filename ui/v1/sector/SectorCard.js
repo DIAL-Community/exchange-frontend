@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType } from '../utils/constants'
 
 const SectorCard = ({ displayType, index, sector, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
@@ -47,7 +47,7 @@ const SectorCard = ({ displayType, index, sector, dismissCardHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={`${REBRAND_BASE_PATH}/sectors/${sector.slug}`}>
+      <Link href={`/sectors/${sector.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

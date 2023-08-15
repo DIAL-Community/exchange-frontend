@@ -1,13 +1,13 @@
 import Bookmark from '../../shared/common/Bookmark'
 import Comment from '../../shared/common/Comment'
 import Share from '../../shared/common/Share'
-import { ObjectType, REBRAND_BASE_PATH } from '../../utils/constants'
+import { ObjectType } from '../../utils/constants'
 
 const TagListLeft = () => {
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = `${REBRAND_BASE_PATH}/tags`
+    const basePath = '/tags'
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter].filter(f => f).join('&')

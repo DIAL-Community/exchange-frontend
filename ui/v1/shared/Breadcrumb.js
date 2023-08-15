@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import { REBRAND_BASE_PATH } from '../utils/constants'
 
 const convertBreadcrumb = string => {
   return string
@@ -41,10 +40,17 @@ const basePathMappings = {
   'workflows': 'ui.workflow.header'
 }
 
+const candidatePathMappings = {
+  'datasets': 'ui.candidateDataset.header',
+  'organizations': 'ui.candidateOrganization.header',
+  'products': 'ui.candidateProduct.header',
+  'roles': 'ui.candidateRole.header'
+}
+
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
 
 const Breadcrumb = ({ slugNameMapping }) => {
-  const { pathname, query } = useRouter()
+  const { locales, pathname, query } = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState([])
 
   const { formatMessage } = useIntl()
@@ -52,26 +58,37 @@ const Breadcrumb = ({ slugNameMapping }) => {
 
   useEffect(() => {
     const linkPath = window.location.pathname
-      .replace(REBRAND_BASE_PATH, '')
       .split('/')
       .filter(path => path)
 
     let candidatePath = false
     const pathArray = linkPath
       .map((path, i) => {
+        if (locales.indexOf(path) >= 0) {
+          return {}
+        }
+
+        if (path.indexOf('candidate') >= 0) {
+          candidatePath = true
+
+          return {}
+        }
+
         const label = !candidatePath && basePathMappings[path]
           ? format(basePathMappings[path])
-          : slugNameMapping[path]
+          : candidatePath && candidatePathMappings[path]
+            ? format(candidatePathMappings[path])
+            : slugNameMapping[path]
 
         return {
           breadcrumb: label,
-          href: `${REBRAND_BASE_PATH}/${linkPath.slice(0, i + 1).join('/')}`
+          href: `/${linkPath.slice(0, i + 1).join('/')}`
         }
       })
       .filter(path => path.breadcrumb && path.href)
 
     setBreadcrumbs(pathArray)
-  }, [slugNameMapping, pathname, query, format])
+  }, [slugNameMapping, pathname, query, locales, format])
 
   if (!breadcrumbs) {
     return null
@@ -79,7 +96,7 @@ const Breadcrumb = ({ slugNameMapping }) => {
 
   return (
     <div className='whitespace-nowrap text-ellipsis overflow-hidden'>
-      <Link href='/ui/v1/' className='h5'>
+      <Link href='/' className='h5'>
         {format('app.home')}
       </Link>
       {breadcrumbs.map((breadcrumb, i) => {

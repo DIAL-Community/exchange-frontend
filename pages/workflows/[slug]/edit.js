@@ -1,42 +1,40 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import { Loading, Error } from '../../../components/shared/FetchStatus'
-import NotFound from '../../../components/shared/NotFound'
-import { WORKFLOW_DETAIL_QUERY } from '../../../queries/workflow'
-import WorkflowForm from '../../../components/workflows/WorkflowForm'
+import Footer from '../../../ui/v1/shared/Footer'
+import WorkflowEdit from '../../../ui/v1/workflow/WorkflowEdit'
 
-const EditWorkflow = () => {
-  const router = useRouter()
+const EditWorkflowPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { locale } = router
-  const { slug } = router.query
-
-  const { loading, error, data } = useQuery(WORKFLOW_DETAIL_QUERY, {
-    variables: { slug, locale },
-    skip: !slug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.workflow) {
-    return <NotFound />
-  }
+  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.workflow.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.workflow.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        {data?.workflow && <WorkflowForm workflow={data.workflow} />}
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <WorkflowEdit slug={slug} locale={locale} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default EditWorkflow
+export default EditWorkflowPage

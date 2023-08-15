@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { DisplayType, ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -32,12 +32,14 @@ const CountryDetailRight = forwardRef(({ country, commentsSectionRef }, ref) => 
     []
   )
 
+  const editPath = `${country.slug}/edit`
+
   return (
     <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={`${REBRAND_BASE_PATH}/countries/${country.slug}/edit`} />
+            <EditButton type='link' href={editPath} />
             {isAdminUser && <DeleteCountry country={country} />}
           </div>
         )}

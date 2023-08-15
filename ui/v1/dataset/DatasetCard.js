@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType } from '../utils/constants'
 
 const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
@@ -77,7 +77,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={`${REBRAND_BASE_PATH}/datasets/${dataset.slug}`}>
+      <Link href={`/datasets/${dataset.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

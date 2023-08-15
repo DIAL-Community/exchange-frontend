@@ -10,7 +10,6 @@ import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CITY } from '../../shared/mutation/city'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 
 const CityForm = React.memo(({ city }) => {
   const { formatMessage } = useIntl()
@@ -31,7 +30,7 @@ const CityForm = React.memo(({ city }) => {
   const [updateCity, { reset }] = useMutation(CREATE_CITY, {
     onCompleted: (data) => {
       if (data.createCity.city && data.createCity.errors.length === 0) {
-        const redirectPath = `/${router.locale}/cities/${data.createCity.city.slug}`
+        const redirectPath = `/${locale}/cities/${data.createCity.city.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
@@ -88,7 +87,7 @@ const CityForm = React.memo(({ city }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/cities/${slug}`)
+    router.push(`/${locale}/cities/${slug}`)
   }
 
   return loadingUserSession ? (

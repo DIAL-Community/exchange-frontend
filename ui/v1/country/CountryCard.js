@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { IoClose } from 'react-icons/io5'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType } from '../utils/constants'
 
 const CountryCard = ({ displayType, index, country, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
@@ -59,7 +59,7 @@ const CountryCard = ({ displayType, index, country, dismissCardHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={`${REBRAND_BASE_PATH}/countries/${country.slug}`}>
+      <Link href={`/countries/${country.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

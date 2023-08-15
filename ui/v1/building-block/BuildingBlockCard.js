@@ -4,7 +4,7 @@ import Link from 'next/link'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
-import { DisplayType, MaturityStatus, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType, MaturityStatus } from '../utils/constants'
 
 const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
@@ -91,7 +91,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissCardHandl
 
   return (
     <div className='relative'>
-      <Link href={`${REBRAND_BASE_PATH}/building-blocks/${buildingBlock.slug}`}>
+      <Link href={`/building-blocks/${buildingBlock.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

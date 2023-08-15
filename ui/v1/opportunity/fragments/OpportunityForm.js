@@ -12,7 +12,6 @@ import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_OPPORTUNITY } from '../../shared/mutation/opportunity'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
 import Checkbox from '../../shared/form/Checkbox'
@@ -37,7 +36,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
     onCompleted: (data) => {
       if (data.createOpportunity.opportunity && data.createOpportunity.errors.length === 0) {
         setMutating(false)
-        const redirectPath = `/${router.locale}/opportunities/${data.createOpportunity.opportunity.slug}`
+        const redirectPath = `/${locale}/opportunities/${data.createOpportunity.opportunity.slug}`
         const redirectHandler = () => router.push(redirectPath)
         showToast(format('opportunity.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
@@ -133,7 +132,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/opportunities/${slug}`)
+    router.push(`/${locale}/opportunities/${slug}`)
   }
 
   return loadingUserSession

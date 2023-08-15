@@ -8,9 +8,9 @@ import Footer from '../../../../components/Footer'
 import RepositoryForm from '../../../../components/products/repositories/RepositoryForm'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
 import RepositoryList from '../../../../components/products/repositories/RepositoryList'
-import ClientOnly from '../../../../lib/ClientOnly'
 import NotFound from '../../../../components/shared/NotFound'
 import { Loading, Error } from '../../../../components/shared/FetchStatus'
+import ClientOnly from '../../../../lib/ClientOnly'
 
 const PRODUCT_QUERY = gql`
   query Product($slug: String!) {

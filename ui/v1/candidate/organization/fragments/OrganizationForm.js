@@ -12,7 +12,6 @@ import ValidationError from '../../../shared/form/ValidationError'
 import FileUploader from '../../../shared/form/FileUploader'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../shared/mutation/candidateOrganization'
-import { REBRAND_BASE_PATH } from '../../../utils/constants'
 import UrlInput from '../../../shared/form/UrlInput'
 
 const OrganizationForm = React.memo(({ organization }) => {
@@ -35,7 +34,7 @@ const OrganizationForm = React.memo(({ organization }) => {
     onCompleted: (data) => {
       const { createCandidateOrganization: response } = data
       if (response.candidateOrganization && response.errors.length === 0) {
-        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}` +
+        const redirectPath = `/${locale}` +
                              `/candidate/organizations/${response.candidateOrganization.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
@@ -113,7 +112,7 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/candidate/organizations/${slug}`)
+    router.push(`/${locale}/candidate/organizations/${slug}`)
   }
 
   return loadingUserSession ? (

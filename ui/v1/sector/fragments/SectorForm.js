@@ -10,7 +10,6 @@ import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_SECTOR } from '../../shared/mutation/sector'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 import Checkbox from '../../shared/form/Checkbox'
 import Select from '../../shared/form/Select'
 import { generateLanguageOptions } from '../../shared/form/options'
@@ -29,6 +28,7 @@ const SectorForm = React.memo(({ sector }) => {
   const { showToast } = useContext(ToastContext)
 
   const router = useRouter()
+  const { locale } = router
 
   const localeOptions = useMemo(() => generateLanguageOptions(format), [format])
   const sectorLocale = useMemo(
@@ -41,7 +41,7 @@ const SectorForm = React.memo(({ sector }) => {
   const [updateSector, { reset }] = useMutation(CREATE_SECTOR, {
     onCompleted: (data) => {
       if (data.createSector.sector && data.createSector.errors.length === 0) {
-        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}/sectors/${data.createSector.sector.slug}`
+        const redirectPath = `/${locale}/sectors/${data.createSector.sector.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
@@ -101,7 +101,7 @@ const SectorForm = React.memo(({ sector }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/sectors/${slug}`)
+    router.push(`/${locale}/sectors/${slug}`)
   }
 
   return loadingUserSession ? (

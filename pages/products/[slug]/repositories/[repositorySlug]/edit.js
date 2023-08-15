@@ -8,10 +8,10 @@ import Footer from '../../../../../components/Footer'
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import RepositoryList from '../../../../../components/products/repositories/RepositoryList'
 import RepositoryForm from '../../../../../components/products/repositories/RepositoryForm'
-import ClientOnly from '../../../../../lib/ClientOnly'
 import NotFound from '../../../../../components/shared/NotFound'
 import { Loading, Error, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import { useProductOwnerUser, useUser } from '../../../../../lib/hooks'
+import ClientOnly from '../../../../../lib/ClientOnly'
 
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
@@ -108,7 +108,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
                 <RepositoryForm productRepository={data?.productRepository} productSlug={slug} />
               </div>
             </div>
-          </div >
+          </div>
           : <Unauthorized />
       }
     </>

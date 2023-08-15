@@ -6,7 +6,6 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import classNames from 'classnames'
 import { useUser } from '../../../lib/hooks'
-import { REBRAND_BASE_PATH } from '../utils/constants'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../../queries/user'
 import { NONE } from './menu/MenuCommon'
 import AdminMenu from './menu/AdminMenu'
@@ -119,7 +118,7 @@ const Header = ({ isOnAuthPage = false }) => {
   return (
     <header className='z-50 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56'>
-        <Link href={REBRAND_BASE_PATH} className='my-auto'>
+        <Link href='/' className='my-auto'>
           <img
             className='object-center object-contain'
             src='/ui/v1/exchange-logo.svg'

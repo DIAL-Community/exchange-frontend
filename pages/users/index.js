@@ -1,50 +1,42 @@
-import { useContext } from 'react'
-import dynamic from 'next/dynamic'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import QueryNotification from '../../components/shared/QueryNotification'
-import GradientBackground from '../../components/shared/GradientBackground'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { UserFilterContext, UserFilterDispatchContext } from '../../components/context/UserFilterContext'
-import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
+import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect } from 'react'
+import { useIntl } from 'react-intl'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-import { useUser } from '../../lib/hooks'
-import PageContent from '../../components/main/PageContent'
-const UserListQuery = dynamic(() => import('../../components/users/UserList'), { ssr: false })
+import Header from '../../ui/v1/shared/Header'
+import { Loading } from '../../ui/v1/shared/FetchStatus'
+import Footer from '../../ui/v1/shared/Footer'
 
-const Users = () => {
-  const { search } = useContext(UserFilterContext)
-  const { setSearch } = useContext(UserFilterDispatchContext)
+const UserListPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, loadingUserSession } = useUser()
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/')
+  }, [router])
 
   return (
     <>
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
+      <NextSeo
+        title={format('ui.useCase.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.useCase.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        {loadingUserSession ? <Loading /> : isAdminUser ? (
-          <>
-            <PageContent
-              content={<UserListQuery displayType='list' />}
-              searchFilter={
-                <SearchFilter
-                  search={search}
-                  setSearch={setSearch}
-                  hint='filter.entity.users'
-                  switchView={false}
-                  exportJson={false}
-                  exportCsv={false}
-                />
-              }
-            />
-          </>
-        ) : <Unauthorized />}
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <Loading />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Users
+export default UserListPage

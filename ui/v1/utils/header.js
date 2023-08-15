@@ -1,5 +1,3 @@
-import { REBRAND_BASE_PATH } from './constants'
-
 export const TOOL_NAVIGATION_ITEMS = {
   'filter.entity.useCases': 'use-cases',
   'filter.entity.buildingBlocks': 'building-blocks',
@@ -18,11 +16,11 @@ export const SUPPORTING_NAVIGATION_ITEMS = {
 
 export const navOptions = (format) => {
   const toolNavItems = Object.entries(TOOL_NAVIGATION_ITEMS).map(([key, value]) => {
-    return { label: format(key), value: `${REBRAND_BASE_PATH}/${value}` }
+    return { label: format(key), value: `/${value}` }
   })
 
   const supportingNavItems = Object.entries(SUPPORTING_NAVIGATION_ITEMS).map(([key, value]) => {
-    return { label: format(key), value: `${REBRAND_BASE_PATH}/${value}` }
+    return { label: format(key), value: `/${value}` }
   })
 
   const navItems = [{
@@ -39,14 +37,14 @@ export const navOptions = (format) => {
 export const currentActiveNav = (format, currentPath) => {
   let activeNav = Object.entries(TOOL_NAVIGATION_ITEMS)
     .map(([key, value]) => {
-      return { label: format(key), value: `${REBRAND_BASE_PATH}/${value}` }
+      return { label: format(key), value: `/${value}` }
     })
     .find(item => currentPath.indexOf(item.value) >= 0)
 
   if (!activeNav) {
     activeNav = Object.entries(SUPPORTING_NAVIGATION_ITEMS)
       .map(([key, value]) => {
-        return { label: format(key), value: `${REBRAND_BASE_PATH}/${value}` }
+        return { label: format(key), value: `/${value}` }
       })
       .find(item => currentPath.indexOf(item.value) >= 0)
   }

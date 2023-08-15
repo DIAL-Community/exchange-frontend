@@ -11,7 +11,6 @@ import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_TAG } from '../../shared/mutation/tag'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 
 const TagForm = React.memo(({ tag }) => {
   const { formatMessage } = useIntl()
@@ -32,7 +31,7 @@ const TagForm = React.memo(({ tag }) => {
   const [updateTag, { reset }] = useMutation(CREATE_TAG, {
     onCompleted: (data) => {
       if (data.createTag.tag && data.createTag.errors.length === 0) {
-        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}/tags/${data.createTag.tag.slug}`
+        const redirectPath = `/${locale}/tags/${data.createTag.tag.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
@@ -102,7 +101,7 @@ const TagForm = React.memo(({ tag }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/tags/${slug}`)
+    router.push(`/${locale}/tags/${slug}`)
   }
 
   return loadingUserSession ? (

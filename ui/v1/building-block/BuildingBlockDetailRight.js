@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType, REBRAND_BASE_PATH } from '../utils/constants'
+import { ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
@@ -26,15 +26,14 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock, commentsSectionRef
     { value: 'ui.product.header', ref: productRef }
   ]), [])
 
+  const editPath = `${buildingBlock.slug}/edit`
+
   return (
     <div className='px-4 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit &&
           <div className='flex gap-x-3 ml-auto'>
-            <EditButton
-              type='link'
-              href={`${REBRAND_BASE_PATH}/building-blocks/${buildingBlock.slug}/edit`}
-            />
+            <EditButton type='link' href={editPath} />
             {isAdminUser && <DeleteBuildingBlock buildingBlock={buildingBlock} />}
           </div>
         }

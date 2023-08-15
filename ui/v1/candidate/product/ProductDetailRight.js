@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import { ObjectType, REBRAND_BASE_PATH } from '../../utils/constants'
+import { ObjectType } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
@@ -13,7 +13,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { isAdminUser, isEditorUser } = useUser()
   const canEdit = (isAdminUser || isEditorUser) && !product.markdownUrl
 
-  const editPath = `${REBRAND_BASE_PATH}/candidate/products/${product.slug}/edit`
+  const editPath = `${product.slug}/edit`
 
   return (
     <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>

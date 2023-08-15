@@ -8,11 +8,11 @@ import RepositoryData from '../../../../../components/products/repositories/Repo
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
-import ClientOnly from '../../../../../lib/ClientOnly'
 import NotFound from '../../../../../components/shared/NotFound'
 import { Loading, Error } from '../../../../../components/shared/FetchStatus'
 import CreateButton from '../../../../../components/shared/CreateButton'
 import { useProductOwnerUser, useUser } from '../../../../../lib/hooks'
+import ClientOnly from '../../../../../lib/ClientOnly'
 
 const PRODUCT_QUERY = gql`
   query Product($slug: String!) {

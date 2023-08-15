@@ -10,7 +10,6 @@ import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CONTACT } from '../../shared/mutation/contact'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 
 const ContactForm = React.memo(({ contact }) => {
   const { formatMessage } = useIntl()
@@ -31,7 +30,7 @@ const ContactForm = React.memo(({ contact }) => {
   const [updateContact, { reset }] = useMutation(CREATE_CONTACT, {
     onCompleted: (data) => {
       if (data.createContact.contact && data.createContact.errors.length === 0) {
-        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}/contacts/${data.createContact.contact.slug}`
+        const redirectPath = `/${locale}/contacts/${data.createContact.contact.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
@@ -99,7 +98,7 @@ const ContactForm = React.memo(({ contact }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/contacts/${slug}`)
+    router.push(`/${locale}/contacts/${slug}`)
   }
 
   return loadingUserSession ? (

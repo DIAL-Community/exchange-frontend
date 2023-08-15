@@ -1,63 +1,45 @@
-import { useCallback, useContext } from 'react'
-import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { NextSeo } from 'next-seo'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import QueryNotification from '../../components/shared/QueryNotification'
-import GradientBackground from '../../components/shared/GradientBackground'
-import MobileNav from '../../components/main/MobileNav'
-import PageContent from '../../components/main/PageContent'
-import TabNav from '../../components/main/TabNav'
-import WorkflowFilter from '../../components/workflows/WorkflowFilter'
-import WorkflowListQuery from '../../components/workflows/WorkflowList'
-import WorkflowActiveFilter from '../../components/workflows/WorkflowActiveFilter'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../components/context/WorkflowFilterContext'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import WorkflowRibbon from '../../ui/v1/workflow/WorkflowRibbon'
+import WorkflowTabNav from '../../ui/v1/workflow/WorkflowTabNav'
+import WorkflowMain from '../../ui/v1/workflow/WorkflowMain'
 
-const Workflows = () => {
+const WorkflowListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(WorkflowFilterContext)
-  const { setSearch } = useContext(WorkflowFilterDispatchContext)
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
       <NextSeo
-        title={format('workflow.header')}
+        title={format('ui.workflow.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('workflow.header')?.toLocaleLowerCase() }
+            { entities: format('ui.workflow.header')?.toLocaleLowerCase() }
           )
         }
       />
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
-        <TabNav activeTab='filter.entity.workflows' />
-        <MobileNav activeTab='filter.entity.workflows' />
-        <PageContent
-          activeTab='filter.entity.workflows'
-          filter={<WorkflowFilter />}
-          content={<WorkflowListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              hint='filter.entity.workflows'
-            />
-          }
-          activeFilter={<WorkflowActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <WorkflowRibbon />
+          <WorkflowTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <WorkflowMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Workflows
+export default WorkflowListPage

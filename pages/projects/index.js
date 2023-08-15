@@ -1,27 +1,20 @@
-import { useCallback, useContext } from 'react'
-import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { NextSeo } from 'next-seo'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import QueryNotification from '../../components/shared/QueryNotification'
-import GradientBackground from '../../components/shared/GradientBackground'
-import TabNav from '../../components/main/TabNav'
-import MobileNav from '../../components/main/MobileNav'
-import PageContent from '../../components/main/PageContent'
-import ProjectFilter from '../../components/projects/ProjectFilter'
-import ProjectActiveFilter from '../../components/projects/ProjectActiveFilter'
-import ProjectListQuery from '../../components/projects/ProjectList'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { ProjectFilterContext, ProjectFilterDispatchContext } from '../../components/context/ProjectFilterContext'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import ProjectRibbon from '../../ui/v1/project/ProjectRibbon'
+import ProjectTabNav from '../../ui/v1/project/ProjectTabNav'
+import ProjectMain from '../../ui/v1/project/ProjectMain'
 
-const Projects = () => {
+const ProjectListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const { search } = useContext(ProjectFilterContext)
-  const { setSearch } = useContext(ProjectFilterDispatchContext)
+
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
@@ -29,34 +22,24 @@ const Projects = () => {
         title={format('ui.project.header')}
         description={
           format(
-            'shared.metadata.description.comprehensiveListOf',
+            'shared.metadata.description.listOfKey',
             { entities: format('ui.project.header')?.toLocaleLowerCase() }
           )
         }
       />
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
-        <TabNav activeTab='filter.entity.projects' />
-        <MobileNav activeTab='filter.entity.projects' />
-        <PageContent
-          activeTab='filter.entity.projects'
-          filter={<ProjectFilter />}
-          content={<ProjectListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              hint='filter.entity.projects'
-            />
-          }
-          activeFilter={<ProjectActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ProjectRibbon />
+          <ProjectTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProjectMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Projects
+export default ProjectListPage

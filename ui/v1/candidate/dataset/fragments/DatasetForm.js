@@ -12,7 +12,6 @@ import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_DATASET } from '../../../shared/mutation/candidateDataset'
-import { REBRAND_BASE_PATH } from '../../../utils/constants'
 import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
 import { generateDatasetTypeOptions } from '../../../shared/form/options'
@@ -40,7 +39,7 @@ const DatasetForm = React.memo(({ dataset }) => {
       const { createCandidateDataset: response } = data
       if (response.candidateDataset && response.errors.length === 0) {
         setMutating(false)
-        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}` +
+        const redirectPath = `/${locale}` +
                              `/candidate/datasets/${response.candidateDataset.slug}`
         const redirectHandler = () => router.push(redirectPath)
         showToast(format('ui.candidateDataset.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
@@ -122,7 +121,7 @@ const DatasetForm = React.memo(({ dataset }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/candidate/datasets/${slug}`)
+    router.push(`/${locale}/candidate/datasets/${slug}`)
   }
 
   return loadingUserSession

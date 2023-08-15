@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../utils/constants'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 import { ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 import { DELETE_PRODUCT } from '../shared/mutation/product'
@@ -42,7 +42,7 @@ const DeleteProduct = ({ product }) => {
           'top-center',
           1000,
           null,
-          () => router.push(`${REBRAND_BASE_PATH}/products`)
+          () => router.push(`/${locale}/products`)
         )
       } else {
         setDisplayConfirmDialog(false)

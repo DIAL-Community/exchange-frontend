@@ -18,7 +18,7 @@ import {
   PAGINATED_BUILDING_BLOCKS_QUERY,
   BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY
 } from '../../shared/query/buildingBlock'
-import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../../utils/constants'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -34,6 +34,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const { showToast } = useContext(ToastContext)
 
   const router = useRouter()
+  const { locale } = router
 
   const maturityOptions = useMemo(() => generateMaturityOptions(format), [format])
   const categoryOptions = useMemo(() => generateCategoryOptions(format), [format])
@@ -53,7 +54,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
       const { createBuildingBlock: response } = data
       if (response?.buildingBlock && response?.errors?.length === 0) {
         setMutating(false)
-        const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}/building-blocks/${response?.buildingBlock?.slug}`
+        const redirectPath = `/${locale}/building-blocks/${response?.buildingBlock?.slug}`
         const redirectHandler = () => router.push(redirectPath)
         showToast(format('buildingBlock.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
@@ -114,7 +115,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/building-blocks/${slug}`)
+    router.push(`/${locale}/building-blocks/${slug}`)
   }
 
   return loadingUserSession

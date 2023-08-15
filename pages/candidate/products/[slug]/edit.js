@@ -1,51 +1,40 @@
-import { useQuery } from '@apollo/client'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import ProductForm from '../../../../components/candidate/products/ProductForm'
-import Footer from '../../../../components/Footer'
-import Header from '../../../../components/Header'
-import { Error, Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
-import NotFound from '../../../../components/shared/NotFound'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../../ui/v1/shared/Header'
 import ClientOnly from '../../../../lib/ClientOnly'
-import { useUser } from '../../../../lib/hooks'
-import { CANDIDATE_PRODUCT_DETAIL_QUERY } from '../../../../queries/candidate'
+import Footer from '../../../../ui/v1/shared/Footer'
+import ProductEdit from '../../../../ui/v1/candidate/product/ProductEdit'
 
-const EditCandidateProduct = () => {
-  const router = useRouter()
+const EditProductPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { locale } = router
-  const { slug } = router.query
-
-  const { isAdminUser, loadingUserSession } = useUser()
-
-  const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
-    variables: { slug, locale },
-    skip: !isAdminUser,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.candidateProduct) {
-    return <NotFound />
-  }
+  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
-      <ClientOnly>
-        {
-          loadingUserSession
-            ? <Loading />
-            : !isAdminUser
-              ? <Unauthorized />
-              : <ProductForm candidateProduct={data?.candidateProduct} />
+      <NextSeo
+        title={format('ui.candidateProduct.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.candidateProduct.header')?.toLocaleLowerCase() }
+          )
         }
+      />
+      <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ProductEdit slug={slug} locale={locale} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default EditCandidateProduct
+export default EditProductPage

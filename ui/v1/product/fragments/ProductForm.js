@@ -12,7 +12,6 @@ import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_PRODUCT } from '../../shared/mutation/product'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
 import Checkbox from '../../shared/form/Checkbox'
@@ -37,7 +36,7 @@ const ProductForm = React.memo(({ product }) => {
     onCompleted: (data) => {
       if (data.createProduct.product && data.createProduct.errors.length === 0) {
         setMutating(false)
-        const redirectPath = `/${router.locale}/products/${data.createProduct.product.slug}`
+        const redirectPath = `/${locale}/products/${data.createProduct.product.slug}`
         const redirectHandler = () => router.push(redirectPath)
         showToast(format('product.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
@@ -133,7 +132,7 @@ const ProductForm = React.memo(({ product }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/products/${slug}`)
+    router.push(`/${locale}/products/${slug}`)
   }
 
   return loadingUserSession

@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType } from '../utils/constants'
 
 const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
   const { formatMessage } = useIntl()
@@ -61,7 +61,7 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}/sdg-targets/${sdgTarget.sdg.slug}`}>
+    <Link href={`/sdg-targets/${sdgTarget.sdg.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

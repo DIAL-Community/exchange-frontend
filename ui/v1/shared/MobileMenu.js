@@ -5,7 +5,6 @@ import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
 import { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useUser } from '../../../lib/hooks'
-import { REBRAND_BASE_PATH } from '../utils/constants'
 import { SUPPORTING_NAVIGATION_ITEMS, TOOL_NAVIGATION_ITEMS } from '../utils/header'
 import { HELP_MENU, LANGUAGE_MENU, MARKETPLACE_MENU, NONE, RESOURCE_MENU, USER_MENU } from './menu/MenuCommon'
 
@@ -48,7 +47,7 @@ const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
           {MARKETPLACE_MENU_ITEMS.map(({ label, link }) => {
             return (
               <li key={`mobile-nav-${label}`}>
-                <Link href={`${REBRAND_BASE_PATH}/${link}`}>
+                <Link href={`/${link}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(label)}
                   </div>
@@ -95,7 +94,7 @@ const ToolMenu = ({ currentMenu, setCurrentMenu }) => {
           {Object.entries(TOOL_NAVIGATION_ITEMS).map(([key, value]) => {
             return (
               <li key={`mobile-nav-${key}`}>
-                <Link href={`${REBRAND_BASE_PATH}/${value}`}>
+                <Link href={`/${value}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(key)}
                   </div>
@@ -142,7 +141,7 @@ const SupportingMenu = ({ currentMenu, setCurrentMenu }) => {
           {Object.entries(SUPPORTING_NAVIGATION_ITEMS).map(([key, value]) => {
             return (
               <li key={`mobile-nav-${key}`}>
-                <Link href={`${REBRAND_BASE_PATH}/${value}`}>
+                <Link href={`/${value}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(key)}
                   </div>
@@ -208,7 +207,7 @@ const ResourceMenu = ({ currentMenu, setCurrentMenu }) => {
                     {format(label)}
                   </div>
                 </a>
-                : <Link href={`${REBRAND_BASE_PATH}/${link}`}>
+                : <Link href={`/${link}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(label)}
                   </div>
@@ -258,7 +257,7 @@ const UserMenu = ({ currentMenu, setCurrentMenu }) => {
           {currentMenu === USER_MENU &&
             <ul className='px-6'>
               <li>
-                <Link href={`${REBRAND_BASE_PATH}/users/${user.id}`}>
+                <Link href={`/users/${user.id}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format('header.profile')}
                   </div>
@@ -334,7 +333,7 @@ const HelpMenu = ({ currentMenu, setCurrentMenu }) => {
                     {format(label)}
                   </div>
                 </a>
-                : <Link href={`${REBRAND_BASE_PATH}/${link}`}>
+                : <Link href={`/${link}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(label)}
                   </div>

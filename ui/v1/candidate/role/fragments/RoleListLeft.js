@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react'
 import Bookmark from '../../../shared/common/Bookmark'
 import Comment from '../../../shared/common/Comment'
 import Share from '../../../shared/common/Share'
-import { ObjectType, REBRAND_BASE_PATH } from '../../../utils/constants'
+import { ObjectType } from '../../../utils/constants'
 import { QueryParamContext } from '../../../../../components/context/QueryParamContext'
 
 const RoleListLeft = () => {
@@ -12,7 +12,7 @@ const RoleListLeft = () => {
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = `${REBRAND_BASE_PATH}/roles`
+    const basePath = '/roles'
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter].filter(f => f).join('&')

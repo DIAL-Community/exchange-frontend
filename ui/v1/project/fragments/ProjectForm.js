@@ -11,7 +11,6 @@ import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_PROJECT } from '../../shared/mutation/project'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 import UrlInput from '../../shared/form/UrlInput'
 
 const ProjectForm = React.memo(({ project }) => {
@@ -34,7 +33,7 @@ const ProjectForm = React.memo(({ project }) => {
     onCompleted: (data) => {
       if (data.createProject.project && data.createProject.errors.length === 0) {
         setMutating(false)
-        const redirectPath = `/${router.locale}/projects/${data.createProject.project.slug}`
+        const redirectPath = `/${locale}/projects/${data.createProject.project.slug}`
         const redirectHandler = () => router.push(redirectPath)
         showToast(format('project.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
@@ -104,7 +103,7 @@ const ProjectForm = React.memo(({ project }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/projects/${slug}`)
+    router.push(`/${locale}/projects/${slug}`)
   }
 
   return loadingUserSession

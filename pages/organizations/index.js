@@ -1,27 +1,20 @@
-import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
 import { NextSeo } from 'next-seo'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import OrganizationListQuery from '../../components/organizations/OrganizationList'
-import QueryNotification from '../../components/shared/QueryNotification'
-import GradientBackground from '../../components/shared/GradientBackground'
-import TabNav from '../../components/main/TabNav'
-import PageContent from '../../components/main/PageContent'
-import OrganizationFilter from '../../components/organizations/OrganizationFilter'
-import OrganizationActiveFilter from '../../components/organizations/OrganizationActiveFilter'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext }
-  from '../../components/context/OrganizationFilterContext'
-import MobileNav from '../../components/main/MobileNav'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import OrganizationRibbon from '../../ui/v1/organization/OrganizationRibbon'
+import OrganizationTabNav from '../../ui/v1/organization/OrganizationTabNav'
+import OrganizationMain from '../../ui/v1/organization/OrganizationMain'
 
-const Organizations = () => {
+const OrganizationListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(OrganizationFilterContext)
-  const { setSearch } = useContext(OrganizationFilterDispatchContext)
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
@@ -29,33 +22,24 @@ const Organizations = () => {
         title={format('ui.organization.header')}
         description={
           format(
-            'shared.metadata.description.comprehensiveListOf',
+            'shared.metadata.description.listOfKey',
             { entities: format('ui.organization.header')?.toLocaleLowerCase() }
           )
         }
       />
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
       <ClientOnly>
-        <TabNav activeTab='filter.entity.organizations' />
-        <MobileNav activeTab='filter.entity.organizations' />
-        <PageContent
-          activeTab='filter.entity.organizations'
-          filter={<OrganizationFilter />}
-          content={<OrganizationListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              hint='filter.entity.organizations'
-            />
-          }
-          activeFilter={<OrganizationActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <OrganizationRibbon />
+          <OrganizationTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <OrganizationMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Organizations
+export default OrganizationListPage

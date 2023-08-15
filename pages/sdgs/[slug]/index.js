@@ -1,22 +1,38 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import SDGDetail from '../../../components/sdgs/SDGDetail'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
+import Footer from '../../../ui/v1/shared/Footer'
+import SdgDetail from '../../../ui/v1/sdg/SdgDetail'
 
-const SDG = () => {
-  const router = useRouter()
-  const { slug } = router.query
+const SdgPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.sdg.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.sdg.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <SDGDetail slug={slug} />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <SdgDetail slug={slug} />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default SDG
+export default SdgPage

@@ -1,54 +1,38 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import CountryDetail from '../../../components/countries/CountryDetail'
-import NotFound from '../../../components/shared/NotFound'
-import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import { COUNTRY_DETAIL_QUERY } from '../../../queries/country'
-import { useUser } from '../../../lib/hooks'
+import Footer from '../../../ui/v1/shared/Footer'
+import CountryDetail from '../../../ui/v1/country/CountryDetail'
 
-const CountryPageDefinition = ({ slug, locale }) => {
-  const { loading, error, data } = useQuery(COUNTRY_DETAIL_QUERY, {
-    variables: { slug },
-    skip: !slug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
+const CountryPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.country) {
-    return <NotFound />
-  }
-
-  return data?.country && <CountryDetail country={data.country} />
-}
-
-const Country = () => {
-  const router = useRouter()
-
-  const { isAdminUser, loadingUserSession } = useUser()
-
-  const { locale, query } = router
-  const { slug } = query
+  const { query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
-      <ClientOnly>
-        {loadingUserSession
-          ? <Loading />
-          : isAdminUser
-            ? <CountryPageDefinition slug={slug} locale={locale} />
-            : <Unauthorized />
+      <NextSeo
+        title={format('ui.country.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.country.header')?.toLocaleLowerCase() }
+          )
         }
+      />
+      <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <CountryDetail slug={slug} />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Country
+export default CountryPage

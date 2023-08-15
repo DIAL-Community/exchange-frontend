@@ -11,7 +11,6 @@ import ValidationError from '../../../shared/form/ValidationError'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import Input from '../../../shared/form/Input'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { REBRAND_BASE_PATH } from '../../../utils/constants'
 
 const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
   const { formatMessage } = useIntl()
@@ -45,7 +44,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
           1000,
           null,
           () => router.push(
-            `/${router.locale}${REBRAND_BASE_PATH}` +
+            `/${locale}` +
             `/use-cases/${data.createUseCaseStep.useCaseStep.useCase.slug}` +
             `/use-case-steps/${data.createUseCaseStep.useCaseStep.slug}`
           )
@@ -102,7 +101,11 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/use-cases/${useCase?.slug}/${slug && 'use-case-steps/' + slug}`)
+    router.push(
+      `/${locale}`+
+      `/use-cases/${useCase?.slug}` +
+      `/${slug && 'use-case-steps/' + slug}`
+    )
   }
 
   return (

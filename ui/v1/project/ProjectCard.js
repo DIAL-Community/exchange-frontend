@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType } from '../utils/constants'
 
 const ProjectCard = ({ displayType, index, project }) => {
   const { formatMessage } = useIntl()
@@ -41,7 +41,7 @@ const ProjectCard = ({ displayType, index, project }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}/projects/${project.slug}`}>
+    <Link href={`/projects/${project.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

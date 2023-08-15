@@ -2,7 +2,6 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Select from '../../shared/form/Select'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 
 const UseCaseDetailNav = ({ scrollRef, useCase }) => {
   const { formatMessage } = useIntl()
@@ -45,7 +44,6 @@ const UseCaseDetailNav = ({ scrollRef, useCase }) => {
     if (value.indexOf('ui.useCase.detail.steps.') >= 0) {
       const destinationSlug = value.replace('ui.useCase.detail.steps.', '')
       const destinationRoute =
-        `${REBRAND_BASE_PATH}` +
         `/use-cases/${useCase.slug}` +
         `/use-case-steps/${destinationSlug}`
       router.push(destinationRoute)

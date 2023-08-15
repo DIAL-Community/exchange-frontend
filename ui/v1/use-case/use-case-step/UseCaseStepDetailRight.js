@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useUser } from '../../../../lib/hooks'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
 import UseCaseStepDetailDatasets from './fragments/UseCaseStepDetailDatasets'
 import UseCaseStepDetailProducts from './fragments/UseCaseStepDetailProducts'
@@ -38,7 +37,6 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
             <EditButton
               type='link'
               href={
-                `${REBRAND_BASE_PATH}` +
                 `/use-cases/${useCase.slug}` +
                 `/use-case-steps/${useCaseStep.slug}/edit`
               }

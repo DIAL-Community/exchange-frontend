@@ -10,7 +10,6 @@ import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_COUNTRY } from '../../shared/mutation/country'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
 
 const CountryForm = React.memo(({ country }) => {
   const { formatMessage } = useIntl()
@@ -31,7 +30,7 @@ const CountryForm = React.memo(({ country }) => {
   const [updateCountry, { reset }] = useMutation(CREATE_COUNTRY, {
     onCompleted: (data) => {
       if (data.createCountry.country && data.createCountry.errors.length === 0) {
-        const redirectPath = `/${router.locale}/countries/${data.createCountry.country.slug}`
+        const redirectPath = `/${locale}/countries/${data.createCountry.country.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
@@ -81,7 +80,7 @@ const CountryForm = React.memo(({ country }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}/countries/${slug}`)
+    router.push(`/${locale}/countries/${slug}`)
   }
 
   return loadingUserSession ? (
