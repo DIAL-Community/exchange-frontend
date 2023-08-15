@@ -168,7 +168,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
             objectType={ObjectType.OPEN_DATA}
           />
         </div>
-        <div className='h4 font-bold py-4'>{format('datasets.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.dataset.label')}</div>
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 shadow-lg'>
         <div id='header' className='flex flex-col h-80 p-2'>

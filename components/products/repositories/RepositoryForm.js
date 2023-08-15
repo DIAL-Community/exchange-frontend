@@ -121,7 +121,7 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                 </div>
                 <div className='w-full lg:w-full flex flex-col gap-y-3'>
                   <label className='form-field-wrapper form-field-label'>
-                    <p>{format('productRepository.aboluteUrl')}</p>
+                    <p>{format('productRepository.absoluteUrl')}</p>
                     <Input
                       {...register('absoluteUrl')}
                       placeholder={format('productRepository.absoluteUrl.placeholder')}

@@ -64,7 +64,7 @@ const OrganizationList = (props) => {
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
               <div className='hidden md:block col-span-4 text-sm font-semibold opacity-50'>
-                {format('candidateOrganization.website').toUpperCase()}
+                {format('ui.candidateOrganization.website').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>

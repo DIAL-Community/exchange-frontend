@@ -23,10 +23,12 @@ export const CREATE_USER = gql`
         username
         roles
         products {
+          id
           name
           slug
         }
         organization {
+          id
           name
           slug
         }
@@ -46,6 +48,7 @@ export const APPLY_AS_OWNER = gql`
       entityId: $entityId
     ) {
       candidateRole {
+        id
         email
         roles
         description

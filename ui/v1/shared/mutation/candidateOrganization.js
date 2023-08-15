@@ -21,6 +21,10 @@ export const CREATE_CANDIDATE_ORGANIZATION = gql`
     ) {
       candidateOrganization {
         id
+        name
+        slug
+        website
+        description
       }
       errors
     }

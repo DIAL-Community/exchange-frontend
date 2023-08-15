@@ -47,7 +47,7 @@ describe('Unit tests for the DatasetForm component.', () => {
     await user.type(screen.getByLabelText(/Name/), 'test name')
     expect(getByTestId(CANDIDATE_DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await user.type(screen.getByLabelText(/Data URL/), 'test@test.com')
+    await user.type(screen.getByLabelText(/Website/), 'test@test.com')
     expect(getByTestId(CANDIDATE_DATASET_URL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Email Address/), 'test@test.com')
@@ -81,7 +81,7 @@ describe('Unit tests for the DatasetForm component.', () => {
     await user.type(screen.getByLabelText(/Name/), 'test product name 2')
     expect(getByTestId(CANDIDATE_DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await user.type(screen.getByLabelText(/Data URL/), 'test@test.com')
+    await user.type(screen.getByLabelText(/Open Data Website/), 'test@test.com')
     expect(getByTestId(CANDIDATE_DATASET_URL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Email Address/), 'test@test.com')

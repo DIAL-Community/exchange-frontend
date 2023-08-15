@@ -27,6 +27,7 @@ export const CREATE_TAG = gql`
         name
         slug
         tagDescription {
+          id
           description
           locale
         }

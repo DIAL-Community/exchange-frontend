@@ -17,8 +17,6 @@ const convertBreadcrumb = string => {
 
 const basePathMappings = {
   'building-blocks': 'ui.buildingBlock.header',
-  'cities': 'ui.city.header',
-  'contacts': 'ui.contact.header',
   'countries': 'ui.country.header',
   'datasets': 'ui.dataset.header',
   'moves': 'ui.move.header',
@@ -38,7 +36,16 @@ const basePathMappings = {
   'users': 'ui.user.header',
   'use-case-steps': 'ui.useCaseStep.header',
   'use-cases': 'ui.useCase.header',
-  'workflows': 'ui.workflow.header'
+  'workflows': 'ui.workflow.header',
+  'cities': 'ui.city.header',
+  'contacts': 'ui.contact.header'
+}
+
+const candidatePathMappings = {
+  'datasets': 'ui.candidateDataset.header',
+  'organizations': 'ui.candidateOrganization.header',
+  'products': 'ui.candidateProduct.header',
+  'roles': 'ui.candidateRole.header'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
@@ -59,9 +66,17 @@ const Breadcrumb = ({ slugNameMapping }) => {
     let candidatePath = false
     const pathArray = linkPath
       .map((path, i) => {
+        if (path.indexOf('candidate') >= 0) {
+          candidatePath = true
+
+          return {}
+        }
+
         const label = !candidatePath && basePathMappings[path]
           ? format(basePathMappings[path])
-          : slugNameMapping[path]
+          : candidatePath && candidatePathMappings[path]
+            ? format(candidatePathMappings[path])
+            : slugNameMapping[path]
 
         return {
           breadcrumb: label,
@@ -69,6 +84,8 @@ const Breadcrumb = ({ slugNameMapping }) => {
         }
       })
       .filter(path => path.breadcrumb && path.href)
+
+    console.log('Path Array: ', pathArray)
 
     setBreadcrumbs(pathArray)
   }, [slugNameMapping, pathname, query, format])

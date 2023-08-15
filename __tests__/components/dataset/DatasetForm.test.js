@@ -43,8 +43,8 @@ describe('Unit tests for the DatasetForm component.', () => {
         <DatasetForm />
       </CustomMockedProvider>
     )
-    await user.type(screen.getByLabelText(/Dataset Name/), 'test dataset name')
-    await user.type(screen.getByLabelText(/Data URL/), 'test dataset website')
+    await user.type(screen.getByLabelText(/Open Data Name/), 'test dataset name')
+    await user.type(screen.getByLabelText(/Open Data Website/), 'test dataset website')
     expect(getByTestId(DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_WEBSITE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
@@ -65,13 +65,13 @@ describe('Unit tests for the DatasetForm component.', () => {
     expect(getByTestId(DATASET_WEBSITE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await user.type(screen.getByLabelText(/Dataset Name/), 'test dataset name')
+    await user.type(screen.getByLabelText(/Open Data Name/), 'test dataset name')
     expect(getByTestId(DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Dataset Name/))
+    await user.clear(screen.getByLabelText(/Open Data Name/))
     expect(getByTestId(DATASET_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await user.type(screen.getByLabelText(/Dataset Name/), 'test dataset name 2')
-    await user.type(screen.getByLabelText(/Data URL/), 'test dataset website')
+    await user.type(screen.getByLabelText(/Open Data Name/), 'test dataset name 2')
+    await user.type(screen.getByLabelText(/Open Data Website/), 'test dataset website')
     expect(getByTestId(DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_WEBSITE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 

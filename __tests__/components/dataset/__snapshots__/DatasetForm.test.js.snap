@@ -61,14 +61,14 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     class="form-field-label required-field"
                     for="name"
                   >
-                    Dataset Name
+                    Open Data Name
                   </label>
                   <input
                     class="w-full"
                     data-testid="dataset-name-input"
                     id="name"
                     name="name"
-                    placeholder="Dataset Name"
+                    placeholder="Open Data Name"
                     type="text"
                     value=""
                   />
@@ -79,7 +79,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                   <label
                     class="form-field-label"
                   >
-                    Dataset Other Name
+                    Open Data Other Name
                   </label>
                   <div
                     class="flex gap-x-2"
@@ -87,7 +87,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     <input
                       class="w-full"
                       name="aliases.0.value"
-                      placeholder="Dataset Other Name"
+                      placeholder="Open Data Other Name"
                       type="text"
                       value=""
                     />
@@ -120,7 +120,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     class="form-field-label required-field"
                     for="website"
                   >
-                    Data URL
+                    Open Data Website
                   </label>
                   <div
                     class="border border-transparent url-input bg-white flex items-center"
@@ -128,7 +128,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     <input
                       class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
-                      placeholder="Data URL"
+                      placeholder="Open Data Website"
                       value=""
                     />
                   </div>
@@ -141,7 +141,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     class="form-field-label"
                     for="visualizationUrl"
                   >
-                    Dataset Visualization URL
+                    Open Data Visualization URL
                   </label>
                   <div
                     class="border border-transparent url-input bg-white flex items-center"
@@ -149,7 +149,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     <input
                       class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="visualizationUrl"
-                      placeholder="Dataset Visualization URL"
+                      placeholder="Open Data Visualization URL"
                       value=""
                     />
                   </div>
@@ -160,7 +160,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                   <label
                     class="form-field-label"
                   >
-                    Dataset Type
+                    Open Data Type
                   </label>
                   <div
                     class=" css-l45kjq-container"
@@ -297,13 +297,13 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     class="form-field-label"
                     for="geographicCoverage"
                   >
-                    Geograpic Coverage
+                    Geographic Coverage
                   </label>
                   <input
                     class="w-full"
                     id="geographicCoverage"
                     name="geographicCoverage"
-                    placeholder="Geograpic Coverage"
+                    placeholder="Geographic Coverage"
                     type="text"
                     value=""
                   />
@@ -512,14 +512,14 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     class="form-field-label required-field"
                     for="name"
                   >
-                    Dataset Name
+                    Open Data Name
                   </label>
                   <input
                     class="w-full"
                     data-testid="dataset-name-input"
                     id="name"
                     name="name"
-                    placeholder="Dataset Name"
+                    placeholder="Open Data Name"
                     type="text"
                     value=""
                   />
@@ -530,7 +530,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                   <label
                     class="form-field-label"
                   >
-                    Dataset Other Name
+                    Open Data Other Name
                   </label>
                   <div
                     class="flex gap-x-2"
@@ -538,7 +538,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     <input
                       class="w-full"
                       name="aliases.0.value"
-                      placeholder="Dataset Other Name"
+                      placeholder="Open Data Other Name"
                       type="text"
                       value=""
                     />
@@ -571,7 +571,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     class="form-field-label required-field"
                     for="website"
                   >
-                    Data URL
+                    Open Data Website
                   </label>
                   <div
                     class="border border-transparent url-input bg-white flex items-center"
@@ -584,7 +584,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     <input
                       class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
-                      placeholder="Data URL"
+                      placeholder="Open Data Website"
                       value="www.testdataset.org"
                     />
                   </div>
@@ -597,7 +597,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     class="form-field-label"
                     for="visualizationUrl"
                   >
-                    Dataset Visualization URL
+                    Open Data Visualization URL
                   </label>
                   <div
                     class="border border-transparent url-input bg-white flex items-center"
@@ -610,7 +610,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     <input
                       class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="visualizationUrl"
-                      placeholder="Dataset Visualization URL"
+                      placeholder="Open Data Visualization URL"
                       value="www.visualization.testdataset.org"
                     />
                   </div>
@@ -621,7 +621,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                   <label
                     class="form-field-label"
                   >
-                    Dataset Type
+                    Open Data Type
                   </label>
                   <div
                     class=" css-l45kjq-container"
@@ -758,13 +758,13 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     class="form-field-label"
                     for="geographicCoverage"
                   >
-                    Geograpic Coverage
+                    Geographic Coverage
                   </label>
                   <input
                     class="w-full"
                     id="geographicCoverage"
                     name="geographicCoverage"
-                    placeholder="Geograpic Coverage"
+                    placeholder="Geographic Coverage"
                     type="text"
                     value=""
                   />

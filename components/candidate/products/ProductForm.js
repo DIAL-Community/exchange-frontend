@@ -42,7 +42,7 @@ const ProductForm = ({ candidateProduct }) => {
   const [createCandidateProduct, { reset }] = useMutation(CREATE_CANDIDATE_PRODUCT, {
     onError: () => {
       setMutating(false)
-      showToast(format('candidate-product.submit.failure'), 'error', 'top-center')
+      showToast(format('ui.candidateProduct.submit.failure'), 'error', 'top-center')
       reset()
     },
     onCompleted: (data) => {
@@ -50,7 +50,7 @@ const ProductForm = ({ candidateProduct }) => {
       if (response?.errors?.length === 0) {
         setMutating(false)
         showToast(
-          format('candidate-product.submit.success'),
+          format('ui.candidateProduct.submit.success'),
           'success',
           'top-center',
           1000,
@@ -62,7 +62,7 @@ const ProductForm = ({ candidateProduct }) => {
         )
       } else {
         setMutating(false)
-        showToast(format('candidate-product.submit.failure'), 'error', 'top-center')
+        showToast(format('ui.candidateProduct.submit.failure'), 'error', 'top-center')
         reset()
       }
     }
@@ -133,7 +133,7 @@ const ProductForm = ({ candidateProduct }) => {
     isAdminUser
       ? (
         <Link href='/candidate/products' className='text-dial-blue'>
-          {format('candidateProduct.label')}
+          {format('ui.candidateProduct.label')}
         </Link>
       )
       : (
@@ -189,25 +189,25 @@ const ProductForm = ({ candidateProduct }) => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                {format('candidateProduct.label')}
+                {format('ui.candidateProduct.label')}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                   <div className='form-field-wrapper' data-testid='candidate-product-name'>
                     <label className='form-field-label required-field' htmlFor='name'>
-                      {format('candidateProduct.name')}
+                      {format('ui.candidateProduct.name')}
                     </label>
                     <Input
                       {...register('name', { required: format('validation.required') })}
                       id='name'
-                      placeholder={format('candidateProduct.name.placeholder')}
+                      placeholder={format('ui.candidateProduct.name.placeholder')}
                       isInvalid={errors.name}
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
                   <div className='form-field-wrapper' data-testid='candidate-product-website'>
                     <label className='form-field-label required-field' htmlFor='website'>
-                      {format('candidateProduct.website')}
+                      {format('ui.candidateProduct.website')}
                     </label>
                     <Controller
                       name='website'
@@ -218,7 +218,7 @@ const ProductForm = ({ candidateProduct }) => {
                           value={value}
                           onChange={onChange}
                           id='website'
-                          placeholder={format('candidateProduct.website.placeholder')}
+                          placeholder={format('ui.candidateProduct.website.placeholder')}
                         />
                       )}
                     />
@@ -226,7 +226,7 @@ const ProductForm = ({ candidateProduct }) => {
                   </div>
                   <div className='form-field-wrapper' data-testid='candidate-product-repository'>
                     <label className='form-field-label required-field' htmlFor='repository'>
-                      {format('candidateProduct.repository')}
+                      {format('ui.candidateProduct.repository')}
                     </label>
                     <Controller
                       name='repository'
@@ -237,7 +237,7 @@ const ProductForm = ({ candidateProduct }) => {
                           value={value}
                           onChange={onChange}
                           id='repository'
-                          placeholder={format('candidateProduct.repository.placeholder')}
+                          placeholder={format('ui.candidateProduct.repository.placeholder')}
                         />
                       )}
                     />
@@ -245,7 +245,7 @@ const ProductForm = ({ candidateProduct }) => {
                   </div>
                   <div className='form-field-wrapper' data-testid='candidate-product-email'>
                     <label className='form-field-label required-field' htmlFor='submitterEmail'>
-                      {format('candidateProduct.email')}
+                      {format('ui.candidateProduct.email')}
                     </label>
                     <Input
                       type='email'
@@ -254,7 +254,7 @@ const ProductForm = ({ candidateProduct }) => {
                         validate: value => validate(value) || format('validation.email')
                       })}
                       id='submitterEmail'
-                      placeholder={format('candidateProduct.email.placeholder')}
+                      placeholder={format('ui.candidateProduct.email.placeholder')}
                       isInvalid={errors.email}
                     />
                     {errors.email && <ValidationError value={errors.email?.message} />}
@@ -286,7 +286,7 @@ const ProductForm = ({ candidateProduct }) => {
                 </div>
                 <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='candidate-product-description'>
                   <label className='block text-dial-sapphire flex flex-col gap-y-2'>
-                    <p className='required-field'> {format('candidateProduct.description')}</p>
+                    <p className='required-field'> {format('ui.candidateProduct.description')}</p>
                     <Controller
                       name='description'
                       control={control}
@@ -299,7 +299,7 @@ const ProductForm = ({ candidateProduct }) => {
                             onChange={onChange}
                             initialContent={value}
                             isInvalid={errors.description}
-                            placeholder={format('candidateProduct.description.placeholder')}
+                            placeholder={format('ui.candidateProduct.description.placeholder')}
                           />
                         )
                       }}
@@ -315,7 +315,7 @@ const ProductForm = ({ candidateProduct }) => {
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {format('candidateProduct.submit')}
+                  {format('ui.candidateProduct.submit')}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

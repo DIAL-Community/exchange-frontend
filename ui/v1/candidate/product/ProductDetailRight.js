@@ -1,37 +1,17 @@
 import { useIntl } from 'react-intl'
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { useCallback } from 'react'
 import { ObjectType, REBRAND_BASE_PATH } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
 
-const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => {
+const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
   const canEdit = (isAdminUser || isEditorUser) && !product.markdownUrl
-
-  const descRef = useRef()
-  const pricingRef = useRef()
-  const sdgRef = useRef()
-  const buildingBlockRef = useRef()
-  const organizationRef = useRef()
-  const tagRef = useRef()
-
-  useImperativeHandle(
-    ref,
-    () => [
-      { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.product.pricing.title', ref: pricingRef },
-      { value: 'ui.sdg.header', ref: sdgRef },
-      { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-      { value: 'ui.candidateOrganization.header', ref: organizationRef },
-      { value: 'ui.tag.header', ref: tagRef }
-    ],
-    []
-  )
 
   const editPath = `${REBRAND_BASE_PATH}/candidate/products/${product.slug}/edit`
 
@@ -43,7 +23,7 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
             <EditButton type='link' href={editPath} />
           </div>
         )}
-        <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
+        <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}
         </div>
         <div className='block'>
@@ -60,8 +40,6 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
       />
     </div>
   )
-})
-
-ProductDetailRight.displayName = 'ProductDetailRight'
+}
 
 export default ProductDetailRight

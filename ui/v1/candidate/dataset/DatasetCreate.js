@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import Breadcrumb from '../../shared/Breadcrumb'
+import Breadcrumb from '../Breadcrumb'
 import DatasetForm from './fragments/DatasetForm'
 import DatasetSimpleLeft from './fragments/DatasetSimpleLeft'
 

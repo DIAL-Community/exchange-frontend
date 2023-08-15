@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
+import Breadcrumb from '../Breadcrumb'
 import { CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
-import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import RoleDetailRight from './RoleDetailRight'
 import RoleDetailLeft from './RoleDetailLeft'

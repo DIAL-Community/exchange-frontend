@@ -39,7 +39,7 @@ const DatasetForm = () => {
     onError: () => {
       setMutating(false)
       showToast(
-        format('candidate-dataset.submit.failure'),
+        format('ui.candidateDataset.submit.failure'),
         'error',
         'top-center',
         1000
@@ -49,7 +49,7 @@ const DatasetForm = () => {
     onCompleted: () => {
       setMutating(false)
       showToast(
-        format('candidate-dataset.submit.success'),
+        format('ui.candidateDataset.submit.success'),
         'success',
         'top-center',
         1000,
@@ -146,7 +146,7 @@ const DatasetForm = () => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                {format('candidateDataset.label')}
+                {format('ui.candidateDataset.label')}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
@@ -270,7 +270,7 @@ const DatasetForm = () => {
                   disabled={mutating || reverting}
                   data-testid='submit-button'
                 >
-                  {format('candidate-dataset.submit')}
+                  {format('ui.candidateDataset.submit')}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>
                 <button

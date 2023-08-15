@@ -22,6 +22,7 @@ export const CREATE_CANDIDATE_DATASET = gql`
       captcha: $captcha
     ) {
       candidateDataset {
+        id
         name
         slug
         website

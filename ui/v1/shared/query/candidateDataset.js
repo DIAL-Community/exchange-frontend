@@ -21,6 +21,8 @@ export const PAGINATED_CANDIDATE_DATASETS_QUERY = gql`
       id
       name
       slug
+      description
+      submitterEmail
     }
   }
 `
@@ -32,7 +34,9 @@ export const CANDIDATE_DATASET_DETAIL_QUERY = gql`
       name
       slug
       website
+      datasetType
       visualizationUrl
+      submitterEmail
       description
     }
   }

@@ -38,7 +38,7 @@ const DatasetList = ({ datasetList, displayType, filterDisplayed }) => {
             ))
             : (
               <div className='text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('datasets.label') })
+                format('noResults.entity', { entity: format('ui.dataset.label') })
               }
               </div>
             )

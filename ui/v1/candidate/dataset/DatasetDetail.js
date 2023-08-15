@@ -1,13 +1,12 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
 import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
-import Breadcrumb from '../../shared/Breadcrumb'
+import Breadcrumb from '../Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import DatasetDetailRight from './DatasetDetailRight'
 import DatasetDetailLeft from './DatasetDetailLeft'
 
 const DatasetDetail = ({ slug }) => {
-  const scrollRef = useRef(null)
   const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(CANDIDATE_DATASET_DETAIL_QUERY, {
@@ -38,10 +37,10 @@ const DatasetDetail = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <DatasetDetailLeft scrollRef={scrollRef} dataset={dataset} />
+          <DatasetDetailLeft dataset={dataset} />
         </div>
         <div className='lg:basis-2/3'>
-          <DatasetDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} dataset={dataset} />
+          <DatasetDetailRight commentsSectionRef={commentsSectionRef} dataset={dataset} />
         </div>
       </div>
     </div>

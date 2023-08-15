@@ -116,7 +116,7 @@ exports[`RepositoryForm component. Should display success toast on submit. 1`] =
                   <input
                     class="w-full"
                     name="absoluteUrl"
-                    placeholder="Abolute path / url of the repository."
+                    placeholder="Absolute path / url of the repository."
                     type="text"
                     value=""
                   />
@@ -262,7 +262,7 @@ exports[`RepositoryForm component. Should match snapshot: Create. 1`] = `
                   <input
                     class="w-full"
                     name="absoluteUrl"
-                    placeholder="Abolute path / url of the repository."
+                    placeholder="Absolute path / url of the repository."
                     type="text"
                     value=""
                   />
@@ -392,7 +392,7 @@ exports[`RepositoryForm component. Should match snapshot: Edit. 1`] = `
                   <input
                     class="w-full"
                     name="absoluteUrl"
-                    placeholder="Abolute path / url of the repository."
+                    placeholder="Absolute path / url of the repository."
                     type="text"
                     value=""
                   />

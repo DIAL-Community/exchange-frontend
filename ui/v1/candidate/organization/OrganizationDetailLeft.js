@@ -3,15 +3,12 @@ import Comment from '../../shared/common/Comment'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
 import OrganizationDetailHeader from './fragments/OrganizationDetailHeader'
-import OrganizationDetailNav from './fragments/OrganizationDetailNav'
 
-const OrganizationDetailLeft = ({ scrollRef, organization }) => {
+const OrganizationDetailLeft = ({ organization }) => {
   return (
     <div className='bg-dial-slate-100 lg:h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <OrganizationDetailHeader organization={organization}/>
-        <hr className='bg-slate-200'/>
-        <OrganizationDetailNav organization={organization} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
         <Bookmark object={organization} objectType={ObjectType.ORGANIZATION} />
         <hr className='bg-slate-200'/>

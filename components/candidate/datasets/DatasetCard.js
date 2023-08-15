@@ -136,7 +136,7 @@ const DatasetCard = ({ dataset, listType }) => {
                     {
                       dataset.rejected === null &&
                         <div className='ml-auto my-auto py-1 px-2 text-dial-cyan text-sm font-semibold'>
-                          {format('candidateDataset.label').toUpperCase()}
+                          {format('ui.candidateDataset.label').toUpperCase()}
                         </div>
                     }
                   </div>
@@ -196,7 +196,7 @@ const DatasetCard = ({ dataset, listType }) => {
                 <div className='card-back flip-vertical flex flex-col border border-dial-gray bg-dial-gray shadow-lg h-full'>
                   <div className='flex flex-row p-1.5 bg-dial-gray-dark'>
                     <div className='ml-auto my-auto text-dial-cyan text-sm font-semibold'>
-                      {format('candidateDataset.label').toUpperCase()}
+                      {format('ui.candidateDataset.label').toUpperCase()}
                     </div>
                   </div>
                   <div className='flex flex-col gap-3 p-3 h-full'>

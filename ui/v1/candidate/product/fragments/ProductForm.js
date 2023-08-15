@@ -39,16 +39,16 @@ const ProductForm = React.memo(({ product }) => {
         const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}` +
                              `/products/${response.createProduct.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        showToast(format('candidateProduct.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
+        showToast(format('ui.candidateProduct.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
         setMutating(false)
-        showToast(format('candidateProduct.submit.failure'), 'error', 'top-center')
+        showToast(format('ui.candidateProduct.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(format('candidateProduct.submit.failure'), 'error', 'top-center')
+      showToast(format('ui.candidateProduct.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

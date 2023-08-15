@@ -1,13 +1,12 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import Breadcrumb from '../Breadcrumb'
 import { CANDIDATE_ORGANIZATION_DETAIL_QUERY } from '../../shared/query/candidateOrganization'
-import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import OrganizationDetailRight from './OrganizationDetailRight'
 import OrganizationDetailLeft from './OrganizationDetailLeft'
 
 const OrganizationDetail = ({ slug }) => {
-  const scrollRef = useRef(null)
   const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
@@ -39,13 +38,11 @@ const OrganizationDetail = ({ slug }) => {
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
           <OrganizationDetailLeft
-            scrollRef={scrollRef}
             organization={organization}
           />
         </div>
         <div className='lg:basis-2/3'>
           <OrganizationDetailRight
-            ref={scrollRef}
             commentsSectionRef={commentsSectionRef}
             organization={organization}
           />

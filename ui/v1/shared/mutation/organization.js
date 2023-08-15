@@ -30,6 +30,7 @@ export const CREATE_ORGANIZATION = gql`
       heroFile: $heroFile
     ) {
       organization {
+        id
         name
         slug
         aliases

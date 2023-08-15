@@ -1,37 +1,18 @@
 import { useIntl } from 'react-intl'
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { useCallback } from 'react'
 import { ObjectType, REBRAND_BASE_PATH } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
+import { prependUrlWithProtocol } from '../../utils/utilities'
 
-const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => {
+const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
   const canEdit = (isAdminUser || isEditorUser) && !dataset.markdownUrl
-
-  const descRef = useRef()
-  const pricingRef = useRef()
-  const sdgRef = useRef()
-  const buildingBlockRef = useRef()
-  const organizationRef = useRef()
-  const tagRef = useRef()
-
-  useImperativeHandle(
-    ref,
-    () => [
-      { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.dataset.pricing.title', ref: pricingRef },
-      { value: 'ui.sdg.header', ref: sdgRef },
-      { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-      { value: 'ui.candidateOrganization.header', ref: organizationRef },
-      { value: 'ui.tag.header', ref: tagRef }
-    ],
-    []
-  )
 
   const editPath = `${REBRAND_BASE_PATH}/candidate/datasets/${dataset.slug}/edit`
 
@@ -43,7 +24,7 @@ const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => 
             <EditButton type='link' href={editPath} />
           </div>
         )}
-        <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
+        <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}
         </div>
         <div className='block'>
@@ -53,15 +34,57 @@ const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => 
           />
         </div>
       </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      {dataset.datasetType &&
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-meadow'>
+            {format('dataset.datasetType')}
+          </div>
+          <div className='my-auto text-sm'>
+            {dataset.datasetType}
+          </div>
+        </div>
+      }
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      {dataset.visualizationUrl &&
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-meadow'>
+            {format('dataset.visualizationUrl')}
+          </div>
+          <div className='my-auto text-sm flex'>
+            <a href={prependUrlWithProtocol(dataset.visualizationUrl)} target='_blank' rel='noreferrer'>
+              <div className='border-b border-dial-iris-blue'>
+                {dataset.visualizationUrl} ⧉
+              </div>
+            </a>
+          </div>
+        </div>
+      }
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      {dataset.visualizationUrl &&
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-meadow'>
+            {format('ui.candidate.submitter')}
+          </div>
+          <div className='my-auto text-sm flex'>
+            <a
+              className='border-b border-dial-iris-blue'
+              href={`mailto:${dataset.submitterEmail}`}
+              target='_blank'
+              rel='noreferrer'
+            >
+              {dataset.submitterEmail}
+            </a>
+          </div>
+        </div>
+      }
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={dataset.id}
-        objectType={ObjectType.DATASET}
+        objectType={ObjectType.CANDIDATE_DATASET}
       />
     </div>
   )
-})
-
-DatasetDetailRight.displayName = 'DatasetDetailRight'
+}
 
 export default DatasetDetailRight

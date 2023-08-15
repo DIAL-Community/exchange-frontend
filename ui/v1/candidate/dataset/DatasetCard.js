@@ -20,11 +20,14 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
           />
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
-          <div className='text-lg font-semibold text-dial-meadow'>
+          <div className='text-lg font-semibold text-dial-meadow line-clamp-1'>
             {dataset.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
             {dataset?.description && parse(dataset?.description)}
+          </div>
+          <div className='line-clamp-1 text-xs italic'>
+            {`${format('ui.candidate.submitter')}: ${dataset.submitterEmail}`}
           </div>
         </div>
       </div>

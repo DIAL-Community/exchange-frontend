@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import Breadcrumb from '../../shared/Breadcrumb'
+import Breadcrumb from '../Breadcrumb'
 import OrganizationForm from './fragments/OrganizationForm'
 import OrganizationSimpleLeft from './fragments/OrganizationSimpleLeft'
 

@@ -1,30 +1,34 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useState, useCallback, useContext, useMemo, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import {  FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
+import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
 import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
-import FileUploader from '../../../shared/form/FileUploader'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_DATASET } from '../../../shared/mutation/candidateDataset'
 import { REBRAND_BASE_PATH } from '../../../utils/constants'
+import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
+import { generateDatasetTypeOptions } from '../../../shared/form/options'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const captchaRef = useRef()
   const slug = dataset?.slug ?? ''
 
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+  const [captchaValue, setCaptchaValue] = useState()
 
   const { showToast } = useContext(ToastContext)
 
@@ -39,19 +43,21 @@ const DatasetForm = React.memo(({ dataset }) => {
         const redirectPath = `/${router.locale}${REBRAND_BASE_PATH}` +
                              `/candidate/datasets/${response.candidateDataset.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        showToast(format('candidateDataset.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
+        showToast(format('ui.candidateDataset.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
       } else {
         setMutating(false)
-        showToast(format('candidateDataset.submit.failure'), 'error', 'top-center')
+        showToast(format('ui.candidateDataset.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(format('candidateDataset.submit.failure'), 'error', 'top-center')
+      showToast(format('ui.candidateDataset.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
+
+  const datasetTypeOptions = useMemo(() => generateDatasetTypeOptions(format), [format])
 
   const {
     handleSubmit,
@@ -65,6 +71,9 @@ const DatasetForm = React.memo(({ dataset }) => {
     defaultValues: {
       name: dataset?.name,
       website: dataset?.website,
+      visualizationUrl: dataset?.visualizationUrl,
+      datasetType: datasetTypeOptions.find(({ value }) => value === dataset?.datasetType) ?? datasetTypeOptions[0],
+      submitterEmail: dataset?.submitterEmail,
       description: dataset?.description
     }
   })
@@ -77,8 +86,10 @@ const DatasetForm = React.memo(({ dataset }) => {
       const { userEmail, userToken } = user
       const {
         name,
-        imageFile,
         website,
+        visualizationUrl,
+        datasetType,
+        submitterEmail,
         description
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
@@ -86,10 +97,11 @@ const DatasetForm = React.memo(({ dataset }) => {
         name,
         slug,
         website,
-        description
-      }
-      if (imageFile) {
-        variables.imageFile = imageFile[0]
+        visualizationUrl,
+        datasetType: datasetType.value,
+        submitterEmail,
+        description,
+        captcha: captchaValue
       }
 
       updateDataset({
@@ -102,6 +114,10 @@ const DatasetForm = React.memo(({ dataset }) => {
         }
       })
     }
+  }
+
+  const updateCaptchaData = (value) => {
+    setCaptchaValue(value)
   }
 
   const cancelForm = () => {
@@ -133,24 +149,62 @@ const DatasetForm = React.memo(({ dataset }) => {
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label htmlFor='website'>
-                {format('dataset.website')}
+              <label className='required-field' htmlFor='website'>
+                {format('ui.candidateDataset.website.hint')}
               </label>
               <Controller
-                id='website'
                 name='website'
                 control={control}
                 render={({ field: { value, onChange } }) => (
-                  <UrlInput value={value} onChange={onChange} id='website' placeholder={format('dataset.website')} />
+                  <UrlInput
+                    value={value}
+                    onChange={onChange}
+                    id='website'
+                    isInvalid={errors.website}
+                    placeholder={format('dataset.website')}
+                  />
+                )}
+                rules={{ required: format('validation.required') }}
+              />
+              {errors.website && <ValidationError value={errors.website?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='visualizationUrl'>
+                {format('ui.candidateDataset.visualizationUrl.hint')}
+              </label>
+              <Controller
+                name='visualizationUrl'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <UrlInput
+                    value={value}
+                    onChange={onChange}
+                    id='visualizationUrl'
+                    placeholder={format('dataset.visualizationUrl')}
+                  />
                 )}
               />
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label>{format('dataset.imageFile')}</label>
-              <FileUploader {...register('imageFile')} />
+              <label htmlFor='datasetType'>
+                {format('ui.candidateDataset.datasetType.hint')}
+              </label>
+              <Controller
+                name='datasetType'
+                control={control}
+                render={({ field }) =>
+                  <Select {...field}
+                    id='datasetType'
+                    options={datasetTypeOptions}
+                    placeholder={format('dataset.datasetType')}
+                  />
+                }
+              />
             </div>
             <div className='block flex flex-col gap-y-2'>
-              <label className='required-field'>{format('dataset.description')}</label>
+              <label className='required-field' htmlFor='description-editor'>
+                {format('dataset.description')}
+              </label>
               <Controller
                 name='description'
                 control={control}
@@ -167,8 +221,25 @@ const DatasetForm = React.memo(({ dataset }) => {
               />
               {errors.description && <ValidationError value={errors.description?.message} />}
             </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='submitterEmail'>
+                {format('ui.candidateDataset.submitter.hint')}
+              </label>
+              <Input
+                {...register('submitterEmail', { required: format('validation.required') })}
+                id='submitterEmail'
+                placeholder={format('ui.candidateDataset.submitter.hint')}
+                isInvalid={errors.submitterEmail}
+              />
+              {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
+            </div>
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+              onChange={updateCaptchaData}
+              ref={captchaRef}
+            />
             <div className='flex flex-wrap text-base mt-6 gap-3'>
-              <button type='submit' className='submit-button' disabled={mutating || reverting}>
+              <button type='submit' className='submit-button' disabled={mutating || reverting || !captchaValue}>
                 {`${format('app.submit')} ${format('dataset.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>

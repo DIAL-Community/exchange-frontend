@@ -10,8 +10,11 @@ export const UPDATE_WORKFLOW_BUILDING_BLOCKS = gql`
       slug: $slug
     ) {
       workflow {
+        id
+        name
         slug
         buildingBlocks {
+          id
           slug
           name
           imageFile
@@ -42,6 +45,7 @@ export const CREATE_WORKFLOW = gql`
         slug
         imageFile
         workflowDescription {
+          id
           description
           locale
         }

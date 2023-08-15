@@ -40,7 +40,7 @@ const OrganizationForm = React.memo(({ organization }) => {
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
-          format('candidateOrganization.submit.success'),
+          format('ui.candidateOrganization.submit.success'),
           'success',
           'top-center',
           1000,
@@ -49,13 +49,13 @@ const OrganizationForm = React.memo(({ organization }) => {
         )
       } else {
         setMutating(false)
-        showToast(format('candidateOrganization.submit.failure'), 'error', 'top-center')
+        showToast(format('ui.candidateOrganization.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(format('candidateOrganization.submit.failure'), 'error', 'top-center')
+      showToast(format('ui.candidateOrganization.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

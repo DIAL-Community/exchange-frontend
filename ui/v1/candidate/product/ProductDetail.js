@@ -1,13 +1,12 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import Breadcrumb from '../Breadcrumb'
 import { CANDIDATE_PRODUCT_DETAIL_QUERY } from '../../shared/query/candidateProduct'
-import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import ProductDetailRight from './ProductDetailRight'
 import ProductDetailLeft from './ProductDetailLeft'
 
 const ProductDetail = ({ slug }) => {
-  const scrollRef = useRef(null)
   const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
@@ -38,10 +37,10 @@ const ProductDetail = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <ProductDetailLeft scrollRef={scrollRef} product={product} />
+          <ProductDetailLeft product={product} />
         </div>
         <div className='lg:basis-2/3'>
-          <ProductDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} product={product} />
+          <ProductDetailRight commentsSectionRef={commentsSectionRef} product={product} />
         </div>
       </div>
     </div>
