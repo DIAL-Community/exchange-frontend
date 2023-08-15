@@ -47,7 +47,7 @@ const CityCard = ({ displayType, index, city, dismissCardHandler }) => {
             className='object-contain w-8 h-8 my-auto'
           />
         </div>
-        <div className='text-sm font-semibold text-dial-stratos my-auto'>
+        <div className='text-sm font-semibold text-dial-stratos my-auto line-clamp-1'>
           {city.name}
         </div>
       </div>

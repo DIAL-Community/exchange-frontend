@@ -25,7 +25,6 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
   const projectRef = useRef()
   const productRef = useRef()
   const countryRef = useRef()
-  const tagRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -35,8 +34,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
       { value: 'ui.contact.header', ref: contactRef },
       { value: 'ui.project.header', ref: projectRef },
       { value: 'ui.product.header', ref: productRef },
-      { value: 'ui.country.header', ref: countryRef },
-      { value: 'ui.tag.header', ref: tagRef }
+      { value: 'ui.country.header', ref: countryRef }
     ],
     []
   )

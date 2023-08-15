@@ -18,9 +18,6 @@ const OrganizationDetailNav = ({ scrollRef }) => {
   }, {
     label: format('ui.country.header'),
     value: 'ui.country.header'
-  }, {
-    label: format('ui.tag.header'),
-    value: 'ui.tag.header'
   }]
 
   const onNavigationChange = (selectedNav) => {

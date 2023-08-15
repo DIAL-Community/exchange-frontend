@@ -51,7 +51,7 @@ const CountryCard = ({ displayType, index, country, dismissCardHandler }) => {
           alt={format('ui.country.logoAlt', { countryName: country.code })}
           className='object-contain w-10 h-10 my-auto'
         />
-        <div className='text-sm font-semibold text-dial-plum my-auto'>
+        <div className='text-sm font-semibold text-dial-plum my-auto line-clamp-1'>
           {country.name}
         </div>
       </div>
