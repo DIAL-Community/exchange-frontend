@@ -25,6 +25,7 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
         id
         name
         slug
+        website
         description
       }
       errors

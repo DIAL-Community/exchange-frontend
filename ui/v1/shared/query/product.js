@@ -133,6 +133,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         slug
         imageFile
         origins {
+          id
           name
         }
       }
@@ -142,6 +143,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         slug
         imageFile
         origins {
+          id
           name
         }
       }
@@ -152,7 +154,8 @@ export const PRODUCT_DETAIL_QUERY = gql`
         imageFile
         isEndorser
         whenEndorsed
-        sectors{
+        sectors {
+          id
           name
         }
       }

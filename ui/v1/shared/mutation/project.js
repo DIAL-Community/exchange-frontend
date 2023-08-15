@@ -2,13 +2,13 @@ import { gql } from '@apollo/client'
 
 export const CREATE_PROJECT = gql`
   mutation CreateProject(
-    $name: String!,
-    $slug: String!,
-    $startDate: ISO8601Date,
-    $endDate: ISO8601Date,
-    $projectUrl: String,
-    $description: String!,
-    $productId: Int,
+    $name: String!
+    $slug: String!
+    $startDate: ISO8601Date
+    $endDate: ISO8601Date
+    $projectUrl: String
+    $description: String!
+    $productId: Int
     $organizationId: Int
   ) {
     createProject(
@@ -23,6 +23,7 @@ export const CREATE_PROJECT = gql`
     ) {
       project {
         id
+        name
         slug
       }
       errors
@@ -32,7 +33,7 @@ export const CREATE_PROJECT = gql`
 
 export const UPDATE_PROJECT_SECTORS = gql`
   mutation UpdateProjectSectors(
-    $slug: String!,
+    $slug: String!
     $sectorSlugs: [String!]!
   ) {
     updateProjectSectors(
@@ -41,6 +42,8 @@ export const UPDATE_PROJECT_SECTORS = gql`
     ) {
       project {
         id
+        name
+        slug
         sectors {
           id
           name
@@ -54,7 +57,7 @@ export const UPDATE_PROJECT_SECTORS = gql`
 
 export const UPDATE_PROJECT_TAGS = gql`
   mutation UpdateProjectTags(
-    $slug: String!,
+    $slug: String!
     $tags: [String!]!
   ) {
     updateProjectTags(
@@ -63,6 +66,7 @@ export const UPDATE_PROJECT_TAGS = gql`
     ) {
       project {
         id
+        name
         slug
         tags
       }
@@ -73,7 +77,7 @@ export const UPDATE_PROJECT_TAGS = gql`
 
 export const UPDATE_PROJECT_ORGANIZATIONS = gql`
   mutation UpdateProjectOrganizations(
-    $slug: String!,
+    $slug: String!
     $organizationSlugs: [String!]!
   ) {
     updateProjectOrganizations(
@@ -82,6 +86,8 @@ export const UPDATE_PROJECT_ORGANIZATIONS = gql`
     ) {
       project {
         id
+        name
+        slug
         organizations {
           id
           name
@@ -89,6 +95,7 @@ export const UPDATE_PROJECT_ORGANIZATIONS = gql`
           imageFile
           whenEndorsed
           sectors {
+            id
             name
           }
         }
@@ -100,11 +107,11 @@ export const UPDATE_PROJECT_ORGANIZATIONS = gql`
 
 export const UPDATE_PROJECT_COUNTRIES = gql`
   mutation UpdateProjectCountries(
-    $slug: String!,
+    $slug: String!
     $countrySlugs: [String!]!
   ) {
     updateProjectCountries(
-      slug: $slug,
+      slug: $slug
       countrySlugs: $countrySlugs
     ) {
       project {
@@ -124,7 +131,7 @@ export const UPDATE_PROJECT_COUNTRIES = gql`
 
 export const UPDATE_PROJECT_PRODUCTS = gql`
   mutation UpdateProjectProducts(
-    $slug: String!,
+    $slug: String!
     $productSlugs: [String!]!
   ) {
     updateProjectProducts(
@@ -133,6 +140,8 @@ export const UPDATE_PROJECT_PRODUCTS = gql`
     ) {
       project {
         id
+        name
+        slug
         products {
           id
           name

@@ -59,16 +59,19 @@ export const WORKFLOW_DETAIL_QUERY = gql`
       slug
       imageFile
       workflowDescription {
+        id
         description
         locale
       }
       useCases {
+        id
         slug
         name
         maturity
         imageFile
       }
       buildingBlocks {
+        id
         name
         slug
         maturity

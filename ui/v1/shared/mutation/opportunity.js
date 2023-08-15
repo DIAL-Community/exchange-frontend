@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 export const DELETE_OPPORTUNITY = gql`
   mutation DeleteOpportunity($id: ID!) {
     deleteOpportunity(id: $id) {
-      country {
+      opportunity {
        id
        slug
        name
@@ -22,7 +22,7 @@ export const CREATE_OPPORTUNITY = gql`
       name: $name
       slug: $slug
     ) {
-      country {
+      opportunity {
         id
         name
         slug
@@ -42,6 +42,9 @@ export const UPDATE_OPPORTUNITY_COUNTRIES = gql`
       countrySlugs: $countrySlugs
     ) {
       opportunity {
+        id
+        name
+        slug
         countries {
           id
           name
@@ -63,6 +66,9 @@ export const UPDATE_OPPORTUNITY_SECTORS = gql`
       sectorSlugs: $sectorSlugs
     ) {
       opportunity {
+        id
+        name
+        slug
         sectors {
           id
           name
@@ -84,6 +90,9 @@ export const UPDATE_OPPORTUNITY_ORGANIZATIONS = gql`
       organizationSlugs: $organizationSlugs
     ) {
       opportunity {
+        id
+        name
+        slug
         organizations {
           id
           name
@@ -106,6 +115,9 @@ export const UPDATE_OPPORTUNITY_USE_CASES = gql`
       useCaseSlugs: $useCaseSlugs
     ) {
       opportunity {
+        id
+        name
+        slug
         useCases {
           id
           name
@@ -129,6 +141,9 @@ export const UPDATE_OPPORTUNITY_BUILDING_BLOCKS = gql`
       buildingBlockSlugs: $buildingBlockSlugs
     ) {
       opportunity {
+        id
+        name
+        slug
         buildingBlocks {
           id
           name
@@ -143,15 +158,16 @@ export const UPDATE_OPPORTUNITY_BUILDING_BLOCKS = gql`
 
 export const UPDATE_OPPORTUNITY_TAGS = gql`
   mutation UpdateOpportunityTags(
-    $slug: String!,
+    $slug: String!
     $tags: [String!]!
   ) {
     updateOpportunityTags(
       slug: $slug
       tags: $tags
     ) {
-      project {
+      opportunity {
         id
+        name
         slug
         tags
       }

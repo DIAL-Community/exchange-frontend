@@ -54,6 +54,7 @@ export const UPDATE_USE_CASE_SDG_TARGETS = gql`
     ) {
       useCase {
         id
+        name
         slug
         sdgTargets {
           id

@@ -32,8 +32,10 @@ export const CREATE_DATASET = gql`
       imageFile: $imageFile
     ) {
       dataset {
+        id
         name
         slug
+        website
         datasetDescription {
           description
           locale
@@ -54,6 +56,9 @@ export const UPDATE_DATASET_COUNTRIES = gql`
       countrySlugs: $countrySlugs
     ) {
       dataset {
+        id
+        name
+        slug
         countries {
           id
           name
@@ -77,6 +82,9 @@ export const UPDATE_DATASET_SDGS = gql`
       sdgSlugs: $sdgSlugs
     ) {
       dataset {
+        id
+        name
+        slug
         sustainableDevelopmentGoals {
           id
           name
@@ -100,6 +108,9 @@ export const UPDATE_DATASET_ORGANIZATIONS = gql`
       organizationSlugs: $organizationSlugs
     ) {
       dataset {
+        id
+        name
+        slug
         organizations {
           id
           name
@@ -122,6 +133,9 @@ export const UPDATE_DATASET_SECTORS = gql`
       sectorSlugs: $sectorSlugs
     ) {
       dataset {
+        id
+        name
+        slug
         sectors {
           id
           name
@@ -143,44 +157,14 @@ export const UPDATE_DATASET_TAGS = gql`
       tagNames: $tagNames
     ) {
       dataset {
+        id
+        name
+        slug
         tags
       }
       errors
     }
   }
-`
-
-export const CREATE_CANDIDATE_DATASET = gql`
-  mutation CreateCandidateDataset(
-    $name: String!
-    $slug: String!
-    $website: String!
-    $visualizationUrl: String
-    $datasetType: String!
-    $submitterEmail: String!
-    $description: String!
-    $captcha: String!
-  ) {
-    createCandidateDataset (
-      name: $name
-      slug: $slug
-      website: $website
-      visualizationUrl: $visualizationUrl
-      datasetType: $datasetType
-      submitterEmail: $submitterEmail
-      description: $description
-      captcha: $captcha
-    ) {
-      candidateDataset {
-        name
-        slug
-        website
-        visualizationUrl
-        description
-      }
-      errors
-    }
-  }  
 `
 
 export const DELETE_DATASET = gql`

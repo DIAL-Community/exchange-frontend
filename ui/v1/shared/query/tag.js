@@ -11,12 +11,8 @@ export const TAG_SEARCH_QUERY = gql`
 `
 
 export const TAG_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeTag(
-    $search: String
-  ) {
-    paginationAttributeTag(
-      search: $search
-    ) {
+  query PaginationAttributeTag($search: String) {
+    paginationAttributeTag(search: $search) {
       totalCount
     }
   }
@@ -51,6 +47,7 @@ export const TAG_DETAIL_QUERY = gql`
       name
       slug
       tagDescription {
+        id
         description
         locale
       }

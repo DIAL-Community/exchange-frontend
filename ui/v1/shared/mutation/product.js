@@ -28,12 +28,14 @@ export const CREATE_PRODUCT = gql`
       commercialProduct: $commercialProduct
     ) {
       product {
+        id
         name
         slug
         aliases
         website
         imageFile
         productDescription {
+          id
           description
           locale
         }
@@ -69,7 +71,10 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
     ) {
       product {
         id
+        name
+        slug
         buildingBlocks {
+          id
           name
           slug
           imageFile
@@ -93,6 +98,8 @@ export const UPDATE_PRODUCT_SECTORS = gql`
     ) {
       product {
         id
+        name
+        slug
         sectors {
           id
           name
@@ -115,6 +122,7 @@ export const UPDATE_PRODUCT_PROJECTS = gql`
     ) {
       product {
         id
+        name
         slug
         projects {
           id
@@ -141,6 +149,8 @@ export const UPDATE_PRODUCT_ORGANIZATIONS = gql`
     ) {
       product {
         id
+        name
+        slug
         organizations {
           id
           name
@@ -168,6 +178,7 @@ export const UPDATE_PRODUCT_TAGS = gql`
     ) {
       product {
         id
+        name
         slug
         tags
       }
@@ -189,8 +200,10 @@ export const UPDATE_PRODUCT_SDGS = gql`
     ) {
       product {
         id
+        name
         slug
         sustainableDevelopmentGoals {
+          id
           slug
           name
           imageFile
@@ -213,6 +226,8 @@ export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
     ) {
       product {
         id
+        name
+        slug
         overallMaturityScore
         maturityScoreDetails
       }

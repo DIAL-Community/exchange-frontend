@@ -1,12 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeCandidateDataset(
-    $search: String
-  ) {
-    paginationAttributeCandidateDataset(
-      search: $search
-    ) {
+  query PaginationAttributeCandidateDataset($search: String) {
+    paginationAttributeCandidateDataset(search: $search) {
       totalCount
     }
   }
@@ -36,6 +32,7 @@ export const CANDIDATE_DATASET_DETAIL_QUERY = gql`
       name
       slug
       website
+      visualizationUrl
       description
     }
   }

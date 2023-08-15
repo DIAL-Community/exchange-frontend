@@ -137,6 +137,7 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
         name
         slug
         origin {
+          id
           slug
           name
         }

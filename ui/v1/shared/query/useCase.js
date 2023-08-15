@@ -84,6 +84,7 @@ export const USE_CASE_DETAIL_QUERY = gql`
       imageFile
       markdownUrl
       useCaseDescription {
+        id
         description
       }
       useCaseSteps {

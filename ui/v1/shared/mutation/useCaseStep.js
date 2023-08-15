@@ -2,11 +2,11 @@ import { gql } from '@apollo/client'
 
 export const UPDATE_USE_CASE_STEP_WORKFLOWS = gql`
   mutation UpdateUseCaseStepWorkflows(
-    $slug: String!,
+    $slug: String!
     $workflowSlugs: [String!]!
   ) {
     updateUseCaseStepWorkflows(
-      slug: $slug,
+      slug: $slug
       workflowSlugs: $workflowSlugs
     ) {
       useCaseStep {
@@ -26,11 +26,11 @@ export const UPDATE_USE_CASE_STEP_WORKFLOWS = gql`
 
 export const UPDATE_USE_CASE_STEP_DATASETS = gql`
   mutation UpdateUseCaseStepDatasets(
-    $slug: String!,
+    $slug: String!
     $datasetSlugs: [String!]!
   ) {
     updateUseCaseStepDatasets(
-      slug: $slug,
+      slug: $slug
       datasetSlugs: $datasetSlugs
     ) {
       useCaseStep {
@@ -50,11 +50,11 @@ export const UPDATE_USE_CASE_STEP_DATASETS = gql`
 
 export const UPDATE_USE_CASE_STEP_PRODUCTS = gql`
   mutation UpdateUseCaseStepProducts(
-    $slug: String!,
+    $slug: String!
     $productSlugs: [String!]!
   ) {
     updateUseCaseStepProducts(
-      slug: $slug,
+      slug: $slug
       productSlugs: $productSlugs
     ) {
       useCaseStep {

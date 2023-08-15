@@ -11,12 +11,8 @@ export const SECTOR_SEARCH_QUERY = gql`
 `
 
 export const SECTOR_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeSector(
-    $search: String
-  ) {
-    paginationAttributeSector(
-      search: $search
-    ) {
+  query PaginationAttributeSector($search: String) {
+    paginationAttributeSector(search: $search) {
       totalCount
     }
   }

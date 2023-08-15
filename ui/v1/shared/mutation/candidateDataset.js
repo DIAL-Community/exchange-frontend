@@ -5,20 +5,20 @@ export const CREATE_CANDIDATE_DATASET = gql`
     $name: String!
     $slug: String!
     $website: String!
-    $datasetType: String!
-    $description: String!
     $visualizationUrl: String
+    $datasetType: String!
     $submitterEmail: String!
+    $description: String!
     $captcha: String!
   ) {
     createCandidateDataset (
       name: $name
       slug: $slug
       website: $website
-      datasetType: $datasetType
-      description: $description
       visualizationUrl: $visualizationUrl
+      datasetType: $datasetType
       submitterEmail: $submitterEmail
+      description: $description
       captcha: $captcha
     ) {
       candidateDataset {

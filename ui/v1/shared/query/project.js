@@ -85,6 +85,7 @@ export const PROJECT_DETAIL_QUERY = gql`
       tags
       projectWebsite
       projectDescription {
+        id
         description
         locale
       }
@@ -101,14 +102,18 @@ export const PROJECT_DETAIL_QUERY = gql`
         imageFile
       }
       sectors {
+        id
         name
         slug
       }
       countries {
+        id
         name
         slug
+        code
       }
       origin {
+        id
         slug
         name
       }

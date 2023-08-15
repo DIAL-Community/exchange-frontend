@@ -21,6 +21,7 @@ export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
       id
       name
       slug
+      website
       description
     }
   }

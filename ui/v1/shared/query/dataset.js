@@ -72,14 +72,17 @@ export const DATASET_DETAIL_QUERY = gql`
       dataFormat
       tags
       datasetDescription {
+        id
         description
         locale
       }
       origins {
+        id
         name
         slug
       }
       organizations {
+        id
         name
         slug
         imageFile
@@ -94,11 +97,13 @@ export const DATASET_DETAIL_QUERY = gql`
         imageFile
       }
       sectors {
+        id
         name
         slug
         isDisplayable
       }
       countries {
+        id
         name
         slug
       }
