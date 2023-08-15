@@ -162,7 +162,10 @@ const ProductForm = React.memo(({ product }) => {
               <label>{format('product.aliases')}</label>
               {aliases.map((alias, aliasIdx) => (
                 <div key={alias.id} className='flex gap-x-2'>
-                  <Input {...register(`aliases.${aliasIdx}.value`)} placeholder={format('product.alias')} />
+                  <Input
+                    {...register(`aliases.${aliasIdx}.value`)}
+                    placeholder={format('product.alias')}
+                  />
                   {isLastAlias(aliasIdx) &&
                     <IconButton
                       className='bg-dial-meadow'
@@ -189,7 +192,12 @@ const ProductForm = React.memo(({ product }) => {
                 name='website'
                 control={control}
                 render={({ field: { value, onChange } }) => (
-                  <UrlInput value={value} onChange={onChange} id='website' placeholder={format('product.website')} />
+                  <UrlInput
+                    id='website'
+                    value={value}
+                    onChange={onChange}
+                    placeholder={format('product.website')}
+                  />
                 )}
               />
             </div>
@@ -216,7 +224,9 @@ const ProductForm = React.memo(({ product }) => {
               {errors.description && <ValidationError value={errors.description?.message} />}
             </div>
             <hr className='my-3' />
-            <div className='text-2xl font-semibold pb-4'>{format('product.pricingInformation')}</div>
+            <div className='text-2xl font-semibold pb-4'>
+              {format('product.pricingInformation')}
+            </div>
             <label className='flex gap-x-2 mb-2 items-center self-start'>
               <Checkbox {...register('commercialProduct')} />
               {format('product.commercialProduct')}
@@ -242,13 +252,21 @@ const ProductForm = React.memo(({ product }) => {
               <label htmlFor='hostingModel'>
                 {format('product.hostingModel')}
               </label>
-              <Input {...register('hostingModel')} id='hostingModel' placeholder={format('product.hostingModel')} />
+              <Input
+                id='hostingModel'
+                {...register('hostingModel')}
+                placeholder={format('product.hostingModel')}
+              />
             </div>
             <div className='flex flex-col gap-y-2'>
               <label htmlFor='pricingModel'>
                 {format('product.pricingModel')}
               </label>
-              <Input {...register('pricingModel')} id='pricingModel' placeholder={format('product.pricingModel')} />
+              <Input
+                id='pricingModel'
+                {...register('pricingModel')}
+                placeholder={format('product.pricingModel')}
+              />
             </div>
             <div className='block flex flex-col gap-y-2'>
               <label>{format('product.pricing.details')}</label>
@@ -267,11 +285,20 @@ const ProductForm = React.memo(({ product }) => {
               />
             </div>
             <div className='flex flex-wrap text-base mt-6 gap-3'>
-              <button type='submit' className='submit-button' disabled={mutating || reverting}>
+              <button
+                type='submit'
+                className='submit-button'
+                disabled={mutating || reverting}
+              >
                 {`${format('app.submit')} ${format('ui.product.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>
-              <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>
+              <button
+                type='button'
+                className='cancel-button'
+                disabled={mutating || reverting}
+                onClick={cancelForm}
+              >
                 {format('app.cancel')}
                 {reverting && <FaSpinner className='spinner ml-3' />}
               </button>

@@ -61,7 +61,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
         </div>
       }
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
-      {dataset.visualizationUrl &&
+      {dataset.submitterEmail &&
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-meadow'>
             {format('ui.candidate.submitter')}

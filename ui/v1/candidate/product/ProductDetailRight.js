@@ -5,6 +5,7 @@ import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
+import { prependUrlWithProtocol } from '../../utils/utilities'
 
 const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
@@ -33,6 +34,39 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           />
         </div>
       </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      {product.repository &&
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-meadow'>
+            {format('dataset.visualizationUrl')}
+          </div>
+          <div className='my-auto text-sm flex'>
+            <a href={prependUrlWithProtocol(product.repository)} target='_blank' rel='noreferrer'>
+              <div className='border-b border-dial-iris-blue'>
+                {product.repository} ⧉
+              </div>
+            </a>
+          </div>
+        </div>
+      }
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      {product.submitterEmail &&
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-meadow'>
+            {format('ui.candidate.submitter')}
+          </div>
+          <div className='my-auto text-sm flex'>
+            <a
+              className='border-b border-dial-iris-blue'
+              href={`mailto:${product.submitterEmail}`}
+              target='_blank'
+              rel='noreferrer'
+            >
+              {product.submitterEmail}
+            </a>
+          </div>
+        </div>
+      }
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}

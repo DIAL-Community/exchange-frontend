@@ -26,6 +26,9 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
           <div className='line-clamp-4 text-dial-stratos'>
             {product?.description && parse(product?.description)}
           </div>
+          <div className='line-clamp-1 text-xs italic'>
+            {`${format('ui.candidate.submitter')}: ${product.submitterEmail}`}
+          </div>
         </div>
       </div>
     </div>

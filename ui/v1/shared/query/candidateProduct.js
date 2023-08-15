@@ -23,6 +23,7 @@ export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
       slug
       website
       description
+      submitterEmail
     }
   }
 `
@@ -35,6 +36,7 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       slug
       website
       description
+      submitterEmail
     }
   }
 `

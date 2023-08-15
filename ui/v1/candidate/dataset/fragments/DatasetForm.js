@@ -69,12 +69,12 @@ const DatasetForm = React.memo(({ dataset }) => {
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: dataset?.name,
-      website: dataset?.website,
-      visualizationUrl: dataset?.visualizationUrl,
+      name: dataset?.name ?? '',
+      website: dataset?.website ?? '',
+      visualizationUrl: dataset?.visualizationUrl ?? '',
       datasetType: datasetTypeOptions.find(({ value }) => value === dataset?.datasetType) ?? datasetTypeOptions[0],
-      submitterEmail: dataset?.submitterEmail,
-      description: dataset?.description
+      submitterEmail: dataset?.submitterEmail ?? '',
+      description: dataset?.description ?? ''
     }
   })
 
@@ -121,8 +121,10 @@ const DatasetForm = React.memo(({ dataset }) => {
   }
 
   const cancelForm = () => {
-    setReverting(true)
-    router.push(`/${locale}/candidate/datasets/${slug}`)
+    if (dataset) {
+      setReverting(true)
+      router.push(`/${locale}/candidate/datasets/${slug}`)
+    }
   }
 
   return loadingUserSession
@@ -239,14 +241,25 @@ const DatasetForm = React.memo(({ dataset }) => {
               ref={captchaRef}
             />
             <div className='flex flex-wrap text-base mt-6 gap-3'>
-              <button type='submit' className='submit-button' disabled={mutating || reverting || !captchaValue}>
+              <button
+                type='submit'
+                className='submit-button'
+                disabled={mutating || reverting || !captchaValue}
+              >
                 {`${format('app.submit')} ${format('dataset.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>
-              <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>
-                {format('app.cancel')}
-                {reverting && <FaSpinner className='spinner ml-3' />}
-              </button>
+              {dataset &&
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3' />}
+                </button>
+              }
             </div>
           </div>
         </div>

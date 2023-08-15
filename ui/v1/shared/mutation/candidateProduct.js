@@ -5,7 +5,7 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
     $slug: String
     $name: String!
     $website: String!
-    $repository: String!
+    $repository: String
     $description: String!
     $submitterEmail: String!
     $commercialProduct: Boolean
