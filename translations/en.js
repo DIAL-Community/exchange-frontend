@@ -90,6 +90,7 @@ export const en = {
   'header.admin.settings': 'Settings',
   'header.admin.sectors': 'Sectors',
   'header.admin.tags': 'Tags',
+  'header.admin.cities': 'Cities',
   'header.admin.countries': 'Countries',
   'header.admin.candidate_orgs': 'Candidate Organizations',
   'header.admin.candidate_products': 'Candidate Products',
@@ -1940,9 +1941,10 @@ export const en = {
 
   'ui.city.label': 'City',
   'ui.city.header': 'Cities',
-  'ui.city.description': 'City in {regionName} inside {countryName}.',
+  'ui.city.description': 'City in {regionName}, {countryName}.',
 
-  'ui.candidate.submitter': 'Submitted By',
+  'ui.candidate.submitter': 'Submitted by',
+  'ui.candidate.submittedOn': 'Submitted on',
 
   'ui.candidateProduct.label': 'Candidate Product',
   'ui.candidateProduct.header': 'Candidate Products',

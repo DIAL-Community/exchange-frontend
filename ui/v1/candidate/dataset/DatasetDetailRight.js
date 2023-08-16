@@ -53,7 +53,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
           </div>
           <div className='my-auto text-sm flex'>
             <a href={prependUrlWithProtocol(dataset.visualizationUrl)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue'>
+              <div className='border-b border-dial-iris-blue line-clamp-1'>
                 {dataset.visualizationUrl} ⧉
               </div>
             </a>

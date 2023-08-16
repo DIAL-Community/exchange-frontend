@@ -17,7 +17,9 @@ export const CANDIDATE_ROLE_DETAIL_QUERY = gql`
     ) {
       id
       roles
+      email
       description
+      createdAt
       productId
       organizationId
       datasetId
@@ -69,6 +71,7 @@ export const PAGINATED_CANDIDATE_ROLES_QUERY = gql`
       email
       roles
       description
+      createdAt
     }
   }
 `

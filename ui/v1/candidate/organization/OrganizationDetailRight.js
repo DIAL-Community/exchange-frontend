@@ -43,7 +43,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
           </div>
           <div className='my-auto text-sm flex'>
             <a href={prependUrlWithProtocol(organization.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue'>
+              <div className='border-b border-dial-iris-blue line-clamp-1'>
                 {organization.website} ⧉
               </div>
             </a>
@@ -77,7 +77,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={organization.id}
-        objectType={ObjectType.ORGANIZATION}
+        objectType={ObjectType.CANDIDATE_ORGANIZATION}
       />
     </div>
   )

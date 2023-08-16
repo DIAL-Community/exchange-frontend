@@ -21,6 +21,24 @@ const RoleDetailRight = ({ role, commentsSectionRef }) => {
           />
         </div>
       </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      {role.email &&
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-meadow'>
+            {format('ui.candidate.submitter')}
+          </div>
+          <div className='my-auto text-sm flex'>
+            <a
+              className='border-b border-dial-iris-blue'
+              href={`mailto:${role.email}`}
+              target='_blank'
+              rel='noreferrer'
+            >
+              {role.email}
+            </a>
+          </div>
+        </div>
+      }
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={role.id}

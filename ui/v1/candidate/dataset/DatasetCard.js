@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
@@ -26,8 +26,14 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
           <div className='line-clamp-4 text-dial-stratos'>
             {dataset?.description && parse(dataset?.description)}
           </div>
-          <div className='line-clamp-1 text-xs italic'>
-            {`${format('ui.candidate.submitter')}: ${dataset.submitterEmail}`}
+          <div className='flex flex-col gap-1'>
+            <div className='line-clamp-1 text-xs italic'>
+              {`${format('ui.candidate.submitter')}: ${dataset.submitterEmail}`}
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+              <FormattedDate value={dataset.createdA} />
+            </div>
           </div>
         </div>
       </div>

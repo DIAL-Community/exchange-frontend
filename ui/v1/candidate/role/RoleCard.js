@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
@@ -25,6 +25,15 @@ const RoleCard = ({ displayType, index, role, dismissCardHandler }) => {
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
             {role?.description && parse(role?.description)}
+          </div>
+          <div className='flex flex-col gap-1'>
+            <div className='line-clamp-1 text-xs italic'>
+              {`${format('ui.candidate.submitter')}: ${role.email}`}
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+              <FormattedDate value={role.createdA} />
+            </div>
           </div>
         </div>
       </div>

@@ -24,6 +24,7 @@ export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
       website
       description
       submitterEmail
+      createdAt
     }
   }
 `
@@ -37,6 +38,7 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       website
       description
       submitterEmail
+      createdAt
     }
   }
 `

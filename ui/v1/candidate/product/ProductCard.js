@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
@@ -26,8 +26,14 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
           <div className='line-clamp-4 text-dial-stratos'>
             {product?.description && parse(product?.description)}
           </div>
-          <div className='line-clamp-1 text-xs italic'>
-            {`${format('ui.candidate.submitter')}: ${product.submitterEmail}`}
+          <div className='flex flex-col gap-1'>
+            <div className='line-clamp-1 text-xs italic'>
+              {`${format('ui.candidate.submitter')}: ${product.submitterEmail}`}
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+              <FormattedDate value={product.createdA} />
+            </div>
           </div>
         </div>
       </div>

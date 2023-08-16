@@ -23,6 +23,7 @@ export const PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY = gql`
       slug
       website
       description
+      createdAt
       contacts {
         id
       }
@@ -38,6 +39,7 @@ export const CANDIDATE_ORGANIZATION_DETAIL_QUERY = gql`
       slug
       website
       description
+      createdAt
       contacts {
         id
         name

@@ -42,7 +42,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           </div>
           <div className='my-auto text-sm flex'>
             <a href={prependUrlWithProtocol(product.repository)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue'>
+              <div className='border-b border-dial-iris-blue line-clamp-1'>
                 {product.repository} ⧉
               </div>
             </a>
@@ -70,7 +70,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}
-        objectType={ObjectType.PRODUCT}
+        objectType={ObjectType.CANDIDATE_PRODUCT}
       />
     </div>
   )

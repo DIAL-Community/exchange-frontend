@@ -95,6 +95,9 @@ const ProductOwner = ({ product }) => {
           'success',
           'top-center'
         )
+        // Applying to be the owner of the organization
+        setShowApplyLink(!showApplyLink)
+        setOwnershipText('applied-to-own')
         setLoading(false)
       }
     },
@@ -125,39 +128,34 @@ const ProductOwner = ({ product }) => {
     }
   }
 
+  const ownerInformation = 'https://docs.dial.community/projects/product-registry/' +
+    `${locale}/latest/product_owner.html`
+
   return (
     <div className='flex flex-col gap-y-4 py-3'>
       <div className='text-xs'>{format('product.owner')}</div>
-      <div className='flex gap-3 text-xs text-dial-stratos'>
-        <a
-          href={`https://docs.dial.community/projects/product-registry/${locale}/latest/product_owner.html`}
-          target='_blank'
-          rel='noreferrer'
-        >
-          <div className='border-b border-dial-iris-blue'>{format('product.ownerLink')} ⧉</div>
+      <div className='flex flex-col gap-3 text-xs text-dial-stratos'>
+        <a href={ownerInformation} target='_blank' rel='noreferrer' className='flex'>
+          <div className='border-b border-dial-iris-blue'>
+            {format('product.ownerLink')} ⧉
+          </div>
         </a>
         {showApplyLink && (
-          <>
-            <div className='border-r border-dial-slate-400' />
-            <div className='flex text-xs text-dial-stratos'>
-              <button
-                className='border-b border-dial-iris-blue'
-                onClick={onSubmit}
-                disabled={loading}
-              >
-                {format('ownership.apply')}
-                {loading && <FaSpinner className='inline spinner mx-1' />}
-              </button>
-            </div>
-          </>
+          <div className='flex text-xs text-dial-stratos'>
+            <button
+              className='border-b border-dial-iris-blue'
+              onClick={onSubmit}
+              disabled={loading}
+            >
+              {format('ownership.apply')}
+              {loading && <FaSpinner className='inline spinner mx-1' />}
+            </button>
+          </div>
         )}
         {ownershipText && (
-          <>
-            <div className='border-r border-dial-slate-400' />
-            <div className='text-xs text-dial-meadow font-semibold'>
-              {ownershipText === 'owner' ? format('ownership.owned') : format('ownership.applied')}
-            </div>
-          </>
+          <div className='text-xs text-dial-meadow font-semibold'>
+            {ownershipText === 'owner' ? format('ownership.owned') : format('ownership.applied')}
+          </div>
         )}
       </div>
       {user && product.haveOwner && (
