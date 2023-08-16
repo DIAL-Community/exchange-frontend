@@ -26,6 +26,8 @@ export const PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY = gql`
       createdAt
       contacts {
         id
+        name
+        email
       }
     }
   }

@@ -58,11 +58,11 @@ export const UPDATE_PROJECT_SECTORS = gql`
 export const UPDATE_PROJECT_TAGS = gql`
   mutation UpdateProjectTags(
     $slug: String!
-    $tags: [String!]!
+    $tagNames: [String!]!
   ) {
     updateProjectTags(
       slug: $slug
-      tags: $tags
+      tagNames: $tagNames
     ) {
       project {
         id
@@ -122,6 +122,7 @@ export const UPDATE_PROJECT_COUNTRIES = gql`
           id
           name
           slug
+          code
         }
       }
       errors

@@ -60,7 +60,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailOffices
           organization={organization}
@@ -68,7 +68,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
           headerRef={officeRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailContacts
           organization={organization}
@@ -76,7 +76,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
           headerRef={contactRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailProjects
           organization={organization}
@@ -84,7 +84,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
           headerRef={projectRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailProducts
           organization={organization}
@@ -92,7 +92,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
           headerRef={productRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailCountries
           organization={organization}

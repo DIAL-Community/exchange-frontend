@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { ObjectType } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
@@ -34,7 +34,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       {dataset.datasetType &&
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-meadow'>
@@ -45,7 +45,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
           </div>
         </div>
       }
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       {dataset.visualizationUrl &&
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-meadow'>
@@ -60,7 +60,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
           </div>
         </div>
       }
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       {dataset.submitterEmail &&
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-meadow'>
@@ -76,8 +76,13 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
               {dataset.submitterEmail}
             </a>
           </div>
+          <div className='text-xs italic'>
+            <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+            <FormattedDate value={dataset.createdA} />
+          </div>
         </div>
       }
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={dataset.id}

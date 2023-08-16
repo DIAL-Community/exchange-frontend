@@ -170,11 +170,11 @@ export const UPDATE_PRODUCT_ORGANIZATIONS = gql`
 export const UPDATE_PRODUCT_TAGS = gql`
   mutation UpdateProductTags(
     $slug: String!
-    $tags: [String!]!
+    $tagNames: [String!]!
   ) {
     updateProductTags(
       slug: $slug
-      tags: $tags
+      tagNames: $tagNames
     ) {
       product {
         id

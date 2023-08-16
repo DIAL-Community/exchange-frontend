@@ -4,10 +4,16 @@ import Link from 'next/link'
 import parse from 'html-react-parser'
 import { IoClose } from 'react-icons/io5'
 import { DisplayType } from '../../utils/constants'
+import { useUser } from '../../../../lib/hooks'
 
 const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { user } = useUser()
+  const submitterEmail = user
+    ? product.submitterEmail ?? format('general.na')
+    : format('general.hidden')
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
@@ -28,7 +34,7 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
           </div>
           <div className='flex flex-col gap-1'>
             <div className='line-clamp-1 text-xs italic'>
-              {`${format('ui.candidate.submitter')}: ${product.submitterEmail}`}
+              {`${format('ui.candidate.submitter')}: ${submitterEmail}`}
             </div>
             <div className='text-xs italic'>
               <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>

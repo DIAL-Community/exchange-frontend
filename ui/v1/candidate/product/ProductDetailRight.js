@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { ObjectType } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
@@ -34,7 +34,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       {product.repository &&
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-meadow'>
@@ -49,7 +49,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           </div>
         </div>
       }
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       {product.submitterEmail &&
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-meadow'>
@@ -65,8 +65,13 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
               {product.submitterEmail}
             </a>
           </div>
+          <div className='text-xs italic'>
+            <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+            <FormattedDate value={product.createdA} />
+          </div>
         </div>
       }
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}

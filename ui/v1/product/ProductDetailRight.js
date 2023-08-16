@@ -20,9 +20,15 @@ const ProductSource = ({ product }) => {
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <div className='text-lg font-semibold text-dial-meadow'>{format('product.source')}</div>
+      <div className='text-lg font-semibold text-dial-meadow'>
+        {format('product.source')}
+      </div>
       <div className='flex flex-col gap-3'>
-        {product.origins?.length <= 0 && <div className='text-sm'>{format('product.noDatasource')}</div>}
+        {product.origins?.length <= 0 &&
+          <div className='text-sm'>
+            {format('product.noDatasource')}
+          </div>
+        }
         {product.origins.map((origin, i) => {
           return (
             <div key={i} className='flex flex-row gap-3'>
@@ -72,7 +78,11 @@ const ProductEndorser = ({ product }) => {
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.endorsers')}
       </div>
-      {product.endorsers?.length <= 0 && <div className='text-sm'>{format('product.noEndorser')}</div>}
+      {product.endorsers?.length <= 0 &&
+        <div className='text-sm'>
+          {format('product.noEndorser')}
+        </div>
+      }
       {product.endorsers.map((endorser, i) => {
         return (
           <div key={i} className='flex flex-row gap-3'>
@@ -128,7 +138,9 @@ const ProductIncluded = ({ product }) => {
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <div className='text-lg font-semibold text-dial-meadow'>{format('product.included')}</div>
+      <div className='text-lg font-semibold text-dial-meadow'>
+        {format('product.included')}
+      </div>
       {product.includes.length > 0 ? (
         product.includes.map((includeProduct, index) => (
           <div key={index} className='pb-5 mr-6'>
@@ -221,16 +233,22 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
                 initialContent={product?.pricingDetails}
                 editorId='pricing-details'
               />
-              : <div className='font-semibold inline'>{format('general.na')}</div>
+              : <div className='font-semibold inline'>
+                {format('general.na')}
+              </div>
             }
           </div>
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
-        <ProductDetailSdgs product={product} canEdit={canEdit} headerRef={sdgRef} />
+        <ProductDetailSdgs
+          product={product}
+          canEdit={canEdit}
+          headerRef={sdgRef}
+        />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProductDetailBuildingBlocks
           product={product}
@@ -238,7 +256,7 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
           headerRef={buildingBlockRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProductDetailOrganizations
           product={product}
@@ -278,10 +296,15 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
           maturityScoreDetails={product.maturityScoreDetails}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
-        <ProductDetailTags product={product} canEdit={canEdit} headerRef={tagRef} />
+        <ProductDetailTags
+          product={product}
+          canEdit={canEdit}
+          headerRef={tagRef}
+        />
       </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}

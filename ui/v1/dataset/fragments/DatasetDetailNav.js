@@ -10,17 +10,14 @@ const DatasetDetailNav = ({ scrollRef }) => {
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
   }, {
-    label: format('ui.dataset.pricing.title'),
-    value: 'ui.dataset.pricing.title'
-  }, {
     label: format('ui.sdg.header'),
     value: 'ui.sdg.header'
   }, {
-    label: format('ui.buildingBlock.header'),
-    value: 'ui.buildingBlock.header'
+    label: format('ui.organization.header'),
+    value: 'ui.organization.header'
   }, {
-    label: format('ui.dataset.header'),
-    value: 'ui.dataset.header'
+    label: format('ui.country.header'),
+    value: 'ui.country.header'
   }, {
     label: format('ui.tag.header'),
     value: 'ui.tag.header'

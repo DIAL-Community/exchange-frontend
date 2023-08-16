@@ -21,15 +21,19 @@ const TagCard = ({ displayType, index, tag, dismissCardHandler }) => {
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sector.header')} ({tag.sectors?.length ?? 0})
+              {format('ui.dataset.header')} ({tag.datasets?.length ?? 0})
             </div>
             <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
-              {format('ui.country.header')} ({tag.countries?.length ?? 0})
+              {format('ui.product.header')} ({tag.products?.length ?? 0})
             </div>
             <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
               {format('ui.project.header')} ({tag.projects?.length ?? 0})
+            </div>
+            <div className='border-r border-dial-stratos-400' />
+            <div className='text-sm'>
+              {format('ui.useCase.header')} ({tag.useCases?.length ?? 0})
             </div>
           </div>
         </div>

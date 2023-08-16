@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { ObjectType } from '../../utils/constants'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
@@ -21,7 +21,7 @@ const RoleDetailRight = ({ role, commentsSectionRef }) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       {role.email &&
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-meadow'>
@@ -37,8 +37,13 @@ const RoleDetailRight = ({ role, commentsSectionRef }) => {
               {role.email}
             </a>
           </div>
+          <div className='text-xs italic'>
+            <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+            <FormattedDate value={role.createdA} />
+          </div>
         </div>
       }
+      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={role.id}

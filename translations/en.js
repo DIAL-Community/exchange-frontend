@@ -559,6 +559,8 @@ export const en = {
 
   'general.close': 'Close',
   'general.na': 'N/A',
+  'general.hidden': 'Hidden',
+  'general.unknown': 'Unknown',
   'general.fetchingData': 'Fetching data ...',
   'general.fetchError': 'Error fetching data. Please check your network connection.',
   'general.loadingData': 'Loading more data ...',

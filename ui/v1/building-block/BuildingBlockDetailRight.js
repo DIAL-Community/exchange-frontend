@@ -62,6 +62,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock, commentsSectionRef
             headerRef={workflowRef}
           />
         </div>
+        <hr className='bg-dial-blue-chalk mt-6 mb-3' />
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={buildingBlock.id}

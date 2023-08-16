@@ -63,6 +63,7 @@ export const UPDATE_DATASET_COUNTRIES = gql`
           id
           name
           slug
+          code
         }
       }
       errors

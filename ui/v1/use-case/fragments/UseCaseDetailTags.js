@@ -65,7 +65,7 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
       updateUseCaseTags({
         variables: {
           slug: useCase.slug,
-          tags
+          tagNames: tags
         },
         context: {
           headers: {

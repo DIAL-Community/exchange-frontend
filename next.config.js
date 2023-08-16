@@ -9,6 +9,9 @@ module.exports = withBundleAnalyzer(withRemoveImports({
     defaultLocale: 'en',
     localeDetection: false
   },
+  experimental: {
+    appDir: false
+  },
   images: {
     domains: [
       'localhost',

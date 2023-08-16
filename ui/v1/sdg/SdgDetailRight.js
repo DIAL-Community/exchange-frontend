@@ -77,7 +77,7 @@ const SdgDetailRight = forwardRef(({ sdg, commentsSectionRef }, ref) => {
           {sdg.longTitle}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <SdgSdgTargets sdg={sdg} headerRef={sdgTarget} />
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection

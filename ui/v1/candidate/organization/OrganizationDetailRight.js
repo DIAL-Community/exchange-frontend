@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { ObjectType } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
@@ -35,7 +35,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       {organization.website &&
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-meadow'>
@@ -52,7 +52,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
       }
       {submitter?.email &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+          <hr className='bg-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-dial-meadow'>
               {format('ui.candidate.submitter')}
@@ -69,6 +69,10 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
               >
                 {submitter.email}
               </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+              <FormattedDate value={organization.createdA} />
             </div>
           </div>
         </>

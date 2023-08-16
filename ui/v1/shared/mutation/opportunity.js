@@ -49,6 +49,7 @@ export const UPDATE_OPPORTUNITY_COUNTRIES = gql`
           id
           name
           slug
+          code
         }
       }
       errors
@@ -159,11 +160,11 @@ export const UPDATE_OPPORTUNITY_BUILDING_BLOCKS = gql`
 export const UPDATE_OPPORTUNITY_TAGS = gql`
   mutation UpdateOpportunityTags(
     $slug: String!
-    $tags: [String!]!
+    $tagNames: [String!]!
   ) {
     updateOpportunityTags(
       slug: $slug
-      tags: $tags
+      tagNames: $tagNames
     ) {
       opportunity {
         id

@@ -80,9 +80,9 @@ const WorkflowDetailRight = forwardRef(({ workflow, commentsSectionRef }, ref) =
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <WorkflowUseCases workflow={workflow} headerRef={useCaseRef} />
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <WorkflowDetailBuildingBlocks
           workflow={workflow}

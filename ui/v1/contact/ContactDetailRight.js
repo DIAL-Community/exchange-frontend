@@ -44,12 +44,20 @@ const ContactDetailRight = forwardRef(({ contact, commentsSectionRef }, ref) => 
           {contact.title}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='bg-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
           {format('ui.organization.header')}
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          {contact?.organizations.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.organization.label'),
+                base: format('ui.contact.label')
+              })}
+            </div>
+          }
           {contact?.organizations?.map((organization, index) =>
             <div key={`organization-${index}`}>
               <OrganizationCard

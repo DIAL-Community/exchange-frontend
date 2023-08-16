@@ -65,7 +65,7 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
       updateOpportunityTags({
         variables: {
           slug: opportunity.slug,
-          tags
+          tagNames: tags
         },
         context: {
           headers: {

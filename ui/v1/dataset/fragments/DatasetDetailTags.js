@@ -6,37 +6,37 @@ import Select from '../../shared/form/Select'
 import { fetchSelectOptions } from '../../utils/search'
 import Pill from '../../shared/form/Pill'
 import EditableSection from '../../shared/EditableSection'
-import { UPDATE_PRODUCT_TAGS } from '../../shared/mutation/product'
+import { UPDATE_DATASET_TAGS } from '../../shared/mutation/dataset'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
 
-const ProductDetailTags = ({ product, canEdit, headerRef }) => {
+const DatasetDetailTags = ({ dataset, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [tags, setTags] = useState(product.tags)
+  const [tags, setTags] = useState(dataset.tags)
   const [isDirty, setIsDirty] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProductTags, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_TAGS, {
+  const [updateDatasetTags, { data, loading, reset }] = useMutation(UPDATE_DATASET_TAGS, {
     onError: () => {
       setIsDirty(false)
-      setTags(product.tags)
+      setTags(dataset.tags)
       showToast(format('toast.tags.update.failure'), 'error', 'top-center')
     },
     onCompleted: (data) => {
-      const { updateProductTags: response } = data
-      if (response?.product && response?.errors?.length === 0) {
+      const { updateDatasetTags: response } = data
+      if (response?.dataset && response?.errors?.length === 0) {
         setIsDirty(false)
-        setTags(response?.product?.tags)
+        setTags(response?.dataset?.tags)
         showToast(format('toast.tags.update.success'), 'success', 'top-center')
       } else {
         setIsDirty(false)
-        setTags(product.tags)
+        setTags(dataset.tags)
         showToast(format('toast.tags.update.failure'), 'error', 'top-center')
         reset()
       }
@@ -62,9 +62,9 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
     if (user) {
       const { userEmail, userToken } = user
 
-      updateProductTags({
+      updateDatasetTags({
         variables: {
-          slug: product.slug,
+          slug: dataset.slug,
           tagNames: tags
         },
         context: {
@@ -78,12 +78,12 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setTags(data?.updateProductTags?.product?.tags ?? product.tags)
+    setTags(data?.updateDatasetTags?.dataset?.tags ?? dataset.tags)
     setIsDirty(false)
   }
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-meadow' ref={headerRef}>
+    <div className='text-xl font-semibold text-dial-plum' ref={headerRef}>
       {format('ui.tag.header')}
     </div>
 
@@ -94,7 +94,7 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
     : <div className='text-sm pb-5 text-button-gray'>
       {format('ui.common.detail.noData', {
         entity: format('ui.tag.label'),
-        base: format('ui.product.label')
+        base: format('ui.dataset.label')
       })}
     </div>
 
@@ -140,4 +140,4 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
   )
 }
 
-export default ProductDetailTags
+export default DatasetDetailTags

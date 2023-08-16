@@ -54,7 +54,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
     <div className='rounded-lg bg-gradient-to-r from-dataset-bg-light to-dataset-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         {dataset.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>
+          <div className='rounded-full my-auto w-10 h-10 min-w-[2.5rem]'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.dataset.header') })}

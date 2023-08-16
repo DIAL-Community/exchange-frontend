@@ -6,6 +6,10 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import DeleteDataset from './DeleteDataset'
+import DatasetDetailTags from './fragments/DatasetDetailTags'
+import DatasetDetailOrganizations from './fragments/DatasetDetailOrganizations'
+import DatasetDetailSdgs from './fragments/DatasetDetailSdgs'
+import DatasetDetailCountries from './fragments/DatasetDetailCountries'
 
 const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => {
   const { formatMessage } = useIntl()
@@ -15,20 +19,18 @@ const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => 
   const canEdit = (isAdminUser || isEditorUser) && !dataset.markdownUrl
 
   const descRef = useRef()
-  const pricingRef = useRef()
   const sdgRef = useRef()
-  const buildingBlockRef = useRef()
-  const datasetRef = useRef()
+  const organizationRef = useRef()
+  const countryRef = useRef()
   const tagRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.dataset.pricing.title', ref: pricingRef },
       { value: 'ui.sdg.header', ref: sdgRef },
-      { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-      { value: 'ui.dataset.header', ref: datasetRef },
+      { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.country.header', ref: countryRef },
       { value: 'ui.tag.header', ref: tagRef }
     ],
     []
@@ -54,6 +56,34 @@ const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => 
             editorId='dataset-description'
           />
         </div>
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6' />
+      <div className='flex flex-col gap-y-3'>
+        <DatasetDetailSdgs dataset={dataset} canEdit={canEdit} headerRef={sdgRef} />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6' />
+      <div className='flex flex-col gap-y-3'>
+        <DatasetDetailOrganizations
+          dataset={dataset}
+          canEdit={canEdit}
+          headerRef={organizationRef}
+        />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6' />
+      <div className='flex flex-col gap-y-3'>
+        <DatasetDetailCountries
+          dataset={dataset}
+          canEdit={canEdit}
+          headerRef={countryRef}
+        />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6' />
+      <div className='flex flex-col gap-y-3'>
+        <DatasetDetailTags
+          dataset={dataset}
+          canEdit={canEdit}
+          headerRef={tagRef}
+        />
       </div>
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection

@@ -76,14 +76,16 @@ export const UPDATE_USE_CASE_SDG_TARGETS = gql`
 export const UPDATE_USE_CASE_TAGS = gql`
   mutation UpdateUseCaseTags(
     $slug: String!
-    $tags: [String!]!
+    $tagNames: [String!]!
   ) {
     updateUseCaseTags(
       slug: $slug
-      tags: $tags
+      tagNames: $tagNames
     ) {
       useCase {
         id
+        name
+        slug
         tags
       }
       errors

@@ -62,6 +62,14 @@ const CountryDetailRight = forwardRef(({ country, commentsSectionRef }, ref) => 
           {format('ui.organization.header')}
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          {country?.organizations.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.organization.label'),
+                base: format('ui.country.label')
+              })}
+            </div>
+          }
           {country?.organizations?.map((organization, index) =>
             <div key={`organization-${index}`}>
               <OrganizationCard
@@ -79,6 +87,14 @@ const CountryDetailRight = forwardRef(({ country, commentsSectionRef }, ref) => 
           {format('ui.project.header')}
         </div>
         <div className='flex flex-col gap-y-4'>
+          {country?.projects.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.project.label'),
+                base: format('ui.country.label')
+              })}
+            </div>
+          }
           {country?.projects?.map((project, index) =>
             <div key={`project-${index}`}>
               <ProjectCard

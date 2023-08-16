@@ -36,6 +36,18 @@ export const PAGINATED_TAGS_QUERY = gql`
         description
         locale
       }
+      datasets {
+        id
+      }
+      products {
+        id
+      }
+      projects {
+        id
+      }
+      useCases {
+        id
+      }
     }
   }
 `
@@ -50,6 +62,29 @@ export const TAG_DETAIL_QUERY = gql`
         id
         description
         locale
+      }
+      datasets {
+        id
+        name
+        slug
+        imageFile
+      }
+      products {
+        id
+        name
+        slug
+        imageFile
+      }
+      projects {
+        id
+        name
+        slug
+      }
+      useCases {
+        id
+        name
+        slug
+        imageFile
       }
     }
   }

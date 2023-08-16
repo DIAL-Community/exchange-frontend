@@ -89,8 +89,8 @@ export const DATASET_DETAIL_QUERY = gql`
         isEndorser
         whenEndorsed
       }
-      sustainableDevelopmentGoalMapping
-      sustainableDevelopmentGoals {
+      sdgsMapping
+      sdgs {
         id
         name
         slug
@@ -106,6 +106,7 @@ export const DATASET_DETAIL_QUERY = gql`
         id
         name
         slug
+        code
       }
       manualUpdate
     }

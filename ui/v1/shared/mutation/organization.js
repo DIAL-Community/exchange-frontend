@@ -71,6 +71,7 @@ export const UPDATE_ORGANIZATION_COUNTRIES = gql`
           id
           name
           slug
+          code
         }
       }
       errors

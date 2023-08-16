@@ -54,7 +54,7 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
     <div className='rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         {product.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>
+          <div className='rounded-full my-auto w-10 h-10 min-w-[2.5rem]'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.product.header') })}
