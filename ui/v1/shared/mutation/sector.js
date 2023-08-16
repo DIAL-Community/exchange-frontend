@@ -18,14 +18,12 @@ export const CREATE_SECTOR = gql`
     $name: String!
     $slug: String!
     $isDisplayable: Boolean!
-    $parentSectorId: Int
     $locale: String!
   ) {
     createSector(
       name: $name
       slug: $slug
       isDisplayable: $isDisplayable
-      parentSectorId: $parentSectorId
       locale: $locale
     ) {
       sector {
@@ -34,8 +32,6 @@ export const CREATE_SECTOR = gql`
         slug
         locale
         isDisplayable
-        originId
-        parentSectorId
       }
       errors
     }

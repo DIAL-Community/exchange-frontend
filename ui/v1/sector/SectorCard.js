@@ -21,11 +21,15 @@ const SectorCard = ({ displayType, index, sector, dismissCardHandler }) => {
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sector.header')} ({sector.sectors?.length ?? 0})
+              {format('ui.dataset.header')} ({sector.datasets?.length ?? 0})
             </div>
             <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
-              {format('ui.country.header')} ({sector.countries?.length ?? 0})
+              {format('ui.organization.header')} ({sector.organizations?.length ?? 0})
+            </div>
+            <div className='border-r border-dial-stratos-400' />
+            <div className='text-sm'>
+              {format('ui.product.header')} ({sector.products?.length ?? 0})
             </div>
             <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>

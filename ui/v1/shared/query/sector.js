@@ -31,6 +31,18 @@ export const PAGINATED_SECTORS_QUERY = gql`
       id
       name
       slug
+      datasets {
+        id
+      }
+      products {
+        id
+      }
+      projects {
+        id
+      }
+      organizations {
+        id
+      }
     }
   }
 `
@@ -41,6 +53,29 @@ export const SECTOR_DETAIL_QUERY = gql`
       id
       name
       slug
+      datasets {
+        id
+        name
+        slug
+        imageFile
+      }
+      products {
+        id
+        name
+        slug
+        imageFile
+      }
+      projects {
+        id
+        name
+        slug
+      }
+      organizations {
+        id
+        name
+        slug
+        imageFile
+      }
     }
   }
 `

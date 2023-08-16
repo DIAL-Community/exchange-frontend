@@ -10,20 +10,17 @@ const SectorDetailNav = ({ scrollRef }) => {
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
   }, {
-    label: format('ui.sector.pricing.title'),
-    value: 'ui.sector.pricing.title'
+    label: format('ui.dataset.header'),
+    value: 'ui.dataset.header'
   }, {
-    label: format('ui.sdg.header'),
-    value: 'ui.sdg.header'
+    label: format('ui.organization.header'),
+    value: 'ui.organization.header'
   }, {
-    label: format('ui.buildingBlock.header'),
-    value: 'ui.buildingBlock.header'
+    label: format('ui.product.header'),
+    value: 'ui.product.header'
   }, {
-    label: format('ui.sector.header'),
-    value: 'ui.sector.header'
-  }, {
-    label: format('ui.tag.header'),
-    value: 'ui.tag.header'
+    label: format('ui.project.header'),
+    value: 'ui.project.header'
   }]
 
   const onNavigationChange = (selectedNav) => {

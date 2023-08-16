@@ -29,7 +29,7 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             <Link href='/cities' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.admin.cities')}
             </Link>
-            <Link href='/cities' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            <Link href='/countries' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.admin.countries')}
             </Link>
             <Link href='/sectors' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
