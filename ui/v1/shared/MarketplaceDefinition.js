@@ -13,7 +13,7 @@ const MarketplaceDefinition = () => {
           <div className='text-2xl font-semibold'>
             {format('ui.exchange.title')}
           </div>
-          <div className='text-sm max-w-prose'>
+          <div className='text-sm max-w-5xl'>
             {format('ui.marketplace.tagLine')}
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 py-8 -mx-6'>

@@ -1,4 +1,11 @@
+import Link from 'next/link'
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
+
 const WizardDefinition = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   return (
     <div className='relative h-[400px] lg:h-[297px]'>
       <div className='absolute top-0 left-0 w-full h-[400px] lg:h-[297px] bg-dial-white-linen' />
@@ -10,17 +17,15 @@ const WizardDefinition = () => {
           <div className='lg:px-8 xl:px-56'>
             <div className='flex flex-col gap-y-6'>
               <div className='text-2xl font-semibold mt-12'>
-                New to the Digital Impact Exchange?
+                {format('ui.wizard.title')}
               </div>
-              <div className='max-w-prose'>
-                Our Recommendations Wizard can help get you started to find you a curated
-                list of resources, tailored to wherever you are in a project lifecycle —
-                ideation, planning, implementation, or monitoring/evaluation.
+              <div className='max-w-5xl'>
+                {format('ui.wizard.tagLine')}
               </div>
               <div className='flex text-sm text-dial-stratos'>
-                <button className='rounded px-5 py-2.5 bg-dial-sunshine'>
-                  Launch
-                </button>
+                <Link href='/wizard' className='rounded px-5 py-2.5 bg-dial-sunshine'>
+                  {format('ui.wizard.launch')}
+                </Link>
               </div>
             </div>
           </div>

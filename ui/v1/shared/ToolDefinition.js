@@ -12,11 +12,8 @@ const ToolDefinition = () => {
         <div className='text-2xl font-semibold'>
           {format('ui.tool.getStarted')} ...
         </div>
-        <div className='text-sm max-w-prose'>
-          Welcome to the Digital Impact Exchange, a gateway to the world of digital solutions for
-          e-government. No matter which sector or Sustainable Development Goal you are focused on,
-          the Exchange can help you build better services for people and communities.  Start with
-          some of the popular options below.
+        <div className='text-sm max-w-5xl'>
+          {format('ui.tool.tagLine')}
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           <Link href='/use-cases' className='rounded-md shadow-lg border'>

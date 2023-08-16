@@ -2006,6 +2006,32 @@ export const en = {
     tool enables you to evaluate multiple solutions side by side. Compare features,
     functionalities, and maturity scores to find the perfect match for your requirements.
   `,
-  'ui.compareTool.subTagLine': 'Launch the comparison tool.'
+  'ui.compareTool.subTagLine': 'Launch the comparison tool.',
+
+  'ui.tool.tagLine': `
+    Welcome to the Digital Impact Exchange, a gateway to the world of digital solutions for
+    e-government. No matter which sector or Sustainable Development Goal you are focused on,
+    the Exchange can help you build better services for people and communities.  Start with
+    some of the popular options below.
+  `,
+
+  'ui.hero.exchange.title': 'Welcome',
+  'ui.hero.exchange.tagLine': `
+    The Digital Impact Exchange enables digital change-makers to connect,
+    collaborate and exchange tools, knowledge and best practices in the
+    collective pursuit of the Sustainable Development Goals
+  `,
+
+  'ui.hero.govExchange.title': 'GovExchange',
+  'ui.hero.govExchange.tagLine': 'A key offering of GovStack. Find building blocks, use cases, products and more.',
+  'ui.hero.govExchange.learnMore': 'Learn more about GovStack',
+
+  'ui.wizard.title': 'New to the Digital Impact Exchange?',
+  'ui.wizard.tagLine': `
+    Our Recommendations Wizard can help get you started to find you a curated
+    list of resources, tailored to wherever you are in a project lifecycle —
+    ideation, planning, implementation, or monitoring/evaluation.
+  `,
+  'ui.wizard.launch': 'Launch Recommendations Wizard'
 
 }

@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 
@@ -43,6 +45,9 @@ const GovStackHero = ({ children }) => {
 }
 
 const HeroCarousel = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   return (
     <div className='h-[345px] xl:h-[400px]'>
       <Swiper
@@ -56,11 +61,11 @@ const HeroCarousel = () => {
         <SwiperSlide>
           <DigitalExchangeHero>
             <div className='flex flex-col gap-y-6 text-white px-8 xl:px-56 py-[6rem] xl:py-[8rem]'>
-              <div className='text-3xl'>Welcome</div>
-              <div className='text-base max-w-prose'>
-                The Digital Impact Exchange enables digital changemakers to connect,
-                collaborate and exchange tools, knowledge and best practices in the
-                collective pursuit of the Sustainable Development Goals
+              <div className='text-3xl'>
+                {format('ui.hero.exchange.title')}
+              </div>
+              <div className='text-base max-w-5xl'>
+                {format('ui.hero.exchange.tagLine')}
               </div>
             </div>
           </DigitalExchangeHero>
@@ -68,12 +73,21 @@ const HeroCarousel = () => {
         <SwiperSlide>
           <GovStackHero>
             <div className='flex flex-col gap-y-6 text-white px-8 xl:px-56 py-[6rem] xl:py-[8rem]'>
-              <div className='text-3xl'>GovStack</div>
-              <div className='text-base'>Accelerating the digital transformation of government services</div>
+              <div className='text-3xl'>
+                {format('ui.hero.govExchange.title')}
+              </div>
+              <div className='text-base'>
+                {format('ui.hero.govExchange.tagLine')}
+              </div>
               <div className='flex text-sm text-dial-stratos'>
-                <button className='rounded px-5 py-2.5 bg-dial-sunshine'>
-                  Learn more
-                </button>
+                <a
+                  href='//www.govstack.global/'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='rounded px-5 py-2.5 bg-dial-sunshine'
+                >
+                  {format('ui.hero.govExchange.learnMore')}
+                </a>
               </div>
             </div>
           </GovStackHero>
