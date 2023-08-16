@@ -1,5 +1,4 @@
 import Bookmark from '../shared/common/Bookmark'
-import Comment from '../shared/common/Comment'
 import Share from '../shared/common/Share'
 import { ObjectType } from '../utils/constants'
 import BuildingBlockDetailHeader from './fragments/BuildingBlockDetailHeader'
@@ -13,8 +12,6 @@ const BuildingBlockEditLeft = ({ buildingBlock }) => {
         <Bookmark object={buildingBlock} objectType={ObjectType.BUILDING_BLOCK}/>
         <hr className='bg-slate-200'/>
         <Share />
-        <hr className='bg-slate-200'/>
-        <Comment />
         <hr className='bg-slate-200'/>
       </div>
     </div>

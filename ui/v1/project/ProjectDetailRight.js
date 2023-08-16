@@ -11,7 +11,7 @@ import ProjectDetailOrganizations from './fragments/ProjectDetailOrganizations'
 import ProjectDetailProducts from './fragments/ProjectDetailProducts'
 import ProjectDetailCountries from './fragments/ProjectDetailCountries'
 
-const ProjectDetailRight = forwardRef(({ project, commentsSectionRef }, ref) => {
+const ProjectDetailRight = forwardRef(({ project }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -23,6 +23,7 @@ const ProjectDetailRight = forwardRef(({ project, commentsSectionRef }, ref) => 
   const productRef = useRef()
   const countryRef = useRef()
   const tagRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -31,7 +32,8 @@ const ProjectDetailRight = forwardRef(({ project, commentsSectionRef }, ref) => 
       { value: 'ui.organization.header', ref: organizationRef },
       { value: 'ui.product.header', ref: productRef },
       { value: 'ui.country.header', ref: countryRef },
-      { value: 'ui.tag.header', ref: tagRef }
+      { value: 'ui.tag.header', ref: tagRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

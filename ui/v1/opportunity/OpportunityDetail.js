@@ -8,7 +8,6 @@ import OpportunityDetailLeft from './OpportunityDetailLeft'
 
 const OpportunityDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(OPPORTUNITY_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const OpportunityDetail = ({ slug }) => {
           <OpportunityDetailLeft scrollRef={scrollRef} opportunity={opportunity} />
         </div>
         <div className='lg:basis-2/3'>
-          <OpportunityDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} opportunity={opportunity} />
+          <OpportunityDetailRight ref={scrollRef} opportunity={opportunity} />
         </div>
       </div>
     </div>

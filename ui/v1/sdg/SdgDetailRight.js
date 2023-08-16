@@ -51,18 +51,19 @@ const SdgSdgTargets = ({ sdg, headerRef }) => {
   )
 }
 
-const SdgDetailRight = forwardRef(({ sdg, commentsSectionRef }, ref) => {
+const SdgDetailRight = forwardRef(({ sdg }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const descRef = useRef()
   const sdgTarget = useRef()
-
+  const commentsSectionRef = useRef()
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.sdgTarget.header', ref: sdgTarget }
+      { value: 'ui.sdgTarget.header', ref: sdgTarget },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

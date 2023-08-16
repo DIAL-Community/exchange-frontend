@@ -6,7 +6,6 @@ import {
 } from '../../../../components/context/BuildingBlockFilterContext'
 import { QueryParamContext } from '../../../../components/context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
-import Comment from '../../shared/common/Comment'
 import Share from '../../shared/common/Share'
 import { parseQuery } from '../../utils/share'
 import { ObjectType } from '../../utils/constants'
@@ -68,8 +67,6 @@ const BuildingBlockListLeft = () => {
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
         <hr className='bg-slate-200' />
         <Share />
-        <hr className='bg-slate-200' />
-        <Comment />
         <hr className='bg-slate-200' />
       </div>
     </div>

@@ -8,7 +8,6 @@ import ContactDetailLeft from './ContactDetailLeft'
 
 const ContactDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(CONTACT_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const ContactDetail = ({ slug }) => {
           <ContactDetailLeft scrollRef={scrollRef} contact={contact} />
         </div>
         <div className='lg:basis-2/3'>
-          <ContactDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} contact={contact} />
+          <ContactDetailRight ref={scrollRef} contact={contact} />
         </div>
       </div>
     </div>

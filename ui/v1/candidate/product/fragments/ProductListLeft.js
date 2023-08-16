@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import Bookmark from '../../../shared/common/Bookmark'
-import Comment from '../../../shared/common/Comment'
 import Share from '../../../shared/common/Share'
 import { ObjectType } from '../../../utils/constants'
 import { QueryParamContext } from '../../../../../components/context/QueryParamContext'
@@ -34,8 +33,6 @@ const ProductListLeft = () => {
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
         <hr className='bg-slate-200' />
         <Share />
-        <hr className='bg-slate-200' />
-        <Comment />
         <hr className='bg-slate-200' />
       </div>
     </div>

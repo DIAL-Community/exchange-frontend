@@ -13,8 +13,10 @@ const ToolDefinition = () => {
           {format('ui.tool.getStarted')} ...
         </div>
         <div className='text-sm max-w-prose'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Aliquam at cursus est, luctus vestibulum urna. Phasellus quis dolor enim.
+          Welcome to the Digital Impact Exchange, a gateway to the world of digital solutions for
+          e-government. No matter which sector or Sustainable Development Goal you are focused on,
+          the Exchange can help you build better services for people and communities.  Start with
+          some of the popular options below.
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           <Link href='/use-cases' className='rounded-md shadow-lg border'>
@@ -74,7 +76,7 @@ const ToolDefinition = () => {
                     {format('ui.product.header')}
                   </div>
                 </div>
-                <div className=''>
+                <div className='text-sm'>
                   {format('product.hint.subtitle')}
                 </div>
               </div>

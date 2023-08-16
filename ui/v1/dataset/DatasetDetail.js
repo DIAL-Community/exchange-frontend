@@ -8,7 +8,6 @@ import DatasetDetailLeft from './DatasetDetailLeft'
 
 const DatasetDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(DATASET_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const DatasetDetail = ({ slug }) => {
           <DatasetDetailLeft scrollRef={scrollRef} dataset={dataset} />
         </div>
         <div className='lg:basis-2/3'>
-          <DatasetDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} dataset={dataset} />
+          <DatasetDetailRight ref={scrollRef} dataset={dataset} />
         </div>
       </div>
     </div>

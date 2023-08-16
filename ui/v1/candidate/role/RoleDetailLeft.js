@@ -4,7 +4,7 @@ import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
 import RoleDetailHeader from './fragments/RoleDetailHeader'
 
-const RoleDetailLeft = ({ role }) => {
+const RoleDetailLeft = ({ scrollRef, role }) => {
   return (
     <div className='bg-dial-slate-100 lg:h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
@@ -14,7 +14,7 @@ const RoleDetailLeft = ({ role }) => {
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>
-        <Comment />
+        <Comment entityKey={'ui.candidateRole.label'} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
       </div>
     </div>

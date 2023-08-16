@@ -11,7 +11,7 @@ import ProductCard from '../product/ProductCard'
 import UseCaseCard from '../use-case/UseCaseCard'
 import DeleteTag from './DeleteTag'
 
-const TagDetailRight = forwardRef(({ tag, commentsSectionRef }, ref) => {
+const TagDetailRight = forwardRef(({ tag }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -23,6 +23,7 @@ const TagDetailRight = forwardRef(({ tag, commentsSectionRef }, ref) => {
   const productRef = useRef()
   const projectRef = useRef()
   const useCaseRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -31,7 +32,8 @@ const TagDetailRight = forwardRef(({ tag, commentsSectionRef }, ref) => {
       { value: 'ui.dataset.header', ref: datasetRef },
       { value: 'ui.product.header', ref: productRef },
       { value: 'ui.project.header', ref: projectRef },
-      { value: 'ui.useCase.header', ref: useCaseRef }
+      { value: 'ui.useCase.header', ref: useCaseRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

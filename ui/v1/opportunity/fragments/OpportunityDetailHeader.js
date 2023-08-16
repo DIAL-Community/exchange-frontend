@@ -34,25 +34,19 @@ const OpportunityDetailHeader = ({ opportunity }) => {
       <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-sapphire'>
-            {format('opportunity.website')}
+            {format('opportunity.webAddress')}
           </div>
-          <div className='flex text-dial-stratos'>
-            <a href={prependUrlWithProtocol(opportunity.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue'>
-                {opportunity.website} ⧉
+          <div className='text-dial-stratos'>
+            <a
+              href={prependUrlWithProtocol(opportunity.webAddress)}
+              target='_blank'
+              rel='noreferrer'
+              className='flex border-b border-dial-iris-blue '>
+              <div className='line-clamp-1'>
+                {opportunity.webAddress}
               </div>
+              ⧉
             </a>
-          </div>
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-sapphire'>
-            {format('opportunity.license')}
-          </div>
-          <div className='flex text-dial-stratos'>
-            {opportunity.commercialOpportunity
-              ? format('opportunity.pricing.commercial').toUpperCase()
-              : (opportunity.mainRepository?.license || format('general.na')).toUpperCase()
-            }
           </div>
         </div>
         <div className='flex flex-col gap-y-3'>

@@ -623,8 +623,10 @@ export const en = {
   'error.goBack': 'Go Back to Exchange',
 
   'buildingBlock.hint.title': 'What is a Building Block?',
-  'buildingBlock.hint.subtitle': `Building blocks are enterprise-ready, reusable software components
-    providing key functionality facilitating generic WorkFlows across multiple sectors.
+  'buildingBlock.hint.subtitle': `
+    For technical users, building blocks are enterprise-ready, reusable software components that perform
+    key functions. Each block listed on the Exchange documents the technical specifications required to
+    implement use cases.
   `,
   'buildingBlock.hint.characteristicTitle': 'Characteristics',
   'buildingBlock.hint.descriptionTitle': 'Description',
@@ -839,7 +841,11 @@ export const en = {
   'product.hint.title': 'What is a Product?',
   'product.hint.characteristicTitle': 'Reading the Product Cards',
   'product.hint.descriptionTitle': 'Icons used on the product cards',
-  'product.hint.subtitle': `A Product is a specific technology offering that is designed to implement one or more Building Blocks.`,
+  'product.hint.subtitle': `
+    Our repository contains over 500 solutions already used to address real-world development problems.
+    Access information on digital public goods, commercial software and apps, and digital public
+    infrastructure that can help you meet your needs.
+  `,
   'product.hint.characteristics': `The product cards provide a quick overview of each digital tool, including information on the SDGs that the product is designed to support, as well as any building blocks that may be supported by the product. The cards show how the product is licensed as well as information about our sources of information for the product.`,
   'product.hint.description': `<ul><li><img class='m-1.5 h-5 inline' src='/icons/check/check.png' /><span class='inline p-2'>Indicates that the product has been endorsed by a vetting organization</span></li><li><img class='m-1.5 h-5 inline' src='/icons/digiprins/digiprins.png' /><span class='inline p-2'>Indicates that the product is maintained by a Digital Principles endorser </span></li><li><img class='m-1.5 h-5 inline' src='/icons/coronavirus/coronavirus.png' /><span class='inline p-2'>Indicates that the product can be used to support COVID-19 response</span></li></ul>`,
 
@@ -865,7 +871,11 @@ export const en = {
   'useCase.hint.title': 'What is a Use Case?',
   'useCase.hint.characteristicTitle': 'Characteristics',
   'useCase.hint.descriptionTitle': 'Description',
-  'useCase.hint.subtitle': `A Use Case defines the steps that an individual or system will undertake in order to achieve a business objective.`,
+  'useCase.hint.subtitle': `
+    Browse our library of use cases from health and agriculture to gender and education and see how
+    they meet the needs of people and communities. Our use cases describe the sequence of steps and
+    interactions between users and systems that are required to provide a service to the public.
+  `,
   'useCase.hint.characteristics': `<ul><li>User-centric description of the steps or user journeys required to deliver an outcome</li><li>Identifies one or more SDG Targets as its business objective</li><li>Describes the generic WorkFlows and business processes involved in each step in the Use Case</li><li>Typically sector-specific</li><li>Able to be improved through digital technology</li></ul>`,
   'useCase.hint.description': `Each Use Case model describes primary actors, key steps involved in achieving a specified business objective, descriptions of the WorkFlows and ICT Building Blocks involved in each step, and mappings to SDG Targets. The list of Use Case models is not exhaustive and more will be added in future releases.`,
 
@@ -1788,10 +1798,11 @@ export const en = {
   'toast.removeBookmark.success': 'Bookmark removed.',
   'toast.removeBookmark.failure': 'Unable to remove bookmark.',
 
-  'ui.comment.title': 'Post a comment',
-  'ui.comment.subTitle': `
-    Have a question for the community on this
-    {entity} or have some insight you would like to share?
+  'ui.comment.label': 'Comment',
+  'ui.comment.header': 'Comments',
+  'ui.comment.buttonTitle': 'Post a comment',
+  'ui.comment.description': `
+    Have a question for the community on this {entity} or have some insight you would like to share?
   `,
 
   'ui.share.title': 'Share',
@@ -1914,8 +1925,8 @@ export const en = {
 
   'ui.exchange.title': 'The Digital Exchange Marketplace',
 
-  'ui.opportunity.label': 'Opportunity',
-  'ui.opportunity.header': 'Opportunities',
+  'ui.opportunity.label': 'RFP Radar',
+  'ui.opportunity.header': 'RFP Radar',
 
   'ui.storefront.label': 'Storefront',
   'ui.storefront.header': 'Storefronts',
@@ -1966,5 +1977,35 @@ export const en = {
 
   'ui.candidateRole.label': 'Candidate Role',
   'ui.candidateRole.header': 'Candidate Roles',
-  'ui.candidateRole.createNew': 'Create a new Candidate Role'
+  'ui.candidateRole.createNew': 'Create a new Candidate Role',
+
+  'ui.marketplace.tagLine': `
+    Are you an organization searching for digital solutions, or a vendor looking for clients
+    for your products? Our Marketplace provides an efficient way to connect organizations to
+    opportunities through features such as the RFP (request for proposals) Opportunities Radar,
+    a comprehensive digital product comparison tool, and online storefronts for vendors. We
+    are making the process seamless, so you can do business better.
+  `,
+  'ui.opportunity.tagLine': `
+    Say goodbye to endless hours spent sifting through individual RFPs. Our RFP Opportunities
+    Radar aggregates requests from organizations, allowing you to explore a wide range of
+    opportunities in one convenient location. Gain unprecedented visibility into the digital
+    landscape and seize opportunities that align with your expertise. Have an opportunity
+    you’d like to circulate? Submit it here.
+  `,
+  'ui.opportunity.subTagLine': 'Learn more about RFP radar.',
+  'ui.storefront.tagLine': `
+    Vendors, showcase your digital solutions to a global audience. Our online storefronts
+    provide you with a dedicated marketing space to highlight your products and services.
+    Engage with potential customers, establish credibility, and expand your reach. Join
+    the vibrant community of solution providers on the Exchange.
+  `,
+  'ui.storefront.subTagLine': 'Explore Storefronts.',
+  'ui.compareTool.tagLine': `
+    Making informed product decisions just got easier. Our powerful product comparison
+    tool enables you to evaluate multiple solutions side by side. Compare features,
+    functionalities, and maturity scores to find the perfect match for your requirements.
+  `,
+  'ui.compareTool.subTagLine': 'Launch the comparison tool.'
+
 }

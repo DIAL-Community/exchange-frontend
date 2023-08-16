@@ -11,7 +11,7 @@ import DatasetDetailOrganizations from './fragments/DatasetDetailOrganizations'
 import DatasetDetailSdgs from './fragments/DatasetDetailSdgs'
 import DatasetDetailCountries from './fragments/DatasetDetailCountries'
 
-const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => {
+const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -23,6 +23,7 @@ const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => 
   const organizationRef = useRef()
   const countryRef = useRef()
   const tagRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -31,7 +32,8 @@ const DatasetDetailRight = forwardRef(({ dataset, commentsSectionRef }, ref) => 
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.organization.header', ref: organizationRef },
       { value: 'ui.country.header', ref: countryRef },
-      { value: 'ui.tag.header', ref: tagRef }
+      { value: 'ui.tag.header', ref: tagRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
@@ -6,6 +7,8 @@ import RoleDetailRight from './RoleDetailRight'
 import RoleDetailLeft from './RoleDetailLeft'
 
 const RoleDetail = ({ id }) => {
+  const scrollRef = useRef(null)
+
   const { loading, error, data } = useQuery(CANDIDATE_ROLE_DETAIL_QUERY, {
     variables: { id }
   })
@@ -34,10 +37,10 @@ const RoleDetail = ({ id }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <RoleDetailLeft role={role} />
+          <RoleDetailLeft scrollRef={scrollRef} role={role} />
         </div>
         <div className='lg:basis-2/3'>
-          <RoleDetailRight role={role} />
+          <RoleDetailRight ref={scrollRef} role={role} />
         </div>
       </div>
     </div>

@@ -8,7 +8,6 @@ import OrganizationDetailLeft from './OrganizationDetailLeft'
 
 const OrganizationDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const OrganizationDetail = ({ slug }) => {
           <OrganizationDetailLeft scrollRef={scrollRef} organization={organization} />
         </div>
         <div className='lg:basis-2/3'>
-          <OrganizationDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} organization={organization} />
+          <OrganizationDetailRight ref={scrollRef} organization={organization} />
         </div>
       </div>
     </div>

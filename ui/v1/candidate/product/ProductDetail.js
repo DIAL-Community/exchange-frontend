@@ -7,7 +7,7 @@ import ProductDetailRight from './ProductDetailRight'
 import ProductDetailLeft from './ProductDetailLeft'
 
 const ProductDetail = ({ slug }) => {
-  const commentsSectionRef = useRef(null)
+  const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
     variables: { slug }
@@ -37,10 +37,10 @@ const ProductDetail = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <ProductDetailLeft product={product} />
+          <ProductDetailLeft scrollRef={scrollRef} product={product} />
         </div>
         <div className='lg:basis-2/3'>
-          <ProductDetailRight commentsSectionRef={commentsSectionRef} product={product} />
+          <ProductDetailRight ref={scrollRef} product={product} />
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ const WorkflowUseCases = ({ workflow, headerRef }) => {
   )
 }
 
-const WorkflowDetailRight = forwardRef(({ workflow, commentsSectionRef }, ref) => {
+const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -48,13 +48,15 @@ const WorkflowDetailRight = forwardRef(({ workflow, commentsSectionRef }, ref) =
   const descRef = useRef()
   const useCaseRef = useRef()
   const buildingBlockRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
       { value: 'ui.useCase.header', ref: useCaseRef },
-      { value: 'ui.buildingBlock.header', ref: buildingBlockRef }
+      { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

@@ -17,7 +17,7 @@ const UseCaseDetailLeft = ({ scrollRef, useCase }) => {
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>
-        <Comment />
+        <Comment entityKey={'ui.useCase.label'} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
       </div>
     </div>

@@ -1,5 +1,4 @@
 import Bookmark from '../shared/common/Bookmark'
-import Comment from '../shared/common/Comment'
 import Share from '../shared/common/Share'
 import { ObjectType } from '../utils/constants'
 import OrganizationDetailHeader from './fragments/OrganizationDetailHeader'
@@ -13,8 +12,6 @@ const OrganizationEditLeft = ({ organization }) => {
         <Bookmark object={organization} objectType={ObjectType.ORGANIZATION}/>
         <hr className='bg-slate-200'/>
         <Share />
-        <hr className='bg-slate-200'/>
-        <Comment />
         <hr className='bg-slate-200'/>
       </div>
     </div>

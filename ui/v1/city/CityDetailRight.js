@@ -11,7 +11,7 @@ import DeleteCity from './DeleteCity'
 
 const CityMarker = dynamic(() => import('./fragments/CityMarker'), { ssr:false })
 
-const CityDetailRight = forwardRef(({ city, commentsSectionRef }, ref) => {
+const CityDetailRight = forwardRef(({ city }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -21,13 +21,15 @@ const CityDetailRight = forwardRef(({ city, commentsSectionRef }, ref) => {
   const descRef = useRef()
   const countryRef = useRef()
   const organizationRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
       { value: 'ui.country.label', ref: countryRef },
-      { value: 'ui.organization.header', ref: organizationRef }
+      { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

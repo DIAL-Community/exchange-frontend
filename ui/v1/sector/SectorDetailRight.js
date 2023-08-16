@@ -11,7 +11,7 @@ import ProductCard from '../product/ProductCard'
 import ProjectCard from '../project/ProjectCard'
 import DeleteSector from './DeleteSector'
 
-const SectorDetailRight = forwardRef(({ sector, commentsSectionRef }, ref) => {
+const SectorDetailRight = forwardRef(({ sector }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -23,6 +23,7 @@ const SectorDetailRight = forwardRef(({ sector, commentsSectionRef }, ref) => {
   const organizationRef = useRef()
   const productRef = useRef()
   const projectRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -31,7 +32,8 @@ const SectorDetailRight = forwardRef(({ sector, commentsSectionRef }, ref) => {
       { value: 'ui.dataset.header', ref: datasetRef },
       { value: 'ui.organization.header', ref: organizationRef },
       { value: 'ui.product.header', ref: productRef },
-      { value: 'ui.project.header', ref: projectRef }
+      { value: 'ui.project.header', ref: projectRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

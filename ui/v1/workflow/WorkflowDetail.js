@@ -8,7 +8,6 @@ import WorkflowDetailLeft from './WorkflowDetailLeft'
 
 const WorkflowDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(WORKFLOW_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const WorkflowDetail = ({ slug }) => {
           <WorkflowDetailLeft scrollRef={scrollRef} workflow={workflow} />
         </div>
         <div className='lg:basis-2/3'>
-          <WorkflowDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} workflow={workflow} />
+          <WorkflowDetailRight ref={scrollRef} workflow={workflow} />
         </div>
       </div>
     </div>

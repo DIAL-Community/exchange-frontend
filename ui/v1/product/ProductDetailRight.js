@@ -159,7 +159,7 @@ const ProductIncluded = ({ product }) => {
   )
 }
 
-const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => {
+const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -172,6 +172,7 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
   const buildingBlockRef = useRef()
   const organizationRef = useRef()
   const tagRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -181,7 +182,8 @@ const ProductDetailRight = forwardRef(({ product, commentsSectionRef }, ref) => 
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
       { value: 'ui.organization.header', ref: organizationRef },
-      { value: 'ui.tag.header', ref: tagRef }
+      { value: 'ui.tag.header', ref: tagRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

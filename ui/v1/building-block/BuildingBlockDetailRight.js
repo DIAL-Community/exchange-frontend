@@ -9,7 +9,7 @@ import DeleteBuildingBlock from './DeleteBuildingBlock'
 import BuildingBlockDetailWorkflows from './fragments/BuildingBlockDetailWorkflows'
 import BuildingBlockDetailProducts from './fragments/BuildingBlockDetailProducts'
 
-const BuildingBlockDetailRight = forwardRef(({ buildingBlock, commentsSectionRef }, ref) => {
+const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -19,11 +19,13 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock, commentsSectionRef
   const descRef = useRef()
   const productRef = useRef()
   const workflowRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.description', ref: descRef },
     { value: 'ui.workflow.header', ref: workflowRef },
-    { value: 'ui.product.header', ref: productRef }
+    { value: 'ui.product.header', ref: productRef },
+    { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
   const editPath = `${buildingBlock.slug}/edit`

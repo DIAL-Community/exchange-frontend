@@ -1,12 +1,12 @@
 import { FormattedDate, useIntl } from 'react-intl'
-import { useCallback } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { ObjectType } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
 
-const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
+const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -15,6 +15,11 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
 
   const editPath = `${organization.slug}/edit`
   const [submitter] = organization.contacts
+
+  const commentsSectionRef = useRef()
+  useImperativeHandle(ref, () => ([
+    { value: 'ui.comment.label', ref: commentsSectionRef }
+  ]), [])
 
   return (
     <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
@@ -117,6 +122,8 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
       />
     </div>
   )
-}
+})
+
+OrganizationDetailRight.displayName = 'OrganizationDetailRight'
 
 export default OrganizationDetailRight

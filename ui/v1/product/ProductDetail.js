@@ -8,7 +8,6 @@ import ProductDetailLeft from './ProductDetailLeft'
 
 const ProductDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(PRODUCT_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const ProductDetail = ({ slug }) => {
           <ProductDetailLeft scrollRef={scrollRef} product={product} />
         </div>
         <div className='lg:basis-2/3'>
-          <ProductDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} product={product} />
+          <ProductDetailRight ref={scrollRef} product={product} />
         </div>
       </div>
     </div>

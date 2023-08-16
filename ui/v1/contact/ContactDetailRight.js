@@ -7,7 +7,7 @@ import OrganizationCard from '../organization/OrganizationCard'
 import CommentsSection from '../shared/comment/CommentsSection'
 import DeleteContact from './DeleteContact'
 
-const ContactDetailRight = forwardRef(({ contact, commentsSectionRef }, ref) => {
+const ContactDetailRight = forwardRef(({ contact }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -16,12 +16,14 @@ const ContactDetailRight = forwardRef(({ contact, commentsSectionRef }, ref) => 
 
   const descRef = useRef()
   const organizationRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.organization.header', ref: organizationRef }
+      { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

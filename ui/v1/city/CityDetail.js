@@ -8,7 +8,6 @@ import CityDetailLeft from './CityDetailLeft'
 
 const CityDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(CITY_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const CityDetail = ({ slug }) => {
           <CityDetailLeft scrollRef={scrollRef} city={city} />
         </div>
         <div className='lg:basis-2/3'>
-          <CityDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} city={city} />
+          <CityDetailRight ref={scrollRef} city={city} />
         </div>
       </div>
     </div>

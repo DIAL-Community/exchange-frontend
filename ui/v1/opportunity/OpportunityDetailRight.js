@@ -10,7 +10,7 @@ import DeleteOpportunity from './DeleteOpportunity'
 import OpportunityDetailBuildingBlocks from './fragments/OpportunityDetailBuildingBlocks'
 import OpportunityDetailOrganizations from './fragments/OpportunityDetailOrganizations'
 
-const OpportunityDetailRight = forwardRef(({ opportunity, commentsSectionRef }, ref) => {
+const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -23,6 +23,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity, commentsSectionRef }, 
   const buildingBlockRef = useRef()
   const organizationRef = useRef()
   const tagRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -32,7 +33,8 @@ const OpportunityDetailRight = forwardRef(({ opportunity, commentsSectionRef }, 
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
       { value: 'ui.organization.header', ref: organizationRef },
-      { value: 'ui.tag.header', ref: tagRef }
+      { value: 'ui.tag.header', ref: tagRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

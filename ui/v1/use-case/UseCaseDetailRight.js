@@ -14,7 +14,7 @@ import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './fragments/UseCaseDetailTags'
 import DeleteUseCase from './DeleteUseCase'
 
-const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => {
+const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -27,6 +27,7 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
   const sdgTargetRef = useRef()
   const buildingBlockRef = useRef()
   const tagRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.description', ref: descRef },
@@ -34,7 +35,8 @@ const UseCaseDetailRight = forwardRef(({ useCase, commentsSectionRef }, ref) => 
     { value: 'ui.workflow.header', ref: workflowRef },
     { value: 'ui.sdgTarget.header', ref: sdgTargetRef },
     { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-    { value: 'ui.tag.header', ref: tagRef }
+    { value: 'ui.tag.header', ref: tagRef },
+    { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
   const editPath = `${useCase.slug}/edit`

@@ -17,7 +17,7 @@ const SectorDetailLeft = ({ scrollRef, sector }) => {
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>
-        <Comment />
+        <Comment entityKey={'ui.sector.label'} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
       </div>
     </div>

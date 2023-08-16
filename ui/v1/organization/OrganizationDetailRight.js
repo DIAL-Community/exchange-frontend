@@ -12,7 +12,7 @@ import OrganizationDetailProjects from './fragments/OrganizationDetailProjects'
 import OrganizationDetailContacts from './fragments/OrganizationDetailContacts'
 import OrganizationDetailOffices from './fragments/OrganizationDetailOffices'
 
-const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }, ref) => {
+const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,6 +25,7 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
   const projectRef = useRef()
   const productRef = useRef()
   const countryRef = useRef()
+  const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -34,7 +35,8 @@ const OrganizationDetailRight = forwardRef(({ organization, commentsSectionRef }
       { value: 'ui.contact.header', ref: contactRef },
       { value: 'ui.project.header', ref: projectRef },
       { value: 'ui.product.header', ref: productRef },
-      { value: 'ui.country.header', ref: countryRef }
+      { value: 'ui.country.header', ref: countryRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

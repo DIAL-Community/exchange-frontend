@@ -8,7 +8,6 @@ import SdgDetailLeft from './SdgDetailLeft'
 
 const SdgDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(SDG_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const SdgDetail = ({ slug }) => {
           <SdgDetailLeft scrollRef={scrollRef} sdg={sdg} />
         </div>
         <div className='lg:basis-2/3'>
-          <SdgDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} sdg={sdg} />
+          <SdgDetailRight ref={scrollRef} sdg={sdg} />
         </div>
       </div>
     </div>

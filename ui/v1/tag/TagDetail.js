@@ -8,7 +8,6 @@ import TagDetailLeft from './TagDetailLeft'
 
 const TagDetail = ({ slug }) => {
   const scrollRef = useRef(null)
-  const commentsSectionRef = useRef(null)
 
   const { loading, error, data } = useQuery(TAG_DETAIL_QUERY, {
     variables: { slug }
@@ -41,7 +40,7 @@ const TagDetail = ({ slug }) => {
           <TagDetailLeft scrollRef={scrollRef} tag={tag} />
         </div>
         <div className='lg:basis-2/3'>
-          <TagDetailRight ref={scrollRef} commentsSectionRef={commentsSectionRef} tag={tag} />
+          <TagDetailRight ref={scrollRef} tag={tag} />
         </div>
       </div>
     </div>
