@@ -24,6 +24,7 @@ export const PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY = gql`
       website
       description
       createdAt
+      rejected
       contacts {
         id
         name
@@ -48,6 +49,12 @@ export const CANDIDATE_ORGANIZATION_DETAIL_QUERY = gql`
         email
         title
       }
+
+      rejected
+      rejectedDate
+      rejectedBy
+      approvedDate
+      approvedBy
     }
   }
 `

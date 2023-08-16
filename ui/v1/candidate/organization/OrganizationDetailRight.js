@@ -5,7 +5,6 @@ import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
-import { prependUrlWithProtocol } from '../../utils/utilities'
 
 const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
@@ -35,21 +34,6 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
-      {organization.website &&
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-meadow'>
-            {format('dataset.visualizationUrl')}
-          </div>
-          <div className='my-auto text-sm flex'>
-            <a href={prependUrlWithProtocol(organization.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue line-clamp-1'>
-                {organization.website} ⧉
-              </div>
-            </a>
-          </div>
-        </div>
-      }
       {submitter?.email &&
         <>
           <hr className='bg-dial-blue-chalk mt-6' />
@@ -72,7 +56,55 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
             </div>
             <div className='text-xs italic'>
               <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
-              <FormattedDate value={organization.createdA} />
+              <FormattedDate value={organization.createdAt} />
+            </div>
+          </div>
+        </>
+      }
+      {`${organization.rejected}` === 'true' &&
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-red-700'>
+              {format('ui.candidate.rejectedBy')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${organization.rejectedBy}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {organization.rejectedBy}
+              </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.rejectedOn')}:</span>
+              <FormattedDate value={organization.rejectedDate} />
+            </div>
+          </div>
+        </>
+      }
+      {`${organization.rejected}` === 'false' &&
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-green-700'>
+              {format('ui.candidate.approvedBy')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${organization.approvedBy}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {organization.approvedBy}
+              </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.approvedOn')}:</span>
+              <FormattedDate value={organization.approvedDate} />
             </div>
           </div>
         </>

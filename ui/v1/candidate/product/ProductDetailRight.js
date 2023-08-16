@@ -34,42 +34,94 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
       {product.repository &&
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-meadow'>
-            {format('dataset.visualizationUrl')}
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-dial-meadow'>
+              {format('dataset.visualizationUrl')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a href={prependUrlWithProtocol(product.repository)} target='_blank' rel='noreferrer'>
+                <div className='border-b border-dial-iris-blue line-clamp-1'>
+                  {product.repository} ⧉
+                </div>
+              </a>
+            </div>
           </div>
-          <div className='my-auto text-sm flex'>
-            <a href={prependUrlWithProtocol(product.repository)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue line-clamp-1'>
-                {product.repository} ⧉
-              </div>
-            </a>
-          </div>
-        </div>
+        </>
       }
-      <hr className='bg-dial-blue-chalk mt-6' />
       {product.submitterEmail &&
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-meadow'>
-            {format('ui.candidate.submitter')}
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-dial-meadow'>
+              {format('ui.candidate.submitter')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${product.submitterEmail}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {product.submitterEmail}
+              </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+              <FormattedDate value={product.createdAt} />
+            </div>
           </div>
-          <div className='my-auto text-sm flex'>
-            <a
-              className='border-b border-dial-iris-blue'
-              href={`mailto:${product.submitterEmail}`}
-              target='_blank'
-              rel='noreferrer'
-            >
-              {product.submitterEmail}
-            </a>
+        </>
+      }
+      {`${product.rejected}` === 'true' &&
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-red-700'>
+              {format('ui.candidate.rejectedBy')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${product.rejectedBy}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {product.rejectedBy}
+              </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.rejectedOn')}:</span>
+              <FormattedDate value={product.rejectedDate} />
+            </div>
           </div>
-          <div className='text-xs italic'>
-            <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
-            <FormattedDate value={product.createdA} />
+        </>
+      }
+      {`${product.rejected}` === 'false' &&
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-green-700'>
+              {format('ui.candidate.approvedBy')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${product.approvedBy}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {product.approvedBy}
+              </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.approvedOn')}:</span>
+              <FormattedDate value={product.approvedDate} />
+            </div>
           </div>
-        </div>
+        </>
       }
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection

@@ -25,6 +25,7 @@ export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
       description
       submitterEmail
       createdAt
+      rejected
     }
   }
 `
@@ -39,6 +40,12 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       description
       submitterEmail
       createdAt
+
+      rejected
+      rejectedDate
+      rejectedBy
+      approvedDate
+      approvedBy
     }
   }
 `

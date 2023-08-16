@@ -1947,6 +1947,10 @@ export const en = {
 
   'ui.candidate.submitter': 'Submitted by',
   'ui.candidate.submittedOn': 'Submitted on',
+  'ui.candidate.approvedBy': 'Approved by',
+  'ui.candidate.approvedOn': 'Approved on',
+  'ui.candidate.rejectedBy': 'Rejected by',
+  'ui.candidate.rejectedOn': 'Rejected on',
 
   'ui.candidateProduct.label': 'Candidate Product',
   'ui.candidateProduct.header': 'Candidate Products',

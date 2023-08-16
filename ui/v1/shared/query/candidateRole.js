@@ -23,7 +23,12 @@ export const CANDIDATE_ROLE_DETAIL_QUERY = gql`
       productId
       organizationId
       datasetId
+
       rejected
+      rejectedDate
+      rejectedBy
+      approvedDate
+      approvedBy
     }
   }
 `
@@ -72,6 +77,7 @@ export const PAGINATED_CANDIDATE_ROLES_QUERY = gql`
       roles
       description
       createdAt
+      rejected
     }
   }
 `

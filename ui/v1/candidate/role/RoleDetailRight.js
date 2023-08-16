@@ -21,33 +21,83 @@ const RoleDetailRight = ({ role, commentsSectionRef }) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
       {role.email &&
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-meadow'>
-            {format('ui.candidate.submitter')}
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-dial-meadow'>
+              {format('ui.candidate.submitter')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${role.email}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {role.email}
+              </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
+              <FormattedDate value={role.createdAt} />
+            </div>
           </div>
-          <div className='my-auto text-sm flex'>
-            <a
-              className='border-b border-dial-iris-blue'
-              href={`mailto:${role.email}`}
-              target='_blank'
-              rel='noreferrer'
-            >
-              {role.email}
-            </a>
+        </>
+      }
+      {`${role.rejected}` === 'true' &&
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-red-700'>
+              {format('ui.candidate.rejectedBy')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${role.rejectedBy}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {role.rejectedBy}
+              </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.rejectedOn')}:</span>
+              <FormattedDate value={role.rejectedDate} />
+            </div>
           </div>
-          <div className='text-xs italic'>
-            <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
-            <FormattedDate value={role.createdA} />
+        </>
+      }
+      {`${role.rejected}` === 'false' &&
+        <>
+          <hr className='bg-dial-blue-chalk mt-6' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-green-700'>
+              {format('ui.candidate.approvedBy')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${role.approvedBy}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {role.approvedBy}
+              </a>
+            </div>
+            <div className='text-xs italic'>
+              <span className='pr-[2px]'>{format('ui.candidate.approvedOn')}:</span>
+              <FormattedDate value={role.approvedDate} />
+            </div>
           </div>
-        </div>
+        </>
       }
       <hr className='bg-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={role.id}
-        objectType={ObjectType.ROLE}
+        objectType={ObjectType.CANDIDATE_ROLE}
       />
     </div>
   )

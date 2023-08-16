@@ -24,6 +24,7 @@ export const PAGINATED_CANDIDATE_DATASETS_QUERY = gql`
       description
       submitterEmail
       createdAt
+      rejected
     }
   }
 `
@@ -40,6 +41,12 @@ export const CANDIDATE_DATASET_DETAIL_QUERY = gql`
       submitterEmail
       description
       createdAt
+
+      rejected
+      rejectedDate
+      rejectedBy
+      approvedDate
+      approvedBy
     }
   }
 `

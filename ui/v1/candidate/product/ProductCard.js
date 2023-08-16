@@ -10,6 +10,13 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const bgColor = `${product.rejected}`.toLowerCase() === 'true'
+    ? 'bg-red-700'
+    : 'bg-green-700'
+  const candidateStatus = `${product.rejected}`.toLowerCase() === 'true'
+    ? format('candidate.rejected')
+    : format('candidate.approved')
+
   const { user } = useUser()
   const submitterEmail = user
     ? product.submitterEmail ?? format('general.na')
@@ -25,6 +32,11 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
             className='object-contain w-16 h-16'
           />
         </div>
+        {product.rejected !== null &&
+          <div className={`absolute top-2 right-2 ${bgColor} rounded`}>
+            <div className='text-white text-xs px-2 py-1'>{candidateStatus}</div>
+          </div>
+        }
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-meadow'>
             {product.name}
@@ -38,23 +50,9 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
             </div>
             <div className='text-xs italic'>
               <span className='pr-[2px]'>{format('ui.candidate.submittedOn')}:</span>
-              <FormattedDate value={product.createdA} />
+              <FormattedDate value={product.createdAt} />
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-  const displaySmallCard = () =>
-    <div className='rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16'>
-      <div className='flex flex-row gap-x-3 px-6 h-full'>
-        <img
-          src='/ui/v1/product-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.candidateProduct.header') })}
-          className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
-        />
-        <div className='text-sm font-semibold text-dial-meadow my-auto'>
-          {product.name}
         </div>
       </div>
     </div>
@@ -63,7 +61,6 @@ const ProductCard = ({ displayType, index, product, dismissCardHandler }) => {
     <div className='relative'>
       <Link href={`/candidate/products/${product.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
-        {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
         <button className='absolute p-2 top-0 right-0 text-dial-sapphire'>
