@@ -22,7 +22,7 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateOpportunityTags, { data, loading, reset }] = useMutation(UPDATE_OPPORTUNITY_TAGS, {
+  const [updateOpportunityTags, { loading, reset }] = useMutation(UPDATE_OPPORTUNITY_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(opportunity.tags)
@@ -78,7 +78,7 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setTags(data?.updateOpportunityTags?.opportunity?.tags ?? opportunity.tags)
+    setTags(opportunity.tags)
     setIsDirty(false)
   }
 

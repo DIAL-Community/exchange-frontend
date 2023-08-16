@@ -19,8 +19,8 @@ const OrganizationDetailOffices = ({ organization, canEdit, headerRef }) => {
 
   const mapOfficeCallback = ({ name, cityData, country, region, latitude, longitude }) => ({
     name,
-    slug: cityData.slug,
-    cityName: cityData.name,
+    slug: cityData?.slug,
+    cityName: cityData?.name,
     regionName: region,
     countryCode: country?.codeLonger,
     latitude,
@@ -32,7 +32,7 @@ const OrganizationDetailOffices = ({ organization, canEdit, headerRef }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateOrganizationOffices, { data, loading }] = useMutation(UPDATE_ORGANIZATION_OFFICES, {
+  const [updateOrganizationOffices, { loading }] = useMutation(UPDATE_ORGANIZATION_OFFICES, {
     onError: () => {
       setIsDirty(false)
       setOffices(organization.offices?.map(mapOfficeCallback))
@@ -95,10 +95,7 @@ const OrganizationDetailOffices = ({ organization, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setOffices(
-      data?.updateOrganizationOffices?.organization?.offices?.map(mapOfficeCallback) ??
-        organization.offices?.map(mapOfficeCallback)
-    )
+    setOffices(organization.offices?.map(mapOfficeCallback))
     setIsDirty(false)
   }
 

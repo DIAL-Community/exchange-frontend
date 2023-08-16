@@ -42,7 +42,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const [updateDatasetSdgs, { data, loading, reset }] = useMutation(UPDATE_DATASET_SDGS, {
+  const [updateDatasetSdgs, { loading, reset }] = useMutation(UPDATE_DATASET_SDGS, {
     onError() {
       setIsDirty(false)
       setSdgs(dataset?.sdgs)
@@ -123,7 +123,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setSdgs(data?.updateDatasetSdgs?.dataset?.sdgs ?? dataset.sdgs)
+    setSdgs(dataset.sdgs)
     setIsDirty(false)
   }
 

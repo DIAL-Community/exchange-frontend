@@ -22,7 +22,7 @@ const BuildingBlockDetailTags = ({ buildingBlock, canEdit, headerRef }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateBuildingBlockTags, { data, loading, reset }] = useMutation(UPDATE_BUILDING_BLOCK_TAGS, {
+  const [updateBuildingBlockTags, { loading, reset }] = useMutation(UPDATE_BUILDING_BLOCK_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(buildingBlock.tags)
@@ -78,7 +78,7 @@ const BuildingBlockDetailTags = ({ buildingBlock, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setTags(data?.updateBuildingBlockTags?.buildingBlock?.tags ?? buildingBlock.tags)
+    setTags(buildingBlock.tags)
     setIsDirty(false)
   }
 

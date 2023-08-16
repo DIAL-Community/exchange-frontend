@@ -22,7 +22,7 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateUseCaseTags, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_TAGS, {
+  const [updateUseCaseTags, { loading, reset }] = useMutation(UPDATE_USE_CASE_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(useCase.tags)
@@ -78,7 +78,7 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setTags(data?.updateUseCaseTags?.useCase?.tags ?? useCase.tags)
+    setTags(useCase.tags)
     setIsDirty(false)
   }
 

@@ -22,7 +22,7 @@ const ProjectDetailTags = ({ project, canEdit, headerRef }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProjectTags, { data, loading, reset }] = useMutation(UPDATE_PROJECT_TAGS, {
+  const [updateProjectTags, { loading, reset }] = useMutation(UPDATE_PROJECT_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(project.tags)
@@ -78,7 +78,7 @@ const ProjectDetailTags = ({ project, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setTags(data?.updateProjectTags?.project?.tags ?? project.tags)
+    setTags(project.tags)
     setIsDirty(false)
   }
 

@@ -22,7 +22,7 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProductTags, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_TAGS, {
+  const [updateProductTags, { loading, reset }] = useMutation(UPDATE_PRODUCT_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(product.tags)
@@ -78,7 +78,7 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setTags(data?.updateProductTags?.product?.tags ?? product.tags)
+    setTags(product.tags)
     setIsDirty(false)
   }
 

@@ -42,7 +42,7 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const [updateProductSdgs, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_SDGS, {
+  const [updateProductSdgs, { loading, reset }] = useMutation(UPDATE_PRODUCT_SDGS, {
     onError() {
       setIsDirty(false)
       setSdgs(product?.sdgs)
@@ -123,7 +123,7 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setSdgs(data?.updateProductSdgs?.product?.sdgs ?? product.sdgs)
+    setSdgs(product.sdgs)
     setIsDirty(false)
   }
 

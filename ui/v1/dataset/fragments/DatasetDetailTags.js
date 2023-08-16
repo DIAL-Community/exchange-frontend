@@ -22,7 +22,7 @@ const DatasetDetailTags = ({ dataset, canEdit, headerRef }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateDatasetTags, { data, loading, reset }] = useMutation(UPDATE_DATASET_TAGS, {
+  const [updateDatasetTags, { loading, reset }] = useMutation(UPDATE_DATASET_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(dataset.tags)
@@ -78,7 +78,7 @@ const DatasetDetailTags = ({ dataset, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setTags(data?.updateDatasetTags?.dataset?.tags ?? dataset.tags)
+    setTags(dataset.tags)
     setIsDirty(false)
   }
 
