@@ -43,6 +43,7 @@ export const ObjectType = {
   SECTOR: 'SECTOR',
   COUNTRY: 'COUNTRY',
   CITY: 'CITY',
+  CONTACT: 'CONTACT',
   URL: 'URL'
 }
 
