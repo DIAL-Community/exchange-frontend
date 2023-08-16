@@ -67,7 +67,7 @@ const SectorDetailRight = forwardRef(({ sector, commentsSectionRef }, ref) => {
             <div className='text-sm text-dial-stratos'>
               {format('ui.common.detail.noData', {
                 entity: format('ui.dataset.label'),
-                base: format('ui.tag.label')
+                base: format('ui.sector.label')
               })}
             </div>
           }
@@ -92,7 +92,7 @@ const SectorDetailRight = forwardRef(({ sector, commentsSectionRef }, ref) => {
             <div className='text-sm text-dial-stratos'>
               {format('ui.common.detail.noData', {
                 entity: format('ui.organization.label'),
-                base: format('ui.tag.label')
+                base: format('ui.sector.label')
               })}
             </div>
           }
@@ -117,7 +117,7 @@ const SectorDetailRight = forwardRef(({ sector, commentsSectionRef }, ref) => {
             <div className='text-sm text-dial-stratos'>
               {format('ui.common.detail.noData', {
                 entity: format('ui.product.label'),
-                base: format('ui.tag.label')
+                base: format('ui.sector.label')
               })}
             </div>
           }
@@ -142,7 +142,7 @@ const SectorDetailRight = forwardRef(({ sector, commentsSectionRef }, ref) => {
             <div className='text-sm text-dial-stratos'>
               {format('ui.common.detail.noData', {
                 entity: format('ui.project.label'),
-                base: format('ui.tag.label')
+                base: format('ui.sector.label')
               })}
             </div>
           }
