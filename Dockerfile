@@ -8,6 +8,7 @@ RUN yarn set version berry
 RUN yarn install --immutable
 
 FROM base AS build
+LABEL stage=build
 ENV NODE_ENV=production
 WORKDIR /app
 COPY . .
