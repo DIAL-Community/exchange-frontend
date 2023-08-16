@@ -29,6 +29,7 @@ export const PAGINATED_CITIES_QUERY = gql`
           id
           name
           slug
+          code
         }
       }
       organizations {
@@ -54,6 +55,7 @@ export const CITY_DETAIL_QUERY = gql`
           id
           name
           slug
+          code
         }
       }
       organizations {

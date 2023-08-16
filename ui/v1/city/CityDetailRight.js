@@ -6,6 +6,7 @@ import EditButton from '../shared/form/EditButton'
 import { useUser } from '../../../lib/hooks'
 import OrganizationCard from '../organization/OrganizationCard'
 import CommentsSection from '../shared/comment/CommentsSection'
+import CountryCard from '../country/CountryCard'
 import DeleteCity from './DeleteCity'
 
 const CityMarker = dynamic(() => import('./fragments/CityMarker'), { ssr:false })
@@ -18,13 +19,15 @@ const CityDetailRight = forwardRef(({ city, commentsSectionRef }, ref) => {
   const canEdit = (isAdminUser || isEditorUser) && !city.markdownUrl
 
   const descRef = useRef()
+  const countryRef = useRef()
   const organizationRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.organizationRef.header', ref: organizationRef }
+      { value: 'ui.country.label', ref: countryRef },
+      { value: 'ui.organization.header', ref: organizationRef }
     ],
     []
   )
@@ -49,6 +52,15 @@ const CityDetailRight = forwardRef(({ city, commentsSectionRef }, ref) => {
             regionName: city.region.name,
             countryName: city.region.country.name
           })}
+        </div>
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6'/>
+      <div className='flex flex-col gap-y-3'>
+        <div className='text-xl font-semibold text-dial-plum' ref={countryRef}>
+          {format('ui.country.label')}
+        </div>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <CountryCard country={city.region.country} displayType={DisplayType.SMALL_CARD} />
         </div>
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>

@@ -10,6 +10,9 @@ const CityDetailNav = ({ scrollRef }) => {
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
   }, {
+    label: format('ui.country.label'),
+    value: 'ui.country.label'
+  }, {
     label: format('ui.organization.header'),
     value: 'ui.organization.header'
   }]
