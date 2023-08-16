@@ -23,7 +23,8 @@ const BBFullScreen = () => {
       desc: 'Enables multiple users to simultaneously access, modify or contribute to a single activity, such as ' +
             'content creation, through a unified portal.' },
     { name: 'Consent Management',
-      status: 'working',
+      status: 'published',
+      url: 'https://govstack.gitbook.io/bb-consent/',
       desc: 'Manages a set of policies allowing users to determine the info that will be accessible to specific ' +
             'potential info consumers, for which purpose, for how long and whether this info can be shared.<br/>' },
     { name: 'Content Management',
@@ -34,32 +35,33 @@ const BBFullScreen = () => {
       desc: 'Supports data collection from humans, sensors and other systems through digital interfaces.' },
     { name: 'Digital Registries',
       status: 'published',
-      url: 'https://govstack.gitbook.io/specification/v/version-0.9.0/building-blocks/digital-registries',
+      url: 'https://govstack.gitbook.io/bb-digital-registries/',
       desc: 'Registries are centrally managed databases that uniquely identify persons, vendors, procedures, ' +
             'products and sites related to an organization or activity.' },
     { name: 'eLearning',
       status: 'future',
       desc: 'Supports facilitated or remote learning through digital interaction between educators and students.' },
     { name: 'eMarketplace',
-      status: 'future',
+      status: 'working',
       desc: 'Provides a digital marketing space where provider entities can electronically advertise & sell ' +
             'products & services to other entities (B2B) or end-customers (B2C).' },
     { name: 'Geographic Information Services (GIS)',
-      status: 'future',
+      status: 'working',
       slug: 'geographic_information_services',
       desc: 'Provides functionality to identify, tag and analyze geographic locations of an object, such as a ' +
             'water source, building, mobile phone or medical commodity.' },
     { name: 'Identification and Authentication',
       status: 'published',
-      url: 'https://govstack.gitbook.io/specification/v/version-0.9.0/building-blocks/identity-and-verification',
+      url: 'https://govstack.gitbook.io/bb-identity/',
       desc: 'Enables unique identification and authentication of users, organizations and other entities.' },
     { name: 'Information Mediator',
       status: 'published',
-      url: 'https://govstack.gitbook.io/specification/v/version-0.9.0/building-blocks/information-mediation',
+      url: 'https://govstack.gitbook.io/bb-information-mediation/',
       desc: 'Provides a gateway between external digital apps & ICT Building Blocks, ensuring implementation of ' +
             'standards, for integrating various ICT Building Blocks & apps.' },
     { name: 'Messaging',
-      status: 'working',
+      status: 'published',
+      url: 'https://govstack.gitbook.io/bb-messaging/',
       desc: 'Facilitates notifications, alerts and two-way communications between applications and communications ' +
             'services, including SMS, USSD, IVR, email and social media platforms.' },
     { name: 'Mobility Management',
@@ -68,12 +70,12 @@ const BBFullScreen = () => {
             'business context.' },
     { name: 'Payments',
       status: 'published',
-      url: 'https://govstack.gitbook.io/specification/v/version-0.9.0/building-blocks/payments',
+      url: 'https://govstack.gitbook.io/bb-messaging/',
       desc: 'Implements financial transactions (e.g., remittances, claims, purchases & payments, transactional ' +
             'info). Tracking costs utilities & audit trials.' },
     { name: 'Registration',
       status: 'published',
-      url: 'https://govstack.gitbook.io/specification/v/version-0.9.0/building-blocks/registration',
+      url: 'https://govstack.gitbook.io/bb-registration/',
       desc: 'Records identifiers and general information about a person, place or entity, typically for the purpose ' +
             'of registration  in specific services or programmes and tracking of that entity over time.' },
     { name: 'Reporting and Dashboards',
@@ -81,12 +83,13 @@ const BBFullScreen = () => {
       desc: 'Provides pre-packaged and custom presentations of data and summaries of an organization’s pre-defined ' +
             'key performance metrics, often in visual format.' },
     { name: 'Scheduling',
-      status: 'working',
+      status: 'published',
+      url: 'https://govstack.gitbook.io/bb-scheduler/',
       desc: 'Provides an engine for setting up events based on regular intervals or specific combinations of status ' +
             'of several parameters in order to trigger specific tasks in an automated business process.' },
     { name: 'Security',
       status: 'published',
-      url: 'https://govstack.gitbook.io/specification/v/version-0.9.0/building-blocks/security-requirements',
+      url: 'https://govstack.gitbook.io/specification/security-requirements',
       desc: 'Allows ICT admins to centrally configure & manage user access permissions to network ' +
             'resources, services, databases, apps and devices. Enables secure info exchange between apps.' },
     { name: 'Shared Data Repositories',
@@ -98,7 +101,8 @@ const BBFullScreen = () => {
       desc: 'Registry of definitions with defined standards, synonyms for a particular domain of knowledge ' +
             '(eg agriculture), used to facilitate semantic interoperability.' },
     { name: 'Workflow and Algorithm',
-      status: 'working',
+      status: 'published',
+      url: 'https://govstack.gitbook.io/bb-workflow/',
       desc: 'Optimize business processes by specifying rules that govern the sequence of activities executed, ' +
             'the type of info exchanged  to orchestrate the process flow from initiation to completion.' }
   ]
