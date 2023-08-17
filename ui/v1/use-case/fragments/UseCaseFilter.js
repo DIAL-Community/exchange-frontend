@@ -1,8 +1,10 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { IoClose } from 'react-icons/io5'
-import { UseCaseFilterContext, UseCaseFilterDispatchContext }
-  from '../../../../components/context/UseCaseFilterContext'
+import {
+  UseCaseFilterContext,
+  UseCaseFilterDispatchContext
+} from '../../../../components/context/UseCaseFilterContext'
 import Checkbox from '../../shared/form/Checkbox'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 

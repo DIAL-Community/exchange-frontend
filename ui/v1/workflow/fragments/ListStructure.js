@@ -9,10 +9,13 @@ import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(WorkflowFilterContext)
+  const { sdgs, useCases } = useContext(WorkflowFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_WORKFLOWS_QUERY, {
     variables: {
       search,
+      sdgs: sdgs.map(sdg => sdg.value),
+      useCases: useCases.map(sdg => sdg.value),
       limit: defaultPageSize,
       offset: pageOffset
     }

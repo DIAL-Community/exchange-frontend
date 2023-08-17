@@ -13,9 +13,13 @@ export const WORKFLOW_SEARCH_QUERY = gql`
 export const WORKFLOW_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeWorkflow(
     $search: String
+    $sdgs: [String!]
+    $useCases: [String!]
   ) {
     paginationAttributeWorkflow(
       search: $search
+      sdgs: $sdgs
+      useCases: $useCases
     ) {
       totalCount
     }
@@ -25,11 +29,15 @@ export const WORKFLOW_PAGINATION_ATTRIBUTES_QUERY = gql`
 export const PAGINATED_WORKFLOWS_QUERY = gql`
   query PaginatedWorkflows(
     $search: String
+    $sdgs: [String!]
+    $useCases: [String!]
     $limit: Int!
     $offset: Int!
   ) {
     paginatedWorkflows(
       search: $search
+      sdgs: $sdgs
+      useCases: $useCases
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id

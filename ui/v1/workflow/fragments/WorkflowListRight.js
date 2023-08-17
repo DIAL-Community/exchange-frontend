@@ -13,6 +13,7 @@ const WorkflowListRight = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(WorkflowFilterContext)
+  const { sdgs, useCases } = useContext(WorkflowFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -38,7 +39,9 @@ const WorkflowListRight = () => {
 
   const { loading, error, data } = useQuery(WORKFLOW_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
-      search
+      search,
+      sdgs: sdgs.map(sdg => sdg.value),
+      useCases: useCases.map(sdg => sdg.value)
     }
   })
 
