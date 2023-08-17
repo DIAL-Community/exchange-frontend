@@ -60,7 +60,7 @@ const UserProfileDetail = () => {
               </div>
             </div>
           </div>
-          <hr className='bg-slate-200 my-6'/>
+          <hr className='border-b border-slate-200 my-6'/>
           <div className='grid grid-cols-2'>
             <div className='flex flex-col gap-3'>
               <div className='text-lg text-dial-sapphire'>
@@ -76,7 +76,7 @@ const UserProfileDetail = () => {
               </div>
             </div>
           </div>
-          <hr className='bg-slate-200 my-6'/>
+          <hr className='border-b border-slate-200 my-6'/>
           <div className='grid grid-cols-2'>
             <div className='flex flex-col gap-8'>
               <div className='flex flex-col gap-3'>

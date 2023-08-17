@@ -3,21 +3,32 @@ import { useIntl } from 'react-intl'
 import { DatasetFilterContext, DatasetFilterDispatchContext }
   from '../../../../components/context/DatasetFilterContext'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
+import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
+import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 
 const DatasetFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sectors } = useContext(DatasetFilterContext)
-  const { setSectors } = useContext(DatasetFilterDispatchContext)
+  const { sectors, tags, sdgs, origins } = useContext(DatasetFilterContext)
+  const { setSectors, setTags, setSdgs, setOrigins } = useContext(DatasetFilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
     setSectors([])
+    setTags([])
+
+    setSdgs([])
+    setOrigins([])
   }
 
   const filteringDataset = () => {
-    return sectors.length > 0
+    return sectors.length +
+      sectors.length +
+      tags.length +
+      sdgs.length +
+      origins.length > 0
   }
 
   return (
@@ -35,7 +46,10 @@ const DatasetFilter = () => {
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
+            <OriginActiveFilters origins={origins} setOrigins={setOrigins} />
+            <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
+            <TagActiveFilters tags={tags} setTags={setTags} />
           </div>
         </div>
       }
@@ -43,8 +57,14 @@ const DatasetFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
+        <OriginAutocomplete origins={origins} setOrigins={setOrigins} />
+        <hr className='border-b border-dial-slate-200'/>
+        <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
+        <hr className='border-b border-dial-slate-200'/>
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
+        <TagAutocomplete tags={tags} setTags={setTags} />
+        <hr className='border-b border-dial-slate-200'/>
       </div>
     </div>
   )

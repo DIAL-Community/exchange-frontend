@@ -10,7 +10,7 @@ const Connect = () => {
       <div className='text-lg text-dial-sapphire font-semibold'>
         {format('ui.footer.connect.title')}
       </div>
-      <hr className='bg-dial-angel'/>
+      <hr className='border-b border-dial-angel'/>
       <div className='text-sm text-dial-stratos'>
         {format('ui.footer.connect.subTitle')}
       </div>

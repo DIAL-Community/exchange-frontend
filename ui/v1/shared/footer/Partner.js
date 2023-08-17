@@ -10,7 +10,7 @@ const Partner = () => {
       <div className='text-lg text-dial-sapphire font-semibold'>
         {format('ui.footer.partner.title')}
       </div>
-      <hr className='bg-dial-angel'/>
+      <hr className='border-b border-dial-angel'/>
       <div className='flex gap-3 pt-3'>
         <a href='//unfoundation.org' target='_blank' rel='noreferrer'>
           <img

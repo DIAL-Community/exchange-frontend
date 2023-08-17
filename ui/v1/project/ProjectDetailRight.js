@@ -59,7 +59,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProjectDetailOrganizations
           project={project}
@@ -67,7 +67,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
           headerRef={organizationRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProjectDetailProducts
           project={project}
@@ -75,7 +75,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
           headerRef={productRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProjectDetailCountries
           project={project}
@@ -83,7 +83,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
           headerRef={countryRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProjectDetailTags
           project={project}
@@ -91,7 +91,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
           headerRef={tagRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={project.id}

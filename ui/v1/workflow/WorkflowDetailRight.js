@@ -82,9 +82,9 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <WorkflowUseCases workflow={workflow} headerRef={useCaseRef} />
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <WorkflowDetailBuildingBlocks
           workflow={workflow}
@@ -92,7 +92,7 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
           headerRef={buildingBlockRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={workflow.id}

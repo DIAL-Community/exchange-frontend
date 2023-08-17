@@ -46,35 +46,35 @@ const UserBookmarkLeft = () => {
         <div className='text-sm text-dial-sapphire'>
           {format('ui.filter.primary.title')}:
         </div>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <label className='flex'>
           <Checkbox onChange={toggleDisplayUseCases} value={displayUseCases} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.useCase.header')}
           </span>
         </label>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <label className='flex'>
           <Checkbox  onChange={toggleDisplayBuildingBlocks} value={displayBuildingBlocks}/>
           <span className='mx-2 my-auto text-sm'>
             {format('ui.buildingBlock.header')}
           </span>
         </label>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <label className='flex'>
           <Checkbox  onChange={toggleDisplayProducts} value={displayProducts}/>
           <span className='mx-2 my-auto text-sm'>
             {format('ui.product.header')}
           </span>
         </label>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <label className='flex'>
           <Checkbox  onChange={toggleDisplayUrls} value={displayUrls}/>
           <span className='mx-2 my-auto text-sm'>
             {format('ui.url.header')}
           </span>
         </label>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
       </div>
     </div>
   )

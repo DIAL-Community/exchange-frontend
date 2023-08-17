@@ -123,7 +123,7 @@ const UserBookmarkRight = () => {
               </div>
             )}
           </div>
-          <hr className='bg-slate-200 mt-4' />
+          <hr className='border-b border-slate-200 mt-4' />
         </div>
       }
       {displayBuildingBlocks &&
@@ -146,7 +146,7 @@ const UserBookmarkRight = () => {
               </div>
             )}
           </div>
-          <hr className='bg-slate-200 mt-4' />
+          <hr className='border-b border-slate-200 mt-4' />
         </div>
       }
       {displayProducts &&
@@ -169,7 +169,7 @@ const UserBookmarkRight = () => {
               </div>
             )}
           </div>
-          <hr className='bg-slate-200 mt-4' />
+          <hr className='border-b border-slate-200 mt-4' />
         </div>
       }
       {displayUrls &&
@@ -190,7 +190,7 @@ const UserBookmarkRight = () => {
               </div>
             )}
           </div>
-          <hr className='bg-slate-200 mt-4' />
+          <hr className='border-b border-slate-200 mt-4' />
         </div>
       }
     </div>

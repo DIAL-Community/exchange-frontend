@@ -41,7 +41,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       </div>
       {product.repository &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-dial-meadow'>
               {format('dataset.visualizationUrl')}
@@ -58,7 +58,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       }
       {product.submitterEmail &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-dial-meadow'>
               {format('ui.candidate.submitter')}
@@ -82,7 +82,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       }
       {`${product.rejected}` === 'true' &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-red-700'>
               {format('ui.candidate.rejectedBy')}
@@ -106,7 +106,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       }
       {`${product.rejected}` === 'false' &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-green-700'>
               {format('ui.candidate.approvedBy')}
@@ -128,7 +128,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           </div>
         </>
       }
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}

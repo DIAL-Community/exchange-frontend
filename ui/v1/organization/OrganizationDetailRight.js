@@ -62,7 +62,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailOffices
           organization={organization}
@@ -70,7 +70,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
           headerRef={officeRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailContacts
           organization={organization}
@@ -78,7 +78,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
           headerRef={contactRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailProjects
           organization={organization}
@@ -86,7 +86,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
           headerRef={projectRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailProducts
           organization={organization}
@@ -94,7 +94,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
           headerRef={productRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OrganizationDetailCountries
           organization={organization}
@@ -102,7 +102,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
           headerRef={countryRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={organization.id}

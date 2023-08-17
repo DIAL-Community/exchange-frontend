@@ -59,7 +59,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={datasetRef}>
           {format('ui.dataset.header')}
@@ -84,7 +84,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           )}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
           {format('ui.organization.header')}
@@ -109,7 +109,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           )}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={productRef}>
           {format('ui.product.header')}
@@ -134,7 +134,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           )}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={projectRef}>
           {format('ui.project.header')}
@@ -159,7 +159,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           )}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={sector.id}

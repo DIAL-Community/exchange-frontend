@@ -71,9 +71,9 @@ const OpportunityFilter = () => {
           {format('ui.filter.primary.title')}
         </div>
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <TagAutocomplete tags={tags} setTags={setTags} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
@@ -96,7 +96,7 @@ const OpportunityFilter = () => {
                 {format('filter.opportunity.forCovid')}
               </span>
             </label>
-            <hr className='bg-slate-200'/>
+            <hr className='border-b border-dial-slate-200'/>
           </>
         }
       </div>

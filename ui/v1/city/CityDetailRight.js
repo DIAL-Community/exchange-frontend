@@ -56,7 +56,7 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
           })}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-plum' ref={countryRef}>
           {format('ui.country.label')}
@@ -65,7 +65,7 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
           <CountryCard country={city.region.country} displayType={DisplayType.SMALL_CARD} />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
           {format('ui.organization.header')}
@@ -90,7 +90,7 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
           )}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={city.id}

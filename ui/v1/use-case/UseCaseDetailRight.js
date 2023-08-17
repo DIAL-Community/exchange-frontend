@@ -60,7 +60,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk'/>
+      <hr className='border-b border-dial-blue-chalk'/>
       <div className='flex flex-col gap-y-3'>
         <div className='flex flex-row py-3' ref={stepRef}>
           <div className='text-xl font-semibold text-dial-blueberry '>
@@ -112,7 +112,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           )}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={workflowRef}>
           {format('ui.workflow.header')}
@@ -129,11 +129,11 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           )}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <UseCaseDetailSdgTargets useCase={useCase} canEdit={canEdit} headerRef={sdgTargetRef}/>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={buildingBlockRef}>
           {format('ui.buildingBlock.header')}
@@ -150,7 +150,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           )}
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <UseCaseDetailTags useCase={useCase} canEdit={canEdit} headerRef={tagRef} />
       </div>

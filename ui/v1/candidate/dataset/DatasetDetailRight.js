@@ -41,7 +41,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
       </div>
       {dataset.datasetType &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-dial-meadow'>
               {format('dataset.datasetType')}
@@ -54,7 +54,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
       }
       {dataset.visualizationUrl &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-dial-meadow'>
               {format('dataset.visualizationUrl')}
@@ -71,7 +71,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
       }
       {dataset.submitterEmail &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-dial-meadow'>
               {format('ui.candidate.submitter')}
@@ -95,7 +95,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
       }
       {`${dataset.rejected}` === 'true' &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-red-700'>
               {format('ui.candidate.rejectedBy')}
@@ -119,7 +119,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
       }
       {`${dataset.rejected}` === 'false' &&
         <>
-          <hr className='bg-dial-blue-chalk mt-6' />
+          <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-green-700'>
               {format('ui.candidate.approvedBy')}
@@ -141,7 +141,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
           </div>
         </>
       }
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={dataset.id}

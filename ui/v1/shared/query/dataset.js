@@ -12,12 +12,18 @@ export const DATASET_SEARCH_QUERY = gql`
 
 export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeDataset(
-    $sectors: [String!]
     $search: String
+    $sectors: [String!]
+    $sdgs: [String!]
+    $tags: [String!]
+    $origins: [String!]
   ) {
     paginationAttributeDataset(
-      sectors: $sectors
       search: $search
+      sectors: $sectors
+      sdgs: $sdgs
+      tags: $tags
+      origins: $origins
     ) {
       totalCount
     }
@@ -26,20 +32,27 @@ export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
 
 export const PAGINATED_DATASETS_QUERY = gql`
   query PaginatedDatasetsRedux(
-    $sectors: [String!]
     $search: String
+    $sectors: [String!]
+    $sdgs: [String!]
+    $tags: [String!]
+    $origins: [String!]
     $limit: Int!
     $offset: Int!
   ) {
     paginatedDatasetsRedux(
-      sectors: $sectors
       search: $search
+      sectors: $sectors
+      sdgs: $sdgs
+      tags: $tags
+      origins: $origins
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
       name
       slug
       imageFile
+      tags
       datasetDescription {
         id
         description

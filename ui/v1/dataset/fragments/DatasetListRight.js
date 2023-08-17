@@ -13,7 +13,7 @@ const DatasetListRight = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(DatasetFilterContext)
-  const { sectors } = useContext(DatasetFilterContext)
+  const { sectors, sdgs, tags, origins } = useContext(DatasetFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -40,7 +40,10 @@ const DatasetListRight = () => {
   const { loading, error, data } = useQuery(DATASET_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
-      sectors: sectors.map(sector => sector.value)
+      origins: origins.map(origin => origin.value),
+      sdgs: sdgs.map(sdg => sdg.value),
+      sectors: sectors.map(sector => sector.value),
+      tags: tags.map(tag => tag.label)
     }
   })
 

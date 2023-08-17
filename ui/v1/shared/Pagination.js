@@ -13,7 +13,7 @@ const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClic
 
   return (
     <div className='flex flex-col gap-y-4 my-6'>
-      <hr className='bg-dial-slate-300'/>
+      <hr className='border-b border-dial-slate-300'/>
       <div className='flex flex-col xl:flex-row gap-x-16 gap-y-3'>
         <div className='my-auto text-sm font-semibold'>
           {totalCount <= 0 && format('ui.pagination.noRecord')}
@@ -49,7 +49,7 @@ const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClic
           nextLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
         />
       </div>
-      <hr className='bg-dial-slate-300'/>
+      <hr className='border-b border-dial-slate-300'/>
     </div>
   )
 

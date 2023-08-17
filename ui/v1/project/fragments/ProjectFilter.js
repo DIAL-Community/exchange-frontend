@@ -88,9 +88,9 @@ const ProjectFilter = () => {
           {format('ui.filter.primary.title')}
         </div>
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <TagAutocomplete tags={tags} setTags={setTags} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
@@ -113,11 +113,11 @@ const ProjectFilter = () => {
                 {format('filter.project.forCovid')}
               </span>
             </label>
-            <hr className='bg-slate-200'/>
+            <hr className='border-b border-dial-slate-200'/>
             <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
-            <hr className='bg-slate-200'/>
+            <hr className='border-b border-dial-slate-200'/>
             <OriginAutocomplete origins={origins} setOrigins={setOrigins} />
-            <hr className='bg-slate-200'/>
+            <hr className='border-b border-dial-slate-200'/>
           </>
         }
       </div>

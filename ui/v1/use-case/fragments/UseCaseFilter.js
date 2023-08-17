@@ -82,9 +82,9 @@ const UseCaseFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}:
         </div>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
@@ -96,7 +96,7 @@ const UseCaseFilter = () => {
             {format('ui.useCase.filter.showDraft')}
           </span>
         </label>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <label className='flex pl-4 py-2'>
           <Checkbox onChange={toggleShowGovStack} value={govStackOnly} />
           <span className='mx-2 my-auto text-sm'>

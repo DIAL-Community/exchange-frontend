@@ -60,7 +60,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OpportunityDetailBuildingBlocks
           opportunity={opportunity}
@@ -68,7 +68,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
           headerRef={buildingBlockRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OpportunityDetailOrganizations
           opportunity={opportunity}
@@ -76,7 +76,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
           headerRef={organizationRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <OpportunityDetailTags
           opportunity={opportunity}
@@ -84,7 +84,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
           headerRef={tagRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={opportunity.id}

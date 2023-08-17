@@ -209,7 +209,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-meadow py-3' ref={pricingRef}>
           {format('ui.product.pricing.title')}
@@ -242,7 +242,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           </div>
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProductDetailSdgs
           product={product}
@@ -250,7 +250,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           headerRef={sdgRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProductDetailBuildingBlocks
           product={product}
@@ -258,7 +258,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           headerRef={buildingBlockRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProductDetailOrganizations
           product={product}
@@ -266,7 +266,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           headerRef={organizationRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <div className='text-dial-meadow text-xl font-semibold'>
         {format('ui.product.details')}
       </div>
@@ -298,7 +298,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           maturityScoreDetails={product.maturityScoreDetails}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <ProductDetailTags
           product={product}
@@ -306,7 +306,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           headerRef={tagRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}

@@ -10,15 +10,15 @@ const ContactDetailLeft = ({ scrollRef, contact }) => {
     <div className='bg-dial-slate-100 lg:h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <ContactDetailHeader contact={contact}/>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <ContactDetailNav contact={contact} scrollRef={scrollRef} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <Bookmark object={contact} objectType={ObjectType.CONTACT} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <Share />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <Comment entityKey={'ui.contact.label'} scrollRef={scrollRef} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
       </div>
     </div>
   )

@@ -10,15 +10,15 @@ const SdgDetailLeft = ({ scrollRef, sdg }) => {
     <div className='bg-dial-slate-100 lg:h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <SdgDetailHeader sdg={sdg}/>
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <SdgDetailNav sdg={sdg} scrollRef={scrollRef} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <Bookmark object={sdg} objectType={ObjectType.SDG} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <Share />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
         <Comment entityKey={'ui.sdg.label'} scrollRef={scrollRef} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
       </div>
     </div>
   )

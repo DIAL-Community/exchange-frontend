@@ -10,12 +10,15 @@ import { NotFound } from '../../shared/FetchStatus'
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(DatasetFilterContext)
 
-  const { sectors } = useContext(DatasetFilterContext)
+  const { sectors, sdgs, tags, origins } = useContext(DatasetFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_DATASETS_QUERY, {
     variables: {
       search,
+      origins: origins.map(origin => origin.value),
+      sdgs: sdgs.map(sdg => sdg.value),
       sectors: sectors.map(sector => sector.value),
+      tags: tags.map(tag => tag.label),
       limit: defaultPageSize,
       offset: pageOffset
     }

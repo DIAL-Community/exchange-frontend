@@ -11,6 +11,40 @@ import DatasetDetailOrganizations from './fragments/DatasetDetailOrganizations'
 import DatasetDetailSdgs from './fragments/DatasetDetailSdgs'
 import DatasetDetailCountries from './fragments/DatasetDetailCountries'
 
+const DatasetSource = ({ dataset }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  return (
+    <div className='flex flex-col gap-y-3'>
+      <div className='text-lg font-semibold text-dial-plum'>
+        {format('dataset.source')}
+      </div>
+      <div className='flex flex-col gap-3 mt-3'>
+        {dataset.origins?.length <= 0 &&
+          <div className='text-sm'>
+            {format('general.na')}
+          </div>
+        }
+        {dataset.origins.map((origin, i) => {
+          return (
+            <div key={i} className='flex flex-row gap-3'>
+              <div className='block w-12 relative'>
+                <img
+                  className='object-contain'
+                  src={'/images/origins/' + origin.slug + '.png'}
+                  alt={format('image.alt.logoFor', { name: origin.name })}
+                />
+              </div>
+              <div className='inline my-auto text-sm'>{origin.name}</div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -59,11 +93,13 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
+      <DatasetSource dataset={dataset} />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <DatasetDetailSdgs dataset={dataset} canEdit={canEdit} headerRef={sdgRef} />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <DatasetDetailOrganizations
           dataset={dataset}
@@ -71,7 +107,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
           headerRef={organizationRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <DatasetDetailCountries
           dataset={dataset}
@@ -79,7 +115,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
           headerRef={countryRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6' />
+      <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
         <DatasetDetailTags
           dataset={dataset}
@@ -87,7 +123,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
           headerRef={tagRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6 mb-3' />
+      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={dataset.id}

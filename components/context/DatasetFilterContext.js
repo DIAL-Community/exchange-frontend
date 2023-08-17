@@ -16,6 +16,8 @@ const DatasetFilterProvider = ({ children }) => {
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
+  const setSdgs = setSDGs
+
   const datasetFilterValues = {
     origins,
     countries,
@@ -34,6 +36,7 @@ const DatasetFilterProvider = ({ children }) => {
     setSectors,
     setOrganizations,
     setSDGs,
+    setSdgs,
     setTags,
     setDatasetTypes,
     setSearch,

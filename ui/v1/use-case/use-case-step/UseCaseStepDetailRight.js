@@ -53,7 +53,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
           />
         </div>
       </div>
-      <hr className='bg-dial-blue-chalk'/>
+      <hr className='border-b border-dial-blue-chalk'/>
       <div className='flex flex-col gap-y-3'>
         <UseCaseStepDetailDatasets
           useCaseStep={useCaseStep}
@@ -61,7 +61,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
           headerRef={datasetRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk'/>
+      <hr className='border-b border-dial-blue-chalk'/>
       <div className='flex flex-col gap-y-3'>
         <UseCaseStepDetailProducts
           useCaseStep={useCaseStep}
@@ -69,7 +69,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
           headerRef={productRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <UseCaseStepDetailWorkflows
           useCaseStep={useCaseStep}
@@ -77,7 +77,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
           headerRef={workflowRef}
         />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <UseCaseStepDetailBuildingBlocks
           useCaseStep={useCaseStep}

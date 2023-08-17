@@ -44,7 +44,7 @@ const OrganizationFilter = () => {
           {format('ui.filter.primary.title')}
         </div>
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='bg-slate-200'/>
+        <hr className='border-b border-dial-slate-200'/>
       </div>
     </div>
   )
