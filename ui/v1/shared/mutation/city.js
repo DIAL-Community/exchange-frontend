@@ -15,12 +15,16 @@ export const DELETE_CITY = gql`
 
 export const CREATE_CITY = gql`
   mutation CreateCity(
-    $name: String!
-    $slug: String!
+    $slug: String
+    $cityName: String!
+    $regionName: String!
+    $countryName: String!
   ) {
     createCity(
-      name: $name
       slug: $slug
+      cityName: $cityName
+      regionName: $regionName
+      countryName: $countryName
     ) {
       city {
         id

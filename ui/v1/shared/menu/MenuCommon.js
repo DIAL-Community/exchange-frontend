@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
+import { useCallback } from 'react'
 
 export const ABOUT_MENU = 'menu-about'
 export const ADMIN_MENU = 'menu-admin'
@@ -13,6 +14,7 @@ export const NONE = ''
 
 export const MenuHeader = ({ id, href, title, onToggleDropdown, currentOpenMenu }) => {
   const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const onClickHandler = (e) => {
     e.preventDefault()
@@ -27,7 +29,7 @@ export const MenuHeader = ({ id, href, title, onToggleDropdown, currentOpenMenu 
       className='pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
       onClick={onClickHandler}
     >
-      {formatMessage({ id: title })}
+      {format(title)}
       {
         currentOpenMenu === id
           ? <HiChevronUp className='inline text-xl' id={`svg-up-${id}`} />

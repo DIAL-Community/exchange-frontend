@@ -51,7 +51,7 @@ const UserBookmarkRight = () => {
 
   const { user } = useUser()
   const { locale } = useRouter()
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const { loading, error, data } = useQuery(BOOKMARK_DETAIL_QUERY, {
     variables: { id: user?.id }
@@ -61,14 +61,14 @@ const UserBookmarkRight = () => {
     onCompleted: (data) => {
       const { removeBookmark: response } = data
       if (response?.bookmark && response?.errors?.length === 0) {
-        showToast(format('toast.removeBookmark.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.removeBookmark.success'))
       } else {
-        showToast(format('toast.removeBookmark.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.removeBookmark.failure'))
         reset()
       }
     },
     onError: () => {
-      showToast(format('toast.removeBookmark.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.removeBookmark.failure'))
       reset()
     }
   })

@@ -14,7 +14,7 @@ const DeleteOpportunity = ({ opportunity }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteOpportunity = ({ opportunity }) => {
       const { deleteOpportunity: response } = data
       if (response?.opportunity && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.opportunity.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.opportunity.label') }),
           () => router.push(`/${locale}/opportunities`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.opportunity.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.opportunity.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.opportunity.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.opportunity.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteOpportunity = ({ opportunity }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: opportunity.name })}
-        message={format('opportunity.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.opportunity.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

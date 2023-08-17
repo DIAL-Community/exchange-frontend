@@ -22,11 +22,16 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
   const [organizations, setOrganizations] = useState(dataset.organizations)
   const [isDirty, setIsDirty] = useState(false)
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateDatasetOrganizations, { loading, reset }] = useMutation(UPDATE_DATASET_ORGANIZATIONS, {
     onError() {
       setIsDirty(false)
       setOrganizations(dataset?.organizations)
-      showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.organization.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -34,20 +39,15 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
       if (response?.dataset && response?.errors?.length === 0) {
         setIsDirty(false)
         setOrganizations(response?.dataset?.organizations)
-        showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.organization.header') }))
       } else {
         setIsDirty(false)
         setOrganizations(dataset?.organizations)
-        showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.organization.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedOrganizationsCallback = (data) => (
     data.organizations?.map((organization) => ({

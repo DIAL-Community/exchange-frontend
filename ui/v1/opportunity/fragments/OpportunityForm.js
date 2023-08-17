@@ -27,7 +27,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -38,16 +38,19 @@ const OpportunityForm = React.memo(({ opportunity }) => {
         setMutating(false)
         const redirectPath = `/${locale}/opportunities/${data.createOpportunity.opportunity.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        showToast(format('opportunity.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.opportunity.label') }),
+          redirectHandler
+        )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.opportunity.label') }))
         setMutating(false)
-        showToast(format('opportunity.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.opportunity.label') }))
       setMutating(false)
-      showToast(format('opportunity.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

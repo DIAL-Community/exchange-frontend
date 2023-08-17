@@ -14,7 +14,7 @@ const DeleteWorkflow = ({ workflow }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteWorkflow = ({ workflow }) => {
       const { deleteWorkflow: response } = data
       if (response?.workflow && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.workflow.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.workflow.label') }),
           () => router.push(`/${locale}/workflows`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.workflow.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.workflow.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.workflow.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.workflow.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteWorkflow = ({ workflow }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: workflow.name })}
-        message={format('workflow.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.workflow.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

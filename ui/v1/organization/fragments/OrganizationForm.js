@@ -28,7 +28,7 @@ const OrganizationForm = React.memo(({ organization }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -39,23 +39,19 @@ const OrganizationForm = React.memo(({ organization }) => {
         const redirectPath = `/${locale}/organizations/${data.createOrganization.organization.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
-        showToast(
-          format('organization.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.organization.label') }),
           redirectHandler
         )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.organization.label') }))
         setMutating(false)
-        showToast(format('organization.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.organization.label') }))
       setMutating(false)
-      showToast(format('organization.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

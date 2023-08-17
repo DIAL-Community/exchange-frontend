@@ -24,7 +24,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -35,23 +35,19 @@ const WorkflowForm = React.memo(({ workflow }) => {
         const redirectPath = `/${locale}/workflows/${data.createWorkflow.workflow.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
-        showToast(
-          format('workflow.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.workflow.label') }),
           redirectHandler
         )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.workflow.label') }))
         setMutating(false)
-        showToast(format('workflow.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.workflow.label') }))
       setMutating(false)
-      showToast(format('workflow.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

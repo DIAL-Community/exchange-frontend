@@ -22,7 +22,7 @@ const CityForm = React.memo(({ city }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -32,24 +32,20 @@ const CityForm = React.memo(({ city }) => {
       if (data.createCity.city && data.createCity.errors.length === 0) {
         const redirectPath = `/${locale}/cities/${data.createCity.city.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        setMutating(false)
-        showToast(
-          format('city.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.city.label') }),
           redirectHandler
         )
-      } else {
         setMutating(false)
-        showToast(format('city.submit.failure'), 'error', 'top-center')
+      } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.city.label') }))
+        setMutating(false)
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.city.label') }))
       setMutating(false)
-      showToast(format('city.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
@@ -59,7 +55,9 @@ const CityForm = React.memo(({ city }) => {
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: city?.name
+      cityName: city?.name,
+      regionName: city?.region?.name,
+      countryName: city?.region?.country?.name
     }
   })
 
@@ -69,9 +67,14 @@ const CityForm = React.memo(({ city }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name } = data
+      const { cityName, regionName, countryName } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
-      const variables = { name, slug }
+      const variables = {
+        slug,
+        cityName,
+        regionName,
+        countryName
+      }
 
       updateCity({
         variables,
@@ -102,16 +105,40 @@ const CityForm = React.memo(({ city }) => {
               : `${format('app.createNew')} ${format('ui.city.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
+            <label className='text-dial-sapphire required-field' htmlFor='cityName'>
               {format('ui.city.label')}
             </label>
             <Input
-              {...register('name', { required: format('validation.required') })}
-              id='name'
+              {...register('cityName', { required: format('validation.required') })}
+              id='cityName'
               placeholder={format('ui.city.label')}
-              isInvalid={errors.name}
+              isInvalid={errors.cityName}
             />
-            {errors.name && <ValidationError value={errors.name?.message} />}
+            {errors.cityName && <ValidationError value={errors.cityName?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire required-field' htmlFor='regionName'>
+              {format('ui.region.label')}
+            </label>
+            <Input
+              {...register('regionName', { required: format('validation.required') })}
+              id='regionName'
+              placeholder={format('ui.region.label')}
+              isInvalid={errors.regionName}
+            />
+            {errors.regionName && <ValidationError value={errors.regionName?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire required-field' htmlFor='countryName'>
+              {format('ui.country.label')}
+            </label>
+            <Input
+              {...register('countryName', { required: format('validation.required') })}
+              id='countryName'
+              placeholder={format('ui.country.label')}
+              isInvalid={errors.countryName}
+            />
+            {errors.countryName && <ValidationError value={errors.countryName?.message} />}
           </div>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>

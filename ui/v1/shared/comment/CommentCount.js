@@ -6,7 +6,7 @@ import { COMMENTS_COUNT_QUERY } from '../query/comment'
 
 const CommentCount = ({ objectId, objectType, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id) => formatMessage({ id }), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { data } = useQuery(COMMENTS_COUNT_QUERY, {
     variables: {

@@ -22,11 +22,16 @@ const ProjectDetailCountries = ({ project, canEdit, headerRef }) => {
   const [countries, setCountries] = useState(project.countries)
   const [isDirty, setIsDirty] = useState(false)
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateProjectCountries, { loading, reset }] = useMutation(UPDATE_PROJECT_COUNTRIES, {
     onError() {
       setIsDirty(false)
       setCountries(project?.countries)
-      showToast(format('toast.countries.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.country.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -34,20 +39,15 @@ const ProjectDetailCountries = ({ project, canEdit, headerRef }) => {
       if (response?.project && response?.errors?.length === 0) {
         setIsDirty(false)
         setCountries(response?.project?.countries)
-        showToast(format('toast.countries.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.country.header') }))
       } else {
         setIsDirty(false)
         setCountries(project?.countries)
-        showToast(format('toast.countries.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.country.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedCountriesCallback = (data) => (
     data.countries?.map((country) => ({

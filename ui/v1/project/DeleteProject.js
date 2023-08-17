@@ -14,7 +14,7 @@ const DeleteProject = ({ project }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteProject = ({ project }) => {
       const { deleteProject: response } = data
       if (response?.project && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.project.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.project.label') }),
           () => router.push(`/${locale}/projects`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.project.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.project.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.project.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.project.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteProject = ({ project }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: project.name })}
-        message={format('project.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.project.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

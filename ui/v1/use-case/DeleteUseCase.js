@@ -14,7 +14,7 @@ const DeleteUseCase = ({ useCase }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteUseCase = ({ useCase }) => {
       const { deleteUseCase: response } = data
       if (response?.useCase && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.use-case.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.useCase.label') }),
           () => router.push(`/${locale}/use-cases`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.use-case.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.useCase.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.use-case.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.useCase.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteUseCase = ({ useCase }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: useCase.name })}
-        message={format('use-case.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.useCase.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

@@ -28,7 +28,7 @@ const DatasetForm = React.memo(({ dataset }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -39,23 +39,19 @@ const DatasetForm = React.memo(({ dataset }) => {
         const redirectPath = `/${locale}/datasets/${data.createDataset.dataset.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
-        showToast(
-          format('dataset.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.dataset.label') }),
           redirectHandler
         )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.dataset.label') }))
         setMutating(false)
-        showToast(format('dataset.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.dataset.label') }))
       setMutating(false)
-      showToast(format('dataset.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

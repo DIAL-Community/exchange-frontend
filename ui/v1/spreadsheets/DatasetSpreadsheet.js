@@ -295,16 +295,16 @@ const DatasetSpreadsheet = () => {
   }
 
   return (
-    <div className='w-full'>
+    <div className='px-4 lg:px-8 xl:px-56'>
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List className='flex flex px-8 bg-dial-gray-dark'>
+        <Tab.List className='flex flex bg-dial-meadow'>
           {DEFAULT_SHEET_NAMES.map((name) => (
             <Tab key={name} as={Fragment}>
               {({ selected }) => (
                 <div
                   className={
                     classNames(
-                      'w-40 px-3 py-2.5 text-sm leading-5 font-medium text-white text-center',
+                      'px-5 2xl:px-8 py-3 text-sm leading-5 font-medium text-white text-center',
                       selected
                         ? 'border-b-4 border-green-500'
                         : 'cursor-pointer hover:bg-white/[0.12] hover:text-white'

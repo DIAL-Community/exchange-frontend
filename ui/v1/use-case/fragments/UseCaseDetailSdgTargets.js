@@ -22,11 +22,16 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
   const [sdgTargets, setSdgTargets] = useState(useCase.sdgTargets)
   const [isDirty, setIsDirty] = useState(false)
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateUseCaseSdgTargets, { loading, reset }] = useMutation(UPDATE_USE_CASE_SDG_TARGETS, {
     onError() {
       setIsDirty(false)
       setSdgTargets(useCase?.sdgTargets)
-      showToast(format('toast.sdgTargets.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.sdtTarget.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -34,20 +39,15 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
       if (response?.useCase && response?.errors?.length === 0) {
         setIsDirty(false)
         setSdgTargets(response?.useCase?.sdgTargets)
-        showToast(format('toast.sdgTargets.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.sdtTarget.header') }))
       } else {
         setIsDirty(false)
         setSdgTargets(useCase?.sdgTargets)
-        showToast(format('toast.sdgTargets.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.sdtTarget.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedSdgTargetsCallback = (data) => (
     data.sdgTargets?.map((sdgTarget) => ({

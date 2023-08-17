@@ -31,7 +31,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -56,16 +56,19 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
         setMutating(false)
         const redirectPath = `/${locale}/building-blocks/${response?.buildingBlock?.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        showToast(format('buildingBlock.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.buildingBlock.label') }),
+          redirectHandler
+        )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.label') }))
         setMutating(false)
-        showToast(format('buildingBlock.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.label') }))
       setMutating(false)
-      showToast(format('buildingBlock.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

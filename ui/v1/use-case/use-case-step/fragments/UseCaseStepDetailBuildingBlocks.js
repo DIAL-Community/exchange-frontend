@@ -26,7 +26,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
     onError() {
       setIsDirty(false)
       setBuildingBlocks(useCaseStep?.buildingBlocks)
-      showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -34,11 +34,11 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
       if (response?.useCaseStep && response?.errors?.length === 0) {
         setIsDirty(false)
         setBuildingBlocks(response?.useCaseStep?.buildingBlocks)
-        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.buildingBlock.header') }))
       } else {
         setIsDirty(false)
         setBuildingBlocks(useCaseStep?.buildingBlocks)
-        showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.header') }))
         reset()
       }
     }
@@ -47,7 +47,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
   const { user } = useUser()
   const { locale } = useRouter()
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const fetchedBuildingBlocksCallback = (data) => (
     data.buildingBlocks?.map((buildingBlock) => ({

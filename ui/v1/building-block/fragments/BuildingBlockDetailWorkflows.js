@@ -26,7 +26,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
     onError() {
       setIsDirty(false)
       setWorkflows(buildingBlock?.workflows)
-      showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.workflow.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -34,11 +34,11 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
       if (response?.buildingBlock && response?.errors?.length === 0) {
         setIsDirty(false)
         setWorkflows(response?.buildingBlock?.workflows)
-        showToast(format('toast.workflows.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.workflow.header') }))
       } else {
         setIsDirty(false)
         setWorkflows(buildingBlock?.workflows)
-        showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.workflow.header') }))
         reset()
       }
     }
@@ -47,7 +47,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
   const { user } = useUser()
   const { locale } = useRouter()
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const fetchedWorkflowsCallback = (data) => (
     data.workflows?.map((workflow) => ({

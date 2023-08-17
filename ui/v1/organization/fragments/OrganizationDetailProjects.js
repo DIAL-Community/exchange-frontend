@@ -22,11 +22,16 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
   const [projects, setProjects] = useState(organization.projects)
   const [isDirty, setIsDirty] = useState(false)
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateOrganizationProjects, { loading, reset }] = useMutation(UPDATE_ORGANIZATION_PROJECTS, {
     onError() {
       setIsDirty(false)
       setProjects(organization?.projects)
-      showToast(format('toast.projects.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.project.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -34,20 +39,15 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
       if (response?.organization && response?.errors?.length === 0) {
         setIsDirty(false)
         setProjects(response?.organization?.projects)
-        showToast(format('toast.projects.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.project.header') }))
       } else {
         setIsDirty(false)
         setProjects(organization?.projects)
-        showToast(format('toast.projects.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.project.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedProjectsCallback = (data) => (
     data.projects?.map((project) => ({

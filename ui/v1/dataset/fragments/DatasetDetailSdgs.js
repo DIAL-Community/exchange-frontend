@@ -37,6 +37,11 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
     ) ?? mappingStatusOptions?.[0]
   )
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const updateMappingStatus = (selectedMappingStatus) => {
     setMappingStatus(selectedMappingStatus)
     setIsDirty(true)
@@ -46,7 +51,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
     onError() {
       setIsDirty(false)
       setSdgs(dataset?.sdgs)
-      showToast(format('toast.sdgs.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.sdg.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -54,20 +59,15 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
       if (response?.dataset && response?.errors?.length === 0) {
         setIsDirty(false)
         setSdgs(response?.dataset?.sdgs)
-        showToast(format('toast.sdgs.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.sdg.header') }))
       } else {
         setIsDirty(false)
         setSdgs(dataset?.sdgs)
-        showToast(format('toast.sdgs.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.sdg.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedSdgsCallback = (data) => (
     data.sdgs?.map((sdg) => ({

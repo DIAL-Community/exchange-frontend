@@ -20,24 +20,24 @@ const BuildingBlockDetailTags = ({ buildingBlock, canEdit, headerRef }) => {
   const [tags, setTags] = useState(buildingBlock.tags)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [updateBuildingBlockTags, { loading, reset }] = useMutation(UPDATE_BUILDING_BLOCK_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(buildingBlock.tags)
-      showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.tag.header') }))
     },
     onCompleted: (data) => {
       const { updateBuildingBlockTags: response } = data
       if (response?.buildingBlock && response?.errors?.length === 0) {
         setIsDirty(false)
         setTags(response?.buildingBlock?.tags)
-        showToast(format('toast.tags.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.tag.header') }))
       } else {
         setIsDirty(false)
         setTags(buildingBlock.tags)
-        showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.tag.header') }))
         reset()
       }
     }

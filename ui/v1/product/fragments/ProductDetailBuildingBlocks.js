@@ -37,11 +37,16 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
     ) ?? mappingStatusOptions?.[0]
   )
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateProductBuildingBlocks, { loading, reset }] = useMutation(UPDATE_PRODUCT_BUILDING_BLOCKS, {
     onError() {
       setIsDirty(false)
       setBuildingBlocks(product?.buildingBlocks)
-      showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -49,20 +54,15 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
       if (response?.product && response?.errors?.length === 0) {
         setIsDirty(false)
         setBuildingBlocks(response?.product?.buildingBlocks)
-        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.buildingBlock.header') }))
       } else {
         setIsDirty(false)
         setBuildingBlocks(product?.buildingBlocks)
-        showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedBuildingBlocksCallback = (data) => (
     data.buildingBlocks?.map((buildingBlock) => ({

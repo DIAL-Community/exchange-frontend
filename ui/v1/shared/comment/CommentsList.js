@@ -5,7 +5,7 @@ import CommentCard from './CommentCard'
 
 const CommentsList = ({ comments, loading, onClose }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id) => formatMessage({ id }), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='mt-28'>

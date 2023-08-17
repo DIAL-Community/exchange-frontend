@@ -25,7 +25,7 @@ const SectorForm = React.memo(({ sector }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -44,23 +44,19 @@ const SectorForm = React.memo(({ sector }) => {
         const redirectPath = `/${locale}/sectors/${data.createSector.sector.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
-        showToast(
-          format('sector.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.sector.label') }),
           redirectHandler
         )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.sector.label') }))
         setMutating(false)
-        showToast(format('sector.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.sector.label') }))
       setMutating(false)
-      showToast(format('sector.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

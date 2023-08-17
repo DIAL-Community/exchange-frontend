@@ -14,7 +14,7 @@ const DeleteSector = ({ sector }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteSector = ({ sector }) => {
       const { deleteSector: response } = data
       if (response?.sector && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.sector.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.sector.label') }),
           () => router.push(`/${locale}/sectors`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.sector.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.sector.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.sector.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.sector.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteSector = ({ sector }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: sector.name })}
-        message={format('sector.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.sector.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

@@ -28,7 +28,7 @@ const ProductForm = React.memo(({ product }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -42,23 +42,19 @@ const ProductForm = React.memo(({ product }) => {
         const redirectPath = `/${locale}` +
                              `/candidate/products/${response.candidateProduct.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        showToast(
-          format('ui.candidateProduct.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.candidateProduct.label') }),
           redirectHandler
         )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.candidateProduct.label') }))
         setMutating(false)
-        showToast(format('ui.candidateProduct.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.candidateProduct.label') }))
       setMutating(false)
-      showToast(format('ui.candidateProduct.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

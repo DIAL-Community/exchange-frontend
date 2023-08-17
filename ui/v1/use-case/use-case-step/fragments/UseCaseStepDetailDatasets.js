@@ -22,11 +22,16 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
   const [datasets, setDatasets] = useState(useCaseStep.datasets)
   const [isDirty, setIsDirty] = useState(false)
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateUseCaseStepDatasets, { loading, reset }] = useMutation(UPDATE_USE_CASE_STEP_DATASETS, {
     onError() {
       setIsDirty(false)
       setDatasets(useCaseStep?.datasets)
-      showToast(format('toast.datasets.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.dataset.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -34,20 +39,15 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
       if (response?.useCaseStep && response?.errors?.length === 0) {
         setIsDirty(false)
         setDatasets(response?.useCaseStep?.datasets)
-        showToast(format('toast.datasets.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.dataset.header') }))
       } else {
         setIsDirty(false)
         setDatasets(useCaseStep?.datasets)
-        showToast(format('toast.datasets.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.dataset.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedDatasetsCallback = (data) => (
     data.datasets?.map((dataset) => ({

@@ -37,11 +37,16 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit, headerRef }) => {
     ) ?? mappingStatusOptions?.[0]
   )
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateWorkflowBuildingBlocks, { loading, reset }] = useMutation(UPDATE_WORKFLOW_BUILDING_BLOCKS, {
     onError() {
       setIsDirty(false)
       setBuildingBlocks(workflow?.buildingBlocks)
-      showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -49,20 +54,15 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit, headerRef }) => {
       if (response?.workflow && response?.errors?.length === 0) {
         setIsDirty(false)
         setBuildingBlocks(response?.workflow?.buildingBlocks)
-        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.header') }))
       } else {
         setIsDirty(false)
         setBuildingBlocks(workflow?.buildingBlocks)
-        showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlock.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedBuildingBlocksCallback = (data) => (
     data.buildingBlocks?.map((buildingBlock) => ({

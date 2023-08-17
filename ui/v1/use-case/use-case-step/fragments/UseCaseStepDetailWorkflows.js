@@ -22,11 +22,16 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
   const [workflows, setWorkflows] = useState(useCaseStep.workflows)
   const [isDirty, setIsDirty] = useState(false)
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateUseCaseStepWorkflows, { loading, reset }] = useMutation(UPDATE_USE_CASE_STEP_WORKFLOWS, {
     onError() {
       setIsDirty(false)
       setWorkflows(useCaseStep?.workflows)
-      showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.workflow.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -34,20 +39,15 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
       if (response?.useCaseStep && response?.errors?.length === 0) {
         setIsDirty(false)
         setWorkflows(response?.useCaseStep?.workflows)
-        showToast(format('toast.workflows.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.workflow.header') }))
       } else {
         setIsDirty(false)
         setWorkflows(useCaseStep?.workflows)
-        showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.workflow.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-
-  const { showToast } = useContext(ToastContext)
 
   const fetchedWorkflowsCallback = (data) => (
     data.workflows?.map((workflow) => ({

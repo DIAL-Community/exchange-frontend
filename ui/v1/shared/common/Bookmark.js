@@ -12,20 +12,20 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
 
   const { user } = useUser()
   const { locale, pathname } = useRouter()
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [addBookmark, { reset }] = useMutation(ADD_BOOKMARK, {
     onCompleted: (data) => {
       const { addBookmark: response } = data
       if (response?.bookmark && response?.errors?.length === 0) {
-        showToast(format('toast.addBookmark.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.addBookmark.success'))
       } else {
-        showToast(format('toast.addBookmark.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.addBookmark.failure'))
         reset()
       }
     },
     onError: () => {
-      showToast(format('toast.addBookmark.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.addBookmark.failure'))
       reset()
     }
   })

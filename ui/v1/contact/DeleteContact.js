@@ -14,7 +14,7 @@ const DeleteContact = ({ contact }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteContact = ({ contact }) => {
       const { deleteContact: response } = data
       if (response?.contact && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.contact.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.contact.label') }),
           () => router.push(`/${locale}/contacts`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.contact.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.contact.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.contact.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.contact.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteContact = ({ contact }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: contact.name })}
-        message={format('contact.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.contact.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

@@ -23,11 +23,15 @@ const OrganizationDetailContacts = ({ organization, canEdit, headerRef }) => {
   const [contacts, setContacts] = useState(organization?.contacts)
   const [isDirty, setIsDirty] = useState(false)
 
+  const { user } = useUser()
+  const { locale } = useRouter()
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
   const [updateOrganizationContacts, { loading }] = useMutation(UPDATE_ORGANIZATION_CONTACTS, {
     onError() {
       setIsDirty(false)
       setContacts(organization.contacts)
-      showToast(format('toast.contacts.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.contact.header') }))
       reset()
     },
     onCompleted: (data) => {
@@ -35,19 +39,15 @@ const OrganizationDetailContacts = ({ organization, canEdit, headerRef }) => {
       if (response?.organization && response?.errors?.length === 0) {
         setIsDirty(false)
         setContacts(response?.organization?.contacts)
-        showToast(format('toast.contacts.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.contact.header') }))
       } else {
         setIsDirty(false)
         setContacts(organization.contacts)
-        showToast(format('toast.contacts.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.contact.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
-  const { showToast } = useContext(ToastContext)
 
   const isContactNameUnique =
     (name) =>

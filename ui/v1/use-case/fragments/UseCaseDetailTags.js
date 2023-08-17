@@ -20,31 +20,31 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
   const [tags, setTags] = useState(useCase.tags)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [updateUseCaseTags, { loading, reset }] = useMutation(UPDATE_USE_CASE_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(useCase.tags)
-      showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.tag.header') }))
     },
     onCompleted: (data) => {
       const { updateUseCaseTags: response } = data
       if (response?.useCase && response?.errors?.length === 0) {
         setIsDirty(false)
         setTags(response?.useCase?.tags)
-        showToast(format('toast.tags.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.tag.header') }))
       } else {
         setIsDirty(false)
         setTags(useCase.tags)
-        showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.tag.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
 
   const fetchedTagsCallback = (data) => data.tags?.map(({ name: label }) => ({ label }))
 

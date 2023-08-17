@@ -22,7 +22,7 @@ const ContactForm = React.memo(({ contact }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -33,23 +33,19 @@ const ContactForm = React.memo(({ contact }) => {
         const redirectPath = `/${locale}/contacts/${data.createContact.contact.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
-        showToast(
-          format('contact.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.contact.label') }),
           redirectHandler
         )
       } else {
         setMutating(false)
-        showToast(format('contact.submit.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.contact.label') }))
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(format('contact.submit.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.contact.label') }))
       reset()
     }
   })

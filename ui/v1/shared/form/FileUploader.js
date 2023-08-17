@@ -10,7 +10,7 @@ const FileUploader = React.forwardRef(({ onChange, onBlur, isInvalid = false, cl
   const { value, ...otherPropsWithoutValue } = otherProps // eslint-disable-line
 
   const { formatMessage } = useIntl()
-  const format = useCallback((id) => formatMessage({ id }), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>

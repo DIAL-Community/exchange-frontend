@@ -14,7 +14,7 @@ const DeleteTag = ({ tag }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteTag = ({ tag }) => {
       const { deleteTag: response } = data
       if (response?.tag && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.tag.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.tag.label') }),
           () => router.push(`/${locale}/tags`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.tag.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.tag.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.tag.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.tag.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteTag = ({ tag }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: tag.name })}
-        message={format('tag.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.tag.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

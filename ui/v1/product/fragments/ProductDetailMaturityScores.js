@@ -95,10 +95,10 @@ const MaturityCategory = ({ category }) => {
 
 const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScoreDetails }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id) => formatMessage({ id }), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { locale } = useRouter()
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const scaleOptions = useMemo(() => getCategoryIndicatorScaleOptions(format), [format])
   const booleanOptions = useMemo(() => getCategoryIndicatorBooleanOptions(format), [format])
@@ -256,18 +256,18 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
           refetchCategoryIndicators()
           setValidMaturityScores(sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails))
           setMaturityScore(data.updateProductIndicators.product.overallMaturityScore)
-          showToast(format('toast.category-indicator.update.success'), 'success', 'top-center')
+          showSuccessMessage(format('toast.submit.failure', { entity: format('ui.categoryIndicator.header') }))
           setIsDirty(false)
         } else {
           setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
-          showToast(format('toast.category-indicator.update.failure'), 'error', 'top-center')
+          showFailureMessage(format('toast.submit.success', { entity: format('ui.categoryIndicator.header') }))
           setIsDirty(false)
           resetMutation()
         }
       },
       onError: () => {
         setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
-        showToast(format('toast.category-indicator.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.categoryIndicator.header') }))
         setIsDirty(false)
         resetMutation()
       }

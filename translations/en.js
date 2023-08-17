@@ -1953,6 +1953,9 @@ export const en = {
   'ui.office.label': 'Office',
   'ui.office.header': 'Offices',
 
+  'ui.region.label': 'Region / State / Province',
+  'ui.region.header': 'Regions / States / Provinces',
+
   'ui.city.label': 'City',
   'ui.city.header': 'Cities',
   'ui.city.description': 'City in {regionName}, {countryName}.',
@@ -2034,6 +2037,12 @@ export const en = {
     list of resources, tailored to wherever you are in a project lifecycle —
     ideation, planning, implementation, or monitoring/evaluation.
   `,
-  'ui.wizard.launch': 'Launch Recommendations Wizard'
+  'ui.wizard.launch': 'Launch Recommendations Wizard',
 
+  'toast.submit.success': '{entity} submitted successfully.',
+  'toast.submit.failure': 'Failed to submit {entity}.',
+  'toast.delete.success': '{entity} deleted successfully.',
+  'toast.delete.success': 'Failed to delete {entity}.',
+
+  'delete.confirm.message': 'Are you sure you want to delete this {entity}?'
 }

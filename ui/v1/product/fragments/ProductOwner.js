@@ -29,7 +29,7 @@ const ProductOwner = ({ product }) => {
   const [showApplyLink, setShowApplyLink] = useState(false)
   const [ownershipText, setOwnershipText] = useState('')
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   useQuery(OWNER_CANDIDATE_ROLE_DETAIL_QUERY, {
     variables: {
@@ -86,15 +86,11 @@ const ProductOwner = ({ product }) => {
     onCompleted: (data) => {
       const { applyAsOwner: response } = data
       if (!response?.candidateRole || response?.errors?.length > 0) {
-        showToast(data.applyAsOwner.errors[0], 'error', 'top-center')
+        showFailureMessage(data.applyAsOwner.errors[0])
         setLoading(false)
         reset()
       } else {
-        showToast(
-          format('toast.applyAsOwner.submit.success', { entity: format('ui.product.label') }),
-          'success',
-          'top-center'
-        )
+        showSuccessMessage(format('toast.applyAsOwner.submit.success', { entity: format('ui.product.label') }))
         // Applying to be the owner of the organization
         setShowApplyLink(!showApplyLink)
         setOwnershipText('applied-to-own')
@@ -102,7 +98,7 @@ const ProductOwner = ({ product }) => {
       }
     },
     onError: (error) => {
-      showToast(error?.message, 'error', 'top-center')
+      showFailureMessage(error?.message)
       setLoading(false)
       reset()
     }

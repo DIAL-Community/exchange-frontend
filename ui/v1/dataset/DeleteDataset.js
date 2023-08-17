@@ -14,7 +14,7 @@ const DeleteDataset = ({ dataset }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteDataset = ({ dataset }) => {
       const { deleteDataset: response } = data
       if (response?.dataset && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.dataset.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.dataset.label') }),
           () => router.push(`/${locale}/datasets`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.dataset.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.dataset.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.dataset.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.dataset.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteDataset = ({ dataset }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: dataset.name })}
-        message={format('dataset.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.dataset.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

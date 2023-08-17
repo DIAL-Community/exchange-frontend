@@ -14,7 +14,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -36,23 +36,19 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
       const { deleteBuildingBlock: response } = data
       if (response?.buildingBlock && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
-        showToast(
-          format('toast.buildingBlock.delete.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.delete.success', { entity: format('ui.buildingBlock.label') }),
           () => router.push(`${locale}/building-blocks`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.buildingBlock.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.city.delete.failure', { entity: format('ui.buildingBlock.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.buildingBlock.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.city.delete.failure', { entity: format('ui.buildingBlock.label') }))
       reset()
     }
   })
@@ -79,7 +75,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: buildingBlock.name })}
-        message={format('buildingBlock.delete.confirm.message')}
+        message={format('delete.confirm.message', { entity: format('ui.buildingBlock.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

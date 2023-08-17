@@ -23,7 +23,7 @@ const TagForm = React.memo(({ tag }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -34,23 +34,19 @@ const TagForm = React.memo(({ tag }) => {
         const redirectPath = `/${locale}/tags/${data.createTag.tag.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
-        showToast(
-          format('tag.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.tag.label') }),
           redirectHandler
         )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.tag.label') }))
         setMutating(false)
-        showToast(format('tag.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.tag.label') }))
       setMutating(false)
-      showToast(format('tag.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

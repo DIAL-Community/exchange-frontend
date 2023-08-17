@@ -22,7 +22,7 @@ const CountryForm = React.memo(({ country }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -33,23 +33,19 @@ const CountryForm = React.memo(({ country }) => {
         const redirectPath = `/${locale}/countries/${data.createCountry.country.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
-        showToast(
-          format('toast.country.submit.success'),
-          'success',
-          'top-center',
-          1000,
-          null,
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.country.label') }),
           redirectHandler
         )
       } else {
         setMutating(false)
-        showToast(format('toast.country.submit.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.country.submit.failure', { entity: format('ui.country.label') }))
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(format('toast.country.submit.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.country.submit.failure', { entity: format('ui.country.label') }))
       reset()
     }
   })

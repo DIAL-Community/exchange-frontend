@@ -30,30 +30,30 @@ const OrganizationDetailOffices = ({ organization, canEdit, headerRef }) => {
   const [isDirty, setIsDirty] = useState(false)
   const [offices, setOffices] = useState(organization.offices?.map(mapOfficeCallback))
 
-  const { showToast } = useContext(ToastContext)
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [updateOrganizationOffices, { loading }] = useMutation(UPDATE_ORGANIZATION_OFFICES, {
     onError: () => {
       setIsDirty(false)
       setOffices(organization.offices?.map(mapOfficeCallback))
-      showToast(format('toast.offices.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.office.header') }))
     },
     onCompleted: (data) => {
       const { updateOrganizationOffices: response } = data
       if (response?.organization && response?.errors?.length === 0) {
         setOffices(response?.organization?.offices?.map(mapOfficeCallback))
-        showToast(format('toast.offices.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.office.header') }))
         setIsDirty(false)
       } else {
         setIsDirty(false)
         setOffices(organization.offices?.map(mapOfficeCallback))
-        showToast(format('toast.offices.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.office.header') }))
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
 
   const addOffice = (officeToAdd) => {
     if (officeToAdd) {

@@ -29,7 +29,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -67,16 +67,19 @@ const UseCaseForm = React.memo(({ useCase }) => {
         setMutating(false)
         const redirectPath = `/${locale}/use-cases/${response?.useCase?.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        showToast(format('useCase.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.useCase.label') }),
+          redirectHandler
+        )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.useCase.label') }))
         setMutating(false)
-        showToast(format('useCase.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.useCase.label') }))
       setMutating(false)
-      showToast(format('useCase.submit.failure'), 'error', 'top-center')
       reset()
     }
   })

@@ -20,31 +20,31 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
   const [tags, setTags] = useState(opportunity.tags)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [updateOpportunityTags, { loading, reset }] = useMutation(UPDATE_OPPORTUNITY_TAGS, {
     onError: () => {
       setIsDirty(false)
       setTags(opportunity.tags)
-      showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.tag.header') }))
     },
     onCompleted: (data) => {
       const { updateOpportunityTags: response } = data
       if (response?.opportunity && response?.errors?.length === 0) {
         setIsDirty(false)
         setTags(response?.opportunity?.tags)
-        showToast(format('toast.tags.update.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.tag.header') }))
       } else {
         setIsDirty(false)
         setTags(opportunity.tags)
-        showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.tag.header') }))
         reset()
       }
     }
   })
-
-  const { user } = useUser()
-  const { locale } = useRouter()
 
   const fetchedTagsCallback = (data) => data.tags?.map(({ name: label }) => ({ label }))
 

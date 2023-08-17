@@ -24,7 +24,7 @@ const ProjectForm = React.memo(({ project }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -35,16 +35,19 @@ const ProjectForm = React.memo(({ project }) => {
         setMutating(false)
         const redirectPath = `/${locale}/projects/${data.createProject.project.slug}`
         const redirectHandler = () => router.push(redirectPath)
-        showToast(format('project.submit.success'), 'success', 'top-center', 1000, null, redirectHandler)
+        showSuccessMessage(
+          format('toast.submit.success', { entity: format('ui.project.label') }),
+          redirectHandler
+        )
       } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.project.label') }))
         setMutating(false)
-        showToast(format('project.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.project.label') }))
       setMutating(false)
-      showToast(format('project.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
