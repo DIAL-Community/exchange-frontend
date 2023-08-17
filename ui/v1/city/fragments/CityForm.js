@@ -99,23 +99,23 @@ const CityForm = React.memo(({ city }) => {
           <div className='text-xl font-semibold'>
             {city
               ? format('app.editEntity', { entity: city.name })
-              : `${format('app.createNew')} ${format('city.label')}`}
+              : `${format('app.createNew')} ${format('ui.city.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('city.name')}
+              {format('ui.city.label')}
             </label>
             <Input
               {...register('name', { required: format('validation.required') })}
               id='name'
-              placeholder={format('city.name')}
+              placeholder={format('ui.city.label')}
               isInvalid={errors.name}
             />
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('city.label')}`}
+              {`${format('app.submit')} ${format('ui.city.label')}`}
               {mutating && <FaSpinner className='spinner ml-3' />}
             </button>
             <button

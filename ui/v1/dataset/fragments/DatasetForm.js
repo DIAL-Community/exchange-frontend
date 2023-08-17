@@ -159,7 +159,7 @@ const DatasetForm = React.memo(({ dataset }) => {
           <div className='text-xl font-semibold'>
             {dataset
               ? format('app.editEntity', { entity: dataset.name })
-              : `${format('app.createNew')} ${format('dataset.label')}`}
+              : `${format('app.createNew')} ${format('ui.dataset.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='name'>
@@ -324,7 +324,7 @@ const DatasetForm = React.memo(({ dataset }) => {
           </div>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('dataset.label')}`}
+              {`${format('app.submit')} ${format('ui.dataset.label')}`}
               {mutating && <FaSpinner className='spinner ml-3' />}
             </button>
             <button

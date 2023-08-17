@@ -22,7 +22,7 @@ export const CREATE_CITY = gql`
       name: $name
       slug: $slug
     ) {
-      country {
+      city {
         id
         name
         slug

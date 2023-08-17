@@ -287,7 +287,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       </div>
       <div className='text-sm italic'>
         <div
-          className='text-sm mb-3 text-dial-gray-dark highlight-link'
+          className='text-xs text-justify text-dial-gray-dark highlight-link'
           dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
         />
       </div>

@@ -113,7 +113,7 @@ const TagForm = React.memo(({ tag }) => {
           <div className='text-xl font-semibold'>
             {tag
               ? format('app.editEntity', { entity: tag.name })
-              : `${format('app.createNew')} ${format('tag.label')}`}
+              : `${format('app.createNew')} ${format('ui.tag.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='name'>
@@ -149,7 +149,7 @@ const TagForm = React.memo(({ tag }) => {
           </div>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('tag.label')}`}
+              {`${format('app.submit')} ${format('ui.tag.label')}`}
               {mutating && <FaSpinner className='spinner ml-3' />}
             </button>
             <button

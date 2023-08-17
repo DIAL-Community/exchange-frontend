@@ -7,7 +7,6 @@ const CountryMainLeft = ({ activeTab }) => {
     <>
       { activeTab === 0 && <CountryListLeft /> }
       { activeTab === 1 && <CountrySimpleLeft />}
-      { activeTab === 2 && <CountrySimpleLeft /> }
     </>
   )
 }

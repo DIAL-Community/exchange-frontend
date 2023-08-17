@@ -6,8 +6,7 @@ const CountryTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.country.header',
-    'ui.country.whatIs'
+    'ui.country.header'
   ])
 
   useEffect(() => {

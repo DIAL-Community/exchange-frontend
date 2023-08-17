@@ -1934,6 +1934,7 @@ export const en = {
   'ui.country.label': 'Country',
   'ui.country.header': 'Countries',
   'ui.country.logoAlt': 'Flag for country: {countryName}.',
+  'ui.country.createNew': 'Create a new Country',
 
   'ui.compareTool.label': 'Comparison Tool',
   'ui.compareTool.header': 'Comparison Tools',
@@ -1955,6 +1956,7 @@ export const en = {
   'ui.city.label': 'City',
   'ui.city.header': 'Cities',
   'ui.city.description': 'City in {regionName}, {countryName}.',
+  'ui.city.createNew': 'Create a new City',
 
   'ui.candidate.submitter': 'Submitted by',
   'ui.candidate.submittedOn': 'Submitted on',

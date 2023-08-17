@@ -141,7 +141,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
     </div>
 
   const sectionDisclaimer =
-    <div className='text-sm italic text-dial-stratos mb-3'>
+    <div className='text-xs text-justify italic text-dial-stratos mb-3'>
       {format('ui.buildingBlock.disclaimer')}
     </div>
 

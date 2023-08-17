@@ -34,7 +34,7 @@ const CountryForm = React.memo(({ country }) => {
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showToast(
-          format('country.submit.success'),
+          format('toast.country.submit.success'),
           'success',
           'top-center',
           1000,
@@ -43,13 +43,13 @@ const CountryForm = React.memo(({ country }) => {
         )
       } else {
         setMutating(false)
-        showToast(format('country.submit.failure'), 'error', 'top-center')
+        showToast(format('toast.country.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setMutating(false)
-      showToast(format('country.submit.failure'), 'error', 'top-center')
+      showToast(format('toast.country.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
@@ -92,23 +92,23 @@ const CountryForm = React.memo(({ country }) => {
           <div className='text-xl font-semibold'>
             {country
               ? format('app.editEntity', { entity: country.name })
-              : `${format('app.createNew')} ${format('country.label')}`}
+              : `${format('app.createNew')} ${format('ui.country.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('country.name')}
+              {format('ui.country.label')}
             </label>
             <Input
               {...register('name', { required: format('validation.required') })}
               id='name'
-              placeholder={format('country.name')}
+              placeholder={format('ui.country.label')}
               isInvalid={errors.name}
             />
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('country.label')}`}
+              {`${format('app.submit')} ${format('ui.country.label')}`}
               {mutating && <FaSpinner className='spinner ml-3' />}
             </button>
             <button

@@ -151,7 +151,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
             <div className='text-xl font-semibold text-dial-blueberry'>
               {useCase
                 ? format('app.editEntity', { entity: useCase.name })
-                : `${format('app.createNew')} ${format('useCase.label')}`}
+                : `${format('app.createNew')} ${format('ui.useCase.label')}`}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field text-dial-blueberry' htmlFor='name'>
@@ -243,7 +243,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
             </div>
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                {`${format('app.submit')} ${format('useCase.label')}`}
+                {`${format('app.submit')} ${format('ui.useCase.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>
               <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>
