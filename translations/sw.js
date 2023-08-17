@@ -590,11 +590,11 @@ export const sw = {
 
   "category-indicators.label": "Viashiria",
 
-  "resource.name": "Jina la Rasilimali",
-  "resource.description": "Maelezo ya Raslimali",
-  "resource.url": "URL ya Raslimali",
-  "resource.header": "Raslimali",
-  "resource.label": "Raslimali",
+  "ui.resource.name": "Jina la Rasilimali",
+  "ui.resource.description": "Maelezo ya Raslimali",
+  "ui.resource.url": "URL ya Raslimali",
+  "ui.resource.header": "Raslimali",
+  "ui.resource.label": "Raslimali",
 
   "datasetType.label": "Aina",
   "datasetType.header": "Aina ya Data Huria",
@@ -967,7 +967,7 @@ export const sw = {
   "move.submitted": "Shughuli imehifadhiwa.",
   "move.autoSaved": "Hamisha iliyohifadhiwa...",
 
-  "resource.submitted": "Nyenzo imehifadhiwa.",
+  "ui.resource.submitted": "Nyenzo imehifadhiwa.",
   "product.launchable": "Bidhaa Inaweza Kuzinduliwa",
 
   "location.header": "Mahali",

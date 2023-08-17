@@ -20,8 +20,8 @@ const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
     label: 'opportunity.header',
     link: '/opportunities'
   }, {
-    label: 'storefront.header',
-    link: 'storefronts'
+    label: 'ui.storefront.header',
+    link: 'ui.storefronts'
   }]
 
   return (
@@ -35,7 +35,7 @@ const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
         }}
       >
         <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          Marketplace
+          {format('header.marketplace')}
           {currentMenu === MARKETPLACE_MENU
             ? <RiArrowUpSLine className='text-base inline my-auto' />
             : <RiArrowDownSLine className='text-base inline my-auto' />
@@ -82,7 +82,7 @@ const ToolMenu = ({ currentMenu, setCurrentMenu }) => {
         }}
       >
         <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          Tools
+          {format('header.tools')}
           {currentMenu === TOOL_MENU
             ? <RiArrowUpSLine className='text-base inline my-auto' />
             : <RiArrowDownSLine className='text-base inline my-auto' />
@@ -129,7 +129,7 @@ const SupportingMenu = ({ currentMenu, setCurrentMenu }) => {
         }}
       >
         <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          Supporting
+          {format('header.supportingTools')}
           {currentMenu === SUPPORTING_MENU
             ? <RiArrowUpSLine className='text-base inline my-auto' />
             : <RiArrowDownSLine className='text-base inline my-auto' />
@@ -190,7 +190,7 @@ const ResourceMenu = ({ currentMenu, setCurrentMenu }) => {
         }}
       >
         <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          Resources
+          {format('header.resources')}
           {currentMenu === RESOURCE_MENU
             ? <RiArrowUpSLine className='text-base inline my-auto' />
             : <RiArrowDownSLine className='text-base inline my-auto' />
@@ -316,7 +316,7 @@ const HelpMenu = ({ currentMenu, setCurrentMenu }) => {
         }}
       >
         <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          Help
+          {format('header.help')}
           {currentMenu === HELP_MENU
             ? <RiArrowUpSLine className='text-base inline my-auto' />
             : <RiArrowDownSLine className='text-base inline my-auto' />

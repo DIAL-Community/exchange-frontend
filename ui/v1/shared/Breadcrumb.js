@@ -32,7 +32,7 @@ const basePathMappings = {
   'rubric-categories': 'ui.rubricCategories.header',
   'sdgs': 'ui.sdg.header',
   'sectors': 'ui.sector.header',
-  'storefronts': 'ui.storefront.header',
+  'ui.storefronts': 'ui.storefront.header',
   'tags': 'ui.tag.header',
   'users': 'ui.user.header',
   'use-case-steps': 'ui.useCaseStep.header',

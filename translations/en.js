@@ -98,6 +98,9 @@ export const en = {
   'header.admin.candidate_roles': 'Candidate Roles',
   'header.admin.deploys': 'Deploys',
   'header.newsletter': 'Join Our Newsletter',
+  'header.marketplace': 'Marketplace',
+  'header.tools': 'Tools',
+  'header.supportingTools': 'Supporting Tools',
 
   'footer.text.firstLine': `
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
@@ -787,11 +790,11 @@ export const en = {
 
   'category-indicators.label': 'Indicators',
 
-  'resource.name': 'Resource Name',
-  'resource.description': 'Resource Description',
-  'resource.url': 'Resource URL',
-  'resource.header': 'Resources',
-  'resource.label': 'Resource',
+  'ui.resource.name': 'Resource Name',
+  'ui.resource.description': 'Resource Description',
+  'ui.resource.url': 'Resource URL',
+  'ui.resource.header': 'Resources',
+  'ui.resource.label': 'Resource',
 
   'datasetType.label': 'Type',
   'datasetType.header': 'Open Data Type',
@@ -1451,7 +1454,7 @@ export const en = {
   'move.submitted': 'Move saved.',
   'move.autoSaved': 'Move saved ...',
 
-  'resource.submitted': 'Resource saved.',
+  'ui.resource.submitted': 'Resource saved.',
   'product.launchable': 'Product Launchable',
 
   'location.header': 'Location',
@@ -1722,46 +1725,47 @@ export const en = {
   'play.rearrange': 'Rearrange Plays',
   'play.assignExistingPlay': 'Add Existing Plays',
 
-  'toast.move.rearrange.success': 'Order for the moves saved succesffully.',
+  'toast.move.rearrange.success': 'Order for the moves saved successfully.',
   'toast.move.rearrange.failure': 'Failed to save order for the moves.',
-  'toast.play.rearrange.success': 'Order for the plays saved succesffully.',
+  'toast.play.rearrange.success': 'Order for the plays saved successfully.',
   'toast.play.rearrange.failure': 'Failed to save order for the plays.',
 
-  'resource.subHeader': `
+  'ui.resource.subHeader': `
     These article and blogs provide information about the Digital Impact Exchange
     and how it can be used to support the deployment of digital technologies.
   `,
 
   'header.blogs': 'Blogs / Articles',
 
-  'resource.label': 'Resource',
-  'resource.header': 'Resources',
-  'resource.link': 'Resource Location',
-  'resource.visitLink': 'Visit Resource',
-  'resource.imageFile': 'Resource Logo',
-  'resource.showInExchange': 'Show resource in the Exchange',
-  'resource.showInWizard': 'Show resource in the recommendation wizard',
+  'ui.resource.label': 'Resource',
+  'ui.resource.header': 'Resources',
+  'ui.resource.link': 'Resource Location',
+  'ui.resource.visitLink': 'Visit Resource',
+  'ui.resource.imageFile': 'Resource Logo',
+  'ui.resource.showInExchange': 'Show resource in the Exchange',
+  'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
 
-  'resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
-  'resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
+  'ui.resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
+  'ui.resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
 
-  'resource.submit.success': 'Resource submitted.',
-  'resource.submit.failure': 'Resource update failed.',
+  'ui.resource.submit.success': 'Resource submitted.',
+  'ui.resource.submit.failure': 'Resource update failed.',
   'toast.resource.delete.success': 'Resource deleted.',
 
-  'storefront.label': 'Storefront',
-  'storefront.header': 'Storefronts',
+  'ui.storefront.label': 'Storefront',
+  'ui.storefront.header': 'Storefronts',
   'specialty.label': 'Specialty',
   'specialty.header': 'Specialties',
-  'certification.label': 'Certification',
-  'certification.header': 'Certifications',
 
-  'header.marketplace': 'Marketplace',
+  'ui.certification.label': 'Certification',
+  'ui.certification.header': 'Certifications',
 
-  'storefront.no-specialty': "Organization storefront's doesn't have specialty information.",
-  'storefront.no-resource': "Organization storefront's doesn't have resource information.",
-  'storefront.no-buildingBlock': "Organization storefront's doesn't have building block information.",
-  'storefront.no-certification': "Organization storefront's doesn't have certification information.",
+  'ui.marketplace.label': 'Marketplace',
+
+  'ui.storefront.noSpecialty': "Organization storefront's doesn't have specialty information.",
+  'ui.storefront.noResource': "Organization storefront's doesn't have resource information.",
+  'ui.storefront.noBuildingBlock': "Organization storefront's doesn't have building block information.",
+  'ui.storefront.noCertification': "Organization storefront's doesn't have certification information.",
 
   'organization.heroImage': 'Hero image file',
   'organization.hasStorefront': 'Organization has a storefront.',

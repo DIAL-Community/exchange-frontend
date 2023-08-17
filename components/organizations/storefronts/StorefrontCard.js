@@ -49,7 +49,10 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
                 {organization.certifications.length > 0 ? organization.certifications.length : '-' }
               </span>
               <span className='my-auto'>
-                {organization.certifications.length > 1 ? format('certification.header') : format('certification.label')}
+                {organization.certifications.length > 1
+                  ? format('ui.certification.header')
+                  : format('ui.certification.label')
+                }
               </span>
             </div>
           </div>
@@ -96,7 +99,10 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
                 {organization.certifications.length > 0 ? organization.certifications.length : '-' }
               </span>
               <span className='my-auto'>
-                {organization.certifications.length > 1 ? format('certification.header') : format('certification.label')}
+                {organization.certifications.length > 1
+                  ? format('ui.certification.header')
+                  : format('ui.certification.label')
+                }
               </span>
             </div>
           </div>

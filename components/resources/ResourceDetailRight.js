@@ -27,7 +27,7 @@ const ResourceDetailRight = ({ resource }) => {
             editorId='resource-detail'
           />
           <div className='text-sm text-dial-purple-light'>
-            {format('resource.link').toUpperCase()}
+            {format('ui.resource.link').toUpperCase()}
           </div>
           <div className='text-base text-dial-teal flex'>
             <a

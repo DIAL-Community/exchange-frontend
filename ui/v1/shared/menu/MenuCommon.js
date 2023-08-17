@@ -6,9 +6,10 @@ export const ABOUT_MENU = 'menu-about'
 export const ADMIN_MENU = 'menu-admin'
 export const HELP_MENU = 'menu-help'
 export const LANGUAGE_MENU = 'menu-language'
-export const RESOURCE_MENU = 'menu-resource'
-export const USER_MENU = 'menu-user'
 export const MARKETPLACE_MENU = 'menu-marketplace'
+export const RESOURCE_MENU = 'menu-resource'
+export const TOOL_MENU = 'menu-tool'
+export const USER_MENU = 'menu-user'
 
 export const NONE = ''
 
@@ -30,10 +31,9 @@ export const MenuHeader = ({ id, href, title, onToggleDropdown, currentOpenMenu 
       onClick={onClickHandler}
     >
       {format(title)}
-      {
-        currentOpenMenu === id
-          ? <HiChevronUp className='inline text-xl' id={`svg-up-${id}`} />
-          : <HiChevronDown className='inline text-xl' id={`svg-down-${id}`} />
+      {currentOpenMenu === id
+        ? <HiChevronUp className='inline text-xl' id={`svg-up-${id}`} />
+        : <HiChevronDown className='inline text-xl' id={`svg-down-${id}`} />
       }
     </a>
   )

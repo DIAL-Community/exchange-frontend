@@ -16,34 +16,33 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />
-      {
-        currentOpenMenu === RESOURCE_MENU &&
-          <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-            <Link href='/covid-19-resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-              {format('header.covidResources')}
-            </Link>
-            <a
-              href='//resources.dial.community/'
-              className={DEFAULT_DROPDOWN_MENU_STYLES}
-              target='_blank'
-              rel='noreferrer'
-              role='menuitem'
-            >
-              {format('header.dialResourcesPortal')}
-            </a>
-            <a
-              href='//digitalimpactalliance.org/research/sdg-digital-investment-framework/'
-              className={DEFAULT_DROPDOWN_MENU_STYLES}
-              target='_blank'
-              rel='noreferrer'
-              role='menuitem'
-            >
-              {format('header.SDGFramework')}
-            </a>
-            <Link href='/resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-              {format('header.blogs')}
-            </Link>
-          </div>
+      {currentOpenMenu === RESOURCE_MENU &&
+        <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
+          <Link href='/covid-19-resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('header.covidResources')}
+          </Link>
+          <a
+            href='//resources.dial.community/'
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            target='_blank'
+            rel='noreferrer'
+            role='menuitem'
+          >
+            {format('header.dialResourcesPortal')}
+          </a>
+          <a
+            href='//digitalimpactalliance.org/research/sdg-digital-investment-framework/'
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            target='_blank'
+            rel='noreferrer'
+            role='menuitem'
+          >
+            {format('header.SDGFramework')}
+          </a>
+          <Link href='/resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('header.blogs')}
+          </Link>
+        </div>
       }
     </>
   )

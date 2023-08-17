@@ -117,7 +117,7 @@ const StorefrontListQuery = () => {
   if (nodes.length <= 0) {
     return (
       <div className='py-4'>
-        {format('noResults.entity', { entity: format('storefront.label').toLowerCase() })}
+        {format('noResults.entity', { entity: format('ui.storefront.label').toLowerCase() })}
       </div>
     )
   }

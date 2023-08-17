@@ -30,9 +30,17 @@ const Select = React.forwardRef(({
         color: '#46465a'
       }
     }),
+    group: (provided) => ({
+      ...provided,
+      padding: 0
+    }),
     groupHeading: (provided) => ({
       ...provided,
+      margin: 0,
+      color: '#000542',
       fontSize: '0.8rem',
+      padding: '0.75rem 0.5rem 0.75rem 1rem',
+      backgroundColor: '#ccd5e1',
       fontWeight: 600
     }),
     indicatorSeparator: (provided) => ({
@@ -78,6 +86,12 @@ const Select = React.forwardRef(({
       ...provided,
       zIndex: 30,
       color: 'red'
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      paddingTop: 0,
+      paddingBottom: 0,
+      maxHeight: '30rem'
     }),
     menu: (provided) => ({
       ...provided,

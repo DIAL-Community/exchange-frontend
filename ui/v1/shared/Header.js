@@ -15,6 +15,7 @@ import ResourceMenu from './menu/ResourceMenu'
 import LanguageMenu from './menu/LanguageMenu'
 import MarketplaceMenu from './menu/MarketplaceMenu'
 import MobileMenu from './MobileMenu'
+import ToolMenu from './menu/ToolMenu'
 
 const dropdownMenuStyles = classNames(
   'px-3 py-2',
@@ -131,6 +132,9 @@ const Header = ({ isOnAuthPage = false }) => {
             <>
               <li className='relative text-right'>
                 <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+              </li>
+              <li className='relative text-right'>
+                <ToolMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
               <li className='relative text-right'>
                 <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />

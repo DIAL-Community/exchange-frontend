@@ -590,11 +590,11 @@
 
   "category-indicators.label": "Indikatoren",
 
-  "resource.name": "Ressourcenbezeichnung",
-  "resource.description": "Beschreibung der Ressource",
-  "resource.url": "Ressourcen-URL",
-  "resource.header": "Ressourcen",
-  "resource.label": "Ressource",
+  "ui.resource.name": "Ressourcenbezeichnung",
+  "ui.resource.description": "Beschreibung der Ressource",
+  "ui.resource.url": "Ressourcen-URL",
+  "ui.resource.header": "Ressourcen",
+  "ui.resource.label": "Ressource",
 
   "datasetType.label": "Typ",
   "datasetType.header": "Datentyp öffnen",
@@ -967,7 +967,7 @@
   "move.submitted": "Handlung gespeichert.",
   "move.autoSaved": "Zug gespeichert …",
 
-  "resource.submitted": "Ressourcen gespeichert.",
+  "ui.resource.submitted": "Ressourcen gespeichert.",
   "product.launchable": "Produkteinführung möglich",
 
   "location.header": "Standort",

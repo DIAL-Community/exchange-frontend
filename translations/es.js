@@ -590,11 +590,11 @@ export const es = {
 
   "category-indicators.label": "Indicadores",
 
-  "resource.name": "Nombre del recurso",
-  "resource.description": "Descripción del recurso",
-  "resource.url": "URL del recurso",
-  "resource.header": "Recursos",
-  "resource.label": "Recurso",
+  "ui.resource.name": "Nombre del recurso",
+  "ui.resource.description": "Descripción del recurso",
+  "ui.resource.url": "URL del recurso",
+  "ui.resource.header": "Recursos",
+  "ui.resource.label": "Recurso",
 
   "datasetType.label": "Tipo",
   "datasetType.header": "Tipo de datos abiertos",
@@ -967,7 +967,7 @@ export const es = {
   "move.submitted": "Movimiento guardado.",
   "move.autoSaved": "Movimiento guardado...",
 
-  "resource.submitted": "Recurso guardado.",
+  "ui.resource.submitted": "Recurso guardado.",
   "product.launchable": "Producto lanzable",
 
   "location.header": "Ubicación",

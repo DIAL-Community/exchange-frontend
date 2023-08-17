@@ -32,8 +32,8 @@ const basePathMappings = {
   countries: 'country.header',
   rubric_categories: 'rubric-categories.header',
   opportunities: 'opportunity.header',
-  resources: 'resource.header',
-  storefronts: 'storefront.header'
+  resources: 'ui.resource.header',
+  storefronts: 'ui.storefront.header'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>

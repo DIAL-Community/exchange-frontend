@@ -37,23 +37,22 @@ const LanguageMenu = ({ currentOpenMenu, onToggleDropdown }) => {
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />
-      {
-        currentOpenMenu === LANGUAGE_MENU &&
-          <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-            {
-              Object.keys(SUPPORTED_LANGUAGES).map((supportedLanguage, index) => (
-                <a
-                  key={index}
-                  href={supportedLanguage}
-                  role='menuitem'
-                  className={DEFAULT_DROPDOWN_MENU_STYLES}
-                  onClick={(e) => switchLanguage(e, supportedLanguage)}
-                >
-                  {format(SUPPORTED_LANGUAGES[supportedLanguage])}
-                </a>
-              ))
-            }
-          </div>
+      {currentOpenMenu === LANGUAGE_MENU &&
+        <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
+          {
+            Object.keys(SUPPORTED_LANGUAGES).map((supportedLanguage, index) => (
+              <a
+                key={index}
+                href={supportedLanguage}
+                role='menuitem'
+                className={DEFAULT_DROPDOWN_MENU_STYLES}
+                onClick={(e) => switchLanguage(e, supportedLanguage)}
+              >
+                {format(SUPPORTED_LANGUAGES[supportedLanguage])}
+              </a>
+            ))
+          }
+        </div>
       }
     </>
   )

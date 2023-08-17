@@ -16,7 +16,7 @@ const MarketplaceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       <MenuHeader
         id={MARKETPLACE_MENU}
         ref={marketplacePopoverButton}
-        title='header.marketplace'
+        title='ui.marketplace.label'
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />
@@ -26,7 +26,7 @@ const MarketplaceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             {format('opportunity.header')}
           </Link>
           <Link href='/storefronts' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('storefront.header')}
+            {format('ui.storefront.header')}
           </Link>
         </div>
       }

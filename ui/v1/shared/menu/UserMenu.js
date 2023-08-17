@@ -25,27 +25,22 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
 
   return (
     <>
-      <a
-        id={USER_MENU}
-        href={USER_MENU}
-        onClick={toggleSwitcher}
-      >
+      <a id={USER_MENU} href={USER_MENU} onClick={toggleSwitcher}>
         <div id={USER_MENU} className='username-avatar'>
           <span className='text-dial-gray-dark'>
             {userName.substring(0, 2)}
           </span>
         </div>
       </a>
-      {
-        currentOpenMenu === USER_MENU &&
-          <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-            <Link href={`/users/${user.id}`} role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-              {format('header.profile')}
-            </Link>
-            <a href='signOut' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES} onClick={signOutUser}>
-              {format('header.signOut')}
-            </a>
-          </div>
+      {currentOpenMenu === USER_MENU &&
+        <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
+          <Link href={`/users/${user.id}`} role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('header.profile')}
+          </Link>
+          <a href='signOut' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES} onClick={signOutUser}>
+            {format('header.signOut')}
+          </a>
+        </div>
       }
     </>
   )

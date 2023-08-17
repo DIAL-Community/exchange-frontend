@@ -40,7 +40,7 @@ const StorefrontForm = React.memo(({ organization }) => {
           DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => {
-            const basePath = response?.organization?.hasStorefront ? 'storefronts' : 'organizations'
+            const basePath = response?.organization?.hasStorefront ? 'ui.storefronts' : 'organizations'
             router.push(`/${router.locale}/${basePath}/${response?.organization?.slug}`)
           }
         )

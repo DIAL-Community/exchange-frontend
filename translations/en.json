@@ -456,11 +456,11 @@
   "moves.deleteResource": "Delete Resource",
   "move.assignedResources": "Resources currently assigned. You can add or delete resources",
 
-  "resource.name": "Resource Name",
-  "resource.description": "Resource Description",
-  "resource.url": "Resource URL",
-  "resource.header": "Resources",
-  "resource.label": "Resource",
+  "ui.resource.name": "Resource Name",
+  "ui.resource.description": "Resource Description",
+  "ui.resource.url": "Resource URL",
+  "ui.resource.header": "Resources",
+  "ui.resource.label": "Resource",
 
   "productType.label": "Type",
   "productType.header": "Product or Dataset?",
@@ -777,7 +777,7 @@
   "play.submitted": "Play saved.",
 
   "move.submitted": "Move saved.",
-  "resource.submitted": "Resource saved.",
+  "ui.resource.submitted": "Resource saved.",
 
   "shared.select.autocomplete.defaultPlaceholder": "Type to search...",
 

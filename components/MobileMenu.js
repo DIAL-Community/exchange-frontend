@@ -75,7 +75,7 @@ const subMenus = {
       }
     ]
   },
-  'header.marketplace': {
+  'ui.marketplace.label': {
     type: 'link',
     items: [
       {
@@ -83,7 +83,7 @@ const subMenus = {
         link: '/opportunities'
       },
       {
-        label: 'storefront.header',
+        label: 'ui.storefront.header',
         link: '/storefronts'
       }
     ]
@@ -277,9 +277,9 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
             <li className='py-4 border-b'>
               <a
                 className='mx-6 font-semibold' href='/expand-marketplace'
-                onClick={(e) => openSubMenu(e, 'header.marketplace')}
+                onClick={(e) => openSubMenu(e, 'ui.marketplace.label')}
               >
-                {format('header.marketplace')}
+                {format('ui.marketplace.label')}
                 <RiArrowRightSLine className='text-base inline ml-2' />
               </a>
             </li>

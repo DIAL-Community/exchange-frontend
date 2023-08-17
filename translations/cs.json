@@ -590,11 +590,11 @@
 
   "category-indicators.label": "Indikátory",
 
-  "resource.name": "Název zdroje",
-  "resource.description": "Popis zdroje",
-  "resource.url": "URL zdroje",
-  "resource.header": "Prostředky",
-  "resource.label": "Zdroj",
+  "ui.resource.name": "Název zdroje",
+  "ui.resource.description": "Popis zdroje",
+  "ui.resource.url": "URL zdroje",
+  "ui.resource.header": "Prostředky",
+  "ui.resource.label": "Zdroj",
 
   "datasetType.label": "Typ",
   "datasetType.header": "Typ otevřených dat",
@@ -967,7 +967,7 @@
   "move.submitted": "Tah uložen.",
   "move.autoSaved": "Přesun uložen...",
 
-  "resource.submitted": "Zdroj uložen.",
+  "ui.resource.submitted": "Zdroj uložen.",
   "product.launchable": "Produkt spustitelný",
 
   "location.header": "Poloha",

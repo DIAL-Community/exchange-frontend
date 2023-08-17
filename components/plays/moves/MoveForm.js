@@ -30,14 +30,14 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
       } else {
         setEditing(false)
         setMutating(false)
-        showToast(format('resource.submitted'), 'success', 'top-center')
+        showToast(format('ui.resource.submitted'), 'success', 'top-center')
         reset()
       }
     },
     onError: () => {
       setEditing(false)
       setMutating(false)
-      showToast(format('resource.submitted'), 'success', 'top-center')
+      showToast(format('ui.resource.submitted'), 'success', 'top-center')
       reset()
     }
   })
@@ -98,14 +98,14 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
       <div className='flex flex-col lg:flex-row gap-4 text-sm'>
         <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
           <label className='flex flex-col gap-y-2 mb-2'>
-            {format('resource.name')}
+            {format('ui.resource.name')}
             <input
               {...register('name', { required: true })}
               className='shadow border-1 rounded w-full py-2 px-3'
             />
           </label>
           <label className='flex flex-col gap-y-2 mb-2'>
-            {format('resource.url')}
+            {format('ui.resource.url')}
             <input
               {...register('url', { required: true })}
               className='shadow border-1 rounded w-full py-2 px-3'
@@ -114,7 +114,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
         </div>
         <div className='w-full lg:w-2/3'>
           <label className='flex flex-col gap-y-2 mb-2'>
-            {format('resource.description')}
+            {format('ui.resource.description')}
             <textarea
               {...register('resourceDescription', { required: true })}
               className='shadow border-1 rounded w-full py-2 px-3'
@@ -130,7 +130,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
           disabled={mutating}
           onClick={saveForm}
         >
-          {`${format('app.submit')} ${format('resource.label')}`}
+          {`${format('app.submit')} ${format('ui.resource.label')}`}
           {mutating && <FaSpinner className='spinner ml-3 inline' />}
         </button>
         <button
@@ -461,7 +461,7 @@ export const MoveForm = ({ playbook, play, move }) => {
               </div>
               <div className='flex flex-col gap-y-2 mt-4'>
                 <div className='text-dial-sapphire font-bold'>
-                  {format('resource.header')}
+                  {format('ui.resource.header')}
                 </div>
                 <div className='text-sm text-dial-blue'>
                   {format('move.assignedResources')}
@@ -477,7 +477,7 @@ export const MoveForm = ({ playbook, play, move }) => {
               <div className='block'>
                 <button type='button' className='flex gap-2' onClick={() => addResource({})}>
                   <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
-                  <div className='text-dial-blue'>{`${format('app.createNew')} ${format('resource.label')}`}</div>
+                  <div className='text-dial-blue'>{`${format('app.createNew')} ${format('ui.resource.label')}`}</div>
                 </button>
               </div>
               <div className='flex font-semibold text-xl lg:mt-8 gap-3'>

@@ -89,7 +89,7 @@ const StorefrontDetailProducts = ({ organization, canEdit }) => {
       )
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('storefront.no-certification')}
+        {format('ui.storefront.noCertification')}
       </div>
     )
 
@@ -135,7 +135,7 @@ const StorefrontDetailProducts = ({ organization, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('certification.header')}
+      sectionHeader={format('ui.certification.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

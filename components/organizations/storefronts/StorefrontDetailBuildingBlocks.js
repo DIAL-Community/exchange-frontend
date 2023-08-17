@@ -87,7 +87,7 @@ const StorefrontDetailBuildingBlocks = ({ organization, canEdit }) => {
       <UseCaseBuildingBlock useCaseBuildingBlocks={buildingBlocks} />
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('storefront.no-buildingBlock')}
+        {format('ui.storefront.noBuildingBlock')}
       </div>
     )
 

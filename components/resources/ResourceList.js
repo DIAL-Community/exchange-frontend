@@ -26,7 +26,7 @@ const ResourceList = ({ resourceList, displayType }) => {
           displayType === 'list' &&
             <div className='flex gap-x-2 lg:gap-x-4 px-4 my-3 px-4 text-sm font-semibold'>
               <div className='w-10/12 lg:w-4/12 opacity-80'>
-                {format('resource.header').toUpperCase()}
+                {format('ui.resource.header').toUpperCase()}
               </div>
             </div>
         }
@@ -37,7 +37,7 @@ const ResourceList = ({ resourceList, displayType }) => {
             ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
-                {format('noResults.entity', { entity: format('resource.label').toLowerCase() })}
+                {format('noResults.entity', { entity: format('ui.resource.label').toLowerCase() })}
               </div>
             )
         }
@@ -94,7 +94,7 @@ const ResourcesListQuery = () => {
   return (
     <div className='flex flex-col gap-3'>
       <div className='text-base'>
-        {format('resource.subHeader')}
+        {format('ui.resource.subHeader')}
       </div>
       <InfiniteScroll
         className='relative'

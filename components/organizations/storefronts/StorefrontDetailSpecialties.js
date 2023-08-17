@@ -91,7 +91,7 @@ const StorefrontDetailSpecialties = ({ organization, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('storefront.no-specialty')}
+        {format('ui.storefront.noSpecialty')}
       </div>
     )
 

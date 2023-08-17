@@ -21,7 +21,7 @@ const StorefrontFilter = () => {
       <div className='text-dial-stratos flex flex-col gap-3'>
         <hr className='border-b border-dial-white-beech' />
         <div className='text-xl px-6'>
-          {format('filter.entity', { entity: format('storefront.label') }).toUpperCase()}
+          {format('filter.entity', { entity: format('ui.storefront.label') }).toUpperCase()}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <CountryAutocomplete {...{ countries, setCountries }} />
@@ -30,7 +30,7 @@ const StorefrontFilter = () => {
           <ProductAutocomplete
             products={certifications}
             setProducts={setCertifications}
-            placeholder={format('filter.byEntity', { entity: format('certification.label') })}
+            placeholder={format('filter.byEntity', { entity: format('ui.certification.label') })}
           />
           <SpecialtySelect {...{ specialties, setSpecialties }} />
         </div>
