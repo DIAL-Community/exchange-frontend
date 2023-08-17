@@ -5,8 +5,8 @@ import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
 import { getCsrfToken, getSession } from 'next-auth/react'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
 import { ToastContext } from '../../lib/ToastContext'
 const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
