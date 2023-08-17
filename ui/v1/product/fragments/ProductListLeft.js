@@ -22,7 +22,7 @@ const ProductListLeft = () => {
 
   const {
     setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
+    setOrigins, setSdgs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
     setLicenseTypes, setIsLinkedWithDpi
   } = useContext(ProductFilterDispatchContext)
 
@@ -75,7 +75,7 @@ const ProductListLeft = () => {
       parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
       parseQuery(query, 'organizations', organizations, setOrganizations)
-      parseQuery(query, 'sdgs', sdgs, setSDGs)
+      parseQuery(query, 'sdgs', sdgs, setSdgs)
       parseQuery(query, 'tags', tags, setTags)
       parseQuery(query, 'useCases', useCases, setUseCases)
       parseQuery(query, 'workflows', workflows, setWorkflows)

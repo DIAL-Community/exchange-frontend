@@ -70,6 +70,7 @@ const OpportunityFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
+        <hr className='border-b border-dial-slate-200'/>
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
         <hr className='border-b border-dial-slate-200'/>
         <TagAutocomplete tags={tags} setTags={setTags} />

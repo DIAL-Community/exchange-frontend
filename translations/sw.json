@@ -219,7 +219,7 @@
 
   "ui.organization.header": "Mashirika",
   "ui.organization.label": "Shirika",
-  "organization.endorsed-in": "Imeidhinishwa",
+  "ui.organization.endorsedIn": "Imeidhinishwa",
   "organization.name": "Jina",
   "organization.aliases": "Majina ya utani",
   "organization.alias": "Jina la utani",
@@ -432,7 +432,7 @@
   "organization.owner": "Ikiwa unamiliki shirika hili, unaweza kusasisha taarifa ya shirika hili.",
   "organization.ownerLink": "Pata maelezo zaidi hapa",
 
-  "aggregator.header": "Shirika Linalokusanya maelezo",
+  "ui.aggregator.header": "Shirika Linalokusanya maelezo",
 
   "map.aggregators.viewAggregator": "Tazama Wakala",
   "map.endorsers.viewOrganization": "Tazama Shirika",
@@ -699,7 +699,7 @@
   "operator.label": "Opereta",
   "operator.header": "Opereta",
 
-  "aggregator.label": "Wakala",
+  "ui.aggregator.label": "Wakala",
   "map.loading.indicator": "Inasasisha data ya ramani...",
   "tooltip.endorsed": "Bidhaa hii imeidhinishwa na mojawapo au zaidi kati ya mashirika ya ukaguzi.",
   "tooltip.covid": "Bidhaa hii imetambulishwa kama inayofaa kwa kukabiliana na COVID,",

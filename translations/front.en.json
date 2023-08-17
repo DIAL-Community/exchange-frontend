@@ -254,7 +254,7 @@
 
   "ui.organization.header": "Organizations",
   "ui.organization.label": "Organization",
-  "organization.endorsed-in": "Endorsed in",
+  "ui.organization.endorsedIn": "Endorsed in",
   "organization.name": "Name",
   "organization.aliases": "Aliases",
   "organization.alias": "Alias",
@@ -525,7 +525,7 @@
   "organization.owner.revealContact": "Contact Owner",
   "organization.owner.contactLabel": "Owner Email",
 
-  "aggregator.header": "Aggregator Organization",
+  "ui.aggregator.header": "Aggregator Organization",
 
   "map.aggregators.viewAggregator": "View Aggregator",
   "map.endorsers.viewOrganization": "View Organization",
@@ -802,7 +802,7 @@
   "operator.label": "Operator",
   "operator.header": "Operators",
 
-  "aggregator.label": "Aggregator",
+  "ui.aggregator.label": "Aggregator",
   "map.loading.indicator": "Updating map data ...",
   "tooltip.endorsed": "This product has been endorsed by one or more vetting organizations.",
   "tooltip.covid": "This product has been tagged as relevant for COVID response.",
@@ -1490,7 +1490,7 @@
   "ui.dataset.header": "Datasets",
   "ui.dataset.whatIs": "What is an Open Data?",
   "ui.dataset.createNew": "Create a new Open Data",
-  "dataset.hint.title": "What is a Open Data?",
+  "ui.dataset.hint.title": "What is a Open Data?",
 
   "ui.workflow.label": "Workflow",
   "ui.workflow.header": "Workflows",

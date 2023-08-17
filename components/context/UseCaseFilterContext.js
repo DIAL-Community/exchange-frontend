@@ -13,6 +13,8 @@ const UseCaseFilterProvider = ({ children }) => {
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
+  const setSdgs = setSDGs
+
   const useCaseFilterValues = {
     showBeta, govStackOnly, sectors, sdgs, search, sortColumn, sortDirection
   }
@@ -21,6 +23,7 @@ const UseCaseFilterProvider = ({ children }) => {
     setShowGovStack,
     setSectors,
     setSDGs,
+    setSdgs,
     setSearch,
     setSortColumn,
     setSortDirection

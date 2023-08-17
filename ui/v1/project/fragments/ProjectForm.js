@@ -134,7 +134,7 @@ const ProjectForm = React.memo(({ project }) => {
             </div>
             <div className='flex flex-col gap-y-2'>
               <label htmlFor='projectUrl'>
-                {format('project.projectUrl')}
+                {format('project.url')}
               </label>
               <Controller
                 id='projectUrl'

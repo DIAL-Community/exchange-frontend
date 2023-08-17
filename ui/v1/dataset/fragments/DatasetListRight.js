@@ -13,7 +13,7 @@ const DatasetListRight = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(DatasetFilterContext)
-  const { sectors, sdgs, tags, origins } = useContext(DatasetFilterContext)
+  const { sectors, sdgs, tags, origins, datasetTypes } = useContext(DatasetFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -43,7 +43,8 @@ const DatasetListRight = () => {
       origins: origins.map(origin => origin.value),
       sdgs: sdgs.map(sdg => sdg.value),
       sectors: sectors.map(sector => sector.value),
-      tags: tags.map(tag => tag.label)
+      tags: tags.map(tag => tag.label),
+      datasetTypes: datasetTypes.map(datasetType => datasetType.value)
     }
   })
 

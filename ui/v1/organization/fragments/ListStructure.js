@@ -10,12 +10,16 @@ import { NotFound } from '../../shared/FetchStatus'
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(OrganizationFilterContext)
 
-  const { sectors } = useContext(OrganizationFilterContext)
+  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_ORGANIZATIONS_QUERY, {
     variables: {
       search,
+      countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
+      years: years.map(year => year.value),
+      aggregatorOnly: aggregator,
+      endorserOnly: endorser,
       limit: defaultPageSize,
       offset: pageOffset
     }

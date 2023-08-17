@@ -21,11 +21,19 @@ export const ORGANIZATION_CONTACT_QUERY = gql`
 
 export const ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeOrganization(
-    $sectors: [String!]
+    $aggregatorOnly: Boolean,
+    $endorserOnly: Boolean,
+    $sectors: [String!],
+    $countries: [String!],
+    $years: [Int!],
     $search: String
   ) {
     paginationAttributeOrganization(
-      sectors: $sectors
+      aggregatorOnly: $aggregatorOnly,
+      endorserOnly: $endorserOnly,
+      sectors: $sectors,
+      countries: $countries,
+      years: $years,
       search: $search
     ) {
       totalCount
@@ -35,13 +43,21 @@ export const ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY = gql`
 
 export const PAGINATED_ORGANIZATIONS_QUERY = gql`
   query PaginatedOrganizations(
-    $sectors: [String!]
+    $aggregatorOnly: Boolean,
+    $endorserOnly: Boolean,
+    $sectors: [String!],
+    $countries: [String!],
+    $years: [Int!],
     $search: String
     $limit: Int!
     $offset: Int!
   ) {
     paginatedOrganizations(
-      sectors: $sectors
+      aggregatorOnly: $aggregatorOnly,
+      endorserOnly: $endorserOnly,
+      sectors: $sectors,
+      countries: $countries,
+      years: $years,
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {

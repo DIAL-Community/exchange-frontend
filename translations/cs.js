@@ -219,7 +219,7 @@ export const cs = {
 
   "ui.organization.header": "Organizace",
   "ui.organization.label": "Organizace",
-  "organization.endorsed-in": "Schváleno v",
+  "ui.organization.endorsedIn": "Schváleno v",
   "organization.name": "Název",
   "organization.aliases": "Aliasy",
   "organization.alias": "Alias",
@@ -432,7 +432,7 @@ export const cs = {
   "organization.owner": "Pokud jste vlastníkem této organizace, můžete tyto informace o organizaci aktualizovat.",
   "organization.ownerLink": "Další informace najdete zde",
 
-  "aggregator.header": "Agregující organizace",
+  "ui.aggregator.header": "Agregující organizace",
 
   "map.aggregators.viewAggregator": "Zobrazit agregátora",
   "map.endorsers.viewOrganization": "Zobrazit organizaci",
@@ -699,7 +699,7 @@ export const cs = {
   "operator.label": "Operátor",
   "operator.header": "Operátoři",
 
-  "aggregator.label": "Agregátor",
+  "ui.aggregator.label": "Agregátor",
   "map.loading.indicator": "Aktualizace mapových dat ...",
   "tooltip.endorsed": "Tento produkt byl schválen jednou nebo více ověřovacími organizacemi.",
   "tooltip.covid": "Tento produkt byl označen jako relevantní pro reakci na COVID,",

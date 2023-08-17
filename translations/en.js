@@ -319,7 +319,7 @@ export const en = {
 
   'ui.organization.header': 'Organizations',
   'ui.organization.label': 'Organization',
-  'organization.endorsed-in': 'Endorsed in',
+  'ui.organization.endorsedIn': 'Endorsed in',
   'organization.name': 'Name',
   'organization.aliases': 'Aliases',
   'organization.alias': 'Alias',
@@ -604,7 +604,7 @@ export const en = {
   'organization.owner.revealContact': 'Contact Owner',
   'organization.owner.contactLabel': 'Owner Email',
 
-  'aggregator.header': 'Aggregator Organization',
+  'ui.aggregator.header': 'Aggregator Organization',
 
   'map.aggregators.viewAggregator': 'View Aggregator',
   'map.endorsers.viewOrganization': 'View Organization',
@@ -701,6 +701,8 @@ export const en = {
   'filter.useCase.govStackOnly': 'Show GovStack Only Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
+  'filter.project.forCovid': 'COVID-19 Projects',
+
   'filter.product.endorsed': 'Show endorsed products',
   'filter.product.launchable': 'Product can be deployed and launched',
   'filter.launchWizard': 'Launch Recommendations Wizard',
@@ -910,7 +912,7 @@ export const en = {
   'operator.label': 'Operator',
   'operator.header': 'Operators',
 
-  'aggregator.label': 'Aggregator',
+  'ui.aggregator.label': 'Aggregator',
   'map.loading.indicator': 'Updating map data ...',
   'tooltip.endorsed': 'This product has been endorsed by one or more vetting organizations.',
   'tooltip.covid': 'This product has been tagged as relevant for COVID response.',
@@ -1851,12 +1853,14 @@ export const en = {
 
   'ui.product.label': 'Product',
   'ui.product.header': 'Products',
+  'ui.product.whatIs': 'What is a Product?',
+  'ui.product.createNew': 'Create a new Product',
 
   'ui.project.label': 'Project',
   'ui.project.header': 'Projects',
-
-  'ui.product.whatIs': 'What is a Product?',
-  'ui.product.createNew': 'Create a new Product',
+  'ui.project.whatIs': 'What is a Product?',
+  'ui.project.createNew': 'Create a new Product',
+  'project.hint.title': 'What is a Use Case?',
 
   'ui.product.pricing.title': 'Pricing Information',
   'ui.product.pricing.hostingModel': 'Hosting Model',
@@ -1876,7 +1880,10 @@ export const en = {
   'ui.dataset.header': 'Datasets',
   'ui.dataset.whatIs': 'What is an Open Data?',
   'ui.dataset.createNew': 'Create a new Open Data',
-  'dataset.hint.title': 'What is a Open Data?',
+  'ui.dataset.hint.title': 'What is a Open Data?',
+
+  'ui.datasetType.label': 'Dataset Type',
+  'ui.datasetType.header': 'Dataset Types',
 
   'ui.workflow.label': 'Workflow',
   'ui.workflow.header': 'Workflows',
@@ -1895,6 +1902,8 @@ export const en = {
   'ui.organization.disclaimer': `
     The following organizations support the development and / or implementation of this {entity}.
   `,
+
+  'ui.endorsingYear.label': 'Endorsing Year',
 
   'ui.sector.label': 'Sector',
   'ui.sector.header': 'Sectors',

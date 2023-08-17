@@ -15,47 +15,22 @@ const OrganizationListLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
-  const {
-    isEndorsed, organizationDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi
-  } = useContext(OrganizationFilterContext)
-
-  const {
-    setIsEndorsed, setOrganizationDeployable, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
-    setLicenseTypes, setIsLinkedWithDpi
-  } = useContext(OrganizationFilterDispatchContext)
+  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
+  const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(OrganizationFilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = '/organizations'
 
-    const endorsedFilter = isEndorsed ? 'isEndorsed=true' : ''
-    const deployableFilter = organizationDeployable ? 'organizationDeployable=true' : ''
-    const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
+    const endorserFilter = endorser ? 'endorser=true' : ''
+    const aggregatorFilter = aggregator ? 'aggregator=true' : ''
+    const yearFilters = years.map(year => `years=${year.value}--${year.label}`)
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const organizationFilters = organizations.map(
-      organization => `organizations=${organization.value}--${organization.label}`
-    )
-    const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
-    const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
-    const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
-    const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
-    const buildingBlockFilters = buildingBlocks.map(
-      buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
-    )
-    const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
-    const licenseTypesFilter = licenseTypes.map(
-      licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
-    )
-    const linkedWithDpiFilter = isLinkedWithDpi ? 'isLinkedWithDpi=true' : ''
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
-      ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
-      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, linkedWithDpiFilter
+      activeFilter, endorserFilter, aggregatorFilter, ...yearFilters, ...countryFilters, ...sectorFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -68,20 +43,11 @@ const OrganizationListLeft = () => {
       Object.getOwnPropertyNames(query).length > 1 &&
       query.shareCatalog && !interactionDetected
     ) {
-      setIsEndorsed(query.isEndorsed === 'true')
-      setOrganizationDeployable(query.organizationDeployable === 'true')
-      parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
-      parseQuery(query, 'origins', origins, setOrigins)
+      setEndorser(query.endorser === 'true')
+      setAggregator(query.aggregator === 'true')
+      parseQuery(query, 'years', years, setYears)
       parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
-      parseQuery(query, 'organizations', organizations, setOrganizations)
-      parseQuery(query, 'sdgs', sdgs, setSDGs)
-      parseQuery(query, 'tags', tags, setTags)
-      parseQuery(query, 'useCases', useCases, setUseCases)
-      parseQuery(query, 'workflows', workflows, setWorkflows)
-      parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
-      parseQuery(query, 'endorsers', endorsers, setEndorsers)
-      setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
     }
   })
 

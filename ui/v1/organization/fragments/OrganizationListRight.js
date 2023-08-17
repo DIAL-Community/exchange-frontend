@@ -13,7 +13,7 @@ const OrganizationListRight = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(OrganizationFilterContext)
-  const { sectors } = useContext(OrganizationFilterContext)
+  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -40,7 +40,11 @@ const OrganizationListRight = () => {
   const { loading, error, data } = useQuery(ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
-      sectors: sectors.map(sector => sector.value)
+      countries: countries.map(country => country.value),
+      sectors: sectors.map(sector => sector.value),
+      years: years.map(year => year.value),
+      aggregatorOnly: aggregator,
+      endorserOnly: endorser
     }
   })
 

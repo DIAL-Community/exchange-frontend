@@ -17,6 +17,7 @@ export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
     $sdgs: [String!]
     $tags: [String!]
     $origins: [String!]
+    $datasetTypes: [String!]
   ) {
     paginationAttributeDataset(
       search: $search
@@ -24,6 +25,7 @@ export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
       sdgs: $sdgs
       tags: $tags
       origins: $origins
+      datasetTypes: $datasetTypes
     ) {
       totalCount
     }
@@ -37,6 +39,7 @@ export const PAGINATED_DATASETS_QUERY = gql`
     $sdgs: [String!]
     $tags: [String!]
     $origins: [String!]
+    $datasetTypes: [String!]
     $limit: Int!
     $offset: Int!
   ) {
@@ -46,6 +49,7 @@ export const PAGINATED_DATASETS_QUERY = gql`
       sdgs: $sdgs
       tags: $tags
       origins: $origins
+      datasetTypes: $datasetTypes
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id

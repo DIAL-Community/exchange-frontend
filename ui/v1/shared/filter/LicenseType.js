@@ -29,7 +29,7 @@ export const LicenseTypeAutocomplete = ({ licenseTypes, setLicenseTypes, placeho
         <div className='text-dial-stratos text-sm ml-4 py-2'>
           {format('ui.licenseType.label')}
         </div>
-        <BsPlus className='ml-auto' />
+        <BsPlus className='ml-auto my-auto' />
       </button>
       {showFilter &&
         <Select

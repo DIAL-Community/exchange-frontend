@@ -219,7 +219,7 @@
 
   "ui.organization.header": "Organisationen",
   "ui.organization.label": "Unternehmen",
-  "organization.endorsed-in": "Gefördert in",
+  "ui.organization.endorsedIn": "Gefördert in",
   "organization.name": "Name",
   "organization.aliases": "Aliase",
   "organization.alias": "Alias",
@@ -432,7 +432,7 @@
   "organization.owner": "Wenn Sie der Verantwortliche für diese Organisation sind, können Sie diese Organisationsinformationen aktualisieren.",
   "organization.ownerLink": "Hier weitere Informationen finden",
 
-  "aggregator.header": "Aggregator Organisation",
+  "ui.aggregator.header": "Aggregator Organisation",
 
   "map.aggregators.viewAggregator": "Aggregator anzeigen",
   "map.endorsers.viewOrganization": "Organisation anzeigen",
@@ -699,7 +699,7 @@
   "operator.label": "Bediener",
   "operator.header": "Bediener",
 
-  "aggregator.label": "Aggregator",
+  "ui.aggregator.label": "Aggregator",
   "map.loading.indicator": "Kartendaten werden aktualisiert ...",
   "tooltip.endorsed": "Dieses Produkt wurde von einer oder mehreren Prüforganisationen empfohlen.",
   "tooltip.covid": "Dieses Produkt wurde als relevant für die COVID-Reaktion gekennzeichnet,",

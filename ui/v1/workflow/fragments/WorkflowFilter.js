@@ -33,6 +33,7 @@ const WorkflowFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
+        <hr className='border-b border-dial-slate-200'/>
       </div>
     </div>
   )

@@ -5,11 +5,14 @@ import {
   ProjectFilterContext,
   ProjectFilterDispatchContext
 } from '../../../../components/context/ProjectFilterContext'
+import Checkbox from '../../shared/form/Checkbox'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
-import Checkbox from '../../shared/form/Checkbox'
+import { CountryAutocomplete, CountryActiveFilters } from '../../shared/filter/Country'
+import { ProductActiveFilters, ProductAutocomplete } from '../../shared/filter/Product'
+import { OrganizationActiveFilters, OrganizationAutocomplete } from '../../shared/filter/Organization'
 
 const COVID_19_LABEL = 'COVID-19'
 
@@ -77,6 +80,9 @@ const ProjectFilter = () => {
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
             <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
+            <ProductActiveFilters products={products} setProducts={setProducts} />
+            <OrganizationActiveFilters organizations={organizations} setOrganizations={setOrganizations} />
+            <CountryActiveFilters countries={countries} setCountries={setCountries} />
             <TagActiveFilters tags={tags} setTags={setTags} />
             <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             <OriginActiveFilters origins={origins} setOrigins={setOrigins} />
@@ -87,6 +93,11 @@ const ProjectFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
+        <hr className='border-b border-dial-slate-200'/>
+        <ProductAutocomplete products={products} setProducts={setProducts} />
+        <hr className='border-b border-dial-slate-200'/>
+        <OrganizationAutocomplete organizations={organizations} setOrganizations={setOrganizations} />
+        <hr className='border-b border-dial-slate-200'/>
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
         <hr className='border-b border-dial-slate-200'/>
         <TagAutocomplete tags={tags} setTags={setTags} />
@@ -113,6 +124,8 @@ const ProjectFilter = () => {
                 {format('filter.project.forCovid')}
               </span>
             </label>
+            <hr className='border-b border-dial-slate-200'/>
+            <CountryAutocomplete countries={countries} setCountries={setCountries} />
             <hr className='border-b border-dial-slate-200'/>
             <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
             <hr className='border-b border-dial-slate-200'/>

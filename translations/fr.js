@@ -219,7 +219,7 @@ export const fr = {
 
   "ui.organization.header": "Organisations",
   "ui.organization.label": "Organisation",
-  "organization.endorsed-in": "Approuvé à",
+  "ui.organization.endorsedIn": "Approuvé à",
   "organization.name": "Nom",
   "organization.aliases": "Alias",
   "organization.alias": "Alias",
@@ -432,7 +432,7 @@ export const fr = {
   "organization.owner": "Vous pouvez mettre à jour les informations de cette organisation si vous en êtes le propriétaire.",
   "organization.ownerLink": "Plus d’informations ici",
 
-  "aggregator.header": "Organisation Agrégateur",
+  "ui.aggregator.header": "Organisation Agrégateur",
 
   "map.aggregators.viewAggregator": "Visualiser agrégateur",
   "map.endorsers.viewOrganization": "Visualiser organisation",
@@ -699,7 +699,7 @@ export const fr = {
   "operator.label": "Opérateur",
   "operator.header": "Opérateurs",
 
-  "aggregator.label": "Agrégateur",
+  "ui.aggregator.label": "Agrégateur",
   "map.loading.indicator": "Mise à jour des données de la carte...",
   "tooltip.endorsed": "Ce produit a été approuvé par une ou plusieurs organisations de contrôle",
   "tooltip.covid": "Ce produit a été marqué comme pertinent en réponse à la COVID",

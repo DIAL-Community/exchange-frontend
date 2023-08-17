@@ -10,7 +10,7 @@ const DatasetDefinition = () => {
     <div className='flex flex-col gap-y-6 py-4'>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-plum'>
-          {format('dataset.hint.title')}
+          {format('ui.dataset.hint.title')}
         </div>
         <div className='text-sm text-dial-stratos'>
           {format('dataset.hint.subtitle')}

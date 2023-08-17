@@ -1,23 +1,44 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
+import { IoClose } from 'react-icons/io5'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext }
   from '../../../../components/context/OrganizationFilterContext'
+import Checkbox from '../../shared/form/Checkbox'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
+import { CountryAutocomplete, CountryActiveFilters } from '../../shared/filter/Country'
+import { EndorsingYearSelect, EndorsingYearActiveFilters } from '../../shared/filter/EndorsingYear'
 
 const OrganizationFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sectors } = useContext(OrganizationFilterContext)
-  const { setSectors } = useContext(OrganizationFilterDispatchContext)
+  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
+  const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(OrganizationFilterDispatchContext)
+
+  const toggleAggregator = () => {
+    setAggregator(!aggregator)
+  }
+
+  const toggleEndorser = () => {
+    setEndorser(!endorser)
+  }
 
   const clearFilter = (e) => {
     e.preventDefault()
+    setEndorser(false)
+    setAggregator(false)
+
     setSectors([])
+    setCountries([])
+    setYears([])
   }
 
   const filteringOrganization = () => {
-    return sectors.length > 0
+    return endorser ? 1 : 0 +
+      aggregator ? 1 : 0 +
+      sectors.length +
+      countries.length +
+      years.length > 0
   }
 
   return (
@@ -36,6 +57,32 @@ const OrganizationFilter = () => {
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
             <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
+            <CountryActiveFilters countries={countries} setCountries={setCountries} />
+            <EndorsingYearActiveFilters years={years} setYears={setYears} />
+            {aggregator && (
+              <div className='bg-dial-slate-400 px-2 py-1 rounded text-white'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('filter.organization.aggregatorOnly')}
+                    <button onClick={toggleAggregator}>
+                      <IoClose size='1rem' />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {endorser && (
+              <div className='bg-dial-slate-400 px-2 py-1 rounded text-white'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('filter.organization.endorserOnly')}
+                    <button onClick={toggleEndorser}>
+                      <IoClose size='1rem' />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       }
@@ -43,7 +90,26 @@ const OrganizationFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
+        <hr className='border-b border-dial-slate-200'/>
+        <label className='flex pl-4 py-2'>
+          <Checkbox onChange={toggleAggregator} value={aggregator} />
+          <span className='mx-2 my-auto text-sm'>
+            {format('filter.organization.aggregatorOnly')}
+          </span>
+        </label>
+        <hr className='border-b border-dial-slate-200'/>
+        <label className='flex pl-4 py-2'>
+          <Checkbox onChange={toggleEndorser} value={endorser} />
+          <span className='mx-2 my-auto text-sm'>
+            {format('filter.organization.endorserOnly')}
+          </span>
+        </label>
+        <hr className='border-b border-dial-slate-200'/>
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
+        <hr className='border-b border-dial-slate-200'/>
+        <CountryAutocomplete countries={countries} setCountries={setCountries} />
+        <hr className='border-b border-dial-slate-200'/>
+        <EndorsingYearSelect years={years} setYears={setYears} />
         <hr className='border-b border-dial-slate-200'/>
       </div>
     </div>

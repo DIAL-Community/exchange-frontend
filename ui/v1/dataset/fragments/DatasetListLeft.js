@@ -15,47 +15,22 @@ const DatasetListLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
-  const {
-    isEndorsed, datasetDeployable, sectors, countries, datasets, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi
-  } = useContext(DatasetFilterContext)
-
-  const {
-    setIsEndorsed, setDatasetDeployable, setSectors, setCountries, setDatasets,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
-    setLicenseTypes, setIsLinkedWithDpi
-  } = useContext(DatasetFilterDispatchContext)
+  const { sectors, tags, sdgs, origins, datasetTypes } = useContext(DatasetFilterContext)
+  const { setSectors, setTags, setSdgs, setOrigins, setDatasetTypes } = useContext(DatasetFilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = '/datasets'
 
-    const endorsedFilter = isEndorsed ? 'isEndorsed=true' : ''
-    const deployableFilter = datasetDeployable ? 'datasetDeployable=true' : ''
+    const typeFilters = datasetTypes.map(datasetType => `types=${datasetType.value}--${datasetType.label}`)
     const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
-    const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const datasetFilters = datasets.map(
-      dataset => `datasets=${dataset.value}--${dataset.label}`
-    )
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
-    const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
-    const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
-    const buildingBlockFilters = buildingBlocks.map(
-      buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
-    )
-    const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
-    const licenseTypesFilter = licenseTypes.map(
-      licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
-    )
-    const linkedWithDpiFilter = isLinkedWithDpi ? 'isLinkedWithDpi=true' : ''
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
-      ...countryFilters, ...sectorFilters, ...datasetFilters, ...sdgFilters, ...tagFilters,
-      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, linkedWithDpiFilter
+      activeFilter, ...typeFilters, ...originFilters, ...sectorFilters, ...sdgFilters, ...tagFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -68,20 +43,11 @@ const DatasetListLeft = () => {
       Object.getOwnPropertyNames(query).length > 1 &&
       query.shareCatalog && !interactionDetected
     ) {
-      setIsEndorsed(query.isEndorsed === 'true')
-      setDatasetDeployable(query.datasetDeployable === 'true')
-      parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
+      parseQuery(query, 'types', datasetTypes, setDatasetTypes)
       parseQuery(query, 'origins', origins, setOrigins)
-      parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
-      parseQuery(query, 'datasets', datasets, setDatasets)
-      parseQuery(query, 'sdgs', sdgs, setSDGs)
+      parseQuery(query, 'sdgs', sdgs, setSdgs)
       parseQuery(query, 'tags', tags, setTags)
-      parseQuery(query, 'useCases', useCases, setUseCases)
-      parseQuery(query, 'workflows', workflows, setWorkflows)
-      parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
-      parseQuery(query, 'endorsers', endorsers, setEndorsers)
-      setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
     }
   })
 

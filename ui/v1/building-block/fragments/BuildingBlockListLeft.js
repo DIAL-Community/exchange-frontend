@@ -16,7 +16,7 @@ const BuildingBlockListLeft = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
-  const { setShowMature, setSDGs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
+  const { setShowMature, setSdgs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
 
   const { categoryTypes } = useContext(BuildingBlockFilterContext)
   const { setCategoryTypes } = useContext(BuildingBlockFilterDispatchContext)
@@ -52,7 +52,7 @@ const BuildingBlockListLeft = () => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
     if (query?.shareCatalog && Object.getOwnPropertyNames(query).length > 1 && !interactionDetected) {
       setShowMature(query.showMature === 'true')
-      parseQuery(query, 'sdgs', sdgs, setSDGs)
+      parseQuery(query, 'sdgs', sdgs, setSdgs)
       parseQuery(query, 'useCases', useCases, setUseCases)
       parseQuery(query, 'workflows', workflows, setWorkflows)
       parseQuery(query, 'categoryTypes', categoryTypes, setCategoryTypes)

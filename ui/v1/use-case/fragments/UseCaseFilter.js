@@ -11,7 +11,7 @@ const UseCaseFilter = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { sdgs, showBeta, govStackOnly } = useContext(UseCaseFilterContext)
-  const { setSDGs, setShowBeta, setShowGovStack } = useContext(UseCaseFilterDispatchContext)
+  const { setSdgs, setShowBeta, setShowGovStack } = useContext(UseCaseFilterDispatchContext)
 
   const toggleShowBeta = () => {
     setShowBeta(!showBeta)
@@ -23,7 +23,7 @@ const UseCaseFilter = () => {
 
   const clearFilter = (e) => {
     e.preventDefault()
-    setSDGs([])
+    setSdgs([])
     setShowBeta(false)
     setShowGovStack(false)
   }
@@ -50,7 +50,7 @@ const UseCaseFilter = () => {
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
-            <SdgActiveFilters sdgs={sdgs} setSdgs={setSDGs} />
+            <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             {showBeta && (
               <div className='bg-dial-slate-400 px-2 py-1 rounded'>
                 <div className='flex flex-row gap-1'>
@@ -83,7 +83,7 @@ const UseCaseFilter = () => {
           {format('ui.filter.primary.title')}:
         </div>
         <hr className='border-b border-dial-slate-200'/>
-        <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
+        <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
         <hr className='border-b border-dial-slate-200'/>
       </div>
       <div className='flex flex-col gap-y-2'>

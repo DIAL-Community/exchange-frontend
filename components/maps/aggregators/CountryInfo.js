@@ -35,7 +35,7 @@ const CountryInfo = (props) => {
         `}
       >
         <div className='text-sm text-dial-cyan font-semibold border-b px-4 py-2'>
-          {`${country.aggregators.length} ${format('aggregator.header')} in ${country.name}`}
+          {`${country.aggregators.length} ${format('ui.aggregator.header')} in ${country.name}`}
         </div>
         {
           country && country.aggregators.map(aggregator => {

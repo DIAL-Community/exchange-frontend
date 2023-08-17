@@ -219,7 +219,7 @@ export const pt = {
 
   "ui.organization.header": "Organizações",
   "ui.organization.label": "Organização",
-  "organization.endorsed-in": "Aprovado",
+  "ui.organization.endorsedIn": "Aprovado",
   "organization.name": "Nome",
   "organization.aliases": "Nomes alternativos",
   "organization.alias": "Nome alternativo",
@@ -432,7 +432,7 @@ export const pt = {
   "organization.owner": "Se for o proprietário desta organização, pode atualizar esta informação da organização.",
   "organization.ownerLink": "Encontre mais informação aqui",
 
-  "aggregator.header": "Organização Agregadora",
+  "ui.aggregator.header": "Organização Agregadora",
 
   "map.aggregators.viewAggregator": "Ver Agregador",
   "map.endorsers.viewOrganization": "Ver Organização",
@@ -699,7 +699,7 @@ export const pt = {
   "operator.label": "Operador",
   "operator.header": "Operadores",
 
-  "aggregator.label": "Agregador",
+  "ui.aggregator.label": "Agregador",
   "map.loading.indicator": "A atualizar os dados do mapa ...",
   "tooltip.endorsed": "Este produto foi aprovado por uma ou mais organizações de controlo.",
   "tooltip.covid": "Este produto foi etiquetado como sendo relevante para a resposta à COVID.",

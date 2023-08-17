@@ -103,7 +103,7 @@ const ProductFilter = () => {
             <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             <OriginActiveFilters origins={origins} setOrigins={setOrigins} />
             {isLinkedWithDpi && (
-              <div className='bg-dial-slate-400 px-2 py-1 rounded'>
+              <div className='bg-dial-slate-400 px-2 py-1 rounded text-white'>
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('filter.product.linkedWithDpi')}
@@ -121,6 +121,7 @@ const ProductFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
+        <hr className='border-b border-dial-slate-200'/>
         <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
         <hr className='border-b border-dial-slate-200'/>
         <BuildingBlockAutocomplete buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />

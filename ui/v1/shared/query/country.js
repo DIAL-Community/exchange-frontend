@@ -1,12 +1,12 @@
 import { gql } from '@apollo/client'
 
 export const COUNTRY_SEARCH_QUERY = gql`
-  query Countries($search: String, $aggregatorOnly: Boolean) {
-    organizations(search: $search, aggregatorOnly: $aggregatorOnly) {
+  query Countries($search: String) {
+    countries(search: $search) {
       id
       name
       slug
-      website
+      code
     }
   }
 `

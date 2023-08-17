@@ -12,16 +12,21 @@ const ProjectDetailHeader = ({ project }) => {
         {project.name}
       </div>
       <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
-        { project.url &&
+        { project.projectWebsite &&
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-dial-sapphire'>
               {format('project.url')}
             </div>
-            <div className='flex text-dial-stratos'>
-              <a href={prependUrlWithProtocol(project.projectWebsite)} target='_blank' rel='noreferrer'>
-                <div className='border-b border-dial-iris-blue line-clamp-1'>
-                  {project.projectWebsite} ⧉
+            <div className='text-dial-stratos'>
+              <a
+                href={prependUrlWithProtocol(project.projectWebsite)}
+                target='_blank'
+                rel='noreferrer'
+                className='flex border-b border-dial-iris-blue '>
+                <div className='line-clamp-1'>
+                  {project.projectWebsite}
                 </div>
+                ⧉
               </a>
             </div>
           </div>

@@ -35,7 +35,7 @@ export const SectorAutocomplete = ({ sectors, setSectors, placeholder }) => {
         <div className='text-dial-stratos text-sm ml-4 py-2'>
           {format('ui.sector.label')}
         </div>
-        <BsPlus className='ml-auto' />
+        <BsPlus className='ml-auto my-auto' />
       </button>
       {showFilter &&
         <Select

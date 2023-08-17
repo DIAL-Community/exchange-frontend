@@ -219,7 +219,7 @@
 
   "ui.organization.header": "Organizaciones",
   "ui.organization.label": "Organización",
-  "organization.endorsed-in": "Apoyado en",
+  "ui.organization.endorsedIn": "Apoyado en",
   "organization.name": "Nombre",
   "organization.aliases": "Alias",
   "organization.alias": "Alias",
@@ -432,7 +432,7 @@
   "organization.owner": "Si usted es el propietario de esta organización, puede actualizar la información de esta organización.",
   "organization.ownerLink": "Encuentre más información aquí",
 
-  "aggregator.header": "Organización agregadora",
+  "ui.aggregator.header": "Organización agregadora",
 
   "map.aggregators.viewAggregator": "Ver agregador",
   "map.endorsers.viewOrganization": "Ver organización",
@@ -699,7 +699,7 @@
   "operator.label": "Operador",
   "operator.header": "Operadores",
 
-  "aggregator.label": "Agregador",
+  "ui.aggregator.label": "Agregador",
   "map.loading.indicator": "Actualización de los datos del mapa...",
   "tooltip.endorsed": "Este producto ha sido avalado por una o más organizaciones de verificación.",
   "tooltip.covid": "Este producto ha sido etiquetado como relevante para la respuesta de COVID.",
