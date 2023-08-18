@@ -79,7 +79,7 @@ const subMenus = {
     type: 'link',
     items: [
       {
-        label: 'opportunity.header',
+        label: 'ui.opportunity.header',
         link: '/opportunities'
       },
       {

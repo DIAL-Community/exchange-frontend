@@ -107,7 +107,7 @@ const OpportunityDetailOrganizations = ({ opportunity, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('opportunity.no-organization')}
+        {format('ui.opportunity.no-organization')}
       </div>
     )
 

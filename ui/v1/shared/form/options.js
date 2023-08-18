@@ -1,4 +1,11 @@
-import { CategoryType, LicenseTypeFilter, MappingStatus, MaturityStatus } from '../../utils/constants'
+import {
+  CategoryType,
+  LicenseTypeFilter,
+  MappingStatus,
+  MaturityStatus,
+  OpportunityStatus,
+  OpportunityType
+} from '../../utils/constants'
 
 export const generateMaturityOptions = (format) => [
   { label: format('shared.maturity.draft'), value: MaturityStatus.DRAFT },
@@ -43,4 +50,18 @@ export const generateLanguageOptions = (format) => [
   { label: format('locale.portuguese.label'), value: 'pt' },
   { label: format('locale.swahili.label'), value: 'sw' },
   { label: format('locale.czech.label'), value: 'cs' }
+]
+
+export const generateOpportunityTypeOptions = (format) => [
+  { label: format('ui.opportunity.type.bid'), value: OpportunityType.BID },
+  { label: format('ui.opportunity.type.buildingBlock'), value: OpportunityType.BUILDING_BLOCK },
+  { label: format('ui.opportunity.type.innovation'), value: OpportunityType.INNOVATION },
+  { label: format('ui.opportunity.type.tender'), value: OpportunityType.TENDER },
+  { label: format('ui.opportunity.type.other'), value: OpportunityType.OTHER }
+]
+
+export const generateOpportunityStatusOptions = (format) => [
+  { label: format('ui.opportunity.status.closed'), value: OpportunityStatus.CLOSED },
+  { label: format('ui.opportunity.status.open'), value: OpportunityStatus.OPEN },
+  { label: format('ui.opportunity.status.upcoming'), value: OpportunityStatus.UPCOMING }
 ]

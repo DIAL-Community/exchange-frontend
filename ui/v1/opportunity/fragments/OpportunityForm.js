@@ -2,8 +2,8 @@ import React, { useState, useCallback, useContext, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
-import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
 import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
@@ -12,9 +12,9 @@ import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_OPPORTUNITY } from '../../shared/mutation/opportunity'
-import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
-import Checkbox from '../../shared/form/Checkbox'
+import { generateOpportunityStatusOptions, generateOpportunityTypeOptions } from '../../shared/form/options'
+import Select from '../../shared/form/Select'
 
 const OpportunityForm = React.memo(({ opportunity }) => {
   const { formatMessage } = useIntl()
@@ -55,6 +55,12 @@ const OpportunityForm = React.memo(({ opportunity }) => {
     }
   })
 
+  const statusOptions = useMemo(() => generateOpportunityStatusOptions(format), [format])
+  const [defaultStatusOption] = statusOptions
+
+  const typeOptions = useMemo(() => generateOpportunityTypeOptions(format), [format])
+  const [defaultTypeOption] = typeOptions
+
   const {
     handleSubmit,
     register,
@@ -66,25 +72,22 @@ const OpportunityForm = React.memo(({ opportunity }) => {
     shouldUnregister: true,
     defaultValues: {
       name: opportunity?.name,
-      aliases: opportunity?.aliases?.length ? opportunity?.aliases.map((value) => ({ value })) : [{ value: '' }],
-      website: opportunity?.website,
-      description: opportunity?.opportunityDescription?.description,
-      commercialOpportunity: opportunity?.commercialOpportunity,
-      hostingModel: opportunity?.hostingModel,
-      pricingModel: opportunity?.pricingModel,
-      pricingDetails: opportunity?.pricingDetails,
-      pricingUrl: opportunity?.pricingUrl
+      webAddress: opportunity?.webAddress ?? '',
+      description: opportunity?.description,
+      contactName: opportunity?.contactName,
+      contactEmail: opportunity?.contactEmail,
+      openingDate: opportunity?.openingDate,
+      closingDate: opportunity?.closingDate,
+      opportunityType:
+        typeOptions.find(
+          ({ value: type }) => type === opportunity?.opportunityType
+        ) ?? defaultTypeOption,
+      opportunityStatus:
+        statusOptions.find(
+          ({ value: status }) => status === opportunity?.opportunityStatus
+        ) ?? defaultStatusOption
     }
   })
-
-  const { fields: aliases, append, remove } = useFieldArray({
-    control,
-    name: 'aliases',
-    shouldUnregister: true
-  })
-
-  const isSingleAlias = useMemo(() => aliases.length === 1, [aliases])
-  const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
 
   const doUpsert = async (data) => {
     if (user) {
@@ -95,27 +98,27 @@ const OpportunityForm = React.memo(({ opportunity }) => {
       const {
         name,
         imageFile,
-        website,
+        webAddress,
         description,
-        aliases,
-        commercialOpportunity,
-        pricingUrl,
-        hostingModel,
-        pricingModel,
-        pricingDetails
+        contactName,
+        contactEmail,
+        openingDate,
+        closingDate,
+        opportunityType,
+        opportunityStatus
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
-        aliases: aliases.map(({ value }) => value),
-        website,
+        webAddress,
         description,
-        commercialOpportunity,
-        pricingUrl,
-        hostingModel,
-        pricingModel,
-        pricingDetails
+        contactName,
+        contactEmail,
+        openingDate,
+        closingDate,
+        opportunityType: opportunityType?.value,
+        opportunityStatus: opportunityStatus?.value
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -151,57 +154,132 @@ const OpportunityForm = React.memo(({ opportunity }) => {
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>
-                {format('opportunity.name')}
+                {format('ui.opportunity.name')}
               </label>
               <Input
                 {...register('name', { required: format('validation.required') })}
                 id='name'
-                placeholder={format('opportunity.name')}
+                placeholder={format('ui.opportunity.name')}
                 isInvalid={errors.name}
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label>{format('opportunity.aliases')}</label>
-              {aliases.map((alias, aliasIdx) => (
-                <div key={alias.id} className='flex gap-x-2'>
-                  <Input {...register(`aliases.${aliasIdx}.value`)} placeholder={format('opportunity.alias')} />
-                  {isLastAlias(aliasIdx) &&
-                    <IconButton
-                      className='bg-dial-meadow'
-                      icon={<FaPlus className='text-sm' />}
-                      onClick={() => append({ value: '' })}
-                    />
-                  }
-                  {!isSingleAlias &&
-                    <IconButton
-                      className='bg-dial-meadow'
-                      icon={<FaMinus className='text-sm' />}
-                      onClick={() => remove(aliasIdx)}
-                    />
-                  }
-                </div>
-              ))}
+              <label>
+                {format('ui.opportunity.imageFile')}
+              </label>
+              <FileUploader {...register('imageFile')} />
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label htmlFor='website'>
-                {format('opportunity.website')}
+              <label className='required-field' htmlFor='webAddress'>
+                {format('ui.opportunity.webAddress')}
               </label>
               <Controller
-                id='website'
-                name='website'
+                name='webAddress'
                 control={control}
                 render={({ field: { value, onChange } }) => (
-                  <UrlInput value={value} onChange={onChange} id='website' placeholder={format('opportunity.website')} />
+                  <UrlInput
+                    id='webAddress'
+                    value={value}
+                    onChange={onChange}
+                    isInvalid={errors.webAddress}
+                    placeholder={format('ui.opportunity.webAddress')}
+                  />
                 )}
+                rules={{ required: format('validation.required') }}
+              />
+              {errors.webAddress && <ValidationError value={errors.webAddress?.message} />}
+            </div>
+            <div className='border-b border-dashed border-dial-meadow' />
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='opportunityStatus'>
+                {format('ui.opportunity.opportunityStatus')}
+              </label>
+              <Controller
+                id='opportunityStatus'
+                name='opportunityStatus'
+                control={control}
+                render={
+                  ({ field }) =>
+                    <Select
+                      {...field}
+                      options={statusOptions}
+                      placeholder={format('ui.opportunity.opportunityStatus')}
+                    />
+                }
+              />
+              {errors.opportunityStatus && <ValidationError value={errors.opportunityStatus?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='opportunityType'>
+                {format('ui.opportunity.opportunityType')}
+              </label>
+              <Controller
+                id='opportunityType'
+                name='opportunityType'
+                control={control}
+                render={
+                  ({ field }) =>
+                    <Select
+                      {...field}
+                      options={typeOptions}
+                      placeholder={format('ui.opportunity.opportunityType')}
+                    />
+                }
+              />
+              {errors.opportunityType && <ValidationError value={errors.opportunityType?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='openingDate'>
+                {format('ui.opportunity.openingDate')}
+              </label>
+              <Input
+                id='openingDate'
+                {...register('openingDate')}
+                type='date'
+                placeholder={format('ui.opportunity.openingDate')}
               />
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label>{format('opportunity.imageFile')}</label>
-              <FileUploader {...register('imageFile')} />
+              <label htmlFor='closingDate'>
+                {format('ui.opportunity.closingDate')}
+              </label>
+              <Input
+                id='closingDate'
+                type='date'
+                {...register('closingDate')}
+                placeholder={format('ui.opportunity.closingDate')}
+              />
             </div>
-            <div className='block flex flex-col gap-y-2'>
-              <label className='required-field'>{format('opportunity.description')}</label>
+            <div className='border-b border-dashed border-dial-meadow' />
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='contactName'>
+                {format('ui.opportunity.contactName')}
+              </label>
+              <Input
+                {...register('contactName', { required: format('validation.required') })}
+                id='contactName'
+                placeholder={format('ui.opportunity.contactName')}
+                isInvalid={errors.contactName}
+              />
+              {errors.contactName && <ValidationError value={errors.contactName?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='contactEmail'>
+                {format('ui.opportunity.contactEmail')}
+              </label>
+              <Input
+                {...register('contactEmail', { required: format('validation.required') })}
+                id='contactEmail'
+                placeholder={format('ui.opportunity.contactEmail')}
+                isInvalid={errors.contactEmail}
+              />
+              {errors.contactEmail && <ValidationError value={errors.contactEmail?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field'>
+                {format('ui.opportunity.description')}
+              </label>
               <Controller
                 name='description'
                 control={control}
@@ -210,64 +288,13 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                     editorId='description-editor'
                     onChange={onChange}
                     initialContent={value}
-                    placeholder={format('opportunity.description')}
+                    placeholder={format('ui.opportunity.description')}
                     isInvalid={errors.description}
                   />
                 )}
                 rules={{ required: format('validation.required') }}
               />
               {errors.description && <ValidationError value={errors.description?.message} />}
-            </div>
-            <hr className='my-3' />
-            <div className='text-2xl font-semibold pb-4'>{format('opportunity.pricingInformation')}</div>
-            <label className='flex gap-x-2 mb-2 items-center self-start'>
-              <Checkbox {...register('commercialOpportunity')} />
-              {format('opportunity.commercialOpportunity')}
-            </label>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='pricingUrl'>
-                {format('opportunity.pricingUrl')}
-              </label>
-              <Controller
-                name='pricingUrl'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <UrlInput
-                    value={value}
-                    onChange={onChange}
-                    id='pricingUrl'
-                    placeholder={format('opportunity.pricingUrl')}
-                  />
-                )}
-              />
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='hostingModel'>
-                {format('opportunity.hostingModel')}
-              </label>
-              <Input {...register('hostingModel')} id='hostingModel' placeholder={format('opportunity.hostingModel')} />
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='pricingModel'>
-                {format('opportunity.pricingModel')}
-              </label>
-              <Input {...register('pricingModel')} id='pricingModel' placeholder={format('opportunity.pricingModel')} />
-            </div>
-            <div className='block flex flex-col gap-y-2'>
-              <label>{format('opportunity.pricing.details')}</label>
-              <Controller
-                name='pricingDetails'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <HtmlEditor
-                    editorId='pricing-details-editor'
-                    onChange={onChange}
-                    initialContent={value}
-                    placeholder={format('opportunity.pricing.details')}
-                    isInvalid={errors.pricingDetails}
-                  />
-                )}
-              />
             </div>
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button type='submit' className='submit-button' disabled={mutating || reverting}>

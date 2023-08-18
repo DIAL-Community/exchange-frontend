@@ -3,6 +3,20 @@ export const DisplayType = {
   SMALL_CARD: 'small-card'
 }
 
+export const OpportunityStatus = {
+  CLOSED: 'CLOSED',
+  OPEN: 'OPEN',
+  UPCOMING: 'UPCOMING'
+}
+
+export const OpportunityType = {
+  BID: 'BID',
+  BUILDING_BLOCK: 'BUILDING BLOCK',
+  INNOVATION: 'INNOVATION',
+  TENDER: 'TENDER',
+  OTHER: 'OTHER'
+}
+
 export const MaturityStatus = {
   DRAFT: 'DRAFT',
   PUBLISHED: 'PUBLISHED'

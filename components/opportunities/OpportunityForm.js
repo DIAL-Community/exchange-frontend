@@ -41,7 +41,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
       const { createOpportunity: response } = data
       if (response?.opportunity && response?.errors?.length === 0) {
         showToast(
-          format('opportunity.submit.success'),
+          format('ui.opportunity.submit.success'),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -52,12 +52,12 @@ const OpportunityForm = React.memo(({ opportunity }) => {
           )
         )
       } else {
-        showToast(format('opportunity.submit.failure'), 'error', 'top-center')
+        showToast(format('ui.opportunity.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
-      showToast(format('opportunity.submit.failure'), 'error', 'top-center')
+      showToast(format('ui.opportunity.submit.failure'), 'error', 'top-center')
       setMutating(false)
       reset()
     }
@@ -170,32 +170,32 @@ const OpportunityForm = React.memo(({ opportunity }) => {
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {opportunity
                   ? format('app.editEntity', { entity: opportunity.name })
-                  : `${format('app.createNew')} ${format('opportunity.label')}`
+                  : `${format('app.createNew')} ${format('ui.opportunity.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='opportunity-name'>
                     <label className='text-dial-sapphire required-field' htmlFor='name'>
-                      {format('opportunity.name')}
+                      {format('ui.opportunity.name')}
                     </label>
                     <Input
                       {...register('name', { required: format('validation.required') })}
                       id='name'
-                      placeholder={format('opportunity.name')}
+                      placeholder={format('ui.opportunity.name')}
                       isInvalid={errors.name}
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='opportunity-logo'>
                     <label className='text-dial-sapphire'>
-                      {format('opportunity.imageFile')}
+                      {format('ui.opportunity.imageFile')}
                     </label>
                     <FileUploader {...register('imageFile')} />
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-dial-sapphire required-field' htmlFor='opportunityStatus'>
-                      {format('opportunity.opportunityStatus')}
+                      {format('ui.opportunity.opportunityStatus')}
                     </label>
                     <Controller
                       name='opportunityStatus'
@@ -205,7 +205,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                           <Select
                             {...field}
                             options={statusOptions}
-                            placeholder={format('opportunity.opportunityStatus')}
+                            placeholder={format('ui.opportunity.opportunityStatus')}
                           />
                       }
                     />
@@ -214,7 +214,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                   <div className='border-b border-dashed border-dial-lavender' />
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-dial-sapphire required-field' htmlFor='opportunityType'>
-                      {format('opportunity.opportunityType')}
+                      {format('ui.opportunity.opportunityType')}
                     </label>
                     <Controller
                       name='opportunityType'
@@ -224,7 +224,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                           <Select
                             {...field}
                             options={typeOptions}
-                            placeholder={format('opportunity.opportunityType')}
+                            placeholder={format('ui.opportunity.opportunityType')}
                           />
                       }
                     />
@@ -232,7 +232,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-dial-sapphire required-field' htmlFor='webAddress'>
-                      {format('opportunity.webAddress')}
+                      {format('ui.opportunity.webAddress')}
                     </label>
                     <Controller
                       name='webAddress'
@@ -243,7 +243,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                           onChange={onChange}
                           id='webAddress'
                           isInvalid={errors.webAddress}
-                          placeholder={format('opportunity.webAddress')}
+                          placeholder={format('ui.opportunity.webAddress')}
                         />
                       )}
                       rules={{ required: format('validation.required') }}
@@ -252,45 +252,45 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-dial-sapphire'>
-                      {format('opportunity.openingDate')}
+                      {format('ui.opportunity.openingDate')}
                     </label>
                     <Input
                       {...register('openingDate')}
                       type='date'
-                      placeholder={format('opportunity.openingDate')}
+                      placeholder={format('ui.opportunity.openingDate')}
                     />
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-dial-sapphire'>
-                      {format('opportunity.closingDate')}
+                      {format('ui.opportunity.closingDate')}
                     </label>
                     <Input
                       {...register('closingDate')}
                       type='date'
-                      placeholder={format('opportunity.closingDate')}
+                      placeholder={format('ui.opportunity.closingDate')}
                     />
                   </div>
                   <div className='border-b border-dashed border-dial-lavender' />
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-dial-sapphire required-field' htmlFor='contactName'>
-                      {format('opportunity.contactName')}
+                      {format('ui.opportunity.contactName')}
                     </label>
                     <Input
                       {...register('contactName', { required: format('validation.required') })}
                       id='contactName'
-                      placeholder={format('opportunity.contactName')}
+                      placeholder={format('ui.opportunity.contactName')}
                       isInvalid={errors.contactName}
                     />
                     {errors.contactName && <ValidationError value={errors.contactName?.message} />}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-dial-sapphire required-field' htmlFor='contactEmail'>
-                      {format('opportunity.contactEmail')}
+                      {format('ui.opportunity.contactEmail')}
                     </label>
                     <Input
                       {...register('contactEmail', { required: format('validation.required') })}
                       id='contactEmail'
-                      placeholder={format('opportunity.contactEmail')}
+                      placeholder={format('ui.opportunity.contactEmail')}
                       isInvalid={errors.contactEmail}
                     />
                     {errors.contactEmail && <ValidationError value={errors.contactEmail?.message} />}
@@ -299,7 +299,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                 <div className='w-full lg:w-1/2'>
                   <div className='block flex flex-col gap-y-2' data-testid='opportunity-description'>
                     <label className='text-dial-sapphire required-field'>
-                      {format('opportunity.description')}
+                      {format('ui.opportunity.description')}
                     </label>
                     <Controller
                       name='description'
@@ -309,7 +309,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                           editorId='description-editor'
                           onChange={onChange}
                           initialContent={value}
-                          placeholder={format('opportunity.description')}
+                          placeholder={format('ui.opportunity.description')}
                           isInvalid={errors.description}
                         />
                       )}
@@ -326,7 +326,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                   disabled={mutating || reverting}
                   data-testid='submit-button'
                 >
-                  {`${format('app.submit')} ${format('opportunity.label')}`}
+                  {`${format('app.submit')} ${format('ui.opportunity.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>
                 <button

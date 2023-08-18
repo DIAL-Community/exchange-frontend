@@ -17,7 +17,7 @@ const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
   }
 
   const MARKETPLACE_MENU_ITEMS = [{
-    label: 'opportunity.header',
+    label: 'ui.opportunity.header',
     link: '/opportunities'
   }, {
     label: 'ui.storefront.header',

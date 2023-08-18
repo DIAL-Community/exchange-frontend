@@ -113,7 +113,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit }) => {
         </div>
       ) : (
         <div className='text-sm pb-5 text-button-gray'>
-          {format('opportunity.no-building-block')}
+          {format('ui.opportunity.no-building-block')}
         </div>
       )}
     </>

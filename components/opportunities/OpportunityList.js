@@ -25,7 +25,7 @@ const OpportunityList = (props) => {
       {displayType === 'list' &&
         <div className='flex flex-col md:flex-row flex-wrap my-3 px-4 gap-x-4'>
           <div className='ml-2 text-sm font-semibold opacity-70'>
-            {format('opportunity.header').toUpperCase()}
+            {format('ui.opportunity.header').toUpperCase()}
           </div>
           <div className='hidden md:block ml-auto text-sm font-semibold opacity-50'>
             {format('opportunities.tags').toUpperCase()}
@@ -41,7 +41,7 @@ const OpportunityList = (props) => {
             <div className='text-sm font-medium opacity-80'>
               {format(
                 'noResults.entity',
-                { entity: format('opportunity.label').toLowerCase() }
+                { entity: format('ui.opportunity.label').toLowerCase() }
               )}
             </div>
           )

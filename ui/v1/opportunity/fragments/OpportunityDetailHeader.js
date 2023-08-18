@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 
 const OpportunityDetailHeader = ({ opportunity }) => {
@@ -34,7 +34,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
       <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-sapphire'>
-            {format('opportunity.webAddress')}
+            {format('ui.opportunity.webAddress')}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <a
@@ -58,6 +58,33 @@ const OpportunityDetailHeader = ({ opportunity }) => {
             {opportunity.sectors.map((sector, index) => {
               return <div key={index}>{sector.name}</div>
             })}
+          </div>
+        </div>
+        <div className='flex flex-row gap-x-3'>
+          <div className='flex flex-col gap-y-3 w-full'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('ui.opportunity.opportunityType')}
+            </div>
+            <div className='flex flex-col gap-y-2 text-dial-stratos'>
+              {opportunity.opportunityType ?? format('general.unknown')}
+            </div>
+          </div>
+          <div className='flex flex-col gap-y-3 w-full'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('ui.opportunity.opportunityStatus')}
+            </div>
+            <div className='flex flex-col gap-y-2 text-dial-stratos'>
+              {opportunity.opportunityStatus ?? format('general.unknown')}
+            </div>
+          </div>
+        </div>
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-sapphire'>
+            {format('ui.opportunity.closingDate')}
+          </div>
+          <div className='flex flex-col gap-y-2 text-dial-stratos'>
+            {!opportunity.closingDate && format('general.na')}
+            {opportunity.closingDate && <FormattedDate value={opportunity.closingDate} />}
           </div>
         </div>
       </div>

@@ -104,7 +104,7 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit }) => {
         </div>
       ) : (
         <div className='text-sm pb-5 text-button-gray'>
-          {format('opportunity.no-use-case')}
+          {format('ui.opportunity.no-use-case')}
         </div>
       )}
     </>

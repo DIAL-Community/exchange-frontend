@@ -31,7 +31,7 @@ const basePathMappings = {
   moves: 'move.header',
   countries: 'country.header',
   rubric_categories: 'rubric-categories.header',
-  opportunities: 'opportunity.header',
+  opportunities: 'ui.opportunity.header',
   resources: 'ui.resource.header',
   storefronts: 'ui.storefront.header'
 }

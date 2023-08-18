@@ -10,26 +10,26 @@ const OpportunityDefinition = () => {
     <div className='flex flex-col gap-y-6 py-4'>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-meadow'>
-          {format('opportunity.hint.title')}
+          {format('ui.opportunity.hint.title')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {format('opportunity.hint.subtitle')}
+          {format('ui.opportunity.hint.subtitle')}
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-meadow'>
-          {format('opportunity.hint.characteristicTitle')}
+          {format('ui.opportunity.hint.characteristicTitle')}
         </div>
         <div className='text-sm text-dial-stratos fr-view'>
-          {parse(format('opportunity.hint.characteristics'))}
+          {parse(format('ui.opportunity.hint.characteristics'))}
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-meadow'>
-          {format('opportunity.hint.descriptionTitle')}
+          {format('ui.opportunity.hint.descriptionTitle')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {parse(format('opportunity.hint.description'))}
+          {parse(format('ui.opportunity.hint.description'))}
         </div>
       </div>
     </div>
