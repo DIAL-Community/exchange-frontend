@@ -15,7 +15,7 @@ const WorkflowUseCases = ({ workflow, headerRef }) => {
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <div className='text-lg font-semibold text-dial-meadow' ref={headerRef}>
+      <div className='text-lg font-semibold text-dial-plum' ref={headerRef}>
         {format('ui.useCase.header')}
       </div>
       <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>

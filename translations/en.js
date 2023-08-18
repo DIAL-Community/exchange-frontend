@@ -1887,6 +1887,9 @@ export const en = {
 
   'ui.workflow.label': 'Workflow',
   'ui.workflow.header': 'Workflows',
+  'ui.workflow.whatIs': 'What is an Workflow?',
+  'ui.workflow.createNew': 'Create a new Workflow',
+  'workflow.hint.title': 'What is a Workflow?',
 
   'ui.licenseType.label': 'License Type',
   'ui.licenseType.header': 'License Types',

@@ -13,7 +13,7 @@ const WorkflowTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useEffect(() => {
-    if (user?.isAdminUser) {
+    if (user && user?.isAdminUser) {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.workflow.createNew'),
         'ui.workflow.createNew'
