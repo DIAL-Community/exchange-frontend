@@ -13,39 +13,42 @@ const SdgSdgTargets = ({ sdg, headerRef }) => {
         {format('ui.sdgTarget.header')}
       </div>
       <div className='flex flex-col gap-y-3'>
-        {sdg.sdgTargets.length > 0 ? (
-          sdg.sdgTargets.map((sdgTarget, index) => (
-            <div key={index} className='pb-5 mr-6'>
-              <div className='flex flex-col lg:flex-row gap-x-3'>
-                <div className='min-w-[8rem]'>
-                  <img
-                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.imageFile}
-                    alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
-                    className='object-contain w-32 h-32 mx-auto'
-                  />
-                </div>
-                <div className='flex flex-col gap-y-1'>
-                  <div className='font-semibold text-dial-blueberry pt-1 pb-3'>
-                    {`${sdg.number}. ${sdg.name}`}
+        {sdg.sdgTargets.length > 0
+          ? (
+            sdg.sdgTargets.map((sdgTarget, index) => (
+              <div key={index} className='pb-5 mr-6'>
+                <div className='flex flex-col lg:flex-row gap-x-3'>
+                  <div className='min-w-[8rem]'>
+                    <img
+                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.imageFile}
+                      alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
+                      className='object-contain w-32 h-32 mx-auto'
+                    />
                   </div>
-                  <div className='text-sm font-semibold text-dial-blueberry my-auto'>
-                    {`${format('ui.sdgTarget.target')} ${sdgTarget.targetNumber}`}
-                  </div>
-                  <div className='text-sm text-dial-stratos my-auto'>
-                    {sdgTarget.name}
+                  <div className='flex flex-col gap-y-1'>
+                    <div className='font-semibold text-dial-blueberry pt-1 pb-3'>
+                      {`${sdg.number}. ${sdg.name}`}
+                    </div>
+                    <div className='text-sm font-semibold text-dial-blueberry my-auto'>
+                      {`${format('ui.sdgTarget.target')} ${sdgTarget.targetNumber}`}
+                    </div>
+                    <div className='text-sm text-dial-stratos my-auto'>
+                      {sdgTarget.name}
+                    </div>
                   </div>
                 </div>
               </div>
+            ))
+          )
+          : (
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.sdgTarget.label'),
+                base: format('ui.sdg.label')
+              })}
             </div>
-          ))
-        ) : (
-          <div className='text-sm text-dial-stratos'>
-            {format('ui.common.detail.noData', {
-              entity: format('ui.sdgTarget.label'),
-              base: format('ui.sdg.label')
-            })}
-          </div>
-        )}
+          )
+        }
       </div>
     </div>
   )

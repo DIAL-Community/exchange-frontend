@@ -108,39 +108,41 @@ const Select = React.forwardRef(({
   const id = useId()
 
   return (
-    async ? (
-      <AsyncReactSelect
-        {...otherProps}
-        instanceId={id}
-        inputId={`async-select-id-${name}`}
-        innerRef={ref}
-        value={value}
-        placeholder={placeholder}
-        options={options}
-        onChange={onChange}
-        onBlur={onBlur}
-        classNamePrefix='react-select'
-        className={classNames(className)}
-        styles={defaultStyles}
-        components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
-      />
-    ) : (
-      <ReactSelect
-        {...otherProps}
-        instanceId={id}
-        inputId={`react-select-id-${name}`}
-        innerRef={ref}
-        value={value}
-        placeholder={placeholder}
-        options={options}
-        onChange={onChange}
-        onBlur={onBlur}
-        classNamePrefix='react-select'
-        className={classNames(className)}
-        styles={defaultStyles}
-        components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
-      />
-    )
+    async
+      ? (
+        <AsyncReactSelect
+          {...otherProps}
+          instanceId={id}
+          inputId={`async-select-id-${name}`}
+          innerRef={ref}
+          value={value}
+          placeholder={placeholder}
+          options={options}
+          onChange={onChange}
+          onBlur={onBlur}
+          classNamePrefix='react-select'
+          className={classNames(className)}
+          styles={defaultStyles}
+          components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
+        />
+      )
+      : (
+        <ReactSelect
+          {...otherProps}
+          instanceId={id}
+          inputId={`react-select-id-${name}`}
+          innerRef={ref}
+          value={value}
+          placeholder={placeholder}
+          options={options}
+          onChange={onChange}
+          onBlur={onBlur}
+          classNamePrefix='react-select'
+          className={classNames(className)}
+          styles={defaultStyles}
+          components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
+        />
+      )
   )
 })
 

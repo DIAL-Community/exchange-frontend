@@ -36,7 +36,7 @@ const DatasetDetailHeader = ({ dataset }) => {
           <div className='font-semibold text-dial-sapphire'>
             {format('dataset.website')}
           </div>
-          <div className='text-dial-stratos'>
+          <div className='flex gap-x-2 text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(dataset.website)}
               target='_blank'
@@ -45,8 +45,8 @@ const DatasetDetailHeader = ({ dataset }) => {
               <div className='line-clamp-1'>
                 {dataset.website}
               </div>
-              ⧉
             </a>
+            ⧉
           </div>
         </div>
         <div className='flex flex-col gap-y-3'>

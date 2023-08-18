@@ -23,12 +23,17 @@ const ProductDetailHeader = ({ product }) => {
           <div className='font-semibold text-dial-sapphire'>
             {format('product.website')}
           </div>
-          <div className='flex text-dial-stratos'>
-            <a href={prependUrlWithProtocol(product.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue'>
-                {product.website} ⧉
+          <div className='flex gap-x-2 text-dial-stratos'>
+            <a
+              href={prependUrlWithProtocol(product.website)}
+              target='_blank'
+              rel='noreferrer'
+              className='flex border-b border-dial-iris-blue '>
+              <div className='line-clamp-1'>
+                {product.website}
               </div>
             </a>
+            ⧉
           </div>
         </div>
       </div>

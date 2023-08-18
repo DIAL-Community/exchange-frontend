@@ -117,17 +117,27 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={workflowRef}>
           {format('ui.workflow.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {useCase?.workflows?.map((workflow, index) =>
-            <div key={`workflow-${index}`}>
-              <WorkflowCard
-                index={index}
-                workflow={workflow}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {useCase?.workflows.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.workflow.label'),
+              base: format('ui.useCase.label')
+            })}
+          </div>
+        }
+        {useCase?.workflows.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {useCase?.workflows?.map((workflow, index) =>
+              <div key={`workflow-${index}`}>
+                <WorkflowCard
+                  index={index}
+                  workflow={workflow}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
@@ -138,17 +148,27 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={buildingBlockRef}>
           {format('ui.buildingBlock.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {useCase?.buildingBlocks?.map((buildingBlock, index) =>
-            <div key={`building-block-${index}`}>
-              <BuildingBlockCard
-                index={index}
-                buildingBlock={buildingBlock}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {useCase?.buildingBlocks.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.buildingBlock.label'),
+              base: format('ui.useCase.label')
+            })}
+          </div>
+        }
+        {useCase?.buildingBlocks.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {useCase?.buildingBlocks?.map((buildingBlock, index) =>
+              <div key={`building-block-${index}`}>
+                <BuildingBlockCard
+                  index={index}
+                  buildingBlock={buildingBlock}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>

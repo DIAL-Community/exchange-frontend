@@ -19,20 +19,23 @@ const WorkflowUseCases = ({ workflow, headerRef }) => {
         {format('ui.useCase.header')}
       </div>
       <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-        {workflow.useCases.length > 0 ? (
-          workflow.useCases.map((useCase, index) => (
-            <div key={index} className='pb-5 mr-6'>
-              <UseCaseCard useCase={useCase} displayType={DisplayType.SMALL_CARD} />
+        {workflow.useCases.length > 0
+          ? (
+            workflow.useCases.map((useCase, index) => (
+              <div key={index} className='pb-5 mr-6'>
+                <UseCaseCard useCase={useCase} displayType={DisplayType.SMALL_CARD} />
+              </div>
+            ))
+          )
+          : (
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.useCase.label'),
+                base: format('ui.workflow.label')
+              })}
             </div>
-          ))
-        ) : (
-          <div className='text-sm text-dial-stratos'>
-            {format('ui.common.detail.noData', {
-              entity: format('ui.useCase.label'),
-              base: format('ui.workflow.label')
-            })}
-          </div>
-        )}
+          )
+        }
       </div>
     </div>
   )

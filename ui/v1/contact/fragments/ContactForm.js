@@ -97,74 +97,74 @@ const ContactForm = React.memo(({ contact }) => {
     router.push(`/${locale}/contacts/${slug}`)
   }
 
-  return loadingUserSession ? (
-    <Loading />
-  ) : isAdminUser || isEditorUser ? (
-    <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 py-4 lg:py-6 text-dial-plum'>
-        <div className='flex flex-col gap-y-6 text-sm'>
-          <div className='text-xl font-semibold'>
-            {contact
-              ? format('app.editEntity', { entity: contact.name })
-              : `${format('app.createNew')} ${format('contact.label')}`}
+  return loadingUserSession
+    ? <Loading />
+    : isAdminUser || isEditorUser
+      ? (
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='px-4 py-4 lg:py-6 text-dial-plum'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='text-xl font-semibold'>
+                {contact
+                  ? format('app.editEntity', { entity: contact.name })
+                  : `${format('app.createNew')} ${format('contact.label')}`}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='name'>
+                  {format('ui.contact.name.label')}
+                </label>
+                <Input
+                  {...register('name', { required: format('validation.required') })}
+                  id='name'
+                  placeholder={format('ui.contact.name.label')}
+                  isInvalid={errors.name}
+                />
+                {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='name'>
+                  {format('ui.contact.email.label')}
+                </label>
+                <Input
+                  {...register('email', { required: format('validation.required') })}
+                  id='email'
+                  placeholder={format('ui.contact.email.label')}
+                  isInvalid={errors.email}
+                />
+                {errors.email && <ValidationError value={errors.email?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='name'>
+                  {format('ui.contact.title.label')}
+                </label>
+                <Input
+                  {...register('title', { required: format('validation.required') })}
+                  id='title'
+                  placeholder={format('ui.contact.title.label')}
+                  isInvalid={errors.title}
+                />
+                {errors.title && <ValidationError value={errors.title?.message} />}
+              </div>
+              <div className='flex flex-wrap text-base mt-6 gap-3'>
+                <button type='submit' className='submit-button' disabled={mutating || reverting}>
+                  {`${format('app.submit')} ${format('ui.contact.label')}`}
+                  {mutating && <FaSpinner className='spinner ml-3' />}
+                </button>
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3' />}
+                </button>
+              </div>
+            </div>
           </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('ui.contact.name.label')}
-            </label>
-            <Input
-              {...register('name', { required: format('validation.required') })}
-              id='name'
-              placeholder={format('ui.contact.name.label')}
-              isInvalid={errors.name}
-            />
-            {errors.name && <ValidationError value={errors.name?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('ui.contact.email.label')}
-            </label>
-            <Input
-              {...register('email', { required: format('validation.required') })}
-              id='email'
-              placeholder={format('ui.contact.email.label')}
-              isInvalid={errors.email}
-            />
-            {errors.email && <ValidationError value={errors.email?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('ui.contact.title.label')}
-            </label>
-            <Input
-              {...register('title', { required: format('validation.required') })}
-              id='title'
-              placeholder={format('ui.contact.title.label')}
-              isInvalid={errors.title}
-            />
-            {errors.title && <ValidationError value={errors.title?.message} />}
-          </div>
-          <div className='flex flex-wrap text-base mt-6 gap-3'>
-            <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('ui.contact.label')}`}
-              {mutating && <FaSpinner className='spinner ml-3' />}
-            </button>
-            <button
-              type='button'
-              className='cancel-button'
-              disabled={mutating || reverting}
-              onClick={cancelForm}
-            >
-              {format('app.cancel')}
-              {reverting && <FaSpinner className='spinner ml-3' />}
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  ) : (
-    <Unauthorized />
-  )
+        </form>
+      )
+      : <Unauthorized />
 })
 
 ContactForm.displayName = 'ContactForm'

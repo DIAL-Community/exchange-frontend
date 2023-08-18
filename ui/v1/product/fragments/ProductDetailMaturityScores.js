@@ -355,20 +355,23 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             data-tooltip-content={format('product.maturity.chartTooltip')}
             onClick={toggleMaturityScoreDetailsDialog}
           >
-            {validMaturityScores.length <= MIN_RADAR_CHART_CATEGORIES ? (
-              <BarChart
-                labels={chartLabels}
-                values={chartValues}
-                maxScaleValue={MAX_MATURITY_SCORE}
-                horizontal
-              />
-            ) : (
-              <RadarChart
-                labels={chartLabels}
-                values={chartValues}
-                maxScaleValue={MAX_MATURITY_SCORE}
-              />
-            )}
+            {validMaturityScores.length <= MIN_RADAR_CHART_CATEGORIES
+              ? (
+                <BarChart
+                  labels={chartLabels}
+                  values={chartValues}
+                  maxScaleValue={MAX_MATURITY_SCORE}
+                  horizontal
+                />
+              )
+              : (
+                <RadarChart
+                  labels={chartLabels}
+                  values={chartValues}
+                  maxScaleValue={MAX_MATURITY_SCORE}
+                />
+              )
+            }
           </div>
           <Dialog
             isOpen={isMaturityScoreDetailsDialogOpen}

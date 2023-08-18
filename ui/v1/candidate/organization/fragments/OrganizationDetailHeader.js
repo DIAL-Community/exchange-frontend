@@ -25,12 +25,17 @@ const OrganizationDetailHeader = ({ organization }) => {
           <div className='font-semibold text-dial-sapphire'>
             {format('organization.website')}
           </div>
-          <div className='flex text-dial-stratos'>
-            <a href={prependUrlWithProtocol(organization.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue'>
-                {organization.website} ⧉
+          <div className='flex gap-x-2 text-dial-stratos'>
+            <a
+              href={prependUrlWithProtocol(organization.website)}
+              target='_blank'
+              rel='noreferrer'
+              className='flex border-b border-dial-iris-blue '>
+              <div className='line-clamp-1'>
+                {organization.website}
               </div>
             </a>
+            ⧉
           </div>
         </div>
       </div>

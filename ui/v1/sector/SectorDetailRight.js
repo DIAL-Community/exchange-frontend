@@ -64,75 +64,81 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={datasetRef}>
           {format('ui.dataset.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {sector?.datasets.length <= 0 &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.dataset.label'),
-                base: format('ui.sector.label')
-              })}
-            </div>
-          }
-          {sector?.datasets?.map((dataset, index) =>
-            <div key={`dataset-${index}`}>
-              <DatasetCard
-                index={index}
-                dataset={dataset}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {sector?.datasets.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.dataset.label'),
+              base: format('ui.sector.label')
+            })}
+          </div>
+        }
+        {sector?.datasets.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {sector?.datasets?.map((dataset, index) =>
+              <div key={`dataset-${index}`}>
+                <DatasetCard
+                  index={index}
+                  dataset={dataset}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
           {format('ui.organization.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {sector?.organizations.length <= 0 &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.organization.label'),
-                base: format('ui.sector.label')
-              })}
-            </div>
-          }
-          {sector?.organizations?.map((organization, index) =>
-            <div key={`useCase-${index}`}>
-              <OrganizationCard
-                index={index}
-                organization={organization}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {sector?.organizations.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.organization.label'),
+              base: format('ui.sector.label')
+            })}
+          </div>
+        }
+        {sector?.organizations.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {sector?.organizations?.map((organization, index) =>
+              <div key={`useCase-${index}`}>
+                <OrganizationCard
+                  index={index}
+                  organization={organization}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={productRef}>
           {format('ui.product.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {sector?.products.length <= 0 &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.product.label'),
-                base: format('ui.sector.label')
-              })}
-            </div>
-          }
-          {sector?.products?.map((product, index) =>
-            <div key={`product-${index}`}>
-              <ProductCard
-                index={index}
-                product={product}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {sector?.products.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.product.label'),
+              base: format('ui.sector.label')
+            })}
+          </div>
+        }
+        { sector?.products.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {sector?.products?.map((product, index) =>
+              <div key={`product-${index}`}>
+                <ProductCard
+                  index={index}
+                  product={product}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>

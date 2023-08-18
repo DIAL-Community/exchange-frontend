@@ -79,50 +79,50 @@ const CountryForm = React.memo(({ country }) => {
     router.push(`/${locale}/countries/${slug}`)
   }
 
-  return loadingUserSession ? (
-    <Loading />
-  ) : isAdminUser || isEditorUser ? (
-    <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 py-4 lg:py-6 text-dial-plum'>
-        <div className='flex flex-col gap-y-6 text-sm'>
-          <div className='text-xl font-semibold'>
-            {country
-              ? format('app.editEntity', { entity: country.name })
-              : `${format('app.createNew')} ${format('ui.country.label')}`}
+  return loadingUserSession
+    ? <Loading />
+    : isAdminUser || isEditorUser
+      ? (
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='px-4 py-4 lg:py-6 text-dial-plum'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='text-xl font-semibold'>
+                {country
+                  ? format('app.editEntity', { entity: country.name })
+                  : `${format('app.createNew')} ${format('ui.country.label')}`}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='name'>
+                  {format('ui.country.label')}
+                </label>
+                <Input
+                  {...register('name', { required: format('validation.required') })}
+                  id='name'
+                  placeholder={format('ui.country.label')}
+                  isInvalid={errors.name}
+                />
+                {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-wrap text-base mt-6 gap-3'>
+                <button type='submit' className='submit-button' disabled={mutating || reverting}>
+                  {`${format('app.submit')} ${format('ui.country.label')}`}
+                  {mutating && <FaSpinner className='spinner ml-3' />}
+                </button>
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3' />}
+                </button>
+              </div>
+            </div>
           </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('ui.country.label')}
-            </label>
-            <Input
-              {...register('name', { required: format('validation.required') })}
-              id='name'
-              placeholder={format('ui.country.label')}
-              isInvalid={errors.name}
-            />
-            {errors.name && <ValidationError value={errors.name?.message} />}
-          </div>
-          <div className='flex flex-wrap text-base mt-6 gap-3'>
-            <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('ui.country.label')}`}
-              {mutating && <FaSpinner className='spinner ml-3' />}
-            </button>
-            <button
-              type='button'
-              className='cancel-button'
-              disabled={mutating || reverting}
-              onClick={cancelForm}
-            >
-              {format('app.cancel')}
-              {reverting && <FaSpinner className='spinner ml-3' />}
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  ) : (
-    <Unauthorized />
-  )
+        </form>
+      )
+      : <Unauthorized />
 })
 
 CountryForm.displayName = 'CountryForm'

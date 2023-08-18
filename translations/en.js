@@ -798,6 +798,7 @@ export const en = {
   'ui.resource.url': 'Resource URL',
   'ui.resource.header': 'Resources',
   'ui.resource.label': 'Resource',
+  'ui.resource.createNew': 'Create a new Resource',
 
   'datasetType.label': 'Type',
   'datasetType.header': 'Open Data Type',

@@ -156,10 +156,6 @@ export const UPDATE_PRODUCT_ORGANIZATIONS = gql`
           name
           slug
           imageFile
-          whenEndorsed
-          sectors {
-            name
-          }
         }
       }
       errors

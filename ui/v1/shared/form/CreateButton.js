@@ -19,22 +19,17 @@ const CreateButton = ({
   const style = 'cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
 
   return (
-    type === 'button' ? (
-      <button
-        type='button'
-        onClick={onClick}
-        className={classNames(className, style)}
-      >
-        {innerHtml}
-      </button>
-    ) : type === 'link' && (
-      <a
-        href={href}
-        className={classNames(className, style)}
-      >
-        {innerHtml}
-      </a>
-    )
+    type === 'button'
+      ? (
+        <button type='button' onClick={onClick} className={classNames(className, style)}>
+          {innerHtml}
+        </button>
+      )
+      : type === 'link' && (
+        <a href={href} className={classNames(className, style)}>
+          {innerHtml}
+        </a>
+      )
   )
 }
 

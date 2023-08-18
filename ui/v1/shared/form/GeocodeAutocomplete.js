@@ -53,20 +53,20 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
   }
 
   return (
-    loadingCountries ? (
-      <FaSpinner size='2em' className='spinner' />
-    ) : (
-      <Select
-        ref={ref}
-        async
-        isSearch
-        placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-        loadOptions={input => fetchLocationOptions(input)}
-        noOptionsMessage={() => format('filter.searchFor', { entity: format('location.header') })}
-        onChange={setLocation}
-        value={value}
-      />
-    )
+    loadingCountries
+      ? <FaSpinner size='2em' className='spinner' />
+      : (
+        <Select
+          ref={ref}
+          async
+          isSearch
+          placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+          loadOptions={input => fetchLocationOptions(input)}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('location.header') })}
+          onChange={setLocation}
+          value={value}
+        />
+      )
   )
 })
 

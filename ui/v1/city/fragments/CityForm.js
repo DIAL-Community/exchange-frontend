@@ -93,74 +93,74 @@ const CityForm = React.memo(({ city }) => {
     router.push(`/${locale}/cities/${slug}`)
   }
 
-  return loadingUserSession ? (
-    <Loading />
-  ) : isAdminUser || isEditorUser ? (
-    <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 py-4 lg:py-6 text-dial-plum'>
-        <div className='flex flex-col gap-y-6 text-sm'>
-          <div className='text-xl font-semibold'>
-            {city
-              ? format('app.editEntity', { entity: city.name })
-              : `${format('app.createNew')} ${format('ui.city.label')}`}
+  return loadingUserSession
+    ? <Loading />
+    : isAdminUser || isEditorUser
+      ? (
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='px-4 py-4 lg:py-6 text-dial-plum'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='text-xl font-semibold'>
+                {city
+                  ? format('app.editEntity', { entity: city.name })
+                  : `${format('app.createNew')} ${format('ui.city.label')}`}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='cityName'>
+                  {format('ui.city.label')}
+                </label>
+                <Input
+                  {...register('cityName', { required: format('validation.required') })}
+                  id='cityName'
+                  placeholder={format('ui.city.label')}
+                  isInvalid={errors.cityName}
+                />
+                {errors.cityName && <ValidationError value={errors.cityName?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='regionName'>
+                  {format('ui.region.label')}
+                </label>
+                <Input
+                  {...register('regionName', { required: format('validation.required') })}
+                  id='regionName'
+                  placeholder={format('ui.region.label')}
+                  isInvalid={errors.regionName}
+                />
+                {errors.regionName && <ValidationError value={errors.regionName?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='countryName'>
+                  {format('ui.country.label')}
+                </label>
+                <Input
+                  {...register('countryName', { required: format('validation.required') })}
+                  id='countryName'
+                  placeholder={format('ui.country.label')}
+                  isInvalid={errors.countryName}
+                />
+                {errors.countryName && <ValidationError value={errors.countryName?.message} />}
+              </div>
+              <div className='flex flex-wrap text-base mt-6 gap-3'>
+                <button type='submit' className='submit-button' disabled={mutating || reverting}>
+                  {`${format('app.submit')} ${format('ui.city.label')}`}
+                  {mutating && <FaSpinner className='spinner ml-3' />}
+                </button>
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3' />}
+                </button>
+              </div>
+            </div>
           </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='cityName'>
-              {format('ui.city.label')}
-            </label>
-            <Input
-              {...register('cityName', { required: format('validation.required') })}
-              id='cityName'
-              placeholder={format('ui.city.label')}
-              isInvalid={errors.cityName}
-            />
-            {errors.cityName && <ValidationError value={errors.cityName?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='regionName'>
-              {format('ui.region.label')}
-            </label>
-            <Input
-              {...register('regionName', { required: format('validation.required') })}
-              id='regionName'
-              placeholder={format('ui.region.label')}
-              isInvalid={errors.regionName}
-            />
-            {errors.regionName && <ValidationError value={errors.regionName?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='countryName'>
-              {format('ui.country.label')}
-            </label>
-            <Input
-              {...register('countryName', { required: format('validation.required') })}
-              id='countryName'
-              placeholder={format('ui.country.label')}
-              isInvalid={errors.countryName}
-            />
-            {errors.countryName && <ValidationError value={errors.countryName?.message} />}
-          </div>
-          <div className='flex flex-wrap text-base mt-6 gap-3'>
-            <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('ui.city.label')}`}
-              {mutating && <FaSpinner className='spinner ml-3' />}
-            </button>
-            <button
-              type='button'
-              className='cancel-button'
-              disabled={mutating || reverting}
-              onClick={cancelForm}
-            >
-              {format('app.cancel')}
-              {reverting && <FaSpinner className='spinner ml-3' />}
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  ) : (
-    <Unauthorized />
-  )
+        </form>
+      )
+      : <Unauthorized />
 })
 
 CityForm.displayName = 'CityForm'

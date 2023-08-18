@@ -23,12 +23,17 @@ const DatasetDetailHeader = ({ dataset }) => {
           <div className='font-semibold text-dial-meadow'>
             {format('dataset.website')}
           </div>
-          <div className='flex text-sm text-dial-stratos'>
-            <a href={prependUrlWithProtocol(dataset.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-dial-iris-blue'>
-                {dataset.website} ⧉
+          <div className='flex gap-x-2 text-dial-stratos'>
+            <a
+              href={prependUrlWithProtocol(dataset.website)}
+              target='_blank'
+              rel='noreferrer'
+              className='flex border-b border-dial-iris-blue '>
+              <div className='line-clamp-1'>
+                {dataset.website}
               </div>
             </a>
+            ⧉
           </div>
         </div>
       </div>

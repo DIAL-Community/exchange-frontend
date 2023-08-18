@@ -51,25 +51,27 @@ const ContactDetailRight = forwardRef(({ contact }, ref) => {
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
           {format('ui.organization.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {contact?.organizations.length <= 0 &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.organization.label'),
-                base: format('ui.contact.label')
-              })}
-            </div>
-          }
-          {contact?.organizations?.map((organization, index) =>
-            <div key={`organization-${index}`}>
-              <OrganizationCard
-                index={index}
-                organization={organization}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {contact?.organizations.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.organization.label'),
+              base: format('ui.contact.label')
+            })}
+          </div>
+        }
+        {contact?.organizations.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {contact?.organizations?.map((organization, index) =>
+              <div key={`organization-${index}`}>
+                <OrganizationCard
+                  index={index}
+                  organization={organization}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection

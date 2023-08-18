@@ -17,7 +17,7 @@ const ProjectDetailHeader = ({ project }) => {
             <div className='font-semibold text-dial-sapphire'>
               {format('project.url')}
             </div>
-            <div className='text-dial-stratos'>
+            <div className='flex gap-x-2 text-dial-stratos'>
               <a
                 href={prependUrlWithProtocol(project.projectWebsite)}
                 target='_blank'
@@ -26,8 +26,8 @@ const ProjectDetailHeader = ({ project }) => {
                 <div className='line-clamp-1'>
                   {project.projectWebsite}
                 </div>
-                ⧉
               </a>
+              ⧉
             </div>
           </div>
         }

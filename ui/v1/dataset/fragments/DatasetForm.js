@@ -146,199 +146,199 @@ const DatasetForm = React.memo(({ dataset }) => {
     router.push(`/${locale}/datasets/${slug}`)
   }
 
-  return loadingUserSession ? (
-    <Loading />
-  ) : isAdminUser || isEditorUser ? (
-    <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 py-4 lg:py-6 text-dial-plum'>
-        <div className='flex flex-col gap-y-6 text-sm'>
-          <div className='text-xl font-semibold'>
-            {dataset
-              ? format('app.editEntity', { entity: dataset.name })
-              : `${format('app.createNew')} ${format('ui.dataset.label')}`}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('dataset.name')}
-            </label>
-            <Input
-              {...register('name', { required: format('validation.required') })}
-              id='name'
-              placeholder={format('dataset.name')}
-              isInvalid={errors.name}
-            />
-            {errors.name && <ValidationError value={errors.name?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('dataset.aliases')}</label>
-            {aliases.map((alias, aliasIdx) => (
-              <div key={alias.id} className='flex gap-x-2'>
-                <Input
-                  {...register(`aliases.${aliasIdx}.value`)}
-                  placeholder={format('dataset.alias')}
-                />
-                {isLastAlias(aliasIdx) && (
-                  <span>
-                    <IconButton icon={<FaPlus />} onClick={() => append({ value: '' })} />
-                  </span>
-                )}
-                {!isSingleAlias && (
-                  <span>
-                    <IconButton icon={<FaMinus />} onClick={() => remove(aliasIdx)} />
-                  </span>
-                )}
+  return loadingUserSession
+    ? <Loading />
+    : isAdminUser || isEditorUser
+      ? (
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='px-4 py-4 lg:py-6 text-dial-plum'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='text-xl font-semibold'>
+                {dataset
+                  ? format('app.editEntity', { entity: dataset.name })
+                  : `${format('app.createNew')} ${format('ui.dataset.label')}`}
               </div>
-            ))}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='website'>
-              {format('dataset.website')}
-            </label>
-            <Controller
-              name='website'
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <UrlInput
-                  value={value}
-                  onChange={onChange}
-                  id='website'
-                  isInvalid={errors.website}
-                  placeholder={format('dataset.website')}
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='name'>
+                  {format('dataset.name')}
+                </label>
+                <Input
+                  {...register('name', { required: format('validation.required') })}
+                  id='name'
+                  placeholder={format('dataset.name')}
+                  isInvalid={errors.name}
                 />
-              )}
-              rules={{ required: format('validation.required') }}
-            />
-            {errors.website && <ValidationError value={errors.website?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='visualizationUrl'>
-              {format('dataset.visualizationUrl')}
-            </label>
-            <Controller
-              name='visualizationUrl'
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <UrlInput
-                  value={value}
-                  onChange={onChange}
-                  id='visualizationUrl'
-                  placeholder={format('dataset.visualizationUrl')}
+                {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire'>{format('dataset.aliases')}</label>
+                {aliases.map((alias, aliasIdx) => (
+                  <div key={alias.id} className='flex gap-x-2'>
+                    <Input
+                      {...register(`aliases.${aliasIdx}.value`)}
+                      placeholder={format('dataset.alias')}
+                    />
+                    {isLastAlias(aliasIdx) && (
+                      <span>
+                        <IconButton icon={<FaPlus />} onClick={() => append({ value: '' })} />
+                      </span>
+                    )}
+                    {!isSingleAlias && (
+                      <span>
+                        <IconButton icon={<FaMinus />} onClick={() => remove(aliasIdx)} />
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='website'>
+                  {format('dataset.website')}
+                </label>
+                <Controller
+                  name='website'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <UrlInput
+                      value={value}
+                      onChange={onChange}
+                      id='website'
+                      isInvalid={errors.website}
+                      placeholder={format('dataset.website')}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
                 />
-              )}
-            />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>
-              {format('dataset.datasetType')}
-            </label>
-            <Controller
-              name='datasetType'
-              control={control}
-              render={({ field }) =>
-                <Select {...field}
-                  options={datasetTypeOptions}
-                  placeholder={format('dataset.datasetType')}
+                {errors.website && <ValidationError value={errors.website?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire' htmlFor='visualizationUrl'>
+                  {format('dataset.visualizationUrl')}
+                </label>
+                <Controller
+                  name='visualizationUrl'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <UrlInput
+                      value={value}
+                      onChange={onChange}
+                      id='visualizationUrl'
+                      placeholder={format('dataset.visualizationUrl')}
+                    />
+                  )}
                 />
-              }
-            />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>
-              {format('dataset.imageFile')}
-            </label>
-            <FileUploader {...register('imageFile')} />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='geographicCoverage'>
-              {format('dataset.coverage')}
-            </label>
-            <Input
-              {...register('geographicCoverage')}
-              id='geographicCoverage'
-              placeholder={format('dataset.coverage')}
-            />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='timeRange'>
-              {format('dataset.timeRange')}
-            </label>
-            <Input
-              {...register('timeRange')}
-              id='timeRange'
-              placeholder={format('dataset.timeRange')}
-            />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='license'>
-              {format('dataset.license')}
-            </label>
-            <Input
-              {...register('license')}
-              id='license'
-              placeholder={format('dataset.license')}
-            />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='languages'>
-              {format('dataset.languages')}
-            </label>
-            <Input
-              {...register('languages')}
-              id='languages'
-              placeholder={format('dataset.languages')}
-            />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='dataFormat'>
-              {format('dataset.dataFormat')}
-            </label>
-            <Input
-              {...register('dataFormat')}
-              id='dataFormat'
-              placeholder={format('dataset.dataFormat')}
-            />
-          </div>
-          <div className='block flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
-              {format('dataset.description')}
-            </label>
-            <Controller
-              name='description'
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <HtmlEditor
-                  editorId='description-editor'
-                  onChange={onChange}
-                  initialContent={value}
-                  placeholder={format('dataset.description')}
-                  isInvalid={errors.description}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire'>
+                  {format('dataset.datasetType')}
+                </label>
+                <Controller
+                  name='datasetType'
+                  control={control}
+                  render={({ field }) =>
+                    <Select {...field}
+                      options={datasetTypeOptions}
+                      placeholder={format('dataset.datasetType')}
+                    />
+                  }
                 />
-              )}
-              rules={{ required: format('validation.required') }}
-            />
-            {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire'>
+                  {format('dataset.imageFile')}
+                </label>
+                <FileUploader {...register('imageFile')} />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire' htmlFor='geographicCoverage'>
+                  {format('dataset.coverage')}
+                </label>
+                <Input
+                  {...register('geographicCoverage')}
+                  id='geographicCoverage'
+                  placeholder={format('dataset.coverage')}
+                />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire' htmlFor='timeRange'>
+                  {format('dataset.timeRange')}
+                </label>
+                <Input
+                  {...register('timeRange')}
+                  id='timeRange'
+                  placeholder={format('dataset.timeRange')}
+                />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire' htmlFor='license'>
+                  {format('dataset.license')}
+                </label>
+                <Input
+                  {...register('license')}
+                  id='license'
+                  placeholder={format('dataset.license')}
+                />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire' htmlFor='languages'>
+                  {format('dataset.languages')}
+                </label>
+                <Input
+                  {...register('languages')}
+                  id='languages'
+                  placeholder={format('dataset.languages')}
+                />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire' htmlFor='dataFormat'>
+                  {format('dataset.dataFormat')}
+                </label>
+                <Input
+                  {...register('dataFormat')}
+                  id='dataFormat'
+                  placeholder={format('dataset.dataFormat')}
+                />
+              </div>
+              <div className='block flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field'>
+                  {format('dataset.description')}
+                </label>
+                <Controller
+                  name='description'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <HtmlEditor
+                      editorId='description-editor'
+                      onChange={onChange}
+                      initialContent={value}
+                      placeholder={format('dataset.description')}
+                      isInvalid={errors.description}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
+                />
+                {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='flex flex-wrap text-base mt-6 gap-3'>
+                <button type='submit' className='submit-button' disabled={mutating || reverting}>
+                  {`${format('app.submit')} ${format('ui.dataset.label')}`}
+                  {mutating && <FaSpinner className='spinner ml-3' />}
+                </button>
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3' />}
+                </button>
+              </div>
+            </div>
           </div>
-          <div className='flex flex-wrap text-base mt-6 gap-3'>
-            <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('ui.dataset.label')}`}
-              {mutating && <FaSpinner className='spinner ml-3' />}
-            </button>
-            <button
-              type='button'
-              className='cancel-button'
-              disabled={mutating || reverting}
-              onClick={cancelForm}
-            >
-              {format('app.cancel')}
-              {reverting && <FaSpinner className='spinner ml-3' />}
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  ) : (
-    <Unauthorized />
-  )
+        </form>
+      )
+      : <Unauthorized />
 })
 
 DatasetForm.displayName = 'DatasetForm'

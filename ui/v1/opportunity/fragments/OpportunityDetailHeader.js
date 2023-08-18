@@ -36,7 +36,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
           <div className='font-semibold text-dial-sapphire'>
             {format('opportunity.webAddress')}
           </div>
-          <div className='text-dial-stratos'>
+          <div className='flex gap-x-2 text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(opportunity.webAddress)}
               target='_blank'
@@ -45,8 +45,8 @@ const OpportunityDetailHeader = ({ opportunity }) => {
               <div className='line-clamp-1'>
                 {opportunity.webAddress}
               </div>
-              ⧉
             </a>
+            ⧉
           </div>
         </div>
         <div className='flex flex-col gap-y-3'>

@@ -157,149 +157,149 @@ const OrganizationForm = React.memo(({ organization }) => {
     router.push(`/${locale}/organizations/${slug}`)
   }
 
-  return loadingUserSession ? (
-    <Loading />
-  ) : isAdminUser || isEditorUser ? (
-    <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 py-4 lg:py-6 text-dial-plum'>
-        <div className='flex flex-col gap-y-6 text-sm'>
-          <div className='text-xl font-semibold'>
-            {organization
-              ? format('app.editEntity', { entity: organization.name })
-              : `${format('app.createNew')} ${format('ui.organization.label')}`}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('organization.name')}
-            </label>
-            <Input
-              {...register('name', { required: format('validation.required') })}
-              id='name'
-              placeholder={format('organization.name')}
-              isInvalid={errors.name}
-            />
-            {errors.name && <ValidationError value={errors.name?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('organization.aliases')}</label>
-            {aliases.map((alias, aliasIdx) => (
-              <div key={alias.id} className='flex gap-x-2'>
-                <Input
-                  {...register(`aliases.${aliasIdx}.value`)}
-                  placeholder={format('organization.alias')}
-                />
-                {isLastAlias(aliasIdx) && (
-                  <span>
-                    <IconButton icon={<FaPlus />} onClick={() => append({ value: '' })} />
-                  </span>
-                )}
-                {!isSingleAlias && (
-                  <span>
-                    <IconButton icon={<FaMinus />} onClick={() => remove(aliasIdx)} />
-                  </span>
-                )}
+  return loadingUserSession
+    ? <Loading />
+    : isAdminUser || isEditorUser
+      ? (
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='px-4 py-4 lg:py-6 text-dial-plum'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='text-xl font-semibold'>
+                {organization
+                  ? format('app.editEntity', { entity: organization.name })
+                  : `${format('app.createNew')} ${format('ui.organization.label')}`}
               </div>
-            ))}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='website'>
-              {format('organization.website')}
-            </label>
-            <Controller
-              name='website'
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <UrlInput
-                  value={value}
-                  onChange={onChange}
-                  id='website'
-                  isInvalid={errors.website}
-                  placeholder={format('organization.website')}
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='name'>
+                  {format('organization.name')}
+                </label>
+                <Input
+                  {...register('name', { required: format('validation.required') })}
+                  id='name'
+                  placeholder={format('organization.name')}
+                  isInvalid={errors.name}
                 />
-              )}
-              rules={{ required: format('validation.required') }}
-            />
-            {errors.website && <ValidationError value={errors.website?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('organization.imageFile')}</label>
-            <FileUploader {...register('imageFile')} />
-          </div>
-          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-            <Checkbox {...register('isEndorser')} />
-            {format('organization.isEndorser')}
-          </label>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('organization.whenEndorsed')}</label>
-            <Input
-              {...register('whenEndorsed')}
-              type='date'
-              placeholder={format('organization.whenEndorsed')}
-            />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('organization.endorserLevel')}</label>
-            <Controller
-              name='endorserLevel'
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={endorserLevelOptions}
-                  placeholder={format('organization.endorserLevel')}
+                {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire'>{format('organization.aliases')}</label>
+                {aliases.map((alias, aliasIdx) => (
+                  <div key={alias.id} className='flex gap-x-2'>
+                    <Input
+                      {...register(`aliases.${aliasIdx}.value`)}
+                      placeholder={format('organization.alias')}
+                    />
+                    {isLastAlias(aliasIdx) && (
+                      <span>
+                        <IconButton icon={<FaPlus />} onClick={() => append({ value: '' })} />
+                      </span>
+                    )}
+                    {!isSingleAlias && (
+                      <span>
+                        <IconButton icon={<FaMinus />} onClick={() => remove(aliasIdx)} />
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='website'>
+                  {format('organization.website')}
+                </label>
+                <Controller
+                  name='website'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <UrlInput
+                      value={value}
+                      onChange={onChange}
+                      id='website'
+                      isInvalid={errors.website}
+                      placeholder={format('organization.website')}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
                 />
-              )}
-            />
-          </div>
-          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-            <Checkbox {...register('isMni')} />
-            {format('organization.isMni')}
-          </label>
-          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-            <Checkbox {...register('hasStorefront')} />
-            {format('organization.hasStorefront')}
-          </label>
-          <div className='block flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
-              {format('organization.description')}
-            </label>
-            <Controller
-              name='description'
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <HtmlEditor
-                  editorId='description-editor'
-                  onChange={onChange}
-                  initialContent={value}
-                  placeholder={format('organization.description')}
-                  isInvalid={errors.description}
+                {errors.website && <ValidationError value={errors.website?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire'>{format('organization.imageFile')}</label>
+                <FileUploader {...register('imageFile')} />
+              </div>
+              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+                <Checkbox {...register('isEndorser')} />
+                {format('organization.isEndorser')}
+              </label>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire'>{format('organization.whenEndorsed')}</label>
+                <Input
+                  {...register('whenEndorsed')}
+                  type='date'
+                  placeholder={format('organization.whenEndorsed')}
                 />
-              )}
-              rules={{ required: format('validation.required') }}
-            />
-            {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire'>{format('organization.endorserLevel')}</label>
+                <Controller
+                  name='endorserLevel'
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      options={endorserLevelOptions}
+                      placeholder={format('organization.endorserLevel')}
+                    />
+                  )}
+                />
+              </div>
+              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+                <Checkbox {...register('isMni')} />
+                {format('organization.isMni')}
+              </label>
+              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+                <Checkbox {...register('hasStorefront')} />
+                {format('organization.hasStorefront')}
+              </label>
+              <div className='block flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field'>
+                  {format('organization.description')}
+                </label>
+                <Controller
+                  name='description'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <HtmlEditor
+                      editorId='description-editor'
+                      onChange={onChange}
+                      initialContent={value}
+                      placeholder={format('organization.description')}
+                      isInvalid={errors.description}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
+                />
+                {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='flex flex-wrap text-base mt-6 gap-3'>
+                <button type='submit' className='submit-button' disabled={mutating || reverting}>
+                  {`${format('app.submit')} ${format('ui.organization.label')}`}
+                  {mutating && <FaSpinner className='spinner ml-3' />}
+                </button>
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3' />}
+                </button>
+              </div>
+            </div>
           </div>
-          <div className='flex flex-wrap text-base mt-6 gap-3'>
-            <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('ui.organization.label')}`}
-              {mutating && <FaSpinner className='spinner ml-3' />}
-            </button>
-            <button
-              type='button'
-              className='cancel-button'
-              disabled={mutating || reverting}
-              onClick={cancelForm}
-            >
-              {format('app.cancel')}
-              {reverting && <FaSpinner className='spinner ml-3' />}
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  ) : (
-    <Unauthorized />
-  )
+        </form>
+      )
+      : <Unauthorized />
 })
 
 OrganizationForm.displayName = 'OrganizationForm'

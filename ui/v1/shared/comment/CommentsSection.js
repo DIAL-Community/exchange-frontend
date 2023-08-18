@@ -124,45 +124,48 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   return (
     <div ref={commentsSectionRef} className={classNames(className, 'text-dial-sapphire')}>
       {loadingUserSession && <Loading />}
-      {isInEditMode ? (
-        <CommentsList
-          comments={data?.comments}
-          loading={loading}
-          onClose={toggleIsInEditMode}
-        />
-      ) : (
-        <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
-          {isAdminUser && (
-            <div className='flex justify-end'>
-              <EditButton onClick={toggleIsInEditMode} />
-            </div>
-          )}
-          <CommentSection
-            commentData={commentData}
-            currentUser={user ? {
-              currentUserId: String(user.id),
-              currentUserImg: `https://ui-avatars.com/api/name=${user.userName}&${UI_AVATAR_PARAMS}`,
-              currentUserFullName: user.userName
-            } : null}
-            logIn={{
-              loginLink: '/auth/signin',
-              signupLink: '/auth/signup'
-            }}
-            onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
-            onReplyAction={
-              ({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) =>
-                onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)
-            }
-            onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
-            onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
-            advancedInput
-            removeEmoji
-            hrStyle={{ borderColor: '#dfdfea' }}
-            formStyle={{ backgroundColor: 'white', fontFamily: 'Poppins, sans-serif' }}
-            imgStyle={{ margin: 'auto' }}
+      {isInEditMode
+        ? (
+          <CommentsList
+            comments={data?.comments}
+            loading={loading}
+            onClose={toggleIsInEditMode}
           />
-        </div>
-      )}
+        )
+        : (
+          <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
+            {isAdminUser && (
+              <div className='flex justify-end'>
+                <EditButton onClick={toggleIsInEditMode} />
+              </div>
+            )}
+            <CommentSection
+              commentData={commentData}
+              currentUser={user ? {
+                currentUserId: String(user.id),
+                currentUserImg: `https://ui-avatars.com/api/name=${user.userName}&${UI_AVATAR_PARAMS}`,
+                currentUserFullName: user.userName
+              } : null}
+              logIn={{
+                loginLink: '/auth/signin',
+                signupLink: '/auth/signup'
+              }}
+              onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
+              onReplyAction={
+                ({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) =>
+                  onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)
+              }
+              onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
+              onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
+              advancedInput
+              removeEmoji
+              hrStyle={{ borderColor: '#dfdfea' }}
+              formStyle={{ backgroundColor: 'white', fontFamily: 'Poppins, sans-serif' }}
+              imgStyle={{ margin: 'auto' }}
+            />
+          </div>
+        )
+      }
     </div>
   )
 }

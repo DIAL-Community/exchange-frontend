@@ -103,8 +103,6 @@ export const DATASET_DETAIL_QUERY = gql`
         name
         slug
         imageFile
-        isEndorser
-        whenEndorsed
       }
       sdgsMapping
       sdgs {

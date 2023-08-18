@@ -114,20 +114,23 @@ const ProductInteroperable = ({ product }) => {
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.interoperable')}
       </div>
-      {product.interoperatesWith.length > 0 ? (
-        product.interoperatesWith.map((interoperateProd, index) => (
-          <div key={index} className='pb-5 mr-6'>
-            <ProductCard product={interoperateProd} displayType={DisplayType.SMALL_CARD} />
+      {product.interoperatesWith.length > 0
+        ? (
+          product.interoperatesWith.map((interoperateProd, index) => (
+            <div key={index} className='pb-5 mr-6'>
+              <ProductCard product={interoperateProd} displayType={DisplayType.SMALL_CARD} />
+            </div>
+          ))
+        )
+        : (
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: 'interoperable product',
+              base: format('ui.product.label')
+            })}
           </div>
-        ))
-      ) : (
-        <div className='text-sm text-dial-stratos'>
-          {format('ui.common.detail.noData', {
-            entity: 'interoperable product',
-            base: format('ui.product.label')
-          })}
-        </div>
-      )}
+        )
+      }
     </div>
   )
 }
@@ -141,20 +144,23 @@ const ProductIncluded = ({ product }) => {
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.included')}
       </div>
-      {product.includes.length > 0 ? (
-        product.includes.map((includeProduct, index) => (
-          <div key={index} className='pb-5 mr-6'>
-            <ProductCard product={includeProduct} displayType={DisplayType.SMALL_CARD} />
+      {product.includes.length > 0
+        ? (
+          product.includes.map((includeProduct, index) => (
+            <div key={index} className='pb-5 mr-6'>
+              <ProductCard product={includeProduct} displayType={DisplayType.SMALL_CARD} />
+            </div>
+          ))
+        )
+        : (
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: 'included product',
+              base: format('ui.product.label')
+            })}
           </div>
-        ))
-      ) : (
-        <div className='text-sm text-dial-stratos'>
-          {format('ui.common.detail.noData', {
-            entity: 'included product',
-            base: format('ui.product.label')
-          })}
-        </div>
-      )}
+        )
+      }
     </div>
   )
 }

@@ -93,74 +93,74 @@ const WorkflowForm = React.memo(({ workflow }) => {
     router.push(`/${locale}/workflows/${slug}`)
   }
 
-  return loadingUserSession ? (
-    <Loading />
-  ) : isAdminUser || isEditorUser ? (
-    <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 py-4 lg:py-6 text-dial-plum'>
-        <div className='flex flex-col gap-y-6 text-sm'>
-          <div className='text-xl font-semibold'>
-            {workflow
-              ? format('app.editEntity', { entity: workflow.name })
-              : `${format('app.createNew')} ${format('ui.workflow.label')}`}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='name'>
-              {format('workflow.name')}
-            </label>
-            <Input
-              {...register('name', { required: format('validation.required') })}
-              id='name'
-              placeholder={format('workflow.name')}
-              isInvalid={errors.name}
-            />
-            {errors.name && <ValidationError value={errors.name?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire'>{format('workflow.imageFile')}</label>
-            <FileUploader {...register('imageFile')} />
-          </div>
-          <div className='block flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
-              {format('workflow.description')}
-            </label>
-            <Controller
-              name='description'
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <HtmlEditor
-                  editorId='description-editor'
-                  onChange={onChange}
-                  initialContent={value}
-                  placeholder={format('workflow.description')}
-                  isInvalid={errors.description}
+  return loadingUserSession
+    ? <Loading />
+    : isAdminUser || isEditorUser
+      ? (
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='px-4 py-4 lg:py-6 text-dial-plum'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='text-xl font-semibold'>
+                {workflow
+                  ? format('app.editEntity', { entity: workflow.name })
+                  : `${format('app.createNew')} ${format('ui.workflow.label')}`}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='name'>
+                  {format('workflow.name')}
+                </label>
+                <Input
+                  {...register('name', { required: format('validation.required') })}
+                  id='name'
+                  placeholder={format('workflow.name')}
+                  isInvalid={errors.name}
                 />
-              )}
-              rules={{ required: format('validation.required') }}
-            />
-            {errors.description && <ValidationError value={errors.description?.message} />}
+                {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire'>{format('workflow.imageFile')}</label>
+                <FileUploader {...register('imageFile')} />
+              </div>
+              <div className='block flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field'>
+                  {format('workflow.description')}
+                </label>
+                <Controller
+                  name='description'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <HtmlEditor
+                      editorId='description-editor'
+                      onChange={onChange}
+                      initialContent={value}
+                      placeholder={format('workflow.description')}
+                      isInvalid={errors.description}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
+                />
+                {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='flex flex-wrap text-base mt-6 gap-3'>
+                <button type='submit' className='submit-button' disabled={mutating || reverting}>
+                  {`${format('app.submit')} ${format('ui.workflow.label')}`}
+                  {mutating && <FaSpinner className='spinner ml-3' />}
+                </button>
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3' />}
+                </button>
+              </div>
+            </div>
           </div>
-          <div className='flex flex-wrap text-base mt-6 gap-3'>
-            <button type='submit' className='submit-button' disabled={mutating || reverting}>
-              {`${format('app.submit')} ${format('ui.workflow.label')}`}
-              {mutating && <FaSpinner className='spinner ml-3' />}
-            </button>
-            <button
-              type='button'
-              className='cancel-button'
-              disabled={mutating || reverting}
-              onClick={cancelForm}
-            >
-              {format('app.cancel')}
-              {reverting && <FaSpinner className='spinner ml-3' />}
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  ) : (
-    <Unauthorized />
-  )
+        </form>
+      )
+      : <Unauthorized />
 })
 
 WorkflowForm.displayName = 'WorkflowForm'

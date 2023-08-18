@@ -14,20 +14,22 @@ const CommentsList = ({ comments, loading, onClose }) => {
       </div>
       <div className='bg-edit p-6'>
         {loading ? <Loading /> : (
-          comments?.length ? (
-            <div className='flex flex-col gap-3'>
-              {comments?.map(({ comId, fullName, avatarUrl, text, replies }, commentIdx) => (
-                <CommentCard
-                  key={commentIdx}
-                  commentId={comId}
-                  authorFullName={fullName}
-                  authorAvatarUrl={avatarUrl}
-                  text={text}
-                  replies={replies}
-                />
-              ))}
-            </div>
-          ) : format('shared.comment.no-comments')
+          comments?.length
+            ? (
+              <div className='flex flex-col gap-3'>
+                {comments?.map(({ comId, fullName, avatarUrl, text, replies }, commentIdx) => (
+                  <CommentCard
+                    key={commentIdx}
+                    commentId={comId}
+                    authorFullName={fullName}
+                    authorAvatarUrl={avatarUrl}
+                    text={text}
+                    replies={replies}
+                  />
+                ))}
+              </div>
+            )
+            : format('shared.comment.no-comments')
         )}
         <div className='flex justify-end mt-8 gap-3 text-xl'>
           <button

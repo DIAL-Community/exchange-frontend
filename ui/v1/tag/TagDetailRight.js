@@ -64,50 +64,54 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={datasetRef}>
           {format('ui.dataset.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {tag?.datasets.length <= 0 &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.dataset.label'),
-                base: format('ui.tag.label')
-              })}
-            </div>
-          }
-          {tag?.datasets?.map((dataset, index) =>
-            <div key={`dataset-${index}`}>
-              <DatasetCard
-                index={index}
-                dataset={dataset}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {tag?.datasets.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.dataset.label'),
+              base: format('ui.tag.label')
+            })}
+          </div>
+        }
+        {tag?.datasets.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {tag?.datasets?.map((dataset, index) =>
+              <div key={`dataset-${index}`}>
+                <DatasetCard
+                  index={index}
+                  dataset={dataset}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={productRef}>
           {format('ui.product.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {tag?.products.length <= 0 &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.product.label'),
-                base: format('ui.tag.label')
-              })}
-            </div>
-          }
-          {tag?.products?.map((product, index) =>
-            <div key={`product-${index}`}>
-              <ProductCard
-                index={index}
-                product={product}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {tag?.products.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.product.label'),
+              base: format('ui.tag.label')
+            })}
+          </div>
+        }
+        {tag.products.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {tag?.products?.map((product, index) =>
+              <div key={`product-${index}`}>
+                <ProductCard
+                  index={index}
+                  product={product}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
@@ -139,25 +143,27 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={useCaseRef}>
           {format('ui.useCase.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-          {tag?.useCases.length <= 0 &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.useCase.label'),
-                base: format('ui.tag.label')
-              })}
-            </div>
-          }
-          {tag?.useCases?.map((useCase, index) =>
-            <div key={`useCase-${index}`}>
-              <UseCaseCard
-                index={index}
-                useCase={useCase}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        {tag?.useCases.length <= 0 &&
+          <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.useCase.label'),
+              base: format('ui.tag.label')
+            })}
+          </div>
+        }
+        {tag?.useCases.length > 0 &&
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+            {tag?.useCases?.map((useCase, index) =>
+              <div key={`useCase-${index}`}>
+                <UseCaseCard
+                  index={index}
+                  useCase={useCase}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        }
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
       <CommentsSection

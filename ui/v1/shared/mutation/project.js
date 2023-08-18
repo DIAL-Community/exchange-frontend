@@ -93,11 +93,6 @@ export const UPDATE_PROJECT_ORGANIZATIONS = gql`
           name
           slug
           imageFile
-          whenEndorsed
-          sectors {
-            id
-            name
-          }
         }
       }
       errors

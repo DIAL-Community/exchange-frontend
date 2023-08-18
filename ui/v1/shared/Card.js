@@ -15,21 +15,25 @@ const Card = ({ onClick, href, children, className }) => {
   )
 
   return (
-    href ? (
-      <Link href={href}>
-        <div className={cardContainerStyles}>
-          <CardBody />
-        </div>
-      </Link>
-    ) : onClick ? (
-      <div className={cardContainerStyles} onClick={onClick}>
-        <CardBody />
-      </div>
-    ) : (
-      <div className={cardContainerStyles}>
-        <CardBody />
-      </div>
-    )
+    href
+      ? (
+        <Link href={href}>
+          <div className={cardContainerStyles}>
+            <CardBody />
+          </div>
+        </Link>
+      )
+      : onClick
+        ? (
+          <div className={cardContainerStyles} onClick={onClick}>
+            <CardBody />
+          </div>
+        )
+        : (
+          <div className={cardContainerStyles}>
+            <CardBody />
+          </div>
+        )
   )
 }
 

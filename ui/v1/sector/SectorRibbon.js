@@ -13,7 +13,7 @@ const SectorRibbon = () => {
         alt={format('ui.image.logoAlt', { name: format('ui.sector.label') })}
         width={40}
         height={40}
-        className='object-contain mt-3 mx-auto white-filter'
+        className='object-contain mt-4 mx-auto white-filter'
       />
     </div>
 
