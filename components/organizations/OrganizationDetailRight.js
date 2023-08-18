@@ -120,7 +120,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
       {
         organization.isMni &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('operator.header')}</div>
+            <div className='card-title mb-3'>{format('ui.operator.header')}</div>
             <AggregatorCapability aggregatorId={organization.id} />
           </div>
       }

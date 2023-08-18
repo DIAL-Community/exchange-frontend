@@ -693,11 +693,11 @@ export const sw = {
   "tag.header": "Lebo",
   "tag.delete.confirm.message": "Je, una uhakika unataka kufuta Lebo hii?",
 
-  "service.label": "Huduma",
-  "service.header": "Huduma",
+  "ui.service.label": "Huduma",
+  "ui.service.header": "Huduma",
 
-  "operator.label": "Opereta",
-  "operator.header": "Opereta",
+  "ui.operator.label": "Opereta",
+  "ui.operator.header": "Opereta",
 
   "ui.aggregator.label": "Wakala",
   "map.loading.indicator": "Inasasisha data ya ramani...",

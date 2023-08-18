@@ -693,11 +693,11 @@ export const cs = {
   "tag.header": "Značky",
   "tag.delete.confirm.message": "Opravdu chcete tuto značku odstranit?",
 
-  "service.label": "Služba",
-  "service.header": "Služby",
+  "ui.service.label": "Služba",
+  "ui.service.header": "Služby",
 
-  "operator.label": "Operátor",
-  "operator.header": "Operátoři",
+  "ui.operator.label": "Operátor",
+  "ui.operator.header": "Operátoři",
 
   "ui.aggregator.label": "Agregátor",
   "map.loading.indicator": "Aktualizace mapových dat ...",

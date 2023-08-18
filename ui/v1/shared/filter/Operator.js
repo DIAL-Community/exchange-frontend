@@ -20,7 +20,7 @@ export const OperatorAutocomplete = ({
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('operator.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.operator.label') })
 
   const selectOperator = (operator) => {
     setOperators([...operators.filter(({ value }) => value !== operator.value), operator])
@@ -40,19 +40,19 @@ export const OperatorAutocomplete = ({
     <div className='flex flex-col gap-y-3'>
       <button className='flex' onClick={() => setShowFilter(!showFilter)}>
         <div className='text-dial-stratos text-sm ml-4 py-2'>
-          {format('ui.service.label')}
+          {format('ui.operator.label')}
         </div>
         <BsPlus className='ml-auto my-auto' />
       </button>
       {showFilter &&
         <Select
           async
-          aria-label={format('filter.byEntity', { entity: format('operator.label') })}
+          aria-label={format('filter.byEntity', { entity: format('ui.operator.label') })}
           className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
           loadOptions={(input) => fetchSelectOptions(client, input, OPERATOR_SEARCH_QUERY, fetchedOperatorsCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('operator.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.operator.header') })}
           onChange={selectOperator}
           placeholder={controlPlaceholder}
           value=''

@@ -146,19 +146,21 @@ const AggregatorMap = () => {
   const loading = loadingCapabilityData || loadingOperatorServiceData || loadingAggregators || loadingCountries
 
   return (
-    <div className='flex flex-row min-h-[10vh]'>
-      {loading &&
-        <div className='absolute right-4 px-3 py-2 rounded-md' style={{ zIndex: 19 }}>
-          <div className='text-dial-stratos text-sm'>
-            {format('map.loading.indicator')}
+    <div className='min-h-[10vh]'>
+      <div className='flex flex-row bg-dial-iris-blue rounded-md relative'>
+        {loading &&
+          <div className='absolute right-4 px-3 py-2 rounded-md' style={{ zIndex: 19 }}>
+            <div className='text-dial-stratos text-sm'>
+              {format('map.loading.indicator')}
+            </div>
           </div>
-        </div>
-      }
-      <CountryMarkersMaps
-        countries={countriesWithAggregators}
-        setSelectedCountry={setSelectedCountry}
-      />
-      <CountryInfo country={country} />
+        }
+        <CountryMarkersMaps
+          countries={countriesWithAggregators}
+          setSelectedCountry={setSelectedCountry}
+        />
+        <CountryInfo country={country} />
+      </div>
     </div>
   )
 }

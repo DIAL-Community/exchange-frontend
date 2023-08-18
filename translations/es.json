@@ -693,11 +693,11 @@
   "tag.header": "Etiquetas",
   "tag.delete.confirm.message": "¿Estás seguro de que quieres eliminar esta etiqueta?",
 
-  "service.label": "Servicio",
-  "service.header": "Servicios",
+  "ui.service.label": "Servicio",
+  "ui.service.header": "Servicios",
 
-  "operator.label": "Operador",
-  "operator.header": "Operadores",
+  "ui.operator.label": "Operador",
+  "ui.operator.header": "Operadores",
 
   "ui.aggregator.label": "Agregador",
   "map.loading.indicator": "Actualización de los datos del mapa...",

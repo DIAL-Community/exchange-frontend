@@ -693,11 +693,11 @@ export const de = {
   "tag.header": "Tags",
   "tag.delete.confirm.message": "Möchtest du dieses Tag wirklich löschen?",
 
-  "service.label": "Wartung",
-  "service.header": "Dienstleistungen",
+  "ui.service.label": "Wartung",
+  "ui.service.header": "Dienstleistungen",
 
-  "operator.label": "Bediener",
-  "operator.header": "Bediener",
+  "ui.operator.label": "Bediener",
+  "ui.operator.header": "Bediener",
 
   "ui.aggregator.label": "Aggregator",
   "map.loading.indicator": "Kartendaten werden aktualisiert ...",

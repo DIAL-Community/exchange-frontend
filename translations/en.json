@@ -527,11 +527,11 @@
   "tag.label": "Tag",
   "tag.header": "Tags",
 
-  "service.label": "Service",
-  "service.header": "Services",
+  "ui.service.label": "Service",
+  "ui.service.header": "Services",
 
-  "operator.label": "Operator",
-  "operator.header": "Operators",
+  "ui.operator.label": "Operator",
+  "ui.operator.header": "Operators",
 
   "ui.aggregator.label": "Aggregator",
   "map.loading.indicator": "Updating map data ...",

@@ -906,11 +906,11 @@ export const en = {
   'tag.header': 'Tags',
   'tag.delete.confirm.message': 'Are you sure you want to delete this Tag?',
 
-  'service.label': 'Service',
-  'service.header': 'Services',
+  'ui.service.label': 'Service',
+  'ui.service.header': 'Services',
 
-  'operator.label': 'Operator',
-  'operator.header': 'Operators',
+  'ui.operator.label': 'Network Operator',
+  'ui.operator.header': 'Network Operators',
 
   'ui.aggregator.label': 'Aggregator',
   'map.loading.indicator': 'Updating map data ...',

@@ -41,7 +41,7 @@ const MapFilter = () => {
 
   return (
     <div className='flex flex-col gap-y-2'>
-      <div className='text-sm font-semibold text-dial-sapphire'>
+      <div className='text-sm font-semibold text-dial-sapphire py-3'>
         {format('ui.filter.primary.title')}
       </div>
       {routeContains('projects') && (

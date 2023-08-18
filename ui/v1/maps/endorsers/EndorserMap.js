@@ -69,9 +69,9 @@ const EndorserMap = () => {
 
   return (
     <div className='min-h-[10vh]'>
-      <div className='flex flex-row rounded-md'>
+      <div className='flex flex-row bg-dial-iris-blue rounded-md relative'>
         {loading &&
-          <div className='absolute right-4 px-3 py-2 mt-2' style={{ zIndex: 19 }}>
+          <div className='absolute right-3 px-3 py-2 text-sm' style={{ zIndex: 19 }}>
             <div className='text-sm text-dial-stratos'>
               {format('map.loading.indicator')}
             </div>

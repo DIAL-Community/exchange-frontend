@@ -46,7 +46,7 @@ export const CapabilityAutocomplete = ({
       {showFilter &&
         <Select
           async
-          aria-label={format('filter.byEntity', { entity: format('service.label') })}
+          aria-label={format('filter.byEntity', { entity: format('ui.service.label') })}
           className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions

@@ -21,7 +21,7 @@ export const CapabilityAutocomplete = ({
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('service.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.service.label') })
 
   const selectCapability = (service) => {
     setServices([...services.filter(c => c.value !== service.value), service])
@@ -40,12 +40,12 @@ export const CapabilityAutocomplete = ({
     <div className={classNames(containerStyles)} data-testid='service-search'>
       <Select
         async
-        aria-label={format('filter.byEntity', { entity: format('service.label') })}
+        aria-label={format('filter.byEntity', { entity: format('ui.service.label') })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, CAPABILITY_SEARCH_QUERY, fetchedCapabilityCallback)}
-        noOptionsMessage={() => format('filter.searchFor', { entity: format('service.header') })}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.service.header') })}
         onChange={selectCapability}
         placeholder={controlPlaceholder}
         value=''
@@ -72,7 +72,7 @@ export const CapabilityFilters = (props) => {
         <div className='py-1' key={serviceIdx}>
           <Pill
             key={`filter-${serviceIdx}`}
-            label={`${format('service.label')}: ${service.label}`}
+            label={`${format('ui.service.label')}: ${service.label}`}
             onRemove={() => removeCapability(service.slug)}
           />
         </div>

@@ -693,11 +693,11 @@ export const fr = {
   "tag.header": "Balises",
   "tag.delete.confirm.message": "Êtes-vous sûr de vouloir supprimer cette étiquette ?",
 
-  "service.label": "Service",
-  "service.header": "Services",
+  "ui.service.label": "Service",
+  "ui.service.header": "Services",
 
-  "operator.label": "Opérateur",
-  "operator.header": "Opérateurs",
+  "ui.operator.label": "Opérateur",
+  "ui.operator.header": "Opérateurs",
 
   "ui.aggregator.label": "Agrégateur",
   "map.loading.indicator": "Mise à jour des données de la carte...",

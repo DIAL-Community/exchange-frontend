@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useIntl, FormattedMessage } from 'react-intl'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Footer from '../ui/v1/shared/Footer'
+import Header from '../ui/v1/shared/Footer'
 
 const jsphUrl = 'https://www.jhsph.edu/departments/international-health/news/johns-hopkins-researchers-publish' +
 '-assessment-of-digital-solutions-for-covid-19-response-in-low-and-middle-income-countries.html'

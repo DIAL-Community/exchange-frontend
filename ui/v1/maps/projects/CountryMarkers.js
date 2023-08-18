@@ -19,7 +19,9 @@ const CountryMarkers = (props) => {
 
   const markerClickHandler = (e, countryName) => {
     countryMarkerGroup.current.eachLayer(layer => {
-      const layerOpacity = layer._leaflet_id === e.target._leaflet_id ? SELECTED_OPACITY : NON_SELECTED_OPACITY
+      const layerOpacity = layer._leaflet_id === e.target._leaflet_id
+        ? SELECTED_OPACITY
+        : NON_SELECTED_OPACITY
       layer.setOpacity(layerOpacity)
     })
     setSelectedCountry(countryName)
@@ -46,25 +48,23 @@ const CountryMarkers = (props) => {
 
   return (
     <LayerGroup ref={countryMarkerGroup}>
-      {
-        Object.keys(countries).map((countryName) => {
-          const country = countries[countryName]
-          if (country.projects.length === 0) {
-            return <div key={countryName} />
-          }
+      {Object.keys(countries).map((countryName) => {
+        const country = countries[countryName]
+        if (country.projects.length === 0) {
+          return <div key={countryName} />
+        }
 
-          return (
-            <Marker
-              key={countryName}
-              icon={createCountryMarkerIcon(country)}
-              position={[country.latitude, country.longitude]}
-              eventHandlers={{
-                click: (e) => markerClickHandler(e, countryName)
-              }}
-            />
-          )
-        })
-      }
+        return (
+          <Marker
+            key={countryName}
+            icon={createCountryMarkerIcon(country)}
+            position={[country.latitude, country.longitude]}
+            eventHandlers={{
+              click: (e) => markerClickHandler(e, countryName)
+            }}
+          />
+        )
+      })}
     </LayerGroup>
   )
 }
