@@ -79,7 +79,7 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
     }))
   )
 
-  const addSdgs = (sdg) => {
+  const addSdg = (sdg) => {
     setSdgs([
       ...[
         ...sdgs.filter(({ id }) => id !== sdg.id), {
@@ -97,7 +97,7 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const removeSdgs = (sdg) => {
+  const removeSdg = (sdg) => {
     setSdgs([...sdgs.filter(({ id }) => id !== sdg.id)])
     setIsDirty(true)
   }
@@ -168,7 +168,7 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
             fetchSelectOptions(client, input, SDG_SEARCH_QUERY, fetchedSdgsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg.label') })}
-          onChange={addSdgs}
+          onChange={addSdg}
           value={null}
         />
       </label>
@@ -177,7 +177,7 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
           <Pill
             key={`sdgs-${sdgIdx}`}
             label={`${sdg.number}. ${sdg.name}`}
-            onRemove={() => removeSdgs(sdg)}
+            onRemove={() => removeSdg(sdg)}
           />
         ))}
       </div>

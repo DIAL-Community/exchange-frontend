@@ -73,7 +73,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit, headerRef }) =>
     }))
   )
 
-  const addBuildingBlocks = (buildingBlock) => {
+  const addBuildingBlock = (buildingBlock) => {
     setBuildingBlocks([
       ...[
         ...buildingBlocks.filter(({ id }) => id !== buildingBlock.id),
@@ -83,7 +83,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit, headerRef }) =>
     setIsDirty(true)
   }
 
-  const removeBuildingBlocks = (buildingBlock) => {
+  const removeBuildingBlock = (buildingBlock) => {
     setBuildingBlocks([...buildingBlocks.filter(({ id }) => id !== buildingBlock.id)])
     setIsDirty(true)
   }
@@ -170,7 +170,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit, headerRef }) =>
             fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.buildingBlock.label') })}
-          onChange={addBuildingBlocks}
+          onChange={addBuildingBlock}
           value={null}
         />
       </label>
@@ -179,7 +179,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit, headerRef }) =>
           <Pill
             key={`buildingBlocks-${buildingBlockIdx}`}
             label={buildingBlock.name}
-            onRemove={() => removeBuildingBlocks(buildingBlock)}
+            onRemove={() => removeBuildingBlock(buildingBlock)}
           />
         ))}
       </div>

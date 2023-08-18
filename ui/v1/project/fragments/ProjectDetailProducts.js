@@ -58,7 +58,7 @@ const ProjectDetailProducts = ({ project, canEdit, headerRef }) => {
     }))
   )
 
-  const addProducts = (product) => {
+  const addProduct = (product) => {
     setProducts([
       ...[
         ...products.filter(({ id }) => id !== product.id),
@@ -68,7 +68,7 @@ const ProjectDetailProducts = ({ project, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const removeProducts = (product) => {
+  const removeProduct = (product) => {
     setProducts([...products.filter(({ id }) => id !== product.id)])
     setIsDirty(true)
   }
@@ -134,7 +134,7 @@ const ProjectDetailProducts = ({ project, canEdit, headerRef }) => {
             fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.label') })}
-          onChange={addProducts}
+          onChange={addProduct}
           value={null}
         />
       </label>
@@ -143,7 +143,7 @@ const ProjectDetailProducts = ({ project, canEdit, headerRef }) => {
           <Pill
             key={`products-${productIdx}`}
             label={product.name}
-            onRemove={() => removeProducts(product)}
+            onRemove={() => removeProduct(product)}
           />
         ))}
       </div>

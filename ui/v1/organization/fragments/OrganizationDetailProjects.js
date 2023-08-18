@@ -58,7 +58,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
     }))
   )
 
-  const addProjects = (project) => {
+  const addProject = (project) => {
     setProjects([
       ...[
         ...projects.filter(({ id }) => id !== project.id),
@@ -68,7 +68,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const removeProjects = (project) => {
+  const removeProject = (project) => {
     setProjects([...projects.filter(({ id }) => id !== project.id)])
     setIsDirty(true)
   }
@@ -132,7 +132,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
             fetchSelectOptions(client, input, PROJECT_SEARCH_QUERY, fetchedProjectsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.project.label') })}
-          onChange={addProjects}
+          onChange={addProject}
           value={null}
         />
       </label>
@@ -141,7 +141,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
           <Pill
             key={`projects-${projectIdx}`}
             label={project.name}
-            onRemove={() => removeProjects(project)}
+            onRemove={() => removeProject(project)}
           />
         ))}
       </div>

@@ -30,7 +30,7 @@ const FileUploader = React.forwardRef(({ onChange, onBlur, isInvalid = false, cl
           </span>
         </div>
       </label>
-      <div className='text-xs italic text-dial-stratos'>
+      <div className='text-sm italic text-dial-stratos'>
         {format('upload.supportedFormats')}
       </div>
     </>

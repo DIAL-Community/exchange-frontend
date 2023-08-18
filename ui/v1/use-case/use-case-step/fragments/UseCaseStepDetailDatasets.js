@@ -58,7 +58,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
     }))
   )
 
-  const addDatasets = (dataset) => {
+  const addDataset = (dataset) => {
     setDatasets([
       ...[
         ...datasets.filter(({ id }) => id !== dataset.id),
@@ -68,7 +68,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const removeDatasets = (dataset) => {
+  const removeDataset = (dataset) => {
     setDatasets([...datasets.filter(({ id }) => id !== dataset.id)])
     setIsDirty(true)
   }
@@ -132,7 +132,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
             fetchSelectOptions(client, input, DATASET_SEARCH_QUERY, fetchedDatasetsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.dataset.label') })}
-          onChange={addDatasets}
+          onChange={addDataset}
           value={null}
         />
       </label>
@@ -141,7 +141,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
           <Pill
             key={`datasets-${datasetIdx}`}
             label={dataset.name}
-            onRemove={() => removeDatasets(dataset)}
+            onRemove={() => removeDataset(dataset)}
           />
         ))}
       </div>

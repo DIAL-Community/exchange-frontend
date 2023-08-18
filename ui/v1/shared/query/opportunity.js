@@ -1,8 +1,26 @@
 import { gql } from '@apollo/client'
 
 export const OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeOpportunity($search: String) {
-    paginationAttributeOpportunity(search: $search) {
+  query PaginationAttributeOpportunity(
+    $countries: [String!]
+    $buildingBlocks: [String!]
+    $organizations: [String!]
+    $useCases: [String!]
+    $sectors: [String!]
+    $tags: [String!]
+    $showClosed: Boolean,
+    $search: String!
+  ) {
+    paginationAttributeOpportunity(
+      countries: $countries
+      buildingBlocks: $buildingBlocks
+      organizations: $organizations
+      useCases: $useCases
+      sectors: $sectors
+      tags: $tags
+      showClosed: $showClosed
+      search: $search
+    ) {
       totalCount
     }
   }
@@ -10,16 +28,26 @@ export const OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY = gql`
 
 export const PAGINATED_OPPORTUNITIES_QUERY = gql`
   query PaginatedOpportunities(
-    $search: String
+    $countries: [String!]
+    $buildingBlocks: [String!]
+    $organizations: [String!]
+    $useCases: [String!]
     $sectors: [String!]
     $tags: [String!]
+    $showClosed: Boolean,
+    $search: String!
     $limit: Int!
     $offset: Int!
   ) {
     paginatedOpportunities(
-      search: $search
+      countries: $countries
+      buildingBlocks: $buildingBlocks
+      organizations: $organizations
+      useCases: $useCases
       sectors: $sectors
       tags: $tags
+      showClosed: $showClosed
+      search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
@@ -28,6 +56,15 @@ export const PAGINATED_OPPORTUNITIES_QUERY = gql`
       imageFile
       description
       tags
+      sectors {
+        id
+      }
+      organizations {
+        id
+      }
+      countries {
+        id
+      }
     }
   }
 `
@@ -58,6 +95,7 @@ export const OPPORTUNITY_DETAIL_QUERY = gql`
         slug
         name
         imageFile
+        maturity
       }
       organizations {
         id
@@ -81,6 +119,7 @@ export const OPPORTUNITY_DETAIL_QUERY = gql`
         id
         slug
         name
+        code
       }
     }
   }

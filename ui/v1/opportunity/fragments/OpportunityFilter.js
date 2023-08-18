@@ -1,49 +1,67 @@
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
+import { IoClose } from 'react-icons/io5'
 import {
   OpportunityFilterContext,
   OpportunityFilterDispatchContext
 } from '../../../../components/context/OpportunityFilterContext'
+import Checkbox from '../../shared/form/Checkbox'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
-import Checkbox from '../../shared/form/Checkbox'
-
-const COVID_19_LABEL = 'COVID-19'
+import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
+import { BuildingBlockActiveFilters, BuildingBlockAutocomplete } from '../../shared/filter/BuildingBlock'
+import { OrganizationActiveFilters, OrganizationAutocomplete } from '../../shared/filter/Organization'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 
 const OpportunityFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sectors, tags } = useContext(OpportunityFilterContext)
-  const { setSectors, setTags } = useContext(OpportunityFilterDispatchContext)
+  const {
+    buildingBlocks,
+    countries,
+    organizations,
+    sectors,
+    useCases,
+    tags,
+    showClosed
+  } = useContext(OpportunityFilterContext)
+
+  const {
+    setBuildingBlocks,
+    setCountries,
+    setOrganizations,
+    setSectors,
+    setUseCases,
+    setTags,
+    setShowClosed
+  } = useContext(OpportunityFilterDispatchContext)
 
   const [expanded, setExpanded] = useState(false)
 
-  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
-
-  const toggleCovid19Tag = () => {
-    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_LABEL)
-    setTags(isCovid19TagActive
-      ? tagsWithoutCovid19
-      : [
-        ...tagsWithoutCovid19,
-        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_LABEL }
-      ]
-    )
+  const toggleClosedOpportunityFilter = () => {
+    setShowClosed(!showClosed)
   }
 
   const clearFilter = (e) => {
     e.preventDefault()
-
+    setShowClosed(false)
+    setBuildingBlocks([])
+    setCountries([])
+    setOrganizations([])
     setSectors([])
+    setUseCases([])
     setTags([])
   }
 
   const filteringOpportunity = () => {
-
-    return sectors.length +
-      tags.length > 0
+    return buildingBlocks.length
+      + countries.length
+      + organizations.length
+      + sectors.length
+      + useCases.length
+      + showClosed ? 1 : 0 > 0
   }
 
   return (
@@ -61,8 +79,24 @@ const OpportunityFilter = () => {
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
+            <UseCaseActiveFilters useCases={useCases} setUseCases={setUseCases} />
+            <BuildingBlockActiveFilters buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />
+            <OrganizationActiveFilters organizations={organizations} setOrganizations={setOrganizations} />
             <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
             <TagActiveFilters tags={tags} setTags={setTags} />
+            <CountryActiveFilters countries={countries} setCountries={setCountries} />
+            {showClosed && (
+              <div className='bg-dial-slate-400 px-2 py-1 rounded text-white'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('filter.opportunity.showClosed')}
+                    <button onClick={toggleClosedOpportunityFilter}>
+                      <IoClose size='1rem' />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       }
@@ -71,9 +105,13 @@ const OpportunityFilter = () => {
           {format('ui.filter.primary.title')}
         </div>
         <hr className='border-b border-dial-slate-200'/>
-        <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
+        <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
         <hr className='border-b border-dial-slate-200'/>
-        <TagAutocomplete tags={tags} setTags={setTags} />
+        <BuildingBlockAutocomplete buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />
+        <hr className='border-b border-dial-slate-200'/>
+        <OrganizationAutocomplete organizations={organizations} setOrganizations={setOrganizations} />
+        <hr className='border-b border-dial-slate-200'/>
+        <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
         <hr className='border-b border-dial-slate-200'/>
       </div>
       <div className='flex flex-col gap-y-2'>
@@ -92,11 +130,15 @@ const OpportunityFilter = () => {
         {expanded &&
           <>
             <label className='flex pl-4 py-2'>
-              <Checkbox value={isCovid19TagActive} onChange={toggleCovid19Tag} />
+              <Checkbox value={showClosed} onChange={toggleClosedOpportunityFilter} />
               <span className='mx-2 my-auto text-sm'>
-                {format('filter.opportunity.forCovid')}
+                {format('filter.opportunity.showClosed')}
               </span>
             </label>
+            <hr className='border-b border-dial-slate-200'/>
+            <TagAutocomplete tags={tags} setTags={setTags} />
+            <hr className='border-b border-dial-slate-200'/>
+            <CountryAutocomplete countries={countries} setCountries={setCountries} />
             <hr className='border-b border-dial-slate-200'/>
           </>
         }

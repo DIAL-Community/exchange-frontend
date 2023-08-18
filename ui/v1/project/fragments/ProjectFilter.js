@@ -79,11 +79,11 @@ const ProjectFilter = () => {
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
-            <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
             <ProductActiveFilters products={products} setProducts={setProducts} />
             <OrganizationActiveFilters organizations={organizations} setOrganizations={setOrganizations} />
-            <CountryActiveFilters countries={countries} setCountries={setCountries} />
+            <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
             <TagActiveFilters tags={tags} setTags={setTags} />
+            <CountryActiveFilters countries={countries} setCountries={setCountries} />
             <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             <OriginActiveFilters origins={origins} setOrigins={setOrigins} />
           </div>

@@ -59,7 +59,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
     }))
   )
 
-  const addSdgTargets = (sdgTarget) => {
+  const addSdgTarget = (sdgTarget) => {
     setSdgTargets([
       ...[
         ...sdgTargets.filter(({ id }) => id !== sdgTarget.id), {
@@ -77,7 +77,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const removeSdgTargets = (sdgTarget) => {
+  const removeSdgTarget = (sdgTarget) => {
     setSdgTargets([...sdgTargets.filter(({ id }) => id !== sdgTarget.id)])
     setIsDirty(true)
   }
@@ -139,7 +139,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
             fetchSelectOptions(client, input, SDG_TARGET_SEARCH_QUERY, fetchedSdgTargetsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.sdgTarget.label') })}
-          onChange={addSdgTargets}
+          onChange={addSdgTarget}
           value={null}
         />
       </label>
@@ -151,7 +151,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
               `${sdgTarget.targetNumber}. ` +
               `${sdgTarget.name}`
             }
-            onRemove={() => removeSdgTargets(sdgTarget)}
+            onRemove={() => removeSdgTarget(sdgTarget)}
           />
         ))}
       </div>

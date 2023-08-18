@@ -30,6 +30,7 @@ export const PROJECTS_QUERY = gql`
           id
           name
           slug
+          code
         }
       }
     }
@@ -63,8 +64,10 @@ export const ORGANIZATIONS_QUERY = gql`
         website
         whenEndorsed
         countries {
+          id
           name
           slug
+          code
           latitude
           longitude
         }
@@ -109,6 +112,7 @@ export const AGGREGATORS_QUERY = gql`
           id
           name
           slug
+          code
           latitude
           longitude
         }

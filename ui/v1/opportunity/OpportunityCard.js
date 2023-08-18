@@ -39,11 +39,15 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissCardHandler }
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sdg.header')} ({opportunity.sustainableDevelopmentGoals?.length ?? 0})
+              {format('ui.sector.header')} ({opportunity.sectors?.length ?? 0})
             </div>
             <div className='border-r border-dial-stratos-400' />
             <div className='text-sm'>
-              {format('ui.buildingBlock.header')} ({opportunity.buildingBlocks?.length ?? 0})
+              {format('ui.organization.header')} ({opportunity.organizations?.length ?? 0})
+            </div>
+            <div className='border-r border-dial-stratos-400' />
+            <div className='text-sm'>
+              {format('ui.country.header')} ({opportunity.countries?.length ?? 0})
             </div>
           </div>
         </div>

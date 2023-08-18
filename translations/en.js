@@ -702,6 +702,7 @@ export const en = {
 
   'filter.product.forCovid': 'COVID-19 Tools',
   'filter.project.forCovid': 'COVID-19 Projects',
+  'filter.opportunity.forCovid': 'COVID-19 RFP',
 
   'filter.product.endorsed': 'Show endorsed products',
   'filter.product.launchable': 'Product can be deployed and launched',
@@ -1941,7 +1942,7 @@ export const en = {
 
   'ui.exchange.title': 'The Digital Exchange Marketplace',
 
-  'ui.opportunity.label': 'RFP Radar',
+  'ui.opportunity.label': 'RFP',
   'ui.opportunity.header': 'RFP Radar',
 
   'ui.storefront.label': 'Storefront',

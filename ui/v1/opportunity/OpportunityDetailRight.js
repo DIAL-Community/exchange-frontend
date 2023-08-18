@@ -9,6 +9,8 @@ import OpportunityDetailTags from './fragments/OpportunityDetailTags'
 import DeleteOpportunity from './DeleteOpportunity'
 import OpportunityDetailBuildingBlocks from './fragments/OpportunityDetailBuildingBlocks'
 import OpportunityDetailOrganizations from './fragments/OpportunityDetailOrganizations'
+import OpportunityDetailCountries from './fragments/OpportunityDetailCountries'
+import OpportunityDetailUseCases from './fragments/OpportunityDetailUseCases'
 
 const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
   const { formatMessage } = useIntl()
@@ -18,10 +20,10 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
   const canEdit = (isAdminUser || isEditorUser) && !opportunity.markdownUrl
 
   const descRef = useRef()
-  const pricingRef = useRef()
-  const sdgRef = useRef()
+  const countryRef = useRef()
   const buildingBlockRef = useRef()
   const organizationRef = useRef()
+  const useCaseRef = useRef()
   const tagRef = useRef()
   const commentsSectionRef = useRef()
 
@@ -29,10 +31,10 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.opportunity.pricing.title', ref: pricingRef },
-      { value: 'ui.sdg.header', ref: sdgRef },
+      { value: 'ui.country.header', ref: countryRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
       { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.useCase.header', ref: useCaseRef },
       { value: 'ui.tag.header', ref: tagRef },
       { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
@@ -62,6 +64,14 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
+        <OpportunityDetailCountries
+          opportunity={opportunity}
+          canEdit={canEdit}
+          headerRef={countryRef}
+        />
+      </div>
+      <hr className='border-b border-dial-blue-chalk mt-6' />
+      <div className='flex flex-col gap-y-3'>
         <OpportunityDetailBuildingBlocks
           opportunity={opportunity}
           canEdit={canEdit}
@@ -74,6 +84,14 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
           opportunity={opportunity}
           canEdit={canEdit}
           headerRef={organizationRef}
+        />
+      </div>
+      <hr className='border-b border-dial-blue-chalk mt-6' />
+      <div className='flex flex-col gap-y-3'>
+        <OpportunityDetailUseCases
+          opportunity={opportunity}
+          canEdit={canEdit}
+          headerRef={useCaseRef}
         />
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6' />

@@ -5,21 +5,21 @@ import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import Select from '../../shared/form/Select'
-import { PRODUCT_SEARCH_QUERY } from '../../../../queries/product'
+import { COUNTRY_SEARCH_QUERY } from '../../../../queries/country'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import { fetchSelectOptions } from '../../utils/search'
 import { DisplayType } from '../../utils/constants'
-import { UPDATE_ORGANIZATION_PRODUCTS } from '../../shared/mutation/organization'
-import ProductCard from '../../product/ProductCard'
+import { UPDATE_OPPORTUNITY_COUNTRIES } from '../../shared/mutation/opportunity'
+import CountryCard from '../../country/CountryCard'
 
-const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
+const OpportunityDetailCountries = ({ opportunity, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [products, setProducts] = useState(organization.products)
+  const [countries, setCountries] = useState(opportunity.countries)
   const [isDirty, setIsDirty] = useState(false)
 
   const { user } = useUser()
@@ -27,49 +27,49 @@ const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
-  const [updateOrganizationProducts, { loading, reset }] = useMutation(UPDATE_ORGANIZATION_PRODUCTS, {
+  const [updateOpportunityCountries, { loading, reset }] = useMutation(UPDATE_OPPORTUNITY_COUNTRIES, {
     onError() {
       setIsDirty(false)
-      setProducts(organization?.products)
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.product.header') }))
+      setCountries(opportunity?.countries)
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.country.header') }))
       reset()
     },
     onCompleted: (data) => {
-      const { updateOrganizationProducts: response } = data
-      if (response?.organization && response?.errors?.length === 0) {
+      const { updateOpportunityCountries: response } = data
+      if (response?.opportunity && response?.errors?.length === 0) {
         setIsDirty(false)
-        setProducts(response?.organization?.products)
-        showSuccessMessage(format('toast.submit.success', { entity: format('ui.product.header') }))
+        setCountries(response?.opportunity?.countries)
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.country.header') }))
       } else {
         setIsDirty(false)
-        setProducts(organization?.products)
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.product.header') }))
+        setCountries(opportunity?.countries)
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.country.header') }))
         reset()
       }
     }
   })
 
-  const fetchedProductsCallback = (data) => (
-    data.products?.map((product) => ({
-      id: product.id,
-      name: product.name,
-      slug: product.slug,
-      label: product.name
+  const fetchedCountriesCallback = (data) => (
+    data.countries?.map((country) => ({
+      id: country.id,
+      name: country.name,
+      slug: country.slug,
+      label: country.name
     }))
   )
 
-  const addProduct = (product) => {
-    setProducts([
+  const addCountry = (country) => {
+    setCountries([
       ...[
-        ...products.filter(({ id }) => id !== product.id),
-        { id: product.id, name: product.name, slug: product.slug  }
+        ...countries.filter(({ id }) => id !== country.id),
+        { id: country.id, name: country.name, slug: country.slug  }
       ]
     ])
     setIsDirty(true)
   }
 
-  const removeProduct = (product) => {
-    setProducts([...products.filter(({ id }) => id !== product.id)])
+  const removeCountry = (country) => {
+    setCountries([...countries.filter(({ id }) => id !== country.id)])
     setIsDirty(true)
   }
 
@@ -77,10 +77,10 @@ const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
     if (user) {
       const { userEmail, userToken } = user
 
-      updateOrganizationProducts({
+      updateOpportunityCountries({
         variables: {
-          productSlugs: products.map(({ slug }) => slug),
-          slug: organization.slug
+          countrySlugs: countries.map(({ slug }) => slug),
+          slug: opportunity.slug
         },
         context: {
           headers: {
@@ -93,34 +93,34 @@ const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setProducts(organization.products)
+    setCountries(opportunity.countries)
     setIsDirty(false)
   }
 
-  const displayModeBody = products.length
+  const displayModeBody = countries.length
     ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-      {products?.map((product, index) =>
-        <div key={`product-${index}`}>
-          <ProductCard product={product} displayType={DisplayType.SMALL_CARD} />
+      {countries?.map((country, index) =>
+        <div key={`country-${index}`}>
+          <CountryCard country={country} displayType={DisplayType.SMALL_CARD} />
         </div>
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
-        entity: format('ui.product.label'),
-        base: format('ui.organization.label')
+        entity: format('ui.country.label'),
+        base: format('ui.opportunity.label')
       })}
     </div>
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-plum' ref={headerRef}>
-      {format('ui.product.header')}
+    <div className='text-xl font-semibold text-dial-meadow' ref={headerRef}>
+      {format('ui.country.header')}
     </div>
 
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
-        {`${format('app.searchAndAssign')} ${format('ui.product.label')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.country.label')}`}
         <Select
           async
           isSearch
@@ -129,19 +129,19 @@ const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) =>
-            fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)
+            fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedCountriesCallback)
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.label') })}
-          onChange={addProduct}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.country.label') })}
+          onChange={addCountry}
           value={null}
         />
       </label>
       <div className='flex flex-wrap gap-3'>
-        {products.map((product, productIdx) => (
+        {countries.map((country, countryIdx) => (
           <Pill
-            key={`products-${productIdx}`}
-            label={product.name}
-            onRemove={() => removeProduct(product)}
+            key={`countries-${countryIdx}`}
+            label={country.name}
+            onRemove={() => removeCountry(country)}
           />
         ))}
       </div>
@@ -161,4 +161,4 @@ const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
   )
 }
 
-export default OrganizationDetailProducts
+export default OpportunityDetailCountries

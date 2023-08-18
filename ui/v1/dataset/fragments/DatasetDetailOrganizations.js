@@ -58,7 +58,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
     }))
   )
 
-  const addOrganizations = (organization) => {
+  const addOrganization = (organization) => {
     setOrganizations([
       ...[
         ...organizations.filter(({ id }) => id !== organization.id),
@@ -68,7 +68,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const removeOrganizations = (organization) => {
+  const removeOrganization = (organization) => {
     setOrganizations([...organizations.filter(({ id }) => id !== organization.id)])
     setIsDirty(true)
   }
@@ -120,7 +120,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
     </div>
 
   const sectionDisclaimer =
-    <div className='text-xs italic text-dial-stratos'>
+    <div className='text-sm italic text-dial-stratos'>
       {format('ui.organization.disclaimer', { entity: format('ui.dataset.label') })}
     </div>
 
@@ -139,7 +139,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
             fetchSelectOptions(client, input, ORGANIZATION_SEARCH_QUERY, fetchedOrganizationsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.organization.label') })}
-          onChange={addOrganizations}
+          onChange={addOrganization}
           value={null}
         />
       </label>
@@ -148,7 +148,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
           <Pill
             key={`organizations-${organizationIdx}`}
             label={organization.name}
-            onRemove={() => removeOrganizations(organization)}
+            onRemove={() => removeOrganization(organization)}
           />
         ))}
       </div>

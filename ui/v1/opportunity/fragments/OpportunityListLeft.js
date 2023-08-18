@@ -16,46 +16,45 @@ const OpportunityListLeft = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const {
-    isEndorsed, opportunityDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi
+    buildingBlocks,
+    countries,
+    organizations,
+    sectors,
+    useCases,
+    tags,
+    showClosed
   } = useContext(OpportunityFilterContext)
 
   const {
-    setIsEndorsed, setOpportunityDeployable, setSectors, setCountries, setOrganizations,
-    setOrigins, setSdgs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
-    setLicenseTypes, setIsLinkedWithDpi
+    setBuildingBlocks,
+    setCountries,
+    setOrganizations,
+    setSectors,
+    setUseCases,
+    setTags,
+    setShowClosed
   } = useContext(OpportunityFilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = '/opportunities'
 
-    const endorsedFilter = isEndorsed ? 'isEndorsed=true' : ''
-    const deployableFilter = opportunityDeployable ? 'opportunityDeployable=true' : ''
-    const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
-    const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const organizationFilters = organizations.map(
-      organization => `organizations=${organization.value}--${organization.label}`
-    )
-    const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
-    const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
-    const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
-    const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
     const buildingBlockFilters = buildingBlocks.map(
       buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
     )
-    const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
-    const licenseTypesFilter = licenseTypes.map(
-      licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
+    const organizationFilters = organizations.map(
+      organization => `organizations=${organization.value}--${organization.label}`
     )
-    const linkedWithDpiFilter = isLinkedWithDpi ? 'isLinkedWithDpi=true' : ''
+    const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
+    const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
+    const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
+    const closedFilter = showClosed ? 'showClosed=true' : ''
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
-      ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
-      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, linkedWithDpiFilter
+      activeFilter, ...countryFilters, ...buildingBlockFilters, ...organizationFilters,
+      ...useCaseFilters, ...sectorFilters, ...tagFilters, closedFilter
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -63,25 +62,15 @@ const OpportunityListLeft = () => {
 
   useEffect(() => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
-    if (
-      query &&
-      Object.getOwnPropertyNames(query).length > 1 &&
-      query.shareCatalog && !interactionDetected
-    ) {
-      setIsEndorsed(query.isEndorsed === 'true')
-      setOpportunityDeployable(query.opportunityDeployable === 'true')
-      parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
-      parseQuery(query, 'origins', origins, setOrigins)
+    const filtered = query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog
+    if (filtered && !interactionDetected) {
       parseQuery(query, 'countries', countries, setCountries)
-      parseQuery(query, 'sectors', sectors, setSectors)
-      parseQuery(query, 'organizations', organizations, setOrganizations)
-      parseQuery(query, 'sdgs', sdgs, setSdgs)
-      parseQuery(query, 'tags', tags, setTags)
-      parseQuery(query, 'useCases', useCases, setUseCases)
-      parseQuery(query, 'workflows', workflows, setWorkflows)
       parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
-      parseQuery(query, 'endorsers', endorsers, setEndorsers)
-      setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
+      parseQuery(query, 'organizations', organizations, setOrganizations)
+      parseQuery(query, 'useCases', useCases, setUseCases)
+      parseQuery(query, 'sectors', sectors, setSectors)
+      parseQuery(query, 'tags', tags, setTags)
+      setShowClosed(query.showClosed === 'true')
     }
   })
 

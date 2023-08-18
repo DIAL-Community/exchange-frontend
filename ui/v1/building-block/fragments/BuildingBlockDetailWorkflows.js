@@ -58,7 +58,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
     }))
   )
 
-  const addWorkflows = (workflow) => {
+  const addWorkflow = (workflow) => {
     setWorkflows([
       ...[
         ...workflows.filter(({ id }) => id !== workflow.id),
@@ -68,7 +68,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
     setIsDirty(true)
   }
 
-  const removeWorkflows = (workflow) => {
+  const removeWorkflow = (workflow) => {
     setWorkflows([...workflows.filter(({ id }) => id !== workflow.id)])
     setIsDirty(true)
   }
@@ -132,7 +132,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
             fetchSelectOptions(client, input, WORKFLOW_SEARCH_QUERY, fetchedWorkflowsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.workflow.label') })}
-          onChange={addWorkflows}
+          onChange={addWorkflow}
           value={null}
         />
       </label>
@@ -141,7 +141,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
           <Pill
             key={`workflows-${workflowIdx}`}
             label={workflow.name}
-            onRemove={() => removeWorkflows(workflow)}
+            onRemove={() => removeWorkflow(workflow)}
           />
         ))}
       </div>

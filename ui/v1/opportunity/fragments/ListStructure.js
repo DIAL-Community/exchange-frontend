@@ -9,15 +9,26 @@ import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(OpportunityFilterContext)
-  const { useCases, buildingBlocks, sectors, tags } = useContext(OpportunityFilterContext)
+  const {
+    buildingBlocks,
+    countries,
+    organizations,
+    sectors,
+    useCases,
+    tags,
+    showClosed
+  } = useContext(OpportunityFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_OPPORTUNITIES_QUERY, {
     variables: {
       search,
-      useCases: useCases.map(useCase => useCase.value),
+      countries: countries.map(country => country.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
+      organizations: organizations.map(organization => organization.value),
+      useCases: useCases.map(useCase => useCase.value),
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
+      showClosed,
       limit: defaultPageSize,
       offset: pageOffset
     }

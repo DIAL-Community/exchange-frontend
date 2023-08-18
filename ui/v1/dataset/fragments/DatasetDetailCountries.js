@@ -58,7 +58,7 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
     }))
   )
 
-  const addCountries = (country) => {
+  const addCountry = (country) => {
     setCountries([
       ...[
         ...countries.filter(({ id }) => id !== country.id),
@@ -68,7 +68,7 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
-  const removeCountries = (country) => {
+  const removeCountry = (country) => {
     setCountries([...countries.filter(({ id }) => id !== country.id)])
     setIsDirty(true)
   }
@@ -132,7 +132,7 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
             fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedCountriesCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.country.label') })}
-          onChange={addCountries}
+          onChange={addCountry}
           value={null}
         />
       </label>
@@ -141,7 +141,7 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
           <Pill
             key={`countries-${countryIdx}`}
             label={country.name}
-            onRemove={() => removeCountries(country)}
+            onRemove={() => removeCountry(country)}
           />
         ))}
       </div>

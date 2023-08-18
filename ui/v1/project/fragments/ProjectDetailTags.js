@@ -115,7 +115,7 @@ const ProjectDetailTags = ({ project, canEdit, headerRef }) => {
           value={null}
         />
       </label>
-      <div className='flex flex-wrap gap-3 mt-5'>
+      <div className='flex flex-wrap gap-3'>
         {tags.map((tag, tagIdx) => (
           <Pill
             key={`tag-${tagIdx}`}
