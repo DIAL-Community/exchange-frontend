@@ -41,11 +41,11 @@ const DatasetCard = ({ displayType, index, dataset, dismissCardHandler }) => {
             <div className='text-sm'>
               {format('ui.sdg.header')} ({dataset.sustainableDevelopmentGoals?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.sector.header')} ({dataset.sectors?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.tag.header')} ({dataset.tags?.length ?? 0})
             </div>

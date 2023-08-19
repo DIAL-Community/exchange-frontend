@@ -160,23 +160,23 @@ const DatasetForm = React.memo(({ dataset }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='name'>
-                  {format('dataset.name')}
+                  {format('ui.dataset.name')}
                 </label>
                 <Input
                   {...register('name', { required: format('validation.required') })}
                   id='name'
-                  placeholder={format('dataset.name')}
+                  placeholder={format('ui.dataset.name')}
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire'>{format('dataset.aliases')}</label>
+                <label className='text-dial-sapphire'>{format('ui.dataset.aliases')}</label>
                 {aliases.map((alias, aliasIdx) => (
                   <div key={alias.id} className='flex gap-x-2'>
                     <Input
                       {...register(`aliases.${aliasIdx}.value`)}
-                      placeholder={format('dataset.alias')}
+                      placeholder={format('ui.dataset.alias')}
                     />
                     {isLastAlias(aliasIdx) && (
                       <span>
@@ -193,7 +193,7 @@ const DatasetForm = React.memo(({ dataset }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='website'>
-                  {format('dataset.website')}
+                  {format('ui.dataset.website')}
                 </label>
                 <Controller
                   name='website'
@@ -204,7 +204,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                       onChange={onChange}
                       id='website'
                       isInvalid={errors.website}
-                      placeholder={format('dataset.website')}
+                      placeholder={format('ui.dataset.website')}
                     />
                   )}
                   rules={{ required: format('validation.required') }}
@@ -213,7 +213,7 @@ const DatasetForm = React.memo(({ dataset }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire' htmlFor='visualizationUrl'>
-                  {format('dataset.visualizationUrl')}
+                  {format('ui.dataset.visualizationUrl')}
                 </label>
                 <Controller
                   name='visualizationUrl'
@@ -223,14 +223,14 @@ const DatasetForm = React.memo(({ dataset }) => {
                       value={value}
                       onChange={onChange}
                       id='visualizationUrl'
-                      placeholder={format('dataset.visualizationUrl')}
+                      placeholder={format('ui.dataset.visualizationUrl')}
                     />
                   )}
                 />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire'>
-                  {format('dataset.datasetType')}
+                  {format('ui.dataset.datasetType')}
                 </label>
                 <Controller
                   name='datasetType'
@@ -238,70 +238,70 @@ const DatasetForm = React.memo(({ dataset }) => {
                   render={({ field }) =>
                     <Select {...field}
                       options={datasetTypeOptions}
-                      placeholder={format('dataset.datasetType')}
+                      placeholder={format('ui.dataset.datasetType')}
                     />
                   }
                 />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire'>
-                  {format('dataset.imageFile')}
+                  {format('ui.dataset.imageFile')}
                 </label>
                 <FileUploader {...register('imageFile')} />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire' htmlFor='geographicCoverage'>
-                  {format('dataset.coverage')}
+                  {format('ui.dataset.coverage')}
                 </label>
                 <Input
                   {...register('geographicCoverage')}
                   id='geographicCoverage'
-                  placeholder={format('dataset.coverage')}
+                  placeholder={format('ui.dataset.coverage')}
                 />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire' htmlFor='timeRange'>
-                  {format('dataset.timeRange')}
+                  {format('ui.dataset.timeRange')}
                 </label>
                 <Input
                   {...register('timeRange')}
                   id='timeRange'
-                  placeholder={format('dataset.timeRange')}
+                  placeholder={format('ui.dataset.timeRange')}
                 />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire' htmlFor='license'>
-                  {format('dataset.license')}
+                  {format('ui.dataset.license')}
                 </label>
                 <Input
                   {...register('license')}
                   id='license'
-                  placeholder={format('dataset.license')}
+                  placeholder={format('ui.dataset.license')}
                 />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire' htmlFor='languages'>
-                  {format('dataset.languages')}
+                  {format('ui.dataset.languages')}
                 </label>
                 <Input
                   {...register('languages')}
                   id='languages'
-                  placeholder={format('dataset.languages')}
+                  placeholder={format('ui.dataset.languages')}
                 />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire' htmlFor='dataFormat'>
-                  {format('dataset.dataFormat')}
+                  {format('ui.dataset.dataFormat')}
                 </label>
                 <Input
                   {...register('dataFormat')}
                   id='dataFormat'
-                  placeholder={format('dataset.dataFormat')}
+                  placeholder={format('ui.dataset.dataFormat')}
                 />
               </div>
               <div className='block flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
-                  {format('dataset.description')}
+                  {format('ui.dataset.description')}
                 </label>
                 <Controller
                   name='description'
@@ -311,7 +311,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                       editorId='description-editor'
                       onChange={onChange}
                       initialContent={value}
-                      placeholder={format('dataset.description')}
+                      placeholder={format('ui.dataset.description')}
                       isInvalid={errors.description}
                     />
                   )}

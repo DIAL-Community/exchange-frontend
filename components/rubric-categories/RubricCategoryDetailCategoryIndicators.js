@@ -121,7 +121,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
     )
     : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('rubric-category.no-indicator')}
+        {format('ui.rubricCategory.no-indicator')}
       </div>
     )
 

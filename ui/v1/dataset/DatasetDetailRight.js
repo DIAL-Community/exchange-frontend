@@ -18,7 +18,7 @@ const DatasetSource = ({ dataset }) => {
   return (
     <div className='flex flex-col gap-y-3'>
       <div className='text-lg font-semibold text-dial-plum'>
-        {format('dataset.source')}
+        {format('ui.dataset.source')}
       </div>
       <div className='flex flex-col gap-3 mt-3'>
         {dataset.origins?.length <= 0 &&

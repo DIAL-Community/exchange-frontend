@@ -10,10 +10,10 @@ const PlaybookHint = () => {
   return (
     <div className='flex flex-col gap-2 text-dial-stratos'>
       <div className='text-xl font-semibold'>
-        {format('playbooks.label')}
+        {format('ui.playbook.label')}
       </div>
       <div className='text-base'>
-        {format('playbook.hint.subtitle')}
+        {format('ui.playbook.hint.subtitle')}
       </div>
       <div className='mx-auto'>
         <Image
@@ -23,16 +23,16 @@ const PlaybookHint = () => {
           alt='' />
       </div>
       <div className='text-lg font-semibold'>
-        {format('playbook.hint.characteristicTitle').toUpperCase()}
+        {format('ui.playbook.hint.characteristicTitle').toUpperCase()}
       </div>
       <div className='fr-view text-sm'>
-        {parse(format('playbook.hint.characteristics'))}
+        {parse(format('ui.playbook.hint.characteristics'))}
       </div>
       <div className='text-lg font-semibold'>
-        {format('playbook.hint.descriptionTitle').toUpperCase()}
+        {format('ui.playbook.hint.descriptionTitle').toUpperCase()}
       </div>
       <div className='fr-view text-sm'>
-        {format('playbook.hint.description')}
+        {format('ui.playbook.hint.description')}
       </div>
     </div>
   )

@@ -22,11 +22,11 @@ export const DatasetTypeSelect = ({
   }
 
   const options = [
-    { value: 'dataset_and_content', label: format('datasetType.allType') },
-    { value: 'dataset', label: format('datasetType.datasetOnly') },
-    { value: 'content', label: format('datasetType.contentOnly') },
-    { value: 'standard', label: format('datasetType.standardOnly') },
-    { value: 'ai_model', label: format('datasetType.aiModelOnly') }
+    { value: 'dataset_and_content', label: format('ui.datasetType.allType') },
+    { value: 'dataset', label: format('ui.datasetType.datasetOnly') },
+    { value: 'content', label: format('ui.datasetType.contentOnly') },
+    { value: 'standard', label: format('ui.datasetType.standardOnly') },
+    { value: 'ai_model', label: format('ui.datasetType.aiModelOnly') }
   ]
 
   const fetchOptions = async (input) => {

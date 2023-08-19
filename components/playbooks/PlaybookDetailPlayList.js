@@ -89,7 +89,7 @@ const Play = ({ playbookSlug, play, index }) => {
       <div className='h-px border-b' />
       <div className='flex'>
         <div className='font-semibold text-2xl py-4'>
-          {`${format('plays.label')} ${index + 1}. ${play.name}`}
+          {`${format('ui.play.label')} ${index + 1}. ${play.name}`}
         </div>
         <div className='ml-auto my-auto flex gap-2'>
           {canEdit && <EditButton type='link' href={generateEditLink()} />}
@@ -105,7 +105,7 @@ const Play = ({ playbookSlug, play, index }) => {
         <div className='flex gap-2 ml-auto'>
           {canEdit &&
             <CreateButton
-              label={format('move.add')}
+              label={format('ui.move.add')}
               type='link'
               href={generateAddMoveLink()}
             />
@@ -118,7 +118,7 @@ const Play = ({ playbookSlug, play, index }) => {
             >
               <FiMove className='inline pb-0.5' />
               <span className='text-sm px-1'>
-                {format('move.rearrange')}
+                {format('ui.move.rearrange')}
               </span>
             </button>
           }
@@ -147,7 +147,7 @@ const Play = ({ playbookSlug, play, index }) => {
             <div className='h4'>{format('ui.buildingBlock.header')}</div>
             <div
               className='text-sm'
-              dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
+              dangerouslySetInnerHTML={{ __html: format('ui.play.buildingBlocks.subtitle') }}
             />
             <div className='grid grid-cols-1 md:grid-cols-2'>
               {play.buildingBlocks.map((bb, bbIdx) =>
@@ -162,7 +162,7 @@ const Play = ({ playbookSlug, play, index }) => {
             <div className='h4'>{format('ui.product.header')}</div>
             <div
               className='text-sm'
-              dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
+              dangerouslySetInnerHTML={{ __html: format('ui.play.products.subtitle') }}
             />
             <div className='grid grid-cols-1 md:grid-cols-2'>
               {play.products.map(

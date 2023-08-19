@@ -97,7 +97,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
       const { applyAsOwner: response } = data
       if (response?.candidateRole && response?.errors?.length === 0) {
         showToast(
-          format('toast.applyAsOwner.submit.success', { entity: format('dataset.label') }),
+          format('toast.applyAsOwner.submit.success', { entity: format('ui.dataset.label') }),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -194,7 +194,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           shadow-lg border-b-2 border-dial-gray
         `}
       >
-        {format('dataset.owner')}
+        {format('ui.dataset.owner')}
         <div className='flex flex-row gap-3'>
           {
             showApplyLink &&

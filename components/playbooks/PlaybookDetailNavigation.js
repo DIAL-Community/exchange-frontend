@@ -131,7 +131,7 @@ const PlaybookDetailNavigation = ({ playbook }) => {
         >
           <div className={`border-l-8 ${currentSlug === OVERVIEW_SLUG_NAME ? `${ACTIVE_NAV_COLOR}` : 'border-transparent'}`}>
             <a href='#navigate-to-play' className='block py-4 px-8' onClick={(e) => navigateToPlay(e, OVERVIEW_SLUG_NAME)}>
-              {format('playbooks.overview')}
+              {format('ui.playbook.overview')}
             </a>
           </div>
         </div>
@@ -157,7 +157,7 @@ const PlaybookDetailNavigation = ({ playbook }) => {
                       ${currentSlug === playbookPlay.playSlug ? `${ACTIVE_NAV_COLOR}` : 'border-transparent'}
                     `}
                   >
-                    {`${format('plays.label')} ${index + 1}. ${playbookPlay.playName}`}
+                    {`${format('ui.play.label')} ${index + 1}. ${playbookPlay.playName}`}
                     {
                       currentSlug === playbookPlay.playSlug && mappedMoves[playbookPlay.playSlug] &&
                         mappedMoves[playbookPlay.playSlug].map((moveName, index) =>

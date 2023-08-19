@@ -36,7 +36,7 @@ const RubricCategoryDetailLeft = ({ rubricCategory, slugNameMapping }) => {
           <hr className='my-2' />
           <div className='text-sm'>
             <span className='font-semibold'>
-              {format('rubric-category.weight')}
+              {format('ui.rubricCategory.weight')}
             </span>
             {`: ${rubricCategory?.weight}`}
           </div>

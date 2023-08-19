@@ -106,10 +106,10 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('dataset.header')}
+        {format('app.assign')} {format('ui.dataset.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='dataset-search'>
-        {`${format('app.searchAndAssign')} ${format('dataset.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.dataset.header')}`}
         <Select
           async
           isSearch
@@ -117,7 +117,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) => fetchSelectOptions(client, input, DATASET_SEARCH_QUERY, fetchedDatasetsCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('dataset.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.dataset.header') })}
           onChange={addDataset}
           value={null}
         />
@@ -136,7 +136,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('dataset.header')}
+      sectionHeader={format('ui.dataset.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

@@ -128,7 +128,7 @@ const RubricCategoryForm = React.memo(({ rubricCategory }) => {
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {rubricCategory
                   ? format('app.editEntity', { entity: rubricCategory.name })
-                  : `${format('app.createNew')} ${format('rubric-category.label')}`
+                  : `${format('app.createNew')} ${format('ui.rubricCategory.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
@@ -147,14 +147,14 @@ const RubricCategoryForm = React.memo(({ rubricCategory }) => {
                   </div>
                   <div className='form-field-wrapper' data-testid='rubric-category-weight'>
                     <label className='form-field-label required-field' htmlFor='weight'>
-                      {format('rubric-category.weight')}
+                      {format('ui.rubricCategory.weight')}
                     </label>
                     <Input
                       {...register('weight', { required: format('validation.required') })}
                       id='weight'
                       type='number'
                       step='0.1'
-                      placeholder={format('rubric-category.weight')}
+                      placeholder={format('ui.rubricCategory.weight')}
                       isInvalid={errors.weight}
                     />
                     {errors.weight && <ValidationError value={errors.weight?.message} />}
@@ -190,7 +190,7 @@ const RubricCategoryForm = React.memo(({ rubricCategory }) => {
                   disabled={mutating || reverting}
                   data-testid='submit-button'
                 >
-                  {`${format('app.submit')} ${format('rubric-category.label')}`}
+                  {`${format('app.submit')} ${format('ui.rubricCategory.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>
                 <button

@@ -30,7 +30,7 @@ const PlaybookCard = ({ playbook, listType, newTab = false, canEdit }) => {
                 data-tooltip-id='react-tooltip'
                 data-tooltip-content={format(
                   'tooltip.forEntity',
-                  { entity: format('playbooks.label'), name: playbook.name }
+                  { entity: format('ui.playbook.label'), name: playbook.name }
                 )}
                 alt={format('image.alt.logoFor', { name: playbook.name })}
                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
@@ -44,7 +44,7 @@ const PlaybookCard = ({ playbook, listType, newTab = false, canEdit }) => {
             <HorizontalItemList
               itemBgClassname='bg-dial-alice-blue'
               restTooltipMessage={
-                format('tooltip.ellipsisFor', { entity: format('playbooks.label') })
+                format('tooltip.ellipsisFor', { entity: format('ui.playbook.label') })
               }
             >
               {playbook.tags.map((tag, tagIdx) => (
@@ -73,10 +73,10 @@ const PlaybookCard = ({ playbook, listType, newTab = false, canEdit }) => {
           <div className='relative'>
             <div className='absolute top-1 right-2'>
               <div className='text-sm font-semibold my-auto text-dial-angel'>
-                {canEdit && !isPlaybookPublished && format('playbook.status.draft')}
+                {canEdit && !isPlaybookPublished && format('ui.playbook.status.draft')}
               </div>
               <div className='text-sm font-semibold my-auto text-dial-lavender'>
-                {canEdit && isPlaybookPublished && format('playbook.status.published')}
+                {canEdit && isPlaybookPublished && format('ui.playbook.status.published')}
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@ const PlaybookCard = ({ playbook, listType, newTab = false, canEdit }) => {
                 <div className='font-semibold'>{format('tag.header')}</div>
                 <HorizontalItemList
                   restTooltipMessage={
-                    format('tooltip.ellipsisFor', { entity: format('playbooks.label') })
+                    format('tooltip.ellipsisFor', { entity: format('ui.playbook.label') })
                   }
                 >
                   {playbook.tags.map((tag, tagIdx) => (

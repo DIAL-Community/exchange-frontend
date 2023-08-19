@@ -23,15 +23,15 @@ const SectorCard = ({ displayType, index, sector, dismissCardHandler }) => {
             <div className='text-sm'>
               {format('ui.dataset.header')} ({sector.datasets?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.organization.header')} ({sector.organizations?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.product.header')} ({sector.products?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.project.header')} ({sector.projects?.length ?? 0})
             </div>

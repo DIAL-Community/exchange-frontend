@@ -30,7 +30,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
   useEffect(() => {
     if (data?.updateDatasetOrganizations?.errors.length === 0 && data?.updateDatasetOrganizations?.dataset) {
       setOrganizations(data.updateDatasetOrganizations.dataset.organizations)
-      showToast(format('dataset.organizations.updated'), 'success', 'top-center')
+      showToast(format('ui.dataset.organizations.updated'), 'success', 'top-center')
       setIsDirty(false)
     }
   }, [data, showToast, format])
@@ -90,7 +90,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('dataset.no-organization')}
+        {format('ui.dataset.no-organization')}
       </div>
     )
 

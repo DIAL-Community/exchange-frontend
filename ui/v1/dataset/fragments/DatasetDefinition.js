@@ -13,15 +13,15 @@ const DatasetDefinition = () => {
           {format('ui.dataset.hint.title')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {format('dataset.hint.subtitle')}
+          {format('ui.dataset.hint.subtitle')}
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-plum'>
-          {format('dataset.hint.descriptionTitle')}
+          {format('ui.dataset.hint.descriptionTitle')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {parse(format('dataset.hint.description'))}
+          {parse(format('ui.dataset.hint.description'))}
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ const DatasetDetailHeader = ({ dataset }) => {
       <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-sapphire'>
-            {format('dataset.website')}
+            {format('ui.dataset.website')}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <a

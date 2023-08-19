@@ -41,11 +41,11 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissCardHandler }
             <div className='text-sm'>
               {format('ui.sector.header')} ({opportunity.sectors?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.organization.header')} ({opportunity.organizations?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.country.header')} ({opportunity.countries?.length ?? 0})
             </div>

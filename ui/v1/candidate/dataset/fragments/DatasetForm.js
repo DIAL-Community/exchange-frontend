@@ -139,16 +139,16 @@ const DatasetForm = React.memo(({ dataset }) => {
             <div className='text-xl font-semibold'>
               {dataset
                 ? format('app.editEntity', { entity: dataset.name })
-                : `${format('app.createNew')} ${format('dataset.label')}`}
+                : `${format('app.createNew')} ${format('ui.dataset.label')}`}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>
-                {format('dataset.name')}
+                {format('ui.dataset.name')}
               </label>
               <Input
                 {...register('name', { required: format('validation.required') })}
                 id='name'
-                placeholder={format('dataset.name')}
+                placeholder={format('ui.dataset.name')}
                 isInvalid={errors.name}
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
@@ -166,7 +166,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                     onChange={onChange}
                     id='website'
                     isInvalid={errors.website}
-                    placeholder={format('dataset.website')}
+                    placeholder={format('ui.dataset.website')}
                   />
                 )}
                 rules={{ required: format('validation.required') }}
@@ -185,7 +185,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                     value={value}
                     onChange={onChange}
                     id='visualizationUrl'
-                    placeholder={format('dataset.visualizationUrl')}
+                    placeholder={format('ui.dataset.visualizationUrl')}
                   />
                 )}
               />
@@ -201,14 +201,14 @@ const DatasetForm = React.memo(({ dataset }) => {
                   <Select {...field}
                     id='datasetType'
                     options={datasetTypeOptions}
-                    placeholder={format('dataset.datasetType')}
+                    placeholder={format('ui.dataset.datasetType')}
                   />
                 }
               />
             </div>
             <div className='block flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='description-editor'>
-                {format('dataset.description')}
+                {format('ui.dataset.description')}
               </label>
               <Controller
                 name='description'
@@ -218,7 +218,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                     editorId='description-editor'
                     onChange={onChange}
                     initialContent={value}
-                    placeholder={format('dataset.description')}
+                    placeholder={format('ui.dataset.description')}
                     isInvalid={errors.description}
                   />
                 )}
@@ -249,7 +249,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                 className='submit-button'
                 disabled={mutating || reverting || !captchaValue}
               >
-                {`${format('app.submit')} ${format('dataset.label')}`}
+                {`${format('app.submit')} ${format('ui.dataset.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>
               {dataset &&

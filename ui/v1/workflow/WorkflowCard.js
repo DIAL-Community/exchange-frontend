@@ -41,7 +41,7 @@ const WorkflowCard = ({ displayType, index, workflow, dismissCardHandler }) => {
             <div className='text-sm'>
               {format('ui.useCase.header')} ({workflow.useCases?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.buildingBlock.header')} ({workflow.buildingBlocks?.length ?? 0})
             </div>

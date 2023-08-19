@@ -23,15 +23,15 @@ const TagCard = ({ displayType, index, tag, dismissCardHandler }) => {
             <div className='text-sm'>
               {format('ui.dataset.header')} ({tag.datasets?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.product.header')} ({tag.products?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.project.header')} ({tag.projects?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.useCase.header')} ({tag.useCases?.length ?? 0})
             </div>

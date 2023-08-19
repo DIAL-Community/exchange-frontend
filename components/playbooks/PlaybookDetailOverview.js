@@ -39,19 +39,19 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, comments
         allowEmbedCreation={allowEmbedCreation}
         commentsSectionRef={commentsSectionRef}
       />
-      <div className='h4'>{format('playbooks.overview')}</div>
+      <div className='h4'>{format('ui.playbook.overview')}</div>
       <HtmlViewer
         initialContent={playbook?.playbookDescription?.overview}
         editorId='playbook-overview'
         className='-mt-4'
       />
-      <div className='h4'>{format('playbooks.audience')}</div>
+      <div className='h4'>{format('ui.playbook.audience')}</div>
       <HtmlViewer
         initialContent={playbook.playbookDescription.audience}
         editorId='playbook-audience'
         className='-mt-4'
       />
-      <div className='h4'>{format('playbooks.outcomes')}</div>
+      <div className='h4'>{format('ui.playbook.outcomes')}</div>
       <HtmlViewer
         initialContent={playbook.playbookDescription.outcomes}
         editorId='playbook-outcomes'
@@ -60,14 +60,14 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, comments
       {
         playbook.author &&
           <>
-            <div className='h4'>{format('playbook.author')}:</div>
+            <div className='h4'>{format('ui.playbook.author')}:</div>
             <div className='text-dial-gray-dark'>&nbsp;{playbook.author}</div>
           </>
       }
       {
         playbook.tags.length > 0 &&
         <>
-          <div className='h4 mt-3'>{format('playbook.tags')}:</div>
+          <div className='h4 mt-3'>{format('ui.playbook.tags')}:</div>
           <div className='grid grid-cols-1 md:grid-cols-2'>
             {playbook.tags.map((tag, tagIdx) =>
               <TagCard tag={tag} listType='list' key={`playbook-tag-${tagIdx}`} />)

@@ -112,7 +112,7 @@ const subMenus = {
         link: '/products'
       },
       {
-        label: 'dataset.header',
+        label: 'ui.dataset.header',
         link: '/datasets'
       },
       {
@@ -120,7 +120,7 @@ const subMenus = {
         link: '/projects'
       },
       {
-        label: 'playbook.header',
+        label: 'ui.playbook.header',
         link: '/playbooks'
       },
       {

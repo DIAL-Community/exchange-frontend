@@ -103,7 +103,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
               />
               {data?.move?.resources && data?.move?.resources.length > 0 &&
                 <>
-                  <div className='font-semibold py-2'>{format('move.resources.header')}</div>
+                  <div className='font-semibold py-2'>{format('ui.move.resources.header')}</div>
                   <div className='flex flex-wrap gap-3'>
                     {data?.move?.resources
                       .filter(resource => resource.url && resource.name)

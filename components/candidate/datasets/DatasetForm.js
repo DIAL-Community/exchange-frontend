@@ -132,7 +132,7 @@ const DatasetForm = () => {
           <div className='inline h5'>
             {BREADCRUMB_SEPARATOR}
             <Link href='/datasets' className='text-dial-blue'>
-              {format('dataset.header')}
+              {format('ui.dataset.header')}
             </Link>
             {BREADCRUMB_SEPARATOR}
             <span className='text-dial-gray-dark'>
@@ -152,12 +152,12 @@ const DatasetForm = () => {
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                   <div className='form-field-wrapper' data-testid='candidate-dataset-name'>
                     <label className='form-field-label required-field' htmlFor='name'>
-                      {format('dataset.name')}
+                      {format('ui.dataset.name')}
                     </label>
                     <Input
                       {...register('name', { required: format('validation.required') })}
                       id='name'
-                      placeholder={format('dataset.name')}
+                      placeholder={format('ui.dataset.name')}
                       isInvalid={errors.name}
                       data-testid='dataset-name-input'
                     />
@@ -165,7 +165,7 @@ const DatasetForm = () => {
                   </div>
                   <div className='form-field-wrapper' data-testid='candidate-dataset-website'>
                     <label className='form-field-label required-field' htmlFor='website'>
-                      {format('dataset.website')}
+                      {format('ui.dataset.website')}
                     </label>
                     <Controller
                       name='website'
@@ -176,7 +176,7 @@ const DatasetForm = () => {
                           onChange={onChange}
                           id='website'
                           isInvalid={errors.website}
-                          placeholder={format('dataset.website')}
+                          placeholder={format('ui.dataset.website')}
                         />
                       )}
                       rules={{ required: format('validation.required') }}
@@ -185,7 +185,7 @@ const DatasetForm = () => {
                   </div>
                   <div className='form-field-wrapper'>
                     <label className='form-field-label' htmlFor='dataVisualizationUrl'>
-                      {format('dataset.visualizationUrl')}
+                      {format('ui.dataset.visualizationUrl')}
                     </label>
                     <Controller
                       name='dataVisualizationUrl'
@@ -195,20 +195,20 @@ const DatasetForm = () => {
                           value={value}
                           onChange={onChange}
                           id='dataVisualizationUrl'
-                          placeholder={format('dataset.visualizationUrl')}
+                          placeholder={format('ui.dataset.visualizationUrl')}
                         />
                       )}
                     />
                   </div>
                   <div className='form-field-wrapper'>
                     <label className='form-field-label'>
-                      {format('dataset.datasetType')}
+                      {format('ui.dataset.datasetType')}
                     </label>
                     <Controller
                       name='dataType'
                       control={control}
                       render={({ field }) =>
-                        <Select {...field} options={datasetTypeOptions} placeholder={format('dataset.datasetType')} />
+                        <Select {...field} options={datasetTypeOptions} placeholder={format('ui.dataset.datasetType')} />
                       }
                     />
                   </div>
@@ -243,7 +243,7 @@ const DatasetForm = () => {
                 <div className='w-full lg:w-1/2'>
                   <div className='form-field-wrapper' data-testid='candidate-dataset-description'>
                     <label className='form-field-label required-field'>
-                      {format('dataset.description')}
+                      {format('ui.dataset.description')}
                     </label>
                     <Controller
                       name='description'
@@ -253,7 +253,7 @@ const DatasetForm = () => {
                           editorId='description-editor'
                           onChange={onChange}
                           initialContent={value}
-                          placeholder={format('dataset.description')}
+                          placeholder={format('ui.dataset.description')}
                           isInvalid={errors.description}
                         />
                       )}

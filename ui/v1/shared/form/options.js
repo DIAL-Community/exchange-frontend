@@ -36,10 +36,10 @@ export const generateCategoryTypeOptions = (format) => [
 ]
 
 export const generateDatasetTypeOptions = (format) => [
-  { label: format('dataset.type.dataset'), value: 'dataset' },
-  { label: format('dataset.type.content'), value: 'content' },
-  { label: format('dataset.type.standard'), value: 'standard' },
-  { label: format('dataset.type.aiModel'), value: 'ai_model' }
+  { label: format('ui.dataset.type.dataset'), value: 'dataset' },
+  { label: format('ui.dataset.type.content'), value: 'content' },
+  { label: format('ui.dataset.type.standard'), value: 'standard' },
+  { label: format('ui.dataset.type.aiModel'), value: 'ai_model' }
 ]
 
 export const generateLanguageOptions = (format) => [

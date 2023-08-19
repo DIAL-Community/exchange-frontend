@@ -30,7 +30,7 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
   useEffect(() => {
     if (data?.updateDatasetSectors?.errors.length === 0 && data?.updateDatasetSectors?.dataset) {
       setSectors(data.updateDatasetSectors.dataset.sectors)
-      showToast(format('dataset.sectors.updated'), 'success', 'top-center')
+      showToast(format('ui.dataset.sectors.updated'), 'success', 'top-center')
       setIsDirty(false)
     }
   }, [data, showToast, format])
@@ -84,7 +84,7 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('dataset.no-sector')}
+        {format('ui.dataset.no-sector')}
       </div>
     )
 

@@ -22,7 +22,7 @@ const ProjectCard = ({ displayType, index, project }) => {
             <div className='text-sm'>
               {format('ui.organization.header')} ({project.organizations?.length ?? 0})
             </div>
-            <div className='border-r border-dial-stratos-400' />
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.product.header')} ({project.products?.length ?? 0})
             </div>

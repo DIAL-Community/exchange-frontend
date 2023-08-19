@@ -75,7 +75,7 @@ const DeleteDataset = ({ dataset }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: dataset.name })}
-        message={format('dataset.delete.confirm.message')}
+        message={format('ui.dataset.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

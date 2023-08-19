@@ -44,7 +44,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           <hr className='border-b border-dial-blue-chalk mt-6' />
           <div className='flex flex-col gap-y-3'>
             <div className='font-semibold text-dial-meadow'>
-              {format('dataset.visualizationUrl')}
+              {format('ui.dataset.visualizationUrl')}
             </div>
             <div className='my-auto text-sm flex'>
               <a href={prependUrlWithProtocol(product.repository)} target='_blank' rel='noreferrer'>
