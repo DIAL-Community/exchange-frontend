@@ -1,18 +1,17 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
+import { ORGANIZATION_DETAIL_QUERY } from '../../../../ui/v1/shared/query/organization'
+import { Error, Loading, NotFound } from '../../../../ui/v1/shared/FetchStatus'
+import Header from '../../../../ui/v1/shared/Header'
 import ClientOnly from '../../../../lib/ClientOnly'
-import ProjectForm from '../../../../components/projects/ProjectForm'
-import Header from '../../../../components/Header'
-import Footer from '../../../../components/Footer'
-import { ORGANIZATION_QUERY } from '../../../../queries/storefront'
-import { Error, Loading } from '../../../../components/shared/FetchStatus'
-import NotFound from '../../../../components/shared/NotFound'
+import Footer from '../../../../ui/v1/shared/Footer'
+import ProjectForm from '../../../../ui/v1/project/fragments/ProjectForm'
 
 const CreateProject = () => {
   const { locale, query } = useRouter()
   const { slug } = query
 
-  const { loading, error, data } = useQuery(ORGANIZATION_QUERY, {
+  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
     variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug

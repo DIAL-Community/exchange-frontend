@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import ReportIssue from './ReportIssue'
 
-const Consent = dynamic(() => import('../Consent'), { ssr: false })
+const Consent = dynamic(() => import('./Consent'), { ssr: false })
 
 const EmbeddedFooter = () => {
   const { formatMessage } = useIntl()
