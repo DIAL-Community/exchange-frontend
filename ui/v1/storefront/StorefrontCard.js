@@ -16,7 +16,7 @@ const StorefrontCard = ({ displayType, index, organization, dismissCardHandler }
           <div className='w-20 h-20 mx-auto bg-white border'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.storefront.label') })}
               className='object-contain w-16 h-16 mx-auto my-2'
             />
           </div>
@@ -25,7 +25,7 @@ const StorefrontCard = ({ displayType, index, organization, dismissCardHandler }
           <div className='w-20 h-20 mx-auto'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.storefront.label') })}
               className='object-contain w-16 h-16'
             />
           </div>
@@ -61,7 +61,7 @@ const StorefrontCard = ({ displayType, index, organization, dismissCardHandler }
           <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.organization.header') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.storefront.header') })}
               className='object-contain w-10 h-10 my-auto'
             />
           </div>
@@ -69,7 +69,7 @@ const StorefrontCard = ({ displayType, index, organization, dismissCardHandler }
         {organization.imageFile.indexOf('placeholder.svg') < 0 &&
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-            alt={format('ui.image.logoAlt', { name: format('ui.organization.header') })}
+            alt={format('ui.image.logoAlt', { name: format('ui.storefront.header') })}
             className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
           />
         }
@@ -81,7 +81,7 @@ const StorefrontCard = ({ displayType, index, organization, dismissCardHandler }
 
   return (
     <div className='relative'>
-      <Link href={`/organizations/${organization.slug}`}>
+      <Link href={`/storefronts/${organization.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

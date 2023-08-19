@@ -110,7 +110,7 @@ const StorefrontDetailOffices = ({ organization, canEdit, headerRef }) => {
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
         entity: format('ui.country.label'),
-        base: format('ui.organization.label')
+        base: format('ui.storefront.label')
       })}
     </div>
 

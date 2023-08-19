@@ -5,12 +5,12 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
-import DeleteOrganization from './DeleteOrganization'
-import OrganizationDetailProducts from './fragments/OrganizationDetailProducts'
-import OrganizationDetailCountries from './fragments/OrganizationDetailCountries'
-import OrganizationDetailProjects from './fragments/OrganizationDetailProjects'
-import OrganizationDetailContacts from './fragments/OrganizationDetailContacts'
-import OrganizationDetailOffices from './fragments/OrganizationDetailOffices'
+import DeleteStorefront from './DeleteStorefront'
+import StorefrontDetailProducts from './fragments/StorefrontDetailProducts'
+import StorefrontDetailCountries from './fragments/StorefrontDetailCountries'
+import StorefrontDetailProjects from './fragments/StorefrontDetailProjects'
+import StorefrontDetailContacts from './fragments/StorefrontDetailContacts'
+import StorefrontDetailOffices from './fragments/StorefrontDetailOffices'
 
 const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
   const { formatMessage } = useIntl()
@@ -49,7 +49,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteOrganization organization={organization} />}
+            {isAdminUser && <DeleteStorefront organization={organization} />}
           </div>
         )}
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
@@ -64,7 +64,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailOffices
+        <StorefrontDetailOffices
           organization={organization}
           canEdit={canEdit}
           headerRef={officeRef}
@@ -72,7 +72,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailContacts
+        <StorefrontDetailContacts
           organization={organization}
           canEdit={canEdit}
           headerRef={contactRef}
@@ -80,7 +80,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailProjects
+        <StorefrontDetailProjects
           organization={organization}
           canEdit={canEdit}
           headerRef={projectRef}
@@ -88,7 +88,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailProducts
+        <StorefrontDetailProducts
           organization={organization}
           canEdit={canEdit}
           headerRef={productRef}
@@ -96,7 +96,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailCountries
+        <StorefrontDetailCountries
           organization={organization}
           canEdit={canEdit}
           headerRef={countryRef}
@@ -112,6 +112,6 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
   )
 })
 
-OrganizationDetailRight.displayName = 'OrganizationDetailRight'
+StorefrontDetailRight.displayName = 'StorefrontDetailRight'
 
 export default StorefrontDetailRight

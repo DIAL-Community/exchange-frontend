@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import { PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/organization'
 import { OrganizationFilterContext } from '../../../../components/context/OrganizationFilterContext'
-import OrganizationCard from '../OrganizationCard'
+import StorefrontCard from '../StorefrontCard'
 import { DisplayType } from '../../utils/constants'
 import { NotFound } from '../../shared/FetchStatus'
 
@@ -39,7 +39,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     <div className='flex flex-col gap-3'>
       {organizations.map((organization, index) =>
         <div key={index}>
-          <OrganizationCard
+          <StorefrontCard
             index={index}
             organization={organization}
             displayType={DisplayType.LARGE_CARD}

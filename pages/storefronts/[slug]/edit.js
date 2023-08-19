@@ -6,9 +6,9 @@ import { Tooltip } from 'react-tooltip'
 import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
 import Footer from '../../../ui/v1/shared/Footer'
-import OrganizationEdit from '../../../ui/v1/organization/OrganizationEdit'
+import StorefrontEdit from '../../../ui/v1/storefront/StorefrontEdit'
 
-const EditOrganizationPage = () => {
+const EditStorefrontPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -17,11 +17,11 @@ const EditOrganizationPage = () => {
   return (
     <>
       <NextSeo
-        title={format('ui.organization.header')}
+        title={format('ui.storefront.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.organization.header')?.toLocaleLowerCase() }
+            { entities: format('ui.storefront.header')?.toLocaleLowerCase() }
           )
         }
       />
@@ -29,7 +29,7 @@ const EditOrganizationPage = () => {
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
-          <OrganizationEdit slug={slug} locale={locale} />
+          <StorefrontEdit slug={slug} locale={locale} />
         </div>
         <Footer />
       </ClientOnly>
@@ -37,4 +37,4 @@ const EditOrganizationPage = () => {
   )
 }
 
-export default EditOrganizationPage
+export default EditStorefrontPage

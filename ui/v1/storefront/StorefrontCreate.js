@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Breadcrumb from '../shared/Breadcrumb'
-import OrganizationForm from './fragments/OrganizationForm'
-import OrganizationSimpleLeft from './fragments/OrganizationSimpleLeft'
+import StorefrontForm from './fragments/StorefrontForm'
+import StorefrontSimpleLeft from './fragments/StorefrontSimpleLeft'
 
 const StorefrontCreate = () => {
   const { formatMessage } = useIntl()
@@ -23,10 +23,10 @@ const StorefrontCreate = () => {
       </div>
       <div className='flex flex-col lg:flex-row'>
         <div className='lg:basis-1/3'>
-          <OrganizationSimpleLeft />
+          <StorefrontSimpleLeft />
         </div>
         <div className='lg:basis-2/3'>
-          <OrganizationForm />
+          <StorefrontForm />
         </div>
       </div>
     </div>

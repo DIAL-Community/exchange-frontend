@@ -10,26 +10,26 @@ const StorefrontDefinition = () => {
     <div className='flex flex-col gap-y-6 py-4'>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-plum'>
-          {format('organization.hint.title')}
+          {format('storefront.hint.title')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {format('organization.hint.subtitle')}
+          {format('storefront.hint.subtitle')}
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-plum'>
-          {format('organization.hint.characteristicTitle')}
+          {format('storefront.hint.characteristicTitle')}
         </div>
         <div className='text-sm text-dial-stratos fr-view'>
-          {parse(format('organization.hint.characteristics'))}
+          {parse(format('storefront.hint.characteristics'))}
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-plum'>
-          {format('organization.hint.descriptionTitle')}
+          {format('storefront.hint.descriptionTitle')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {parse(format('organization.hint.description'))}
+          {parse(format('storefront.hint.description'))}
         </div>
       </div>
     </div>

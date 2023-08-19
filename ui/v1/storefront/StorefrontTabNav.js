@@ -8,15 +8,15 @@ const StorefrontTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.organization.header',
-    'ui.organization.whatIs'
+    'ui.storefront.header',
+    'ui.storefront.whatIs'
   ])
 
   useEffect(() => {
     if (user?.isAdminUser) {
       setTabNames(tabNames => [
-        ...tabNames.filter(tabName => tabName !== 'ui.organization.createNew'),
-        'ui.organization.createNew'
+        ...tabNames.filter(tabName => tabName !== 'ui.storefront.createNew'),
+        'ui.storefront.createNew'
       ])
     }
   }, [user])

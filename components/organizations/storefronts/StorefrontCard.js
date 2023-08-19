@@ -41,7 +41,7 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
                 {organization.specialties.length > 0 ? organization.specialties.length : '-' }
               </span>
               <span className='my-auto'>
-                {organization.specialties.length > 1 ? format('specialty.header') : format('specialty.label')}
+                {organization.specialties.length > 1 ? format('ui.specialty.header') : format('ui.specialty.label')}
               </span>
             </div>
             <div className='flex gap-2'>
@@ -88,7 +88,7 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
                 {organization.specialties.length > 0 ? organization.specialties.length : '-' }
               </span>
               <span className='my-auto'>
-                {organization.specialties.length > 1 ? format('specialty.header') : format('specialty.label')}
+                {organization.specialties.length > 1 ? format('ui.specialty.header') : format('ui.specialty.label')}
               </span>
             </div>
           </div>

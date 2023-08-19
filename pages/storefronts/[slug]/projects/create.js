@@ -4,7 +4,7 @@ import ClientOnly from '../../../../lib/ClientOnly'
 import ProjectForm from '../../../../components/projects/ProjectForm'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
-import { ORGANIZATION_QUERY } from '../../../../queries/organization'
+import { ORGANIZATION_QUERY } from '../../../../queries/storefront'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import NotFound from '../../../../components/shared/NotFound'
 
@@ -22,7 +22,7 @@ const CreateProject = () => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.organization) {
+  } else if (!data?.storefront) {
     return <NotFound />
   }
 
@@ -30,7 +30,7 @@ const CreateProject = () => {
     <>
       <Header />
       <ClientOnly>
-        <ProjectForm organization={data?.organization} />
+        <ProjectForm storefront={data?.storefront} />
       </ClientOnly>
       <Footer />
     </>

@@ -3,7 +3,7 @@ import { OrganizationFilterContext, OrganizationFilterDispatchContext }
   from '../../../../components/context/OrganizationFilterContext'
 import SearchBar from '../../shared/SearchBar'
 import MobileFilter from '../../shared/MobileFilter'
-import OrganizationFilter from './OrganizationFilter'
+import StorefrontFilter from './StorefrontFilter'
 
 const StorefrontSearchBar = forwardRef((_, ref) => {
   const { search } = useContext(OrganizationFilterContext)
@@ -13,7 +13,7 @@ const StorefrontSearchBar = forwardRef((_, ref) => {
     <MobileFilter
       bgColor='bg-dial-violet'
       iconColor='text-dial-plum'
-      entityFilter={<OrganizationFilter/>}
+      entityFilter={<StorefrontFilter/>}
     />
 
   return (
@@ -27,6 +27,6 @@ const StorefrontSearchBar = forwardRef((_, ref) => {
   )
 })
 
-OrganizationSearchBar.displayName = 'OrganizationSearchBar'
+StorefrontSearchBar.displayName = 'StorefrontSearchBar'
 
 export default StorefrontSearchBar

@@ -6,7 +6,7 @@ import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/org
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
 import ListStructure from './ListStructure'
-import OrganizationSearchBar from './OrganizationSearchBar'
+import StorefrontSearchBar from './StorefrontSearchBar'
 
 const StorefrontListRight = () => {
   const { formatMessage } = useIntl()
@@ -50,7 +50,7 @@ const StorefrontListRight = () => {
 
   return (
     <>
-      <OrganizationSearchBar ref={topRef} />
+      <StorefrontSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}

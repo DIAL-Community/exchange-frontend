@@ -36,21 +36,21 @@ const StorefrontForm = React.memo(({ organization }) => {
   const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
     onCompleted: (data) => {
       if (data.createOrganization.organization && data.createOrganization.errors.length === 0) {
-        const redirectPath = `/${locale}/organizations/${data.createOrganization.organization.slug}`
+        const redirectPath = `/${locale}/storefronts/${data.createOrganization.organization.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showSuccessMessage(
-          format('toast.submit.success', { entity: format('ui.organization.label') }),
+          format('toast.submit.success', { entity: format('ui.storefront.label') }),
           redirectHandler
         )
       } else {
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.organization.label') }))
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.storefront.label') }))
         setMutating(false)
         reset()
       }
     },
     onError: () => {
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.organization.label') }))
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.storefront.label') }))
       setMutating(false)
       reset()
     }
@@ -154,7 +154,7 @@ const StorefrontForm = React.memo(({ organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/organizations/${slug}`)
+    router.push(`/${locale}/storefronts/${slug}`)
   }
 
   return loadingUserSession
@@ -167,7 +167,7 @@ const StorefrontForm = React.memo(({ organization }) => {
               <div className='text-xl font-semibold'>
                 {organization
                   ? format('app.editEntity', { entity: organization.name })
-                  : `${format('app.createNew')} ${format('ui.organization.label')}`}
+                  : `${format('app.createNew')} ${format('ui.storefront.label')}`}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='name'>
@@ -282,7 +282,7 @@ const StorefrontForm = React.memo(({ organization }) => {
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                  {`${format('app.submit')} ${format('ui.organization.label')}`}
+                  {`${format('app.submit')} ${format('ui.storefront.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>
                 <button
@@ -302,6 +302,6 @@ const StorefrontForm = React.memo(({ organization }) => {
       : <Unauthorized />
 })
 
-OrganizationForm.displayName = 'OrganizationForm'
+StorefrontForm.displayName = 'StorefrontForm'
 
 export default StorefrontForm

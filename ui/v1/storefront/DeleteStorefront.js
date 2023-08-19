@@ -10,7 +10,7 @@ import { PAGINATED_ORGANIZATIONS_QUERY, ORGANIZATION_DETAIL_QUERY } from '../sha
 import DeleteButton from '../shared/form/DeleteButton'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 
-const DeleteOrganization = ({ organization }) => {
+const DeleteStorefront = ({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -37,18 +37,18 @@ const DeleteOrganization = ({ organization }) => {
       if (response?.organization && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
-          format('toast.delete.success', { entity: format('ui.organization.label') }),
+          format('toast.delete.success', { entity: format('ui.storefront.label') }),
           () => router.push(`/${locale}/organizations`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showFailureMessage(format('toast.delete.failure', { entity: format('ui.organization.label') }))
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.storefront.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showFailureMessage(format('toast.delete.failure', { entity: format('ui.organization.label') }))
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.storefront.label') }))
       reset()
     }
   })
@@ -75,7 +75,7 @@ const DeleteOrganization = ({ organization }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: organization.name })}
-        message={format('delete.confirm.message', { entity: format('ui.organization.label') })}
+        message={format('delete.confirm.message', { entity: format('ui.storefront.label') })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}
@@ -84,4 +84,4 @@ const DeleteOrganization = ({ organization }) => {
   )
 }
 
-export default DeleteOrganization
+export default DeleteStorefront

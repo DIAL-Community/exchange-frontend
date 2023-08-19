@@ -16,7 +16,7 @@ const StorefrontDetailHeader = ({ organization }) => {
           <div className='inline'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.storefront.label') })}
               className='object-contain w-20 h-20'
             />
           </div>
@@ -25,7 +25,7 @@ const StorefrontDetailHeader = ({ organization }) => {
           <div className='w-20 h-20'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.storefront.label') })}
               className='object-contain dial-plum-filter'
             />
           </div>

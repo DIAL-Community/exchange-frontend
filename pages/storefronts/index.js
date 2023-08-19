@@ -6,11 +6,11 @@ import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
 import Header from '../../ui/v1/shared/Header'
 import Footer from '../../ui/v1/shared/Footer'
-import OrganizationRibbon from '../../ui/v1/organization/OrganizationRibbon'
-import OrganizationTabNav from '../../ui/v1/organization/OrganizationTabNav'
-import OrganizationMain from '../../ui/v1/organization/OrganizationMain'
+import StorefrontRibbon from '../../ui/v1/storefront/StorefrontRibbon'
+import StorefrontTabNav from '../../ui/v1/storefront/StorefrontTabNav'
+import StorefrontMain from '../../ui/v1/storefront/StorefrontMain'
 
-const OrganizationListPage = () => {
+const StorefrontListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -19,11 +19,11 @@ const OrganizationListPage = () => {
   return (
     <>
       <NextSeo
-        title={format('ui.organization.header')}
+        title={format('ui.storefront.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.organization.header')?.toLocaleLowerCase() }
+            { entities: format('ui.storefront.header')?.toLocaleLowerCase() }
           )
         }
       />
@@ -32,9 +32,9 @@ const OrganizationListPage = () => {
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
-          <OrganizationRibbon />
-          <OrganizationTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
-          <OrganizationMain activeTab={activeTab} />
+          <StorefrontRibbon />
+          <StorefrontTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <StorefrontMain activeTab={activeTab} />
         </div>
         <Footer />
       </ClientOnly>
@@ -42,4 +42,4 @@ const OrganizationListPage = () => {
   )
 }
 
-export default OrganizationListPage
+export default StorefrontListPage

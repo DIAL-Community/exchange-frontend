@@ -4,8 +4,8 @@ import { useQuery } from '@apollo/client'
 import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/organization'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import OrganizationForm from './fragments/OrganizationForm'
-import OrganizationEditLeft from './OrganizationEditLeft'
+import StorefrontForm from './fragments/StorefrontForm'
+import StorefrontEditLeft from './StorefrontEditLeft'
 
 const StorefrontEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
@@ -41,10 +41,10 @@ const StorefrontEdit = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row'>
         <div className='lg:basis-1/3'>
-          <OrganizationEditLeft organization={organization} />
+          <StorefrontEditLeft organization={organization} />
         </div>
         <div className='lg:basis-2/3'>
-          <OrganizationForm organization={organization} />
+          <StorefrontForm organization={organization} />
         </div>
       </div>
     </div>

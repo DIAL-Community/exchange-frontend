@@ -1758,8 +1758,8 @@ export const en = {
 
   'ui.storefront.label': 'Storefront',
   'ui.storefront.header': 'Storefronts',
-  'specialty.label': 'Specialty',
-  'specialty.header': 'Specialties',
+  'ui.specialty.label': 'Specialty',
+  'ui.specialty.header': 'Specialties',
 
   'ui.certification.label': 'Certification',
   'ui.certification.header': 'Certifications',

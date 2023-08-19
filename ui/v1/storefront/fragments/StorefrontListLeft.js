@@ -9,7 +9,7 @@ import {
 } from '../../../../components/context/OrganizationFilterContext'
 import { parseQuery } from '../../utils/share'
 import { QueryParamContext } from '../../../../components/context/QueryParamContext'
-import OrganizationFilter from './OrganizationFilter'
+import StorefrontFilter from './StorefrontFilter'
 
 const StorefrontListLeft = () => {
   const { query } = useRouter()
@@ -54,7 +54,7 @@ const StorefrontListLeft = () => {
   return (
     <div className='bg-dial-slate-100 h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
-        <OrganizationFilter />
+        <StorefrontFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
         <hr className='border-b border-dial-slate-200'/>
         <Share />

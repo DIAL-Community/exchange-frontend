@@ -90,7 +90,7 @@ const StorefrontOwner = ({ organization }) => {
         setLoading(false)
         reset()
       } else {
-        showSuccessMessage(format('toast.applyAsOwner.submit.success', { entity: format('ui.organization.label') }))
+        showSuccessMessage(format('toast.applyAsOwner.submit.success', { entity: format('ui.storefront.label') }))
         setShowApplyLink(!showApplyLink)
         // Applying to be the owner of the organization
         setOwnershipText('applied-to-own')

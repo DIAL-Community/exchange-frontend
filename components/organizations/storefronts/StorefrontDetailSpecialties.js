@@ -98,17 +98,17 @@ const StorefrontDetailSpecialties = ({ organization, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('specialty.header')}
+        {format('app.assign')} {format('ui.specialty.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='specialty-search'>
-        {`${format('app.searchAndAssign')} ${format('specialty.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.specialty.header')}`}
         <Select
           isSearch
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           options={getSpecialtyOptions()}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('specialty.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.specialty.header') })}
           onChange={addSpecialty}
           value={null}
         />
@@ -127,7 +127,7 @@ const StorefrontDetailSpecialties = ({ organization, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('specialty.header')}
+      sectionHeader={format('ui.specialty.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

@@ -5,20 +5,20 @@ import { Tooltip } from 'react-tooltip'
 import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
 import Footer from '../../../ui/v1/shared/Footer'
-import OrganizationCreate from '../../../ui/v1/organization/OrganizationCreate'
+import StorefrontCreate from '../../../ui/v1/storefront/StorefrontCreate'
 
-const CreateOrganizationPage = () => {
+const CreateStorefrontPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>
       <NextSeo
-        title={format('ui.organization.header')}
+        title={format('ui.storefront.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.organization.header')?.toLocaleLowerCase() }
+            { entities: format('ui.storefront.header')?.toLocaleLowerCase() }
           )
         }
       />
@@ -26,7 +26,7 @@ const CreateOrganizationPage = () => {
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
-          <OrganizationCreate />
+          <StorefrontCreate />
         </div>
         <Footer />
       </ClientOnly>
@@ -34,4 +34,4 @@ const CreateOrganizationPage = () => {
   )
 }
 
-export default CreateOrganizationPage
+export default CreateStorefrontPage

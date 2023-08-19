@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/client'
 import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/organization'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import OrganizationDetailRight from './OrganizationDetailRight'
-import OrganizationDetailLeft from './OrganizationDetailLeft'
+import StorefrontDetailRight from './StorefrontDetailRight'
+import StorefrontDetailLeft from './StorefrontDetailLeft'
 
 const StorefrontDetail = ({ slug }) => {
   const scrollRef = useRef(null)
@@ -37,10 +37,10 @@ const StorefrontDetail = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <OrganizationDetailLeft scrollRef={scrollRef} organization={organization} />
+          <StorefrontDetailLeft scrollRef={scrollRef} organization={organization} />
         </div>
         <div className='lg:basis-2/3'>
-          <OrganizationDetailRight ref={scrollRef} organization={organization} />
+          <StorefrontDetailRight ref={scrollRef} organization={organization} />
         </div>
       </div>
     </div>

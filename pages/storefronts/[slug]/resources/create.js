@@ -6,7 +6,7 @@ import ResourceForm from '../../../../components/resources/ResourceForm'
 import ClientOnly from '../../../../lib/ClientOnly'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import NotFound from '../../../../components/shared/NotFound'
-import { ORGANIZATION_QUERY } from '../../../../queries/organization'
+import { ORGANIZATION_QUERY } from '../../../../queries/storefront'
 
 const CreateResource = () => {
   const { locale, query } = useRouter()
@@ -22,7 +22,7 @@ const CreateResource = () => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.organization) {
+  } else if (!data?.storefront) {
     return <NotFound />
   }
 
@@ -30,7 +30,7 @@ const CreateResource = () => {
     <>
       <Header />
       <ClientOnly>
-        <ResourceForm organization={data?.organization} />
+        <ResourceForm storefront={data?.storefront} />
       </ClientOnly>
       <Footer />
     </>

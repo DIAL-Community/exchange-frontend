@@ -10,7 +10,7 @@ const StorefrontRibbon = () => {
     <div className='bg-dial-plum rounded-full w-[70px] h-[70px]'>
       <img
         src='/ui/v1/organization-header.svg'
-        alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+        alt={format('ui.image.logoAlt', { name: format('ui.storefront.label') })}
         width={40}
         height={40}
         className='object-contain mt-3 mx-auto white-filter'
@@ -21,7 +21,7 @@ const StorefrontRibbon = () => {
     <Ribbon
       ribbonBg='bg-dial-violet'
       titleImage={titleImage}
-      titleKey={'ui.organization.header'}
+      titleKey={'ui.storefront.header'}
       titleColor='text-dial-plum'
     />
   )
