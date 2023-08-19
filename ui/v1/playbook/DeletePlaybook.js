@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 import { DELETE_PLAYBOOK } from '../shared/mutation/playbook'
-import { PLAYBOOK_QUERY } from '../shared/query/playbook'
+import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 import DeleteButton from '../shared/form/DeleteButton'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 
@@ -27,7 +27,7 @@ const DeletePlaybook = ({ playbook }) => {
 
   const [deletePlaybook, { called, reset }] = useMutation(DELETE_PLAYBOOK, {
     refetchQueries: [{
-      query: PLAYBOOK_QUERY,
+      query: PLAYBOOK_DETAIL_QUERY,
       variables: { slug: playbook.slug }
     }],
     onCompleted: (data) => {

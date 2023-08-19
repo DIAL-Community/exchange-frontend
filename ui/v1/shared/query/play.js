@@ -50,7 +50,7 @@ export const REFRESH_PLAY_QUERY =   gql`
   }
 `
 
-export const PLAYBOOK_QUERY = gql`
+export const PLAYBOOK_DETAIL_QUERY = gql`
   query Playbook($playbookSlug: String!) {
     playbook(slug: $playbookSlug) {
       id

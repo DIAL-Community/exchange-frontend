@@ -6,7 +6,7 @@ import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
 import { Error, Loading, ReadyToDownload } from '../shared/FetchStatus'
 
-const PLAYBOOK_QUERY = gql`
+const PLAYBOOK_DETAIL_QUERY = gql`
   query Playbook($slug: String!) {
     playbook(slug: $slug) {
       id
@@ -226,7 +226,7 @@ const PlaybookPdf = ({ locale }) => {
   const { query } = router
   const { slug } = query
 
-  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
+  const { loading, error, data } = useQuery(PLAYBOOK_DETAIL_QUERY, {
     variables: { slug },
     context: { headers: { 'Accept-Language': locale } }
   })

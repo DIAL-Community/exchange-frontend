@@ -104,11 +104,11 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: playbook && playbook.name,
-      author: playbook && playbook.author,
-      overview: playbook && playbook.playbookDescription.overview,
-      audience: playbook && playbook.playbookDescription.audience,
-      outcomes: playbook && playbook.playbookDescription.outcomes,
+      name: playbook?.name,
+      author: playbook?.author,
+      overview: playbook?.playbookDescription.overview,
+      audience: playbook?.playbookDescription.audience,
+      outcomes: playbook?.playbookDescription.outcomes,
       published: playbook ? !playbook.draft : false
     }
   })
@@ -334,3 +334,5 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     </div>
   )
 })
+
+export default PlaybookForm

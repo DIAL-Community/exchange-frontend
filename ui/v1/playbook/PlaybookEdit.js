@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PRODUCT_DETAIL_QUERY } from '../shared/query/playbook'
+import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import PlaybookForm from './fragments/PlaybookForm'
@@ -11,7 +11,7 @@ const PlaybookEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(PRODUCT_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(PLAYBOOK_DETAIL_QUERY, {
     variables: { slug }
   })
 
