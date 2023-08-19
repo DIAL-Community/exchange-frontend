@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { PlayFilterContext } from '../../../components/context/PlayFilterContext'
 import { PLAYS_QUERY } from '../shared/query/play'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import { PlayListContext } from './PlayListContext'
+import { PlayListContext } from './context/PlayListContext'
 import PlayCard from './PlayCard'
 
 export const SOURCE_TYPE_ASSIGNING = 'source.type.assign'

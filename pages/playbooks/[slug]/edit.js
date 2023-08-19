@@ -7,7 +7,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 import Header from '../../../ui/v1/shared/Header'
 import Footer from '../../../ui/v1/shared/Footer'
 import PlaybookEdit from '../../../ui/v1/playbook/PlaybookEdit'
-import { PlaybookDetailProvider } from '../../../ui/v1/playbook/PlaybookDetailContext'
+import { PlaybookDetailProvider } from '../../../ui/v1/playbook/context/PlaybookDetailContext'
 
 function EditPlaybook () {
   const { formatMessage } = useIntl()

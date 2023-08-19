@@ -15,7 +15,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should add a pil
       <div
         class="card-title text-dial-sapphire"
       >
-        Open Data
+        Datasets
       </div>
       <div
         class="gap-3"
@@ -29,13 +29,13 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should add a pil
       >
         Assign
          
-        Open Data
+        Datasets
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
         data-testid="dataset-search"
       >
-        Search and Assign Open Data
+        Search and Assign Datasets
         <div
           class=" css-l45kjq-container"
         >
@@ -200,7 +200,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should match sna
       <div
         class="card-title text-dial-sapphire"
       >
-        Open Data
+        Datasets
       </div>
       <div
         class="gap-3"
@@ -306,7 +306,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should match sna
       <div
         class="card-title text-dial-sapphire"
       >
-        Open Data
+        Datasets
       </div>
       <div
         class="gap-3"
@@ -320,13 +320,13 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should match sna
       >
         Assign
          
-        Open Data
+        Datasets
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
         data-testid="dataset-search"
       >
-        Search and Assign Open Data
+        Search and Assign Datasets
         <div
           class=" css-l45kjq-container"
         >
@@ -471,7 +471,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should match sna
       <div
         class="card-title text-dial-sapphire"
       >
-        Open Data
+        Datasets
       </div>
       <div
         class="gap-3"
@@ -546,7 +546,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should remove a 
       <div
         class="card-title text-dial-sapphire"
       >
-        Open Data
+        Datasets
       </div>
       <div
         class="gap-3"
@@ -560,13 +560,13 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should remove a 
       >
         Assign
          
-        Open Data
+        Datasets
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
         data-testid="dataset-search"
       >
-        Search and Assign Open Data
+        Search and Assign Datasets
         <div
           class=" css-l45kjq-container"
         >

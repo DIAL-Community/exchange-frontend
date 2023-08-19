@@ -9,7 +9,7 @@ import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { useUser } from '../../../lib/hooks'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { MOVE_PREVIEW_QUERY } from '../shared/query/move'
-import UnassignMove from './move/UnassignMove'
+import UnassignMove from '../move/UnassignMove'
 
 const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = false }) => {
   const { formatMessage } = useIntl()

@@ -18,7 +18,7 @@ import {
   PlayListContext,
   PlayListDispatchContext,
   PlayListProvider
-} from './PlayListContext'
+} from './context/PlayListContext'
 import PlayListDraggable from './PlayListDraggable'
 import PlayListQuery from './PlayList'
 

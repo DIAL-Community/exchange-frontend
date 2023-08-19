@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useContext, useEffect, useState } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
-import { PlaybookDetailContext, PlaybookDetailDispatchContext } from '../PlaybookDetailContext'
+import { PlaybookDetailContext, PlaybookDetailDispatchContext } from '../context/PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
 const ACTIVE_NAV_COLOR = 'bg-dial-purple border-dial-sunshine'

@@ -99,7 +99,7 @@ const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
   )
 }
 
-const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSectionRef }) => {
+const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 

@@ -5,6 +5,7 @@ import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../../lib/ClientOnly'
 import Header from '../../../ui/v1/shared/Header'
 import Footer from '../../../ui/v1/shared/Footer'
+import PlaybookCreate from '../../../ui/v1/playbook/PlaybookCreate'
 
 function CreatePlaybook () {
   const { formatMessage } = useIntl()

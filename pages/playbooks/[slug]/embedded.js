@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
-import { PlaybookDetailProvider } from '../../../components/playbooks/PlaybookDetailContext'
 import ClientOnly from '../../../lib/ClientOnly'
-import PlaybookDetailHeader from '../../../components/playbooks/PlaybookDetailHeader'
-import PlaybookDetailNavigation from '../../../components/playbooks/PlaybookDetailNavigation'
-import PlaybookDetailOverview from '../../../components/playbooks/PlaybookDetailOverview'
-import PlaybookDetailPlayList from '../../../components/playbooks/PlaybookDetailPlayList'
-import EmbeddedHeader from '../../../components/shared/EmbeddedHeader'
-import EmbeddedFooter from '../../../components/shared/EmbeddedFooter'
+import { PlaybookDetailProvider } from '../../../ui/v1/playbook/context/PlaybookDetailContext'
+import PlaybookDetailHeader from '../../../ui/v1/playbook/fragments/PlaybookDetailHeader'
+import PlaybookDetailNavigation from '../../../ui/v1/playbook/fragments/PlaybookDetailNavigation'
+import PlaybookDetailOverview from '../../../ui/v1/playbook/fragments/PlaybookDetailOverview'
+import PlaybookDetailPlayList from '../../../ui/v1/playbook/fragments/PlaybookDetailPlayList'
+import EmbeddedHeader from '../../../ui/v1/shared/EmbeddedHeader'
+import EmbeddedFooter from '../../../ui/v1/shared/EmbeddedFooter'
 
 const EmbeddedPlaybook = () => {
   const router = useRouter()

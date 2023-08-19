@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useDrag, useDrop } from 'react-dnd'
 import { FiMove } from 'react-icons/fi'
 import update from 'immutability-helper'
-import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
+import { PlayListContext, PlayListDispatchContext } from './context/PlayListContext'
 
 const DraggableCard = ({ id, play, index, movePlay }) => {
   const ref = useRef(null)

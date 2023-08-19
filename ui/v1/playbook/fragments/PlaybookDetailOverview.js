@@ -1,6 +1,6 @@
 import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { PlaybookDetailDispatchContext } from '../PlaybookDetailContext'
+import { PlaybookDetailDispatchContext } from '../context/PlaybookDetailContext'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import TagCard from '../../tag/TagCard'
 import { DisplayType } from '../../utils/constants'
@@ -58,15 +58,13 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, comments
         editorId='playbook-outcomes'
         className='-mt-4'
       />
-      {
-        playbook.author &&
-          <>
-            <div className='h4'>{format('ui.playbook.author')}:</div>
-            <div className='text-dial-gray-dark'>&nbsp;{playbook.author}</div>
-          </>
+      {playbook.author &&
+        <>
+          <div className='h4'>{format('ui.playbook.author')}:</div>
+          <div className='text-dial-gray-dark'>&nbsp;{playbook.author}</div>
+        </>
       }
-      {
-        playbook.tags.length > 0 &&
+      {playbook.tags.length > 0 &&
         <>
           <div className='h4 mt-3'>{format('ui.playbook.tags')}:</div>
           <div className='grid grid-cols-1 md:grid-cols-2'>

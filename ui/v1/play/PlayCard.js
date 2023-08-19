@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
+import { PlayListContext, PlayListDispatchContext } from './context/PlayListContext'
 
 const PlayCard = ({ play }) => {
   const { formatMessage } = useIntl()

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
-import { PlaybookDetailContext, PlaybookDetailDispatchContext } from '../PlaybookDetailContext'
+import { PlaybookDetailContext, PlaybookDetailDispatchContext } from '../context/PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
 const PlaybookDetailHeader = ({ playbook }) => {

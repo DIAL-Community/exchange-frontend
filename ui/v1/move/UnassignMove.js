@@ -3,11 +3,11 @@ import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { FaRegTrashAlt } from 'react-icons/fa'
-import { useUser } from '../../../../lib/hooks'
-import { ToastContext } from '../../../../lib/ToastContext'
-import { UNASSIGN_PLAY_MOVE } from '../../shared/mutation/move'
-import { PLAYBOOK_PLAYS_QUERY, PLAYBOOK_DETAIL_QUERY } from '../../shared/query/playbook'
-import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { UNASSIGN_PLAY_MOVE } from '../shared/mutation/move'
+import { PLAYBOOK_PLAYS_QUERY, PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
+import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 
 const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
   const { formatMessage } = useIntl()
