@@ -97,7 +97,7 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit, headerRef }) => {
   }
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-meadow' ref={headerRef}>
+    <div className='text-xl font-semibold text-dial-plum' ref={headerRef}>
       {format('ui.useCase.header')}
     </div>
 

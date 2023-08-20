@@ -8,7 +8,7 @@ const OpportunitySimpleLeft = () => {
   return (
     <div className='bg-dial-slate-100 h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
-        <div className='text-xl font-semibold text-dial-meadow'>
+        <div className='text-xl font-semibold text-dial-plum'>
           {format('ui.opportunity.label')}
         </div>
         <div className='flex justify-center items-center py-16 bg-white rounded'>

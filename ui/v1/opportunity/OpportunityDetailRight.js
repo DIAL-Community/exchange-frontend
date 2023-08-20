@@ -52,7 +52,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
             {isAdminUser && <DeleteOpportunity opportunity={opportunity} />}
           </div>
         )}
-        <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
+        <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
         <div className='block'>

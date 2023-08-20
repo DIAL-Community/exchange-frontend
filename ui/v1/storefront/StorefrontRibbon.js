@@ -9,7 +9,7 @@ const StorefrontRibbon = () => {
   const titleImage =
     <div className='bg-dial-plum rounded-full w-[70px] h-[70px]'>
       <img
-        src='/ui/v1/organization-header.svg'
+        src='/ui/v1/storefront-header.svg'
         alt={format('ui.image.logoAlt', { name: format('ui.storefront.label') })}
         width={40}
         height={40}

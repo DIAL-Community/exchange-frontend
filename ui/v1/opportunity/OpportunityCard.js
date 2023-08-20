@@ -10,9 +10,9 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissCardHandler }
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        {opportunity.imageFile.indexOf('placeholder.svg') < 0 &&
+        {opportunity.imageFile.indexOf('placeholder.png') < 0 &&
           <div className='w-20 h-20 mx-auto bg-white border'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
@@ -21,17 +21,17 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissCardHandler }
             />
           </div>
         }
-        {opportunity.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20 mx-auto'>
+        {opportunity.imageFile.indexOf('placeholder.png') >= 0 &&
+          <div className='w-20 h-20 mx-auto bg-dial-plum'>
             <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
+              src='/ui/v1/opportunity-header.svg'
               alt={format('ui.image.logoAlt', { name: format('ui.opportunity.label') })}
-              className='object-contain w-16 h-16'
+              className='object-contain w-8 h-8 mx-auto mt-6 white-filter'
             />
           </div>
         }
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
-          <div className='text-lg font-semibold text-dial-meadow'>
+          <div className='text-lg font-semibold text-dial-plum'>
             {opportunity.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
@@ -73,7 +73,7 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissCardHandler }
             className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
           />
         }
-        <div className='text-sm font-semibold text-dial-meadow my-auto'>
+        <div className='text-sm font-semibold text-dial-plum my-auto'>
           {opportunity.name}
         </div>
       </div>

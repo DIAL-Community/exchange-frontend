@@ -25,7 +25,7 @@ const FormTextEditor = ({ control, name, placeholder = null, required = false, i
   return (
     <div className='form-field-wrapper'>
       <label className={classNames({ 'required-field': required }, 'form-field-label')}>
-        {format(`playbooks.${name}`)}
+        {format(`ui.playbook.${name}`)}
       </label>
       <Controller
         name={name}

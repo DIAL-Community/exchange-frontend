@@ -12,7 +12,7 @@ const StorefrontCard = ({ displayType, index, organization, dismissCardHandler }
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        {organization.imageFile.indexOf('placeholder.svg') < 0 &&
+        {organization.imageFile.indexOf('placeholder.png') < 0 &&
           <div className='w-20 h-20 mx-auto bg-white border'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
@@ -21,12 +21,12 @@ const StorefrontCard = ({ displayType, index, organization, dismissCardHandler }
             />
           </div>
         }
-        {organization.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20 mx-auto'>
+        {organization.imageFile.indexOf('placeholder.png') >= 0 &&
+          <div className='w-20 h-20 mx-auto bg-dial-plum border'>
             <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
+              src='/ui/v1/storefront-header.svg'
               alt={format('ui.image.logoAlt', { name: format('ui.storefront.label') })}
-              className='object-contain w-16 h-16'
+              className='object-contain w-10 h-10 mx-auto mt-4 white-filter'
             />
           </div>
         }

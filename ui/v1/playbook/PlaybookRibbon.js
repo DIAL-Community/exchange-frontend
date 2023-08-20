@@ -17,10 +17,10 @@ const PlaybookRibbon = () => {
 
   return (
     <Ribbon
-      ribbonBg='bg-dial-spearmint'
+      ribbonBg='bg-dial-violet'
       titleImage={titleImage}
       titleKey={'ui.playbook.header'}
-      titleColor='text-dial-meadow'
+      titleColor='text-dial-plum'
     />
   )
 }

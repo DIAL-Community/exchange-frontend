@@ -8,7 +8,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
-      <div className='text-xl text-dial-meadow font-semibold'>
+      <div className='text-xl text-dial-plum font-semibold'>
         {opportunity.name}
       </div>
       <div className='flex justify-center items-center py-16 bg-white rounded border'>
@@ -26,7 +26,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.opportunity.label') })}
-              className='object-contain dial-meadow-filter'
+              className='object-contain dial-plum-filter'
             />
           </div>
         }

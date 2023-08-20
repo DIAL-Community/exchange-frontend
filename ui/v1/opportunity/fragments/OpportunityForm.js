@@ -145,7 +145,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
     ? <Loading />
     : isAdminUser || isEditorUser ?
       <form onSubmit={handleSubmit(doUpsert)}>
-        <div className='px-4 py-4 lg:py-6 text-dial-meadow'>
+        <div className='px-4 py-4 lg:py-6 text-dial-plum'>
           <div className='flex flex-col gap-y-6 text-sm'>
             <div className='text-xl font-semibold'>
               {opportunity
@@ -190,7 +190,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
               />
               {errors.webAddress && <ValidationError value={errors.webAddress?.message} />}
             </div>
-            <div className='border-b border-dashed border-dial-meadow' />
+            <div className='border-b border-dashed border-dial-plum' />
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='opportunityStatus'>
                 {format('ui.opportunity.opportunityStatus')}
@@ -251,7 +251,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                 placeholder={format('ui.opportunity.closingDate')}
               />
             </div>
-            <div className='border-b border-dashed border-dial-meadow' />
+            <div className='border-b border-dashed border-dial-plum' />
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='contactName'>
                 {format('ui.opportunity.contactName')}
