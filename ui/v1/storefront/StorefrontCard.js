@@ -22,7 +22,7 @@ const StorefrontCard = ({ displayType, index, organization, dismissCardHandler }
           </div>
         }
         {organization.imageFile.indexOf('placeholder.png') >= 0 &&
-          <div className='w-20 h-20 mx-auto bg-dial-plum border'>
+          <div className='w-20 h-20 mx-auto bg-dial-plum rounded-full'>
             <img
               src='/ui/v1/storefront-header.svg'
               alt={format('ui.image.logoAlt', { name: format('ui.storefront.label') })}

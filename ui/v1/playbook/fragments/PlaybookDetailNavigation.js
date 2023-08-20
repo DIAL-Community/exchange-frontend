@@ -33,7 +33,7 @@ const PlaybookDetailNavigation = ({ playbook }) => {
       })
       setMappedMoves({ ...mappedMoves })
     }
-  }, [playbook])
+  }, [playbook, mappedMoves])
 
   useEffect(() => {
     // This will read the state of the context, and update the active slug.
@@ -119,7 +119,7 @@ const PlaybookDetailNavigation = ({ playbook }) => {
   return (
     <div
       className='bg-dial-gray-dark sticky h-full overflow-y-auto border-dial-gray-dark'
-      style={{ left: 0, top: '150px', height: 'calc(100vh - 150px)' }}
+      style={{ left: 0, top: '176px', height: 'calc(100vh - 176px)' }}
     >
       <div className='flex flex-col text-white'>
         <div

@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
+import Breadcrumb from '../../shared/Breadcrumb'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from '../context/PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
@@ -79,24 +79,16 @@ const PlaybookDetailHeader = ({ playbook }) => {
     })
   }
 
+  const slugNameMapping = (() => {
+    return { [[playbook.slug]]: playbook.name }
+  })()
+
   return (
     <div className='bg-dial-sunshine sticky sticky-under-header'>
       <div className='flex flex-wrap gap-3'>
         <div className='px-8 py-3 flex flex-col gap-1'>
-          <div className='text-sm'>
-            <Link href='/playbooks'>
-              <img
-                data-tooltip-id='react-tooltip'
-                data-tooltip-content={format(
-                  'tooltip.forEntity',
-                  { entity: format('ui.playbook.label'), name: playbook.name }
-                )}
-                className='m-auto h-6 inline mr-2'
-                alt={format('image.alt.logoFor', { name: playbook.name })}
-                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
-              />
-              {format('ui.playbook.label')}
-            </Link>
+          <div className='hidden lg:block'>
+            <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
           <div className='flex flex-col md:flex-row gap-x-2 text-2xl font-semibold'>
             <div>{playbook.name}</div>
@@ -112,21 +104,20 @@ const PlaybookDetailHeader = ({ playbook }) => {
             <div className='play-progress-bar' style={{ width: `${percentage}%` }} />
             <div className='play-progress-bar-base' />
             <div className='play-progress-number'>
-              {
-                playbook.playbookPlays.map((playbookPlay, index) => {
-                  return (
-                    <a
-                      key={index}
-                      ref={playProgressNumber => playProgressNumbersRef.current[index] = playProgressNumber}
-                      href='#navigate-to-play'
-                      onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}
-                    >
-                      <div className={`step ${index <= currentSlugIndex && 'active'}`}>
-                        {index + 1}
-                      </div>
-                    </a>
-                  )
-                })}
+              {playbook.playbookPlays.map((playbookPlay, index) => {
+                return (
+                  <a
+                    key={index}
+                    ref={playProgressNumber => playProgressNumbersRef.current[index] = playProgressNumber}
+                    href='#navigate-to-play'
+                    onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}
+                  >
+                    <div className={`step ${index <= currentSlugIndex && 'active'}`}>
+                      {index + 1}
+                    </div>
+                  </a>
+                )
+              })}
             </div>
           </div>
         </div>

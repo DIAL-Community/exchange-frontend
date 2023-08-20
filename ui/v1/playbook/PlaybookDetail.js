@@ -26,13 +26,13 @@ const PlaybookDetail = ({ slug, locale }) => {
   }
 
   const PlaybookDetail = () => (
-    <div className='flex flex-col'>
+    <div className='lg:px-8 xl:px-56 flex flex-col'>
       <PlaybookDetailHeader playbook={data?.playbook} />
       <div className='flex gap-x-3'>
-        <div className='hidden lg:block w-1/4'>
+        <div className='hidden lg:block basis-1/3'>
           <PlaybookDetailNavigation playbook={data?.playbook} />
         </div>
-        <div className='flex flex-col gap-3 w-full'>
+        <div className='flex flex-col gap-3 basis-2/3'>
           <PlaybookDetailOverview
             playbook={data?.playbook}
             locale={locale}

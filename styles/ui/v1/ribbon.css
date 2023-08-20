@@ -6,6 +6,8 @@
   --ribbon-inner-height: 6rem;
   --ribbon-difference: calc(var(--ribbon-outer-height) - var(--ribbon-inner-height));
 
+  --playbook-header-height: 84px;
+
   --spacer-padding: 0.75rem;
 
   --search-bar-padding: 2rem;

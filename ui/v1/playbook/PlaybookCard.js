@@ -22,11 +22,11 @@ const PlaybookCard = ({ displayType, index, playbook, dismissCardHandler }) => {
           </div>
         }
         {playbook.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20 mx-auto'>
+          <div className='w-20 h-20 mx-auto bg-dial-plum rounded-full'>
             <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+              src='/ui/v1/playbook-header.svg'
               alt={format('ui.image.logoAlt', { name: format('ui.playbook.label') })}
-              className='object-contain w-16 h-16'
+              className='object-contain w-12 h-12 mx-auto mt-4 white-filter'
             />
           </div>
         }

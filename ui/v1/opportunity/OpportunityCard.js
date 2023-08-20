@@ -22,7 +22,7 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissCardHandler }
           </div>
         }
         {opportunity.imageFile.indexOf('placeholder.png') >= 0 &&
-          <div className='w-20 h-20 mx-auto bg-dial-plum'>
+          <div className='w-20 h-20 mx-auto bg-dial-plum rounded-full'>
             <img
               src='/ui/v1/opportunity-header.svg'
               alt={format('ui.image.logoAlt', { name: format('ui.opportunity.label') })}

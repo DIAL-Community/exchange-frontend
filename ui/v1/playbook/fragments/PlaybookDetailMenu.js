@@ -8,7 +8,6 @@ import { useIntl } from 'react-intl'
 import { FiMove } from 'react-icons/fi'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import Breadcrumb from '../../shared/Breadcrumb'
 import CreateButton from '../../shared/form/CreateButton'
 import EditButton from '../../shared/form/EditButton'
 import DeletePlaybook from '../DeletePlaybook'
@@ -132,10 +131,6 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
     return `/${locale}/playbooks/${playbook.slug}/pdf`
   }
 
-  const slugNameMapping = (() => {
-    return { [[playbook.slug]]: playbook.name }
-  })()
-
   const openEmbedDialog = (event) => {
     event.preventDefault()
     setDisplayEmbedDialog(!displayEmbedDialog)
@@ -145,9 +140,6 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
     <>
       <PlaybookEmbedDetail displayed={displayEmbedDialog} setDisplayed={setDisplayEmbedDialog} />
       <div className='flex flex-col xl:flex-row'>
-        <div className='hidden lg:block'>
-          <Breadcrumb slugNameMapping={slugNameMapping} />
-        </div>
         <div className='flex flex-col gap-3 ml-auto mt-3'>
           <div className='ml-auto flex items-center gap-2'>
             <a
