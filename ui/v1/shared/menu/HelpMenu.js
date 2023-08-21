@@ -90,7 +90,13 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           </a>
         </div>
       }
-      {showForm && <ReportIssue showForm={showForm} hideFeedbackForm={hideFeedbackForm} />}
+      {showForm &&
+        <ReportIssue
+          showForm={showForm}
+          hideFeedbackForm={hideFeedbackForm}
+          formTitle={format('app.reportIssue')}
+        />
+      }
     </>
   )
 }

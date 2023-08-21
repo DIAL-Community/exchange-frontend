@@ -11,6 +11,7 @@ import {
 } from '../../../components/context/PlayFilterContext'
 import { SearchInput } from '../shared/form/SearchInput'
 import { ToastContext } from '../../../lib/ToastContext'
+import { PLAYS_QUERY } from '../shared/query/play'
 import { UPDATE_PLAYBOOK_PLAYS } from '../shared/mutation/playbook'
 import { useUser } from '../../../lib/hooks'
 import {
@@ -136,6 +137,10 @@ const RearrangeControls = ({ playbook, onClose }) => {
 
   const [updatePlayMoves, { reset }] = useMutation(
     UPDATE_PLAYBOOK_PLAYS, {
+      refetchQueries: [{
+        query: PLAYS_QUERY,
+        variables: { playbookSlug: playbook.slug }
+      }],
       onCompleted: (data) => {
         const { updatePlaybookPlays: response } = data
         if (response?.playbook && response?.errors?.length === 0) {

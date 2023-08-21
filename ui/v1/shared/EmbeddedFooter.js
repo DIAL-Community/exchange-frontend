@@ -10,6 +10,17 @@ const EmbeddedFooter = () => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [showForm, setShowForm] = useState(false)
+  const [formTitle, setFormTitle] = useState('')
+
+  const showContactUsForm = () => {
+    setShowForm(true)
+    setFormTitle('footer.contactUs')
+  }
+
+  const showReportIssueForm = () => {
+    setShowForm(true)
+    setFormTitle('app.reportIssue')
+  }
 
   return (
     <footer>
@@ -47,14 +58,19 @@ const EmbeddedFooter = () => {
                 {format('footer.privacyPolicy').toUpperCase()}
               </a>
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light' onClick={() => setShowForm(true)}>
+            <button className='py-2 px-3 rounded-md bg-dial-gray-light' onClick={() => showReportIssueForm()}>
               {format('app.reportIssue').toUpperCase()}
-              {showForm && <ReportIssue showForm={showForm} setShowForm={setShowForm} />}
-            </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light' onClick={() => setShowForm(true)}>
+            </button>
+            <button className='py-2 px-3 rounded-md bg-dial-gray-light' onClick={() => showContactUsForm()}>
               {format('footer.contactUs').toUpperCase()}
-              {showForm && <ReportIssue showForm={showForm} setShowForm={setShowForm} />}
-            </div>
+            </button>
+            {showForm &&
+              <ReportIssue
+                showForm={showForm}
+                hideFeedbackForm={() => setShowForm(false)}
+                formTitle={format(formTitle)}
+              />
+            }
           </div>
         </div>
       </div>
