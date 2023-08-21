@@ -8,7 +8,7 @@ import PlaybookDetailMenu from './PlaybookDetailMenu'
 
 export const OVERVIEW_SLUG_NAME = 'base-slug-overview-information'
 
-const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation }) => {
+const PlaybookDetailOverview = ({ locale, playbook, allowEmbedCreation }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 

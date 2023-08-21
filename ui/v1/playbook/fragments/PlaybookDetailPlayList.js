@@ -139,7 +139,7 @@ const Play = ({ playbook, play, index }) => {
   )
 }
 
-const PlaybookDetailPlayList = ({ playbook, locale }) => {
+const PlaybookDetailPlayList = ({ locale, playbook }) => {
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
     variables: {
       playbookSlug: playbook.slug
