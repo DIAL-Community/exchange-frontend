@@ -44,7 +44,7 @@ const BuildingBlockFilter = () => {
               {format('ui.filter.filteredBy')}
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button onClick={clearFilter}>
+              <button type='button' onClick={clearFilter}>
                 {format('ui.filter.clearAll')}
               </button>
             </div>
@@ -59,7 +59,7 @@ const BuildingBlockFilter = () => {
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('ui.buildingBlock.filter.showMature')}
-                    <button onClick={toggleShowMature}>
+                    <button type='button' onClick={toggleShowMature}>
                       <IoClose size='1rem' />
                     </button>
                   </div>

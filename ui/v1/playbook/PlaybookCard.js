@@ -35,7 +35,7 @@ const PlaybookCard = ({ displayType, index, playbook, dismissCardHandler }) => {
             {playbook.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {playbook?.playbookDescription && parse(playbook?.playbookDescription.overview)}
+            {playbook?.playbookDescription && parse(playbook?.playbookDescription.sanitizedOverview)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-dial-sapphire text-sm font-semibold'>
@@ -82,7 +82,7 @@ const PlaybookCard = ({ displayType, index, playbook, dismissCardHandler }) => {
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
-        <button className='absolute p-2 top-0 right-0 text-dial-sapphire'>
+        <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
           <IoClose size='1rem' onClick={dismissCardHandler} />
         </button>
       }

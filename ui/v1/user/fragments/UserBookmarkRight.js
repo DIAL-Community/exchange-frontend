@@ -30,7 +30,7 @@ const UrlCard = ({ url, dismissCardHandler }) => {
         {displaySmallCard()}
       </a>
       {dismissCardHandler && typeof dismissCardHandler === 'function' &&
-        <button className='absolute p-2 top-0 right-0 text-dial-sapphire'>
+        <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
           <IoClose size='1rem' onClick={dismissCardHandler} />
         </button>
       }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
 import { FiEdit3 } from 'react-icons/fi'
@@ -13,7 +13,8 @@ import UnassignMove from '../move/UnassignMove'
 
 const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const [openingDetail, setOpeningDetail] = useState(pdf)
 
   const toggleDetail = () => {

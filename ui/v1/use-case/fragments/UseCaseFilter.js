@@ -48,7 +48,7 @@ const UseCaseFilter = () => {
               {format('ui.filter.filteredBy')}:
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button onClick={clearFilter}>Clear all</button>
+              <button type='button' onClick={clearFilter}>{format('ui.filter.clearAll')}</button>
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
@@ -58,7 +58,7 @@ const UseCaseFilter = () => {
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('ui.useCase.filter.showDraft')}
-                    <button onClick={toggleShowBeta}>
+                    <button type='button' onClick={toggleShowBeta}>
                       <IoClose size='1rem' />
                     </button>
                   </div>
@@ -70,7 +70,7 @@ const UseCaseFilter = () => {
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('ui.useCase.filter.govStackOnly')}
-                    <button onClick={toggleShowGovStack}>
+                    <button type='button' onClick={toggleShowGovStack}>
                       <IoClose size='1rem' />
                     </button>
                   </div>

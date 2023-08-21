@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
@@ -12,16 +12,16 @@ import PlayCard from './PlayCard'
 export const SOURCE_TYPE_ASSIGNING = 'source.type.assign'
 export const SOURCE_TYPE_LISTING = 'source.type.listing'
 
-const PlayListQuery = ({ playbook }) => {
+const PlayListQuery = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { locale } = useRouter()
   const { currentPlays } = useContext(PlayListContext)
 
   const { search } = useContext(PlayFilterContext)
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
-    variables: { search, slug: playbook.slug },
+    variables: { search },
     context: { headers: { 'Accept-Language': locale } }
   })
 
@@ -34,14 +34,14 @@ const PlayListQuery = ({ playbook }) => {
   }
 
   const { plays } = data
+  const currentSlugs = currentPlays.map(play => play.slug)
 
   return (
     <>
       {plays.length > 0
-        ? plays.map((play, index) => {
-          return currentPlays.filter(e => e.id === play.id).length < 0 &&
-            <PlayCard key={index} play={play} displayType={DisplayType.SMALL_CARD} />
-        })
+        ? plays
+          .filter(play => currentSlugs.indexOf(play.slug) < 0)
+          .map((play, index) => <PlayCard key={index} play={play} displayType={DisplayType.SMALL_CARD} />)
         : <div className='text-sm font-medium opacity-80'>
           {format('noResults.entity', { entity: format('ui.play.label').toString().toLowerCase() })}
         </div>

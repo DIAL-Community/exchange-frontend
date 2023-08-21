@@ -31,8 +31,8 @@ export const UseCaseAutocomplete = ({ useCases, setUseCases, placeholder }) => {
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <button className='flex' onClick={() => setShowFilter(!showFilter)}>
-        <div className='text-dial-stratos text-sm ml-4 py-2'>
+      <button type='button' className='flex' onClick={() => setShowFilter(!showFilter)}>
+        <div className='text-dial-stratos text-sm py-2'>
           {format('ui.useCase.label')}
         </div>
         <BsPlus className='ml-auto my-auto' />
@@ -42,7 +42,7 @@ export const UseCaseAutocomplete = ({ useCases, setUseCases, placeholder }) => {
           async
           isBorderless
           aria-label={format('filter.byEntity', { entity: format('ui.useCase.label') })}
-          className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
+          className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
           loadOptions={(input) => fetchSelectOptionsWithMaturity(client, input, USE_CASE_SEARCH_QUERY, fetchCallback)}

@@ -139,6 +139,7 @@ const OrganizationOwner = ({ organization }) => {
         {showApplyLink && (
           <div className='flex text-xs text-dial-stratos'>
             <button
+              type='button'
               className='border-b border-dial-iris-blue'
               onClick={onSubmit}
               disabled={loading}
@@ -158,6 +159,7 @@ const OrganizationOwner = ({ organization }) => {
         <div className='flex text-xs text-dial-plum font-semibold'>
           {contactState === CONTACT_STATES[0] &&
             <button
+              type='button'
               className='border-b border-dial-iris-blue'
               onClick={() => setContactState(CONTACT_STATES[1])}
             >

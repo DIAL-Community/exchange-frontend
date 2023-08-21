@@ -79,7 +79,7 @@ const PlaybookFilter = () => {
               {format('ui.filter.filteredBy')}
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button onClick={clearFilter}>
+              <button type='button' onClick={clearFilter}>
                 {format('ui.filter.clearAll')}
               </button>
             </div>
@@ -105,6 +105,7 @@ const PlaybookFilter = () => {
       {user && !user.isEditorUser && !user.isAdminUser &&
         <div className='px-6 text-xs flex space-x-0.5'>
           <button
+            type='button'
             className='text-dial-sunshine border border-transparent hover:border-b-dial-sunshine'
             onClick={onSubmit}
             disabled={loading}

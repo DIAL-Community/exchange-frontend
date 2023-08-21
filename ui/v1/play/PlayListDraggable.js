@@ -122,7 +122,7 @@ const PlayListDraggable = ({ playbook }) => {
 
   useEffect(() => {
     if (playbook) {
-      setCurrentPlays(playbook.plays)
+      setCurrentPlays(playbook.plays.map(play => ({ id: play.id, slug: play.slug, name: play.name })))
     }
   }, [playbook, setCurrentPlays])
 

@@ -73,7 +73,7 @@ const OpportunityFilter = () => {
               {format('ui.filter.filteredBy')}
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button onClick={clearFilter}>
+              <button type='button' onClick={clearFilter}>
                 {format('ui.filter.clearAll')}
               </button>
             </div>
@@ -90,7 +90,7 @@ const OpportunityFilter = () => {
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('filter.opportunity.showClosed')}
-                    <button onClick={toggleClosedOpportunityFilter}>
+                    <button type='button' onClick={toggleClosedOpportunityFilter}>
                       <IoClose size='1rem' />
                     </button>
                   </div>

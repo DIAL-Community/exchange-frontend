@@ -39,7 +39,7 @@ export const HtmlEditor = ({
             selector: '#' + editorId ?? 'tinymce-editor',
             menubar: false,
             plugins: `preview importcss searchreplace autolink autosave save directionality
-              code visualblocks visualchars fullscreen image link media template codesample
+              code visualblocks visualchars fullscreen image link media codesample
               table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount
               help charmap quickbars emoticons autoresize
             `,

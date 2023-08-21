@@ -65,7 +65,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissCardHandler
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       </Link>
       {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
-        <button className='absolute p-2 top-0 right-0 text-dial-sapphire'>
+        <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
           <IoClose size='1rem' onClick={dismissCardHandler} />
         </button>
       }

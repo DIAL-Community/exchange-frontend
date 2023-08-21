@@ -1,35 +1,39 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/organization'
+import { PLAY_QUERY } from '../shared/query/play'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import StorefrontForm from './fragments/StorefrontForm'
-import StorefrontEditLeft from './StorefrontEditLeft'
+import PlayForm from './fragments/PlayForm'
+import PlayEditLeft from './PlayEditLeft'
 
-const StorefrontEdit = ({ slug }) => {
+const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
-    variables: { slug }
+  const { loading, error, data } = useQuery(PLAY_QUERY, {
+    variables: { playSlug, playbookSlug },
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   if (loading) {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.organization) {
+  } else if (!data?.playbook) {
     return <NotFound />
   }
 
-  const { organization } = data
+  const { play, playbook } = data
 
   const slugNameMapping = (() => {
-    const map = {
-      edit: format('app.edit')
-    }
-    map[organization.slug] = data.organization.name
+    const map = {}
+
+    map[play?.slug] = play?.name
+    map[playbook?.slug] = playbook?.name
+
+    map.edit = format('app.edit')
+    map.create = format('app.create')
 
     return map
   })()
@@ -41,14 +45,14 @@ const StorefrontEdit = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <StorefrontEditLeft organization={organization} />
+          <PlayEditLeft play={play} />
         </div>
         <div className='lg:basis-2/3'>
-          <StorefrontForm organization={organization} />
+          <PlayForm playbook={playbook} play={play} />
         </div>
       </div>
     </div>
   )
 }
 
-export default StorefrontEdit
+export default PlayEdit

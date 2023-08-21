@@ -10,7 +10,7 @@ const Pill = ({ label, onRemove, className, readOnly = false }) => (
   >
     <div className='line-clamp-1'>{label}</div>
     {!readOnly &&
-      <button onClick={onRemove}>
+      <button type='button text-dial-stratos' onClick={onRemove}>
         <IoClose size='1rem' />
       </button>
     }

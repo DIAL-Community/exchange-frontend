@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { Fragment, useContext } from 'react'
+import { Fragment, useCallback, useContext } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaCopy } from 'react-icons/fa6'
 import { VscClose } from 'react-icons/vsc'
@@ -8,7 +8,7 @@ import { ToastContext } from '../../../../lib/ToastContext'
 
 const PlaybookDetailEmbed = ({ displayed, setDisplayed }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const { showToast } = useContext(ToastContext)

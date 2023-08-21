@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
-const generatePlaybookMutation = (mutationName) =>
+const generatePlaybookMutation = (mutationName, mutationPath) =>
   `
-    mutation (
+    mutation ${mutationName} (
       $name: String!,
       $slug: String!,
       $author: String,
@@ -13,7 +13,7 @@ const generatePlaybookMutation = (mutationName) =>
       $tags: [String!],
       $draft: Boolean
     ) {
-      ${mutationName}(
+      ${mutationPath}(
         name: $name,
         slug: $slug,
         author: $author,
@@ -47,9 +47,8 @@ const generatePlaybookMutation = (mutationName) =>
     }
   `
 
-export const CREATE_PLAYBOOK = gql(generatePlaybookMutation('createPlaybook'))
-
-export const AUTOSAVE_PLAYBOOK = gql(generatePlaybookMutation('autoSavePlaybook'))
+export const CREATE_PLAYBOOK = gql(generatePlaybookMutation('CreatePlaybook', 'createPlaybook'))
+export const AUTOSAVE_PLAYBOOK = gql(generatePlaybookMutation('AutoSavePlaybook', 'autoSavePlaybook'))
 
 export const DELETE_PLAYBOOK = gql`
   mutation DeletePlaybook($id: ID!) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import { Controller, useForm } from 'react-hook-form'
@@ -10,11 +10,14 @@ import ValidationError from '../../shared/form/ValidationError'
 import { useUser } from '../../../../lib/hooks'
 import { AUTOSAVE_PLAYBOOK, CREATE_PLAYBOOK } from '../../shared/mutation/playbook'
 import { ToastContext } from '../../../../lib/ToastContext'
-import Breadcrumb from '../../shared/Breadcrumb'
 import Input from '../../shared/form/Input'
 import FileUploader from '../../shared/form/FileUploader'
-import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import Checkbox from '../../shared/form/Checkbox'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { fetchSelectOptions } from '../../utils/search'
+import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
 
 const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
@@ -23,8 +26,8 @@ const FormTextEditor = ({ control, name, placeholder = null, required = false, i
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='form-field-wrapper'>
-      <label className={classNames({ 'required-field': required }, 'form-field-label')}>
+    <div className='flex flex-col gap-y-2 text-sm'>
+      <label className={classNames({ 'required-field': required })}>
         {format(`ui.playbook.${name}`)}
       </label>
       <Controller
@@ -55,7 +58,9 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { user } = useUser()
+  const { user, loadingUserSession } = useUser()
+
+  const client = useApolloClient()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -210,109 +215,114 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     router.push(route)
   }
 
-  const slugNameMapping = (() => {
-    const map = {}
-    if (playbook) {
-      map[playbook.slug] = playbook.name
-    }
+  const fetchedTagsCallback = (data) => (
+    data?.tags?.map((tag) => ({
+      value: tag.slug,
+      label: tag.name,
+      slug: tag.slug
+    }))
+  )
 
-    map.edit = format('app.edit')
-    map.create = format('app.create')
+  const addTag = (tag) =>
+    setTags([
+      ...tags.filter(({ label }) => label !== tag.label),
+      { label: tag.label, slug: tag.slug }
+    ])
 
-    return map
-  })()
+  const removeTag = (tag) =>
+    setTags([...tags.filter(({ label }) => label !== tag.label)])
 
-  return (
-    <div className='flex flex-col'>
-      <div className='hidden lg:block px-8'>
-        <Breadcrumb slugNameMapping={slugNameMapping} />
-      </div>
-      <div className='pb-8 px-8'>
-        <div id='content' className='sm:px-0 max-w-full mx-auto'>
-          <form onSubmit={handleSubmit(doUpsert)}>
-            <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
+  const loadTagOptions = (input) =>
+    fetchSelectOptions(client, input, TAG_SEARCH_QUERY, fetchedTagsCallback)
+
+  return loadingUserSession
+    ? <Loading />
+    : user?.isAdminUser || user?.isEditorUser
+      ? (
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='px-4 py-4 lg:py-6 text-dial-plum'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='text-xl font-semibold'>
                 {playbook && format('app.editEntity', { entity: playbook.name })}
                 {!playbook && `${format('app.createNew')} ${format('ui.playbook.label')}`}
               </div>
-              <div className='flex flex-col lg:flex-row gap-4'>
-                <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
-                  <div className='form-field-wrapper' data-testid='playbook-name'>
-                    <label className='form-field-label required-field' htmlFor='name'>
-                      {format('ui.playbook.name')}
-                    </label>
-                    <Input
-                      {...register('name', { required: format('validation.required') })}
-                      id='name'
-                      placeholder={format('ui.playbook.name')}
-                      isInvalid={errors.name}
-                    />
-                    {errors.name && <ValidationError value={errors.name?.message} />}
-                  </div>
-                  <div className='form-field-wrapper'>
-                    <label className='form-field-label'>
-                      {format('ui.playbook.cover')}
-                    </label>
-                    <FileUploader {...register('cover')} />
-                  </div>
-                  <div className='form-field-wrapper'>
-                    <label className='form-field-label'>
-                      {format('ui.playbook.author')}
-                    </label>
-                    <Input {...register('author')} placeholder={format('ui.playbook.author')} />
-                  </div>
-                  <div className='form-field-wrapper'>
-                    <label className='form-field-label'>
-                      {format('ui.playbook.tags')}
-                    </label>
-                    <TagAutocomplete
-                      isSearch
-                      tags={tags}
-                      setTags={setTags}
-                      placeholder={format('ui.playbook.form.tags')}
-                      containerStyles='mb-2'
-                    />
-                    <div className='flex flex-wrap gap-3'>
-                      <TagActiveFilters tags={tags} setTags={setTags} />
-                    </div>
-                  </div>
-                </div>
-                <div className='w-full lg:w-2/3' data-testid='playbook-overview'>
-                  <FormTextEditor
-                    control={control}
-                    name='overview'
-                    placeholder={format('ui.playbook.overview')}
-                    required
-                    isInvalid={errors.overview}
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' htmlFor='name'>
+                  {format('ui.playbook.name')}
+                </label>
+                <Input
+                  {...register('name', { required: format('validation.required') })}
+                  id='name'
+                  placeholder={format('ui.playbook.name')}
+                  isInvalid={errors.name}
+                />
+                {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label>
+                  {format('ui.playbook.cover')}
+                </label>
+                <FileUploader {...register('cover')} />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label htmlFor='author'>
+                  {format('ui.playbook.author')}
+                </label>
+                <Input id='author' {...register('author')} placeholder={format('ui.playbook.author')} />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='flex flex-col gap-y-2'>
+                  {format('ui.tag.header')}
+                  <Select
+                    async
+                    isBorderless
+                    defaultOptions
+                    cacheOptions
+                    placeholder={format('ui.tag.header')}
+                    loadOptions={loadTagOptions}
+                    noOptionsMessage={() =>
+                      format('filter.searchFor', { entity: format('ui.tag.header') })
+                    }
+                    onChange={addTag}
+                    value={null}
                   />
+                </label>
+                <div className='flex flex-wrap gap-3 mt-2'>
+                  {tags?.map((tag, tagIdx) =>(
+                    <Pill
+                      key={tagIdx}
+                      label={tag.label}
+                      onRemove={() => removeTag(tag)}
+                    />
+                  ))}
                 </div>
               </div>
-              <div className='flex flex-col lg:flex-row gap-x-4'>
-                <div className='w-full lg:w-1/2'>
-                  <FormTextEditor
-                    control={control}
-                    name='audience'
-                    placeholder={format('ui.playbook.audience')}
-                  />
-                </div>
-                <div className='w-full lg:w-1/2'>
-                  <FormTextEditor
-                    control={control}
-                    name='outcomes'
-                    placeholder={format('ui.playbook.outcomes')}
-                  />
-                </div>
-              </div>
-              <label className='flex gap-x-2 mb-2 items-center self-start form-field-label'>
+              <FormTextEditor
+                control={control}
+                name='overview'
+                placeholder={format('ui.playbook.overview')}
+                required
+                isInvalid={errors.overview}
+              />
+              <FormTextEditor
+                control={control}
+                name='audience'
+                placeholder={format('ui.playbook.audience')}
+              />
+              <FormTextEditor
+                control={control}
+                name='outcomes'
+                placeholder={format('ui.playbook.outcomes')}
+              />
+              <label className='flex gap-x-2 mb-2 items-center self-start'>
                 <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
                 {format('ui.playbook.published')}
               </label>
-              <div className='flex font-semibold text-xl gap-3'>
+              <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button
                   type='submit'
                   className='submit-button'
                   disabled={mutating || reverting}
-                  data-testid='submit-button'
                 >
                   {format(isPublished ? 'ui.playbook.publish' : 'ui.playbook.saveAsDraft')}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
@@ -328,11 +338,10 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                 </button>
               </div>
             </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  )
+          </div>
+        </form>
+      )
+      : <Unauthorized />
 })
 
 export default PlaybookForm

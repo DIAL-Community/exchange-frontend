@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import Breadcrumb from '../../shared/breadcrumb'
@@ -6,7 +7,7 @@ import EditButton from '../../shared/EditButton'
 
 const MoveDetail = ({ play, move }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const { user } = useUser()
 
   const canEdit = () => user && (user.isAdminUser || user.isEditorUser)

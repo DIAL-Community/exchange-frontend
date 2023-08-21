@@ -264,7 +264,7 @@ const UserMenu = ({ currentMenu, setCurrentMenu }) => {
                 </Link>
               </li>
               <li>
-                <button onClick={signOut} className='w-full text-left'>
+                <button type='button' onClick={signOut} className='w-full text-left'>
                   <div className='mx-8 py-4'>
                     {format('header.signOut')}
                   </div>
@@ -441,7 +441,7 @@ const MobileMenu = ({ menuExpanded, setMenuExpaded }) => {
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-scroll py-4'>
               {!user &&
                 <div className='mx-8 my-4'>
-                  <button className='border border-white rounded-md w-full' onClick={signIn}>
+                  <button type='button' className='border border-white rounded-md w-full' onClick={signIn}>
                     <div className='py-2.5'>Login</div>
                   </button>
                 </div>

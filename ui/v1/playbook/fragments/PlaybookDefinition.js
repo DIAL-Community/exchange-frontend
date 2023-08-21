@@ -10,7 +10,7 @@ const PlaybookDefinition = () => {
     <div className='flex flex-col gap-y-6 py-4'>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-meadow'>
-          {format('ui.playbook.hint.title')}
+          {format('ui.playbook.whatIs')}
         </div>
         <div className='text-sm text-dial-stratos'>
           {format('ui.playbook.hint.subtitle')}

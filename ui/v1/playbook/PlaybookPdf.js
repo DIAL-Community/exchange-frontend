@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl, IntlProvider } from 'react-intl'
 import { PDFDownloadLink, Document, Page, Text, StyleSheet } from '@react-pdf/renderer'
@@ -215,7 +216,7 @@ const PlaybookContent = ({ format, data, locale }) => {
 
 const PlaybookPdf = ({ locale }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const { query } = router

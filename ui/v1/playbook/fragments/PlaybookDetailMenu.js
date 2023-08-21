@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaRegFilePdf } from 'react-icons/fa'
 import { ImEmbed } from 'react-icons/im'
 import { useIntl } from 'react-intl'
@@ -12,7 +12,7 @@ import PlaybookDetailEmbed from './PlaybookEmbedDetail'
 
 const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
   const canEdit = isAdminUser || isEditorUser
@@ -57,7 +57,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
               <span className='text-sm px-1'>{format('app.printPdf')}</span>
             </a>
             {allowEmbedCreation &&
-              <button onClick={openEmbedDialog} className='bg-dial-iris-blue px-2 py-0.5 rounded text-white'>
+              <button type='button' onClick={openEmbedDialog} className='bg-dial-iris-blue px-2 py-0.5 rounded text-white'>
                 <ImEmbed className='inline pb-px' />
                 <span className='text-sm px-1'>{format('ui.playbook.openEmbedDialog')}</span>
               </button>

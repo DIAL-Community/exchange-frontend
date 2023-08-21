@@ -9,7 +9,6 @@ import {
   PlayFilterDispatchContext,
   PlayFilterProvider
 } from '../../../components/context/PlayFilterContext'
-import { TagActiveFilters, TagAutocomplete } from '../shared/filter/Tag'
 import { SearchInput } from '../shared/form/SearchInput'
 import { ToastContext } from '../../../lib/ToastContext'
 import { UPDATE_PLAYBOOK_PLAYS } from '../shared/mutation/playbook'
@@ -68,7 +67,7 @@ const RearrangePlay = ({ displayDragable, onDragableClose, playbook }) => {
                   <div className='flex flex-col gap-4 px-4 pt-6'>
                     <PlayListDraggable playbook={playbook} />
                     <RearrangeControls playbook={playbook} onClose={onDragableClose} />
-                    <ExistingPlay playbook={playbook} />
+                    <ExistingPlay />
                   </div>
                 </PlayListProvider>
               </PlayFilterProvider>
@@ -80,14 +79,14 @@ const RearrangePlay = ({ displayDragable, onDragableClose, playbook }) => {
   )
 }
 
-const ExistingPlay = ({ playbook }) => {
+const ExistingPlay = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [showPlayForm, setShowPlayForm] = useState(false)
 
-  const { search, tags } = useContext(PlayFilterContext)
-  const { setSearch, setTags } = useContext(PlayFilterDispatchContext)
+  const { search } = useContext(PlayFilterContext)
+  const { setSearch } = useContext(PlayFilterDispatchContext)
 
   const handleChange = (e) => setSearch(e.target.value)
 
@@ -95,28 +94,17 @@ const ExistingPlay = ({ playbook }) => {
     <>
       {showPlayForm &&
         <div className='flex flex-col gap-3 mt-3'>
-          <div className='flex flex-col gap-y-3'>
-            <div className='flex flex-wrap gap-2 ml-auto'>
-              <TagAutocomplete
-                isSearch
-                tags={tags}
-                setTags={setTags}
-                containerStyles='w-56 2xl:w-96'
-              />
-              <span className='sr-only'>{format('search.input.label')}</span>
-              <SearchInput
-                value={search}
-                onChange={handleChange}
-                className='w-56 2xl:w-96'
-                placeholder={`${format('app.search')} ${format('ui.play.header')}`}
-              />
-            </div>
-            <div className='flex flex-row flex-wrap gap-3 ml-auto'>
-              <TagActiveFilters tags={tags} setTags={setTags} />
-            </div>
+          <div className='flex flex-wrap gap-2 ml-auto'>
+            <span className='sr-only'>{format('search.input.label')}</span>
+            <SearchInput
+              value={search}
+              onChange={handleChange}
+              className='w-56 2xl:w-96'
+              placeholder={`${format('app.search')} ${format('ui.play.header')}`}
+            />
           </div>
           <div className='border-b' />
-          <PlayListQuery playbook={playbook} />
+          <PlayListQuery />
         </div>
       }
       {!showPlayForm &&
@@ -144,7 +132,7 @@ const RearrangeControls = ({ playbook, onClose }) => {
 
   const { dirty, currentPlays } = useContext(PlayListContext)
   const { setDirty } = useContext(PlayListDispatchContext)
-  const { showToast } = useContext(ToastContext)
+  const { showFailureMessage, showSuccessMessage } = useContext(ToastContext)
 
   const [updatePlayMoves, { reset }] = useMutation(
     UPDATE_PLAYBOOK_PLAYS, {
@@ -153,19 +141,19 @@ const RearrangeControls = ({ playbook, onClose }) => {
         if (response?.playbook && response?.errors?.length === 0) {
           setDirty(false)
           setLoading(false)
-          showToast(format('toast.play.rearrange.success'), 'success', 'top-center')
+          showSuccessMessage(format('toast.play.rearrange.success'))
         } else {
+          reset()
           setDirty(false)
           setLoading(false)
-          showToast(format('toast.play.rearrange.failure'), 'error', 'top-center')
-          reset()
+          showFailureMessage(format('toast.play.rearrange.failure'))
         }
       },
       onError: () => {
+        reset()
         setDirty(false)
         setLoading(false)
-        showToast(format('toast.play.rearrange.failure'), 'error', 'top-center')
-        reset()
+        showFailureMessage(format('toast.play.rearrange.failure'))
       }
     }
   )
@@ -189,14 +177,14 @@ const RearrangeControls = ({ playbook, onClose }) => {
   }
 
   return (
-    <div className='flex gap-3 ml-auto'>
+    <div className='flex flex-row gap-3 text-sm ml-auto'>
       <button
         type='button'
+        className='submit-button'
         onClick={() => {
           setLoading(true)
           onSubmit()
         }}
-        className='submit-button'
         disabled={loading || !dirty}
       >
         {format('app.save')}

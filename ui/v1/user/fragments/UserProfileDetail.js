@@ -68,6 +68,7 @@ const UserProfileDetail = () => {
               </div>
               <div className='text-sm text-dial-stratos'>
                 <button
+                  type='button'
                   onClick={signOut}
                   className='border-b border-dial-iris-blue'
                 >
@@ -85,6 +86,7 @@ const UserProfileDetail = () => {
                 </div>
                 <div className='text-sm text-dial-stratos'>
                   <button
+                    type='button'
                     onClick={signOut}
                     className='border-b border-dial-iris-blue'
                   >
@@ -100,6 +102,7 @@ const UserProfileDetail = () => {
                 </div>
                 <div className='text-sm text-dial-stratos'>
                   <button
+                    type='button'
                     onClick={signOut}
                     className='border-b border-dial-iris-blue'
                   >

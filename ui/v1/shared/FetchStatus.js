@@ -9,7 +9,7 @@ export const Loading = () => {
   return (
     <div className='h-[60vh]'>
       <div className='flex bg-dial-alice-blue h-full'>
-        <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
+        <div className='text-dial-stratos text-lg w-full my-auto flex flex-col gap-4'>
           <FaSpinner size='3em' className='spinner mx-auto' />
           <div className='text-center mt-5'>{format('general.fetchingData')}</div>
         </div>
@@ -25,7 +25,7 @@ export const Error = () => {
   return (
     <div className='h-[60vh]'>
       <div className='flex bg-dial-alice-blue h-full'>
-        <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
+        <div className='text-dial-stratos text-lg w-full my-auto flex flex-col gap-4'>
           <FaCircleExclamation size='3em' className='mx-auto' />
           <div className='text-center mt-5'>{format('general.fetchError')}</div>
         </div>
@@ -41,7 +41,7 @@ export const Unauthorized = () => {
   return (
     <div className='h-[60vh]'>
       <div className='flex bg-dial-alice-blue h-full'>
-        <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
+        <div className='text-dial-stratos text-lg w-full my-auto flex flex-col gap-4'>
           <FaCircleExclamation size='3em' className='mx-auto' />
           <div className='text-center mt-5'>{format('general.unauthorized')}</div>
         </div>
@@ -57,7 +57,7 @@ export const ReadyToDownload = () => {
   return (
     <div className='h-[60vh]'>
       <div className='flex bg-dial-alice-blue h-full'>
-        <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
+        <div className='text-dial-stratos text-lg w-full my-auto flex flex-col gap-4'>
           <FaDownload size='3em' className='mx-auto' />
           <div className='text-center mt-5'>{format('general.ready-to-download')}</div>
         </div>
@@ -72,7 +72,7 @@ export const InternalServerError = () => {
 
   return (
     <div className='grid place-items-center bg-gradient-to-b from-dial-gray-light to-white'>
-      <div className='my-20 text-button-gray text-lg'>
+      <div className='my-20 text-dial-stratos text-lg'>
         <FaCircleExclamation size='3em' className='mx-auto' />
         <div className='font-semibold'>{format('app.serverError')}</div>
       </div>
@@ -87,7 +87,7 @@ export const NotFound = () => {
   return (
     <div className='h-[60vh]'>
       <div className='flex bg-gradient-to-b from-dial-gray-light to-white h-full'>
-        <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
+        <div className='text-dial-stratos text-lg w-full my-auto flex flex-col gap-4'>
           <FaCircleExclamation size='3em' className='mx-auto' />
           <div className='font-semibold text-center'>{format('app.notFound')}</div>
         </div>

@@ -54,7 +54,7 @@ const Play = ({ playbook, play, index }) => {
   }
 
   return (
-    <div className='flex flex-col gap-4' ref={ref}>
+    <div className='flex flex-col gap-y-4' ref={ref}>
       <hr className='border-b border-dial-slate-200'/>
       <div className='flex'>
         <div className='font-semibold text-2xl py-4'>
@@ -108,8 +108,8 @@ const Play = ({ playbook, play, index }) => {
         )}
       </div>
       {play.buildingBlocks && play.buildingBlocks.length > 0 &&
-        <div className='flex flex-col gap-3 my-3'>
-          <div className='h4'>{format('ui.buildingBlock.header')}</div>
+        <div className='flex flex-col gap-3'>
+          <div className='text-xl font-semibold py-4'>{format('ui.buildingBlock.header')}</div>
           <div
             className='text-sm'
             dangerouslySetInnerHTML={{ __html: format('ui.play.buildingBlocks.subtitle') }}
@@ -122,8 +122,8 @@ const Play = ({ playbook, play, index }) => {
         </div>
       }
       {play.products && play.products.length > 0 &&
-        <div className='flex flex-col gap-3 my-3'>
-          <div className='h4'>{format('ui.product.header')}</div>
+        <div className='flex flex-col gap-3'>
+          <div className='text-xl font-semibold py-4'>{format('ui.product.header')}</div>
           <div
             className='text-sm'
             dangerouslySetInnerHTML={{ __html: format('ui.play.products.subtitle') }}
@@ -161,7 +161,7 @@ const PlaybookDetailPlayList = ({ locale, playbook }) => {
   const { plays } = data
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-y-6'>
       {plays.map((play, i) =>
         <Play key={i} playbook={playbook} play={play} index={i} />
       )}

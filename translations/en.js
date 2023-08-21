@@ -756,6 +756,7 @@ export const en = {
   'ui.playbook.status.draft': 'Draft',
   'ui.playbook.status.published': 'Published',
   'ui.playbook.delete.confirm.message': 'Are you sure you want to delete this Playbook?',
+  'ui.playbook.createNew': 'Create a new Playbook',
 
   'ui.play.header': 'Plays',
   'ui.play.label': 'Play',
@@ -862,6 +863,7 @@ export const en = {
   'project.hint.characteristics': `Projects provide insight into where specific digital technologies have been deployed. Users of the Exchange can search and filter projects by country or sector.`,
   'project.hint.description': `Project data is sourced from many different partners, including the World Health Organization's Digital Health Atlas, the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.`,
 
+  'ui.playbook.whatIs': 'What is a Playbook?',
   'ui.playbook.hint.subtitle': `Playbooks are tactical guides that  help different actors approach common digital initiatives. They provide step-by-step instructions and highlight key technical and operational considerations.`,
   'ui.playbook.hint.characteristicTitle': 'Description',
   'ui.playbook.hint.descriptionTitle': 'Sources',
@@ -1453,10 +1455,10 @@ export const en = {
 
   'ui.play.submittedToCreateMove': 'Play saved. Navigating to create move ...',
   'ui.play.submitted': 'Play saved.',
-  'ui.play.autoSaved': 'Play saved ...',
+  'ui.play.autoSaved': 'Auto saving play.',
 
   'ui.move.submitted': 'Move saved.',
-  'ui.move.autoSaved': 'Move saved ...',
+  'ui.move.autoSaved': 'Auto saving move.',
 
   'ui.resource.submitted': 'Resource saved.',
   'product.launchable': 'Product Launchable',

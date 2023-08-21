@@ -392,7 +392,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             </div>
           </Dialog>
         </div>
-        : <div className='text-sm pb-5 text-button-gray'>{format('product.noMaturity')}</div>
+        : <div className='text-sm pb-5 text-dial-stratos'>{format('product.noMaturity')}</div>
       }
     </>
   )

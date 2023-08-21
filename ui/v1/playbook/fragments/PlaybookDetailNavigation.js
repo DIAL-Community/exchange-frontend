@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
 import { MdPlayArrow } from 'react-icons/md'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from '../context/PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
 const PlaybookDetailNavigation = ({ playbook }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const [mappedMoves, setMappedMoves] = useState({})
 
   const { currentSlug, slugHeights } = useContext(PlaybookDetailContext)

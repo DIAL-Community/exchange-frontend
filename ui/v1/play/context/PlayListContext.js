@@ -4,12 +4,11 @@ const PlayListContext = createContext()
 const PlayListDispatchContext = createContext()
 
 const PlayListProvider = ({ children }) => {
-  const [tags, setTags] = useState([])
   const [currentPlays, setCurrentPlays] = useState([])
   const [dirty, setDirty] = useState(false)
 
-  const values = { currentPlays, tags, dirty }
-  const dispatchValues = { setCurrentPlays, setTags, setDirty }
+  const values = { currentPlays, dirty }
+  const dispatchValues = { setCurrentPlays, setDirty }
 
   return (
     <PlayListContext.Provider value={values}>

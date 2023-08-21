@@ -73,7 +73,7 @@ const ProjectFilter = () => {
               {format('ui.filter.filteredBy')}
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button onClick={clearFilter}>
+              <button type='button' onClick={clearFilter}>
                 {format('ui.filter.clearAll')}
               </button>
             </div>
@@ -105,7 +105,7 @@ const ProjectFilter = () => {
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          <button className='w-full' onClick={() => setExpanded(!expanded)}>
+          <button type='button' className='w-full' onClick={() => setExpanded(!expanded)}>
             <div className='flex w-full gap-3'>
               <div className='my-auto'>
                 {format('ui.filter.additional.title')}

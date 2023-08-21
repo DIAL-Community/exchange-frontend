@@ -43,7 +43,7 @@ export const PAGINATED_PLAYBOOKS_QUERY = gql`
       tags
       playbookDescription {
         id
-        overview
+        sanitizedOverview
       }
       draft
     }
@@ -86,47 +86,6 @@ export const PLAYBOOK_DETAIL_QUERY = gql`
         }
       }
       draft
-    }
-  }
-`
-
-export const PLAYBOOK_PLAYS_QUERY = gql`
-  query SearchPlaybookPlays($first: Int, $after: String, $slug: String!) {
-    searchPlaybookPlays(first: $first, after: $after, slug: $slug) {
-      totalCount
-      pageInfo {
-        endCursor
-        startCursor
-        hasPreviousPage
-        hasNextPage
-      }
-      nodes {
-        id
-        slug
-        name
-        imageFile
-        playDescription {
-          id
-          description
-        }
-        playMoves {
-          id
-          slug
-          name
-        }
-        products {
-          id
-          name
-          slug
-          imageFile
-        }
-        buildingBlocks {
-          id
-          name
-          slug
-          imageFile
-        }
-      }
     }
   }
 `

@@ -50,7 +50,7 @@ const OrganizationFilter = () => {
               {format('ui.filter.filteredBy')}
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button onClick={clearFilter}>
+              <button type='button' onClick={clearFilter}>
                 {format('ui.filter.clearAll')}
               </button>
             </div>
@@ -64,7 +64,7 @@ const OrganizationFilter = () => {
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('filter.organization.aggregatorOnly')}
-                    <button onClick={toggleAggregator}>
+                    <button type='button' onClick={toggleAggregator}>
                       <IoClose size='1rem' />
                     </button>
                   </div>

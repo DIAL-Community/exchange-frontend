@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
 import Breadcrumb from '../../shared/Breadcrumb'
@@ -7,7 +7,7 @@ import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
 const PlaybookDetailHeader = ({ playbook }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
 

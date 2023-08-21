@@ -26,7 +26,7 @@ const Comment = ({ entityKey, scrollRef }) => {
       </div>
       <div className='flex text-white'>
         <div className='bg-dial-iris-blue rounded-md text-sm'>
-          <button className='px-5 py-3' onClick={scrollToComment}>
+          <button type='button' className='px-5 py-3' onClick={scrollToComment}>
             {format('ui.comment.buttonTitle')}
           </button>
         </div>

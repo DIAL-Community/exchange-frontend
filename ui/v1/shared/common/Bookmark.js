@@ -57,7 +57,7 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
       <div className='text-lg text-dial-sapphire font-semibold'>
         {format('ui.bookmark.title')}
       </div>
-      <button onClick={bookmarkThis} className='group flex flex-row gap-x-3'>
+      <button type='button' onClick={bookmarkThis} className='group flex flex-row gap-x-3'>
         <img
           src='/ui/v1/bookmark-icon.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.bookmark.title') })}

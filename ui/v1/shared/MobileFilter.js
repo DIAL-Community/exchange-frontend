@@ -25,7 +25,7 @@ const MobileFilter = ({ iconColor, bgColor, entityFilter }) => {
   return (
     <>
       <div className={mobileFilterStyle}>
-        <button onClick={toggleFiltering} className='my-auto h-full'>
+        <button type='button' onClick={toggleFiltering} className='my-auto h-full'>
           <FaSliders className={`text-2xl ${iconColor} mx-auto`} />
         </button>
       </div>
@@ -38,6 +38,7 @@ const MobileFilter = ({ iconColor, bgColor, entityFilter }) => {
             {entityFilter}
             <div className='ml-auto text-sm text-dial-sapphire pb-3'>
               <button
+                type='button'
                 onClick={toggleFiltering}
                 className='submit-button'
               >

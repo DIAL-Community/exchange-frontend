@@ -12,7 +12,7 @@ const PlayCard = ({ play }) => {
 
   const assignPlay = (play) => {
     setDirty(true)
-    setCurrentPlays([...currentPlays, play])
+    setCurrentPlays([...currentPlays, { id: play.id, slug: play.slug, name: play.name }])
   }
 
   return (

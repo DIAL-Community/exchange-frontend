@@ -4,19 +4,19 @@ import { useApolloClient, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
-import { HtmlEditor } from '../shared/HtmlEditor'
-import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
-import Breadcrumb from '../shared/breadcrumb'
-import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
-import Input from '../shared/Input'
-import ValidationError from '../shared/ValidationError'
-import { AUTOSAVE_PLAY, CREATE_PLAY } from '../../mutations/play'
-import Select from '../shared/Select'
-import { PRODUCT_SEARCH_QUERY } from '../../queries/product'
-import Pill from '../shared/Pill'
-import { fetchSelectOptions } from '../../queries/utils'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../queries/building-block'
-import { useUser } from '../../lib/hooks'
+import { ToastContext } from '../../../../lib/ToastContext'
+import { useUser } from '../../../../lib/hooks'
+import Input from '../../shared/form/Input'
+import ValidationError from '../../shared/form/ValidationError'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import { fetchSelectOptions } from '../../utils/search'
+import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
+import { AUTOSAVE_PLAY, CREATE_PLAY } from '../../shared/mutation/play'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
 
 export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
@@ -26,46 +26,22 @@ export const PlayForm = ({ playbook, play }) => {
 
   const router = useRouter()
   const { locale } = router
-  const { user } = useUser()
-  const { showToast } = useContext(ToastContext)
+  const { user, loadingUserSession } = useUser()
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const fetchedProductsCallback = (data) => (
-    data?.products?.map((product) => ({
-      label: product.name,
-      slug: product.slug
-    }))
-  )
-
-  const fetchedBuildingBlocksCallback = (data) => (
-    data?.buildingBlocks?.map((buildingBlock) => ({
-      label: buildingBlock.name,
-      slug: buildingBlock.slug
-    }))
-  )
-
   const [createPlay, { reset }] = useMutation(CREATE_PLAY, {
     onError: (error) => {
+      showFailureMessage(error?.message)
       setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{error?.message}</span>
-        </div>,
-        'error',
-        'top-center'
-      )
       reset()
     },
     onCompleted: () => {
       setMutating(false)
-      showToast(
+      showSuccessMessage(
         format('ui.play.submitted'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
         () => router.push(`/${locale}/playbooks/${playbook.slug}`)
       )
     }
@@ -81,7 +57,7 @@ export const PlayForm = ({ playbook, play }) => {
       if (response.errors.length === 0 && response.play) {
         setMutating(false)
         setSlug(response.play.slug)
-        showToast(format('ui.play.autoSaved'), 'success', 'top-right')
+        showSuccessMessage(format('ui.play.autoSaved'))
       }
     }
   })
@@ -89,14 +65,10 @@ export const PlayForm = ({ playbook, play }) => {
   const [slug, setSlug] = useState(play?.slug ?? '')
   const [tags, setTags] = useState(play?.tags.map(tag => ({ label: tag })) ?? [])
   const [products, setProducts] = useState(
-    play?.products?.map(
-      product => ({ name: product.name, slug: product.slug })) ??
-    []
+    play?.products?.map(product => ({ name: product.name, slug: product.slug })) ?? []
   )
   const [buildingBlocks, setBuildingBlocks] = useState(
-    play?.buildingBlocks?.map(
-      buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug })) ??
-    []
+    play?.buildingBlocks?.map(buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug })) ?? []
   )
 
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
@@ -189,185 +161,190 @@ export const PlayForm = ({ playbook, play }) => {
     router.push(`/${router.locale}/playbooks/${playbook.slug}`)
   }
 
-  const slugNameMapping = (() => {
-    const map = {}
+  const fetchedTagsCallback = (data) => (
+    data?.tags?.map((tag) => ({
+      value: tag.slug,
+      label: tag.name,
+      slug: tag.slug
+    }))
+  )
 
-    map[play?.slug] = play?.name
-    map[playbook?.slug] = playbook?.name
+  const addTag = (tag) =>
+    setTags([
+      ...tags.filter(({ label }) => label !== tag.label),
+      { label: tag.label, slug: tag.slug }
+    ])
 
-    map.edit = format('app.edit')
-    map.create = format('app.create')
+  const removeTag = (tag) =>
+    setTags([...tags.filter(({ label }) => label !== tag.label)])
 
-    return map
-  })()
+  const loadTagOptions = (input) =>
+    fetchSelectOptions(client, input, TAG_SEARCH_QUERY, fetchedTagsCallback)
 
-  const addProduct =
-    (product) =>
-      setProducts([
-        ...products.filter(({ slug }) => slug !== product.slug),
-        { name: product.label, slug: product.slug }
-      ])
+  const fetchedProductsCallback = (data) => (
+    data?.products?.map((product) => ({
+      value: product.slug,
+      label: product.name,
+      slug: product.slug
+    }))
+  )
 
-  const removeProduct =
-    (product) =>
-      setProducts([
-        ...products.filter(({ slug }) => slug !== product.slug)
-      ])
+  const addProduct = (product) =>
+    setProducts([
+      ...products.filter(({ slug }) => slug !== product.slug),
+      { name: product.label, slug: product.slug }
+    ])
 
-  const addBuildingBlock =
-    (buildingBlock) =>
-      setBuildingBlocks([
-        ...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug),
-        { name: buildingBlock.label, slug: buildingBlock.slug }
-      ])
+  const removeProduct = (product) =>
+    setProducts([...products.filter(({ slug }) => slug !== product.slug)])
 
-  const removeBuildingBlock =
-    (buildingBlock) =>
-      setBuildingBlocks([
-        ...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug)
-      ])
+  const loadProductOptions = (input) =>
+    fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)
 
-  return (
-    <div className='flex flex-col'>
-      <div className='hidden lg:block px-8'>
-        <Breadcrumb slugNameMapping={slugNameMapping} />
-      </div>
-      <div className='pb-8 px-8'>
-        <div id='content' className='sm:px-0 max-w-full mx-auto'>
-          <form onSubmit={handleSubmit(doUpsert)}>
-            <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
+  const fetchedBuildingBlocksCallback = (data) => (
+    data?.buildingBlocks?.map((buildingBlock) => ({
+      value: buildingBlock.slug,
+      label: buildingBlock.name,
+      slug: buildingBlock.slug
+    }))
+  )
+
+  const addBuildingBlock =(buildingBlock) =>
+    setBuildingBlocks([
+      ...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug),
+      { name: buildingBlock.label, slug: buildingBlock.slug }
+    ])
+
+  const removeBuildingBlock = (buildingBlock) =>
+    setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug)])
+
+  const loadBuildingBlockOptions = (input) =>
+    fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
+
+  return loadingUserSession
+    ? <Loading />
+    : user?.isAdminUser || user?.isEditorUser
+      ? (
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='px-4 py-4 lg:py-6 text-dial-plum'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='text-xl font-semibold'>
                 {play && format('app.editEntity', { entity: play.name })}
                 {!play && `${format('app.createNew')} ${format('ui.play.label')}`}
               </div>
-              <div className='flex flex-col lg:flex-row gap-4'>
-                <div className='w-full lg:w-1/3 flex flex-col gap-y-3' data-testid='play-name'>
-                  <label className='flex flex-col gap-y-2 text-dial-sapphire mb-2'>
-                    <p className='required-field'>{format('ui.play.name')}</p>
-                    <Input
-                      {...register('name', { required: format('validation.required') })}
-                      placeholder={format('ui.play.name')}
-                      isInvalid={errors.name}
-                    />
-                    {errors.name && <ValidationError value={errors.name?.message} />}
-                  </label>
-                  <div className='flex flex-col gap-y-2' data-testid='play-tags'>
-                    <label className='text-dial-sapphire flex flex-col gap-y-2' htmlFor='name'>
-                      {format('ui.play.tags')}
-                      <TagAutocomplete
-                        {...{ tags, setTags }}
-                        controlSize='100%'
-                        placeholder={format('ui.play.form.tags')}
-                      />
-                    </label>
-                    <div className='flex flex-wrap gap-3 mt-2'>
-                      <TagFilters {...{ tags, setTags }} />
-                    </div>
-                  </div>
-                  <div className='flex flex-col gap-y-2' data-testid='play-products'>
-                    <label className='text-dial-sapphire flex flex-col gap-y-2'>
-                      {format('ui.play.products')}
-                      <Select
-                        async
-                        isSearch
-                        defaultOptions
-                        cacheOptions
-                        placeholder={format('ui.play.form.products')}
-                        loadOptions={
-                          (input) =>
-                            fetchSelectOptions(
-                              client,
-                              input,
-                              PRODUCT_SEARCH_QUERY,
-                              fetchedProductsCallback
-                            )
-                        }
-                        noOptionsMessage={() =>
-                          format('filter.searchFor', { entity: format('ui.product.header') })
-                        }
-                        onChange={addProduct}
-                        value={null}
-                      />
-                    </label>
-                    <div className='flex flex-wrap gap-3 mt-2'>
-                      {products?.map((product, productIdx) =>(
-                        <Pill
-                          key={`product-${productIdx}`}
-                          label={product.name}
-                          onRemove={() => removeProduct(product)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <div className='flex flex-col gap-y-2' data-testid='play-buildingBlocks'>
-                    <label className='text-dial-sapphire flex flex-col gap-y-2'>
-                      {format('ui.play.buildingBlocks')}
-                      <Select
-                        async
-                        isSearch
-                        defaultOptions
-                        cacheOptions
-                        placeholder={format('ui.play.form.buildingBlocks')}
-                        loadOptions={
-                          (input) =>
-                            fetchSelectOptions(
-                              client,
-                              input,
-                              BUILDING_BLOCK_SEARCH_QUERY,
-                              fetchedBuildingBlocksCallback
-                            )
-                        }
-                        noOptionsMessage={() =>
-                          format('filter.searchFor', { entity: format('buildingBlocks.header') })
-                        }
-                        onChange={addBuildingBlock}
-                        value={null}
-                      />
-                    </label>
-                    <div className='flex flex-wrap gap-3 mt-2'>
-                      {buildingBlocks?.map((buildingBlock, buildingBlockIdx) =>(
-                        <Pill
-                          key={`buildingBlock-${buildingBlockIdx}`}
-                          label={buildingBlock.name}
-                          onRemove={() => removeBuildingBlock(buildingBlock)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className='w-full lg:w-2/3'
-                  style={{ minHeight: '20rem' }}
-                  data-testid='play-description'
-                >
-                  <label className='block text-dial-sapphire flex flex-col gap-y-2'>
-                    <p className='required-field'> {format('ui.play.description')}</p>
-                    <Controller
-                      name='description'
-                      control={control}
-                      rules={{ required: format('validation.required') }}
-                      render={({ field: { value, onChange, onBlur } }) => {
-                        return (
-                          <HtmlEditor
-                            editorId={`${name}-editor`}
-                            onBlur={onBlur}
-                            onChange={onChange}
-                            initialContent={value}
-                            isInvalid={errors.description}
-                          />
-                        )
-                      }}
-                    />
-                    {errors.description &&
-                      <ValidationError value={errors.description?.message} />
+              <label className='flex flex-col gap-y-2 text-dial-sapphire mb-2'>
+                <p className='required-field'>{format('ui.play.name')}</p>
+                <Input
+                  {...register('name', { required: format('validation.required') })}
+                  placeholder={format('ui.play.name')}
+                  isInvalid={errors.name}
+                />
+                {errors.name && <ValidationError value={errors.name?.message} />}
+              </label>
+              <div className='flex flex-col gap-y-2'>
+                <label className='flex flex-col gap-y-2'>
+                  {format('ui.tag.header')}
+                  <Select
+                    async
+                    isBorderless
+                    defaultOptions
+                    cacheOptions
+                    placeholder={format('ui.tag.header')}
+                    loadOptions={loadTagOptions}
+                    noOptionsMessage={() =>
+                      format('filter.searchFor', { entity: format('ui.tag.header') })
                     }
-                  </label>
+                    onChange={addTag}
+                    value={null}
+                  />
+                </label>
+                <div className='flex flex-wrap gap-3 mt-2'>
+                  {tags?.map((tag, tagIdx) =>(
+                    <Pill
+                      key={tagIdx}
+                      label={tag.label}
+                      onRemove={() => removeTag(tag)}
+                    />
+                  ))}
                 </div>
               </div>
-              <div className='flex flex-wrap font-semibold text-xl lg:mt-8 gap-3'>
+              <div className='flex flex-col gap-y-2'>
+                <label className='flex flex-col gap-y-2'>
+                  {format('ui.product.header')}
+                  <Select
+                    async
+                    isBorderless
+                    defaultOptions
+                    cacheOptions
+                    placeholder={format('ui.product.header')}
+                    loadOptions={loadProductOptions}
+                    noOptionsMessage={() =>
+                      format('filter.searchFor', { entity: format('ui.product.header') })
+                    }
+                    onChange={addProduct}
+                    value={null}
+                  />
+                </label>
+                <div className='flex flex-wrap gap-3 mt-2'>
+                  {products?.map((product, productIdx) =>(
+                    <Pill
+                      key={productIdx}
+                      label={product.name}
+                      onRemove={() => removeProduct(product)}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire flex flex-col gap-y-2'>
+                  {format('ui.buildingBlock.header')}
+                  <Select
+                    async
+                    isBorderless
+                    defaultOptions
+                    cacheOptions
+                    placeholder={format('ui.buildingBlock.header')}
+                    loadOptions={loadBuildingBlockOptions}
+                    noOptionsMessage={() =>
+                      format('filter.searchFor', { entity: format('ui.buildingBlock.header') })
+                    }
+                    onChange={addBuildingBlock}
+                    value={null}
+                  />
+                </label>
+                <div className='flex flex-wrap gap-3 mt-2'>
+                  {buildingBlocks?.map((buildingBlock, buildingBlockIdx) =>(
+                    <Pill
+                      key={buildingBlockIdx}
+                      label={buildingBlock.name}
+                      onRemove={() => removeBuildingBlock(buildingBlock)}
+                    />
+                  ))}
+                </div>
+              </div>
+              <label className='block text-dial-sapphire flex flex-col gap-y-2'>
+                <p className='required-field'> {format('ui.play.description')}</p>
+                <Controller
+                  name='description'
+                  control={control}
+                  rules={{ required: format('validation.required') }}
+                  render={({ field: { value, onChange, onBlur } }) => {
+                    return (
+                      <HtmlEditor
+                        editorId={`${name}-editor`}
+                        onBlur={onBlur}
+                        onChange={onChange}
+                        initialContent={value}
+                        isInvalid={errors.description}
+                      />
+                    )
+                  }}
+                />
+                {errors.description && <ValidationError value={errors.description?.message} />}
+              </label>
+              <div className='flex flex-wrap gap-3'>
                 <button
                   type='submit'
-                  data-testid='submit-button'
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
@@ -385,9 +362,10 @@ export const PlayForm = ({ playbook, play }) => {
                 </button>
               </div>
             </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  )
+          </div>
+        </form>
+      )
+      : <Unauthorized />
 }
+
+export default PlayForm

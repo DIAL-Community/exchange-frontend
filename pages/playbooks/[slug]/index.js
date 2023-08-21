@@ -18,11 +18,11 @@ const Playbook = () => {
   return (
     <>
       <NextSeo
-        title={format('ui.opportunity.header')}
+        title={format('ui.playbook.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.opportunity.header')?.toLocaleLowerCase() }
+            { entities: format('ui.playbook.header')?.toLocaleLowerCase() }
           )
         }
       />

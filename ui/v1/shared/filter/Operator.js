@@ -38,8 +38,8 @@ export const OperatorAutocomplete = ({
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <button className='flex' onClick={() => setShowFilter(!showFilter)}>
-        <div className='text-dial-stratos text-sm ml-4 py-2'>
+      <button type='button' className='flex' onClick={() => setShowFilter(!showFilter)}>
+        <div className='text-dial-stratos text-sm py-2'>
           {format('ui.operator.label')}
         </div>
         <BsPlus className='ml-auto my-auto' />
@@ -48,7 +48,7 @@ export const OperatorAutocomplete = ({
         <Select
           async
           aria-label={format('filter.byEntity', { entity: format('ui.operator.label') })}
-          className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
+          className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
           loadOptions={(input) => fetchSelectOptions(client, input, OPERATOR_SEARCH_QUERY, fetchedOperatorsCallback)}
