@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
 import Breadcrumb from '../../shared/Breadcrumb'
@@ -11,56 +11,29 @@ const PlaybookDetailHeader = ({ playbook }) => {
 
   const { isAdminUser, isEditorUser } = useUser()
 
-  const playProgressNumbersRef = useRef([])
   const [percentage, setPercentage] = useState(0)
   const [currentSlugIndex, setCurrentSlugIndex] = useState(-1)
-  const { currentSlug, slugHeights, slugIntersectionRatios } = useContext(PlaybookDetailContext)
-  const { setDirect, setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
+
+  const { currentSlug, slugHeights } = useContext(PlaybookDetailContext)
+  const { setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
 
   const isPlaybookPublished = !playbook?.draft
 
   useEffect(() => {
-    playProgressNumbersRef.current = playProgressNumbersRef.current.slice(0, playbook?.playbookPlays?.length)
-  }, [playbook])
+    if (playbook) {
+      const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
+      const barSegmentMultiplier = 100 / (playSlugs.length - 1)
+      const currentSlugIndex = playSlugs.indexOf(currentSlug)
 
-  useEffect(() => {
-    if (!playbook) {
-      // Skip execution if we don't have the playbook play information.
-      return
+      setCurrentSlugIndex(currentSlugIndex >= 0 ? currentSlugIndex : -1)
+      setPercentage(currentSlugIndex >= 0 ? barSegmentMultiplier * currentSlugIndex : 0)
     }
-
-    const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
-    const barSegmentMultiplier = 100 / (playSlugs.length - 1)
-
-    setPercentage(barSegmentMultiplier * currentSlugIndex)
-  }, [currentSlugIndex, slugIntersectionRatios, playbook])
-
-  useEffect(() => {
-    if (!playbook) {
-      // Skip execution if we don't have the playbook play information.
-      return
-    }
-
-    const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
-    const playIndex = playSlugs.indexOf(currentSlug)
-
-    // Scroll into the current play if play progress bar is scrollable
-    playProgressNumbersRef.current[playIndex]?.scrollIntoView({ block: 'nearest' })
-
-    setCurrentSlugIndex(playIndex)
   }, [currentSlug, setCurrentSlugIndex, playbook])
 
   const navigateToPlay = (e, slug) => {
     e.preventDefault()
 
-    setDirect(true)
     setCurrentSlug(slug)
-
-    if (!playbook) {
-      // Skip execution if we don't have the playbook play information.
-      return
-    }
-
     const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
 
     let index = 0
@@ -90,10 +63,10 @@ const PlaybookDetailHeader = ({ playbook }) => {
           <div className='hidden lg:block'>
             <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
-          <div className='flex flex-col md:flex-row gap-x-2 text-2xl font-semibold'>
-            <div>{playbook.name}</div>
+          <div className='flex flex-col md:flex-row gap-x-2'>
+            <div className='text-2xl font-semibold'>{playbook.name}</div>
             {(isAdminUser || isEditorUser) &&
-              <div className='text-base font-base text-white md:self-center'>
+              <div className='text-sm italic text-white md:self-center'>
                 ({format(isPlaybookPublished ? 'ui.playbook.status.published' : 'ui.playbook.status.draft')})
               </div>
             }
@@ -104,14 +77,9 @@ const PlaybookDetailHeader = ({ playbook }) => {
             <div className='play-progress-bar' style={{ width: `${percentage}%` }} />
             <div className='play-progress-bar-base' />
             <div className='play-progress-number'>
-              {playbook.playbookPlays.map((playbookPlay, index) => {
+              {playbook.playbookPlays.map(({ playSlug }, index) => {
                 return (
-                  <a
-                    key={index}
-                    ref={playProgressNumber => playProgressNumbersRef.current[index] = playProgressNumber}
-                    href='#navigate-to-play'
-                    onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}
-                  >
+                  <a key={index} href='#' onClick={(e) => navigateToPlay(e, playSlug)}>
                     <div className={`step ${index <= currentSlugIndex && 'active'}`}>
                       {index + 1}
                     </div>

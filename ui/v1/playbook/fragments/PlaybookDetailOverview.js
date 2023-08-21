@@ -1,4 +1,4 @@
-import { createRef, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { PlaybookDetailDispatchContext } from '../context/PlaybookDetailContext'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
@@ -8,29 +8,24 @@ import PlaybookDetailMenu from './PlaybookDetailMenu'
 
 export const OVERVIEW_SLUG_NAME = 'base-slug-overview-information'
 
-const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, commentsSectionRef }) => {
+const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const [height, setHeight] = useState(0)
-  const { updateSlugInformation } = useContext(PlaybookDetailDispatchContext)
-
-  const ref = createRef()
+  const ref = useRef()
+  const { setSlugHeights } = useContext(PlaybookDetailDispatchContext)
 
   useEffect(() => {
-    // Update context for this overview. We're using fake slug data for this.
-    updateSlugInformation(OVERVIEW_SLUG_NAME, 0, height)
-  }, [height])
+    if (ref.current) {
+      // Update context for this overview. We're using fake slug data for this.
+      setSlugHeights(currentSlugHeights => {
+        const heights = { ...currentSlugHeights }
+        heights[OVERVIEW_SLUG_NAME] = ref.current.clientHeight
 
-  useEffect(() => {
-    // Update scrolling state information based on the observer data.
-    if (!ref.current) {
-      return
+        return heights
+      })
     }
-
-    const boundingClientRect = ref.current.getBoundingClientRect()
-    setHeight(boundingClientRect.height)
-  }, [ref])
+  }, [setSlugHeights, ref])
 
   return (
     <div className='flex flex-col gap-3 px-3' ref={ref}>
@@ -38,7 +33,6 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, comments
         playbook={playbook}
         locale={locale}
         allowEmbedCreation={allowEmbedCreation}
-        commentsSectionRef={commentsSectionRef}
       />
       <div className='h4'>{format('ui.playbook.overview')}</div>
       <HtmlViewer

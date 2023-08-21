@@ -16,11 +16,10 @@ const PlayDetail = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { user } = useUser()
   const { locale } = useRouter()
 
   const [displayDragable, setDisplayDragable] = useState(false)
-
-  const { user } = useUser()
   const canEdit = user?.isAdminUser || user?.isEditorUser
 
   const generateEditLink = () => {

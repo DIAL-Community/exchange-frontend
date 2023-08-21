@@ -1,36 +1,32 @@
 import { gql } from '@apollo/client'
 
 export const PLAYS_QUERY = gql`
-  query SearchPlays(
-    $first: Int
-    $after: String
-    $search: String!
-  ) {
-    searchPlays(
-      first: $first
-      after: $after
-      search: $search
-    ) {
-      totalCount
-      pageInfo {
-        endCursor
-        startCursor
-        hasPreviousPage
-        hasNextPage
+  query Plays($search: String, $playbookSlug: String) {
+    plays(search: $search, playbookSlug: $playbookSlug) {
+      id
+      slug
+      name
+      imageFile
+      playDescription {
+        id
+        description
       }
-      nodes {
+      playMoves {
         id
         slug
         name
+      }
+      products {
+        id
+        name
+        slug
         imageFile
-        playDescription {
-          id
-          description
-        }
-        products {
-          name
-          slug
-        }
+      }
+      buildingBlocks {
+        id
+        name
+        slug
+        imageFile
       }
     }
   }

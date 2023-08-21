@@ -4,7 +4,7 @@ import { PDFDownloadLink, Document, Page, Text, StyleSheet } from '@react-pdf/re
 import { gql, useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
-import { Error, Loading, ReadyToDownload } from '../shared/FetchStatus'
+import { Error, Loading, NotFound, ReadyToDownload } from '../shared/FetchStatus'
 
 const PLAYBOOK_DETAIL_QUERY = gql`
   query Playbook($slug: String!) {
@@ -32,7 +32,7 @@ const PLAYBOOK_DETAIL_QUERY = gql`
           slug
           name
           resources
-          order
+          moveOrder
           moveDescription {
             id
             description
@@ -42,6 +42,7 @@ const PLAYBOOK_DETAIL_QUERY = gql`
     }
   }
 `
+
 const styles = StyleSheet.create({
   page: {
     backgroundColor: '#fff',
@@ -104,43 +105,37 @@ const MoveContent = ({ move, format }) => {
               {move?.moveDescription && parse(move.moveDescription.description)}
             </Text>
           </div>
-          {
-            move?.resources && move?.resources.length > 0 &&
-              <>
-                <div className='font-semibold py-2'>
-                  <Text style={styles.resourcesHeader}>
-                    {format('ui.move.resources.header')}
-                  </Text>
-                </div>
-                <div className='flex flex-wrap gap-3'>
-                  {
-                    move?.resources.map(resource => {
-                      return (
-                        <a key={resource.i} target='_blank' rel='noreferrer' href={resource.url}>
-                          <div
-                            key={resource.i}
-                            className={`
-                              group border-2 border-gray-300 hover:border-dial-sunshine
-                              shadow-md
-                            `}
-                          >
-                            <div className='flex'>
-                              <div className='flex flex-col gap-2 px-3 py-4'>
-                                <div className='font-semibold'>
-                                  <Text style={styles.link}>
-                                    {resource.name}
-                                  </Text>
-                                </div>
-                              </div>
-                              <HiExternalLink className='ml-auto px-2' size='2.2em' />
+          {move?.resources && move?.resources.length > 0 &&
+            <>
+              <div className='font-semibold py-2'>
+                <Text style={styles.resourcesHeader}>
+                  {format('ui.move.resources.header')}
+                </Text>
+              </div>
+              <div className='flex flex-wrap gap-3'>
+                {move?.resources.map(resource => {
+                  return (
+                    <a key={resource.i} target='_blank' rel='noreferrer' href={resource.url}>
+                      <div
+                        key={resource.i}
+                        className='group border-2 border-gray-300 hover:border-dial-sunshine shadow-md'
+                      >
+                        <div className='flex'>
+                          <div className='flex flex-col gap-2 px-3 py-4'>
+                            <div className='font-semibold'>
+                              <Text style={styles.link}>
+                                {resource.name}
+                              </Text>
                             </div>
                           </div>
-                        </a>
-                      )
-                    })
-                  }
-                </div>
-              </>
+                          <HiExternalLink className='ml-auto px-2' size='2.2em' />
+                        </div>
+                      </div>
+                    </a>
+                  )})
+                }
+              </div>
+            </>
           }
         </div>
       </div>
@@ -233,6 +228,10 @@ const PlaybookPdf = ({ locale }) => {
 
   if (loading) {
     return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.playbook) {
+    return <NotFound />
   }
 
   if (error) {
