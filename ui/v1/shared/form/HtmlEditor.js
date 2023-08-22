@@ -43,16 +43,12 @@ export const HtmlEditor = ({
               table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount
               help charmap quickbars emoticons autoresize
             `,
-            toolbar: `
-              undo redo |
-              fontfamily fontsize |
-              bold italic underline strikethrough forecolor backcolor |
-              link insertfile image media codesample |
-              alignleft aligncenter alignright alignjustify |
-              numlist bullist outdent indent |
-              removeformat |
-              ltr rtl |
-              charmap emoticons
+            toolbar1: `
+              undo redo | fontfamily fontsize | bold italic underline strikethrough forecolor backcolor |
+              link insertfile image media codesample`,
+            toolbar2: `
+              alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat |
+              ltr rtl | charmap emoticons
             `,
             contextmenu: false,
             toolbar_sticky: true,
