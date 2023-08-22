@@ -21,7 +21,7 @@ const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
     link: '/opportunities'
   }, {
     label: 'ui.storefront.header',
-    link: 'ui.storefronts'
+    link: '/storefronts'
   }]
 
   return (
