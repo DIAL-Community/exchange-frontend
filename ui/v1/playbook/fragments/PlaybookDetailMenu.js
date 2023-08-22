@@ -46,7 +46,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
       <PlaybookDetailEmbed displayed={displayEmbedDialog} setDisplayed={setDisplayEmbedDialog} />
       <div className='flex flex-col xl:flex-row'>
         <div className='flex flex-col gap-3 ml-auto mt-3'>
-          <div className='ml-auto flex items-center gap-2'>
+          <div className='ml-auto flex justify-end gap-2'>
             <a
               href={generatePdfLink()}
               target='_blank'
@@ -63,7 +63,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
               </button>
             }
           </div>
-          <div className='ml-auto flex items-center gap-2'>
+          <div className='ml-auto flex flex-wrap justify-end gap-2'>
             {canEdit && <CreateButton label={format('ui.play.add')} type='link' href={generateAddPlayLink()} />}
             {canEdit &&
               <button

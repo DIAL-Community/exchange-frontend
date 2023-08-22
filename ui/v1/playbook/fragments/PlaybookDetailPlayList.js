@@ -27,7 +27,10 @@ const PlaybookDetailPlayList = ({ locale, playbook }) => {
   return (
     <div className='flex flex-col gap-y-6'>
       {plays.map((play, i) =>
-        <PlayDetailRight key={i} playbook={playbook} play={play} index={i} />
+        <div key={i}>
+          <hr className='border-b border-dial-slate-200' />
+          <PlayDetailRight key={i} playbook={playbook} play={play} index={i} />
+        </div>
       )}
     </div>
   )

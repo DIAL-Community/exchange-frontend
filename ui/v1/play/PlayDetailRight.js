@@ -52,8 +52,7 @@ const PlayDetailRight = ({ playbook, play, index = 0 }) => {
 
   return (
     <div className='flex flex-col gap-y-4' ref={ref}>
-      <hr className='border-b border-dial-slate-200'/>
-      <div className='flex'>
+      <div className='flex flex-wrap gap-3'>
         <div className='font-semibold text-2xl py-4'>
           {`${format('ui.play.label')} ${index + 1}. ${play.name}`}
         </div>

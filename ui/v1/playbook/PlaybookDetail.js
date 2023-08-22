@@ -31,8 +31,10 @@ const PlaybookDetail = ({ slug, locale }) => {
         <div className='hidden lg:block basis-1/3'>
           <PlaybookDetailLeft playbook={playbook} scrollRef={scrollRef} />
         </div>
-        <div className='flex flex-col gap-3 basis-2/3'>
-          <PlaybookDetailRight playbook={playbook} locale={locale} ref={scrollRef} />
+        <div className='basis-2/3'>
+          <div className='px-4 py-4 lg:py-6'>
+            <PlaybookDetailRight playbook={playbook} locale={locale} ref={scrollRef} />
+          </div>
         </div>
       </div>
     </div>

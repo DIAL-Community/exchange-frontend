@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import { signIn } from 'next-auth/react'
 import { FaSpinner } from 'react-icons/fa'
 import { useMutation } from '@apollo/client'
 import { useCallback, useContext, useState } from 'react'
@@ -98,22 +99,26 @@ const PlaybookFilter = () => {
         <hr className='border-b border-dial-slate-200'/>
       </div>
       {!user &&
-        <div className='px-6 text-xs'>
-          {format('ui.playbook.hint.createPlaybooks')}
+        <div className='text-xs text-dial-sapphire'>
+          <a href='#' onClick={signIn} className='flex'>
+            <div className='border-b border-dial-sunshine'>
+              {format('ui.playbook.hint.createPlaybooks')}
+            </div>
+          </a>
         </div>
       }
       {user && !user.isEditorUser && !user.isAdminUser &&
-        <div className='px-6 text-xs flex space-x-0.5'>
-          <button
-            type='button'
-            className='text-dial-sunshine border border-transparent hover:border-b-dial-sunshine'
+        <div className='text-xs text-dial-sapphire flex flex-wrap gap-0.5'>
+          <a
+            href='#'
+            className='border-b border-dial-sunshine'
             onClick={onSubmit}
             disabled={loading}
           >
             {loading && <FaSpinner className='inline spinner mr-1' />}
             {format('contentEditor.apply')}
-          </button>
-          <div className='inline border border-transparent'>
+          </a>
+          <div className='inline border-b border-transparent'>
             {format('contentEditor.privilege')}
           </div>
         </div>

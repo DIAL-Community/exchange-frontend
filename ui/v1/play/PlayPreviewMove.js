@@ -53,15 +53,14 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
             'move-animation bg-dial-orange-light h-14'
           )}
         />
-        <div className='flex move-header'>
-          <div
-            className='font-semibold px-4 py-4 my-auto cursor-pointer flex-grow'
-            onClick={toggleDetail}
-          >
-            {moveName}
+        <div className='flex flex-row flex-wrap gap-3 move-header'>
+          <div className='my-auto cursor-pointer flex-grow' onClick={toggleDetail}>
+            <div className='font-semibold px-4 py-4'>
+              {moveName}
+            </div>
           </div>
           <div className='ml-auto my-auto px-4'>
-            <div className='flex gap-2'>
+            <div className='flex gap-2 pb-3 lg:pb-0'>
               {canEdit &&
                 <a
                   href={generateEditLink()}
