@@ -119,7 +119,7 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit, headerRef }) => {
   }
 
   const displayModeBody = buildingBlocks.length
-    ? <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
       {buildingBlocks?.map((buildingBlock, index) =>
         <BuildingBlockCard
           key={index}

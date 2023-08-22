@@ -58,8 +58,8 @@ const UseCaseCard = ({ displayType, index, useCase, dismissCardHandler }) => {
 
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
-      <div className='flex flex-row gap-x-3 px-6 h-full'>
-        <div className='rounded-full bg-dial-blueberry w-10 h-10 my-auto'>
+      <div className='flex flex-row gap-x-3 px-6 h-full text-dial-blueberry text-sm'>
+        <div className='rounded-full bg-dial-blueberry w-10 h-10 my-auto min-w-[2.5rem]'>
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
@@ -69,7 +69,7 @@ const UseCaseCard = ({ displayType, index, useCase, dismissCardHandler }) => {
             )}
           />
         </div>
-        <div className='text-sm font-semibold text-dial-blueberry my-auto'>
+        <div className='font-semibold my-auto'>
           {useCase.name}
         </div>
       </div>

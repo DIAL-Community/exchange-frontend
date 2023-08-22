@@ -40,7 +40,7 @@ const CityCard = ({ displayType, index, city, dismissCardHandler }) => {
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
-        <div className='w-10 h-10 my-auto'>
+        <div className='w-10 h-10 my-auto min-w-[2.5rem]'>
           <img
             src='/ui/v1/map-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.city.header') })}

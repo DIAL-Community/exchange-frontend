@@ -54,7 +54,7 @@ const WorkflowCard = ({ displayType, index, workflow, dismissCardHandler }) => {
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         {workflow.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='rounded-full bg-dial-plum w-10 h-10 my-auto'>
+          <div className='rounded-full bg-dial-plum w-10 h-10 my-auto min-w-[2.5rem]'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
@@ -63,7 +63,7 @@ const WorkflowCard = ({ displayType, index, workflow, dismissCardHandler }) => {
           </div>
         }
         {workflow.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='rounded-full bg-dial-plum w-10 h-10 my-auto'>
+          <div className='rounded-full bg-dial-plum w-10 h-10 my-auto min-w-[2.5rem]'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
