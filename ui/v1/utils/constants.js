@@ -58,7 +58,9 @@ export const ObjectType = {
   COUNTRY: 'COUNTRY',
   CITY: 'CITY',
   CONTACT: 'CONTACT',
-  URL: 'URL'
+  URL: 'URL',
+  PLAY: 'PLAY',
+  MOVE: 'MOVE'
 }
 
 export const CategoryIndicatorType = {

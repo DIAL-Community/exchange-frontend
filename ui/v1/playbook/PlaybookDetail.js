@@ -27,7 +27,7 @@ const PlaybookDetail = ({ slug, locale }) => {
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <PlaybookDetailHeader playbook={playbook} />
-      <div className='flex gap-x-3'>
+      <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='hidden lg:block basis-1/3'>
           <PlaybookDetailLeft playbook={playbook} scrollRef={scrollRef} />
         </div>

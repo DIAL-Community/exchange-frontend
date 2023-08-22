@@ -1,13 +1,13 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PLAY_QUERY } from '../shared/query/play'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import PlayForm from './fragments/PlayForm'
-import PlayEditLeft from './PlayEditLeft'
+import { PLAY_QUERY } from '../shared/query/play'
+import MoveForm from './fragments/MoveForm'
+import MoveEditLeft from './MoveEditLeft'
 
-const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
+const MoveCreate = ({ playSlug, playbookSlug, locale }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -27,32 +27,32 @@ const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
   const { play, playbook } = data
 
   const slugNameMapping = (() => {
-    const map = {}
+    const map = {
+      edit: format('app.create'),
+      create: format('app.create')
+    }
 
     map[play?.slug] = play?.name
     map[playbook?.slug] = playbook?.name
-
-    map.edit = format('app.edit')
-    map.create = format('app.create')
 
     return map
   })()
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
-      <div className='px-4 lg:px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40'>
+      <div className='px-4 lg:px-6 py-4 bg-dial-spearmint text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='hidden lg:block basis-1/3'>
-          <PlayEditLeft play={play} />
+          <MoveEditLeft />
         </div>
         <div className='lg:basis-2/3'>
-          <PlayForm playbook={playbook} play={play} />
+          <MoveForm play={play} playbook={playbook} />
         </div>
       </div>
     </div>
   )
 }
 
-export default PlayEdit
+export default MoveCreate

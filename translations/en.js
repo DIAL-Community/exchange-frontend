@@ -37,6 +37,8 @@ export const en = {
   'app.lastUpdated': 'Updated: {lastUpdated}.',
   'app.filter': 'Filter',
   'app.selectNavigation': 'Select a resource',
+  'app.new': 'New {entity}',
+
 
   'general.pastSuffix': 'ago',
 

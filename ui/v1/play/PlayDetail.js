@@ -1,42 +1,28 @@
-import { useIntl } from 'react-intl'
-import { useCallback, useState } from 'react'
-import { useRouter } from 'next/router'
-import { FiMove } from 'react-icons/fi'
-import Breadcrumb from '../shared/breadcrumb'
-import { HtmlViewer } from '../shared/HtmlViewer'
-import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
-import ProductCard from '../products/ProductCard'
-import { useUser } from '../../lib/hooks'
-import EditButton from '../shared/EditButton'
-import CreateButton from '../shared/CreateButton'
-import PlayPreviewMove from './PlayPreviewMove'
-import RearrangeMoves from './RearrangeMoves'
+import { useRef } from 'react'
+import { useQuery } from '@apollo/client'
+import { PLAY_QUERY } from '../shared/query/play'
+import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import Breadcrumb from '../shared/Breadcrumb'
+import PlayDetailRight from './PlayDetailRight'
+import PlayDetailLeft from './PlayDetailLeft'
 
-const PlayDetail = ({ playbook, play }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+const PlayDetail = ({ playSlug, playbookSlug, locale }) => {
+  const { data, loading, error } = useQuery(PLAY_QUERY, {
+    variables: { playSlug, playbookSlug  },
+    context: { headers: { 'Accept-Language': locale } }
+  })
 
-  const { user } = useUser()
-  const { locale } = useRouter()
+  const scrollRef = useRef(null)
 
-  const [displayDragable, setDisplayDragable] = useState(false)
-  const canEdit = user?.isAdminUser || user?.isEditorUser
-
-  const generateEditLink = () => {
-    if (!canEdit) {
-      return '/edit-not-available'
-    }
-
-    return `/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.play) {
+    return <NotFound />
   }
 
-  const generateAddMoveLink = () => {
-    if (!canEdit) {
-      return '/add-move-not-available'
-    }
-
-    return `/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/moves/create`
-  }
+  const { play, playbook } = data
 
   const slugNameMapping = (() => {
     const map = {}
@@ -47,86 +33,19 @@ const PlayDetail = ({ playbook, play }) => {
   })()
 
   return (
-    <>
-      <div className='flex flex-col gap-3 pb-8 max-w-screen-lg'>
-        <div className='flex mt-4'>
-          <Breadcrumb slugNameMapping={slugNameMapping} />
-          <div className='ml-auto my-auto'>
-            { canEdit && <EditButton type='link' href={generateEditLink()} />}
-          </div>
-        </div>
-        <div className='font-semibold text-2xl py-3'>
-          {`${format('ui.play.label')}: ${play.name}`}
-        </div>
-        <HtmlViewer
-          initialContent={play?.playDescription?.description}
-          editorId='play-detail'
-          className='-mt-4'
-        />
-        <div className='flex flex-col gap-3'>
-          <div className='flex gap-2 ml-auto'>
-            {canEdit &&
-              <CreateButton
-                label={format('ui.move.add')}
-                type='link'
-                href={generateAddMoveLink()}
-              />
-            }
-            {canEdit &&
-              <button
-                type='button'
-                onClick={() => setDisplayDragable(!displayDragable)}
-                className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
-              >
-                <FiMove className='inline pb-0.5' />
-                <span className='text-sm px-1'>
-                  {format('ui.move.rearrange')}
-                </span>
-              </button>
-            }
-          </div>
-          {play.playMoves.map((move, i) =>
-            <div key={i}>
-              <PlayPreviewMove
-                playSlug={play.slug}
-                moveSlug={move.slug}
-                moveName={move.name}
-                playbookSlug={playbook.slug}
-              />
-              <RearrangeMoves
-                play={play}
-                displayDragable={displayDragable}
-                setDisplayDragable={setDisplayDragable}
-              />
-            </div>
-          )}
-        </div>
-        {play.buildingBlocks && play.buildingBlocks.length > 0 &&
-          <div className='flex flex-col gap-3 my-3'>
-            <div className='h4'>{format('ui.buildingBlock.header')}</div>
-            <div
-              className='text-sm'
-              dangerouslySetInnerHTML={{ __html: format('ui.play.buildingBlocks.subtitle') }}
-            />
-            {play.buildingBlocks.map((bb, i) =>
-              <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />
-            )}
-          </div>
-        }
-        {play.products && play.products.length > 0 &&
-          <div className='flex flex-col gap-3 my-3'>
-            <div className='h4'>{format('ui.product.header')}</div>
-            <div
-              className='text-sm'
-              dangerouslySetInnerHTML={{ __html: format('ui.play.products.subtitle') }}
-            />
-            {play.products.map((product, i) =>
-              <ProductCard key={i} product={product} listType='list' />
-            )}
-          </div>
-        }
+    <div className='lg:px-8 xl:px-56 flex flex-col'>
+      <div className='px-4 lg:px-6 py-4 bg-dial-violet text-dial-stratos ribbon-detail z-40'>
+        <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
-    </>
+      <div className='flex flex-col lg:flex-row gap-x-8'>
+        <div className='hidden lg:block basis-1/3'>
+          <PlayDetailLeft play={play} scrollRef={scrollRef} />
+        </div>
+        <div className='basis-2/3 pb-8'>
+          <PlayDetailRight playbook={playbook} play={play} ref={scrollRef} />
+        </div>
+      </div>
+    </div>
   )
 }
 

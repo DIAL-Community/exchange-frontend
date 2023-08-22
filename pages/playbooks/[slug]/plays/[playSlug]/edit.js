@@ -11,10 +11,7 @@ function EditPlay() {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const router = useRouter()
-
-  const { locale } = router
-  const { slug, playSlug } = router.query
+  const { locale, query: { slug, playSlug } } = useRouter()
 
   return (
     <>
@@ -27,11 +24,15 @@ function EditPlay() {
           )
         }
       />
-      <Header />
       <ClientOnly>
-        <PlayEdit playSlug={playSlug} playbookSlug={slug} locale={locale}  />
+        <Header />
+        <PlayEdit
+          playSlug={playSlug}
+          playbookSlug={slug}
+          locale={locale}
+        />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

@@ -1,18 +1,18 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PLAY_QUERY } from '../shared/query/play'
+import { MOVE_QUERY } from '../shared/query/move'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import PlayForm from './fragments/PlayForm'
-import PlayEditLeft from './PlayEditLeft'
+import MoveForm from './fragments/MoveForm'
+import MoveEditLeft from './MoveEditLeft'
 
-const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
+const MoveEdit = ({ moveSlug, playSlug, playbookSlug, locale }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(PLAY_QUERY, {
-    variables: { playSlug, playbookSlug },
+  const { loading, error, data } = useQuery(MOVE_QUERY, {
+    variables: { moveSlug, playSlug, playbookSlug },
     context: { headers: { 'Accept-Language': locale } }
   })
 
@@ -24,16 +24,17 @@ const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
     return <NotFound />
   }
 
-  const { play, playbook } = data
+  const { move, play, playbook } = data
 
   const slugNameMapping = (() => {
-    const map = {}
+    const map = {
+      edit: format('app.create'),
+      create: format('app.create')
+    }
 
+    map[move?.slug] = move?.name
     map[play?.slug] = play?.name
     map[playbook?.slug] = playbook?.name
-
-    map.edit = format('app.edit')
-    map.create = format('app.create')
 
     return map
   })()
@@ -45,14 +46,14 @@ const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='hidden lg:block basis-1/3'>
-          <PlayEditLeft play={play} />
+          <MoveEditLeft move={move} />
         </div>
         <div className='lg:basis-2/3'>
-          <PlayForm playbook={playbook} play={play} />
+          <MoveForm playbook={playbook} play={play} move={move} />
         </div>
       </div>
     </div>
   )
 }
 
-export default PlayEdit
+export default MoveEdit

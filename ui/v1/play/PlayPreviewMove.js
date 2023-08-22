@@ -10,6 +10,7 @@ import { useUser } from '../../../lib/hooks'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { MOVE_PREVIEW_QUERY } from '../shared/query/move'
 import UnassignMove from '../move/UnassignMove'
+import { prependUrlWithProtocol } from '../utils/utilities'
 
 const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = false }) => {
   const { formatMessage } = useIntl()
@@ -110,7 +111,12 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
                       .filter(resource => resource.url && resource.name)
                       .map(resource => {
                         return (
-                          <a key={resource.i} href={resource.url} target='_blank' rel='noreferrer'>
+                          <a
+                            key={resource.i}
+                            href={prependUrlWithProtocol(resource.url)}
+                            target='_blank'
+                            rel='noreferrer'
+                          >
                             <div
                               key={resource.i}
                               className={classNames(

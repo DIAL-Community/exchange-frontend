@@ -1,49 +1,55 @@
-import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
-import Breadcrumb from '../../shared/breadcrumb'
-import { HtmlViewer } from '../../shared/HtmlViewer'
-import EditButton from '../../shared/EditButton'
+import { useRef } from 'react'
+import { useQuery } from '@apollo/client'
+import { MOVE_QUERY } from '../shared/query/move'
+import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import Breadcrumb from '../shared/Breadcrumb'
+import MoveDetailLeft from './MoveDetailLeft'
+import MoveDetailRight from './MoveDetailRight'
 
-const MoveDetail = ({ play, move }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const { user } = useUser()
+const MoveDetail = ({ moveSlug, playSlug, playbookSlug, locale }) => {
+  const { loading, error, data } = useQuery(MOVE_QUERY, {
+    variables: {
+      moveSlug,
+      playSlug,
+      playbookSlug
+    },
+    context: { headers: { 'Accept-Language': locale } }
+  })
 
-  const canEdit = () => user && (user.isAdminUser || user.isEditorUser)
+  const scrollRef = useRef(null)
 
-  const generateEditLink = () => {
-    if (!user) {
-      return '/edit-not-available'
-    }
-
-    return `${move.slug}/edit`
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.play) {
+    return <NotFound />
   }
+
+  const { move, play, playbook } = data
 
   const slugNameMapping = (() => {
     const map = {}
-    map[play.slug] = play.name
     map[move.slug] = move.name
+    map[play.slug] = play.name
+    map[playbook.slug] = playbook.name
 
     return map
   })()
 
   return (
-    <div className='flex flex-col gap-3 pb-8 max-w-screen-lg'>
-      <div className='flex mt-4'>
-        <Breadcrumb slugNameMapping={slugNameMapping} />
-        <div className='ml-auto my-auto'>
-          { canEdit() && <EditButton type='link' href={generateEditLink()} />}
+    <div className='lg:px-8 xl:px-56 flex flex-col'>
+      <div className='px-4 lg:px-6 py-4 bg-dial-violet text-dial-stratos ribbon-detail z-40'>
+        <Breadcrumb slugNameMapping={slugNameMapping}/>
+      </div>
+      <div className='flex flex-col lg:flex-row gap-x-8'>
+        <div className='hidden lg:block basis-1/3'>
+          <MoveDetailLeft move={move} scrollRef={scrollRef} />
+        </div>
+        <div className='basis-2/3 pb-8'>
+          <MoveDetailRight playbook={playbook} play={play} move={move} ref={scrollRef} />
         </div>
       </div>
-      <div className='h4 font-bold'>
-        {format('ui.move.label')}: {move.name}
-      </div>
-      {format('ui.move.description')}
-      <HtmlViewer
-        initialContent={move?.moveDescription?.description}
-        editorId='move-detail'
-      />
     </div>
   )
 }

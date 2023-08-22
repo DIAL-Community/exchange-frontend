@@ -24,11 +24,14 @@ const CreatePlay = () => {
           )
         }
       />
-      <Header />
       <ClientOnly>
-        <PlayCreate playbookSlug={slug} locale={locale} />
+        <Header />
+        <PlayCreate
+          playbookSlug={slug}
+          locale={locale}
+        />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

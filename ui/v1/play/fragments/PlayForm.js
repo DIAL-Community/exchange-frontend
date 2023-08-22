@@ -232,7 +232,7 @@ export const PlayForm = ({ playbook, play }) => {
                 {play && format('app.editEntity', { entity: play.name })}
                 {!play && `${format('app.createNew')} ${format('ui.play.label')}`}
               </div>
-              <label className='flex flex-col gap-y-2 text-dial-sapphire mb-2'>
+              <label className='flex flex-col gap-y-2'>
                 <p className='required-field'>{format('ui.play.name')}</p>
                 <Input
                   {...register('name', { required: format('validation.required') })}

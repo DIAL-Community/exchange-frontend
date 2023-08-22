@@ -5,7 +5,7 @@ import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import { PLAY_QUERY } from '../shared/query/play'
 import PlayForm from './fragments/PlayForm'
-import PlaySimpleLeft from './fragments/PlaySimpleLeft'
+import PlayEditLeft from './PlayEditLeft'
 
 const PlayCreate = ({ playbookSlug, locale }) => {
   const { formatMessage } = useIntl()
@@ -43,8 +43,8 @@ const PlayCreate = ({ playbookSlug, locale }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
-          <PlaySimpleLeft />
+        <div className='hidden lg:block basis-1/3'>
+          <PlayEditLeft />
         </div>
         <div className='lg:basis-2/3'>
           <PlayForm playbook={playbook} />
