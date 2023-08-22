@@ -52,7 +52,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
       </div>
       <hr className='border-b border-dial-blue-chalk mt-6' />
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
+        <div className='text-xl font-semibold text-dial-plum py-3' ref={organizationRef}>
           {format('ui.organization.header')}
         </div>
         {resource?.organizations.length <= 0 &&

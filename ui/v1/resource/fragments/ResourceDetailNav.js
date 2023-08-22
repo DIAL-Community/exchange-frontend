@@ -32,7 +32,7 @@ const ResourceDetailNav = ({ scrollRef }) => {
 
   return (
     <div className='flex flex-col gap-y-3 text-sm py-3'>
-      <div className='font-semibold text-dial-plum'>
+      <div className='font-semibold text-dial-sapphire'>
         {format('ui.shared.jumpTo')}
       </div>
       <Select
