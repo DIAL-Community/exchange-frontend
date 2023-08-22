@@ -65,3 +65,12 @@ export const generateOpportunityStatusOptions = (format) => [
   { label: format('ui.opportunity.status.open'), value: OpportunityStatus.OPEN },
   { label: format('ui.opportunity.status.upcoming'), value: OpportunityStatus.UPCOMING }
 ]
+
+export const generateSpecialtyOptions = () => [
+  { value: 'AI / Machine Learning', label: 'AI / Machine Learning' },
+  { value: 'Data Analytics & Visualization', label: 'Data Analytics & Visualization' },
+  { value: 'Mobile Apps', label: 'Mobile Apps' },
+  { value: 'SaaS / Hosting Services', label: 'SaaS / Hosting Services' },
+  { value: 'UX & Design', label: 'UX & Design' },
+  { value: 'Web Development', label: 'Web Development' }
+]

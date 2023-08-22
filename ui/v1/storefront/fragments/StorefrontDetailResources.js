@@ -9,17 +9,17 @@ import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import { fetchSelectOptions } from '../../utils/search'
 import { DisplayType } from '../../utils/constants'
-import { UPDATE_DATASET_COUNTRIES } from '../../shared/mutation/dataset'
-import CountryCard from '../../country/CountryCard'
-import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
+import { UPDATE_ORGANIZATION_RESOURCES } from '../../shared/mutation/organization'
+import ResourceCard from '../../resource/ResourceCard'
+import { RESOURCE_SEARCH_QUERY } from '../../shared/query/resource'
 
-const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
+const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [countries, setCountries] = useState(dataset.countries)
+  const [resources, setResources] = useState(organization.resources)
   const [isDirty, setIsDirty] = useState(false)
 
   const { user } = useUser()
@@ -27,49 +27,49 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
-  const [updateDatasetCountries, { loading, reset }] = useMutation(UPDATE_DATASET_COUNTRIES, {
+  const [updateOrganizationResources, { loading, reset }] = useMutation(UPDATE_ORGANIZATION_RESOURCES, {
     onError() {
       setIsDirty(false)
-      setCountries(dataset?.countries)
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.country.header') }))
+      setResources(organization?.resources)
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.resource.header') }))
       reset()
     },
     onCompleted: (data) => {
-      const { updateDatasetCountries: response } = data
-      if (response?.dataset && response?.errors?.length === 0) {
+      const { updateOrganizationResources: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
         setIsDirty(false)
-        setCountries(response?.dataset?.countries)
-        showSuccessMessage(format('toast.submit.success', { entity: format('ui.country.header') }))
+        setResources(response?.organization?.resources)
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.resource.header') }))
       } else {
         setIsDirty(false)
-        setCountries(dataset?.countries)
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.country.header') }))
+        setResources(organization?.resources)
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.resource.header') }))
         reset()
       }
     }
   })
 
-  const fetchedCountriesCallback = (data) => (
-    data.countries?.map((country) => ({
-      id: country.id,
-      name: country.name,
-      slug: country.slug,
-      label: country.name
+  const fetchedResourcesCallback = (data) => (
+    data.resources?.map((resource) => ({
+      id: resource.id,
+      name: resource.name,
+      slug: resource.slug,
+      label: resource.name
     }))
   )
 
-  const addCountry = (country) => {
-    setCountries([
+  const addResource = (resource) => {
+    setResources([
       ...[
-        ...countries.filter(({ id }) => id !== country.id),
-        { id: country.id, name: country.name, slug: country.slug  }
+        ...resources.filter(({ id }) => id !== resource.id),
+        { id: resource.id, name: resource.name, slug: resource.slug  }
       ]
     ])
     setIsDirty(true)
   }
 
-  const removeCountry = (country) => {
-    setCountries([...countries.filter(({ id }) => id !== country.id)])
+  const removeResource = (resource) => {
+    setResources([...resources.filter(({ id }) => id !== resource.id)])
     setIsDirty(true)
   }
 
@@ -77,10 +77,10 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
     if (user) {
       const { userEmail, userToken } = user
 
-      updateDatasetCountries({
+      updateOrganizationResources({
         variables: {
-          countrySlugs: countries.map(({ slug }) => slug),
-          slug: dataset.slug
+          resourceSlugs: resources.map(({ slug }) => slug),
+          slug: organization.slug
         },
         context: {
           headers: {
@@ -93,34 +93,34 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setCountries(dataset.countries)
+    setResources(organization.resources)
     setIsDirty(false)
   }
 
-  const displayModeBody = countries.length
+  const displayModeBody = resources.length
     ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
-      {countries?.map((country, index) =>
-        <div key={`country-${index}`}>
-          <CountryCard country={country} displayType={DisplayType.SMALL_CARD} />
+      {resources?.map((resource, index) =>
+        <div key={`resource-${index}`}>
+          <ResourceCard resource={resource} displayType={DisplayType.SMALL_CARD} />
         </div>
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
-        entity: format('ui.country.label'),
-        base: format('ui.dataset.label')
+        entity: format('ui.resource.label'),
+        base: format('ui.storefront.label')
       })}
     </div>
 
   const sectionHeader =
     <div className='text-xl font-semibold text-dial-plum' ref={headerRef}>
-      {format('ui.country.header')}
+      {format('ui.resource.header')}
     </div>
 
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
-        {`${format('app.searchAndAssign')} ${format('ui.country.label')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.resource.label')}`}
         <Select
           async
           isSearch
@@ -129,19 +129,19 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) =>
-            fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedCountriesCallback)
+            fetchSelectOptions(client, input, RESOURCE_SEARCH_QUERY, fetchedResourcesCallback)
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.country.label') })}
-          onChange={addCountry}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.label') })}
+          onChange={addResource}
           value={null}
         />
       </label>
       <div className='flex flex-wrap gap-3'>
-        {countries.map((country, countryIdx) => (
+        {resources.map((resource, resourceIdx) => (
           <Pill
-            key={`countries-${countryIdx}`}
-            label={country.name}
-            onRemove={() => removeCountry(country)}
+            key={`resources-${resourceIdx}`}
+            label={resource.name}
+            onRemove={() => removeResource(resource)}
           />
         ))}
       </div>
@@ -161,4 +161,4 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
   )
 }
 
-export default DatasetDetailCountries
+export default StorefrontDetailResources

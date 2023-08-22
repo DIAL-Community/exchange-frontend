@@ -5,13 +5,13 @@ import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import Select from '../../shared/form/Select'
-import { PRODUCT_SEARCH_QUERY } from '../../../../queries/product'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import { fetchSelectOptions } from '../../utils/search'
 import { DisplayType } from '../../utils/constants'
 import { UPDATE_ORGANIZATION_PRODUCTS } from '../../shared/mutation/organization'
 import ProductCard from '../../product/ProductCard'
+import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
 
 const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()

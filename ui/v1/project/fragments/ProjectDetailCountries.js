@@ -5,13 +5,13 @@ import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import Select from '../../shared/form/Select'
-import { COUNTRY_SEARCH_QUERY } from '../../../../queries/country'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import { fetchSelectOptions } from '../../utils/search'
 import { DisplayType } from '../../utils/constants'
 import { UPDATE_PROJECT_COUNTRIES } from '../../shared/mutation/project'
 import CountryCard from '../../country/CountryCard'
+import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
 
 const ProjectDetailCountries = ({ project, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()

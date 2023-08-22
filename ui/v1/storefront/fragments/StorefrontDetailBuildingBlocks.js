@@ -7,19 +7,19 @@ import { ToastContext } from '../../../../lib/ToastContext'
 import Select from '../../shared/form/Select'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
+import { fetchSelectOptionsWithMaturity } from '../../utils/search'
 import { DisplayType } from '../../utils/constants'
-import { UPDATE_ORGANIZATION_PRODUCT_CERTIFICATIONS } from '../../shared/mutation/organization'
-import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
-import ProductCard from '../../product/ProductCard'
+import { UPDATE_ORGANIZATION_BUILDING_BLOCK_CERTIFICATIONS } from '../../shared/mutation/organization'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
+import BuildingBlockCard from '../../building-block/BuildingBlockCard'
 
-const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRef }) => {
+const StorefrontDetailBuildingBlockCertifications = ({ organization, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [certifications, setCertifications] = useState(organization.productCertifications)
+  const [certifications, setCertifications] = useState(organization.buildingBlockCertifications)
   const [isDirty, setIsDirty] = useState(false)
 
   const { user } = useUser()
@@ -27,30 +27,32 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
-  const [updateOrganizationCertifications, { loading, reset }] = useMutation(UPDATE_ORGANIZATION_PRODUCT_CERTIFICATIONS, {
-    onError() {
-      setIsDirty(false)
-      setCertifications(organization.productCertifications)
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.productCertification.header') }))
-      reset()
-    },
-    onCompleted: (data) => {
-      const { updateOrganizationCertifications: response } = data
-      if (response?.organization && response?.errors?.length === 0) {
+  const [updateOrganizationCertifications, { loading, reset }] = useMutation(
+    UPDATE_ORGANIZATION_BUILDING_BLOCK_CERTIFICATIONS, {
+      onError() {
         setIsDirty(false)
-        setCertifications(response?.organization.productCertifications)
-        showSuccessMessage(format('toast.submit.success', { entity: format('ui.productCertification.header') }))
-      } else {
-        setIsDirty(false)
-        setCertifications(organization.productCertifications)
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.productCertification.header') }))
+        setCertifications(organization.buildingBlockCertifications)
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlockCertification.header') }))
         reset()
+      },
+      onCompleted: (data) => {
+        const { updateOrganizationBuildingBlocks: response } = data
+        if (response?.organization && response?.errors?.length === 0) {
+          setIsDirty(false)
+          setCertifications(response?.organization.buildingBlockCertifications)
+          showSuccessMessage(format('toast.submit.success', { entity: format('ui.buildingBlockCertification.header') }))
+        } else {
+          setIsDirty(false)
+          setCertifications(organization.buildingBlockCertifications)
+          showFailureMessage(format('toast.submit.failure', { entity: format('ui.buildingBlockCertification.header') }))
+          reset()
+        }
       }
     }
-  })
+  )
 
-  const fetchedProductCertificationsCallback = (data) => (
-    data.products?.map((certification) => ({
+  const fetchedBuildingBlockCertificationsCallback = (data) => (
+    data.buildingBlocks?.map((certification) => ({
       id: certification.id,
       name: certification.name,
       slug: certification.slug,
@@ -79,7 +81,7 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
 
       updateOrganizationCertifications({
         variables: {
-          productSlugs: certifications.map(({ slug }) => slug),
+          buildingBlockSlugs: certifications.map(({ slug }) => slug),
           slug: organization.slug
         },
         context: {
@@ -93,34 +95,34 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
   }
 
   const onCancel = () => {
-    setCertifications(organization.productCertifications)
+    setCertifications(organization.buildingBlockCertifications)
     setIsDirty(false)
   }
 
   const displayModeBody = certifications.length
     ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
       {certifications?.map((certification, index) =>
-        <div key={`product-certification-${index}`}>
-          <ProductCard product={certification} displayType={DisplayType.SMALL_CARD} />
+        <div key={`buildingBlock-certification-${index}`}>
+          <BuildingBlockCard buildingBlock={certification} displayType={DisplayType.SMALL_CARD} />
         </div>
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
-        entity: format('ui.productCertification.label'),
+        entity: format('ui.buildingBlockCertification.label'),
         base: format('ui.storefront.label')
       })}
     </div>
 
   const sectionHeader =
     <div className='text-xl font-semibold text-dial-plum' ref={headerRef}>
-      {format('ui.productCertification.header')}
+      {format('ui.buildingBlockCertification.header')}
     </div>
 
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
-        {`${format('app.searchAndAssign')} ${format('ui.productCertification.label')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.buildingBlockCertification.label')}`}
         <Select
           async
           isSearch
@@ -129,9 +131,19 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) =>
-            fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductCertificationsCallback)
+            fetchSelectOptionsWithMaturity(
+              client,
+              input,
+              BUILDING_BLOCK_SEARCH_QUERY,
+              fetchedBuildingBlockCertificationsCallback
+            )
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.productCertification.label') })}
+          noOptionsMessage={() =>
+            format(
+              'filter.searchFor',
+              { entity: format('ui.buildingBlockCertification.label') }
+            )
+          }
           onChange={addCertification}
           value={null}
         />
@@ -139,7 +151,7 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
       <div className='flex flex-wrap gap-3'>
         {certifications.map((certification, certificationIdx) => (
           <Pill
-            key={`product-certification-${certificationIdx}`}
+            key={`buildingBlock-certification-${certificationIdx}`}
             label={certification.name}
             onRemove={() => removeCertification(certification)}
           />
@@ -161,4 +173,4 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
   )
 }
 
-export default StorefrontDetailProductCertifications
+export default StorefrontDetailBuildingBlockCertifications

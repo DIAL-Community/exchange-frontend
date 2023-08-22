@@ -276,7 +276,7 @@ export const UPDATE_ORGANIZATION_RESOURCES = gql`
   }
 `
 
-export const UPDATE_ORGANIZATION_CERTIFICATIONS = gql`
+export const UPDATE_ORGANIZATION_PRODUCT_CERTIFICATIONS = gql`
   mutation UpdateOrganizationCertifications(
     $slug: String!
     $productSlugs: [String!]!
@@ -302,7 +302,7 @@ export const UPDATE_ORGANIZATION_CERTIFICATIONS = gql`
   }
 `
 
-export const UPDATE_ORGANIZATION_BUILDING_BLOCKS = gql`
+export const UPDATE_ORGANIZATION_BUILDING_BLOCK_CERTIFICATIONS = gql`
   mutation UpdateOrganizationBuildingBlocks(
     $slug: String!
     $buildingBlockSlugs: [String!]!

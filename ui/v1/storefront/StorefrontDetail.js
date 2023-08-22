@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/organization'
+import { STOREFRONT_DETAIL_QUERY } from '../shared/query/organization'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import StorefrontDetailRight from './StorefrontDetailRight'
@@ -9,7 +9,7 @@ import StorefrontDetailLeft from './StorefrontDetailLeft'
 const StorefrontDetail = ({ slug }) => {
   const scrollRef = useRef(null)
 
-  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(STOREFRONT_DETAIL_QUERY, {
     variables: { slug }
   })
 

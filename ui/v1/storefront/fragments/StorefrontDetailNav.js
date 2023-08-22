@@ -10,11 +10,26 @@ const StorefrontDetailNav = ({ scrollRef }) => {
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
   }, {
+    label: format('ui.specialty.header'),
+    value: 'ui.specialty.header'
+  }, {
+    label: format('ui.resource.header'),
+    value: 'ui.resource.header'
+  }, {
+    label: format('ui.productCertification.header'),
+    value: 'ui.productCertification.header'
+  }, {
+    label: format('ui.buildingBlockCertification.header'),
+    value: 'ui.buildingBlockCertification.header'
+  }, {
+    label: format('ui.office.header'),
+    value: 'ui.office.header'
+  }, {
+    label: format('ui.contact.header'),
+    value: 'ui.contact.header'
+  }, {
     label: format('ui.project.header'),
     value: 'ui.project.header'
-  }, {
-    label: format('ui.product.header'),
-    value: 'ui.product.header'
   }, {
     label: format('ui.country.header'),
     value: 'ui.country.header'

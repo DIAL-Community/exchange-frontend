@@ -1769,6 +1769,12 @@ export const en = {
   'ui.certification.label': 'Certification',
   'ui.certification.header': 'Certifications',
 
+  'ui.productCertification.label': 'Product Certification',
+  'ui.productCertification.header': 'Product Certifications',
+
+  'ui.buildingBlockCertification.label': 'Building Block Certification',
+  'ui.buildingBlockCertification.header': 'Building Block Certifications',
+
   'ui.marketplace.label': 'Marketplace',
 
   'ui.storefront.noSpecialty': "Organization storefront's doesn't have specialty information.",

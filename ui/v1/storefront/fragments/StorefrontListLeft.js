@@ -15,22 +15,43 @@ const StorefrontListLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
-  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
-  const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(OrganizationFilterDispatchContext)
+  const {
+    sectors,
+    countries,
+    buildingBlocks,
+    specialties,
+    certifications
+  } = useContext(OrganizationFilterContext)
+
+  const {
+    setSectors,
+    setCountries,
+    setBuildingBlocks,
+    setSpecialties,
+    setCertifications
+  } = useContext(OrganizationFilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = '/organizations'
+    const basePath = '/storefronts'
 
-    const endorserFilter = endorser ? 'endorser=true' : ''
-    const aggregatorFilter = aggregator ? 'aggregator=true' : ''
-    const yearFilters = years.map(year => `years=${year.value}--${year.label}`)
+    const certificationFilters = certifications.map(certification =>
+      `certifications=${certification.value}--${certification.label}`
+    )
+    const specialtyFilters = specialties.map(specialty =>
+      `specialties=${specialty.value}--${specialty.label}`
+    )
+    const buildingBlockFilters = buildingBlocks.map(buildingBlock =>
+      `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
+    )
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorserFilter, aggregatorFilter, ...yearFilters, ...countryFilters, ...sectorFilters
+      activeFilter,
+      ...certificationFilters, ...specialtyFilters, ...buildingBlockFilters,
+      ...countryFilters, ...sectorFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -43,9 +64,9 @@ const StorefrontListLeft = () => {
       Object.getOwnPropertyNames(query).length > 1 &&
       query.shareCatalog && !interactionDetected
     ) {
-      setEndorser(query.endorser === 'true')
-      setAggregator(query.aggregator === 'true')
-      parseQuery(query, 'years', years, setYears)
+      parseQuery(query, 'certifications', certifications, setCertifications)
+      parseQuery(query, 'specialties', specialties, setSpecialties)
+      parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
       parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
     }

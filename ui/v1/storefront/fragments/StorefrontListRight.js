@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { OrganizationFilterContext } from '../../../../components/context/OrganizationFilterContext'
-import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
+import { STOREFRONT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
 import ListStructure from './ListStructure'
@@ -13,7 +13,7 @@ const StorefrontListRight = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(OrganizationFilterContext)
-  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
+  const { sectors, countries, specialties, certifications, buildingBlocks } = useContext(OrganizationFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -37,14 +37,14 @@ const StorefrontListRight = () => {
     setPageOffset(0)
   }, [search, sectors])
 
-  const { loading, error, data } = useQuery(ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
+  const { loading, error, data } = useQuery(STOREFRONT_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
       countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
-      years: years.map(year => year.value),
-      aggregatorOnly: aggregator,
-      endorserOnly: endorser
+      specialties: specialties.map(specialty => specialty.value),
+      certifications: certifications.map(certification => certification.value),
+      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value)
     }
   })
 
@@ -60,7 +60,7 @@ const StorefrontListRight = () => {
       { data &&
         <Pagination
           pageNumber={pageNumber}
-          totalCount={data.paginationAttributeOrganization.totalCount}
+          totalCount={data.paginationAttributeStorefront.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
           pageClickHandler={handlePageClick}
         />

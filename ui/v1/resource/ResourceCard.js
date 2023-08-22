@@ -36,17 +36,15 @@ const ResourceCard = ({ displayType, index, resource, dismissCardHandler }) => {
     </div>
 
   const displaySmallCard = () =>
-    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-24'>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         <img
           src='/ui/v1/resource-header.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
           className='object-contain w-10 h-10 my-auto'
         />
-        <div className='flex flex-col gap-y-2 py-3 text-dial-stratos'>
-          <div className='text-sm font-semibold text-dial-iris-blue'>
-            {resource.name}
-          </div>
+        <div className='text-sm font-semibold text-dial-plum my-auto'>
+          {resource.name}
         </div>
       </div>
     </div>
