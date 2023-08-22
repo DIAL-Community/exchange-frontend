@@ -83,7 +83,7 @@ const UseCaseCard = ({ displayType, index, useCase, dismissCardHandler }) => {
       </Link>
       {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
         <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
-          <IoClose size='1rem' onClick={dismissCardHandler} />
+          <IoClose size='1rem' className='text-dial-blueberry' onClick={dismissCardHandler} />
         </button>
       }
     </div>

@@ -38,7 +38,8 @@ export const en = {
   'app.filter': 'Filter',
   'app.selectNavigation': 'Select a resource',
   'app.new': 'New {entity}',
-
+  'app.changePassword': 'Change Password',
+  'app.deleteAccount': 'Delete Account',
 
   'general.pastSuffix': 'ago',
 

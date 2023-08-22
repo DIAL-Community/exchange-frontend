@@ -35,7 +35,7 @@ export const TagAutocomplete = ({ tags, setTags, placeholder }) => {
         <div className='text-dial-stratos text-sm'>
           {format('ui.tag.label')}
         </div>
-        <BsPlus className='ml-auto my-auto' />
+        <BsPlus className='ml-auto text-dial-stratos my-auto' />
       </button>
       {showFilter &&
         <Select

@@ -74,7 +74,9 @@ const OpportunityFilter = () => {
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
               <button type='button' onClick={clearFilter}>
-                {format('ui.filter.clearAll')}
+                <span className='text-dial-sapphire'>
+                  {format('ui.filter.clearAll')}
+                </span>
               </button>
             </div>
           </div>
@@ -129,7 +131,7 @@ const OpportunityFilter = () => {
         </div>
         {expanded &&
           <>
-            <label className='flex pl-4 py-2'>
+            <label className='flex py-2'>
               <Checkbox value={showClosed} onChange={toggleClosedOpportunityFilter} />
               <span className='mx-2 my-auto text-sm'>
                 {format('filter.opportunity.showClosed')}

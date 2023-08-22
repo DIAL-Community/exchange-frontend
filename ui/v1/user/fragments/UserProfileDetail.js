@@ -64,16 +64,16 @@ const UserProfileDetail = () => {
           <div className='grid grid-cols-2'>
             <div className='flex flex-col gap-3'>
               <div className='text-lg text-dial-sapphire'>
-                Change Password
+                {format('app.changePassword')}
               </div>
               <div className='text-sm text-dial-stratos'>
-                <button
-                  type='button'
+                <a
+                  href='#'
                   onClick={signOut}
                   className='border-b border-dial-iris-blue'
                 >
-                  Change password
-                </button>
+                  {format('app.changePassword')}
+                </a>
               </div>
             </div>
           </div>
@@ -85,29 +85,29 @@ const UserProfileDetail = () => {
                   {format('header.signOut')}
                 </div>
                 <div className='text-sm text-dial-stratos'>
-                  <button
-                    type='button'
+                  <a
+                    href='#'
                     onClick={signOut}
                     className='border-b border-dial-iris-blue'
                   >
                     {format('header.signOut')}
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
             <div className='flex flex-col gap-8'>
               <div className='flex flex-col gap-3'>
                 <div className='text-lg text-dial-sapphire'>
-                  Delete Account
+                  {format('app.deleteAccount')}
                 </div>
                 <div className='text-sm text-dial-stratos'>
-                  <button
-                    type='button'
+                  <a
+                    href='#'
                     onClick={signOut}
                     className='border-b border-dial-iris-blue'
                   >
-                    Delete account
-                  </button>
+                    {format('app.deleteAccount')}
+                  </a>
                 </div>
               </div>
             </div>

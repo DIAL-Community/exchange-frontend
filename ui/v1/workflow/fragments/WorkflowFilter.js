@@ -37,7 +37,11 @@ const WorkflowFilter = () => {
               {format('ui.filter.filteredBy')}:
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button type='button' onClick={clearFilter}>{format('ui.filter.clearAll')}</button>
+              <button type='button' onClick={clearFilter}>
+                <span className='text-dial-sapphire'>
+                  {format('ui.filter.clearAll')}
+                </span>
+              </button>
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>

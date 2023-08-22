@@ -96,8 +96,8 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissCardHandl
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
-        <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
-          <IoClose size='1rem' onClick={dismissCardHandler} />
+        <button type='button' className='absolute p-2 top-0 right-0'>
+          <IoClose size='1rem' className='text-dial-ochre' onClick={dismissCardHandler} />
         </button>
       }
     </div>

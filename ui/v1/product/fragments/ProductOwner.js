@@ -138,15 +138,15 @@ const ProductOwner = ({ product }) => {
         </a>
         {showApplyLink && (
           <div className='flex text-xs text-dial-stratos'>
-            <button
-              type='button'
+            <a
+              href='#'
               className='border-b border-dial-iris-blue'
               onClick={onSubmit}
               disabled={loading}
             >
               {format('ownership.apply')}
               {loading && <FaSpinner className='inline spinner mx-1' />}
-            </button>
+            </a>
           </div>
         )}
         {ownershipText && (
@@ -158,13 +158,13 @@ const ProductOwner = ({ product }) => {
       {user && product.haveOwner && (
         <div className='flex text-xs text-dial-meadow font-semibold'>
           {contactState === CONTACT_STATES[0] &&
-            <button
-              type='button'
+            <a
+              href='#'
               className='border-b border-dial-iris-blue'
               onClick={() => setContactState(CONTACT_STATES[1])}
             >
               {format('product.owner.revealContact')}
-            </button>
+            </a>
           }
           {contactState === CONTACT_STATES[1] && (
             <ReCAPTCHA

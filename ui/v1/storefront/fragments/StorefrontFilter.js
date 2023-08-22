@@ -51,7 +51,9 @@ const StorefrontFilter = () => {
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
               <button type='button' onClick={clearFilter}>
-                {format('ui.filter.clearAll')}
+                <span className='text-dial-sapphire'>
+                  {format('ui.filter.clearAll')}
+                </span>
               </button>
             </div>
           </div>
@@ -91,14 +93,14 @@ const StorefrontFilter = () => {
           {format('ui.filter.primary.title')}
         </div>
         <hr className='border-b border-dial-slate-200'/>
-        <label className='flex pl-4 py-2'>
+        <label className='flex py-2'>
           <Checkbox onChange={toggleAggregator} value={aggregator} />
           <span className='mx-2 my-auto text-sm'>
             {format('filter.organization.aggregatorOnly')}
           </span>
         </label>
         <hr className='border-b border-dial-slate-200'/>
-        <label className='flex pl-4 py-2'>
+        <label className='flex py-2'>
           <Checkbox onChange={toggleEndorser} value={endorser} />
           <span className='mx-2 my-auto text-sm'>
             {format('filter.organization.endorserOnly')}

@@ -35,7 +35,7 @@ export const ProductAutocomplete = ({ products, setProducts, placeholder }) => {
         <div className='text-dial-stratos text-sm py-2'>
           {format('ui.product.label')}
         </div>
-        <BsPlus className='ml-auto my-auto' />
+        <BsPlus className='ml-auto text-dial-stratos my-auto' />
       </button>
       {showFilter &&
         <Select

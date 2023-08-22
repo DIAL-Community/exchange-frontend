@@ -62,7 +62,9 @@ const MapActiveFilter = () => {
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
               <button type='button' onClick={clearFilter}>
-                {format('ui.filter.clearAll')}
+                <span className='text-dial-sapphire'>
+                  {format('ui.filter.clearAll')}
+                </span>
               </button>
             </div>
           </div>

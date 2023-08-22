@@ -48,13 +48,17 @@ const UseCaseFilter = () => {
               {format('ui.filter.filteredBy')}:
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button type='button' onClick={clearFilter}>{format('ui.filter.clearAll')}</button>
+              <button type='button' onClick={clearFilter}>
+                <span className='text-dial-sapphire'>
+                  {format('ui.filter.clearAll')}
+                </span>
+              </button>
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
             <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             {showBeta && (
-              <div className='bg-dial-slate-400 px-2 py-1 rounded'>
+              <div className='bg-dial-slate-400 text-white px-2 py-1 rounded'>
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('ui.useCase.filter.showDraft')}
@@ -66,7 +70,7 @@ const UseCaseFilter = () => {
               </div>
             )}
             {govStackOnly && (
-              <div className='bg-dial-slate-400 px-2 py-1 rounded'>
+              <div className='bg-dial-slate-400 text-white px-2 py-1 rounded'>
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('ui.useCase.filter.govStackOnly')}
@@ -92,14 +96,14 @@ const UseCaseFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.secondary.title', { entity: format('ui.useCase.label').toLowerCase() })}:
         </div>
-        <label className='flex pl-4 py-2'>
+        <label className='flex py-2'>
           <Checkbox onChange={toggleShowBeta} value={showBeta} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.useCase.filter.showDraft')}
           </span>
         </label>
         <hr className='border-b border-dial-slate-200'/>
-        <label className='flex pl-4 py-2'>
+        <label className='flex py-2'>
           <Checkbox onChange={toggleShowGovStack} value={govStackOnly} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.useCase.filter.govStackOnly')}

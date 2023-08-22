@@ -89,7 +89,9 @@ const ProductFilter = () => {
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
               <button type='button' onClick={clearFilter}>
-                {format('ui.filter.clearAll')}
+                <span className='text-dial-sapphire'>
+                  {format('ui.filter.clearAll')}
+                </span>
               </button>
             </div>
           </div>
@@ -130,7 +132,7 @@ const ProductFilter = () => {
         <hr className='border-b border-dial-slate-200'/>
         <TagAutocomplete tags={tags} setTags={setTags} />
         <hr className='border-b border-dial-slate-200'/>
-        <label className='flex pl-4 py-2'>
+        <label className='flex py-2'>
           <Checkbox value={isLinkedWithDpi} onChange={toggleIsLinkedWithDpi} />
           <span className='mx-2 my-auto text-sm'>
             {format('filter.product.linkedWithDpi')}
@@ -153,7 +155,7 @@ const ProductFilter = () => {
         </div>
         {expanded &&
           <>
-            <label className='flex pl-4 py-2'>
+            <label className='flex py-2'>
               <Checkbox value={isCovid19TagActive} onChange={toggleCovid19Tag} />
               <span className='mx-2 my-auto text-sm'>
                 {format('filter.product.forCovid')}

@@ -44,8 +44,10 @@ const BuildingBlockFilter = () => {
               {format('ui.filter.filteredBy')}
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button type='button' onClick={clearFilter}>
-                {format('ui.filter.clearAll')}
+              <button type='button' className='' onClick={clearFilter}>
+                <span className='text-dial-sapphire'>
+                  {format('ui.filter.clearAll')}
+                </span>
               </button>
             </div>
           </div>
@@ -55,7 +57,7 @@ const BuildingBlockFilter = () => {
             <WorkflowActiveFilters workflows={workflows} setWorkflows={setWorkflows} />
             <CategoryTypeActiveFilters categoryTypes={categoryTypes} setCategoryTypes={setCategoryTypes} />
             {showMature && (
-              <div className='bg-dial-slate-400 px-2 py-1 rounded'>
+              <div className='bg-dial-slate-400 text-white px-2 py-1 rounded'>
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
                     {format('ui.buildingBlock.filter.showMature')}
@@ -87,7 +89,7 @@ const BuildingBlockFilter = () => {
         </div>
         <CategoryTypeAutocomplete categoryTypes={categoryTypes} setCategoryTypes={setCategoryTypes} />
         <hr className='border-b border-dial-slate-200'/>
-        <label className='flex pl-4 py-2'>
+        <label className='flex py-2'>
           <Checkbox onChange={toggleShowMature} value={showMature} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.buildingBlock.filter.showMature')}
