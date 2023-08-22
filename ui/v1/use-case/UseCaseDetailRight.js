@@ -126,7 +126,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           </div>
         }
         {useCase?.workflows.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {useCase?.workflows?.map((workflow, index) =>
               <div key={`workflow-${index}`}>
                 <WorkflowCard
@@ -157,7 +157,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           </div>
         }
         {useCase?.buildingBlocks.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {useCase?.buildingBlocks?.map((buildingBlock, index) =>
               <div key={`building-block-${index}`}>
                 <BuildingBlockCard

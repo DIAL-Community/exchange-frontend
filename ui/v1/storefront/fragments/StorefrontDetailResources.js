@@ -98,7 +98,7 @@ const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
   }
 
   const displayModeBody = resources.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {resources?.map((resource, index) =>
         <div key={`resource-${index}`}>
           <ResourceCard resource={resource} displayType={DisplayType.SMALL_CARD} />

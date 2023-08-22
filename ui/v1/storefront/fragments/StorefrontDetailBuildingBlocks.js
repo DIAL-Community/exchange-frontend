@@ -100,7 +100,7 @@ const StorefrontDetailBuildingBlockCertifications = ({ organization, canEdit, he
   }
 
   const displayModeBody = certifications.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {certifications?.map((certification, index) =>
         <div key={`buildingBlock-certification-${index}`}>
           <BuildingBlockCard buildingBlock={certification} displayType={DisplayType.SMALL_CARD} />

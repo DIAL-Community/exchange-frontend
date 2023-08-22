@@ -8,7 +8,7 @@ const ToolDefinition = () => {
 
   return (
     <div className='lg:px-8 xl:px-56 text-dial-stratos'>
-      <div className='flex flex-col gap-y-8'>
+      <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
         <div className='text-2xl font-semibold'>
           {format('ui.tool.getStarted')} ...
         </div>

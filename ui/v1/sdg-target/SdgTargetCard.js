@@ -61,7 +61,7 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
     </div>
 
   return (
-    <Link href={`/sdg-targets/${sdgTarget.sdg.slug}`}>
+    <Link href={`/sdgs/${sdgTarget.sdg.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

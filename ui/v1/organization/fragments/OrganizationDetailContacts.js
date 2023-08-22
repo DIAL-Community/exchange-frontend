@@ -100,7 +100,7 @@ const OrganizationDetailContacts = ({ organization, canEdit, headerRef }) => {
   }
 
   const displayModeBody = organization && contacts.length > 0
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {contacts.map((contact, index) =>
         <div key={`project-${index}`}>
           <ContactCard contact={contact} displayType={DisplayType.SMALL_CARD} />

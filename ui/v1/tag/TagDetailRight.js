@@ -73,7 +73,7 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
           </div>
         }
         {tag?.datasets.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {tag?.datasets?.map((dataset, index) =>
               <div key={`dataset-${index}`}>
                 <DatasetCard
@@ -100,7 +100,7 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
           </div>
         }
         {tag.products.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {tag?.products?.map((product, index) =>
               <div key={`product-${index}`}>
                 <ProductCard
@@ -152,7 +152,7 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
           </div>
         }
         {tag?.useCases.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {tag?.useCases?.map((useCase, index) =>
               <div key={`useCase-${index}`}>
                 <UseCaseCard

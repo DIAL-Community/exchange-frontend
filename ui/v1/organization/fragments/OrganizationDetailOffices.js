@@ -100,7 +100,7 @@ const OrganizationDetailOffices = ({ organization, canEdit, headerRef }) => {
   }
 
   const displayModeBody = offices.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {offices?.map((office, index) =>
         <div key={`office-${index}`}>
           <CityCard city={office} displayType={DisplayType.SMALL_CARD} />

@@ -9,7 +9,7 @@ const UserMain = ({ activeTab }) => {
       <div className='px-4 lg:px-8 xl:px-56'>
         <div className='grid grid-cols-3 gap-x-8'>
           {activeTab > 0 &&
-            <div className='hidden xl:block col-span-1'>
+            <div className='hidden md:block col-span-1'>
               <UserMainLeft activeTab={activeTab} />
             </div>
           }

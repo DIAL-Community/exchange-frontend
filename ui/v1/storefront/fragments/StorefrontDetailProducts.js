@@ -98,7 +98,7 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
   }
 
   const displayModeBody = certifications.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {certifications?.map((certification, index) =>
         <div key={`product-certification-${index}`}>
           <ProductCard product={certification} displayType={DisplayType.SMALL_CARD} />

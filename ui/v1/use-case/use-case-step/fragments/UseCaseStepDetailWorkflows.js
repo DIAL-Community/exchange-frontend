@@ -98,7 +98,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
   }
 
   const displayModeBody = workflows.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {workflows?.map((workflow, index) =>
         <div key={`workflow-${index}`}>
           <WorkflowCard workflow={workflow} displayType={DisplayType.SMALL_CARD} />

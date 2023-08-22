@@ -9,7 +9,7 @@ const MobileFilter = ({ iconColor, bgColor, entityFilter }) => {
   const [startFiltering, setStartFiltering] = useState(false)
 
   const toggleFiltering = () => setStartFiltering(!startFiltering)
-  const mobileFilterStyle = 'block xl:hidden relative'
+  const mobileFilterStyle = 'block md:hidden relative'
 
   const layerStyle = {
     top: `

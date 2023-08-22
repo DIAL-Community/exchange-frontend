@@ -102,7 +102,7 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit, headerRef }) => {
     </div>
 
   const displayModeBody = useCases.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {useCases?.map((useCase, index) =>
         <UseCaseCard
           key={index}

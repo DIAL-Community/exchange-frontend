@@ -107,8 +107,8 @@ const ProjectFilter = () => {
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          <button type='button' className='w-full' onClick={() => setExpanded(!expanded)}>
-            <div className='flex w-full gap-3'>
+          <button type='button' onClick={() => setExpanded(!expanded)}>
+            <div className='flex text-dial-sapphire gap-3'>
               <div className='my-auto'>
                 {format('ui.filter.additional.title')}
               </div>

@@ -98,7 +98,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
   }
 
   const displayModeBody = buildingBlocks.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {buildingBlocks?.map((buildingBlock, index) =>
         <div key={`building-block-${index}`}>
           <BuildingBlockCard buildingBlock={buildingBlock} displayType={DisplayType.SMALL_CARD} />

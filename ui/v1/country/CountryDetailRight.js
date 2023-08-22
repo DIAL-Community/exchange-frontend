@@ -63,7 +63,7 @@ const CountryDetailRight = forwardRef(({ country }, ref) => {
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
           {format('ui.organization.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
           {country?.organizations.length <= 0 &&
             <div className='text-sm text-dial-stratos'>
               {format('ui.common.detail.noData', {

@@ -61,7 +61,7 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
         <div className='text-xl font-semibold text-dial-plum' ref={countryRef}>
           {format('ui.country.label')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
           <CountryCard country={city.region.country} displayType={DisplayType.SMALL_CARD} />
         </div>
       </div>
@@ -79,7 +79,7 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
           </div>
         }
         {city?.organizations.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {city?.organizations?.map((organization, index) =>
               <div key={`organization-${index}`}>
                 <OrganizationCard

@@ -73,7 +73,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           </div>
         }
         {sector?.datasets.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {sector?.datasets?.map((dataset, index) =>
               <div key={`dataset-${index}`}>
                 <DatasetCard
@@ -100,7 +100,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           </div>
         }
         {sector?.organizations.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {sector?.organizations?.map((organization, index) =>
               <div key={`useCase-${index}`}>
                 <OrganizationCard
@@ -127,7 +127,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           </div>
         }
         { sector?.products.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {sector?.products?.map((product, index) =>
               <div key={`product-${index}`}>
                 <ProductCard

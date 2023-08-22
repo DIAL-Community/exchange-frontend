@@ -66,7 +66,7 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
           className='object-contain'
         />
         <div className='my-auto border-b border-transparent group-hover:border-dial-slate-500'>
-          <div className='text-sm text-dial-stratos'>
+          <div className='text-sm text-dial-stratos text-left'>
             {format('ui.bookmark.bookmarkThis')}
           </div>
         </div>

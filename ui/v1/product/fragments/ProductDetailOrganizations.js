@@ -98,7 +98,7 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
   }
 
   const displayModeBody = organizations.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {organizations?.map((organization, index) =>
         <OrganizationCard
           key={index}

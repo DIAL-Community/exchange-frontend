@@ -64,7 +64,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
           </div>
         }
         {resource?.organizations.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
             {resource?.organizations?.map((organization, index) =>
               <div key={`organization-${index}`}>
                 <OrganizationCard

@@ -15,7 +15,7 @@ const WizardDefinition = () => {
           style={{ backgroundImage: 'url("/ui/v1/wizard-bg.svg")' }}
         >
           <div className='lg:px-8 xl:px-56'>
-            <div className='flex flex-col gap-y-6'>
+            <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-6'>
               <div className='text-2xl font-semibold mt-12'>
                 {format('ui.wizard.title')}
               </div>
