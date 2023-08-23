@@ -44,7 +44,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
   const editPath = `${opportunity.slug}/edit`
 
   return (
-    <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
+    <div className='px-4 lg:px-0 lg:py-2'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>

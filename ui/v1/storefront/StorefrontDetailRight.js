@@ -54,7 +54,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
   const editPath = `${organization.slug}/edit`
 
   return (
-    <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
+    <div className='px-4 lg:px-0 lg:py-2'>
       <div className='relative mb-32'>
         {!organization.heroFile &&
           <div className='w-full h-64 bg-gradient-to-r from-dial-sapphire to-dial-lavender' />

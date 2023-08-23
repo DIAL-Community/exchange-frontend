@@ -42,7 +42,7 @@ const PlayDetail = ({ playSlug, playbookSlug, locale }) => {
           <PlayDetailLeft play={play} scrollRef={scrollRef} />
         </div>
         <div className='basis-2/3'>
-          <div className='px-4 py-4 lg:py-6'>
+          <div className='px-4 lg:px-0 py-4 lg:py-6'>
             <PlayDetailRight playbook={playbook} play={play} ref={scrollRef} />
           </div>
         </div>

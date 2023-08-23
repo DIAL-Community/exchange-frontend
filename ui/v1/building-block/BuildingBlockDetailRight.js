@@ -31,7 +31,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
   const editPath = `${buildingBlock.slug}/edit`
 
   return (
-    <div className='px-4 py-4 lg:py-6'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit &&
           <div className='flex gap-x-3 ml-auto'>

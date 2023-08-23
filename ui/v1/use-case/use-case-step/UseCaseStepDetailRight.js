@@ -30,7 +30,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   ]), [])
 
   return (
-    <div className='flex flex-col gap-y-4 pt-4 pb-8'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit &&
           <div className='flex gap-x-3 ml-auto'>
@@ -52,38 +52,38 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
             editorId='use-case-step-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk'/>
-      <div className='flex flex-col gap-y-3'>
-        <UseCaseStepDetailDatasets
-          useCaseStep={useCaseStep}
-          canEdit={canEdit}
-          headerRef={datasetRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk'/>
-      <div className='flex flex-col gap-y-3'>
-        <UseCaseStepDetailProducts
-          useCaseStep={useCaseStep}
-          canEdit={canEdit}
-          headerRef={productRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <UseCaseStepDetailWorkflows
-          useCaseStep={useCaseStep}
-          canEdit={canEdit}
-          headerRef={workflowRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <UseCaseStepDetailBuildingBlocks
-          useCaseStep={useCaseStep}
-          canEdit={canEdit}
-          headerRef={buildingBlockRef}
-        />
+        <hr className='border-b border-dial-blue-chalk'/>
+        <div className='flex flex-col gap-y-3'>
+          <UseCaseStepDetailDatasets
+            useCaseStep={useCaseStep}
+            canEdit={canEdit}
+            headerRef={datasetRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk'/>
+        <div className='flex flex-col gap-y-3'>
+          <UseCaseStepDetailProducts
+            useCaseStep={useCaseStep}
+            canEdit={canEdit}
+            headerRef={productRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk mt-6'/>
+        <div className='flex flex-col gap-y-3'>
+          <UseCaseStepDetailWorkflows
+            useCaseStep={useCaseStep}
+            canEdit={canEdit}
+            headerRef={workflowRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk mt-6'/>
+        <div className='flex flex-col gap-y-3'>
+          <UseCaseStepDetailBuildingBlocks
+            useCaseStep={useCaseStep}
+            canEdit={canEdit}
+            headerRef={buildingBlockRef}
+          />
+        </div>
       </div>
     </div>
   )

@@ -142,7 +142,7 @@ const ProductForm = React.memo(({ product }) => {
     ? <Loading />
     : isAdminUser || isEditorUser ?
       <form onSubmit={handleSubmit(doUpsert)}>
-        <div className='px-4 py-4 lg:py-6 text-dial-meadow'>
+        <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-meadow'>
           <div className='flex flex-col gap-y-6 text-sm'>
             <div className='text-xl font-semibold'>
               {product

@@ -110,7 +110,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
       : canEdit
         ? (
           <form onSubmit={handleSubmit(doUpsert)}>
-            <div className='px-4 py-4 lg:py-6'>
+            <div className='px-4 lg:px-0 py-4 lg:py-6'>
               <div className='flex flex-col gap-y-6 text-sm'>
                 <div className='text-2xl font-semibold text-dial-sapphire'>
                   {useCaseStep?.slug

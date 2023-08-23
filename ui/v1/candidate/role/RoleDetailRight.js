@@ -14,7 +14,7 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
   ]), [])
 
   return (
-    <div className=' flex flex-col gap-y-4 px-4 lg:px-6 lg:py-2'>
+    <div className='px-4 lg:px-0 lg:py-2'>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}

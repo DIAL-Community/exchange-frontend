@@ -26,7 +26,7 @@ const PlaybookDetailOverview = ({ locale, playbook, allowEmbedCreation }) => {
   }, [setSlugHeights, ref])
 
   return (
-    <div className='flex flex-col gap-3 px-3' ref={ref}>
+    <div className='flex flex-col gap-3' ref={ref}>
       <PlaybookDetailMenu
         playbook={playbook}
         locale={locale}

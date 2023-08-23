@@ -32,9 +32,7 @@ const PlaybookDetail = ({ slug, locale }) => {
           <PlaybookDetailLeft playbook={playbook} scrollRef={scrollRef} />
         </div>
         <div className='basis-2/3'>
-          <div className='px-4 py-4 lg:py-6'>
-            <PlaybookDetailRight playbook={playbook} locale={locale} ref={scrollRef} />
-          </div>
+          <PlaybookDetailRight playbook={playbook} locale={locale} ref={scrollRef} />
         </div>
       </div>
     </div>

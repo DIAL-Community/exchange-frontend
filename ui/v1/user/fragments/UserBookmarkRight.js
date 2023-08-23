@@ -102,7 +102,7 @@ const UserBookmarkRight = () => {
   const { bookmark } = data
 
   return (
-    <div className='flex flex-col gap-y-6 py-6'>
+    <div className='py-6'>
       {displayUseCases &&
         <div className='flex flex-col gap-y-4'>
           <div className='text-2xl font-semibold text-dial-blueberry'>
