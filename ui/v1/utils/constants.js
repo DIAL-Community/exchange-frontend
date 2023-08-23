@@ -1,6 +1,7 @@
 export const DisplayType = {
   LARGE_CARD: 'large-card',
-  SMALL_CARD: 'small-card'
+  SMALL_CARD: 'small-card',
+  PINNED_CARD: 'pinned-card'
 }
 
 export const OpportunityStatus = {

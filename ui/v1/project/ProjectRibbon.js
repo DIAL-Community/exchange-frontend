@@ -7,7 +7,7 @@ const ProjectRibbon = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const titleImage =
-    <div className='bg-dial-meadow rounded-full w-[70px] h-[70px]'>
+    <div className='bg-dial-plum rounded-full w-[70px] h-[70px]'>
       <img
         src='/ui/v1/project-header.svg'
         alt={format('ui.image.logoAlt', { name: format('ui.project.label') })}
@@ -19,10 +19,10 @@ const ProjectRibbon = () => {
 
   return (
     <Ribbon
-      ribbonBg='bg-dial-spearmint'
+      ribbonBg='bg-dial-violet'
       titleImage={titleImage}
       titleKey={'ui.project.header'}
-      titleColor='text-dial-meadow'
+      titleColor='text-dial-plum'
     />
   )
 }

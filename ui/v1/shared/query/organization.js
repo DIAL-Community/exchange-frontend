@@ -200,6 +200,18 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
         id
         name
         slug
+        organizations {
+          id
+          name
+          slug
+          imageFile
+        }
+        products {
+          id
+          name
+          slug
+          imageFile
+        }
         origin {
           id
           slug
@@ -275,6 +287,18 @@ export const STOREFRONT_DETAIL_QUERY = gql`
         id
         name
         slug
+        organizations {
+          id
+          name
+          slug
+          imageFile
+        }
+        products {
+          id
+          name
+          slug
+          imageFile
+        }
         origin {
           slug
           name

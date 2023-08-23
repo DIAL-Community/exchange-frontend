@@ -201,19 +201,49 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
     }
   }
 
+  const pinnedProjects = projects
+    .filter(project => stars.indexOf(`${project.id}`) >= 0)
+    .slice(0, 3)
+
+  const otherProjects = projects
+    .filter(project =>
+      pinnedProjects
+        .map(pinnedProject => pinnedProject.id)
+        .indexOf(project.id) < 0
+    )
+
   const displayModeBody = projects.length
     ? <div className='flex flex-col gap-y-4'>
-      {projects?.map((project, index) =>
-        <div key={`project-${index}`}>
-          <ProjectCard
-            project={project}
-            displayType={DisplayType.SMALL_CARD}
-            starred={stars.indexOf(`${project.id}`) >= 0}
-            addStarHandler={() => addStarHandler(project)}
-            removeStarHandler={() => removeStarHandler(project)}
-          />
-        </div>
-      )}
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
+        {pinnedProjects
+          .map((project, index) =>
+            <div key={`project-${index}`}>
+              <ProjectCard
+                project={project}
+                displayType={DisplayType.PINNED_CARD}
+                starred={stars.indexOf(`${project.id}`) >= 0}
+                addStarHandler={() => addStarHandler(project)}
+                removeStarHandler={() => removeStarHandler(project)}
+              />
+            </div>
+          )
+        }
+      </div>
+      <div className='flex flex-col gap-y-4'>
+        {otherProjects
+          .map((project, index) =>
+            <div key={`project-${index}`}>
+              <ProjectCard
+                project={project}
+                displayType={DisplayType.SMALL_CARD}
+                starred={stars.indexOf(`${project.id}`) >= 0}
+                addStarHandler={() => addStarHandler(project)}
+                removeStarHandler={() => removeStarHandler(project)}
+              />
+            </div>
+          )
+        }
+      </div>
     </div>
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {

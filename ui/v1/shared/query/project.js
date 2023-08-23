@@ -66,11 +66,22 @@ export const PAGINATED_PROJECTS_QUERY = gql`
       id
       name
       slug
+      projectDescription {
+        id
+        locale
+        description
+      }
       organizations {
         id
+        slug
+        name
+        imageFile
       }
       products {
         id
+        slug
+        name
+        imageFile
       }
     }
   }

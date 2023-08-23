@@ -39,7 +39,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
             <div className='basis-full lg:basis-3/4 flex flex-col gap-4'>
               <div className='flex gap-4 my-auto'>
                 {titleImage}
-                <div className={`text-2xl font-light ${titleColor} my-auto flex-grow`}>
+                <div className={`text-2xl font-base ${titleColor} my-auto flex-grow`}>
                   {format(titleKey)}
                 </div>
               </div>
