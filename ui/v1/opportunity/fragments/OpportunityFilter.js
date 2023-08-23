@@ -61,6 +61,7 @@ const OpportunityFilter = () => {
       + organizations.length
       + sectors.length
       + useCases.length
+      + tags.length
       + showClosed ? 1 : 0 > 0
   }
 

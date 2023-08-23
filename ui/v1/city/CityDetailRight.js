@@ -37,7 +37,7 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
   const editPath = `${city.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
@@ -55,49 +55,49 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
             countryName: city.region.country.name
           })}
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-plum' ref={countryRef}>
-          {format('ui.country.label')}
-        </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-          <CountryCard country={city.region.country} displayType={DisplayType.SMALL_CARD} />
-        </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
-          {format('ui.organization.header')}
-        </div>
-        {city?.organizations.length <= 0 &&
-          <div className='text-sm text-dial-stratos'>
-            {format('ui.common.detail.noData', {
-              entity: format('ui.organization.label'),
-              base: format('ui.city.label')
-            })}
+        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-plum' ref={countryRef}>
+            {format('ui.country.label')}
           </div>
-        }
-        {city?.organizations.length > 0 &&
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-            {city?.organizations?.map((organization, index) =>
-              <div key={`organization-${index}`}>
-                <OrganizationCard
-                  index={index}
-                  organization={organization}
-                  displayType={DisplayType.SMALL_CARD}
-                />
-              </div>
-            )}
+            <CountryCard country={city.region.country} displayType={DisplayType.SMALL_CARD} />
           </div>
-        }
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
+            {format('ui.organization.header')}
+          </div>
+          {city?.organizations.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.organization.label'),
+                base: format('ui.city.label')
+              })}
+            </div>
+          }
+          {city?.organizations.length > 0 &&
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
+              {city?.organizations?.map((organization, index) =>
+                <div key={`organization-${index}`}>
+                  <OrganizationCard
+                    index={index}
+                    organization={organization}
+                    displayType={DisplayType.SMALL_CARD}
+                  />
+                </div>
+              )}
+            </div>
+          }
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={city.id}
+          objectType={ObjectType.CITY}
+        />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={city.id}
-        objectType={ObjectType.CITY}
-      />
     </div>
   )
 })

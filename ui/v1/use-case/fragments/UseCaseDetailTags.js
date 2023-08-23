@@ -91,7 +91,7 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
     ? <div className='italic text-sm'>
       {tags.join(', ')}
     </div>
-    : <div className='text-sm pb-5 text-dial-stratos'>
+    : <div className='text-sm text-dial-stratos'>
       {format('ui.common.detail.noData', {
         entity: format('ui.tag.label'),
         base: format('ui.useCase.label')

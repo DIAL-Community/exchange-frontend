@@ -11,8 +11,8 @@ const ProjectSearchBar = forwardRef((_, ref) => {
 
   const mobileFilter =
     <MobileFilter
-      bgColor='bg-dial-spearmint'
-      iconColor='text-dial-meadow'
+      bgColor='bg-dial-violet'
+      iconColor='text-dial-plum'
       entityFilter={<ProjectFilter/>}
     />
 

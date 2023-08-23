@@ -150,6 +150,31 @@ export const UPDATE_PROJECT_PRODUCTS = gql`
   }
 `
 
+export const UPDATE_PROJECT_SDGS = gql`
+  mutation UpdateProjectSdgs(
+    $slug: String!
+    $sdgSlugs: [String!]!
+  ) {
+    updateProjectSdgs(
+      slug: $slug
+      sdgSlugs: $sdgSlugs
+    ) {
+      project {
+        id
+        name
+        slug
+        sdgs {
+          id
+          slug
+          name
+          imageFile
+        }
+      }
+      errors
+    }
+  }
+`
+
 export const DELETE_PROJECT = gql`
   mutation DeleteProject($id: ID!) {
     deleteProject(id: $id) {

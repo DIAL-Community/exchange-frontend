@@ -79,6 +79,10 @@ const ProjectCard = (props) => {
             <div className='text-sm'>
               {format('ui.product.header')} ({project.products?.length ?? 0})
             </div>
+            <div className='border-r border-dial-slate-400' />
+            <div className='text-sm'>
+              {format('ui.sdg.header')} ({project.sdgs?.length ?? 0})
+            </div>
           </div>
         </div>
       </div>

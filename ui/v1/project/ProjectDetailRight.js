@@ -10,6 +10,7 @@ import DeleteProject from './DeleteProject'
 import ProjectDetailOrganizations from './fragments/ProjectDetailOrganizations'
 import ProjectDetailProducts from './fragments/ProjectDetailProducts'
 import ProjectDetailCountries from './fragments/ProjectDetailCountries'
+import ProjectDetailSdgs from './fragments/ProjectDetailSdgs'
 
 const ProjectDetailRight = forwardRef(({ project }, ref) => {
   const { formatMessage } = useIntl()
@@ -22,6 +23,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
   const organizationRef = useRef()
   const productRef = useRef()
   const countryRef = useRef()
+  const sdgRef = useRef()
   const tagRef = useRef()
   const commentsSectionRef = useRef()
 
@@ -32,6 +34,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
       { value: 'ui.organization.header', ref: organizationRef },
       { value: 'ui.product.header', ref: productRef },
       { value: 'ui.country.header', ref: countryRef },
+      { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.tag.header', ref: tagRef },
       { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
@@ -49,7 +52,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
             {isAdminUser && <DeleteProject project={project} />}
           </div>
         )}
-        <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
+        <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
         <div className='block'>
@@ -58,45 +61,53 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
             editorId='project-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <ProjectDetailOrganizations
-          project={project}
-          canEdit={canEdit}
-          headerRef={organizationRef}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProjectDetailOrganizations
+            project={project}
+            canEdit={canEdit}
+            headerRef={organizationRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProjectDetailProducts
+            project={project}
+            canEdit={canEdit}
+            headerRef={productRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProjectDetailCountries
+            project={project}
+            canEdit={canEdit}
+            headerRef={countryRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProjectDetailSdgs
+            project={project}
+            canEdit={canEdit}
+            headerRef={sdgRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProjectDetailTags
+            project={project}
+            canEdit={canEdit}
+            headerRef={tagRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={project.id}
+          objectType={ObjectType.PROJECT}
         />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <ProjectDetailProducts
-          project={project}
-          canEdit={canEdit}
-          headerRef={productRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <ProjectDetailCountries
-          project={project}
-          canEdit={canEdit}
-          headerRef={countryRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <ProjectDetailTags
-          project={project}
-          canEdit={canEdit}
-          headerRef={tagRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={project.id}
-        objectType={ObjectType.PROJECT}
-      />
     </div>
   )
 })

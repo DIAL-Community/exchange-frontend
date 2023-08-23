@@ -21,7 +21,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       organizations: organizations.map(organization => organization.value),
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
-      sdgs: sdgs.map(sdg => sdg.number),
+      sdgs: sdgs.map(sdg => sdg.value),
       origins: origins.map(origin => origin.value),
       limit: defaultPageSize,
       offset: pageOffset

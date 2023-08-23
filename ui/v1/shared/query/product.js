@@ -81,7 +81,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       buildingBlocks {
         id
       }
-      sustainableDevelopmentGoals {
+      sdgs {
         id
       }
       productDescription {

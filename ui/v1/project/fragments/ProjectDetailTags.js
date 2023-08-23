@@ -83,7 +83,7 @@ const ProjectDetailTags = ({ project, canEdit, headerRef }) => {
   }
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-meadow' ref={headerRef}>
+    <div className='text-xl font-semibold text-dial-plum' ref={headerRef}>
       {format('ui.tag.header')}
     </div>
 
@@ -91,7 +91,7 @@ const ProjectDetailTags = ({ project, canEdit, headerRef }) => {
     ? <div className='italic text-sm'>
       {tags.join(', ')}
     </div>
-    : <div className='text-sm pb-5 text-dial-stratos'>
+    : <div className='text-sm text-dial-stratos'>
       {format('ui.common.detail.noData', {
         entity: format('ui.tag.label'),
         base: format('ui.project.label')

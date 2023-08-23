@@ -41,7 +41,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
   const editPath = `${sector.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
@@ -58,119 +58,119 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
             editorId='sector-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={datasetRef}>
-          {format('ui.dataset.header')}
-        </div>
-        {sector?.datasets.length <= 0 &&
-          <div className='text-sm text-dial-stratos'>
-            {format('ui.common.detail.noData', {
-              entity: format('ui.dataset.label'),
-              base: format('ui.sector.label')
-            })}
+        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={datasetRef}>
+            {format('ui.dataset.header')}
           </div>
-        }
-        {sector?.datasets.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-            {sector?.datasets?.map((dataset, index) =>
-              <div key={`dataset-${index}`}>
-                <DatasetCard
-                  index={index}
-                  dataset={dataset}
-                  displayType={DisplayType.SMALL_CARD}
-                />
-              </div>
-            )}
-          </div>
-        }
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
-          {format('ui.organization.header')}
-        </div>
-        {sector?.organizations.length <= 0 &&
-          <div className='text-sm text-dial-stratos'>
-            {format('ui.common.detail.noData', {
-              entity: format('ui.organization.label'),
-              base: format('ui.sector.label')
-            })}
-          </div>
-        }
-        {sector?.organizations.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-            {sector?.organizations?.map((organization, index) =>
-              <div key={`useCase-${index}`}>
-                <OrganizationCard
-                  index={index}
-                  organization={organization}
-                  displayType={DisplayType.SMALL_CARD}
-                />
-              </div>
-            )}
-          </div>
-        }
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={productRef}>
-          {format('ui.product.header')}
-        </div>
-        {sector?.products.length <= 0 &&
-          <div className='text-sm text-dial-stratos'>
-            {format('ui.common.detail.noData', {
-              entity: format('ui.product.label'),
-              base: format('ui.sector.label')
-            })}
-          </div>
-        }
-        { sector?.products.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-            {sector?.products?.map((product, index) =>
-              <div key={`product-${index}`}>
-                <ProductCard
-                  index={index}
-                  product={product}
-                  displayType={DisplayType.SMALL_CARD}
-                />
-              </div>
-            )}
-          </div>
-        }
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={projectRef}>
-          {format('ui.project.header')}
-        </div>
-        <div className='flex flex-col gap-y-4'>
-          {sector?.projects.length <= 0 &&
+          {sector?.datasets.length <= 0 &&
             <div className='text-sm text-dial-stratos'>
               {format('ui.common.detail.noData', {
-                entity: format('ui.project.label'),
+                entity: format('ui.dataset.label'),
                 base: format('ui.sector.label')
               })}
             </div>
           }
-          {sector?.projects?.map((project, index) =>
-            <div key={`project-${index}`}>
-              <ProjectCard
-                index={index}
-                project={project}
-                displayType={DisplayType.SMALL_CARD}
-              />
+          {sector?.datasets.length > 0 &&
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
+              {sector?.datasets?.map((dataset, index) =>
+                <div key={`dataset-${index}`}>
+                  <DatasetCard
+                    index={index}
+                    dataset={dataset}
+                    displayType={DisplayType.SMALL_CARD}
+                  />
+                </div>
+              )}
             </div>
-          )}
+          }
         </div>
+        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
+            {format('ui.organization.header')}
+          </div>
+          {sector?.organizations.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.organization.label'),
+                base: format('ui.sector.label')
+              })}
+            </div>
+          }
+          {sector?.organizations.length > 0 &&
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
+              {sector?.organizations?.map((organization, index) =>
+                <div key={`useCase-${index}`}>
+                  <OrganizationCard
+                    index={index}
+                    organization={organization}
+                    displayType={DisplayType.SMALL_CARD}
+                  />
+                </div>
+              )}
+            </div>
+          }
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={productRef}>
+            {format('ui.product.header')}
+          </div>
+          {sector?.products.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.product.label'),
+                base: format('ui.sector.label')
+              })}
+            </div>
+          }
+          { sector?.products.length > 0 &&
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
+              {sector?.products?.map((product, index) =>
+                <div key={`product-${index}`}>
+                  <ProductCard
+                    index={index}
+                    product={product}
+                    displayType={DisplayType.SMALL_CARD}
+                  />
+                </div>
+              )}
+            </div>
+          }
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={projectRef}>
+            {format('ui.project.header')}
+          </div>
+          <div className='flex flex-col gap-y-4'>
+            {sector?.projects.length <= 0 &&
+              <div className='text-sm text-dial-stratos'>
+                {format('ui.common.detail.noData', {
+                  entity: format('ui.project.label'),
+                  base: format('ui.sector.label')
+                })}
+              </div>
+            }
+            {sector?.projects?.map((project, index) =>
+              <div key={`project-${index}`}>
+                <ProjectCard
+                  index={index}
+                  project={project}
+                  displayType={DisplayType.SMALL_CARD}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={sector.id}
+          objectType={ObjectType.SECTOR}
+        />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={sector.id}
-        objectType={ObjectType.SECTOR}
-      />
     </div>
   )
 })

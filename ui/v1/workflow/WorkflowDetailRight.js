@@ -67,7 +67,7 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
   const editPath = `${workflow.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
@@ -84,23 +84,23 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
             editorId='workflow-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <WorkflowUseCases workflow={workflow} headerRef={useCaseRef} />
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <WorkflowDetailBuildingBlocks
-          workflow={workflow}
-          canEdit={canEdit}
-          headerRef={buildingBlockRef}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <WorkflowUseCases workflow={workflow} headerRef={useCaseRef} />
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <WorkflowDetailBuildingBlocks
+            workflow={workflow}
+            canEdit={canEdit}
+            headerRef={buildingBlockRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={workflow.id}
+          objectType={ObjectType.WORKFLOW}
         />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={workflow.id}
-        objectType={ObjectType.WORKFLOW}
-      />
     </div>
   )
 })

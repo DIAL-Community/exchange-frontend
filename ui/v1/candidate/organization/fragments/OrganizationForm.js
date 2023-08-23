@@ -191,7 +191,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
-              <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
+              <hr className='border-b border-dial-blue-chalk my-3' />
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='name'>
                   {format('ui.candidateOrganization.name')}

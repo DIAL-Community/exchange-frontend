@@ -32,7 +32,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
   const editPath = `${resource.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
@@ -49,40 +49,40 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
             editorId='resource-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-plum py-3' ref={organizationRef}>
-          {format('ui.organization.header')}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-plum py-3' ref={organizationRef}>
+            {format('ui.organization.header')}
+          </div>
+          {resource?.organizations.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.organization.label'),
+                base: format('ui.resource.label')
+              })}
+            </div>
+          }
+          {resource?.organizations.length > 0 &&
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
+              {resource?.organizations?.map((organization, index) =>
+                <div key={`organization-${index}`}>
+                  <OrganizationCard
+                    index={index}
+                    organization={organization}
+                    displayType={DisplayType.SMALL_CARD}
+                  />
+                </div>
+              )}
+            </div>
+          }
         </div>
-        {resource?.organizations.length <= 0 &&
-          <div className='text-sm text-dial-stratos'>
-            {format('ui.common.detail.noData', {
-              entity: format('ui.organization.label'),
-              base: format('ui.resource.label')
-            })}
-          </div>
-        }
-        {resource?.organizations.length > 0 &&
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-            {resource?.organizations?.map((organization, index) =>
-              <div key={`organization-${index}`}>
-                <OrganizationCard
-                  index={index}
-                  organization={organization}
-                  displayType={DisplayType.SMALL_CARD}
-                />
-              </div>
-            )}
-          </div>
-        }
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={resource.id}
+          objectType={ObjectType.RESOURCE}
+        />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={resource.id}
-        objectType={ObjectType.RESOURCE}
-      />
     </div>
   )
 })

@@ -83,6 +83,9 @@ export const PAGINATED_PROJECTS_QUERY = gql`
         name
         imageFile
       }
+      sdgs {
+        id
+      }
     }
   }
 `
@@ -116,6 +119,16 @@ export const PROJECT_DETAIL_QUERY = gql`
         id
         name
         slug
+      }
+      sdgs {
+        id
+        name
+        slug
+        imageFile
+        number
+        sdgTargets {
+          id
+        }
       }
       countries {
         id

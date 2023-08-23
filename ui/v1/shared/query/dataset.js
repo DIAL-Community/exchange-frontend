@@ -62,7 +62,7 @@ export const PAGINATED_DATASETS_QUERY = gql`
         description
         locale
       }
-      sustainableDevelopmentGoals {
+      sdgs {
         id
       }
       sectors {

@@ -198,13 +198,13 @@ export const UPDATE_PRODUCT_SDGS = gql`
         id
         name
         slug
-        sustainableDevelopmentGoals {
+        sdgs {
           id
           slug
           name
           imageFile
         }
-        sustainableDevelopmentGoalsMappingStatus
+        sdgsMappingStatus
       }
       errors
     }

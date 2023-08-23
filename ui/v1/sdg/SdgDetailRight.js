@@ -72,7 +72,7 @@ const SdgDetailRight = forwardRef(({ sdg }, ref) => {
   )
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
@@ -80,15 +80,15 @@ const SdgDetailRight = forwardRef(({ sdg }, ref) => {
         <div className='block'>
           {sdg.longTitle}
         </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <SdgSdgTargets sdg={sdg} headerRef={sdgTarget} />
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={sdg.id}
+          objectType={ObjectType.SDG}
+        />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <SdgSdgTargets sdg={sdg} headerRef={sdgTarget} />
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={sdg.id}
-        objectType={ObjectType.SDG}
-      />
     </div>
   )
 })

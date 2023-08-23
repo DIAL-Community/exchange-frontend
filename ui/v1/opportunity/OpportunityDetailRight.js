@@ -44,7 +44,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
   const editPath = `${opportunity.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
@@ -61,53 +61,53 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
             editorId='opportunity-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OpportunityDetailCountries
-          opportunity={opportunity}
-          canEdit={canEdit}
-          headerRef={countryRef}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OpportunityDetailCountries
+            opportunity={opportunity}
+            canEdit={canEdit}
+            headerRef={countryRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OpportunityDetailBuildingBlocks
+            opportunity={opportunity}
+            canEdit={canEdit}
+            headerRef={buildingBlockRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OpportunityDetailOrganizations
+            opportunity={opportunity}
+            canEdit={canEdit}
+            headerRef={organizationRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OpportunityDetailUseCases
+            opportunity={opportunity}
+            canEdit={canEdit}
+            headerRef={useCaseRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OpportunityDetailTags
+            opportunity={opportunity}
+            canEdit={canEdit}
+            headerRef={tagRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={opportunity.id}
+          objectType={ObjectType.OPPORTUNITY}
         />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OpportunityDetailBuildingBlocks
-          opportunity={opportunity}
-          canEdit={canEdit}
-          headerRef={buildingBlockRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OpportunityDetailOrganizations
-          opportunity={opportunity}
-          canEdit={canEdit}
-          headerRef={organizationRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OpportunityDetailUseCases
-          opportunity={opportunity}
-          canEdit={canEdit}
-          headerRef={useCaseRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OpportunityDetailTags
-          opportunity={opportunity}
-          canEdit={canEdit}
-          headerRef={tagRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={opportunity.id}
-        objectType={ObjectType.OPPORTUNITY}
-      />
     </div>
   )
 })

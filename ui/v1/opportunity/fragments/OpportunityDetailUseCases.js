@@ -111,7 +111,7 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit, headerRef }) => {
         />
       )}
     </div>
-    : <div className='text-sm pb-5 text-dial-stratos'>
+    : <div className='text-sm text-dial-stratos'>
       {format('ui.common.detail.noData', {
         entity: format('ui.useCase.label'),
         base: format('ui.opportunity.label')

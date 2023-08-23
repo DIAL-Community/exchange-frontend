@@ -54,7 +54,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
   const editPath = `${organization.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='relative mb-32'>
         {!organization.heroFile &&
           <div className='w-full h-64 bg-gradient-to-r from-dial-sapphire to-dial-lavender' />
@@ -82,94 +82,94 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteStorefront organization={organization} />}
+        <div className='flex flex-col gap-y-3'>
+          {canEdit && (
+            <div className='flex gap-x-3 ml-auto'>
+              <EditButton type='link' href={editPath} />
+              {isAdminUser && <DeleteStorefront organization={organization} />}
+            </div>
+          )}
+          <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
+            {format('ui.common.detail.description')}
           </div>
-        )}
-        <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
-          {format('ui.common.detail.description')}
+          <div className='block'>
+            <HtmlViewer
+              initialContent={organization?.organizationDescription?.description}
+              editorId='organization-description'
+            />
+          </div>
         </div>
-        <div className='block'>
-          <HtmlViewer
-            initialContent={organization?.organizationDescription?.description}
-            editorId='organization-description'
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <StorefrontDetailSpecialties
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={specialtyRef}
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <StorefrontDetailSpecialties
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={specialtyRef}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <StorefrontDetailResources
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={resourceRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <StorefrontDetailProductCertifications
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={productCertificationRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <StorefrontDetailBuildingBlockCertifications
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={buildingBlockCertificationRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <StorefrontDetailOffices
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={officeRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <StorefrontDetailContacts
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={contactRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <StorefrontDetailProjects
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={projectRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <StorefrontDetailCountries
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={countryRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={organization.id}
+          objectType={ObjectType.ORGANIZATION}
         />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <StorefrontDetailResources
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={resourceRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <StorefrontDetailProductCertifications
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={productCertificationRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <StorefrontDetailBuildingBlockCertifications
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={buildingBlockCertificationRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <StorefrontDetailOffices
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={officeRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <StorefrontDetailContacts
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={contactRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <StorefrontDetailProjects
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={projectRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <StorefrontDetailCountries
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={countryRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={organization.id}
-        objectType={ObjectType.ORGANIZATION}
-      />
     </div>
   )
 })

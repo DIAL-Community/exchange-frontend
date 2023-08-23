@@ -75,7 +75,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
   const editPath = `${dataset.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
@@ -92,43 +92,43 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
             editorId='dataset-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <DatasetSource dataset={dataset} />
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <DatasetDetailSdgs dataset={dataset} canEdit={canEdit} headerRef={sdgRef} />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <DatasetDetailOrganizations
-          dataset={dataset}
-          canEdit={canEdit}
-          headerRef={organizationRef}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <DatasetSource dataset={dataset} />
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <DatasetDetailSdgs dataset={dataset} canEdit={canEdit} headerRef={sdgRef} />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <DatasetDetailOrganizations
+            dataset={dataset}
+            canEdit={canEdit}
+            headerRef={organizationRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <DatasetDetailCountries
+            dataset={dataset}
+            canEdit={canEdit}
+            headerRef={countryRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <DatasetDetailTags
+            dataset={dataset}
+            canEdit={canEdit}
+            headerRef={tagRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={dataset.id}
+          objectType={ObjectType.DATASET}
         />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <DatasetDetailCountries
-          dataset={dataset}
-          canEdit={canEdit}
-          headerRef={countryRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <DatasetDetailTags
-          dataset={dataset}
-          canEdit={canEdit}
-          headerRef={tagRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={dataset.id}
-        objectType={ObjectType.DATASET}
-      />
     </div>
   )
 })

@@ -40,7 +40,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sdg.header')} ({product.sustainableDevelopmentGoals?.length ?? 0})
+              {format('ui.sdg.header')} ({product.sdgs?.length ?? 0})
             </div>
             <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>

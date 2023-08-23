@@ -44,7 +44,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
   const editPath = `${organization.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
@@ -61,53 +61,53 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
             editorId='organization-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailOffices
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={officeRef}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OrganizationDetailOffices
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={officeRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OrganizationDetailContacts
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={contactRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OrganizationDetailProjects
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={projectRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OrganizationDetailProducts
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={productRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <OrganizationDetailCountries
+            organization={organization}
+            canEdit={canEdit}
+            headerRef={countryRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={organization.id}
+          objectType={ObjectType.ORGANIZATION}
         />
       </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailContacts
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={contactRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailProjects
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={projectRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailProducts
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={productRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <OrganizationDetailCountries
-          organization={organization}
-          canEdit={canEdit}
-          headerRef={countryRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={organization.id}
-        objectType={ObjectType.ORGANIZATION}
-      />
     </div>
   )
 })

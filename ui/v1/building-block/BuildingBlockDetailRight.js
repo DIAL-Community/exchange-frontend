@@ -48,7 +48,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
             editorId='buildingBlock-description'
           />
         </div>
-        <hr className='border-b border-dial-blue-chalk' />
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <BuildingBlockDetailProducts
             buildingBlock={buildingBlock}
@@ -56,7 +56,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
             headerRef={productRef}
           />
         </div>
-        <hr className='border-b border-dial-blue-chalk mt-6' />
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <BuildingBlockDetailWorkflows
             buildingBlock={buildingBlock}
@@ -64,7 +64,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
             headerRef={workflowRef}
           />
         </div>
-        <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={buildingBlock.id}

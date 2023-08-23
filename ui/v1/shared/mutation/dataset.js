@@ -86,13 +86,13 @@ export const UPDATE_DATASET_SDGS = gql`
         id
         name
         slug
-        sustainableDevelopmentGoals {
+        sdgs {
           id
           name
           imageFile
           slug
         }
-        sustainableDevelopmentGoalMapping
+        sdgsMapping
       }
       errors
     }

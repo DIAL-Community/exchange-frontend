@@ -197,7 +197,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const editPath = `${product.slug}/edit`
 
   return (
-    <div className='px-4 lg:px-0 lg:py-2'>
+    <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
@@ -214,110 +214,110 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             editorId='product-description'
           />
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-meadow py-3' ref={pricingRef}>
-          {format('ui.product.pricing.title')}
-        </div>
-        <div className='text-sm flex flex-row gap-2'>
-          {format('ui.product.pricing.hostingModel')}:
-          <div className='font-semibold inline'>
-            {product.hostingModel || format('general.na')}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-meadow py-3' ref={pricingRef}>
+            {format('ui.product.pricing.title')}
+          </div>
+          <div className='text-sm flex flex-row gap-2'>
+            {format('ui.product.pricing.hostingModel')}:
+            <div className='font-semibold inline'>
+              {product.hostingModel || format('general.na')}
+            </div>
+          </div>
+          <div className='text-sm flex flex-row gap-2'>
+            {format('ui.product.pricing.pricingModel')}:
+            <div className='font-semibold inline'>
+              {product.pricingModel || format('general.na')}
+            </div>
+          </div>
+          <div className='text-sm flex flex-row gap-2'>
+            {format('ui.product.pricing.detailPricing')}:
+            <div className='inline'>
+              {product.pricingDetails
+                ? <HtmlViewer
+                  className='-mb-12'
+                  initialContent={product?.pricingDetails}
+                  editorId='pricing-details'
+                />
+                : <div className='font-semibold inline'>
+                  {format('general.na')}
+                </div>
+              }
+            </div>
           </div>
         </div>
-        <div className='text-sm flex flex-row gap-2'>
-          {format('ui.product.pricing.pricingModel')}:
-          <div className='font-semibold inline'>
-            {product.pricingModel || format('general.na')}
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProductDetailSdgs
+            product={product}
+            canEdit={canEdit}
+            headerRef={sdgRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProductDetailBuildingBlocks
+            product={product}
+            canEdit={canEdit}
+            headerRef={buildingBlockRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProductDetailOrganizations
+            product={product}
+            canEdit={canEdit}
+            headerRef={organizationRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='text-dial-meadow text-xl font-semibold'>
+          {format('ui.product.details')}
+        </div>
+        <div className='mt-6'>
+          <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
+            <ProductSource product={product} />
+            <ProductEndorser product={product} />
           </div>
         </div>
-        <div className='text-sm flex flex-row gap-2'>
-          {format('ui.product.pricing.detailPricing')}:
-          <div className='inline'>
-            {product.pricingDetails
-              ? <HtmlViewer
-                className='-mb-12'
-                initialContent={product?.pricingDetails}
-                editorId='pricing-details'
-              />
-              : <div className='font-semibold inline'>
-                {format('general.na')}
-              </div>
-            }
+        <div className='mt-6'>
+          <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
+            <ProductInteroperable product={product} />
+            <ProductIncluded product={product} />
           </div>
         </div>
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <ProductDetailSdgs
-          product={product}
-          canEdit={canEdit}
-          headerRef={sdgRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <ProductDetailBuildingBlocks
-          product={product}
-          canEdit={canEdit}
-          headerRef={buildingBlockRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <ProductDetailOrganizations
-          product={product}
-          canEdit={canEdit}
-          headerRef={organizationRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <div className='text-dial-meadow text-xl font-semibold'>
-        {format('ui.product.details')}
-      </div>
-      <div className='mt-6'>
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-          <ProductSource product={product} />
-          <ProductEndorser product={product} />
+        <div className='text-dial-meadow text-xl font-semibold mt-6'>
+          {format('ui.maturityScore.header')}
         </div>
-      </div>
-      <div className='mt-6'>
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-          <ProductInteroperable product={product} />
-          <ProductIncluded product={product} />
+        <div className='text-sm italic'>
+          <div
+            className='text-xs text-justify text-dial-gray-dark highlight-link'
+            dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
+          />
         </div>
-      </div>
-      <div className='text-dial-meadow text-xl font-semibold mt-6'>
-        {format('ui.maturityScore.header')}
-      </div>
-      <div className='text-sm italic'>
-        <div
-          className='text-xs text-justify text-dial-gray-dark highlight-link'
-          dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
+        <div className='mt-6'>
+          <ProductDetailMaturityScores
+            slug={product.slug}
+            overallMaturityScore={product.overallMaturityScore}
+            maturityScoreDetails={product.maturityScoreDetails}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProductDetailTags
+            product={product}
+            canEdit={canEdit}
+            headerRef={tagRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={product.id}
+          objectType={ObjectType.PRODUCT}
         />
       </div>
-      <div className='mt-6'>
-        <ProductDetailMaturityScores
-          slug={product.slug}
-          overallMaturityScore={product.overallMaturityScore}
-          maturityScoreDetails={product.maturityScoreDetails}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6' />
-      <div className='flex flex-col gap-y-3'>
-        <ProductDetailTags
-          product={product}
-          canEdit={canEdit}
-          headerRef={tagRef}
-        />
-      </div>
-      <hr className='border-b border-dial-blue-chalk mt-6 mb-3' />
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={product.id}
-        objectType={ObjectType.PRODUCT}
-      />
     </div>
   )
 })
