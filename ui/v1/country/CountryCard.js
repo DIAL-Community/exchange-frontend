@@ -1,10 +1,11 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { DisplayType } from '../utils/constants'
+import { isValidFn } from '../utils/utilities'
 
-const CountryCard = ({ displayType, index, country, dismissCardHandler }) => {
+const CountryCard = ({ displayType, index, country, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -63,9 +64,9 @@ const CountryCard = ({ displayType, index, country, dismissCardHandler }) => {
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
-      {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
+      { isValidFn(dismissHandler) &&
         <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
-          <IoClose size='1rem' className='text-dial-plum' onClick={dismissCardHandler} />
+          <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />
         </button>
       }
     </div>

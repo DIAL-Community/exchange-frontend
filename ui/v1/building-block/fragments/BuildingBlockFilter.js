@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
   from '../../../../components/context/BuildingBlockFilterContext'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
@@ -62,7 +62,7 @@ const BuildingBlockFilter = () => {
                   <div className='flex gap-x-1'>
                     {format('ui.buildingBlock.filter.showMature')}
                     <button type='button' onClick={toggleShowMature}>
-                      <IoClose size='1rem' />
+                      <FaXmark size='1rem' />
                     </button>
                   </div>
                 </div>

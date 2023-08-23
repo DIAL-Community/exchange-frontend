@@ -1,7 +1,7 @@
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import {
   OpportunityFilterContext,
   OpportunityFilterDispatchContext
@@ -93,7 +93,7 @@ const OpportunityFilter = () => {
                   <div className='flex gap-x-1'>
                     {format('filter.opportunity.showClosed')}
                     <button type='button' onClick={toggleClosedOpportunityFilter}>
-                      <IoClose size='1rem' />
+                      <FaXmark size='1rem' />
                     </button>
                   </div>
                 </div>

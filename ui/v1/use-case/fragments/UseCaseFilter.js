@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import {
   UseCaseFilterContext,
   UseCaseFilterDispatchContext
@@ -63,7 +63,7 @@ const UseCaseFilter = () => {
                   <div className='flex gap-x-1'>
                     {format('ui.useCase.filter.showDraft')}
                     <button type='button' onClick={toggleShowBeta}>
-                      <IoClose size='1rem' />
+                      <FaXmark size='1rem' />
                     </button>
                   </div>
                 </div>
@@ -75,7 +75,7 @@ const UseCaseFilter = () => {
                   <div className='flex gap-x-1'>
                     {format('ui.useCase.filter.govStackOnly')}
                     <button type='button' onClick={toggleShowGovStack}>
-                      <IoClose size='1rem' />
+                      <FaXmark size='1rem' />
                     </button>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { useApolloClient, useMutation } from '@apollo/client'
+import { useApolloClient, useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -8,10 +8,13 @@ import Select from '../../shared/form/Select'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import { fetchSelectOptions } from '../../utils/search'
-import { DisplayType } from '../../utils/constants'
+import { DisplayType, ObjectType } from '../../utils/constants'
 import { UPDATE_ORGANIZATION_PROJECTS } from '../../shared/mutation/organization'
 import ProjectCard from '../../project/ProjectCard'
 import { PROJECT_SEARCH_QUERY } from '../../shared/query/project'
+import { CREATE_STARRED_OBJECT, REMOVE_STARRED_OBJECT } from '../../shared/mutation/starredObject'
+import { STARRED_OBJECT_SEARCH_QUERY } from '../../shared/query/starredObject'
+import { Loading } from '../../shared/FetchStatus'
 
 const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -19,6 +22,7 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   const client = useApolloClient()
 
+  const [stars, setStars] = useState([])
   const [projects, setProjects] = useState(organization.projects)
   const [isDirty, setIsDirty] = useState(false)
 
@@ -27,27 +31,85 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
-  const [updateOrganizationProjects, { loading, reset }] = useMutation(UPDATE_ORGANIZATION_PROJECTS, {
-    onError() {
-      setIsDirty(false)
-      setProjects(organization?.projects)
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.project.header') }))
-      reset()
-    },
-    onCompleted: (data) => {
-      const { updateOrganizationProjects: response } = data
-      if (response?.organization && response?.errors?.length === 0) {
-        setIsDirty(false)
-        setProjects(response?.organization?.projects)
-        showSuccessMessage(format('toast.submit.success', { entity: format('ui.project.header') }))
-      } else {
+  const [updateOrganizationProjects, { loading: loadingMutation, reset }] = useMutation(
+    UPDATE_ORGANIZATION_PROJECTS, {
+      onError: () => {
         setIsDirty(false)
         setProjects(organization?.projects)
         showFailureMessage(format('toast.submit.failure', { entity: format('ui.project.header') }))
         reset()
+      },
+      onCompleted: (data) => {
+        const { updateOrganizationProjects: response } = data
+        if (response?.organization && response?.errors?.length === 0) {
+          setIsDirty(false)
+          setProjects(response?.organization?.projects)
+          showSuccessMessage(format('toast.submit.success', { entity: format('ui.project.header') }))
+        } else {
+          setIsDirty(false)
+          setProjects(organization?.projects)
+          showFailureMessage(format('toast.submit.failure', { entity: format('ui.project.header') }))
+          reset()
+        }
       }
     }
+  )
+
+  const [removeStarredObject, { reset: resetRemoveStarredObject }] = useMutation(
+    REMOVE_STARRED_OBJECT, {
+      onError: () => {
+        showFailureMessage(format('ui.starredObject.removeFailure', { entity: format('ui.project.label') }))
+        resetRemoveStarredObject()
+      },
+      onCompleted: (data) => {
+        const { removeStarredObject: response } = data
+        if (response?.starredObject && response?.errors?.length === 0) {
+          setStars(stars => [...stars.filter(star => star !== response?.starredObject.starredObjectValue)])
+          showSuccessMessage(format('ui.starredObject.removeSuccess', { entity: format('ui.project.label') }))
+        } else {
+          showFailureMessage(format('ui.starredObject.removeFailure', { entity: format('ui.project.label') }))
+          resetRemoveStarredObject()
+        }
+      }
+    }
+  )
+
+  const [createStarredObject, { reset: resetCreateStarredObject }] = useMutation(
+    CREATE_STARRED_OBJECT, {
+      onError: () => {
+        showFailureMessage(format('ui.starredObject.createFailure', { entity: format('ui.project.label') }))
+        resetCreateStarredObject()
+      },
+      onCompleted: (data) => {
+        const { createStarredObject: response } = data
+        if (response?.starredObject && response?.errors?.length === 0) {
+          setStars(stars => [...stars, response?.starredObject.starredObjectValue])
+          showSuccessMessage(format('ui.starredObject.createSuccess', { entity: format('ui.project.label') }))
+        } else {
+          showFailureMessage(format('ui.starredObject.createFailure', { entity: format('ui.project.label') }))
+          resetCreateStarredObject()
+        }
+      }
+    }
+  )
+
+  const { loading: loadingStarred } = useQuery(STARRED_OBJECT_SEARCH_QUERY, {
+    variables: {
+      sourceObjectType: ObjectType.ORGANIZATION,
+      sourceObjectValue: organization.id
+    },
+    onCompleted: (data) => {
+      const { starredObjects } = data
+      setStars(stars => [
+        ...stars,
+        ...starredObjects.map(starredObject => starredObject.starredObjectValue)
+      ])
+    }
   })
+
+  if (loadingStarred) {
+    return <Loading />
+  }
 
   const fetchedProjectsCallback = (data) => (
     data.projects?.map((project) => ({
@@ -97,18 +159,66 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
     setIsDirty(false)
   }
 
+  const addStarHandler = (project) => {
+    if (user) {
+      const { userEmail, userToken } = user
+
+      createStarredObject({
+        variables: {
+          starredObjectType: ObjectType.PROJECT,
+          starredObjectValue: project.id,
+          sourceObjectType: ObjectType.ORGANIZATION,
+          sourceObjectValue: organization.id
+        },
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
+  const removeStarHandler = (project) => {
+    if (user) {
+      const { userEmail, userToken } = user
+
+      removeStarredObject({
+        variables: {
+          starredObjectType: ObjectType.PROJECT,
+          starredObjectValue: project.id,
+          sourceObjectType: ObjectType.ORGANIZATION,
+          sourceObjectValue: organization.id
+        },
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
   const displayModeBody = projects.length
     ? <div className='flex flex-col gap-y-4'>
       {projects?.map((project, index) =>
         <div key={`project-${index}`}>
-          <ProjectCard project={project} displayType={DisplayType.SMALL_CARD} />
+          <ProjectCard
+            project={project}
+            displayType={DisplayType.SMALL_CARD}
+            starred={stars.indexOf(`${project.id}`) >= 0}
+            addStarHandler={() => addStarHandler(project)}
+            removeStarHandler={() => removeStarHandler(project)}
+          />
         </div>
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
         entity: format('ui.project.label'),
-        base: format('ui.storefront.label')
+        base: format('ui.organization.label')
       })}
     </div>
 
@@ -154,7 +264,7 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}
-      isMutating={loading}
+      isMutating={loadingMutation}
       displayModeBody={displayModeBody}
       editModeBody={editModeBody}
     />

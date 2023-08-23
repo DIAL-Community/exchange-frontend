@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { BsPlus } from 'react-icons/bs'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
 import Select from '../form/Select'
 
@@ -84,7 +84,7 @@ export const EndorsingYearActiveFilters = ({ years, setYears }) => {
               </div>
             </div>
             <button onClick={() => removeYear(year.value)}>
-              <IoClose size='1rem' className='text-white' />
+              <FaXmark size='1rem' className='text-white' />
             </button>
           </div>
         </div>

@@ -3,10 +3,11 @@ import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { DisplayType, MaturityStatus } from '../utils/constants'
+import { isValidFn } from '../utils/utilities'
 
-const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissCardHandler }) => {
+const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -95,9 +96,9 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissCardHandl
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
-      {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
+      { isValidFn(dismissHandler) &&
         <button type='button' className='absolute p-2 top-0 right-0'>
-          <IoClose size='1rem' className='text-dial-ochre' onClick={dismissCardHandler} />
+          <FaXmark size='1rem' className='text-dial-ochre' onClick={dismissHandler} />
         </button>
       }
     </div>

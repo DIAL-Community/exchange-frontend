@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useMemo, useState } from 'react'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { BsPlus } from 'react-icons/bs'
 import Select from '../form/Select'
 import { generateCategoryTypeOptions } from '../form/options'
@@ -72,7 +72,7 @@ export const CategoryTypeActiveFilters = ({ categoryTypes, setCategoryTypes }) =
               </div>
             </div>
             <button onClick={() => removeCategoryType(categoryType.value)}>
-              <IoClose size='1rem' className='text-white' />
+              <FaXmark size='1rem' className='text-white' />
             </button>
           </div>
         </div>

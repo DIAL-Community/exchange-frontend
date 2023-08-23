@@ -1,7 +1,7 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { BsPlus } from 'react-icons/bs'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
 import { fetchSelectOptions } from '../../utils/search'
 import { CAPABILITY_SEARCH_QUERY } from '../query/capability'
@@ -84,7 +84,7 @@ export const CapabilityActiveFilters = (props) => {
               </div>
             </div>
             <button onClick={() => removeCapability(service.slug)}>
-              <IoClose size='1rem' className='text-white' />
+              <FaXmark size='1rem' className='text-white' />
             </button>
           </div>
         </div>

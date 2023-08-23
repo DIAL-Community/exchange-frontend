@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { BsPlus } from 'react-icons/bs'
 import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
@@ -76,7 +76,7 @@ export const ProductActiveFilters = ({ products, setProducts }) => {
               </div>
             </div>
             <button onClick={() => removeProduct(product.slug)}>
-              <IoClose size='1rem' className='text-white' />
+              <FaXmark size='1rem' className='text-white' />
             </button>
           </div>
         </div>

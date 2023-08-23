@@ -2073,5 +2073,10 @@ export const en = {
   'toast.delete.success': '{entity} deleted successfully.',
   'toast.delete.success': 'Failed to delete {entity}.',
 
-  'delete.confirm.message': 'Are you sure you want to delete this {entity}?'
+  'delete.confirm.message': 'Are you sure you want to delete this {entity}?',
+
+  'ui.starredObject.createSuccess': '{entity} starred.',
+  'ui.starredObject.createFailure': 'Unable to star the {entity}.',
+  'ui.starredObject.removeSuccess': '{entity} star removed.',
+  'ui.starredObject.createFailure': 'Unable to remove star from the {entity}.'
 }

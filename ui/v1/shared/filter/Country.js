@@ -1,7 +1,7 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { BsPlus } from 'react-icons/bs'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
 import { fetchSelectOptions } from '../../utils/search'
 import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
@@ -82,7 +82,7 @@ export const CountryActiveFilters = (props) => {
               </div>
             </div>
             <button onClick={() => removeCountry(country.slug)}>
-              <IoClose size='1rem' className='text-white' />
+              <FaXmark size='1rem' className='text-white' />
             </button>
           </div>
         </div>

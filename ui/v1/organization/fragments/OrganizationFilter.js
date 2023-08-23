@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext }
   from '../../../../components/context/OrganizationFilterContext'
 import Checkbox from '../../shared/form/Checkbox'
@@ -67,7 +67,7 @@ const OrganizationFilter = () => {
                   <div className='flex gap-x-1'>
                     {format('filter.organization.aggregatorOnly')}
                     <button type='button' onClick={toggleAggregator}>
-                      <IoClose size='1rem' />
+                      <FaXmark size='1rem' />
                     </button>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ const OrganizationFilter = () => {
                   <div className='flex gap-x-1'>
                     {format('filter.organization.endorserOnly')}
                     <button onClick={toggleEndorser}>
-                      <IoClose size='1rem' />
+                      <FaXmark size='1rem' />
                     </button>
                   </div>
                 </div>

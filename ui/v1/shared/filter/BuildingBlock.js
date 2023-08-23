@@ -1,7 +1,7 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { BsPlus } from 'react-icons/bs'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
 import { fetchSelectOptions } from '../../utils/search'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../query/buildingBlock'
@@ -89,7 +89,7 @@ export const BuildingBlockActiveFilters = (props) => {
               </div>
             </div>
             <button onClick={() => removeBuildingBlock(buildingBlock.value)}>
-              <IoClose size='1rem' className='text-white' />
+              <FaXmark size='1rem' className='text-white' />
             </button>
           </div>
         </div>

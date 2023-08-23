@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useContext } from 'react'
 import { useUser } from '../../../../lib/hooks'
 import { BOOKMARK_DETAIL_QUERY } from '../../shared/query/bookmark'
@@ -14,7 +14,7 @@ import { REMOVE_BOOKMARK } from '../../shared/mutation/bookmark'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { BookmarkDisplayContext } from './BookmarkDisplayContext'
 
-const UrlCard = ({ url, dismissCardHandler }) => {
+const UrlCard = ({ url, dismissHandler }) => {
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
@@ -29,9 +29,9 @@ const UrlCard = ({ url, dismissCardHandler }) => {
       <a href={url} target='_blank' rel='noreferrer'>
         {displaySmallCard()}
       </a>
-      {dismissCardHandler && typeof dismissCardHandler === 'function' &&
+      {dismissHandler && typeof dismissHandler === 'function' &&
         <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
-          <IoClose size='1rem' className='text-dial-meadow' onClick={dismissCardHandler} />
+          <FaXmark size='1rem' className='text-dial-meadow' onClick={dismissHandler} />
         </button>
       }
     </div>
@@ -118,7 +118,7 @@ const UserBookmarkRight = () => {
                   index={index}
                   useCase={useCase}
                   displayType={DisplayType.SMALL_CARD}
-                  dismissCardHandler={() => unbookmarkThis(useCase, ObjectType.USE_CASE)}
+                  dismissHandler={() => unbookmarkThis(useCase, ObjectType.USE_CASE)}
                 />
               </div>
             )}
@@ -141,7 +141,7 @@ const UserBookmarkRight = () => {
                   index={index}
                   buildingBlock={buildingBlock}
                   displayType={DisplayType.SMALL_CARD}
-                  dismissCardHandler={() => unbookmarkThis(buildingBlock, ObjectType.BUILDING_BLOCK)}
+                  dismissHandler={() => unbookmarkThis(buildingBlock, ObjectType.BUILDING_BLOCK)}
                 />
               </div>
             )}
@@ -164,7 +164,7 @@ const UserBookmarkRight = () => {
                   index={index}
                   product={product}
                   displayType={DisplayType.SMALL_CARD}
-                  dismissCardHandler={() => unbookmarkThis(product, ObjectType.PRODUCT)}
+                  dismissHandler={() => unbookmarkThis(product, ObjectType.PRODUCT)}
                 />
               </div>
             )}
@@ -185,7 +185,7 @@ const UserBookmarkRight = () => {
               <div key={`url-${index}`}>
                 <UrlCard
                   url={url}
-                  dismissCardHandler={() => unbookmarkThis(url, ObjectType.URL)}
+                  dismissHandler={() => unbookmarkThis(url, ObjectType.URL)}
                 />
               </div>
             )}

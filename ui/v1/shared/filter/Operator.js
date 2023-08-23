@@ -2,7 +2,7 @@ import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { fetchSelectOptions } from '../../utils/search'
 import { OPERATOR_SEARCH_QUERY } from '../../shared/query/operator'
 import Select from '../form/Select'
@@ -85,7 +85,7 @@ export const OperatorActiveFilters = (props) => {
               </div>
             </div>
             <button onClick={() => removeOperator(operator.value)}>
-              <IoClose size='1rem' className='text-white' />
+              <FaXmark size='1rem' className='text-white' />
             </button>
           </div>
         </div>

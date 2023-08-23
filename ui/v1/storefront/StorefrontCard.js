@@ -2,10 +2,11 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { DisplayType } from '../utils/constants'
+import { isValidFn } from '../utils/utilities'
 
-const StorefrontCard = ({ displayType, index, storefront, dismissCardHandler }) => {
+const StorefrontCard = ({ displayType, index, storefront, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -59,9 +60,9 @@ const StorefrontCard = ({ displayType, index, storefront, dismissCardHandler }) 
       <Link href={`/storefronts/${storefront.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       </Link>
-      {dismissCardHandler && {}.toString.call(dismissCardHandler) === '[object Function]' &&
+      { isValidFn(dismissHandler) &&
         <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
-          <IoClose size='1rem' className='text-dial-plum' onClick={dismissCardHandler} />
+          <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />
         </button>
       }
     </div>

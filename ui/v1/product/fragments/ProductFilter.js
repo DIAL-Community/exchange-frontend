@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
 import {
   ProductFilterContext,
@@ -110,7 +110,7 @@ const ProductFilter = () => {
                   <div className='flex gap-x-1'>
                     {format('filter.product.linkedWithDpi')}
                     <button type='button' onClick={toggleIsLinkedWithDpi}>
-                      <IoClose size='1rem' />
+                      <FaXmark size='1rem' />
                     </button>
                   </div>
                 </div>

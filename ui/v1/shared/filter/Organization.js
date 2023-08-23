@@ -1,6 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { BsPlus } from 'react-icons/bs'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
 import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
@@ -97,7 +97,7 @@ export const OrganizationActiveFilters = ({ organizations, setOrganizations }) =
               </div>
             </div>
             <button onClick={() => removeOrganization(organization.slug)}>
-              <IoClose size='1rem' className='text-white' />
+              <FaXmark size='1rem' className='text-white' />
             </button>
           </div>
         </div>

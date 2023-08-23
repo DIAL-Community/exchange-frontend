@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { IoClose } from 'react-icons/io5'
+import { FaXmark } from 'react-icons/fa6'
 
 const Pill = ({ label, onRemove, className, readOnly = false }) => (
   <div
@@ -11,7 +11,7 @@ const Pill = ({ label, onRemove, className, readOnly = false }) => (
     <div className='line-clamp-1'>{label}</div>
     {!readOnly &&
       <button type='button text-dial-stratos' onClick={onRemove}>
-        <IoClose size='1rem' />
+        <FaXmark size='1rem' />
       </button>
     }
   </div>
