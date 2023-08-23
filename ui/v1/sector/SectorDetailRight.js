@@ -16,7 +16,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !sector.markdownUrl
+  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const datasetRef = useRef()

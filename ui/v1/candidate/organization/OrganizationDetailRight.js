@@ -11,7 +11,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !organization.markdownUrl
+  const canEdit = isAdminUser || isEditorUser
 
   const editPath = `${organization.slug}/edit`
   const [submitter] = organization.contacts

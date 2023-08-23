@@ -17,7 +17,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !opportunity.markdownUrl
+  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const countryRef = useRef()

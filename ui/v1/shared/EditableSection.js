@@ -32,7 +32,7 @@ const EditableSection = ({
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <div className='flex justify-between items-center'>
+      <div className='flex flex-row gap-3'>
         {sectionHeader}
         <div className='flex gap-3 ml-auto'>
           {canEdit && !isInEditMode &&

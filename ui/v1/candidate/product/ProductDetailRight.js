@@ -12,7 +12,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !product.markdownUrl
+  const canEdit = isAdminUser || isEditorUser
 
   const editPath = `${product.slug}/edit`
 

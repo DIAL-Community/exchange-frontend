@@ -1,10 +1,15 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
+import ProjectDetailSectors from './ProjectDetailSectors'
 
 const ProjectDetailHeader = ({ project }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -31,17 +36,7 @@ const ProjectDetailHeader = ({ project }) => {
             </div>
           </div>
         }
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-sapphire'>
-            {format('ui.sector.header')}
-          </div>
-          <div className='flex flex-col gap-y-2 text-dial-stratos'>
-            {project.sectors.length === 0 && format('general.na')}
-            {project.sectors.map((sector, index) => {
-              return <div key={index}>{sector.name}</div>
-            })}
-          </div>
-        </div>
+        <ProjectDetailSectors project={project} canEdit={canEdit} />
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-sapphire'>
             {format('ui.origin.label')}

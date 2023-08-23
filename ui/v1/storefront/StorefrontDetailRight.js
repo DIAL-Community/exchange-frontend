@@ -21,7 +21,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !organization.markdownUrl
+  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const specialtyRef = useRef()
@@ -55,40 +55,42 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
-      <div className='relative mb-32'>
-        {!organization.heroFile &&
-          <div className='w-full h-64 bg-gradient-to-r from-dial-sapphire to-dial-lavender' />
-        }
-        {organization.heroFile &&
-          <img
-            className='object-cover object-center w-full h-64'
-            alt={format('image.alt.logoFor', { name: organization.name })}
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.heroFile}
-          />
-        }
-        <div className={classNames(
-          'w-full absolute bottom-0 left-0 z-10',
-          'transform translate-y-1/2 lg:w-auto lg:translate-x-8',
-          'flex justify-center')}
-        >
-          <div className='w-44 h-44 bg-white border border-dial-angel'>
-            <div className='flex justify-center items-center w-full h-full'>
-              <img
-                fill
-                className='object-contain px-3'
-                alt={format('image.alt.logoFor', { name: organization.name })}
-                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
-              />
-            </div>
-          </div>
-        </div>
-        <div className='flex flex-col gap-y-3'>
+      <div className='flex flex-col gap-y-4'>
+        <div className='relative mb-32'>
+          {!organization.heroFile &&
+            <div className='w-full h-64 bg-gradient-to-r from-dial-sapphire to-dial-lavender' />
+          }
+          {organization.heroFile &&
+            <img
+              className='object-cover object-center w-full h-64'
+              alt={format('image.alt.logoFor', { name: organization.name })}
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.heroFile}
+            />
+          }
           {canEdit && (
-            <div className='flex gap-x-3 ml-auto'>
+            <div className='absolute right-3 top-3 flex gap-x-3 ml-auto'>
               <EditButton type='link' href={editPath} />
               {isAdminUser && <DeleteStorefront organization={organization} />}
             </div>
           )}
+          <div className={classNames(
+            'w-full absolute bottom-0 left-0 z-10',
+            'transform translate-y-1/2 lg:w-auto lg:translate-x-8',
+            'flex justify-center')}
+          >
+            <div className='w-44 h-44 bg-white border border-dial-angel'>
+              <div className='flex justify-center items-center w-full h-full'>
+                <img
+                  fill
+                  className='object-contain px-3'
+                  alt={format('image.alt.logoFor', { name: organization.name })}
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='flex flex-col gap-y-3'>
           <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
             {format('ui.common.detail.description')}
           </div>

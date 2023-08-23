@@ -17,7 +17,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !project.markdownUrl
+  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const organizationRef = useRef()

@@ -1,10 +1,15 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
+import DatasetDetailSectors from './DatasetDetailSectors'
 
 const DatasetDetailHeader = ({ dataset }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -49,17 +54,7 @@ const DatasetDetailHeader = ({ dataset }) => {
             ⧉
           </div>
         </div>
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-sapphire'>
-            {format('ui.sector.header')}
-          </div>
-          <div className='flex flex-col gap-y-2 text-dial-stratos'>
-            {dataset.sectors.length === 0 && format('general.na')}
-            {dataset.sectors.map((sector, index) => {
-              return <div key={index}>{sector.name}</div>
-            })}
-          </div>
-        </div>
+        <DatasetDetailSectors dataset={dataset} canEdit={canEdit} />
       </div>
     </div>
   )

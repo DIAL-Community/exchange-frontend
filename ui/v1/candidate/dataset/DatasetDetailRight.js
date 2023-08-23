@@ -12,7 +12,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !dataset.markdownUrl
+  const canEdit = isAdminUser || isEditorUser
 
   const editPath = `${dataset.slug}/edit`
 

@@ -15,7 +15,6 @@ import { CREATE_ORGANIZATION } from '../../shared/mutation/organization'
 import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
 import Checkbox from '../../shared/form/Checkbox'
-import Select from '../../shared/form/Select'
 
 const StorefrontForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
@@ -56,15 +55,6 @@ const StorefrontForm = React.memo(({ organization }) => {
     }
   })
 
-  const endorserLevelOptions = [
-    { label: format('organization.endorserLevel.none'), value: 'none' },
-    { label: format('organization.endorserLevel.bronze'), value: 'bronze' },
-    { label: format('organization.endorserLevel.silver'), value: 'silver' },
-    { label: format('organization.endorserLevel.gold'), value: 'gold' }
-  ]
-
-  const [defaultEndorserLevel] = endorserLevelOptions
-
   const {
     handleSubmit,
     register,
@@ -80,13 +70,6 @@ const StorefrontForm = React.memo(({ organization }) => {
         ? organization?.aliases.map(value => ({ value }))
         : [{ value: '' }],
       website: organization?.website ?? '',
-      isEndorser: organization?.isEndorser,
-      whenEndorsed: organization?.whenEndorsed ?? null,
-      endorserLevel:
-        endorserLevelOptions.find(
-          ({ value }) => value === organization?.endorserLevel
-        ) ?? defaultEndorserLevel,
-      isMni: organization?.isMni,
       description: organization?.organizationDescription?.description,
       hasStorefront: organization?.hasStorefront
     }
@@ -115,10 +98,6 @@ const StorefrontForm = React.memo(({ organization }) => {
         name,
         imageFile,
         website,
-        isEndorser,
-        whenEndorsed,
-        endorserLevel,
-        isMni,
         description,
         aliases,
         hasStorefront
@@ -129,10 +108,6 @@ const StorefrontForm = React.memo(({ organization }) => {
         slug,
         aliases: aliases.map(({ value }) => value),
         website,
-        isEndorser,
-        whenEndorsed: whenEndorsed || null,
-        endorserLevel: endorserLevel.value,
-        isMni,
         description,
         hasStorefront
       }
@@ -226,36 +201,6 @@ const StorefrontForm = React.memo(({ organization }) => {
                 <label className='text-dial-sapphire'>{format('organization.imageFile')}</label>
                 <FileUploader {...register('imageFile')} />
               </div>
-              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-                <Checkbox {...register('isEndorser')} />
-                {format('organization.isEndorser')}
-              </label>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire'>{format('organization.whenEndorsed')}</label>
-                <Input
-                  {...register('whenEndorsed')}
-                  type='date'
-                  placeholder={format('organization.whenEndorsed')}
-                />
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire'>{format('organization.endorserLevel')}</label>
-                <Controller
-                  name='endorserLevel'
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      options={endorserLevelOptions}
-                      placeholder={format('organization.endorserLevel')}
-                    />
-                  )}
-                />
-              </div>
-              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-                <Checkbox {...register('isMni')} />
-                {format('organization.isMni')}
-              </label>
               <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
                 <Checkbox {...register('hasStorefront')} />
                 {format('organization.hasStorefront')}
