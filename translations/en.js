@@ -232,6 +232,8 @@ export const en = {
 
   'ui.product.header': 'Products',
   'ui.product.label': 'Product',
+  'ui.product.parent.detail': 'Parent Product',
+
   'product.languages': 'Languages',
   'product.website': 'Website',
   'product.description': 'Description',

@@ -13,6 +13,7 @@ import ProductDetailSdgs from './fragments/ProductDetailSdgs'
 import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
 import ProductCard from './ProductCard'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
+import ProductRepositoryCard from './repository/ProductRepositoryCard'
 
 const ProductSource = ({ product }) => {
   const { formatMessage } = useIntl()
@@ -275,17 +276,25 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='text-dial-meadow text-xl font-semibold'>
           {format('ui.product.details')}
         </div>
-        <div className='mt-6'>
-          <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-            <ProductSource product={product} />
-            <ProductEndorser product={product} />
-          </div>
+        <div className='border-b border-transparent my-2' />
+        <div className='text-dial-meadow text-lg font-semibold'>
+          {format('productRepository.header')}
         </div>
-        <div className='mt-6'>
-          <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-            <ProductInteroperable product={product} />
-            <ProductIncluded product={product} />
-          </div>
+        <ProductRepositoryCard
+          index={0}
+          product={product}
+          productRepository={product.mainRepository}
+          displayType={DisplayType.LARGE_CARD}
+        />
+        <div className='border-b border-transparent my-2' />
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
+          <ProductSource product={product} />
+          <ProductEndorser product={product} />
+        </div>
+        <div className='border-b border-transparent my-2' />
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
+          <ProductInteroperable product={product} />
+          <ProductIncluded product={product} />
         </div>
         <div className='text-dial-meadow text-xl font-semibold mt-6'>
           {format('ui.maturityScore.header')}
@@ -296,13 +305,12 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
           />
         </div>
-        <div className='mt-6'>
-          <ProductDetailMaturityScores
-            slug={product.slug}
-            overallMaturityScore={product.overallMaturityScore}
-            maturityScoreDetails={product.maturityScoreDetails}
-          />
-        </div>
+        <div className='border-b border-transparent my-2' />
+        <ProductDetailMaturityScores
+          slug={product.slug}
+          overallMaturityScore={product.overallMaturityScore}
+          maturityScoreDetails={product.maturityScoreDetails}
+        />
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProductDetailTags

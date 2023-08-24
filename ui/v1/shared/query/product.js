@@ -186,25 +186,17 @@ export const PRODUCT_DETAIL_QUERY = gql`
         id
         name
         slug
-        isDisplayable
       }
       manualUpdate
       mainRepository {
         id
-        mainRepository
         name
         slug
         license
+        absoluteUrl
       }
       overallMaturityScore
       maturityScoreDetails
-      playbooks {
-        id
-        name
-        slug
-        imageFile
-        tags
-      }
       isLinkedWithDpi
     }
   }

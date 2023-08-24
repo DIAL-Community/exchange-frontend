@@ -2,7 +2,6 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
-import { Tooltip } from 'react-tooltip'
 import { Loading } from '../../../../ui/v1/shared/FetchStatus'
 import Header from '../../../../ui/v1/shared/Header'
 import Footer from '../../../../ui/v1/shared/Footer'
@@ -32,7 +31,6 @@ const UseCaseStepListPage = () => {
       />
       <ClientOnly>
         <Header />
-        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <Loading />
         <Footer />
       </ClientOnly>
