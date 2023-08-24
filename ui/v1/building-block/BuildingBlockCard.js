@@ -71,7 +71,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock, dismissHandler }
           />
         </div>
         <div className='flex flex-col gap-y-1'>
-          <div className='text-sm font-semibold text-dial-ochre my-auto'>
+          <div className='text-sm font-semibold my-auto text-dial-ochre line-clamp-1'>
             {buildingBlock.name}
           </div>
           <div className='flex text-[10px] text-white'>

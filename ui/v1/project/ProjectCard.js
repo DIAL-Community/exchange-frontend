@@ -20,8 +20,8 @@ const ProjectCard = (props) => {
     removeStarHandler
   } = props
 
-  const [firstProduct] = project.products
-  const [firstOrganization] = project.organizations
+  const [firstProduct] = project?.products ?? []
+  const [firstOrganization] = project?.organizations ?? []
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-violet'}`}>
@@ -138,7 +138,7 @@ const ProjectCard = (props) => {
   const displayPinnedCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg'>
       <div className='flex flex-col gap-3 px-3 py-6'>
-        <div className='text-sm font-semibold text-dial-stratos my-auto line-clamp-1'>
+        <div className='text-sm font-semibold text-dial-stratos my-auto line-clamp-2'>
           <div className='pl-4 pr-6'>
             {project.name}
           </div>

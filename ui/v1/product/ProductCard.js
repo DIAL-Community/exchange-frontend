@@ -70,7 +70,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
             className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
           />
         }
-        <div className='text-sm font-semibold text-dial-meadow my-auto'>
+        <div className='text-sm font-semibold my-auto text-dial-meadow line-clamp-2'>
           {product.name}
         </div>
       </div>
