@@ -86,15 +86,11 @@ const OrganizationCard = ({ displayType, index, organization, dismissHandler }) 
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
-      <div className='absolute p-2 top-2 right-2'>
-        <div className='flex flex-row gap-2'>
-          { isValidFn(dismissHandler) &&
-            <button type='button' className='text-dial-sapphire'>
-              <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />
-            </button>
-          }
-        </div>
-      </div>
+      { isValidFn(dismissHandler) &&
+        <button type='button' className='absolute top-2 right-2'>
+          <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />
+        </button>
+      }
     </div>
   )
 }

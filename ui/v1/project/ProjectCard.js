@@ -193,7 +193,7 @@ const ProjectCard = (props) => {
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
         {displayType === DisplayType.PINNED_CARD && displayPinnedCard()}
       </Link>
-      <div className='absolute p-3 top-3 right-2'>
+      <div className='absolute top-2 right-2'>
         <div className='flex flex-row gap-2'>
           { isValidFn(dismissHandler) &&
             <button type='button'className='text-dial-plum' >

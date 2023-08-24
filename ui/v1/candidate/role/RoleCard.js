@@ -64,7 +64,7 @@ const RoleCard = ({ displayType, index, role, dismissHandler }) => {
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       </Link>
       { isValidFn(dismissHandler) &&
-        <button type='button' className='absolute p-2 top-0 right-0 text-dial-sapphire'>
+        <button type='button' className='absolute top-2 right-2'>
           <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />
         </button>
       }
