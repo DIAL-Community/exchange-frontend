@@ -1615,6 +1615,7 @@ export const en = {
   'categoryIndicator.dataSource': 'Data source',
   'categoryIndicator.scriptName': 'Script name',
   'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?',
+  'categoryIndicator.parent.detail': 'Parent Rubric Category',
 
   'paginatedSection.page.previous.label': '< Previous',
   'paginatedSection.page.next.label': 'Next >',

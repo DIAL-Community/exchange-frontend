@@ -74,3 +74,9 @@ export const generateSpecialtyOptions = () => [
   { value: 'UX & Design', label: 'UX & Design' },
   { value: 'Web Development', label: 'Web Development' }
 ]
+
+export const generateCategoryIndicatorTypes = (format) => [
+  { label: format('shared.categoryIndicator.type.numeric'), value: 'numeric' },
+  { label: format('shared.categoryIndicator.type.scale'), value: 'scale' },
+  { label: format('shared.categoryIndicator.type.boolean'), value: 'boolean' }
+]

@@ -19,11 +19,11 @@ const RubricCategories = () => {
   return (
     <>
       <NextSeo
-        title={format('ui.sdg.header')}
+        title={format('ui.rubricCategory.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.sdg.header')?.toLocaleLowerCase() }
+            { entities: format('ui.rubricCategory.header')?.toLocaleLowerCase() }
           )
         }
       />

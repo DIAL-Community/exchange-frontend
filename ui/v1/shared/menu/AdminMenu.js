@@ -48,8 +48,8 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             {format('ui.candidateRole.header')}
           </Link>
           <div className='mx-4 border-b border-dial-slate-300' />
-          <Link href='/rubric_categories' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.rubricCategories.header')}
+          <Link href='/rubric-categories' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.rubricCategory.header')}
           </Link>
           <div className='mx-4 border-b border-dial-slate-300' />
           <Link href='/spreadsheets/datasets' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>

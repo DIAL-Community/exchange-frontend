@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const CATEGORY_INDICATOR_QUERY = gql`
-  query CategoryIndicator($slug: String!) {
-    categoryIndicator(slug: $slug) {
+  query CategoryIndicator($categorySlug: String!, $indicatorSlug: String!) {
+    categoryIndicator(slug: $indicatorSlug) {
       id
       slug
       name
@@ -14,7 +14,32 @@ export const CATEGORY_INDICATOR_QUERY = gql`
       categoryIndicatorDescription {
         id
         description
-      } 
+      }
+    }
+    rubricCategory(slug: $categorySlug) {
+      id
+      name
+      slug
+      categoryIndicators {
+        id
+        name
+        slug
+      }
+    }
+  }
+`
+
+export const RUBRIC_CATEGORY_QUERY =  gql`
+  query RubricCategory($categorySlug: String!) {
+    rubricCategory(slug: $categorySlug) {
+      id
+      name
+      slug
+      categoryIndicators {
+        id
+        name
+        slug
+      }
     }
   }
 `

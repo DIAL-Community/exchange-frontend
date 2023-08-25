@@ -14,11 +14,11 @@ const CreateRubricCategoryPage = () => {
   return (
     <>
       <NextSeo
-        title={format('ui.sector.header')}
+        title={format('ui.rubricCategory.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.sector.header')?.toLocaleLowerCase() }
+            { entities: format('ui.rubricCategory.header')?.toLocaleLowerCase() }
           )
         }
       />

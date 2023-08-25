@@ -6,11 +6,11 @@ import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import RubricCategoryDetailRight from './RubricCategoryDetailRight'
 import RubricCategoryDetailLeft from './RubricCategoryDetailLeft'
 
-const RubricCategoryDetail = ({ slug }) => {
+const RubricCategoryDetail = ({ categorySlug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { slug }
+    variables: { slug: categorySlug }
   })
 
   if (loading) {

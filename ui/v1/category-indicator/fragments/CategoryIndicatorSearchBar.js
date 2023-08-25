@@ -2,7 +2,7 @@ import { forwardRef, useContext } from 'react'
 import { FilterContext } from '../../../../components/context/FilterContext'
 import SearchBar from '../../shared/SearchBar'
 
-const RubricCategorySearchBar = forwardRef((_, ref) => {
+const CategoryIndicatorSearchBar = forwardRef((_, ref) => {
   const { search } = useContext(FilterContext)
   const { setSearch } = useContext(FilterContext)
 
@@ -16,6 +16,6 @@ const RubricCategorySearchBar = forwardRef((_, ref) => {
   )
 })
 
-RubricCategorySearchBar.displayName = 'RubricCategorySearchBar'
+CategoryIndicatorSearchBar.displayName = 'CategoryIndicatorSearchBar'
 
-export default RubricCategorySearchBar
+export default CategoryIndicatorSearchBar

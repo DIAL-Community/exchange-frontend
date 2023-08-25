@@ -1,36 +1,38 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
 import { useRouter } from 'next/router'
+import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
-import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import RubricCategoryEdit from '../../../ui/v1/rubric-category/RubricCategoryEdit'
+import ClientOnly from '../../../../../lib/ClientOnly'
+import Header from '../../../../../ui/v1/shared/Header'
+import Footer from '../../../../../ui/v1/shared/Footer'
+import CategoryIndicatorEdit from '../../../../../ui/v1/category-indicator/CategoryIndicatorEdit'
 
 const EditRubricCategoryPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { locale, query: { slug } } = useRouter()
+  const router = useRouter()
+  const { query: { slug, indicatorSlug } }= router
 
   return (
     <>
       <NextSeo
-        title={format('ui.rubricCategory.header')}
+        title={format('categoryIndicator.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.rubricCategory.header')?.toLocaleLowerCase() }
+            { entities: format('categoryIndicator.header')?.toLocaleLowerCase() }
           )
         }
       />
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <RubricCategoryEdit categorySlug={slug} locale={locale} />
-        </div>
+        <CategoryIndicatorEdit
+          categorySlug={slug}
+          indicatorSlug={indicatorSlug}
+        />
         <Footer />
       </ClientOnly>
     </>

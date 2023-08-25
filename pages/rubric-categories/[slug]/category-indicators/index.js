@@ -1,18 +1,22 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
-import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import RubricCategoryDetail from '../../../ui/v1/rubric-category/RubricCategoryDetail'
+import { useCallback, useEffect } from 'react'
+import { Loading } from '../../../../ui/v1/shared/FetchStatus'
+import Header from '../../../../ui/v1/shared/Header'
+import Footer from '../../../../ui/v1/shared/Footer'
+import ClientOnly from '../../../../lib/ClientOnly'
 
-const RubricCategoryPage = () => {
+const RubricCategoryIndicatorsPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { query: { slug } } = useRouter()
+  const router = useRouter()
+  const { query: { slug } }= router
+
+  useEffect(() => {
+    router.push(`/rubric-categories/${slug}`)
+  }, [router, slug])
 
   return (
     <>
@@ -27,12 +31,11 @@ const RubricCategoryPage = () => {
       />
       <ClientOnly>
         <Header />
-        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <RubricCategoryDetail categorySlug={slug} />
+        <Loading />
         <Footer />
       </ClientOnly>
     </>
   )
 }
 
-export default RubricCategoryPage
+export default RubricCategoryIndicatorsPage
