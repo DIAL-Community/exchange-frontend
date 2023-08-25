@@ -1,9 +1,9 @@
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
 import ClientOnly from '../../lib/ClientOnly'
 import RubricCategoryForm from '../../components/rubric-categories/RubricCategoryForm'
 import { useUser } from '../../lib/hooks'
 import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
 
 const CreateCategoryForm = () => {
   const { isAdminUser, loadingUserSession } = useUser()

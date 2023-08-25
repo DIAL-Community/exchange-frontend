@@ -29,7 +29,7 @@ const basePathMappings = {
   'projects': 'ui.project.header',
   'repositories': 'productRepository.header',
   'resources': 'ui.resource.header',
-  'rubric-categories': 'ui.rubricCategories.header',
+  'rubric-categories': 'ui.rubricCategory.header',
   'sdgs': 'ui.sdg.header',
   'sectors': 'ui.sector.header',
   'storefronts': 'ui.storefront.header',

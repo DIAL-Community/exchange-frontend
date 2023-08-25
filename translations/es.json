@@ -1075,7 +1075,7 @@
   "govstack.feedback.issue": "¿Qué comentarios tiene? *",
   "govstack.feedback.submit": "Enviar comentarios",
 
-  "categoryIndicators.header": "Indicadores de categoría",
+  "categoryIndicator.header": "Indicadores de categoría",
   "categoryIndicator.weight": "Peso",
   "categoryIndicator.indicatorType": "Tipo de indicador",
   "categoryIndicator.dataSource": "Fuente de datos",

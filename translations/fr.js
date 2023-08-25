@@ -1075,7 +1075,7 @@ export const fr = {
   "govstack.feedback.issue": "Quels sont vos commentaires ? *",
   "govstack.feedback.submit": "Envoyez vos commentaires",
 
-  "categoryIndicators.header": "Indicateurs de catégorie",
+  "categoryIndicator.header": "Indicateurs de catégorie",
   "categoryIndicator.weight": "Poids",
   "categoryIndicator.indicatorType": "Type d’indicateur",
   "categoryIndicator.dataSource": "Source de données",

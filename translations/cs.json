@@ -1075,7 +1075,7 @@
   "govstack.feedback.issue": "Jakou máte zpětnou vazbu? *",
   "govstack.feedback.submit": "Odeslat zpětnou vazbu",
 
-  "categoryIndicators.header": "Indikátory kategorie",
+  "categoryIndicator.header": "Indikátory kategorie",
   "categoryIndicator.weight": "Váha",
   "categoryIndicator.indicatorType": "Typ indikátoru",
   "categoryIndicator.dataSource": "Zdroj dat",

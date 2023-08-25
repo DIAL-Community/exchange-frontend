@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
 import ClientOnly from '../../../lib/ClientOnly'
 import RubricCategoryDetail from '../../../components/rubric-categories/RubricCategoryDetail'
 import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
+import Header from '../../../ui/v1/shared/Header'
+import Footer from '../../../ui/v1/shared/Footer'
 
 const RubricCategory = () => {
   const { query: { slug }, locale } = useRouter()

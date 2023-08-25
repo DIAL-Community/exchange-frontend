@@ -1,8 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { UserFilterContext, UserFilterDispatchContext } from '../../components/context/UserFilterContext'
 import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
@@ -10,6 +8,8 @@ import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
 import RubricCategoryListQuery from '../../components/rubric-categories/RubricCategoryList'
 import PageContent from '../../components/main/PageContent'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
 
 const RubricCategories = () => {
   const { formatMessage } = useIntl()

@@ -1607,7 +1607,7 @@ export const en = {
   'govstack.feedback.issue': 'What feedback do you have? *',
   'govstack.feedback.submit': 'Send feedback',
 
-  'categoryIndicators.header': 'Category Indicators',
+  'categoryIndicator.header': 'Category Indicators',
   'categoryIndicator.create': 'Create Category Indicator',
   'categoryIndicator.label': 'Category Indicator',
   'categoryIndicator.weight': 'Weight',

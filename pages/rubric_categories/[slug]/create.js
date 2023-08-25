@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
 import ClientOnly from '../../../lib/ClientOnly'
 import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
@@ -9,6 +7,8 @@ import CategoryIndicatorForm from '../../../components/category-indicators/Categ
 import { RUBRIC_CATEGORY_QUERY } from '../../../queries/rubric-category'
 import { Error } from '../../../components/shared/FetchStatus'
 import NotFound from '../../../components/shared/NotFound'
+import Header from '../../../ui/v1/shared/Header'
+import Footer from '../../../ui/v1/shared/Footer'
 
 const CreateCategoryIndicator = () => {
   const { query: { slug }, locale } = useRouter()
