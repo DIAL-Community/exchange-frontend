@@ -10,6 +10,8 @@ import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_COUNTRY } from '../../shared/mutation/country'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { COUNTRY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_COUNTRIES_QUERY } from '../../shared/query/country'
 
 const CountryForm = React.memo(({ country }) => {
   const { formatMessage } = useIntl()
@@ -28,6 +30,13 @@ const CountryForm = React.memo(({ country }) => {
   const { locale } = router
 
   const [updateCountry, { reset }] = useMutation(CREATE_COUNTRY, {
+    refetchQueries: [{
+      query: COUNTRY_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_COUNTRIES_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createCountry.country && data.createCountry.errors.length === 0) {
         const redirectPath = `/${locale}/countries/${data.createCountry.country.slug}`

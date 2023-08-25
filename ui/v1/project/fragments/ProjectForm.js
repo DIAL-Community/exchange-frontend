@@ -12,6 +12,8 @@ import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_PROJECT } from '../../shared/mutation/project'
 import UrlInput from '../../shared/form/UrlInput'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { PAGINATED_PROJECTS_QUERY, PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/project'
 
 const ProjectForm = React.memo(({ project }) => {
   const { formatMessage } = useIntl()
@@ -30,6 +32,13 @@ const ProjectForm = React.memo(({ project }) => {
   const { locale } = router
 
   const [updateProject, { reset }] = useMutation(CREATE_PROJECT, {
+    refetchQueries: [{
+      query: PROJECT_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_PROJECTS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createProject.project && data.createProject.errors.length === 0) {
         setMutating(false)

@@ -11,6 +11,8 @@ import ValidationError from '../../shared/form/ValidationError'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_TAG } from '../../shared/mutation/tag'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { PAGINATED_TAGS_QUERY, TAG_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/tag'
 
 const TagForm = React.memo(({ tag }) => {
   const { formatMessage } = useIntl()
@@ -29,6 +31,13 @@ const TagForm = React.memo(({ tag }) => {
   const { locale } = router
 
   const [updateTag, { reset }] = useMutation(CREATE_TAG, {
+    refetchQueries: [{
+      query: TAG_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_TAGS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createTag.tag && data.createTag.errors.length === 0) {
         const redirectPath = `/${locale}/tags/${data.createTag.tag.slug}`

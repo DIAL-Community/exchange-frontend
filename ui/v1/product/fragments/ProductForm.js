@@ -15,6 +15,8 @@ import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
 import Checkbox from '../../shared/form/Checkbox'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -33,6 +35,13 @@ const ProductForm = React.memo(({ product }) => {
   const { locale } = router
 
   const [updateProduct, { reset }] = useMutation(CREATE_PRODUCT, {
+    refetchQueries: [{
+      query: PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_PRODUCTS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createProduct.product && data.createProduct.errors.length === 0) {
         setMutating(false)

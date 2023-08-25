@@ -14,6 +14,8 @@ import UrlInput from '../../shared/form/UrlInput'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import FileUploader from '../../shared/form/FileUploader'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
 
 const ResourceForm = React.memo(({ resource, organization }) => {
   const { formatMessage } = useIntl()
@@ -34,6 +36,13 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const { locale } = router
 
   const [updateResource, { reset }] = useMutation(CREATE_RESOURCE, {
+    refetchQueries: [{
+      query: RESOURCE_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_RESOURCES_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createResource.resource && data.createResource.errors.length === 0) {
         const redirectPath = `/${locale}/resources/${data.createResource.resource.slug}`

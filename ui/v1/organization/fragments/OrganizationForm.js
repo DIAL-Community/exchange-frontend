@@ -16,6 +16,11 @@ import UrlInput from '../../shared/form/UrlInput'
 import Checkbox from '../../shared/form/Checkbox'
 import Select from '../../shared/form/Select'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import {
+  ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
+  PAGINATED_ORGANIZATIONS_QUERY
+} from '../../shared/query/organization'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
@@ -34,6 +39,13 @@ const OrganizationForm = React.memo(({ organization }) => {
   const { locale } = router
 
   const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
+    refetchQueries: [{
+      query: ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_ORGANIZATIONS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createOrganization.organization && data.createOrganization.errors.length === 0) {
         const redirectPath = `/${locale}/organizations/${data.createOrganization.organization.slug}`

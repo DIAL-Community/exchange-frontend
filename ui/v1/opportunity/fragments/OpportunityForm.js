@@ -15,6 +15,11 @@ import UrlInput from '../../shared/form/UrlInput'
 import { generateOpportunityStatusOptions, generateOpportunityTypeOptions } from '../../shared/form/options'
 import Select from '../../shared/form/Select'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import {
+  OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY,
+  PAGINATED_OPPORTUNITIES_QUERY
+} from '../../shared/query/opportunity'
 
 const OpportunityForm = React.memo(({ opportunity }) => {
   const { formatMessage } = useIntl()
@@ -33,6 +38,13 @@ const OpportunityForm = React.memo(({ opportunity }) => {
   const { locale } = router
 
   const [updateOpportunity, { reset }] = useMutation(CREATE_OPPORTUNITY, {
+    refetchQueries: [{
+      query: OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_OPPORTUNITIES_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createOpportunity.opportunity && data.createOpportunity.errors.length === 0) {
         setMutating(false)

@@ -15,6 +15,11 @@ import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
 import { generateDatasetTypeOptions } from '../../../shared/form/options'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import {
+  CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY,
+  PAGINATED_CANDIDATE_DATASETS_QUERY
+} from '../../../shared/query/candidateDataset'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -36,6 +41,13 @@ const DatasetForm = React.memo(({ dataset }) => {
   const { locale } = router
 
   const [updateDataset, { reset }] = useMutation(CREATE_CANDIDATE_DATASET, {
+    refetchQueries: [{
+      query: CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_CANDIDATE_DATASETS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       const { createCandidateDataset: response } = data
       if (response.candidateDataset && response.errors.length === 0) {
