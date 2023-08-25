@@ -170,7 +170,16 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
         id
         name
         slug
-        region
+        region {
+          id
+          name
+        }
+        country {
+          id
+          name
+          code
+          codeLonger
+        }
         cityData {
           id
           name
@@ -249,7 +258,16 @@ export const STOREFRONT_DETAIL_QUERY = gql`
         id
         name
         slug
-        region
+        region {
+          id
+          name
+        }
+        country {
+          id
+          name
+          code
+          codeLonger
+        }
         cityData {
           id
           name
