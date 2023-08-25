@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import { PAGINATED_BUILDING_BLOCKS_QUERY } from '../../shared/query/buildingBlock'
 import { BuildingBlockFilterContext } from '../../../../components/context/BuildingBlockFilterContext'
 import BuildingBlockCard from '../BuildingBlockCard'
 import { DisplayType } from '../../utils/constants'
-import { NotFound } from '../../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search, sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)

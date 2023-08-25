@@ -22,6 +22,24 @@ const ProductDetailNav = ({ scrollRef }) => {
     label: format('ui.organization.header'),
     value: 'ui.organization.header'
   }, {
+    label: format('productRepository.header'),
+    value: 'productRepository.header'
+  }, {
+    label: format('product.source'),
+    value: 'product.source'
+  }, {
+    label: format('product.endorsers'),
+    value: 'product.endorsers'
+  }, {
+    label: format('product.interoperable'),
+    value: 'product.interoperable'
+  }, {
+    label: format('product.included'),
+    value: 'product.included'
+  }, {
+    label: format('ui.maturityScore.header'),
+    value: 'ui.maturityScore.header'
+  }, {
     label: format('ui.tag.header'),
     value: 'ui.tag.header'
   }]

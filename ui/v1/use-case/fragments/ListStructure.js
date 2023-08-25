@@ -1,11 +1,10 @@
 import { useContext, useEffect } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import { PAGINATED_USE_CASES_QUERY } from '../../shared/query/useCase'
 import { UseCaseFilterContext } from '../../../../components/context/UseCaseFilterContext'
 import UseCaseCard from '../UseCaseCard'
 import { DisplayType } from '../../utils/constants'
-import { NotFound } from '../../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)

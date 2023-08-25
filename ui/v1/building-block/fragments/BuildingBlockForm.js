@@ -6,7 +6,6 @@ import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import Select from '../../shared/form/Select'
@@ -19,6 +18,7 @@ import {
   BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY
 } from '../../shared/query/buildingBlock'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 
 const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const { formatMessage } = useIntl()

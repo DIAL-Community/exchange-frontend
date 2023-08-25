@@ -6,7 +6,6 @@ import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
@@ -16,6 +15,7 @@ import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
 import Select from '../../shared/form/Select'
 import { generateDatasetTypeOptions } from '../../shared/form/options'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()

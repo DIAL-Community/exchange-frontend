@@ -6,13 +6,13 @@ import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_SECTOR } from '../../shared/mutation/sector'
 import Checkbox from '../../shared/form/Checkbox'
 import Select from '../../shared/form/Select'
 import { generateLanguageOptions } from '../../shared/form/options'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 
 const SectorForm = React.memo(({ sector }) => {
   const { formatMessage } = useIntl()

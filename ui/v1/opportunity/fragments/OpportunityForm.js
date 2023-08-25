@@ -6,7 +6,6 @@ import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
@@ -15,6 +14,7 @@ import { CREATE_OPPORTUNITY } from '../../shared/mutation/opportunity'
 import UrlInput from '../../shared/form/UrlInput'
 import { generateOpportunityStatusOptions, generateOpportunityTypeOptions } from '../../shared/form/options'
 import Select from '../../shared/form/Select'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 
 const OpportunityForm = React.memo(({ opportunity }) => {
   const { formatMessage } = useIntl()

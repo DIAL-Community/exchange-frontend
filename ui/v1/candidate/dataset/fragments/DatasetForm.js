@@ -7,7 +7,6 @@ import { Controller, useForm } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
@@ -15,6 +14,7 @@ import { CREATE_CANDIDATE_DATASET } from '../../../shared/mutation/candidateData
 import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
 import { generateDatasetTypeOptions } from '../../../shared/form/options'
+import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()

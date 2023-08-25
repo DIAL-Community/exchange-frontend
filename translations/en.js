@@ -1794,6 +1794,7 @@ export const en = {
 
   'ui.image.logoAlt': 'Logo of {name}.',
   'ui.common.detail.description': 'Description',
+  'ui.common.detail.top': 'Top',
   'ui.common.detail.noData': 'We do not have any {entity} information for this {base}.',
 
   'ui.useCase.label': 'Use Case',

@@ -6,12 +6,12 @@ import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_WORKFLOW } from '../../shared/mutation/workflow'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 
 const WorkflowForm = React.memo(({ workflow }) => {
   const { formatMessage } = useIntl()

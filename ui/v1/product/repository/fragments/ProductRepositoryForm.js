@@ -1,27 +1,25 @@
-import React, { useState, useCallback, useContext, useRef } from 'react'
+import React, { useState, useCallback, useContext, forwardRef, useImperativeHandle, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
 import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
+import { CREATE_PRODUCT_REPOSITORY } from '../../../shared/mutation/productRepository'
 import UrlInput from '../../../shared/form/UrlInput'
+import Checkbox from '../../../shared/form/Checkbox'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 
-const ProductForm = React.memo(({ product }) => {
+const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const slug = product?.slug ?? ''
-
-  const captchaRef = useRef()
-  const [captchaValue, setCaptchaValue] = useState()
+  const productSlug = product?.slug
+  const repositorySlug = productRepository?.slug ?? ''
 
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
@@ -33,27 +31,31 @@ const ProductForm = React.memo(({ product }) => {
   const router = useRouter()
   const { locale } = router
 
-  const [updateProduct, { reset }] = useMutation(CREATE_CANDIDATE_PRODUCT, {
+  const formRef = useRef()
+  useImperativeHandle(ref, () => ([
+    { value: 'ui.common.detail.top', ref: formRef }
+  ]), [])
+
+  const [updateProduct, { reset }] = useMutation(CREATE_PRODUCT_REPOSITORY, {
     onCompleted: (data) => {
-      const { createCandidateProduct: response } = data
-      console.log('IF: ', response.candidateProduct, response.errors.length === 0)
-      if (response.candidateProduct && response.errors.length === 0) {
+      const { createProductRepository: response } = data
+      if (response.productRepository && response.errors.length === 0) {
         setMutating(false)
-        const redirectPath = `/${locale}` +
-                             `/candidate/products/${response.candidateProduct.slug}`
+        const redirectPath = `/${locale}/products/${productSlug}` +
+                             `/repositories/${response.productRepository.slug}`
         const redirectHandler = () => router.push(redirectPath)
         showSuccessMessage(
-          format('toast.submit.success', { entity: format('ui.candidateProduct.label') }),
+          format('toast.submit.success', { entity: format('ui.product.label') }),
           redirectHandler
         )
       } else {
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.candidateProduct.label') }))
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.product.label') }))
         setMutating(false)
         reset()
       }
     },
     onError: () => {
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.candidateProduct.label') }))
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.product.label') }))
       setMutating(false)
       reset()
     }
@@ -69,11 +71,10 @@ const ProductForm = React.memo(({ product }) => {
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: product?.name ?? '',
-      website: product?.website ?? '',
-      repository: product?.repository ?? '',
-      description: product?.description ?? '',
-      submitterEmail: product?.submitterEmail ?? ''
+      name: productRepository?.name,
+      absoluteUrl: productRepository?.absoluteUrl,
+      description: productRepository?.description,
+      mainRepository: productRepository?.mainRepository
     }
   })
 
@@ -85,20 +86,19 @@ const ProductForm = React.memo(({ product }) => {
       const { userEmail, userToken } = user
       const {
         name,
-        website,
-        repository,
+        absoluteUrl,
         description,
-        submitterEmail
+        mainRepository
       } = data
+
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
+        productSlug,
         name,
-        slug,
-        website,
-        repository,
+        slug: repositorySlug,
+        absoluteUrl,
         description,
-        submitterEmail,
-        captcha: captchaValue
+        mainRepository: `${mainRepository}` === 'true'
       }
 
       updateProduct({
@@ -113,22 +113,16 @@ const ProductForm = React.memo(({ product }) => {
     }
   }
 
-  const updateCaptchaData = (value) => {
-    setCaptchaValue(value)
-  }
-
   const cancelForm = () => {
-    if (product) {
-      setReverting(true)
-      router.push(`/${locale}/candidate/products/${slug}`)
-    }
+    setReverting(true)
+    router.push(`/${locale}/products/${productSlug}/repositories/${repositorySlug}`)
   }
 
   return loadingUserSession
     ? <Loading />
     : isAdminUser || isEditorUser ?
       <form onSubmit={handleSubmit(doUpsert)}>
-        <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-meadow'>
+        <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-meadow' ref={formRef}>
           <div className='flex flex-col gap-y-6 text-sm'>
             <div className='text-xl font-semibold'>
               {product
@@ -137,56 +131,40 @@ const ProductForm = React.memo(({ product }) => {
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>
-                {format('ui.candidateProduct.name')}
+                {format('productRepository.name')}
               </label>
               <Input
                 {...register('name', { required: format('validation.required') })}
                 id='name'
-                placeholder={format('ui.candidateProduct.name.placeholder')}
+                placeholder={format('productRepository.name')}
                 isInvalid={errors.name}
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
+            <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+              <Checkbox {...register('mainRepository')} />
+              {format('productRepository.mainRepository.label')}
+            </label>
             <div className='flex flex-col gap-y-2'>
-              <label className='required-field' htmlFor='website'>
-                {format('ui.candidateProduct.website')}
+              <label htmlFor='absoluteUrl'>
+                {format('productRepository.absoluteUrl')}
               </label>
               <Controller
-                id='website'
-                name='website'
+                id='absoluteUrl'
+                name='absoluteUrl'
                 control={control}
                 render={({ field: { value, onChange } }) => (
                   <UrlInput
-                    id='website'
+                    id='absoluteUrl'
                     value={value}
                     onChange={onChange}
-                    placeholder={format('ui.candidateProduct.website.placeholder')}
-                  />
-                )}
-              />
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label htmlFor='repository'>
-                {format('ui.candidateProduct.repository')}
-              </label>
-              <Controller
-                id='repository'
-                name='repository'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <UrlInput
-                    id='repository'
-                    value={value}
-                    onChange={onChange}
-                    placeholder={format('ui.candidateProduct.repository.placeholder')}
+                    placeholder={format('productRepository.absoluteUrl')}
                   />
                 )}
               />
             </div>
             <div className='block flex flex-col gap-y-2'>
-              <label className='required-field'>
-                {format('ui.candidateProduct.description')}
-              </label>
+              <label className='required-field'>{format('productRepository.description')}</label>
               <Controller
                 name='description'
                 control={control}
@@ -195,7 +173,7 @@ const ProductForm = React.memo(({ product }) => {
                     editorId='description-editor'
                     onChange={onChange}
                     initialContent={value}
-                    placeholder={format('ui.candidateProduct.description.placeholder')}
+                    placeholder={format('productRepository.description')}
                     isInvalid={errors.description}
                   />
                 )}
@@ -203,42 +181,24 @@ const ProductForm = React.memo(({ product }) => {
               />
               {errors.description && <ValidationError value={errors.description?.message} />}
             </div>
-            <div className='flex flex-col gap-y-2'>
-              <label className='required-field' htmlFor='submitterEmail'>
-                {format('ui.candidateProduct.email')}
-              </label>
-              <Input
-                {...register('submitterEmail', { required: format('validation.required') })}
-                id='submitterEmail'
-                placeholder={format('ui.candidateProduct.email.placeholder')}
-                isInvalid={errors.submitterEmail}
-              />
-              {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
-            </div>
-            <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-              onChange={updateCaptchaData}
-              ref={captchaRef}
-            />
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button
                 type='submit'
                 className='submit-button'
-                disabled={mutating || reverting || !captchaValue}
+                disabled={mutating || reverting}
               >
                 {`${format('app.submit')} ${format('ui.product.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}
               </button>
-              {product &&
-                <button type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3' />}
-                </button>
-              }
+              <button
+                type='button'
+                className='cancel-button'
+                disabled={mutating || reverting}
+                onClick={cancelForm}
+              >
+                {format('app.cancel')}
+                {reverting && <FaSpinner className='spinner ml-3' />}
+              </button>
             </div>
           </div>
         </div>
@@ -246,6 +206,6 @@ const ProductForm = React.memo(({ product }) => {
       : <Unauthorized />
 })
 
-ProductForm.displayName = 'ProductForm'
+ProductRepositoryForm.displayName = 'ProductRepositoryForm'
 
-export default ProductForm
+export default ProductRepositoryForm

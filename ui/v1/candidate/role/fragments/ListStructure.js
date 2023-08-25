@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../../../../components/shared/FetchStatus'
 import { PAGINATED_CANDIDATE_ROLES_QUERY } from '../../../shared/query/candidateRole'
 import RoleCard from '../RoleCard'
 import { DisplayType } from '../../../utils/constants'
 import { FilterContext } from '../../../../../components/context/FilterContext'
-import { NotFound } from '../../../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(FilterContext)

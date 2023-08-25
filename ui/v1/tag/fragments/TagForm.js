@@ -6,11 +6,11 @@ import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_TAG } from '../../shared/mutation/tag'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 
 const TagForm = React.memo(({ tag }) => {
   const { formatMessage } = useIntl()

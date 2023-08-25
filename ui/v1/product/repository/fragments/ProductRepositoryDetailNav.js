@@ -40,8 +40,8 @@ const ProductRepositoryDetailNav = ({ product, scrollRef }) => {
     label: format('ui.product.parent.detail'),
     value: 'ui.product.parent.detail'
   }, ...productRepositoryNavOptions, {
-    label: format('ui.common.detail.description'),
-    value: 'ui.common.detail.description'
+    label: format('ui.common.detail.top'),
+    value: 'ui.common.detail.top'
   }]
 
   const onNavigationChange = (selectedNav) => {

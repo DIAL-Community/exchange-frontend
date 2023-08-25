@@ -7,12 +7,12 @@ import { Controller, useForm } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../shared/mutation/candidateOrganization'
 import UrlInput from '../../../shared/form/UrlInput'
+import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
