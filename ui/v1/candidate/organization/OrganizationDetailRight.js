@@ -1,12 +1,13 @@
 import { FormattedDate, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../../utils/constants'
+import { CandidateActionType, ObjectType } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
+import OrganizationActionButton from './fragments/OrganizationActionButton'
 
-const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
+const OrganizationDetailRight = forwardRef(({ organization, refetch }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -26,6 +27,16 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
+            <OrganizationActionButton
+              organization={organization}
+              actionType={CandidateActionType.REJECT}
+              refetch={refetch}
+            />
+            <OrganizationActionButton
+              organization={organization}
+              actionType={CandidateActionType.APPROVE}
+              refetch={refetch}
+            />
             <EditButton type='link' href={editPath} />
           </div>
         )}
