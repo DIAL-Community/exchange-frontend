@@ -331,7 +331,7 @@ export const en = {
   'organization.description': 'Description',
   'organization.website': 'Website',
   'organization.imageFile': 'Logo',
-  'organization.isEndorser': 'Organization is a Principal for Digital Development endorser.',
+  'organization.isEndorser': 'Organization is an endorser of the Principle for Digital Development.',
   'organization.whenEndorsed': 'Endorsed Date',
   'organization.endorserLevel': 'Endorser Level',
   'organization.endorserLevel.none': 'None',
@@ -1779,10 +1779,10 @@ export const en = {
 
   'ui.marketplace.label': 'Marketplace',
 
-  'ui.storefront.noSpecialty': "Organization storefront's doesn't have specialty information.",
-  'ui.storefront.noResource': "Organization storefront's doesn't have resource information.",
-  'ui.storefront.noBuildingBlock': "Organization storefront's doesn't have building block information.",
-  'ui.storefront.noCertification': "Organization storefront's doesn't have certification information.",
+  'ui.storefront.noSpecialty': "Organization's storefront doesn't have specialty information.",
+  'ui.storefront.noResource': "Organization's storefront doesn't have resource information.",
+  'ui.storefront.noBuildingBlock': "Organization's storefront doesn't have building block information.",
+  'ui.storefront.noCertification': "Organization's storefront doesn't have certification information.",
 
   'organization.heroImage': 'Hero image file',
   'organization.hasStorefront': 'Organization has a storefront.',
@@ -1879,7 +1879,7 @@ export const en = {
 
   'ui.product.pricing.title': 'Pricing Information',
   'ui.product.pricing.hostingModel': 'Hosting Model',
-  'ui.product.pricing.pricingModel': 'PricingModel Model',
+  'ui.product.pricing.pricingModel': 'Pricing Model',
   'ui.product.pricing.detailPricing': 'Detail Pricing Information',
   'ui.product.details': 'Product Details',
   
@@ -1895,7 +1895,7 @@ export const en = {
   'ui.dataset.header': 'Datasets',
   'ui.dataset.whatIs': 'What is an Open Data?',
   'ui.dataset.createNew': 'Create a new Open Data',
-  'ui.dataset.hint.title': 'What is a Open Data?',
+  'ui.dataset.hint.title': 'What is Open Data?',
 
   'ui.datasetType.label': 'Dataset Type',
   'ui.datasetType.header': 'Dataset Types',
@@ -1945,7 +1945,7 @@ export const en = {
     such.
   `,
 
-  'ui.buildingBlock.filter.showMature': 'Show only published building block',
+  'ui.buildingBlock.filter.showMature': 'Show only published building blocks',
   'ui.categoryType.label': 'Building Block Category Type',
 
   'ui.tag.label': 'Tag',
