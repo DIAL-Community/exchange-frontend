@@ -89,7 +89,7 @@ const RubricCategoryForm = React.memo(({ rubricCategory }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/rubric_categories/${rubricCategory?.slug ?? ''}`)
+    router.push(`/rubric-categories/${rubricCategory?.slug ?? ''}`)
   }
 
   return loadingUserSession

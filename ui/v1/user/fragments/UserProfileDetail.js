@@ -55,7 +55,7 @@ const UserProfileDetail = () => {
                   {format('profile.organization')}
                 </div>
                 <div className='text-sm text-dial-stratos'>
-                  {user?.own?.organization.name}
+                  {user?.own?.organization?.name}
                 </div>
               </div>
             </div>
