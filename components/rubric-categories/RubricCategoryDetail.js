@@ -13,13 +13,13 @@ const RubricCategoryDetail = ({ slug, locale }) => {
   })
 
   useEffect(
-    () => {
-      refetch()
-    },
+    () => { refetch() },
     [refetch, locale]
   )
 
-  const slugNameMapping = useMemo(() => ({ [data?.rubricCategory.slug]: data?.rubricCategory.name }), [data])
+  const slugNameMapping = useMemo(() => {
+    return data?.rubricCategory ? { [data?.rubricCategory.slug]: data?.rubricCategory.name } : {}
+  }, [data])
 
   if (loading) {
     return <Loading />
