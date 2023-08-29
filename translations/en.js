@@ -1667,6 +1667,33 @@ export const en = {
   'ui.opportunity.label': 'Opportunity',
   'ui.opportunity.header': 'Opportunities',
 
+  'ui.opportunity.whatIs': 'What is RFP Radar?',
+  'ui.opportunity.createNew': 'Create a new RFP',
+  'ui.opportunity.hint.title': 'What is RFP Radar?',
+  'ui.opportunity.hint.subtitle': `
+    <p>
+      The RFP Radar aggregates requests from different organizations, allowing you to explore
+      a wide range of opportunities in one convenient location. The Exchange helps improve market
+      access to opportunities for diverse types and sizes of service providers.
+    </p>
+    <ul>
+      <li>
+        If you are a vendor, use the RFP radar to search and filter for opportunities that align
+        with your expertise. Our radar will provide you with the essential information and will
+        direct you to the application portal of the posting organization. 
+      </li>
+      <li>
+        If you are seeking services from a vendor to help you implement a digital project, post
+        the opportunity here and amplify it to the Exchange’s community of service providers.  
+      </li>
+      <li>
+        We also offer data sharing possibilities. Join others in automating a sync to the Exchange.
+        Every time you post an opportunity to your own portal, the Exchange can aggregate the information
+        directly. For more information, email us at issues@exchange.dial.global
+      </li>
+    </ul>
+  `,
+
   'ui.opportunity.name': 'Name',
   'ui.opportunity.webAddress': 'Web Address',
   'ui.opportunity.leverist.webAddress': 'More information (at Leverist)',
@@ -1963,6 +1990,37 @@ export const en = {
 
   'ui.storefront.label': 'Storefront',
   'ui.storefront.header': 'Storefronts',
+
+  'ui.storefront.whatIs': 'What is a Storefront?',
+  'ui.storefront.createNew': 'Create a new Storefront',
+  'ui.storefront.hint.title': 'What is a Storefront?',
+  'ui.storefront.hint.subtitle': `
+    <p>
+      Our online storefronts provide vendors with a dedicated marketing space to highlight their
+      products and services.
+    </p>
+    <ul>
+      <li>
+          Vendors, showcase your digital solutions to a global audience. Engage with potential customers,
+          establish credibility, and expand your reach. Join the vibrant community of solution providers
+          on the Exchange. Simply sign up for an account and create your storefront.
+      </li>
+    </ul>
+    <div>
+      <sub>For a how-to guide, please look at the <a>playbook</a>.</sub>
+      <sub>
+        Use the form to add media content, external links, or specialties. Highlight the building
+        blocks or use cases you have expertise in.
+      </sub>
+    </div>
+    <ul>
+      <li>
+        Are you seeking services from a vendor to help you implement a digital project? Browse
+        storefronts to see which vendors have expertise and invite them to apply/bid to your
+        opportunity.
+      </li>
+    </ul>  
+  `,
 
   'ui.country.label': 'Country',
   'ui.country.header': 'Countries',

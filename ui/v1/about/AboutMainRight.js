@@ -45,7 +45,7 @@ const AboutMainRight = forwardRef((props, ref) => {
             values={{
               p: chunks => <p className='text-justify'>{chunks}</p>,
               li: chunks => <li>{chunks}</li>,
-              ul: chunks => <ul className='pl-4 list-inside list-disc'>{chunks}</ul>
+              ul: chunks => <ul className='pl-4 list-outside list-disc flex flex-col gap-y-2'>{chunks}</ul>
             }}
           />
         </div>
@@ -83,7 +83,7 @@ const AboutMainRight = forwardRef((props, ref) => {
             values={{
               p: chunks => <p className='text-justify'>{chunks}</p>,
               li: chunks => <li>{chunks}</li>,
-              ul: chunks => <ul className='pl-4 list-inside list-disc'>{chunks}</ul>,
+              ul: chunks => <ul className='pl-4 list-outside list-disc flex flex-col gap-y-2'>{chunks}</ul>,
               strong: chunks => <strong>{chunks}</strong>,
               a: chunks => (
                 <a
