@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 const StorefrontDefinition = () => {
   const { formatMessage } = useIntl()
@@ -10,26 +9,29 @@ const StorefrontDefinition = () => {
     <div className='flex flex-col gap-y-6 py-4'>
       <div className='flex flex-col gap-y-4'>
         <div className='text-xl font-semibold text-dial-plum'>
-          {format('storefront.hint.title')}
+          {format('ui.storefront.hint.title')}
         </div>
-        <div className='text-sm text-dial-stratos'>
-          {format('storefront.hint.subtitle')}
-        </div>
-      </div>
-      <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-plum'>
-          {format('storefront.hint.characteristicTitle')}
-        </div>
-        <div className='text-sm text-dial-stratos fr-view'>
-          {parse(format('storefront.hint.characteristics'))}
-        </div>
-      </div>
-      <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-plum'>
-          {format('storefront.hint.descriptionTitle')}
-        </div>
-        <div className='text-sm text-dial-stratos'>
-          {parse(format('storefront.hint.description'))}
+        <div className='text-sm flex flex-col gap-y-3 text-dial-stratos'>
+          <FormattedMessage
+            id='ui.storefront.hint.subtitle'
+            values={{
+              p: chunks => <p className='text-justify'>{chunks}</p>,
+              div: chunks => <div className='text-xs italic ml-4 px-4 py-3 bg-dial-cotton'>{chunks}</div>,
+              sub: chunks => <div>{chunks}</div>,
+              span: chunks => <span>{chunks}</span>,
+              li: chunks => <li>{chunks}</li>,
+              ul: chunks => <ul className='pl-4 list-outside list-disc flex flex-col gap-y-2'>{chunks}</ul>,
+              a: chunks => (
+                <a
+                  class='border-b border-dial-stratos'
+                  target='_blank'
+                  href='/playbooks'
+                >
+                  {chunks}
+                </a>
+              )
+            }}
+          />
         </div>
       </div>
     </div>

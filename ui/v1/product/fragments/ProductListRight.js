@@ -46,7 +46,7 @@ const ProductListRight = () => {
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
-      sdgs: sdgs.map(sdg => sdg.number),
+      sdgs: sdgs.map(sdg => sdg.value),
       workflows: workflows.map(workflow => workflow.id),
       origins: origins.map(origin => origin.value),
       isLinkedWithDpi

@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 const OpportunityDefinition = () => {
   const { formatMessage } = useIntl()
@@ -12,24 +11,24 @@ const OpportunityDefinition = () => {
         <div className='text-xl font-semibold text-dial-plum'>
           {format('ui.opportunity.hint.title')}
         </div>
-        <div className='text-sm text-dial-stratos'>
-          {format('ui.opportunity.hint.subtitle')}
-        </div>
-      </div>
-      <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-plum'>
-          {format('ui.opportunity.hint.characteristicTitle')}
-        </div>
-        <div className='text-sm text-dial-stratos fr-view'>
-          {parse(format('ui.opportunity.hint.characteristics'))}
-        </div>
-      </div>
-      <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-plum'>
-          {format('ui.opportunity.hint.descriptionTitle')}
-        </div>
-        <div className='text-sm text-dial-stratos'>
-          {parse(format('ui.opportunity.hint.description'))}
+        <div className='text-sm flex flex-col gap-y-3 text-dial-stratos'>
+          <FormattedMessage
+            id='ui.opportunity.hint.subtitle'
+            values={{
+              p: chunks => <p className='text-justify'>{chunks}</p>,
+              li: chunks => <li>{chunks}</li>,
+              ul: chunks => <ul className='pl-4 list-outside list-disc flex flex-col gap-y-2'>{chunks}</ul>,
+              email: chunks => (
+                <a
+                  class='border-b border-dial-stratos'
+                  target='_blank'
+                  href={`mailto:${chunks}`}
+                >
+                  {chunks}
+                </a>
+              )
+            }}
+          />
         </div>
       </div>
     </div>

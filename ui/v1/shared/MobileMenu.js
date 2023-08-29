@@ -427,16 +427,13 @@ const LanguageMenu = ({ currentMenu, setCurrentMenu }) => {
   )
 }
 
-const MobileMenu = ({ menuExpanded, setMenuExpaded }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
-
+const MobileMenu = ({ menuExpanded, setMenuExpanded }) => {
   const [currentMenu, setCurrentMenu] = useState(NONE)
 
   const { user } = useUser()
 
   const hideMenu = () => {
-    setMenuExpaded(false)
+    setMenuExpanded(false)
   }
 
   return (

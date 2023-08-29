@@ -1,4 +1,5 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react'
+import { useIntl } from 'react-intl'
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import UseCaseList from './results/UseCaseList'
 import ProductList from './results/ProductList'
 import BuildingBlockList from './results/BuildingBlockList'
@@ -6,6 +7,9 @@ import ProjectList from './results/ProjectList'
 import DatasetList from './results/DatasetList'
 
 const WizardResultRight = forwardRef((_props, ref) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const useCaseRef = useRef()
   const productRef = useRef()
   const buildingBlockRef = useRef()
@@ -39,7 +43,7 @@ const WizardResultRight = forwardRef((_props, ref) => {
         <DatasetList headerRef={datasetRef} />
         <div className='mx-auto text-sm'>
           <a href='#' onClick={scrollToTop} className='border-b border-dial-iris-blue'>
-            Back to the top
+            {format('ui.common.scrollToTop')}
           </a>
         </div>
       </div>

@@ -1667,6 +1667,33 @@ export const en = {
   'ui.opportunity.label': 'Opportunity',
   'ui.opportunity.header': 'Opportunities',
 
+  'ui.opportunity.whatIs': 'What is RFP Radar?',
+  'ui.opportunity.createNew': 'Create a new RFP',
+  'ui.opportunity.hint.title': 'What is RFP Radar?',
+  'ui.opportunity.hint.subtitle': `
+    <p>
+      The RFP Radar aggregates requests from different organizations, allowing you to explore
+      a wide range of opportunities in one convenient location. The Exchange helps improve market
+      access to opportunities for diverse types and sizes of service providers.
+    </p>
+    <ul>
+      <li>
+        If you are a vendor, use the RFP radar to search and filter for opportunities that align
+        with your expertise. Our radar will provide you with the essential information and will
+        direct you to the application portal of the posting organization. 
+      </li>
+      <li>
+        If you are seeking services from a vendor to help you implement a digital project, post
+        the opportunity here and amplify it to the Exchange’s community of service providers.  
+      </li>
+      <li>
+        We also offer data sharing possibilities. Join others in automating a sync to the Exchange.
+        Every time you post an opportunity to your own portal, the Exchange can aggregate the information
+        directly. For more information, email us at <email>issues@exchange.dial.global</email>.
+      </li>
+    </ul>
+  `,
+
   'ui.opportunity.name': 'Name',
   'ui.opportunity.webAddress': 'Web Address',
   'ui.opportunity.leverist.webAddress': 'More information (at Leverist)',
@@ -1964,6 +1991,37 @@ export const en = {
   'ui.storefront.label': 'Storefront',
   'ui.storefront.header': 'Storefronts',
 
+  'ui.storefront.whatIs': 'What is a Storefront?',
+  'ui.storefront.createNew': 'Create a new Storefront',
+  'ui.storefront.hint.title': 'What is a Storefront?',
+  'ui.storefront.hint.subtitle': `
+    <p>
+      Our online storefronts provide vendors with a dedicated marketing space to highlight their
+      products and services.
+    </p>
+    <ul>
+      <li>
+          Vendors, showcase your digital solutions to a global audience. Engage with potential customers,
+          establish credibility, and expand your reach. Join the vibrant community of solution providers
+          on the Exchange. Simply sign up for an account and create your storefront.
+      </li>
+    </ul>
+    <div>
+      <sub>For a how-to guide, please look at the <a>playbook</a>.</sub>
+      <sub>
+        Use the form to add media content, external links, or specialties. Highlight the building
+        blocks or use cases you have expertise in.
+      </sub>
+    </div>
+    <ul>
+      <li>
+        Are you seeking services from a vendor to help you implement a digital project? Browse
+        storefronts to see which vendors have expertise and invite them to apply/bid to your
+        opportunity.
+      </li>
+    </ul>  
+  `,
+
   'ui.country.label': 'Country',
   'ui.country.header': 'Countries',
   'ui.country.logoAlt': 'Flag for country: {countryName}.',
@@ -2109,5 +2167,94 @@ export const en = {
   'ui.wizard.result.header': 'Your results',
 
   'ui.mobileService.label': 'Mobile Service',
-  'ui.mobileService.header': 'Mobile Services'
+  'ui.mobileService.header': 'Mobile Services',
+
+  'ui.contactUs.label': 'Contact Us',
+  'ui.contactUs.subtext': `
+    We welcome questions or feedback on the Digital Impact Exchange. Please feel
+    free to reach out to us.
+  `,
+
+  'ui.about.theExchange': 'About the Digital Impact Exchange',
+  'ui.about.theExchange.subtext': 'The world of digital government solutions is complex. We help you navigate it.',
+  'ui.about.theExchange.description': `
+    <p>
+      The Digital Impact Exchange is a web application that aims to simplify digital government services
+      without having to design the digital architecture from scratch. The platform is a gateway to existing
+      online tools, products, and many other resources. Making access to tech easier and more reliable helps
+      governments to provide the services that people need to live happier, healthier lives.
+    </p>
+    <p>
+      It can be tough for government decision makers to find current, reliable information on tried-and-tested
+      technologies. The Exchange solves that problem by serving as a one-stop shop, featuring over 500 digital
+      tools, products and opportunities for government technology decision makers, IT developers, and product
+      vendors.
+    </p>
+    <p>  
+      Our goal is to make the Exchange the most comprehensive and user-friendly marketplace for the digital
+      development sector. We’re adding new features and functionality all the time. Here are some of the ways
+      that the Exchange can help you today:
+    </p>  
+    <ul>
+      <li>Find and compare products and tools, whether they are open source products or commercial tools</li>
+      <li>Connect with vendors or clients through product and business opportunities, including searching and finding RFPs</li>
+      <li>Advertise your products and services through your own Vendor Storefront</li>
+      <li>Join our community, by linking to our platform and amplifying your data, best practices, and knowledge</li>
+    </ul>
+  `,
+  'ui.about.theVision': 'Our Vision',
+  'ui.about.theVision.description': `
+    <p>
+      Our vision is to bridge the gap between demand and supply in the digital ecosystem, by providing the people
+      and organizations working in digital government with access to innovative and transformative technologies.
+      By creating a vibrant Exchange, we bring together a diverse community of solution providers and organizations
+      seeking to embrace the power of digital solutions. 
+ 
+    </p>
+  `,
+  'ui.about.theBeyond': 'Beyond the Exchange',
+  'ui.about.theBeyond.description': `
+    <p>
+      The Exchange is an initiative of the Digital Impact Alliance. We believe that everyone, everywhere should
+      benefit from the power of trusted digital technology. The Exchange is one way we’re trying to meet that goal.
+      Learn more about our other initiatives.
+    </p>
+  `,
+  'ui.about.thePartner': 'Our partners',
+  'ui.about.thePartner.description': `
+    <p>
+      The Digital Impact Exchange exists because of the valuable work of our partners.
+    </p>
+    <ul>
+      <li>
+        <strong>Supporters / Funders.</strong>
+        Our donors share our deep commitment to advancing technologies for organizations everywhere.
+      </li>
+      <li>
+        <strong>Data-Sharing Partners.</strong>
+        Our data-sharing partners provide the resources, tools and opportunities showcased by
+        the Exchange. (WHO, Leverist, GIZ) 
+      </li>
+      <li>
+        <strong>GovStack</strong>.
+        The Exchange is one of the key offerings of Govstack, a multi-stakeholder, community-driven
+        initiative that is focused on accelerating national digital transformation worldwide. DIAL
+        serves as one of Govstack’s four founding partners. Learn more about <a>Govstack.</a>
+      </li>
+    </ul>
+  `,
+  'ui.about.theTeam': 'Our team',
+  'ui.about.theTeam.description': `
+    <p>
+      <strong>Our staff,</strong>
+      who are part of the Digital Impact Alliance, are a team of passionate technologists devoted
+      to creating and stewarding technology that puts peoples' needs at the center.
+    </p>
+    <p>
+      <strong>Our reference group </strong>
+      is an expert set of advisors from around the world that provide direction and feedback on
+      the Exchange as we learn and grow.
+    </p>
+  `,
+  'ui.common.scrollToTop': 'Back to the top'
 }
