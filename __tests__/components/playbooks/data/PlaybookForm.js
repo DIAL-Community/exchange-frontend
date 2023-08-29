@@ -9,15 +9,15 @@ export const draftPlaybook = {
     overview: 'Just an example of playbook.',
     audience: 'The audience of this playbook is you.',
     outcomes: 'The outcome of this playbook is expected.',
-    locale: 'en',
+    locale: 'en'
   },
   playbookPlays: [
     {
       id: 827,
       playSlug: 'd4d_understand_the_problem',
       playName: 'D4D: Understand the Problem',
-      playOrder: 0,
-    },
+      playOrder: 0
+    }
   ],
   plays: [
     {
@@ -26,25 +26,25 @@ export const draftPlaybook = {
       slug: 'd4d_understand_the_problem',
       playDescription: {
         id: 10,
-        description: 'The play description goes here.',
+        description: 'The play description goes here.'
       },
       playMoves: [
         {
           id: 7,
-          name: 'Considerations',
+          name: 'Considerations'
         },
         {
           id: 8,
-          name: 'Key Questions',
+          name: 'Key Questions'
         },
         {
           id: 9,
-          name: 'Output',
-        },
-      ],
-    },
+          name: 'Output'
+        }
+      ]
+    }
   ],
-  tags: [],
+  tags: []
 }
 
 export const publishedPlaybook = {
@@ -58,15 +58,15 @@ export const publishedPlaybook = {
     overview: 'Just an example of playbook.',
     audience: 'The audience of this playbook is you.',
     outcomes: 'The outcome of this playbook is expected.',
-    locale: 'en',
+    locale: 'en'
   },
   playbookPlays: [
     {
       id: 827,
       playSlug: 'd4d_understand_the_problem',
       playName: 'D4D: Understand the Problem',
-      order: 0,
-    },
+      order: 0
+    }
   ],
   plays: [
     {
@@ -75,25 +75,25 @@ export const publishedPlaybook = {
       slug: 'd4d_understand_the_problem',
       playDescription: {
         id: 10,
-        description: 'The play description goes here.',
+        description: 'The play description goes here.'
       },
       playMoves: [
         {
           id: 7,
-          name: 'Considerations',
+          name: 'Considerations'
         },
         {
           id: 8,
-          name: 'Key Questions',
+          name: 'Key Questions'
         },
         {
           id: 9,
-          name: 'Output',
-        },
-      ],
-    },
+          name: 'Output'
+        }
+      ]
+    }
   ],
-  tags: [],
+  tags: []
 }
 
 export const testPlaybook = {
@@ -105,12 +105,12 @@ export const testPlaybook = {
     id: 1,
     overview: 'Test Playbook Overview',
     audience: '',
-    outcomes: '',
+    outcomes: ''
   },
   cover: '/test.jpg',
   plays: [],
   tags: [],
-  draft: true,
+  draft: true
 }
 
 export const createPlaybookSuccess = {
@@ -125,12 +125,12 @@ export const createPlaybookSuccess = {
           id: 1,
           overview: 'Test Playbook Overview',
           audience: '',
-          outcomes: '',
+          outcomes: ''
         },
         plays: [],
-        draft: true,
+        draft: true
       },
-      errors: [],
-    },
-  },
+      errors: []
+    }
+  }
 }

@@ -12,7 +12,7 @@ export const getServerSideProps = async (ctx) => {
 
   const fields = data.data.workflows.map((workflow) => ({
     loc: `${process.env.NEXT_PUBLIC_RAILS_SERVER}/workflows/${workflow.slug}`,
-    lastmod: new Date().toISOString(),
+    lastmod: new Date().toISOString()
   }))
 
   return getServerSideSitemap(ctx, fields)

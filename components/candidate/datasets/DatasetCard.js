@@ -45,8 +45,8 @@ const DatasetCard = ({ dataset, listType }) => {
                         {dataset.name}
                       </div>
                       <div className='my-auto line-clamp-1 text-dial-blue'>
-                        <a href={prependUrlWithProtocol(dataset.dataUrl)} target='_blank' rel='noreferrer'>
-                          {dataset.dataUrl} ⧉
+                        <a href={prependUrlWithProtocol(dataset.website)} target='_blank' rel='noreferrer'>
+                          {dataset.website} ⧉
                         </a>
                       </div>
                       <div className='line-clamp-2'>
@@ -136,7 +136,7 @@ const DatasetCard = ({ dataset, listType }) => {
                     {
                       dataset.rejected === null &&
                         <div className='ml-auto my-auto py-1 px-2 text-dial-cyan text-sm font-semibold'>
-                          {format('candidateDataset.label').toUpperCase()}
+                          {format('ui.candidateDataset.label').toUpperCase()}
                         </div>
                     }
                   </div>
@@ -154,16 +154,16 @@ const DatasetCard = ({ dataset, listType }) => {
                     </div>
                     <div className='px-3 ml-auto flex flex-row'>
                       {
-                        dataset.dataUrl
+                        dataset.website
                           ? (
                             <a
-                              href={prependUrlWithProtocol(dataset.dataUrl)}
+                              href={prependUrlWithProtocol(dataset.website)}
                               target='_blank'
                               rel='noreferrer'
                               className={'py-1 px-2 bg-white text-dial-blue break-all line-clamp-1'}
                             >
                               <span className={hoverEffectTextStyle}>
-                                {dataset.dataUrl} ⧉
+                                {dataset.website} ⧉
                               </span>
                             </a>
                           )
@@ -196,7 +196,7 @@ const DatasetCard = ({ dataset, listType }) => {
                 <div className='card-back flip-vertical flex flex-col border border-dial-gray bg-dial-gray shadow-lg h-full'>
                   <div className='flex flex-row p-1.5 bg-dial-gray-dark'>
                     <div className='ml-auto my-auto text-dial-cyan text-sm font-semibold'>
-                      {format('candidateDataset.label').toUpperCase()}
+                      {format('ui.candidateDataset.label').toUpperCase()}
                     </div>
                   </div>
                   <div className='flex flex-col gap-3 p-3 h-full'>
@@ -303,7 +303,7 @@ const ApproveButton = ({ dataset, setStatus, loading, setLoading }) => {
       candidateDatasetApproval({
         variables: {
           slug: dataset.slug,
-          action: CandidateActionType.APPROVE,
+          action: CandidateActionType.APPROVE
         },
         context: {
           headers: {
@@ -368,7 +368,7 @@ const DeclineButton = ({ dataset, setStatus, loading, setLoading }) => {
       const { userEmail, userToken } = user
       const variables = {
         slug: dataset.slug,
-        action: CandidateActionType.REJECT,
+        action: CandidateActionType.REJECT
       }
 
       candidateDatasetApproval({

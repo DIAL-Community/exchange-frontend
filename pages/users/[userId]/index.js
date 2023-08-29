@@ -2,8 +2,8 @@ import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
+import Header from '../../../ui/v1/shared/Header'
+import Footer from '../../../ui/v1/shared/Footer'
 import NotFound from '../../../components/shared/NotFound'
 import UserDetail from '../../../components/users/UserDetail'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
@@ -32,9 +32,9 @@ const UserPageDefinition = ({ userId, locale }) => {
   }
 
   return (
-    <>
+    <div className='px-4 lg:px-8 xl:px-56'>
       { data?.user && <UserDetail user={data.user} /> }
-    </>
+    </div>
   )
 }
 

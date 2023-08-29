@@ -74,10 +74,10 @@ const UnassignPlay = ({ playbookSlug, playSlug }) => {
 
   return (
     <>
-      <DeleteButton title='play.unassign' type='button' onClick={toggleConfirmDialog} />
+      <DeleteButton title='ui.play.unassign' type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('play.unassign.title')}
-        message={format('play.unassign.confirmation')}
+        title={format('ui.play.unassign.title')}
+        message={format('ui.play.unassign.confirmation')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

@@ -113,7 +113,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit }) => {
         </div>
       ) : (
         <div className='text-sm pb-5 text-button-gray'>
-          {format('opportunity.no-building-block')}
+          {format('ui.opportunity.no-building-block')}
         </div>
       )}
     </>
@@ -121,10 +121,10 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('building-block.header')}
+        {format('app.assign')} {format('ui.buildingBlock.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='building-block-search'>
-        {`${format('app.searchAndAssign')} ${format('building-block.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.buildingBlock.header')}`}
         <Select
           async
           isSearch
@@ -141,7 +141,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit }) => {
               )
           }
           noOptionsMessage={() =>
-            format('filter.searchFor', { entity: format('building-block.header') })
+            format('filter.searchFor', { entity: format('ui.buildingBlock.header') })
           }
           onChange={addBuildingBlock}
           value={null}
@@ -161,7 +161,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('building-block.header')}
+      sectionHeader={format('ui.buildingBlock.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingVertical: 25,
     paddingHorizontal: 20,
-    color: '#46465A',
+    color: '#46465A'
   },
   h1: {
     fontSize: 24,
@@ -109,7 +109,7 @@ const MoveContent = ({ move, format }) => {
               <>
                 <div className='font-semibold py-2'>
                   <Text style={styles.resourcesHeader}>
-                    {format('move.resources.header')}
+                    {format('ui.move.resources.header')}
                   </Text>
                 </div>
                 <div className='flex flex-wrap gap-3'>
@@ -156,12 +156,12 @@ const PlaybookContent = ({ format, data, locale }) => {
           <div className='my-4 mx-2'>
             <div className='h1 mb-4 h-12'>
               <Text style={styles.h1}>
-                {format('playbooks.label')}: {data.playbook.name}
+                {format('ui.playbook.label')}: {data.playbook.name}
               </Text>
             </div>
             <div className='h4'>
               <Text style={styles.h4}>
-                {format('playbooks.overview')}
+                {format('ui.playbook.overview')}
               </Text>
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
@@ -171,7 +171,7 @@ const PlaybookContent = ({ format, data, locale }) => {
             </div>
             <div className='h4'>
               <Text style={styles.h4}>
-                {format('playbooks.audience')}
+                {format('ui.playbook.audience')}
               </Text>
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
@@ -181,7 +181,7 @@ const PlaybookContent = ({ format, data, locale }) => {
             </div>
             <div className='h4'>
               <Text style={styles.h4}>
-                {format('playbooks.outcomes')}
+                {format('ui.playbook.outcomes')}
               </Text>
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
@@ -194,7 +194,7 @@ const PlaybookContent = ({ format, data, locale }) => {
                 <div className='h-px border-b' />
                 <div className='font-semibold text-2xl py-4'>
                   <Text style={styles.h1}>
-                    {`${format('plays.label')} ${index + 1}. ${play.name}`}
+                    {`${format('ui.play.label')} ${index + 1}. ${play.name}`}
                   </Text>
                 </div>
                 <div className='fr-view tiny-editor text-dial-gray-dark'>

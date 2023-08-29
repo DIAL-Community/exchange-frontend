@@ -1,0 +1,49 @@
+:root {
+  --wizard-marker-size: 1.25rem;
+}
+
+.ui-wizard { 
+  .active-border {
+    @apply after:content-[''];
+    
+    @apply after:h-1;
+    @apply after:w-full;
+    
+    @apply after:border-4;
+    @apply after:border-b;
+    @apply after:border-blue-800;
+    
+    @apply after:inline-block;
+  }
+
+  .active-step {
+    width: var(--wizard-marker-size);
+    height: var(--wizard-marker-size);
+    @apply bg-dial-iris-blue;
+    @apply rounded-full;
+    
+    @apply shrink-0
+  }
+
+  .inactive-border {
+    @apply after:content-[''];
+    
+    @apply after:h-1;
+    @apply after:w-full;
+    
+    @apply after:border-4;
+    @apply after:border-b;
+    @apply after:border-dial-slate-300;
+    
+    @apply after:inline-block;
+  }
+
+  .inactive-step {
+    width: var(--wizard-marker-size);
+    height: var(--wizard-marker-size);
+    @apply bg-dial-slate-300;
+    @apply rounded-full;
+    
+    @apply shrink-0
+  }
+}

@@ -114,10 +114,10 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, useCase, canEdit }) => {
   const editModeBody =
     <div className='flex flex-col gap-3'>
       <p className='card-title text-dial-stratos'>
-        {format('app.assign')} {format('building-block.header')}
+        {format('app.assign')} {format('ui.buildingBlock.header')}
       </p>
       <label className='flex flex-col gap-y-2' data-testid='building-block-search'>
-        {`${format('app.searchAndAssign')} ${format('building-block.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.buildingBlock.header')}`}
         <Select
           async
           isSearch
@@ -134,7 +134,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, useCase, canEdit }) => {
               )
           }
           noOptionsMessage={() =>
-            format('filter.searchFor', { entity: format('building-block.header') })
+            format('filter.searchFor', { entity: format('ui.buildingBlock.header') })
           }
           onChange={addBuildingBlock}
           value={null}
@@ -154,7 +154,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, useCase, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('building-block.header')}
+      sectionHeader={format('ui.buildingBlock.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

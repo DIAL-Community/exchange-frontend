@@ -39,7 +39,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       const { createResource: response } = data
       if (response?.resource && response?.errors?.length === 0) {
         showToast(
-          format('resource.submit.success'),
+          format('ui.resource.submit.success'),
           'success',
           'top-center',
           1000,
@@ -54,7 +54,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         )
         setMutating(false)
       } else {
-        showToast(format('resource.submit.failure'), 'error', 'top-center')
+        showToast(format('ui.resource.submit.failure'), 'error', 'top-center')
         setMutating(false)
         reset()
       }
@@ -62,7 +62,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     onError: (error) => {
       showToast(
         <div className='flex flex-col'>
-          <span>{format('resource.submit.failure')}</span>
+          <span>{format('ui.resource.submit.failure')}</span>
           <span>{error?.message}</span>
         </div>,
         'error',
@@ -157,33 +157,33 @@ const ResourceForm = React.memo(({ resource, organization }) => {
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
                 <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {resource
-                    ? format('app.edit-entity', { entity: resource.name })
-                    : `${format('app.create-new')} ${format('resource.label')}`
+                    ? format('app.editEntity', { entity: resource.name })
+                    : `${format('app.createNew')} ${format('ui.resource.label')}`
                   }
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
                   <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                     <div className='form-field-wrapper' data-testid='resource-name'>
                       <label className='form-field-label required-field' htmlFor='name'>
-                        {format('resource.name')}
+                        {format('ui.resource.name')}
                       </label>
                       <Input
                         {...register('name', { required: format('validation.required') })}
                         id='name'
-                        placeholder={format('resource.name')}
+                        placeholder={format('ui.resource.name')}
                         isInvalid={errors.name}
                       />
                       {errors.name && <ValidationError value={errors.name?.message} />}
                     </div>
                     <div className='form-field-wrapper'>
                       <label className='form-field-label'>
-                        {format('resource.imageFile')}
+                        {format('ui.resource.imageFile')}
                       </label>
                       <FileUploader {...register('imageFile')} />
                     </div>
                     <div className='flex flex-col gap-y-2 mb-2'>
                       <label className='text-dial-sapphire required-field' htmlFor='link'>
-                        {format('resource.link')}
+                        {format('ui.resource.link')}
                       </label>
                       <Controller
                         name='link'
@@ -194,7 +194,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                             onChange={onChange}
                             id='link'
                             isInvalid={errors.website}
-                            placeholder={format('resource.link')}
+                            placeholder={format('ui.resource.link')}
                           />
                         )}
                         rules={{ required: format('validation.required') }}
@@ -204,20 +204,20 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                     {isAdminUser &&
                       <label className='flex gap-x-2 mb-2 items-center self-start'>
                         <Checkbox {...register('showInExchange')} />
-                        {format('resource.showInExchange')}
+                        {format('ui.resource.showInExchange')}
                       </label>
                     }
                     {isAdminUser &&
                       <label className='flex gap-x-2 mb-2 items-center self-start'>
                         <Checkbox {...register('showInWizard')} />
-                        {format('resource.showInWizard')}
+                        {format('ui.resource.showInWizard')}
                       </label>
                     }
                   </div>
                   <div className='w-full lg:w-1/2'>
                     <div className='block flex flex-col gap-y-2' data-testid='resource-description'>
                       <label className='form-field-label required-field'>
-                        {format('resource.description')}
+                        {format('ui.resource.description')}
                       </label>
                       <Controller
                         name='description'
@@ -227,7 +227,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                             editorId='description-editor'
                             onChange={onChange}
                             initialContent={value}
-                            placeholder={format('resource.description')}
+                            placeholder={format('ui.resource.description')}
                             isInvalid={errors.description}
                           />
                         )}
@@ -244,7 +244,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                     disabled={mutating || reverting}
                     data-testid='submit-button'
                   >
-                    {`${format('app.submit')} ${format('resource.label')}`}
+                    {`${format('app.submit')} ${format('ui.resource.label')}`}
                     {mutating && <FaSpinner className='spinner ml-3' />}
                   </button>
                   <button
@@ -259,7 +259,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 </div>
                 { organization &&
                   <div className='text-sm italic text-emerald-500'>
-                    {format('resource.fromStorefront')}
+                    {format('ui.resource.fromStorefront')}
                   </div>
                 }
               </div>

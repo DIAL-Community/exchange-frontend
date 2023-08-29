@@ -2,7 +2,6 @@ import Link from 'next/link'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import { HiQuestionMarkCircle } from 'react-icons/hi'
 import { FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
 
 const TabNav = (props) => {
@@ -15,20 +14,7 @@ const TabNav = (props) => {
     <>
       <div className='hidden md:block bg-white sticky sticky-under-header max-w-catalog mx-auto'>
         <div className='px-2 py-1'>
-          <div className='invisible max-w-1/2'>
-            <div className='px-5 mt-3 py-2 border-t border-r border-l border-gray-300 rounded-t' />
-            <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
-              <span className='bg-white px-3 intro-overview-sdg-framework'>
-                <span className='text-sm font-bold text-gray-500'>{format('digiInvestment.title')}</span>
-                <HiQuestionMarkCircle
-                  className='ml-1 inline'
-                  data-tooltip-id='react-tooltip'
-                  data-tooltip-html={format('digiInvestment.tooltip')}
-                />
-              </span>
-            </div>
-          </div>
-          <div className='text-sm text-dial-sunshine text-right -mt-3'>
+          <div className='text-sm text-dial-sunshine text-right'>
             <Link
               href='/#wizard-anchor'
               scroll={false}
@@ -53,7 +39,7 @@ const TabNav = (props) => {
                   <li
                     key={`menu-${filterItem}`}
                     className={classNames(
-                      '-mb-px whitespace-nowrap',
+                      'whitespace-nowrap',
                       index === activeTab ? 'bg-dial-sunshine rounded-t' : 'pb-2 overflow-hidden'
                     )}
                     style={{ flex: '1 1 0px' }}

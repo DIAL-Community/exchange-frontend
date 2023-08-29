@@ -1,8 +1,8 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
+import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { render, waitForAllEffects, } from '../../test-utils'
+import { render, waitForAllEffects, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import StepForm from '../../../components/use-cases/steps/StepForm'
 import { CREATE_USE_CASE_STEP } from '../../../mutations/use-case'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
@@ -59,16 +59,14 @@ describe('Unit tests for UseCaseStepForm component.', () => {
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
     mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
-    const { getByTestId } = render(
+    const { getByTestId, container } = render(
       <CustomMockedProvider>
         <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
+    await waitForAllEffectsAndSelectToLoad(container)
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
 
-    await act(() => waitFor(() => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    }))
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_STEP_NUMBER_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -114,7 +112,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     )
     await waitForAllEffects()
 
-    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
     await screen.findByText('Use Case Step submitted successfully')
     expect(container).toMatchSnapshot()
   })
@@ -134,7 +132,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     )
     await waitForAllEffects()
 
-    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
     await screen.findByText('Use Case Step submission failed')
     await screen.findByText(errorMessage)
     expect(container).toMatchSnapshot()

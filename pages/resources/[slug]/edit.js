@@ -1,42 +1,40 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import { Loading, Error } from '../../../components/shared/FetchStatus'
-import NotFound from '../../../components/shared/NotFound'
-import { RESOURCE_DETAIL_QUERY } from '../../../queries/resource'
-import ResourceForm from '../../../components/resources/ResourceForm'
+import Footer from '../../../ui/v1/shared/Footer'
+import ResourceEdit from '../../../ui/v1/resource/ResourceEdit'
 
-const EditResource = () => {
-  const router = useRouter()
+const EditResourcePage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { locale } = router
-  const { slug } = router.query
-
-  const { loading, error, data } = useQuery(RESOURCE_DETAIL_QUERY, {
-    variables: { slug, locale },
-    skip: !slug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.resource) {
-    return <NotFound />
-  }
+  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.resource.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.resource.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        {data?.resource && <ResourceForm resource={data.resource} />}
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ResourceEdit slug={slug} locale={locale} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default EditResource
+export default EditResourcePage

@@ -13,7 +13,7 @@ const config = {
       { userAgent: '*', disallow: '/countries' },
       { userAgent: '*', disallow: '/tags' },
       { userAgent: '*', disallow: '/candidate/*' },
-      { userAgent: '*', allow: '/*' },
+      { userAgent: '*', allow: '/*' }
     ],
     additionalSitemaps: [
       `${SITE_URL}/sitemap.xml`,
@@ -24,7 +24,7 @@ const config = {
       `${SITE_URL}/server-sitemap/building_blocks`,
       `${SITE_URL}/server-sitemap/use_cases`,
       `${SITE_URL}/server-sitemap/projects`,
-      `${SITE_URL}/server-sitemap/playbooks`,
+      `${SITE_URL}/server-sitemap/playbooks`
     ]
   },
   exclude: [
@@ -36,7 +36,7 @@ const config = {
     '/candidate/*',
     '/sitemap.xml',
     '/server-sitemap/*'
-  ],
+  ]
 }
 
 module.exports = config

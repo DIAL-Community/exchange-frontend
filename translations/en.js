@@ -5,15 +5,15 @@ export const en = {
   'app.title': 'Digital Impact Exchange',
   'app.edit': 'Edit',
   'app.comment': 'Comments',
-  'app.nocomment': 'Start a Conversation',
+  'app.noComment': 'Start a Conversation',
   'app.home': 'Home',
   'app.save': 'Save',
   'app.saving': 'Saving',
   'app.submit': 'Submit',
   'app.submitting': 'Submitting',
   'app.search': 'Search',
-  'app.create-new': 'Create New',
-  'app.edit-entity': 'Edit {entity}',
+  'app.createNew': 'Create New',
+  'app.editEntity': 'Edit {entity}',
   'app.create': 'Create',
   'app.cancel': 'Cancel',
   'app.duplicate': 'Duplicate',
@@ -22,21 +22,24 @@ export const en = {
   'app.reportIssue': 'Report Issue',
   'app.delete': 'Delete',
   'app.assign': 'Assign',
-  'app.deleting-entity': 'Deleting {entity}',
+  'app.deletingEntity': 'Deleting {entity}',
   'app.searchAndAssign': 'Search and Assign',
-  'app.print-pdf': 'Print PDF',
+  'app.printPdf': 'Print PDF',
   'app.status': 'Status:',
   'app.confirm': 'Confirm',
   'app.mappingStatus': 'Mapping Status',
   'app.name': 'Name',
   'app.description': 'Description',
-  'app.internal-server-error': "500 - Internal Server Error",
+  'app.serverError': "500 - Internal Server Error",
   'app.menu': 'Menu',
   'app.back': 'Back',
   'app.email': 'Email Address',
   'app.lastUpdated': 'Updated: {lastUpdated}.',
   'app.filter': 'Filter',
   'app.selectNavigation': 'Select a resource',
+  'app.new': 'New {entity}',
+  'app.changePassword': 'Change Password',
+  'app.deleteAccount': 'Delete Account',
 
   'general.pastSuffix': 'ago',
 
@@ -71,6 +74,8 @@ export const en = {
   'header.profile': 'My Profile',
   'header.covidResources': 'COVID-19 Resources',
   'header.resources': 'Resources',
+  'header.playbooks': 'Playbooks',
+  'header.wizard': 'Recommendation Wizard',
   'header.dialResourcesPortal': 'DIAL Resources Portal',
   'header.SDGFramework': 'SDG Framework',
   'header.help': 'Help',
@@ -90,15 +95,17 @@ export const en = {
   'header.admin.settings': 'Settings',
   'header.admin.sectors': 'Sectors',
   'header.admin.tags': 'Tags',
+  'header.admin.cities': 'Cities',
   'header.admin.countries': 'Countries',
   'header.admin.candidate_orgs': 'Candidate Organizations',
   'header.admin.candidate_products': 'Candidate Products',
   'header.admin.candidate_datasets': 'Candidate Open Data',
   'header.admin.candidate_roles': 'Candidate Roles',
   'header.admin.deploys': 'Deploys',
-  'header.admin.portal_views': 'Portal Views',
-  'header.admin.maturity_rubrics': 'Maturity Rubrics',
   'header.newsletter': 'Join Our Newsletter',
+  'header.marketplace': 'Marketplace',
+  'header.tools': 'Tools',
+  'header.supportingTools': 'Supporting Tools',
 
   'footer.text.firstLine': `
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
@@ -110,9 +117,9 @@ export const en = {
   `,
   'footer.organizationName': 'Digital Impact Alliance',
   'footer.privacyPolicy': 'Privacy Policy',
-  'footer.sign-up': 'Sign up for our Newsletter',
+  'footer.signup': 'Sign up for our Newsletter',
   'footer.discuss': 'Discuss on the Open Source Center Forum',
-  'footer.view-gitlab': 'View this project on GitLab',
+  'footer.viewGitLab': 'View this project on GitLab',
   'footer.follow': 'Follow DIAL on social media',
   'footer.icons': 'Icons provided unmodified by ',
 
@@ -127,11 +134,11 @@ export const en = {
   'definition.goal': 'Our goal: ',
   'definition.subtitle': 'Informed decision-making and greater coordination in digital investments, planning & implementations across sectors',
   'definition.donors': 'Donors',
-  'definition.policy-makers': 'Policy Makers',
+  'definition.policyMakers': 'Policy Makers',
   'definition.implementers': 'Implementing Partners',
   'definition.ministers': 'Technology and ICT Ministers',
   'definition.procurers': 'Procurers',
-  'definition.product-owners': 'Product Owners',
+  'definition.productOwners': 'Product Owners',
   'definition.sections.what': 'What is the Exchange',
   'definition.sections.who': 'Who is it For?',
   'definition.sections.how': 'How can I use it?',
@@ -142,36 +149,60 @@ export const en = {
   'definition.buttons.tutorials': 'View All Tutorials',
   'definition.buttons.contact': 'Contact Us',
   'definition.who': `
-      <p>
-      <strong>Implementers and policy makers</strong> who need quality digital tools and guidance to support their development programming or improve development outcomes.
+    <p>
+      <strong>
+        Implementers and policy makers
+      </strong>
+      who need quality digital tools and guidance to support their development programming or improve
+      development outcomes.
       <br /><br />
-      <strong>Donors</strong> that need to coordinate and measure their investments.
+      
+      <strong>
+        Donors
+      </strong> that need to coordinate and measure their investments.
       <br /><br />
-      <strong>Technology and ICT ministers</strong> that need to map their tech stack to ICT building blocks to understand what other use cases can be supported or where critical gaps exist.
+      
+      <strong>
+        Technology and ICT ministers
+      </strong> that need to map their tech stack to ICT building blocks to understand what other
+      use cases can be supported or where critical gaps exist.
       <br /><br />
-      <strong>Product owners</strong> of Digital Public Goods that want connect to potential users and supply the development ecosystem with innovative products.
-      </p>
-      `,
+      
+      <strong>
+        Product owners
+      </strong>
+      of Digital Public Goods that want connect to potential users and supply the development ecosystem
+      with innovative products.
+    </p>
+  `,
   'definition.how': 'Watch our demo and tutorial videos to learn how to use the Exchange',
   'definition.approach': `
-      The Exchange promotes a Whole-of-Government approach to investing in digital technologies to achieve the SDGs.
-      <br /><br />
-      This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
-      `,
+    The Exchange promotes a Whole-of-Government approach to investing in digital technologies to achieve the SDGs.
+    <br /><br />
+    This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
+  `,
   'definition.featured': `
-      More Data! In many sectors, access to open data and and content is a critical part
-      of any digital project. The Exchange has a new tab called 'Open Data' that
-      provides links to over a hundred different open datasets allowing users to find valuable
-      information on population, agriculture, climate, and much more.
-      <br /><br />
-      Read our <a href='https://dial.global/using-open-datasets-to-fertilize-agriculture-development-announcing-the-catalogs-newest-feature/' target='_blank' rel='noreferrer'>blog</a> to learn more about the open datasets feature
-      <br /><br />
-      We are also happy to introduce new commenting and dialog functionality in the Exchange. Users
-      can now easily ask questions, post comments, and engage in dialog about digital products,
-      use cases, or building blocks. The Exchange community has immense knowledge and
-      experience in digital development, and this new feature allows users to share advice,
-      resources and best practices with each other.
-      `,
+    More Data! In many sectors, access to open data and and content is a critical part
+    of any digital project. The Exchange has a new tab called 'Open Data' that
+    provides links to over a hundred different open datasets allowing users to find valuable
+    information on population, agriculture, climate, and much more.
+    <br /><br />
+    
+    Read our 
+    <a
+      href='https://dial.global/using-open-datasets-to-fertilize-agriculture-development-announcing-the-catalogs-newest-feature/'
+      target='_blank' rel='noreferrer'
+    >
+      blog
+    </a> to learn more about the open datasets feature
+    <br /><br />
+    
+    We are also happy to introduce new commenting and dialog functionality in the Exchange. Users
+    can now easily ask questions, post comments, and engage in dialog about digital products,
+    use cases, or building blocks. The Exchange community has immense knowledge and
+    experience in digital development, and this new feature allows users to share advice,
+    resources and best practices with each other.
+  `,
   'definition.contact': 'We welcome questions or feedback on the Digital Impact Exchange. Please feel free to reach out to us.',
   'definition.tutorial.intro': 'Tutorial: Introduction',
   'definition.tutorial.started': 'Tutorial: Getting Started with the Exchange',
@@ -201,8 +232,10 @@ export const en = {
   'definition.explore-usecase': 'Explore Use Cases',
   'definition.explore-workflow': 'Explore Workflows',
 
-  'products.header': 'Products',
-  'products.label': 'Product',
+  'ui.product.header': 'Products',
+  'ui.product.label': 'Product',
+  'ui.product.parent.detail': 'Parent Product',
+
   'product.languages': 'Languages',
   'product.website': 'Website',
   'product.description': 'Description',
@@ -227,24 +260,21 @@ export const en = {
   'product.open-pr': 'Open PRs',
   'product.merged-pr': 'Merged PRs',
   'product.owner': 'If you are the owner of this product, you can update this product information.',
-  'product.owner-link': 'Find more information here',
-  'product.cost-data': 'Cost data for this product',
-  'product.code-lines': 'Total lines of code',
-  'product.est-effort': 'Estimated effort (person months)',
+  'product.ownerLink': 'Find more information here',
+  'product.costData': 'Cost data for this product',
+  'product.codeLines': 'Total lines of code',
+  'product.estimatedEffort': 'Estimated effort (person months)',
   'product.interoperable': 'Interoperable products',
   'product.included': 'Included products',
-  'product.no-interop': 'We do not have any Interoperating information for this Product.',
-  'product.no-include': 'We do not have any Includes information for this Product.',
-  'product.maturity-scores': 'Product maturity scores',
-  'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and GitHub. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations and collected via automated methods. For more information visit the <a href="https://docs.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Exchange Documentation</a>',
-  'product.no-maturity': 'We do not have any Maturity information for this Product.',
-  'product.maturity-chart-tooltip': 'Click to see maturity score details',
-  'product.maturity-details-label': 'Maturity score details',
-  'product.overall-score': 'Overall maturity score',
-  'product.category-score': 'Category score',
-  'product.indicator-score': 'Indicator score',
+  'product.maturity.scores': 'Product maturity scores',
+  'product.maturity.description': 'These maturity scores have been sourced from organizations such as Digital Square and GitHub. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations and collected via automated methods. For more information visit the <a href="https://docs.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Exchange Documentation</a>',
+  'product.noMaturity': 'We do not have any Maturity information for this Product.',
+  'product.maturity.chartTooltip': 'Click to see maturity score details',
+  'product.maturity.detailLabel': 'Maturity score details',
+  'product.maturity.overallScore': 'Overall maturity score',
+  'product.maturity.categoryScore': 'Category score',
+  'product.maturity.indicatorScore': 'Indicator score',
   'product.discussion': 'Discussion',
-  'product.noforum': 'No posts or discussion topics to view',
   'product.post': 'Post',
   'product.forum.login': 'You must be logged in to post',
   'product.forum.createAccount': 'In order to create a new post, you must first create an account on our forum. Click the button below and register an account with the username',
@@ -252,17 +282,21 @@ export const en = {
   'product.name': 'Name',
   'product.aliases': 'Aliases',
   'product.alias': 'Alias',
-  'product.webiste': 'Website',
+  'product.website': 'Website',
   'product.imageFile': 'Logo',
   'product.mappingStatus': 'Mapping Status',
   'product.submit.success': 'Product submitted successfully',
   'product.submit.failure': 'Product submission failed',
-  'product.no-organization': 'We do not have any Organization information for this Product.',
-  'product.no-building-block': 'We do not have any Building Block information for this Product.',
-  'product.no-sector': 'We do not have any Sector information for this Product.',
-  'product.no-tag': 'We do not have any Tag information for this Product.',
-  'product.no-project': 'We do not have any Project information for this Product.',
-  'product.no-sdgs': 'We do not have any Sustainable Development Goal information for this Product.',
+  'product.noOrganization': 'We do not have any organization information for this product.',
+  'product.noBuildingBlock': 'We do not have any building block information for this product.',
+  'product.noSector': 'We do not have any sector information for this product.',
+  'product.noTag': 'We do not have any tag information for this product.',
+  'product.noProject': 'We do not have any project information for this product.',
+  'product.noSdg': 'We do not have any Sustainable Development Goal information for this product.',
+  'product.noInteroperableProduct': 'We do not have any interoperable product information for this product.',
+  'product.noIncludedProduct': 'We do not have any product included information for this product.',
+  'product.noEndorser': 'We do not have any endorser information for this product.',
+  'product.noDatasource': 'We do not have any datasource information for this product.',
 
   'product.pricingInformation': 'Product Pricing Information',
   'product.commercialProduct': 'This product is commercial product.',
@@ -272,8 +306,8 @@ export const en = {
   'product.pricing.details': 'Pricing Details',
 
 
-  'project.header': 'Projects',
-  'project.label': 'Project',
+  'ui.project.header': 'Projects',
+  'ui.project.label': 'Project',
   'project.url': 'Project URL',
   'project.source': 'Origin',
   'project.description': 'Description',
@@ -290,23 +324,23 @@ export const en = {
   'project.no-tag': 'We do not have any Tag information for this Project.',
   'project.no-product': 'We do not have any Product information for this Project.',
 
-  'organization.header': 'Organizations',
-  'organization.label': 'Organization',
-  'organization.endorsed-in': 'Endorsed in',
+  'ui.organization.header': 'Organizations',
+  'ui.organization.label': 'Organization',
+  'ui.organization.endorsedIn': 'Endorsed in',
   'organization.name': 'Name',
   'organization.aliases': 'Aliases',
   'organization.alias': 'Alias',
   'organization.description': 'Description',
   'organization.website': 'Website',
   'organization.imageFile': 'Logo',
-  'organization.isEndorser': 'Endorser',
+  'organization.isEndorser': 'Organization is an endorser of the Principle for Digital Development.',
   'organization.whenEndorsed': 'Endorsed Date',
   'organization.endorserLevel': 'Endorser Level',
   'organization.endorserLevel.none': 'None',
   'organization.endorserLevel.bronze': 'Bronze',
   'organization.endorserLevel.silver': 'Silver',
   'organization.endorserLevel.gold': 'Gold',
-  'organization.isMni': 'MNI',
+  'organization.isMni': 'Organization is a mobile network integrator organization.',
   'organization.submit': 'Submit',
   'organization.submit.success': 'Organization submitted successfully',
   'organization.submit.failure': 'Organization submission failed',
@@ -323,10 +357,8 @@ export const en = {
   'organization.no-office-locations': 'We do not have any Office Locations information for this Organization.',
   'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
 
-  'building-block.header': 'Building Blocks',
-  'building-block.label': 'Building Block',
-  'buildingBlock.label': 'Building Block',
-  'buildingBlock.header': 'Building Blocks',
+  'ui.buildingBlock.header': 'Building Blocks',
+  'ui.buildingBlock.label': 'Building Block',
   'building-block.no-product': 'We do not have any Product information for this Building Block.',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
@@ -343,7 +375,11 @@ export const en = {
   'toast.building-block.delete.success': 'Building block deleted successfully.',
   'toast.building-block.delete.failure': 'Building block deletion failed.',
 
-  'dataset.delete.confirm.message': 'Are you sure you want to delete this open data record?',
+  'buildingBlock.delete.confirm.message': 'Are you sure you want to delete this building block?',
+  'toast.buildingBlock.delete.success': 'Building block deleted successfully.',
+  'toast.buildingBlock.delete.failure': 'Building block deletion failed.',
+
+  'ui.dataset.delete.confirm.message': 'Are you sure you want to delete this open data record?',
   'toast.dataset.delete.success': 'Open data record deleted successfully.',
   'toast.dataset.delete.failure': 'Open data record deletion failed.',
 
@@ -363,14 +399,15 @@ export const en = {
   'toast.workflow.delete.success': 'Workflow record deleted successfully.',
   'toast.workflow.delete.failure': 'Workflow record deletion failed.',
 
-  'contact.header': 'Contacts',
-  'contact.label': 'Contact',
-  'contact.name.label': 'Name:',
-  'contact.email.label': 'Email:',
-  'contact.title.label': 'Title:',
+  'ui.contact.header': 'Contacts',
+  'ui.contact.label': 'Contact',
+  'ui.contact.name.label': 'Name',
+  'ui.contact.email.label': 'Email',
+  'ui.contact.title.label': 'Title',
+  'ui.contact.createNew': 'Create New Contact Information',
 
-  'sector.header': 'Sectors',
-  'sector.label': 'Sector',
+  'ui.sector.header': 'Sectors',
+  'ui.sector.label': 'Sector',
   'sector.parent-sector.label': 'Parent Sector',
   'sector.is-displayable.label': 'Is displayable',
   'sector.delete.confirm.message': 'Are you sure you want to delete this Sector? All associations will also be removed.',
@@ -380,11 +417,11 @@ export const en = {
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
 
-  'sdg-target.header': 'SDG Targets',
-  'sdg-target.label': 'SDG Target',
+  'ui.sdgTarget.header': 'SDG Targets',
+  'ui.sdgTarget.label': 'SDG Target',
 
-  'use-case.header': 'Use Cases',
-  'use-case.label': 'Use Case',
+  'ui.useCase.header': 'Use Cases',
+  'ui.useCase.label': 'Use Case',
   'use-case.sdg-targets': 'SDG Targets',
   'use-case.workflow': 'Workflows',
   'use-case.no-sdg-targets': 'We do not have any SDG Target information for this Use Case.',
@@ -477,8 +514,8 @@ export const en = {
   'wizard.bb.terminology': 'Will the project involve the management of definitions, terms, and standards?',
   'wizard.bb.workflowandalgorithm': 'Will the project require orchestration of processes and flow of information between services?',
   'wizard.bb.elearning': 'Will this project involve online learning or creation of courses and curricula?',
-  'wizard.request-additional-support': 'Request additional support',
-  'wizard.request-additional-support.message': 'Message',
+  'wizard.additionalSupport': 'Request additional support',
+  'wizard.additionalSupport.message': 'Message',
 
   'wizard.getStarted': 'Let\'s get started',
   'wizard.getStarted.firstLine': `
@@ -512,24 +549,26 @@ export const en = {
   'product.card.buildingBlocks': 'Building Blocks',
   'product.card.sdgs': 'SDGs',
 
-  'datasets.label': 'Dataset',
-  'dataset.website': 'Data URL',
-  'dataset.description': 'Description',
-  'dataset.source': 'Source',
-  'dataset.coverage': 'Geograpic Coverage',
-  'dataset.timeRange': 'Time Range',
-  'dataset.license': 'License',
-  'dataset.languages': 'Languages',
-  'dataset.dataFormat': 'Data Format',
-  'dataset.card.sdgs': 'SDGs',
-  'dataset.card.dataset': 'Dataset',
-  'dataset.card.content': 'Content',
-  'dataset.card.coronavirusTagValue': 'COVID-19',
-  'dataset.imageFile': 'Logo',
-  'dataset.owner': 'If you are the owner of this dataset, you can update this dataset information.',
+  'ui.dataset.label': 'Open Data',
+  'ui.dataset.website': 'Open Data Website',
+  'ui.dataset.description': 'Description',
+  'ui.dataset.source': 'Source',
+  'ui.dataset.coverage': 'Geographic Coverage',
+  'ui.dataset.timeRange': 'Time Range',
+  'ui.dataset.license': 'License',
+  'ui.dataset.languages': 'Languages',
+  'ui.dataset.dataFormat': 'Data Format',
+  'ui.dataset.card.sdgs': 'SDGs',
+  'ui.dataset.card.dataset': 'Dataset',
+  'ui.dataset.card.content': 'Content',
+  'ui.dataset.card.coronavirusTagValue': 'COVID-19',
+  'ui.dataset.imageFile': 'Logo',
+  'ui.dataset.owner': 'If you are the owner of this dataset, you can update this dataset information.',
 
   'general.close': 'Close',
   'general.na': 'N/A',
+  'general.hidden': 'Hidden',
+  'general.unknown': 'Unknown',
   'general.fetchingData': 'Fetching data ...',
   'general.fetchError': 'Error fetching data. Please check your network connection.',
   'general.loadingData': 'Loading more data ...',
@@ -555,20 +594,22 @@ export const en = {
   'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
 
   'workflow.header': 'Workflows',
-  'product.header': 'Products',
-  'dataset.header': 'Open Data',
+  'ui.product.header': 'Products',
+  'ui.dataset.header': 'Open Data',
 
   'workflow.label': 'Workflow',
-  'product.label': 'Product',
-  'dataset.label': 'Dataset',
+  'ui.product.label': 'Product',
+  'ui.dataset.label': 'Dataset',
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
   'organization.detail.endorserLevel': 'Endorser Level',
   'organization.owner': 'If you are the owner of this organization, you can update this organization information.',
-  'organization.owner-link': 'Find more information here',
+  'organization.ownerLink': 'Find more information here',
+  'organization.owner.revealContact': 'Contact Owner',
+  'organization.owner.contactLabel': 'Owner Email',
 
-  'aggregator.header': 'Aggregator Organization',
+  'ui.aggregator.header': 'Aggregator Organization',
 
   'map.aggregators.viewAggregator': 'View Aggregator',
   'map.endorsers.viewOrganization': 'View Organization',
@@ -589,8 +630,11 @@ export const en = {
   'error.tryAgain': 'Try Again',
   'error.goBack': 'Go Back to Exchange',
 
-  'buildingBlock.hint.subtitle': `Building blocks are enterprise-ready, reusable software components
-    providing key functionality facilitating generic WorkFlows across multiple sectors.
+  'buildingBlock.hint.title': 'What is a Building Block?',
+  'buildingBlock.hint.subtitle': `
+    For technical users, building blocks are enterprise-ready, reusable software components that perform
+    key functions. Each block listed on the Exchange documents the technical specifications required to
+    implement use cases.
   `,
   'buildingBlock.hint.characteristicTitle': 'Characteristics',
   'buildingBlock.hint.descriptionTitle': 'Description',
@@ -662,6 +706,9 @@ export const en = {
   'filter.useCase.govStackOnly': 'Show GovStack Only Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
+  'filter.project.forCovid': 'COVID-19 Projects',
+  'filter.opportunity.forCovid': 'COVID-19 RFP',
+
   'filter.product.endorsed': 'Show endorsed products',
   'filter.product.launchable': 'Product can be deployed and launched',
   'filter.launchWizard': 'Launch Recommendations Wizard',
@@ -679,120 +726,123 @@ export const en = {
   'use-case-step.name': 'Name',
   'use-case-step.description': 'Description',
   'use-case-step.step-number': 'Step Number',
-  'use-case-step.submit.failure': 'Use Case Step submission failed',
+  'useCaseStep.submit.failure': 'Use Case Step submission failed',
   'use-case-step.submit.success': 'Use Case Step submitted successfully',
   'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
   'use-case-step.no-dataset': 'We do not have any Dataset information for this Use Case Step.',
   'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
   'use-case-step.no-building-block': 'We do not have any Building Block information for this Use Case Step.',
 
-  'playbook.header': 'Playbooks',
-  'playbooks.label': 'Playbook',
-  'playbooks.name': 'Name',
-  'playbooks.overview': 'Overview',
-  'playbooks.audience': 'Audience',
-  'playbooks.outcomes': 'Outcomes',
-  'playbooks.tags': 'Tags',
-  'playbooks.plays': 'Plays',
-  'playbooks.phases': 'Phases',
-  'playbooks.submit': 'Submit',
-  'playbook.created': 'Created',
-  'playbook.updated': 'Updated',
-  'playbooks.name.placeholder': 'Playbook Name',
-  'playbooks.tags.placeholder': 'Playbook Tags',
-  'playbooks.addPhase': 'Add Phase',
-  'playbooks.deletePhase': 'Delete',
-  'playbooks.phase.name': 'Phase Name',
-  'playbooks.phase.description': 'Phase Description',
-  'playbooks.assignPlay': 'Assign Play',
-  'playbooks.unassignPlay': 'Unassign Play',
-  'playbooks.assign': 'Assign',
-  'playbooks.assignedPlays': 'Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.',
-  'playbook.published': 'Published',
-  'playbook.publish': 'Publish Playbook',
-  'playbook.saveAsDraft': 'Save as Draft',
-  'playbook.status.draft': 'Draft',
-  'playbook.status.published': 'Published',
-  'playbook.delete.confirm.message': 'Are you sure you want to delete this Playbook?',
+  'ui.playbook.header': 'Playbooks',
+  'ui.playbook.label': 'Playbook',
+  'ui.playbook.name': 'Name',
+  'ui.playbook.overview': 'Overview',
+  'ui.playbook.audience': 'Audience',
+  'ui.playbook.outcomes': 'Outcomes',
+  'ui.playbook.tags': 'Tags',
+  'ui.playbook.plays': 'Plays',
+  'ui.playbook.phases': 'Phases',
+  'ui.playbook.submit': 'Submit',
+  'ui.playbook.created': 'Created',
+  'ui.playbook.updated': 'Updated',
+  'ui.playbook.name.placeholder': 'Playbook Name',
+  'ui.playbook.tags.placeholder': 'Playbook Tags',
+  'ui.playbook.addPhase': 'Add Phase',
+  'ui.playbook.deletePhase': 'Delete',
+  'ui.playbook.phase.name': 'Phase Name',
+  'ui.playbook.phase.description': 'Phase Description',
+  'ui.playbook.assignPlay': 'Assign Play',
+  'ui.playbook.unassignPlay': 'Unassign Play',
+  'ui.playbook.assign': 'Assign',
+  'ui.playbook.assignedPlays': 'Plays currently assigned. You can preview, re-order, un-assign Plays, or add new Plays.',
+  'ui.playbook.published': 'Published',
+  'ui.playbook.publish': 'Publish Playbook',
+  'ui.playbook.saveAsDraft': 'Save as Draft',
+  'ui.playbook.status.draft': 'Draft',
+  'ui.playbook.status.published': 'Published',
+  'ui.playbook.delete.confirm.message': 'Are you sure you want to delete this Playbook?',
+  'ui.playbook.createNew': 'Create a new Playbook',
 
-  'play.header': 'Plays',
-  'plays.label': 'Play',
-  'plays.name': 'Name',
-  'plays.tags': 'Tags',
-  'plays.description': 'Description',
-  'plays.moves': 'Moves',
-  'plays.products': 'Products',
-  'plays.buildingBlocks': 'Building Blocks',
-  'plays.addMove': 'Add Move',
-  'plays.editMove': 'Edit Move',
-  'plays.deleteMove': 'Delete',
-  'play.created': 'Created',
-  'play.updated': 'Updated',
-  'plays.submit': 'Submit',
-  'plays.name.placeholder': 'Play Name',
-  'plays.tags.placeholder': 'Play Tags',
-  'plays.move.name': 'Move Name',
+  'ui.play.header': 'Plays',
+  'ui.play.label': 'Play',
+  'ui.play.name': 'Name',
+  'ui.play.tags': 'Tags',
+  'ui.play.description': 'Description',
+  'ui.play.moves': 'Moves',
+  'ui.play.products': 'Products',
+  'ui.play.buildingBlocks': 'Building Blocks',
+  'ui.play.addMove': 'Add Move',
+  'ui.play.editMove': 'Edit Move',
+  'ui.play.deleteMove': 'Delete',
+  'ui.play.created': 'Created',
+  'ui.play.updated': 'Updated',
+  'ui.play.submit': 'Submit',
+  'ui.play.name.placeholder': 'Play Name',
+  'ui.play.tags.placeholder': 'Play Tags',
+  'ui.play.move.name': 'Move Name',
 
-  'moves.name': 'Name',
-  'moves.name.placeholder': 'Move Name',
-  'moves.description': 'Description',
-  'moves.description.placeholder': 'Move Description',
-  'moves.resources': 'Resources',
-  'moves.forPlay': 'Move for Play',
-  'moves.addResource': 'Add Resource',
-  'moves.deleteResource': 'Delete Resource',
-  'move.assignedResources': 'Resources currently assigned. You can add or delete resources',
+  'ui.move.name': 'Name',
+  'ui.move.name.placeholder': 'Move Name',
+  'ui.move.description': 'Description',
+  'ui.move.description.placeholder': 'Move Description',
+  'ui.move.resources': 'Resources',
+  'ui.move.forPlay': 'Move for Play',
+  'ui.move.addResource': 'Add Resource',
+  'ui.move.deleteResource': 'Delete Resource',
+  'ui.move.assignedResources': 'Resources currently assigned. You can add or delete resources',
 
-  'rubric-categories.header': 'Rubric Categories',
-  'rubric-category.label': 'Rubric Category',
-  'rubric-category.weight': 'Weight',
-  'rubric-category.delete.confirm.message': 'Are you sure you want to delete this Rubric Category?',
-  'rubric-category.no-indicator': 'We do not have any Indicator information for this Rubric Category.',
+  'ui.rubricCategory.header': 'Rubric Categories',
+  'ui.rubricCategory.label': 'Rubric Category',
+  'ui.rubricCategory.weight': 'Weight',
+  'ui.rubricCategory.delete.confirm.message': 'Are you sure you want to delete this Rubric Category?',
+  'ui.rubricCategory.no-indicator': 'We do not have any Indicator information for this Rubric Category.',
 
   'category-indicators.label': 'Indicators',
 
-  'resource.name': 'Resource Name',
-  'resource.description': 'Resource Description',
-  'resource.url': 'Resource URL',
-  'resource.header': 'Resources',
-  'resource.label': 'Resource',
+  'ui.resource.name': 'Resource Name',
+  'ui.resource.description': 'Resource Description',
+  'ui.resource.url': 'Resource URL',
+  'ui.resource.header': 'Resources',
+  'ui.resource.label': 'Resource',
+  'ui.resource.createNew': 'Create a new Resource',
 
-  'datasetType.label': 'Type',
-  'datasetType.header': 'Open Data Type',
-  'datasetType.contentOnly': 'Content',
-  'datasetType.datasetOnly': 'Dataset',
-  'datasetType.standardOnly': 'Standard',
-  'datasetType.aiModelOnly': 'AI Model',
-  'datasetType.allType': 'All Types',
+  'ui.datasetType.label': 'Type',
+  'ui.datasetType.header': 'Open Data Type',
+  'ui.datasetType.contentOnly': 'Content',
+  'ui.datasetType.datasetOnly': 'Dataset',
+  'ui.datasetType.standardOnly': 'Standard',
+  'ui.datasetType.aiModelOnly': 'AI Model',
+  'ui.datasetType.allType': 'All Types',
 
-  'dataset.name': 'Dataset Name',
-  'dataset.aliases': 'Dataset Other Name',
-  'dataset.visualizationUrl': 'Dataset Visualization URL',
-  'dataset.type.content': 'Content',
-  'dataset.type.dataset': 'Dataset',
-  'dataset.type.aiModel': 'AI Model',
-  'dataset.type.standard': 'Standard',
-  'dataset.datasetType': 'Dataset Type',
-  'dataset.submit': 'Submit',
-  'dataset.submit.success': 'Dataset submitted successfully.',
-  'dataset.submit.failure': 'Dataset submission failed.',
-  'dataset.sectors.updated': 'Sectors updated successfully.',
-  'dataset.organizations.updated': 'Organizations updated successfully.',
-  'dataset.tags.updated': 'Tags updated successfully.',
-  'dataset.sdgs.updated': 'SDGs updated successfully.',
-  'dataset.sdg.mappingStatus': 'Mapping Status',
+  'ui.dataset.name': 'Open Data Name',
+  'ui.dataset.website': 'Open Data Website',
+  'ui.dataset.aliases': 'Open Data Other Name',
+  'ui.dataset.visualizationUrl': 'Open Data Visualization URL',
+  'ui.dataset.type.content': 'Content',
+  'ui.dataset.type.dataset': 'Dataset',
+  'ui.dataset.type.aiModel': 'AI Model',
+  'ui.dataset.type.standard': 'Standard',
+  'ui.dataset.datasetType': 'Open Data Type',
+  'ui.dataset.submit': 'Submit',
+  'ui.dataset.submit.success': 'Open data submitted successfully.',
+  'ui.dataset.submit.failure': 'Open data submission failed.',
+  'ui.dataset.sectors.updated': 'Sectors updated successfully.',
+  'ui.dataset.organizations.updated': 'Organizations updated successfully.',
+  'ui.dataset.tags.updated': 'Tags updated successfully.',
+  'ui.dataset.sdgs.updated': 'SDGs updated successfully.',
+  'ui.dataset.sdg.mappingStatus': 'Mapping Status',
 
-  'dataset.no-sector': 'We do not have sector information for this dataset.',
-  'dataset.no-organization': 'We do not have organization information for this dataset.',
-  'dataset.no-tag': 'We do not have tag information for this dataset.',
-  'dataset.no-sdg': 'We do not have SDG information for this dataset.',
-  'dataset.no-country': 'We do not have country information for this dataset.',
+  'ui.dataset.no-sector': 'We do not have sector information for this dataset.',
+  'ui.dataset.no-organization': 'We do not have organization information for this dataset.',
+  'ui.dataset.no-tag': 'We do not have tag information for this dataset.',
+  'ui.dataset.no-sdg': 'We do not have SDG information for this dataset.',
+  'ui.dataset.no-country': 'We do not have country information for this dataset.',
 
-  'dataset.view-DPGA-data': 'View information submitted to DPGA',
+  'ui.dataset.view-DPGA-data': 'View information submitted to DPGA',
 
-  'dataset.hint.subtitle': 'Open data is data that anyone can easily access, use, analyze, share, and redistribute.',
-  'dataset.hint.descriptionTitle': 'Description',
-  'dataset.hint.description': `<div className='flex flex-col gap-2'><div>Open data presents a key opportunity to attain the Sustainable Development Goal(s) by helping accelerate technical innovation by allowing software and AI models to be more precise and therefore deepen their potential positive impact on development. With greater access to data, policymakers can be equipped with the information and knowledge to make informed decisions while fostering greater accountability and transparency.</div><div>In this tab, you can find links to freely available datasets that can help with your own digital transformation initiatives. Key documentation is also available including a description of the dataset, the organization which is maintaining it, information on updates and licenses, the sector it provides data for, geographic coverage, etc.</div></div>`,
+  'ui.dataset.hint.subtitle': 'Open data is data that anyone can easily access, use, analyze, share, and redistribute.',
+  'ui.dataset.hint.descriptionTitle': 'Description',
+  'ui.dataset.hint.description': `<div className='flex flex-col gap-2'><div>Open data presents a key opportunity to attain the Sustainable Development Goal(s) by helping accelerate technical innovation by allowing software and AI models to be more precise and therefore deepen their potential positive impact on development. With greater access to data, policymakers can be equipped with the information and knowledge to make informed decisions while fostering greater accountability and transparency.</div><div>In this tab, you can find links to freely available datasets that can help with your own digital transformation initiatives. Key documentation is also available including a description of the dataset, the organization which is maintaining it, information on updates and licenses, the sector it provides data for, geographic coverage, etc.</div></div>`,
 
   'map.aggregator.loadingData': 'Loading map\'s aggregator data ...',
   'map.project.loadingData': 'Loading map\'s project data ...',
@@ -801,9 +851,14 @@ export const en = {
   'organization.endorsedOn': 'Endorsed On',
   'organization.visitWebsite': 'Visit website',
 
+  'product.hint.title': 'What is a Product?',
   'product.hint.characteristicTitle': 'Reading the Product Cards',
   'product.hint.descriptionTitle': 'Icons used on the product cards',
-  'product.hint.subtitle': `A Product is a specific technology offering that is designed to implement one or more Building Blocks.`,
+  'product.hint.subtitle': `
+    Our repository contains over 500 solutions already used to address real-world development problems.
+    Access information on digital public goods, commercial software and apps, and digital public
+    infrastructure that can help you meet your needs.
+  `,
   'product.hint.characteristics': `The product cards provide a quick overview of each digital tool, including information on the SDGs that the product is designed to support, as well as any building blocks that may be supported by the product. The cards show how the product is licensed as well as information about our sources of information for the product.`,
   'product.hint.description': `<ul><li><img class='m-1.5 h-5 inline' src='/icons/check/check.png' /><span class='inline p-2'>Indicates that the product has been endorsed by a vetting organization</span></li><li><img class='m-1.5 h-5 inline' src='/icons/digiprins/digiprins.png' /><span class='inline p-2'>Indicates that the product is maintained by a Digital Principles endorser </span></li><li><img class='m-1.5 h-5 inline' src='/icons/coronavirus/coronavirus.png' /><span class='inline p-2'>Indicates that the product can be used to support COVID-19 response</span></li></ul>`,
 
@@ -813,12 +868,13 @@ export const en = {
   'project.hint.characteristics': `Projects provide insight into where specific digital technologies have been deployed. Users of the Exchange can search and filter projects by country or sector.`,
   'project.hint.description': `Project data is sourced from many different partners, including the World Health Organization's Digital Health Atlas, the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.`,
 
-  'playbook.hint.subtitle': `Playbooks are tactical guides that  help different actors approach common digital initiatives. They provide step-by-step instructions and highlight key technical and operational considerations.`,
-  'playbook.hint.characteristicTitle': 'Description',
-  'playbook.hint.descriptionTitle': 'Sources',
-  'playbook.hint.characteristics': `Playbooks help answer common questions such as how to address a use case, apply a workflow, deploy a product, work with a partner, or even build capacity within a team. They have several components:<ul><li>Audience: the intended user of the guidance material</li><li>Outcomes: the intended outcome of the playbook</li><li>Plays: the combination of tasks (moves) that a group must do to carry out an action. Each playbook can have a series of plays. Plays are reusable and can be added to multiple playbooks.</li><li>Moves: the individual tasks that comprise a play. Each play can have multiple moves, and moves can also link to external sources.</li></ul>`,
-  'playbook.hint.description': `Each playbook has a unique source, as listed. If you have content you would like to turn into a playbook, contact our team at issues@exchange.dial.global`,
-  'playbook.hint.createPlaybooks': 'Sign up or login to create playbooks',
+  'ui.playbook.whatIs': 'What is a Playbook?',
+  'ui.playbook.hint.subtitle': `Playbooks are tactical guides that  help different actors approach common digital initiatives. They provide step-by-step instructions and highlight key technical and operational considerations.`,
+  'ui.playbook.hint.characteristicTitle': 'Description',
+  'ui.playbook.hint.descriptionTitle': 'Sources',
+  'ui.playbook.hint.characteristics': `Playbooks help answer common questions such as how to address a use case, apply a workflow, deploy a product, work with a partner, or even build capacity within a team. They have several components:<ul><li>Audience: the intended user of the guidance material</li><li>Outcomes: the intended outcome of the playbook</li><li>Plays: the combination of tasks (moves) that a group must do to carry out an action. Each playbook can have a series of plays. Plays are reusable and can be added to multiple playbooks.</li><li>Moves: the individual tasks that comprise a play. Each play can have multiple moves, and moves can also link to external sources.</li></ul>`,
+  'ui.playbook.hint.description': `Each playbook has a unique source, as listed. If you have content you would like to turn into a playbook, contact our team at issues@exchange.dial.global`,
+  'ui.playbook.hint.createPlaybooks': 'Sign up or login to create playbooks',
 
   'organization.hint.characteristicTitle': 'Description',
   'organization.hint.descriptionTitle': 'Types of Organizations',
@@ -826,9 +882,14 @@ export const en = {
   'organization.hint.characteristics': `The organization cards provide a quick overview of each organization, including information on the products they support, the projects or work they have been connected to, the sectors they are engaged with and the countries in which they work.`,
   'organization.hint.description': `The Exchange tracks several different types of organizations:<ul><li>Organizations that have endorsed the Principles for Digital Development</li><li>Mobile Network Aggregators</li><li>Funders and Maintainers of open source tools (products)</li></ul>`,
 
+  'useCase.hint.title': 'What is a Use Case?',
   'useCase.hint.characteristicTitle': 'Characteristics',
   'useCase.hint.descriptionTitle': 'Description',
-  'useCase.hint.subtitle': `A Use Case defines the steps that an individual or system will undertake in order to achieve a business objective.`,
+  'useCase.hint.subtitle': `
+    Browse our library of use cases from health and agriculture to gender and education and see how
+    they meet the needs of people and communities. Our use cases describe the sequence of steps and
+    interactions between users and systems that are required to provide a service to the public.
+  `,
   'useCase.hint.characteristics': `<ul><li>User-centric description of the steps or user journeys required to deliver an outcome</li><li>Identifies one or more SDG Targets as its business objective</li><li>Describes the generic WorkFlows and business processes involved in each step in the Use Case</li><li>Typically sector-specific</li><li>Able to be improved through digital technology</li></ul>`,
   'useCase.hint.description': `Each Use Case model describes primary actors, key steps involved in achieving a specified business objective, descriptions of the WorkFlows and ICT Building Blocks involved in each step, and mappings to SDG Targets. The list of Use Case models is not exhaustive and more will be added in future releases.`,
 
@@ -854,13 +915,13 @@ export const en = {
   'tag.header': 'Tags',
   'tag.delete.confirm.message': 'Are you sure you want to delete this Tag?',
 
-  'service.label': 'Service',
-  'service.header': 'Services',
+  'ui.service.label': 'Service',
+  'ui.service.header': 'Services',
 
-  'operator.label': 'Operator',
-  'operator.header': 'Operators',
+  'ui.operator.label': 'Network Operator',
+  'ui.operator.header': 'Network Operators',
 
-  'aggregator.label': 'Aggregator',
+  'ui.aggregator.label': 'Aggregator',
   'map.loading.indicator': 'Updating map data ...',
   'tooltip.endorsed': 'This product has been endorsed by one or more vetting organizations.',
   'tooltip.covid': 'This product has been tagged as relevant for COVID response.',
@@ -1162,7 +1223,7 @@ export const en = {
   'app.shareFailed': 'Unable to copy sharable link to your clipboard.',
 
   'overlay.close': 'Dismiss Notification',
-  'overlay.message': 'Filter data from your URL have been applied.',
+  'overlay.message': 'Filter data from your URL has been applied.',
 
   'exampleOf.entity': 'Example of {entity}',
   'noResults.entity': 'No {entity} results found',
@@ -1182,14 +1243,14 @@ export const en = {
   'covid.description.secondArea': 'Provide tools to quickly set up messaging platforms.',
   'covid.description.thirdArea': 'Link to other resources developed by partner organizations.',
 
-  'covid.exploreCatalog': 'Explore the Catalog',
+  'covid.exploreCatalog': 'Explore the Exchange',
 
   'covid.firstArea.title': 'Using the Digital Impact Exchange for Product Discovery',
-  'covid.firstArea.firstText': `<p>Governments and organizations are looking for digital tools to help with COVID-19 surveillance, diagnosis, prevention and treatment.</p><p>However, they may not know that there are mature open source solutions that are ready to be deployed to support these needs.</p><p><firstLink>The Online Catalog</firstLink> contains a list of open source products that support the SDGs.</p><p>Users can filter products by the SDGs that they are designed to address, the use cases that they are connected to, or the building blocks that they support.</p>`,
+  'covid.firstArea.firstText': `<p>Governments and organizations are looking for digital tools to help with COVID-19 surveillance, diagnosis, prevention and treatment.</p><p>However, they may not know that there are mature open source solutions that are ready to be deployed to support these needs.</p><p><firstLink>The Digital Impact Exchange</firstLink> contains a list of open source products that support the SDGs.</p><p>Users can filter products by the SDGs that they are designed to address, the use cases that they are connected to, or the building blocks that they support.</p>`,
   'covid.firstArea.secondText': `<p>Several of the products in the catalog have been tagged as supporting specific functionality needed for COVID-19 response.</p><p>To see these products, use the "<b>COVID-19</b>" tag in the filter section.</p><p>Click on a specific product to get detailed information about the product.</p>`,
   'covid.firstArea.thirdText': `<p>The product details page will provide a description of the product, links to the product website and code repository, as well as other relevant data about the product.</p>`,
-  'covid.secondArea.title': 'Using the Online Catalog for Mobile Messaging Response',
-  'covid.secondArea.firstText': `<p>Governments and organizations need to provide regular information to their constituents. Mobile messaging channels are extremely effective, but can be time-consuming and expensive to set up.</p><p>But DIAL can help. We have developed relationships with several mobile network aggregators around the world. These aggregators have established relationships with mobile network operators and can configure mobile services very quickly and easily. A mobile messaging solution can be established in a matter of hours.</p><p>The DIAL online catalog lists mobile network service integrators that provide mobile service delivery around the world and services offered.</p><p>Click on this link to see the <firstLink>aggregator map</firstLink>.</p><p>You can also navigate to <secondLink>the main product page</secondLink>, click the "<b>Maps</b>"section on the filter tab and click on"<b>Map of Aggregator & Operator</b>".</p>`,
+  'covid.secondArea.title': 'Using the Digital Impact Exchange for Mobile Messaging Response',
+  'covid.secondArea.firstText': `<p>Governments and organizations need to provide regular information to their constituents. Mobile messaging channels are extremely effective, but can be time-consuming and expensive to set up.</p><p>But DIAL can help. We have developed relationships with several mobile network aggregators around the world. These aggregators have established relationships with mobile network operators and can configure mobile services very quickly and easily. A mobile messaging solution can be established in a matter of hours.</p><p>The Digital Impact Exchange lists mobile network service integrators that provide mobile service delivery around the world and services offered.</p><p>Click on this link to see the <firstLink>aggregator map</firstLink>.</p><p>You can also navigate to <secondLink>the main product page</secondLink>, click the "<b>Maps</b>"section on the filter tab and click on"<b>Map of Aggregator & Operator</b>".</p>`,
   'covid.secondArea.secondText': `<p>On the map page, click on a country to show which aggregators work in that country. Click on an aggregator in that list to see detailed information about the services that they offer and which network operators they partner with.</p>`,
   'covid.secondArea.thirdText': `<p>Select an aggregator to view the details for that provider. The Operators section shows which services are available by country and which network operators provide those services.</p><p>For example, if you are looking for Bulk SMS services in Kenya, you can expand the SMS menu and see that these services are offered by this aggregator through Safaricom.</p>`,
   'covid.secondArea.fourthText': `<p>Alternatively, <firstLink>this link</firstLink> will display a page that shows all of the mobile aggregators in the catalog. Select any aggregator to see which countries they work in, which mobile network operators they partner with, and the specific service offerings they provide.</p>`,
@@ -1203,7 +1264,7 @@ export const en = {
   'app.resetPassword': 'Reset Password',
   'reset.email': 'Email Address',
   'reset.email.placeholder': 'Account email address',
-  'reset.created': 'Instruction to reset your password have been sent to your email address. Redirecting ...',
+  'reset.created': 'Instructions to reset your password have been sent to your email address. Redirecting ...',
 
   'app.updatePassword': 'Update Password',
   'reset.password': 'Password',
@@ -1213,49 +1274,53 @@ export const en = {
   'reset.tokenInvalid': 'Reset token is invalid.',
   'reset.applied': 'Password updated successfully. Redirecting ...',
 
-  'candidateProduct.label': 'Candidate Product',
-  'candidateOrganization.label': 'Candidate Organization',
-  'candidateDataset.label': 'Candidate Open Data',
+  'ui.candidateProduct.label': 'Candidate Product',
+  'ui.candidateOrganization.label': 'Candidate Organization',
+  'ui.candidateDataset.label': 'Candidate Open Data',
 
-  'candidateProduct.name': 'Name',
-  'candidateProduct.name.placeholder': 'Name of the candidate product.',
-  'candidateProduct.website': 'Website',
-  'candidateProduct.website.placeholder': 'Website of the candidate product.',
-  'candidateProduct.description': 'Description',
-  'candidateProduct.description.placeholder': 'Description of the candidate product.',
-  'candidateProduct.repository': 'Code Repository',
-  'candidateProduct.repository.placeholder': 'Code repository of the candidate product',
-  'candidateProduct.email': 'Your Email Address',
-  'candidateProduct.email.placeholder': 'Email address of submitter.',
-  'candidateProduct.submit': 'Submit Candidate Product',
-  'candidateProduct.created': 'Candidate product submitted successfully. Redirecting ...',
-  'candidateProduct.website.hint': 'Website of the candidate product.',
-  'candidateProduct.repository.hint': 'Code repository of the candidate product.',
-  'candidate-product.submit.success': 'Candidate Product submitted successfully',
-  'candidate-product.submit.failure': 'Candidate Product submission failed',
+  'ui.candidateProduct.name': 'Name',
+  'ui.candidateProduct.name.placeholder': 'Name of the candidate product.',
+  'ui.candidateProduct.website': 'Website',
+  'ui.candidateProduct.website.placeholder': 'Website of the candidate product.',
+  'ui.candidateProduct.description': 'Description',
+  'ui.candidateProduct.description.placeholder': 'Description of the candidate product.',
+  'ui.candidateProduct.repository': 'Code Repository',
+  'ui.candidateProduct.repository.placeholder': 'Code repository of the candidate product',
+  'ui.candidateProduct.email': 'Your Email Address',
+  'ui.candidateProduct.email.placeholder': 'Email address of submitter.',
+  'ui.candidateProduct.submit': 'Submit Candidate Product',
+  'ui.candidateProduct.created': 'Candidate product submitted successfully. Redirecting ...',
+  'ui.candidateProduct.website.hint': 'Website of the candidate product.',
+  'ui.candidateProduct.repository.hint': 'Code repository of the candidate product.',
+  'ui.candidateProduct.submit.success': 'Candidate Product submitted successfully',
+  'ui.candidateProduct.submit.failure': 'Candidate Product submission failed',
 
-  'candidateOrganization.organizationName': 'Organization Name',
-  'candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
-  'candidateOrganization.website': 'Organization Website',
-  'candidateOrganization.website.placeholder': 'Website of the candidate organization.',
-  'candidateOrganization.description': 'Description',
-  'candidateOrganization.description.placeholder': 'Description of the candidate organization.',
-  'candidateOrganization.name': 'Your Name',
-  'candidateOrganization.name.placeholder': 'Your name, submitter of the candidate organization.',
-  'candidateOrganization.email': 'Your Email',
-  'candidateOrganization.email.placeholder': 'Your email, submitter of the candidate organization.',
-  'candidateOrganization.title': 'Your Title',
-  'candidateOrganization.title.placeholder': 'Your title, submitter of the candidate organization.',
-  'candidateOrganization.submit': 'Submit Candidate Organization',
-  'candidate-organization.submit.success': 'Candidate Organization submitted successfully',
-  'candidate-organization.submit.failure': 'Candidate Organization submission failed',
-  'candidateOrganization.website.hint': 'Website of the candidate organization.',
+  'ui.candidateOrganization.organizationName': 'Organization Name',
+  'ui.candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
+  'ui.candidateOrganization.website': 'Organization Website',
+  'ui.candidateOrganization.website.placeholder': 'Website of the candidate organization.',
+  'ui.candidateOrganization.description': 'Description',
+  'ui.candidateOrganization.description.placeholder': 'Description of the candidate organization.',
+  'ui.candidateOrganization.name': 'Your Name',
+  'ui.candidateOrganization.name.placeholder': 'Your name, submitter of the candidate organization.',
+  'ui.candidateOrganization.email': 'Your Email',
+  'ui.candidateOrganization.email.placeholder': 'Your email, submitter of the candidate organization.',
+  'ui.candidateOrganization.title': 'Your Title',
+  'ui.candidateOrganization.title.placeholder': 'Your title, submitter of the candidate organization.',
+  'ui.candidateOrganization.submit': 'Submit Candidate Organization',
+  'ui.candidateOrganization.submit.success': 'Candidate Organization submitted successfully',
+  'ui.candidateOrganization.submit.failure': 'Candidate Organization submission failed',
+  'ui.candidateOrganization.website.hint': 'Website of the candidate organization.',
 
-  'candidate-dataset.submit': 'Submit Candidate Open Data',
-  'candidate-dataset.submit.success': 'Candidate Open Data submitted successfully',
-  'candidate-dataset.submit.failure': 'Candidate Open Data submission failed',
-  'candidateDataset.website.hint': 'Data URL of the Candidate Open Data',
-  'candidateDataset.datasetType.hint': 'Data Type of the Candidate Open Data',
+  'ui.candidateDataset.name': 'Name of the Candidate Open Data',
+  'ui.candidateDataset.submit': 'Submit Candidate Open Data',
+  'ui.candidateDataset.submit.success': 'Candidate Open Data submitted successfully.',
+  'ui.candidateDataset.submit.failure': 'Candidate Open Data submission failed.',
+  'ui.candidateDataset.logo.hint': 'Website of the Candidate Open Data',
+  'ui.candidateDataset.visualizationUrl.hint': 'Visualization url of the Candidate Open Data',
+  'ui.candidateDataset.website.hint': 'Website of the Candidate Open Data',
+  'ui.candidateDataset.datasetType.hint': 'Data type of the Candidate Open Data',
+  'ui.candidateDataset.submitter.hint': 'Submitter of the Candidate Open Data',
 
   'candidate.header': 'Candidate',
   'candidate.rejected': 'Declined',
@@ -1288,8 +1353,8 @@ export const en = {
   'app.exportAsCSV': 'Export Data (CSV)',
   'app.notFound': '404 - Page Not Found',
 
-  'ownership.reveal': 'Contact Owner',
-  'ownership.label': 'Owner Email',
+  'product.owner.revealContact': 'Contact Owner',
+  'product.owner.contactLabel': 'Owner Email',
   'endorser.label': 'Endorsing Organization',
   'endorser.header': 'Endorsing Organizations',
 
@@ -1311,11 +1376,11 @@ export const en = {
 
   'productRepository.name': 'Repository Name',
   'productRepository.name.placeholder': 'Name of this repository.',
-  'productRepository.aboluteUrl': 'Repository Location',
-  'productRepository.absoluteUrl.placeholder': 'Abolute path / url of the repository.',
+  'productRepository.absoluteUrl': 'Repository Location',
+  'productRepository.absoluteUrl.placeholder': 'Absolute path / url of the repository.',
   'productRepository.description': 'Repository Description',
   'productRepository.description.placeholder': 'Short description of this repository.',
-  'productRepository.mainRepository.label': 'This is main repository.',
+  'productRepository.mainRepository.label': 'This is the main repository.',
   'productRepository.submit': 'Submit',
   'productRepository.cancel': 'Cancel',
   'productRepository.created': 'Product repository added.',
@@ -1334,28 +1399,28 @@ export const en = {
   'wizard.playbook.sortHint': 'Sort Playbooks',
   'wizard.dataset.sortHint': 'Sort Open Data',
 
-  'move.resources.label': 'Resource',
-  'move.resources.header': 'Resources',
+  'ui.move.resources.label': 'Resource',
+  'ui.move.resources.header': 'Resources',
 
-  'play.buildingBlocks.subtitle': 'This Play is associated with these building blocks.',
-  'play.products.subtitle': 'This Play is associated with these products.',
+  'ui.play.buildingBlocks.subtitle': 'This Play is associated with these building blocks.',
+  'ui.play.products.subtitle': 'This Play is associated with these products.',
 
-  'play.view': 'View',
-  'play.assign': 'Assign',
-  'play.preview': 'Preview',
-  'play.unassign': 'Unassign',
-  'play.error': 'Play err!',
-  'play.form.tags': 'Add tag for this play.',
-  'play.form.products': 'Add product for this play.',
-  'play.form.buildingBlocks': 'Add building block for this play.',
+  'ui.play.view': 'View',
+  'ui.play.assign': 'Assign',
+  'ui.play.preview': 'Preview',
+  'ui.play.unassign': 'Unassign',
+  'ui.play.error': 'Play err!',
+  'ui.play.form.tags': 'Add tag for this play.',
+  'ui.play.form.products': 'Add product for this play.',
+  'ui.play.form.buildingBlocks': 'Add building block for this play.',
 
-  'playbook.form.tags': 'Add tag for this playbook.',
-  'playbook.assignAnotherPlay': 'Assign another play',
-  'playbook.submitted': 'Playbook submitted.',
+  'ui.playbook.form.tags': 'Add tag for this playbook.',
+  'ui.playbook.assignAnotherPlay': 'Assign another play',
+  'ui.playbook.submitted': 'Playbook submitted.',
 
-  'move.reOrder': 'Move Order.',
+  'ui.move.reOrder': 'Move Order.',
 
-  'playbook.error': 'Playbook err!',
+  'ui.playbook.error': 'Playbook error!',
   'report.reportIssue': 'Report an Issue',
   'report.name': 'Your Name',
   'report.email': 'Email Address',
@@ -1371,36 +1436,36 @@ export const en = {
   'app.navigatingTo': 'Navigating to',
   'app.openingDetails': 'Opening details page',
 
-  'move.preview': 'Preview',
-  'move.unassign': 'Unassign',
-  'move.label': 'Move',
-  'move.header': 'Moves',
+  'ui.move.preview': 'Preview',
+  'ui.move.unassign': 'Unassign',
+  'ui.move.label': 'Move',
+  'ui.move.header': 'Moves',
 
-  'play.submitAndAssign': 'Submit and Assign',
-  'play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unnassign moves, or add a new move.',
+  'ui.play.submitAndAssign': 'Submit and Assign',
+  'ui.play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unnassign moves, or add a new move.',
 
-  'playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
-  'playbook.autoSaved': 'Playbook saved ...',
-  'playbook.author': 'Playbook Author(s)',
-  'playbook.cover': 'Playbook Cover',
-  'playbook.tags': 'Playbook Tags',
+  'ui.playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
+  'ui.playbook.autoSaved': 'Playbook saved ...',
+  'ui.playbook.author': 'Playbook Author(s)',
+  'ui.playbook.cover': 'Playbook Cover',
+  'ui.playbook.tags': 'Playbook Tags',
 
-  'playbook.openEmbedDialog': 'Create Embed',
-  'playbook.embed.title': 'Embed Playbook',
-  'playbook.embed.description': 'Display current playbook on your website by using the above code. Adjust the sizing as needed.',
-  'playbook.embed.copy': 'Copy',
-  'playbook.embed.copySuccess': 'Embed code copied to clipboard.',
-  'playbook.embed.copyFailed': 'Copying embed code failed. Please copy the code manually.',
-  'playbook.embed.unsupported': 'Embedding using iframe is not supported by your browser.',
+  'ui.playbook.openEmbedDialog': 'Create Embed',
+  'ui.playbook.embed.title': 'Embed Playbook',
+  'ui.playbook.embed.description': 'Display current playbook on your website by using the above code. Adjust the sizing as needed.',
+  'ui.playbook.embed.copy': 'Copy',
+  'ui.playbook.embed.copySuccess': 'Embed code copied to clipboard.',
+  'ui.playbook.embed.copyFailed': 'Copying embed code failed. Please copy the code manually.',
+  'ui.playbook.embed.unsupported': 'Embedding using iframe is not supported by your browser.',
 
-  'play.submittedToCreateMove': 'Play saved. Navigating to create move ...',
-  'play.submitted': 'Play saved.',
-  'play.autoSaved': 'Play saved ...',
+  'ui.play.submittedToCreateMove': 'Play saved. Navigating to create move ...',
+  'ui.play.submitted': 'Play saved.',
+  'ui.play.autoSaved': 'Auto saving play.',
 
-  'move.submitted': 'Move saved.',
-  'move.autoSaved': 'Move saved ...',
+  'ui.move.submitted': 'Move saved.',
+  'ui.move.autoSaved': 'Auto saving move.',
 
-  'resource.submitted': 'Resource saved.',
+  'ui.resource.submitted': 'Resource saved.',
   'product.launchable': 'Product Launchable',
 
   'location.header': 'Location',
@@ -1417,16 +1482,16 @@ export const en = {
   'shared.comment.delete.confirm.message': 'Are you sure you want to delete this comment?',
   'shared.comment.delete.confirm.header': 'Deleting a comment',
   'shared.comment.no-comments': 'There are no comments',
-  'shared.category-indicator.type.numeric': 'numeric',
-  'shared.category-indicator.type.scale': 'scale',
-  'shared.category-indicator.type.boolean': 'boolean',
-  'shared.category-indicator.type.scale.low': 'low',
-  'shared.category-indicator.type.scale.medium': 'medium',
-  'shared.category-indicator.type.scale.high': 'high',
-  'shared.category-indicator.type.boolean.true': 'true',
-  'shared.category-indicator.type.boolean.false': 'false',
-  'shared.category-indicator.assigned': 'Category Indicators with data',
-  'shared.category-indicator.notAssigned': 'Category Indicators without data',
+  'shared.categoryIndicator.type.numeric': 'numeric',
+  'shared.categoryIndicator.type.scale': 'scale',
+  'shared.categoryIndicator.type.boolean': 'boolean',
+  'shared.categoryIndicator.type.scale.low': 'low',
+  'shared.categoryIndicator.type.scale.medium': 'medium',
+  'shared.categoryIndicator.type.scale.high': 'high',
+  'shared.categoryIndicator.type.boolean.true': 'true',
+  'shared.categoryIndicator.type.boolean.false': 'false',
+  'shared.categoryIndicator.assigned': 'Category Indicators with data',
+  'shared.categoryIndicator.notAssigned': 'Category Indicators without data',
 
   'seo.description.about': 'The Digital Impact Exchange is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
@@ -1496,7 +1561,7 @@ export const en = {
   'toast.category-indicator.update.failure': 'Category Indicators update failed',
   'toast.playbook.delete.success': 'Playbook deleted successfully',
   'toast.playbook.delete.failure': 'Playbook deletion failed',
-  'toast.applyAsOwner.submit.success': 'Applied as {entity} Owner',
+  'toast.applyAsOwner.submit.success': 'Applied as {entity} owner',
 
   'toast.markdown.submit.success': 'Changes saved successfully.',
   'toast.markdown.submit.failure': 'Unable to save changes. Please try again later.',
@@ -1542,7 +1607,7 @@ export const en = {
   'govstack.feedback.issue': 'What feedback do you have? *',
   'govstack.feedback.submit': 'Send feedback',
 
-  'categoryIndicators.header': 'Category Indicators',
+  'categoryIndicator.header': 'Category Indicators',
   'categoryIndicator.create': 'Create Category Indicator',
   'categoryIndicator.label': 'Category Indicator',
   'categoryIndicator.weight': 'Weight',
@@ -1550,6 +1615,7 @@ export const en = {
   'categoryIndicator.dataSource': 'Data source',
   'categoryIndicator.scriptName': 'Script name',
   'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?',
+  'categoryIndicator.parent.detail': 'Parent Rubric Category',
 
   'paginatedSection.page.previous.label': '< Previous',
   'paginatedSection.page.next.label': 'Next >',
@@ -1598,44 +1664,71 @@ export const en = {
   `,
 
   'filter.entity.opportunities': 'Opportunities',
-  'opportunity.label': 'Opportunity',
-  'opportunity.header': 'Opportunities',
+  'ui.opportunity.label': 'Opportunity',
+  'ui.opportunity.header': 'Opportunities',
 
-  'opportunity.name': 'Name',
-  'opportunity.webAddress': 'Web Address',
-  'opportunity.leverist.webAddress': 'More information (at Leverist)',
-  'opportunity.imageFile': 'Logo',
-  'opportunity.openingDate': 'Opening Date',
-  'opportunity.contact': 'Contact Information',
-  'opportunity.contactName': 'Full Name',
-  'opportunity.contactEmail': 'Email Address',
-  'opportunity.opportunityType': 'Opportunity Type',
-  'opportunity.opportunityStatus': 'Opportunity Status',
-  'opportunity.openingDate': 'Opening Date',
-  'opportunity.closingDate': 'Closing Date',
-  'opportunity.description': 'Description',
+  'ui.opportunity.whatIs': 'What is RFP Radar?',
+  'ui.opportunity.createNew': 'Create a new RFP',
+  'ui.opportunity.hint.title': 'What is RFP Radar?',
+  'ui.opportunity.hint.subtitle': `
+    <p>
+      The RFP Radar aggregates requests from different organizations, allowing you to explore
+      a wide range of opportunities in one convenient location. The Exchange helps improve market
+      access to opportunities for diverse types and sizes of service providers.
+    </p>
+    <ul>
+      <li>
+        If you are a vendor, use the RFP radar to search and filter for opportunities that align
+        with your expertise. Our radar will provide you with the essential information and will
+        direct you to the application portal of the posting organization. 
+      </li>
+      <li>
+        If you are seeking services from a vendor to help you implement a digital project, post
+        the opportunity here and amplify it to the Exchange’s community of service providers.  
+      </li>
+      <li>
+        We also offer data sharing possibilities. Join others in automating a sync to the Exchange.
+        Every time you post an opportunity to your own portal, the Exchange can aggregate the information
+        directly. For more information, email us at <email>issues@exchange.dial.global</email>.
+      </li>
+    </ul>
+  `,
+
+  'ui.opportunity.name': 'Name',
+  'ui.opportunity.webAddress': 'Web Address',
+  'ui.opportunity.leverist.webAddress': 'More information (at Leverist)',
+  'ui.opportunity.imageFile': 'Logo',
+  'ui.opportunity.openingDate': 'Opening Date',
+  'ui.opportunity.contact': 'Contact Information',
+  'ui.opportunity.contactName': 'Full Name',
+  'ui.opportunity.contactEmail': 'Email Address',
+  'ui.opportunity.opportunityType': 'Opportunity Type',
+  'ui.opportunity.opportunityStatus': 'Opportunity Status',
+  'ui.opportunity.openingDate': 'Opening Date',
+  'ui.opportunity.closingDate': 'Closing Date',
+  'ui.opportunity.description': 'Description',
   'filter.opportunity.showClosed': 'Show closed opportunities',
 
-  'opportunity.source': 'Source',
+  'ui.opportunity.source': 'Source',
 
-  'opportunity.type.bid': 'Bid',
-  'opportunity.type.innovation': 'Innovation',
-  'opportunity.type.other': 'Other',
-  'opportunity.type.tender': 'Tender',
-  'opportunity.type.buildingBlock': 'Building Block',
+  'ui.opportunity.type.bid': 'Bid',
+  'ui.opportunity.type.innovation': 'Innovation',
+  'ui.opportunity.type.other': 'Other',
+  'ui.opportunity.type.tender': 'Tender',
+  'ui.opportunity.type.buildingBlock': 'Building Block',
 
-  'opportunity.status.open': 'Open',
-  'opportunity.status.closed': 'Closed',
-  'opportunity.status.upcoming': 'Upcoming',
+  'ui.opportunity.status.open': 'Open',
+  'ui.opportunity.status.closed': 'Closed',
+  'ui.opportunity.status.upcoming': 'Upcoming',
 
-  'opportunity.submit.success': 'Opportunity data saved.',
-  'opportunity.submit.failed': 'Fail to save opportunity data saved.',
+  'ui.opportunity.submit.success': 'Opportunity data saved.',
+  'ui.opportunity.submit.failed': 'Fail to save opportunity data saved.',
 
-  'opportunity.no-building-block': 'No building block assigned.',
-  'opportunity.no-country': 'No country assigned.',
-  'opportunity.no-organization': 'No organization assigned.',
-  'opportunity.no-sector': 'No sector assigned.',
-  'opportunity.no-use-case': 'No use case assigned.',
+  'ui.opportunity.no-building-block': 'No building block assigned.',
+  'ui.opportunity.no-country': 'No country assigned.',
+  'ui.opportunity.no-organization': 'No organization assigned.',
+  'ui.opportunity.no-sector': 'No sector assigned.',
+  'ui.opportunity.no-use-case': 'No use case assigned.',
 
   'toast.applyAsContentEditor.submit.success': 'Role content editor requested.',
   'contentEditor.apply': 'Apply to be content editor',
@@ -1652,66 +1745,516 @@ export const en = {
 
   'govstack.label': 'GovStack',
 
-  'play.unassign.title': 'Removing Play',
-  'play.unassign.confirmation': 'Are you sure you want to remove this play from the playbook?',
+  'ui.play.unassign.title': 'Removing Play',
+  'ui.play.unassign.confirmation': 'Are you sure you want to remove this play from the playbook?',
   'toast.playbook.unassign.success': 'Play removed from playbook.',
   'toast.playbook.unassign.failure': 'Removing play from playbook failed.',
 
-  'move.unassign.title': 'Removing Move',
-  'move.unassign.confirmation': 'Are you sure you want to remove this move from the play?',
+  'ui.move.unassign.title': 'Removing Move',
+  'ui.move.unassign.confirmation': 'Are you sure you want to remove this move from the play?',
   'toast.play.unassign.success': 'Move removed from play.',
   'toast.play.unassign.failure': 'Removing move from play failed.',
 
-  'move.submitted.success': 'Move submitted.',
+  'ui.move.submitted.success': 'Move submitted.',
 
-  'move.add': 'Add Move',
-  'move.rearrange': 'Rearrange Moves',
+  'ui.move.add': 'Add Move',
+  'ui.move.rearrange': 'Rearrange Moves',
 
-  'play.add': 'Add Play',
-  'play.rearrange': 'Rearrange Plays',
-  'play.assignExistingPlay': 'Add Existing Plays',
+  'ui.play.add': 'Add Play',
+  'ui.play.rearrange': 'Rearrange Plays',
+  'ui.play.assignExistingPlay': 'Add Existing Plays',
 
-  'toast.move.rearrange.success': 'Order for the moves saved succesffully.',
+  'toast.move.rearrange.success': 'Order for the moves saved successfully.',
   'toast.move.rearrange.failure': 'Failed to save order for the moves.',
-  'toast.play.rearrange.success': 'Order for the plays saved succesffully.',
+  'toast.play.rearrange.success': 'Order for the plays saved successfully.',
   'toast.play.rearrange.failure': 'Failed to save order for the plays.',
 
-  'resource.subHeader': `
+  'ui.resource.subHeader': `
     These article and blogs provide information about the Digital Impact Exchange
     and how it can be used to support the deployment of digital technologies.
   `,
 
   'header.blogs': 'Blogs / Articles',
 
-  'resource.label': 'Resource',
-  'resource.header': 'Resources',
-  'resource.link': 'Resource Location',
-  'resource.visitLink': 'Visit Resource',
-  'resource.imageFile': 'Resource Logo',
-  'resource.showInExchange': 'Show resource in the Exchange',
-  'resource.showInWizard': 'Show resource in the recommendation wizard',
+  'ui.resource.label': 'Resource',
+  'ui.resource.header': 'Resources',
+  'ui.resource.link': 'Resource Location',
+  'ui.resource.visitLink': 'Visit Resource',
+  'ui.resource.imageFile': 'Resource Logo',
+  'ui.resource.showInExchange': 'Show resource in the Exchange',
+  'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
 
-  'resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
-  'resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
+  'ui.resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
+  'ui.resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
 
-  'resource.submit.success': 'Resource submitted.',
-  'resource.submit.failure': 'Resource update failed.',
+  'ui.resource.submit.success': 'Resource submitted.',
+  'ui.resource.submit.failure': 'Resource update failed.',
   'toast.resource.delete.success': 'Resource deleted.',
 
-  'storefront.label': 'Storefront',
-  'storefront.header': 'Storefronts',
-  'specialty.label': 'Specialty',
-  'specialty.header': 'Specialties',
-  'certification.label': 'Certification',
-  'certification.header': 'Certifications',
+  'ui.storefront.label': 'Storefront',
+  'ui.storefront.header': 'Storefronts',
+  'ui.specialty.label': 'Specialty',
+  'ui.specialty.header': 'Specialties',
 
-  'header.marketplace': 'Marketplace',
+  'ui.certification.label': 'Certification',
+  'ui.certification.header': 'Certifications',
 
-  'storefront.no-specialty': "Organization storefront's doesn't have specialty information.",
-  'storefront.no-resource': "Organization storefront's doesn't have resource information.",
-  'storefront.no-buildingBlock': "Organization storefront's doesn't have building block information.",
-  'storefront.no-certification': "Organization storefront's doesn't have certification information.",
+  'ui.productCertification.label': 'Product Certification',
+  'ui.productCertification.header': 'Product Certifications',
+
+  'ui.buildingBlockCertification.label': 'Building Block Certification',
+  'ui.buildingBlockCertification.header': 'Building Block Certifications',
+
+  'ui.marketplace.label': 'Marketplace',
+
+  'ui.storefront.noSpecialty': "Organization's storefront doesn't have specialty information.",
+  'ui.storefront.noResource': "Organization's storefront doesn't have resource information.",
+  'ui.storefront.noBuildingBlock': "Organization's storefront doesn't have building block information.",
+  'ui.storefront.noCertification': "Organization's storefront doesn't have certification information.",
 
   'organization.heroImage': 'Hero image file',
-  'organization.hasStorefront': 'Organization has a storefront'
+  'organization.hasStorefront': 'Organization has a storefront.',
+
+  'ui.shared.jumpTo': 'Jump To',
+  'ui.shared.navigateTools': 'Navigate Tools',
+  'ui.shared.exportJson': 'Export data (JSON)',
+  'ui.shared.exportCsv': 'Export data (CSV)',
+
+  'ui.image.logoAlt': 'Logo of {name}.',
+  'ui.common.detail.description': 'Description',
+  'ui.common.detail.top': 'Top',
+  'ui.common.detail.noData': 'We do not have any {entity} information for this {base}.',
+
+  'ui.useCase.label': 'Use Case',
+  'ui.useCase.header': 'Use Cases',
+  'ui.useCase.whatIs': 'What is a Use Case?',
+  'ui.useCase.createNew': 'Create a new Use Case',
+
+  'ui.useCase.filter.showDraft': 'Show draft (non-validated) use cases',
+  'ui.useCase.filter.govStackOnly': 'Show use cases from GovStack',
+
+  'ui.useCase.detail.steps': 'Use Case Steps',
+  'ui.useCase.parent.detail': 'Parent Use Case',
+
+  'ui.useCaseStep.label': 'Use Case Step',
+  'ui.useCaseStep.header': 'Use Case Steps',
+
+  'ui.bookmark.title': 'Bookmark',
+  'ui.bookmark.subtitle': 'Your bookmarks can be found in your Account page.',
+  'ui.bookmark.bookmarkThis': 'Bookmark this page.',
+  'ui.bookmark.object.subtitle': 'The following are bookmarked {objects}.',
+  'toast.addBookmark.success': 'Page bookmarked.',
+  'toast.addBookmark.failure': 'Unable to bookmark page.',
+  'toast.removeBookmark.success': 'Bookmark removed.',
+  'toast.removeBookmark.failure': 'Unable to remove bookmark.',
+
+  'ui.comment.label': 'Comment',
+  'ui.comment.header': 'Comments',
+  'ui.comment.buttonTitle': 'Post a comment',
+  'ui.comment.description': `
+    Have a question for the community on this {entity} or have some insight you would like to share?
+  `,
+
+  'ui.share.title': 'Share',
+
+  'ui.footer.connect.title': 'Connect with us',
+  'ui.footer.connect.subTitle': `
+    Sign up for our newsletter to learn more about the Digital Impact Exchange
+    and how you can be involved.
+  `,
+  'ui.footer.connect.newsletter': 'Sign up for our newsletter',
+
+  'ui.footer.disclaimer.privacyPolicy': 'Privacy Policy',
+  'ui.footer.disclaimer.termsOfUse': 'Terms of Use',
+  'ui.footer.disclaimer.copyright': 'Copyright © {year}',
+
+  'ui.footer.poweredBy.title': 'Powered by',
+  'ui.footer.poweredBy.subTitle': `
+    The Digital Impact Exchange is a project of the Digital Impact Alliance
+  `,
+
+  'ui.footer.partner.title': 'Our partners and supporters',
+
+  'ui.ribbon.nav.ariaLabel': 'Current active navigation',
+  'ui.pagination.nextLabel': '>',
+  'ui.pagination.prevLabel': '<',
+  'ui.pagination.noRecord': 'Showing 0 total',
+  'ui.pagination.showingLabel': 'Showing {firstRecord} - {lastRecord} of {totalRecords} total',
+  'ui.pagination.loadingInfo': 'Loading page information ...',
+  'ui.pagination.loadingInfoError': 'Unable to load page information.',
+
+  'ui.sdg.label': 'SDG',
+  'ui.sdg.header': 'SDGs',
+  'ui.sdg.longLabel': 'Sustainable Development Goal',
+  'ui.sdg.longHeader': 'Sustainable Development Goals',
+
+  'ui.sdgTarget.label': 'SDG Target',
+  'ui.sdgTarget.header': 'SDG Targets',
+  'ui.sdgTarget.target': 'Target',
+
+  'ui.sdgTarget.longLabel': 'Sustainable Development Goal Target',
+  'ui.sdgTarget.longHeader': 'Sustainable Development Goal Targets',
+
+  'ui.product.label': 'Product',
+  'ui.product.header': 'Products',
+  'ui.product.whatIs': 'What is a Product?',
+  'ui.product.createNew': 'Create a new Product',
+
+  'ui.project.label': 'Project',
+  'ui.project.header': 'Projects',
+  'ui.project.whatIs': 'What is a Product?',
+  'ui.project.createNew': 'Create a new Product',
+  'project.hint.title': 'What is a Use Case?',
+
+  'ui.product.pricing.title': 'Pricing Information',
+  'ui.product.pricing.hostingModel': 'Hosting Model',
+  'ui.product.pricing.pricingModel': 'Pricing Model',
+  'ui.product.pricing.detailPricing': 'Detail Pricing Information',
+  'ui.product.details': 'Product Details',
+  
+  'ui.maturityScore.label': 'Maturity Score',
+  'ui.maturityScore.header': 'Maturity Scores',
+  'ui.maturityScore.subtitle': `
+    These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center.
+    These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For
+    more information visit the Exchange Documentation
+  `,
+
+  'ui.dataset.label': 'Dataset',
+  'ui.dataset.header': 'Datasets',
+  'ui.dataset.whatIs': 'What is Open Data?',
+  'ui.dataset.createNew': 'Create new Open Data',
+  'ui.dataset.hint.title': 'What is Open Data?',
+
+  'ui.datasetType.label': 'Dataset Type',
+  'ui.datasetType.header': 'Dataset Types',
+
+  'ui.workflow.label': 'Workflow',
+  'ui.workflow.header': 'Workflows',
+  'ui.workflow.whatIs': 'What is a Workflow?',
+  'ui.workflow.createNew': 'Create a new Workflow',
+  'workflow.hint.title': 'What is a Workflow?',
+
+  'ui.licenseType.label': 'License Type',
+  'ui.licenseType.header': 'License Types',
+
+  'ui.origin.label': 'Origin',
+  'ui.origin.header': 'Origins',
+
+  'ui.organization.label': 'Organization',
+  'ui.organization.header': 'Organizations',
+  'ui.organization.whatIs': 'What is an Organization?',
+  'ui.organization.createNew': 'Create a new Organization',
+  'organization.hint.title': 'What is an Organization?',
+  'ui.organization.disclaimer': `
+    The following organizations support the development and / or implementation of this {entity}.
+  `,
+
+  'ui.endorsingYear.label': 'Endorsing Year',
+
+  'ui.sector.label': 'Sector',
+  'ui.sector.header': 'Sectors',
+
+  'ui.user.label': 'User',
+  'ui.user.header': 'Users',
+  'ui.profile.title': 'Your account',
+  'ui.profile.label': 'Profile',
+  'ui.profile.bookmark': 'Your bookmarks',
+
+  'ui.buildingBlock.label': 'Building Block',
+  'ui.buildingBlock.header': 'Building Blocks',
+  'ui.buildingBlock.whatIs': 'What is a Building Block?',
+  'ui.buildingBlock.createNew': 'Create a new Building Block',
+  'ui.buildingBlock.disclaimer': `
+    Note: As part of the GovStack Initiative, DIAL is working to map digital platforms
+    with key Building Block functionalities. Currently, all mappings between products
+    and building blocks are "Beta" and are shown as illustrative examples of how these
+    tools may support building block functionalities. As Building Block specifications
+    are developed, products that are aligned with the specifications will be tagged as
+    such.
+  `,
+
+  'ui.buildingBlock.filter.showMature': 'Show only published building blocks',
+  'ui.categoryType.label': 'Building Block Category Type',
+
+  'ui.tag.label': 'Tag',
+  'ui.tag.header': 'Tags',
+
+  'ui.sdg.label': 'SDG',
+  'ui.sdg.header': 'SDGs',
+
+  'ui.exchange.title': 'The Digital Exchange Marketplace',
+
+  'ui.opportunity.label': 'RFP',
+  'ui.opportunity.header': 'RFP Radar',
+
+  'ui.storefront.label': 'Storefront',
+  'ui.storefront.header': 'Storefronts',
+
+  'ui.storefront.whatIs': 'What is a Storefront?',
+  'ui.storefront.createNew': 'Create a new Storefront',
+  'ui.storefront.hint.title': 'What is a Storefront?',
+  'ui.storefront.hint.subtitle': `
+    <p>
+      Our online storefronts provide vendors with a dedicated marketing space to highlight their
+      products and services.
+    </p>
+    <ul>
+      <li>
+          Vendors, showcase your digital solutions to a global audience. Engage with potential customers,
+          establish credibility, and expand your reach. Join the vibrant community of solution providers
+          on the Exchange. Simply sign up for an account and create your storefront.
+      </li>
+    </ul>
+    <div>
+      <sub>For a how-to guide, please look at the <a>playbook</a>.</sub>
+      <sub>
+        Use the form to add media content, external links, or specialties. Highlight the building
+        blocks or use cases you have expertise in.
+      </sub>
+    </div>
+    <ul>
+      <li>
+        Are you seeking services from a vendor to help you implement a digital project? Browse
+        storefronts to see which vendors have expertise and invite them to apply/bid to your
+        opportunity.
+      </li>
+    </ul>  
+  `,
+
+  'ui.country.label': 'Country',
+  'ui.country.header': 'Countries',
+  'ui.country.logoAlt': 'Flag for country: {countryName}.',
+  'ui.country.createNew': 'Create a new Country',
+
+  'ui.compareTool.label': 'Comparison Tool',
+  'ui.compareTool.header': 'Comparison Tools',
+
+  'ui.filter.filteredBy': 'Filtered by',
+  'ui.filter.primary.title': 'Filter your results by',
+  'ui.filter.secondary.title': 'Refine with {entity} filters',
+  'ui.filter.additional.title': 'Refine with more filters',
+  'ui.filter.clearAll': 'Clear all',
+
+  'ui.tool.getStarted': `Let's get started`,
+
+  'ui.url.label': 'URL',
+  'ui.url.header': 'URLs',
+
+  'ui.office.label': 'Office',
+  'ui.office.header': 'Offices',
+
+  'ui.region.label': 'Region / State / Province',
+  'ui.region.header': 'Regions / States / Provinces',
+
+  'ui.city.label': 'City',
+  'ui.city.header': 'Cities',
+  'ui.city.description': 'City in {regionName}, {countryName}.',
+  'ui.city.createNew': 'Create a new City',
+
+  'ui.candidate.submitter': 'Submitted by',
+  'ui.candidate.submittedOn': 'Submitted on',
+  'ui.candidate.approvedBy': 'Approved by',
+  'ui.candidate.approvedOn': 'Approved on',
+  'ui.candidate.rejectedBy': 'Rejected by',
+  'ui.candidate.rejectedOn': 'Rejected on',
+
+  'ui.candidateProduct.label': 'Candidate Product',
+  'ui.candidateProduct.header': 'Candidate Products',
+  'ui.candidateProduct.createNew': 'Create a new Candidate Product',
+
+  'ui.candidateOrganization.label': 'Candidate Organization',
+  'ui.candidateOrganization.header': 'Candidate Organizations',
+  'ui.candidateOrganization.createNew': 'Create a new Candidate Organization',
+
+  'ui.candidateDataset.label': 'Candidate Dataset',
+  'ui.candidateDataset.header': 'Candidate Datasets',
+  'ui.candidateDataset.createNew': 'Create a new Candidate Dataset',
+
+  'ui.candidateRole.label': 'Candidate Role',
+  'ui.candidateRole.header': 'Candidate Roles',
+  'ui.candidateRole.createNew': 'Create a new Candidate Role',
+
+  'ui.marketplace.tagLine': `
+    Are you an organization searching for digital solutions, or a vendor looking for clients
+    for your products? Our Marketplace provides an efficient way to connect organizations to
+    opportunities through features such as the RFP (request for proposals) Opportunities Radar,
+    a comprehensive digital product comparison tool, and online storefronts for vendors. We
+    are making the process seamless, so you can do business better.
+  `,
+  'ui.opportunity.tagLine': `
+    Say goodbye to endless hours spent sifting through individual RFPs. Our RFP Opportunities
+    Radar aggregates requests from organizations, allowing you to explore a wide range of
+    opportunities in one convenient location. Gain unprecedented visibility into the digital
+    landscape and seize opportunities that align with your expertise. Have an opportunity
+    you’d like to circulate? Submit it here.
+  `,
+  'ui.opportunity.subTagLine': 'Learn more about RFP radar.',
+  'ui.storefront.tagLine': `
+    Vendors, showcase your digital solutions to a global audience. Our online storefronts
+    provide you with a dedicated marketing space to highlight your products and services.
+    Engage with potential customers, establish credibility, and expand your reach. Join
+    the vibrant community of solution providers on the Exchange.
+  `,
+  'ui.storefront.subTagLine': 'Explore Storefronts.',
+  'ui.compareTool.tagLine': `
+    Making informed product decisions just got easier. Our powerful product comparison
+    tool enables you to evaluate multiple solutions side by side. Compare features,
+    functionalities, and maturity scores to find the perfect match for your requirements.
+  `,
+  'ui.compareTool.subTagLine': 'Launch the comparison tool.',
+
+  'ui.tool.tagLine': `
+    Welcome to the Digital Impact Exchange, a gateway to the world of digital solutions for
+    e-government. No matter which sector or Sustainable Development Goal you are focused on,
+    the Exchange can help you build better services for people and communities.  Start with
+    some of the popular options below.
+  `,
+
+  'ui.hero.exchange.title': 'Welcome',
+  'ui.hero.exchange.tagLine': `
+    The Digital Impact Exchange enables digital change-makers to connect,
+    collaborate and exchange tools, knowledge and best practices in the
+    collective pursuit of the Sustainable Development Goals
+  `,
+
+  'ui.hero.govExchange.title': 'GovExchange',
+  'ui.hero.govExchange.tagLine': 'A key offering of GovStack. Find building blocks, use cases, products and more.',
+  'ui.hero.govExchange.learnMore': 'Learn more about GovStack',
+
+  'ui.wizard.title': 'New to the Digital Impact Exchange?',
+  'ui.wizard.tagLine': `
+    Our Recommendations Wizard can help get you started to find you a curated
+    list of resources, tailored to wherever you are in a project lifecycle —
+    ideation, planning, implementation, or monitoring/evaluation.
+  `,
+  'ui.wizard.launch': 'Launch Recommendations Wizard',
+
+  'toast.submit.success': '{entity} submitted successfully.',
+  'toast.submit.failure': 'Failed to submit {entity}.',
+  'toast.delete.success': '{entity} deleted successfully.',
+  'toast.delete.success': 'Failed to delete {entity}.',
+
+  'delete.confirm.message': 'Are you sure you want to delete this {entity}?',
+
+  'ui.starredObject.createSuccess': '{entity} starred.',
+  'ui.starredObject.createFailure': 'Unable to star the {entity}.',
+  'ui.starredObject.removeSuccess': '{entity} star removed.',
+  'ui.starredObject.createFailure': 'Unable to remove star from the {entity}.',
+
+  'ui.wizard.label': 'Recommendation wizard',
+  'ui.wizard.currentStep': 'You are here',
+  'ui.wizard.parameters.base': 'Project parameters',
+  'ui.wizard.parameters.base.description': `
+    Let’s start by defining the steps your project will take to achieve its objective (Use cases),
+    which sectors your project supports, and any Sustainable Development Goals it may support.
+  `,
+  'ui.wizard.parameters.refine': 'Refine parameters',
+  'ui.wizard.parameters.refine.description': `
+    In this step you can further refine your selections to get a more tailored list of resources for
+    your project. If none of these apply simply leave them black and click on Next Step.`
+  ,
+  'ui.wizard.parameters.buildingBlocks': 'Building blocks',
+  'ui.wizard.parameters.buildingBlocks.description': `
+    Building blocks form the foundations of Use cases and are enterprise-ready, reusable software
+    components providing key functionality facilitating generic WorkFlows across multiple sectors.
+  `,
+  'ui.wizard.nextStep': 'Next Step',
+  'ui.wizard.previousStep': 'Back',
+  'ui.wizard.readyToContinue': 'Ready to continue?',
+  'ui.wizard.navigateToResults': 'Finish',
+  'ui.wizard.navigateToParameters': 'Go back to the Wizard',
+  'ui.wizard.result.header': 'Your results',
+
+  'ui.mobileService.label': 'Mobile Service',
+  'ui.mobileService.header': 'Mobile Services',
+
+  'ui.contactUs.label': 'Contact Us',
+  'ui.contactUs.subtext': `
+    We welcome questions or feedback on the Digital Impact Exchange. Please feel
+    free to reach out to us.
+  `,
+
+  'ui.about.theExchange': 'About the Digital Impact Exchange',
+  'ui.about.theExchange.subtext': 'The world of digital government solutions is complex. We help you navigate it.',
+  'ui.about.theExchange.description': `
+    <p>
+      The Digital Impact Exchange is a web application that aims to simplify digital government services
+      without having to design the digital architecture from scratch. The platform is a gateway to existing
+      online tools, products, and many other resources. Making access to tech easier and more reliable helps
+      governments to provide the services that people need to live happier, healthier lives.
+    </p>
+    <p>
+      It can be tough for government decision makers to find current, reliable information on tried-and-tested
+      technologies. The Exchange solves that problem by serving as a one-stop shop, featuring over 500 digital
+      tools, products and opportunities for government technology decision makers, IT developers, and product
+      vendors.
+    </p>
+    <p>  
+      Our goal is to make the Exchange the most comprehensive and user-friendly marketplace for the digital
+      development sector. We’re adding new features and functionality all the time. Here are some of the ways
+      that the Exchange can help you today:
+    </p>  
+    <ul>
+      <li>Find and compare products and tools, whether they are open source products or commercial tools</li>
+      <li>Connect with vendors or clients through product and business opportunities, including searching and finding RFPs</li>
+      <li>Advertise your products and services through your own Vendor Storefront</li>
+      <li>Join our community, by linking to our platform and amplifying your data, best practices, and knowledge</li>
+    </ul>
+  `,
+  'ui.about.theVision': 'Our Vision',
+  'ui.about.theVision.description': `
+    <p>
+      Our vision is to bridge the gap between demand and supply in the digital ecosystem, by providing the people
+      and organizations working in digital government with access to innovative and transformative technologies.
+      By creating a vibrant Exchange, we bring together a diverse community of solution providers and organizations
+      seeking to embrace the power of digital solutions. 
+ 
+    </p>
+  `,
+  'ui.about.theBeyond': 'Beyond the Exchange',
+  'ui.about.theBeyond.description': `
+    <p>
+      The Exchange is an initiative of the Digital Impact Alliance. We believe that everyone, everywhere should
+      benefit from the power of trusted digital technology. The Exchange is one way we’re trying to meet that goal.
+      Learn more about our other initiatives.
+    </p>
+  `,
+  'ui.about.thePartner': 'Our partners',
+  'ui.about.thePartner.description': `
+    <p>
+      The Digital Impact Exchange exists because of the valuable work of our partners.
+    </p>
+    <ul>
+      <li>
+        <strong>Supporters / Funders.</strong>
+        Our donors share our deep commitment to advancing technologies for organizations everywhere.
+      </li>
+      <li>
+        <strong>Data-Sharing Partners.</strong>
+        Our data-sharing partners provide the resources, tools and opportunities showcased by
+        the Exchange. (WHO, Leverist, GIZ) 
+      </li>
+      <li>
+        <strong>GovStack</strong>.
+        The Exchange is one of the key offerings of Govstack, a multi-stakeholder, community-driven
+        initiative that is focused on accelerating national digital transformation worldwide. DIAL
+        serves as one of Govstack’s four founding partners. Learn more about <a>Govstack.</a>
+      </li>
+    </ul>
+  `,
+  'ui.about.theTeam': 'Our team',
+  'ui.about.theTeam.description': `
+    <p>
+      <strong>Our staff,</strong>
+      who are part of the Digital Impact Alliance, are a team of passionate technologists devoted
+      to creating and stewarding technology that puts peoples' needs at the center.
+    </p>
+    <p>
+      <strong>Our reference group </strong>
+      is an expert set of advisors from around the world that provide direction and feedback on
+      the Exchange as we learn and grow.
+    </p>
+  `,
+  'ui.common.scrollToTop': 'Back to the top'
 }

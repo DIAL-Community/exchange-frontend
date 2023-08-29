@@ -120,7 +120,7 @@ const MoveListDraggable = ({ play }) => {
 
   const displayNoData = () =>
     <div className='text-sm font-medium opacity-80'>
-      {format('noResults.entity', { entity: format('move.label').toString().toLowerCase() })}
+      {format('noResults.entity', { entity: format('ui.move.label').toString().toLowerCase() })}
     </div>
 
   const displayRearrangeMoves = () =>

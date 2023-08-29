@@ -1185,7 +1185,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"
@@ -1300,7 +1300,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"
@@ -1423,7 +1423,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"
@@ -1566,7 +1566,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"
@@ -1709,7 +1709,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"
@@ -1824,7 +1824,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"
@@ -1947,7 +1947,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"
@@ -2090,7 +2090,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"
@@ -2205,7 +2205,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
               class="border-3 border-transparent"
             >
               <div
-                class="grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md"
+                class="grid gap-x-4 py-4 px-8 w-full"
               >
                 <div
                   class="grid grid-cols-4 gap-8"

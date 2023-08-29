@@ -1,0 +1,176 @@
+.szh-menu {
+  @apply border;
+  @apply bg-white;
+  @apply shadow-md;
+  @apply text-dial-stratos;
+}
+
+/* Delete confirmation */
+.react-responsive-modal-modal {
+  @apply p-8;
+  @apply w-1/2;
+  @apply rounded-2xl;
+  @apply max-w-prose;
+
+  h2 {
+    @apply pb-3;
+    @apply text-lg;
+    @apply font-semibold;
+    @apply text-dial-sapphire;
+    text-align: left !important;
+  }
+
+  p {
+    @apply pb-3;
+    @apply text-sm;
+    text-align: left !important;
+  }
+
+  .deleteBtns {
+    justify-content: flex-end;
+
+    button.delete {
+      @apply px-5;
+      @apply py-2;
+      @apply font-normal;
+    }
+
+    button.cancel {
+      @apply px-5;
+      @apply py-2;
+      @apply font-normal;
+    }
+  }
+}
+
+/* CommentsSection - wrapper */
+#comments-section {
+  .overlay {
+    @apply p-0;
+
+    hr {
+      @apply my-3
+    }
+
+    .replySection {
+      @apply border-l-2;
+      @apply border-dial-slate-300;
+    }
+
+    .advanced-overlay {
+      @apply gap-x-2;
+
+      .userImg {
+        @apply w-12;
+        @apply h-12;
+      }
+    }
+
+    .comment-title {
+      @apply text-lg;
+      @apply text-dial-sapphire;
+      @apply py-2;
+    }
+
+    /* CommentsSection - no comments */
+    .no-comDiv {
+      @apply my-8;
+      @apply text-sm;
+      @apply font-normal;
+    }
+
+    .signBox {
+      @apply mt-3;
+      @apply p-3;
+      @apply items-center;
+
+      .signLine {
+        @apply text-sm;
+        @apply font-normal;
+        @apply m-0;
+      }
+
+      .signLine + div {
+        @apply flex;
+        @apply flex-col;
+        @apply lg:flex-row;
+        @apply gap-2;
+      }
+
+      button {
+        @apply py-2.5;
+        @apply px-5;
+        @apply border-0;
+        @apply rounded-md;
+        @apply text-white;
+        @apply hover:border-0;
+        @apply text-sm;
+        @apply font-normal;
+      }
+    }
+
+    .replyBtn {
+      @apply text-sm;
+      @apply font-normal;
+      @apply tracking-normal;
+
+      .replyIcon {
+        @apply mt-[2px];
+      }
+    }
+
+    button.loginBtn,
+    button.signBtn {
+      @apply bg-dial-sapphire;
+      @apply disabled:bg-dial-gray;
+      @apply hover:bg-dial-sapphire;
+      @apply hover:text-white;
+    }
+  }
+
+  /* CommentsSection - text input */
+  .form {
+    .advanced-border {
+      @apply border;
+      @apply text-dial-gray-dark;
+      @apply shadow-md;
+      @apply rounded-md;
+    }
+
+    /* CommentsSection - Post and Cancel buttons */
+    .advanced-btns {
+      @apply mt-3;
+      @apply flex-row-reverse;
+      @apply gap-3;
+
+      button {
+        @apply flex;
+        @apply items-center;
+        @apply py-2;
+        @apply px-5;
+        @apply border-0;
+        @apply rounded-md;
+        @apply text-white;
+        @apply text-sm;
+        @apply disabled:cursor-not-allowed;
+        @apply hover:border-0;
+        @apply font-normal;
+
+        &.advanced-post {
+          @apply bg-dial-sapphire;
+          @apply disabled:bg-dial-slate-300;
+        }
+
+        &.advanced-cancel {
+          @apply bg-button-gray-light;
+          @apply mr-0;
+        }
+      }
+    }
+  }
+
+  /* CommentsSection - Edit and Delete buttons */
+  .overlay .userActions .szh-menu__item {
+    @apply capitalize;
+  }
+}

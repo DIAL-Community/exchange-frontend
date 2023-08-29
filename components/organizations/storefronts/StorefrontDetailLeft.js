@@ -47,7 +47,7 @@ const StorefrontDetailLeft = ({ organization, commentsSectionRef }) => {
             objectType={ObjectType.ORGANIZATION}
           />
         </div>
-        <div className='h4 font-bold py-4'>{format('storefront.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.storefront.label')}</div>
       </div>
       <div className='bg-white border-t border-l border-r border-dial-gray lg:mr-6 shadow-lg'>
         {

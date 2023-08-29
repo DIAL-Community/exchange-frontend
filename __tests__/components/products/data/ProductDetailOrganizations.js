@@ -8,7 +8,7 @@ module.exports = {
           imageFile: 'fake-image.png',
           slug: 'ao',
           website: 'another_organization@gmail.com'
-        },
+        }
       ]
     }
   }

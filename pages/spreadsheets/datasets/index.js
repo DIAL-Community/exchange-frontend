@@ -1,13 +1,13 @@
 import dynamic from 'next/dynamic'
-import Footer from '../../../components/Footer'
-import Header from '../../../components/Header'
-import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
 import { useUser } from '../../../lib/hooks'
+import Header from '../../../ui/v1/shared/Header'
+import Footer from '../../../ui/v1/shared/Footer'
+import { Loading, Unauthorized } from '../../../ui/v1/shared/FetchStatus'
 
 const DatasetSpreadsheetWithoutSSR = dynamic(
-  () => import('../../../components/spreadsheets/DatasetSpreadsheet'),
+  () => import('../../../ui/v1/spreadsheets/DatasetSpreadsheet'),
   { ssr: false }
 )
 

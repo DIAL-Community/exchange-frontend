@@ -98,8 +98,8 @@ const WorkflowCard = ({ workflow, listType }) => {
               </span>
               <span className='my-auto'>
                 {useCases?.length > 1
-                  ? format('use-case.header')
-                  : format('use-case.label')
+                  ? format('ui.useCase.header')
+                  : format('ui.useCase.label')
                 }
               </span>
             </div>
@@ -112,8 +112,8 @@ const WorkflowCard = ({ workflow, listType }) => {
               </span>
               <span className='my-auto'>
                 {workflow.buildingBlocks.length > 1
-                  ? format('building-block.header')
-                  : format('building-block.label')
+                  ? format('ui.buildingBlock.header')
+                  : format('ui.buildingBlock.label')
                 }
               </span>
             </div>

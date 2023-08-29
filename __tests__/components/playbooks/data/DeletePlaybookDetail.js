@@ -16,7 +16,7 @@ export const playbookDetail = {
     id: 827,
     playSlug: 'd4d_understand_the_problem',
     playName: 'D4D: Understand the Problem',
-    playOrder: 0,
+    playOrder: 0
   }],
   plays: [{
     id: 10,
@@ -28,14 +28,14 @@ export const playbookDetail = {
     },
     playMoves: [{
       id: 7,
-      name: 'Considerations',
+      name: 'Considerations'
     }, {
       id: 8,
-      name: 'Key Questions',
+      name: 'Key Questions'
     }, {
       id: 9,
-      name: 'Output',
-    }],
+      name: 'Output'
+    }]
   }],
-  draft: false,
+  draft: false
 }

@@ -1,45 +1,45 @@
-import { useContext } from 'react'
-import dynamic from 'next/dynamic'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import QueryNotification from '../../components/shared/QueryNotification'
-import GradientBackground from '../../components/shared/GradientBackground'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { UserFilterContext, UserFilterDispatchContext } from '../../components/context/UserFilterContext'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-import PageContent from '../../components/main/PageContent'
-import { useUser } from '../../lib/hooks'
-const ResourcesListQuery = dynamic(() => import('../../components/resources/ResourceList'), { ssr: false })
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import ResourceRibbon from '../../ui/v1/resource/ResourceRibbon'
+import ResourceTabNav from '../../ui/v1/resource/ResourceTabNav'
+import ResourceMain from '../../ui/v1/resource/ResourceMain'
 
-const Resources = () => {
-  const { search } = useContext(UserFilterContext)
-  const { setSearch } = useContext(UserFilterDispatchContext)
+const ResourceListPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser } = useUser()
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
+      <NextSeo
+        title={format('ui.resource.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.resource.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <PageContent
-          content={<ResourcesListQuery />}
-          searchFilter={
-            <SearchFilter
-              search={search}
-              setSearch={setSearch}
-              hint='filter.entity.resources'
-              exportJson={false}
-              exportCsv={false}
-              createNew={isAdminUser}
-            />
-          }
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ResourceRibbon />
+          <ResourceTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ResourceMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Resources
+export default ResourceListPage

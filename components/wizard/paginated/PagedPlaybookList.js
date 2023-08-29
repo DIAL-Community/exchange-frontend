@@ -21,7 +21,7 @@ const PagedPlaybookList = ({ sector, tags, playbookSortHint }) => {
       offset: itemOffset,
       sector,
       tags,
-      playbookSortHint,
+      playbookSortHint
     }
   })
 
@@ -32,7 +32,7 @@ const PagedPlaybookList = ({ sector, tags, playbookSortHint }) => {
         offset: itemOffset,
         sector,
         tags,
-        playbookSortHint,
+        playbookSortHint
       }
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps

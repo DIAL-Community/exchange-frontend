@@ -11,11 +11,14 @@ const WorkflowFilterProvider = ({ children }) => {
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
+  const setSdgs = setSDGs
+
   const workflowFilterValues = {
     sdgs, useCases, search, sortColumn, sortDirection
   }
   const workflowFilterDispatchValues = {
     setSDGs,
+    setSdgs,
     setUseCases,
     setSearch,
     setSortColumn,

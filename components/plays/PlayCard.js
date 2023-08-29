@@ -30,7 +30,7 @@ const PlayCard = ({ play }) => {
             className='bg-dial-sapphire text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
             onClick={() => assignPlay(play)}
           >
-            {format('play.assign')}
+            {format('ui.play.assign')}
           </button>
         </div>
       </div>

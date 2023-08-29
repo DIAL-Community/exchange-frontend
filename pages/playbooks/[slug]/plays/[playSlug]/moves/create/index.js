@@ -1,58 +1,38 @@
-import { useQuery } from '@apollo/client'
-import { useEffect } from 'react'
+import { NextSeo } from 'next-seo'
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Header from '../../../../../../../components/Header'
 import Footer from '../../../../../../../components/Footer'
-import { MoveForm } from '../../../../../../../components/plays/moves/MoveForm'
-import { Error, Loading, Unauthorized } from '../../../../../../../components/shared/FetchStatus'
-import NotFound from '../../../../../../../components/shared/NotFound'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
-import { useUser } from '../../../../../../../lib/hooks'
-import { PLAY_QUERY } from '../../../../../../../queries/move'
-
-const CreateMoveInformation = ({ slug, playSlug, locale }) => {
-  const { loading, error, data, refetch } = useQuery(PLAY_QUERY, {
-    variables: { playbookSlug: slug, playSlug },
-    skip: !slug && !playSlug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  useEffect(() => {
-    refetch()
-  }, [refetch, locale])
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.playbook && !data?.play) {
-    return <NotFound />
-  }
-
-  return (
-    <>
-      { data?.play && data?.playbook && <MoveForm playbook={data.playbook} play={data.play} /> }
-    </>
-  )
-}
+import MoveCreate from '../../../../../../../ui/v1/move/MoveCreate'
 
 const CreateMove = () => {
-  const { user, loadingUserSession } = useUser()
-  const router = useRouter()
-  const { locale, query } = router
-  const { slug, playSlug } = query
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { locale, query: { slug, playSlug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.move.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.move.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        {loadingUserSession
-          ? <Loading />
-          : user.isAdminUser || user.isEditorUser
-            ? < CreateMoveInformation {...{ slug, playSlug, locale }} />
-            : <Unauthorized />}
+        <Header />
+        <MoveCreate
+          playSlug={playSlug}
+          playbookSlug={slug}
+          locale={locale}
+        />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

@@ -111,10 +111,10 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('product.header')}
+        {format('app.assign')} {format('ui.product.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='product-search'>
-        {`${format('app.searchAndAssign')} ${format('product.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.product.header')}`}
         <Select
           async
           isSearch
@@ -122,7 +122,7 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) => fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.header') })}
           onChange={addProduct}
           value={null}
         />
@@ -142,7 +142,7 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('product.header')}
+      sectionHeader={format('ui.product.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

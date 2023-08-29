@@ -35,7 +35,7 @@ export const organizations = {
         name: 'Organization 2',
         slug: 'organization_2',
         website: 'organization_2@gmail.com'
-      },
+      }
     ]
   }
 }
@@ -57,7 +57,7 @@ export const products = {
         id: 3,
         name: 'Product 3',
         slug: 'product_3'
-      },
+      }
     ]
   }
 }
@@ -124,11 +124,11 @@ export const projectOrganization = {
   organizations: [{
     id: '1',
     name: 'Test Organization',
-    slug: 'to',
+    slug: 'to'
   },
   {
     id: '2',
     name: 'owned organization',
-    slug: 'oo',
-  }],
+    slug: 'oo'
+  }]
 }

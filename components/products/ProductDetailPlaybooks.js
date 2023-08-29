@@ -18,7 +18,7 @@ const ProductDetailPlaybooks = ({ product }) => {
 
   return (
     <EditableSection
-      sectionHeader={format('playbook.header')}
+      sectionHeader={format('ui.playbook.header')}
       displayModeBody={displayModeBody}
     />
   )

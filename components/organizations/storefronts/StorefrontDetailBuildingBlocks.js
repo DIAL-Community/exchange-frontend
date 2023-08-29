@@ -87,7 +87,7 @@ const StorefrontDetailBuildingBlocks = ({ organization, canEdit }) => {
       <UseCaseBuildingBlock useCaseBuildingBlocks={buildingBlocks} />
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('storefront.no-buildingBlock')}
+        {format('ui.storefront.noBuildingBlock')}
       </div>
     )
 
@@ -103,10 +103,10 @@ const StorefrontDetailBuildingBlocks = ({ organization, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('buildingBlock.header')}
+        {format('app.assign')} {format('ui.buildingBlock.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='buildingBlock-search'>
-        {`${format('app.searchAndAssign')} ${format('buildingBlock.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.buildingBlock.header')}`}
         <Select
           async
           isSearch
@@ -122,7 +122,7 @@ const StorefrontDetailBuildingBlocks = ({ organization, canEdit }) => {
                 fetchedBuildingBlocksCallback
               )
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('buildingBlock.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.buildingBlock.header') })}
           onChange={addBuildingBlock}
           value={null}
         />
@@ -141,7 +141,7 @@ const StorefrontDetailBuildingBlocks = ({ organization, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('buildingBlock.header')}
+      sectionHeader={format('ui.buildingBlock.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

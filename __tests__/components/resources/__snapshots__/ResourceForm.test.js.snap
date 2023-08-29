@@ -138,7 +138,7 @@ exports[`Unit tests for the ResourceForm component. For mandatory field - should
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="link"
                       placeholder="Resource Location"
                       value=""
@@ -387,7 +387,7 @@ exports[`Unit tests for the ResourceForm component. Should match snapshot - crea
                       https://
                     </span>
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="link"
                       placeholder="Resource Location"
                       value="some-random-url"

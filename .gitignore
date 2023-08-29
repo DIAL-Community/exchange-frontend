@@ -45,3 +45,12 @@ cypress/videos
 
 # Cypress environment
 cypress.env.json
+
+# Yarn 2
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

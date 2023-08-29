@@ -86,8 +86,8 @@ const CountryForm = ({ isOpen, onClose, country }) => {
           <div className='pb-12 mb-4 flex flex-col gap-3'>
             <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {country
-                ? format('app.edit-entity', { entity: country.name })
-                : `${format('app.create-new')} ${format('country.label')}`
+                ? format('app.editEntity', { entity: country.name })
+                : `${format('app.createNew')} ${format('country.label')}`
               }
             </div>
             <div className='flex flex-col gap-y-2 mb-2' data-testid='country-name'>

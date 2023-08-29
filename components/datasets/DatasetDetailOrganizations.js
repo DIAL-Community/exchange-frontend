@@ -30,7 +30,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
   useEffect(() => {
     if (data?.updateDatasetOrganizations?.errors.length === 0 && data?.updateDatasetOrganizations?.dataset) {
       setOrganizations(data.updateDatasetOrganizations.dataset.organizations)
-      showToast(format('dataset.organizations.updated'), 'success', 'top-center')
+      showToast(format('ui.dataset.organizations.updated'), 'success', 'top-center')
       setIsDirty(false)
     }
   }, [data, showToast, format])
@@ -90,17 +90,17 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('dataset.no-organization')}
+        {format('ui.dataset.no-organization')}
       </div>
     )
 
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('organization.header')}
+        {format('app.assign')} {format('ui.organization.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='organization-search'>
-        {`${format('app.searchAndAssign')} ${format('organization.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.organization.header')}`}
         <Select
           async
           isSearch
@@ -115,7 +115,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
               fetchedOrganizationsCallback, locale
             )
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('organization.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.organization.header') })}
           onChange={addOrganization}
           value={null}
         />
@@ -134,7 +134,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('organization.header')}
+      sectionHeader={format('ui.organization.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

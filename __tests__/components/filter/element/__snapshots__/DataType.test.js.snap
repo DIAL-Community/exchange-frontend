@@ -32,7 +32,7 @@ exports[`Unit test for the DatasetTypeSelect component. Should match snapshot 1`
             class="react-select__placeholder css-5rjclb-placeholder"
             id="react-select-:r0:-placeholder"
           >
-            Filter by Type
+            Filter by Dataset Type
           </div>
           <div
             class="react-select__input-container css-qbdosj-Input"
@@ -43,7 +43,7 @@ exports[`Unit test for the DatasetTypeSelect component. Should match snapshot 1`
               aria-describedby="react-select-:r0:-placeholder"
               aria-expanded="false"
               aria-haspopup="true"
-              aria-label="Filter by Type"
+              aria-label="Filter by Dataset Type"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -120,7 +120,7 @@ exports[`Unit test for the DatasetTypeSelect component. Should render a drop dow
             class="react-select__placeholder css-5rjclb-placeholder"
             id="react-select-:r1:-placeholder"
           >
-            Filter by Type
+            Filter by Dataset Type
           </div>
           <div
             class="react-select__input-container css-qbdosj-Input"
@@ -132,7 +132,7 @@ exports[`Unit test for the DatasetTypeSelect component. Should render a drop dow
               aria-describedby="react-select-:r1:-placeholder"
               aria-expanded="true"
               aria-haspopup="true"
-              aria-label="Filter by Type"
+              aria-label="Filter by Dataset Type"
               aria-owns="react-select-:r1:-listbox"
               autocapitalize="none"
               autocomplete="off"

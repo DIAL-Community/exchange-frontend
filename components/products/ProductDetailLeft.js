@@ -154,7 +154,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
         reset()
       } else {
         showToast(
-          format('toast.applyAsOwner.submit.success', { entity: format('product.label') }),
+          format('toast.applyAsOwner.submit.success', { entity: format('ui.product.label') }),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -216,7 +216,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           {isAdminUser && <DeleteProduct product={product} />}
           <CommentsCount commentsSectionRef={commentsSectionRef} objectId={product.id} objectType={ObjectType.PRODUCT}/>
         </div>
-        <div className='h4 font-bold py-4'>{format('products.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.product.label')}</div>
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 shadow-lg'>
         <div id='header' className='flex flex-col h-80 p-2'>
@@ -244,7 +244,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
             target='_blank' rel='noreferrer'
             href={`https://docs.dial.community/projects/product-registry/${locale}/latest/product_owner.html`}
           >
-            {format('product.owner-link')}
+            {format('product.ownerLink')}
           </a>
           {
             showApplyLink &&
@@ -278,7 +278,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                 className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
                 onClick={() => setContactState(CONTACT_STATES[1])}
               >
-                {format('ownership.reveal')}
+                {format('product.owner.revealContact')}
               </button>
             </>
         }
@@ -296,7 +296,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
               {
                 contactState === CONTACT_STATES[2] &&
                   <div className='mt-2'>
-                    {format('ownership.label')}:
+                    {format('product.owner.contactLabel')}:
                     <a
                       className='text-dial-sunshine mx-2 mt-2 border-b border-transparent hover:border-dial-sunshine'
                       href={`mailto:${emailAddress}`}

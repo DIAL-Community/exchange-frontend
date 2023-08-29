@@ -1,26 +1,38 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import dynamic from 'next/dynamic'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import DatasetDetail from '../../../components/datasets/DatasetDetail'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
+import Footer from '../../../ui/v1/shared/Footer'
+import DatasetDetail from '../../../ui/v1/dataset/DatasetDetail'
 
-const Dataset = () => {
-  const router = useRouter()
-  const { locale, query } = router
-  const { slug } = query
+const DatasetPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+      <NextSeo
+        title={format('ui.dataset.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.dataset.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <DatasetDetail slug={slug} locale={locale} />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <DatasetDetail slug={slug} />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Dataset
+export default DatasetPage

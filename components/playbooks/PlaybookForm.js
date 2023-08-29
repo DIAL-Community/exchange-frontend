@@ -79,7 +79,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       if (response.errors.length === 0 && response.playbook) {
         setSlug(response.playbook.slug)
         showToast(
-          format('playbook.submitted'),
+          format('ui.playbook.submitted'),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -110,7 +110,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       const { autoSavePlaybook: response } = data
       if (response.errors.length === 0 && response.playbook) {
         setSlug(response.playbook.slug)
-        showToast(format('playbook.autoSaved'), 'success', 'top-right')
+        showToast(format('ui.playbook.autoSaved'), 'success', 'top-right')
       }
     }
   })
@@ -248,44 +248,44 @@ export const PlaybookForm = React.memo(({ playbook }) => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                {playbook && format('app.edit-entity', { entity: playbook.name })}
-                {!playbook && `${format('app.create-new')} ${format('playbooks.label')}`}
+                {playbook && format('app.editEntity', { entity: playbook.name })}
+                {!playbook && `${format('app.createNew')} ${format('ui.playbook.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
                   <div className='form-field-wrapper' data-testid='playbook-name'>
                     <label className='form-field-label required-field' htmlFor='name'>
-                      {format('playbooks.name')}
+                      {format('ui.playbook.name')}
                     </label>
                     <Input
                       {...register('name', { required: format('validation.required') })}
                       id='name'
-                      placeholder={format('playbooks.name')}
+                      placeholder={format('ui.playbook.name')}
                       isInvalid={errors.name}
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
                   <div className='form-field-wrapper'>
                     <label className='form-field-label'>
-                      {format('playbook.cover')}
+                      {format('ui.playbook.cover')}
                     </label>
                     <FileUploader {...register('cover')} />
                   </div>
                   <div className='form-field-wrapper'>
                     <label className='form-field-label'>
-                      {format('playbook.author')}
+                      {format('ui.playbook.author')}
                     </label>
-                    <Input {...register('author')} placeholder={format('playbook.author')} />
+                    <Input {...register('author')} placeholder={format('ui.playbook.author')} />
                   </div>
                   <div className='form-field-wrapper'>
                     <label className='form-field-label'>
-                      {format('playbooks.tags')}
+                      {format('ui.playbook.tags')}
                     </label>
                     <TagAutocomplete
                       isSearch
                       tags={tags}
                       setTags={setTags}
-                      placeholder={format('playbook.form.tags')}
+                      placeholder={format('ui.playbook.form.tags')}
                       containerStyles='mb-2'
                     />
                     <div className='flex flex-wrap gap-3'>
@@ -297,7 +297,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   <FormTextEditor
                     control={control}
                     name='overview'
-                    placeholder={format('playbooks.overview')}
+                    placeholder={format('ui.playbook.overview')}
                     required
                     isInvalid={errors.overview}
                   />
@@ -308,20 +308,20 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   <FormTextEditor
                     control={control}
                     name='audience'
-                    placeholder={format('playbooks.audience')}
+                    placeholder={format('ui.playbook.audience')}
                   />
                 </div>
                 <div className='w-full lg:w-1/2'>
                   <FormTextEditor
                     control={control}
                     name='outcomes'
-                    placeholder={format('playbooks.outcomes')}
+                    placeholder={format('ui.playbook.outcomes')}
                   />
                 </div>
               </div>
               <label className='flex gap-x-2 mb-2 items-center self-start form-field-label'>
                 <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
-                {format('playbook.published')}
+                {format('ui.playbook.published')}
               </label>
               <div className='flex font-semibold text-xl gap-3'>
                 <button
@@ -330,7 +330,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   disabled={mutating || reverting}
                   data-testid='submit-button'
                 >
-                  {format(isPublished ? 'playbook.publish' : 'playbook.saveAsDraft')}
+                  {format(isPublished ? 'ui.playbook.publish' : 'ui.playbook.saveAsDraft')}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

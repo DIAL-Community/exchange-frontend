@@ -24,7 +24,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
   const [sdgTargets, setSdgTargets] = useState(useCase.sdgTargets)
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateUseCaseSdgTargets, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_SDG_TARGETS,{
+  const [updateUseCaseSdgTargets, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_SDG_TARGETS, {
     onError() {
       setIsDirty(false)
       setSdgTargets(useCase?.sdgTargets)
@@ -58,7 +58,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
       name: sdgTarget.name,
       label: `${sdgTarget.targetNumber}. ${sdgTarget.name}`,
       targetNumber: sdgTarget.targetNumber,
-      sdgNumber: sdgTarget.sdgNumber,
+      sdgNumber: sdgTarget.sdgNumber
     }))
   )
 
@@ -124,10 +124,10 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('sdg-target.header')}
+        {format('app.assign')} {format('ui.sdgTarget.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='sdg-targets-search'>
-        {`${format('app.searchAndAssign')} ${format('sdg-target.label')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.sdgTarget.label')}`}
         <Select
           async
           isSearch
@@ -137,7 +137,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
           loadOptions={(input) =>
             fetchSelectOptions(client, input, SDG_TARGET_SEARCH_QUERY, fetchedSdgTargetsCallback)
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg-target.label') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.sdgTarget.label') })}
           onChange={addSdgTargets}
           value={null}
         />
@@ -159,7 +159,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('sdg-target.header')}
+      sectionHeader={format('ui.sdgTarget.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

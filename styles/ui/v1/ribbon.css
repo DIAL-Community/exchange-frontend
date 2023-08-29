@@ -1,0 +1,51 @@
+:root {
+  --tab-height: 52px;
+  --header-height: 92px;
+
+  --ribbon-outer-height: 8.5rem;
+  --ribbon-inner-height: 6rem;
+  --ribbon-difference: calc(var(--ribbon-outer-height) - var(--ribbon-inner-height));
+
+  --playbook-header-height: 84px;
+
+  --spacer-padding: 0.75rem;
+
+  --search-bar-padding: 2rem;
+}
+
+@media (min-width: 1024px) {
+  :root {  
+    --search-bar-padding: 4rem;
+  }
+}
+
+.ribbon-outer {
+  position: sticky;
+  top: calc(var(--header-height) - var(--ribbon-difference));
+  height: var(--ribbon-outer-height);
+}
+
+.ribbon-inner {
+  position: sticky;
+  top: var(--header-height);
+  height: var(--ribbon-inner-height);
+}
+
+.sticky-under-ribbon {
+  position: sticky;
+  top: calc(var(--header-height) + var(--ribbon-inner-height));
+
+  padding-top: var(--spacer-padding);
+}
+
+.sticky-under-tab {
+  position: sticky;
+  top: calc(var(--header-height) + var(--ribbon-inner-height));
+
+  padding-top: var(--spacer-padding);
+}
+
+.ribbon-detail {
+  position: sticky;
+  top: var(--header-height)
+}

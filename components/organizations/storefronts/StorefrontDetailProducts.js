@@ -89,7 +89,7 @@ const StorefrontDetailProducts = ({ organization, canEdit }) => {
       )
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('storefront.no-certification')}
+        {format('ui.storefront.noCertification')}
       </div>
     )
 
@@ -105,10 +105,10 @@ const StorefrontDetailProducts = ({ organization, canEdit }) => {
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('product.header')}
+        {format('app.assign')} {format('ui.product.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='product-search'>
-        {`${format('app.searchAndAssign')} ${format('product.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.product.header')}`}
         <Select
           async
           isSearch
@@ -116,7 +116,7 @@ const StorefrontDetailProducts = ({ organization, canEdit }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) => fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.header') })}
           onChange={addProduct}
           value={null}
         />
@@ -135,7 +135,7 @@ const StorefrontDetailProducts = ({ organization, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('certification.header')}
+      sectionHeader={format('ui.certification.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

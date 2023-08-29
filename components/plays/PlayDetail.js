@@ -57,7 +57,7 @@ const PlayDetail = ({ playbook, play }) => {
           </div>
         </div>
         <div className='font-semibold text-2xl py-3'>
-          {`${format('plays.label')}: ${play.name}`}
+          {`${format('ui.play.label')}: ${play.name}`}
         </div>
         <HtmlViewer
           initialContent={play?.playDescription?.description}
@@ -68,7 +68,7 @@ const PlayDetail = ({ playbook, play }) => {
           <div className='flex gap-2 ml-auto'>
             {canEdit &&
               <CreateButton
-                label={format('move.add')}
+                label={format('ui.move.add')}
                 type='link'
                 href={generateAddMoveLink()}
               />
@@ -81,15 +81,14 @@ const PlayDetail = ({ playbook, play }) => {
               >
                 <FiMove className='inline pb-0.5' />
                 <span className='text-sm px-1'>
-                  {format('move.rearrange')}
+                  {format('ui.move.rearrange')}
                 </span>
               </button>
             }
           </div>
           {play.playMoves.map((move, i) =>
-            <>
+            <div key={i}>
               <PlayPreviewMove
-                key={i}
                 playSlug={play.slug}
                 moveSlug={move.slug}
                 moveName={move.name}
@@ -100,15 +99,15 @@ const PlayDetail = ({ playbook, play }) => {
                 displayDragable={displayDragable}
                 setDisplayDragable={setDisplayDragable}
               />
-            </>
+            </div>
           )}
         </div>
         {play.buildingBlocks && play.buildingBlocks.length > 0 &&
           <div className='flex flex-col gap-3 my-3'>
-            <div className='h4'>{format('building-block.header')}</div>
+            <div className='h4'>{format('ui.buildingBlock.header')}</div>
             <div
               className='text-sm'
-              dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
+              dangerouslySetInnerHTML={{ __html: format('ui.play.buildingBlocks.subtitle') }}
             />
             {play.buildingBlocks.map((bb, i) =>
               <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />
@@ -117,10 +116,10 @@ const PlayDetail = ({ playbook, play }) => {
         }
         {play.products && play.products.length > 0 &&
           <div className='flex flex-col gap-3 my-3'>
-            <div className='h4'>{format('product.header')}</div>
+            <div className='h4'>{format('ui.product.header')}</div>
             <div
               className='text-sm'
-              dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
+              dangerouslySetInnerHTML={{ __html: format('ui.play.products.subtitle') }}
             />
             {play.products.map((product, i) =>
               <ProductCard key={i} product={product} listType='list' />

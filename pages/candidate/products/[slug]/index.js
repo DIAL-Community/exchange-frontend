@@ -1,21 +1,38 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import ProductDetail from '../../../../components/candidate/products/ProductDetail'
-import Footer from '../../../../components/Footer'
-import Header from '../../../../components/Header'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../../ui/v1/shared/Header'
 import ClientOnly from '../../../../lib/ClientOnly'
+import Footer from '../../../../ui/v1/shared/Footer'
+import ProductDetail from '../../../../ui/v1/candidate/product/ProductDetail'
 
-const CandidateProduct = () => {
-  const { locale, query: { slug } } = useRouter()
+const ProductPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.candidateProduct.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.candidateProduct.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <ProductDetail productSlug={slug} locale={locale} />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <ProductDetail slug={slug} />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default CandidateProduct
+export default ProductPage

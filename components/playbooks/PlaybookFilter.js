@@ -125,7 +125,7 @@ const PlaybookFilter = () => {
               />
             </div>
             <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
-              {format('filter.hint.text')} {format('playbooks.label')}
+              {format('filter.hint.text')} {format('ui.playbook.label')}
             </span>
           </a>
         </div>
@@ -136,7 +136,7 @@ const PlaybookFilter = () => {
         <hr className='border-b border-dial-white-beech' />
         { !user &&
           <div className='px-6 text-xs'>
-            {format('playbook.hint.createPlaybooks')}
+            {format('ui.playbook.hint.createPlaybooks')}
           </div>
         }
         {
@@ -154,7 +154,7 @@ const PlaybookFilter = () => {
           </div>
         }
         <div className='text-xl px-6'>
-          {format('filter.entity', { entity: format('playbooks.label') }).toUpperCase()}
+          {format('filter.entity', { entity: format('ui.playbook.label') }).toUpperCase()}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <ProductAutocomplete {...{ products, setProducts }} />

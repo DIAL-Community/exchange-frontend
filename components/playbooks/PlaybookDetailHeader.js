@@ -89,20 +89,20 @@ const PlaybookDetailHeader = ({ playbook }) => {
                 data-tooltip-id='react-tooltip'
                 data-tooltip-content={format(
                   'tooltip.forEntity',
-                  { entity: format('playbooks.label'), name: playbook.name }
+                  { entity: format('ui.playbook.label'), name: playbook.name }
                 )}
                 className='m-auto h-6 inline mr-2'
                 alt={format('image.alt.logoFor', { name: playbook.name })}
                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
               />
-              {format('playbooks.label')}
+              {format('ui.playbook.label')}
             </Link>
           </div>
           <div className='flex flex-col md:flex-row gap-x-2 text-2xl font-semibold'>
             <div>{playbook.name}</div>
             {(isAdminUser || isEditorUser) &&
               <div className='text-base font-base text-white md:self-center'>
-                ({format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')})
+                ({format(isPlaybookPublished ? 'ui.playbook.status.published' : 'ui.playbook.status.draft')})
               </div>
             }
           </div>

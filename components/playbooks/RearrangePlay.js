@@ -51,7 +51,7 @@ const RearrangePlay = ({ displayDragable, onDragableClose, playbook }) => {
               <Dialog.Title>
                 <div className='px-4 text-xl text-dial-sapphire font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
-                    {format('play.rearrange')}
+                    {format('ui.play.rearrange')}
                   </div>
                 </div>
               </Dialog.Title>
@@ -100,7 +100,7 @@ const ExistingPlay = ({ playbook }) => {
                 value={search}
                 onChange={handleChange}
                 className='w-56 2xl:w-96'
-                placeholder={`${format('app.search')} ${format('play.header')}`}
+                placeholder={`${format('app.search')} ${format('ui.play.header')}`}
               />
             </div>
             <div className='flex flex-row flex-wrap gap-3 ml-auto'>
@@ -118,7 +118,7 @@ const ExistingPlay = ({ playbook }) => {
             className='cancel-button'
             onClick={() => { setShowPlayForm(true) }}
           >
-            {format('play.assignExistingPlay')}
+            {format('ui.play.assignExistingPlay')}
           </button>
         </div>
       }

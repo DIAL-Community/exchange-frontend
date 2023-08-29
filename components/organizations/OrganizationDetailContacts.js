@@ -42,7 +42,7 @@ const OrganizationDetailContacts = ({ organization }) => {
       name: '',
       email: '',
       title: ''
-    },
+    }
   })
 
   const addContact = (contact) => {
@@ -101,12 +101,12 @@ const OrganizationDetailContacts = ({ organization }) => {
     <>
       <form onSubmit={handleSubmit(addContact)}>
         <p className='card-title text-dial-stratos mb-3'>
-          {format('app.assign')} {format('contact.header')}
+          {format('app.assign')} {format('ui.contact.header')}
         </p>
         <div className='flex flex-col md:flex-row justify-between'>
           <label className={inputSectionStyle}>
             <p className='required-field'>
-              {format('contact.name.label')}
+              {format('ui.contact.name.label')}
             </p>
             <Controller
               name='name'
@@ -123,7 +123,7 @@ const OrganizationDetailContacts = ({ organization }) => {
           </label>
           <label className={inputSectionStyle}>
             <p className='required-field'>
-              {format('contact.email.label')}
+              {format('ui.contact.email.label')}
             </p>
             <Controller
               name='email'
@@ -140,7 +140,7 @@ const OrganizationDetailContacts = ({ organization }) => {
           </label>
           <label className={inputSectionStyle}>
             <p>
-              {format('contact.title.label')}
+              {format('ui.contact.title.label')}
             </p>
             <Controller
               name='title'
@@ -164,7 +164,7 @@ const OrganizationDetailContacts = ({ organization }) => {
           {contacts.map((contact, contactIdx) => (
             <Pill
               key={contactIdx}
-              label={`${format('contact.name.label')} ${contact.name}`}
+              label={`${format('ui.contact.name.label')}: ${contact.name}`}
               onRemove={() => removeContact(contact)}
             />
           ))}
@@ -176,7 +176,7 @@ const OrganizationDetailContacts = ({ organization }) => {
     <div data-testid='organization-contacts'>
       <EditableSection
         canEdit={true}
-        sectionHeader={format('contact.header')}
+        sectionHeader={format('ui.contact.header')}
         onSubmit={onSubmit}
         onCancel={onCancel}
         isDirty={isDirty}

@@ -39,7 +39,7 @@ const StorefrontActiveFilter = () => {
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = 'storefronts'
+    const basePath = 'ui.storefronts'
 
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)

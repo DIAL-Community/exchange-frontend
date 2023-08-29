@@ -148,8 +148,8 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
           <div className='pb-12 mb-4 flex flex-col gap-3'>
             <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {sector
-                ? format('app.edit-entity', { entity: sector.name })
-                : `${format('app.create-new')} ${format('sector.label')}`
+                ? format('app.editEntity', { entity: sector.name })
+                : `${format('app.createNew')} ${format('ui.sector.label')}`
               }
             </div>
             <div className='flex flex-col gap-y-2 mb-2' data-testid='sector-name'>

@@ -22,7 +22,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateOrganizationCountry, { data, loading }] = useMutation(UPDATE_ORGANIZATION_COUNTRIES)
+  const [updateOrganizationCountries, { data, loading }] = useMutation(UPDATE_ORGANIZATION_COUNTRIES)
 
   const { user } = useUser()
 
@@ -31,8 +31,8 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
   const { showToast } = useContext(ToastContext)
 
   useEffect(() => {
-    if (data?.updateOrganizationCountry?.errors.length === 0 && data?.updateOrganizationCountry?.organization) {
-      setCountries(data.updateOrganizationCountry.organization.countries)
+    if (data?.updateOrganizationCountries?.errors.length === 0 && data?.updateOrganizationCountries?.organization) {
+      setCountries(data.updateOrganizationCountries.organization.countries)
       setIsDirty(false)
       showToast(format('organization.countries.updated'), 'success', 'top-center')
     }
@@ -60,7 +60,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
     if (user) {
       const { userEmail, userToken } = user
 
-      updateOrganizationCountry({
+      updateOrganizationCountries({
         variables: {
           slug: organization.slug,
           countrySlugs: countries.map(({ slug }) => slug)
@@ -76,7 +76,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
   }
 
   const onCancel = () => {
-    setCountries(data?.updateOrganizationCountry?.organization?.countries ?? organization.countries)
+    setCountries(data?.updateOrganizationCountries?.organization?.countries ?? organization.countries)
     setIsDirty(false)
   }
 

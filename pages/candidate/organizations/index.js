@@ -1,52 +1,45 @@
-import { useContext } from 'react'
-import dynamic from 'next/dynamic'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import QueryNotification from '../../../components/shared/QueryNotification'
-import GradientBackground from '../../../components/shared/GradientBackground'
-import TabNav from '../../../components/main/TabNav'
-import MobileNav from '../../../components/main/MobileNav'
-import PageContent from '../../../components/main/PageContent'
-import SearchFilter from '../../../components/shared/SearchFilter'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext }
-  from '../../../components/context/candidate/OrganizationFilterContext'
 import ClientOnly from '../../../lib/ClientOnly'
-import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
-import { useUser } from '../../../lib/hooks'
-const OrganizationListQuery = dynamic(() =>
-  import('../../../components/candidate/organizations/OrganizationList'), { ssr: false })
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
+import Header from '../../../ui/v1/shared/Header'
+import Footer from '../../../ui/v1/shared/Footer'
+import OrganizationRibbon from '../../../ui/v1/candidate/organization/OrganizationRibbon'
+import OrganizationTabNav from '../../../ui/v1/candidate/organization/OrganizationTabNav'
+import OrganizationMain from '../../../ui/v1/candidate/organization/OrganizationMain'
 
-const Organizations = () => {
-  const { search } = useContext(OrganizationFilterContext)
-  const { setSearch } = useContext(OrganizationFilterDispatchContext)
+const OrganizationListPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, loadingUserSession } = useUser()
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
-      <QueryNotification />
-      <GradientBackground />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-      <Header />
-      {loadingUserSession ? <Loading /> : isAdminUser ? (
-        <ClientOnly>
-          <TabNav activeTab='filter.entity.candidateOrganizations' />
-          <MobileNav activeTab='filter.entity.candidateOrganizations' />
-          <PageContent
-            content={<OrganizationListQuery />}
-            searchFilter={
-              <SearchFilter
-                {...{ search, setSearch }}
-                hint='filter.entity.candidateOrganizations'
-              />
-            }
-          />
-        </ClientOnly>
-      ) : <Unauthorized />}
-      <Footer />
+      <NextSeo
+        title={format('ui.candidateOrganization.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.candidateOrganization.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
+      <ClientOnly>
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <OrganizationRibbon />
+          <OrganizationTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <OrganizationMain activeTab={activeTab} />
+        </div>
+        <Footer />
+      </ClientOnly>
     </>
   )
 }
 
-export default Organizations
+export default OrganizationListPage

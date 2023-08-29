@@ -1,39 +1,40 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import NotFound from '../../../components/shared/NotFound'
-import ProjectForm from '../../../components/projects/ProjectForm'
-import { PROJECT_QUERY } from '../../../queries/project'
+import Footer from '../../../ui/v1/shared/Footer'
+import ProjectEdit from '../../../ui/v1/project/ProjectEdit'
 
-const EditProject = () => {
+const EditProjectPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const { locale, query: { slug } } = useRouter()
-
-  const { loading, error, data } = useQuery(PROJECT_QUERY, {
-    variables: { slug, locale },
-    skip: !slug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.project) {
-    return <NotFound />
-  }
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.project.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.project.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        { data?.project && <ProjectForm project={data.project} /> }
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ProjectEdit slug={slug} locale={locale} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default EditProject
+export default EditProjectPage

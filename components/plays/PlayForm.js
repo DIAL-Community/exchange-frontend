@@ -61,7 +61,7 @@ export const PlayForm = ({ playbook, play }) => {
     onCompleted: () => {
       setMutating(false)
       showToast(
-        format('play.submitted'),
+        format('ui.play.submitted'),
         'success',
         'top-center',
         DEFAULT_AUTO_CLOSE_DELAY,
@@ -81,7 +81,7 @@ export const PlayForm = ({ playbook, play }) => {
       if (response.errors.length === 0 && response.play) {
         setMutating(false)
         setSlug(response.play.slug)
-        showToast(format('play.autoSaved'), 'success', 'top-right')
+        showToast(format('ui.play.autoSaved'), 'success', 'top-right')
       }
     }
   })
@@ -237,27 +237,27 @@ export const PlayForm = ({ playbook, play }) => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                {play && format('app.edit-entity', { entity: play.name })}
-                {!play && `${format('app.create-new')} ${format('plays.label')}`}
+                {play && format('app.editEntity', { entity: play.name })}
+                {!play && `${format('app.createNew')} ${format('ui.play.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3' data-testid='play-name'>
                   <label className='flex flex-col gap-y-2 text-dial-sapphire mb-2'>
-                    <p className='required-field'>{format('plays.name')}</p>
+                    <p className='required-field'>{format('ui.play.name')}</p>
                     <Input
                       {...register('name', { required: format('validation.required') })}
-                      placeholder={format('plays.name')}
+                      placeholder={format('ui.play.name')}
                       isInvalid={errors.name}
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </label>
                   <div className='flex flex-col gap-y-2' data-testid='play-tags'>
                     <label className='text-dial-sapphire flex flex-col gap-y-2' htmlFor='name'>
-                      {format('plays.tags')}
+                      {format('ui.play.tags')}
                       <TagAutocomplete
                         {...{ tags, setTags }}
                         controlSize='100%'
-                        placeholder={format('play.form.tags')}
+                        placeholder={format('ui.play.form.tags')}
                       />
                     </label>
                     <div className='flex flex-wrap gap-3 mt-2'>
@@ -266,13 +266,13 @@ export const PlayForm = ({ playbook, play }) => {
                   </div>
                   <div className='flex flex-col gap-y-2' data-testid='play-products'>
                     <label className='text-dial-sapphire flex flex-col gap-y-2'>
-                      {format('plays.products')}
+                      {format('ui.play.products')}
                       <Select
                         async
                         isSearch
                         defaultOptions
                         cacheOptions
-                        placeholder={format('play.form.products')}
+                        placeholder={format('ui.play.form.products')}
                         loadOptions={
                           (input) =>
                             fetchSelectOptions(
@@ -283,7 +283,7 @@ export const PlayForm = ({ playbook, play }) => {
                             )
                         }
                         noOptionsMessage={() =>
-                          format('filter.searchFor', { entity: format('product.header') })
+                          format('filter.searchFor', { entity: format('ui.product.header') })
                         }
                         onChange={addProduct}
                         value={null}
@@ -301,13 +301,13 @@ export const PlayForm = ({ playbook, play }) => {
                   </div>
                   <div className='flex flex-col gap-y-2' data-testid='play-buildingBlocks'>
                     <label className='text-dial-sapphire flex flex-col gap-y-2'>
-                      {format('plays.buildingBlocks')}
+                      {format('ui.play.buildingBlocks')}
                       <Select
                         async
                         isSearch
                         defaultOptions
                         cacheOptions
-                        placeholder={format('play.form.buildingBlocks')}
+                        placeholder={format('ui.play.form.buildingBlocks')}
                         loadOptions={
                           (input) =>
                             fetchSelectOptions(
@@ -341,7 +341,7 @@ export const PlayForm = ({ playbook, play }) => {
                   data-testid='play-description'
                 >
                   <label className='block text-dial-sapphire flex flex-col gap-y-2'>
-                    <p className='required-field'> {format('plays.description')}</p>
+                    <p className='required-field'> {format('ui.play.description')}</p>
                     <Controller
                       name='description'
                       control={control}
@@ -371,7 +371,7 @@ export const PlayForm = ({ playbook, play }) => {
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {`${format('play.submitAndAssign')} ${format('plays.label')}`}
+                  {`${format('ui.play.submitAndAssign')} ${format('ui.play.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

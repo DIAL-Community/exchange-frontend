@@ -18,7 +18,7 @@ const useRouterDefaultValues = {
   },
   push: jest.fn(() => Promise.resolve(true)),
   prefetch: jest.fn(() => Promise.resolve(true)),
-  replace: jest.fn(() => Promise.resolve(true)),
+  replace: jest.fn(() => Promise.resolve(true))
 }
 
 /**

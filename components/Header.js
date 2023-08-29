@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import classNames from 'classnames'
 import Image from 'next/image'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
@@ -17,9 +18,11 @@ import LanguageMenu from './shared/menu/LanguageMenu'
 import { NONE } from './shared/menu/MenuCommon'
 import MarketplaceMenu from './shared/menu/Marketplace'
 
-const dropdownMenuStyles = `
-    block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
-  `
+const dropdownMenuStyles = classNames(
+  'px-3 py-2',
+  'text-base text-white hover:text-slate-600',
+  'hover:bg-dial-menu-hover rounded-md'
+)
 
 const Header = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
@@ -78,27 +81,28 @@ const Header = ({ isOnAuthPage = false }) => {
     }
   }, [currentOpenMenu])
 
-  const { data: dataUserToken } = useQuery(USER_AUTHENTICATION_TOKEN_CHECK_QUERY, {
+  useQuery(USER_AUTHENTICATION_TOKEN_CHECK_QUERY, {
     variables: {
       userId: user?.id,
       userAuthenticationToken: user?.userToken
     },
     skip: !user,
+    onCompleted: (data) => {
+      if (data.userAuthenticationTokenCheck === false) {
+        showToast(
+          format('user.tokenExpired'),
+          'error',
+          'top-center',
+          5000,
+          null,
+          () => {
+            signOut({ redirect: false })
+            signIn()
+          }
+        )
+      }
+    }
   })
-
-  if (dataUserToken?.userAuthenticationTokenCheck === false) {
-    showToast(
-      format('user.tokenExpired'),
-      'error',
-      'top-center',
-      5000,
-      null,
-      () => {
-        signOut({ redirect: false })
-        signIn()
-      },
-    )
-  }
 
   const withUser =
     <>
@@ -113,7 +117,7 @@ const Header = ({ isOnAuthPage = false }) => {
     </>
 
   const withoutUser =
-    <li className='relative mt-2 xl:mt-0 text-right intro-overview-signup'>
+    <li className='text-right intro-overview-signup'>
       <a
         data-testid='login'
         href='signin'
@@ -140,8 +144,8 @@ const Header = ({ isOnAuthPage = false }) => {
           <svg
             className='fill-current text-white'
             xmlns='http://www.w3.org/2000/svg'
-            width='20'
-            height='20'
+            width='16'
+            height='16'
             viewBox='0 0 20 20'
           >
             <title>{format('app.menu')}</title>
@@ -159,20 +163,20 @@ const Header = ({ isOnAuthPage = false }) => {
                     <li className='relative mt-2 xl:mt-0 text-right'>
                       <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li className='relative mt-2 xl:mt-0 text-right'>
+                    <li className='relative text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li className='relative mt-2 xl:mt-0 text-right'>
+                    <li className='relative text-right'>
                       <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li className='relative mt-2 xl:mt-0 text-right'>
+                    <li className='relative text-right'>
                       <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     { user ? withUser : withoutUser }
                   </>
                 )
               }
-              <li className='relative mt-2 xl:mt-0 text-right'>
+              <li className='relative text-right'>
                 <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
             </ul>

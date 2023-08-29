@@ -1,49 +1,45 @@
-import { useContext } from 'react'
-import dynamic from 'next/dynamic'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import GradientBackground from '../../components/shared/GradientBackground'
-import QueryNotification from '../../components/shared/QueryNotification'
-import TabNav from '../../components/main/TabNav'
-import MobileNav from '../../components/main/MobileNav'
-import PageContent from '../../components/main/PageContent'
-import DatasetFilter from '../../components/datasets/DatasetFilter'
-import DatasetActiveFilter from '../../components/datasets/DatasetActiveFilter'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { DatasetFilterContext, DatasetFilterDispatchContext } from '../../components/context/DatasetFilterContext'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
-const DatasetListQuery = dynamic(() => import('../../components/datasets/DatasetList'), { ssr: false })
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import DatasetRibbon from '../../ui/v1/dataset/DatasetRibbon'
+import DatasetTabNav from '../../ui/v1/dataset/DatasetTabNav'
+import DatasetMain from '../../ui/v1/dataset/DatasetMain'
 
-const Datasets = () => {
-  const { search } = useContext(DatasetFilterContext)
-  const { setSearch } = useContext(DatasetFilterDispatchContext)
+const DatasetListPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+      <NextSeo
+        title={format('ui.dataset.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.dataset.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <TabNav activeTab='filter.entity.datasets' />
-        <MobileNav activeTab='filter.entity.datasets' />
-        <PageContent
-          activeTab='filter.entity.datasets'
-          filter={<DatasetFilter />}
-          content={<DatasetListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              hint='filter.entity.datasets'
-            />
-          }
-          activeFilter={<DatasetActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <DatasetRibbon />
+          <DatasetTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <DatasetMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Datasets
+export default DatasetListPage

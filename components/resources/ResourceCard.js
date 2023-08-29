@@ -52,7 +52,7 @@ const ResourceCard = ({ resource, listType }) => {
               target='_blank' rel='noreferrer'
             >
               <div className='flex gap-2 opacity-50 hover:opacity-100'>
-                {format('resource.visitLink')}
+                {format('ui.resource.visitLink')}
                 <FaExternalLinkAlt className='my-auto' />
               </div>
             </a>
@@ -96,7 +96,7 @@ const ResourceCard = ({ resource, listType }) => {
                   target='_blank' rel='noreferrer'
                 >
                   <div className='py-3 flex gap-2'>
-                    {format('resource.visitLink')}
+                    {format('ui.resource.visitLink')}
                     <FaExternalLinkAlt className='my-auto' />
                   </div>
                 </a>
