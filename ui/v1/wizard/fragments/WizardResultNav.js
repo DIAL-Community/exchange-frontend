@@ -45,7 +45,7 @@ const WizardResultNav = ({ scrollRef }) => {
 
   return (
     <div className='flex flex-col gap-y-3 text-sm py-3'>
-      <div className='font-semibold text-dial-meadow'>
+      <div className='font-semibold text-dial-iris-blue'>
         {format('ui.shared.jumpTo')}
       </div>
       <Select

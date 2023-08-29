@@ -45,7 +45,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
   return (
     <div className='flex flex-col border border-dial-orange-light'>
       <div className='move-header'>
-        <div className='move-animation-base bg-dial-biscotti h-14' />
+        <div className='move-animation-base bg-dial-blue-chalk h-14' />
         <div
           className={classNames(
             'animated-move',

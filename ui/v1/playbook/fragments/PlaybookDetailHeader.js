@@ -57,7 +57,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
   })()
 
   return (
-    <div className='bg-dial-sunshine sticky sticky-under-header'>
+    <div className='bg-dial-blueberry sticky sticky-under-header text-white'>
       <div className='flex flex-wrap gap-3'>
         <div className='px-8 py-3 flex flex-col gap-1'>
           <div className='hidden lg:block'>
@@ -80,7 +80,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
               {playbook.playbookPlays.map(({ playSlug }, index) => {
                 return (
                   <a key={index} href='#' onClick={(e) => navigateToPlay(e, playSlug)}>
-                    <div className={`step ${index <= currentSlugIndex && 'active'}`}>
+                    <div className={`step text-dial-stratos ${index <= currentSlugIndex && 'active'}`}>
                       {index + 1}
                     </div>
                   </a>
