@@ -5,6 +5,7 @@ import ClientOnly from '../../lib/ClientOnly'
 import Footer from '../../ui/v1/shared/Footer'
 import Header from '../../ui/v1/shared/Header'
 import WizardMain from '../../ui/v1/wizard/WizardMain'
+import { WizardContextProvider } from '../../ui/v1/wizard/WizardContext'
 
 const Wizard = () => {
   const { formatMessage } = useIntl()
@@ -18,7 +19,9 @@ const Wizard = () => {
       />
       <Header />
       <ClientOnly>
-        <WizardMain />
+        <WizardContextProvider>
+          <WizardMain />
+        </WizardContextProvider>
       </ClientOnly>
       <Footer />
     </>

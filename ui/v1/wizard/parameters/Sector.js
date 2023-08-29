@@ -23,7 +23,7 @@ export const SectorAutocomplete = ({ sectors, setSectors }) => {
   }
 
   return (
-    <div className='flex flex-col gap-6 w-full pt-3 pb-12 max-h-[20rem] overflow-auto'>
+    <div className='flex flex-col gap-6 w-full pt-3 pb-12 max-h-[18rem] overflow-auto'>
       {data?.sectors &&
         data?.sectors.map((sector, index) => (
           <div key={index} className="flex gap-2 w-full">

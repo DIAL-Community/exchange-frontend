@@ -91,7 +91,7 @@ const Select = React.forwardRef(({
       ...provided,
       paddingTop: 0,
       paddingBottom: 0,
-      maxHeight: '30rem'
+      maxHeight: '16rem'
     }),
     menu: (provided) => ({
       ...provided,

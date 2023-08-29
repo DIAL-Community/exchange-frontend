@@ -17,7 +17,7 @@ export const MobileServiceAutocomplete = ({ mobileServices, setMobileServices, p
     setMobileServices([...mobileServices.filter(({ value }) => value !== mobileService.value), mobileService])
   }
 
-  const options = useMemo(() => generateMobileServiceOptions(format), [format])
+  const options = useMemo(() => generateMobileServiceOptions(), [])
 
   const loadOptions = async (input) => {
     return options.filter(({ label }) => label.indexOf(input) >= 0)
@@ -74,7 +74,7 @@ export const MobileServiceActiveFilters = ({ mobileServices, setMobileServices }
                 ({format('ui.mobileService.label')})
               </div>
             </div>
-            <button onClick={() => removeMobileService(mobileService.slug)}>
+            <button className='ml-auto' onClick={() => removeMobileService(mobileService.slug)}>
               <FaXmark size='1rem' className='text-white' />
             </button>
           </div>

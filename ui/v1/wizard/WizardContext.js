@@ -10,6 +10,7 @@ const WizardContextProvider = ({ children }) => {
   const [tags, setTags] = useState([])
   const [sectors, setSectors] = useState([])
   const [useCases, setUseCases] = useState([])
+  const [countries, setCountries] = useState([])
   const [buildingBlocks, setBuildingBlocks] = useState([])
   const [mobileServices, setMobileServices] = useState([])
 
@@ -22,6 +23,7 @@ const WizardContextProvider = ({ children }) => {
     tags,
     sectors,
     useCases,
+    countries,
     buildingBlocks,
     mobileServices,
     searchTags,
@@ -35,6 +37,7 @@ const WizardContextProvider = ({ children }) => {
     setTags,
     setSectors,
     setUseCases,
+    setCountries,
     setBuildingBlocks,
     setMobileServices,
     setSearchTags,
