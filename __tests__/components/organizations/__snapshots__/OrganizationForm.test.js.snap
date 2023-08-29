@@ -201,7 +201,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isEndorser"
                     type="checkbox"
                   />
-                  Organization is a Principal for Digital Development endorser.
+                  Organization is an endorser of the Principle for Digital Development.
                 </label>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -657,7 +657,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isEndorser"
                     type="checkbox"
                   />
-                  Organization is a Principal for Digital Development endorser.
+                  Organization is an endorser of the Principle for Digital Development.
                 </label>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
