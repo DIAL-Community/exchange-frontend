@@ -18,18 +18,9 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       />
       {currentOpenMenu === RESOURCE_MENU &&
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-          <Link href='/covid-19-resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('header.covidResources')}
+          <Link href='/playbooks' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('header.playbooks')}
           </Link>
-          <a
-            href='//resources.dial.community/'
-            className={DEFAULT_DROPDOWN_MENU_STYLES}
-            target='_blank'
-            rel='noreferrer'
-            role='menuitem'
-          >
-            {format('header.dialResourcesPortal')}
-          </a>
           <a
             href='//digitalimpactalliance.org/research/sdg-digital-investment-framework/'
             className={DEFAULT_DROPDOWN_MENU_STYLES}
@@ -42,6 +33,18 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           <Link href='/resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('header.blogs')}
           </Link>
+          <Link href='/covid-19-resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('header.covidResources')}
+          </Link>
+          <a
+            href='//resources.dial.community/'
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            target='_blank'
+            rel='noreferrer'
+            role='menuitem'
+          >
+            {format('header.dialResourcesPortal')}
+          </a>
         </div>
       }
     </>

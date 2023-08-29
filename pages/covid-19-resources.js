@@ -1,7 +1,9 @@
-import Link from 'next/link'
 import { useIntl, FormattedMessage } from 'react-intl'
+import Link from 'next/link'
+import ClientOnly from '../lib/ClientOnly'
+import QueryNotification from '../components/shared/QueryNotification'
+import Header from '../ui/v1/shared/Header'
 import Footer from '../ui/v1/shared/Footer'
-import Header from '../ui/v1/shared/Footer'
 
 const jsphUrl = 'https://www.jhsph.edu/departments/international-health/news/johns-hopkins-researchers-publish' +
 '-assessment-of-digital-solutions-for-covid-19-response-in-low-and-middle-income-countries.html'
@@ -67,7 +69,7 @@ const Content = () => {
                 }}
               />
             </div>
-            <img className='w-full lg:max-w-2/3 object-scale-down mb-auto' src='images/covid/covid-prod1.png' />
+            <img className='w-2/3 object-scale-down mb-auto' src='images/covid/covid-prod1.png' />
           </div>
           <div className='flex flex-col lg:flex-row gap-3 lg:mt-8'>
             <div className='w-full lg:max-w-1/3 flex flex-col mr-5 body-large'>
@@ -79,7 +81,7 @@ const Content = () => {
                 }}
               />
             </div>
-            <img className='w-full lg:max-w-2/3 object-scale-down mb-auto' src='images/covid/covid-prod2.png' />
+            <img className='w-2/3 object-scale-down mb-auto' src='images/covid/covid-prod2.png' />
           </div>
           <div className='flex flex-col lg:flex-row gap-3 lg:mt-8'>
             <div className='w-full lg:max-w-1/3 flex flex-col mr-5 body-large'>
@@ -90,7 +92,7 @@ const Content = () => {
                 }}
               />
             </div>
-            <img className='w-full lg:max-w-2/3 object-scale-down mb-auto' src='/images/covid/covid-prod3.png' />
+            <img className='w-2/3 object-scale-down mb-auto' src='/images/covid/covid-prod3.png' />
           </div>
         </div>
         <div className='flex flex-col gap-4 mt-8'>
@@ -122,7 +124,7 @@ const Content = () => {
                   }}
                 />
               </div>
-              <img className='w-full lg:max-w-2/3 object-scale-down mb-auto' src='/images/covid/covid-agg1.png' />
+              <img className='w-2/3 object-scale-down mb-auto' src='/images/covid/covid-agg1.png' />
             </div>
             <div className='flex flex-col lg:flex-row gap-3 lg:mt-8'>
               <div className='w-full lg:max-w-1/3 flex flex-col mr-5 body-large'>
@@ -133,7 +135,7 @@ const Content = () => {
                   }}
                 />
               </div>
-              <img className='w-full lg:max-w-2/3 object-scale-down mb-auto' src='/images/covid/covid-agg2.png' />
+              <img className='w-2/3 object-scale-down mb-auto' src='/images/covid/covid-agg2.png' />
             </div>
             <div className='flex flex-col lg:flex-row gap-3 lg:mt-8'>
               <div className='w-full lg:max-w-1/3 flex flex-col mr-5 body-large'>
@@ -144,7 +146,7 @@ const Content = () => {
                   }}
                 />
               </div>
-              <img className='w-full lg:max-w-2/3 object-scale-down mb-auto' src='/images/covid/covid-agg4.png' />
+              <img className='w-2/3 object-scale-down mb-auto' src='/images/covid/covid-agg4.png' />
             </div>
             <div className='flex flex-col lg:flex-row gap-3 lg:mt-8'>
               <div className='w-full lg:max-w-1/3 flex flex-col mr-5 body-large'>
@@ -155,14 +157,14 @@ const Content = () => {
                     firstLink: chunks =>
                       <a
                         className='mx-1 text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
-                        href='http://sexchange.dial.global/organizations?shareCatalog=true&aggregator=true'
+                        href='http://exchange.dial.global/organizations?shareCatalog=true&aggregator=true'
                       >
                         {chunks}
                       </a>
                   }}
                 />
               </div>
-              <img className='w-full lg:max-w-2/3 object-scale-down mb-auto' src='/images/covid/covid-agg3.png' />
+              <img className='w-2/3 object-scale-down mb-auto' src='/images/covid/covid-agg3.png' />
             </div>
           </div>
         </div>
@@ -243,6 +245,14 @@ const Content = () => {
 
 const Covid19Resources = () => (
   <>
+    <ClientOnly>
+      <QueryNotification />
+      <Header />
+      <div className='flex flex-col'>
+        <Content />
+      </div>
+      <Footer />
+    </ClientOnly>
     <Header />
     <Content />
     <Footer />

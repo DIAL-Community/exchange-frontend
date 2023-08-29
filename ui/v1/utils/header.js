@@ -8,7 +8,6 @@ export const SUPPORTING_NAVIGATION_ITEMS = {
   'filter.entity.maps': 'maps',
   'filter.entity.datasets': 'datasets',
   'filter.entity.organizations': 'organizations',
-  'filter.entity.playbooks': 'playbooks',
   'filter.entity.projects': 'projects',
   'filter.entity.sdgs': 'sdgs',
   'filter.entity.workflows': 'workflows'
