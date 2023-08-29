@@ -17,7 +17,16 @@ const OpportunityDefinition = () => {
             values={{
               p: chunks => <p className='text-justify'>{chunks}</p>,
               li: chunks => <li>{chunks}</li>,
-              ul: chunks => <ul className='pl-4 list-outside list-disc flex flex-col gap-y-2'>{chunks}</ul>
+              ul: chunks => <ul className='pl-4 list-outside list-disc flex flex-col gap-y-2'>{chunks}</ul>,
+              email: chunks => (
+                <a
+                  class='border-b border-dial-stratos'
+                  target='_blank'
+                  href={`mailto:${chunks}`}
+                >
+                  {chunks}
+                </a>
+              )
             }}
           />
         </div>

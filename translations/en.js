@@ -1689,7 +1689,7 @@ export const en = {
       <li>
         We also offer data sharing possibilities. Join others in automating a sync to the Exchange.
         Every time you post an opportunity to your own portal, the Exchange can aggregate the information
-        directly. For more information, email us at issues@exchange.dial.global
+        directly. For more information, email us at <email>issues@exchange.dial.global</email>.
       </li>
     </ul>
   `,
