@@ -24,6 +24,11 @@ const WizardResultRight = forwardRef((_props, ref) => {
     []
   )
 
+  const scrollToTop = (e) => {
+    e.preventDefault()
+    window.scrollTo(0, 0)
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
@@ -32,6 +37,11 @@ const WizardResultRight = forwardRef((_props, ref) => {
         <BuildingBlockList headerRef={buildingBlockRef} />
         <ProjectList headerRef={projectRef} />
         <DatasetList headerRef={datasetRef} />
+        <div className='mx-auto text-sm'>
+          <a href='#' onClick={scrollToTop} className='border-b border-dial-iris-blue'>
+            Back to the top
+          </a>
+        </div>
       </div>
     </div>
   )
