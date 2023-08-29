@@ -60,6 +60,18 @@ const subMenus = {
     type: 'link',
     items: [
       {
+        label: 'header.playbooks',
+        link: '/playbooks'
+      },
+      {
+        label: 'header.wizard',
+        link: '/wizard'
+      },
+      {
+        label: 'header.blogs',
+        link: '/resources'
+      },
+      {
         label: 'header.covidResources',
         link: '/covid-19-resources'
       },
@@ -118,10 +130,6 @@ const subMenus = {
       {
         label: 'ui.project.header',
         link: '/projects'
-      },
-      {
-        label: 'ui.playbook.header',
-        link: '/playbooks'
       },
       {
         label: 'map.header',
