@@ -2109,5 +2109,94 @@ export const en = {
   'ui.wizard.result.header': 'Your results',
 
   'ui.mobileService.label': 'Mobile Service',
-  'ui.mobileService.header': 'Mobile Services'
+  'ui.mobileService.header': 'Mobile Services',
+
+  'ui.contactUs.label': 'Contact Us',
+  'ui.contactUs.subtext': `
+    We welcome questions or feedback on the Digital Impact Exchange. Please feel
+    free to reach out to us.
+  `,
+
+  'ui.about.theExchange': 'About the Digital Impact Exchange',
+  'ui.about.theExchange.subtext': 'The world of digital government solutions is complex. We help you navigate it.',
+  'ui.about.theExchange.description': `
+    <p>
+      The Digital Impact Exchange is a web application that aims to simplify digital government services
+      without having to design the digital architecture from scratch. The platform is a gateway to existing
+      online tools, products, and many other resources. Making access to tech easier and more reliable helps
+      governments to provide the services that people need to live happier, healthier lives.
+    </p>
+    <p>
+      It can be tough for government decision makers to find current, reliable information on tried-and-tested
+      technologies. The Exchange solves that problem by serving as a one-stop shop, featuring over 500 digital
+      tools, products and opportunities for government technology decision makers, IT developers, and product
+      vendors.
+    </p>
+    <p>  
+      Our goal is to make the Exchange the most comprehensive and user-friendly marketplace for the digital
+      development sector. We’re adding new features and functionality all the time. Here are some of the ways
+      that the Exchange can help you today:
+    </p>  
+    <ul>
+      <li>Find and compare products and tools, whether they are open source products or commercial tools</li>
+      <li>Connect with vendors or clients through product and business opportunities, including searching and finding RFPs</li>
+      <li>Advertise your products and services through your own Vendor Storefront</li>
+      <li>Join our community, by linking to our platform and amplifying your data, best practices, and knowledge</li>
+    </ul>
+  `,
+  'ui.about.theVision': 'Our Vision',
+  'ui.about.theVision.description': `
+    <p>
+      Our vision is to bridge the gap between demand and supply in the digital ecosystem, by providing the people
+      and organizations working in digital government with access to innovative and transformative technologies.
+      By creating a vibrant Exchange, we bring together a diverse community of solution providers and organizations
+      seeking to embrace the power of digital solutions. 
+ 
+    </p>
+  `,
+  'ui.about.theBeyond': 'Beyond the Exchange',
+  'ui.about.theBeyond.description': `
+    <p>
+      The Exchange is an initiative of the Digital Impact Alliance. We believe that everyone, everywhere should
+      benefit from the power of trusted digital technology. The Exchange is one way we’re trying to meet that goal.
+      Learn more about our other initiatives.
+    </p>
+  `,
+  'ui.about.thePartner': 'Our partners',
+  'ui.about.thePartner.description': `
+    <p>
+      The Digital Impact Exchange exists because of the valuable work of our partners.
+    </p>
+    <ul>
+      <li>
+        <strong>Supporters / Funders.</strong>
+        Our donors share our deep commitment to advancing technologies for organizations everywhere.
+      </li>
+      <li>
+        <strong>Data-Sharing Partners.</strong>
+        Our data-sharing partners provide the resources, tools and opportunities showcased by
+        the Exchange. (WHO, Leverist, GIZ) 
+      </li>
+      <li>
+        <strong>GovStack</strong>.
+        The Exchange is one of the key offerings of Govstack, a multi-stakeholder, community-driven
+        initiative that is focused on accelerating national digital transformation worldwide. DIAL
+        serves as one of Govstack’s four founding partners. Learn more about <a>Govstack.</a>
+      </li>
+    </ul>
+  `,
+  'ui.about.theTeam': 'Our team',
+  'ui.about.theTeam.description': `
+    <p>
+      <strong>Our staff,</strong>
+      who are part of the Digital Impact Alliance, are a team of passionate technologists devoted
+      to creating and stewarding technology that puts peoples' needs at the center.
+    </p>
+    <p>
+      <strong>Our reference group </strong>
+      is an expert set of advisors from around the world that provide direction and feedback on
+      the Exchange as we learn and grow.
+    </p>
+  `,
+  'ui.common.scrollToTop': 'Back to the top'
 }
