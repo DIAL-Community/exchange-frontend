@@ -263,7 +263,7 @@ const UserMenu = ({ currentMenu, setCurrentMenu }) => {
           {currentMenu === USER_MENU &&
             <ul className='px-6'>
               <li>
-                <Link href={`/users/${user.id}`}>
+                <Link href='/users/me'>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format('header.profile')}
                   </div>

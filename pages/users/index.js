@@ -1,42 +1,50 @@
-import { NextSeo } from 'next-seo'
-import { useRouter } from 'next/router'
-import { useCallback, useEffect } from 'react'
-import { useIntl } from 'react-intl'
-import { Tooltip } from 'react-tooltip'
-import ClientOnly from '../../lib/ClientOnly'
+import { useContext } from 'react'
+import dynamic from 'next/dynamic'
 import Header from '../../ui/v1/shared/Header'
-import { Loading } from '../../ui/v1/shared/FetchStatus'
 import Footer from '../../ui/v1/shared/Footer'
+import QueryNotification from '../../components/shared/QueryNotification'
+import GradientBackground from '../../components/shared/GradientBackground'
+import SearchFilter from '../../components/shared/SearchFilter'
+import { UserFilterContext, UserFilterDispatchContext } from '../../components/context/UserFilterContext'
+import { Loading, Unauthorized } from '../../ui/v1/shared/FetchStatus'
+import ClientOnly from '../../lib/ClientOnly'
+import { useUser } from '../../lib/hooks'
+import PageContent from '../../components/main/PageContent'
+const UserListQuery = dynamic(() => import('../../components/users/UserList'), { ssr: false })
 
-const UserListPage = () => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+const Users = () => {
+  const { search } = useContext(UserFilterContext)
+  const { setSearch } = useContext(UserFilterDispatchContext)
 
-  const router = useRouter()
-
-  useEffect(() => {
-    router.push('/')
-  }, [router])
+  const { isAdminUser, loadingUserSession } = useUser()
 
   return (
     <>
-      <NextSeo
-        title={format('ui.useCase.header')}
-        description={
-          format(
-            'shared.metadata.description.listOfKey',
-            { entities: format('ui.useCase.header')?.toLocaleLowerCase() }
-          )
-        }
-      />
+      <QueryNotification />
+      <GradientBackground />
+      <Header />
       <ClientOnly>
-        <Header />
-        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <Loading />
-        <Footer />
+        {loadingUserSession ? <Loading /> : isAdminUser ? (
+          <div className='px-4 lg:px-8 xl:px-56'>
+            <PageContent
+              content={<UserListQuery displayType='list' />}
+              searchFilter={
+                <SearchFilter
+                  search={search}
+                  setSearch={setSearch}
+                  hint='filter.entity.users'
+                  switchView={false}
+                  exportJson={false}
+                  exportCsv={false}
+                />
+              }
+            />
+          </div>
+        ) : <Unauthorized />}
       </ClientOnly>
+      <Footer />
     </>
   )
 }
 
-export default UserListPage
+export default Users

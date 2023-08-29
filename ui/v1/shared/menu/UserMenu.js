@@ -34,7 +34,7 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       </a>
       {currentOpenMenu === USER_MENU &&
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-          <Link href={`/users/${user.id}`} role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+          <Link href='/users/me' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('header.profile')}
           </Link>
           <a href='signOut' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES} onClick={signOutUser}>
