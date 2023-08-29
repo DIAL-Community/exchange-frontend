@@ -301,11 +301,6 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
               </a>
             </li>
             <li className='py-4 border-b'>
-              <Link href='wizard' className='mx-6 font-semibold'>
-                {format('header.wizard')}
-              </Link>
-            </li>
-            <li className='py-4 border-b'>
               <a
                 className='mx-6 font-semibold' href='/expand-resources'
                 onClick={(e) => openSubMenu(e, 'header.resources')}

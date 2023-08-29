@@ -164,6 +164,12 @@ const ResourceMenu = ({ currentMenu, setCurrentMenu }) => {
   }
 
   const RESOURCES_MENU_ITEMS = [{
+    label: 'header.playbooks',
+    link: '/playbooks'
+  },{
+    label: 'header.wizard',
+    link: '/wizard'
+  },{
     label: 'header.covidResources',
     link: '/covid-19-resources'
   }, {
@@ -449,13 +455,6 @@ const MobileMenu = ({ menuExpanded, setMenuExpaded }) => {
               <MarketplaceMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <ToolMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <SupportingMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
-              <li>
-                <Link href='wizard'>
-                  <div className='flex flex-row gap-x-2 mx-8 py-4'>
-                    {format('header.wizard')}
-                  </div>
-                </Link>
-              </li>
               <ResourceMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <UserMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <HelpMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
