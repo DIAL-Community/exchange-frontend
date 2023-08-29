@@ -7,12 +7,17 @@ import { Controller, useForm } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
 import UrlInput from '../../../shared/form/UrlInput'
+import { Loading, Unauthorized } from '../../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import {
+  CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
+  PAGINATED_CANDIDATE_PRODUCTS_QUERY
+} from '../../../shared/query/candidateProduct'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -34,6 +39,13 @@ const ProductForm = React.memo(({ product }) => {
   const { locale } = router
 
   const [updateProduct, { reset }] = useMutation(CREATE_CANDIDATE_PRODUCT, {
+    refetchQueries: [{
+      query: CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_CANDIDATE_PRODUCTS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       const { createCandidateProduct: response } = data
       console.log('IF: ', response.candidateProduct, response.errors.length === 0)

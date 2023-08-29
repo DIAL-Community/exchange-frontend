@@ -1,11 +1,12 @@
 import { FormattedDate, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../../utils/constants'
+import { CandidateActionType, ObjectType } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import { prependUrlWithProtocol } from '../../utils/utilities'
+import DatasetActionButton from './fragments/DatasetActionButton'
 
 const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
   const { formatMessage } = useIntl()
@@ -26,6 +27,8 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
+            <DatasetActionButton dataset={dataset} actionType={CandidateActionType.REJECT} />
+            <DatasetActionButton dataset={dataset} actionType={CandidateActionType.APPROVE} />
             <EditButton type='link' href={editPath} />
           </div>
         )}

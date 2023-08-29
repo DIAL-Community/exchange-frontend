@@ -74,3 +74,24 @@ export const generateSpecialtyOptions = () => [
   { value: 'UX & Design', label: 'UX & Design' },
   { value: 'Web Development', label: 'Web Development' }
 ]
+
+export const generateMobileServiceOptions = () => [
+  { label: 'Airtime', value: 'Airtime' },
+  { label: 'API', value: 'API' },
+  { label: 'HS', value: 'HS' },
+  { label: 'Mobile-Internet', value: 'Mobile-Internet' },
+  { label: 'Mobile-Money', value: 'Mobile-Money' },
+  { label: 'Ops-Maintenance', value: 'Ops-Maintenance' },
+  { label: 'OTT', value: 'OTT' },
+  { label: 'SLA', value: 'SLA' },
+  { label: 'SMS', value: 'SMS' },
+  { label: 'User-Interface', value: 'User-Interface' },
+  { label: 'USSD', value: 'USSD' },
+  { label: 'Voice', value: 'Voice' }
+]
+
+export const generateCategoryIndicatorTypes = (format) => [
+  { label: format('shared.categoryIndicator.type.numeric'), value: 'numeric' },
+  { label: format('shared.categoryIndicator.type.scale'), value: 'scale' },
+  { label: format('shared.categoryIndicator.type.boolean'), value: 'boolean' }
+]

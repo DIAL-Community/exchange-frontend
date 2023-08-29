@@ -28,8 +28,36 @@ export const CREATE_CANDIDATE_DATASET = gql`
         website
         visualizationUrl
         description
+        submitterEmail
+        createdAt
+        rejected
       }
       errors
     }
   }  
+`
+
+export const CANDIDATE_DATASET_ACTION = gql`
+  mutation ApproveRejectCandidateDataset (
+    $slug: String!
+    $action: String!
+  ) {
+    approveRejectCandidateDataset (
+      slug: $slug
+      action: $action
+    ) {
+      candidateDataset {
+        id
+        name
+        slug
+  
+        rejected
+        rejectedDate
+        rejectedBy
+        approvedDate
+        approvedBy
+      }
+      errors
+    }
+  }
 `

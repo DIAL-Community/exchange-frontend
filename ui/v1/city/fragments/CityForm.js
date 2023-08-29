@@ -6,10 +6,12 @@ import { FaSpinner } from 'react-icons/fa6'
 import { useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CITY } from '../../shared/mutation/city'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { CITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CITIES_QUERY } from '../../shared/query/city'
 
 const CityForm = React.memo(({ city }) => {
   const { formatMessage } = useIntl()
@@ -28,6 +30,13 @@ const CityForm = React.memo(({ city }) => {
   const { locale } = router
 
   const [updateCity, { reset }] = useMutation(CREATE_CITY, {
+    refetchQueries: [{
+      query: CITY_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_CITIES_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createCity.city && data.createCity.errors.length === 0) {
         const redirectPath = `/${locale}/cities/${data.createCity.city.slug}`

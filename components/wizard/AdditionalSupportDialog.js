@@ -54,7 +54,7 @@ const AdditionalSupportDialog = ({ isOpen, onClose }) => {
         <form onSubmit={handleSubmit(doUpsert)} id='wizard-request-additional-support-form'>
           <div className='pb-12 mb-4 flex flex-col gap-3'>
             <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-              {format('wizard.request-additional-support')}
+              {format('wizard.additionalSupport')}
             </div>
             <div className='form-field-wrapper' data-testid='name'>
               <label className='form-field-label required-field' htmlFor='name'>
@@ -87,7 +87,7 @@ const AdditionalSupportDialog = ({ isOpen, onClose }) => {
             </div>
             <div className='form-field-wrapper' data-testid='message'>
               <label className='form-field-label required-field' htmlFor='message'>
-                {format('wizard.request-additional-support.message')}
+                {format('wizard.additionalSupport.message')}
               </label>
               <Textarea
                 {...register('message',
@@ -110,7 +110,7 @@ const AdditionalSupportDialog = ({ isOpen, onClose }) => {
                   }
                 )}
                 id='message'
-                placeholder={format('wizard.request-additional-support.message')}
+                placeholder={format('wizard.additionalSupport.message')}
                 isInvalid={errors.message}
                 rows={TEXTAREA_DEFAULT_ROWS}
               />

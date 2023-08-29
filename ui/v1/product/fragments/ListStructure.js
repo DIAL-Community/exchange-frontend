@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
 import { ProductFilterContext } from '../../../../components/context/ProductFilterContext'
 import ProductCard from '../ProductCard'
 import { DisplayType } from '../../utils/constants'
-import { NotFound } from '../../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(ProductFilterContext)
@@ -22,7 +21,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
-      sdgs: sdgs.map(sdg => sdg.number),
+      sdgs: sdgs.map(sdg => sdg.value),
       workflows: workflows.map(workflow => workflow.id),
       origins: origins.map(origin => origin.value),
       isLinkedWithDpi,

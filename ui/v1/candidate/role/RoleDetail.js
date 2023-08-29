@@ -25,7 +25,7 @@ const RoleDetail = ({ id }) => {
 
   const slugNameMapping = (() => {
     const map = {}
-    map[role.slug] = role.name
+    map[role.id] = role.email
 
     return map
   })()

@@ -6,7 +6,6 @@ import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
@@ -15,6 +14,9 @@ import { CREATE_PRODUCT } from '../../shared/mutation/product'
 import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
 import Checkbox from '../../shared/form/Checkbox'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -33,6 +35,13 @@ const ProductForm = React.memo(({ product }) => {
   const { locale } = router
 
   const [updateProduct, { reset }] = useMutation(CREATE_PRODUCT, {
+    refetchQueries: [{
+      query: PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_PRODUCTS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createProduct.product && data.createProduct.errors.length === 0) {
         setMutating(false)

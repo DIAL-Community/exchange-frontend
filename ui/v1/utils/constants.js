@@ -70,4 +70,9 @@ export const CategoryIndicatorType = {
   BOOLEAN: 'boolean'
 }
 
+export const CandidateActionType = {
+  APPROVE: 'APPROVE',
+  REJECT: 'REJECT'
+}
+
 export const DEFAULT_PAGE_SIZE = 8

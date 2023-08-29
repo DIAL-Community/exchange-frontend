@@ -1,12 +1,16 @@
 import { FormattedDate, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../../utils/constants'
+import { useUser } from '../../../../lib/hooks'
+import { CandidateActionType, ObjectType } from '../../utils/constants'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import CommentsSection from '../../shared/comment/CommentsSection'
+import RoleActionButton from './fragments/RoleActionButton'
 
 const RoleDetailRight = forwardRef(({ role }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { user } = useUser()
 
   const commentsSectionRef = useRef()
   useImperativeHandle(ref, () => ([
@@ -16,6 +20,12 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
+        {user.isAdminUser && (
+          <div className='flex gap-x-3 ml-auto'>
+            <RoleActionButton role={role} actionType={CandidateActionType.REJECT} />
+            <RoleActionButton role={role} actionType={CandidateActionType.APPROVE} />
+          </div>
+        )}
         <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}
         </div>

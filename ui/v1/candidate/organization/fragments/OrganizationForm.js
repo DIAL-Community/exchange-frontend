@@ -7,12 +7,17 @@ import { Controller, useForm } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../shared/mutation/candidateOrganization'
 import UrlInput from '../../../shared/form/UrlInput'
+import { Loading, Unauthorized } from '../../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import {
+  CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
+  PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY
+} from '../../../shared/query/candidateOrganization'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
@@ -34,6 +39,13 @@ const OrganizationForm = React.memo(({ organization }) => {
   const { locale } = router
 
   const [updateOrganization, { reset }] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
+    refetchQueries: [{
+      query: CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       const { createCandidateOrganization: response } = data
       if (response.candidateOrganization && response.errors.length === 0) {

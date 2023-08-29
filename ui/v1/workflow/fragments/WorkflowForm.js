@@ -6,12 +6,17 @@ import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_WORKFLOW } from '../../shared/mutation/workflow'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import {
+  PAGINATED_WORKFLOWS_QUERY,
+  WORKFLOW_PAGINATION_ATTRIBUTES_QUERY
+} from '../../shared/query/workflow'
 
 const WorkflowForm = React.memo(({ workflow }) => {
   const { formatMessage } = useIntl()
@@ -30,6 +35,13 @@ const WorkflowForm = React.memo(({ workflow }) => {
   const { locale } = router
 
   const [updateWorkflow, { reset }] = useMutation(CREATE_WORKFLOW, {
+    refetchQueries: [{
+      query: WORKFLOW_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_WORKFLOWS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createWorkflow.workflow && data.createWorkflow.errors.length === 0) {
         const redirectPath = `/${locale}/workflows/${data.createWorkflow.workflow.slug}`

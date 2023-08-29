@@ -6,21 +6,22 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
-import ProductDetailTags from './fragments/ProductDetailTags'
-import DeleteProduct from './DeleteProduct'
-import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
+import CreateButton from '../shared/form/CreateButton'
 import ProductDetailSdgs from './fragments/ProductDetailSdgs'
-import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
-import ProductCard from './ProductCard'
-import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
+import ProductDetailTags from './fragments/ProductDetailTags'
 import ProductRepositoryCard from './repository/ProductRepositoryCard'
+import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
+import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
+import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
+import ProductCard from './ProductCard'
+import DeleteProduct from './DeleteProduct'
 
-const ProductSource = ({ product }) => {
+const ProductSource = ({ product, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='flex flex-col gap-y-3'>
+    <div className='flex flex-col gap-y-3' ref={headerRef}>
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.source')}
       </div>
@@ -70,12 +71,12 @@ const ProductSource = ({ product }) => {
   )
 }
 
-const ProductEndorser = ({ product }) => {
+const ProductEndorser = ({ product, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='flex flex-col gap-y-3'>
+    <div className='flex flex-col gap-y-3' ref={headerRef}>
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.endorsers')}
       </div>
@@ -106,12 +107,12 @@ const ProductEndorser = ({ product }) => {
   )
 }
 
-const ProductInteroperable = ({ product }) => {
+const ProductInteroperable = ({ product, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='flex flex-col gap-y-3'>
+    <div className='flex flex-col gap-y-3' ref={headerRef}>
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.interoperable')}
       </div>
@@ -136,12 +137,12 @@ const ProductInteroperable = ({ product }) => {
   )
 }
 
-const ProductIncluded = ({ product }) => {
+const ProductIncluded = ({ product, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='flex flex-col gap-y-3'>
+    <div className='flex flex-col gap-y-3' ref={headerRef}>
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.included')}
       </div>
@@ -180,6 +181,12 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const organizationRef = useRef()
   const tagRef = useRef()
   const commentsSectionRef = useRef()
+  const productRepositoryRef = useRef()
+  const productSourceRef = useRef()
+  const productEndorserRef = useRef()
+  const productIncludedRef = useRef()
+  const productInteroperableRef = useRef()
+  const productMaturityRef = useRef()
 
   useImperativeHandle(
     ref,
@@ -189,6 +196,17 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
       { value: 'ui.organization.header', ref: organizationRef },
+
+      { value: 'productRepository.header', ref: productRepositoryRef },
+
+      { value: 'product.source', ref: productSourceRef },
+      { value: 'product.endorsers', ref: productEndorserRef },
+      { value: 'product.interoperable', ref: productInteroperableRef },
+      { value: 'product.included', ref: productIncludedRef },
+
+      { value: 'ui.maturityScore.header', ref: productMaturityRef },
+
+      { value: 'ui.productRepository.header', ref: productRepositoryRef },
       { value: 'ui.tag.header', ref: tagRef },
       { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
@@ -277,26 +295,49 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           {format('ui.product.details')}
         </div>
         <div className='border-b border-transparent my-2' />
-        <div className='text-dial-meadow text-lg font-semibold'>
-          {format('productRepository.header')}
+        <div className='flex flex-col gap-y-3'>
+          <div className='flex flex-row gap-3'>
+            <div className='text-dial-meadow text-lg font-semibold' ref={productRepositoryRef}>
+              {format('productRepository.header')}
+            </div>
+            {canEdit &&
+              <div className='ml-auto'>
+                <CreateButton
+                  label={format('app.create')}
+                  type='link'
+                  href={`/products/${product.slug}/repositories/create`}
+                />
+              </div>
+            }
+          </div>
+          {!product.mainRepository &&
+          <div className='text-sm text-dial-stratos'>
+            {format( 'ui.common.detail.noData', {
+              entity: format('productRepository.label'),
+              base: format('ui.product.label')
+            })}
+          </div>
+          }
+          {product.mainRepository &&
+            <ProductRepositoryCard
+              index={0}
+              product={product}
+              productRepository={product.mainRepository}
+              displayType={DisplayType.LARGE_CARD}
+            />
+          }
         </div>
-        <ProductRepositoryCard
-          index={0}
-          product={product}
-          productRepository={product.mainRepository}
-          displayType={DisplayType.LARGE_CARD}
-        />
         <div className='border-b border-transparent my-2' />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-          <ProductSource product={product} />
-          <ProductEndorser product={product} />
+          <ProductSource product={product} headerRef={productSourceRef} />
+          <ProductEndorser product={product} headerRef={productEndorserRef}/>
         </div>
         <div className='border-b border-transparent my-2' />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-          <ProductInteroperable product={product} />
-          <ProductIncluded product={product} />
+          <ProductInteroperable product={product} headerRef={productInteroperableRef} />
+          <ProductIncluded product={product} headerRef={productIncludedRef} />
         </div>
-        <div className='text-dial-meadow text-xl font-semibold mt-6'>
+        <div className='text-dial-meadow text-xl font-semibold mt-6' ref={productMaturityRef}>
           {format('ui.maturityScore.header')}
         </div>
         <div className='text-sm italic'>

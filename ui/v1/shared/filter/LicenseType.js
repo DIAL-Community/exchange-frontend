@@ -11,7 +11,7 @@ export const LicenseTypeAutocomplete = ({ licenseTypes, setLicenseTypes, placeho
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('licenseType.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.licenseType.label') })
 
   const selectLicenseType = (licenseType) => {
     setLicenseTypes([...licenseTypes.filter(({ value }) => value !== licenseType.value), licenseType])

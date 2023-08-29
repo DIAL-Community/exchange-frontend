@@ -1,16 +1,15 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import { PAGINATED_USE_CASES_QUERY } from '../../shared/query/useCase'
 import { UseCaseFilterContext } from '../../../../components/context/UseCaseFilterContext'
 import UseCaseCard from '../UseCaseCard'
 import { DisplayType } from '../../utils/constants'
-import { NotFound } from '../../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
 
-  const { loading, error, data, fetchMore } = useQuery(PAGINATED_USE_CASES_QUERY, {
+  const { loading, error, data } = useQuery(PAGINATED_USE_CASES_QUERY, {
     variables: {
       search,
       sdgs: sdgs.map(sdg => sdg.value),
@@ -20,19 +19,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       offset: pageOffset
     }
   })
-
-  useEffect(() => {
-    fetchMore({
-      variables: {
-        search,
-        sdgs: sdgs.map(sdg => sdg.value),
-        showBeta: true,
-        govStackOnly,
-        limit: defaultPageSize,
-        offset: pageOffset
-      }
-    })
-  }, [search, sdgs, showBeta, govStackOnly, pageOffset, defaultPageSize, fetchMore])
 
   if (loading) {
     return <Loading />

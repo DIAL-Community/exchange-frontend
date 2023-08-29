@@ -6,10 +6,12 @@ import { FaSpinner } from 'react-icons/fa6'
 import { useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CONTACT } from '../../shared/mutation/contact'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { CONTACT_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CONTACTS_QUERY } from '../../shared/query/contact'
 
 const ContactForm = React.memo(({ contact }) => {
   const { formatMessage } = useIntl()
@@ -28,6 +30,13 @@ const ContactForm = React.memo(({ contact }) => {
   const { locale } = router
 
   const [updateContact, { reset }] = useMutation(CREATE_CONTACT, {
+    refetchQueries: [{
+      query: CONTACT_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_CONTACTS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createContact.contact && data.createContact.errors.length === 0) {
         const redirectPath = `/${locale}/contacts/${data.createContact.contact.slug}`

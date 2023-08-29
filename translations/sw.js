@@ -1075,7 +1075,7 @@ export const sw = {
   "govstack.feedback.issue": "Je, una maoni gani? *",
   "govstack.feedback.submit": "Tuma maoni",
 
-  "categoryIndicators.header": "Viashiria vya Kategoria",
+  "categoryIndicator.header": "Viashiria vya Kategoria",
   "categoryIndicator.weight": "Uzito",
   "categoryIndicator.indicatorType": "Aina ya kiashiria",
   "categoryIndicator.dataSource": "Chanzo cha data",

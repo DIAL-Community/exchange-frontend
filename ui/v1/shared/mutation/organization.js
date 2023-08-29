@@ -215,12 +215,17 @@ export const UPDATE_ORGANIZATION_OFFICES = gql`
             name
             slug
           }
-          region
+          region {
+            id
+            name
+            slug
+          }
           country {
             id
             name
             slug
             code
+            codeLonger
           }
           latitude
           longitude

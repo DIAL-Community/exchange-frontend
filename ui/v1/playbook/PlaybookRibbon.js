@@ -7,13 +7,13 @@ const PlaybookRibbon = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const titleImage =
-    <div className='bg-dial-plum rounded-full w-[70px] h-[70px]'>
+    <div className='bg-dial-plum rounded-full w-[70px] h-[70px] flex items-center'>
       <img
         src='/ui/v1/playbook-header.svg'
         alt={format('ui.image.logoAlt', { name: format('ui.playbook.label') })}
         width={40}
         height={40}
-        className='object-contain mx-auto mt-4 white-filter'
+        className='object-contain mx-auto white-filter'
       />
     </div>
 

@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import { SDG_LIST_QUERY } from '../../shared/query/sdg'
 import { SDGFilterContext } from '../../../../components/context/SDGFilterContext'
 import SdgCard from '../SdgCard'
 import { DisplayType } from '../../utils/constants'
-import { NotFound } from '../../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = () => {
   const { search } = useContext(SDGFilterContext)

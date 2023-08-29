@@ -29,7 +29,8 @@ const basePathMappings = {
   'projects': 'ui.project.header',
   'repositories': 'productRepository.header',
   'resources': 'ui.resource.header',
-  'rubric-categories': 'ui.rubricCategories.header',
+  'rubric-categories': 'ui.rubricCategory.header',
+  'category-indicators': 'categoryIndicator.header',
   'sdgs': 'ui.sdg.header',
   'sectors': 'ui.sector.header',
   'storefronts': 'ui.storefront.header',
@@ -37,7 +38,8 @@ const basePathMappings = {
   'users': 'ui.user.header',
   'use-case-steps': 'ui.useCaseStep.header',
   'use-cases': 'ui.useCase.header',
-  'workflows': 'ui.workflow.header'
+  'workflows': 'ui.workflow.header',
+  'wizard': 'ui.wizard.header'
 }
 
 const candidatePathMappings = {

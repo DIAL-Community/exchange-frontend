@@ -514,8 +514,8 @@ export const en = {
   'wizard.bb.terminology': 'Will the project involve the management of definitions, terms, and standards?',
   'wizard.bb.workflowandalgorithm': 'Will the project require orchestration of processes and flow of information between services?',
   'wizard.bb.elearning': 'Will this project involve online learning or creation of courses and curricula?',
-  'wizard.request-additional-support': 'Request additional support',
-  'wizard.request-additional-support.message': 'Message',
+  'wizard.additionalSupport': 'Request additional support',
+  'wizard.additionalSupport.message': 'Message',
 
   'wizard.getStarted': 'Let\'s get started',
   'wizard.getStarted.firstLine': `
@@ -1607,7 +1607,7 @@ export const en = {
   'govstack.feedback.issue': 'What feedback do you have? *',
   'govstack.feedback.submit': 'Send feedback',
 
-  'categoryIndicators.header': 'Category Indicators',
+  'categoryIndicator.header': 'Category Indicators',
   'categoryIndicator.create': 'Create Category Indicator',
   'categoryIndicator.label': 'Category Indicator',
   'categoryIndicator.weight': 'Weight',
@@ -1615,6 +1615,7 @@ export const en = {
   'categoryIndicator.dataSource': 'Data source',
   'categoryIndicator.scriptName': 'Script name',
   'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?',
+  'categoryIndicator.parent.detail': 'Parent Rubric Category',
 
   'paginatedSection.page.previous.label': '< Previous',
   'paginatedSection.page.next.label': 'Next >',
@@ -1794,6 +1795,7 @@ export const en = {
 
   'ui.image.logoAlt': 'Logo of {name}.',
   'ui.common.detail.description': 'Description',
+  'ui.common.detail.top': 'Top',
   'ui.common.detail.noData': 'We do not have any {entity} information for this {base}.',
 
   'ui.useCase.label': 'Use Case',
@@ -2080,5 +2082,32 @@ export const en = {
   'ui.starredObject.createSuccess': '{entity} starred.',
   'ui.starredObject.createFailure': 'Unable to star the {entity}.',
   'ui.starredObject.removeSuccess': '{entity} star removed.',
-  'ui.starredObject.createFailure': 'Unable to remove star from the {entity}.'
+  'ui.starredObject.createFailure': 'Unable to remove star from the {entity}.',
+
+  'ui.wizard.label': 'Recommendation wizard',
+  'ui.wizard.currentStep': 'You are here',
+  'ui.wizard.parameters.base': 'Project parameters',
+  'ui.wizard.parameters.base.description': `
+    Let’s start by defining the steps your project will take to achieve its objective (Use cases),
+    which sectors your project supports, and any Sustainable Development Goals it may support.
+  `,
+  'ui.wizard.parameters.refine': 'Refine parameters',
+  'ui.wizard.parameters.refine.description': `
+    In this step you can further refine your selections to get a more tailored list of resources for
+    your project. If none of these apply simply leave them black and click on Next Step.`
+  ,
+  'ui.wizard.parameters.buildingBlocks': 'Building blocks',
+  'ui.wizard.parameters.buildingBlocks.description': `
+    Building blocks form the foundations of Use cases and are enterprise-ready, reusable software
+    components providing key functionality facilitating generic WorkFlows across multiple sectors.
+  `,
+  'ui.wizard.nextStep': 'Next Step',
+  'ui.wizard.previousStep': 'Back',
+  'ui.wizard.readyToContinue': 'Ready to continue?',
+  'ui.wizard.navigateToResults': 'Finish',
+  'ui.wizard.navigateToParameters': 'Go back to the Wizard',
+  'ui.wizard.result.header': 'Your results',
+
+  'ui.mobileService.label': 'Mobile Service',
+  'ui.mobileService.header': 'Mobile Services'
 }

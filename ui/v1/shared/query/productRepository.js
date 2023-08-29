@@ -36,6 +36,29 @@ export const PRODUCT_REPOSITORY_DETAIL_QUERY = gql`
   }
 `
 
+export const PRODUCT_SIMPLE_QUERY =  gql`
+query Product($productSlug: String!) {
+    product(slug: $productSlug) {
+      id
+      name
+      slug
+      website
+      imageFile
+      mainRepository {
+        id
+        name
+        slug
+        license
+      }
+      sectors {
+        id
+        name
+        slug
+      }
+    }
+  }
+`
+
 export const PRODUCT_REPOSITORIES_QUERY = gql`
   query ProductRepositories($productSlug: String!) {
     productRepositories(slug: $productSlug) {

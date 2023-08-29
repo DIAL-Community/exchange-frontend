@@ -6,13 +6,15 @@ import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_SECTOR } from '../../shared/mutation/sector'
 import Checkbox from '../../shared/form/Checkbox'
 import Select from '../../shared/form/Select'
 import { generateLanguageOptions } from '../../shared/form/options'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { PAGINATED_SECTORS_QUERY, SECTOR_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/sector'
 
 const SectorForm = React.memo(({ sector }) => {
   const { formatMessage } = useIntl()
@@ -39,6 +41,13 @@ const SectorForm = React.memo(({ sector }) => {
   )
 
   const [updateSector, { reset }] = useMutation(CREATE_SECTOR, {
+    refetchQueries: [{
+      query: SECTOR_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_SECTORS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       if (data.createSector.sector && data.createSector.errors.length === 0) {
         const redirectPath = `/${locale}/sectors/${data.createSector.sector.slug}`

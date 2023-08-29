@@ -1240,7 +1240,7 @@ export const cs = {
   "govstack.feedback.issue": "Jakou máte zpětnou vazbu? *",
   "govstack.feedback.submit": "Odeslat zpětnou vazbu",
 
-  "categoryIndicators.header": "Indikátory kategorie",
+  "categoryIndicator.header": "Indikátory kategorie",
   "categoryIndicator.create": "Vytvořit indikátor kategorie",
   "categoryIndicator.label": "Indikátor kategorie",
   "categoryIndicator.weight": "Váha",

@@ -28,9 +28,9 @@ const ProductRepositoryDetailNav = ({ product, scrollRef }) => {
 
   let productRepositoryNavOptions = []
   if (productRepositories) {
-    productRepositoryNavOptions = productRepositories.map((productRepository, index) => {
+    productRepositoryNavOptions = productRepositories.map((productRepository) => {
       return {
-        label: <div className='px-2'>{`${index + 1}. ${productRepository.name}`}</div>,
+        label: <div className='px-2'>{productRepository.name}</div>,
         value: `ui.product.detail.repositories.${productRepository.slug}`
       }
     })
@@ -39,10 +39,10 @@ const ProductRepositoryDetailNav = ({ product, scrollRef }) => {
   const navOptions = [ {
     label: format('ui.product.parent.detail'),
     value: 'ui.product.parent.detail'
-  }, ...productRepositoryNavOptions, {
-    label: format('ui.common.detail.description'),
-    value: 'ui.common.detail.description'
-  }]
+  }, {
+    label: format('ui.common.detail.top'),
+    value: 'ui.common.detail.top'
+  }, ...productRepositoryNavOptions]
 
   const onNavigationChange = (selectedNav) => {
     const { value } = selectedNav

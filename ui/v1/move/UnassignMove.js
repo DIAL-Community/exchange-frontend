@@ -6,7 +6,7 @@ import { FaRegTrashAlt } from 'react-icons/fa'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { UNASSIGN_PLAY_MOVE } from '../shared/mutation/move'
-import { PLAYBOOK_PLAYS_QUERY, PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
+import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 
 const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
@@ -24,9 +24,6 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
 
   const [deletePlayMove, { called, reset }] = useMutation(UNASSIGN_PLAY_MOVE, {
     refetchQueries: [{
-      query: PLAYBOOK_PLAYS_QUERY,
-      variables: { slug: playbookSlug }
-    }, {
       query: PLAYBOOK_DETAIL_QUERY,
       variables: { slug: playbookSlug }
     }],
