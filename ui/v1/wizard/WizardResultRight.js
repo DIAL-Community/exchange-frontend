@@ -28,15 +28,10 @@ const WizardResultRight = forwardRef((_props, ref) => {
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <UseCaseList headerRef={useCaseRef} />
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <ProductList headerRef={productRef} />
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <BuildingBlockList headerRef={buildingBlockRef} />
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <ProjectList headerRef={projectRef} />
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <DatasetList headerRef={datasetRef} />
-        <hr className='border-b border-dial-blue-chalk my-3' />
       </div>
     </div>
   )
