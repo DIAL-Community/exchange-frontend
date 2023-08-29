@@ -11,7 +11,7 @@ const OpportunityDefinition = () => {
         <div className='text-xl font-semibold text-dial-plum'>
           {format('ui.opportunity.hint.title')}
         </div>
-        <div className='flex flex-col gap-y-3 text-dial-stratos'>
+        <div className='text-sm flex flex-col gap-y-3 text-dial-stratos'>
           <FormattedMessage
             id='ui.opportunity.hint.subtitle'
             values={{

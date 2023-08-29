@@ -11,7 +11,7 @@ const StorefrontDefinition = () => {
         <div className='text-xl font-semibold text-dial-plum'>
           {format('ui.storefront.hint.title')}
         </div>
-        <div className='flex flex-col gap-y-3 text-dial-stratos'>
+        <div className='text-sm flex flex-col gap-y-3 text-dial-stratos'>
           <FormattedMessage
             id='ui.storefront.hint.subtitle'
             values={{
