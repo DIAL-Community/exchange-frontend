@@ -14,7 +14,7 @@ export const CountryAutocomplete = ({
   isSearch = false
 }) => {
   const client = useApolloClient()
-  const [showFilter, setShowFilter] = useState(false)
+  const [showFilter, setShowFilter] = useState(true)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])

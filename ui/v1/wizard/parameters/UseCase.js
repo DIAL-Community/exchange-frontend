@@ -9,7 +9,6 @@ import { USE_CASE_SEARCH_QUERY } from '../../shared/query/useCase'
 
 export const UseCaseAutocomplete = ({ useCases, setUseCases, placeholder }) => {
   const client = useApolloClient()
-
   const [showFilter, setShowFilter] = useState(true)
 
   const { formatMessage } = useIntl()

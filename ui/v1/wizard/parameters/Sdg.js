@@ -9,8 +9,7 @@ import { SDG_SEARCH_QUERY } from '../../shared/query/sdg'
 
 export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
   const client = useApolloClient()
-
-  const [showFilter, setShowFilter] = useState(false)
+  const [showFilter, setShowFilter] = useState(true)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])

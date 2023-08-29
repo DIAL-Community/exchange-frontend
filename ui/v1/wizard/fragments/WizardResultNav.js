@@ -1,10 +1,13 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import Select from '../../shared/form/Select'
+import WizardSupportDialog from './WizardSupportDialog'
 
 const WizardResultNav = ({ scrollRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const [supportDialogOpen, setSupportDialogOpen] = useState(false)
 
   const navOptions = [{
     label: format('ui.useCase.header'),
@@ -36,7 +39,8 @@ const WizardResultNav = ({ scrollRef }) => {
   }
 
   const fetchOptions = async (input) => {
-    return navOptions.filter(({ label }) => label.toLowerCase().indexOf(input.toLowerCase()) >= 0)
+    return navOptions.filter(({ label }) =>
+      label.toLowerCase().indexOf(input.toLowerCase()) >= 0)
   }
 
   return (
@@ -53,6 +57,17 @@ const WizardResultNav = ({ scrollRef }) => {
         loadOptions={fetchOptions}
         onChange={onNavigationChange}
         value={null}
+      />
+      <div className='flex text-sm text-white mt-3 mb-6'>
+        <button onClick={() => setSupportDialogOpen(true)}>
+          <div className='px-5 py-2 rounded-md bg-dial-iris-blue'>
+            {format('wizard.additionalSupport')}
+          </div>
+        </button>
+      </div>
+      <WizardSupportDialog
+        isOpen={supportDialogOpen}
+        onClose={() => setSupportDialogOpen(false)}
       />
     </div>
   )

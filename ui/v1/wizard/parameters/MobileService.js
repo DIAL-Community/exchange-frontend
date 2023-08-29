@@ -6,7 +6,7 @@ import Select from '../../shared/form/Select'
 import { generateMobileServiceOptions } from '../../shared/form/options'
 
 export const MobileServiceAutocomplete = ({ mobileServices, setMobileServices, placeholder }) => {
-  const [showFilter, setShowFilter] = useState(false)
+  const [showFilter, setShowFilter] = useState(true)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])

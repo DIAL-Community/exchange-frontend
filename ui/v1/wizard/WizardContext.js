@@ -4,7 +4,7 @@ const WizardContext = createContext()
 const WizardDispatchContext = createContext()
 
 const WizardContextProvider = ({ children }) => {
-  const [currentStep, setCurrentStep] = useState(3)
+  const [currentStep, setCurrentStep] = useState(0)
 
   const [sdgs, setSdgs] = useState([])
   const [tags, setTags] = useState([])

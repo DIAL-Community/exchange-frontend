@@ -3,18 +3,18 @@ import { useCallback, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { validate } from 'email-validator'
-import { ToastContext } from '../../lib/ToastContext'
-import Dialog from '../shared/Dialog'
-import Input from '../shared/Input'
-import ValidationError from '../shared/ValidationError'
-import Textarea from '../shared/Textarea'
-import { CREATE_WIZARD_GUIDANCE_MAIL } from '../../mutations/wizard'
+import { ToastContext } from '../../../../lib/ToastContext'
+import Dialog from '../../shared/form/Dialog'
+import Input from '../../shared/form/Input'
+import ValidationError from '../../shared/form/ValidationError'
+import TextArea from '../../shared/form/TextArea'
+import { CREATE_WIZARD_GUIDANCE_MAIL } from '../../shared/mutation/wizard'
 
 const MESSAGE_MIN_LENGTH = 20
 const MESSAGE_MAX_LENGTH = 1000
 const TEXTAREA_DEFAULT_ROWS = 6
 
-const AdditionalSupportDialog = ({ isOpen, onClose }) => {
+const WizardSupportDialog = ({ isOpen, onClose }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -47,17 +47,17 @@ const AdditionalSupportDialog = ({ isOpen, onClose }) => {
       cancelButton
       isOpen={isOpen}
       onClose={onClose}
-      formId='wizard-request-additional-support-form'
+      formId='additional-support-form'
       isSubmitInProgress={isSubmitInProgress}
     >
       <div className='w-full'>
-        <form onSubmit={handleSubmit(doUpsert)} id='wizard-request-additional-support-form'>
-          <div className='pb-12 mb-4 flex flex-col gap-3'>
+        <form onSubmit={handleSubmit(doUpsert)} id='additional-support-form'>
+          <div className='pb-12 mb-4 flex flex-col gap-3 text-sm'>
             <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {format('wizard.additionalSupport')}
             </div>
-            <div className='form-field-wrapper' data-testid='name'>
-              <label className='form-field-label required-field' htmlFor='name'>
+            <div className='block flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='name'>
                 {format('app.name')}
               </label>
               <Input
@@ -68,8 +68,8 @@ const AdditionalSupportDialog = ({ isOpen, onClose }) => {
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
-            <div className='form-field-wrapper' data-testid='email-address'>
-              <label className='form-field-label required-field' htmlFor='email-address'>
+            <div className='block flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='email-address'>
                 {format('app.email')}
               </label>
               <Input
@@ -85,11 +85,11 @@ const AdditionalSupportDialog = ({ isOpen, onClose }) => {
               />
               {errors.emailAddress && <ValidationError value={errors.emailAddress?.message} />}
             </div>
-            <div className='form-field-wrapper' data-testid='message'>
-              <label className='form-field-label required-field' htmlFor='message'>
+            <div className='block flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='message'>
                 {format('wizard.additionalSupport.message')}
               </label>
-              <Textarea
+              <TextArea
                 {...register('message',
                   {
                     required: format('validation.required'),
@@ -123,4 +123,4 @@ const AdditionalSupportDialog = ({ isOpen, onClose }) => {
   )
 }
 
-export default AdditionalSupportDialog
+export default WizardSupportDialog

@@ -13,8 +13,6 @@ const BuildingBlockList = ({ headerRef }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const DEFAULT_PAGE_SIZE = 5
-  const { sdgs, useCases } = useContext(WizardContext)
-
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
 
@@ -23,6 +21,7 @@ const BuildingBlockList = ({ headerRef }) => {
     setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
   }
 
+  const { sdgs, useCases } = useContext(WizardContext)
   const { loading, error, data } = useQuery(WIZARD_BUILDING_BLOCKS_QUERY, {
     variables: {
       sdgs: sdgs.map(sdg => sdg.value),
@@ -51,26 +50,26 @@ const BuildingBlockList = ({ headerRef }) => {
         <div className='text-xl font-semibold text-dial-ochre'>
           {format('ui.buildingBlock.header')}
         </div>
-        <div className='text-sm italic'>
+        <div className='text-xs italic'>
           The following building blocks may be applicable to your project.
         </div>
-        <div className='flex flex-col gap-3'>
-          {buildingBlocks.map((buildingBlock, index) =>
-            <BuildingBlockCard
-              key={index}
-              index={index}
-              buildingBlock={buildingBlock}
-              displayType={DisplayType.SMALL_CARD}
-            />
-          )}
-        </div>
-        <PaginationStructure
-          pageNumber={pageNumber}
-          totalCount={paginationAttribute.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
-        />
       </div>
+      <div className='flex flex-col gap-3'>
+        {buildingBlocks.map((buildingBlock, index) =>
+          <BuildingBlockCard
+            key={index}
+            index={index}
+            buildingBlock={buildingBlock}
+            displayType={DisplayType.SMALL_CARD}
+          />
+        )}
+      </div>
+      <PaginationStructure
+        pageNumber={pageNumber}
+        totalCount={paginationAttribute.totalCount}
+        defaultPageSize={DEFAULT_PAGE_SIZE}
+        pageClickHandler={handlePageClick}
+      />
     </div>
   )
 }

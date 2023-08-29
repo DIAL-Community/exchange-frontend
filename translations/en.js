@@ -514,8 +514,8 @@ export const en = {
   'wizard.bb.terminology': 'Will the project involve the management of definitions, terms, and standards?',
   'wizard.bb.workflowandalgorithm': 'Will the project require orchestration of processes and flow of information between services?',
   'wizard.bb.elearning': 'Will this project involve online learning or creation of courses and curricula?',
-  'wizard.request-additional-support': 'Request additional support',
-  'wizard.request-additional-support.message': 'Message',
+  'wizard.additionalSupport': 'Request additional support',
+  'wizard.additionalSupport.message': 'Message',
 
   'wizard.getStarted': 'Let\'s get started',
   'wizard.getStarted.firstLine': `
@@ -2105,6 +2105,8 @@ export const en = {
   'ui.wizard.previousStep': 'Back',
   'ui.wizard.readyToContinue': 'Ready to continue?',
   'ui.wizard.navigateToResults': 'Finish',
+  'ui.wizard.navigateToParameters': 'Go back to the Wizard',
+  'ui.wizard.result.header': 'Your results',
 
   'ui.mobileService.label': 'Mobile Service',
   'ui.mobileService.header': 'Mobile Services'
