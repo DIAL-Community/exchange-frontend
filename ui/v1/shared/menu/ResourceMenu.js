@@ -21,6 +21,9 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           <Link href='/playbooks' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('header.playbooks')}
           </Link>
+          <Link href='/playbooks' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('header.wizard')}
+          </Link>
           <a
             href='//digitalimpactalliance.org/research/sdg-digital-investment-framework/'
             className={DEFAULT_DROPDOWN_MENU_STYLES}

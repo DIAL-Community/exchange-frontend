@@ -75,6 +75,7 @@ export const en = {
   'header.covidResources': 'COVID-19 Resources',
   'header.resources': 'Resources',
   'header.playbooks': 'Playbooks',
+  'header.wizard': 'Recommendation Wizard',
   'header.dialResourcesPortal': 'DIAL Resources Portal',
   'header.SDGFramework': 'SDG Framework',
   'header.help': 'Help',
