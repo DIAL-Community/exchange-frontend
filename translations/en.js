@@ -357,8 +357,6 @@ export const en = {
 
   'ui.buildingBlock.header': 'Building Blocks',
   'ui.buildingBlock.label': 'Building Block',
-  'ui.buildingBlock.label': 'Building Block',
-  'ui.buildingBlock.header': 'Building Blocks',
   'building-block.no-product': 'We do not have any Product information for this Building Block.',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
@@ -1223,7 +1221,7 @@ export const en = {
   'app.shareFailed': 'Unable to copy sharable link to your clipboard.',
 
   'overlay.close': 'Dismiss Notification',
-  'overlay.message': 'Filter data from your URL have been applied.',
+  'overlay.message': 'Filter data from your URL has been applied.',
 
   'exampleOf.entity': 'Example of {entity}',
   'noResults.entity': 'No {entity} results found',
@@ -1264,7 +1262,7 @@ export const en = {
   'app.resetPassword': 'Reset Password',
   'reset.email': 'Email Address',
   'reset.email.placeholder': 'Account email address',
-  'reset.created': 'Instruction to reset your password have been sent to your email address. Redirecting ...',
+  'reset.created': 'Instructions to reset your password have been sent to your email address. Redirecting ...',
 
   'app.updatePassword': 'Update Password',
   'reset.password': 'Password',
@@ -1380,7 +1378,7 @@ export const en = {
   'productRepository.absoluteUrl.placeholder': 'Absolute path / url of the repository.',
   'productRepository.description': 'Repository Description',
   'productRepository.description.placeholder': 'Short description of this repository.',
-  'productRepository.mainRepository.label': 'This is main repository.',
+  'productRepository.mainRepository.label': 'This is the main repository.',
   'productRepository.submit': 'Submit',
   'productRepository.cancel': 'Cancel',
   'productRepository.created': 'Product repository added.',
@@ -1420,7 +1418,7 @@ export const en = {
 
   'ui.move.reOrder': 'Move Order.',
 
-  'ui.playbook.error': 'Playbook err!',
+  'ui.playbook.error': 'Playbook error!',
   'report.reportIssue': 'Report an Issue',
   'report.name': 'Your Name',
   'report.email': 'Email Address',
@@ -1895,8 +1893,8 @@ export const en = {
 
   'ui.dataset.label': 'Dataset',
   'ui.dataset.header': 'Datasets',
-  'ui.dataset.whatIs': 'What is an Open Data?',
-  'ui.dataset.createNew': 'Create a new Open Data',
+  'ui.dataset.whatIs': 'What is Open Data?',
+  'ui.dataset.createNew': 'Create new Open Data',
   'ui.dataset.hint.title': 'What is Open Data?',
 
   'ui.datasetType.label': 'Dataset Type',
@@ -1904,7 +1902,7 @@ export const en = {
 
   'ui.workflow.label': 'Workflow',
   'ui.workflow.header': 'Workflows',
-  'ui.workflow.whatIs': 'What is an Workflow?',
+  'ui.workflow.whatIs': 'What is a Workflow?',
   'ui.workflow.createNew': 'Create a new Workflow',
   'workflow.hint.title': 'What is a Workflow?',
 
