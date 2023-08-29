@@ -11,7 +11,7 @@ export const CategoryTypeAutocomplete = ({ categoryTypes, setCategoryTypes, plac
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('categoryType.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.categoryType.label') })
 
   const selectCategoryType = (categoryType) => {
     setCategoryTypes([...categoryTypes.filter(({ value }) => value !== categoryType.value), categoryType])

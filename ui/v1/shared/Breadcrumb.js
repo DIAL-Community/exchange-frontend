@@ -38,7 +38,8 @@ const basePathMappings = {
   'users': 'ui.user.header',
   'use-case-steps': 'ui.useCaseStep.header',
   'use-cases': 'ui.useCase.header',
-  'workflows': 'ui.workflow.header'
+  'workflows': 'ui.workflow.header',
+  'wizard': 'ui.wizard.header'
 }
 
 const candidatePathMappings = {

@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { UNASSIGN_PLAYBOOK_PLAY } from '../shared/mutation/playbook'
-import { PLAYBOOK_PLAYS_QUERY, PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
+import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 import DeleteButton from '../shared/form/DeleteButton'
 
@@ -24,9 +24,6 @@ const UnassignPlay = ({ playbookSlug, playSlug }) => {
 
   const [deletePlaybookPlay, { called, reset }] = useMutation(UNASSIGN_PLAYBOOK_PLAY, {
     refetchQueries: [{
-      query: PLAYBOOK_PLAYS_QUERY,
-      variables: { slug: playbookSlug }
-    }, {
       query: PLAYBOOK_DETAIL_QUERY,
       variables: { slug: playbookSlug }
     }],

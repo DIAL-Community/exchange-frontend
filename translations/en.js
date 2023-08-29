@@ -2082,5 +2082,30 @@ export const en = {
   'ui.starredObject.createSuccess': '{entity} starred.',
   'ui.starredObject.createFailure': 'Unable to star the {entity}.',
   'ui.starredObject.removeSuccess': '{entity} star removed.',
-  'ui.starredObject.createFailure': 'Unable to remove star from the {entity}.'
+  'ui.starredObject.createFailure': 'Unable to remove star from the {entity}.',
+
+  'ui.wizard.label': 'Recommendation wizard',
+  'ui.wizard.currentStep': 'You are here',
+  'ui.wizard.parameters.base': 'Project parameters',
+  'ui.wizard.parameters.base.description': `
+    Let’s start by defining the steps your project will take to achieve its objective (Use cases),
+    which sectors your project supports, and any Sustainable Development Goals it may support.
+  `,
+  'ui.wizard.parameters.refine': 'Refine parameters',
+  'ui.wizard.parameters.refine.description': `
+    In this step you can further refine your selections to get a more tailored list of resources for
+    your project. If none of these apply simply leave them black and click on Next Step.`
+  ,
+  'ui.wizard.parameters.buildingBlocks': 'Building blocks',
+  'ui.wizard.parameters.buildingBlocks.description': `
+    Building blocks form the foundations of Use cases and are enterprise-ready, reusable software
+    components providing key functionality facilitating generic WorkFlows across multiple sectors.
+  `,
+  'ui.wizard.nextStep': 'Next Step',
+  'ui.wizard.previousStep': 'Back',
+  'ui.wizard.readyToContinue': 'Ready to continue?',
+  'ui.wizard.navigateToResults': 'Finish',
+
+  'ui.mobileService.label': 'Mobile Service',
+  'ui.mobileService.header': 'Mobile Services'
 }
