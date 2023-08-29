@@ -1,37 +1,38 @@
-import dynamic from 'next/dynamic'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import ProductDetail from '../../../components/products/ProductDetail'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
+import { useRouter } from 'next/router'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import { addApolloState, initializeApollo } from '../../../lib/apolloClient'
-import { PRODUCT_QUERY } from '../../../queries/product'
-import NotFound from '../../../components/shared/NotFound'
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
+import Footer from '../../../ui/v1/shared/Footer'
+import ProductDetail from '../../../ui/v1/product/ProductDetail'
 
-const Product = ({ data }) => (
-  <>
-    <Header />
-    <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-    <ClientOnly>
-      {!data?.product && <NotFound />}
-      {data?.product && <ProductDetail product={data.product} />}
-    </ClientOnly>
-    <Footer />
-  </>
-)
+const ProductPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-export async function getServerSideProps(context) {
-  const client = initializeApollo({})
-  const { locale, params: { slug } } = context
-  const { data: productData } = await client.query({
-    query: PRODUCT_QUERY,
-    variables: { slug },
-    context: { headers: { 'Accept-Language': locale } }
-  })
+  const { query: { slug } } = useRouter()
 
-  return addApolloState(client, {
-    props: { data: productData }
-  })
+  return (
+    <>
+      <NextSeo
+        title={format('ui.product.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.product.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
+      <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <ProductDetail slug={slug} />
+        <Footer />
+      </ClientOnly>
+    </>
+  )
 }
 
-export default Product
+export default ProductPage

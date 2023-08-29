@@ -241,7 +241,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       https://
                     </span>
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website"
                       value="testproduct.com"
@@ -381,7 +381,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="pricingUrl"
                       placeholder="Link to Pricing Information"
                       value=""
@@ -725,7 +725,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       https://
                     </span>
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website"
                       value="testproduct.com"
@@ -865,7 +865,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="pricingUrl"
                       placeholder="Link to Pricing Information"
                       value=""
@@ -1099,7 +1099,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website"
                       value=""
@@ -1239,7 +1239,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="pricingUrl"
                       placeholder="Link to Pricing Information"
                       value=""
@@ -1527,7 +1527,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       https://
                     </span>
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website"
                       value="testproduct.com"
@@ -1667,7 +1667,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="pricingUrl"
                       placeholder="Link to Pricing Information"
                       value=""

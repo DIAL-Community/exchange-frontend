@@ -10,7 +10,7 @@ const OrganizationHint = () => {
   return (
     <div className='flex flex-col gap-2 text-dial-stratos'>
       <div className='text-xl font-semibold'>
-        {format('organization.label')}
+        {format('ui.organization.label')}
       </div>
       <div className='text-base'>
         {format('organization.hint.subtitle')}

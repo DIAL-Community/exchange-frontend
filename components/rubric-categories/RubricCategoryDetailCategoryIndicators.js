@@ -32,7 +32,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
     dataCategoryIndicators?.categoryIndicators.map((indicator) => ({
       label: indicator.name,
       id: indicator.id,
-      slug: indicator.slug,
+      slug: indicator.slug
     }))
   ), [dataCategoryIndicators])
 
@@ -121,24 +121,24 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
     )
     : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('rubric-category.no-indicator')}
+        {format('ui.rubricCategory.no-indicator')}
       </div>
     )
 
   const editModeBody = (
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('categoryIndicators.header')}
+        {format('app.assign')} {format('categoryIndicator.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='indicator-search'>
-        {`${format('app.searchAndAssign')} ${format('categoryIndicators.header')}`}
+        {`${format('app.searchAndAssign')} ${format('categoryIndicator.header')}`}
         <Select
           isSearch
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           options={indicatorOptions}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('categoryIndicators.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('categoryIndicator.header') })}
           onChange={addIndicator}
           value={null}
         />
@@ -158,7 +158,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
   return (
     <EditableSection
       canEdit={isAdminUser}
-      sectionHeader={format('categoryIndicators.header')}
+      sectionHeader={format('categoryIndicator.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

@@ -47,7 +47,7 @@ const ProductDetail = ({ productSlug, locale }) => {
       <div className='inline h5'>
         {BREADCRUMB_SEPARATOR}
         <Link href='/candidate/products' className='text-dial-blue'>
-          {format('candidateProduct.label')}
+          {format('ui.candidateProduct.label')}
         </Link>
         {BREADCRUMB_SEPARATOR}
         {product.name}

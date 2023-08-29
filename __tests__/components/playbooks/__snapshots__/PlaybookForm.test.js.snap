@@ -203,7 +203,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                   <label
                     class="form-field-label"
                   >
-                    Tags
+                    Playbook Tags
                   </label>
                   <div
                     class="mb-2"
@@ -304,7 +304,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                   <label
                     class="required-field form-field-label"
                   >
-                    Overview
+                    playbooks.overview
                   </label>
                   <div
                     class="relative"
@@ -347,7 +347,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                   <label
                     class="form-field-label"
                   >
-                    Audience
+                    playbooks.audience
                   </label>
                   <div
                     class="relative"
@@ -386,7 +386,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                   <label
                     class="form-field-label"
                   >
-                    Outcomes
+                    playbooks.outcomes
                   </label>
                   <div
                     class="relative"
@@ -600,7 +600,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                   <label
                     class="form-field-label"
                   >
-                    Tags
+                    Playbook Tags
                   </label>
                   <div
                     class="mb-2"
@@ -701,7 +701,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                   <label
                     class="required-field form-field-label"
                   >
-                    Overview
+                    playbooks.overview
                   </label>
                   <div
                     class="relative"
@@ -744,7 +744,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                   <label
                     class="form-field-label"
                   >
-                    Audience
+                    playbooks.audience
                   </label>
                   <div
                     class="relative"
@@ -783,7 +783,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                   <label
                     class="form-field-label"
                   >
-                    Outcomes
+                    playbooks.outcomes
                   </label>
                   <div
                     class="relative"
@@ -997,7 +997,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                   <label
                     class="form-field-label"
                   >
-                    Tags
+                    Playbook Tags
                   </label>
                   <div
                     class="mb-2"
@@ -1098,7 +1098,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                   <label
                     class="required-field form-field-label"
                   >
-                    Overview
+                    playbooks.overview
                   </label>
                   <div
                     class="relative"
@@ -1141,7 +1141,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                   <label
                     class="form-field-label"
                   >
-                    Audience
+                    playbooks.audience
                   </label>
                   <div
                     class="relative"
@@ -1180,7 +1180,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                   <label
                     class="form-field-label"
                   >
-                    Outcomes
+                    playbooks.outcomes
                   </label>
                   <div
                     class="relative"

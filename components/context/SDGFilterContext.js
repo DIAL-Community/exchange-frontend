@@ -4,15 +4,12 @@ const SDGFilterContext = createContext()
 const SDGFilterDispatchContext = createContext()
 
 const SDGFilterProvider = ({ children }) => {
-  const [sdgs, setSDGs] = useState([])
-
   const [search, setSearch] = useState('')
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
-  const sdgFilterValues = { sdgs, search, sortColumn, sortDirection }
+  const sdgFilterValues = { search, sortColumn, sortDirection }
   const sdgFilterDispatchValues = {
-    setSDGs,
     setSearch,
     setSortColumn,
     setSortDirection
@@ -27,4 +24,8 @@ const SDGFilterProvider = ({ children }) => {
   )
 }
 
-export { SDGFilterProvider, SDGFilterContext, SDGFilterDispatchContext }
+export {
+  SDGFilterProvider,
+  SDGFilterContext,
+  SDGFilterDispatchContext
+}

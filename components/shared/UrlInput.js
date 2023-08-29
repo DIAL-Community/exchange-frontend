@@ -28,7 +28,7 @@ export const UrlInput = React.forwardRef(
         value={value}
         onChange={event => onChange(event.target.value?.replace(URL_PROTOCOL_REGEX, ''))}
         placeholder={placeholder}
-        className='url w-full placeholder-dial-gray focus:outline-0'
+        className='url w-full placeholder-dial-gray border-0 py-0 focus:outline-0'
       />
     </div>
 )

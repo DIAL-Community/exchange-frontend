@@ -10,10 +10,10 @@ const OpportunityHint = () => {
   return (
     <div className='flex flex-col gap-2 text-dial-stratos'>
       <div className='text-xl font-semibold'>
-        {format('opportunity.label')}
+        {format('ui.opportunity.label')}
       </div>
       <div className='text-base'>
-        {format('opportunity.hint.subtitle')}
+        {format('ui.opportunity.hint.subtitle')}
       </div>
       <div className='mx-auto'>
         <Image
@@ -23,16 +23,16 @@ const OpportunityHint = () => {
           alt='' />
       </div>
       <div className='text-lg font-semibold'>
-        {format('opportunity.hint.characteristicTitle').toUpperCase()}
+        {format('ui.opportunity.hint.characteristicTitle').toUpperCase()}
       </div>
       <div className='fr-view text-sm'>
-        {format('opportunity.hint.characteristics')}
+        {format('ui.opportunity.hint.characteristics')}
       </div>
       <div className='text-lg font-semibold'>
-        {format('opportunity.hint.descriptionTitle').toUpperCase()}
+        {format('ui.opportunity.hint.descriptionTitle').toUpperCase()}
       </div>
       <div className='fr-view text-sm'>
-        {parse(format('opportunity.hint.description'))}
+        {parse(format('ui.opportunity.hint.description'))}
       </div>
     </div>
   )

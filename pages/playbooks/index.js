@@ -1,48 +1,43 @@
-import { useContext } from 'react'
-import dynamic from 'next/dynamic'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import GradientBackground from '../../components/shared/GradientBackground'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { Tooltip } from 'react-tooltip'
+import { useCallback, useState } from 'react'
 import QueryNotification from '../../components/shared/QueryNotification'
-import MobileNav from '../../components/main/MobileNav'
-import TabNav from '../../components/main/TabNav'
-import PageContent from '../../components/main/PageContent'
-import SearchFilter from '../../components/shared/SearchFilter'
-import PlaybookFilter from '../../components/playbooks/PlaybookFilter'
-import PlaybookActiveFilter from '../../components/playbooks/PlaybookActiveFilter'
-import { PlaybookFilterContext, PlaybookFilterDispatchContext }
-  from '../../components/context/PlaybookFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
-const PlaybookListQuery = dynamic(() => import('../../components/playbooks/PlaybookList'), { ssr: false })
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import PlaybookRibbon from '../../ui/v1/playbook/PlaybookRibbon'
+import PlaybookTabNav from '../../ui/v1/playbook/PlaybookTabNav'
+import PlaybookMain from '../../ui/v1/playbook/PlaybookMain'
 
 const Playbooks = () => {
-  const { search } = useContext(PlaybookFilterContext)
-  const { setSearch } = useContext(PlaybookFilterDispatchContext)
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+      <NextSeo
+        title={format('ui.playbook.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.playbook.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <TabNav activeTab='filter.entity.playbooks' />
-        <MobileNav activeTab='filter.entity.playbooks' />
-        <PageContent
-          activeTab='filter.entity.playbooks'
-          filter={<PlaybookFilter />}
-          content={<PlaybookListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              hint='filter.entity.playbooks'
-            />
-          }
-          activeFilter={<PlaybookActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <PlaybookRibbon />
+          <PlaybookTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <PlaybookMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

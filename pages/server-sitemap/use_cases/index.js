@@ -12,7 +12,7 @@ export const getServerSideProps = async (ctx) => {
 
   const fields = data.data.useCases.map((useCase) => ({
     loc: `${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${useCase.slug}`,
-    lastmod: new Date().toISOString(),
+    lastmod: new Date().toISOString()
   }))
 
   return getServerSideSitemap(ctx, fields)

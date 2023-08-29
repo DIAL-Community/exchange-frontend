@@ -14,12 +14,6 @@
   The entity height overrides.
 */
 
-.simple-form-height {
-  /* Set the sign up to be 80% of height on tablet and above */
-  /* Full height on phones. */
-  height: 70vh;
-}
-
 .wizard-content-xl {
   min-height: 60vh;
 }
@@ -43,4 +37,11 @@
 
 .image-h-full-hack > span {
   height: 100% !important;
+}
+
+/*
+  React comments section overrides
+ */
+.rdw-editor-main {
+  overflow: auto !important;
 }

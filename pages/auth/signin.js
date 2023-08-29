@@ -4,8 +4,8 @@ import { useIntl } from 'react-intl'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import Link from 'next/link'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
 
 export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()
@@ -35,7 +35,7 @@ export default function SignIn ({ csrfToken }) {
   return (
     <>
       <Header isOnAuthPage />
-      <div className='bg-dial-gray-dark pt-40 pb-40 text-dial-sapphire'>
+      <div className='bg-dial-gray-dark pt-40 pb-40 text-dial-sapphire max-w-catalog mx-auto min-h-[70vh]'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <form
             ref={formEl}

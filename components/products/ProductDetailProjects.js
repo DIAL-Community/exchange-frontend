@@ -101,17 +101,17 @@ const ProductDetailProjects = ({ product, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('product.no-project')}
+        {format('product.noProject')}
       </div>
     )
 
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('project.header')}
+        {format('app.assign')} {format('ui.project.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='project-search'>
-        {`${format('app.searchAndAssign')} ${format('project.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.project.header')}`}
         <Select
           async
           isSearch
@@ -119,7 +119,7 @@ const ProductDetailProjects = ({ product, canEdit }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) => fetchSelectOptions(client, input, PROJECT_SEARCH_QUERY, fetchedProjectsCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('project.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.project.header') })}
           onChange={addProject}
           value={null}
         />
@@ -138,7 +138,7 @@ const ProductDetailProjects = ({ product, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('project.header')}
+      sectionHeader={format('ui.project.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

@@ -121,7 +121,7 @@ const OpportunityCard = ({ opportunity, listType, newTab = false }) => {
                   <hr />
                   <div className='bg-dial-alice-blue pt-3'>
                     <div className='flex flex-col px-3 pb-3 text-sm gap-1 mt-auto'>
-                      <div className='font-semibold'>{format('opportunity.webAddress')}</div>
+                      <div className='font-semibold'>{format('ui.opportunity.webAddress')}</div>
                       <div className='text-sm'>
                         {opportunity.webAddress && opportunity.webAddress !== 'N/A'
                           ? <a
@@ -130,7 +130,7 @@ const OpportunityCard = ({ opportunity, listType, newTab = false }) => {
                             className='text-dial-sunshine'
                           >
                             <div className='line-clamp-1 border-b border-transparent hover:border-dial-sunshine'>
-                              {format('opportunity.leverist.webAddress')} ⧉
+                              {format('ui.opportunity.leverist.webAddress')} ⧉
                             </div>
                           </a>
                           : format('general.na')

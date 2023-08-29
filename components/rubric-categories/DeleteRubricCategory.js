@@ -74,8 +74,8 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: rubricCategory.name })}
-        message={format('rubric-category.delete.confirm.message')}
+        title={format('app.deletingEntity', { entity: rubricCategory.name })}
+        message={format('ui.rubricCategory.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

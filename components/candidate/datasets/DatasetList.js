@@ -27,7 +27,7 @@ const DatasetList = ({ datasetList, displayType, filterDisplayed }) => {
           displayType === 'list' &&
             <div className='flex flex-row gap-3 px-3'>
               <div className='w-1/2 opacity-70'>
-                {format('dataset.header').toUpperCase()}
+                {format('ui.dataset.header').toUpperCase()}
               </div>
             </div>
         }
@@ -38,7 +38,7 @@ const DatasetList = ({ datasetList, displayType, filterDisplayed }) => {
             ))
             : (
               <div className='text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('datasets.label') })
+                format('noResults.entity', { entity: format('ui.dataset.label') })
               }
               </div>
             )

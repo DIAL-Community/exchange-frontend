@@ -140,7 +140,7 @@ const ProjectListQuery = () => {
   if (nodes.length <= 0) {
     return (
       <div className='px-3 py-4'>
-        {format('noResults.entity', { entity: format('project.label').toLowerCase() })}
+        {format('noResults.entity', { entity: format('ui.project.label').toLowerCase() })}
       </div>
     )
   }
@@ -153,13 +153,13 @@ const ProjectListQuery = () => {
         displayType === 'list' &&
           <div className='flex flex-row text-sm font-semibold my-3 px-4 gap-x-4'>
             <div className='w-4/12 opacity-70'>
-              {format('project.header').toUpperCase()}
+              {format('ui.project.header').toUpperCase()}
             </div>
             <div className='hidden lg:block w-3/12 opacity-50'>
-              {format('organization.header').toUpperCase()}
+              {format('ui.organization.header').toUpperCase()}
             </div>
             <div className='hidden lg:block w-3/12 opacity-50'>
-              {format('product.header').toUpperCase()}
+              {format('ui.product.header').toUpperCase()}
             </div>
           </div>
       }

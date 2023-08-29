@@ -28,7 +28,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
             class="text-dial-blue"
             href="/datasets"
           >
-            Open Data
+            Datasets
           </a>
            &gt; 
           <span
@@ -53,7 +53,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
             <div
               class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
-              Candidate Open Data
+              Candidate Dataset
             </div>
             <div
               class="flex flex-col lg:flex-row gap-4"
@@ -69,35 +69,35 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
                     class="form-field-label required-field"
                     for="name"
                   >
-                    Dataset Name
+                    Open Data Name
                   </label>
                   <input
                     class="w-full"
                     data-testid="dataset-name-input"
                     id="name"
                     name="name"
-                    placeholder="Dataset Name"
+                    placeholder="Open Data Name"
                     type="text"
                     value=""
                   />
                 </div>
                 <div
                   class="form-field-wrapper"
-                  data-testid="candidate-dataset-dataUrl"
+                  data-testid="candidate-dataset-website"
                 >
                   <label
                     class="form-field-label required-field"
-                    for="dataUrl"
+                    for="website"
                   >
-                    Data URL
+                    Open Data Website
                   </label>
                   <div
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
-                      id="dataUrl"
-                      placeholder="Data URL"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
+                      id="website"
+                      placeholder="Open Data Website"
                       value=""
                     />
                   </div>
@@ -109,15 +109,15 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
                     class="form-field-label"
                     for="dataVisualizationUrl"
                   >
-                    Dataset Visualization URL
+                    Open Data Visualization URL
                   </label>
                   <div
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="dataVisualizationUrl"
-                      placeholder="Dataset Visualization URL"
+                      placeholder="Open Data Visualization URL"
                       value=""
                     />
                   </div>
@@ -128,7 +128,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
                   <label
                     class="form-field-label"
                   >
-                    Dataset Type
+                    Open Data Type
                   </label>
                   <div
                     class=" css-l45kjq-container"
@@ -147,12 +147,13 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
                       class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-1dimb5e-singleValue"
+                          class="react-select__placeholder css-5rjclb-placeholder"
+                          id="react-select-:r0:-placeholder"
                         >
-                          Dataset
+                          Open Data Type
                         </div>
                         <div
                           class="react-select__input-container css-qbdosj-Input"
@@ -160,6 +161,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
                         >
                           <input
                             aria-autocomplete="list"
+                            aria-describedby="react-select-:r0:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"

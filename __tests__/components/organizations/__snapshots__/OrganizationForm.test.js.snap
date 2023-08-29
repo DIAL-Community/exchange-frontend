@@ -130,7 +130,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website"
                       value=""
@@ -201,7 +201,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isEndorser"
                     type="checkbox"
                   />
-                  Endorser
+                  Organization is an endorser of the Principle for Digital Development.
                 </label>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -312,7 +312,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isMni"
                     type="checkbox"
                   />
-                  MNI
+                  Organization is a mobile network integrator organization.
                 </label>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
@@ -324,7 +324,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="hasStorefront"
                     type="checkbox"
                   />
-                  Organization has a storefront
+                  Organization has a storefront.
                 </label>
               </div>
               <div
@@ -586,7 +586,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       https://
                     </span>
                     <input
-                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      class="url w-full placeholder-dial-gray border-0 py-0 focus:outline-0"
                       id="website"
                       placeholder="Website"
                       value="testorganization.com"
@@ -657,7 +657,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isEndorser"
                     type="checkbox"
                   />
-                  Endorser
+                  Organization is an endorser of the Principle for Digital Development.
                 </label>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -768,7 +768,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="isMni"
                     type="checkbox"
                   />
-                  MNI
+                  Organization is a mobile network integrator organization.
                 </label>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
@@ -780,7 +780,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     name="hasStorefront"
                     type="checkbox"
                   />
-                  Organization has a storefront
+                  Organization has a storefront.
                 </label>
               </div>
               <div

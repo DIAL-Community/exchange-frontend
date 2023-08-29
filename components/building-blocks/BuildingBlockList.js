@@ -28,10 +28,10 @@ const BuildingBlockList = (props) => {
           displayType === 'list' &&
             <div className='flex gap-x-2 lg:gap-x-4 px-4 my-3 px-4 text-sm font-semibold '>
               <div className='w-10/12 lg:w-4/12 opacity-80'>
-                {format('building-block.header').toUpperCase()}
+                {format('ui.buildingBlock.header').toUpperCase()}
               </div>
               <div className='hidden lg:block w-8/12 lg:w-3/12 opacity-50'>
-                {format('exampleOf.entity', { entity: format('product.header') }).toUpperCase()}
+                {format('exampleOf.entity', { entity: format('ui.product.header') }).toUpperCase()}
               </div>
               <div className='hidden lg:block w-8/12 lg:w-3/12 opacity-50'>
                 {format('exampleOf.entity', { entity: format('workflow.header') }).toUpperCase()}
@@ -45,7 +45,7 @@ const BuildingBlockList = (props) => {
             ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
-                {format('noResults.entity', { entity: format('building-block.label').toLowerCase() })}
+                {format('noResults.entity', { entity: format('ui.buildingBlock.label').toLowerCase() })}
               </div>
             )
         }

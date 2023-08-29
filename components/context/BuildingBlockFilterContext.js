@@ -14,12 +14,15 @@ const BuildingBlockFilterProvider = ({ children }) => {
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
+  const setSdgs = setSDGs
+
   const buildingBlockFilterValues = {
     showMature, sdgs, useCases, workflows, categoryTypes, search, sortColumn, sortDirection
   }
   const buildingBlockFilterDispatchValues = {
     setShowMature,
     setSDGs,
+    setSdgs,
     setUseCases,
     setWorkflows,
     setCategoryTypes,

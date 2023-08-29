@@ -1,23 +1,38 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import OpportunityDetail from '../../../components/opportunities/OpportunityDetail'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
+import Footer from '../../../ui/v1/shared/Footer'
+import OpportunityDetail from '../../../ui/v1/opportunity/OpportunityDetail'
 
-const Opportunity = () => {
-  const router = useRouter()
-  const { locale, query } = router
-  const { slug } = query
+const OpportunityPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.opportunity.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.opportunity.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <OpportunityDetail slug={slug} locale={locale} />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <OpportunityDetail slug={slug} />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Opportunity
+export default OpportunityPage

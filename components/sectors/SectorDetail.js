@@ -30,7 +30,7 @@ const SectorDetail = ({ sector, isOpen, onClose }) => {
     >
       <div className='flex flex-col gap-3' data-testid='sector-detail'>
         <div className={`${labelTextBlue} text-2xl font-bold pb-4`}>
-          <p data-testid='sector-name'>{`${format('sector.label')}: ${sector.name}`}</p>
+          <p data-testid='sector-name'>{`${format('ui.sector.label')}: ${sector.name}`}</p>
         </div>
         <div className='flex flex-col gap-3'>
           {sector?.parentSectorId && (

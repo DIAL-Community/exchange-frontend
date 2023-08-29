@@ -46,7 +46,7 @@ const DatasetFilter = () => {
               />
             </div>
             <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
-              {format('filter.hint.text')} {format('dataset.label')}
+              {format('filter.hint.text')} {format('ui.dataset.label')}
             </span>
           </a>
         </div>
@@ -59,14 +59,14 @@ const DatasetFilter = () => {
           {format('filter.framework.title').toUpperCase()}
         </div>
         <div className='px-6'>
-          {format('filter.framework.subTitle', { entity: format('dataset.header') })}
+          {format('filter.framework.subTitle', { entity: format('ui.dataset.header') })}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <SDGAutocomplete {...{ sdgs, setSDGs }} />
           <TagAutocomplete {...{ tags, setTags }} />
         </div>
         <div className='text-xl px-6'>
-          {format('filter.entity', { entity: format('dataset.label') }).toUpperCase()}
+          {format('filter.entity', { entity: format('ui.dataset.label') }).toUpperCase()}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <OriginAutocomplete {...{ origins, setOrigins }} />

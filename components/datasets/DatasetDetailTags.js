@@ -30,7 +30,7 @@ const DatasetDetailTags = ({ dataset, canEdit }) => {
   useEffect(() => {
     if (data?.updateDatasetTags?.errors.length === 0 && data?.updateDatasetTags?.dataset) {
       setTagNames(data.updateDatasetTags.dataset.tags)
-      showToast(format('dataset.tags.updated'), 'success', 'top-center')
+      showToast(format('ui.dataset.tags.updated'), 'success', 'top-center')
       setIsDirty(false)
     }
   }, [data, showToast, format])
@@ -86,7 +86,7 @@ const DatasetDetailTags = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('dataset.no-tag')}
+        {format('ui.dataset.no-tag')}
       </div>
     )
 

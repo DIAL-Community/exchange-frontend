@@ -74,7 +74,7 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: categoryIndicator.name })}
+        title={format('app.deletingEntity', { entity: categoryIndicator.name })}
         message={format('categoryIndicator.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}

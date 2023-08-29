@@ -64,8 +64,8 @@ const SearchFilter = ({
       return 'projects/create'
     }
 
-    if (user && linkPath.includes('storefronts')) {
-      return 'storefronts/create'
+    if (user && linkPath.includes('ui.storefronts')) {
+      return 'ui.storefronts/create'
     }
 
     if (user.isAdminUser && linkPath.includes('candidate')) {
@@ -101,7 +101,7 @@ const SearchFilter = ({
       'rubric_categories',
       'opportunities',
       'resources',
-      'storefronts'
+      'ui.storefronts'
     ]
     if (user.isAdminUser && adminEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
@@ -279,7 +279,7 @@ const SearchFilter = ({
                   }
                 }}
               >
-                <span>{format('app.create-new')}</span>
+                <span>{format('app.createNew')}</span>
               </a>
             }
             {exportJson && (

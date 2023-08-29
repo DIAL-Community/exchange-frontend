@@ -132,8 +132,8 @@ const WorkflowForm = React.memo(({ workflow }) => {
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
                 <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {workflow
-                    ? format('app.edit-entity', { entity: workflow.name })
-                    : `${format('app.create-new')} ${format('workflow.label')}`
+                    ? format('app.editEntity', { entity: workflow.name })
+                    : `${format('app.createNew')} ${format('workflow.label')}`
                   }
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>

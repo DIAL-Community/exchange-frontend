@@ -36,7 +36,7 @@ export const PRODUCT_QUERY = gql`
         }
       }
       includes {
-        name 
+        name
         slug
         imageFile
         origins {

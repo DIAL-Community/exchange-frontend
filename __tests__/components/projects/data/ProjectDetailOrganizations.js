@@ -1,7 +1,7 @@
 const userOwnedOrganization =  {
   id: 2,
   name: 'owned organization',
-  slug: 'oo',
+  slug: 'oo'
 }
 
 export const organizationOwnerUserProps = {
@@ -19,7 +19,7 @@ export const organizations = {
         imageFile: 'fake-image.png',
         slug: 'ao',
         website: 'another_rganization@gmail.com'
-      },
+      }
     ]
   }
 }

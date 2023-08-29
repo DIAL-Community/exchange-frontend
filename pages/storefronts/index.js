@@ -1,63 +1,45 @@
-import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
 import { NextSeo } from 'next-seo'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import QueryNotification from '../../components/shared/QueryNotification'
-import GradientBackground from '../../components/shared/GradientBackground'
-import PageContent from '../../components/main/PageContent'
-import StorefrontFilter from '../../components/organizations/storefronts/StorefrontFilter'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext }
-  from '../../components/context/OrganizationFilterContext'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-import StorefrontListQuery from '../../components/organizations/storefronts/StorefrontList'
-import StorefrontActiveFilter from '../../components/organizations/storefronts/StorefrontActiveFilter'
-import { useUser } from '../../lib/hooks'
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import StorefrontRibbon from '../../ui/v1/storefront/StorefrontRibbon'
+import StorefrontTabNav from '../../ui/v1/storefront/StorefrontTabNav'
+import StorefrontMain from '../../ui/v1/storefront/StorefrontMain'
 
-const Storefronts = () => {
+const StorefrontListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(OrganizationFilterContext)
-  const { setSearch } = useContext(OrganizationFilterDispatchContext)
-
-  const { user } = useUser()
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
       <NextSeo
-        title={format('organization.header')}
+        title={format('ui.storefront.header')}
         description={
           format(
-            'shared.metadata.description.comprehensiveListOf',
-            { entities: format('organization.header')?.toLocaleLowerCase() }
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.storefront.header')?.toLocaleLowerCase() }
           )
         }
       />
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
       <ClientOnly>
-        <PageContent
-          activeTab='filter.entity.storefronts'
-          filter={<StorefrontFilter />}
-          content={<StorefrontListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              hint='filter.entity.storefronts'
-              exportCsv={false}
-              exportJson={false}
-              createNew={user}
-            />
-          }
-          activeFilter={<StorefrontActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <StorefrontRibbon />
+          <StorefrontTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <StorefrontMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Storefronts
+export default StorefrontListPage

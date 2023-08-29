@@ -58,7 +58,7 @@ const OpportunityFilter = () => {
               />
             </div>
             <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
-              {format('filter.hint.text.an')} {format('opportunity.label')}
+              {format('filter.hint.text.an')} {format('ui.opportunity.label')}
             </span>
           </a>
         </div>
@@ -68,7 +68,7 @@ const OpportunityFilter = () => {
         </div>
         <hr className='border-b border-dial-white-beech' />
         <div className='text-xl px-6'>
-          {format('filter.entity', { entity: format('opportunity.label') }).toUpperCase()}
+          {format('filter.entity', { entity: format('ui.opportunity.label') }).toUpperCase()}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <BuildingBlockAutocomplete {...{ buildingBlocks, setBuildingBlocks }} />

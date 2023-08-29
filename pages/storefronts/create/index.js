@@ -1,26 +1,37 @@
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
-import { useUser } from '../../../lib/hooks'
-import StorefrontForm from '../../../components/organizations/storefronts/StorefrontForm'
+import Footer from '../../../ui/v1/shared/Footer'
+import StorefrontCreate from '../../../ui/v1/storefront/StorefrontCreate'
 
-const CreateStorefront = () => {
-  const { user, loadingUserSession } = useUser()
+const CreateStorefrontPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.storefront.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.storefront.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        {loadingUserSession
-          ? <Loading />
-          : user
-            ? <StorefrontForm />
-            : <Unauthorized />}
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <StorefrontCreate />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default CreateStorefront
+export default CreateStorefrontPage

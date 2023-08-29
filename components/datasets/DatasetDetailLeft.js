@@ -97,7 +97,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
       const { applyAsOwner: response } = data
       if (response?.candidateRole && response?.errors?.length === 0) {
         showToast(
-          format('toast.applyAsOwner.submit.success', { entity: format('dataset.label') }),
+          format('toast.applyAsOwner.submit.success', { entity: format('ui.dataset.label') }),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -168,7 +168,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
             objectType={ObjectType.OPEN_DATA}
           />
         </div>
-        <div className='h4 font-bold py-4'>{format('datasets.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.dataset.label')}</div>
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 shadow-lg'>
         <div id='header' className='flex flex-col h-80 p-2'>
@@ -194,7 +194,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           shadow-lg border-b-2 border-dial-gray
         `}
       >
-        {format('dataset.owner')}
+        {format('ui.dataset.owner')}
         <div className='flex flex-row gap-3'>
           {
             showApplyLink &&

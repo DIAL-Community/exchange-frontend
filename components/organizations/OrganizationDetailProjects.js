@@ -109,10 +109,10 @@ const OrganizationDetailProjects = ({ organization, canEdit, createAction }) => 
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('project.header')}
+        {format('app.assign')} {format('ui.project.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='project-search'>
-        {`${format('app.searchAndAssign')} ${format('project.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.project.header')}`}
         <Select
           async
           isSearch
@@ -120,7 +120,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, createAction }) => 
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) => fetchSelectOptions(client, input, PROJECT_SEARCH_QUERY, fetchedProjectsCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('project.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.project.header') })}
           onChange={addProject}
           value={null}
         />
@@ -140,7 +140,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, createAction }) => 
     (organization.projects.length > 0 || canEdit) && (
       <EditableSection
         canEdit={canEdit}
-        sectionHeader={format('project.header')}
+        sectionHeader={format('ui.project.header')}
         onSubmit={onSubmit}
         onCancel={onCancel}
         isDirty={isDirty}

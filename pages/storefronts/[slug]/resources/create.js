@@ -1,18 +1,17 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import Footer from '../../../../components/Footer'
-import Header from '../../../../components/Header'
-import ResourceForm from '../../../../components/resources/ResourceForm'
+import { ORGANIZATION_DETAIL_QUERY } from '../../../../ui/v1/shared/query/organization'
+import { Error, Loading, NotFound } from '../../../../ui/v1/shared/FetchStatus'
+import Header from '../../../../ui/v1/shared/Header'
 import ClientOnly from '../../../../lib/ClientOnly'
-import { Error, Loading } from '../../../../components/shared/FetchStatus'
-import NotFound from '../../../../components/shared/NotFound'
-import { ORGANIZATION_QUERY } from '../../../../queries/organization'
+import Footer from '../../../../ui/v1/shared/Footer'
+import ResourceForm from '../../../../ui/v1/resource/fragments/ResourceForm'
 
 const CreateResource = () => {
   const { locale, query } = useRouter()
   const { slug } = query
 
-  const { loading, error, data } = useQuery(ORGANIZATION_QUERY, {
+  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
     variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
@@ -22,7 +21,7 @@ const CreateResource = () => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.organization) {
+  } else if (!data?.storefront) {
     return <NotFound />
   }
 
@@ -30,7 +29,7 @@ const CreateResource = () => {
     <>
       <Header />
       <ClientOnly>
-        <ResourceForm organization={data?.organization} />
+        <ResourceForm storefront={data?.storefront} />
       </ClientOnly>
       <Footer />
     </>

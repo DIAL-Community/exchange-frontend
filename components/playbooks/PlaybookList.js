@@ -31,10 +31,10 @@ const PlaybookList = (props) => {
         displayType === 'list' &&
           <div className='flex flex-col md:flex-row flex-wrap my-3 px-4 gap-x-4'>
             <div className='ml-2 text-sm font-semibold opacity-70'>
-              {format('playbook.header').toUpperCase()}
+              {format('ui.playbook.header').toUpperCase()}
             </div>
             <div className='hidden md:block ml-auto text-sm font-semibold opacity-50'>
-              {format('playbooks.tags').toUpperCase()}
+              {format('ui.playbook.tags').toUpperCase()}
             </div>
           </div>
       }
@@ -46,7 +46,7 @@ const PlaybookList = (props) => {
           ))
           : (
             <div className='text-sm font-medium opacity-80'>
-              {format('noResults.entity', { entity: format('playbooks.label').toString().toLowerCase() })}
+              {format('noResults.entity', { entity: format('ui.playbook.label').toString().toLowerCase() })}
             </div>
           )
       }

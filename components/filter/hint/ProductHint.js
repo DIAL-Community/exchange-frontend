@@ -10,7 +10,7 @@ const ProductHint = () => {
   return (
     <div className='flex flex-col gap-2 text-dial-stratos'>
       <div className='text-xl font-semibold'>
-        {format('product.label')}
+        {format('ui.product.label')}
       </div>
       <div className='text-base'>
         {format('product.hint.subtitle')}

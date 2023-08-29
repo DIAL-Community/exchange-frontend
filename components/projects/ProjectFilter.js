@@ -42,7 +42,7 @@ const ProjectFilter = () => {
               />
             </div>
             <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
-              {format('filter.hint.text')} {format('project.label')}
+              {format('filter.hint.text')} {format('ui.project.label')}
             </span>
           </a>
         </div>
@@ -55,13 +55,13 @@ const ProjectFilter = () => {
           {format('filter.framework.title').toUpperCase()}
         </div>
         <div className='px-6'>
-          {format('filter.framework.subTitle', { entity: format('project.header') })}
+          {format('filter.framework.subTitle', { entity: format('ui.project.header') })}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <SDGAutocomplete {...{ sdgs, setSDGs }} />
         </div>
         <div className='text-xl px-6'>
-          {format('filter.entity', { entity: format('project.label') }).toUpperCase()}
+          {format('filter.entity', { entity: format('ui.project.label') }).toUpperCase()}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <OriginAutocomplete {...{ origins, setOrigins }} />

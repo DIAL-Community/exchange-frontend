@@ -94,7 +94,7 @@ const SDGCard = ({ sdg, listType }) => {
                 {sdg.sdgTargets.length}
               </span>
               <span className='my-auto'>
-                {sdg.sdgTargets.length > 1 ? format('sdg-target.header') : format('sdg-target.label')}
+                {sdg.sdgTargets.length > 1 ? format('ui.sdgTarget.header') : format('ui.sdgTarget.label')}
               </span>
             </div>
           </div>
@@ -105,7 +105,7 @@ const SDGCard = ({ sdg, listType }) => {
                 {useCases.length > 0 ? useCases.length : format('general.na')}
               </span>
               <span className='my-auto'>
-                {useCases.length > 1 ? format('use-case.header') : format('use-case.label')}
+                {useCases.length > 1 ? format('ui.useCase.header') : format('ui.useCase.label')}
               </span>
             </div>
           </div>

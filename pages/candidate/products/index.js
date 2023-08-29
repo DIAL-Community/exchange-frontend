@@ -1,52 +1,45 @@
-import { useContext } from 'react'
-import dynamic from 'next/dynamic'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import QueryNotification from '../../../components/shared/QueryNotification'
-import GradientBackground from '../../../components/shared/GradientBackground'
-import SearchFilter from '../../../components/shared/SearchFilter'
-import { ProductFilterContext, ProductFilterDispatchContext }
-  from '../../../components/context/candidate/ProductFilterContext'
-import MobileNav from '../../../components/main/MobileNav'
-import PageContent from '../../../components/main/PageContent'
-import TabNav from '../../../components/main/TabNav'
 import ClientOnly from '../../../lib/ClientOnly'
-import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
-import { useUser } from '../../../lib/hooks'
-const ProductListQuery = dynamic(() =>
-  import('../../../components/candidate/products/ProductList'), { ssr: false })
-const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
+import Header from '../../../ui/v1/shared/Header'
+import Footer from '../../../ui/v1/shared/Footer'
+import ProductRibbon from '../../../ui/v1/candidate/product/ProductRibbon'
+import ProductTabNav from '../../../ui/v1/candidate/product/ProductTabNav'
+import ProductMain from '../../../ui/v1/candidate/product/ProductMain'
 
-const Products = () => {
-  const { search } = useContext(ProductFilterContext)
-  const { setSearch } = useContext(ProductFilterDispatchContext)
+const ProductListPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, loadingUserSession } = useUser()
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
-      <QueryNotification />
-      <GradientBackground />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-      <Header />
-      {loadingUserSession ? <Loading /> : isAdminUser ? (
-        <ClientOnly>
-          <TabNav activeTab='filter.entity.candidateProducts' />
-          <MobileNav activeTab='filter.entity.candidateProducts' />
-          <PageContent
-            content={<ProductListQuery />}
-            searchFilter={
-              <SearchFilter
-                {...{ search, setSearch }}
-                hint='filter.entity.candidateProducts'
-              />
-            }
-          />
-        </ClientOnly>
-      ) : <Unauthorized />}
-      <Footer />
+      <NextSeo
+        title={format('ui.candidateProduct.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.candidateProduct.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
+      <ClientOnly>
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ProductRibbon />
+          <ProductTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProductMain activeTab={activeTab} />
+        </div>
+        <Footer />
+      </ClientOnly>
     </>
   )
 }
 
-export default Products
+export default ProductListPage

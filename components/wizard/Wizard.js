@@ -105,7 +105,7 @@ const WizardContent = () => {
       ...buildingBlockData?.filter(({ maturity }) => maturity === MaturityStatus.PUBLISHED) ?? [],
       ...buildingBlockData?.filter(({ maturity }) => maturity === MaturityStatus.DRAFT) ?? []
     ] ?? [],
-    useCases: useCaseData?.map(({ name }) => ({ label: name, value: name })) ?? [],
+    useCases: useCaseData?.map(({ name }) => ({ label: name, value: name })) ?? []
   }
 
   const availableSteps = [

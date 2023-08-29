@@ -78,8 +78,8 @@ const DeleteOpportunity = ({ opportunity }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: opportunity.name })}
-        message={format('opportunity.delete.confirm.message')}
+        title={format('app.deletingEntity', { entity: opportunity.name })}
+        message={format('ui.opportunity.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

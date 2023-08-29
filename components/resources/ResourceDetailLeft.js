@@ -43,7 +43,7 @@ const ResourceDetailLeft = ({ resource }) => {
             <div className='inline my-auto'>{format('app.comment')}</div>
           </div>
         </div>
-        <div className='h4 font-bold py-4'>{format('resource.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.resource.label')}</div>
       </div>
       <div className='bg-white border-2 border-dial-gray shadow-lg'>
         <div className='flex flex-col h-80 p-4'>

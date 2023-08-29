@@ -10,10 +10,10 @@ const DatasetHint = () => {
   return (
     <div className='flex flex-col gap-2 text-dial-stratos'>
       <div className='text-xl font-semibold'>
-        {format('dataset.label')}
+        {format('ui.dataset.label')}
       </div>
       <div className='text-base'>
-        {format('dataset.hint.subtitle')}
+        {format('ui.dataset.hint.subtitle')}
       </div>
       <div className='mx-auto'>
         <Image
@@ -23,10 +23,10 @@ const DatasetHint = () => {
           alt='Dataset hint logo.' />
       </div>
       <div className='text-lg font-semibold'>
-        {format('dataset.hint.descriptionTitle').toUpperCase()}
+        {format('ui.dataset.hint.descriptionTitle').toUpperCase()}
       </div>
       <div className='text-sm'>
-        {parse(format('dataset.hint.description'))}
+        {parse(format('ui.dataset.hint.description'))}
       </div>
     </div>
   )

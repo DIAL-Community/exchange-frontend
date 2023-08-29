@@ -92,8 +92,8 @@ const TagForm = ({ isOpen, onClose, tag }) => {
           <div className='pb-12 mb-4 flex flex-col gap-3'>
             <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {tag
-                ? format('app.edit-entity', { entity: tag.name })
-                : `${format('app.create-new')} ${format('tag.label')}`
+                ? format('app.editEntity', { entity: tag.name })
+                : `${format('app.createNew')} ${format('tag.label')}`
               }
             </div>
             <div className='flex flex-col gap-y-2 mb-2' data-testid='tag-name'>

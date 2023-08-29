@@ -78,8 +78,8 @@ const DeleteResource = ({ resource }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog}/>
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: resource.name })}
-        message={format('resource.delete.confirm.message')}
+        title={format('app.deletingEntity', { entity: resource.name })}
+        message={format('ui.resource.delete.confirm.message')}
         isOpen={isConfirmDialogOpen}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

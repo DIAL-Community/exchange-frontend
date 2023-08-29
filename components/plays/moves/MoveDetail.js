@@ -36,9 +36,9 @@ const MoveDetail = ({ play, move }) => {
         </div>
       </div>
       <div className='h4 font-bold'>
-        {format('move.label')}: {move.name}
+        {format('ui.move.label')}: {move.name}
       </div>
-      {format('moves.description')}
+      {format('ui.move.description')}
       <HtmlViewer
         initialContent={move?.moveDescription?.description}
         editorId='move-detail'

@@ -13,5 +13,5 @@ export const countryWithMissingLatLong = {
   name: 'India',
   slug: 'in',
   code: 'IN',
-  codeLonger: 'IND',
+  codeLonger: 'IND'
 }

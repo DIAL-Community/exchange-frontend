@@ -36,7 +36,7 @@ const WorkflowList = (props) => {
                 {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
               </div>
               <div className='w-8/12 lg:w-3/12 line-clamp-1'>
-                {format('exampleOf.entity', { entity: format('building-block.header') }).toUpperCase()}
+                {format('exampleOf.entity', { entity: format('ui.buildingBlock.header') }).toUpperCase()}
               </div>
             </div>
         }

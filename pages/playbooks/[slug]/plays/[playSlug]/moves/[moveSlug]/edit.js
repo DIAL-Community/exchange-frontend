@@ -1,60 +1,39 @@
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
-import Header from '../../../../../../../components/Header'
-import Footer from '../../../../../../../components/Footer'
-import { Loading, Error, Unauthorized } from '../../../../../../../components/shared/FetchStatus'
-import { MoveForm } from '../../../../../../../components/plays/moves/MoveForm'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
-import { useUser } from '../../../../../../../lib/hooks'
-import NotFound from '../../../../../../../components/shared/NotFound'
-import { MOVE_QUERY } from '../../../../../../../queries/move'
-
-const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
-  const { loading, error, data } = useQuery(MOVE_QUERY, {
-    variables: {
-      playbookSlug: slug,
-      playSlug,
-      moveSlug
-    },
-    skip: !slug && !playSlug && !moveSlug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.move && !data?.play && !data?.playbook) {
-    return <NotFound />
-  }
-
-  return (
-    <>
-      {data?.move && data?.play && data?.playbook &&
-        <MoveForm playbook={data.playbook} play={data.play} move={data.move} />
-      }
-    </>
-  )
-}
+import MoveEdit from '../../../../../../../ui/v1/move/MoveEdit'
+import Header from '../../../../../../../ui/v1/shared/Header'
+import Footer from '../../../../../../../ui/v1/shared/Footer'
 
 const EditMove = () => {
-  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
-  const router = useRouter()
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { locale } = router
-  const { slug, playSlug, moveSlug } = router.query
+  const { locale, query: { slug, playSlug, moveSlug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.play.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.play.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        {loadingUserSession
-          ? <Loading />
-          : isAdminUser || isEditorUser
-            ? <EditMoveInformation {...{ slug, playSlug, moveSlug, locale }} />
-            : <Unauthorized />}
+        <Header />
+        <MoveEdit
+          moveSlug={moveSlug}
+          playSlug={playSlug}
+          playbookSlug={slug}
+          locale={locale}
+        />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

@@ -41,7 +41,7 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
                 {organization.specialties.length > 0 ? organization.specialties.length : '-' }
               </span>
               <span className='my-auto'>
-                {organization.specialties.length > 1 ? format('specialty.header') : format('specialty.label')}
+                {organization.specialties.length > 1 ? format('ui.specialty.header') : format('ui.specialty.label')}
               </span>
             </div>
             <div className='flex gap-2'>
@@ -49,7 +49,10 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
                 {organization.certifications.length > 0 ? organization.certifications.length : '-' }
               </span>
               <span className='my-auto'>
-                {organization.certifications.length > 1 ? format('certification.header') : format('certification.label')}
+                {organization.certifications.length > 1
+                  ? format('ui.certification.header')
+                  : format('ui.certification.label')
+                }
               </span>
             </div>
           </div>
@@ -85,7 +88,7 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
                 {organization.specialties.length > 0 ? organization.specialties.length : '-' }
               </span>
               <span className='my-auto'>
-                {organization.specialties.length > 1 ? format('specialty.header') : format('specialty.label')}
+                {organization.specialties.length > 1 ? format('ui.specialty.header') : format('ui.specialty.label')}
               </span>
             </div>
           </div>
@@ -96,7 +99,10 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
                 {organization.certifications.length > 0 ? organization.certifications.length : '-' }
               </span>
               <span className='my-auto'>
-                {organization.certifications.length > 1 ? format('certification.header') : format('certification.label')}
+                {organization.certifications.length > 1
+                  ? format('ui.certification.header')
+                  : format('ui.certification.label')
+                }
               </span>
             </div>
           </div>

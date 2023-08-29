@@ -54,7 +54,7 @@ const ProductCard = ({ product, listType }) => {
             <div className='absolute right-3'>
               <div className='flex gap-1'>
                 <div className='px-2 py-1 border border-dial-cyan rounded text-sm text-dial-cyan font-semibold'>
-                  {format('candidateProduct.label').toUpperCase()}
+                  {format('ui.candidateProduct.label').toUpperCase()}
                 </div>
                 {
                   product.rejected === null &&
@@ -83,7 +83,7 @@ const ProductCard = ({ product, listType }) => {
           <div className='flex flex-col gap-3 p-3 h-full'>
             <div className='flex flex-row xl:hidden text-sm font-semibold'>
               <div className='ml-auto my-auto p-1.5 border border-dial-gray-dark rounded'>
-                {format('candidateProduct.label').toUpperCase()}
+                {format('ui.candidateProduct.label').toUpperCase()}
               </div>
             </div>
             <label className='flex flex-col'>
@@ -136,7 +136,7 @@ const ProductCard = ({ product, listType }) => {
             }
             <div className='ml-auto flex gap-1'>
               <div className='my-auto py-1 px-2 text-dial-cyan text-sm font-semibold'>
-                {format('candidateProduct.label').toUpperCase()}
+                {format('ui.candidateProduct.label').toUpperCase()}
               </div>
               {
                 product.rejected === null &&
@@ -218,7 +218,7 @@ const ProductCard = ({ product, listType }) => {
         <div className='card-back flip-vertical flex flex-col border border-dial-gray bg-dial-gray shadow-lg h-full'>
           <div className='flex flex-row p-1.5 bg-dial-gray-dark product-card-header'>
             <div className='ml-auto my-auto text-dial-cyan text-sm font-semibold'>
-              {format('candidateProduct.label').toUpperCase()}
+              {format('ui.candidateProduct.label').toUpperCase()}
             </div>
           </div>
           <div className='flex flex-col gap-3 p-3 h-full '>

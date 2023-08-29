@@ -21,7 +21,7 @@ const QueryNotification = () => {
   return (
     <>
       {
-        query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected &&
+        query?.shareCatalog && Object.getOwnPropertyNames(query).length > 1 && !interactionDetected &&
           <div className='z-100 bg-black fixed top-0 left-0 w-full h-full bg-opacity-60'>
             <div className='w-full h-full flex flex-col justify-center items-center'>
               <div className='text-white'>{format('overlay.message')}</div>

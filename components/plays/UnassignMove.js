@@ -77,12 +77,12 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
       >
         <FaRegTrashAlt className='inline pb-0.5 text-red-500'/>
         <span className='text-sm px-1 text-red-500'>
-          <FormattedMessage id='move.unassign' />
+          <FormattedMessage id='ui.move.unassign' />
         </span>
       </button>
       <ConfirmActionDialog
-        title={format('move.unassign.title')}
-        message={format('move.unassign.confirmation')}
+        title={format('ui.move.unassign.title')}
+        message={format('ui.move.unassign.confirmation')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

@@ -47,7 +47,7 @@ const RearrangeMoves = ({ displayDragable, onDragableClose, play }) => {
               <Dialog.Title>
                 <div className='px-4 text-xl text-dial-sapphire font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
-                    {format('move.rearrange')}
+                    {format('ui.move.rearrange')}
                   </div>
                 </div>
               </Dialog.Title>

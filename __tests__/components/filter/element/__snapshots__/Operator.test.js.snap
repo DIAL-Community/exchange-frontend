@@ -32,7 +32,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should match snapshot
             class="react-select__placeholder css-5rjclb-placeholder"
             id="react-select-:r0:-placeholder"
           >
-            Filter by Operator
+            Filter by Network Operator
           </div>
           <div
             class="react-select__input-container css-qbdosj-Input"
@@ -43,7 +43,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should match snapshot
               aria-describedby="react-select-:r0:-placeholder"
               aria-expanded="false"
               aria-haspopup="true"
-              aria-label="Filter by Operator"
+              aria-label="Filter by Network Operator"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -120,7 +120,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should render a drop 
             class="react-select__placeholder css-5rjclb-placeholder"
             id="react-select-:r1:-placeholder"
           >
-            Filter by Operator
+            Filter by Network Operator
           </div>
           <div
             class="react-select__input-container css-qbdosj-Input"
@@ -132,7 +132,7 @@ exports[`Unit test for the OperatorAutocomplete component. Should render a drop 
               aria-describedby="react-select-:r1:-placeholder"
               aria-expanded="true"
               aria-haspopup="true"
-              aria-label="Filter by Operator"
+              aria-label="Filter by Network Operator"
               aria-owns="react-select-:r1:-listbox"
               autocapitalize="none"
               autocomplete="off"

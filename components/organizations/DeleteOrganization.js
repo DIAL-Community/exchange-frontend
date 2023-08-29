@@ -78,7 +78,7 @@ const DeleteOrganization = ({ organization }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: organization.name })}
+        title={format('app.deletingEntity', { entity: organization.name })}
         message={format('organization.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}

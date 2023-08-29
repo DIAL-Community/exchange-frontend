@@ -21,7 +21,7 @@ export const OperatorAutocomplete = ({
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('operator.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.operator.label') })
 
   const selectOperator = (operator) => {
     setOperators([...operators.filter(({ value }) => value !== operator.value), operator])
@@ -41,12 +41,12 @@ export const OperatorAutocomplete = ({
     <div className={classNames(containerStyles)} data-testid='operator-search'>
       <Select
         async
-        aria-label={format('filter.byEntity', { entity: format('operator.label') })}
+        aria-label={format('filter.byEntity', { entity: format('ui.operator.label') })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, OPERATOR_SEARCH_QUERY, fetchedOperatorsCallback)}
-        noOptionsMessage={() => format('filter.searchFor', { entity: format('operator.header') })}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.operator.header') })}
         onChange={selectOperator}
         placeholder={controlPlaceholder}
         value=''
@@ -73,7 +73,7 @@ export const OperatorFilters = (props) => {
         <div className='py-1' key={operatorIdx}>
           <Pill
             key={`filter-${operatorIdx}`}
-            label={`${format('operator.label')}: ${operator.label}`}
+            label={`${format('ui.operator.label')}: ${operator.label}`}
             onRemove={() => removeOperator(operator.value)}
           />
         </div>

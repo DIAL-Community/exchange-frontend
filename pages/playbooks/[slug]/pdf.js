@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import ClientOnly from '../../../lib/ClientOnly'
 
 const PlaybookPdf = dynamic(
-  () => import('../../../components/playbooks/PlaybookPdf'),
+  () => import('../../../ui/v1/playbook/PlaybookPdf'),
   { ssr: true }
 )
 

@@ -116,17 +116,17 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('storefront.no-resource')}
+        {format('ui.storefront.noResource')}
       </div>
     )
 
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('resource.header')}
+        {format('app.assign')} {format('ui.resource.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='resource-search'>
-        {`${format('app.searchAndAssign')} ${format('resource.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.resource.header')}`}
         <Select
           async
           isSearch
@@ -134,7 +134,7 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) => fetchSelectOptions(client, input, RESOURCE_SEARCH_QUERY, fetchedResourcesCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('resource.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.header') })}
           onChange={addSpecialty}
           value={null}
         />
@@ -153,7 +153,7 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('resource.header')}
+      sectionHeader={format('ui.resource.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

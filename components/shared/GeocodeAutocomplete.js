@@ -41,7 +41,7 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
         const { x: longitude, y: latitude } = candidate.location
         const {
           address: {
-            CntryName: countryName,
+            CountryName: countryName,
             CountryCode: countryCode,
             Region: regionName,
             City: cityName

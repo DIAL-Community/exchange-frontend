@@ -115,7 +115,7 @@ const PasswordAction = () => {
     <>
       <Header />
       <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
-      <div className='bg-dial-gray-dark pt-20 simple-form-height'>
+      <div className='bg-dial-gray-dark pt-20 max-w-catalog mx-auto min-h-[70vh]'>
         <div className={`mx-4 ${applied ? 'visible' : 'invisible'} text-center bg-dial-gray-dark`}>
           <div className='my-auto text-emerald-500'>{format('reset.applied')}</div>
         </div>

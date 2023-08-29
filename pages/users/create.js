@@ -1,8 +1,8 @@
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
 import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
-import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../ui/v1/shared/FetchStatus'
 import { UserForm } from '../../components/users/UserForm'
 
 const CreateUser = () => {
@@ -12,7 +12,12 @@ const CreateUser = () => {
     <>
       <Header/>
       <ClientOnly>
-        {loadingUserSession ? <Loading /> : isAdminUser ? <UserForm /> : <Unauthorized />}
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <UserForm />
+            : <Unauthorized />
+        }
       </ClientOnly>
       <Footer/>
     </>

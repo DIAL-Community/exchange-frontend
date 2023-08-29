@@ -1,16 +1,37 @@
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import ProjectForm from '../../../components/projects/ProjectForm'
+import Footer from '../../../ui/v1/shared/Footer'
+import ProjectCreate from '../../../ui/v1/project/ProjectCreate'
 
-const CreateProject = () => (
-  <>
-    <Header />
-    <ClientOnly>
-      <ProjectForm />
-    </ClientOnly>
-    <Footer />
-  </>
-)
+const CreateProjectPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-export default CreateProject
+  return (
+    <>
+      <NextSeo
+        title={format('ui.project.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.project.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
+      <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ProjectCreate />
+        </div>
+        <Footer />
+      </ClientOnly>
+    </>
+  )
+}
+
+export default CreateProjectPage

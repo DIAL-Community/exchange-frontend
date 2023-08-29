@@ -78,7 +78,7 @@ const DeleteCountry = ({ country }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog}/>
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: country.name })}
+        title={format('app.deletingEntity', { entity: country.name })}
         message={format('country.delete.confirm.message')}
         isOpen={isConfirmDialogOpen}
         onClose={toggleConfirmDialog}

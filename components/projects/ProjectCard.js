@@ -89,7 +89,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
           </div>
           <div className='flex h-44'>
             <div className='flex-col w-1/2 p-4 text-sm'>
-              <div className=''>{format('organization.header')}</div>
+              <div className=''>{format('ui.organization.header')}</div>
               <div className='font-semibold opacity-30 line-clamp-1'>
                 {projectOrganization
                   ? projectOrganization.name
@@ -102,7 +102,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                   layout='fill'
                   alt={format(
                     'image.alt.logoFor',
-                    { name: projectOrganization ? projectOrganization.name : format('organization.label') }
+                    { name: projectOrganization ? projectOrganization.name : format('ui.organization.label') }
                   )}
                   src={projectOrganization
                     ? process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectOrganization.imageFile
@@ -112,7 +112,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
               </div>
             </div>
             <div className='flex-col w-1/2 p-4 text-sm border-l'>
-              <div className=''>{format('product.header')}</div>
+              <div className=''>{format('ui.product.header')}</div>
               <div className='font-semibold opacity-30 line-clamp-1'>
                 {projectProduct ? projectProduct.name : format('general.na')}
               </div>
@@ -122,7 +122,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                   layout='fill'
                   alt={format(
                     'image.alt.logoFor',
-                    { name: projectProduct ? projectProduct.name : format('product.label') }
+                    { name: projectProduct ? projectProduct.name : format('ui.product.label') }
                   )}
                   src={projectProduct
                     ? process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectProduct.imageFile
