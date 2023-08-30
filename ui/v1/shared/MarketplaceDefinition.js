@@ -1,10 +1,22 @@
 import Link from 'next/link'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
+import ComingSoon from '../../../components/shared/ComingSoon'
 
 const MarketplaceDefinition = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
+
+  const [showForm, setShowForm] = useState(false)
+
+  const showFeedbackForm = (e) => {
+    e.preventDefault()
+    setShowForm(true)
+  }
+
+  const hideFeedbackForm = () => {
+    setShowForm(false)
+  }
 
   return (
     <div className='bg-dial-blueberry'>
@@ -43,7 +55,7 @@ const MarketplaceDefinition = () => {
                 </div>
               </div>
             </Link>
-            <Link href='/' className='hover:text-dial-biscotti'>
+            <a href='compareTool' onClick={(e) => showFeedbackForm(e)} className='hover:text-dial-biscotti'>
               <div className='flex flex-col gap-3 hover:bg-dial-blueberry-dark px-6 py-4 rounded-md'>
                 <div className='text-lg font-semibold'>
                   {format('ui.compareTool.header')}
@@ -55,10 +67,16 @@ const MarketplaceDefinition = () => {
                   {format('ui.compareTool.subTagLine')}
                 </div>
               </div>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
+      {showForm &&
+        <ComingSoon
+          showForm={showForm}
+          hideFeedbackForm={hideFeedbackForm}
+        />
+      }
     </div>
   )
 }

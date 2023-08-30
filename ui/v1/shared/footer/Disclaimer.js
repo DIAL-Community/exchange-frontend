@@ -18,9 +18,6 @@ const Disclaimer = () => {
         </div>
       </a>
       <div className='text-sm text-dial-stratos ml-auto'>
-        {format('ui.footer.disclaimer.termsOfUse')}
-      </div>
-      <div className='text-sm text-dial-stratos ml-auto'>
         {format('ui.footer.disclaimer.copyright', { year: new Date().getFullYear() })}
       </div>
     </div>
