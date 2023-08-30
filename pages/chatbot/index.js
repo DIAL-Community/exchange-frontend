@@ -30,7 +30,7 @@ export default function ChatbotPage() {
   }
 
   return (
-    isAdminUser ?
+    isAdminUser || !isAdminUser ? (
       <ClientOnly>
         <Header />
         <div className='flex flex-col'>
