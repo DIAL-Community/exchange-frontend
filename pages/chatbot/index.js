@@ -30,29 +30,23 @@ export default function ChatbotPage() {
   }
 
   return (
-    isAdminUser || !isAdminUser ? (
-      <ClientOnly>
-        <Header />
-        <div className='flex flex-col'>
-          <div className='px-4 lg:px-8 xl:px-56 py-4'>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <input className='w-2/3' {...register('question')} placeholder="Enter your question" />
-              <div className='flex gap-3 py-2'>
-                <button type='submit' className='secondary-button dial-sapphire'>
-                  Submit
-                </button>
-              </div>
-              {response && <div className='px-4 py-4 border'>{response}</div>}
-            </form>
-          </div>
+    <ClientOnly>
+      <Header />
+      <div className='flex flex-col'>
+        <div className='px-4 lg:px-8 xl:px-56 py-4'>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input className='w-2/3' {...register('question')} placeholder="Enter your question" />
+            <div className='flex gap-3 py-2'>
+              <button type='submit' className='secondary-button dial-sapphire'>
+                Submit
+              </button>
+            </div>
+            {response && <div className='px-4 py-4 border'>{response}</div>}
+          </form>
         </div>
-        <Footer />
-      </ClientOnly>
-      : <>
-        <Header />
-        <Unauthorized />
-        <Footer />
-      </>
+      </div>
+      <Footer />
+    </ClientOnly>
   )
 
 }
