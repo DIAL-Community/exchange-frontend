@@ -25,18 +25,22 @@ const PoweredBy = () => {
         </div>
       </div>
       <div className='flex gap-3 ml-auto pt-3'>
-        <img
-          src='/ui/v1/twitter-icon-wo-bg.svg'
-          alt={format('ui.image.logoAlt', { name: 'Twitter' })}
-          width={30}
-          className='object-contain'
-        />
-        <img
-          src='/ui/v1/linkedin-icon-wo-bg.svg'
-          alt={format('ui.image.logoAlt', { name: 'LinkedIn' })}
-          width={30}
-          className='object-contain'
-        />
+        <a href='//twitter.com/DIAL_Community' target='_blank' rel='noreferrer'>
+          <img
+            src='/ui/v1/twitter-icon-wo-bg.svg'
+            alt={format('ui.image.logoAlt', { name: 'Twitter' })}
+            width={30}
+            className='object-contain'
+          />
+          </a>
+          <a href='//www.linkedin.com/company/digital-impact-alliance/' target='_blank' rel='noreferrer'></a>
+          <img
+            src='/ui/v1/linkedin-icon-wo-bg.svg'
+            alt={format('ui.image.logoAlt', { name: 'LinkedIn' })}
+            width={30}
+            className='object-contain'
+          />
+          </a>
       </div>
     </div>
   )
