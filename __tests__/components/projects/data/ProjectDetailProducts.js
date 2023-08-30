@@ -13,7 +13,7 @@ export const products = {
         id: 2,
         name: 'Product 2',
         slug: 'product_2'
-      },
+      }
     ]
   }
 }
@@ -30,7 +30,7 @@ export const ownedProducts = {
         id: 2,
         name: 'Product 2',
         slug: 'product_2'
-      },
+      }
     ]
   }
 }
@@ -46,6 +46,6 @@ export const projectProducts = {
       id: 3,
       name: 'Product 3',
       slug: 'product_3'
-    },
+    }
   ]
 }

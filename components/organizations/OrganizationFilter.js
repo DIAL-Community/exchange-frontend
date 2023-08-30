@@ -45,7 +45,7 @@ const OrganizationFilter = () => {
               />
             </div>
             <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
-              {format('filter.hint.text.an')} {format('organization.label')}
+              {format('filter.hint.text.an')} {format('ui.organization.label')}
             </span>
           </a>
         </div>
@@ -55,7 +55,7 @@ const OrganizationFilter = () => {
         </div>
         <hr className='border-b border-dial-white-beech' />
         <div className='text-xl px-6'>
-          {format('filter.entity', { entity: format('organization.label') }).toUpperCase()}
+          {format('filter.entity', { entity: format('ui.organization.label') }).toUpperCase()}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <label className='inline'>

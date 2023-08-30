@@ -1,23 +1,38 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import OrganizationDetail from '../../../components/organizations/OrganizationDetail'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
+import Footer from '../../../ui/v1/shared/Footer'
+import OrganizationDetail from '../../../ui/v1/organization/OrganizationDetail'
 
-const Organization = () => {
-  const router = useRouter()
-  const { locale, query } = router
-  const { slug } = query
+const OrganizationPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.organization.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.organization.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <OrganizationDetail slug={slug} locale={locale} />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <OrganizationDetail slug={slug} />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Organization
+export default OrganizationPage

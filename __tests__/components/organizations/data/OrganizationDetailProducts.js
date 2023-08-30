@@ -7,8 +7,8 @@ module.exports = {
           'name': 'Another Product',
           'slug': 'ac',
           '__typename': 'Product'
-        },
+        }
       ]
     }
-  },
+  }
 }

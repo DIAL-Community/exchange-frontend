@@ -117,7 +117,7 @@ const StorefrontListQuery = () => {
   if (nodes.length <= 0) {
     return (
       <div className='py-4'>
-        {format('noResults.entity', { entity: format('storefront.label').toLowerCase() })}
+        {format('noResults.entity', { entity: format('ui.storefront.label').toLowerCase() })}
       </div>
     )
   }
@@ -133,7 +133,7 @@ const StorefrontListQuery = () => {
         displayType === 'list' &&
         <div className='flex flex-row my-3 px-4 gap-x-4'>
           <div className='text-sm font-semibold opacity-70'>
-            {format('organization.header').toUpperCase()}
+            {format('ui.organization.header').toUpperCase()}
           </div>
         </div>
       }

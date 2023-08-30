@@ -207,7 +207,7 @@ const EndorserPageInformation = () => {
             ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-3'>
-                {format('noResults.entity', { entity: format('organization.label').toLowerCase() })}
+                {format('noResults.entity', { entity: format('ui.organization.label').toLowerCase() })}
               </div>
             )
         }

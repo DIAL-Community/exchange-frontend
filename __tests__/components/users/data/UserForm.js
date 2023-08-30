@@ -58,7 +58,7 @@ export const organizations = {
         slug: 'Organization 1',
         __typename: 'Organization',
         website: 'test@gmail.com'
-      },
+      }
     ]
   }
 }

@@ -19,21 +19,21 @@ const basePathMappings = {
   use_cases: 'useCase.header',
   use_case_steps: 'useCaseStep.header',
   workflows: 'workflow.header',
-  building_blocks: 'building-block.header',
-  products: 'product.header',
-  datasets: 'dataset.header',
+  building_blocks: 'ui.buildingBlock.header',
+  products: 'ui.product.header',
+  datasets: 'ui.dataset.header',
   repositories: 'productRepository.header',
-  projects: 'project.header',
-  organizations: 'organization.header',
-  playbooks: 'playbook.header',
-  plays: 'play.header',
+  projects: 'ui.project.header',
+  organizations: 'ui.organization.header',
+  playbooks: 'ui.playbook.header',
+  plays: 'ui.play.header',
   users: 'user.header',
-  moves: 'move.header',
+  moves: 'ui.move.header',
   countries: 'country.header',
-  rubric_categories: 'rubric-categories.header',
-  opportunities: 'opportunity.header',
-  resources: 'resource.header',
-  storefronts: 'storefront.header'
+  rubric_categories: 'ui.rubricCategory.header',
+  opportunities: 'ui.opportunity.header',
+  resources: 'ui.resource.header',
+  storefronts: 'ui.storefront.header'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>

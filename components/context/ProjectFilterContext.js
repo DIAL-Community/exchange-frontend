@@ -16,6 +16,8 @@ const ProjectFilterProvider = ({ children }) => {
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
+  const setSdgs = setSDGs
+
   const projectFilterValues = {
     origins, countries, products, sectors, organizations, sdgs, tags, search, sortColumn, sortDirection
   }
@@ -26,6 +28,7 @@ const ProjectFilterProvider = ({ children }) => {
     setSectors,
     setOrganizations,
     setSDGs,
+    setSdgs,
     setTags,
     setSearch,
     setSortColumn,

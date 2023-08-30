@@ -1,14 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-@font-face {
-  font-family: 'Poppins';
-  src: url('/public/assets/fonts/Poppins/Poppins-Regular.ttf');
-  src: url('/public/assets/fonts/Poppins/Poppins-SemiBold.ttf');
-  src: url('/public/assets/fonts/Poppins/Poppins-Bold.ttf');
-}
+  
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;1,400&display=swap');
 
 html,
 body {
@@ -175,7 +169,7 @@ body {
   .url-input {
     @apply border;
     @apply border-transparent;
-    @apply hover:border-dial-sapphire;
+    @apply hover:border-dial-cotton;
     @apply text-dial-gray-dark;
     @apply shadow-md;
     @apply rounded-md;
@@ -240,10 +234,6 @@ body {
     @apply text-white;
   }
 
-  button:focus,
-  button:focus-visible {
-  }
-
   /* TinyMCE HTML editor - textarea */
   .html-editor .tox-tinymce {
     @apply border-0;
@@ -261,123 +251,6 @@ body {
 
   .html-editor.validation-error .tox-tinymce {
     @apply outline-validation-error;
-  }
-
-  /* CommentsSection - wrapper */
-  #comments-section {
-    @apply pt-20;
-  }
-
-  #comments-section .overlay {
-    @apply p-0;
-    @apply font;
-  }
-
-  .overlay .advanced-overlay {
-    @apply mb-0;
-  }
-
-  .overlay .comment-title {
-    @apply font;
-    @apply text-xl;
-    @apply text-dial-gray-dark;
-  }
-
-  /* CommentsSection - no comments */
-  .overlay .no-comDiv {
-    @apply font-normal;
-  }
-
-  .overlay .signBox .signLine {
-    @apply font-normal;
-    @apply m-0;
-  }
-
-  .overlay .signBox {
-    @apply mt-3;
-    @apply p-3;
-    @apply items-center;
-  }
-
-  .overlay .signBox button {
-    @apply py-2;
-    @apply px-5;
-    @apply border-0;
-    @apply rounded-md;
-    @apply text-white;
-    @apply text-xl;
-    @apply hover:border-0;
-    @apply font;
-    @apply font-normal;
-  }
-
-  .overlay button.loginBtn,
-  .overlay button.signBtn {
-    @apply bg-dial-sapphire;
-    @apply disabled:bg-dial-gray;
-    @apply hover:bg-dial-sapphire;
-    @apply hover:text-white;
-  }
-
-  /* CommentsSection - text input */
-  .form .advanced-border {
-    @apply border-2;
-    @apply text-dial-gray-dark;
-    @apply shadow-md;
-    @apply rounded-md;
-    @apply p-3
-  }
-
-  .form .public-DraftEditorPlaceholder-root {
-    @apply text-dial-gray;
-  }
-
-  .form .public-DraftStyleDefault-block {
-    @apply m-0;
-  }
-
-  .form .advanced-border.focused {
-    @apply shadow-lg;
-  }
-
-  /* CommentsSection - Post and Cancel buttons */
-  .form .advanced-btns {
-    @apply mt-3;
-  }
-
-  .form .advanced-btns {
-    @apply flex-row-reverse;
-    @apply gap-3;
-  }
-
-  .form .advanced-btns button {
-    @apply flex;
-    @apply items-center;
-    @apply py-2;
-    @apply px-5;
-    @apply border-0;
-    @apply rounded-md;
-    @apply text-white;
-    @apply text-xl;
-    @apply disabled:cursor-not-allowed;
-    @apply hover:border-0;
-    @apply font;
-    @apply font-normal;
-  }
-
-  .form .advanced-btns button.advanced-post {
-    @apply bg-dial-sapphire;
-    @apply disabled:bg-dial-gray;
-  }
-
-  .form .advanced-btns button.advanced-cancel {
-    @apply bg-button-gray-light;
-    @apply mr-0;
-  }
-
-  /* CommentsSection - Edit and Delete buttons */
-  #comments-section .overlay .userActions .szh-menu__item {
-    @apply capitalize;
   }
 }
 
@@ -491,8 +364,8 @@ body {
   visibility: hidden;
 }
 
-.introjs-skipbutton { 
-  color: #fff !important; 
+.introjs-skipbutton {
+  color: #fff !important;
   right: 20px !important;
   font-size: 14px !important;
   font-weight: 400 !important;

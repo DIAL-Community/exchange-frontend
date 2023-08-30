@@ -23,7 +23,7 @@ export const SectorAutocomplete = ({
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('sector.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.sector.label') })
 
   const selectSector = (sector) => {
     setSectors([...sectors.filter(({ slug }) => slug !== sector.slug), sector])
@@ -41,12 +41,12 @@ export const SectorAutocomplete = ({
     <div className={classNames(containerStyles)} data-testid='sector-search'>
       <Select
         async
-        aria-label={format('filter.byEntity', { entity: format('sector.label') })}
+        aria-label={format('filter.byEntity', { entity: format('ui.sector.label') })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, SECTOR_SEARCH_QUERY, fetchedSectorsCallback, locale)}
-        noOptionsMessage={() => format('filter.searchFor', { entity: format('sector.header') })}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.sector.header') })}
         onChange={selectSector}
         placeholder={controlPlaceholder}
         value=''
@@ -73,7 +73,7 @@ export const SectorFilters = (props) => {
         <div className='py-1' key={sectorIdx}>
           <Pill
             key={`filter-${sectorIdx}`}
-            label={`${format('sector.label')}: ${sector.label}`}
+            label={`${format('ui.sector.label')}: ${sector.label}`}
             onRemove={() => removeSector(sector.slug)}
           />
         </div>

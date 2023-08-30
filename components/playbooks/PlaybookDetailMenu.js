@@ -39,7 +39,7 @@ const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
       scrolling="yes"
       frameborder="0"
     >
-    ${format('playbook.embed.unsupported')}
+    ${format('ui.playbook.embed.unsupported')}
     </iframe>
   `
 
@@ -47,9 +47,9 @@ const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
     if (navigator.clipboard && embedCode) {
       navigator.clipboard.writeText(embedCode)
         .then(() => {
-          showToast(format('playbook.embed.copySuccess'), 'success', 'top-center')
+          showToast(format('ui.playbook.embed.copySuccess'), 'success', 'top-center')
         }, () => {
-          showToast(format('playbook.embed.copyFailed'), 'error', 'top-center')
+          showToast(format('ui.playbook.embed.copyFailed'), 'error', 'top-center')
         })
     }
   }
@@ -72,7 +72,7 @@ const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
             <div className={transitionClasses}>
               <Dialog.Title>
                 <div className='font-semibold text-xl pb-3'>
-                  {format('playbook.embed.title')}
+                  {format('ui.playbook.embed.title')}
                   <VscClose
                     className='my-auto float-right cursor-pointer opacity-50 hover:opacity-80'
                     onClick={() => setDisplayed(!displayed)}
@@ -83,7 +83,7 @@ const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
                 <div onClick={copyEmbedCode} className='float-right px-2 py-1 cursor-pointer'>
                   <div className='flex flex-row gap-1 opacity-50 hover:opacity-80'>
                     <FaCopy className='my-auto' />
-                    <span className='text-sm font-medium'>{format('playbook.embed.copy')}</span>
+                    <span className='text-sm font-medium'>{format('ui.playbook.embed.copy')}</span>
                   </div>
                 </div>
                 <pre>
@@ -91,7 +91,7 @@ const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
                 </pre>
               </div>
               <div className='text-sm italic pt-2'>
-                {format('playbook.embed.description')}
+                {format('ui.playbook.embed.description')}
               </div>
             </div>
           </Transition.Child>
@@ -164,17 +164,17 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
               className='bg-dial-iris-blue px-2 py-0.5 rounded text-white'
             >
               <FaRegFilePdf className='inline pb-px' />
-              <span className='text-sm px-1'>{format('app.print-pdf')}</span>
+              <span className='text-sm px-1'>{format('app.printPdf')}</span>
             </a>
             {allowEmbedCreation &&
               <a onClick={openEmbedDialog} className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'>
                 <ImEmbed className='inline pb-px' />
-                <span className='text-sm px-1'>{format('playbook.openEmbedDialog')}</span>
+                <span className='text-sm px-1'>{format('ui.playbook.openEmbedDialog')}</span>
               </a>
             }
           </div>
           <div className='ml-auto flex items-center gap-2'>
-            {canEdit && <CreateButton label={format('play.add')} type='link' href={generateAddPlayLink()} />}
+            {canEdit && <CreateButton label={format('ui.play.add')} type='link' href={generateAddPlayLink()} />}
             {canEdit &&
               <button
                 type='button'
@@ -183,7 +183,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
               >
                 <FiMove className='inline pb-0.5' />
                 <span className='text-sm px-1'>
-                  {format('play.rearrange')}
+                  {format('ui.play.rearrange')}
                 </span>
               </button>
             }

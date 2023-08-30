@@ -39,7 +39,7 @@ const DatasetForm = () => {
     onError: () => {
       setMutating(false)
       showToast(
-        format('candidate-dataset.submit.failure'),
+        format('ui.candidateDataset.submit.failure'),
         'error',
         'top-center',
         1000
@@ -49,7 +49,7 @@ const DatasetForm = () => {
     onCompleted: () => {
       setMutating(false)
       showToast(
-        format('candidate-dataset.submit.success'),
+        format('ui.candidateDataset.submit.success'),
         'success',
         'top-center',
         1000,
@@ -67,9 +67,9 @@ const DatasetForm = () => {
     shouldUnregister: true,
     defaultValues: {
       name: '',
-      dataUrl: '',
-      dataVisualizationUrl: '',
-      dataType: datasetTypeOptions[0],
+      website: '',
+      visualizationUrl: '',
+      datasetType: datasetTypeOptions[0],
       submitterEmail: '',
       description: '',
       captcha: null
@@ -85,9 +85,9 @@ const DatasetForm = () => {
       const { userEmail, userToken } = user
       const {
         name,
-        dataUrl,
-        dataVisualizationUrl,
-        dataType,
+        website,
+        visualizationUrl,
+        datasetType,
         submitterEmail,
         description
       } = data
@@ -96,9 +96,9 @@ const DatasetForm = () => {
         variables: {
           name,
           slug: '',
-          dataUrl,
-          dataVisualizationUrl,
-          dataType: dataType.value,
+          website,
+          visualizationUrl,
+          datasetType: datasetType.value,
           submitterEmail,
           description,
           captcha
@@ -132,7 +132,7 @@ const DatasetForm = () => {
           <div className='inline h5'>
             {BREADCRUMB_SEPARATOR}
             <Link href='/datasets' className='text-dial-blue'>
-              {format('dataset.header')}
+              {format('ui.dataset.header')}
             </Link>
             {BREADCRUMB_SEPARATOR}
             <span className='text-dial-gray-dark'>
@@ -146,46 +146,46 @@ const DatasetForm = () => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                {format('candidateDataset.label')}
+                {format('ui.candidateDataset.label')}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                   <div className='form-field-wrapper' data-testid='candidate-dataset-name'>
                     <label className='form-field-label required-field' htmlFor='name'>
-                      {format('dataset.name')}
+                      {format('ui.dataset.name')}
                     </label>
                     <Input
                       {...register('name', { required: format('validation.required') })}
                       id='name'
-                      placeholder={format('dataset.name')}
+                      placeholder={format('ui.dataset.name')}
                       isInvalid={errors.name}
                       data-testid='dataset-name-input'
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
-                  <div className='form-field-wrapper' data-testid='candidate-dataset-dataUrl'>
-                    <label className='form-field-label required-field' htmlFor='dataUrl'>
-                      {format('dataset.website')}
+                  <div className='form-field-wrapper' data-testid='candidate-dataset-website'>
+                    <label className='form-field-label required-field' htmlFor='website'>
+                      {format('ui.dataset.website')}
                     </label>
                     <Controller
-                      name='dataUrl'
+                      name='website'
                       control={control}
                       render={({ field: { value, onChange } }) => (
                         <UrlInput
                           value={value}
                           onChange={onChange}
-                          id='dataUrl'
-                          isInvalid={errors.dataUrl}
-                          placeholder={format('dataset.website')}
+                          id='website'
+                          isInvalid={errors.website}
+                          placeholder={format('ui.dataset.website')}
                         />
                       )}
                       rules={{ required: format('validation.required') }}
                     />
-                    {errors.dataUrl && <ValidationError value={errors.dataUrl?.message} />}
+                    {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
                   <div className='form-field-wrapper'>
                     <label className='form-field-label' htmlFor='dataVisualizationUrl'>
-                      {format('dataset.visualizationUrl')}
+                      {format('ui.dataset.visualizationUrl')}
                     </label>
                     <Controller
                       name='dataVisualizationUrl'
@@ -195,20 +195,20 @@ const DatasetForm = () => {
                           value={value}
                           onChange={onChange}
                           id='dataVisualizationUrl'
-                          placeholder={format('dataset.visualizationUrl')}
+                          placeholder={format('ui.dataset.visualizationUrl')}
                         />
                       )}
                     />
                   </div>
                   <div className='form-field-wrapper'>
                     <label className='form-field-label'>
-                      {format('dataset.datasetType')}
+                      {format('ui.dataset.datasetType')}
                     </label>
                     <Controller
                       name='dataType'
                       control={control}
                       render={({ field }) =>
-                        <Select {...field} options={datasetTypeOptions} placeholder={format('dataset.datasetType')} />
+                        <Select {...field} options={datasetTypeOptions} placeholder={format('ui.dataset.datasetType')} />
                       }
                     />
                   </div>
@@ -243,7 +243,7 @@ const DatasetForm = () => {
                 <div className='w-full lg:w-1/2'>
                   <div className='form-field-wrapper' data-testid='candidate-dataset-description'>
                     <label className='form-field-label required-field'>
-                      {format('dataset.description')}
+                      {format('ui.dataset.description')}
                     </label>
                     <Controller
                       name='description'
@@ -253,7 +253,7 @@ const DatasetForm = () => {
                           editorId='description-editor'
                           onChange={onChange}
                           initialContent={value}
-                          placeholder={format('dataset.description')}
+                          placeholder={format('ui.dataset.description')}
                           isInvalid={errors.description}
                         />
                       )}
@@ -270,7 +270,7 @@ const DatasetForm = () => {
                   disabled={mutating || reverting}
                   data-testid='submit-button'
                 >
-                  {format('candidate-dataset.submit')}
+                  {format('ui.candidateDataset.submit')}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>
                 <button

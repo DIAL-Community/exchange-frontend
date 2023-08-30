@@ -95,7 +95,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
       const { applyAsOwner: response } = data
       if (response?.candidateRole && response?.errors?.length === 0) {
         showToast(
-          format('toast.applyAsOwner.submit.success', { entity: format('organization.label') }),
+          format('toast.applyAsOwner.submit.success', { entity: format('ui.organization.label') }),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -173,7 +173,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
             objectType={ObjectType.ORGANIZATION}
           />
         </div>
-        <div className='h4 font-bold py-4'>{format('organization.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.organization.label')}</div>
       </div>
       <div className='bg-white border-t border-l border-r border-dial-gray lg:mr-6 shadow-lg'>
         {
@@ -211,7 +211,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
             href={`https://docs.dial.community/projects/product-registry/${locale}/latest/org_owner.html`}
             target='_blank' rel='noreferrer'
           >
-            {format('organization.owner-link')}
+            {format('organization.ownerLink')}
           </a>
           {
             showApplyLink &&

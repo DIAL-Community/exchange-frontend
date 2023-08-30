@@ -38,7 +38,7 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
       <div className='flex flex-col lg:flex-row flex-wrap'>
         <div className='flex flex-col flex-grow pb-4'>
           <div className={sectionHeaderStyle}>
-            {format('opportunity.opportunityType')}
+            {format('ui.opportunity.opportunityType')}
           </div>
           <div className='text-dial-stratos flex'>
             <div className='my-auto'>{opportunity.opportunityType}</div>
@@ -46,7 +46,7 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
         </div>
         <div className='flex flex-col flex-grow pb-4'>
           <div className={sectionHeaderStyle}>
-            {format('opportunity.closingDate')}
+            {format('ui.opportunity.closingDate')}
           </div>
           <div className='text-dial-stratos flex'>
             <div className='my-auto'>
@@ -65,7 +65,7 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
       </div>
       <div className='flex flex-col flex-grow pb-4'>
         <div className={sectionHeaderStyle}>
-          {format('opportunity.webAddress')}
+          {format('ui.opportunity.webAddress')}
         </div>
         <div className='flex'>
           { opportunity.webAddress && opportunity.webAddress !== 'N/A'
@@ -76,7 +76,7 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
               rel='noreferrer'
             >
               <div className='my-auto'>
-                {format('opportunity.leverist.webAddress')} ⧉
+                {format('ui.opportunity.leverist.webAddress')} ⧉
               </div>
             </a>
             : format('general.na')
@@ -87,7 +87,7 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
         <div className='flex flex-col'>
           <div className='flex flex-col flex-grow pb-4'>
             <div className={sectionHeaderStyle}>
-              {format('opportunity.contact')}
+              {format('ui.opportunity.contact')}
             </div>
             <div className='text-dial-stratos flex mb-1'>
               <div className='my-auto'>{opportunity.contactName}</div>
@@ -111,7 +111,7 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
       <OpportunityDetailSectors opportunity={opportunity} canEdit={canEdit} />
       <OpportunityDetailUseCases opportunity={opportunity} canEdit={canEdit} />
       <div className={`mt-8 ${sectionHeaderStyle}`}>
-        {format('opportunity.source')}
+        {format('ui.opportunity.source')}
       </div>
       <div className='flex flex-col gap-3'>
         {opportunity.origin &&

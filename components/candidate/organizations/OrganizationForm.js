@@ -36,7 +36,7 @@ const OrganizationForm = () => {
     onError: () => {
       setMutating(false)
       showToast(
-        format('candidate-organization.submit.failure'),
+        format('ui.candidateOrganization.submit.failure'),
         'error',
         'top-center',
         1000
@@ -46,7 +46,7 @@ const OrganizationForm = () => {
     onCompleted: () => {
       setMutating(false)
       showToast(
-        format('candidate-organization.submit.success'),
+        format('ui.candidateOrganization.submit.success'),
         'success',
         'top-center',
         1000,
@@ -129,7 +129,7 @@ const OrganizationForm = () => {
             <div className='inline h5'>
               {BREADCRUMB_SEPARATOR}
               <Link href='/organizations' className='text-dial-blue'>
-                {format('organization.header')}
+                {format('ui.organization.header')}
               </Link>
               {BREADCRUMB_SEPARATOR}
               <span className='text-dial-gray-dark'>
@@ -143,25 +143,25 @@ const OrganizationForm = () => {
             <form onSubmit={handleSubmit(doUpsert)}>
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
                 <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
-                  {format('candidateOrganization.label')}
+                  {format('ui.candidateOrganization.label')}
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
                   <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                     <div className='form-field-wrapper' data-testid='candidate-organization-organization-name'>
                       <label className='form-field-label required-field' htmlFor='organizationName'>
-                        {format('candidateOrganization.organizationName')}
+                        {format('ui.candidateOrganization.organizationName')}
                       </label>
                       <Input
                         {...register('organizationName', { required: format('validation.required') })}
                         id='organizationName'
-                        placeholder={format('candidateOrganization.organizationName.placeholder')}
+                        placeholder={format('ui.candidateOrganization.organizationName.placeholder')}
                         isInvalid={errors.organizationName}
                       />
                       {errors.organizationName && <ValidationError value={errors.organizationName?.message} />}
                     </div>
                     <div className='form-field-wrapper' data-testid='candidate-organization-website'>
                       <label className='form-field-label required-field' htmlFor='website'>
-                        {format('candidateOrganization.website')}
+                        {format('ui.candidateOrganization.website')}
                       </label>
                       <Controller
                         name='website'
@@ -172,7 +172,7 @@ const OrganizationForm = () => {
                             onChange={onChange}
                             id='website'
                             isInvalid={errors.website}
-                            placeholder={format('candidateOrganization.website.placeholder')}
+                            placeholder={format('ui.candidateOrganization.website.placeholder')}
                           />
                         )}
                         rules={{ required: format('validation.required') }}
@@ -181,19 +181,19 @@ const OrganizationForm = () => {
                     </div>
                     <div className='form-field-wrapper' data-testid='candidate-organization-name'>
                       <label className='form-field-label required-field' htmlFor='name'>
-                        {format('candidateOrganization.name')}
+                        {format('ui.candidateOrganization.name')}
                       </label>
                       <Input
                         {...register('name', { required: format('validation.required') })}
                         id='name'
-                        placeholder={format('candidateOrganization.name.placeholder')}
+                        placeholder={format('ui.candidateOrganization.name.placeholder')}
                         isInvalid={errors.name}
                       />
                       {errors.name && <ValidationError value={errors.name?.message} />}
                     </div>
                     <div className='form-field-wrapper' data-testid='candidate-organization-email'>
                       <label className='form-field-label required-field' htmlFor='email'>
-                        {format('candidateOrganization.email')}
+                        {format('ui.candidateOrganization.email')}
                       </label>
                       <Input
                         type='email'
@@ -204,19 +204,19 @@ const OrganizationForm = () => {
                           }
                         )}
                         id='email'
-                        placeholder={format('candidateOrganization.email.placeholder')}
+                        placeholder={format('ui.candidateOrganization.email.placeholder')}
                         isInvalid={errors.email}
                       />
                       {errors.email && <ValidationError value={errors.email?.message} />}
                     </div>
                     <div className='form-field-wrapper' data-testid='candidate-organization-title'>
                       <label className='form-field-label required-field' htmlFor='title'>
-                        {format('candidateOrganization.title')}
+                        {format('ui.candidateOrganization.title')}
                       </label>
                       <Input
                         {...register('title', { required: format('validation.required') })}
                         id='title'
-                        placeholder={format('candidateOrganization.title.placeholder')}
+                        placeholder={format('ui.candidateOrganization.title.placeholder')}
                         isInvalid={errors.title}
                       />
                       {errors.title && <ValidationError value={errors.title?.message} />}
@@ -236,7 +236,7 @@ const OrganizationForm = () => {
                     data-testid='candidate-organization-description'
                   >
                     <label className='block text-dial-sapphire flex flex-col gap-y-2'>
-                      <p className='required-field'> {format('candidateOrganization.description')}</p>
+                      <p className='required-field'> {format('ui.candidateOrganization.description')}</p>
                       <Controller
                         name='description'
                         control={control}
@@ -249,7 +249,7 @@ const OrganizationForm = () => {
                               onChange={onChange}
                               initialContent={value}
                               isInvalid={errors.description}
-                              placeholder={format('candidateOrganization.description.placeholder')}
+                              placeholder={format('ui.candidateOrganization.description.placeholder')}
                             />
                           )
                         }}
@@ -265,7 +265,7 @@ const OrganizationForm = () => {
                     className='submit-button'
                     disabled={mutating || reverting}
                   >
-                    {format('candidateOrganization.submit')}
+                    {format('ui.candidateOrganization.submit')}
                     {mutating && <FaSpinner className='spinner ml-3 inline' />}
                   </button>
                   <button

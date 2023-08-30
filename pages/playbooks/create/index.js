@@ -1,25 +1,35 @@
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
+import { useCallback } from 'react'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../../lib/ClientOnly'
-import { useUser } from '../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
+import Header from '../../../ui/v1/shared/Header'
+import Footer from '../../../ui/v1/shared/Footer'
+import PlaybookCreate from '../../../ui/v1/playbook/PlaybookCreate'
 
 function CreatePlaybook () {
-  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>
-      <Header />
-      <ClientOnly>
-        {loadingUserSession
-          ? <Loading />
-          : isAdminUser || isEditorUser
-            ? <PlaybookForm />
-            : <Unauthorized />
+      <NextSeo
+        title={format('ui.playbook.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.playbook.header')?.toLocaleLowerCase() }
+          )
         }
+      />
+      <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <PlaybookCreate />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

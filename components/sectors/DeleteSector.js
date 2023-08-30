@@ -66,7 +66,7 @@ const DeleteSector = ({ sector }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: sector.name })}
+        title={format('app.deletingEntity', { entity: sector.name })}
         message={format('sector.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}

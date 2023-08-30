@@ -74,7 +74,7 @@ const DeleteWorkflow = ({ workflow }) => {
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('app.deleting-entity', { entity: workflow.name })}
+        title={format('app.deletingEntity', { entity: workflow.name })}
         message={format('workflow.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}

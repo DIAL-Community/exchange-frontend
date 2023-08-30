@@ -39,7 +39,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
   useEffect(() => {
     if (data?.updateDatasetSdgs?.errors.length === 0 && data?.updateDatasetSdgs?.dataset) {
       setSdgs(data.updateDatasetSdgs.dataset.sustainableDevelopmentGoals)
-      showToast(format('dataset.sdgs.updated'), 'success', 'top-center')
+      showToast(format('ui.dataset.sdgs.updated'), 'success', 'top-center')
       setIsDirty(false)
     }
   }, [data, showToast, format])
@@ -105,7 +105,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('dataset.no-sdg')}
+        {format('ui.dataset.no-sdg')}
       </div>
     )
 
@@ -115,10 +115,10 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
         {format('app.assign')} {format('sdg.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2'>
-        {format('dataset.sdg.mappingStatus')}
+        {format('ui.dataset.sdg.mappingStatus')}
         <Select
           options={mappingStatusOptions}
-          placeholder={format('dataset.sdg.mappingStatus')}
+          placeholder={format('ui.dataset.sdg.mappingStatus')}
           onChange={updateMappingStatus}
           value={mappingStatus}
         />

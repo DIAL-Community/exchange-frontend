@@ -30,7 +30,7 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
   useEffect(() => {
     if (data?.updateDatasetSectors?.errors.length === 0 && data?.updateDatasetSectors?.dataset) {
       setSectors(data.updateDatasetSectors.dataset.sectors)
-      showToast(format('dataset.sectors.updated'), 'success', 'top-center')
+      showToast(format('ui.dataset.sectors.updated'), 'success', 'top-center')
       setIsDirty(false)
     }
   }, [data, showToast, format])
@@ -84,17 +84,17 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('dataset.no-sector')}
+        {format('ui.dataset.no-sector')}
       </div>
     )
 
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('sector.header')}
+        {format('app.assign')} {format('ui.sector.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='sector-search'>
-        {`${format('app.searchAndAssign')} ${format('sector.header')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.sector.header')}`}
         <Select
           async
           isSearch
@@ -102,7 +102,7 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) => fetchSelectOptions(client, input, SECTOR_SEARCH_QUERY, fetchedSectorsCallback, locale)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('sector.header') })}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.sector.header') })}
           onChange={addSector}
           value={null}
         />
@@ -121,7 +121,7 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('sector.header')}
+      sectionHeader={format('ui.sector.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

@@ -44,7 +44,7 @@ const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
             objectType={ObjectType.BUILDING_BLOCK}
           />
         </div>
-        <div className='h4 font-bold py-4'>{format('buildingBlock.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.buildingBlock.label')}</div>
       </div>
       <div className='bg-white border border-dial-gray shadow-lg'>
         <div className='flex flex-col p-4 h-80'>

@@ -31,10 +31,10 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
         displayType === 'list' && sourceType !== SOURCE_TYPE_ASSIGNING &&
           <div className='flex flex-row gap-4 px-3 py-4 h-16 w-full opacity-70'>
             <div className='w-3/6 text-sm font-semibold'>
-              {format('play.header').toUpperCase()}
+              {format('ui.play.header').toUpperCase()}
             </div>
             <div className='hidden md:block w-full text-sm font-semibold my-1'>
-              {format('plays.description').toUpperCase()}
+              {format('ui.play.description').toUpperCase()}
             </div>
           </div>
       }
@@ -47,7 +47,7 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
           })
           : (
             <div className='text-sm font-medium opacity-80'>
-              {format('noResults.entity', { entity: format('plays.label').toString().toLowerCase() })}
+              {format('noResults.entity', { entity: format('ui.play.label').toString().toLowerCase() })}
             </div>
           )
       }

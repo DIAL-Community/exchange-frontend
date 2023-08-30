@@ -71,7 +71,7 @@ const ProductFilter = ({ inMobileView }) => {
               />
             </div>
             <span className='py-1 border-b-2 border-transparent hover:border-dial-sunshine'>
-              {format('filter.hint.text')} {format('product.label')}
+              {format('filter.hint.text')} {format('ui.product.label')}
             </span>
           </a>
         </div>
@@ -84,7 +84,7 @@ const ProductFilter = ({ inMobileView }) => {
           {format('filter.framework.title').toUpperCase()}
         </div>
         <div className='px-6'>
-          {format('filter.framework.subTitle', { entity: format('product.header') })}
+          {format('filter.framework.subTitle', { entity: format('ui.product.header') })}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <SDGAutocomplete {...{ sdgs, setSDGs }} />
@@ -94,7 +94,7 @@ const ProductFilter = ({ inMobileView }) => {
           <TagAutocomplete {...{ tags, setTags }} />
         </div>
         <div className='text-xl px-6'>
-          {format('filter.entity', { entity: format('product.label') }).toUpperCase()}
+          {format('filter.entity', { entity: format('ui.product.label') }).toUpperCase()}
         </div>
         <div className='flex flex-col gap-3 px-6'>
           <label className='inline'>

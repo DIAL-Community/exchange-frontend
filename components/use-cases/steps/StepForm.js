@@ -33,7 +33,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
       setMutating(false)
       showToast(
         <div className='flex flex-col'>
-          <span>{format('use-case-step.submit.failure')}</span>
+          <span>{format('useCaseStep.submit.failure')}</span>
           <span>{error?.message}</span>
         </div>,
         'error',
@@ -60,7 +60,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
         )
       } else {
         setMutating(false)
-        showToast(format('use-case-step.submit.failure'), 'error', 'top-center', 1000)
+        showToast(format('useCaseStep.submit.failure'), 'error', 'top-center', 1000)
         reset()
       }
     }
@@ -73,7 +73,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
     defaultValues: {
       name: useCaseStep?.name,
       stepNumber: useCaseStep?.stepNumber,
-      description: useCaseStep?.useCaseStepDescription?.description,
+      description: useCaseStep?.useCaseStepDescription?.description
     }
   })
 
@@ -143,8 +143,8 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
                 <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {useCaseStep?.slug
-                    ? format('app.edit-entity', { entity: useCaseStep?.name })
-                    : `${format('app.create-new')} ${format('use-case-step.label')}`
+                    ? format('app.editEntity', { entity: useCaseStep?.name })
+                    : `${format('app.createNew')} ${format('use-case-step.label')}`
                   }
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>

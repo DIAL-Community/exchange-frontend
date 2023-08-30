@@ -1,0 +1,78 @@
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useState } from 'react'
+import { WIZARD_USE_CASES_QUERY } from '../../shared/query/wizard'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import PaginationStructure from '../../shared/Pagination'
+import UseCaseCard from '../../use-case/UseCaseCard'
+import { DisplayType } from '../../utils/constants'
+import { WizardContext } from '../WizardContext'
+
+const UseCaseList = ({ headerRef }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const DEFAULT_PAGE_SIZE = 5
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
+  const handlePageClick = (event) => {
+    setPageNumber(event.selected)
+    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
+  }
+
+  const { sdgs } = useContext(WizardContext)
+  const { loading, error, data } = useQuery(WIZARD_USE_CASES_QUERY, {
+    variables: {
+      sdgs: sdgs.map(sdg => sdg.value),
+      limit: DEFAULT_PAGE_SIZE,
+      offset: pageOffset
+    }
+  })
+
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.paginatedUseCases && !data?.paginationAttributeUseCase) {
+    return <NotFound />
+  }
+
+  const {
+    paginatedUseCases: useCases,
+    paginationAttributeUseCase: paginationAttribute
+  } = data
+
+  return (
+    <div className='flex flex-col gap-y-4' ref={headerRef}>
+      <div className='flex flex-col gap-y-2'>
+        <div className='text-xl font-semibold text-dial-blueberry'>
+          {format('ui.useCase.header')}
+        </div>
+        <div className='text-xs italic'>
+          The following use case was selected and provides a breakdown of all of the steps that
+          may be required as well as the workflows or business processes that will be needed at
+          each step.
+        </div>
+      </div>
+      <div className='flex flex-col gap-3'>
+        {useCases.map((useCase, index) =>
+          <UseCaseCard
+            key={index}
+            index={index}
+            useCase={useCase}
+            displayType={DisplayType.SMALL_CARD}
+          />
+        )}
+      </div>
+      <PaginationStructure
+        pageNumber={pageNumber}
+        totalCount={paginationAttribute.totalCount}
+        defaultPageSize={DEFAULT_PAGE_SIZE}
+        pageClickHandler={handlePageClick}
+      />
+    </div>
+  )
+}
+
+export default UseCaseList

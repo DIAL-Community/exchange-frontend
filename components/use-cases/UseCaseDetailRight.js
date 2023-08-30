@@ -84,7 +84,7 @@ const UseCaseDetailRight = ({ useCase, commentsSectionRef }) => {
       {useCase.buildingBlocks && useCase.buildingBlocks.length > 0 &&
         <div className='mt-12 mb-4'>
           <div className='card-title mb-3 text-dial-gray-dark'>
-            {format('building-block.header')}
+            {format('ui.buildingBlock.header')}
           </div>
           <UseCaseBuildingBlock useCaseBuildingBlocks={useCase.buildingBlocks} />
         </div>

@@ -1,47 +1,45 @@
-import { useContext } from 'react'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import QueryNotification from '../../components/shared/QueryNotification'
-import GradientBackground from '../../components/shared/GradientBackground'
-import SDGFilter from '../../components/sdgs/SDGFilter'
-import SDGListQuery from '../../components/sdgs/SDGList'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { SDGFilterContext, SDGFilterDispatchContext } from '../../components/context/SDGFilterContext'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-import MobileNav from '../../components/main/MobileNav'
-import TabNav from '../../components/main/TabNav'
-import SDGActiveFilter from '../../components/sdgs/SDGActiveFilter'
-import PageContent from '../../components/main/PageContent'
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import SdgRibbon from '../../ui/v1/sdg/SdgRibbon'
+import SdgTabNav from '../../ui/v1/sdg/SdgTabNav'
+import SdgMain from '../../ui/v1/sdg/SdgMain'
 
-const SDGs = () => {
-  const { search } = useContext(SDGFilterContext)
-  const { setSearch } = useContext(SDGFilterDispatchContext)
+const SdgListPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
+      <NextSeo
+        title={format('ui.sdg.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.sdg.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <TabNav activeTab='filter.entity.sdgs' />
-        <MobileNav activeTab='filter.entity.sdgs' />
-        <PageContent
-          activeTab='filter.entity.sdgs'
-          filter={<SDGFilter />}
-          content={<SDGListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              createNew={false}
-              hint='filter.entity.sdgs'
-            />
-          }
-          activeFilter={<SDGActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <SdgRibbon />
+          <SdgTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <SdgMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default SDGs
+export default SdgListPage

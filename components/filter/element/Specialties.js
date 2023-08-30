@@ -16,7 +16,7 @@ export const SpecialtySelect = ({
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('specialty.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.specialty.label') })
 
   const selectSpecialty = (specialty) => {
     setSpecialties([...specialties.filter(({ value }) => value !== specialty.value), specialty])
@@ -32,7 +32,7 @@ export const SpecialtySelect = ({
     <div className={classNames(containerStyles)} data-testid='dataset-search'>
       <Select
         async
-        aria-label={format('filter.byEntity', { entity: format('specialty.label') })}
+        aria-label={format('filter.byEntity', { entity: format('ui.specialty.label') })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions={options}
@@ -63,7 +63,7 @@ export const SpecialtyFilters = (props) => {
         <div className='py-1' key={specialtyIdx}>
           <Pill
             key={`filter-${specialtyIdx}`}
-            label={`${format('specialty.label')}: ${specialty.label}`}
+            label={`${format('ui.specialty.label')}: ${specialty.label}`}
             onRemove={() => removeSpecialty(specialty.value)}
           />
         </div>

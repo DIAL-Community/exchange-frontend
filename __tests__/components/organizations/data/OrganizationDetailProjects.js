@@ -19,7 +19,7 @@ module.exports = {
             'slug': 'origin_slug'
           },
           '__typename': 'Project'
-        },
+        }
       ]
     }
   }

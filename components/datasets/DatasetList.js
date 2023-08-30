@@ -91,7 +91,7 @@ const DatasetListQuery = () => {
   if (nodes.length <= 0) {
     return (
       <div className='px-3 py-4'>
-        {format('noResults.entity', { entity: format('dataset.label').toLowerCase() })}
+        {format('noResults.entity', { entity: format('ui.dataset.label').toLowerCase() })}
       </div>
     )
   }
@@ -104,13 +104,13 @@ const DatasetListQuery = () => {
         displayType === 'list' &&
           <div className='flex flex-row my-3 px-4 gap-x-4 text-sm font-semibold '>
             <div className='w-4/12 opacity-80'>
-              {format('dataset.header').toUpperCase()}
+              {format('ui.dataset.header').toUpperCase()}
             </div>
             <div className='hidden lg:block w-6/12 opacity-50'>
               {format('origin.header').toUpperCase()}
             </div>
             <div className='hidden lg:block ml-auto opacity-50'>
-              {format('dataset.card.dataset').toUpperCase()}
+              {format('ui.dataset.card.dataset').toUpperCase()}
             </div>
           </div>
       }

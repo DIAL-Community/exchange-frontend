@@ -133,7 +133,7 @@ const PlayListDraggable = ({ playbook }) => {
           ? currentPlays.map((play, index) => renderCard(play, index))
           : (
             <div className='text-sm font-medium opacity-80'>
-              {format('noResults.entity', { entity: format('plays.label').toString().toLowerCase() })}
+              {format('noResults.entity', { entity: format('ui.play.label').toString().toLowerCase() })}
             </div>
           )
       }

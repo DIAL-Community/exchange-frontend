@@ -1,15 +1,97 @@
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './ui/**/*.{js,ts,jsx,tsx}'
+  ],
   theme: {
     extend: {
-      borderWidth: {
-        3: '3px'
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
       },
       colors: {
-        // Part of the UX refresh.
         'dial-sapphire': {
           DEFAULT: '#2e3192'
         },
+        'dial-stratos': {
+          DEFAULT: '#000542'
+        },
+        'dial-iris-blue': {
+          DEFAULT: '#485cd5'
+        },
+        'dial-slate': {
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#ccd5e1',
+          400: '#95a4b7',
+          500: '#65758a',
+          600: '#485668'
+        },
+        'dial-menu-hover': {
+          DEFAULT: '#eceeef'
+        },
+        'dial-angel': {
+          DEFAULT: '#c7ccf4'
+        },
+        'dial-white-linen': {
+          DEFAULT: '#faf4ef'
+        },
+        // Use case color scheme
+        'dial-cotton': {
+          DEFAULT: '#f3f5ff'
+        },
+        'dial-blue-chalk': {
+          DEFAULT: '#e6e9fc'
+        },
+        'dial-blueberry': {
+          dark: '#4a4181',
+          DEFAULT: '#574f8a'
+        },
+        // Workflow color scheme
+        'dial-plum': {
+          DEFAULT: '#712a9b'
+        },
+        'dial-violet': {
+          light: '#ecebf9',
+          DEFAULT: '#d9d7f8'
+        },
+        'workflow-bg': {
+          light: '#ebeaf9',
+          DEFAULT: '#d9d7f8'
+        },
+        // Building block color scheme
+        'dial-warm-beech': {
+          DEFAULT: '#fff0e3'
+        },
+        'dial-orange': {
+          DEFAULT: '#ff8700'
+        },
+        'dial-ochre': {
+          DEFAULT: '#8a4900'
+        },
+        'building-block-bg': {
+          light: '#fff0e3',
+          DEFAULT: '#ffe7c8'
+        },
+        // Product color scheme
+        'dial-ethereal': {
+          DEFAULT: '#f3fffb'
+        },
+        'dial-spearmint': {
+          DEFAULT: '#e5fbf3'
+        },
+        'dial-meadow': {
+          DEFAULT: '#106d38'
+        },
+        'product-bg': {
+          DEFAULT: '#d8f3e9',
+          light: '#f3fffb'
+        },
+        'dataset-bg': {
+          light: '#ebeaf9',
+          DEFAULT: '#d9d7f8'
+        },
+        // Part of the UX refresh.
         'govstack-blue': {
           DEFAULT: '#0539e3',
           light: '#007aff'
@@ -21,9 +103,6 @@ module.exports = {
           light: '#e2e8f0',
           DEFAULT: '#faf4ef'
         },
-        'dial-stratos': {
-          DEFAULT: '#000542'
-        },
         'dial-sunshine': {
           DEFAULT: '#faa92b'
         },
@@ -34,32 +113,21 @@ module.exports = {
         'dial-solitude': {
           DEFAULT: '#e2e8f0'
         },
-        'dial-iris-blue': {
-          DEFAULT: '#485cd5'
-        },
         'dial-eggshell': {
           DEFAULT: '#faeedc'
         },
         'dial-mint': {
-          DEFAULT: '#c0fed7'
+          DEFAULT: '#c0fed7',
+          dark: '#c0f69a'
         },
         'dial-ice': {
           DEFAULT: '#d4ffef'
-        },
-        'dial-blue-chalk': {
-          DEFAULT: '#e6e9fc'
-        },
-        'dial-angel': {
-          DEFAULT: '#c7ccf4'
         },
         'dial-lavender': {
           DEFAULT: '#96a2ef'
         },
         'dial-amethyst-smoke': {
           DEFAULT: '#9996ef'
-        },
-        'dial-blueberry': {
-          DEFAULT: '#574f8a'
         },
         'dial-biscotti': {
           DEFAULT: '#fad3a2'
@@ -97,9 +165,6 @@ module.exports = {
         'dial-cyan': {
           DEFAULT: '#2fd1c5'
         },
-        'dial-violet': {
-          DEFAULT: '#613970'
-        },
         'dial-not-active': {
           DEFAULT: '#647883'
         },
@@ -109,58 +174,32 @@ module.exports = {
         'building-block': {
           DEFAULT: '#647883'
         },
-        sdg: {
+        'sdg': {
           DEFAULT: '#7c5048'
         },
-        product: {
+        'product': {
           DEFAULT: '#46465a'
         },
         'sdg-target': {
           DEFAULT: '#4b9f38'
         },
-        workflow: {
+        'workflow': {
           light: '#85b8d6',
           DEFAULT: '#3e81a8'
         },
-        carousel: {
+        'carousel': {
           DEFAULT: '#3f9edd',
           light: '#eef6fc'
-        },
-        'dial-orange': {
-          DEFAULT: '',
-          light: '#ffc862'
-        },
-        'dial-hero-graphic': {
-          light: '#f5f6fa',
-          dark: '#646375'
         },
         'validation-error': {
           DEFAULT: '#e11d48'
         },
         'button-red': {
           DEFAULT: '#e11d48'
-        },
-      },
-      fontSize: {
-        'landing-title': ['66px', {
-          lineHeight: '76px'
-        }]
-      },
-      lineHeight: {
-        landing: '2.625rem'
+        }
       },
       maxWidth: {
-        '1/3': '33.33%',
-        '2/3': '66.67%',
-        '1/4': '25%',
-        '1/2': '50%',
-        '3/4': '75%',
-        catalog: '2120px'
-      },
-      maxHeight: {
-        lg: '28rem',
-        xl: '32rem'
-
+        catalog: '120rem'
       },
       zIndex: {
         60: '60',
@@ -168,10 +207,6 @@ module.exports = {
         80: '80',
         90: '90',
         100: '100'
-      },
-      inset: {
-        // This should be set to the value of our top bar height.
-        '66px': '66px'
       },
       fontFamily: {
         DEFAULT: '"Poppins", sans-serif'
@@ -187,7 +222,6 @@ module.exports = {
     }
   },
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp')
+    require('@tailwindcss/forms')
   ]
 }

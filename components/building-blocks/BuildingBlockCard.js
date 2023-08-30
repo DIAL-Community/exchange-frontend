@@ -120,7 +120,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                 {buildingBlock.products.length}
               </span>
               <span className='my-auto'>
-                {buildingBlock.products.length > 1 ? format('product.header') : format('product.label')}
+                {buildingBlock.products.length > 1 ? format('ui.product.header') : format('ui.product.label')}
               </span>
             </div>
           </div>

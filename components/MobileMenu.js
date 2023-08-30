@@ -60,6 +60,18 @@ const subMenus = {
     type: 'link',
     items: [
       {
+        label: 'header.playbooks',
+        link: '/playbooks'
+      },
+      {
+        label: 'header.wizard',
+        link: '/wizard'
+      },
+      {
+        label: 'header.blogs',
+        link: '/resources'
+      },
+      {
         label: 'header.covidResources',
         link: '/covid-19-resources'
       },
@@ -75,15 +87,15 @@ const subMenus = {
       }
     ]
   },
-  'header.marketplace': {
+  'ui.marketplace.label': {
     type: 'link',
     items: [
       {
-        label: 'opportunity.header',
+        label: 'ui.opportunity.header',
         link: '/opportunities'
       },
       {
-        label: 'storefront.header',
+        label: 'ui.storefront.header',
         link: '/storefronts'
       }
     ]
@@ -104,24 +116,20 @@ const subMenus = {
         link: '/workflows'
       },
       {
-        label: 'building-block.header',
+        label: 'ui.buildingBlock.header',
         link: '/building_blocks'
       },
       {
-        label: 'product.header',
+        label: 'ui.product.header',
         link: '/products'
       },
       {
-        label: 'dataset.header',
+        label: 'ui.dataset.header',
         link: '/datasets'
       },
       {
-        label: 'project.header',
+        label: 'ui.project.header',
         link: '/projects'
-      },
-      {
-        label: 'playbook.header',
-        link: '/playbooks'
       },
       {
         label: 'map.header',
@@ -277,9 +285,9 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
             <li className='py-4 border-b'>
               <a
                 className='mx-6 font-semibold' href='/expand-marketplace'
-                onClick={(e) => openSubMenu(e, 'header.marketplace')}
+                onClick={(e) => openSubMenu(e, 'ui.marketplace.label')}
               >
-                {format('header.marketplace')}
+                {format('ui.marketplace.label')}
                 <RiArrowRightSLine className='text-base inline ml-2' />
               </a>
             </li>
@@ -291,11 +299,6 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                 {format('header.catalog')}
                 <RiArrowRightSLine className='text-base inline ml-2' />
               </a>
-            </li>
-            <li className='py-4 border-b'>
-              <Link href='wizard' className='mx-6 font-semibold'>
-                {format('header.wizard')}
-              </Link>
             </li>
             <li className='py-4 border-b'>
               <a

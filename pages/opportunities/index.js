@@ -1,61 +1,45 @@
-import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
 import { NextSeo } from 'next-seo'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import OpportunityListQuery from '../../components/opportunities/OpportunityList'
-import QueryNotification from '../../components/shared/QueryNotification'
-import GradientBackground from '../../components/shared/GradientBackground'
-import TabNav from '../../components/main/TabNav'
-import PageContent from '../../components/main/PageContent'
-import OpportunityFilter from '../../components/opportunities/OpportunityFilter'
-import OpportunityActiveFilter from '../../components/opportunities/OpportunityActiveFilter'
-import SearchFilter from '../../components/shared/SearchFilter'
-import { OpportunityFilterContext, OpportunityFilterDispatchContext }
-  from '../../components/context/OpportunityFilterContext'
-import MobileNav from '../../components/main/MobileNav'
+import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
+import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
+import QueryNotification from '../../components/shared/QueryNotification'
+import Header from '../../ui/v1/shared/Header'
+import Footer from '../../ui/v1/shared/Footer'
+import OpportunityRibbon from '../../ui/v1/opportunity/OpportunityRibbon'
+import OpportunityTabNav from '../../ui/v1/opportunity/OpportunityTabNav'
+import OpportunityMain from '../../ui/v1/opportunity/OpportunityMain'
 
-const Opportunities = () => {
+const OpportunityListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(OpportunityFilterContext)
-  const { setSearch } = useContext(OpportunityFilterDispatchContext)
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <>
       <NextSeo
-        title={format('opportunity.header')}
+        title={format('ui.opportunity.header')}
         description={
           format(
-            'shared.metadata.description.comprehensiveListOf',
-            { entities: format('opportunity.header')?.toLocaleLowerCase() }
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.opportunity.header')?.toLocaleLowerCase() }
           )
         }
       />
-      <QueryNotification />
-      <GradientBackground />
-      <Header />
       <ClientOnly>
-        <TabNav activeTab='filter.entity.opportunities' />
-        <MobileNav activeTab='filter.entity.opportunities' />
-        <PageContent
-          activeTab='filter.entity.opportunities'
-          filter={<OpportunityFilter />}
-          content={<OpportunityListQuery />}
-          searchFilter={
-            <SearchFilter
-              {...{ search, setSearch }}
-              hint='filter.entity.opportunities'
-            />
-          }
-          activeFilter={<OpportunityActiveFilter />}
-        />
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <OpportunityRibbon />
+          <OpportunityTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          <OpportunityMain activeTab={activeTab} />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }
 
-export default Opportunities
+export default OpportunityListPage

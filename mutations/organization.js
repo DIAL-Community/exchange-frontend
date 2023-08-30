@@ -53,11 +53,11 @@ export const CREATE_ORGANIZATION = gql`
 `
 
 export const UPDATE_ORGANIZATION_COUNTRIES = gql`
-  mutation UpdateOrganizationCountry(
+  mutation UpdateOrganizationCountries(
     $slug: String!,
     $countrySlugs: [String!]!
   ) {
-    updateOrganizationCountry(
+    updateOrganizationCountries(
       slug: $slug,
       countrySlugs: $countrySlugs
     ) {

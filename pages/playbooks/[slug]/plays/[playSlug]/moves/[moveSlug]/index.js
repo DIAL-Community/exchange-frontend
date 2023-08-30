@@ -1,60 +1,39 @@
+import { NextSeo } from 'next-seo'
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
-import { useEffect } from 'react'
-import Header from '../../../../../../../components/Header'
-import Footer from '../../../../../../../components/Footer'
-import NotFound from '../../../../../../../components/shared/NotFound'
-import MoveDetail from '../../../../../../../components/plays/moves/MoveDetail'
-import { Loading, Error } from '../../../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
-import { MOVE_QUERY } from '../../../../../../../queries/move'
-
-const MoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
-  const { loading, error, data, refetch } = useQuery(MOVE_QUERY, {
-    variables: {
-      playbookSlug: slug,
-      playSlug,
-      moveSlug
-    },
-    skip: !slug && !playSlug && !moveSlug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  useEffect(() => {
-    refetch()
-  }, [locale, refetch])
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.move && !data?.play && !data?.playbook) {
-    return <NotFound />
-  }
-
-  return (
-    <>
-      {data?.move && data?.play && data?.playbook &&
-        <div className='px-8'>
-          <MoveDetail playbook={data.playbook} play={data.play} move={data.move} />
-        </div>
-      }
-    </>
-  )
-}
+import MoveDetail from '../../../../../../../ui/v1/move/MoveDetail'
+import Header from '../../../../../../../ui/v1/shared/Header'
+import Footer from '../../../../../../../ui/v1/shared/Footer'
 
 const Move = () => {
-  const router = useRouter()
-  const { locale, query } = router
-  const { slug, playSlug, moveSlug } = query
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { locale, query: { slug, playSlug, moveSlug } } = useRouter()
 
   return (
     <>
-      <Header />
+      <NextSeo
+        title={format('ui.move.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.move.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        <MoveInformation {...{ slug, playSlug, moveSlug, locale }} />
+        <Header />
+        <MoveDetail
+          moveSlug={moveSlug}
+          playSlug={playSlug}
+          playbookSlug={slug}
+          locale={locale}
+        />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

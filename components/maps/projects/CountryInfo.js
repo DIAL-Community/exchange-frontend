@@ -36,7 +36,7 @@ const CountryInfo = (props) => {
         `}
       >
         <div className='text-sm text-dial-cyan font-semibold border-b px-4 py-2'>
-          {`${country.projects.length} ${format('project.header')} in ${country.name}`}
+          {`${country.projects.length} ${format('ui.project.header')} in ${country.name}`}
         </div>
         {
           country && country.projects.map(project => {

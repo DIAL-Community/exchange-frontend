@@ -1,22 +1,37 @@
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import ProductForm from '../../../components/products/ProductForm'
-import { useUser } from '../../../lib/hooks'
-import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
+import Footer from '../../../ui/v1/shared/Footer'
+import ProductCreate from '../../../ui/v1/product/ProductCreate'
 
-const CreateProduct = () => {
-  const { isAdminUser: isAuthorized, loadingUserSession } = useUser()
+const CreateProductPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>
-      <Header/>
+      <NextSeo
+        title={format('ui.product.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.product.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        {loadingUserSession ? <Loading /> : isAuthorized ? <ProductForm /> : <Unauthorized />}
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <ProductCreate />
+        </div>
+        <Footer />
       </ClientOnly>
-      <Footer/>
     </>
   )
 }
 
-export default CreateProduct
+export default CreateProductPage

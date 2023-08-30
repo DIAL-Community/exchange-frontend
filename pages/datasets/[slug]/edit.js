@@ -1,69 +1,40 @@
+import { NextSeo } from 'next-seo'
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { gql, useQuery } from '@apollo/client'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { Tooltip } from 'react-tooltip'
+import Header from '../../../ui/v1/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import NotFound from '../../../components/shared/NotFound'
-import DatasetForm from '../../../components/datasets/DatasetForm'
+import Footer from '../../../ui/v1/shared/Footer'
+import DatasetEdit from '../../../ui/v1/dataset/DatasetEdit'
 
-const DATASET_QUERY = gql`
-  query Dataset($slug: String!) {
-    dataset(slug: $slug) {
-      id
-      name
-      slug
-      website
-      visualizationUrl
-      geographicCoverage
-      timeRange
-      license
-      languages
-      dataFormat
-      aliases
-      datasetDescription {
-        description
-        locale
-      }
-    }
-  }
-`
+const EditDatasetPage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-const EditOrganization = () => {
-  const router = useRouter()
-
-  const { locale } = router
-  const { slug } = router.query
-  const { loading, error, data, refetch } = useQuery(DATASET_QUERY, {
-    variables: { slug, locale },
-    skip: !slug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
-
-  useEffect(() => {
-    refetch()
-  }, [refetch])
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.dataset) {
-    return <NotFound />
-  }
+  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
-      <Header />
-      {data && data.dataset && (
-        <ClientOnly>
-          <DatasetForm dataset={data.dataset} />
-        </ClientOnly>
-      )}
-      <Footer />
+      <NextSeo
+        title={format('ui.dataset.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.dataset.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
+      <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <div className='flex flex-col'>
+          <DatasetEdit slug={slug} locale={locale} />
+        </div>
+        <Footer />
+      </ClientOnly>
     </>
   )
 }
 
-export default EditOrganization
+export default EditDatasetPage

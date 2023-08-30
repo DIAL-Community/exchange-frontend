@@ -137,7 +137,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                 {useCase.sdgTargets.length}
               </span>
               <span className='my-auto'>
-                {useCase.sdgTargets.length > 1 ? format('sdg-target.header') : format('sdg-target.label')}
+                {useCase.sdgTargets.length > 1 ? format('ui.sdgTarget.header') : format('ui.sdgTarget.label')}
               </span>
             </div>
           </div>

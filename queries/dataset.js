@@ -36,7 +36,7 @@ export const DATASET_QUERY = gql`
         id
         name
         slug
-        imageFile
+        number
       }
       sectors {
         name

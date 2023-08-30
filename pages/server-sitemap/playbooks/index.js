@@ -12,7 +12,7 @@ export const getServerSideProps = async (ctx) => {
 
   const fields = data.data.playbooks.map((playbook) => ({
     loc: `${process.env.NEXT_PUBLIC_RAILS_SERVER}/playbooks/${playbook.slug}`,
-    lastmod: new Date().toISOString(),
+    lastmod: new Date().toISOString()
   }))
 
   return getServerSideSitemap(ctx, fields)

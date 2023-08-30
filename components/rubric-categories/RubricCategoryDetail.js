@@ -9,17 +9,17 @@ import RubricCategoryDetailRight from './RubricCategoryDetailRight'
 const RubricCategoryDetail = ({ slug, locale }) => {
   const { loading, error, data, refetch } = useQuery(RUBRIC_CATEGORY_QUERY, {
     variables: { slug },
-    context: { headers: { 'Accept-Language': locale } },
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   useEffect(
-    () => {
-      refetch()
-    },
+    () => { refetch() },
     [refetch, locale]
   )
 
-  const slugNameMapping = useMemo(() => ({ [data?.rubricCategory.slug]: data?.rubricCategory.name }), [data])
+  const slugNameMapping = useMemo(() => {
+    return data?.rubricCategory ? { [data?.rubricCategory.slug]: data?.rubricCategory.name } : {}
+  }, [data])
 
   if (loading) {
     return <Loading />

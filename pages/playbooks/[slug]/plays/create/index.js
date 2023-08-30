@@ -1,54 +1,37 @@
+import { NextSeo } from 'next-seo'
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
-import Header from '../../../../../components/Header'
-import Footer from '../../../../../components/Footer'
-import { PlayForm } from '../../../../../components/plays/PlayForm'
-import { Loading, Error, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../lib/ClientOnly'
-import NotFound from '../../../../../components/shared/NotFound'
-import { useUser } from '../../../../../lib/hooks'
-import { PLAYBOOK_QUERY } from '../../../../../queries/play'
+import Header from '../../../../../ui/v1/shared/Header'
+import Footer from '../../../../../ui/v1/shared/Footer'
+import PlayCreate from '../../../../../ui/v1/play/PlayCreate'
 
-const CreatePlayInformation = ({ slug, locale }) => {
-  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
-    variables: { playbookSlug: slug },
-    skip: !slug,
-    context: { headers: { 'Accept-Language': locale } }
-  })
+const CreatePlay = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.playbook) {
-    return <NotFound />
-  }
+  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
-      {data?.playbook && <PlayForm playbook={data.playbook} />}
-    </>
-  )
-}
-
-function CreatePlay () {
-  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
-
-  const router = useRouter()
-  const { locale } = router
-  const { slug } = router.query
-
-  return (
-    <>
-      <Header />
+      <NextSeo
+        title={format('ui.play.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.play.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <ClientOnly>
-        {loadingUserSession
-          ? <Loading />
-          : isAdminUser || isEditorUser
-            ? <CreatePlayInformation slug={slug} locale={locale} />
-            : <Unauthorized />}
+        <Header />
+        <PlayCreate
+          playbookSlug={slug}
+          locale={locale}
+        />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

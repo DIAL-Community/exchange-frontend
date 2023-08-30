@@ -1,6 +1,6 @@
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import NotFound from '../components/shared/NotFound'
+import Footer from '../ui/v1/shared/Footer'
+import Header from '../ui/v1/shared/Header'
+import { NotFound } from '../ui/v1/shared/FetchStatus'
 
 const Custom404 = () => (
   <>

@@ -47,7 +47,7 @@ const OpportunityDetailLeft = ({ opportunity, commentsSectionRef }) => {
             objectType={ObjectType.OPPORTUNITY}
           />
         </div>
-        <div className='h4 font-bold py-4'>{format('opportunity.label')}</div>
+        <div className='h4 font-bold py-4'>{format('ui.opportunity.label')}</div>
       </div>
       <div className='bg-white border border-dial-gray shadow-md'>
         <div className='flex flex-col p-4'>

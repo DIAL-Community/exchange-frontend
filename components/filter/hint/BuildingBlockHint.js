@@ -10,7 +10,7 @@ const BuildingBlockHint = () => {
   return (
     <div className='flex flex-col gap-2 text-dial-stratos'>
       <div className='text-xl font-semibold'>
-        {format('buildingBlock.label')}
+        {format('ui.buildingBlock.label')}
       </div>
       <div className='text-base'>
         {format('buildingBlock.hint.subtitle')}

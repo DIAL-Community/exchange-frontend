@@ -8,6 +8,7 @@ const OpportunityFilterProvider = ({ children }) => {
   const [countries, setCountries] = useState([])
   const [organizations, setOrganizations] = useState([])
   const [sectors, setSectors] = useState([])
+  const [tags, setTags] = useState([])
   const [useCases, setUseCases] = useState([])
   const [showClosed, setShowClosed] = useState(false)
 
@@ -20,6 +21,7 @@ const OpportunityFilterProvider = ({ children }) => {
     countries,
     organizations,
     sectors,
+    tags,
     useCases,
     showClosed,
     search,
@@ -31,6 +33,7 @@ const OpportunityFilterProvider = ({ children }) => {
     setCountries,
     setOrganizations,
     setSectors,
+    setTags,
     setUseCases,
     setShowClosed,
     setSearch,

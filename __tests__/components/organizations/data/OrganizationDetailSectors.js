@@ -13,7 +13,7 @@ module.exports = {
           'name': 'Sector 2',
           'slug': 'sector_2',
           '__typename': 'Sector'
-        },
+        }
       ]
     }
   }

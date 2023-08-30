@@ -21,7 +21,7 @@ const PagedDatasetList = ({ sectors, tags, datasetSortHint }) => {
       offset: itemOffset,
       sectors,
       tags,
-      datasetSortHint,
+      datasetSortHint
     }
   })
 
@@ -32,7 +32,7 @@ const PagedDatasetList = ({ sectors, tags, datasetSortHint }) => {
         offset: itemOffset,
         sectors,
         tags,
-        datasetSortHint,
+        datasetSortHint
       }
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps

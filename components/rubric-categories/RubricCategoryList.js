@@ -24,13 +24,13 @@ const RubricCategoryList = ({ rubricCategoryList }) => {
             <div className='flex flex-row gap-3'>
               {rubricCategory.name}
               <div className='text-button-gray-light text-sm ml-auto'>
-                {format('rubric-category.weight')}: {rubricCategory.weight}
+                {format('ui.rubricCategory.weight')}: {rubricCategory.weight}
               </div>
             </div>
           </Card>
         )) : (
           <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-6'>
-            {format('noResults.entity', { entity: format('rubric-categories.header') })}
+            {format('noResults.entity', { entity: format('ui.rubricCategory.header') })}
           </div>
         )
       }

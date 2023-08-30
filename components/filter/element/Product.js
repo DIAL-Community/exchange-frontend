@@ -20,7 +20,7 @@ export const ProductAutocomplete = ({
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('product.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.product.label') })
 
   const addProduct = (product) => {
     setProducts([...products.filter(({ label }) => label !== product.label), product])
@@ -38,12 +38,12 @@ export const ProductAutocomplete = ({
     <div className={classNames(containerStyles)} data-testid='product-search'>
       <Select
         async
-        aria-label={format('filter.byEntity', { entity: format('product.label') })}
+        aria-label={format('filter.byEntity', { entity: format('ui.product.label') })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)}
-        noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.header') })}
         onChange={addProduct}
         placeholder={controlPlaceholder}
         value={null}
@@ -70,7 +70,7 @@ export const ProductFilters = (props) => {
         <div className='py-1' key={productIdx}>
           <Pill
             key={`product-${productIdx}`}
-            label={`${format('product.label')}: ${product.label}`}
+            label={`${format('ui.product.label')}: ${product.label}`}
             onRemove={() => removeProduct(product.slug)}
           />
         </div>

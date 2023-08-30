@@ -7,6 +7,6 @@ module.exports = {
         'title': 'Head of test',
         'id': 1,
         'slug': 'test_test'
-      },
-  },
+      }
+  }
 }

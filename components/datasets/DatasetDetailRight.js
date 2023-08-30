@@ -33,7 +33,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
       {
         dataset.website &&
           <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.website')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark inline'>{format('ui.dataset.website')}</div>
             <div className='text-base text-dial-teal flex'>
               <a
                 href={prependUrlWithProtocol(dataset.website)}
@@ -50,21 +50,21 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
         {
           dataset.datasetType &&
             <div className='mt-12 w-1/3'>
-              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.datasetType')}</div>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('ui.dataset.datasetType')}</div>
               <div className='my-auto'>{dataset.datasetType}</div>
             </div>
         }
         {
           dataset.geographicCoverage &&
             <div className='mt-12 w-1/3'>
-              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.coverage')}</div>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('ui.dataset.coverage')}</div>
               <div className='my-auto'>{dataset.geographicCoverage}</div>
             </div>
         }
         {
           dataset.license &&
             <div className='mt-12'>
-              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.license')}</div>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('ui.dataset.license')}</div>
               <div className='my-auto'>{dataset.license}</div>
             </div>
         }
@@ -73,29 +73,29 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
         {
           dataset.languages &&
             <div className='mt-12 w-1/3'>
-              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.languages')}</div>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('ui.dataset.languages')}</div>
               <div className='my-auto'>{dataset.languages}</div>
             </div>
         }
         {
           dataset.timeRange &&
             <div className='mt-12 w-1/3'>
-              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.timeRange')}</div>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('ui.dataset.timeRange')}</div>
               <div className='my-auto'>{dataset.timeRange}</div>
             </div>
         }
         {
           dataset.dataFormat &&
             <div className='mt-12'>
-              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.dataFormat')}</div>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('ui.dataset.dataFormat')}</div>
               <div className='my-auto'>{dataset.dataFormat}</div>
             </div>
         }
       </div>
       <div className='mt-12 card-title mb-3 text-dial-gray-dark'>
-        {format('dataset.description')}
+        {format('ui.dataset.description')}
         {dataset.manualUpdate && (
-          <div className='inline ml-5 h5'>{format('dataset.manualUpdate')}</div>
+          <div className='inline ml-5 h5'>{format('ui.dataset.manualUpdate')}</div>
         )}
       </div>
       <HtmlViewer
@@ -113,7 +113,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
               minHeight="600"
               scrolling='true'
             >
-              ${format('dataset.embed.unsupported')}
+              ${format('ui.dataset.embed.unsupported')}
             </IframeResizer>
           </div>
       }
@@ -122,7 +122,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
       {dataset.countries && <DatasetDetailCountries dataset={dataset} canEdit={canEdit} />}
       {dataset.organizations && <DatasetDetailOrganizations dataset={dataset} canEdit={canEdit} />}
       {dataset.tags && <DatasetDetailTags dataset={dataset} canEdit={canEdit} />}
-      <div className='mt-12 card-title mb-3 text-dial-gray-dark'>{format('dataset.source')}</div>
+      <div className='mt-12 card-title mb-3 text-dial-gray-dark'>{format('ui.dataset.source')}</div>
       <div className='grid grid-cols-3'>
         <div className='pb-5 pr-5'>
           {dataset.origins.map((origin, i) => {
@@ -141,7 +141,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <div className='inline ml-4 text-dial-teal text-sm'>{format('dataset.view-DPGA-data')}</div>
+                    <div className='inline ml-4 text-dial-teal text-sm'>{format('ui.dataset.view-DPGA-data')}</div>
                   </a>
                 )}
               </div>

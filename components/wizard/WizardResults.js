@@ -225,7 +225,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
                 </button>
               }
               <button onClick={() => setIsSupportDialogOpen(true)} className={wizardButtonStyle}>
-                {format('wizard.request-additional-support')}
+                {format('wizard.additionalSupport')}
               </button>
             </div>
           </div>
