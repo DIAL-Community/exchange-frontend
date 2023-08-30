@@ -1,7 +1,5 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { useUser } from '../../lib/hooks'
-import { Unauthorized } from '../../components/shared/FetchStatus'
 import Header from '../../ui/v1/shared/Header'
 import Footer from '../../ui/v1/shared/Footer'
 import ClientOnly from '../../lib/ClientOnly'
@@ -10,7 +8,6 @@ export default function ChatbotPage() {
 
   const { register, handleSubmit } = useForm()
   const [response, setResponse] = useState()
-  const { isAdminUser } = useUser()
 
   const onSubmit = async (data) => {
     const res = await fetch('http://209.97.159.105:5000/query', {
