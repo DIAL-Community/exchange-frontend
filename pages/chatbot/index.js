@@ -10,13 +10,13 @@ export default function ChatbotPage() {
   const [response, setResponse] = useState()
 
   const onSubmit = async (data) => {
-    const res = await fetch('https://demo.dial.community:5000/query', {
+    const res = await fetch('https://demo.dial.community/query', {
       mode: 'cors',
       method: 'POST',
       cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://demo.dial.community:5000',
+        'Access-Control-Allow-Origin': 'https://demo.dial.community',
         'Access-Control-Allow-Credentials': true
       },
       body: JSON.stringify(data)
