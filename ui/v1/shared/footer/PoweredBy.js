@@ -32,15 +32,15 @@ const PoweredBy = () => {
             width={30}
             className='object-contain'
           />
-          </a>
-          <a href='//www.linkedin.com/company/digital-impact-alliance/' target='_blank' rel='noreferrer'></a>
+        </a>
+        <a href='//www.linkedin.com/company/digital-impact-alliance/' target='_blank' rel='noreferrer'>
           <img
             src='/ui/v1/linkedin-icon-wo-bg.svg'
             alt={format('ui.image.logoAlt', { name: 'LinkedIn' })}
             width={30}
             className='object-contain'
           />
-          </a>
+        </a>
       </div>
     </div>
   )
