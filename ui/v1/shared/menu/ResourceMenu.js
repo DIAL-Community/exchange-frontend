@@ -21,7 +21,7 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           <Link href='/playbooks' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('header.playbooks')}
           </Link>
-          <Link href='/playbooks' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+          <Link href='/wizard' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('header.wizard')}
           </Link>
           <a
