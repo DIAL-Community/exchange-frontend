@@ -33,20 +33,34 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
       {buildingBlock.specUrl &&
         <div className='flex flex-col gap-y-3 text-dial-sapphire'>
           <div className='text-sm font-semibold'>
-            Specification for Building blocks
+            Specification
           </div>
           <div className='text-sm text-dial-stratos'>
             GovStack is defining the technical specifications that define each building block.
             They aim to facilitate access to and awareness of proven solutions that prioritize
             interoperability and open standards.
           </div>
-          <div className='text-sm text-dial-stratos'>
-            <a href={buildingBlock.specUrl} className='hover:border-b hover:border-dial-slate-300'>
+          <div className='flex gap-x-2 text-sm text-dial-stratos'>
+            <a
+              href={buildingBlock.specUrl}
+              target='_blank'
+              rel='noreferrer'
+              className='flex border-b border-dial-iris-blue'
+            >
               View the specification
             </a>
+            ⧉
           </div>
         </div>
       }
+      <div className='flex flex-col gap-y-3 text-sm'>
+        <div className='font-semibold text-dial-sapphire'>
+          {format('buildingBlock.maturity')}
+        </div>
+        <div className='flex text-dial-stratos'>
+          {buildingBlock.maturity}
+        </div>
+      </div>
     </div>
   )
 }

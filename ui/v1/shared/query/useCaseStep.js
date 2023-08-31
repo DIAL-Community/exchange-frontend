@@ -16,6 +16,14 @@ export const USE_CASE_STEP_QUERY = gql`
         name
         slug
       }
+      buildingBlocks {
+        id
+        slug
+        name
+        imageFile
+        maturity
+        category
+      }
     }
     useCaseStep(slug: $stepSlug) {
       id

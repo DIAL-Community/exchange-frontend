@@ -102,7 +102,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('building-block.no-workflow')}
+        {format('buildingBlock.no-workflow')}
       </div>
     )
 

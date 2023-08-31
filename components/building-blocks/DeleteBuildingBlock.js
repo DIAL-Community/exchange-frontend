@@ -75,7 +75,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: buildingBlock.name })}
-        message={format('building-block.delete.confirm.message')}
+        message={format('buildingBlock.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

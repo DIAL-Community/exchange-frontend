@@ -40,16 +40,13 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const categoryOptions = useMemo(() => generateCategoryOptions(format), [format])
 
   const [updateBuildingBlock, { reset }] = useMutation(CREATE_BUILDING_BLOCK, {
-    refetchQueries: [
-      {
-        query: BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY,
-        variables: { search: '' }
-      },
-      {
-        query: PAGINATED_BUILDING_BLOCKS_QUERY,
-        variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
-      }
-    ],
+    refetchQueries: [{
+      query: BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_BUILDING_BLOCKS_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       const { createBuildingBlock: response } = data
       if (response?.buildingBlock && response?.errors?.length === 0) {
@@ -134,18 +131,18 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
             </div>
             <div className='form-field-wrapper'>
               <label className='required-field' htmlFor='name'>
-                {format('building-block.name')}
+                {format('buildingBlock.name')}
               </label>
               <Input
                 {...register('name', { required: format('validation.required') })}
                 id='name'
-                placeholder={format('building-block.name')}
+                placeholder={format('buildingBlock.name')}
                 isInvalid={errors.name}
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
             <div className='form-field-wrapper'>
-              <label className='required-field'>{format('building-block.maturity')}</label>
+              <label className='required-field'>{format('buildingBlock.maturity')}</label>
               <Controller
                 name='maturity'
                 control={control}
@@ -155,7 +152,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                     isSearch
                     isBorderless
                     options={maturityOptions}
-                    placeholder={format('building-block.maturity')}
+                    placeholder={format('buildingBlock.maturity')}
                     isInvalid={errors.maturity}
                   />
                 )}
@@ -180,15 +177,15 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
               />
             </div>
             <div className='form-field-wrapper'>
-              <label>{format('building-block.imageFile')}</label>
+              <label>{format('buildingBlock.imageFile')}</label>
               <FileUploader {...register('imageFile')} />
             </div>
             <div className='form-field-wrapper'>
-              <label>{format('building-block.specUrl')}</label>
-              <Input {...register('specUrl')} placeholder={format('building-block.specUrl')} />
+              <label>{format('buildingBlock.specUrl')}</label>
+              <Input {...register('specUrl')} placeholder={format('buildingBlock.specUrl')} />
             </div>
             <div className='block flex flex-col gap-y-2'>
-              <label className='required-field'>{format('building-block.description')}</label>
+              <label className='required-field'>{format('buildingBlock.description')}</label>
               <Controller
                 name='description'
                 control={control}
@@ -197,7 +194,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                     editorId='description-editor'
                     onChange={onChange}
                     initialContent={value}
-                    placeholder={format('building-block.description')}
+                    placeholder={format('buildingBlock.description')}
                     isInvalid={errors.description}
                   />
                 )}

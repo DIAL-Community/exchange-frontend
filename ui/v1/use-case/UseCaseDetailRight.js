@@ -5,7 +5,6 @@ import { FaArrowRight } from 'react-icons/fa6'
 import WorkflowCard from '../workflow/WorkflowCard'
 import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
-import BuildingBlockCard from '../building-block/BuildingBlockCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CreateButton from '../shared/form/CreateButton'
@@ -13,6 +12,7 @@ import CommentsSection from '../shared/comment/CommentsSection'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './fragments/UseCaseDetailTags'
 import DeleteUseCase from './DeleteUseCase'
+import UseCaseBuildingBlockRenderer from './custom/BuildingBlockRenderer'
 
 const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const { formatMessage } = useIntl()
@@ -156,17 +156,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
             </div>
           }
           {useCase?.buildingBlocks.length > 0 &&
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-              {useCase?.buildingBlocks?.map((buildingBlock, index) =>
-                <div key={`building-block-${index}`}>
-                  <BuildingBlockCard
-                    index={index}
-                    buildingBlock={buildingBlock}
-                    displayType={DisplayType.SMALL_CARD}
-                  />
-                </div>
-              )}
-            </div>
+            <UseCaseBuildingBlockRenderer useCaseBuildingBlocks={useCase.buildingBlocks} />
           }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
