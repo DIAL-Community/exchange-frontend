@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { CategoryType } from '../../utils/constants'
 
 const BuildingBlockDetailHeader = ({ buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -33,12 +34,10 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
       {buildingBlock.specUrl &&
         <div className='flex flex-col gap-y-3 text-dial-sapphire'>
           <div className='text-sm font-semibold'>
-            Specification
+            {format('ui.buildingBlock.specification')}
           </div>
           <div className='text-sm text-dial-stratos'>
-            GovStack is defining the technical specifications that define each building block.
-            They aim to facilitate access to and awareness of proven solutions that prioritize
-            interoperability and open standards.
+            {format('ui.buildingBlock.specification.description')}
           </div>
           <div className='flex gap-x-2 text-sm text-dial-stratos'>
             <a
@@ -47,18 +46,28 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
               rel='noreferrer'
               className='flex border-b border-dial-iris-blue'
             >
-              View the specification
+              {format('ui.buildingBlock.specification.view')}
             </a>
             ⧉
           </div>
         </div>
       }
-      <div className='flex flex-col gap-y-3 text-sm'>
-        <div className='font-semibold text-dial-sapphire'>
-          {format('buildingBlock.maturity')}
+      <div className='flex gap-x-3'>
+        <div className='flex flex-col gap-y-3 text-sm grow shrink-0'>
+          <div className='font-semibold text-dial-sapphire'>
+            {format('buildingBlock.maturity')}
+          </div>
+          <div className='flex text-dial-stratos'>
+            {buildingBlock.maturity}
+          </div>
         </div>
-        <div className='flex text-dial-stratos'>
-          {buildingBlock.maturity}
+        <div className='flex flex-col gap-y-3 text-sm grow shrink-0'>
+          <div className='font-semibold text-dial-sapphire'>
+            {format('ui.buildingBlock.category')}
+          </div>
+          <div className='flex text-dial-stratos'>
+            {buildingBlock.category ?? CategoryType.FUNCTIONAL}
+          </div>
         </div>
       </div>
     </div>

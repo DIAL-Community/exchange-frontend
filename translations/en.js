@@ -359,6 +359,14 @@ export const en = {
 
   'ui.buildingBlock.header': 'Building Blocks',
   'ui.buildingBlock.label': 'Building Block',
+  'ui.buildingBlock.specification': 'Specification',
+  'ui.buildingBlock.specification.description': `
+    GovStack is defining the technical specifications that define each building block.
+    They aim to facilitate access to and awareness of proven solutions that prioritize
+    interoperability and open standards.
+  `,
+  'ui.buildingBlock.specification.view': 'View the specification',
+  'ui.buildingBlock.category': 'Category',
   'buildingBlock.noProduct': 'We do not have any Product information for this Building Block.',
   'buildingBlock.disclaimer': `
     Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working
