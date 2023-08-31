@@ -127,7 +127,7 @@ const Header = ({ isOnAuthPage = false }) => {
           />
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
-        <ul className='hidden xl:flex items-center ml-auto text-dial-white-beech gap-x-3'>
+        <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
           {!isOnAuthPage &&
             <>
               <li className='relative text-right'>
@@ -163,7 +163,7 @@ const HamburgerMenu = ({ menuExpanded, onMenuClicked }) => {
     <>
       <label
         htmlFor='burger'
-        className='ml-auto my-auto cursor-pointer block xl:hidden z-30'
+        className='ml-auto my-auto cursor-pointer block md:hidden z-30'
       >
         <svg
           className='fill-current text-white'
