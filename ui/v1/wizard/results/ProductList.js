@@ -54,8 +54,7 @@ const ProductList = ({ headerRef }) => {
           {format('ui.product.header')}
         </div>
         <div className='text-xs italic'>
-          Here are products that are aligned with the building blocks, sector,
-          or tags for the project
+          {format('ui.wizard.product.description')}
         </div>
       </div>
       <div className='flex flex-col gap-3'>

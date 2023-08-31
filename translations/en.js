@@ -2182,6 +2182,41 @@ export const en = {
   'ui.wizard.navigateToResults': 'Finish',
   'ui.wizard.navigateToParameters': 'Go back to the Wizard',
   'ui.wizard.result.header': 'Your results',
+  'ui.wizard.buildingBlock.description': `
+    The following building blocks may be applicable to your project.
+  `,
+  'ui.wizard.dataset.description': `
+    The following open data (datasets, content, AI models) may be relevant for the project.
+  `,
+  'ui.wizard.product.description': `
+    Here are products that are aligned with the building blocks, sector, or tags for the project
+  `,
+  'ui.wizard.product.description': `
+    Here are products that are aligned with the building blocks, sector, or tags for the project
+  `,
+  'ui.wizard.project.description': `
+    Here are projects that have been implemented in the same Sector or have
+    similar tags. Click on a project to learn more.
+  `,
+  'ui.wizard.useCase.question': 'Select a specific Use case, if applicable',
+  'ui.wizard.useCase.question.subtitle': 'What is a Use case?',
+  'ui.wizard.useCase.description': `
+    The following use case was selected and provides a breakdown of all of the steps that
+    may be required as well as the workflows or business processes that will be needed at
+    each step.
+  `,
+  'ui.wizard.sector.question': 'Select the sector that your project supports',
+  'ui.wizard.sector.question.subtitle': 'You can select multiple sectors',
+  'ui.wizard.sdg.question': 'Select any SDGs that your project is designed to support',
+  'ui.wizard.sdg.question.subtitle': 'Learn more about SDGs',
+  'ui.wizard.country.question': 'What countries will this project be implemented in?',
+  'ui.wizard.tag.question': 'Select any tags that are applicable to this project',
+  'ui.wizard.mobileService.question': 'Will mobile services be required for this project?',
+
+  'ui.wizard.result': `
+    Based on the information provided, the following are resources you may
+    use to support your project
+  `,
 
   'ui.mobileService.label': 'Mobile Service',
   'ui.mobileService.header': 'Mobile Services',

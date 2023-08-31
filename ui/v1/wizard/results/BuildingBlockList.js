@@ -51,7 +51,7 @@ const BuildingBlockList = ({ headerRef }) => {
           {format('ui.buildingBlock.header')}
         </div>
         <div className='text-xs italic'>
-          The following building blocks may be applicable to your project.
+          {format('ui.wizard.buildingBlock.description')}
         </div>
       </div>
       <div className='flex flex-col gap-3'>
