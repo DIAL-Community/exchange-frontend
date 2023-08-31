@@ -100,7 +100,7 @@ const ProjectDetailTags = ({ project, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('project.no-tag')}
+        {format('project.noTag')}
       </div>
     )
 

@@ -94,7 +94,7 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('project.no-sector')}
+        {format('project.noSector')}
       </div>
     )
 

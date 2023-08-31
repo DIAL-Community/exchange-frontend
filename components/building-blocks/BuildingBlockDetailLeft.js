@@ -72,7 +72,7 @@ const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
       </div>
       { buildingBlock.specUrl &&
         (<div className='p-3 lg:mr-6 text-dial-gray-dark text-sm'>
-          {format('buildingBlock.spec-link')}
+          {format('buildingBlock.specLink')}
           <a href={buildingBlock.specUrl} className='text-dial-blue text-sm' target='_blank' rel='noreferrer'>
             {buildingBlock.name}
           </a>

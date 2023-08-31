@@ -94,7 +94,7 @@ const OrganizationDetailContacts = ({ organization }) => {
         {contacts.map((contact, index) => <ContactCard key={index} contact={contact} listType='list'/>)}
       </div>
     ) : (
-      <div className='text-sm pb-5 text-button-gray'>{format('organization.no-contact')}</div>
+      <div className='text-sm pb-5 text-button-gray'>{format('organization.noContact')}</div>
     )
 
   const editModeBody =

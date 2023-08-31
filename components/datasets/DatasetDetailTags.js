@@ -86,7 +86,7 @@ const DatasetDetailTags = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('ui.dataset.no-tag')}
+        {format('ui.dataset.noTag')}
       </div>
     )
 

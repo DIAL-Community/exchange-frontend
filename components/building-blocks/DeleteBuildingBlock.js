@@ -33,7 +33,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
       if (response?.buildingBlock && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
         showToast(
-          format('toast.building-block.delete.success'),
+          format('toast.buildingBlock.delete.success'),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -42,13 +42,13 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.building-block.delete.failure'), 'error', 'top-center')
+        showToast(format('toast.buildingBlock.delete.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.building-block.delete.failure'), 'error', 'top-center')
+      showToast(format('toast.buildingBlock.delete.failure'), 'error', 'top-center')
       reset()
     }
   })

@@ -117,7 +117,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('use-case.no-sdg-targets')}
+        {format('useCase.noSdgTarget')}
       </div>
     )
 

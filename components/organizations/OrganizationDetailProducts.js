@@ -87,7 +87,7 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('organization.no-product')}
+        {format('organization.noProduct')}
       </div>
     )
 
