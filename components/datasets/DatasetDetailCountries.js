@@ -95,7 +95,7 @@ const DatasetDetailCountries = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('ui.dataset.no-country')}
+        {format('ui.dataset.noCountry')}
       </div>
     )
 

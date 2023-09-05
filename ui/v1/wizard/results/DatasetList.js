@@ -52,8 +52,7 @@ const DatasetList = ({ headerRef }) => {
           {format('ui.dataset.header')}
         </div>
         <div className='text-xs italic'>
-          The following open data (datasets, content, AI models) may be relevant
-          for the project.
+          {format('ui.wizard.dataset.description')}
         </div>
       </div>
       <div className='flex flex-col gap-3'>

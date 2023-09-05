@@ -51,7 +51,7 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='flex flex-row py-3' ref={categoryIndicatorRef}>
+          <div className='flex flex-row pb-3' ref={categoryIndicatorRef}>
             <div className='text-xl font-semibold text-dial-blueberry '>
               {format('categoryIndicator.header')}
             </div>

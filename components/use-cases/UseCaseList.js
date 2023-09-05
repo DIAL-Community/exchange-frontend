@@ -31,7 +31,7 @@ const UseCaseList = (props) => {
                 {format('useCase.header').toUpperCase()}
               </div>
               <div className='hidden lg:block w-8/12 lg:w-2/12 opacity-50'>
-                {format('sdg.sdgTargets').toUpperCase()}
+                {format('sdg.sdgTarget').toUpperCase()}
               </div>
               <div className='hidden lg:block w-8/12 lg:w-4/12 opacity-50'>
                 {format('exampleOf.entity', { entity: format('workflow.header') }).toUpperCase()}

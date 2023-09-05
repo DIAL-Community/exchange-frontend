@@ -29,7 +29,7 @@ const PlaybookEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[playbook.slug] = data.playbook.name
+    map[playbook.slug] = playbook.name
 
     return map
   })()

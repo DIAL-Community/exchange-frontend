@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { BsPlus } from 'react-icons/bs'
+import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
 import Select from '../form/Select'
@@ -40,12 +40,15 @@ export const EndorsingYearSelect = ({
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <button type='button' className='flex' onClick={() => setShowFilter(!showFilter)}>
+      <a href='#' className='flex' onClick={() => setShowFilter(!showFilter)}>
         <div className='text-dial-stratos text-sm py-2'>
           {format('ui.endorsingYear.label')}
         </div>
-        <BsPlus className='ml-auto text-dial-stratos my-auto' />
-      </button>
+        {showFilter
+          ? <BsDash className='ml-auto text-dial-stratos my-auto' />
+          : <BsPlus className='ml-auto text-dial-stratos my-auto' />
+        }
+      </a>
       {showFilter &&
         <Select
           async

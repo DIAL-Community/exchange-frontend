@@ -29,7 +29,7 @@ const ProductEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[product.slug] = data.product.name
+    map[product.slug] = product.name
 
     return map
   })()

@@ -12,7 +12,7 @@ import BuildingBlockCard from '../../building-block/BuildingBlockCard'
 import UseCaseCard from '../../use-case/UseCaseCard'
 import { REMOVE_BOOKMARK } from '../../shared/mutation/bookmark'
 import { ToastContext } from '../../../../lib/ToastContext'
-import { BookmarkDisplayContext } from './BookmarkDisplayContext'
+import { ProfileBookmarkContext } from './ProfileBookmarkContext'
 
 const UrlCard = ({ url, dismissHandler }) => {
   const displaySmallCard = () =>
@@ -38,7 +38,7 @@ const UrlCard = ({ url, dismissHandler }) => {
   )
 }
 
-const UserBookmarkRight = () => {
+const ProfileBookmarkRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -47,7 +47,7 @@ const UserBookmarkRight = () => {
     displayProducts,
     displayBuildingBlocks,
     displayUrls
-  } = useContext(BookmarkDisplayContext)
+  } = useContext(ProfileBookmarkContext)
 
   const { user } = useUser()
   const { locale } = useRouter()
@@ -197,4 +197,4 @@ const UserBookmarkRight = () => {
   )
 }
 
-export default UserBookmarkRight
+export default ProfileBookmarkRight

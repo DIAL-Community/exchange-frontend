@@ -102,7 +102,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, createAction }) => 
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('organization.no-project')}
+        {format('organization.noProject')}
       </div>
     )
 

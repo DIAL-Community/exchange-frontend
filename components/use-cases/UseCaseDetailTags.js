@@ -91,7 +91,7 @@ const UseCaseDetailTags = ({ useCase, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('use-case.no-tag')}
+        {format('useCase.noTag')}
       </div>
     )
 

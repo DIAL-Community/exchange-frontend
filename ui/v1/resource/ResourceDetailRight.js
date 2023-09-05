@@ -6,6 +6,7 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import OrganizationCard from '../organization/OrganizationCard'
 import CommentsSection from '../shared/comment/CommentsSection'
+import { prependUrlWithProtocol } from '../utils/utilities'
 import DeleteResource from './DeleteResource'
 
 const ResourceDetailRight = forwardRef(({ resource }, ref) => {
@@ -51,7 +52,25 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-plum py-3' ref={organizationRef}>
+          <div className='text-xl font-semibold text-dial-plum pb-3'>
+            {format('ui.resource.link')}
+          </div>
+          <div className='flex gap-x-2 text-dial-stratos'>
+            <a
+              href={prependUrlWithProtocol(resource.link)}
+              target='_blank'
+              rel='noreferrer'
+              className='flex border-b border-dial-iris-blue '>
+              <div className='line-clamp-1'>
+                {resource.link}
+              </div>
+            </a>
+            ⧉
+          </div>
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-plum pb-3' ref={organizationRef}>
             {format('ui.organization.header')}
           </div>
           {resource?.organizations.length <= 0 &&

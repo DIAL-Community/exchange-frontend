@@ -104,7 +104,7 @@ const OpportunityDetailCountries = ({ opportunity, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('ui.opportunity.no-country')}
+        {format('ui.opportunity.noCountry')}
       </div>
     )
 

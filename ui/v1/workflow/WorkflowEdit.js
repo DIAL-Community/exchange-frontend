@@ -29,7 +29,7 @@ const WorkflowEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[workflow.slug] = data.workflow.name
+    map[workflow.slug] = workflow.name
 
     return map
   })()

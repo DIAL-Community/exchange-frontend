@@ -1,12 +1,12 @@
-import UserProfileDetail from './fragments/UserProfileDetail'
-import UserBookmarkRight from './fragments/UserBookmarkRight'
+import UserListRight from './fragments/UserListRight'
+import UserForm from './fragments/UserForm'
 
 const UserMainRight = ({ activeTab }) => {
   return (
-    <>
-      { activeTab === 0 && <UserProfileDetail /> }
-      { activeTab === 1 && <UserBookmarkRight /> }
-    </>
+    <div className='min-h-[50vh]'>
+      { activeTab === 0 && <UserListRight /> }
+      { activeTab === 1 && <UserForm /> }
+    </div>
   )
 }
 

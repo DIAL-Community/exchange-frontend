@@ -104,7 +104,7 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('project.no-product')}
+        {format('project.noProduct')}
       </div>
     )
 

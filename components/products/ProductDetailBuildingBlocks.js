@@ -121,7 +121,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   const disclaimer =
     <div
       className='text-sm text-dial-gray-dark pb-2 highlight-link'
-      dangerouslySetInnerHTML={{ __html: format('building-block.disclaimer') }}
+      dangerouslySetInnerHTML={{ __html: format('buildingBlock.disclaimer') }}
     />
 
   const displayModeBody =

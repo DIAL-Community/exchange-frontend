@@ -318,11 +318,11 @@ export const en = {
   'project.organization': 'Organization',
   'project.submit.success': 'Project submitted successfully',
   'project.submit.failure': 'Project submission failed',
-  'project.no-sector': 'We do not have any Sector information for this Project.',
+  'project.noSector': 'We do not have any Sector information for this Project.',
   'project.no-organization': 'We do not have any Organization information for this Project.',
   'project.no-countries': 'We do not have any Country information for this Project.',
-  'project.no-tag': 'We do not have any Tag information for this Project.',
-  'project.no-product': 'We do not have any Product information for this Project.',
+  'project.noTag': 'We do not have any Tag information for this Project.',
+  'project.noProduct': 'We do not have any Product information for this Project.',
 
   'ui.organization.header': 'Organizations',
   'ui.organization.label': 'Organization',
@@ -349,31 +349,48 @@ export const en = {
   'organization.contacts.updated': 'Contacts updated successfully',
   'organization.products.updated': 'Products updated successfully',
   'organization.sectors.updated': 'Sectors updated successfully',
-  'organization.no-sector': 'We do not have any Sector information for this Organization.',
-  'organization.no-country': 'We do not have any Country information for this Organization.',
-  'organization.no-contact': 'We do not have any Contact information for this Organization.',
-  'organization.no-project': 'We do not have any Project information for this Organization.',
-  'organization.no-product': 'We do not have any Product information for this Organization.',
-  'organization.no-office-locations': 'We do not have any Office Locations information for this Organization.',
+  'organization.noSector': 'We do not have any Sector information for this Organization.',
+  'organization.noCountry': 'We do not have any Country information for this Organization.',
+  'organization.noContact': 'We do not have any Contact information for this Organization.',
+  'organization.noProject': 'We do not have any Project information for this Organization.',
+  'organization.noProduct': 'We do not have any Product information for this Organization.',
+  'organization.noOffice': 'We do not have any Office Locations information for this Organization.',
   'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
 
   'ui.buildingBlock.header': 'Building Blocks',
   'ui.buildingBlock.label': 'Building Block',
-  'building-block.no-product': 'We do not have any Product information for this Building Block.',
-  'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
-  'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
-  'building-block.name': 'Name',
-  'building-block.maturity': 'Maturity',
-  'building-block.specUrl': 'GovStack Specification URL',
-  'building-block.imageFile': 'Logo Upload',
-  'building-block.description': 'Description',
-  'building-block.submit.success': 'Building Block submitted successfully',
-  'building-block.submit.failure': 'Building Block submission failed',
-  'building-block.no-workflow': 'We do not have any Workflow information for this Building Block.',
+  'ui.buildingBlock.specification': 'Specification',
+  'ui.buildingBlock.specification.description': `
+    GovStack is defining the technical specifications that define each building block.
+    They aim to facilitate access to and awareness of proven solutions that prioritize
+    interoperability and open standards.
+  `,
+  'ui.buildingBlock.specification.view': 'View the specification',
+  'ui.buildingBlock.category': 'Category',
+  'buildingBlock.noProduct': 'We do not have any Product information for this Building Block.',
+  'buildingBlock.disclaimer': `
+    Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working
+    to map digital platforms with key Building Block functionalities. Currently, all mappings between
+    products and building blocks are "Beta" and are shown as illustrative examples of how these tools
+    may support building block functionalities. As Building Block specifications are developed,
+    products that are aligned with the specifications will be tagged as such.
+  `,
+  'buildingBlock.specLink': `
+    The GovStack initiative has published a full specification for this building block. You can view
+    the documentation at this link:
+  `,
+  'buildingBlock.name': 'Name',
+  'buildingBlock.maturity': 'Maturity',
+  'buildingBlock.specUrl': 'GovStack Specification URL',
+  'buildingBlock.imageFile': 'Logo Upload',
+  'buildingBlock.description': 'Description',
+  'buildingBlock.submit.success': 'Building Block submitted successfully',
+  'buildingBlock.submit.failure': 'Building Block submission failed',
+  'buildingBlock.noWorkflow': 'We do not have any Workflow information for this Building Block.',
 
-  'building-block.delete.confirm.message': 'Are you sure you want to delete this building block?',
-  'toast.building-block.delete.success': 'Building block deleted successfully.',
-  'toast.building-block.delete.failure': 'Building block deletion failed.',
+  'buildingBlock.delete.confirm.message': 'Are you sure you want to delete this building block?',
+  'toast.buildingBlock.delete.success': 'Building block deleted successfully.',
+  'toast.buildingBlock.delete.failure': 'Building block deletion failed.',
 
   'buildingBlock.delete.confirm.message': 'Are you sure you want to delete this building block?',
   'toast.buildingBlock.delete.success': 'Building block deleted successfully.',
@@ -387,9 +404,9 @@ export const en = {
   'toast.product.delete.success': 'Product record deleted successfully.',
   'toast.product.delete.failure': 'Product record deletion failed.',
 
-  'use-case.delete.confirm.message': 'Are you sure you want to delete this use case record?',
-  'toast.use-case.delete.success': 'Use case record deleted successfully.',
-  'toast.use-case.delete.failure': 'Use case record deletion failed.',
+  'useCase.delete.confirm.message': 'Are you sure you want to delete this use case record?',
+  'toast.useCase.delete.success': 'Use case record deleted successfully.',
+  'toast.useCase.delete.failure': 'Use case record deletion failed.',
 
   'user.delete.confirm.message': 'Are you sure you want to delete this user record?',
   'toast.user.delete.success': 'User record deleted successfully.',
@@ -422,10 +439,10 @@ export const en = {
 
   'ui.useCase.header': 'Use Cases',
   'ui.useCase.label': 'Use Case',
-  'use-case.sdg-targets': 'SDG Targets',
-  'use-case.workflow': 'Workflows',
-  'use-case.no-sdg-targets': 'We do not have any SDG Target information for this Use Case.',
-  'use-case.no-tag': 'We do not have any Tag information for this Use Case.',
+  'useCase.sdgTarget': 'SDG Targets',
+  'useCase.workflow': 'Workflows',
+  'useCase.noSdgTarget': 'We do not have any SDG Target information for this Use Case.',
+  'useCase.noTag': 'We do not have any Tag information for this Use Case.',
 
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',
@@ -577,7 +594,7 @@ export const en = {
 
   'view.switch.title': 'Switch View',
   'search.input.label': 'Search in {entity}',
-  'sdg.sdgTargets': 'SDG Targets',
+  'sdg.sdgTarget': 'SDG Targets',
   'sdg.useCases': 'Use Cases',
   'sdg.target.title': 'Target',
 
@@ -728,9 +745,9 @@ export const en = {
   'use-case-step.step-number': 'Step Number',
   'useCaseStep.submit.failure': 'Use Case Step submission failed',
   'use-case-step.submit.success': 'Use Case Step submitted successfully',
-  'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
+  'use-case-step.noWorkflow': 'We do not have any Workflow information for this Use Case Step.',
   'use-case-step.no-dataset': 'We do not have any Dataset information for this Use Case Step.',
-  'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
+  'use-case-step.noProduct': 'We do not have any Product information for this Use Case Step.',
   'use-case-step.no-building-block': 'We do not have any Building Block information for this Use Case Step.',
 
   'ui.playbook.header': 'Playbooks',
@@ -832,11 +849,11 @@ export const en = {
   'ui.dataset.sdgs.updated': 'SDGs updated successfully.',
   'ui.dataset.sdg.mappingStatus': 'Mapping Status',
 
-  'ui.dataset.no-sector': 'We do not have sector information for this dataset.',
+  'ui.dataset.noSector': 'We do not have sector information for this dataset.',
   'ui.dataset.no-organization': 'We do not have organization information for this dataset.',
-  'ui.dataset.no-tag': 'We do not have tag information for this dataset.',
+  'ui.dataset.noTag': 'We do not have tag information for this dataset.',
   'ui.dataset.no-sdg': 'We do not have SDG information for this dataset.',
-  'ui.dataset.no-country': 'We do not have country information for this dataset.',
+  'ui.dataset.noCountry': 'We do not have country information for this dataset.',
 
   'ui.dataset.view-DPGA-data': 'View information submitted to DPGA',
 
@@ -1725,9 +1742,9 @@ export const en = {
   'ui.opportunity.submit.failed': 'Fail to save opportunity data saved.',
 
   'ui.opportunity.no-building-block': 'No building block assigned.',
-  'ui.opportunity.no-country': 'No country assigned.',
+  'ui.opportunity.noCountry': 'No country assigned.',
   'ui.opportunity.no-organization': 'No organization assigned.',
-  'ui.opportunity.no-sector': 'No sector assigned.',
+  'ui.opportunity.noSector': 'No sector assigned.',
   'ui.opportunity.no-use-case': 'No use case assigned.',
 
   'toast.applyAsContentEditor.submit.success': 'Role content editor requested.',
@@ -1957,6 +1974,12 @@ export const en = {
 
   'ui.user.label': 'User',
   'ui.user.header': 'Users',
+  'ui.user.createNew': 'Create a new User',
+  'ui.user.accountDetails': 'Account Details',
+  'ui.user.createdAt': 'Created on',
+  'ui.user.confirmedAt': 'Activated on',
+
+
   'ui.profile.title': 'Your account',
   'ui.profile.label': 'Profile',
   'ui.profile.bookmark': 'Your bookmarks',
@@ -2165,6 +2188,41 @@ export const en = {
   'ui.wizard.navigateToResults': 'Finish',
   'ui.wizard.navigateToParameters': 'Go back to the Wizard',
   'ui.wizard.result.header': 'Your results',
+  'ui.wizard.buildingBlock.description': `
+    The following building blocks may be applicable to your project.
+  `,
+  'ui.wizard.dataset.description': `
+    The following open data (datasets, content, AI models) may be relevant for the project.
+  `,
+  'ui.wizard.product.description': `
+    Here are products that are aligned with the building blocks, sector, or tags for the project
+  `,
+  'ui.wizard.product.description': `
+    Here are products that are aligned with the building blocks, sector, or tags for the project
+  `,
+  'ui.wizard.project.description': `
+    Here are projects that have been implemented in the same Sector or have
+    similar tags. Click on a project to learn more.
+  `,
+  'ui.wizard.useCase.question': 'Select a specific Use case, if applicable',
+  'ui.wizard.useCase.question.subtitle': 'What is a Use case?',
+  'ui.wizard.useCase.description': `
+    The following use case was selected and provides a breakdown of all of the steps that
+    may be required as well as the workflows or business processes that will be needed at
+    each step.
+  `,
+  'ui.wizard.sector.question': 'Select the sector that your project supports',
+  'ui.wizard.sector.question.subtitle': 'You can select multiple sectors',
+  'ui.wizard.sdg.question': 'Select any SDGs that your project is designed to support',
+  'ui.wizard.sdg.question.subtitle': 'Learn more about SDGs',
+  'ui.wizard.country.question': 'What countries will this project be implemented in?',
+  'ui.wizard.tag.question': 'Select any tags that are applicable to this project',
+  'ui.wizard.mobileService.question': 'Will mobile services be required for this project?',
+
+  'ui.wizard.result': `
+    Based on the information provided, the following are resources you may
+    use to support your project
+  `,
 
   'ui.mobileService.label': 'Mobile Service',
   'ui.mobileService.header': 'Mobile Services',

@@ -2,8 +2,6 @@ import { useApolloClient, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
-import BuildingBlockCard from '../../../building-block/BuildingBlockCard'
-import { DisplayType } from '../../../utils/constants'
 import Select from '../../../shared/form/Select'
 import { fetchSelectOptions } from '../../../utils/search'
 import Pill from '../../../shared/form/Pill'
@@ -12,15 +10,17 @@ import { UPDATE_USE_CASE_STEP_BUILDING_BLOCKS } from '../../../shared/mutation/u
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../shared/query/buildingBlock'
 import { useUser } from '../../../../../lib/hooks'
 import { ToastContext } from '../../../../../lib/ToastContext'
+import UseCaseBuildingBlockRenderer from '../../custom/BuildingBlockRenderer'
 
-const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) => {
+const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [buildingBlocks, setBuildingBlocks] = useState(useCaseStep.buildingBlocks)
   const [isDirty, setIsDirty] = useState(false)
+  const [useCaseBuildingBlocks] = useState(useCase.buildingBlocks)
+  const [buildingBlocks, setBuildingBlocks] = useState(useCaseStep.buildingBlocks)
 
   const [updateUseCaseStepBuildingBlocks, { loading, reset }] = useMutation(UPDATE_USE_CASE_STEP_BUILDING_BLOCKS, {
     onError() {
@@ -98,13 +98,10 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
   }
 
   const displayModeBody = buildingBlocks.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-      {buildingBlocks?.map((buildingBlock, index) =>
-        <div key={`building-block-${index}`}>
-          <BuildingBlockCard buildingBlock={buildingBlock} displayType={DisplayType.SMALL_CARD} />
-        </div>
-      )}
-    </div>
+    ? <UseCaseBuildingBlockRenderer
+      useCaseBuildingBlocks={useCaseBuildingBlocks}
+      stepBuildingBlocks={buildingBlocks}
+    />
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
         entity: format('ui.buildingBlock.label'),

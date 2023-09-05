@@ -87,7 +87,7 @@ const OrganizationDetailSectors = ({ organization, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('organization.no-sector')}
+        {format('organization.noSector')}
       </div>
     )
 

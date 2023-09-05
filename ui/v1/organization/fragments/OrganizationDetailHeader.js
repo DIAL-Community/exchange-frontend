@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
@@ -55,6 +55,18 @@ const OrganizationDetailHeader = ({ organization }) => {
           </div>
         </div>
         <OrganizationDetailSectors organization={organization} canEdit={canEdit} />
+        <hr className='border-b border-dial-slate-200'/>
+        {organization.whenEndorsed &&
+          <div className='flex flex-col gap-y-2 text-xs grow shrink-0'>
+            <div className='text-sm italic'>
+              {format('organization.isEndorser')}
+            </div>
+            <div className='flex gap-x-1 italic text-dial-stratos'>
+              <span>{format('ui.organization.endorsedIn')}:</span>
+              <FormattedDate value={organization.whenEndorsed} />
+            </div>
+          </div>
+        }
       </div>
     </div>
   )
