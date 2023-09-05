@@ -26,14 +26,14 @@ const WizardExtendedData = () => {
   return (
     <div className='flex flex-col gap-y-3'>
       <div className='flex flex-col gap-y-1'>
-        <div className='text-xl font-semibold text-dial-plum pb-3'>
+        <div className='text-xl font-semibold text-dial-plum'>
           {format('wizard.results.phases')}
         </div>
         <div className='text-xs italic'>
           {format('wizard.results.phasesDesc')}
         </div>
       </div>
-      <div className='px-4 py-2'>
+      <div className='block pl-4'>
         {['Ideation', 'Planning', 'Implementation', 'Evaluation'].map((phase, index) => {
           const wizardPrinciples = wizard.digitalPrinciples
             .filter(principle => principle.phase.indexOf(phase) >= 0)
