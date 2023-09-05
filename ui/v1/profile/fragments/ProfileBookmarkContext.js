@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react'
 
-const BookmarkDisplayContext = createContext()
+const ProfileBookmarkContext = createContext()
 
-const BookmarkDisplayContextProvider = ({ children }) => {
+const ProfileBookmarkContextProvider = ({ children }) => {
   const [displayUseCases, setDisplayUseCases] = useState(true)
   const [displayProducts, setDisplayProducts] = useState(true)
   const [displayBuildingBlocks, setDisplayBuildingBlocks] = useState(true)
@@ -20,10 +20,10 @@ const BookmarkDisplayContextProvider = ({ children }) => {
   }
 
   return (
-    <BookmarkDisplayContext.Provider value={{ ...props }}>
+    <ProfileBookmarkContext.Provider value={{ ...props }}>
       {children}
-    </BookmarkDisplayContext.Provider>
+    </ProfileBookmarkContext.Provider>
   )
 }
 
-export { BookmarkDisplayContextProvider, BookmarkDisplayContext }
+export { ProfileBookmarkContextProvider, ProfileBookmarkContext }

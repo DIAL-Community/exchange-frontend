@@ -29,7 +29,7 @@ const BuildingBlockEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[buildingBlock.slug] = data.buildingBlock.name
+    map[buildingBlock.slug] = buildingBlock.name
 
     return map
   })()

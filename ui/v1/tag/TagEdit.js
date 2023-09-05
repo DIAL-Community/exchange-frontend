@@ -29,7 +29,7 @@ const TagEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[tag.slug] = data.tag.name
+    map[tag.slug] = tag.name
 
     return map
   })()

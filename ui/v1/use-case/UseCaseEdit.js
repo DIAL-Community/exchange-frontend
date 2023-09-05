@@ -29,7 +29,7 @@ const UseCaseEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[useCase.slug] = data.useCase.name
+    map[useCase.slug] = useCase.name
 
     return map
   })()

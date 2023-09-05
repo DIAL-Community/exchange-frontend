@@ -29,7 +29,7 @@ const DatasetEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[dataset.slug] = data.dataset.name
+    map[dataset.slug] = dataset.name
 
     return map
   })()

@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useMemo, useState } from 'react'
 import { FaXmark } from 'react-icons/fa6'
-import { BsPlus } from 'react-icons/bs'
+import { BsDash, BsPlus } from 'react-icons/bs'
 import Select from '../form/Select'
 import { generateCategoryTypeOptions } from '../form/options'
 
@@ -25,12 +25,15 @@ export const CategoryTypeAutocomplete = ({ categoryTypes, setCategoryTypes, plac
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <button type='button' className='flex' onClick={() => setShowFilter(!showFilter)}>
+      <a href='#' className='flex' onClick={() => setShowFilter(!showFilter)}>
         <div className='text-dial-stratos text-sm py-2'>
           {format('ui.categoryType.label')}
         </div>
-        <BsPlus className='ml-auto text-dial-stratos my-auto' />
-      </button>
+        {showFilter
+          ? <BsDash className='ml-auto text-dial-stratos my-auto' />
+          : <BsPlus className='ml-auto text-dial-stratos my-auto' />
+        }
+      </a>
       {showFilter &&
         <Select
           async
