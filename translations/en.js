@@ -1974,6 +1974,12 @@ export const en = {
 
   'ui.user.label': 'User',
   'ui.user.header': 'Users',
+  'ui.user.createNew': 'Create a new User',
+  'ui.user.accountDetails': 'Account Details',
+  'ui.user.createdAt': 'Created on',
+  'ui.user.confirmedAt': 'Activated on',
+
+
   'ui.profile.title': 'Your account',
   'ui.profile.label': 'Profile',
   'ui.profile.bookmark': 'Your bookmarks',

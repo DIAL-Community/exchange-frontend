@@ -22,6 +22,7 @@ export const PAGINATED_USERS_QUERY = gql`
       email
       roles
       username
+      confirmedAt
       organization {
         id
         name
@@ -45,7 +46,9 @@ export const USER_DETAIL_QUERY = gql`
       email
       roles
       username
+      createdAt
       confirmed
+      confirmedAt
       organization {
         id
         name

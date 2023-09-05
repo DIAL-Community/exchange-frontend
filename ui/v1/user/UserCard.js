@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
 import { DisplayType } from '../utils/constants'
@@ -27,6 +27,10 @@ const UserCard = ({ displayType, index, user, dismissHandler }) => {
             <div className='text-sm'>
               {format('ui.organization.label')}: {user.organization?.name ?? format('general.na')}
             </div>
+          </div>
+          <div className='line-clamp-1 text-xs italic text-dial-sapphire'>
+            {format('ui.user.confirmedAt')}:&nbsp;
+            {user.confirmedAt ? <FormattedDate value={user.confirmedAt} /> : format('general.na')}
           </div>
         </div>
       </div>

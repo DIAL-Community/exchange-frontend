@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { FormattedDate, FormattedTime, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
@@ -105,6 +105,24 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
               />
             }
           </div>
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-plum'>
+            {format('ui.user.accountDetails')}
+          </div>
+          <div className='text-xs italic'>
+            {format('ui.user.createdAt')}:&nbsp;
+            <FormattedDate value={user.createdAt} />&nbsp;
+            <FormattedTime value={user.createdAt} />
+          </div>
+          {`${user.confirmed}` === 'true' &&
+            <div className='text-xs italic'>
+              {format('ui.user.confirmedAt')}:&nbsp;
+              <FormattedDate value={user.confirmedAt} />&nbsp;
+              <FormattedTime value={user.confirmedAt} />
+            </div>
+          }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <CommentsSection
