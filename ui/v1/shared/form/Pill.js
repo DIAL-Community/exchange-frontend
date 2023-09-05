@@ -10,8 +10,8 @@ const Pill = ({ label, onRemove, className, readOnly = false }) => (
   >
     <div className='line-clamp-1'>{label}</div>
     {!readOnly &&
-      <button type='button text-dial-stratos' onClick={onRemove}>
-        <FaXmark size='1rem' />
+      <button type='button' onClick={onRemove}>
+        <FaXmark className='text-dial-stratos' size='1rem' />
       </button>
     }
   </div>

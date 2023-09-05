@@ -29,7 +29,7 @@ const SectorEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[sector.slug] = data.sector.name
+    map[sector.slug] = sector.name
 
     return map
   })()

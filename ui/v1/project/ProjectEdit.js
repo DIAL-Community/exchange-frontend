@@ -29,7 +29,7 @@ const ProjectEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[project.slug] = data.project.name
+    map[project.slug] = project.name
 
     return map
   })()

@@ -29,7 +29,7 @@ const ResourceEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[resource.slug] = data.resource.name
+    map[resource.slug] = resource.name
 
     return map
   })()

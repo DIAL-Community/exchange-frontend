@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { signOut } from 'next-auth/react'
 import { useUser } from '../../../../lib/hooks'
 
-const UserProfileDetail = () => {
+const ProfileProfileDetail = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -118,4 +118,4 @@ const UserProfileDetail = () => {
   )
 }
 
-export default UserProfileDetail
+export default ProfileProfileDetail

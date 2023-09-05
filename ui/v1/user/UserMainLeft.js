@@ -1,10 +1,12 @@
-import UserBookmarkLeft from './fragments/UserBookmarkLeft'
+import UserListLeft from './fragments/UserListLeft'
+import UserSimpleLeft from './fragments/UserSimpleLeft'
 
 const UserMainLeft = ({ activeTab }) => {
 
   return (
     <>
-      { activeTab === 1 && <UserBookmarkLeft />}
+      { activeTab === 0 && <UserListLeft /> }
+      { activeTab === 1 && <UserSimpleLeft />}
     </>
   )
 }

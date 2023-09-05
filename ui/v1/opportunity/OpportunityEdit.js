@@ -29,7 +29,7 @@ const OpportunityEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[opportunity.slug] = data.opportunity.name
+    map[opportunity.slug] = opportunity.name
 
     return map
   })()

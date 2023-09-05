@@ -1,6 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { BsPlus } from 'react-icons/bs'
+import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
 import { fetchSelectOptions } from '../../utils/search'
@@ -37,12 +37,15 @@ export const CapabilityAutocomplete = ({
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <button type='button' text-sm ml-4 py-2 className='flex' onClick={() => setShowFilter(!showFilter)}>
+      <a href='#' className='flex' onClick={() => setShowFilter(!showFilter)}>
         <div className='text-dial-stratos text-sm py-2'>
           {format('ui.service.label')}
         </div>
-        <BsPlus className='ml-auto text-dial-stratos my-auto' />
-      </button>
+        {showFilter
+          ? <BsDash className='ml-auto text-dial-stratos my-auto' />
+          : <BsPlus className='ml-auto text-dial-stratos my-auto' />
+        }
+      </a>
       {showFilter &&
         <Select
           async
