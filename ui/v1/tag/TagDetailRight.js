@@ -49,7 +49,7 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
             {isAdminUser && <DeleteTag tag={tag} />}
           </div>
         )}
-        <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
+        <div className='text-xl font-semibold text-dial-plum pb-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
         <div className='block'>
@@ -60,7 +60,7 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={datasetRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={datasetRef}>
             {format('ui.dataset.header')}
           </div>
           {tag?.datasets.length <= 0 &&
@@ -87,7 +87,7 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={productRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={productRef}>
             {format('ui.product.header')}
           </div>
           {tag?.products.length <= 0 &&
@@ -114,7 +114,7 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={projectRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={projectRef}>
             {format('ui.project.header')}
           </div>
           <div className='flex flex-col gap-y-4'>
@@ -139,7 +139,7 @@ const TagDetailRight = forwardRef(({ tag }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={useCaseRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={useCaseRef}>
             {format('ui.useCase.header')}
           </div>
           {tag?.useCases.length <= 0 &&

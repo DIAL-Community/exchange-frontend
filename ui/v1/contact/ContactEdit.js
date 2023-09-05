@@ -29,7 +29,7 @@ const ContactEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map[contact.slug] = data.contact.name
+    map[contact.slug] = contact.name
 
     return map
   })()

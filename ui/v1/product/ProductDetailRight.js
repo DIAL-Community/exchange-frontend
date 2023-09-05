@@ -235,7 +235,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-meadow py-3' ref={pricingRef}>
+          <div className='text-xl font-semibold text-dial-meadow pb-3' ref={pricingRef}>
             {format('ui.product.pricing.title')}
           </div>
           <div className='text-sm flex flex-row gap-2'>

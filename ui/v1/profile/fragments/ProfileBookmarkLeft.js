@@ -1,9 +1,9 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import Checkbox from '../../shared/form/Checkbox'
-import { BookmarkDisplayContext } from './BookmarkDisplayContext'
+import { ProfileBookmarkContext } from './ProfileBookmarkContext'
 
-const UserBookmarkLeft = () => {
+const ProfileBookmarkLeft = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -12,14 +12,14 @@ const UserBookmarkLeft = () => {
     displayProducts,
     displayBuildingBlocks,
     displayUrls
-  } = useContext(BookmarkDisplayContext)
+  } = useContext(ProfileBookmarkContext)
 
   const {
     setDisplayUseCases,
     setDisplayProducts,
     setDisplayBuildingBlocks,
     setDisplayUrls
-  } = useContext(BookmarkDisplayContext)
+  } = useContext(ProfileBookmarkContext)
 
   const toggleDisplayUseCases = () => {
     setDisplayUseCases(!displayUseCases)
@@ -80,4 +80,4 @@ const UserBookmarkLeft = () => {
   )
 }
 
-export default UserBookmarkLeft
+export default ProfileBookmarkLeft

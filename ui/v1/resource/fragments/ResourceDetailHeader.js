@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { prependUrlWithProtocol } from '../../utils/utilities'
 
 const ResourceDetailHeader = ({ resource }) => {
   const { formatMessage } = useIntl()
@@ -18,25 +17,6 @@ const ResourceDetailHeader = ({ resource }) => {
             alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
             className='object-contain w-16 h-16'
           />
-        </div>
-      </div>
-      <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-sapphire'>
-            {format('ui.resource.link')}
-          </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
-            <a
-              href={prependUrlWithProtocol(resource.link)}
-              target='_blank'
-              rel='noreferrer'
-              className='flex border-b border-dial-iris-blue '>
-              <div className='line-clamp-1'>
-                {resource.link}
-              </div>
-            </a>
-            ⧉
-          </div>
         </div>
       </div>
     </div>
