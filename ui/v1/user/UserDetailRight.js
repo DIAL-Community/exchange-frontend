@@ -86,7 +86,7 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-meadow py-3' ref={organizationRef}>
+          <div className='text-xl font-semibold text-dial-plum py-3' ref={organizationRef}>
             {format('ui.organization.label')}
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
