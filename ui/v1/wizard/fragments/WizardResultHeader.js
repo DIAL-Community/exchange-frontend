@@ -21,8 +21,7 @@ const WizardResultHeader = () => {
         </div>
       </div>
       <div className='text-sm'>
-        Based on the information provided, the following are resources you may
-        use to support your project
+        {format('ui.wizard.result')}
       </div>
       <div className='flex text-sm text-white mt-3 mb-6'>
         <button onClick={returnToParameters}>
