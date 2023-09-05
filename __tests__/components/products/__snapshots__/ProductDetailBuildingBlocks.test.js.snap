@@ -338,13 +338,19 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
     <div
       class="text-sm text-dial-gray-dark pb-2 highlight-link"
     >
-      Note: As part of the 
+      
+    Note: As part of the 
       <a
         href="https://govstack.global"
       >
         GovStack Initiative
       </a>
-      , DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.
+      , DIAL is working
+    to map digital platforms with key Building Block functionalities. Currently, all mappings between
+    products and building blocks are "Beta" and are shown as illustrative examples of how these tools
+    may support building block functionalities. As Building Block specifications are developed,
+    products that are aligned with the specifications will be tagged as such.
+  
     </div>
     <div
       class="grid grid-cols-1"
@@ -669,13 +675,19 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
     <div
       class="text-sm text-dial-gray-dark pb-2 highlight-link"
     >
-      Note: As part of the 
+      
+    Note: As part of the 
       <a
         href="https://govstack.global"
       >
         GovStack Initiative
       </a>
-      , DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.
+      , DIAL is working
+    to map digital platforms with key Building Block functionalities. Currently, all mappings between
+    products and building blocks are "Beta" and are shown as illustrative examples of how these tools
+    may support building block functionalities. As Building Block specifications are developed,
+    products that are aligned with the specifications will be tagged as such.
+  
     </div>
     <div
       class="grid grid-cols-1"

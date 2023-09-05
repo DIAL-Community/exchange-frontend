@@ -53,8 +53,7 @@ const ProjectList = ({ headerRef }) => {
           {format('ui.project.header')}
         </div>
         <div className='text-xs italic'>
-          Here are projects that have been implemented in the same Sector or have
-          similar tags. Click on a project to learn more.
+          {format('ui.wizard.product.description')}
         </div>
       </div>
       <div className='flex flex-col gap-3'>

@@ -103,7 +103,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('use-case-step.no-workflow')}
+        {format('use-case-step.noWorkflow')}
       </div>
     )
 

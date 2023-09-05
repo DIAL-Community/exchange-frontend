@@ -50,9 +50,7 @@ const UseCaseList = ({ headerRef }) => {
           {format('ui.useCase.header')}
         </div>
         <div className='text-xs italic'>
-          The following use case was selected and provides a breakdown of all of the steps that
-          may be required as well as the workflows or business processes that will be needed at
-          each step.
+          {format('ui.wizard.useCase.description')}
         </div>
       </div>
       <div className='flex flex-col gap-3'>

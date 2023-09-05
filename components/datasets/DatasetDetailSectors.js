@@ -84,7 +84,7 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('ui.dataset.no-sector')}
+        {format('ui.dataset.noSector')}
       </div>
     )
 

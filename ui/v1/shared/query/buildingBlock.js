@@ -71,6 +71,7 @@ export const BUILDING_BLOCK_DETAIL_QUERY = gql`
       name
       slug
       imageFile
+      maturity
       category
       specUrl
       buildingBlockDescription {

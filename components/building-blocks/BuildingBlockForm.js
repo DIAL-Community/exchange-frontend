@@ -39,7 +39,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
       const { createBuildingBlock: response } = data
       if (response?.buildingBlock && response?.errors?.length === 0) {
         showToast(
-          format('building-block.submit.success'),
+          format('buildingBlock.submit.success'),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -47,7 +47,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
           () => router.push(`/${router.locale}/building_blocks/${response?.buildingBlock.slug}`)
         )
       } else {
-        showToast(format('building-block.submit.failure'), 'error', 'top-center')
+        showToast(format('buildingBlock.submit.failure'), 'error', 'top-center')
         reset()
       }
     },
@@ -55,7 +55,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
       setMutating(false)
       showToast(
         <div className='flex flex-col'>
-          <span>{format('building-block.submit.failure')}</span>
+          <span>{format('buildingBlock.submit.failure')}</span>
           <span>{error?.message}</span>
         </div>,
         'error',
@@ -146,19 +146,19 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                   <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                     <div className='form-field-wrapper' data-testid='building-block-name'>
                       <label className='form-field-label required-field' htmlFor='name'>
-                        {format('building-block.name')}
+                        {format('buildingBlock.name')}
                       </label>
                       <Input
                         {...register('name', { required: format('validation.required') })}
                         id='name'
-                        placeholder={format('building-block.name')}
+                        placeholder={format('buildingBlock.name')}
                         isInvalid={errors.name}
                       />
                       {errors.name && <ValidationError value={errors.name?.message} />}
                     </div>
                     <div className='form-field-wrapper' data-testid='building-block-maturity'>
                       <label className='form-field-label required-field'>
-                        {format('building-block.maturity')}
+                        {format('buildingBlock.maturity')}
                       </label>
                       <Controller
                         name='maturity'
@@ -168,7 +168,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                             {...field}
                             isSearch
                             options={maturityOptions}
-                            placeholder={format('building-block.maturity')}
+                            placeholder={format('buildingBlock.maturity')}
                             isInvalid={errors.maturity}
                           />
                         )}
@@ -195,21 +195,21 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                     </div>
                     <div className='form-field-wrapper'>
                       <label className='form-field-label'>
-                        {format('building-block.imageFile')}
+                        {format('buildingBlock.imageFile')}
                       </label>
                       <FileUploader {...register('imageFile')} />
                     </div>
                     <div className='form-field-wrapper'>
                       <label className='form-field-label'>
-                        {format('building-block.specUrl')}
+                        {format('buildingBlock.specUrl')}
                       </label>
-                      <Input {...register('specUrl')} placeholder={format('building-block.specUrl')} />
+                      <Input {...register('specUrl')} placeholder={format('buildingBlock.specUrl')} />
                     </div>
                   </div>
                   <div className='w-full lg:w-1/2'>
                     <div className='block flex flex-col gap-y-2' data-testid='building-block-description'>
                       <label className='form-field-label required-field'>
-                        {format('building-block.description')}
+                        {format('buildingBlock.description')}
                       </label>
                       <Controller
                         name='description'
@@ -219,7 +219,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                             editorId='description-editor'
                             onChange={onChange}
                             initialContent={value}
-                            placeholder={format('building-block.description')}
+                            placeholder={format('buildingBlock.description')}
                             isInvalid={errors.description}
                           />
                         )}

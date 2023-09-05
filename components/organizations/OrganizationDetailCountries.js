@@ -87,7 +87,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('organization.no-country')}
+        {format('organization.noCountry')}
       </div>
     )
 

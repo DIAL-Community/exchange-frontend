@@ -33,7 +33,7 @@ const DeleteUseCase = ({ useCase }) => {
       if (response?.useCase && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
         showToast(
-          format('toast.use-case.delete.success'),
+          format('toast.useCase.delete.success'),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
@@ -42,13 +42,13 @@ const DeleteUseCase = ({ useCase }) => {
         )
       } else {
         setDisplayConfirmDialog(false)
-        showToast(format('toast.use-case.delete.failure'), 'error', 'top-center')
+        showToast(format('toast.useCase.delete.failure'), 'error', 'top-center')
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showToast(format('toast.use-case.delete.failure'), 'error', 'top-center')
+      showToast(format('toast.useCase.delete.failure'), 'error', 'top-center')
       reset()
     }
   })
@@ -75,7 +75,7 @@ const DeleteUseCase = ({ useCase }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: useCase.name })}
-        message={format('use-case.delete.confirm.message')}
+        message={format('useCase.delete.confirm.message')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

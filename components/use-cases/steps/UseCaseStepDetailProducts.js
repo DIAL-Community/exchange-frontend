@@ -101,7 +101,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('use-case-step.no-product')}
+        {format('use-case-step.noProduct')}
       </div>
     )
 

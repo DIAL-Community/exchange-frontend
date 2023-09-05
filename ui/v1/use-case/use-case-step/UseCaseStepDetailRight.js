@@ -79,6 +79,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailBuildingBlocks
+            useCase={useCase}
             useCaseStep={useCaseStep}
             canEdit={canEdit}
             headerRef={buildingBlockRef}
