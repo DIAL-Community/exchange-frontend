@@ -60,7 +60,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={datasetRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={datasetRef}>
             {format('ui.dataset.header')}
           </div>
           {sector?.datasets.length <= 0 &&
@@ -87,7 +87,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={organizationRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={organizationRef}>
             {format('ui.organization.header')}
           </div>
           {sector?.organizations.length <= 0 &&
@@ -114,7 +114,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={productRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={productRef}>
             {format('ui.product.header')}
           </div>
           {sector?.products.length <= 0 &&
@@ -141,7 +141,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={projectRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={projectRef}>
             {format('ui.project.header')}
           </div>
           <div className='flex flex-col gap-y-4'>

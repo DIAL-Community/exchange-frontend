@@ -61,7 +61,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='flex flex-row py-3' ref={stepRef}>
+          <div className='flex flex-row pb-3' ref={stepRef}>
             <div className='text-xl font-semibold text-dial-blueberry '>
               {format('ui.useCase.detail.steps')}
             </div>
@@ -113,7 +113,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={workflowRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={workflowRef}>
             {format('ui.workflow.header')}
           </div>
           {useCase?.workflows.length <= 0 &&
@@ -144,7 +144,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry py-3' ref={buildingBlockRef}>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={buildingBlockRef}>
             {format('ui.buildingBlock.header')}
           </div>
           {useCase?.buildingBlocks.length <= 0 &&

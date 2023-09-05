@@ -52,7 +52,7 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-stratos py-3'>
+          <div className='text-xl font-semibold text-dial-stratos pb-3'>
             {format('user.roles')}
           </div>
           <div className='line-clamp-4 text-dial-stratos text-sm'>
@@ -61,7 +61,7 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-meadow py-3' ref={productRef}>
+          <div className='text-xl font-semibold text-dial-meadow pb-3' ref={productRef}>
             {format('ui.product.header')}
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
@@ -86,7 +86,7 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-plum py-3' ref={organizationRef}>
+          <div className='text-xl font-semibold text-dial-plum pb-3' ref={organizationRef}>
             {format('ui.organization.label')}
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
