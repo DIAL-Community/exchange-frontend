@@ -18,7 +18,7 @@ export const UrlInput = React.forwardRef(
       )}
     >
       {value && (
-        <span className='select-none text-dial-gray px-2'>
+        <span className='select-none text-dial-gray'>
           {URL_PREFIX}
         </span>
       )}
