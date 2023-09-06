@@ -43,15 +43,15 @@ const MaturityCategory = ({ category }) => {
     <AccordionItem>
       <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
         <AccordionItemButton>
-          <div className='h5 my-auto'>{category.name}</div>
-          <div className='h5 ml-auto my-auto'>
+          <div className='inline text-xs uppercase font-semibold'>{category.name}</div>
+          <div className='inline text-xs uppercase float-right mt-2'>
             {`
               ${format('product.maturity.categoryScore')}:
               ${Math.round((category.overallScore / category.maximumScore) * MAX_MATURITY_SCORE)} /
               ${MAX_MATURITY_SCORE}
             `}
           </div>
-          <div className='text-xs pl-4 pt-3'>
+          <div className='text-xs text-justify'>
             {category.description && parse(category.description)}
           </div>
         </AccordionItemButton>
@@ -67,8 +67,8 @@ const MaturityCategory = ({ category }) => {
               <AccordionItem>
                 <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
                   <AccordionItemButton>
-                    <div className='h5 inline'>{indicator.name}</div>
-                    <div className='h5 float-right inline'>
+                    <div className='inline text-xs uppercase font-semibold'>{indicator.name}</div>
+                    <div className='inline text-xs uppercase float-right mt-2'>
                       {`
                         ${format('product.maturity.indicatorScore')}:
                         ${isNaN(indicatorScore) ? 'N/A' : scoreText}
