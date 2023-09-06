@@ -26,7 +26,8 @@ const ContactDetailHeader = ({ contact }) => {
           target='_blank'
           rel='noreferrer'
         >
-          {contact.email}&nbsp;⧉
+          {contact.email}
+          &nbsp;⧉
         </a>
       </div>
     </div>
