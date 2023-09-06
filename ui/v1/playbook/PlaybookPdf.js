@@ -6,6 +6,7 @@ import { gql, useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
 import { Error, Loading, NotFound, ReadyToDownload } from '../shared/FetchStatus'
+import { prependUrlWithProtocol } from '../utils/utilities'
 
 const PLAYBOOK_DETAIL_QUERY = gql`
   query Playbook($slug: String!) {
@@ -116,7 +117,7 @@ const MoveContent = ({ move, format }) => {
               <div className='flex flex-wrap gap-3'>
                 {move?.resources.map(resource => {
                   return (
-                    <a key={resource.i} target='_blank' rel='noreferrer' href={resource.url}>
+                    <a key={resource.i} target='_blank' rel='noreferrer' href={prependUrlWithProtocol(resource.url)}>
                       <div
                         key={resource.i}
                         className='group border-2 border-gray-300 hover:border-dial-sunshine shadow-md'
