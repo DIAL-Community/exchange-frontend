@@ -130,28 +130,6 @@ export const WIZARD_PROJECTS_QUERY = gql`
   }
 `
 
-export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeDataset(
-    $search: String
-    $sectors: [String!]
-    $sdgs: [String!]
-    $tags: [String!]
-    $origins: [String!]
-    $datasetTypes: [String!]
-  ) {
-    paginationAttributeDataset(
-      search: $search
-      sectors: $sectors
-      sdgs: $sdgs
-      tags: $tags
-      origins: $origins
-      datasetTypes: $datasetTypes
-    ) {
-      totalCount
-    }
-  }
-`
-
 export const WIZARD_DATASETS_QUERY = gql`
   query WizardDatasetsRedux(
     $sdgs: [String!]
@@ -177,6 +155,26 @@ export const WIZARD_DATASETS_QUERY = gql`
       sectors: $sectors
     ) {
       totalCount
+    }
+  }
+`
+
+export const WIZARD_EXTENDED_DATA_QUERY = gql`
+  query WizardExtendedData {
+    wizard {
+      digitalPrinciples {
+        phase
+        name
+        slug
+        url
+      }
+      resources {
+        phase
+        name
+        imageUrl
+        link
+        description
+      }
     }
   }
 `

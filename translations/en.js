@@ -487,7 +487,7 @@ export const en = {
   'wizard.results.aggregators': 'Mobile Network Aggregators',
   'wizard.results.aggregatorsDesc': 'If your project requires mobile network services, these Aggregators may help you set up mobile solutions quickly.',
   'wizard.results.phases': 'Other Project Phases',
-  'wizard.results.phasesDesc': 'Additional information and resources are available to support your project in the Planning, Implementation and Monitoring phases. To view this information:',
+  'wizard.results.phasesDesc': 'Additional information and resources are available to support your project in the Planning, Implementation and Monitoring phases.',
   'wizard.ideation': 'Ideation',
   'wizard.ideationDesc': 'Exploring possible solutions to address a specific use case',
   'wizard.planning': 'Planning',
