@@ -32,6 +32,7 @@ build_react:
   stage: build
   script:
     - yarn install
+    - yarn lint
     - yarn build
 
 test:
