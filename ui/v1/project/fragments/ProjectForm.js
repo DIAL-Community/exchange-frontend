@@ -150,7 +150,7 @@ const ProjectForm = React.memo(({ project }) => {
                 name='projectUrl'
                 control={control}
                 render={({ field: { value, onChange } }) => (
-                  <UrlInput value={value} onChange={onChange} id='projectUrl' placeholder={format('project.projectUrl')} />
+                  <UrlInput value={value} onChange={onChange} id='projectUrl' placeholder={format('project.url')} />
                 )}
               />
             </div>

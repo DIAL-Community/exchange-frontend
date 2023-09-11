@@ -44,7 +44,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit &&
+        {(isAdminUser || isEditorUser) &&
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
             {isAdminUser && <DeleteUseCase useCase={useCase} />}
@@ -147,7 +147,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={buildingBlockRef}>
             {format('ui.buildingBlock.header')}
           </div>
-          {useCase?.buildingBlocks.length <= 0 &&
+          {useCase?.buildingBlocks?.length <= 0 &&
             <div className='text-sm text-dial-stratos'>
               {format('ui.common.detail.noData', {
                 entity: format('ui.buildingBlock.label'),
@@ -155,7 +155,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
               })}
             </div>
           }
-          {useCase?.buildingBlocks.length > 0 &&
+          {useCase?.buildingBlocks?.length > 0 &&
             <UseCaseBuildingBlockRenderer useCaseBuildingBlocks={useCase.buildingBlocks} />
           }
         </div>

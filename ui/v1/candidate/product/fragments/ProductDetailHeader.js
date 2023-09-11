@@ -23,7 +23,7 @@ const ProductDetailHeader = ({ product }) => {
           <div className='font-semibold text-dial-sapphire'>
             {format('product.website')}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
+          <div className='flex text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(product.website)}
               target='_blank'
@@ -33,7 +33,7 @@ const ProductDetailHeader = ({ product }) => {
                 {product.website}
               </div>
             </a>
-            ⧉
+            &nbsp;⧉
           </div>
         </div>
       </div>

@@ -55,7 +55,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
           <div className='text-xl font-semibold text-dial-plum pb-3'>
             {format('ui.resource.link')}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
+          <div className='flex text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(resource.link)}
               target='_blank'
@@ -65,7 +65,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
                 {resource.link}
               </div>
             </a>
-            ⧉
+            &nbsp;⧉
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />

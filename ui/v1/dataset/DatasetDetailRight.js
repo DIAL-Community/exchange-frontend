@@ -5,11 +5,12 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
+import { prependUrlWithProtocol } from '../utils/utilities'
 import DeleteDataset from './DeleteDataset'
 import DatasetDetailTags from './fragments/DatasetDetailTags'
-import DatasetDetailOrganizations from './fragments/DatasetDetailOrganizations'
 import DatasetDetailSdgs from './fragments/DatasetDetailSdgs'
 import DatasetDetailCountries from './fragments/DatasetDetailCountries'
+import DatasetDetailOrganizations from './fragments/DatasetDetailOrganizations'
 
 const DatasetSource = ({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -17,7 +18,7 @@ const DatasetSource = ({ dataset }) => {
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <div className='text-lg font-semibold text-dial-plum'>
+      <div className='text-xl font-semibold text-dial-plum'>
         {format('ui.dataset.source')}
       </div>
       <div className='flex flex-col gap-3 mt-3'>
@@ -92,6 +93,24 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
             editorId='dataset-description'
           />
         </div>
+        {dataset.visualizationUrl &&
+          <>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+            <div className='flex flex-col gap-y-3'>
+              <div className='font-semibold text-dial-plum'>
+                {format('ui.dataset.visualizationUrl')}
+              </div>
+              <div className='my-auto text-sm flex'>
+                <a href={prependUrlWithProtocol(dataset.visualizationUrl)} target='_blank' rel='noreferrer'>
+                  <div className='border-b border-dial-iris-blue line-clamp-1'>
+                    {dataset.visualizationUrl}
+                  </div>
+                </a>
+                &nbsp;⧉
+              </div>
+            </div>
+          </>
+        }
         <hr className='border-b border-dial-blue-chalk my-3' />
         <DatasetSource dataset={dataset} />
         <hr className='border-b border-dial-blue-chalk my-3' />

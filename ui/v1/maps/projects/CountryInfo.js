@@ -2,13 +2,11 @@ import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 
-const CountryInfo = (props) => {
-  const { country } = props
-  const router = useRouter()
-
+const CountryInfo = ({ country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const router = useRouter()
   const [active, setActive] = useState(country?.projects[0].slug)
 
   // Just return empty fragment when there's no country selected.

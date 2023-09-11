@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
+import classNames from 'classnames'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 
-const EndorserInfo = (props) => {
-  const { city, setOrganization } = props
-
+const EndorserInfo = ({ city, setOrganization }) => {
   const router = useRouter()
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -29,73 +28,62 @@ const EndorserInfo = (props) => {
   }
 
   return (
-    <div className='absolute left-4 md:left-auto right-4' style={{ zIndex: 19, minWidth: '20ch' }}>
-      <div className='block mt-2 shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-w-prose'>
-        <div className='text-sm text-dial-cyan font-semibold border-b px-4 py-2'>
+    <div className='absolute left-4 md:left-auto right-4' style={{ zIndex: 19, minWidth: '32ch' }}>
+      <div className='bg-white max-w-prose'>
+        <div className='text-sm text-dial-plum font-semibold border-b px-4 py-2'>
           {`${city.organizations.length} ${format('ui.organization.header')}`}
         </div>
-        {
-          city && city.organizations.map(organization => {
-            return (
-              <div key={`${city.name}-${organization.name}`} className='hover:bg-gray-100 hover:text-gray-900'>
-                <div className='mx-4 py-2 border-b last:border-0'>
-                  <a
-                    href={`expand-${organization.slug}`}
-                    onClick={(e) => toggleExpand(e, organization)}
-                    className={`
-                      ${active === organization.slug ? 'font-semibold' : ''}
-                      text-sm text-gray-700 cursor-pointer block
-                    `}
-                  >
+        {city && city.organizations.map((organization, index) => {
+          return (
+            <div key={index} className={`text-sm ${index % 2 === 1 && 'bg-dial-violet'}`}>
+              <div className='flex flex-col border-b last:border-0'>
+                <a
+                  href={`expand-${organization.slug}`}
+                  onClick={(e) => toggleExpand(e, organization)}
+                  className={classNames(
+                    active === organization.slug ? 'font-semibold' : '',
+                    'cursor-pointer'
+                  )}
+                >
+                  <div className='px-4 py-2'>
                     {organization.name}
-                  </a>
-                  {
-                    active === organization.slug &&
-                      <>
-                        <div className='flex flex-col'>
-                          <div className='flex flex-row'>
-                            {
-                              organization.website &&
-                                <div className='text-xs flex-grow text-dial-blue my-2'>
-                                  <a href={prependUrlWithProtocol(organization.website)} target='_blank' rel='noreferrer'>
-                                    {organization.website} ⧉
-                                  </a>
-                                </div>
-                            }
-                            {
-                              organization.whenEndorsed &&
-                                <div className='flex flex-row p-1.5 text-xs font-semibold justify-end text-dial-cyan'>
-                                  <img
-                                    alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
-                                    className='mr-2 h-6' src='/icons/digiprins/digiprins.png'
-                                  />
-                                  <div className='my-auto'>
-                                    {`
-                                      ${format('endorsement.year.text')}
-                                      ${organization.whenEndorsed.substring(0, 4)}
-                                    `.toUpperCase()}
-                                  </div>
-                                </div>
-                            }
-                          </div>
-                          <a
-                            href={organization.slug}
-                            onClick={(e) => openDetailPage(e, organization.slug)}
-                            className={`
-                              py-1.5 text-center text-xs text-dial-blue
-                              bg-dial-blue-light bg-opacity-20 cursor-pointer
-                            `}
-                          >
-                            {format('map.endorsers.viewOrganization')} &gt;&gt;
-                          </a>
+                  </div>
+                </a>
+                {active === organization.slug &&
+                  <div className='flex flex-col text-xs'>
+                    {organization.website &&
+                      <a href={prependUrlWithProtocol(organization.website)} target='_blank' rel='noreferrer'>
+                        <div className='px-4 py-2 text-dial-iris-blue'>
+                          {organization.website}
+                          &nbsp;⧉
                         </div>
-                      </>
-                  }
-                </div>
+                      </a>
+                    }
+                    {organization.whenEndorsed &&
+                      <div className='flex flex-row gap-x-1 px-4'>
+                        <img
+                          className='w-6 h-6'
+                          alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
+                          src='/icons/digiprins/digiprins.png'
+                        />
+                        <div className='my-auto italic'>
+                          {`${format('endorsement.year.text')} ${organization.whenEndorsed.substring(0, 4)}`}
+                        </div>
+                      </div>
+                    }
+                    <a
+                      href={organization.slug}
+                      onClick={(e) => openDetailPage(e, organization.slug)}
+                      className='py-2 px-4 text-center text-dial-iris-blue'
+                    >
+                      {format('map.endorsers.viewOrganization')} &gt;&gt;
+                    </a>
+                  </div>
+                }
               </div>
-            )
-          })
-        }
+            </div>
+          )
+        })}
       </div>
     </div>
   )

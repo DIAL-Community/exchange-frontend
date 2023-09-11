@@ -10,6 +10,7 @@ import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import Select from '../../shared/form/Select'
 import FileUploader from '../../shared/form/FileUploader'
+import UrlInput from '../../shared/form/UrlInput'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_BUILDING_BLOCK } from '../../shared/mutation/buildingBlock'
 import { generateCategoryOptions, generateMaturityOptions } from '../../shared/form/options'
@@ -182,7 +183,18 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
             </div>
             <div className='form-field-wrapper'>
               <label>{format('buildingBlock.specUrl')}</label>
-              <Input {...register('specUrl')} placeholder={format('buildingBlock.specUrl')} />
+              <Controller
+                name='specUrl'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <UrlInput
+                    value={value}
+                    onChange={onChange}
+                    placeholder={format('buildingBlock.specUrl')}
+                    id='specUrl'
+                  />
+                )}
+              />
             </div>
             <div className='block flex flex-col gap-y-2'>
               <label className='required-field'>{format('buildingBlock.description')}</label>

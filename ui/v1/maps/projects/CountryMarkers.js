@@ -3,11 +3,9 @@ import 'leaflet/dist/leaflet.css'
 import { createRef, useState } from 'react'
 import { createCountryMarkerIcon } from './CountryMarker'
 
-const CountryMarkers = (props) => {
-  const [zooming, setZooming] = useState(false)
-  const { countries, setSelectedCountry } = props
-
+const CountryMarkers = ({ countries, setSelectedCountry }) => {
   const map = useMap()
+  const [zooming, setZooming] = useState(false)
 
   const countryMarkerGroup = createRef()
 

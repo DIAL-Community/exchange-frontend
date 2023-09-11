@@ -124,8 +124,8 @@ const OrganizationOwner = ({ organization }) => {
     }
   }
 
-  const ownerInformation = 'https://docs.dial.community/projects/organization-registry/' +
-    `${locale}/latest/organization_owner.html`
+  const ownerInformation = '//docs.dial.community/projects/product-registry/' +
+    `${locale}/latest/org_owner.html`
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -133,7 +133,8 @@ const OrganizationOwner = ({ organization }) => {
       <div className='flex flex-col gap-3 text-xs text-dial-stratos'>
         <a href={ownerInformation} target='_blank' rel='noreferrer' className='flex'>
           <div className='border-b border-dial-iris-blue'>
-            {format('organization.ownerLink')} ⧉
+            {format('organization.ownerLink')}
+            &nbsp;⧉
           </div>
         </a>
         {showApplyLink && (
