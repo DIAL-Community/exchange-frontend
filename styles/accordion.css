@@ -1,3 +1,8 @@
+/**
+* ----------------------------------------------
+* Demo styles
+* ----------------------------------------------
+**/
 .accordion {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 2px;
@@ -8,9 +13,11 @@
 }
 
 .accordion__button {
-  display: flex;
-  padding: 1.5rem;
   cursor: pointer;
+  padding-top: 0.25rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 0.75rem;
   width: 100%;
   text-align: left;
   border: none;
@@ -22,7 +29,6 @@
   height: 0.5rem;
   width: 0.5rem;
   margin-right: 0.75rem;
-  margin-top: 0.25rem;
   border-bottom: 2px solid currentColor;
   border-right: 2px solid currentColor;
   transform: rotate(-45deg);
@@ -38,9 +44,10 @@
 }
 
 .accordion__panel {
-  padding-top: 0.6rem;
-  padding-left: 1rem;
-  padding-bottom: 0.6rem;
+  padding-top: 0.75rem;
+  padding-right: 0rem;
+  padding-bottom: 0.75rem;
+  padding-left: 0.75rem;
   animation: fadein 0.35s ease-in;
 }
 

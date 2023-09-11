@@ -808,8 +808,9 @@ export const en = {
   'ui.move.deleteResource': 'Delete Resource',
   'ui.move.assignedResources': 'Resources currently assigned. You can add or delete resources',
 
-  'ui.rubricCategory.header': 'Rubric Categories',
   'ui.rubricCategory.label': 'Rubric Category',
+  'ui.rubricCategory.header': 'Rubric Categories',
+  'ui.rubricCategory.createNew': 'Create a new Rubric Category',
   'ui.rubricCategory.weight': 'Weight',
   'ui.rubricCategory.delete.confirm.message': 'Are you sure you want to delete this Rubric Category?',
   'ui.rubricCategory.no-indicator': 'We do not have any Indicator information for this Rubric Category.',
