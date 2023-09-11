@@ -41,7 +41,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
           <div className='font-semibold text-dial-sapphire'>
             {format('ui.opportunity.webAddress')}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
+          <div className='flex text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(opportunity.webAddress)}
               target='_blank'
@@ -51,7 +51,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
                 {opportunity.webAddress}
               </div>
             </a>
-            ⧉
+            &nbsp;⧉
           </div>
         </div>
         <OpportunityDetailSectors opportunity={opportunity} canEdit={canEdit} />

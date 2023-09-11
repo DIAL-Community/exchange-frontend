@@ -54,14 +54,15 @@ const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
             <hr className='border-b border-dial-blue-chalk my-3' />
             <div className='flex flex-col gap-y-3'>
               <div className='font-semibold text-dial-meadow'>
-                {format('ui.dataset.visualizationUrl')}
+                {format('product.repository')}
               </div>
               <div className='my-auto text-sm flex'>
                 <a href={prependUrlWithProtocol(product.repository)} target='_blank' rel='noreferrer'>
                   <div className='border-b border-dial-iris-blue line-clamp-1'>
-                    {product.repository} ⧉
+                    {product.repository}
                   </div>
                 </a>
+                &nbsp;⧉
               </div>
             </div>
           </>

@@ -37,6 +37,7 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       name
       slug
       website
+      repository
       description
       submitterEmail
       createdAt

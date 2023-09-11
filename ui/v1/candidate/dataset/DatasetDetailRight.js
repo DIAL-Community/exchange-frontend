@@ -64,9 +64,10 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
               <div className='my-auto text-sm flex'>
                 <a href={prependUrlWithProtocol(dataset.visualizationUrl)} target='_blank' rel='noreferrer'>
                   <div className='border-b border-dial-iris-blue line-clamp-1'>
-                    {dataset.visualizationUrl} ⧉
+                    {dataset.visualizationUrl}
                   </div>
                 </a>
+                &nbsp;⧉
               </div>
             </div>
           </>

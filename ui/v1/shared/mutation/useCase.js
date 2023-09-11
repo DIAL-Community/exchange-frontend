@@ -24,6 +24,14 @@ export const CREATE_USE_CASE = gql`
         slug
         name
         maturity
+        buildingBlocks {
+          id
+          name
+          slug
+          maturity
+          category
+          imageFile
+        }
       }
       errors
     }

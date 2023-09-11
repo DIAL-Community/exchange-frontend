@@ -1,8 +1,9 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useUser } from '../../../../lib/hooks'
-import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import EditButton from '../../shared/form/EditButton'
+import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { prependUrlWithProtocol } from '../../utils/utilities'
 import ProductRepositoryStats from './fragments/ProductRepositoryStats'
 
 const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) => {
@@ -45,9 +46,9 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
         <div className='text-lg font-semibold text-dial-blueberry py-3'>
           {format('productRepository.absoluteUrl')}
         </div>
-        <div className='flex gap-x-2 pb-3 text-dial-stratos text-sm'>
+        <div className='flex pb-3 text-dial-stratos text-sm'>
           <a
-            href={productRepository.absoluteUrl}
+            href={prependUrlWithProtocol(productRepository.absoluteUrl)}
             target='_blank'
             rel='noreferrer'
             className='flex border-b border-dial-iris-blue '>
@@ -55,7 +56,7 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
               {productRepository.absoluteUrl}
             </div>
           </a>
-          ⧉
+          &nbsp;⧉
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         { productRepository.languageData.data && productRepository.statisticalData.data &&

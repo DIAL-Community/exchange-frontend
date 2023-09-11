@@ -235,7 +235,7 @@ const ProductForm = React.memo(({ product }) => {
               />
               {errors.description && <ValidationError value={errors.description?.message} />}
             </div>
-            <hr className='my-3' />
+            <hr className='border-b border-dashed border-dial-slate-300' />
             <div className='text-2xl font-semibold pb-4'>
               {format('product.pricingInformation')}
             </div>

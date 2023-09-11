@@ -41,7 +41,7 @@ const OrganizationDetailHeader = ({ organization }) => {
           <div className='font-semibold text-dial-sapphire'>
             {format('organization.website')}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
+          <div className='flex text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(organization.website)}
               target='_blank'
@@ -51,21 +51,23 @@ const OrganizationDetailHeader = ({ organization }) => {
                 {organization.website}
               </div>
             </a>
-            ⧉
+            &nbsp;⧉
           </div>
         </div>
         <OrganizationDetailSectors organization={organization} canEdit={canEdit} />
-        <hr className='border-b border-dial-slate-200'/>
         {organization.whenEndorsed &&
-          <div className='flex flex-col gap-y-2 text-xs grow shrink-0'>
-            <div className='text-sm italic'>
-              {format('organization.isEndorser')}
+          <>
+            <hr className='border-b border-dial-slate-200'/>
+            <div className='flex flex-col gap-y-2 text-xs grow shrink-0'>
+              <div className='text-sm italic'>
+                {format('organization.isEndorser')}
+              </div>
+              <div className='flex gap-x-1 italic text-dial-stratos'>
+                <span>{format('ui.organization.endorsedIn')}:</span>
+                <FormattedDate value={organization.whenEndorsed} />
+              </div>
             </div>
-            <div className='flex gap-x-1 italic text-dial-stratos'>
-              <span>{format('ui.organization.endorsedIn')}:</span>
-              <FormattedDate value={organization.whenEndorsed} />
-            </div>
-          </div>
+          </>
         }
       </div>
     </div>

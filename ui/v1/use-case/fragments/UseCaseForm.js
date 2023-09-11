@@ -17,6 +17,7 @@ import { generateMaturityOptions } from '../../shared/form/options'
 import { PAGINATED_USE_CASES_QUERY, USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/useCase'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import UrlInput from '../../shared/form/UrlInput'
 
 const UseCaseForm = React.memo(({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -51,16 +52,13 @@ const UseCaseForm = React.memo(({ useCase }) => {
   const maturityOptions = useMemo(() => generateMaturityOptions(format), [format])
 
   const [updateUseCase, { reset }] = useMutation(CREATE_USE_CASE, {
-    refetchQueries: [
-      {
-        query: USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
-        variables: { search: '' }
-      },
-      {
-        query: PAGINATED_USE_CASES_QUERY,
-        variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
-      }
-    ],
+    refetchQueries: [{
+      query: USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' }
+    }, {
+      query: PAGINATED_USE_CASES_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+    }],
     onCompleted: (data) => {
       const { createUseCase: response } = data
       if (response?.useCase && response?.errors?.length === 0) {
@@ -218,7 +216,19 @@ const UseCaseForm = React.memo(({ useCase }) => {
               <label className='text-dial-sapphire' htmlFor='markdown-url'>
                 {format('useCase.markdownUrl')}
               </label>
-              <Input {...register('markdownUrl')} id='markdown-url' placeholder={format('useCase.markdownUrl')} />
+              <Controller
+                id='markdownUrl'
+                name='markdownUrl'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <UrlInput
+                    id='markdown-url'
+                    onChange={onChange}
+                    placeholder={format('useCase.markdownUrl')}
+                    value={value}
+                  />
+                )}
+              />
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='text-dial-sapphire' htmlFor='image-uploader'>

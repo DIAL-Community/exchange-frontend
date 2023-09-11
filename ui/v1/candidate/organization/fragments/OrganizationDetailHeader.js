@@ -25,7 +25,7 @@ const OrganizationDetailHeader = ({ organization }) => {
           <div className='font-semibold text-dial-sapphire'>
             {format('organization.website')}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
+          <div className='flex text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(organization.website)}
               target='_blank'
@@ -35,7 +35,7 @@ const OrganizationDetailHeader = ({ organization }) => {
                 {organization.website}
               </div>
             </a>
-            ⧉
+            &nbsp;⧉
           </div>
         </div>
       </div>
