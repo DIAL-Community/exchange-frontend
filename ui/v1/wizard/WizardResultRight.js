@@ -5,6 +5,7 @@ import ProductList from './results/ProductList'
 import BuildingBlockList from './results/BuildingBlockList'
 import ProjectList from './results/ProjectList'
 import DatasetList from './results/DatasetList'
+import WizardExtendedData from './fragments/WizardExtendedData'
 
 const WizardResultRight = forwardRef((_props, ref) => {
   const { formatMessage } = useIntl()
@@ -41,6 +42,7 @@ const WizardResultRight = forwardRef((_props, ref) => {
         <BuildingBlockList headerRef={buildingBlockRef} />
         <ProjectList headerRef={projectRef} />
         <DatasetList headerRef={datasetRef} />
+        <WizardExtendedData />
         <div className='mx-auto text-sm'>
           <a href='#' onClick={scrollToTop} className='border-b border-dial-iris-blue'>
             {format('ui.common.scrollToTop')}
