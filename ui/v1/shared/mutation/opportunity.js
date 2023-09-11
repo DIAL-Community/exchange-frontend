@@ -15,17 +15,52 @@ export const DELETE_OPPORTUNITY = gql`
 
 export const CREATE_OPPORTUNITY = gql`
   mutation CreateOpportunity(
-    $name: String!
     $slug: String!
+    $name: String!
+    $imageFile: Upload
+    $webAddress: String!
+    $description: String!
+    $contactName: String!
+    $contactEmail: String!
+    $openingDate: ISO8601Date
+    $closingDate: ISO8601Date!
+    $opportunityType: String!
+    $opportunityStatus: String!
+    $opportunityOrigin: String!
   ) {
     createOpportunity(
-      name: $name
       slug: $slug
+      name: $name
+      imageFile: $imageFile
+      webAddress: $webAddress
+      description: $description
+      contactName: $contactName
+      contactEmail: $contactEmail
+      openingDate: $openingDate
+      closingDate: $closingDate
+      opportunityType: $opportunityType
+      opportunityStatus: $opportunityStatus
+      opportunityOrigin: $opportunityOrigin
     ) {
       opportunity {
         id
-        name
         slug
+        name
+        tags
+        imageFile
+        webAddress
+        description
+        opportunityStatus
+        opportunityType
+        closingDate
+        openingDate
+        contactName
+        contactEmail
+        origin {
+          id
+          name
+          slug
+        }
       }
       errors
     }

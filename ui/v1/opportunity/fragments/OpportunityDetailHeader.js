@@ -58,28 +58,36 @@ const OpportunityDetailHeader = ({ opportunity }) => {
         <div className='flex flex-row gap-x-3'>
           <div className='flex flex-col gap-y-3 w-full'>
             <div className='font-semibold text-dial-sapphire'>
-              {format('ui.opportunity.opportunityType')}
-            </div>
-            <div className='flex flex-col gap-y-2 text-dial-stratos'>
-              {opportunity.opportunityType ?? format('general.unknown')}
-            </div>
-          </div>
-          <div className='flex flex-col gap-y-3 w-full'>
-            <div className='font-semibold text-dial-sapphire'>
               {format('ui.opportunity.opportunityStatus')}
             </div>
             <div className='flex flex-col gap-y-2 text-dial-stratos'>
               {opportunity.opportunityStatus ?? format('general.unknown')}
             </div>
           </div>
+          <div className='flex flex-col gap-y-3 w-full'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('ui.opportunity.closingDate')}
+            </div>
+            <div className='flex flex-col gap-y-2 text-dial-stratos'>
+              {!opportunity.closingDate && format('general.na')}
+              {opportunity.closingDate && <FormattedDate value={opportunity.closingDate} />}
+            </div>
+          </div>
         </div>
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-sapphire'>
-            {format('ui.opportunity.closingDate')}
+            {format('ui.opportunity.opportunityType')}
           </div>
           <div className='flex flex-col gap-y-2 text-dial-stratos'>
-            {!opportunity.closingDate && format('general.na')}
-            {opportunity.closingDate && <FormattedDate value={opportunity.closingDate} />}
+            {opportunity.opportunityType ?? format('general.unknown')}
+          </div>
+        </div>
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-sapphire'>
+            {format('ui.opportunity.origin')}
+          </div>
+          <div className='flex flex-col gap-y-2 text-dial-stratos'>
+            {opportunity.origin.name}
           </div>
         </div>
       </div>
