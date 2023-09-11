@@ -1715,6 +1715,7 @@ export const en = {
   'ui.opportunity.webAddress': 'Web Address',
   'ui.opportunity.leverist.webAddress': 'More information (at Leverist)',
   'ui.opportunity.imageFile': 'Logo',
+  'ui.opportunity.origin': 'Origin',
   'ui.opportunity.openingDate': 'Opening Date',
   'ui.opportunity.contact': 'Contact Information',
   'ui.opportunity.contactName': 'Full Name',
