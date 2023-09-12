@@ -1906,6 +1906,9 @@ export const en = {
   'ui.sdg.header': 'SDGs',
   'ui.sdg.longLabel': 'Sustainable Development Goal',
   'ui.sdg.longHeader': 'Sustainable Development Goals',
+  'ui.sdg.whatIs': 'What is a Sustainable Development Goal',
+  'sdg.hint.title': 'Sustainable Development Goal',
+
 
   'ui.sdgTarget.label': 'SDG Target',
   'ui.sdgTarget.header': 'SDG Targets',
