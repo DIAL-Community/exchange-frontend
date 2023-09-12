@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { ProductFilterContext } from '../../../components/context/ProductFilterContext'
 import TabNav from '../shared/TabNav'
@@ -6,6 +7,7 @@ import { useUser } from '../../../lib/hooks'
 
 const ProductTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
+  const router = useRouter()
 
   const [tabNames, setTabNames] = useState([
     'ui.product.header',
@@ -33,9 +35,14 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
     asyncExport(ExportType.EXPORT_AS_JSON, 'products', exportParameters, user.userEmail)
   }
 
+  const createCandidateFn = () => {
+    router.push('/candidate/products/create')
+  }
+
   return (
     <TabNav
       { ...{ tabNames, activeTab, setActiveTab }}
+      createFn={createCandidateFn}
       exportCsvFn={exportCsvFn}
       exportJsonFn={exportJsonFn}
     />
