@@ -8,10 +8,11 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
 import Input from '../../../shared/form/Input'
+import UrlInput from '../../../shared/form/UrlInput'
+import Checkbox from '../../../shared/form/Checkbox'
 import ValidationError from '../../../shared/form/ValidationError'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../shared/mutation/candidateOrganization'
-import UrlInput from '../../../shared/form/UrlInput'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import {
@@ -84,6 +85,7 @@ const OrganizationForm = React.memo(({ organization }) => {
       organizationName: organization?.name ?? '',
       website: organization?.website ?? '',
       description: organization?.description ?? '',
+      createStorefront: organization?.createStorefront ?? false,
       name: submitter?.name ?? '',
       email: submitter?.email ?? '',
       title: submitter?.title ?? ''
@@ -100,6 +102,7 @@ const OrganizationForm = React.memo(({ organization }) => {
         website,
         description,
         organizationName,
+        createStorefront,
         name,
         email,
         title
@@ -107,9 +110,10 @@ const OrganizationForm = React.memo(({ organization }) => {
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         slug,
-        organizationName,
         website,
         description,
+        organizationName,
+        createStorefront,
         name,
         email,
         title,
@@ -202,6 +206,10 @@ const OrganizationForm = React.memo(({ organization }) => {
               />
               {errors.description && <ValidationError value={errors.description?.message} />}
             </div>
+            <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+              <Checkbox {...register('createStorefront')} />
+              {format('ui.candidateOrganization.createStorefront')}
+            </label>
             <hr className='border-b border-dial-blue-chalk my-3' />
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>

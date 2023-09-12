@@ -6,6 +6,7 @@ export const CREATE_CANDIDATE_ORGANIZATION = gql`
     $website: String!
     $description: String!
     $organizationName: String!
+    $createStorefront: Boolean!
     $name: String!
     $email: String!
     $title: String
@@ -16,6 +17,7 @@ export const CREATE_CANDIDATE_ORGANIZATION = gql`
       website: $website
       description: $description
       organizationName: $organizationName
+      createStorefront: $createStorefront
       name: $name
       email: $email
       title: $title
@@ -27,6 +29,7 @@ export const CREATE_CANDIDATE_ORGANIZATION = gql`
         slug
         website
         description
+        createStorefront
       }
       errors
     }

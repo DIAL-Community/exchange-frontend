@@ -1,4 +1,5 @@
 import { FormattedDate, useIntl } from 'react-intl'
+import { FaCircleCheck, FaRegCircle } from 'react-icons/fa6'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import EditButton from '../../shared/form/EditButton'
@@ -121,6 +122,18 @@ const OrganizationDetailRight = forwardRef(({ organization, refetch }, ref) => {
                 <span className='pr-[2px]'>{format('ui.candidate.approvedOn')}:</span>
                 <FormattedDate value={organization.approvedDate} />
               </div>
+            </div>
+          </>
+        }
+        {`${organization.rejected}` === 'null' &&
+          <>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+            <div className='flex gap-x-1 text-sm'>
+              { organization.createStorefront
+                ? <FaCircleCheck className='my-auto text-dial-stratos inline' />
+                : <FaRegCircle className='my-auto text-dial-stratos inline' />
+              }
+              {format('ui.candidateOrganization.createStorefront')}
             </div>
           </>
         }

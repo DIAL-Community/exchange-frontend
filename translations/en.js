@@ -2091,6 +2091,7 @@ export const en = {
   'ui.candidateOrganization.label': 'Candidate Organization',
   'ui.candidateOrganization.header': 'Candidate Organizations',
   'ui.candidateOrganization.createNew': 'Create a new Candidate Organization',
+  'ui.candidateOrganization.createStorefront': 'Create a storefront on approval.',
 
   'ui.candidateDataset.label': 'Candidate Dataset',
   'ui.candidateDataset.header': 'Candidate Datasets',
