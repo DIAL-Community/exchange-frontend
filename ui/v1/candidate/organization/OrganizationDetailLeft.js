@@ -10,12 +10,14 @@ const OrganizationDetailLeft = ({ scrollRef, organization }) => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <OrganizationDetailHeader organization={organization}/>
         <hr className='border-b border-dial-slate-200'/>
-        <Bookmark object={organization} objectType={ObjectType.ORGANIZATION} />
-        <hr className='border-b border-dial-slate-200'/>
-        <Share />
-        <hr className='border-b border-dial-slate-200'/>
-        <Comment entityKey={'ui.candidateOrganization.label'} scrollRef={scrollRef} />
-        <hr className='border-b border-dial-slate-200'/>
+        <div className='hidden lg:block flex flex-col gap-y-3'>
+          <Bookmark object={organization} objectType={ObjectType.ORGANIZATION} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+          <Comment entityKey={'ui.candidateOrganization.label'} scrollRef={scrollRef} />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
       </div>
     </div>
   )

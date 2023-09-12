@@ -4,6 +4,8 @@ import { ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
+import Share from '../shared/common/Share'
+import Bookmark from '../shared/common/Bookmark'
 import CommentsSection from '../shared/comment/CommentsSection'
 import DeleteOrganization from './DeleteOrganization'
 import OrganizationDetailProducts from './fragments/OrganizationDetailProducts'
@@ -102,6 +104,12 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='block lg:hidden flex flex-col gap-y-3'>
+          <Bookmark object={organization} objectType={ObjectType.ORGANIZATION} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={organization.id}
