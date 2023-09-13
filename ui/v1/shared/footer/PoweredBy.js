@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { FaXTwitter, FaLinkedin } from 'react-icons/fa6'
 
 const PoweredBy = () => {
   const { formatMessage } = useIntl()
@@ -24,22 +25,16 @@ const PoweredBy = () => {
           {format('ui.footer.poweredBy.subTitle')}
         </div>
       </div>
-      <div className='flex gap-3 ml-auto pt-3'>
-        <a href='//twitter.com/DIAL_Community' target='_blank' rel='noreferrer'>
-          <img
-            src='/ui/v1/twitter-icon-wo-bg.svg'
-            alt={format('ui.image.logoAlt', { name: 'Twitter' })}
-            width={30}
-            className='object-contain'
-          />
+      <div className='flex gap-2 ml-auto'>
+        <a href='//x.com/DIALCommunity' target='_blank' rel='noreferrer'>
+          <FaXTwitter size='2.5rem' className='text-dial-iris-blue'/>
         </a>
-        <a href='//www.linkedin.com/company/digital-impact-alliance/' target='_blank' rel='noreferrer'>
-          <img
-            src='/ui/v1/linkedin-icon-wo-bg.svg'
-            alt={format('ui.image.logoAlt', { name: 'LinkedIn' })}
-            width={30}
-            className='object-contain'
-          />
+        <a
+          href='//www.linkedin.com/company/digital-impact-alliance/'
+          target='_blank'
+          rel='noreferrer'
+        >
+          <FaLinkedin size='2.5rem' className='text-dial-iris-blue'/>
         </a>
       </div>
     </div>
