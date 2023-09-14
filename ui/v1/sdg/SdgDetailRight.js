@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { ObjectType } from '../utils/constants'
+import Share from '../shared/common/Share'
+import Bookmark from '../shared/common/Bookmark'
 import CommentsSection from '../shared/comment/CommentsSection'
 
 const SdgSdgTargets = ({ sdg, headerRef }) => {
@@ -83,6 +85,12 @@ const SdgDetailRight = forwardRef(({ sdg }, ref) => {
         <hr className='border-b border-dial-blue-chalk my-3' />
         <SdgSdgTargets sdg={sdg} headerRef={sdgTarget} />
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='block lg:hidden flex flex-col gap-y-3'>
+          <Bookmark object={sdg} objectType={ObjectType.SDG} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={sdg.id}

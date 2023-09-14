@@ -5,23 +5,29 @@ import { HiOutlineSearch } from 'react-icons/hi'
 import classNames from 'classnames'
 
 // https://github.com/JedWatson/react-select/issues/3590
+// Use property: menuIsOpen={true} to keep the select expanded
+
 const AsyncReactSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
-const Select = React.forwardRef(({
-  name,
-  value,
-  options,
-  onChange,
-  onBlur,
-  placeholder,
-  async = false,
-  isSearch = false,
-  controlSize = null,
-  isInvalid = false,
-  isBorderless = false,
-  className,
-  ...otherProps
-}, ref) => {
+const Select = React.forwardRef((
+  {
+    name,
+    value,
+    options,
+    onChange,
+    onBlur,
+    placeholder,
+    async = false,
+    isSearch = false,
+    isInvalid = false,
+    isBorderless = false,
+    isRibbonMenu = false,
+    className,
+    ...otherProps
+  },
+  ref
+) => {
+  const nonRibbonSelectHeight = isRibbonMenu ? { maxHeight: '30rem' } : { maxHeight: '16rem' }
   const defaultStyles = {
     dropdownIndicator: (provided) => ({
       ...provided,
@@ -69,7 +75,6 @@ const Select = React.forwardRef(({
     }),
     control: (provided) => ({
       ...provided,
-      width: controlSize,
       height: '2rem',
       boxShadow: 'none',
       cursor: 'pointer',
@@ -91,7 +96,7 @@ const Select = React.forwardRef(({
       ...provided,
       paddingTop: 0,
       paddingBottom: 0,
-      maxHeight: '16rem'
+      ...nonRibbonSelectHeight
     }),
     menu: (provided) => ({
       ...provided,
@@ -109,40 +114,36 @@ const Select = React.forwardRef(({
 
   return (
     async
-      ? (
-        <AsyncReactSelect
-          {...otherProps}
-          instanceId={id}
-          inputId={`async-select-id-${name}`}
-          innerRef={ref}
-          value={value}
-          placeholder={placeholder}
-          options={options}
-          onChange={onChange}
-          onBlur={onBlur}
-          classNamePrefix='react-select'
-          className={classNames(className)}
-          styles={defaultStyles}
-          components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
-        />
-      )
-      : (
-        <ReactSelect
-          {...otherProps}
-          instanceId={id}
-          inputId={`react-select-id-${name}`}
-          innerRef={ref}
-          value={value}
-          placeholder={placeholder}
-          options={options}
-          onChange={onChange}
-          onBlur={onBlur}
-          classNamePrefix='react-select'
-          className={classNames(className)}
-          styles={defaultStyles}
-          components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
-        />
-      )
+      ? <AsyncReactSelect
+        {...otherProps}
+        instanceId={id}
+        inputId={`async-select-id-${name}`}
+        innerRef={ref}
+        value={value}
+        placeholder={placeholder}
+        options={options}
+        onChange={onChange}
+        onBlur={onBlur}
+        classNamePrefix='react-select'
+        className={classNames(className)}
+        styles={defaultStyles}
+        components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
+      />
+      : <ReactSelect
+        {...otherProps}
+        instanceId={id}
+        inputId={`react-select-id-${name}`}
+        innerRef={ref}
+        value={value}
+        placeholder={placeholder}
+        options={options}
+        onChange={onChange}
+        onBlur={onBlur}
+        classNamePrefix='react-select'
+        className={classNames(className)}
+        styles={defaultStyles}
+        components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
+      />
   )
 })
 

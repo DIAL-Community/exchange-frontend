@@ -3,6 +3,8 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useUser } from '../../../../lib/hooks'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import Share from '../../shared/common/Share'
+import Bookmark from '../../shared/common/Bookmark'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import RoleActionButton from './fragments/RoleActionButton'
 
@@ -108,6 +110,12 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
           </>
         }
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='block lg:hidden flex flex-col gap-y-3'>
+          <Bookmark object={role} objectType={ObjectType.CANDIDATE_ROLE} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={role.id}

@@ -10,12 +10,14 @@ const DatasetDetailLeft = ({ scrollRef, dataset }) => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <DatasetDetailHeader dataset={dataset}/>
         <hr className='border-b border-dial-slate-200'/>
-        <Bookmark object={dataset} objectType={ObjectType.DATASET} />
-        <hr className='border-b border-dial-slate-200'/>
-        <Share />
-        <hr className='border-b border-dial-slate-200'/>
-        <Comment entityKey={'ui.candidateDataset.label'} scrollRef={scrollRef} />
-        <hr className='border-b border-dial-slate-200'/>
+        <div className='hidden lg:block flex flex-col gap-y-3'>
+          <Bookmark object={dataset} objectType={ObjectType.DATASET} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+          <Comment entityKey={'ui.candidateDataset.label'} scrollRef={scrollRef} />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
       </div>
     </div>
   )

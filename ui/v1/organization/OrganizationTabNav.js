@@ -26,13 +26,15 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
   const organizationFilters = useContext(OrganizationFilterContext)
 
   const exportCsvFn = () => {
+    const { userEmail, userToken } = user
     const exportParameters = convertKeys({ pageSize: -1, ...organizationFilters })
-    asyncExport(ExportType.EXPORT_AS_CSV, 'organizations', exportParameters, user.userEmail)
+    asyncExport(ExportType.EXPORT_AS_CSV, 'organizations', exportParameters, userEmail, userToken)
   }
 
   const exportJsonFn = () => {
+    const { userEmail, userToken } = user
     const exportParameters = convertKeys({ pageSize: -1, ...organizationFilters })
-    asyncExport(ExportType.EXPORT_AS_JSON, 'organizations', exportParameters, user.userEmail)
+    asyncExport(ExportType.EXPORT_AS_JSON, 'organizations', exportParameters, userEmail, userToken)
   }
 
   const createCandidateFn = () => {

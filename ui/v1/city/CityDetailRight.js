@@ -4,6 +4,8 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { useUser } from '../../../lib/hooks'
+import Share from '../shared/common/Share'
+import Bookmark from '../shared/common/Bookmark'
 import OrganizationCard from '../organization/OrganizationCard'
 import CommentsSection from '../shared/comment/CommentsSection'
 import CountryCard from '../country/CountryCard'
@@ -92,6 +94,12 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
           }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='block lg:hidden flex flex-col gap-y-3'>
+          <Bookmark object={city} objectType={ObjectType.CITY} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={city.id}

@@ -17,7 +17,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
     class="fixed inset-0 flex items-center justify-center"
   >
     <div
-      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col"
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
       data-headlessui-state="open"
       id="headlessui-dialog-panel-:r1:"
     >
@@ -304,7 +304,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
     class="fixed inset-0 flex items-center justify-center"
   >
     <div
-      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col"
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
       data-headlessui-state="open"
       id="headlessui-dialog-panel-:r6:"
     >
@@ -591,7 +591,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
     class="fixed inset-0 flex items-center justify-center"
   >
     <div
-      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col"
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
       data-headlessui-state="open"
       id="headlessui-dialog-panel-:rb:"
     >

@@ -4,6 +4,8 @@ import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
+import Share from '../shared/common/Share'
+import Bookmark from '../shared/common/Bookmark'
 import UseCaseCard from '../use-case/UseCaseCard'
 import CommentsSection from '../shared/comment/CommentsSection'
 import DeleteWorkflow from './DeleteWorkflow'
@@ -18,23 +20,19 @@ const WorkflowUseCases = ({ workflow, headerRef }) => {
       <div className='text-lg font-semibold text-dial-plum' ref={headerRef}>
         {format('ui.useCase.header')}
       </div>
-      <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
+      <div className='grid grid-cols-1 gap-y-3'>
         {workflow.useCases.length > 0
-          ? (
-            workflow.useCases.map((useCase, index) => (
-              <div key={index} className='pb-5 mr-6'>
-                <UseCaseCard useCase={useCase} displayType={DisplayType.SMALL_CARD} />
-              </div>
-            ))
-          )
-          : (
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.useCase.label'),
-                base: format('ui.workflow.label')
-              })}
+          ?workflow.useCases.map((useCase, index) => (
+            <div key={index}>
+              <UseCaseCard useCase={useCase} displayType={DisplayType.SMALL_CARD} />
             </div>
-          )
+          ))
+          : <div className='text-sm text-dial-stratos'>
+            {format('ui.common.detail.noData', {
+              entity: format('ui.useCase.label'),
+              base: format('ui.workflow.label')
+            })}
+          </div>
         }
       </div>
     </div>
@@ -95,6 +93,12 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='block lg:hidden flex flex-col gap-y-3'>
+          <Bookmark object={workflow} objectType={ObjectType.WORKFLOW} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={workflow.id}

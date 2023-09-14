@@ -19,8 +19,8 @@ exports[`Unit test for the ConfirmActionDialog component. Should match snapshot.
   >
     <div
       class="
-                inline-block w-4/5 md:w-3/5 lg:w-3/5 xl:w-1/2 p-8
-                transform bg-white shadow-xl rounded-2xl"
+ inline-block w-4/5 md:w-3/5 lg:w-3/5 xl:w-1/2 p-8
+ transform bg-white shadow-xl rounded-2xl p-8 ease-out duration-300 opacity-0 scale-95"
       data-headlessui-state="open"
       id="headlessui-dialog-panel-:r1:"
     >

@@ -26,7 +26,7 @@ export const convertKeys = (object) => {
   return object
 }
 
-export const asyncExport = (exportType, backendType, exportParameters, userEmail) => {
+export const asyncExport = (exportType, backendType, exportParameters, userEmail, userToken) => {
   const exportPath = process.env.NEXT_PUBLIC_AUTH_SERVER + `/api/v1/${backendType}.${exportType}`
   fetch(
     exportPath,
@@ -39,7 +39,8 @@ export const asyncExport = (exportType, backendType, exportParameters, userEmail
         'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
         'Access-Control-Allow-Credentials': true,
         'Access-Control-Allow-Headers': 'Set-Cookie',
-        'X-User-Email': userEmail
+        'X-User-Email': userEmail,
+        'X-User-Token': userToken
       },
       body: JSON.stringify(exportParameters)
     }
