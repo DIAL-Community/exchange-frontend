@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import TabNav from '../shared/TabNav'
 import { useUser } from '../../../lib/hooks'
 
 const DatasetTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
+  const router = useRouter()
 
   const [tabNames, setTabNames] = useState([
     'ui.dataset.header',
@@ -19,7 +21,11 @@ const DatasetTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
+  const createCandidateFn = () => {
+    router.push('/candidate/datasets/create')
+  }
+
+  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} createFn={createCandidateFn} />
 }
 
 export default DatasetTabNav

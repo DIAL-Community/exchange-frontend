@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { OrganizationFilterContext } from '../../../components/context/OrganizationFilterContext'
 import TabNav from '../shared/TabNav'
@@ -6,6 +7,7 @@ import { useUser } from '../../../lib/hooks'
 
 const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
+  const router = useRouter()
 
   const [tabNames, setTabNames] = useState([
     'ui.organization.header',
@@ -35,9 +37,14 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
     asyncExport(ExportType.EXPORT_AS_JSON, 'organizations', exportParameters, userEmail, userToken)
   }
 
+  const createCandidateFn = () => {
+    router.push('/candidate/organizations/create')
+  }
+
   return (
     <TabNav
       { ...{ tabNames, activeTab, setActiveTab }}
+      createFn={createCandidateFn}
       exportCsvFn={exportCsvFn}
       exportJsonFn={exportJsonFn}
     />
