@@ -42,6 +42,7 @@ export const CANDIDATE_ORGANIZATION_DETAIL_QUERY = gql`
       slug
       website
       description
+      createStorefront
       createdAt
       contacts {
         id
