@@ -9,7 +9,7 @@ const PlaybookDefinition = () => {
   return (
     <div className='flex flex-col gap-y-6 py-4'>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-meadow'>
+        <div className='text-xl font-semibold text-dial-plum'>
           {format('ui.playbook.whatIs')}
         </div>
         <div className='text-sm text-dial-stratos'>
@@ -17,7 +17,7 @@ const PlaybookDefinition = () => {
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-meadow'>
+        <div className='text-xl font-semibold text-dial-plum'>
           {format('ui.playbook.hint.characteristicTitle')}
         </div>
         <div className='text-sm text-dial-stratos fr-view'>
@@ -25,7 +25,7 @@ const PlaybookDefinition = () => {
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-meadow'>
+        <div className='text-xl font-semibold text-dial-plum'>
           {format('ui.playbook.hint.descriptionTitle')}
         </div>
         <div className='text-sm text-dial-stratos'>
