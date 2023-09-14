@@ -97,6 +97,41 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
   }
 `
 
+export const PRODUCT_COMPARE_QUERY = gql`
+  query Product($slugs: String!) {
+    product(slugs: $slugs) {
+      id
+      name
+      slug
+      imageFile
+      commercialProduct
+      currentProjects {
+        id
+      }
+      buildingBlocks {
+        id
+        name
+        slug
+        maturity
+        category
+      }
+      sdgs {
+        id
+        name
+        slug
+        number
+      }
+      sectors {
+        id
+        name
+        slug
+      }
+      overallMaturityScore
+      maturityScoreDetails
+    }
+  }
+`
+
 export const PRODUCT_DETAIL_QUERY = gql`
   query Product($slug: String!) {
     product(slug: $slug) {
@@ -169,6 +204,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         slug
         imageFile
         maturity
+        category
       }
       buildingBlocksMappingStatus
       sdgs {
