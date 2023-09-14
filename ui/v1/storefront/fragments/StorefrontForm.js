@@ -27,7 +27,7 @@ const StorefrontForm = React.memo(({ organization }) => {
 
   const slug = organization?.slug ?? ''
 
-  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
+  const { user, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -146,7 +146,7 @@ const StorefrontForm = React.memo(({ organization }) => {
 
   return loadingUserSession
     ? <Loading />
-    : isAdminUser || isEditorUser
+    : user
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
           <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
@@ -214,7 +214,12 @@ const StorefrontForm = React.memo(({ organization }) => {
                 <FileUploader {...register('imageFile')} />
               </div>
               <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-                <Checkbox {...register('hasStorefront')} />
+                <Checkbox
+                  {...register('hasStorefront')}
+                  value={true}
+                  readOnly
+                  className='text-dial-slate-500 ring-0 focus:ring-0'
+                />
                 {format('organization.hasStorefront')}
               </label>
               <div className='block flex flex-col gap-y-2'>
