@@ -23,7 +23,7 @@ const DatasetDetailHeader = ({ dataset }) => {
           <div className='font-semibold text-dial-meadow'>
             {format('ui.dataset.website')}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
+          <div className='flex text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(dataset.website)}
               target='_blank'
@@ -33,7 +33,7 @@ const DatasetDetailHeader = ({ dataset }) => {
                 {dataset.website}
               </div>
             </a>
-            ⧉
+            &nbsp;⧉
           </div>
         </div>
       </div>

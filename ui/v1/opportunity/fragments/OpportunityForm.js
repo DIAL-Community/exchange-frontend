@@ -12,7 +12,11 @@ import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_OPPORTUNITY } from '../../shared/mutation/opportunity'
 import UrlInput from '../../shared/form/UrlInput'
-import { generateOpportunityStatusOptions, generateOpportunityTypeOptions } from '../../shared/form/options'
+import {
+  generateOpportunityStatusOptions,
+  generateOpportunityTypeOptions,
+  generateOriginOptions
+} from '../../shared/form/options'
 import Select from '../../shared/form/Select'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
@@ -73,6 +77,9 @@ const OpportunityForm = React.memo(({ opportunity }) => {
   const typeOptions = useMemo(() => generateOpportunityTypeOptions(format), [format])
   const [defaultTypeOption] = typeOptions
 
+  const originOptions = useMemo(() => generateOriginOptions(), [])
+  const [defaultOriginOption] = originOptions.filter(originOption => originOption.value === 'manually_entered')
+
   const {
     handleSubmit,
     register,
@@ -90,6 +97,10 @@ const OpportunityForm = React.memo(({ opportunity }) => {
       contactEmail: opportunity?.contactEmail,
       openingDate: opportunity?.openingDate,
       closingDate: opportunity?.closingDate,
+      opportunityOrigin:
+        originOptions.find(
+          ({ value: origin }) => origin === opportunity?.origin.slug
+        ) ?? defaultOriginOption,
       opportunityType:
         typeOptions.find(
           ({ value: type }) => type === opportunity?.opportunityType
@@ -117,7 +128,8 @@ const OpportunityForm = React.memo(({ opportunity }) => {
         openingDate,
         closingDate,
         opportunityType,
-        opportunityStatus
+        opportunityStatus,
+        opportunityOrigin
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -130,7 +142,8 @@ const OpportunityForm = React.memo(({ opportunity }) => {
         openingDate,
         closingDate,
         opportunityType: opportunityType?.value,
-        opportunityStatus: opportunityStatus?.value
+        opportunityStatus: opportunityStatus?.value,
+        opportunityOrigin: opportunityOrigin?.value
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -240,6 +253,25 @@ const OpportunityForm = React.memo(({ opportunity }) => {
                 }
               />
               {errors.opportunityType && <ValidationError value={errors.opportunityType?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='opportunityOrigin'>
+                {format('ui.opportunity.origin')}
+              </label>
+              <Controller
+                id='opportunityOrigin'
+                name='opportunityOrigin'
+                control={control}
+                render={
+                  ({ field }) =>
+                    <Select
+                      {...field}
+                      options={originOptions}
+                      placeholder={format('ui.opportunity.origin')}
+                    />
+                }
+              />
+              {errors.opportunityOrigin && <ValidationError value={errors.opportunityOrigin?.message} />}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label htmlFor='openingDate'>

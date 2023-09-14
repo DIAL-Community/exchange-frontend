@@ -13,12 +13,14 @@ const ProductRepositoryLeft = ({ product, scrollRef }) => {
         <hr className='border-b border-dial-slate-200'/>
         <ProductRepositoryDetailNav product={product} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <Bookmark object={product} objectType={ObjectType.PRODUCT}/>
-        <hr className='border-b border-dial-slate-200'/>
-        <Share />
-        <hr className='border-b border-dial-slate-200'/>
-        <Comment entityKey={'ui.useCaseStep.label'} scrollRef={scrollRef} />
-        <hr className='border-b border-dial-slate-200'/>
+        <div className='hidden lg:block flex flex-col gap-y-3'>
+          <Bookmark object={product} objectType={ObjectType.PRODUCT}/>
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+          <Comment entityKey={'ui.useCaseStep.label'} scrollRef={scrollRef} />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
       </div>
     </div>
   )

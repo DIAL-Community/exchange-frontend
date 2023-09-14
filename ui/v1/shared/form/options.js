@@ -3,6 +3,7 @@ import {
   LicenseTypeFilter,
   MappingStatus,
   MaturityStatus,
+  ORIGIN_SLUG_EXPANSIONS,
   OpportunityStatus,
   OpportunityType
 } from '../../utils/constants'
@@ -65,6 +66,10 @@ export const generateOpportunityStatusOptions = (format) => [
   { label: format('ui.opportunity.status.open'), value: OpportunityStatus.OPEN },
   { label: format('ui.opportunity.status.upcoming'), value: OpportunityStatus.UPCOMING }
 ]
+
+export const generateOriginOptions = () => Object.keys(ORIGIN_SLUG_EXPANSIONS).map(key => {
+  return { label: ORIGIN_SLUG_EXPANSIONS[key], value: key }
+})
 
 export const generateSpecialtyOptions = () => [
   { value: 'AI / Machine Learning', label: 'AI / Machine Learning' },

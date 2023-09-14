@@ -5,6 +5,8 @@ import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
+import Share from '../../shared/common/Share'
+import Bookmark from '../../shared/common/Bookmark'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import DatasetActionButton from './fragments/DatasetActionButton'
 
@@ -64,9 +66,10 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
               <div className='my-auto text-sm flex'>
                 <a href={prependUrlWithProtocol(dataset.visualizationUrl)} target='_blank' rel='noreferrer'>
                   <div className='border-b border-dial-iris-blue line-clamp-1'>
-                    {dataset.visualizationUrl} ⧉
+                    {dataset.visualizationUrl}
                   </div>
                 </a>
+                &nbsp;⧉
               </div>
             </div>
           </>
@@ -144,6 +147,12 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
           </>
         }
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='block lg:hidden flex flex-col gap-y-3'>
+          <Bookmark object={dataset} objectType={ObjectType.CANDIDATE_DATASET} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={dataset.id}

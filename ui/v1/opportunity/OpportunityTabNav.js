@@ -1,7 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
-import { OpportunityFilterContext } from '../../../components/context/OpportunityFilterContext'
+import { useEffect, useState } from 'react'
 import TabNav from '../shared/TabNav'
-import { ExportType, asyncExport, convertKeys } from '../utils/export'
 import { useUser } from '../../../lib/hooks'
 
 const OpportunityTabNav = ({ activeTab, setActiveTab }) => {
@@ -21,25 +19,7 @@ const OpportunityTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const opportunityFilters = useContext(OpportunityFilterContext)
-
-  const exportCsvFn = () => {
-    const exportParameters = convertKeys({ pageSize: -1, ...opportunityFilters })
-    asyncExport(ExportType.EXPORT_AS_CSV, 'opportunities', exportParameters, user.userEmail)
-  }
-
-  const exportJsonFn = () => {
-    const exportParameters = convertKeys({ pageSize: -1, ...opportunityFilters })
-    asyncExport(ExportType.EXPORT_AS_JSON, 'opportunities', exportParameters, user.userEmail)
-  }
-
-  return (
-    <TabNav
-      { ...{ tabNames, activeTab, setActiveTab }}
-      exportCsvFn={exportCsvFn}
-      exportJsonFn={exportJsonFn}
-    />
-  )
+  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
 }
 
 export default OpportunityTabNav

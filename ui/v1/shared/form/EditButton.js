@@ -11,7 +11,7 @@ const EditButton = ({ type = 'button', onClick, href, className }) => {
       </span>
     </>
 
-  const style = 'cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
+  const style = 'cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white'
 
   return (
     type === 'button'

@@ -7,6 +7,8 @@ import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
+import Share from '../shared/common/Share'
+import Bookmark from '../shared/common/Bookmark'
 import CreateButton from '../shared/form/CreateButton'
 import CommentsSection from '../shared/comment/CommentsSection'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
@@ -44,7 +46,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit &&
+        {(isAdminUser || isEditorUser) &&
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
             {isAdminUser && <DeleteUseCase useCase={useCase} />}
@@ -144,10 +146,10 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={buildingBlockRef}>
+          <div className='text-xl font-semibold text-dial-blueberry' ref={buildingBlockRef}>
             {format('ui.buildingBlock.header')}
           </div>
-          {useCase?.buildingBlocks.length <= 0 &&
+          {useCase?.buildingBlocks?.length <= 0 &&
             <div className='text-sm text-dial-stratos'>
               {format('ui.common.detail.noData', {
                 entity: format('ui.buildingBlock.label'),
@@ -155,13 +157,20 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
               })}
             </div>
           }
-          {useCase?.buildingBlocks.length > 0 &&
+          {useCase?.buildingBlocks?.length > 0 &&
             <UseCaseBuildingBlockRenderer useCaseBuildingBlocks={useCase.buildingBlocks} />
           }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
           <UseCaseDetailTags useCase={useCase} canEdit={canEdit} headerRef={tagRef} />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='block lg:hidden flex flex-col gap-y-3'>
+          <Bookmark object={useCase} objectType={ObjectType.USE_CASE} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
         </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}

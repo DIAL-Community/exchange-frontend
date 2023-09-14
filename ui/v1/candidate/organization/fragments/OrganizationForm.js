@@ -8,10 +8,11 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { ToastContext } from '../../../../../lib/ToastContext'
 import { useUser } from '../../../../../lib/hooks'
 import Input from '../../../shared/form/Input'
+import UrlInput from '../../../shared/form/UrlInput'
+import Checkbox from '../../../shared/form/Checkbox'
 import ValidationError from '../../../shared/form/ValidationError'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../shared/mutation/candidateOrganization'
-import UrlInput from '../../../shared/form/UrlInput'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import {
@@ -28,7 +29,7 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const slug = organization?.slug ?? ''
 
-  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
+  const { user, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -84,6 +85,7 @@ const OrganizationForm = React.memo(({ organization }) => {
       organizationName: organization?.name ?? '',
       website: organization?.website ?? '',
       description: organization?.description ?? '',
+      createStorefront: organization?.createStorefront ?? false,
       name: submitter?.name ?? '',
       email: submitter?.email ?? '',
       title: submitter?.title ?? ''
@@ -100,6 +102,7 @@ const OrganizationForm = React.memo(({ organization }) => {
         website,
         description,
         organizationName,
+        createStorefront,
         name,
         email,
         title
@@ -107,9 +110,10 @@ const OrganizationForm = React.memo(({ organization }) => {
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         slug,
-        organizationName,
         website,
         description,
+        organizationName,
+        createStorefront,
         name,
         email,
         title,
@@ -141,133 +145,135 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   return loadingUserSession
     ? <Loading />
-    : isAdminUser || isEditorUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {organization
-                  ? format('app.editEntity', { entity: organization.name })
-                  : `${format('app.createNew')} ${format('ui.organization.label')}`}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='organizationName'>
-                  {format('ui.candidateOrganization.organizationName')}
-                </label>
-                <Input
-                  id='organizationName'
-                  {...register('organizationName', { required: format('validation.required') })}
-                  placeholder={format('ui.candidateOrganization.organizationName.placeholder')}
-                  isInvalid={errors.organizationName}
-                />
-                {errors.organizationName && <ValidationError value={errors.organizationName?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='website'>
-                  {format('organization.website')}
-                </label>
-                <Controller
-                  name='website'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <UrlInput
-                      id='website'
-                      value={value}
-                      onChange={onChange}
-                      isInvalid={errors.website}
-                      placeholder={format('ui.candidateOrganization.website.placeholder')}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.website && <ValidationError value={errors.website?.message} />}
-              </div>
-              <div className='block flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field'>
-                  {format('organization.description')}
-                </label>
-                <Controller
-                  name='description'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <HtmlEditor
-                      editorId='description-editor'
-                      onChange={onChange}
-                      initialContent={value}
-                      placeholder={format('ui.candidateOrganization.description.placeholder')}
-                      isInvalid={errors.description}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.description && <ValidationError value={errors.description?.message} />}
-              </div>
-              <hr className='border-b border-dial-blue-chalk my-3' />
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='name'>
-                  {format('ui.candidateOrganization.name')}
-                </label>
-                <Input
-                  id='name'
-                  {...register('name', { required: format('validation.required') })}
-                  placeholder={format('ui.candidateOrganization.name.placeholder')}
-                  isInvalid={errors.name}
-                />
-                {errors.name && <ValidationError value={errors.name?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='email'>
-                  {format('ui.candidateOrganization.email')}
-                </label>
-                <Input
-                  id='email'
-                  {...register('email', { required: format('validation.required') })}
-                  placeholder={format('ui.candidateOrganization.email.placeholder')}
-                  isInvalid={errors.email}
-                />
-                {errors.email && <ValidationError value={errors.email?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label htmlFor='title'>
-                  {format('ui.candidateOrganization.title')}
-                </label>
-                <Input
-                  id='title'
-                  {...register('title')}
-                  placeholder={format('ui.candidateOrganization.title.placeholder')}
-                />
-              </div>
-              <ReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-                onChange={updateCaptchaData}
-                ref={captchaRef}
+    : user
+      ? <form onSubmit={handleSubmit(doUpsert)}>
+        <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+          <div className='flex flex-col gap-y-6 text-sm'>
+            <div className='text-xl font-semibold'>
+              {organization
+                ? format('app.editEntity', { entity: organization.name })
+                : `${format('app.createNew')} ${format('ui.organization.label')}`}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='text-dial-sapphire required-field' htmlFor='organizationName'>
+                {format('ui.candidateOrganization.organizationName')}
+              </label>
+              <Input
+                id='organizationName'
+                {...register('organizationName', { required: format('validation.required') })}
+                placeholder={format('ui.candidateOrganization.organizationName.placeholder')}
+                isInvalid={errors.organizationName}
               />
-              <div className='flex flex-wrap text-base mt-6 gap-3'>
+              {errors.organizationName && <ValidationError value={errors.organizationName?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='text-dial-sapphire required-field' htmlFor='website'>
+                {format('organization.website')}
+              </label>
+              <Controller
+                name='website'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <UrlInput
+                    id='website'
+                    value={value}
+                    onChange={onChange}
+                    isInvalid={errors.website}
+                    placeholder={format('ui.candidateOrganization.website.placeholder')}
+                  />
+                )}
+                rules={{ required: format('validation.required') }}
+              />
+              {errors.website && <ValidationError value={errors.website?.message} />}
+            </div>
+            <div className='block flex flex-col gap-y-2'>
+              <label className='text-dial-sapphire required-field'>
+                {format('organization.description')}
+              </label>
+              <Controller
+                name='description'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <HtmlEditor
+                    editorId='description-editor'
+                    onChange={onChange}
+                    initialContent={value}
+                    placeholder={format('ui.candidateOrganization.description.placeholder')}
+                    isInvalid={errors.description}
+                  />
+                )}
+                rules={{ required: format('validation.required') }}
+              />
+              {errors.description && <ValidationError value={errors.description?.message} />}
+            </div>
+            <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+              <Checkbox {...register('createStorefront')} />
+              {format('ui.candidateOrganization.createStorefront')}
+            </label>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='name'>
+                {format('ui.candidateOrganization.name')}
+              </label>
+              <Input
+                id='name'
+                {...register('name', { required: format('validation.required') })}
+                placeholder={format('ui.candidateOrganization.name.placeholder')}
+                isInvalid={errors.name}
+              />
+              {errors.name && <ValidationError value={errors.name?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='email'>
+                {format('ui.candidateOrganization.email')}
+              </label>
+              <Input
+                id='email'
+                {...register('email', { required: format('validation.required') })}
+                placeholder={format('ui.candidateOrganization.email.placeholder')}
+                isInvalid={errors.email}
+              />
+              {errors.email && <ValidationError value={errors.email?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='title'>
+                {format('ui.candidateOrganization.title')}
+              </label>
+              <Input
+                id='title'
+                {...register('title')}
+                placeholder={format('ui.candidateOrganization.title.placeholder')}
+              />
+            </div>
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+              onChange={updateCaptchaData}
+              ref={captchaRef}
+            />
+            <div className='flex flex-wrap text-base mt-6 gap-3'>
+              <button
+                type='submit'
+                className='submit-button'
+                disabled={mutating || reverting || !captchaValue}
+              >
+                {`${format('app.submit')} ${format('ui.organization.label')}`}
+                {mutating && <FaSpinner className='spinner ml-3' />}
+              </button>
+              {organization &&
                 <button
-                  type='submit'
-                  className='submit-button'
-                  disabled={mutating || reverting || !captchaValue}
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
                 >
-                  {`${format('app.submit')} ${format('ui.organization.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3' />}
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3' />}
                 </button>
-                {organization &&
-                  <button
-                    type='button'
-                    className='cancel-button'
-                    disabled={mutating || reverting}
-                    onClick={cancelForm}
-                  >
-                    {format('app.cancel')}
-                    {reverting && <FaSpinner className='spinner ml-3' />}
-                  </button>
-                }
-              </div>
+              }
             </div>
           </div>
-        </form>
-      )
+        </div>
+      </form>
       : <Unauthorized />
 })
 

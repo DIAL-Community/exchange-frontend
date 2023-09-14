@@ -13,12 +13,14 @@ const CountryDetailLeft = ({ scrollRef, country }) => {
         <hr className='border-b border-dial-slate-200'/>
         <CountryDetailNav country={country} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <Bookmark object={country} objectType={ObjectType.COUNTRY} />
-        <hr className='border-b border-dial-slate-200'/>
-        <Share />
-        <hr className='border-b border-dial-slate-200'/>
-        <Comment entityKey={'ui.country.label'} scrollRef={scrollRef} />
-        <hr className='border-b border-dial-slate-200'/>
+        <div className='hidden lg:block flex flex-col gap-y-3'>
+          <Bookmark object={country} objectType={ObjectType.COUNTRY} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+          <Comment entityKey={'ui.country.label'} scrollRef={scrollRef} />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
       </div>
     </div>
   )

@@ -133,7 +133,8 @@ const ProductOwner = ({ product }) => {
       <div className='flex flex-col gap-3 text-xs text-dial-stratos'>
         <a href={ownerInformation} target='_blank' rel='noreferrer' className='flex'>
           <div className='border-b border-dial-iris-blue'>
-            {format('product.ownerLink')} ⧉
+            {format('product.ownerLink')}
+            &nbsp;⧉
           </div>
         </a>
         {showApplyLink && (

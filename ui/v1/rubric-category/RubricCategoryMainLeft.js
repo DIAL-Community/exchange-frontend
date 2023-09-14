@@ -7,7 +7,6 @@ const RubricCategoryMainLeft = ({ activeTab }) => {
     <>
       { activeTab === 0 && <RubricCategoryListLeft /> }
       { activeTab === 1 && <RubricCategorySimpleLeft />}
-      { activeTab === 2 && <RubricCategorySimpleLeft /> }
     </>
   )
 }

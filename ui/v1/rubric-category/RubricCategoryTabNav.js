@@ -6,8 +6,7 @@ const RubricCategoryTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.rubricCategory.header',
-    'ui.rubricCategory.whatIs'
+    'ui.rubricCategory.header'
   ])
 
   useEffect(() => {

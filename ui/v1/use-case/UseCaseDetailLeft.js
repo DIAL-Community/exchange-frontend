@@ -13,12 +13,14 @@ const UseCaseDetailLeft = ({ scrollRef, useCase }) => {
         <hr className='border-b border-dial-slate-200'/>
         <UseCaseDetailNav useCase={useCase} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <Bookmark object={useCase} objectType={ObjectType.USE_CASE} />
-        <hr className='border-b border-dial-slate-200'/>
-        <Share />
-        <hr className='border-b border-dial-slate-200'/>
-        <Comment entityKey={'ui.useCase.label'} scrollRef={scrollRef} />
-        <hr className='border-b border-dial-slate-200'/>
+        <div className='hidden lg:block flex flex-col gap-y-3'>
+          <Bookmark object={useCase} objectType={ObjectType.USE_CASE} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+          <Comment entityKey={'ui.useCase.label'} scrollRef={scrollRef} />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
       </div>
     </div>
   )

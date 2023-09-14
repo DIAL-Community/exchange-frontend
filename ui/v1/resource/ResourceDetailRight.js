@@ -4,6 +4,8 @@ import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
+import Share from '../shared/common/Share'
+import Bookmark from '../shared/common/Bookmark'
 import OrganizationCard from '../organization/OrganizationCard'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { prependUrlWithProtocol } from '../utils/utilities'
@@ -55,7 +57,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
           <div className='text-xl font-semibold text-dial-plum pb-3'>
             {format('ui.resource.link')}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
+          <div className='flex text-dial-stratos'>
             <a
               href={prependUrlWithProtocol(resource.link)}
               target='_blank'
@@ -65,7 +67,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
                 {resource.link}
               </div>
             </a>
-            ⧉
+            &nbsp;⧉
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
@@ -96,6 +98,12 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
           }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='block lg:hidden flex flex-col gap-y-3'>
+          <Bookmark object={resource} objectType={ObjectType.RESOURCE} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={resource.id}

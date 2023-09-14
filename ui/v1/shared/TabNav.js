@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useUser } from '../../../lib/hooks'
 
-const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }) => {
+const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, createFn }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,6 +25,13 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
     e.preventDefault()
     if (user) {
       exportJsonFn()
+    }
+  }
+
+  const createClicked = (e) => {
+    e.preventDefault()
+    if (user) {
+      createFn()
     }
   }
 
@@ -58,6 +65,15 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
           <div className='hidden lg:block ml-auto my-auto'>
             <div className='text-xs text-white font-semibold'>
               <div className='flex flex-row gap-x-2'>
+                {createFn && activeTab == 0 && user && !user.isAdminUser &&
+                  <div className='bg-dial-iris-blue rounded-md'>
+                    <a href='#' onClick={createClicked}>
+                      <div className='px-5 py-1.5'>
+                        {format('app.create').toUpperCase()}
+                      </div>
+                    </a>
+                  </div>
+                }
                 {exportJsonFn && activeTab == 0 && user &&
                   <div className='bg-dial-iris-blue rounded-md'>
                     <a href='#' onClick={exportJsonClicked}>

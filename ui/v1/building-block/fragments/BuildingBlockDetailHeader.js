@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { CategoryType } from '../../utils/constants'
+import { prependUrlWithProtocol } from '../../utils/utilities'
 
 const BuildingBlockDetailHeader = ({ buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -39,16 +40,16 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
           <div className='text-sm text-dial-stratos'>
             {format('ui.buildingBlock.specification.description')}
           </div>
-          <div className='flex gap-x-2 text-sm text-dial-stratos'>
+          <div className='flex text-sm text-dial-stratos'>
             <a
-              href={buildingBlock.specUrl}
+              href={prependUrlWithProtocol(buildingBlock.specUrl)}
               target='_blank'
               rel='noreferrer'
               className='flex border-b border-dial-iris-blue'
             >
               {format('ui.buildingBlock.specification.view')}
             </a>
-            ⧉
+            &nbsp;⧉
           </div>
         </div>
       }

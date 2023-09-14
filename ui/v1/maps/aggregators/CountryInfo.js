@@ -2,9 +2,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 
-const CountryInfo = (props) => {
-  const { country } = props
-
+const CountryInfo = ({ country }) => {
   const router = useRouter()
   const [active, setActive] = useState(country?.aggregators[0].slug)
 

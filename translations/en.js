@@ -487,7 +487,7 @@ export const en = {
   'wizard.results.aggregators': 'Mobile Network Aggregators',
   'wizard.results.aggregatorsDesc': 'If your project requires mobile network services, these Aggregators may help you set up mobile solutions quickly.',
   'wizard.results.phases': 'Other Project Phases',
-  'wizard.results.phasesDesc': 'Additional information and resources are available to support your project in the Planning, Implementation and Monitoring phases. To view this information:',
+  'wizard.results.phasesDesc': 'Additional information and resources are available to support your project in the Planning, Implementation and Monitoring phases.',
   'wizard.ideation': 'Ideation',
   'wizard.ideationDesc': 'Exploring possible solutions to address a specific use case',
   'wizard.planning': 'Planning',
@@ -808,8 +808,9 @@ export const en = {
   'ui.move.deleteResource': 'Delete Resource',
   'ui.move.assignedResources': 'Resources currently assigned. You can add or delete resources',
 
-  'ui.rubricCategory.header': 'Rubric Categories',
   'ui.rubricCategory.label': 'Rubric Category',
+  'ui.rubricCategory.header': 'Rubric Categories',
+  'ui.rubricCategory.createNew': 'Create a new Rubric Category',
   'ui.rubricCategory.weight': 'Weight',
   'ui.rubricCategory.delete.confirm.message': 'Are you sure you want to delete this Rubric Category?',
   'ui.rubricCategory.no-indicator': 'We do not have any Indicator information for this Rubric Category.',
@@ -1715,6 +1716,7 @@ export const en = {
   'ui.opportunity.webAddress': 'Web Address',
   'ui.opportunity.leverist.webAddress': 'More information (at Leverist)',
   'ui.opportunity.imageFile': 'Logo',
+  'ui.opportunity.origin': 'Origin',
   'ui.opportunity.openingDate': 'Opening Date',
   'ui.opportunity.contact': 'Contact Information',
   'ui.opportunity.contactName': 'Full Name',
@@ -1904,6 +1906,9 @@ export const en = {
   'ui.sdg.header': 'SDGs',
   'ui.sdg.longLabel': 'Sustainable Development Goal',
   'ui.sdg.longHeader': 'Sustainable Development Goals',
+  'ui.sdg.whatIs': 'What is a Sustainable Development Goal',
+  'sdg.hint.title': 'Sustainable Development Goal',
+
 
   'ui.sdgTarget.label': 'SDG Target',
   'ui.sdgTarget.header': 'SDG Targets',
@@ -2089,6 +2094,7 @@ export const en = {
   'ui.candidateOrganization.label': 'Candidate Organization',
   'ui.candidateOrganization.header': 'Candidate Organizations',
   'ui.candidateOrganization.createNew': 'Create a new Candidate Organization',
+  'ui.candidateOrganization.createStorefront': 'Create a storefront on approval.',
 
   'ui.candidateDataset.label': 'Candidate Dataset',
   'ui.candidateDataset.header': 'Candidate Datasets',

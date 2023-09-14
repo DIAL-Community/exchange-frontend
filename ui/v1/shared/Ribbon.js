@@ -54,6 +54,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
                   aria-label={format('ui.ribbon.nav.ariaLabel')}
                   cacheOptions
                   isBorderless
+                  isRibbonMenu
                   defaultOptions={options}
                   loadOptions={fetchOptions}
                   onChange={onNavigationChange}

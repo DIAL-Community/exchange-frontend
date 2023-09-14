@@ -4,6 +4,30 @@ export const DisplayType = {
   PINNED_CARD: 'pinned-card'
 }
 
+export const ORIGIN_SLUG_ACRONYMS = {
+  dial: 'dial',
+  digital_government_platform_trac: 'dgpt',
+  digital_health_atlas: 'dha',
+  digital_square: 'ds',
+  dpga: 'dpga',
+  giz: 'giz',
+  indiastack: 'is',
+  manually_entered: 'man',
+  unicef_covid: 'uc'
+}
+
+export const ORIGIN_SLUG_EXPANSIONS = {
+  dial: 'Digital Impact Alliance',
+  digital_government_platform_trac: 'Digital Government Platform Tracker',
+  digital_health_atlas: 'Digital Health Atlas',
+  digital_square: 'Digital Square',
+  dpga: 'Digital Public Goods Alliance',
+  giz: 'GIZ',
+  indiastack: 'India Stack',
+  manually_entered: 'Manually Entered',
+  unicef_covid: 'UNICEF'
+}
+
 export const OpportunityStatus = {
   CLOSED: 'CLOSED',
   OPEN: 'OPEN',
@@ -48,6 +72,8 @@ export const ObjectType = {
   PROJECT: 'PROJECT',
   OPPORTUNITY: 'OPPORTUNITY',
   ORGANIZATION: 'ORGANIZATION',
+  CATEGORY_INDICATOR: 'CATEGORY_INDICATOR',
+  RUBRIC_CATEGORY: 'RUBRIC_CATEGORY',
   PLAYBOOK: 'PLAYBOOK',
   USE_CASE: 'USE_CASE',
   CANDIDATE_DATASET: 'CANDIDATE_OPEN_DATA',
