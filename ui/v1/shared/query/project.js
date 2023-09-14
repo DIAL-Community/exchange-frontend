@@ -40,7 +40,7 @@ export const PROJECT_PAGINATION_ATTRIBUTES_QUERY = gql`
 `
 
 export const PAGINATED_PROJECTS_QUERY = gql`
-  query PaginatedProjectsRedux(
+  query PaginatedProjects(
     $countries: [String!]
     $products: [String!]
     $organizations: [String!]
@@ -52,7 +52,7 @@ export const PAGINATED_PROJECTS_QUERY = gql`
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedProjectsRedux(
+    paginatedProjects(
       countries: $countries
       products: $products
       organizations: $organizations

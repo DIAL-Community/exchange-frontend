@@ -39,7 +39,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
 `
 
 export const PAGINATED_PRODUCTS_QUERY = gql`
-  query PaginatedProductsRedux(
+  query PaginatedProducts(
     $useCases: [String!]
     $buildingBlocks: [String!]
     $sectors: [String!]
@@ -53,7 +53,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedProductsRedux(
+    paginatedProducts(
       useCases: $useCases
       buildingBlocks: $buildingBlocks
       sectors: $sectors

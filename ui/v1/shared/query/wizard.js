@@ -61,7 +61,7 @@ export const WIZARD_PRODUCTS_QUERY = gql`
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedProductsRedux(
+    paginatedProducts(
       useCases: $useCases
       buildingBlocks: $buildingBlocks
       sectors: $sectors
@@ -96,7 +96,7 @@ export const WIZARD_PROJECTS_QUERY = gql`
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedProjectsRedux(
+    paginatedProjects(
       countries: $countries
       sectors: $sectors
       tags: $tags
@@ -131,14 +131,14 @@ export const WIZARD_PROJECTS_QUERY = gql`
 `
 
 export const WIZARD_DATASETS_QUERY = gql`
-  query WizardDatasetsRedux(
+  query WizardDatasets(
     $sdgs: [String!]
     $tags: [String!]
     $sectors: [String!]
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedDatasetsRedux(
+    paginatedDatasets(
       sdgs: $sdgs
       tags: $tags
       sectors: $sectors
