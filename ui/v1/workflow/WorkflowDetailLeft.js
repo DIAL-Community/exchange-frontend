@@ -13,12 +13,14 @@ const WorkflowDetailLeft = ({ scrollRef, workflow }) => {
         <hr className='border-b border-dial-slate-200'/>
         <WorkflowDetailNav workflow={workflow} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <Bookmark object={workflow} objectType={ObjectType.WORKFLOW} />
-        <hr className='border-b border-dial-slate-200'/>
-        <Share />
-        <hr className='border-b border-dial-slate-200'/>
-        <Comment entityKey={'ui.workflow.label'} scrollRef={scrollRef} />
-        <hr className='border-b border-dial-slate-200'/>
+        <div className='hidden lg:block flex flex-col gap-y-3'>
+          <Bookmark object={workflow} objectType={ObjectType.WORKFLOW} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+          <Comment entityKey={'ui.workflow.label'} scrollRef={scrollRef} />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
       </div>
     </div>
   )

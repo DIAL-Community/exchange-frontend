@@ -13,12 +13,14 @@ const ResourceDetailLeft = ({ scrollRef, resource }) => {
         <hr className='border-b border-dial-slate-200'/>
         <ResourceDetailNav resource={resource} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <Bookmark object={resource} objectType={ObjectType.RESOURCE} />
-        <hr className='border-b border-dial-slate-200'/>
-        <Share />
-        <hr className='border-b border-dial-slate-200'/>
-        <Comment entityKey={'ui.resource.label'} scrollRef={scrollRef} />
-        <hr className='border-b border-dial-slate-200'/>
+        <div className='hidden lg:block flex flex-col gap-y-3'>
+          <Bookmark object={resource} objectType={ObjectType.RESOURCE} />
+          <hr className='border-b border-dial-slate-200'/>
+          <Share />
+          <hr className='border-b border-dial-slate-200'/>
+          <Comment entityKey={'ui.resource.label'} scrollRef={scrollRef} />
+          <hr className='border-b border-dial-slate-200'/>
+        </div>
       </div>
     </div>
   )
