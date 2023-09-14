@@ -24,11 +24,11 @@ const ListStructure = ({ defaultPageSize, pageOffset }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedPlaybooksRedux) {
+  } else if (!data?.paginatedPlaybooks) {
     return <NotFound />
   }
 
-  const { paginatedPlaybooksRedux: playbooks } = data
+  const { paginatedPlaybooks: playbooks } = data
 
   return (
     <div className='flex flex-col gap-3'>
