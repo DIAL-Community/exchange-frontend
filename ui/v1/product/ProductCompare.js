@@ -32,7 +32,7 @@ const ProductDetail = ({ slugs }) => {
 
   const slugNameMapping = (() => {
     const map = {
-      create: format('app.create')
+      compare: format('app.compare')
     }
 
     return map
@@ -120,7 +120,9 @@ const ProductDetail = ({ slugs }) => {
               </div>
               <a href='#' onClick={toggleFiltering} className='flex gap-x-2'>
                 <FaSliders className='text-xl' />
-                <div className='text-sm'>Filter comparison</div>
+                <div className='text-sm'>
+                  {format('ui.product.compare.filter')}
+                </div>
               </a>
             </div>
           </div>
@@ -129,7 +131,7 @@ const ProductDetail = ({ slugs }) => {
               key={productIndex}
               className={classNames(
                 `basis-1/${products.length + 1} grow-0 shrink-0`,
-                'border-l border-dashed border-dial-slate-500'
+                'border-l border-dashed border-dial-slate-300'
               )}
             >
               <div className='flex flex-col gap-y-3 py-8'>
@@ -175,7 +177,7 @@ const ProductDetail = ({ slugs }) => {
                 key={productIndex}
                 className={classNames(
                   `basis-1/${products.length + 1} grow-0	shrink-0`,
-                  'border-l border-dashed border-dial-slate-500',
+                  'border-l border-dashed border-dial-slate-300',
                   index % 2 === 0 && 'bg-dial-slate-100'
                 )}
               >

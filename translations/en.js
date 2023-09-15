@@ -27,6 +27,7 @@ export const en = {
   'app.printPdf': 'Print PDF',
   'app.status': 'Status:',
   'app.confirm': 'Confirm',
+  'app.compare': 'Compare',
   'app.mappingStatus': 'Mapping Status',
   'app.name': 'Name',
   'app.description': 'Description',
@@ -239,6 +240,7 @@ export const en = {
   'ui.product.rubric.label': 'Evaluation Rubric',
   'ui.product.project.count': 'Number of Projects',
   'ui.product.compare.title': 'Comparison of Products',
+  'ui.product.compare.filter': 'Filter comparison',
   'ui.product.compare.showHighlight': 'Highlight differences',
 
   'product.languages': 'Languages',
