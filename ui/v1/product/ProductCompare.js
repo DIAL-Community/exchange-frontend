@@ -50,18 +50,22 @@ const ProductDetail = ({ slugs }) => {
 
   const renderValueField = (fieldValue) => {
     if (Array.isArray(fieldValue)) {
-      return (
-        <div className='flex flex-col gap-y-2'>
-          {fieldValue.map((value, index) =>
-            <div key={index} className='flex'>
-              {value}
-            </div>
-          )}
-        </div>
-      )
+      if (fieldValue.length <= 0) {
+        return format('general.na')
+      } else {
+        return (
+          <div className='flex flex-col gap-y-2'>
+            {fieldValue.map((value, index) =>
+              <div key={index} className='flex'>
+                {value}
+              </div>
+            )}
+          </div>
+        )
+      }
     }
 
-    return fieldValue
+    return fieldValue ?? format('general.na')
   }
 
   const renderMaturityField = (maturityDetails) => {
@@ -134,29 +138,31 @@ const ProductDetail = ({ slugs }) => {
                 'border-l border-dashed border-dial-slate-300'
               )}
             >
-              <div className='flex flex-col gap-y-3 py-8'>
-                {product.imageFile.indexOf('placeholder.svg') < 0 &&
-                  <div className='w-20 h-20 mx-auto bg-white border'>
-                    <img
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-                      alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                      className='object-contain w-16 h-16 mx-auto my-2'
-                    />
+              <a href={`/products/${product.slug}`} target='_blank'  rel='noreferrer'>
+                <div className='flex flex-col gap-y-3 py-8'>
+                  {product.imageFile.indexOf('placeholder.svg') < 0 &&
+                    <div className='w-20 h-20 mx-auto bg-white border'>
+                      <img
+                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+                        alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                        className='object-contain w-16 h-16 mx-auto my-2'
+                      />
+                    </div>
+                  }
+                  {product.imageFile.indexOf('placeholder.svg') >= 0 &&
+                    <div className='w-20 h-20 mx-auto'>
+                      <img
+                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+                        alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                        className='object-contain w-16 h-16'
+                      />
+                    </div>
+                  }
+                  <div className='text-lg font-semibold text-dial-meadow text-center'>
+                    {product.name}
                   </div>
-                }
-                {product.imageFile.indexOf('placeholder.svg') >= 0 &&
-                  <div className='w-20 h-20 mx-auto'>
-                    <img
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-                      alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                      className='object-contain w-16 h-16'
-                    />
-                  </div>
-                }
-                <div className='text-lg font-semibold text-dial-meadow text-center'>
-                  {product.name}
                 </div>
-              </div>
+              </a>
             </div>
           )}
         </div>

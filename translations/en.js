@@ -241,6 +241,7 @@ export const en = {
   'ui.product.project.count': 'Number of Projects',
   
   'ui.product.compare': 'Compare',
+  'ui.product.compare.clear': 'Clear all',
   'ui.product.comparison.title': 'Comparison of Products',
   'ui.product.comparison.filter': 'Filter comparison',
   'ui.product.comparison.showHighlight': 'Highlight differences',
