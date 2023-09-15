@@ -68,7 +68,12 @@ const ProductCompareBar = () => {
                   </div>
                 ))}
                 <div className='flex items-center'>
-                  <button type='button' className='submit-button' onClick={navigateToComparePage}>
+                  <button
+                    type='button'
+                    className='submit-button'
+                    onClick={navigateToComparePage}
+                    disabled={comparedProducts.length < 2 || comparedProducts.length > 3}
+                  >
                     {format('ui.product.compare')}
                   </button>
                 </div>
