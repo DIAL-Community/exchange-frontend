@@ -232,9 +232,11 @@ export const en = {
   'definition.explore-usecase': 'Explore Use Cases',
   'definition.explore-workflow': 'Explore Workflows',
 
-  'ui.product.header': 'Products',
   'ui.product.label': 'Product',
+  'ui.product.header': 'Products',
   'ui.product.parent.detail': 'Parent Product',
+  'ui.product.rubric.label': 'Evaluation Rubric',
+  'ui.product.project.count': 'Evaluation Rubric',
 
   'product.languages': 'Languages',
   'product.website': 'Website',
