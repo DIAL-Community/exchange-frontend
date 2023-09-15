@@ -236,7 +236,7 @@ export const en = {
   'ui.product.header': 'Products',
   'ui.product.parent.detail': 'Parent Product',
   'ui.product.rubric.label': 'Evaluation Rubric',
-  'ui.product.project.count': 'Evaluation Rubric',
+  'ui.product.project.count': 'Number of Projects',
 
   'product.languages': 'Languages',
   'product.website': 'Website',

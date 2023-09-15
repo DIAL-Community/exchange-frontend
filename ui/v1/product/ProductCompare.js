@@ -22,7 +22,7 @@ const ProductDetail = ({ slugs }) => {
     return <NotFound />
   }
 
-  const { compareProducts } = data
+  const { compareProducts: { products } } = data
 
   const slugNameMapping = (() => {
     const map = {
@@ -42,30 +42,55 @@ const ProductDetail = ({ slugs }) => {
     'ui.sdg.label'
   ]
 
+  const renderFieldValue = (fieldValue) => {
+    if (Array.isArray(fieldValue)) {
+      return (
+        <div className='flex flex-col gap-y-2'>
+          {fieldValue.map((value, index) =>
+            <div key={index} className='flex'>
+              {value}
+            </div>
+          )}
+        </div>
+      )
+    }
+
+    return fieldValue
+  }
+
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className='px-4 lg:px-6 py-4 bg-dial-spearmint text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
-      <div className='grid grid-rows-8 gap-3'>
+      <div className='flex flex-col'>
         {compareFields.map((compareField, index) =>
-          <div
-            key={index}
-            className={classNames(
-              index === 0 && 'row-start-2',
-              index % 2 === 0 && 'bg-dial-slate-300'
+          <div key={index} className='flex flex-row'>
+            <div
+              className={classNames(
+                'basis-1/4 shrink-0',
+                index % 2 === 0 && 'bg-dial-slate-300'
+              )}
+            >
+              <div className='py-6 px-4'>
+                {format(compareField)}
+              </div>
+            </div>
+            {products.map((product, productIndex) =>
+              <div
+                key={productIndex}
+                className={classNames(
+                  'basis-1/4 shrink-0',
+                  'border-l border-dashed border-dial-slate-500',
+                  index % 2 === 0 && 'bg-dial-slate-300'
+                )}
+              >
+                <div className='py-6 px-4 text-sm text-dial-stratos'>
+                  {renderFieldValue(product[compareField])}
+                </div>
+              </div>
             )}
-          >
-            <div className='py-2 px-4'>
-              {format(compareField)}
-            </div>
           </div>
-        )}
-        {compareProducts.map(compareProduct =>
-          compareFields.map((compareField, index) => (
-            <div key={index}>
-            </div>
-          ))
         )}
       </div>
     </div>
