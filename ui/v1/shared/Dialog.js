@@ -28,8 +28,8 @@ const Dialog = ({
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <DialogHeadlessui initialFocus={initialFocusRef} as='div' className='fixed z-100' onClose={onClose} >
-        <div className="fixed inset-0 bg-dial-gray opacity-80" />
-        <div className="fixed inset-0 flex items-center justify-center">
+        <div className='fixed inset-0 bg-dial-gray opacity-80' />
+        <div className='fixed inset-0 flex items-center justify-center'>
           <Transition.Child
             as={Fragment}
             enter='ease-out duration-300'

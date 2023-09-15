@@ -14,8 +14,8 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog initialFocus={initialFocusRef} as='div' className='fixed z-100' onClose={onClose} >
-        <div className="fixed inset-0 bg-dial-gray opacity-80" aria-hidden="true" />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
+        <div className='fixed inset-0 bg-dial-gray opacity-80' aria-hidden='true' />
+        <div className='fixed inset-0 flex items-center justify-center p-4'>
           <Transition.Child
             as={Fragment}
             enter='ease-out duration-300'

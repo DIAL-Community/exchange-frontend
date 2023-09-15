@@ -239,9 +239,11 @@ export const en = {
 
   'ui.product.rubric.label': 'Evaluation Rubric',
   'ui.product.project.count': 'Number of Projects',
-  'ui.product.compare.title': 'Comparison of Products',
-  'ui.product.compare.filter': 'Filter comparison',
-  'ui.product.compare.showHighlight': 'Highlight differences',
+  
+  'ui.product.compare': 'Compare',
+  'ui.product.comparison.title': 'Comparison of Products',
+  'ui.product.comparison.filter': 'Filter comparison',
+  'ui.product.comparison.showHighlight': 'Highlight differences',
 
   'product.languages': 'Languages',
   'product.website': 'Website',

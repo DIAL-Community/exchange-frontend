@@ -109,19 +109,19 @@ const ProductDetail = ({ slugs }) => {
               onChange={toggleHighlight}
               className='ring-0 focus:ring-0'
             />
-            {format('ui.product.compare.showHighlight')}
+            {format('ui.product.comparison.showHighlight')}
           </label>
         </div>
         <div className='flex flex-row'>
           <div className={`py-6 px-4 basis-1/${products.length + 1} grow-0 shrink-0`}>
             <div className='flex flex-col gap-y-3 text-dial-iris-blue'>
               <div className='text-xl font-semibold text-dial-stratos'>
-                {format('ui.product.compare.title')}
+                {format('ui.product.comparison.title')}
               </div>
               <a href='#' onClick={toggleFiltering} className='flex gap-x-2'>
                 <FaSliders className='text-xl' />
                 <div className='text-sm'>
-                  {format('ui.product.compare.filter')}
+                  {format('ui.product.comparison.filter')}
                 </div>
               </a>
             </div>

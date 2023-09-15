@@ -334,9 +334,9 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
               <div className='text-lg text-center font-semibold'>
                 {format('product.maturity.overallScore')}
               </div>
-              <div className="flex mx-auto">
+              <div className='flex mx-auto'>
                 <div className='w-48 h-48 rounded-full overflow-hidden'>
-                  <div className="bg-gradient-radial from-dial-mint to-dial-mint-dark h-full">
+                  <div className='bg-gradient-radial from-dial-mint to-dial-mint-dark h-full'>
                     <div className='text-center text-dial-sapphire h-full'>
                       <div className='flex justify-center py-16'>
                         <div className='text-5xl text-dial-sapphire'>{Math.round(maturityScore)}</div>
