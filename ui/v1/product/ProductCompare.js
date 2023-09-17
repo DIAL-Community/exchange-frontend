@@ -1,14 +1,164 @@
-import { useIntl } from 'react-intl'
 import classNames from 'classnames'
+import { useIntl } from 'react-intl'
+import parse from 'html-react-parser'
 import { useQuery } from '@apollo/client'
 import { FaSliders } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel
+} from 'react-accessible-accordion'
 import { PRODUCT_COMPARE_QUERY } from '../shared/query/product'
-import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import Dialog from '../shared/Dialog'
 import BarChart from '../shared/BarChart'
 import RadarChart from '../shared/RadarChart'
+import Breadcrumb from '../shared/Breadcrumb'
 import Checkbox from '../shared/form/Checkbox'
+import { Error, Loading, NotFound } from '../shared/FetchStatus'
+
+const MATURITY_SCORE_MULTIPLIER = 10
+const MAX_MATURITY_SCORE = 100
+const MIN_RADAR_CHART_CATEGORIES = 2
+
+const MaturityCategory = ({ category }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  return (
+    <AccordionItem>
+      <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
+        <AccordionItemButton>
+          <div className='inline text-xs uppercase font-semibold'>{category.name}</div>
+          <div className='inline text-xs uppercase float-right mt-2'>
+            {`
+              ${format('product.maturity.categoryScore')}:
+              ${Math.round((category.overallScore / category.maximumScore) * MAX_MATURITY_SCORE)} /
+              ${MAX_MATURITY_SCORE}
+            `}
+          </div>
+          <div className='text-xs text-justify'>
+            {category.description && parse(category.description)}
+          </div>
+        </AccordionItemButton>
+      </AccordionItemHeading>
+      <AccordionItemPanel>
+        {category.categoryIndicators.map((indicator, indicatorIdx) => {
+          let indicatorScore = Math.round(indicator.score / indicator.weight) * MATURITY_SCORE_MULTIPLIER
+          indicatorScore = indicatorScore > MAX_MATURITY_SCORE ? MAX_MATURITY_SCORE : indicatorScore
+          const scoreText = `${Math.round(indicatorScore)} / ${MAX_MATURITY_SCORE}`
+
+          return (
+            <Accordion key={indicatorIdx} allowMultipleExpanded allowZeroExpanded>
+              <AccordionItem>
+                <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
+                  <AccordionItemButton>
+                    <div className='inline text-xs uppercase font-semibold'>{indicator.name}</div>
+                    <div className='inline text-xs uppercase float-right mt-2'>
+                      {`
+                        ${format('product.maturity.indicatorScore')}:
+                        ${isNaN(indicatorScore) ? 'N/A' : scoreText}
+                      `}
+                    </div>
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>
+                  <div className='text-sm text-dial-stratos pl-4'>
+                    {parse(indicator.description)}
+                  </div>
+                  <div className='text-sm text-dial-stratos pl-4'>
+                    {format('categoryIndicator.weight')}: {indicator.weight}
+                  </div>
+                </AccordionItemPanel>
+              </AccordionItem>
+            </Accordion>
+          )
+        })}
+      </AccordionItemPanel>
+    </AccordionItem>
+  )
+}
+
+const ProductMaturityField = ({ maturityScoreDetails }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const [isMaturityScoreDetailsDialogOpen, setIsMaturityScoreDetailsDialogOpen] = useState(false)
+  const toggleMaturityScoreDetailsDialog = () =>
+    setIsMaturityScoreDetailsDialogOpen(!isMaturityScoreDetailsDialogOpen)
+
+  const sortMaturityScoreDetails = (maturityScoreDetails) => {
+    console.log(maturityScoreDetails)
+
+    return maturityScoreDetails
+      .filter(({ overallScore }) => overallScore > 0)
+      .sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name))
+  }
+
+  const [validMaturityScores] = useState(sortMaturityScoreDetails(maturityScoreDetails))
+
+  const chartLabels = () => validMaturityScores?.map(({ name }) => name)
+  const chartValues = () => validMaturityScores?.map(({ overallScore, maximumScore }) =>
+    (overallScore / maximumScore) * MAX_MATURITY_SCORE
+  )
+
+  return (
+    <>
+      {console.log(validMaturityScores)}
+      {validMaturityScores?.length
+        ? <div className='grid grid-cols-1 xl:grid-cols-3 gap-12'>
+          <div
+            className='xl:col-span-2 cursor-pointer min-h-[20rem] h-[25vh]'
+            data-tooltip-id='react-tooltip'
+            data-tooltip-content={format('product.maturity.chartTooltip')}
+            onClick={toggleMaturityScoreDetailsDialog}
+          >
+            {validMaturityScores.length <= MIN_RADAR_CHART_CATEGORIES
+              ? (
+                <BarChart
+                  labels={chartLabels()}
+                  values={chartValues()}
+                  maxScaleValue={MAX_MATURITY_SCORE}
+                  fontSize={7}
+                  horizontal
+                />
+              )
+              : (
+                <RadarChart
+                  labels={chartLabels()}
+                  values={chartValues()}
+                  maxScaleValue={MAX_MATURITY_SCORE}
+                  fontSize={7}
+                />
+              )
+            }
+          </div>
+          <Dialog
+            isOpen={isMaturityScoreDetailsDialogOpen}
+            onClose={toggleMaturityScoreDetailsDialog}
+            closeButton
+          >
+            <div className='flex flex-col w-full'>
+              <div className='h4 inline mb-6'>{format('product.maturity.detailLabel')}</div>
+              <Accordion
+                allowMultipleExpanded
+                allowZeroExpanded
+                className='max-h-[60vh] overflow-auto'
+              >
+                {validMaturityScores?.map((category, categoryIdx) => (
+                  <MaturityCategory key={categoryIdx} category={category} />
+                ))}
+              </Accordion>
+            </div>
+          </Dialog>
+        </div>
+        : <div className='text-sm text-dial-stratos'>{format('product.noMaturity')}</div>
+      }
+    </>
+  )
+}
 
 const ProductDetail = ({ slugs }) => {
   const { formatMessage } = useIntl()
@@ -68,28 +218,8 @@ const ProductDetail = ({ slugs }) => {
     return fieldValue ?? format('general.na')
   }
 
-  const renderMaturityField = (maturityDetails) => {
-    const MAX_SCORE = 100
-    const MIN_RADAR_CATEGORIES = 2
-    const chartValues = () =>
-      maturityDetails?.map(({ overallScore, maximumScore }) => (overallScore / maximumScore) * MAX_SCORE)
-
-    const chartLabels = () => maturityDetails?.map(({ name }) => name)
-
-    return maturityDetails.length <= MIN_RADAR_CATEGORIES
-      ? <BarChart
-        labels={chartLabels()}
-        values={chartValues()}
-        maxScaleValue={MAX_SCORE}
-        fontSize={8}
-        horizontal
-      />
-      : <RadarChart
-        labels={chartLabels()}
-        values={chartValues()}
-        maxScaleValue={MAX_SCORE}
-        fontSize={8}
-      />
+  const renderMaturityField = (maturityScoreDetails) => {
+    return <ProductMaturityField maturityScoreDetails={maturityScoreDetails} />
   }
 
   const toggleHighlight = () => {
@@ -138,7 +268,7 @@ const ProductDetail = ({ slugs }) => {
                 'border-l border-dashed border-dial-slate-300'
               )}
             >
-              <a href={`/products/${product.slug}`} target='_blank'  rel='noreferrer'>
+              <a href={`/products/${product.slug}`} target='_blank' rel='noreferrer'>
                 <div className='flex flex-col gap-y-3 py-8'>
                   {product.imageFile.indexOf('placeholder.svg') < 0 &&
                     <div className='w-20 h-20 mx-auto bg-white border'>
