@@ -90,10 +90,8 @@ const ProductMaturityField = ({ maturityScoreDetails }) => {
     setIsMaturityScoreDetailsDialogOpen(!isMaturityScoreDetailsDialogOpen)
 
   const sortMaturityScoreDetails = (maturityScoreDetails) => {
-    console.log(maturityScoreDetails)
-
     return maturityScoreDetails
-      .filter(({ overallScore }) => overallScore > 0)
+      // .filter(({ overallScore }) => overallScore > 0)
       .sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name))
   }
 
@@ -106,11 +104,10 @@ const ProductMaturityField = ({ maturityScoreDetails }) => {
 
   return (
     <>
-      {console.log(validMaturityScores)}
       {validMaturityScores?.length
-        ? <div className='grid grid-cols-1 xl:grid-cols-3 gap-12'>
+        ? <div className='grid grid-cols-1'>
           <div
-            className='xl:col-span-2 cursor-pointer min-h-[20rem] h-[25vh]'
+            className='cursor-pointer'
             data-tooltip-id='react-tooltip'
             data-tooltip-content={format('product.maturity.chartTooltip')}
             onClick={toggleMaturityScoreDetailsDialog}
@@ -121,7 +118,7 @@ const ProductMaturityField = ({ maturityScoreDetails }) => {
                   labels={chartLabels()}
                   values={chartValues()}
                   maxScaleValue={MAX_MATURITY_SCORE}
-                  fontSize={7}
+                  fontSize={8}
                   horizontal
                 />
               )
@@ -130,7 +127,7 @@ const ProductMaturityField = ({ maturityScoreDetails }) => {
                   labels={chartLabels()}
                   values={chartValues()}
                   maxScaleValue={MAX_MATURITY_SCORE}
-                  fontSize={7}
+                  fontSize={8}
                 />
               )
             }
@@ -154,7 +151,11 @@ const ProductMaturityField = ({ maturityScoreDetails }) => {
             </div>
           </Dialog>
         </div>
-        : <div className='text-sm text-dial-stratos'>{format('product.noMaturity')}</div>
+        : (
+          <div className='px-4 text-sm text-dial-stratos'>
+            {format('product.noMaturity')}
+          </div>
+        )
       }
     </>
   )
@@ -178,7 +179,7 @@ const ProductDetail = ({ slugs }) => {
     return <NotFound />
   }
 
-  const { compareProducts: { products } } = data
+  const { compareProducts: { products, intersections: commonValues } } = data
 
   const slugNameMapping = (() => {
     const map = {
@@ -188,7 +189,7 @@ const ProductDetail = ({ slugs }) => {
     return map
   })()
 
-  const fields = [
+  const fieldNames = [
     'ui.sector.label',
     'product.license',
     'ui.buildingBlock.label',
@@ -198,24 +199,45 @@ const ProductDetail = ({ slugs }) => {
     'ui.sdg.label'
   ]
 
-  const renderValueField = (fieldValue) => {
+  const renderValueField = (fieldValue, fieldName) => {
+    const commonValue = commonValues[fieldName]
     if (Array.isArray(fieldValue)) {
-      if (fieldValue.length <= 0) {
-        return format('general.na')
-      } else {
-        return (
+      return fieldValue.length <= 0
+        ? (
+          <div
+            className={classNames(
+              showHighlight && commonValue
+                ? 'opacity-40'
+                : ''
+            )}
+          >
+            {format('general.na')}
+          </div>
+        )
+        : (
           <div className='flex flex-col gap-y-2'>
             {fieldValue.map((value, index) =>
               <div key={index} className='flex'>
-                {value}
+                <span
+                  className={classNames(
+                    showHighlight && (!commonValue || commonValue.indexOf(value) < 0)
+                      ? 'opacity-40'
+                      : ''
+                  )}
+                >
+                  {value}
+                </span>
               </div>
             )}
           </div>
         )
-      }
     }
 
-    return fieldValue ?? format('general.na')
+    return (
+      <div className={`${commonValue === null && showHighlight ? 'opacity-40' : ''}`}>
+        {fieldValue ?? format('general.na')}
+      </div>
+    )
   }
 
   const renderMaturityField = (maturityScoreDetails) => {
@@ -296,7 +318,7 @@ const ProductDetail = ({ slugs }) => {
             </div>
           )}
         </div>
-        {fields.map((field, index) =>
+        {fieldNames.map((fieldName, index) =>
           <div key={index} className='flex flex-row text-sm text-dial-stratos'>
             <div
               className={classNames(
@@ -305,7 +327,7 @@ const ProductDetail = ({ slugs }) => {
               )}
             >
               <div className='py-6 px-4'>
-                {format(field)}
+                {format(fieldName)}
               </div>
             </div>
             {products.map((product, productIndex) =>
@@ -317,9 +339,13 @@ const ProductDetail = ({ slugs }) => {
                   index % 2 === 0 && 'bg-dial-slate-100'
                 )}
               >
-                {field === 'ui.product.rubric.label'
-                  ? <div className='relative py-6'>{renderMaturityField(product[field])}</div>
-                  : <div className='py-6 px-4'>{renderValueField(product[field])}</div>
+                {fieldName === 'ui.product.rubric.label'
+                  ? <div className='relative py-6'>
+                    {renderMaturityField(product[fieldName])}
+                  </div>
+                  : <div className='py-6 px-4'>
+                    {renderValueField(product[fieldName], fieldName)}
+                  </div>
                 }
               </div>
             )}
