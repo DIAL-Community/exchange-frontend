@@ -225,7 +225,7 @@ const ProductCompare = ({ slugs }) => {
                       : ''
                   )}
                 >
-                  {value}
+                  {fieldName === 'ui.sdg.label' ? value : `- ${value}`}
                 </span>
               </div>
             )}
@@ -336,7 +336,7 @@ const ProductCompare = ({ slugs }) => {
                 index % 2 === 0 && 'bg-dial-slate-100'
               )}
             >
-              <div className='py-6 px-4'>
+              <div className='py-6 px-4 font-semibold'>
                 {format(fieldName)}
               </div>
             </div>
