@@ -161,11 +161,27 @@ const ProductMaturityField = ({ maturityScoreDetails }) => {
   )
 }
 
-const ProductDetail = ({ slugs }) => {
+const ProductCompare = ({ slugs }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const fieldNames = [
+    'ui.sector.label',
+    'product.license',
+    'ui.buildingBlock.label',
+    'ui.product.rubric.label',
+    'ui.product.project.count',
+    'ui.useCase.label',
+    'ui.sdg.label'
+  ]
+
+  const [showFilter, setShowFilter] = useState(false)
   const [showHighlight, setShowHighlight] = useState(false)
+  const [fieldDisplayFlags, setFieldDisplayFlags] = useState(fieldNames.reduce((accumulator , fieldName) => {
+    accumulator [fieldName] = true
+
+    return accumulator
+  }, {}))
 
   const { loading, error, data } = useQuery(PRODUCT_COMPARE_QUERY, {
     variables: { slugs }
@@ -189,28 +205,12 @@ const ProductDetail = ({ slugs }) => {
     return map
   })()
 
-  const fieldNames = [
-    'ui.sector.label',
-    'product.license',
-    'ui.buildingBlock.label',
-    'ui.product.rubric.label',
-    'ui.product.project.count',
-    'ui.useCase.label',
-    'ui.sdg.label'
-  ]
-
   const renderValueField = (fieldValue, fieldName) => {
     const commonValue = commonValues[fieldName]
     if (Array.isArray(fieldValue)) {
       return fieldValue.length <= 0
         ? (
-          <div
-            className={classNames(
-              showHighlight && commonValue
-                ? 'opacity-40'
-                : ''
-            )}
-          >
+          <div className={classNames(showHighlight && commonValue ? 'opacity-40' : '')}>
             {format('general.na')}
           </div>
         )
@@ -240,16 +240,25 @@ const ProductDetail = ({ slugs }) => {
     )
   }
 
-  const renderMaturityField = (maturityScoreDetails) => {
-    return <ProductMaturityField maturityScoreDetails={maturityScoreDetails} />
-  }
+  const renderMaturityField = (maturityScoreDetails) =>
+    <ProductMaturityField maturityScoreDetails={maturityScoreDetails} />
 
   const toggleHighlight = () => {
     setShowHighlight(!showHighlight)
   }
 
-  const toggleFiltering = (e) => {
+  const toggleFieldDisplayFlag = (fieldName) => {
+    setFieldDisplayFlags(fieldDisplayFlags => {
+      const currentFieldDisplayFlags = Object.assign({}, fieldDisplayFlags)
+      currentFieldDisplayFlags[fieldName] = !currentFieldDisplayFlags[fieldName]
+
+      return currentFieldDisplayFlags
+    })
+  }
+
+  const toggleFilterDialog = (e) => {
     e.preventDefault()
+    setShowFilter(true)
   }
 
   return (
@@ -274,7 +283,7 @@ const ProductDetail = ({ slugs }) => {
               <div className='text-xl font-semibold text-dial-stratos'>
                 {format('ui.product.comparison.title')}
               </div>
-              <a href='#' onClick={toggleFiltering} className='flex gap-x-2'>
+              <a href='#' onClick={toggleFilterDialog} className='flex gap-x-2'>
                 <FaSliders className='text-xl' />
                 <div className='text-sm'>
                   {format('ui.product.comparison.filter')}
@@ -319,10 +328,11 @@ const ProductDetail = ({ slugs }) => {
           )}
         </div>
         {fieldNames.map((fieldName, index) =>
-          <div key={index} className='flex flex-row text-sm text-dial-stratos'>
+          <div key={index} className='flex flex-row text-sm text-dial-stratos w-full'>
             <div
               className={classNames(
-                `basis-1/${products.length + 1} grow-0	shrink-0`,
+                `${fieldDisplayFlags[fieldName] ? '' : 'hidden'}`,
+                `basis-1/${products.length + 1} grow-0 shrink-0`,
                 index % 2 === 0 && 'bg-dial-slate-100'
               )}
             >
@@ -334,7 +344,8 @@ const ProductDetail = ({ slugs }) => {
               <div
                 key={productIndex}
                 className={classNames(
-                  `basis-1/${products.length + 1} grow-0	shrink-0`,
+                `${fieldDisplayFlags[fieldName] ? '' : 'hidden'}`,
+                  `basis-1/${products.length + 1} grow-0 shrink-0`,
                   'border-l border-dashed border-dial-slate-300',
                   index % 2 === 0 && 'bg-dial-slate-100'
                 )}
@@ -352,8 +363,25 @@ const ProductDetail = ({ slugs }) => {
           </div>
         )}
       </div>
+      <Dialog isOpen={showFilter} onClose={() => setShowFilter(false)} closeButton>
+        <div className='flex flex-col text-sm'>
+          <div className='mb-6 font-semibold text-lg'>
+            {format('ui.product.comparison.filter')}
+          </div>
+          {fieldNames.map((fieldName, index) =>
+            <label key={index} className='flex gap-x-2 mb-2 items-center self-start'>
+              <Checkbox
+                className='ring-0 focus:ring-0'
+                value={fieldDisplayFlags[fieldName]}
+                onChange={() => toggleFieldDisplayFlag(fieldName)}
+              />
+              {format(fieldName)}
+            </label>
+          )}
+        </div>
+      </Dialog>
     </div>
   )
 }
 
-export default ProductDetail
+export default ProductCompare

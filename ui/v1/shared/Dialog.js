@@ -54,7 +54,7 @@ const Dialog = ({
                 <div className='flex justify-start text-xl'>
                   {children}
                 </div>
-                <div className='flex justify-start gap-3 text-base' >
+                <div className='flex justify-start gap-3 text-sm' >
                   {submitButton && (
                     <button
                       type='submit'
@@ -79,7 +79,7 @@ const Dialog = ({
                   )}
                 </div>
                 {closeButton && (
-                  <div className='flex justify-end text-base' >
+                  <div className='flex justify-end text-sm' >
                     <button
                       ref={initialFocusRef}
                       type='button'
