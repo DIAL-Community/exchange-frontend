@@ -242,6 +242,7 @@ export const en = {
   
   'ui.product.compare': 'Compare',
   'ui.product.compare.clear': 'Clear all',
+  'ui.product.compare.remove': 'Remove this product',
   'ui.product.compare.hint': 'Please select 2 or more products to compare (max 4).',
   'ui.product.comparison.title': 'Comparison of Products',
   'ui.product.comparison.filter': 'Filter comparison',

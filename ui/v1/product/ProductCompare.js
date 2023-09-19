@@ -196,7 +196,7 @@ const ProductCompare = ({ slugs }) => {
     return <NotFound />
   }
 
-  const { compareProducts: { products, intersections: commonValues } } = data
+  const { compareProducts: { products, intersections: commonValues, similarities } } = data
 
   const slugNameMapping = (() => {
     const map = {
@@ -293,7 +293,12 @@ const ProductCompare = ({ slugs }) => {
           </label>
         </div>
         <div className='flex flex-row'>
-          <div className={`py-6 px-4 basis-1/${products.length + 1} grow-0 shrink-0`}>
+          <div
+            className={classNames(
+              'border-b border-dashed border-dial-slate-300',
+              `py-6 px-4 basis-1/${products.length + 1} grow-0 shrink-0`
+            )}
+          >
             <div className='flex flex-col gap-y-3 text-dial-sapphire'>
               <div className='text-xl font-semibold text-dial-stratos'>
                 {format('ui.product.comparison.title')}
@@ -311,7 +316,7 @@ const ProductCompare = ({ slugs }) => {
               key={productIndex}
               className={classNames(
                 `basis-1/${products.length + 1} grow-0 shrink-0`,
-                'border-l border-dashed border-dial-slate-300'
+                'border-l border-b border-dashed border-dial-slate-300'
               )}
             >
               <a href={`/products/${product.slug}`} target='_blank' rel='noreferrer'>
@@ -343,12 +348,23 @@ const ProductCompare = ({ slugs }) => {
           )}
         </div>
         {fieldNames.map((fieldName, index) =>
-          <div key={index} className='flex flex-row text-sm text-dial-stratos w-full'>
+          <div
+            key={index}
+            className={classNames(
+              'flex flex-row',
+              'text-sm text-dial-stratos',
+              showHighlight &&
+              `${similarities[fieldName]}` !== 'true' &&
+              fieldName !== 'ui.product.rubric.label'
+                ? 'bg-dial-slate-100'
+                : ''
+            )}
+          >
             <div
               className={classNames(
                 `${fieldDisplayFlags[fieldName] ? '' : 'hidden'}`,
                 `basis-1/${products.length + 1} grow-0 shrink-0`,
-                index % 2 === 0 && 'bg-dial-slate-100'
+                'border-b border-dashed border-dial-slate-300'
               )}
             >
               <div className='py-6 px-4 font-semibold'>
@@ -361,8 +377,7 @@ const ProductCompare = ({ slugs }) => {
                 className={classNames(
                 `${fieldDisplayFlags[fieldName] ? '' : 'hidden'}`,
                   `basis-1/${products.length + 1} grow-0 shrink-0`,
-                  'border-l border-dashed border-dial-slate-300',
-                  index % 2 === 0 && 'bg-dial-slate-100'
+                  'border-l border-b border-dashed border-dial-slate-300'
                 )}
               >
                 {fieldName === 'ui.product.rubric.label'

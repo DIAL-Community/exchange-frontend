@@ -16,7 +16,8 @@ const ProductCompareBar = () => {
   const { comparedProducts } = useContext(ProductFilterContext)
   const { setComparedProducts } = useContext(ProductFilterDispatchContext)
 
-  const removeFromComparedProducts = (product) => {
+  const removeFromComparedProducts = (event, product) => {
+    event.preventDefault()
     setComparedProducts(comparedProducts => [...comparedProducts.filter(p => p.id !== product.id)])
   }
 
@@ -48,11 +49,7 @@ const ProductCompareBar = () => {
               </div>
               <div className='ml-auto flex flex-row justify-end items-center gap-x-6'>
                 {comparedProducts.map((product, index) => (
-                  <div
-                    key={index}
-                    className='relative py-4 cursor-pointer'
-                    onClick={() => removeFromComparedProducts(product)}
-                  >
+                  <div key={index} className='relative py-4'>
                     {product.imageFile.indexOf('placeholder.svg') < 0 &&
                       <div className='w-20 h-20 mx-auto bg-white border'>
                         <img
@@ -72,7 +69,14 @@ const ProductCompareBar = () => {
                       </div>
                     }
                     <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                      <FaXmark size='2.5rem' className='hover:opacity-80 opacity-0' />
+                      <a
+                        href='#'
+                        data-tooltip-id='react-tooltip'
+                        data-tooltip-content={format('ui.product.compare.remove')}
+                        onClick={(event) => removeFromComparedProducts(event, product)}
+                      >
+                        <FaXmark size='2.5rem' className='hover:opacity-70 opacity-0' />
+                      </a>
                     </div>
                   </div>
                 ))}
