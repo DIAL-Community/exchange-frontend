@@ -1,8 +1,9 @@
+import Link from 'next/link'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useQuery } from '@apollo/client'
-import { FaSliders } from 'react-icons/fa6'
+import { FaArrowLeft, FaSliders } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
 import {
   Accordion,
@@ -210,7 +211,11 @@ const ProductCompare = ({ slugs }) => {
     if (Array.isArray(fieldValue)) {
       return fieldValue.length <= 0
         ? (
-          <div className={classNames(showHighlight && commonValue ? 'opacity-40' : '')}>
+          <div
+            className={classNames(
+              showHighlight && !commonValue ? 'opacity-40' : ''
+            )}
+          >
             {format('general.na')}
           </div>
         )
@@ -220,7 +225,7 @@ const ProductCompare = ({ slugs }) => {
               <div key={index} className='flex'>
                 <span
                   className={classNames(
-                    showHighlight && (!commonValue || commonValue.indexOf(value) < 0)
+                    showHighlight && commonValue?.indexOf(value) >= 0
                       ? 'opacity-40'
                       : ''
                   )}
@@ -234,7 +239,11 @@ const ProductCompare = ({ slugs }) => {
     }
 
     return (
-      <div className={`${commonValue === null && showHighlight ? 'opacity-40' : ''}`}>
+      <div
+        className={classNames(
+          showHighlight && commonValue ? 'opacity-40' : ''
+        )}
+      >
         {fieldValue ?? format('general.na')}
       </div>
     )
@@ -268,6 +277,12 @@ const ProductCompare = ({ slugs }) => {
       </div>
       <div className='flex flex-col py-8'>
         <div className='flex'>
+          <Link href='/products'>
+            <div className='flex gap-x-2 text-sm px-4'>
+              <FaArrowLeft className='inline my-auto'/>
+              {format('app.back')}
+            </div>
+          </Link>
           <label className='ml-auto flex gap-x-2 text-sm'>
             <Checkbox
               value={showHighlight}
@@ -279,7 +294,7 @@ const ProductCompare = ({ slugs }) => {
         </div>
         <div className='flex flex-row'>
           <div className={`py-6 px-4 basis-1/${products.length + 1} grow-0 shrink-0`}>
-            <div className='flex flex-col gap-y-3 text-dial-iris-blue'>
+            <div className='flex flex-col gap-y-3 text-dial-sapphire'>
               <div className='text-xl font-semibold text-dial-stratos'>
                 {format('ui.product.comparison.title')}
               </div>
@@ -364,8 +379,8 @@ const ProductCompare = ({ slugs }) => {
         )}
       </div>
       <Dialog isOpen={showFilter} onClose={() => setShowFilter(false)} closeButton>
-        <div className='flex flex-col text-sm'>
-          <div className='mb-6 font-semibold text-lg'>
+        <div className='flex flex-col gap-y-2 text-sm'>
+          <div className='mb- font-semibold text-lg'>
             {format('ui.product.comparison.filter')}
           </div>
           {fieldNames.map((fieldName, index) =>
