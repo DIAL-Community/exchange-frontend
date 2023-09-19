@@ -11,7 +11,7 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { user } = useUser()
-  const userName = user.userName.toUpperCase()
+  const userName = user.userName ? user.userName.toUpperCase() : 'U'
 
   const signOutUser = (e) => {
     e.preventDefault()
