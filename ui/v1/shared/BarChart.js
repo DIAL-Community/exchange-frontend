@@ -13,7 +13,7 @@ Chart.register(
   BarElement
 )
 
-const BarChart = ({ labels, values, maxScaleValue, horizontal = false }) => {
+const BarChart = ({ labels, values, maxScaleValue, horizontal = false, fontSize = 16 }) => {
   const chartData = {
     labels,
     datasets: [
@@ -31,7 +31,7 @@ const BarChart = ({ labels, values, maxScaleValue, horizontal = false }) => {
     scale: {
       max: maxScaleValue,
       font: {
-        size: 16
+        size: fontSize
       },
       color: '#46465a'
     },

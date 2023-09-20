@@ -27,7 +27,7 @@ const WizardProgressBar = () => {
     <div className='ui-wizard px-4 lg:px-8 xl:px-56 w-full'>
       <div className='flex flex-col gap-y-4 text-sm'>
         <ol
-          className="flex items-center w-full"
+          className='flex items-center w-full'
           style={{ paddingRight: 'var(--wizard-marker-size)' }}
         >
           {STEPS.map((_, index) => (
@@ -36,7 +36,7 @@ const WizardProgressBar = () => {
             </li>
           ))}
         </ol>
-        <ol className="flex items-center w-full">
+        <ol className='flex items-center w-full'>
           {STEPS.map((_, index) => (
             <li key={index} className={indexListStyle(index)}>
               <button type='button' onClick={() => updateActiveStep(index)}>

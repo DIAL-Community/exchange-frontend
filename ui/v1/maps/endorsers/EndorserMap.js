@@ -29,8 +29,7 @@ const EndorserMap = () => {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       sectors: orgSectors.map(sector => sector.value),
-      years: years.map(year => year.value),
-      mapView: true
+      years: years.map(year => year.value)
     }
   })
 
