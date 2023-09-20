@@ -2174,7 +2174,7 @@ export const en = {
   'toast.submit.success': '{entity} submitted successfully.',
   'toast.submit.failure': 'Failed to submit {entity}.',
   'toast.delete.success': '{entity} deleted successfully.',
-  'toast.delete.success': 'Failed to delete {entity}.',
+  'toast.delete.failure': 'Failed to delete {entity}.',
 
   'delete.confirm.message': 'Are you sure you want to delete this {entity}?',
 
