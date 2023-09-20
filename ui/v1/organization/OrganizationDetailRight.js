@@ -3,7 +3,7 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { useUser } from '../../../lib/hooks'
+import { useOrganizationOwnerUser, useUser } from '../../../lib/hooks'
 import Share from '../shared/common/Share'
 import Bookmark from '../shared/common/Bookmark'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -19,7 +19,9 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
+
+  const canEdit = isAdminUser || isEditorUser || isOrganizationOwner
 
   const descRef = useRef()
   const officeRef = useRef()

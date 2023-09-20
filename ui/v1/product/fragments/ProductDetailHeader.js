@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { prependUrlWithProtocol } from '../../utils/utilities'
-import { useUser } from '../../../../lib/hooks'
+import { useProductOwnerUser, useUser } from '../../../../lib/hooks'
 import ProductDetailSectors from './ProductDetailSectors'
 
 const ProductDetailHeader = ({ product }) => {
@@ -9,7 +9,8 @@ const ProductDetailHeader = ({ product }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const { isProductOwner } = useProductOwnerUser(product)
+  const canEdit = isAdminUser || isEditorUser || isProductOwner
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
