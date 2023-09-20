@@ -74,7 +74,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissHandler }) 
             className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
           />
         }
-        <div className='text-sm font-semibold text-dial-plum my-auto'>
+        <div className='text-sm font-semibold text-dial-plum my-auto line-clamp-2'>
           {organization.name}
         </div>
       </div>

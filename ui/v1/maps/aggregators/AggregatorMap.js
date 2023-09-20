@@ -46,7 +46,6 @@ const AggregatorMap = () => {
   const { loading: loadingAggregators, data: aggregatorData } = useQuery(AGGREGATORS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      mapView: true,
       aggregatorOnly: true,
       aggregators: aggregators.map(a => a.value)
     }

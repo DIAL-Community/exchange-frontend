@@ -28,8 +28,8 @@ const Dialog = ({
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <DialogHeadlessui initialFocus={initialFocusRef} as='div' className='fixed z-100' onClose={onClose} >
-        <div className="fixed inset-0 bg-dial-gray opacity-80" />
-        <div className="fixed inset-0 flex items-center justify-center">
+        <div className='fixed inset-0 bg-dial-gray opacity-80' />
+        <div className='fixed inset-0 flex items-center justify-center'>
           <Transition.Child
             as={Fragment}
             enter='ease-out duration-300'
@@ -54,7 +54,7 @@ const Dialog = ({
                 <div className='flex justify-start text-xl'>
                   {children}
                 </div>
-                <div className='flex justify-start gap-3 text-base' >
+                <div className='flex justify-start gap-3 text-sm' >
                   {submitButton && (
                     <button
                       type='submit'
@@ -79,7 +79,7 @@ const Dialog = ({
                   )}
                 </div>
                 {closeButton && (
-                  <div className='flex justify-end text-base' >
+                  <div className='flex justify-end text-sm' >
                     <button
                       ref={initialFocusRef}
                       type='button'

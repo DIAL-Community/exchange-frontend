@@ -37,12 +37,12 @@ const ProjectList = ({ headerRef }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedProjectsRedux && data?.paginationAttributeProject) {
+  } else if (!data?.paginatedProjects && data?.paginationAttributeProject) {
     return <NotFound />
   }
 
   const {
-    paginatedProjectsRedux: projects,
+    paginatedProjects: projects,
     paginationAttributeProject: paginationAttribute
   } = data
 

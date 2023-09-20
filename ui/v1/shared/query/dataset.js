@@ -33,7 +33,7 @@ export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
 `
 
 export const PAGINATED_DATASETS_QUERY = gql`
-  query PaginatedDatasetsRedux(
+  query PaginatedDatasets(
     $search: String
     $sectors: [String!]
     $sdgs: [String!]
@@ -43,7 +43,7 @@ export const PAGINATED_DATASETS_QUERY = gql`
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedDatasetsRedux(
+    paginatedDatasets(
       search: $search
       sectors: $sectors
       sdgs: $sdgs

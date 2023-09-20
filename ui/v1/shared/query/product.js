@@ -39,7 +39,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
 `
 
 export const PAGINATED_PRODUCTS_QUERY = gql`
-  query PaginatedProductsRedux(
+  query PaginatedProducts(
     $useCases: [String!]
     $buildingBlocks: [String!]
     $sectors: [String!]
@@ -53,7 +53,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedProductsRedux(
+    paginatedProducts(
       useCases: $useCases
       buildingBlocks: $buildingBlocks
       sectors: $sectors
@@ -94,6 +94,12 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       }
       isLinkedWithDpi
     }
+  }
+`
+
+export const PRODUCT_COMPARE_QUERY = gql`
+  query CompareProducts($slugs: [String!]!) {
+    compareProducts(slugs: $slugs)
   }
 `
 
@@ -169,6 +175,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         slug
         imageFile
         maturity
+        category
       }
       buildingBlocksMappingStatus
       sdgs {

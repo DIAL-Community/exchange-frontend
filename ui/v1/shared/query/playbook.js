@@ -25,13 +25,13 @@ export const PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY = gql`
 `
 
 export const PAGINATED_PLAYBOOKS_QUERY = gql`
-  query PaginatedPlaybooksRedux(
+  query PaginatedPlaybooks(
     $tags: [String!]
     $search: String
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedPlaybooksRedux(
+    paginatedPlaybooks(
       tags: $tags
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }

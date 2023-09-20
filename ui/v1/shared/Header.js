@@ -6,7 +6,6 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import classNames from 'classnames'
 import { useUser } from '../../../lib/hooks'
-import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../../queries/user'
 import { NONE } from './menu/MenuCommon'
 import AdminMenu from './menu/AdminMenu'
 import UserMenu from './menu/UserMenu'
@@ -16,6 +15,7 @@ import LanguageMenu from './menu/LanguageMenu'
 import MarketplaceMenu from './menu/MarketplaceMenu'
 import MobileMenu from './MobileMenu'
 import ToolMenu from './menu/ToolMenu'
+import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from './query/user'
 
 const dropdownMenuStyles = classNames(
   'px-3 py-2',

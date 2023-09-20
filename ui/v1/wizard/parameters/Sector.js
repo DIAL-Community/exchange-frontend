@@ -26,15 +26,15 @@ export const SectorAutocomplete = ({ sectors, setSectors }) => {
     <div className='flex flex-col gap-6 w-full pt-3 pb-12 max-h-[18rem] overflow-auto'>
       {data?.sectors &&
         data?.sectors.map((sector, index) => (
-          <div key={index} className="flex gap-2 w-full">
+          <div key={index} className='flex gap-2 w-full'>
             <Checkbox
               id={`sector-${index}`}
               className='focus:ring-0'
               onChange={() => toggleSector(sector.slug)}
               value={sectors.indexOf(sector.slug) >= 0}
             />
-            <div className="text-sm">
-              <label htmlFor={`sector-${index}`} className="font-medium text-dial-stratos">
+            <div className='text-sm'>
+              <label htmlFor={`sector-${index}`} className='font-medium text-dial-stratos'>
                 {sector.name}
               </label>
             </div>
