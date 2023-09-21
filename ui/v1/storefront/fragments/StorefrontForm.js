@@ -45,7 +45,8 @@ const StorefrontForm = React.memo(({ organization }) => {
       variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
     }],
     onCompleted: (data) => {
-      if (data.createOrganization.organization && data.createOrganization.errors.length === 0) {
+      const { createOrganization: response } = data
+      if (response.organization && response.errors.length === 0) {
         const redirectPath = `/${locale}/storefronts/${data.createOrganization.organization.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
@@ -54,7 +55,8 @@ const StorefrontForm = React.memo(({ organization }) => {
           redirectHandler
         )
       } else {
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.storefront.label') }))
+        const [message] = response.errors
+        showFailureMessage(message)
         setMutating(false)
         reset()
       }
