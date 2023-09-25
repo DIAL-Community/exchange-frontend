@@ -1837,6 +1837,10 @@ export const en = {
   'ui.buildingBlockCertification.header': 'Building Block Certifications',
 
   'ui.marketplace.label': 'Marketplace',
+  'ui.marketplace.browse': 'Browse Marketplace',
+  'ui.marketplace.description': `
+    Use the Exchange marketplace to search for RFPs, find service providers, and compare products.
+  `,
 
   'ui.storefront.noSpecialty': "Organization's storefront doesn't have specialty information.",
   'ui.storefront.noResource': "Organization's storefront doesn't have resource information.",
