@@ -1,6 +1,6 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { initializeApollo } from '../../../lib/apolloClient'
-import { USE_CASE_SEARCH_QUERY } from '../../../components/shared/query/use-case'
+import { USE_CASE_SEARCH_QUERY } from '../../../components/shared/query/useCase'
 
 export const getServerSideProps = async (ctx) => {
   const client = initializeApollo({})
