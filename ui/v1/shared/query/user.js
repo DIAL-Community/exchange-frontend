@@ -86,3 +86,15 @@ export const USER_FORM_SELECTION_QUERY = gql`
     userRoles
   }
 `
+
+export const USER_AUTHENTICATION_TOKEN_CHECK_QUERY = gql`
+  query UserAuthenticationTokenCheck(
+    $userId: Int!
+    $userAuthenticationToken: String!
+  ) {
+    userAuthenticationTokenCheck(
+      userId: $userId
+      userAuthenticationToken: $userAuthenticationToken
+    )
+  }
+`

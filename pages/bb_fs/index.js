@@ -1,7 +1,11 @@
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import GradientBackground from '../../components/shared/GradientBackground'
+import { NextSeo } from 'next-seo'
 
 const BBFullScreen = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
 
@@ -116,7 +120,7 @@ const BBFullScreen = () => {
 
   const getUrl = (bb) => {
     return bb.url ? bb.url :
-      `https://exchange.dial.global/building_blocks/${getSlug(bb)}`
+      `https://exchange.dial.global/building-blocks/${getSlug(bb)}`
   }
 
   const currBBList = () => {
@@ -127,7 +131,15 @@ const BBFullScreen = () => {
 
   return (
     <>
-      <GradientBackground />
+      <NextSeo
+        title={format('ui.buildingBlock.header')}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('ui.buildingBlock.header')?.toLocaleLowerCase() }
+          )
+        }
+      />
       <div className='grid grid-cols-4 col-lg-3 col-md-4 d-flex mt-2'>
         { currBBList().map((bb, i) => {
           return (
@@ -137,21 +149,22 @@ const BBFullScreen = () => {
                   <div
                     className={`
                       text-2xl text-white font-semibold overflow-hidden h-1/5 w-full flex flex-row gap-x-1.5 p-2
-                      border-b border-dial-gray product-card-header ${bb_status ? bb_status : 'future'}
+                      border-b border-dial-gray ${bb_status ? bb_status : 'future'}
                     `}
                   >
                     {bb.name}
                   </div>
-                  <div className='flex flex-col p-4 h-1/2'>
-                    <div className='mx-auto py-4 w-1/2'>
+                  <div className='flex flex-col p-4'>
+                    <div className='w-16 h-16 mx-auto px-1 py-1 rounded-full bg-dial-orange'>
                       <img
-                        src={`https://exchange.dial.global/assets/building_blocks/${getSlug(bb)}.png`}
-                        alt='building block image'
+                        src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER}/assets/building_blocks/${getSlug(bb)}.svg`}
+                        alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+                        className='object-contain w-10 h-10 mx-auto my-2 white-filter'
                       />
                     </div>
-                  </div>
-                  <div className='border bg-dial-gray p-2 h-1/3 overflow-hidden'>
-                    {bb.desc}
+                    <div className='p-2 overflow-hidden'>
+                      {bb.desc}
+                    </div>
                   </div>
                 </div>
               </a>

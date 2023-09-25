@@ -6,14 +6,12 @@ export const PROJECTS_QUERY = gql`
     $sectors: [String!]
     $tags: [String!]
     $products: [String!]
-    $mapView: Boolean
     ) {
     searchProjects(
       first: $first,
       sectors: $sectors,
       tags: $tags,
       products: $products
-      mapView: $mapView
     ) {
       totalCount
       pageInfo {
@@ -39,16 +37,14 @@ export const PROJECTS_QUERY = gql`
 
 export const ORGANIZATIONS_QUERY = gql`
   query SearchOrganizations(
-    $first: Int,
-    $sectors: [String!],
-    $years: [Int!],
-    $mapView: Boolean,
+    $first: Int
+    $sectors: [String!]
+    $years: [Int!]
   ) {
     searchOrganizations(
-      first: $first,
-      sectors: $sectors,
-      years: $years,
-      mapView: $mapView
+      first: $first
+      sectors: $sectors
+      years: $years
     ) {
       totalCount
       pageInfo {
@@ -84,16 +80,14 @@ export const ORGANIZATIONS_QUERY = gql`
 
 export const AGGREGATORS_QUERY = gql`
   query SearchOrganizations(
-    $first: Int,
-    $aggregatorOnly: Boolean,
-    $aggregators: [String!],
-    $mapView: Boolean
+    $first: Int
+    $aggregatorOnly: Boolean
+    $aggregators: [String!]
   ) {
     searchOrganizations(
-      first: $first,
-      aggregatorOnly: $aggregatorOnly,
-      aggregators: $aggregators,
-      mapView: $mapView
+      first: $first
+      aggregatorOnly: $aggregatorOnly
+      aggregators: $aggregators
     ) {
       totalCount
       pageInfo {

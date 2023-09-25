@@ -38,12 +38,12 @@ const ProductList = ({ headerRef }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedProductsRedux && data?.paginationAttributeProduct) {
+  } else if (!data?.paginatedProducts && data?.paginationAttributeProduct) {
     return <NotFound />
   }
 
   const {
-    paginatedProductsRedux: products,
+    paginatedProducts: products,
     paginationAttributeProduct: paginationAttribute
   } = data
 

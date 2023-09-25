@@ -20,14 +20,14 @@ const PlaybookDetailEmbed = ({ displayed, setDisplayed }) => {
 
   const embedCode = `
     <iframe
-      src="${process.env.NEXT_PUBLIC_GRAPHQL_SERVER}${router.asPath}/embedded"
-      width="1200"
-      height="800"
+      src='${process.env.NEXT_PUBLIC_GRAPHQL_SERVER}${router.asPath}/embedded'
+      width='1200'
+      height='800'
       allowfullscreen
       allowtransparency
-      allow="autoplay"
-      scrolling="yes"
-      frameborder="0"
+      allow='autoplay'
+      scrolling='yes'
+      frameborder='0'
     >
     ${format('ui.playbook.embed.unsupported')}
     </iframe>

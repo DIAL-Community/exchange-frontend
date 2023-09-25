@@ -27,6 +27,7 @@ export const en = {
   'app.printPdf': 'Print PDF',
   'app.status': 'Status:',
   'app.confirm': 'Confirm',
+  'app.compare': 'Compare',
   'app.mappingStatus': 'Mapping Status',
   'app.name': 'Name',
   'app.description': 'Description',
@@ -232,9 +233,20 @@ export const en = {
   'definition.explore-usecase': 'Explore Use Cases',
   'definition.explore-workflow': 'Explore Workflows',
 
-  'ui.product.header': 'Products',
   'ui.product.label': 'Product',
+  'ui.product.header': 'Products',
   'ui.product.parent.detail': 'Parent Product',
+
+  'ui.product.rubric.label': 'Evaluation Rubric',
+  'ui.product.project.count': 'Number of Projects',
+  
+  'ui.product.compare': 'Compare',
+  'ui.product.compare.clear': 'Clear all',
+  'ui.product.compare.remove': 'Remove this product',
+  'ui.product.compare.hint': 'Please select 2 or more products to compare (max 4).',
+  'ui.product.comparison.title': 'Comparison of Products',
+  'ui.product.comparison.filter': 'Filter comparison',
+  'ui.product.comparison.showHighlight': 'Highlight differences',
 
   'product.languages': 'Languages',
   'product.website': 'Website',
@@ -1825,6 +1837,10 @@ export const en = {
   'ui.buildingBlockCertification.header': 'Building Block Certifications',
 
   'ui.marketplace.label': 'Marketplace',
+  'ui.marketplace.browse': 'Browse Marketplace',
+  'ui.marketplace.description': `
+    Use the Exchange marketplace to search for RFPs, find service providers, and compare products.
+  `,
 
   'ui.storefront.noSpecialty': "Organization's storefront doesn't have specialty information.",
   'ui.storefront.noResource': "Organization's storefront doesn't have resource information.",
@@ -2162,7 +2178,7 @@ export const en = {
   'toast.submit.success': '{entity} submitted successfully.',
   'toast.submit.failure': 'Failed to submit {entity}.',
   'toast.delete.success': '{entity} deleted successfully.',
-  'toast.delete.success': 'Failed to delete {entity}.',
+  'toast.delete.failure': 'Failed to delete {entity}.',
 
   'delete.confirm.message': 'Are you sure you want to delete this {entity}?',
 

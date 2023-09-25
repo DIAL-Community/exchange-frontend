@@ -36,12 +36,12 @@ const DatasetList = ({ headerRef }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedDatasetsRedux && data?.paginationAttributeDataset) {
+  } else if (!data?.paginatedDatasets && data?.paginationAttributeDataset) {
     return <NotFound />
   }
 
   const {
-    paginatedDatasetsRedux: datasets,
+    paginatedDatasets: datasets,
     paginationAttributeDataset: paginationAttribute
   } = data
 

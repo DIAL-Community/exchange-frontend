@@ -29,8 +29,7 @@ const ProjectMap = () => {
       first: DEFAULT_PAGE_SIZE,
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
-      products: products.map(product => product.value),
-      mapView: true
+      products: products.map(product => product.value)
     }
   })
 

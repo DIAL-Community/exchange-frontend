@@ -1,14 +1,31 @@
-import { useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { FaXmark } from 'react-icons/fa6'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../../components/context/ProductFilterContext'
+import Checkbox from '../shared/form/Checkbox'
 
 const ProductCard = ({ displayType, index, product, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { comparedProducts } = useContext(ProductFilterContext)
+  const { setComparedProducts } = useContext(ProductFilterDispatchContext)
+
+  const isInComparedProducts = () => {
+    return comparedProducts.filter(p => p.id === product.id).length > 0
+  }
+
+  const toggleComparedProducts = () => {
+    if (isInComparedProducts()) {
+      setComparedProducts(comparedProducts => [...comparedProducts.filter(p => p.id !== product.id)])
+    } else {
+      setComparedProducts(comparedProducts => [...comparedProducts, product])
+    }
+  }
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
@@ -82,11 +99,23 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
-      { isValidFn(dismissHandler) &&
-        <button type='button' className='absolute top-2 right-2'>
-          <FaXmark size='1rem' className='text-dial-meadow' onClick={dismissHandler} />
-        </button>
-      }
+      <div className='absolute top-2 right-2'>
+        {isValidFn(dismissHandler) &&
+          <button type='button'>
+            <FaXmark size='1rem' className='text-dial-meadow' onClick={dismissHandler} />
+          </button>
+        }
+        {!isValidFn(dismissHandler) &&
+          <label className='ml-auto flex gap-x-2 text-sm'>
+            <Checkbox
+              value={isInComparedProducts()}
+              onChange={toggleComparedProducts}
+              className='ring-0 focus:ring-0'
+            />
+            {format('ui.product.compare')}
+          </label>
+        }
+      </div>
     </div>
   )
 }

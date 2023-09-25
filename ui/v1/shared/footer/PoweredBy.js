@@ -27,14 +27,14 @@ const PoweredBy = () => {
       </div>
       <div className='flex gap-2 ml-auto'>
         <a href='//x.com/DIALCommunity' target='_blank' rel='noreferrer'>
-          <FaXTwitter size='2.5rem' className='text-dial-iris-blue'/>
+          <FaXTwitter size='2rem' className='text-dial-iris-blue'/>
         </a>
         <a
           href='//www.linkedin.com/company/digital-impact-alliance/'
           target='_blank'
           rel='noreferrer'
         >
-          <FaLinkedin size='2.5rem' className='text-dial-iris-blue'/>
+          <FaLinkedin size='2rem' className='text-dial-iris-blue'/>
         </a>
       </div>
     </div>

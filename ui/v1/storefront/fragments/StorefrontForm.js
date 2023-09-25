@@ -13,7 +13,6 @@ import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_ORGANIZATION } from '../../shared/mutation/organization'
 import IconButton from '../../shared/form/IconButton'
 import UrlInput from '../../shared/form/UrlInput'
-import Checkbox from '../../shared/form/Checkbox'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import {
@@ -46,7 +45,8 @@ const StorefrontForm = React.memo(({ organization }) => {
       variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
     }],
     onCompleted: (data) => {
-      if (data.createOrganization.organization && data.createOrganization.errors.length === 0) {
+      const { createOrganization: response } = data
+      if (response.organization && response.errors.length === 0) {
         const redirectPath = `/${locale}/storefronts/${data.createOrganization.organization.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
@@ -55,7 +55,8 @@ const StorefrontForm = React.memo(({ organization }) => {
           redirectHandler
         )
       } else {
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.storefront.label') }))
+        const [message] = response.errors
+        showFailureMessage(message)
         setMutating(false)
         reset()
       }
@@ -82,8 +83,7 @@ const StorefrontForm = React.memo(({ organization }) => {
         ? organization?.aliases.map(value => ({ value }))
         : [{ value: '' }],
       website: organization?.website ?? '',
-      description: organization?.organizationDescription?.description,
-      hasStorefront: organization?.hasStorefront
+      description: organization?.organizationDescription?.description
     }
   })
 
@@ -111,8 +111,7 @@ const StorefrontForm = React.memo(({ organization }) => {
         imageFile,
         website,
         description,
-        aliases,
-        hasStorefront
+        aliases
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -121,7 +120,7 @@ const StorefrontForm = React.memo(({ organization }) => {
         aliases: aliases.map(({ value }) => value),
         website,
         description,
-        hasStorefront
+        hasStorefront: true
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -213,15 +212,6 @@ const StorefrontForm = React.memo(({ organization }) => {
                 <label className='text-dial-sapphire'>{format('organization.imageFile')}</label>
                 <FileUploader {...register('imageFile')} />
               </div>
-              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-                <Checkbox
-                  {...register('hasStorefront')}
-                  value={true}
-                  readOnly
-                  className='text-dial-slate-500 ring-0 focus:ring-0'
-                />
-                {format('organization.hasStorefront')}
-              </label>
               <div className='block flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
                   {format('organization.description')}

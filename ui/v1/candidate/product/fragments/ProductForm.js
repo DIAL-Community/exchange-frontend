@@ -48,7 +48,6 @@ const ProductForm = React.memo(({ product }) => {
     }],
     onCompleted: (data) => {
       const { createCandidateProduct: response } = data
-      console.log('IF: ', response.candidateProduct, response.errors.length === 0)
       if (response.candidateProduct && response.errors.length === 0) {
         setMutating(false)
         const redirectPath = `/${locale}` +

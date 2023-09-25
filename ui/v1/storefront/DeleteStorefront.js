@@ -38,7 +38,7 @@ const DeleteStorefront = ({ organization }) => {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
           format('toast.delete.success', { entity: format('ui.storefront.label') }),
-          () => router.push(`/${locale}/organizations`)
+          () => router.push(`/${locale}/storefronts`)
         )
       } else {
         setDisplayConfirmDialog(false)

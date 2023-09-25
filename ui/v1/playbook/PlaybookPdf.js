@@ -148,7 +148,7 @@ const MoveContent = ({ move, format }) => {
 const PlaybookContent = ({ format, data, locale }) => {
   return (
     <Document>
-      <Page style={styles.page} size="A4">
+      <Page style={styles.page} size='A4'>
         <IntlProvider locale={ locale }>
           <div className='my-4 mx-2'>
             <div className='h1 mb-4 h-12'>

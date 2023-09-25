@@ -29,8 +29,7 @@ query SearchOrganizations(
   $endorserOnly: Boolean!,
   $endorserLevel: String!,
   $years: [Int!],
-  $search: String!,
-  $mapView: Boolean,
+  $search: String!
 ) {
   searchOrganizations(
     sectors: $sectors,
@@ -38,8 +37,7 @@ query SearchOrganizations(
     endorserOnly: $endorserOnly,
     endorserLevel: $endorserLevel,
     years: $years,
-    search: $search,
-    mapView: $mapView
+    search: $search
   ) {
     totalCount
     pageInfo {
@@ -98,8 +96,7 @@ const EndorserPageInformation = () => {
       years: years.map(year => year.value),
       countries: countries.map(country => country.value),
       endorserLevel,
-      search,
-      mapView: true
+      search
     }
   })
 
@@ -164,7 +161,7 @@ const EndorserPageInformation = () => {
         />
         <EndorserInfo {...{ city, setOrganization }} />
       </div>
-      <div className='flex flex-row bg-dial-gray-dark pt-2 pb-2'>
+      <div className='flex flex-row bg-dial-gray-dark py-3'>
         <div className='text-white text-xl flex justify-center items-center mx-5'>
           <div className='whitespace-nowrap'>Filter Endorsers</div>
         </div>
@@ -185,7 +182,7 @@ const EndorserPageInformation = () => {
       </div>
       {
         (years.length > 0 || countries.length > 0 || sectors.length > 0) &&
-          <div className='flex flex-row bg-dial-gray-dark pb-2 px-5 -mt-3 '>
+          <div className='flex flex-row bg-dial-gray-dark px-5 pb-3 gap-2'>
             <EndorsingYearFilters {...{ years, setYears }} />
             <CountryFilters {...{ countries, setCountries }} />
             <SectorFilters {...{ sectors, setSectors }} />

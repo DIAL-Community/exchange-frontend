@@ -34,11 +34,11 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedProductsRedux) {
+  } else if (!data?.paginatedProducts) {
     return <NotFound />
   }
 
-  const { paginatedProductsRedux: products } = data
+  const { paginatedProducts: products } = data
 
   return (
     <div className='flex flex-col gap-3'>

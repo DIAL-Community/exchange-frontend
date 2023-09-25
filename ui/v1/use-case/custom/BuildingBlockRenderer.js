@@ -14,7 +14,7 @@ const UseCaseBuildingBlockRenderer = ({ useCaseBuildingBlocks, stepBuildingBlock
 
   return (
     <div className='flex flex-col gap-3'>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+      <div className='grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3'>
         {categoryNonDPI
           .map((buildingBlock, index) =>
             <BuildingBlockCard
@@ -27,7 +27,7 @@ const UseCaseBuildingBlockRenderer = ({ useCaseBuildingBlocks, stepBuildingBlock
         }
       </div>
       <div className='border-b border-dashed border-dial-lavender' />
-      <div className="grid grid-cols-1">
+      <div className='grid grid-cols-1'>
         {categoryDPI
           .map((buildingBlock, index) =>
             <BuildingBlockCard

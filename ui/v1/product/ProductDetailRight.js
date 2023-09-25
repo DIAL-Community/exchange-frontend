@@ -4,7 +4,7 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { DisplayType, ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { useUser } from '../../../lib/hooks'
+import { useProductOwnerUser, useUser } from '../../../lib/hooks'
 import Share from '../shared/common/Share'
 import Bookmark from '../shared/common/Bookmark'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -174,7 +174,8 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const { isProductOwner } = useProductOwnerUser(product)
+  const canEdit = isAdminUser || isEditorUser || isProductOwner
 
   const descRef = useRef()
   const pricingRef = useRef()
