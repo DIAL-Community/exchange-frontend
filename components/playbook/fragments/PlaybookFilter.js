@@ -4,11 +4,11 @@ import { signIn } from 'next-auth/react'
 import { FaSpinner } from 'react-icons/fa'
 import { useMutation } from '@apollo/client'
 import { useCallback, useContext, useState } from 'react'
-import { ToastContext } from '../../../../lib/ToastContext'
-import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../../../../components/context/PlaybookFilterContext'
+import { ToastContext } from '../../../lib/ToastContext'
+import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../../context/PlaybookFilterContext'
 import { APPLY_AS_CONTENT_EDITOR } from '../../shared/mutation/playbook'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
-import { useUser } from '../../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 
 const PlaybookFilter = () => {
   const { formatMessage } = useIntl()

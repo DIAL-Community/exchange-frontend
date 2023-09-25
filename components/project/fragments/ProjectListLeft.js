@@ -6,9 +6,9 @@ import { ObjectType } from '../../utils/constants'
 import {
   ProjectFilterContext,
   ProjectFilterDispatchContext
-} from '../../../../components/context/ProjectFilterContext'
+} from '../../context/ProjectFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../../../components/context/QueryParamContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import ProjectFilter from './ProjectFilter'
 
 const ProjectListLeft = () => {

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_CONTACTS_QUERY } from '../../shared/query/contact'
-import { FilterContext } from '../../../../components/context/FilterContext'
+import { FilterContext } from '../../context/FilterContext'
 import ContactCard from '../ContactCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

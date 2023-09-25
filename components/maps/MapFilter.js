@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
-import { MapFilterContext, MapFilterDispatchContext } from '../../../components/context/MapFilterContext'
+import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
 import { CapabilityAutocomplete } from '../shared/filter/Capability'
 import { EndorsingYearSelect } from '../shared/filter/EndorsingYear'
 import { OperatorAutocomplete } from '../shared/filter/Operator'

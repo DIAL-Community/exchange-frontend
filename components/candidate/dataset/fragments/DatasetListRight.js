@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { DatasetFilterContext } from '../../../../../components/context/DatasetFilterContext'
+import { DatasetFilterContext } from '../../../context/candidate/DatasetFilterContext'
 import { CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/candidateDataset'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import Pagination from '../../../shared/Pagination'

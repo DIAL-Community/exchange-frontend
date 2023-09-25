@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { UserFilterContext } from '../../../../components/context/UserFilterContext'
+import { UserFilterContext } from '../../context/UserFilterContext'
 import { USER_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/user'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'

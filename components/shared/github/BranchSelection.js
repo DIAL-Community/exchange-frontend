@@ -2,7 +2,7 @@ import { Octokit } from '@octokit/core'
 import { useCallback, useContext, useEffect, useMemo } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useIntl } from 'react-intl'
-import Select from '../../shared/Select'
+import Select from '../form/Select'
 import { DEFAULT_BRANCH_NAME } from './common'
 import { EditorContext, EditorContextDispatch } from './EditorContext'
 

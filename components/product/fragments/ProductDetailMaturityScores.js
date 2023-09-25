@@ -14,8 +14,8 @@ import { useRouter } from 'next/router'
 import EditableSection from '../../shared/EditableSection'
 import { Loading } from '../../shared/FetchStatus'
 import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../shared/query/product'
-import { useUser } from '../../../../lib/hooks'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
 import {
   getCategoryIndicatorBooleanOptions,
   getCategoryIndicatorNumericOptions,

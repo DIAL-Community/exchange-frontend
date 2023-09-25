@@ -3,7 +3,7 @@ import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
+import { ORGANIZATION_SEARCH_QUERY } from '../query/organization'
 import Select from '../form/Select'
 
 export const OrganizationAutocomplete = ({

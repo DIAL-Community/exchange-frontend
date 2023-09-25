@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../../../lib/hooks'
+import { useUser } from '../../../../lib/hooks'
 import { CandidateActionType } from '../../../utils/constants'
 import { CANDIDATE_ROLE_ACTION } from '../../../shared/mutation/candidateRole'
 

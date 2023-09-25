@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext }
-  from '../../../../components/context/UseCaseFilterContext'
+  from '../../context/UseCaseFilterContext'
 import SearchBar from '../../shared/SearchBar'
 import MobileFilter from '../../shared/MobileFilter'
 import UseCaseFilter from './UseCaseFilter'

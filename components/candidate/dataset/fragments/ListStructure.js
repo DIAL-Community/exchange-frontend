@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_CANDIDATE_DATASETS_QUERY } from '../../../shared/query/candidateDataset'
 import DatasetCard from '../DatasetCard'
 import { DisplayType } from '../../../utils/constants'
-import { DatasetFilterContext } from '../../../../../components/context/DatasetFilterContext'
+import { DatasetFilterContext } from '../../../context/DatasetFilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
-import { ProjectFilterContext } from '../../../components/context/ProjectFilterContext'
+import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import TabNav from '../shared/TabNav'
 import { ExportType, asyncExport, convertKeys } from '../utils/export'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const ProjectTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()

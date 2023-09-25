@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import StorefrontRibbon from '../../ui/v1/storefront/StorefrontRibbon'
-import StorefrontTabNav from '../../ui/v1/storefront/StorefrontTabNav'
-import StorefrontMain from '../../ui/v1/storefront/StorefrontMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import StorefrontRibbon from '../../components/storefront/StorefrontRibbon'
+import StorefrontTabNav from '../../components/storefront/StorefrontTabNav'
+import StorefrontMain from '../../components/storefront/StorefrontMain'
 
 const StorefrontListPage = () => {
   const { formatMessage } = useIntl()

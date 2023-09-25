@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_TAGS_QUERY } from '../../shared/query/tag'
 import TagCard from '../TagCard'
 import { DisplayType } from '../../utils/constants'
-import { FilterContext } from '../../../../components/context/FilterContext'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {

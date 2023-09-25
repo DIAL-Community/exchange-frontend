@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/organization'
-import { OrganizationFilterContext } from '../../../../components/context/OrganizationFilterContext'
+import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
 import OrganizationCard from '../OrganizationCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

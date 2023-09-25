@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
-import { WorkflowFilterContext } from '../../../components/context/WorkflowFilterContext'
+import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
 import TabNav from '../shared/TabNav'
 import { ExportType, asyncExport, convertKeys } from '../utils/export'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const WorkflowTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()

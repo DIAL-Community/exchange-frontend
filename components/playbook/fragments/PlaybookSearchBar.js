@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { PlaybookFilterContext, PlaybookFilterDispatchContext }
-  from '../../../../components/context/PlaybookFilterContext'
+  from '../../context/PlaybookFilterContext'
 import SearchBar from '../../shared/SearchBar'
 import MobileFilter from '../../shared/MobileFilter'
 import PlaybookFilter from './PlaybookFilter'

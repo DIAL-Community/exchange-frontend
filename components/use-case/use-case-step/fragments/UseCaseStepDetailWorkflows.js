@@ -4,14 +4,14 @@ import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import WorkflowCard from '../../../workflow/WorkflowCard'
 import { DisplayType } from '../../../utils/constants'
-import Select from '../../../shared/form/Select'
 import { fetchSelectOptions } from '../../../utils/search'
 import Pill from '../../../shared/form/Pill'
+import Select from '../../../shared/form/Select'
 import EditableSection from '../../../shared/EditableSection'
-import { UPDATE_USE_CASE_STEP_WORKFLOWS } from '../../../shared/mutation/useCaseStep'
 import { WORKFLOW_SEARCH_QUERY } from '../../../shared/query/workflow'
-import { useUser } from '../../../../../lib/hooks'
-import { ToastContext } from '../../../../../lib/ToastContext'
+import { UPDATE_USE_CASE_STEP_WORKFLOWS } from '../../../shared/mutation/useCaseStep'
+import { useUser } from '../../../../lib/hooks'
+import { ToastContext } from '../../../../lib/ToastContext'
 
 const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()

@@ -2,19 +2,19 @@ import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { gql, useQuery } from '@apollo/client'
-import EndorserCard from '../../../ui/v1/organization/EndorserCard'
+import EndorserCard from '../../../components/organization/EndorserCard'
 import { FilterContext } from '../../../components/context/FilterContext'
 import SearchFilter from '../../../components/shared/SearchFilter'
 import PoweredBy from '../../../components/shared/PoweredBy'
-import { CountryAutocomplete, CountryActiveFilters } from '../../../ui/v1/shared/filter/Country'
-import { EndorsingYearSelect, EndorsingYearActiveFilters } from '../../../ui/v1/shared/filter/EndorsingYear'
-import { SectorAutocomplete, SectorActiveFilters } from '../../../ui/v1/shared/filter/Sector'
-import EndorserInfo from '../../../ui/v1/maps/endorsers/EndorserInfo'
+import { CountryAutocomplete, CountryActiveFilters } from '../../../components/shared/filter/Country'
+import { EndorsingYearSelect, EndorsingYearActiveFilters } from '../../../components/shared/filter/EndorsingYear'
+import { SectorAutocomplete, SectorActiveFilters } from '../../../components/shared/filter/Sector'
+import EndorserInfo from '../../../components/maps/endorsers/EndorserInfo'
 import ClientOnly from '../../../lib/ClientOnly'
 
 const EndorserMarkerMaps = (props) => {
   const EndorserMarkerMaps = useMemo(() => dynamic(
-    () => import('../../../ui/v1/maps/endorsers/EndorserMarkers'),
+    () => import('../../../components/maps/endorsers/EndorserMarkers'),
     { ssr: false }
   ), [])
 

@@ -1,6 +1,6 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { initializeApollo } from '../../../lib/apolloClient'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../ui/v1/shared/query/building-block'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../components/shared/query/building-block'
 
 export const getServerSideProps = async (ctx) => {
   const client = initializeApollo({})

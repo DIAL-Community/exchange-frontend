@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_USE_CASES_QUERY } from '../../shared/query/useCase'
-import { UseCaseFilterContext } from '../../../../components/context/UseCaseFilterContext'
+import { UseCaseFilterContext } from '../../context/UseCaseFilterContext'
 import UseCaseCard from '../UseCaseCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

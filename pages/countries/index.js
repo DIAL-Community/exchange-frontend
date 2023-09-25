@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import CountryRibbon from '../../ui/v1/country/CountryRibbon'
-import CountryTabNav from '../../ui/v1/country/CountryTabNav'
-import CountryMain from '../../ui/v1/country/CountryMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import CountryRibbon from '../../components/country/CountryRibbon'
+import CountryTabNav from '../../components/country/CountryTabNav'
+import CountryMain from '../../components/country/CountryMain'
 
 const CountryListPage = () => {
   const { formatMessage } = useIntl()

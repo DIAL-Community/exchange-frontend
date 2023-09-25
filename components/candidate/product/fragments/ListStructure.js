@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_CANDIDATE_PRODUCTS_QUERY } from '../../../shared/query/candidateProduct'
 import ProductCard from '../ProductCard'
 import { DisplayType } from '../../../utils/constants'
-import { ProductFilterContext } from '../../../../../components/context/ProductFilterContext'
+import { ProductFilterContext } from '../../../context/ProductFilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {

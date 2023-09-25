@@ -1,5 +1,5 @@
 import { forwardRef, useContext } from 'react'
-import { FilterContext } from '../../../../components/context/FilterContext'
+import { FilterContext } from '../../context/FilterContext'
 import SearchBar from '../../shared/SearchBar'
 
 const ResourceSearchBar = forwardRef((_, ref) => {

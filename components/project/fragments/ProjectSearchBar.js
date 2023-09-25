@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { ProjectFilterContext, ProjectFilterDispatchContext }
-  from '../../../../components/context/ProjectFilterContext'
+  from '../../context/ProjectFilterContext'
 import SearchBar from '../../shared/SearchBar'
 import MobileFilter from '../../shared/MobileFilter'
 import ProjectFilter from './ProjectFilter'

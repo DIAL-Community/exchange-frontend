@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { OpportunityFilterContext, OpportunityFilterDispatchContext }
-  from '../../../../components/context/OpportunityFilterContext'
+  from '../../context/OpportunityFilterContext'
 import SearchBar from '../../shared/SearchBar'
 import MobileFilter from '../../shared/MobileFilter'
 import OpportunityFilter from './OpportunityFilter'

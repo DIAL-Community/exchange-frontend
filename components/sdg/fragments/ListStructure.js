@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { SDG_LIST_QUERY } from '../../shared/query/sdg'
-import { SDGFilterContext } from '../../../../components/context/SDGFilterContext'
+import { SDGFilterContext } from '../../context/SDGFilterContext'
 import SdgCard from '../SdgCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

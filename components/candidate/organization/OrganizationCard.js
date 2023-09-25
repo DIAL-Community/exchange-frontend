@@ -4,7 +4,7 @@ import Link from 'next/link'
 import parse from 'html-react-parser'
 import { FaXmark } from 'react-icons/fa6'
 import { DisplayType } from '../../utils/constants'
-import { useUser } from '../../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 import { isValidFn } from '../../utils/utilities'
 
 const OrganizationCard = ({ displayType, index, organization, dismissHandler }) => {

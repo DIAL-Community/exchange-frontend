@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
-import ComingSoon from '../../../components/shared/ComingSoon'
+import ComingSoon from './ComingSoon'
 
 const MarketplaceDefinition = () => {
   const { formatMessage } = useIntl()

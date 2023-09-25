@@ -10,8 +10,8 @@ import Pill from '../../shared/form/Pill'
 import EditableSection from '../../shared/EditableSection'
 import { UPDATE_USE_CASE_SDG_TARGETS } from '../../shared/mutation/useCase'
 import { SDG_TARGET_SEARCH_QUERY } from '../../shared/query/sdgTarget'
-import { useUser } from '../../../../lib/hooks'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
 
 const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()

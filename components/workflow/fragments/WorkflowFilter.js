@@ -3,7 +3,7 @@ import { useCallback, useContext } from 'react'
 import {
   WorkflowFilterContext,
   WorkflowFilterDispatchContext
-} from '../../../../components/context/WorkflowFilterContext'
+} from '../../context/WorkflowFilterContext'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
 

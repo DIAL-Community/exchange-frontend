@@ -1,6 +1,6 @@
 import { FormattedDate, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { useUser } from '../../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import Share from '../../shared/common/Share'

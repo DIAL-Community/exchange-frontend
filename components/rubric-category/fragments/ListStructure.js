@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { RUBRIC_CATEGORY_SEARCH_QUERY } from '../../shared/query/rubricCategory'
-import { FilterContext } from '../../../../components/context/FilterContext'
+import { FilterContext } from '../../context/FilterContext'
 import RubricCategoryCard from '../RubricCategoryCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

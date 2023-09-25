@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { useUser } from '../../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { prependUrlWithProtocol } from '../../utils/utilities'

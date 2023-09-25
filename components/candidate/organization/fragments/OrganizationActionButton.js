@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../../../lib/hooks'
+import { useUser } from '../../../../lib/hooks'
 import { CandidateActionType } from '../../../utils/constants'
 
 const OrganizationActionButton = ({ organization, actionType, refetch }) => {

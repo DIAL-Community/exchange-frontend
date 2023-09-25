@@ -5,7 +5,7 @@ import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
 import {
   ProductFilterContext,
   ProductFilterDispatchContext
-} from '../../../../components/context/ProductFilterContext'
+} from '../../context/ProductFilterContext'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import { LicenseTypeActiveFilters, LicenseTypeAutocomplete } from '../../shared/filter/LicenseType'
 import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'

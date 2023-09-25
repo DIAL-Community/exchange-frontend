@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY } from '../../../shared/query/candidateOrganization'
 import OrganizationCard from '../OrganizationCard'
 import { DisplayType } from '../../../utils/constants'
-import { OrganizationFilterContext } from '../../../../../components/context/OrganizationFilterContext'
+import { OrganizationFilterContext } from '../../../context/OrganizationFilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {

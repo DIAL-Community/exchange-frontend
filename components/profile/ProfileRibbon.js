@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import Ribbon from '../shared/Ribbon'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const ProfileRibbon = () => {
   const { formatMessage } = useIntl()

@@ -2,10 +2,10 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import RubricCategoryCreate from '../../../ui/v1/rubric-category/RubricCategoryCreate'
+import Footer from '../../../components/shared/Footer'
+import RubricCategoryCreate from '../../../components/rubric-category/RubricCategoryCreate'
 
 const CreateRubricCategoryPage = () => {
   const { formatMessage } = useIntl()

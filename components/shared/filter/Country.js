@@ -4,7 +4,7 @@ import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
 import { fetchSelectOptions } from '../../utils/search'
-import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
+import { COUNTRY_SEARCH_QUERY } from '../query/country'
 import Select from '../form/Select'
 
 export const CountryAutocomplete = ({

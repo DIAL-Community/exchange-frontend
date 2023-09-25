@@ -5,7 +5,7 @@ import parse from 'html-react-parser'
 import { FaXmark } from 'react-icons/fa6'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../components/context/ProductFilterContext'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
 import Checkbox from '../shared/form/Checkbox'
 
 const ProductCard = ({ displayType, index, product, dismissHandler }) => {
@@ -105,7 +105,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
             <FaXmark size='1rem' className='text-dial-meadow' onClick={dismissHandler} />
           </button>
         }
-        {!isValidFn(dismissHandler) &&
+        {!isValidFn(dismissHandler) && displayType === DisplayType.LARGE_CARD &&
           <label className='ml-auto flex gap-x-2 text-sm'>
             <Checkbox
               value={isInComparedProducts()}

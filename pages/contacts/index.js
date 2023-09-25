@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import ContactRibbon from '../../ui/v1/contact/ContactRibbon'
-import ContactTabNav from '../../ui/v1/contact/ContactTabNav'
-import ContactMain from '../../ui/v1/contact/ContactMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import ContactRibbon from '../../components/contact/ContactRibbon'
+import ContactTabNav from '../../components/contact/ContactTabNav'
+import ContactMain from '../../components/contact/ContactMain'
 
 const ContactListPage = () => {
   const { formatMessage } = useIntl()

@@ -9,8 +9,8 @@ import ValidationError from '../../shared/form/ValidationError'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_RUBRIC_CATEGORY } from '../../shared/mutation/rubricCategory'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { useUser } from '../../../../lib/hooks'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
 
 const RubricCategoryForm = React.memo(({ rubricCategory }) => {
   const { formatMessage } = useIntl()

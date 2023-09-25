@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
-import { ProductFilterContext } from '../../../components/context/ProductFilterContext'
+import { ProductFilterContext } from '../context/ProductFilterContext'
 import TabNav from '../shared/TabNav'
 import { ExportType, asyncExport, convertKeys } from '../utils/export'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const ProductTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()

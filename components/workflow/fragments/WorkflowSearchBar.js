@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext }
-  from '../../../../components/context/WorkflowFilterContext'
+  from '../../context/WorkflowFilterContext'
 import SearchBar from '../../shared/SearchBar'
 import MobileFilter from '../../shared/MobileFilter'
 import WorkflowFilter from './WorkflowFilter'

@@ -4,12 +4,12 @@ import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../lib/ClientOnly'
 import QueryNotification from '../components/shared/QueryNotification'
-import Header from '../ui/v1/shared/Header'
-import Footer from '../ui/v1/shared/Footer'
-import HeroCarousel from '../ui/v1/shared/HeroCarousel'
-import ToolDefinition from '../ui/v1/shared/ToolDefinition'
-import WizardDefinition from '../ui/v1/shared/WizardDefinition'
-import MarketplaceDefinition from '../ui/v1/shared/MarketplaceDefinition'
+import Header from '../components/shared/Header'
+import Footer from '../components/shared/Footer'
+import HeroCarousel from '../components/shared/HeroCarousel'
+import ToolDefinition from '../components/shared/ToolDefinition'
+import WizardDefinition from '../components/shared/WizardDefinition'
+import MarketplaceDefinition from '../components/shared/MarketplaceDefinition'
 
 const LandingPage = () => {
   const { formatMessage } = useIntl()

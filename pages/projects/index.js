@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import ProjectRibbon from '../../ui/v1/project/ProjectRibbon'
-import ProjectTabNav from '../../ui/v1/project/ProjectTabNav'
-import ProjectMain from '../../ui/v1/project/ProjectMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import ProjectRibbon from '../../components/project/ProjectRibbon'
+import ProjectTabNav from '../../components/project/ProjectTabNav'
+import ProjectMain from '../../components/project/ProjectMain'
 
 const ProjectListPage = () => {
   const { formatMessage } = useIntl()

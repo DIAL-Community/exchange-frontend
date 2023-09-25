@@ -4,7 +4,7 @@ import { signIn, signOut } from 'next-auth/react'
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
 import { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 import { SUPPORTING_NAVIGATION_ITEMS, TOOL_NAVIGATION_ITEMS } from '../utils/header'
 import { HELP_MENU, LANGUAGE_MENU, MARKETPLACE_MENU, NONE, RESOURCE_MENU, USER_MENU } from './menu/MenuCommon'
 

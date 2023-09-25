@@ -6,9 +6,9 @@ import { ObjectType } from '../../utils/constants'
 import {
   OrganizationFilterContext,
   OrganizationFilterDispatchContext
-} from '../../../../components/context/OrganizationFilterContext'
+} from '../../context/OrganizationFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../../../components/context/QueryParamContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import OrganizationFilter from './OrganizationFilter'
 
 const OrganizationListLeft = () => {

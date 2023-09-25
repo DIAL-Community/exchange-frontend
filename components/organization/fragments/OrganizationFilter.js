@@ -2,7 +2,7 @@ import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { FaXmark } from 'react-icons/fa6'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext }
-  from '../../../../components/context/OrganizationFilterContext'
+  from '../../context/OrganizationFilterContext'
 import Checkbox from '../../shared/form/Checkbox'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
 import { CountryAutocomplete, CountryActiveFilters } from '../../shared/filter/Country'

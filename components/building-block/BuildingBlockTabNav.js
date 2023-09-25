@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
-import { BuildingBlockFilterContext } from '../../../components/context/BuildingBlockFilterContext'
+import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
 import TabNav from '../shared/TabNav'
 import { ExportType, asyncExport, convertKeys } from '../utils/export'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const BuildingBlockTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()

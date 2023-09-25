@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { UserFilterContext, UserFilterDispatchContext }
-  from '../../../../components/context/UserFilterContext'
+  from '../../context/UserFilterContext'
 import SearchBar from '../../shared/SearchBar'
 
 const UserSearchBar = forwardRef((_, ref) => {

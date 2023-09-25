@@ -6,9 +6,9 @@ import { ObjectType } from '../../utils/constants'
 import {
   ProductFilterContext,
   ProductFilterDispatchContext
-} from '../../../../components/context/ProductFilterContext'
+} from '../../context/ProductFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../../../components/context/QueryParamContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import ProductFilter from './ProductFilter'
 
 const ProductListLeft = () => {

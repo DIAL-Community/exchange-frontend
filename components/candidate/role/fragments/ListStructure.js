@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_CANDIDATE_ROLES_QUERY } from '../../../shared/query/candidateRole'
 import RoleCard from '../RoleCard'
 import { DisplayType } from '../../../utils/constants'
-import { FilterContext } from '../../../../../components/context/FilterContext'
+import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {

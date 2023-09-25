@@ -2,7 +2,7 @@ import { getCsrfToken, getSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import Header from '../../ui/v1/shared/Header'
+import Header from '../../components/shared/Header'
 
 export default function Error () {
   const { formatMessage } = useIntl()

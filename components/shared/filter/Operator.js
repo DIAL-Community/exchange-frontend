@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
 import { fetchSelectOptions } from '../../utils/search'
-import { OPERATOR_SEARCH_QUERY } from '../../shared/query/operator'
+import { OPERATOR_SEARCH_QUERY } from '../query/operator'
 import Select from '../form/Select'
 import { compareAlphabetically } from './utilities'
 

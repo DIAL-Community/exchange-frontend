@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_RESOURCES_QUERY } from '../../shared/query/resource'
-import { FilterContext } from '../../../../components/context/FilterContext'
+import { FilterContext } from '../../context/FilterContext'
 import ResourceCard from '../ResourceCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

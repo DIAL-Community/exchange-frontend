@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_PROJECTS_QUERY } from '../../shared/query/project'
-import { ProjectFilterContext } from '../../../../components/context/ProjectFilterContext'
+import { ProjectFilterContext } from '../../context/ProjectFilterContext'
 import ProjectCard from '../ProjectCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

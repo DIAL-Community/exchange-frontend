@@ -4,7 +4,7 @@ import { Fragment, useCallback, useContext } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaCopy } from 'react-icons/fa6'
 import { VscClose } from 'react-icons/vsc'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { ToastContext } from '../../../lib/ToastContext'
 
 const PlaybookDetailEmbed = ({ displayed, setDisplayed }) => {
   const { formatMessage } = useIntl()

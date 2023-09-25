@@ -3,8 +3,8 @@ import { useContext, useEffect } from 'react'
 import {
   BuildingBlockFilterContext,
   BuildingBlockFilterDispatchContext
-} from '../../../../components/context/BuildingBlockFilterContext'
-import { QueryParamContext } from '../../../../components/context/QueryParamContext'
+} from '../../context/BuildingBlockFilterContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { parseQuery } from '../../utils/share'

@@ -2,7 +2,7 @@ import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { FaXmark } from 'react-icons/fa6'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
-  from '../../../../components/context/BuildingBlockFilterContext'
+  from '../../context/BuildingBlockFilterContext'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
 import { WorkflowActiveFilters, WorkflowAutocomplete } from '../../shared/filter/Workflow'

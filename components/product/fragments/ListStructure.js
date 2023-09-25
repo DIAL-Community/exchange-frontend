@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
-import { ProductFilterContext } from '../../../../components/context/ProductFilterContext'
+import { ProductFilterContext } from '../../context/ProductFilterContext'
 import ProductCard from '../ProductCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

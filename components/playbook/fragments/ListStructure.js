@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
-import { PlaybookFilterContext } from '../../../../components/context/PlaybookFilterContext'
+import { PlaybookFilterContext } from '../../context/PlaybookFilterContext'
 import PlaybookCard from '../PlaybookCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

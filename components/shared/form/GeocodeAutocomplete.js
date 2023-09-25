@@ -3,7 +3,7 @@ import { suggest, geocode, reverseGeocode } from '@esri/arcgis-rest-geocoding'
 import React, { useCallback, useMemo } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import { useArcGisToken } from '../../../../lib/hooks'
+import { useArcGisToken } from '../../../lib/hooks'
 import { COUNTRY_CODES_QUERY } from '../query/country'
 import Select from './Select'
 

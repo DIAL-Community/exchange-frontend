@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_WORKFLOWS_QUERY } from '../../shared/query/workflow'
-import { WorkflowFilterContext } from '../../../../components/context/WorkflowFilterContext'
+import { WorkflowFilterContext } from '../../context/WorkflowFilterContext'
 import WorkflowCard from '../WorkflowCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

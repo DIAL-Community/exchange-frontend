@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 

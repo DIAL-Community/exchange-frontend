@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
-import { UseCaseFilterContext } from '../../../components/context/UseCaseFilterContext'
+import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import TabNav from '../shared/TabNav'
 import { ExportType, asyncExport, convertKeys } from '../utils/export'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()

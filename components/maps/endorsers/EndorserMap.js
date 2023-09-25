@@ -2,7 +2,7 @@ import { useCallback, useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { MapFilterContext } from '../../../../components/context/MapFilterContext'
+import { MapFilterContext } from '../../context/MapFilterContext'
 import { ORGANIZATIONS_QUERY } from '../../shared/query/map'
 import EndorserInfo from './EndorserInfo'
 

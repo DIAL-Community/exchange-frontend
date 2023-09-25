@@ -4,7 +4,7 @@ import { FaXmark } from 'react-icons/fa6'
 import {
   UseCaseFilterContext,
   UseCaseFilterDispatchContext
-} from '../../../../components/context/UseCaseFilterContext'
+} from '../../context/UseCaseFilterContext'
 import Checkbox from '../../shared/form/Checkbox'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 

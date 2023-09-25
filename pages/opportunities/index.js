@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import OpportunityRibbon from '../../ui/v1/opportunity/OpportunityRibbon'
-import OpportunityTabNav from '../../ui/v1/opportunity/OpportunityTabNav'
-import OpportunityMain from '../../ui/v1/opportunity/OpportunityMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import OpportunityRibbon from '../../components/opportunity/OpportunityRibbon'
+import OpportunityTabNav from '../../components/opportunity/OpportunityTabNav'
+import OpportunityMain from '../../components/opportunity/OpportunityMain'
 
 const OpportunityListPage = () => {
   const { formatMessage } = useIntl()

@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from '../context/PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'

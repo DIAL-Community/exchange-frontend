@@ -3,7 +3,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../query/comment'
 import { DELETE_COMMENT } from '../mutation/comment'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { ToastContext } from '../../../lib/ToastContext'
 import DeleteButton from '../form/DeleteButton'
 import ConfirmActionDialog from '../form/ConfirmActionDialog'
 

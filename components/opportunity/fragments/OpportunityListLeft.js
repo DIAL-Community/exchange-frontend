@@ -6,9 +6,9 @@ import { ObjectType } from '../../utils/constants'
 import {
   OpportunityFilterContext,
   OpportunityFilterDispatchContext
-} from '../../../../components/context/OpportunityFilterContext'
+} from '../../context/OpportunityFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../../../components/context/QueryParamContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import OpportunityFilter from './OpportunityFilter'
 
 const OpportunityListLeft = () => {

@@ -5,7 +5,7 @@ import { useCallback, useContext } from 'react'
 import {
   ProductFilterContext,
   ProductFilterDispatchContext
-} from '../../../../components/context/ProductFilterContext'
+} from '../../context/ProductFilterContext'
 
 const ProductCompareBar = () => {
   const { formatMessage } = useIntl()

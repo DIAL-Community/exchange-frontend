@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { ADD_BOOKMARK } from '../mutation/bookmark'
-import { useUser } from '../../../../lib/hooks'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
 
 const Bookmark = ({ object, sharableLink, objectType }) => {
   const { formatMessage } = useIntl()

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
-import { OrganizationFilterContext } from '../../../components/context/OrganizationFilterContext'
+import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
 import TabNav from '../shared/TabNav'
 import { ExportType, asyncExport, convertKeys } from '../utils/export'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()

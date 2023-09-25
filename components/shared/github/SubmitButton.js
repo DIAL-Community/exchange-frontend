@@ -2,7 +2,7 @@ import { Octokit } from '@octokit/core'
 import { useCallback, useContext, useMemo } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import { ToastContext } from '../../../lib/ToastContext'
+import { ToastContext } from '../../lib/ToastContext'
 import { DEFAULT_BRANCH_NAME, prependPadding } from './common'
 import { EditorContext, EditorContextDispatch } from './EditorContext'
 

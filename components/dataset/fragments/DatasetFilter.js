@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { DatasetFilterContext, DatasetFilterDispatchContext }
-  from '../../../../components/context/DatasetFilterContext'
+  from '../../context/DatasetFilterContext'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'

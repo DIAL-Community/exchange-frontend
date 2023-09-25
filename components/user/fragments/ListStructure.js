@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { UserFilterContext } from '../../../../components/context/UserFilterContext'
+import { UserFilterContext } from '../../context/UserFilterContext'
 import UserCard from '../UserCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import ClientOnly from '../../../../../lib/ClientOnly'
-import Header from '../../../../../ui/v1/shared/Header'
-import Footer from '../../../../../ui/v1/shared/Footer'
-import ProductRepositoryDetail from '../../../../../ui/v1/product/repository/ProductRepositoryDetail'
+import Header from '../../../../../components/shared/Header'
+import Footer from '../../../../../components/shared/Footer'
+import ProductRepositoryDetail from '../../../../../components/product/repository/ProductRepositoryDetail'
 
 const ProductRepository = () => {
   const { formatMessage } = useIntl()

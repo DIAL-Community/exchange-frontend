@@ -6,9 +6,9 @@ import { ObjectType } from '../../utils/constants'
 import {
   DatasetFilterContext,
   DatasetFilterDispatchContext
-} from '../../../../components/context/DatasetFilterContext'
+} from '../../context/DatasetFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../../../components/context/QueryParamContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import DatasetFilter from './DatasetFilter'
 
 const DatasetListLeft = () => {

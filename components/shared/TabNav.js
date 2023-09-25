@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, createFn }) => {
   const { formatMessage } = useIntl()

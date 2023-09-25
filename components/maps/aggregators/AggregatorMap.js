@@ -2,7 +2,7 @@ import { useCallback, useContext, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useQuery } from '@apollo/client'
-import { MapFilterContext } from '../../../../components/context/MapFilterContext'
+import { MapFilterContext } from '../../context/MapFilterContext'
 import {
   AGGREGATORS_QUERY,
   CAPABILITIES_QUERY,

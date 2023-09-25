@@ -4,12 +4,12 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import ProductRibbon from '../../ui/v1/product/ProductRibbon'
-import ProductTabNav from '../../ui/v1/product/ProductTabNav'
-import ProductMain from '../../ui/v1/product/ProductMain'
-import ProductCompareBar from '../../ui/v1/product/fragments/ProductCompareBar'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import ProductRibbon from '../../components/product/ProductRibbon'
+import ProductTabNav from '../../components/product/ProductTabNav'
+import ProductMain from '../../components/product/ProductMain'
+import ProductCompareBar from '../../components/product/fragments/ProductCompareBar'
 
 const ProductListPage = () => {
   const { formatMessage } = useIntl()

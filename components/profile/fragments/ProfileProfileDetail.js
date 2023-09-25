@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { signOut } from 'next-auth/react'
-import { useUser } from '../../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 
 const ProfileProfileDetail = () => {
   const { formatMessage } = useIntl()

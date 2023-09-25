@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_OPPORTUNITIES_QUERY } from '../../shared/query/opportunity'
-import { OpportunityFilterContext } from '../../../../components/context/OpportunityFilterContext'
+import { OpportunityFilterContext } from '../../context/OpportunityFilterContext'
 import OpportunityCard from '../OpportunityCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

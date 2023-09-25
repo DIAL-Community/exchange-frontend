@@ -6,9 +6,9 @@ import { ObjectType } from '../../utils/constants'
 import {
   PlaybookFilterContext,
   PlaybookFilterDispatchContext
-} from '../../../../components/context/PlaybookFilterContext'
+} from '../../context/PlaybookFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../../../components/context/QueryParamContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import PlaybookFilter from './PlaybookFilter'
 
 const PlaybookListLeft = () => {

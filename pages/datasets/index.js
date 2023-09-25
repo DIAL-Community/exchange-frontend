@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import DatasetRibbon from '../../ui/v1/dataset/DatasetRibbon'
-import DatasetTabNav from '../../ui/v1/dataset/DatasetTabNav'
-import DatasetMain from '../../ui/v1/dataset/DatasetMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import DatasetRibbon from '../../components/dataset/DatasetRibbon'
+import DatasetTabNav from '../../components/dataset/DatasetTabNav'
+import DatasetMain from '../../components/dataset/DatasetMain'
 
 const DatasetListPage = () => {
   const { formatMessage } = useIntl()

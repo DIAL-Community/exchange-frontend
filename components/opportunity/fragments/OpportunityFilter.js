@@ -5,7 +5,7 @@ import { FaXmark } from 'react-icons/fa6'
 import {
   OpportunityFilterContext,
   OpportunityFilterDispatchContext
-} from '../../../../components/context/OpportunityFilterContext'
+} from '../../context/OpportunityFilterContext'
 import Checkbox from '../../shared/form/Checkbox'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'

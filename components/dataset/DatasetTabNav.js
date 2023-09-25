@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import TabNav from '../shared/TabNav'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const DatasetTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()

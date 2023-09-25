@@ -1,9 +1,9 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import Input from '../../shared/Input'
+import Input from '../form/Input'
 import { EditorContext, EditorContextDispatch } from './EditorContext'
 
-const CommitMesage = () => {
+const CommitMessage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
@@ -26,4 +26,4 @@ const CommitMesage = () => {
 
 }
 
-export default CommitMesage
+export default CommitMessage

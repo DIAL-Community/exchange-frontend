@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
-import Header from '../../../ui/v1/shared/Header'
-import Footer from '../../../ui/v1/shared/Footer'
-import RoleRibbon from '../../../ui/v1/candidate/role/RoleRibbon'
-import RoleTabNav from '../../../ui/v1/candidate/role/RoleTabNav'
-import RoleMain from '../../../ui/v1/candidate/role/RoleMain'
+import Header from '../../../components/shared/Header'
+import Footer from '../../../components/shared/Footer'
+import RoleRibbon from '../../../components/candidate/role/RoleRibbon'
+import RoleTabNav from '../../../components/candidate/role/RoleTabNav'
+import RoleMain from '../../../components/candidate/role/RoleMain'
 
 const RoleListPage = () => {
   const { formatMessage } = useIntl()

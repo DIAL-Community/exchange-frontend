@@ -7,8 +7,8 @@ import { fetchSelectOptions } from '../../utils/search'
 import Pill from '../../shared/form/Pill'
 import EditableSection from '../../shared/EditableSection'
 import { UPDATE_PROJECT_TAGS } from '../../shared/mutation/project'
-import { useUser } from '../../../../lib/hooks'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
 
 const ProjectDetailTags = ({ project, canEdit, headerRef }) => {

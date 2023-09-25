@@ -4,7 +4,7 @@ import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
 import {
   ProjectFilterContext,
   ProjectFilterDispatchContext
-} from '../../../../components/context/ProjectFilterContext'
+} from '../../context/ProjectFilterContext'
 import Checkbox from '../../shared/form/Checkbox'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'

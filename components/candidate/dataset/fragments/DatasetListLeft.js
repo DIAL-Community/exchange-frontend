@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react'
 import Bookmark from '../../../shared/common/Bookmark'
 import Share from '../../../shared/common/Share'
 import { ObjectType } from '../../../utils/constants'
-import { QueryParamContext } from '../../../../../components/context/QueryParamContext'
+import { QueryParamContext } from '../../../context/QueryParamContext'
 
 const DatasetListLeft = () => {
   const { query } = useRouter()

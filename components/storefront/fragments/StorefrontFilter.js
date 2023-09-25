@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext }
-  from '../../../../components/context/OrganizationFilterContext'
+  from '../../context/OrganizationFilterContext'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
 import { CountryAutocomplete, CountryActiveFilters } from '../../shared/filter/Country'
 import { BuildingBlockActiveFilters, BuildingBlockAutocomplete } from '../../shared/filter/BuildingBlock'

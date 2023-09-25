@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { DatasetFilterContext, DatasetFilterDispatchContext }
-  from '../../../../components/context/DatasetFilterContext'
+  from '../../context/DatasetFilterContext'
 import SearchBar from '../../shared/SearchBar'
 import MobileFilter from '../../shared/MobileFilter'
 import DatasetFilter from './DatasetFilter'

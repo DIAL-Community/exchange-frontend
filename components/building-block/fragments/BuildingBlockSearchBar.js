@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
-  from '../../../../components/context/BuildingBlockFilterContext'
+  from '../../context/BuildingBlockFilterContext'
 import SearchBar from '../../shared/SearchBar'
 import MobileFilter from '../../shared/MobileFilter'
 import BuildingBlockFilter from './BuildingBlockFilter'

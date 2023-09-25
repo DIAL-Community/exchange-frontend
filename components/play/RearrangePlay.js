@@ -8,12 +8,12 @@ import {
   PlayFilterContext,
   PlayFilterDispatchContext,
   PlayFilterProvider
-} from '../../../components/context/PlayFilterContext'
+} from '../context/PlayFilterContext'
 import { SearchInput } from '../shared/form/SearchInput'
-import { ToastContext } from '../../../lib/ToastContext'
+import { ToastContext } from '../../lib/ToastContext'
 import { PLAYS_QUERY } from '../shared/query/play'
 import { UPDATE_PLAYBOOK_PLAYS } from '../shared/mutation/playbook'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 import {
   PlayListContext,
   PlayListDispatchContext,

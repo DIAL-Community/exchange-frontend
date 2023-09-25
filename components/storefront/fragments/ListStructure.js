@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_STOREFRONTS_QUERY } from '../../shared/query/organization'
-import { OrganizationFilterContext } from '../../../../components/context/OrganizationFilterContext'
+import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
 import StorefrontCard from '../StorefrontCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

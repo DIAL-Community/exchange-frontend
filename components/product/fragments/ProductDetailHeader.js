@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { prependUrlWithProtocol } from '../../utils/utilities'
-import { useProductOwnerUser, useUser } from '../../../../lib/hooks'
+import { useProductOwnerUser, useUser } from '../../../lib/hooks'
 import ProductDetailSectors from './ProductDetailSectors'
 
 const ProductDetailHeader = ({ product }) => {

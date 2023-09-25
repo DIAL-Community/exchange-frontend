@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_DATASETS_QUERY } from '../../shared/query/dataset'
-import { DatasetFilterContext } from '../../../../components/context/DatasetFilterContext'
+import { DatasetFilterContext } from '../../context/DatasetFilterContext'
 import DatasetCard from '../DatasetCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'

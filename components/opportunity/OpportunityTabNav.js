@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import TabNav from '../shared/TabNav'
-import { useUser } from '../../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 
 const OpportunityTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()

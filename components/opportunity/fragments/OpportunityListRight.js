@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { OpportunityFilterContext } from '../../../../components/context/OpportunityFilterContext'
+import { OpportunityFilterContext } from '../../context/OpportunityFilterContext'
 import { OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/opportunity'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
