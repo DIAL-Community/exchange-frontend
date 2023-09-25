@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -36,6 +37,20 @@ const GovStackHero = ({ children }) => {
       className='bg-cover bg-no-repeat'
       style={{
         backgroundImage: 'url("/ui/v1/hero-gs-bg.svg")',
+        height: '400px'
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
+const MarketplaceHero = ({ children }) => {
+  return (
+    <div
+      className='bg-cover bg-no-repeat'
+      style={{
+        backgroundImage: 'url("/ui/v1/wizard-bg.svg")',
         height: '400px'
       }}
     >
@@ -91,6 +106,26 @@ const HeroCarousel = () => {
               </div>
             </div>
           </GovStackHero>
+        </SwiperSlide>
+        <SwiperSlide>
+          <MarketplaceHero>
+            <div className='flex flex-col gap-y-6 text-dial-stratos px-8 xl:px-56 py-[6rem] xl:py-[8rem]'>
+              <div className='text-3xl'>
+                {format('ui.marketplace.label')}
+              </div>
+              <div className='text-base'>
+                {format('ui.marketplace.description')}
+              </div>
+              <div className='flex text-sm text-dial-stratos'>
+                <Link
+                  href='/opportunities'
+                  className='rounded px-5 py-2.5 bg-dial-plum text-white'
+                >
+                  {format('ui.marketplace.browse')}
+                </Link>
+              </div>
+            </div>
+          </MarketplaceHero>
         </SwiperSlide>
       </Swiper>
     </div>
