@@ -27,7 +27,7 @@ describe('Unit tests for the building block main page.', () => {
       paginatedBuildingBlocks
     )
 
-    render(
+    const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedBuildingBlocks, mockBuildingBlockPaginationAttribute]}>
         <QueryParamContextProvider>
           <BuildingBlockFilterProvider>
@@ -37,8 +37,8 @@ describe('Unit tests for the building block main page.', () => {
       </CustomMockedProvider>
     )
 
-    expect(screen).toMatchSnapshot()
     expect(await screen.findByText('Analytics and business intelligence')).toBeInTheDocument()
     expect(await screen.findByText('Artificial intelligence')).toBeInTheDocument()
+    expect(container).toMatchSnapshot()
   })
 })
