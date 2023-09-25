@@ -16,7 +16,7 @@ export const DEFAULT_SHEET_NAMES = [
   'Sectors',
   'Use Cases Steps',
   'Building Blocks',
-  'Product Pricing'
+  'Pricing'
 ]
 
 export const COLUMN_SOURCE_KEYS = DEFAULT_SHEET_NAMES.map(sheetName => convertToKey(sheetName))

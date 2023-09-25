@@ -5,11 +5,10 @@ import { useRouter } from 'next/router'
 import { ContextMenu } from 'handsontable/plugins'
 import { HotTable } from '@handsontable/react'
 import { registerAllModules } from 'handsontable/registry'
-import { Error, Loading } from '../shared/FetchStatus'
-import { useUser } from '../../lib/hooks'
-import NotFound from '../shared/NotFound'
-import { CREATE_SPREADSHEET_MUTATION, DELETE_SPREADSHEET_MUTATION } from '../../mutations/spreadsheet'
-import { PRODUCT_SPREADSHEET_QUERY } from '../../queries/spreadsheet'
+import { useUser } from '../../../lib/hooks'
+import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { PRODUCT_SPREADSHEET_QUERY } from '../shared/query/spreadsheet'
+import { CREATE_SPREADSHEET_MUTATION, DELETE_SPREADSHEET_MUTATION } from '../shared/mutation/spreadsheet'
 import {
   COLUMN_SOURCE_KEYS,
   DEFAULT_SHEET_HEADERS,
@@ -306,16 +305,16 @@ const ProductSpreadsheet = () => {
   }
 
   return (
-    <div className='w-full'>
+    <div className='px-4 lg:px-8 xl:px-56'>
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List className='flex flex px-8 bg-dial-gray-dark'>
+        <Tab.List className='flex flex bg-dial-meadow'>
           {DEFAULT_SHEET_NAMES.map((name) => (
             <Tab key={name} as={Fragment}>
               {({ selected }) => (
                 <div
                   className={
                     classNames(
-                      'w-40 px-3 py-2 text-sm font-medium text-white text-center',
+                      'px-5 2xl:px-8 py-3 text-sm font-medium text-white text-center',
                       selected
                         ? 'border-b-4 border-green-500'
                         : 'cursor-pointer hover:bg-white/[0.12] hover:text-white'
@@ -328,7 +327,7 @@ const ProductSpreadsheet = () => {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className='pt-2 pb-4 ml-4 mr-2 overflow-auto'>
+        <Tab.Panels>
           {DEFAULT_SHEET_HEADERS.map((header, index) => (
             <Tab.Panel key={index}>
               <HotTable

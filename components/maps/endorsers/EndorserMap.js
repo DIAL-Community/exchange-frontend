@@ -1,8 +1,9 @@
 import { useCallback, useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
-import { MapFilterContext } from '../../context/MapFilterContext'
+import { useQuery } from '@apollo/client'
+import { MapFilterContext } from '../../../../components/context/MapFilterContext'
+import { ORGANIZATIONS_QUERY } from '../../shared/query/map'
 import EndorserInfo from './EndorserInfo'
 
 const EndorserMarkerMaps = (props) => {
@@ -15,48 +16,6 @@ const EndorserMarkerMaps = (props) => {
 }
 
 const DEFAULT_PAGE_SIZE = 1000
-const ORGANIZATIONS_QUERY = gql`
-query SearchOrganizations(
-  $first: Int,
-  $sectors: [String!],
-  $years: [Int!],
-  $mapView: Boolean,
-) {
-  searchOrganizations(
-    first: $first,
-    sectors: $sectors,
-    years: $years,
-    mapView: $mapView
-  ) {
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      website
-      whenEndorsed
-      countries {
-        name
-        slug
-        latitude
-        longitude
-      }
-      offices {
-        id
-        name
-        latitude
-        longitude
-      }
-    }
-  }
-}
-`
 
 const EndorserMap = () => {
   const [selectedCity, setSelectedCity] = useState('')
@@ -70,8 +29,7 @@ const EndorserMap = () => {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       sectors: orgSectors.map(sector => sector.value),
-      years: years.map(year => year.value),
-      mapView: true
+      years: years.map(year => year.value)
     }
   })
 
@@ -109,18 +67,18 @@ const EndorserMap = () => {
   const city = cities[selectedCity]
 
   return (
-    <div className='flex flex-row' style={{ minHeight: '10vh' }}>
-      {
-        loading &&
-          <div
-            className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm'
-            style={{ zIndex: 19 }}
-          >
-            {format('map.loading.indicator')}
+    <div className='min-h-[10vh]'>
+      <div className='flex flex-row bg-dial-iris-blue rounded-md relative'>
+        {loading &&
+          <div className='absolute right-3 px-3 py-2 text-sm' style={{ zIndex: 19 }}>
+            <div className='text-sm text-dial-stratos'>
+              {format('map.loading.indicator')}
+            </div>
           </div>
-      }
-      <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization, height: '70vh' }} />
-      <EndorserInfo {...{ city, setOrganization }} />
+        }
+        <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization }} />
+        <EndorserInfo {...{ city, setOrganization }} />
+      </div>
     </div>
   )
 }

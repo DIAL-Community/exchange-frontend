@@ -68,9 +68,3 @@ export const USER_ROLES = gql`
     userRoles
   }
 `
-
-export const USER_EMAIL_CHECK = gql`
-  query UserEmailCheck ($email: String!) {
-    userEmailCheck (email: $email)
-  }
-`

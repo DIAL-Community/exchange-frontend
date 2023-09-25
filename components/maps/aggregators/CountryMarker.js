@@ -38,9 +38,9 @@ export const createCountryMarkerIcon = (country) => {
   const { fontSize, marginTop, size } = iconSizeSets[findIndex(country.aggregators.length)]
 
   return divIcon({
-    className: 'border-3 rounded-full border-workflow-light bg-workflow',
+    className: 'border-2 rounded-full border-dial-meadow bg-dial-mint',
     html: `
-      <div class='text-white w-full h-full'>
+      <div class='text-dial-stratos w-full h-full'>
         <div
           class='text-center'
           style='font-size: ${fontSize}; margin-top: ${marginTop}; font-weight: bolder;'

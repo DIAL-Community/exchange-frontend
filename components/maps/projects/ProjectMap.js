@@ -1,8 +1,9 @@
 import { useCallback, useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
-import { MapFilterContext } from '../../context/MapFilterContext'
+import { useQuery } from '@apollo/client'
+import { MapFilterContext } from '../../../../components/context/MapFilterContext'
+import { COUNTRIES_QUERY, PROJECTS_QUERY } from '../../shared/query/map'
 import CountryInfo from './CountryInfo'
 
 const CountryMarkersMaps = (props) => {
@@ -15,53 +16,6 @@ const CountryMarkersMaps = (props) => {
 }
 
 const DEFAULT_PAGE_SIZE = 10000
-const PROJECTS_QUERY = gql`
-query SearchProjects(
-  $first: Int,
-  $sectors: [String!]
-  $tags: [String!]
-  $products: [String!]
-  $mapView: Boolean
-  ) {
-  searchProjects(
-    first: $first,
-    sectors: $sectors,
-    tags: $tags,
-    products: $products
-    mapView: $mapView
-  ) {
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      countries {
-        id
-        name
-        slug
-      }
-    }
-  }
-}
-`
-
-const COUNTRIES_QUERY = gql`
-  query Countries($search: String) {
-    countries(search: $search) {
-      id
-      name
-      slug
-      latitude
-      longitude
-    }
-  }
-`
 
 const ProjectMap = () => {
   const [selectedCountry, setSelectedCountry] = useState('')
@@ -75,8 +29,7 @@ const ProjectMap = () => {
       first: DEFAULT_PAGE_SIZE,
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
-      products: products.map(product => product.value),
-      mapView: true
+      products: products.map(product => product.value)
     }
   })
 
@@ -111,20 +64,24 @@ const ProjectMap = () => {
   })()
 
   const country = countriesWithProjects[selectedCountry]
+  const loading = loadingProjects || loadingCountries
 
   return (
-    <div className='flex flex-row' style={{ minHeight: '10vh' }}>
-      {
-        (loadingProjects || loadingCountries) &&
-          <div
-            className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm'
-            style={{ zIndex: 19 }}
-          >
-            {format('map.loading.indicator')}
+    <div className='min-h-[10vh]'>
+      <div className='flex flex-row bg-dial-iris-blue rounded-md relative'>
+        {loading &&
+          <div className='absolute right-3 px-3 py-2 text-sm' style={{ zIndex: 19 }}>
+            <div className='text-sm text-dial-stratos'>
+              {format('map.loading.indicator')}
+            </div>
           </div>
-      }
-      <CountryMarkersMaps countries={countriesWithProjects} setSelectedCountry={setSelectedCountry} />
-      <CountryInfo country={country} />
+        }
+        <CountryMarkersMaps
+          countries={countriesWithProjects}
+          setSelectedCountry={setSelectedCountry}
+        />
+        <CountryInfo country={country} />
+      </div>
     </div>
   )
 }

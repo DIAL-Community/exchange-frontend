@@ -14,7 +14,7 @@ Chart.register(
   Filler
 )
 
-const RadarChart = ({ labels, values, maxScaleValue }) => {
+const RadarChart = ({ labels, values, maxScaleValue, fontSize = 16 }) => {
   const radarData = {
     labels,
     datasets: [
@@ -36,7 +36,7 @@ const RadarChart = ({ labels, values, maxScaleValue }) => {
       r: {
         pointLabels: {
           font: {
-            size: 16
+            size: fontSize
           },
           color: '#46465a',
           padding: 10

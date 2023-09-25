@@ -1,8 +1,9 @@
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import Cookies from 'js-cookie'
-import { OVERVIEW_INTRO_KEY } from '../../../lib/intro'
+import { OVERVIEW_INTRO_KEY } from '../../../../lib/intro'
 import ReportIssue from '../ReportIssue'
 import { HELP_MENU, MenuHeader, NONE } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
@@ -15,9 +16,6 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
   const { locale } = router
 
   const [showForm, setShowForm] = useState(false)
-
-  const helpPopoverButton = useRef(null)
-  const helpPopover = useRef(null)
 
   const showFeedbackForm = (e) => {
     e.preventDefault()
@@ -39,40 +37,66 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
     <>
       <MenuHeader
         id={HELP_MENU}
-        ref={helpPopoverButton}
         title='header.help'
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />
-      {
-        currentOpenMenu === HELP_MENU &&
-          <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={helpPopover} role='menu'>
-            <a
-              href='startOverviewTour'
-              className={DEFAULT_DROPDOWN_MENU_STYLES}
-              onClick={(e) => startOverviewTour(e)}
-            >
-              {format('intro.overview.startTour')}
-            </a>
-            <a
-              className={DEFAULT_DROPDOWN_MENU_STYLES}
-              href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}
-              target='_blank'
-              rel='noreferrer'
-              role='menuitem'
-            >
-              {format('header.documentation')}
-            </a>
-            <a
-              href='reportIssue'
-              className={DEFAULT_DROPDOWN_MENU_STYLES}
-              onClick={(e) => showFeedbackForm(e)}
-            >
-              {format('app.reportIssue')}
-            </a>
-          </div>
+      {currentOpenMenu === HELP_MENU &&
+        <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
+          <Link href='/about' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('header.about')}
+          </Link>
+          <a
+            href='startOverviewTour'
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            onClick={(e) => startOverviewTour(e)}
+          >
+            {format('intro.overview.startTour')}
+          </a>
+          <a
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}
+            target='_blank'
+            rel='noreferrer'
+            role='menuitem'
+          >
+            {format('header.documentation')}
+          </a>
+          <div className='mx-4 border-b border-dial-slate-300' />
+          <a
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            href='//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview'
+            target='_blank'
+            rel='noreferrer'
+            role='menuitem'
+          >
+            {format('header.confluence')}
+          </a>
+          <a
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            href='//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
+            target='_blank'
+            rel='noreferrer'
+            role='menuitem'
+          >
+            {format('header.newsletter')}
+          </a>
+          <a
+            href='reportIssue'
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            onClick={(e) => showFeedbackForm(e)}
+          >
+            {format('app.reportIssue')}
+          </a>
+        </div>
       }
-      {showForm && <ReportIssue showForm={showForm} hideFeedbackForm={hideFeedbackForm} />}
+      {showForm &&
+        <ReportIssue
+          showForm={showForm}
+          hideFeedbackForm={hideFeedbackForm}
+          formTitle={format('app.reportIssue')}
+        />
+      }
     </>
   )
 }

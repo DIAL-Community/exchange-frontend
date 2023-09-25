@@ -1,8 +1,14 @@
 import { useCallback, useContext, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { gql, useQuery } from '@apollo/client'
-import { MapFilterContext } from '../../../components/context/MapFilterContext'
+import { useQuery } from '@apollo/client'
+import { MapFilterContext } from '../../../../components/context/MapFilterContext'
+import {
+  AGGREGATORS_QUERY,
+  CAPABILITIES_QUERY,
+  COUNTRIES_QUERY,
+  OPERATORS_QUERY
+} from '../../shared/query/map'
 import CountryInfo from './CountryInfo'
 
 const CountryMarkersMaps = (props) => {
@@ -15,98 +21,6 @@ const CountryMarkersMaps = (props) => {
 }
 
 const DEFAULT_PAGE_SIZE = 10000
-
-const AGGREGATORS_QUERY = gql`
-query SearchOrganizations(
-  $first: Int,
-  $aggregatorOnly: Boolean,
-  $aggregators: [String!],
-  $mapView: Boolean
-) {
-  searchOrganizations(
-    first: $first,
-    aggregatorOnly: $aggregatorOnly,
-    aggregators: $aggregators,
-    mapView: $mapView
-  ) {
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      website
-      whenEndorsed
-      countries {
-        id
-        name
-        slug
-        latitude
-        longitude
-      }
-      offices {
-        id
-        name
-        latitude
-        longitude
-      }
-    }
-  }
-}
-`
-
-const COUNTRIES_QUERY = gql`
-  query Countries($search: String) {
-    countries(search: $search) {
-      id
-      name
-      slug
-      latitude
-      longitude
-    }
-  }
-`
-
-const CAPABILITIES_QUERY = gql`
-  query Capabilities(
-    $search: String,
-    $capabilities: [String!],
-    $services: [String!]
-  ) {
-    capabilities(
-      search: $search,
-      capabilities: $capabilities,
-      services: $services
-    ) {
-      service
-      capability
-      countryId
-      aggregatorId
-      operatorServiceId
-    }
-  }
-`
-
-const OPERATORS_QUERY = gql`
-  query OperatorServices(
-    $search: String,
-    $operators: [String!]
-  ) {
-    operatorServices(
-      search: $search,
-      operators: $operators
-    ) {
-      id
-      name
-      countryId
-    }
-  }
-`
 
 const skipQuery = (operators, services) => {
   if (!operators && !services) {
@@ -132,7 +46,6 @@ const AggregatorMap = () => {
   const { loading: loadingAggregators, data: aggregatorData } = useQuery(AGGREGATORS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      mapView: true,
       aggregatorOnly: true,
       aggregators: aggregators.map(a => a.value)
     }
@@ -229,20 +142,24 @@ const AggregatorMap = () => {
   })()
 
   const country = countriesWithAggregators[selectedCountry]
+  const loading = loadingCapabilityData || loadingOperatorServiceData || loadingAggregators || loadingCountries
 
   return (
-    <div className='flex flex-row' style={{ minHeight: '10vh' }}>
-      {
-        (loadingCapabilityData || loadingOperatorServiceData || loadingAggregators || loadingCountries) &&
-          <div
-            className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm'
-            style={{ zIndex: 19 }}
-          >
-            {format('map.loading.indicator')}
+    <div className='min-h-[10vh]'>
+      <div className='flex flex-row bg-dial-iris-blue rounded-md relative'>
+        {loading &&
+          <div className='absolute right-4 px-3 py-2 rounded-md' style={{ zIndex: 19 }}>
+            <div className='text-dial-stratos text-sm'>
+              {format('map.loading.indicator')}
+            </div>
           </div>
-      }
-      <CountryMarkersMaps countries={countriesWithAggregators} setSelectedCountry={setSelectedCountry} />
-      <CountryInfo country={country} />
+        }
+        <CountryMarkersMaps
+          countries={countriesWithAggregators}
+          setSelectedCountry={setSelectedCountry}
+        />
+        <CountryInfo country={country} />
+      </div>
     </div>
   )
 }

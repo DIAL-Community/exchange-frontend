@@ -3,11 +3,9 @@ import 'leaflet/dist/leaflet.css'
 import { createRef, useState } from 'react'
 import { createCountryMarkerIcon } from './CountryMarker'
 
-const CountryMarkers = (props) => {
-  const [zooming, setZooming] = useState(false)
-  const { countries, setSelectedCountry } = props
-
+const CountryMarkers = ({ countries, setSelectedCountry }) => {
   const map = useMap()
+  const [zooming, setZooming] = useState(false)
 
   const countryMarkerGroup = createRef()
 
@@ -75,8 +73,10 @@ const CountryMarkersMaps = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
     <MapContainer
-      className='w-full' style={{ minHeight: '70vh', zIndex: 18 }}
-      center={[0, 0]} zoom={3}
+      zoom={3}
+      center={[0, 0]}
+      className='w-full'
+      style={{ minHeight: '70vh', zIndex: 18 }}
       // maxBounds={[[-90, -180], [90, 180]]}
     >
       <TileLayer

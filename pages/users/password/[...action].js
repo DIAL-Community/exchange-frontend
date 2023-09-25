@@ -4,8 +4,8 @@ import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import zxcvbn from 'zxcvbn'
-import Footer from '../../../components/Footer'
-import Header from '../../../components/Header'
+import Footer from '../../../ui/v1/shared/Footer'
+import Header from '../../../ui/v1/shared/Header'
 
 // "user"=>{"reset_password_token"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
 

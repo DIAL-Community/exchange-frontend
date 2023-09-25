@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
-import { SectorFilters } from '../filter/element/Sector'
-import { TagFilters } from '../filter/element/Tag'
-import { ProductFilters } from '../filter/element/Product'
-import { EndorsingYearFilters } from '../filter/element/EndorsingYear'
-import { OrganizationFilters } from '../filter/element/Organization'
-import { OperatorFilters } from '../filter/element/Operator'
-import { CapabilityFilters } from '../filter/element/Capability'
+import { MapFilterContext, MapFilterDispatchContext } from '../../../components/context/MapFilterContext'
+import { SectorActiveFilters } from '../shared/filter/Sector'
+import { TagActiveFilters } from '../shared/filter/Tag'
+import { ProductActiveFilters } from '../shared/filter/Product'
+import { EndorsingYearActiveFilters } from '../shared/filter/EndorsingYear'
+import { OrganizationActiveFilters } from '../shared/filter/Organization'
+import { OperatorActiveFilters } from '../shared/filter/Operator'
+import { CapabilityActiveFilters } from '../shared/filter/Capability'
 
 const MapActiveFilter = () => {
   const router = useRouter()
@@ -24,16 +24,16 @@ const MapActiveFilter = () => {
     setAggregators, setOperators, setServices, setOrgSectors, setYears, setSectors, setProducts, setTags
   } = useContext(MapFilterDispatchContext)
 
-  const filterCount = () => {
+  const filteringMap = () => {
     if (router.pathname.indexOf('projects') >= 0) {
-      return sectors.length + tags.length + products.length
+      return sectors.length + tags.length + products.length > 0
     } else if (router.pathname.indexOf('endorsers') >= 0) {
-      return orgSectors.length + years.length
+      return orgSectors.length + years.length > 0
     } else if (router.pathname.indexOf('aggregators') >= 0) {
-      return aggregators.length + operators.length + services.length
+      return aggregators.length + operators.length + services.length > 0
     }
 
-    return 0
+    return false
   }
 
   const clearFilter = (e) => {
@@ -53,42 +53,46 @@ const MapActiveFilter = () => {
   }
 
   return (
-    <div className={`flex flex-row py-4 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
-      <div className='flex flex-row flex-wrap gap-2'>
-        {
-          router.pathname.indexOf('projects') >= 0 &&
-            <>
-              <SectorFilters {...{ sectors, setSectors }} />
-              <TagFilters {...{ tags, setTags }} />
-              <ProductFilters {...{ products, setProducts }} />
-            </>
-        }
-        {
-          router.pathname.indexOf('endorsers') >= 0 &&
-            <>
-              <SectorFilters sectors={orgSectors} setSectors={setOrgSectors} />
-              <EndorsingYearFilters {...{ years, setYears }} />
-            </>
-        }
-        {
-          router.pathname.indexOf('aggregators') >= 0 &&
-            <>
-              <OrganizationFilters aggregatorOnly organizations={aggregators} setOrganizations={setAggregators} />
-              <OperatorFilters operators={operators} setOperators={setOperators} />
-              <CapabilityFilters services={services} setServices={setServices} />
-            </>
-        }
-
-        <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
-          <a
-            className='border-b-2 border-transparent hover:border-dial-sunshine opacity-50'
-            href='#clear-filter' onClick={clearFilter}
-          >
-            {format('filter.general.clearAll')}
-          </a>
+    <>
+      {filteringMap() &&
+        <div className='flex flex-col gap-y-3 py-3'>
+          <div className='flex'>
+            <div className='text-sm font-semibold text-dial-sapphire'>
+              {format('ui.filter.filteredBy')}
+            </div>
+            <div className='ml-auto text-sm text-dial-stratos'>
+              <button type='button' onClick={clearFilter}>
+                <span className='text-dial-sapphire'>
+                  {format('ui.filter.clearAll')}
+                </span>
+              </button>
+            </div>
+          </div>
+          <div className='flex flex-row flex-wrap gap-1 text-sm'>
+            {router.pathname.indexOf('projects') >= 0 &&
+              <>
+                <SectorActiveFilters {...{ sectors, setSectors }} />
+                <TagActiveFilters {...{ tags, setTags }} />
+                <ProductActiveFilters {...{ products, setProducts }} />
+              </>
+            }
+            {router.pathname.indexOf('endorsers') >= 0 &&
+              <>
+                <SectorActiveFilters sectors={orgSectors} setSectors={setOrgSectors} />
+                <EndorsingYearActiveFilters {...{ years, setYears }} />
+              </>
+            }
+            {router.pathname.indexOf('aggregators') >= 0 &&
+              <>
+                <OrganizationActiveFilters aggregatorOnly organizations={aggregators} setOrganizations={setAggregators} />
+                <OperatorActiveFilters operators={operators} setOperators={setOperators} />
+                <CapabilityActiveFilters services={services} setServices={setServices} />
+              </>
+            }
+          </div>
         </div>
-      </div>
-    </div>
+      }
+    </>
   )
 }
 
