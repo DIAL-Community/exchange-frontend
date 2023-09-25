@@ -469,7 +469,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
         <AccordionItem key={categoryIdx}>
           <AccordionItemHeading className='text-dial-stratos'>
             <AccordionItemButton>
-              <div className='text-sm my-auto'>{rubricCategoryName}</div>
+              <div className='text-sm my-auto inline font-semibold'>{rubricCategoryName}</div>
             </AccordionItemButton>
           </AccordionItemHeading>
           <AccordionItemPanel className='p-0'>
