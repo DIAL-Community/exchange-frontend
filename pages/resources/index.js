@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import ResourceRibbon from '../../ui/v1/resource/ResourceRibbon'
-import ResourceTabNav from '../../ui/v1/resource/ResourceTabNav'
-import ResourceMain from '../../ui/v1/resource/ResourceMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import ResourceRibbon from '../../components/resource/ResourceRibbon'
+import ResourceTabNav from '../../components/resource/ResourceTabNav'
+import ResourceMain from '../../components/resource/ResourceMain'
 
 const ResourceListPage = () => {
   const { formatMessage } = useIntl()

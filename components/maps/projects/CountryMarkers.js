@@ -3,11 +3,9 @@ import 'leaflet/dist/leaflet.css'
 import { createRef, useState } from 'react'
 import { createCountryMarkerIcon } from './CountryMarker'
 
-const CountryMarkers = (props) => {
-  const [zooming, setZooming] = useState(false)
-  const { countries, setSelectedCountry } = props
-
+const CountryMarkers = ({ countries, setSelectedCountry }) => {
   const map = useMap()
+  const [zooming, setZooming] = useState(false)
 
   const countryMarkerGroup = createRef()
 
@@ -19,7 +17,9 @@ const CountryMarkers = (props) => {
 
   const markerClickHandler = (e, countryName) => {
     countryMarkerGroup.current.eachLayer(layer => {
-      const layerOpacity = layer._leaflet_id === e.target._leaflet_id ? SELECTED_OPACITY : NON_SELECTED_OPACITY
+      const layerOpacity = layer._leaflet_id === e.target._leaflet_id
+        ? SELECTED_OPACITY
+        : NON_SELECTED_OPACITY
       layer.setOpacity(layerOpacity)
     })
     setSelectedCountry(countryName)
@@ -46,25 +46,23 @@ const CountryMarkers = (props) => {
 
   return (
     <LayerGroup ref={countryMarkerGroup}>
-      {
-        Object.keys(countries).map((countryName) => {
-          const country = countries[countryName]
-          if (country.projects.length === 0) {
-            return <div key={countryName} />
-          }
+      {Object.keys(countries).map((countryName) => {
+        const country = countries[countryName]
+        if (country.projects.length === 0) {
+          return <div key={countryName} />
+        }
 
-          return (
-            <Marker
-              key={countryName}
-              icon={createCountryMarkerIcon(country)}
-              position={[country.latitude, country.longitude]}
-              eventHandlers={{
-                click: (e) => markerClickHandler(e, countryName)
-              }}
-            />
-          )
-        })
-      }
+        return (
+          <Marker
+            key={countryName}
+            icon={createCountryMarkerIcon(country)}
+            position={[country.latitude, country.longitude]}
+            eventHandlers={{
+              click: (e) => markerClickHandler(e, countryName)
+            }}
+          />
+        )
+      })}
     </LayerGroup>
   )
 }
@@ -73,7 +71,8 @@ const CountryMarkersMaps = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
     <MapContainer
-      className='w-full' style={{ minHeight: '70vh', zIndex: 18 }}
+      className='w-full'
+      style={{ minHeight: '70vh', zIndex: 18 }}
       center={[0, 0]} zoom={3}
       // maxBounds={[[-90, -180], [90, 180]]}
     >

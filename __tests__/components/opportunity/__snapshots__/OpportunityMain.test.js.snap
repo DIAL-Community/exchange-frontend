@@ -1,0 +1,821 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the opportunity main page. Should render list of opportunities. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="px-4 lg:px-8 xl:px-56"
+  >
+    <div
+      class="grid grid-cols-3 gap-x-8"
+    >
+      <div
+        class="hidden md:block col-span-1"
+      >
+        <div
+          class="bg-dial-slate-100 h-full"
+        >
+          <div
+            class="flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3"
+          >
+            <div
+              class="flex flex-col gap-y-4 py-3"
+            >
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <div
+                  class="text-sm font-semibold text-dial-sapphire"
+                >
+                  Filter your results by
+                </div>
+                <hr
+                  class="border-b border-dial-slate-200"
+                />
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <a
+                    class="flex"
+                    href="#"
+                  >
+                    <div
+                      class="text-dial-stratos text-sm py-2"
+                    >
+                      Use Case
+                    </div>
+                    <svg
+                      class="ml-auto text-dial-stratos my-auto"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <hr
+                  class="border-b border-dial-slate-200"
+                />
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <a
+                    class="flex"
+                    href="#"
+                  >
+                    <div
+                      class="text-dial-stratos text-sm py-2"
+                    >
+                      Building Block
+                    </div>
+                    <svg
+                      class="ml-auto text-dial-stratos my-auto"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <hr
+                  class="border-b border-dial-slate-200"
+                />
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <a
+                    class="flex"
+                    href="#"
+                  >
+                    <div
+                      class="text-dial-stratos text-sm py-2"
+                    >
+                      Organization
+                    </div>
+                    <svg
+                      class="ml-auto text-dial-stratos my-auto"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <hr
+                  class="border-b border-dial-slate-200"
+                />
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <a
+                    class="flex"
+                    href="#"
+                  >
+                    <div
+                      class="text-dial-stratos text-sm py-2"
+                    >
+                      Sector
+                    </div>
+                    <svg
+                      class="ml-auto text-dial-stratos my-auto"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <hr
+                  class="border-b border-dial-slate-200"
+                />
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <div
+                  class="text-sm font-semibold text-dial-sapphire"
+                >
+                  <button
+                    type="button"
+                  >
+                    <div
+                      class="flex gap-3 text-dial-sapphire"
+                    >
+                      <div
+                        class="my-auto"
+                      >
+                        Refine with more filters
+                      </div>
+                      <div
+                        class="ml-auto py-2 text-xl"
+                      >
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 448 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-3 py-3"
+            >
+              <div
+                class="text-lg text-dial-sapphire font-semibold"
+              >
+                Bookmark
+              </div>
+              <button
+                class="group flex flex-row gap-x-3"
+                type="button"
+              >
+                <img
+                  alt="Logo of Bookmark."
+                  class="object-contain"
+                  height="40"
+                  src="/ui/v1/bookmark-icon.svg"
+                  width="40"
+                />
+                <div
+                  class="my-auto border-b border-transparent group-hover:border-dial-slate-500"
+                >
+                  <div
+                    class="text-sm text-dial-stratos text-left"
+                  >
+                    Bookmark this page.
+                  </div>
+                </div>
+              </button>
+              <div
+                class="text-sm text-dial-stratos"
+              >
+                Your bookmarks can be found in your Account page.
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-slate-200"
+            />
+            <div
+              class="flex flex-col gap-3 py-3"
+            >
+              <div
+                class="text-lg text-dial-sapphire font-semibold"
+              >
+                Share
+              </div>
+              <div
+                class="flex flex-row gap-3"
+              >
+                <img
+                  alt="Logo of Twitter."
+                  class="object-contain"
+                  height="40"
+                  src="/ui/v1/twitter-icon.svg"
+                  width="40"
+                />
+                <img
+                  alt="Logo of LinkedIn."
+                  class="object-contain"
+                  height="40"
+                  src="/ui/v1/linkedin-icon.svg"
+                  width="40"
+                />
+                <img
+                  alt="Logo of Email."
+                  class="object-contain"
+                  height="40"
+                  src="/ui/v1/email-icon.svg"
+                  width="40"
+                />
+                <img
+                  alt="Logo of Copy."
+                  class="object-contain"
+                  height="40"
+                  src="/ui/v1/copy-icon.svg"
+                  width="40"
+                />
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-slate-200"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-span-3 md:col-span-2"
+      >
+        <div
+          class="min-h-[50vh]"
+        >
+          <div
+            class="py-3"
+          >
+            <div
+              class="flex flex-row gap-3"
+            >
+              <div
+                class="block md:hidden relative"
+              >
+                <button
+                  class="my-auto h-full"
+                  type="button"
+                >
+                  <svg
+                    class="text-2xl text-dial-plum mx-auto"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                class="ml-auto w-full max-w-prose"
+              >
+                <label
+                  class="relative"
+                  for="search-bar"
+                >
+                  <input
+                    class="form-input w-full border"
+                    id="search-bar"
+                    placeholder="Search"
+                    type="text"
+                    value=""
+                  />
+                  <svg
+                    class="absolute top-1/2 transform -translate-y-1/2 right-2"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    />
+                  </svg>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-3"
+          >
+            <div>
+              <div
+                class="relative"
+              >
+                <a
+                  href="/opportunities/call_for_digital_products_to_imp"
+                >
+                  <div
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
+                  >
+                    <div
+                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                    >
+                      <div
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
+                      >
+                        <img
+                          alt="Logo of RFP."
+                          class="object-contain w-8 h-8 mx-auto mt-6 white-filter"
+                          src="/ui/v1/opportunity-header.svg"
+                        />
+                      </div>
+                      <div
+                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                      >
+                        <div
+                          class="text-lg font-semibold text-dial-plum"
+                        >
+                          Call for Digital Products in Somalia
+                        </div>
+                        <div
+                          class="line-clamp-4 text-dial-stratos"
+                        >
+                          Opportunity description.
+                        </div>
+                        <div
+                          class="flex gap-x-2 text-dial-stratos"
+                        >
+                          <div
+                            class="text-sm"
+                          >
+                            Sectors
+                             (
+                            1
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Organizations
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            1
+                            )
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative"
+              >
+                <a
+                  href="/opportunities/greening_and_advancing_ecommerce"
+                >
+                  <div
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                  >
+                    <div
+                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                    >
+                      <div
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
+                      >
+                        <img
+                          alt="Logo of RFP."
+                          class="object-contain w-8 h-8 mx-auto mt-6 white-filter"
+                          src="/ui/v1/opportunity-header.svg"
+                        />
+                      </div>
+                      <div
+                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                      >
+                        <div
+                          class="text-lg font-semibold text-dial-plum"
+                        >
+                          Greening and advancing e-commerce in Ghana
+                        </div>
+                        <div
+                          class="line-clamp-4 text-dial-stratos"
+                        >
+                          Opportunity description.
+                        </div>
+                        <div
+                          class="flex gap-x-2 text-dial-stratos"
+                        >
+                          <div
+                            class="text-sm"
+                          >
+                            Sectors
+                             (
+                            2
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Organizations
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            4
+                            )
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative"
+              >
+                <a
+                  href="/opportunities/improving_crossborder_ecommerce"
+                >
+                  <div
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
+                  >
+                    <div
+                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                    >
+                      <div
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
+                      >
+                        <img
+                          alt="Logo of RFP."
+                          class="object-contain w-8 h-8 mx-auto mt-6 white-filter"
+                          src="/ui/v1/opportunity-header.svg"
+                        />
+                      </div>
+                      <div
+                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                      >
+                        <div
+                          class="text-lg font-semibold text-dial-plum"
+                        >
+                          Improving cross-border e-Commerce services
+                        </div>
+                        <div
+                          class="line-clamp-4 text-dial-stratos"
+                        >
+                          Another opportunity description.
+                        </div>
+                        <div
+                          class="flex gap-x-2 text-dial-stratos"
+                        >
+                          <div
+                            class="text-sm"
+                          >
+                            Sectors
+                             (
+                            2
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Organizations
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            3
+                            )
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative"
+              >
+                <a
+                  href="/opportunities/make_your_supply_chain_more_sust"
+                >
+                  <div
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                  >
+                    <div
+                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                    >
+                      <div
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
+                      >
+                        <img
+                          alt="Logo of RFP."
+                          class="object-contain w-8 h-8 mx-auto mt-6 white-filter"
+                          src="/ui/v1/opportunity-header.svg"
+                        />
+                      </div>
+                      <div
+                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                      >
+                        <div
+                          class="text-lg font-semibold text-dial-plum"
+                        >
+                          Make your supply chain more sustainable
+                        </div>
+                        <div
+                          class="line-clamp-4 text-dial-stratos"
+                        >
+                          Some opportunity description.
+                        </div>
+                        <div
+                          class="flex gap-x-2 text-dial-stratos"
+                        >
+                          <div
+                            class="text-sm"
+                          >
+                            Sectors
+                             (
+                            4
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Organizations
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            9
+                            )
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative"
+              >
+                <a
+                  href="/opportunities/call_for_contributors_to_govstack"
+                >
+                  <div
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
+                  >
+                    <div
+                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                    >
+                      <div
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
+                      >
+                        <img
+                          alt="Logo of RFP."
+                          class="object-contain w-8 h-8 mx-auto mt-6 white-filter"
+                          src="/ui/v1/opportunity-header.svg"
+                        />
+                      </div>
+                      <div
+                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                      >
+                        <div
+                          class="text-lg font-semibold text-dial-plum"
+                        >
+                          Call for Contributors to Consent Building Block
+                        </div>
+                        <div
+                          class="line-clamp-4 text-dial-stratos"
+                        >
+                          Based opportunity description.
+                        </div>
+                        <div
+                          class="flex gap-x-2 text-dial-stratos"
+                        >
+                          <div
+                            class="text-sm"
+                          >
+                            Sectors
+                             (
+                            1
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Organizations
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            1
+                            )
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-y-4 my-6"
+          >
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+            <div
+              class="flex flex-col xl:flex-row gap-x-16 gap-y-3"
+            >
+              <div
+                class="my-auto text-sm font-semibold"
+              >
+                Showing 1 - 8 of 14 total
+              </div>
+              <ul
+                aria-label="Pagination"
+                class="flex gap-x-3 text-sm text-dial-slate-300 font-semibold"
+                role="navigation"
+              >
+                <li
+                  class="border border-current rounded-md opacity-30"
+                >
+                  <a
+                    aria-disabled="true"
+                    aria-label="Previous page"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500 "
+                    rel="prev"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    &lt;
+                  </a>
+                </li>
+                <li
+                  class="border border-current rounded-md text-dial-iris-blue"
+                >
+                  <a
+                    aria-current="page"
+                    aria-label="Page 1 is your current page"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
+                    rel="canonical"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    1
+                  </a>
+                </li>
+                <li
+                  class="border border-current rounded-md"
+                >
+                  <a
+                    aria-label="Page 2"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
+                    rel="next"
+                    role="button"
+                    tabindex="0"
+                  >
+                    2
+                  </a>
+                </li>
+                <li
+                  class="border border-current rounded-md"
+                >
+                  <a
+                    aria-disabled="false"
+                    aria-label="Next page"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
+                    rel="next"
+                    role="button"
+                    tabindex="0"
+                  >
+                    &gt;
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

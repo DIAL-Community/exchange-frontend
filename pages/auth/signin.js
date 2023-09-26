@@ -4,8 +4,8 @@ import { useIntl } from 'react-intl'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import Link from 'next/link'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
 
 export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()

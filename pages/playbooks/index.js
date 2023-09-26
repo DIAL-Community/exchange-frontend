@@ -4,11 +4,11 @@ import { Tooltip } from 'react-tooltip'
 import { useCallback, useState } from 'react'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import PlaybookRibbon from '../../ui/v1/playbook/PlaybookRibbon'
-import PlaybookTabNav from '../../ui/v1/playbook/PlaybookTabNav'
-import PlaybookMain from '../../ui/v1/playbook/PlaybookMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import PlaybookRibbon from '../../components/playbook/PlaybookRibbon'
+import PlaybookTabNav from '../../components/playbook/PlaybookTabNav'
+import PlaybookMain from '../../components/playbook/PlaybookMain'
 
 const Playbooks = () => {
   const { formatMessage } = useIntl()

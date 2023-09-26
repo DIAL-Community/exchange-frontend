@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import OrganizationRibbon from '../../ui/v1/organization/OrganizationRibbon'
-import OrganizationTabNav from '../../ui/v1/organization/OrganizationTabNav'
-import OrganizationMain from '../../ui/v1/organization/OrganizationMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import OrganizationRibbon from '../../components/organization/OrganizationRibbon'
+import OrganizationTabNav from '../../components/organization/OrganizationTabNav'
+import OrganizationMain from '../../components/organization/OrganizationMain'
 
 const OrganizationListPage = () => {
   const { formatMessage } = useIntl()

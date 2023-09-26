@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import RubricCategoryEdit from '../../../ui/v1/rubric-category/RubricCategoryEdit'
+import Footer from '../../../components/shared/Footer'
+import RubricCategoryEdit from '../../../components/rubric-category/RubricCategoryEdit'
 
 const EditRubricCategoryPage = () => {
   const { formatMessage } = useIntl()

@@ -15,13 +15,12 @@ const popupTemplate = (title, content) => {
   `
 }
 
-const EndorserMarkers = (props) => {
+const EndorserMarkers = ({ cities, organization, setSelectedCity, setOrganization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const map = useMap()
 
   const [zooming, setZooming] = useState(false)
-  const { cities, organization, setSelectedCity, setOrganization } = props
 
   const cityMarkerGroup = createRef()
   const countryMarkerGroup = createRef()
@@ -125,8 +124,10 @@ const EndorserMarkerMaps = (props) => {
 
   return (
     <MapContainer
-      className='w-full' style={{ minHeight: props.height, zIndex: 18 }}
-      center={[20, 0]} zoom={3}
+      zoom={3}
+      center={[20, 0]}
+      className='w-full'
+      style={{ minHeight: '70vh', zIndex: 18 }}
       // maxBounds={[[-90, -180], [90, 180]]}
     >
       <TileLayer

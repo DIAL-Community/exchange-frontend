@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../../../../lib/ClientOnly'
-import Header from '../../../../../ui/v1/shared/Header'
-import Footer from '../../../../../ui/v1/shared/Footer'
-import UseCaseStepEdit from '../../../../../ui/v1/use-case/use-case-step/UseCaseStepEdit'
+import Header from '../../../../../components/shared/Header'
+import Footer from '../../../../../components/shared/Footer'
+import UseCaseStepEdit from '../../../../../components/use-case/use-case-step/UseCaseStepEdit'
 
 const EditUseCaseStepPage = () => {
   const { formatMessage } = useIntl()

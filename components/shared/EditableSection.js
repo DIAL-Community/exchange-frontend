@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback } from 'react'
-import { FaSpinner } from 'react-icons/fa'
-import EditButton from '../shared/EditButton'
-import CreateButton from './CreateButton'
+import { FaSpinner } from 'react-icons/fa6'
+import EditButton from './form/EditButton'
+import CreateButton from './form/CreateButton'
 
 const EditableSection = ({
   canEdit,
   sectionHeader,
+  sectionDisclaimer,
   editModeBody,
   displayModeBody,
   isDirty,
@@ -30,23 +31,24 @@ const EditableSection = ({
   }, [isMutating]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className='mt-12' data-testid='editable-section'>
-      <div className='flex justify-between items-center mb-3'>
-        <div className='card-title text-dial-sapphire'>{sectionHeader}</div>
-        <div className='gap-3'>
+    <div className='flex flex-col gap-y-3'>
+      <div className='flex flex-row gap-3'>
+        {sectionHeader}
+        <div className='flex gap-3 ml-auto'>
           {canEdit && !isInEditMode &&
-            <EditButton onClick={() => setIsInEditMode(true)} className='mr-2' />
+            <EditButton onClick={() => setIsInEditMode(true)} />
           }
           {createAction && canEdit && !isInEditMode &&
-            <CreateButton label={format('app.createNew')} onClick={createAction} className='mr-2' />
+            <CreateButton label={format('app.createNew')} onClick={createAction} />
           }
         </div>
       </div>
+      {sectionDisclaimer}
       {isInEditMode
         ? (
-          <div className='bg-edit p-6'>
+          <div className='bg-edit'>
             {editModeBody}
-            <div className='flex justify-end mt-8 gap-3 text-xl'>
+            <div className='px-4 lg:px-6 py-4 flex justify-end gap-3'>
               <button
                 type='submit'
                 onClick={() => {
@@ -55,10 +57,9 @@ const EditableSection = ({
                 }}
                 className='submit-button'
                 disabled={!isDirty || isSubmitInProgress}
-                data-testid='submit-button'
               >
                 {format(`${isSubmitInProgress ? 'app.submitting' : 'app.submit'}`)}
-                {isSubmitInProgress && <FaSpinner className='spinner ml-3 inline' data-testid='submit-spinner' />}
+                {isSubmitInProgress && <FaSpinner className='spinner ml-3 inline' />}
               </button>
               <button
                 type='button'
@@ -68,7 +69,6 @@ const EditableSection = ({
                 }}
                 className='cancel-button'
                 disabled={isSubmitInProgress}
-                data-testid='cancel-button'
               >
                 {format('app.cancel')}
               </button>

@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import Input from '../../shared/Input'
+import Input from '../form/Input'
 import { DEFAULT_BRANCH_NAME } from './common'
 import { EditorContext, EditorContextDispatch } from './EditorContext'
 

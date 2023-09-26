@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import SdgRibbon from '../../ui/v1/sdg/SdgRibbon'
-import SdgTabNav from '../../ui/v1/sdg/SdgTabNav'
-import SdgMain from '../../ui/v1/sdg/SdgMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import SdgRibbon from '../../components/sdg/SdgRibbon'
+import SdgTabNav from '../../components/sdg/SdgTabNav'
+import SdgMain from '../../components/sdg/SdgMain'
 
 const SdgListPage = () => {
   const { formatMessage } = useIntl()

@@ -3,11 +3,11 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
-import { CREATE_COMMENT, DELETE_COMMENT } from '../../../mutations/comment'
-import { COMMENTS_QUERY } from '../../../queries/comment'
+import EditButton from '../form/EditButton'
 import { useUser } from '../../../lib/hooks'
+import { CREATE_COMMENT, DELETE_COMMENT } from '../mutation/comment'
+import { COMMENTS_QUERY } from '../query/comment'
 import { Loading } from '../FetchStatus'
-import EditButton from '../EditButton'
 import CommentsList from './CommentsList'
 const CommentSection = dynamic(
   () => import('react-comments-section').then((module) => module.CommentSection),
@@ -26,7 +26,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   const innerRef = useRef(null)
   const { loadingUserSession, user, isAdminUser } = useUser()
 
-  const { data, refetch, loading } = useQuery(COMMENTS_QUERY, {
+  const { data, loading } = useQuery(COMMENTS_QUERY, {
     variables: {
       commentObjectId: parseInt(objectId),
       commentObjectType: objectType
@@ -107,11 +107,9 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   useEffect(() => {
     if (data?.comments) {
       const commentData = []
-      // eslint-disable-next-line no-unused-vars
-      data.comments.forEach(({ replies, __typename, ...otherCommentProps }) => {
+      data.comments.forEach(({ replies, ...otherCommentProps }) => {
         commentData.push({
-          // eslint-disable-next-line no-unused-vars
-          replies: replies.map(({ __typename, ...otherReplyProps }) => otherReplyProps),
+          replies: replies.map(({ ...otherReplyProps }) => otherReplyProps),
           ...otherCommentProps
         })
       })
@@ -124,46 +122,50 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode)
 
   return (
-    <div ref={commentsSectionRef} className={classNames(className)}>
+    <div ref={commentsSectionRef} className={classNames(className, 'text-dial-sapphire')}>
       {loadingUserSession && <Loading />}
-      {isInEditMode ? (
-        <CommentsList
-          comments={data?.comments}
-          refetch={refetch}
-          loading={loading}
-          onClose={toggleIsInEditMode}
-        />
-      ) : (
-        <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
-          {isAdminUser && (
-            <div className='flex justify-end'>
-              <EditButton onClick={toggleIsInEditMode} />
-            </div>
-          )}
-          <CommentSection
-            commentData={commentData}
-            currentUser={user ? {
-              currentUserId: String(user.id),
-              currentUserImg: `https://ui-avatars.com/api/name=${user.userName}&${UI_AVATAR_PARAMS}`,
-              currentUserFullName: user.userName
-            } : null}
-            logIn={{
-              loginLink: '/auth/signin',
-              signupLink: '/auth/signup'
-            }}
-            onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
-            onReplyAction={
-              ({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) =>
-                onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)
-            }
-            onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
-            onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
-            advancedInput
-            hrStyle={{ borderColor: '#dfdfea' }}
-            formStyle={{ backgroundColor: 'white' }}
+      {isInEditMode
+        ? (
+          <CommentsList
+            comments={data?.comments}
+            loading={loading}
+            onClose={toggleIsInEditMode}
           />
-        </div>
-      )}
+        )
+        : (
+          <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
+            {isAdminUser && (
+              <div className='flex justify-end'>
+                <EditButton onClick={toggleIsInEditMode} />
+              </div>
+            )}
+            <CommentSection
+              commentData={commentData}
+              currentUser={user ? {
+                currentUserId: String(user.id),
+                currentUserImg: `https://ui-avatars.com/api/name=${user.userName}&${UI_AVATAR_PARAMS}`,
+                currentUserFullName: user.userName
+              } : null}
+              logIn={{
+                loginLink: '/auth/signin',
+                signupLink: '/auth/signup'
+              }}
+              onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
+              onReplyAction={
+                ({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) =>
+                  onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)
+              }
+              onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
+              onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
+              advancedInput
+              removeEmoji
+              hrStyle={{ borderColor: '#dfdfea' }}
+              formStyle={{ backgroundColor: 'white', fontFamily: 'Poppins, sans-serif' }}
+              imgStyle={{ margin: 'auto' }}
+            />
+          </div>
+        )
+      }
     </div>
   )
 }

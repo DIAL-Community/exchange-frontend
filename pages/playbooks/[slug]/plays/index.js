@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import Header from '../../../../ui/v1/shared/Header'
+import Header from '../../../../components/shared/Header'
 import { Loading } from '../../../../components/shared/FetchStatus'
-import Footer from '../../../../ui/v1/shared/Footer'
+import Footer from '../../../../components/shared/Footer'
 
 const PlaybookPlays = () => {
   const router = useRouter()

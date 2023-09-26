@@ -2,8 +2,8 @@ import { useIntl, FormattedMessage } from 'react-intl'
 import Link from 'next/link'
 import ClientOnly from '../lib/ClientOnly'
 import QueryNotification from '../components/shared/QueryNotification'
-import Header from '../ui/v1/shared/Header'
-import Footer from '../ui/v1/shared/Footer'
+import Header from '../components/shared/Header'
+import Footer from '../components/shared/Footer'
 
 const jsphUrl = 'https://www.jhsph.edu/departments/international-health/news/johns-hopkins-researchers-publish' +
 '-assessment-of-digital-solutions-for-covid-19-response-in-low-and-middle-income-countries.html'

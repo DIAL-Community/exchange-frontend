@@ -1,6 +1,6 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { initializeApollo } from '../../../lib/apolloClient'
-import { SDG_SEARCH_QUERY } from '../../../queries/sdg'
+import { SDG_SEARCH_QUERY } from '../../../components/shared/query/sdg'
 
 export const getServerSideProps = async (ctx) => {
   const client = initializeApollo({})

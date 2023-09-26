@@ -4,10 +4,10 @@ import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../../lib/ClientOnly'
-import Header from '../../../ui/v1/shared/Header'
-import Footer from '../../../ui/v1/shared/Footer'
-import PlaybookDetail from '../../../ui/v1/playbook/PlaybookDetail'
-import { PlaybookDetailProvider } from '../../../ui/v1/playbook/context/PlaybookDetailContext'
+import Header from '../../../components/shared/Header'
+import Footer from '../../../components/shared/Footer'
+import PlaybookDetail from '../../../components/playbook/PlaybookDetail'
+import { PlaybookDetailProvider } from '../../../components/playbook/context/PlaybookDetailContext'
 
 const Playbook = () => {
   const { formatMessage } = useIntl()

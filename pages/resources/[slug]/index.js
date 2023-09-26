@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import ResourceDetail from '../../../ui/v1/resource/ResourceDetail'
+import Footer from '../../../components/shared/Footer'
+import ResourceDetail from '../../../components/resource/ResourceDetail'
 
 const ResourcePage = () => {
   const { formatMessage } = useIntl()

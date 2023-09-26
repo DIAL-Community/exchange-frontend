@@ -2,13 +2,11 @@ import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 
-const CountryInfo = (props) => {
-  const { country } = props
-  const router = useRouter()
-
+const CountryInfo = ({ country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const router = useRouter()
   const [active, setActive] = useState(country?.projects[0].slug)
 
   // Just return empty fragment when there's no country selected.
@@ -38,39 +36,36 @@ const CountryInfo = (props) => {
         <div className='text-sm text-dial-cyan font-semibold border-b px-4 py-2'>
           {`${country.projects.length} ${format('ui.project.header')} in ${country.name}`}
         </div>
-        {
-          country && country.projects.map(project => {
-            return (
-              <div key={`${country.name}-${project.name}`} className='hover:bg-gray-100 hover:text-gray-900'>
-                <div className='mx-4 py-2 border-b last:border-0'>
+        {country && country.projects.map(project => {
+          return (
+            <div key={`${country.name}-${project.name}`} className='hover:bg-gray-100 hover:text-gray-900'>
+              <div className='mx-4 py-2 border-b last:border-0'>
+                <a
+                  href={`expand-${project.slug}`}
+                  onClick={(e) => toggleExpand(e, project.slug)}
+                  className={`
+                    ${active === project.slug ? 'font-semibold' : ''}
+                    text-sm text-gray-700 cursor-pointer block
+                  `}
+                >
+                  {project.name}
+                </a>
+                {active === project.slug &&
                   <a
-                    href={`expand-${project.slug}`}
-                    onClick={(e) => toggleExpand(e, project.slug)}
+                    href={project.slug}
+                    onClick={(e) => openDetailPage(e, project.slug)}
                     className={`
-                      ${active === project.slug ? 'font-semibold' : ''}
-                      text-sm text-gray-700 cursor-pointer block
+                      block py-1.5 text-center text-xs text-dial-blue
+                      bg-dial-blue-light bg-opacity-20 cursor-pointer
                     `}
                   >
-                    {project.name}
+                    {format('map.projects.viewProject')} &gt;&gt;
                   </a>
-                  {
-                    active === project.slug &&
-                      <a
-                        href={project.slug}
-                        onClick={(e) => openDetailPage(e, project.slug)}
-                        className={`
-                          block py-1.5 text-center text-xs text-dial-blue
-                          bg-dial-blue-light bg-opacity-20 cursor-pointer
-                        `}
-                      >
-                        {format('map.projects.viewProject')} &gt;&gt;
-                      </a>
-                  }
-                </div>
+                }
               </div>
-            )
-          })
-        }
+            </div>
+          )
+        })}
       </div>
     </div>
   )

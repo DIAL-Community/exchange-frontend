@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../../ui/v1/shared/Header'
+import Header from '../../../../components/shared/Header'
 import ClientOnly from '../../../../lib/ClientOnly'
-import Footer from '../../../../ui/v1/shared/Footer'
-import DatasetEdit from '../../../../ui/v1/candidate/dataset/DatasetEdit'
+import Footer from '../../../../components/shared/Footer'
+import DatasetEdit from '../../../../components/candidate/dataset/DatasetEdit'
 
 const EditDatasetPage = () => {
   const { formatMessage } = useIntl()

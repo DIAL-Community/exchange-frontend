@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import UserRibbon from '../../ui/v1/user/UserRibbon'
-import UserTabNav from '../../ui/v1/user/UserTabNav'
-import UserMain from '../../ui/v1/user/UserMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import UserRibbon from '../../components/user/UserRibbon'
+import UserTabNav from '../../components/user/UserTabNav'
+import UserMain from '../../components/user/UserMain'
 
 const Users = () => {
   const { formatMessage } = useIntl()
