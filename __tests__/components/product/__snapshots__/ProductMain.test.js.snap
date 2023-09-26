@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the building block main page. Should render list of building blocks. 1`] = `
+exports[`Unit tests for the product main page. Should render list of products. 1`] = `
 <div>
   <div
     class="Toastify"

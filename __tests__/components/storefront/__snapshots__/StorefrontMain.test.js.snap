@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the use case main page. Should render list of use cases. 1`] = `
+exports[`Unit tests for the storefront main page. Should render list of storefronts. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -30,7 +30,6 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                   class="text-sm font-semibold text-dial-sapphire"
                 >
                   Filter your results by
-                  :
                 </div>
                 <hr
                   class="border-b border-dial-slate-200"
@@ -45,7 +44,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                     <div
                       class="text-dial-stratos text-sm py-2"
                     >
-                      SDG
+                      Sector
                     </div>
                     <svg
                       class="ml-auto text-dial-stratos my-auto"
@@ -66,45 +65,68 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                 <hr
                   class="border-b border-dial-slate-200"
                 />
-              </div>
-              <div
-                class="flex flex-col gap-y-2"
-              >
                 <div
-                  class="text-sm font-semibold text-dial-sapphire"
+                  class="flex flex-col gap-y-3"
                 >
-                  Refine with use case filters
-                  :
-                </div>
-                <label
-                  class="flex py-2"
-                >
-                  <input
-                    class="h-5 w-5"
-                    type="checkbox"
-                  />
-                  <span
-                    class="mx-2 my-auto text-sm"
+                  <a
+                    class="flex"
+                    href="#"
                   >
-                    Show draft (non-validated) use cases
-                  </span>
-                </label>
+                    <div
+                      class="text-dial-stratos text-sm py-2"
+                    >
+                      Country
+                    </div>
+                    <svg
+                      class="ml-auto text-dial-stratos my-auto"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                  </a>
+                </div>
                 <hr
                   class="border-b border-dial-slate-200"
                 />
-                <label
-                  class="flex py-2"
+                <div
+                  class="flex flex-col gap-y-3"
                 >
-                  <input
-                    class="h-5 w-5"
-                    type="checkbox"
-                  />
-                  <span
-                    class="mx-2 my-auto text-sm"
+                  <a
+                    class="flex"
+                    href="#"
                   >
-                    Show use cases from GovStack
-                  </span>
-                </label>
+                    <div
+                      class="text-dial-stratos text-sm py-2"
+                    >
+                      Building Block
+                    </div>
+                    <svg
+                      class="ml-auto text-dial-stratos my-auto"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <hr
+                  class="border-b border-dial-slate-200"
+                />
               </div>
             </div>
             <div
@@ -212,7 +234,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                   type="button"
                 >
                   <svg
-                    class="text-2xl text-dial-blueberry mx-auto"
+                    class="text-2xl text-dial-plum mx-auto"
                     fill="currentColor"
                     height="1em"
                     stroke="currentColor"
@@ -271,35 +293,35 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                 class="relative"
               >
                 <a
-                  href="/use-cases/construction_permit"
+                  href="/storefronts/creative_space_startups"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-cotton"
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
                   >
                     <div
                       class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
                     >
                       <div
-                        class="w-16 h-16 mx-auto"
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
                       >
                         <img
-                          alt="Logo of Use Case."
-                          class="object-contain"
-                          src="http://localhost:3000//assets/use_cases/use_case_placeholder.svg"
+                          alt="Logo of Storefront."
+                          class="object-contain w-10 h-10 mx-auto mt-4 white-filter"
+                          src="/ui/v1/storefront-header.svg"
                         />
                       </div>
                       <div
                         class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-blueberry"
+                          class="text-lg font-semibold text-dial-plum"
                         >
-                          Construction Permit
+                          Creative Space Startups
                         </div>
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Some description
+                          Create space startups description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -307,30 +329,32 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           <div
                             class="text-sm"
                           >
-                            SDG Targets
-                             (
-                            2
-                            )
-                          </div>
-                          <div
-                            class="border border-r border-dial-slate-300"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Building Blocks
+                            Sectors
                              (
                             0
                             )
                           </div>
-                        </div>
-                        <div
-                          class="flex text-[10px] text-white"
-                        >
                           <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
+                            class="border-r border-dial-stratos-400"
+                          />
+                          <div
+                            class="text-sm"
                           >
-                            PUBLISHED
+                            Countries
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-stratos-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Projects
+                             (
+                            0
+                            )
                           </div>
                         </div>
                       </div>
@@ -344,7 +368,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                 class="relative"
               >
                 <a
-                  href="/use-cases/extended_producer_responsibility"
+                  href="/storefronts/newlogic"
                 >
                   <div
                     class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
@@ -353,26 +377,26 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                       class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
                     >
                       <div
-                        class="w-16 h-16 mx-auto"
+                        class="w-20 h-20 mx-auto bg-white border"
                       >
                         <img
-                          alt="Logo of Use Case."
-                          class="object-contain"
-                          src="http://localhost:3000//assets/use_cases/use_case_placeholder.svg"
+                          alt="Logo of Storefront."
+                          class="object-contain w-16 h-16 mx-auto my-2"
+                          src="http://localhost:3000//assets/organizations/newlogic.png"
                         />
                       </div>
                       <div
                         class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-blueberry"
+                          class="text-lg font-semibold text-dial-plum"
                         >
-                          Extended Producer Responsibility (EPR)
+                          Newlogic
                         </div>
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Some other description
+                          Newlogic description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -380,30 +404,32 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           <div
                             class="text-sm"
                           >
-                            SDG Targets
+                            Sectors
                              (
-                            4
+                            1
                             )
                           </div>
                           <div
-                            class="border border-r border-dial-slate-300"
+                            class="border-r border-dial-stratos-400"
                           />
                           <div
                             class="text-sm"
                           >
-                            Building Blocks
+                            Countries
+                             (
+                            6
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-stratos-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Projects
                              (
                             0
                             )
-                          </div>
-                        </div>
-                        <div
-                          class="flex text-[10px] text-white"
-                        >
-                          <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
-                          >
-                            PUBLISHED
                           </div>
                         </div>
                       </div>
@@ -417,35 +443,35 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                 class="relative"
               >
                 <a
-                  href="/use-cases/agricultural_supply_chain_manage"
+                  href="/storefronts/soldevelo"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-cotton"
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
                   >
                     <div
                       class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
                     >
                       <div
-                        class="w-16 h-16 mx-auto"
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
                       >
                         <img
-                          alt="Logo of Use Case."
-                          class="object-contain"
-                          src="http://localhost:3000//assets/use_cases/use_case_placeholder.svg"
+                          alt="Logo of Storefront."
+                          class="object-contain w-10 h-10 mx-auto mt-4 white-filter"
+                          src="/ui/v1/storefront-header.svg"
                         />
                       </div>
                       <div
                         class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-blueberry"
+                          class="text-lg font-semibold text-dial-plum"
                         >
-                          Farmer-Facing Supply Chain Management
+                          Soldevelo
                         </div>
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Some more description
+                          Soldevelo description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -453,30 +479,180 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           <div
                             class="text-sm"
                           >
-                            SDG Targets
+                            Sectors
                              (
-                            1
+                            0
                             )
                           </div>
                           <div
-                            class="border border-r border-dial-slate-300"
+                            class="border-r border-dial-stratos-400"
                           />
                           <div
                             class="text-sm"
                           >
-                            Building Blocks
+                            Countries
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-stratos-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Projects
                              (
                             0
                             )
                           </div>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative"
+              >
+                <a
+                  href="/storefronts/summum_consulting_group"
+                >
+                  <div
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                  >
+                    <div
+                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                    >
+                      <div
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
+                      >
+                        <img
+                          alt="Logo of Storefront."
+                          class="object-contain w-10 h-10 mx-auto mt-4 white-filter"
+                          src="/ui/v1/storefront-header.svg"
+                        />
+                      </div>
+                      <div
+                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                      >
                         <div
-                          class="flex text-[10px] text-white"
+                          class="text-lg font-semibold text-dial-plum"
+                        >
+                          Summum Go Digital
+                        </div>
+                        <div
+                          class="line-clamp-4 text-dial-stratos"
+                        />
+                        <div
+                          class="flex gap-x-2 text-dial-stratos"
                         >
                           <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
+                            class="text-sm"
                           >
-                            PUBLISHED
+                            Sectors
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-stratos-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-stratos-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Projects
+                             (
+                            0
+                            )
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative"
+              >
+                <a
+                  href="/storefronts/brandon_thompson"
+                >
+                  <div
+                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
+                  >
+                    <div
+                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                    >
+                      <div
+                        class="w-20 h-20 mx-auto bg-dial-plum rounded-full"
+                      >
+                        <img
+                          alt="Logo of Storefront."
+                          class="object-contain w-10 h-10 mx-auto mt-4 white-filter"
+                          src="/ui/v1/storefront-header.svg"
+                        />
+                      </div>
+                      <div
+                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                      >
+                        <div
+                          class="text-lg font-semibold text-dial-plum"
+                        >
+                          Zarttech
+                        </div>
+                        <div
+                          class="line-clamp-4 text-dial-stratos"
+                        >
+                          Zarttech description
+                        </div>
+                        <div
+                          class="flex gap-x-2 text-dial-stratos"
+                        >
+                          <div
+                            class="text-sm"
+                          >
+                            Sectors
+                             (
+                            1
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-stratos-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            2
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-stratos-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Projects
+                             (
+                            0
+                            )
                           </div>
                         </div>
                       </div>
@@ -498,7 +674,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
               <div
                 class="my-auto text-sm font-semibold"
               >
-                Showing 1 - 8 of 10 total
+                Showing 1 - 5 of 5 total
               </div>
               <ul
                 aria-label="Pagination"
@@ -534,28 +710,15 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                   </a>
                 </li>
                 <li
-                  class="border border-current rounded-md"
+                  class="border border-current rounded-md opacity-30"
                 >
                   <a
-                    aria-label="Page 2"
-                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
-                    rel="next"
-                    role="button"
-                    tabindex="0"
-                  >
-                    2
-                  </a>
-                </li>
-                <li
-                  class="border border-current rounded-md"
-                >
-                  <a
-                    aria-disabled="false"
+                    aria-disabled="true"
                     aria-label="Next page"
-                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500 "
                     rel="next"
                     role="button"
-                    tabindex="0"
+                    tabindex="-1"
                   >
                     &gt;
                   </a>
