@@ -5,7 +5,7 @@ COPY package.json .yarnrc.yml yarn.lock ./
 COPY .yarn ./.yarn
 
 RUN yarn set version berry
-RUN yarn install --immutable
+RUN yarn install
 
 FROM base AS build
 LABEL stage=build
