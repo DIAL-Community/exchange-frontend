@@ -223,5 +223,12 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms')
+  ],
+  // We are using the following classes for product comparison.
+  // Make sure they're available after tailwind tree shaking.
+  safelist: [
+    'basis-1/4',
+    'basis-1/5',
+    'basis-1/6'
   ]
 }
