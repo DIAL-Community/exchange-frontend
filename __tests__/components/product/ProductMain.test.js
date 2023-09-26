@@ -12,8 +12,8 @@ import { ProductFilterProvider } from '../../../components/context/ProductFilter
 import { paginatedProducts, productPaginationAttribute } from './data/ProductMain.data'
 
 mockNextUseRouter()
-describe('Unit tests for the building block main page.', () => {
-  test('Should render list of building blocks.', async () => {
+describe('Unit tests for the product main page.', () => {
+  test('Should render list of products.', async () => {
     const mockProductPaginationAttribute = generateMockApolloData(
       PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
       {

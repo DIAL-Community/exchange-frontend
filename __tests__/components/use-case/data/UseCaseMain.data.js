@@ -69,8 +69,7 @@ export const paginatedUseCases = {
         'sector': {
           'id': '853',
           'slug': 'agriculture_and_rural_developmen',
-          'name': 'Agriculture and Rural Development',
-          '__typename': 'Sector'
+          'name': 'Agriculture and Rural Development'
         },
         'sanitizedDescription': 'Some more description',
         'buildingBlocks': null,
@@ -88,8 +87,7 @@ export const paginatedUseCases = {
 export const useCasePaginationAttribute = {
   'data': {
     'paginationAttributeUseCase': {
-      'totalCount': 10,
-      '__typename': 'PaginationAttributes'
+      'totalCount': 10
     }
   }
 }

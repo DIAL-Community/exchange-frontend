@@ -12,8 +12,8 @@ import { UseCaseFilterProvider } from '../../../components/context/UseCaseFilter
 import { paginatedUseCases, useCasePaginationAttribute } from './data/UseCaseMain.data'
 
 mockNextUseRouter()
-describe('Unit tests for the building block main page.', () => {
-  test('Should render list of building blocks.', async () => {
+describe('Unit tests for the use case main page.', () => {
+  test('Should render list of use cases.', async () => {
     const mockUseCasePaginationAttribute = generateMockApolloData(
       USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
       { search:'', sdgs: [], showBeta: false, govStackOnly: false },
