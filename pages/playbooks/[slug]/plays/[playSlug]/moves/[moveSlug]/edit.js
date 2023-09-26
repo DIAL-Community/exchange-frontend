@@ -3,9 +3,9 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
-import MoveEdit from '../../../../../../../ui/v1/move/MoveEdit'
-import Header from '../../../../../../../ui/v1/shared/Header'
-import Footer from '../../../../../../../ui/v1/shared/Footer'
+import MoveEdit from '../../../../../../../components/move/MoveEdit'
+import Header from '../../../../../../../components/shared/Header'
+import Footer from '../../../../../../../components/shared/Footer'
 
 const EditMove = () => {
   const { formatMessage } = useIntl()

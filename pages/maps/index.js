@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ClientOnly from '../../lib/ClientOnly'
-import Header from '../../ui/v1/shared/Header'
-import { Loading } from '../../ui/v1/shared/FetchStatus'
-import Footer from '../../ui/v1/shared/Footer'
+import Header from '../../components/shared/Header'
+import { Loading } from '../../components/shared/FetchStatus'
+import Footer from '../../components/shared/Footer'
 
 const MapListPage = () => {
   const { formatMessage } = useIntl()

@@ -3,10 +3,10 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import ClientOnly from '../../../../../lib/ClientOnly'
-import Header from '../../../../../ui/v1/shared/Header'
-import Footer from '../../../../../ui/v1/shared/Footer'
-import PlayDetail from '../../../../../ui/v1/play/PlayDetail'
-import { PlaybookDetailProvider } from '../../../../../ui/v1/playbook/context/PlaybookDetailContext'
+import Header from '../../../../../components/shared/Header'
+import Footer from '../../../../../components/shared/Footer'
+import PlayDetail from '../../../../../components/play/PlayDetail'
+import { PlaybookDetailProvider } from '../../../../../components/playbook/context/PlaybookDetailContext'
 
 const Play = () => {
   const { formatMessage } = useIntl()

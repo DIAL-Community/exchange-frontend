@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useCallback, useContext } from 'react'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { useIntl } from 'react-intl'
-import EditButton from '../shared/EditButton'
+import EditButton from '../shared/form/EditButton'
 import { DEFAULT_REPO_OWNER } from './common'
 import { MetadataContext } from './MetadataContext'
 

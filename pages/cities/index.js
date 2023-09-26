@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import CityRibbon from '../../ui/v1/city/CityRibbon'
-import CityTabNav from '../../ui/v1/city/CityTabNav'
-import CityMain from '../../ui/v1/city/CityMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import CityRibbon from '../../components/city/CityRibbon'
+import CityTabNav from '../../components/city/CityTabNav'
+import CityMain from '../../components/city/CityMain'
 
 const CityListPage = () => {
   const { formatMessage } = useIntl()

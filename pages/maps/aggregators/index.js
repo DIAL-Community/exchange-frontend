@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import MapContainer from '../../../ui/v1/maps/MapContainer'
+import Footer from '../../../components/shared/Footer'
+import MapContainer from '../../../components/maps/MapContainer'
 
 const ProjectMapPage = () => {
   const { formatMessage } = useIntl()

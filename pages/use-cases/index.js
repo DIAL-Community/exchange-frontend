@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import UseCaseRibbon from '../../ui/v1/use-case/UseCaseRibbon'
-import UseCaseTabNav from '../../ui/v1/use-case/UseCaseTabNav'
-import UseCaseMain from '../../ui/v1/use-case/UseCaseMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import UseCaseRibbon from '../../components/use-case/UseCaseRibbon'
+import UseCaseTabNav from '../../components/use-case/UseCaseTabNav'
+import UseCaseMain from '../../components/use-case/UseCaseMain'
 
 const UseCaseListPage = () => {
   const { formatMessage } = useIntl()

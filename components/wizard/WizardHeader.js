@@ -1,135 +1,142 @@
-import { useCallback } from 'react'
+import classNames from 'classnames'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
+import { WizardContext, WizardDispatchContext } from './WizardContext'
+import { STEPS, STEP_DESCRIPTIONS } from './commons'
 
-const ProgressBar = ({ stage, setStage }) => {
+const WizardProgressBar = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { currentStep } = useContext(WizardContext)
+  const { setCurrentStep } = useContext(WizardDispatchContext)
+
+  const indexListStyle = (index) => classNames(
+    'flex w-full items-center text-dial-blueberry',
+    currentStep >= index ? 'active-border' : 'inactive-border'
+  )
+
+  const indexStepStyle = (index) => classNames(
+    'flex items-center justify-center',
+    currentStep >= index ? 'active-step' : 'inactive-step'
+  )
+
+  const updateActiveStep = (selectedStep) => setCurrentStep(selectedStep)
+
   return (
-    <div className='w-full lg:w-1/2 pt-3 lg:float-right'>
-      <div className='flex'>
-        <div className='w-1/4 cursor-pointer' onClick={() => setStage(1)}>
-          <div className='relative mb-2'>
-            <div
-              className={`
-                w-10 h-10 mx-auto
-                ${stage > 0 && 'bg-button-gray'}
-                border border-button-gray rounded-full text-lg flex items-center
-              `}
-            >
-              <span className={`text-center ${stage > 0 ? 'text-dial-gray-light' : 'text-button-gray'} w-full`}>
-                1
+    <div className='ui-wizard px-4 lg:px-8 xl:px-56 w-full'>
+      <div className='flex flex-col gap-y-4 text-sm'>
+        <ol
+          className='flex items-center w-full'
+          style={{ paddingRight: 'var(--wizard-marker-size)' }}
+        >
+          {STEPS.map((_, index) => (
+            <li key={index} className={index === currentStep ? 'w-full visible' : 'w-full invisible'}>
+              {format('ui.wizard.currentStep')}
+            </li>
+          ))}
+        </ol>
+        <ol className='flex items-center w-full'>
+          {STEPS.map((_, index) => (
+            <li key={index} className={indexListStyle(index)}>
+              <button type='button' onClick={() => updateActiveStep(index)}>
+                <div className={indexStepStyle(index)} />
+              </button>
+            </li>
+          ))}
+        </ol>
+        <ol className='flex items-center w-full' style={{ paddingRight: 'var(--wizard-marker-size)' }}>
+          {STEPS.map((step, index) => (
+            <li key={index} className='w-full font-semibold'>
+              <span className={index <= currentStep ? 'text-dial-iris-blue' : 'text-dial-slate-300'}>
+                {format(step)}
               </span>
-            </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  )
+}
+
+const WizardStepHeader = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { currentStep } = useContext(WizardContext)
+  const { setCurrentStep } = useContext(WizardDispatchContext)
+
+  const goToPreviousStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1)
+    }
+  }
+
+  const goToNextStep = () => {
+    if (currentStep < STEPS.length - 1) {
+      setCurrentStep(currentStep + 1)
+    }
+  }
+
+  const navigateToResults = () => {
+    if (currentStep === STEPS.length - 1) {
+      setCurrentStep(currentStep + 1)
+    }
+  }
+
+  return (
+    <div className='ui-wizard px-4 lg:px-8 xl:px-56 w-full'>
+      <div className='flex flex-col lg:flex-row gap-6 w-full'>
+        <div className='flex flex-col flex-grow gap-y-4'>
+          <div className='font-semibold text-2xl text-dial-iris-blue'>
+            {`Step ${currentStep + 1} - ${format(STEPS[currentStep])}`}
           </div>
-          {(stage === 0 || stage === 1) &&
-            <div className='text-xs uppercase text-center'>
-              0% {format('wizard.complete')}
-            </div>
-          }
+          <div className='text-sm max-w-2xl'>
+            {format(STEP_DESCRIPTIONS[currentStep])}
+          </div>
         </div>
-
-        <div className='w-1/4 cursor-pointer' onClick={() => setStage(2)}>
-          <div className='relative mb-2'>
-            <div className='absolute flex align-center items-center align-middle content-center wizard-progress-line'>
-              <div className='w-full rounded items-center align-middle align-center flex-1'>
-                <div
-                  className={`
-                    w-0 bg-button-gray
-                    ${stage > 1 ? 'wizard-progress-padding-complete' : 'wizard-progress-padding'}
-                  `}
-                  style={{ width: '100%' }}
-                />
-              </div>
-            </div>
-
-            <div
-              className={`
-                w-10 h-10 mx-auto
-                ${stage > 1 && 'bg-button-gray'}
-                border border-button-gray rounded-full text-lg flex items-center
-              `}
-            >
-              <span className={`text-center ${stage > 1 ? 'text-dial-gray-light' : 'text-button-gray'} w-full`}>
-                2
-              </span>
-            </div>
+        <div className='flex flex-col gap-y-4'>
+          <div className='text-sm text-dial-stratos font-semibold'>
+            {format('ui.wizard.readyToContinue')}
           </div>
-          {(stage === 2) && <div className='text-xs uppercase text-center'>33% {format('wizard.complete')}</div>}
-        </div>
-
-        <div className='w-1/4 cursor-pointer' onClick={() => setStage(3)}>
-          <div className='relative mb-2'>
-            <div className='absolute flex align-center items-center align-middle content-center wizard-progress-line'>
-              <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
-                <div
-                  className={`
-                    w-0 bg-button-gray
-                    ${stage > 2 ? 'wizard-progress-padding-complete' : 'wizard-progress-padding'}
-                  `}
-                  style={{ width: '100%' }}
-                />
+          <div className='flex flex-row gap-x-4 text-sm text-white'>
+            <button onClick={goToPreviousStep} disabled={currentStep <= 0}>
+              <div
+                className={classNames(
+                  'px-5 py-2 rounded-md bg-dial-slate-300',
+                  currentStep <= 0 ? '' :  'hover:bg-dial-iris-blue'
+                )}
+              >
+                {format('ui.wizard.previousStep')}
               </div>
-            </div>
-
-            <div
-              className={`
-                w-10 h-10 mx-auto
-                ${stage > 2 && 'bg-button-gray'}
-                border border-button-gray rounded-full text-lg flex items-center
-              `}
-            >
-              <span className={`text-center ${stage > 2 ? 'text-dial-gray-light' : 'text-button-gray'} w-full`}>
-                3
-              </span>
-            </div>
+            </button>
+            {currentStep < STEPS.length - 1 &&
+              <button onClick={goToNextStep}>
+                <div className='px-5 py-2 rounded-md bg-dial-iris-blue'>
+                  {format('ui.wizard.nextStep')}
+                </div>
+              </button>
+            }
+            {currentStep === STEPS.length - 1 &&
+              <button onClick={navigateToResults}>
+                <div className='px-5 py-2 rounded-md bg-dial-iris-blue'>
+                  {format('ui.wizard.navigateToResults')}
+                </div>
+              </button>
+            }
           </div>
-          {(stage === 3) && <div className='text-xs uppercase text-center'>67% {format('wizard.complete')}</div>}
-        </div>
-        <div className='w-1/4 cursor-pointer' onClick={() => setStage(4)}>
-          <div className='relative mb-2'>
-            <div className='absolute flex align-center items-center align-middle content-center wizard-progress-line'>
-              <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
-                <div
-                  className={`
-                    w-0 bg-button-gray
-                    ${stage > 3 ? 'wizard-progress-padding-complete' : 'wizard-progress-padding'}
-                  `}
-                  style={{ width: '100%' }}
-                />
-              </div>
-            </div>
-
-            <div
-              className={`
-                w-10 h-10 mx-auto
-                ${stage > 3 && 'bg-button-gray'}
-                border border-button-gray rounded-full text-lg flex items-center
-              `}
-            >
-              <span className={`text-center ${stage > 3 ? 'text-dial-gray-light' : 'text-button-gray'} w-full`}>
-                4
-              </span>
-            </div>
-          </div>
-          {(stage === 4) && <div className='text-xs uppercase text-center'>100% {format('wizard.complete')}</div>}
         </div>
       </div>
     </div>
   )
 }
 
-const WizardHeader = ({ stage, setStage }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
+const WizardHeader = () => {
   return (
-    <>
-      <header className='bg-dial-sunshine p-5 w-full sticky lg:flex lg:items-center sticky-under-header'>
-        <div className='px-6 h1 lg:inline py-3 lg:w-1/2'>{format('wizard.title')}</div>
-        <ProgressBar stage={stage} setStage={setStage} />
-      </header>
-    </>
+    <div className='w-full flex flex-col gap-y-8'>
+      <WizardProgressBar />
+      <WizardStepHeader />
+    </div>
   )
 }
 

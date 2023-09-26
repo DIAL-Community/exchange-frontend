@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../../../../ui/v1/shared/query/organization'
-import { Error, Loading, NotFound } from '../../../../ui/v1/shared/FetchStatus'
-import Header from '../../../../ui/v1/shared/Header'
+import { ORGANIZATION_DETAIL_QUERY } from '../../../../components/shared/query/organization'
+import { Error, Loading, NotFound } from '../../../../components/shared/FetchStatus'
+import Header from '../../../../components/shared/Header'
 import ClientOnly from '../../../../lib/ClientOnly'
-import Footer from '../../../../ui/v1/shared/Footer'
-import ProjectForm from '../../../../ui/v1/project/fragments/ProjectForm'
+import Footer from '../../../../components/shared/Footer'
+import ProjectForm from '../../../../components/project/fragments/ProjectForm'
 
 const CreateProject = () => {
   const { locale, query } = useRouter()

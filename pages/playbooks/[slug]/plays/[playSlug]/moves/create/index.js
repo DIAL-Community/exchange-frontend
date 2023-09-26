@@ -2,10 +2,10 @@ import { NextSeo } from 'next-seo'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import Header from '../../../../../../../components/Header'
-import Footer from '../../../../../../../components/Footer'
+import Header from '../../../../../../../components/shared/Header'
+import Footer from '../../../../../../../components/shared/Footer'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
-import MoveCreate from '../../../../../../../ui/v1/move/MoveCreate'
+import MoveCreate from '../../../../../../../components/move/MoveCreate'
 
 const CreateMove = () => {
   const { formatMessage } = useIntl()

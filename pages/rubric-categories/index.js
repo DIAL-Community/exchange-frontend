@@ -3,12 +3,12 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
 import QueryNotification from '../../components/shared/QueryNotification'
-import RubricCategoryRibbon from '../../ui/v1/rubric-category/RubricCategoryRibbon'
-import RubricCategoryTabNav from '../../ui/v1/rubric-category/RubricCategoryTabNav'
-import RubricCategoryMain from '../../ui/v1/rubric-category/RubricCategoryMain'
+import RubricCategoryRibbon from '../../components/rubric-category/RubricCategoryRibbon'
+import RubricCategoryTabNav from '../../components/rubric-category/RubricCategoryTabNav'
+import RubricCategoryMain from '../../components/rubric-category/RubricCategoryMain'
 
 const RubricCategories = () => {
   const { formatMessage } = useIntl()

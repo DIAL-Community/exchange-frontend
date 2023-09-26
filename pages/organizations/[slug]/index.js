@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import OrganizationDetail from '../../../ui/v1/organization/OrganizationDetail'
+import Footer from '../../../components/shared/Footer'
+import OrganizationDetail from '../../../components/organization/OrganizationDetail'
 
 const OrganizationPage = () => {
   const { formatMessage } = useIntl()

@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import TagRibbon from '../../ui/v1/tag/TagRibbon'
-import TagTabNav from '../../ui/v1/tag/TagTabNav'
-import TagMain from '../../ui/v1/tag/TagMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import TagRibbon from '../../components/tag/TagRibbon'
+import TagTabNav from '../../components/tag/TagTabNav'
+import TagMain from '../../components/tag/TagMain'
 
 const TagListPage = () => {
   const { formatMessage } = useIntl()
