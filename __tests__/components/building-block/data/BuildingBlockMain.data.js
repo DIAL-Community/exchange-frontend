@@ -62,8 +62,7 @@ export const paginatedBuildingBlocks = {
 export const buildingBlockPaginationAttribute = {
   'data': {
     'paginationAttributeBuildingBlock': {
-      'totalCount': 23,
-      '__typename': 'PaginationAttributes'
+      'totalCount': 23
     }
   }
 }
