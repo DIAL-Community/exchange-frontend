@@ -3,9 +3,9 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../../lib/ClientOnly'
-import Header from '../../../ui/v1/shared/Header'
-import Footer from '../../../ui/v1/shared/Footer'
-import PlaybookCreate from '../../../ui/v1/playbook/PlaybookCreate'
+import Header from '../../../components/shared/Header'
+import Footer from '../../../components/shared/Footer'
+import PlaybookCreate from '../../../components/playbook/PlaybookCreate'
 
 function CreatePlaybook () {
   const { formatMessage } = useIntl()
@@ -25,9 +25,7 @@ function CreatePlaybook () {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <PlaybookCreate />
-        </div>
+        <PlaybookCreate />
         <Footer />
       </ClientOnly>
     </>

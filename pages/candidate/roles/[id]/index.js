@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../../ui/v1/shared/Header'
+import Header from '../../../../components/shared/Header'
 import ClientOnly from '../../../../lib/ClientOnly'
-import Footer from '../../../../ui/v1/shared/Footer'
-import RoleDetail from '../../../../ui/v1/candidate/role/RoleDetail'
+import Footer from '../../../../components/shared/Footer'
+import RoleDetail from '../../../../components/candidate/role/RoleDetail'
 
 const RolePage = () => {
   const { formatMessage } = useIntl()

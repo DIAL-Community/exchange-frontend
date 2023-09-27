@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import WorkflowEdit from '../../../ui/v1/workflow/WorkflowEdit'
+import Footer from '../../../components/shared/Footer'
+import WorkflowEdit from '../../../components/workflow/WorkflowEdit'
 
 const EditWorkflowPage = () => {
   const { formatMessage } = useIntl()
@@ -28,9 +28,7 @@ const EditWorkflowPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <WorkflowEdit slug={slug} locale={locale} />
-        </div>
+        <WorkflowEdit slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

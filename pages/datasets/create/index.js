@@ -2,10 +2,10 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import DatasetCreate from '../../../ui/v1/dataset/DatasetCreate'
+import Footer from '../../../components/shared/Footer'
+import DatasetCreate from '../../../components/dataset/DatasetCreate'
 
 const CreateDatasetPage = () => {
   const { formatMessage } = useIntl()
@@ -25,9 +25,7 @@ const CreateDatasetPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <DatasetCreate />
-        </div>
+        <DatasetCreate />
         <Footer />
       </ClientOnly>
     </>

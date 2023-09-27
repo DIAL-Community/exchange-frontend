@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import WorkflowRibbon from '../../ui/v1/workflow/WorkflowRibbon'
-import WorkflowTabNav from '../../ui/v1/workflow/WorkflowTabNav'
-import WorkflowMain from '../../ui/v1/workflow/WorkflowMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import WorkflowRibbon from '../../components/workflow/WorkflowRibbon'
+import WorkflowTabNav from '../../components/workflow/WorkflowTabNav'
+import WorkflowMain from '../../components/workflow/WorkflowMain'
 
 const WorkflowListPage = () => {
   const { formatMessage } = useIntl()

@@ -2,14 +2,13 @@ import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { gql, useQuery } from '@apollo/client'
-import GradientBackground from '../../../components/shared/GradientBackground'
-import OrganizationCard from '../../../components/organizations/OrganizationCard'
+import EndorserCard from '../../../components/organization/EndorserCard'
 import { FilterContext } from '../../../components/context/FilterContext'
 import SearchFilter from '../../../components/shared/SearchFilter'
 import PoweredBy from '../../../components/shared/PoweredBy'
-import { CountryAutocomplete, CountryFilters } from '../../../components/filter/element/Country'
-import { EndorsingYearFilters, EndorsingYearSelect } from '../../../components/filter/element/EndorsingYear'
-import { SectorAutocomplete, SectorFilters } from '../../../components/filter/element/Sector'
+import { CountryAutocomplete, CountryActiveFilters } from '../../../components/shared/filter/Country'
+import { EndorsingYearSelect, EndorsingYearActiveFilters } from '../../../components/shared/filter/EndorsingYear'
+import { SectorAutocomplete, SectorActiveFilters } from '../../../components/shared/filter/Sector'
 import EndorserInfo from '../../../components/maps/endorsers/EndorserInfo'
 import ClientOnly from '../../../lib/ClientOnly'
 
@@ -154,7 +153,6 @@ const EndorserPageInformation = () => {
 
   return (
     <>
-      <GradientBackground />
       <div className='flex flex-row mx-2 my-2' style={{ minHeight: '10vh' }}>
         <EndorserMarkerMaps
           {...{ cities, organization, setSelectedCity, setOrganization, height: '30vh', defaultMap: 'principles' }}
@@ -183,9 +181,9 @@ const EndorserPageInformation = () => {
       {
         (years.length > 0 || countries.length > 0 || sectors.length > 0) &&
           <div className='flex flex-row bg-dial-gray-dark px-5 pb-3 gap-2'>
-            <EndorsingYearFilters {...{ years, setYears }} />
-            <CountryFilters {...{ countries, setCountries }} />
-            <SectorFilters {...{ sectors, setSectors }} />
+            <EndorsingYearActiveFilters {...{ years, setYears }} />
+            <CountryActiveFilters {...{ countries, setCountries }} />
+            <SectorActiveFilters {...{ sectors, setSectors }} />
           </div>
       }
       <div className='grid grid-cols-4'>
@@ -200,7 +198,7 @@ const EndorserPageInformation = () => {
         {
           data && data.searchOrganizations && data.searchOrganizations.nodes && data.searchOrganizations.nodes.length > 0
             ? data.searchOrganizations.nodes.map((organization) => (
-              <OrganizationCard key={organization.id} organization={organization} listType={displayType} />
+              <EndorserCard key={organization.id} organization={organization} listType={displayType} />
             ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-3'>

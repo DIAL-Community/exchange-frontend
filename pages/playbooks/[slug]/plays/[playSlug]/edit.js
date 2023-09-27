@@ -3,9 +3,9 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import ClientOnly from '../../../../../lib/ClientOnly'
-import PlayEdit from '../../../../../ui/v1/play/PlayEdit'
-import Header from '../../../../../ui/v1/shared/Header'
-import Footer from '../../../../../ui/v1/shared/Footer'
+import PlayEdit from '../../../../../components/play/PlayEdit'
+import Header from '../../../../../components/shared/Header'
+import Footer from '../../../../../components/shared/Footer'
 
 function EditPlay() {
   const { formatMessage } = useIntl()

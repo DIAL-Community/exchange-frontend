@@ -4,9 +4,9 @@ import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
 import { useRouter } from 'next/router'
 import ClientOnly from '../../../../../lib/ClientOnly'
-import Header from '../../../../../ui/v1/shared/Header'
-import Footer from '../../../../../ui/v1/shared/Footer'
-import ProductRepositoryCreate from '../../../../../ui/v1/product/repository/ProductRepositoryCreate'
+import Header from '../../../../../components/shared/Header'
+import Footer from '../../../../../components/shared/Footer'
+import ProductRepositoryCreate from '../../../../../components/product/repository/ProductRepositoryCreate'
 
 const CreateProductRepositoryPage = () => {
   const { formatMessage } = useIntl()
@@ -28,9 +28,7 @@ const CreateProductRepositoryPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <ProductRepositoryCreate productSlug={slug} />
-        </div>
+        <ProductRepositoryCreate productSlug={slug} />
         <Footer />
       </ClientOnly>
     </>

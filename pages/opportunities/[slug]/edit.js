@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import OpportunityEdit from '../../../ui/v1/opportunity/OpportunityEdit'
+import Footer from '../../../components/shared/Footer'
+import OpportunityEdit from '../../../components/opportunity/OpportunityEdit'
 
 const EditOpportunityPage = () => {
   const { formatMessage } = useIntl()
@@ -28,9 +28,7 @@ const EditOpportunityPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <OpportunityEdit slug={slug} locale={locale} />
-        </div>
+        <OpportunityEdit slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
 import { useRouter } from 'next/router'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import ProductCompare from '../../../ui/v1/product/ProductCompare'
+import Footer from '../../../components/shared/Footer'
+import ProductCompare from '../../../components/product/ProductCompare'
 
 const CreateProductPage = () => {
   const { formatMessage } = useIntl()
@@ -28,9 +28,7 @@ const CreateProductPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <ProductCompare slugs={slugs} />
-        </div>
+        <ProductCompare slugs={slugs} />
         <Footer />
       </ClientOnly>
     </>

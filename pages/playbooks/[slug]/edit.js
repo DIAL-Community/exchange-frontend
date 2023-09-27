@@ -4,10 +4,10 @@ import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import { useRouter } from 'next/router'
 import ClientOnly from '../../../lib/ClientOnly'
-import Header from '../../../ui/v1/shared/Header'
-import Footer from '../../../ui/v1/shared/Footer'
-import PlaybookEdit from '../../../ui/v1/playbook/PlaybookEdit'
-import { PlaybookDetailProvider } from '../../../ui/v1/playbook/context/PlaybookDetailContext'
+import Header from '../../../components/shared/Header'
+import Footer from '../../../components/shared/Footer'
+import PlaybookEdit from '../../../components/playbook/PlaybookEdit'
+import { PlaybookDetailProvider } from '../../../components/playbook/context/PlaybookDetailContext'
 
 function EditPlaybook () {
   const { formatMessage } = useIntl()
@@ -29,11 +29,9 @@ function EditPlaybook () {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <PlaybookDetailProvider>
-            <PlaybookEdit slug={slug} locale={locale} />
-          </PlaybookDetailProvider>
-        </div>
+        <PlaybookDetailProvider>
+          <PlaybookEdit slug={slug} locale={locale} />
+        </PlaybookDetailProvider>
         <Footer />
       </ClientOnly>
     </>

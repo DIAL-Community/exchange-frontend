@@ -2,12 +2,12 @@ import dynamic from 'next/dynamic'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
 import { useUser } from '../../../lib/hooks'
-import Header from '../../../ui/v1/shared/Header'
-import Footer from '../../../ui/v1/shared/Footer'
-import { Loading, Unauthorized } from '../../../ui/v1/shared/FetchStatus'
+import Header from '../../../components/shared/Header'
+import Footer from '../../../components/shared/Footer'
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 
 const ProductSpreadsheetWithoutSSR = dynamic(
-  () => import('../../../ui/v1/spreadsheets/ProductSpreadsheet'),
+  () => import('../../../components/spreadsheets/ProductSpreadsheet'),
   { ssr: false }
 )
 

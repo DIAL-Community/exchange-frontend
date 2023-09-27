@@ -1,19 +1,31 @@
-import Image from 'next/image'
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
 
-const DigitalPrinciple = ({ principle }) => {
-  return (
-    <a href={`${principle.url}`} target='_blank' rel='noreferrer'>
-      <div
-        className={`
-          text-ellipsis overflow-hidden bg-white border-4 border-transparent shadow-lg
-          hover:border-dial-sunshine hover:text-dial-sunshine p-4 m-4 max-w-sm max-h-52 h-52
-        `}
-      >
-        <div className='flex justify-center'>
-          <Image src={`/images/principles/${principle.slug}.png`} alt={principle.slug} width='100' height='100' />
+const DigitalPrinciple = ({ principle, index }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const displayLargeCard = () =>
+    <div className={`px-4 py-3 rounded-lg ${index % 2 === 0 && 'bg-dial-violet'}`}>
+      <div className='flex flex-row gap-x-6 gap-y-3'>
+        <div className='w-10 h-10 min-w-[2.5rem] block'>
+          <img
+            src={`/images/principles/${principle.slug}.png`}
+            alt={format('ui.image.logoAlt', { name: format('ui.principle.label') })}
+            className='object-contain w-10 h-10 mx-auto'
+          />
         </div>
-        <div className='text-center pt-3 overflow-hidden text-ellipsis'>{principle.name}</div>
+        <div className='text-dial-plum my-auto border-b border-dial-iris-blue'>
+          <div className='text-sm font-semibold line-clamp-1'>
+            {principle.name}
+          </div>
+        </div>
       </div>
+    </div>
+
+  return (
+    <a href={principle.url} target='_blank' rel='noreferrer'>
+      {displayLargeCard()}
     </a>
   )
 }

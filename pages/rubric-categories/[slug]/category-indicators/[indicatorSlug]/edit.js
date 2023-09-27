@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../../../../lib/ClientOnly'
-import Header from '../../../../../ui/v1/shared/Header'
-import Footer from '../../../../../ui/v1/shared/Footer'
-import CategoryIndicatorEdit from '../../../../../ui/v1/category-indicator/CategoryIndicatorEdit'
+import Header from '../../../../../components/shared/Header'
+import Footer from '../../../../../components/shared/Footer'
+import CategoryIndicatorEdit from '../../../../../components/category-indicator/CategoryIndicatorEdit'
 
 const EditRubricCategoryPage = () => {
   const { formatMessage } = useIntl()

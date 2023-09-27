@@ -2,10 +2,10 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import OrganizationCreate from '../../../ui/v1/organization/OrganizationCreate'
+import Footer from '../../../components/shared/Footer'
+import OrganizationCreate from '../../../components/organization/OrganizationCreate'
 
 const CreateOrganizationPage = () => {
   const { formatMessage } = useIntl()
@@ -25,9 +25,7 @@ const CreateOrganizationPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <OrganizationCreate />
-        </div>
+        <OrganizationCreate />
         <Footer />
       </ClientOnly>
     </>

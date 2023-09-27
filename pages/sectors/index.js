@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
-import Header from '../../ui/v1/shared/Header'
-import Footer from '../../ui/v1/shared/Footer'
-import SectorRibbon from '../../ui/v1/sector/SectorRibbon'
-import SectorTabNav from '../../ui/v1/sector/SectorTabNav'
-import SectorMain from '../../ui/v1/sector/SectorMain'
+import Header from '../../components/shared/Header'
+import Footer from '../../components/shared/Footer'
+import SectorRibbon from '../../components/sector/SectorRibbon'
+import SectorTabNav from '../../components/sector/SectorTabNav'
+import SectorMain from '../../components/sector/SectorMain'
 
 const SectorListPage = () => {
   const { formatMessage } = useIntl()

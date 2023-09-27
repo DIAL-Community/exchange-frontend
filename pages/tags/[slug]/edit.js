@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../ui/v1/shared/Header'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../ui/v1/shared/Footer'
-import TagEdit from '../../../ui/v1/tag/TagEdit'
+import Footer from '../../../components/shared/Footer'
+import TagEdit from '../../../components/tag/TagEdit'
 
 const EditTagPage = () => {
   const { formatMessage } = useIntl()
@@ -28,9 +28,7 @@ const EditTagPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <TagEdit slug={slug} locale={locale} />
-        </div>
+        <TagEdit slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>
