@@ -981,9 +981,9 @@ export const en = {
   'confirmation.email': 'Email Address',
   'confirmation.email.placeholder': 'Your email address',
   'confirmation.request': 'Request Activation Instructions',
-  'toast.confirmation.email.success': 'Activation instruction email sent to existing account. Redirecting ...',
+  'toast.confirmation.email.success': 'Activation instruction email sent to existing account.',
 
-  'signUp.created': 'Registration successful. Please check your email for confirmation. Redirecting ...',
+  'signUp.created': 'Registration successful. Please check your email for confirmation.',
   'signUp.submit': 'Sign Up',
   'signUp.email': 'Email Address',
   'signUp.email.invalid': 'Invalid email address.',
@@ -1294,7 +1294,7 @@ export const en = {
   'app.resetPassword': 'Reset Password',
   'reset.email': 'Email Address',
   'reset.email.placeholder': 'Account email address',
-  'reset.created': 'Instructions to reset your password have been sent to your email address. Redirecting ...',
+  'reset.created': 'Instructions to update your password have been sent to your email address.',
 
   'app.updatePassword': 'Update Password',
   'reset.password': 'Password',
@@ -1302,7 +1302,7 @@ export const en = {
   'reset.passwordConfirmation': 'Confirm Password',
   'reset.passwordConfirmation.placeholder': 'Confirm your new password',
   'reset.tokenInvalid': 'Reset token is invalid.',
-  'reset.applied': 'Password updated successfully. Redirecting ...',
+  'reset.applied': 'Password updated successfully.',
 
   'ui.candidateProduct.label': 'Candidate Product',
   'ui.candidateOrganization.label': 'Candidate Organization',
@@ -1319,7 +1319,7 @@ export const en = {
   'ui.candidateProduct.email': 'Your Email Address',
   'ui.candidateProduct.email.placeholder': 'Email address of submitter.',
   'ui.candidateProduct.submit': 'Submit Candidate Product',
-  'ui.candidateProduct.created': 'Candidate product submitted successfully. Redirecting ...',
+  'ui.candidateProduct.created': 'Candidate product submitted successfully.',
   'ui.candidateProduct.website.hint': 'Website of the candidate product.',
   'ui.candidateProduct.repository.hint': 'Code repository of the candidate product.',
   'ui.candidateProduct.submit.success': 'Candidate Product submitted successfully',

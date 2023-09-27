@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import zxcvbn from 'zxcvbn'
 import Footer from '../../../components/shared/Footer'
 import Header from '../../../components/shared/Header'
+import { ToastContext } from '../../../lib/ToastContext'
 
 // "user"=>{"reset_password_token"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
 
@@ -25,14 +26,15 @@ const PasswordAction = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
-  const [applied, setApplied] = useState(false)
 
-  const [tokenValidated, setTokenValidated] = useState(false)
   const [tokenValid, setTokenValid] = useState(false)
+  const [tokenValidated, setTokenValidated] = useState(false)
 
   const [password, setPassword] = useState('')
   const [passwordStrength, setPasswordStrength] = useState(0)
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
+
+  const { showToast } = useContext(ToastContext)
 
   useEffect(
     () => {
@@ -83,12 +85,9 @@ const PasswordAction = () => {
     })
 
     if (response.status === 200) {
-      setApplied(true)
       setPassword('')
       setPasswordConfirmation('')
-      setTimeout(() => {
-        router.push('/auth/signin')
-      }, 1000)
+      showToast(format('reset.applied'), 'success', 'top-center', 3000)
     }
 
     setLoading(false)
@@ -116,9 +115,6 @@ const PasswordAction = () => {
       <Header />
       <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-20 max-w-catalog mx-auto min-h-[70vh]'>
-        <div className={`mx-4 ${applied ? 'visible' : 'invisible'} text-center bg-dial-gray-dark`}>
-          <div className='my-auto text-emerald-500'>{format('reset.applied')}</div>
-        </div>
         <div className='pt-4'>
           <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
             <form method='post' onSubmit={handleSubmit}>
