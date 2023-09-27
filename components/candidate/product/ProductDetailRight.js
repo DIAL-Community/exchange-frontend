@@ -60,7 +60,7 @@ const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
               </div>
               <div className='my-auto text-sm flex'>
                 <a href={prependUrlWithProtocol(product.repository)} target='_blank' rel='noreferrer'>
-                  <div className='border-b border-dial-iris-blue line-clamp-1'>
+                  <div className='border-b border-dial-iris-blue line-clamp-1 break-all'>
                     {product.repository}
                   </div>
                 </a>

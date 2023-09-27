@@ -120,7 +120,8 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
               <a
                 href={prependUrlWithProtocol(organization.website)}
                 className='flex flex-row justify-center'
-                target='_blank' rel='noreferrer'
+                target='_blank'
+                rel='noreferrer'
               >
                 <div className='py-3 flex gap-2'>
                   {format('organization.visitWebsite')}

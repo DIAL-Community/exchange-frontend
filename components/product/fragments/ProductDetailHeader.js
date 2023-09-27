@@ -48,7 +48,7 @@ const ProductDetailHeader = ({ product }) => {
               target='_blank'
               rel='noreferrer'
               className='flex border-b border-dial-iris-blue '>
-              <div className='line-clamp-1'>
+              <div className='line-clamp-1 break-all'>
                 {product.website}
               </div>
             </a>

@@ -52,7 +52,7 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
             target='_blank'
             rel='noreferrer'
             className='flex border-b border-dial-iris-blue '>
-            <div className='line-clamp-1'>
+            <div className='line-clamp-1 break-all'>
               {productRepository.absoluteUrl}
             </div>
           </a>
