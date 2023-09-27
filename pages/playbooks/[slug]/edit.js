@@ -29,11 +29,9 @@ function EditPlaybook () {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <PlaybookDetailProvider>
-            <PlaybookEdit slug={slug} locale={locale} />
-          </PlaybookDetailProvider>
-        </div>
+        <PlaybookDetailProvider>
+          <PlaybookEdit slug={slug} locale={locale} />
+        </PlaybookDetailProvider>
         <Footer />
       </ClientOnly>
     </>

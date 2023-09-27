@@ -28,9 +28,7 @@ const CreateProductPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <ProductCompare slugs={slugs} />
-        </div>
+        <ProductCompare slugs={slugs} />
         <Footer />
       </ClientOnly>
     </>

@@ -94,12 +94,12 @@ const Header = ({ isOnAuthPage = false }) => {
 
   const withUser =
     <>
-      <li className='relative mt-2 xl:mt-0 text-right'>
+      <li className='relative text-right'>
         {isAdminUser &&
           <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
         }
       </li>
-      <li className='relative mt-2 xl:mt-0 text-right intro-overview-signup'>
+      <li className='relative text-right intro-overview-signup'>
         <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
       </li>
     </>

@@ -28,9 +28,7 @@ const EditStorefrontPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <StorefrontEdit slug={slug} locale={locale} />
-        </div>
+        <StorefrontEdit slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

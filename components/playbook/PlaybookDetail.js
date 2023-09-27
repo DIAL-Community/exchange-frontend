@@ -31,7 +31,7 @@ const PlaybookDetail = ({ slug, locale }) => {
         <div className='hidden lg:block basis-1/3'>
           <PlaybookDetailLeft playbook={playbook} scrollRef={scrollRef} />
         </div>
-        <div className='basis-2/3'>
+        <div className='basis-2/3 px-4 lg:px-6'>
           <PlaybookDetailRight playbook={playbook} locale={locale} ref={scrollRef} />
         </div>
       </div>

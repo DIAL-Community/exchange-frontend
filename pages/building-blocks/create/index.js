@@ -25,9 +25,7 @@ const CreateBuildingBlockPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <BuildingBlockCreate />
-        </div>
+        <BuildingBlockCreate />
         <Footer />
       </ClientOnly>
     </>
