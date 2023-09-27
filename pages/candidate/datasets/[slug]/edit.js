@@ -28,9 +28,7 @@ const EditDatasetPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <DatasetEdit slug={slug} locale={locale} />
-        </div>
+        <DatasetEdit slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

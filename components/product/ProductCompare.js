@@ -90,11 +90,8 @@ const ProductMaturityField = ({ maturityScoreDetails }) => {
   const toggleMaturityScoreDetailsDialog = () =>
     setIsMaturityScoreDetailsDialogOpen(!isMaturityScoreDetailsDialogOpen)
 
-  const sortMaturityScoreDetails = (maturityScoreDetails) => {
-    return maturityScoreDetails
-      // .filter(({ overallScore }) => overallScore > 0)
-      .sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name))
-  }
+  const sortMaturityScoreDetails = (maturityScoreDetails) =>
+    [...maturityScoreDetails].sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name))
 
   const [validMaturityScores] = useState(sortMaturityScoreDetails(maturityScoreDetails))
 

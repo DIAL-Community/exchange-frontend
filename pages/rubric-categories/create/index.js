@@ -25,9 +25,7 @@ const CreateRubricCategoryPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <RubricCategoryCreate />
-        </div>
+        <RubricCategoryCreate />
         <Footer />
       </ClientOnly>
     </>

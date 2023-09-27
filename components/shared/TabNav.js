@@ -100,7 +100,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, 
           <div className='border-b-8 border-dial-slate-500' />
         </div>
         {activeTab === 0 && user &&
-          <div className='block lg:hidden ml-auto my-auto mt-3'>
+          <div className='block lg:hidden ml-auto my-3'>
             <div className='text-xs text-white font-semibold'>
               <div className='flex flex-row gap-x-2'>
                 {exportJsonFn &&

@@ -25,9 +25,7 @@ const CreateSectorPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <SectorCreate />
-        </div>
+        <SectorCreate />
         <Footer />
       </ClientOnly>
     </>

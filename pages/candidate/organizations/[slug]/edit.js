@@ -28,9 +28,7 @@ const EditOrganizationPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <OrganizationEdit slug={slug} locale={locale} />
-        </div>
+        <OrganizationEdit slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

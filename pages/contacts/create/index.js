@@ -25,9 +25,7 @@ const CreateContactPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <ContactCreate />
-        </div>
+        <ContactCreate />
         <Footer />
       </ClientOnly>
     </>
