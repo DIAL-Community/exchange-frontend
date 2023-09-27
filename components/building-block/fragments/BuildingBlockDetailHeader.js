@@ -47,7 +47,9 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
               rel='noreferrer'
               className='flex border-b border-dial-iris-blue'
             >
-              {format('ui.buildingBlock.specification.view')}
+              <div className='line-clamp-1 break-all'>
+                {format('ui.buildingBlock.specification.view')}
+              </div>
             </a>
             &nbsp;⧉
           </div>
