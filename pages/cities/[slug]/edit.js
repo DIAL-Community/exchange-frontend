@@ -28,9 +28,7 @@ const EditCityPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <CityEdit slug={slug} locale={locale} />
-        </div>
+        <CityEdit slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

@@ -59,7 +59,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
   return (
     <div className='bg-dial-blueberry sticky sticky-under-header text-white'>
       <div className='flex flex-wrap gap-3'>
-        <div className='px-8 py-3 flex flex-col gap-1'>
+        <div className='px-4 lg:px-6 py-3 flex flex-col gap-1'>
           <div className='hidden lg:block'>
             <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
@@ -72,7 +72,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
             }
           </div>
         </div>
-        <div className='flex lg:ml-auto px-8 lg:px-4 pb-3 lg:pb-0 my-auto overflow-x-auto'>
+        <div className='flex lg:ml-auto px-4 lg:px-6 pb-3 lg:pb-0 my-auto overflow-x-auto'>
           <div className='play-progress'>
             <div className='play-progress-bar' style={{ width: `${percentage}%` }} />
             <div className='play-progress-bar-base' />

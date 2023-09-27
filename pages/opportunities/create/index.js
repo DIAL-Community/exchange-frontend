@@ -25,9 +25,7 @@ const CreateOpportunityPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <OpportunityCreate />
-        </div>
+        <OpportunityCreate />
         <Footer />
       </ClientOnly>
     </>

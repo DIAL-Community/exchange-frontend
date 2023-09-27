@@ -28,9 +28,7 @@ const EditTagPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <TagEdit slug={slug} locale={locale} />
-        </div>
+        <TagEdit slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

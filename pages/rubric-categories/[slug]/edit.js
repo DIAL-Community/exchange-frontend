@@ -28,9 +28,7 @@ const EditRubricCategoryPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <RubricCategoryEdit categorySlug={slug} locale={locale} />
-        </div>
+        <RubricCategoryEdit categorySlug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

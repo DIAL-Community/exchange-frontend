@@ -28,9 +28,7 @@ const CreateProductRepositoryPage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <ProductRepositoryCreate productSlug={slug} />
-        </div>
+        <ProductRepositoryCreate productSlug={slug} />
         <Footer />
       </ClientOnly>
     </>
