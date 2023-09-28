@@ -2336,5 +2336,12 @@ export const en = {
       the Exchange as we learn and grow.
     </p>
   `,
-  'ui.common.scrollToTop': 'Back to the top'
+  'ui.common.scrollToTop': 'Back to the top',
+
+  'ui.taskTracker.label': 'Task Tracker',
+  'ui.taskTracker.header': 'Task Trackers',
+  'ui.taskTracker.complete': 'Task Complete',
+  'ui.taskTracker.incomplete': 'Task Incomplete',
+  'ui.taskTracker.lastStartedDate': 'Task last started date',
+  'ui.taskTracker.lastReceivedMessage': 'Last Received Message'
 }
