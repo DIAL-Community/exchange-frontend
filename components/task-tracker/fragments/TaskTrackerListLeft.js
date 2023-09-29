@@ -6,7 +6,7 @@ const TaskTrackerListLeft = () => {
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = '/taskTrackers'
+    const basePath = '/task-trackers'
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter].filter(f => f).join('&')

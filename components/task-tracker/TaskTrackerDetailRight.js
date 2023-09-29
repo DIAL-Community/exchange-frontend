@@ -7,6 +7,7 @@ import Bookmark from '../shared/common/Bookmark'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
+import DeleteTaskTracker from './DeleteTaskTracker'
 
 const TaskTrackerDetailRight = forwardRef(({ taskTracker }, ref) => {
   const { formatMessage } = useIntl()
@@ -35,6 +36,7 @@ const TaskTrackerDetailRight = forwardRef(({ taskTracker }, ref) => {
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
+            {isAdminUser && <DeleteTaskTracker taskTracker={taskTracker} />}
           </div>
         )}
         <div className='text-xl font-semibold text-dial-stratos pb-3' ref={descRef}>

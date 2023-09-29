@@ -9,7 +9,7 @@ const TaskTrackerRibbon = () => {
   const titleImage =
     <div className='bg-dial-plum rounded-full w-[70px] h-[70px] flex items-center'>
       <img
-        src='/ui/v1/taskTracker-header.svg'
+        src='/ui/v1/task-tracker-header.svg'
         alt={format('ui.image.logoAlt', { name: format('ui.taskTracker.label') })}
         width={40}
         height={40}

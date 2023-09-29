@@ -2340,8 +2340,8 @@ export const en = {
 
   'ui.taskTracker.label': 'Task Tracker',
   'ui.taskTracker.header': 'Task Trackers',
-  'ui.taskTracker.complete': 'Task Complete',
-  'ui.taskTracker.incomplete': 'Task Incomplete',
-  'ui.taskTracker.lastStartedDate': 'Task last started date',
+  'ui.taskTracker.complete': 'Last run was successful.',
+  'ui.taskTracker.incomplete': 'Last run was not successful.',
+  'ui.taskTracker.lastStartedDate': 'Last started date',
   'ui.taskTracker.lastReceivedMessage': 'Last Received Message'
 }

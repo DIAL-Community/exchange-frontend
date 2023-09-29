@@ -1,15 +1,15 @@
 import TaskTrackerMainLeft from './TaskTrackerMainLeft'
 import TaskTrackerMainRight from './TaskTrackerMainRight'
 
-const TaskTrackerMain = ({ activeTab }) => {
+const TaskTrackerMain = () => {
   return (
     <div className='px-4 lg:px-8 xl:px-56'>
       <div className='grid grid-cols-3 gap-x-8'>
         <div className='hidden md:block col-span-1'>
-          <TaskTrackerMainLeft activeTab={activeTab} />
+          <TaskTrackerMainLeft />
         </div>
         <div className='col-span-3 md:col-span-2'>
-          <TaskTrackerMainRight activeTab={activeTab} />
+          <TaskTrackerMainRight />
         </div>
       </div>
     </div>

@@ -1,13 +1,10 @@
 import { useState } from 'react'
 import TabNav from '../shared/TabNav'
 
-const TaskTrackerTabNav = ({ activeTab, setActiveTab }) => {
-  const [tabNames] = useState([
-    'ui.taskTracker.header',
-    'ui.taskTracker.whatIs'
-  ])
+const TaskTrackerTabNav = () => {
+  const [tabNames] = useState(['ui.taskTracker.header'])
 
-  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
+  return <TabNav { ...{ tabNames }} />
 }
 
 export default TaskTrackerTabNav

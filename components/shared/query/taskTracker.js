@@ -21,6 +21,8 @@ export const PAGINATED_TASK_TRACKERS_QUERY = gql`
       id
       name
       slug
+      taskCompleted
+      lastStartedDate
       taskTrackerDescription {
         id
         description

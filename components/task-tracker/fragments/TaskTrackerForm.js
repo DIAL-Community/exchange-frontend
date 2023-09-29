@@ -106,7 +106,7 @@ const TaskTrackerForm = React.memo(({ taskTracker }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/taskTrackers/${slug}`)
+    router.push(`/${locale}/task-trackers/${slug}`)
   }
 
   return loadingUserSession
