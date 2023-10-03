@@ -87,7 +87,14 @@ const PasswordAction = () => {
     if (response.status === 200) {
       setPassword('')
       setPasswordConfirmation('')
-      showToast(format('reset.applied'), 'success', 'top-center', 3000)
+      showToast(
+        format('reset.applied'),
+        'success',
+        'top-center',
+        3000,
+        null,
+        () => router.push('/users/me')
+      )
     }
 
     setLoading(false)

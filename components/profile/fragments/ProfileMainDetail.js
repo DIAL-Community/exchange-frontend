@@ -125,7 +125,6 @@ const ProfileMainDetail = () => {
               </div>
             </div>
           </div>
-          <hr className='border-b border-slate-200 my-6'/>
         </div>
       </div>
     </div>
