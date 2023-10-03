@@ -12,7 +12,7 @@ const TaskTrackerListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(FilterContext)
+  const { search, showFailedOnly } = useContext(FilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -38,7 +38,8 @@ const TaskTrackerListRight = () => {
 
   const { loading, error, data } = useQuery(TASK_TRACKER_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
-      search
+      search,
+      showFailedOnly
     }
   })
 

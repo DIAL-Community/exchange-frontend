@@ -1,6 +1,7 @@
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
+import TaskTrackerFilter from './TaskTrackerFilter'
 
 const TaskTrackerListLeft = () => {
 
@@ -17,6 +18,7 @@ const TaskTrackerListLeft = () => {
   return (
     <div className='bg-dial-slate-100 h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
+        <TaskTrackerFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
         <hr className='border-b border-dial-slate-200'/>
         <Share />

@@ -2343,5 +2343,6 @@ export const en = {
   'ui.taskTracker.complete': 'Last run was successful.',
   'ui.taskTracker.incomplete': 'Last run was not successful.',
   'ui.taskTracker.lastStartedDate': 'Last started date',
-  'ui.taskTracker.lastReceivedMessage': 'Last Received Message'
+  'ui.taskTracker.lastReceivedMessage': 'Last Received Message',
+  'ui.taskTracker.filter.showFailedOnly': 'Show failed only'
 }
