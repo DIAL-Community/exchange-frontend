@@ -21,8 +21,8 @@ const config = {
       `${SITE_URL}/server-sitemap/organizations`,
       `${SITE_URL}/server-sitemap/workflows`,
       `${SITE_URL}/server-sitemap/sdgs`,
-      `${SITE_URL}/server-sitemap/building_blocks`,
-      `${SITE_URL}/server-sitemap/use_cases`,
+      `${SITE_URL}/server-sitemap/building-blocks`,
+      `${SITE_URL}/server-sitemap/use-cases`,
       `${SITE_URL}/server-sitemap/projects`,
       `${SITE_URL}/server-sitemap/playbooks`
     ]
