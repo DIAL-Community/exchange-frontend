@@ -20,12 +20,15 @@ const initialCounts = (() => {
 const FilterContextProvider = ({ children }) => {
   const [search, setSearch] = useState('')
   const [resultCounts, setResultCounts] = useState(initialCounts)
+  const [showFailedOnly, setShowFailedOnly] = useState(false)
 
   const props = {
     search,
     resultCounts,
+    showFailedOnly,
     setSearch,
-    setResultCounts
+    setResultCounts,
+    setShowFailedOnly
   }
 
   return (

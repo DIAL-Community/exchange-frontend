@@ -7,11 +7,12 @@ import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(FilterContext)
+  const { search, showFailedOnly } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_TASK_TRACKERS_QUERY, {
     variables: {
       search,
+      showFailedOnly,
       limit: defaultPageSize,
       offset: pageOffset
     }

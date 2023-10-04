@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const TASK_TRACKER_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeTaskTracker($search: String) {
-    paginationAttributeTaskTracker(search: $search) {
+  query PaginationAttributeTaskTracker($search: String, $showFailedOnly: Boolean) {
+    paginationAttributeTaskTracker(search: $search, showFailedOnly: $showFailedOnly) {
       totalCount
     }
   }
@@ -11,11 +11,13 @@ export const TASK_TRACKER_PAGINATION_ATTRIBUTES_QUERY = gql`
 export const PAGINATED_TASK_TRACKERS_QUERY = gql`
   query PaginatedTaskTrackers(
     $search: String
+    $showFailedOnly: Boolean
     $limit: Int!
     $offset: Int!
   ) {
     paginatedTaskTrackers(
       search: $search
+      showFailedOnly: $showFailedOnly
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
