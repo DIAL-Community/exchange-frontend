@@ -1,7 +1,10 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { BuildingBlockFilterContext } from '../../context/BuildingBlockFilterContext'
+import {
+  BuildingBlockFilterContext,
+  BuildingBlockFilterDispatchContext
+} from '../../context/BuildingBlockFilterContext'
 import { BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/buildingBlock'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -14,8 +17,9 @@ const BuildingBlockListRight = () => {
 
   const { search, sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(BuildingBlockFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(BuildingBlockFilterDispatchContext)
+
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -30,11 +34,6 @@ const BuildingBlockListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
 
   const { loading, error, data } = useQuery(BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

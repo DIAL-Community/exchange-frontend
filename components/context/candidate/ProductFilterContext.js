@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const ProductFilterContext = createContext()
 const ProductFilterDispatchContext = createContext()
@@ -9,6 +9,7 @@ const ProductFilterProvider = ({ children }) => {
   const candidateProductFilterValues = {
     search
   }
+
   const candidateProductFilterDispatchValues = {
     setSearch
   }

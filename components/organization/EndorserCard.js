@@ -5,9 +5,8 @@ import { useCallback } from 'react'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { prependUrlWithProtocol } from '../../lib/utilities'
-import { convertToKey } from '../context/FilterContext'
 
-const collectionPath = convertToKey('Organizations')
+const collectionPath = 'Organizations'.replace(/\s+/g, '_').toLowerCase()
 
 const containerElementStyle = classNames(
   'cursor-pointer hover:rounded-lg hover:shadow-lg',

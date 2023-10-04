@@ -1,20 +1,17 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const UserFilterContext = createContext()
 const UserFilterDispatchContext = createContext()
 
 const UserFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('email')
-  const [sortDirection, setSortDirection] = useState('asc')
 
   const UserFilterValues = {
-    search, sortColumn, sortDirection
+    search
   }
+
   const UserFilterDispatchValues = {
-    setSearch,
-    setSortColumn,
-    setSortDirection
+    setSearch
   }
 
   return (

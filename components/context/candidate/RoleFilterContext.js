@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const RoleFilterContext = createContext()
 const RoleFilterDispatchContext = createContext()
@@ -9,6 +9,7 @@ const RoleFilterProvider = ({ children }) => {
   const candidateRoleFilterValues = {
     search
   }
+
   const candidateRoleFilterDispatchValues = {
     setSearch
   }

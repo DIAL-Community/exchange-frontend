@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const OrganizationFilterContext = createContext()
 const OrganizationFilterDispatchContext = createContext()
@@ -9,6 +9,7 @@ const OrganizationFilterProvider = ({ children }) => {
   const candidateOrganizationFilterValues = {
     search
   }
+
   const candidateOrganizationFilterDispatchValues = {
     setSearch
   }
