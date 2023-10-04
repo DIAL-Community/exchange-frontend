@@ -1,7 +1,8 @@
 import { NextSeo } from 'next-seo'
-import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect, useState } from 'react'
 import ClientOnly from '../../lib/ClientOnly'
 import Header from '../../components/shared/Header'
 import Footer from '../../components/shared/Footer'
@@ -17,6 +18,20 @@ const UserPage = () => {
 
   const { user, loadingUserSession } = useUser()
   const [activeTab, setActiveTab] = useState(0)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (!user) {
+        router.push('/')
+      }
+    }, 1000)
+
+    return () => {
+      clearTimeout(id)
+    }
+  }, [router, user])
 
   return (
     <>
