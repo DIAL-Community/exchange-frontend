@@ -35,6 +35,7 @@ const basePathMappings = {
   'sectors': 'ui.sector.header',
   'storefronts': 'ui.storefront.header',
   'tags': 'ui.tag.header',
+  'task-trackers': 'ui.taskTracker.header',
   'users': 'ui.user.header',
   'use-case-steps': 'ui.useCaseStep.header',
   'use-cases': 'ui.useCase.header',

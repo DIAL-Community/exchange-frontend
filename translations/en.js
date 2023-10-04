@@ -981,9 +981,9 @@ export const en = {
   'confirmation.email': 'Email Address',
   'confirmation.email.placeholder': 'Your email address',
   'confirmation.request': 'Request Activation Instructions',
-  'toast.confirmation.email.success': 'Activation instruction email sent to existing account. Redirecting ...',
+  'toast.confirmation.email.success': 'Activation instruction email sent to existing account.',
 
-  'signUp.created': 'Registration successful. Please check your email for confirmation. Redirecting ...',
+  'signUp.created': 'Registration successful. Please check your email for confirmation.',
   'signUp.submit': 'Sign Up',
   'signUp.email': 'Email Address',
   'signUp.email.invalid': 'Invalid email address.',
@@ -1294,7 +1294,7 @@ export const en = {
   'app.resetPassword': 'Reset Password',
   'reset.email': 'Email Address',
   'reset.email.placeholder': 'Account email address',
-  'reset.created': 'Instructions to reset your password have been sent to your email address. Redirecting ...',
+  'reset.created': 'Instructions to update your password have been sent to your email address.',
 
   'app.updatePassword': 'Update Password',
   'reset.password': 'Password',
@@ -1302,7 +1302,7 @@ export const en = {
   'reset.passwordConfirmation': 'Confirm Password',
   'reset.passwordConfirmation.placeholder': 'Confirm your new password',
   'reset.tokenInvalid': 'Reset token is invalid.',
-  'reset.applied': 'Password updated successfully. Redirecting ...',
+  'reset.applied': 'Password updated successfully.',
 
   'ui.candidateProduct.label': 'Candidate Product',
   'ui.candidateOrganization.label': 'Candidate Organization',
@@ -1319,7 +1319,7 @@ export const en = {
   'ui.candidateProduct.email': 'Your Email Address',
   'ui.candidateProduct.email.placeholder': 'Email address of submitter.',
   'ui.candidateProduct.submit': 'Submit Candidate Product',
-  'ui.candidateProduct.created': 'Candidate product submitted successfully. Redirecting ...',
+  'ui.candidateProduct.created': 'Candidate product submitted successfully.',
   'ui.candidateProduct.website.hint': 'Website of the candidate product.',
   'ui.candidateProduct.repository.hint': 'Code repository of the candidate product.',
   'ui.candidateProduct.submit.success': 'Candidate Product submitted successfully',
@@ -1651,16 +1651,13 @@ export const en = {
   'paginatedSection.page.next.label': 'Next >',
 
   'intro.overview.startTour': 'Getting Started',
-  'intro.overview': "Welcome to the Digital Impact Exchange.<br /><br />Let's start with a quick product tour to get acquainted with the platform.<br /><br /><div class='text-xs'>You can exit this tour at any time by clicking the 'X' in the top right corner.</div>",
-  'intro.overview.sdgFramework': 'The Exchange leverages the SDG Digital Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
-  'intro.overview.entityProduct': 'The Products Tab is used to discover information on different solutions and tools.',
-  'intro.overview.entityHelp': 'Need more information on what a product is? Click here.',
-  'intro.overview.search': 'The Exchange makes it easy to search and find specific products. Use this search bar to find a product by key words.',
-  'intro.overview.filter': 'Or use these filters to narrow your search.',
-  'intro.overview.cardView': 'Click on one of the cards below for detailed information about that product.',
-  'intro.overview.entityPlaybook': 'The Playbooks tab allows you to find guidance and resources contributed by the Digital Impact Alliance and our community of users.',
-  'intro.overview.wizard': 'Need more help? Try our recommendations wizard.',
-  'intro.overview.signUp': 'Start using the Exchange today by signing up for an account, which allows you to access even more great features.',
+  'intro.overview.start': 'Welcome to the Digital Impact Exchange',
+  'intro.overview.tour': `Let's start with a quick tour to get acquainted with the platform.`,
+  'intro.overview.tools': 'Explore Tools, such as products, use, cases, and building blocks.',
+  'intro.overview.marketplace': 'Find RFPs or explore our vendor directory.',
+  'intro.overview.resource': 'View playbooks or build your own.',
+  'intro.overview.wizard': `Don't know where to start? Try our recommendations wizard.`,
+  'intro.overview.signup': 'Start today by signing up for an account or logging in to access more features.',
 
   'govstack.api.repositories': 'Govstack API Repositories',
   'govstack.api.branch': 'Branch',
@@ -2336,5 +2333,13 @@ export const en = {
       the Exchange as we learn and grow.
     </p>
   `,
-  'ui.common.scrollToTop': 'Back to the top'
+  'ui.common.scrollToTop': 'Back to the top',
+
+  'ui.taskTracker.label': 'Task Tracker',
+  'ui.taskTracker.header': 'Task Trackers',
+  'ui.taskTracker.complete': 'Last run was successful.',
+  'ui.taskTracker.incomplete': 'Last run was not successful.',
+  'ui.taskTracker.lastStartedDate': 'Last started date',
+  'ui.taskTracker.lastReceivedMessage': 'Last Received Message',
+  'ui.taskTracker.filter.showFailedOnly': 'Show failed only'
 }

@@ -64,7 +64,7 @@ const HeroCarousel = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='h-[345px] xl:h-[400px]'>
+    <div className='h-[345px] xl:h-[400px] intro-start'>
       <Swiper
         pagination={true}
         autoplay={{
