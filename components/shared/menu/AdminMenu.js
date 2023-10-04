@@ -21,6 +21,9 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           <Link href='/users' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.user.header')}
           </Link>
+          <Link href='/task-trackers' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.taskTracker.header')}
+          </Link>
           <div className='mx-4 border-b border-dial-slate-300' />
           <Link href='/cities' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.city.header')}
