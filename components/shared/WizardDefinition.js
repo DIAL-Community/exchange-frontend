@@ -23,7 +23,7 @@ const WizardDefinition = () => {
                 {format('ui.wizard.tagLine')}
               </div>
               <div className='flex text-sm text-dial-stratos'>
-                <Link href='/wizard' className='rounded px-5 py-2.5 bg-dial-sunshine'>
+                <Link href='/wizard' className='rounded px-5 py-2.5 bg-dial-sunshine intro-wizard'>
                   {format('ui.wizard.launch')}
                 </Link>
               </div>

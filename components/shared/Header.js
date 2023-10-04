@@ -105,7 +105,7 @@ const Header = ({ isOnAuthPage = false }) => {
     </>
 
   const withoutUser =
-    <li className='text-right intro-overview-signup'>
+    <li className='text-right intro-overview-signup intro-signup'>
       <a
         href='signIn'
         role='menuitem'
@@ -130,13 +130,13 @@ const Header = ({ isOnAuthPage = false }) => {
         <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
           {!isOnAuthPage &&
             <>
-              <li className='relative text-right'>
+              <li className='relative text-right intro-marketplace'>
                 <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
-              <li className='relative text-right'>
+              <li className='relative text-right intro-tools'>
                 <ToolMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
-              <li className='relative text-right'>
+              <li className='relative text-right intro-resource'>
                 <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
               { user ? withUser : withoutUser }
