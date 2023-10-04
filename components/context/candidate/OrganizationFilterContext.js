@@ -6,12 +6,19 @@ const OrganizationFilterDispatchContext = createContext()
 const OrganizationFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const candidateOrganizationFilterValues = {
-    search
+    search,
+    pageOffset,
+    pageNumber
   }
 
   const candidateOrganizationFilterDispatchValues = {
-    setSearch
+    setSearch,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

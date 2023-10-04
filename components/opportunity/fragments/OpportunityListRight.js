@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { OpportunityFilterContext } from '../../context/OpportunityFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { OpportunityFilterContext, OpportunityFilterDispatchContext } from '../../context/OpportunityFilterContext'
 import { OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/opportunity'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -12,19 +12,20 @@ const OpportunityListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(OpportunityFilterContext)
   const {
-    buildingBlocks,
+    search,
     countries,
+    buildingBlocks,
     organizations,
-    sectors,
     useCases,
+    sectors,
     tags,
     showClosed
   } = useContext(OpportunityFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(OpportunityFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(OpportunityFilterDispatchContext)
+
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -39,11 +40,6 @@ const OpportunityListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search, useCases, buildingBlocks, sectors, tags])
 
   const { loading, error, data } = useQuery(OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

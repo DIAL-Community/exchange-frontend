@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { UserFilterContext } from '../../context/UserFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { UserFilterContext, UserFilterDispatchContext } from '../../context/UserFilterContext'
 import { USER_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/user'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -14,8 +14,8 @@ const UserListRight = () => {
 
   const { search } = useContext(UserFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(UserFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(UserFilterDispatchContext)
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -30,11 +30,6 @@ const UserListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
 
   const { loading, error, data } = useQuery(USER_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

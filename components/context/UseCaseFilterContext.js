@@ -11,12 +11,17 @@ const UseCaseFilterProvider = ({ children }) => {
 
   const [search, setSearch] = useState('')
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const useCaseFilterValues = {
     showBeta,
     govStackOnly,
     sectors,
     sdgs,
-    search
+    search,
+    pageOffset,
+    pageNumber
   }
 
   const useCaseFilterDispatchValues = {
@@ -24,7 +29,9 @@ const UseCaseFilterProvider = ({ children }) => {
     setShowGovStack,
     setSectors,
     setSdgs,
-    setSearch
+    setSearch,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

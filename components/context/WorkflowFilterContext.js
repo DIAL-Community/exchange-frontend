@@ -9,16 +9,23 @@ const WorkflowFilterProvider = ({ children }) => {
 
   const [search, setSearch] = useState('')
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const workflowFilterValues = {
     sdgs,
     useCases,
-    search
+    search,
+    pageOffset,
+    pageNumber
   }
 
   const workflowFilterDispatchValues = {
     setSdgs,
     setUseCases,
-    setSearch
+    setSearch,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

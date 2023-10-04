@@ -15,7 +15,7 @@ const initialCounts = (() => {
 const FilterContextProvider = ({ children }) => {
   const [search, setSearch] = useState('')
   const [resultCounts, setResultCounts] = useState(initialCounts)
-  // Task tracker context
+  // Task tracker context only
   const [showFailedOnly, setShowFailedOnly] = useState(false)
 
   const props = {

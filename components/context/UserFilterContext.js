@@ -6,12 +6,19 @@ const UserFilterDispatchContext = createContext()
 const UserFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const UserFilterValues = {
-    search
+    search,
+    pageOffset,
+    pageNumber
   }
 
   const UserFilterDispatchValues = {
-    setSearch
+    setSearch,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

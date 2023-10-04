@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PlaybookFilterContext } from '../../context/PlaybookFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../../context/PlaybookFilterContext'
 import { PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/playbook'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -12,11 +12,10 @@ const PlaybookListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(PlaybookFilterContext)
-  const { tags } = useContext(PlaybookFilterContext)
+  const { search, tags } = useContext(PlaybookFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(PlaybookFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(PlaybookFilterDispatchContext)
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -31,11 +30,6 @@ const PlaybookListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search, tags])
 
   const { loading, error, data } = useQuery(PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

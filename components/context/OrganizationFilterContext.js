@@ -20,6 +20,9 @@ const OrganizationFilterProvider = ({ children }) => {
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
 
+  const [storefrontPageNumber, setStorefrontPageNumber] = useState(0)
+  const [storefrontPageOffset, setStorefrontPageOffset] = useState(0)
+
   const organizationFilterValues = {
     aggregator,
     endorser,
@@ -32,7 +35,9 @@ const OrganizationFilterProvider = ({ children }) => {
     buildingBlocks,
     search,
     pageOffset,
-    pageNumber
+    pageNumber,
+    storefrontPageOffset,
+    storefrontPageNumber
   }
 
   const organizationFilterDispatchValues = {
@@ -47,7 +52,9 @@ const OrganizationFilterProvider = ({ children }) => {
     setBuildingBlocks,
     setSearch,
     setPageNumber,
-    setPageOffset
+    setPageOffset,
+    setStorefrontPageNumber,
+    setStorefrontPageOffset
   }
 
   return (

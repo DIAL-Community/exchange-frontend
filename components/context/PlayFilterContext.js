@@ -8,16 +8,23 @@ const PlayFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
   const [products, setProducts] = useState([])
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const playbookFilterValues = {
     tags,
     search,
-    products
+    products,
+    pageOffset,
+    pageNumber
   }
 
   const playbookFilterDispatchValues = {
     setTags,
     setSearch,
-    setProducts
+    setProducts,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

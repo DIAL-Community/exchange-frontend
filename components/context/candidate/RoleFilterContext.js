@@ -6,12 +6,19 @@ const RoleFilterDispatchContext = createContext()
 const RoleFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const candidateRoleFilterValues = {
-    search
+    search,
+    pageOffset,
+    pageNumber
   }
 
   const candidateRoleFilterDispatchValues = {
-    setSearch
+    setSearch,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

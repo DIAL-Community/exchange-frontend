@@ -1,6 +1,6 @@
-import { useCallback, useContext, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useRef } from 'react'
 import {
   BuildingBlockFilterContext,
   BuildingBlockFilterDispatchContext
