@@ -2336,5 +2336,13 @@ export const en = {
       the Exchange as we learn and grow.
     </p>
   `,
-  'ui.common.scrollToTop': 'Back to the top'
+  'ui.common.scrollToTop': 'Back to the top',
+
+  'ui.taskTracker.label': 'Task Tracker',
+  'ui.taskTracker.header': 'Task Trackers',
+  'ui.taskTracker.complete': 'Last run was successful.',
+  'ui.taskTracker.incomplete': 'Last run was not successful.',
+  'ui.taskTracker.lastStartedDate': 'Last started date',
+  'ui.taskTracker.lastReceivedMessage': 'Last Received Message',
+  'ui.taskTracker.filter.showFailedOnly': 'Show failed only'
 }

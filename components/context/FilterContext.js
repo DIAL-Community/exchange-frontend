@@ -37,6 +37,7 @@ const FilterContextProvider = ({ children }) => {
   const [displayType, setDisplayType] = useState(isMobile ? 'list' : 'card')
   const [filterDisplayed, setFilterDisplayed] = useState(true)
   const [hintDisplayed, setHintDisplayed] = useState(false)
+  const [showFailedOnly, setShowFailedOnly] = useState(false)
 
   const props = {
     search,
@@ -44,11 +45,13 @@ const FilterContextProvider = ({ children }) => {
     displayType,
     filterDisplayed,
     hintDisplayed,
+    showFailedOnly,
     setSearch,
     setResultCounts,
     setDisplayType,
     setFilterDisplayed,
-    setHintDisplayed
+    setHintDisplayed,
+    setShowFailedOnly
   }
 
   return (
