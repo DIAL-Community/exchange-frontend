@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client'
 
-export const DELETE_TAG = gql`
-  mutation DeleteTag($id: ID!) {
+export const DELETE_TASK_TRACKER = gql`
+  mutation DeleteTaskTracker($id: ID!) {
     deleteTag(id: $id) {
-      tag {
+      taskTracker {
         id
       }
       errors
@@ -11,22 +11,22 @@ export const DELETE_TAG = gql`
   }
 `
 
-export const CREATE_TAG = gql`
-  mutation CreateTag(
+export const CREATE_TASK_TRACKER = gql`
+  mutation CreateTaskTracker(
     $name: String!
     $slug: String!
-    $description: String
+    $description: String!
   ) {
-    createTag(
+    createTaskTracker(
       name: $name
       slug: $slug
       description: $description
     ) {
-      tag {
+      taskTracker {
         id
         name
         slug
-        tagDescription {
+        taskTrackerDescription {
           id
           description
           locale

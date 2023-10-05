@@ -11,26 +11,28 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, 
 
   const handleTabClicked = (e, index) => {
     e.preventDefault()
-    setActiveTab(index)
+    if (setActiveTab) {
+      setActiveTab(index)
+    }
   }
 
   const exportCsvClicked = (e) => {
     e.preventDefault()
-    if (user) {
+    if (user && exportCsvFn) {
       exportCsvFn()
     }
   }
 
   const exportJsonClicked = (e) => {
     e.preventDefault()
-    if (user) {
+    if (user && exportJsonFn) {
       exportJsonFn()
     }
   }
 
   const createClicked = (e) => {
     e.preventDefault()
-    if (user) {
+    if (user && createFn) {
       createFn()
     }
   }

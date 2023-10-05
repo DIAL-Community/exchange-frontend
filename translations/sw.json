@@ -352,10 +352,10 @@
   "wizard.bb.datacollection": "Je, mradi utahusisha utafiti au kukusanya taarifa kutoka kwa watumiaji?",
   "wizard.bb.registration": "Je, mradi utahitaji watumiaji wajisajili au wajiandikishe kwa ajili ya programu?",
   "wizard.bb.payments": "Je, mradi utahusisha kutuma au kupokea pesa?",
-  "wizard.bb.identificationandauthentication": "Je, mradi utahitaji watu watumie kitambulisho rasmi/ cha serikali?",
+  "wizard.bb.identity": "Je, mradi utahitaji watu watumie kitambulisho rasmi/ cha serikali?",
   "wizard.bb.informationmediator": "Je, mradi utahitaji kutuma data kati ya mifumo miwili au zaidi tofauti?",
   "wizard.bb.messaging": "Je, mradi huu utahusisha kutuma barua pepe au ujumbe mfupi?",
-  "wizard.bb.scheduling": "Je, mradi utahitaji kupanga matukio, kama vile miadi?",
+  "wizard.bb.scheduler": "Je, mradi utahitaji kupanga matukio, kama vile miadi?",
   "wizard.bb.contentmanagement": "Je, mradi utahitaji watumiaji waweze kutengeneza na kudhibiti maudhui?",
   "wizard.bb.emarketplace": "Je, mradi huo utajumuisha soko la mtandaoni linalounganisha wanunuzi na wauzaji?",
 
