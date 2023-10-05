@@ -21,9 +21,33 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       id
       name
       slug
-      link
       imageFile
       description
+      resourceLink
+      resourceType
+      resourceTopic
+    }
+  }
+`
+
+export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
+  query PaginatedResources(
+    $search: String
+    $limit: Int!
+    $offset: Int!
+  ) {
+    paginatedResources(
+      search: $search
+      offsetAttributes: { limit: $limit, offset: $offset }
+    ) {
+      id
+      name
+      slug
+      imageFile
+      description
+      resourceLink
+      resourceType
+      resourceTopic
     }
   }
 `
@@ -44,9 +68,11 @@ export const RESOURCE_DETAIL_QUERY = gql`
       id
       name
       slug
-      link
       imageFile
       description
+      resourceLink
+      resourceType
+      resourceTopic
       showInExchange
       showInWizard
       organizations {

@@ -1806,7 +1806,9 @@ export const en = {
 
   'ui.resource.label': 'Resource',
   'ui.resource.header': 'Resources',
-  'ui.resource.link': 'Resource Location',
+  'ui.resource.resourceLink': 'Resource Link',
+  'ui.resource.resourceType': 'Resource Type',
+  'ui.resource.resourceTopic': 'Resource Topic',
   'ui.resource.visitLink': 'Visit Resource',
   'ui.resource.imageFile': 'Resource Logo',
   'ui.resource.showInExchange': 'Show resource in the Exchange',

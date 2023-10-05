@@ -19,7 +19,9 @@ export const CREATE_RESOURCE = gql`
     $slug: String!
     $imageFile: Upload
     $description: String
-    $link: String
+    $resourceLink: String
+    $resourceType: String
+    $resourceTopic: String
     $showInExchange: Boolean
     $showInWizard: Boolean
     $organizationSlug: String
@@ -27,9 +29,11 @@ export const CREATE_RESOURCE = gql`
     createResource(
       name: $name
       slug: $slug
-      link: $link
       imageFile: $imageFile
       description: $description
+      resourceLink: $resourceLink
+      resourceType: $resourceType
+      resourceTopic: $resourceTopic
       showInExchange: $showInExchange
       showInWizard: $showInWizard
       organizationSlug: $organizationSlug
@@ -39,7 +43,9 @@ export const CREATE_RESOURCE = gql`
         name
         slug
         description
-        link
+        resourceLink
+        resourceType
+        resourceTopic
       }
       errors
     }
