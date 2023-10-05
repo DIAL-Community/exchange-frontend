@@ -15,27 +15,31 @@ export const DELETE_RESOURCE = gql`
 
 export const CREATE_RESOURCE = gql`
   mutation CreateResource(
-    $name: String!
     $slug: String!
+    $name: String!
     $imageFile: Upload
     $description: String
     $resourceLink: String
     $resourceType: String
     $resourceTopic: String
-    $showInExchange: Boolean
     $showInWizard: Boolean
+    $showInExchange: Boolean
+    $featured: Boolean
+    $spotlight: Boolean
     $organizationSlug: String
   ) {
     createResource(
-      name: $name
       slug: $slug
+      name: $name
       imageFile: $imageFile
       description: $description
       resourceLink: $resourceLink
       resourceType: $resourceType
       resourceTopic: $resourceTopic
-      showInExchange: $showInExchange
       showInWizard: $showInWizard
+      showInExchange: $showInExchange
+      featured: $featured
+      spotlight: $spotlight
       organizationSlug: $organizationSlug
     ) {
       resource {

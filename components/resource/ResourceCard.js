@@ -52,11 +52,23 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
 
   const displaySpotlightCard = () =>
     <div className='flex flex-row gap-x-3'>
-      <img
-        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-        alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-        className='object-contain w-10 h-10 my-auto'
-      />
+      <div className='basis-1/2 shrink-0'>
+        <img
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+          alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
+          className='object-contain'
+        />
+      </div>
+      <div className='basis-1/2 shrink-0'>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-2xl font-semibold text-dial-plum'>
+            {resource.name}
+          </div>
+          <div className='text-lg line-clamp-4 text-dial-stratos'>
+            {resource?.description && parse(resource?.description)}
+          </div>
+        </div>
+      </div>
     </div>
 
   const displayFeaturedCard = () =>
@@ -64,7 +76,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       <img
         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
         alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-        className='object-contain w-10 h-10 my-auto'
+        className='object-contain my-auto'
       />
     </div>
 

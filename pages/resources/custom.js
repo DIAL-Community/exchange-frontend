@@ -6,6 +6,7 @@ import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
 import Header from '../../components/shared/Header'
 import Footer from '../../components/shared/Footer'
+import ResourceList from '../../components/resource/ResourceList'
 
 const ResourceListPage = () => {
   const { formatMessage } = useIntl()
@@ -26,6 +27,7 @@ const ResourceListPage = () => {
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
+        <ResourceList />
         <Footer />
       </ClientOnly>
     </>

@@ -1813,6 +1813,8 @@ export const en = {
   'ui.resource.imageFile': 'Resource Logo',
   'ui.resource.showInExchange': 'Show resource in the Exchange',
   'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
+  'ui.resource.featured': 'Featured resource',
+  'ui.resource.spotlight': 'Spotlight resource',
 
   'ui.resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
   'ui.resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
