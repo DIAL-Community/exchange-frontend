@@ -43,7 +43,7 @@ const ResourceListContent = ({ pageOffset, defaultPageSize }) => {
             displayType={DisplayType.SPOTLIGHT_CARD}
           />
         )}
-        <div className='grid grid-cols-3 gap-3'>
+        <div className='grid grid-cols-3 gap-x-4'>
           {featuredResources.map((resource, index) =>
             <ResourceCard
               key={index}

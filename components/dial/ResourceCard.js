@@ -56,7 +56,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
         <img
           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
           alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-          className='hover:scale-125 transition-all duration-500'
+          className='hover:scale-110 transition-all duration-500'
         />
       </div>
       <div className='hover:bg-dial-ice px-8 py-6'>
@@ -72,17 +72,21 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
     </div>
 
   const displayFeaturedCard = () =>
-    <div className='flex flex-col gap-y-3'>
-      <img
-        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-        alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-        className='object-contain my-auto'
-      />
-      <div className='text-lg font-semibold text-dial-plum'>
-        {resource.name}
-      </div>
-      <div className='line-clamp-4 text-dial-stratos'>
-        {resource?.parsedDescription && parse(resource?.parsedDescription)}
+    <div className='hover:bg-dial-ice px-6 py-4'>
+      <div className='flex flex-col gap-y-3'>
+        <div className='overflow-hidden'>
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+            alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
+            className='object-contain my-auto hover:scale-110 transition-all duration-500'
+          />
+        </div>
+        <div className='text-lg font-semibold text-dial-plum'>
+          {resource.name}
+        </div>
+        <div className='line-clamp-4 text-dial-stratos'>
+          {resource?.parsedDescription && parse(resource?.parsedDescription)}
+        </div>
       </div>
     </div>
 
