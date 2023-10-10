@@ -15,7 +15,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='w-20 h-20 mx-auto'>
           <img
-            src='/ui/v1/resource-header.svg'
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
             className='object-contain w-16 h-16'
           />
@@ -40,7 +40,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         <img
-          src='/ui/v1/resource-header.svg'
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
           alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
           className='object-contain w-10 h-10 my-auto'
         />
@@ -50,11 +50,49 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       </div>
     </div>
 
+  const displaySpotlightCard = () =>
+    <div className='flex flex-row gap-x-10'>
+      <div className='overflow-hidden basis-2/5 shrink-0'>
+        <img
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+          alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
+          className='hover:scale-125 transition-all duration-500'
+        />
+      </div>
+      <div className='hover:bg-dial-ice px-8 py-6'>
+        <div className='flex flex-col gap-y-4'>
+          <div className='text-3xl font-semibold text-dial-iris-blue'>
+            {resource.name}
+          </div>
+          <div className='text-xl leading-8 italic line-clamp-6 text-dial-sapphire'>
+            {resource?.parsedDescription && parse(resource?.parsedDescription)}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  const displayFeaturedCard = () =>
+    <div className='flex flex-col gap-y-3'>
+      <img
+        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+        alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
+        className='object-contain my-auto'
+      />
+      <div className='text-lg font-semibold text-dial-plum'>
+        {resource.name}
+      </div>
+      <div className='line-clamp-4 text-dial-stratos'>
+        {resource?.parsedDescription && parse(resource?.parsedDescription)}
+      </div>
+    </div>
+
   return (
     <div className='relative'>
       <Link href={`/resources/${resource.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
+        {displayType === DisplayType.FEATURED_CARD && displayFeaturedCard()}
+        {displayType === DisplayType.SPOTLIGHT_CARD && displaySpotlightCard()}
       </Link>
       { isValidFn(dismissHandler) &&
         <button type='button' className='absolute top-2 right-2'>
