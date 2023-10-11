@@ -41,6 +41,7 @@ export const en = {
   'app.new': 'New {entity}',
   'app.changePassword': 'Change Password',
   'app.deleteAccount': 'Delete Account',
+  'app.adminOnly': 'Admin Only',
 
   'general.pastSuffix': 'ago',
 
@@ -1806,11 +1807,21 @@ export const en = {
 
   'ui.resource.label': 'Resource',
   'ui.resource.header': 'Resources',
-  'ui.resource.link': 'Resource Location',
   'ui.resource.visitLink': 'Visit Resource',
   'ui.resource.imageFile': 'Resource Logo',
   'ui.resource.showInExchange': 'Show resource in the Exchange',
   'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
+  'ui.resource.resourceLink': 'Resource Link',
+  'ui.resource.resourceType': 'Resource Type',
+  'ui.resource.resourceTopic': 'Resource Topic',
+  'ui.resource.authorName': 'Author Name',
+  'ui.resource.authorEmail': 'Author Email',
+  'ui.resource.featured': 'Featured resource',
+  'ui.resource.spotlight': 'Spotlight resource',
+  
+  'ui.resource.type.caseStudy': 'Case Study',
+  'ui.resource.type.spotlight': 'Spotlight',
+  'ui.resource.type.whitepaper': 'Whitepaper',
 
   'ui.resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
   'ui.resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',

@@ -29,6 +29,13 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       resourceLink
       resourceType
       resourceTopic
+      resourceTags
+
+      publishedDate
+
+      authors {
+        name
+      }
     }
   }
 `
@@ -75,6 +82,12 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       resourceLink
       resourceType
       resourceTopic
+
+      publishedDate
+
+      authors {
+        name
+      }
     }
     featuredResources: paginatedResources(
       featuredLength: 3
@@ -93,6 +106,12 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       resourceLink
       resourceType
       resourceTopic
+
+      publishedDate
+
+      authors {
+        name
+      }
     }
     paginatedResources(
       search: $search
@@ -112,6 +131,12 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       resourceLink
       resourceType
       resourceTopic
+
+      publishedDate
+
+      authors {
+        name
+      }
     }
   }
 `
@@ -132,7 +157,6 @@ export const RESOURCE_DETAIL_QUERY = gql`
       id
       name
       slug
-      link
       imageFile
       
       description

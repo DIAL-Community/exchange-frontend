@@ -1,72 +1,11 @@
 import { useCallback, useContext, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { DEFAULT_PAGE_SIZE, DisplayType } from '../utils/constants'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 import { FilterContext } from '../context/FilterContext'
-import {
-  CUSTOM_PAGINATED_RESOURCES_QUERY,
-  CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY
-} from '../shared/query/resource'
+import { CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../shared/query/resource'
 import Pagination from '../shared/Pagination'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import ResourceCard from './ResourceCard'
-
-const ResourceListContent = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(FilterContext)
-
-  const { loading, error, data } = useQuery(CUSTOM_PAGINATED_RESOURCES_QUERY, {
-    variables: {
-      search,
-      limit: defaultPageSize,
-      offset: pageOffset
-    }
-  })
-
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.paginatedResources && !data?.spotlightResources && !data?.featuredResources) {
-    return <NotFound />
-  }
-
-  const { featuredResources, spotlightResources, paginatedResources } = data
-
-  return (
-    <div className='flex flex-col gap-y-12'>
-      <div className='flex flex-col gap-8'>
-        {spotlightResources.map((resource, index) =>
-          <ResourceCard
-            key={index}
-            index={index}
-            resource={resource}
-            displayType={DisplayType.SPOTLIGHT_CARD}
-          />
-        )}
-        <div className='grid grid-cols-3 gap-x-4'>
-          {featuredResources.map((resource, index) =>
-            <ResourceCard
-              key={index}
-              index={index}
-              resource={resource}
-              displayType={DisplayType.FEATURED_CARD}
-            />
-          )}
-        </div>
-        <div className='grid grid-cols-1 gap-3'>
-          {paginatedResources.map((resource, index) =>
-            <ResourceCard
-              key={index}
-              index={index}
-              resource={resource}
-              displayType={DisplayType.LARGE_CARD}
-            />
-          )}
-        </div>
-      </div>
-    </div>
-  )
-}
+import ResourceListMain from './fragments/ResourceListMain'
 
 const ResourceList = () => {
   const { formatMessage } = useIntl()
@@ -99,7 +38,7 @@ const ResourceList = () => {
 
   return (
     <div className='px-4 lg:px-8 xl:px-56'>
-      <ResourceListContent
+      <ResourceListMain
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
       />

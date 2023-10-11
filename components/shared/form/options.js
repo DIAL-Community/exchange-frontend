@@ -5,7 +5,8 @@ import {
   MaturityStatus,
   ORIGIN_SLUG_EXPANSIONS,
   OpportunityStatus,
-  OpportunityType
+  OpportunityType,
+  ResourceType
 } from '../../utils/constants'
 
 export const generateMaturityOptions = (format) => [
@@ -16,6 +17,12 @@ export const generateMaturityOptions = (format) => [
 export const generateCategoryOptions = (format) => [
   { label: format('buildingBlock.category.dpi'), value: CategoryType.DPI },
   { label: format('buildingBlock.category.functional'), value: CategoryType.FUNCTIONAL }
+]
+
+export const generateResourceTypeOptions = (format) => [
+  { label: format('ui.resource.type.caseStudy'), value: ResourceType.CASE_STUDY },
+  { label: format('ui.resource.type.spotlight'), value: ResourceType.SPOTLIGHT },
+  { label: format('ui.resource.type.whitepaper'), value: ResourceType.WHITEPAPER }
 ]
 
 export const generateMappingStatusOptions = (format) => [

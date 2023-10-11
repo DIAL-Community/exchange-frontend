@@ -1,10 +1,10 @@
+import Link from 'next/link'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import parse from 'html-react-parser'
 import { FaXmark } from 'react-icons/fa6'
-import { DisplayType } from '../utils/constants'
-import { isValidFn } from '../utils/utilities'
+import { isValidFn } from '../../utils/utilities'
+import { DisplayType } from '../../utils/constants'
 
 const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const { formatMessage } = useIntl()
@@ -17,7 +17,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-            className='object-contain w-16 h-16'
+            className='aspect-[3/2]'
           />
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
@@ -56,7 +56,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
         <img
           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
           alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-          className='hover:scale-110 transition-all duration-500'
+          className='aspect-[3/2]	hover:scale-110 transition-all duration-500'
         />
       </div>
       <div className='hover:bg-dial-ice px-8 py-6'>
@@ -72,13 +72,13 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
     </div>
 
   const displayFeaturedCard = () =>
-    <div className='hover:bg-dial-ice px-6 py-4'>
+    <div className='hover:bg-dial-ice p-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='overflow-hidden'>
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-            className='object-contain my-auto hover:scale-110 transition-all duration-500'
+            className='aspect-[3/2]	hover:scale-110 transition-all duration-500'
           />
         </div>
         <div className='text-lg font-semibold text-dial-plum'>

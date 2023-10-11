@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useContext } from 'react'
-import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
+import React, { useState, useCallback, useContext, useMemo } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa6'
+import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../lib/ToastContext'
 import { useOrganizationOwnerUser, useUser } from '../../../lib/hooks'
@@ -16,6 +16,8 @@ import FileUploader from '../../shared/form/FileUploader'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
+import { generateResourceTypeOptions } from '../../shared/form/options'
+import Select from '../../shared/form/Select'
 
 const ResourceForm = React.memo(({ resource, organization }) => {
   const { formatMessage } = useIntl()
@@ -34,6 +36,8 @@ const ResourceForm = React.memo(({ resource, organization }) => {
 
   const router = useRouter()
   const { locale } = router
+
+  const resourceTypeOptions = useMemo(() => generateResourceTypeOptions(format), [format])
 
   const [updateResource, { reset }] = useMutation(CREATE_RESOURCE, {
     refetchQueries: [{
@@ -65,16 +69,20 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }
   })
 
-  const { handleSubmit, register, control, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, watch, setValue, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
       name: resource?.name,
-      link: resource?.link,
       description: resource?.description,
+      showInWizard: resource?.showInWizard,
       showInExchange: resource?.showInExchange,
-      showInWizard: resource?.showInWizard
+      featured: resource?.featured,
+      spotlight: resource?.spotlight,
+      resourceLink: resource?.resourceLink,
+      resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType),
+      resourceTopic: resource?.resourceTopic
     }
   })
 
@@ -86,20 +94,32 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       const { userEmail, userToken } = user
       const {
         name,
-        link,
         description,
-        showInExchange,
         showInWizard,
+        showInExchange,
+        featured,
+        spotlight,
+        resourceLink,
+        resourceType,
+        resourceTopic,
+        authorName,
+        authorEmail,
         imageFile
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
-        link,
         description,
+        showInWizard,
         showInExchange,
-        showInWizard
+        featured,
+        spotlight,
+        resourceLink,
+        resourceType,
+        resourceTopic,
+        authorName,
+        authorEmail
       }
 
       if (imageFile) {
@@ -125,6 +145,12 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const cancelForm = () => {
     setReverting(true)
     router.push(`/${locale}/resources/${slug}`)
+  }
+
+  const onSpotlightChecked = (event) => {
+    if (event.target.checked) {
+      setValue('featured', event.target.checked)
+    }
   }
 
   return loadingUserSession
@@ -158,37 +184,53 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 <FileUploader {...register('imageFile')} />
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='link'>
-                  {format('ui.resource.link')}
+                <label htmlFor='resourceTopic'>
+                  {format('ui.resource.resourceType')}
                 </label>
                 <Controller
-                  name='link'
+                  name='resourceType'
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      isSearch
+                      isBorderless
+                      options={resourceTypeOptions}
+                      placeholder={format('ui.resource.resourceType')}
+                    />
+                  )}
+                />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label htmlFor='resourceTopic'>
+                  {format('ui.resource.resourceTopic')}
+                </label>
+                <Input
+                  {...register('resourceTopic')}
+                  id='resourceTopic'
+                  placeholder={format('ui.resource.resourceTopic')}
+                />
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field' htmlFor='resourceLink'>
+                  {format('ui.resource.resourceLink')}
+                </label>
+                <Controller
+                  name='resourceLink'
                   control={control}
                   render={({ field: { value, onChange } }) => (
                     <UrlInput
                       value={value}
                       onChange={onChange}
-                      id='link'
+                      id='resourceLink'
                       isInvalid={errors.website}
-                      placeholder={format('ui.resource.link')}
+                      placeholder={format('ui.resource.resourceLink')}
                     />
                   )}
                   rules={{ required: format('validation.required') }}
                 />
-                {errors.link && <ValidationError value={errors.link?.message} />}
+                {errors.resourceLink && <ValidationError value={errors.resourceLink?.message} />}
               </div>
-              {user?.isAdminUser &&
-                <label className='flex gap-x-2 mb-2 items-center self-start'>
-                  <Checkbox {...register('showInExchange')} />
-                  {format('ui.resource.showInExchange')}
-                </label>
-              }
-              {user?.isAdminUser &&
-                <label className='flex gap-x-2 mb-2 items-center self-start'>
-                  <Checkbox {...register('showInWizard')} />
-                  {format('ui.resource.showInWizard')}
-                </label>
-              }
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field'>
                   {format('ui.resource.description')}
@@ -209,6 +251,60 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
+              <hr class='h-px border-dashed' />
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' htmlFor='authorName'>
+                  {format('ui.resource.authorName')}
+                </label>
+                <Input
+                  {...register('authorName', { required: format('validation.required') })}
+                  id='authorName'
+                  placeholder={format('ui.resource.authorName')}
+                  isInvalid={errors.authorName}
+                />
+                {errors.authorName && <ValidationError value={errors.authorName?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label htmlFor='authorEmail'>
+                  {format('ui.resource.authorEmail')}
+                </label>
+                <Input
+                  {...register('authorEmail')}
+                  id='authorEmail'
+                  placeholder={format('ui.resource.authorEmail')}
+                />
+              </div>
+              {user?.isAdminUser &&
+                <>
+                  <hr class='h-px border-dashed' />
+                  <div className='text-base text-dial-blueberry font-semibold'>
+                    {format('app.adminOnly')}
+                  </div>
+                  <hr class='h-px border-dashed' />
+                  <div className='flex flex-wrap'>
+                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
+                      <Checkbox {...register('showInExchange')} />
+                      {format('ui.resource.showInExchange')}
+                    </label>
+                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
+                      <Checkbox {...register('showInWizard')} />
+                      {format('ui.resource.showInWizard')}
+                    </label>
+                  </div>
+                  <hr class='h-px border-dashed' />
+                  <div className='flex flex-wrap'>
+                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
+                      <Checkbox {...register('spotlight', { onChange: onSpotlightChecked })} />
+                      {format('ui.resource.spotlight')}
+                    </label>
+                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
+                      <Checkbox {...register('featured')} disabled={watch('spotlight')} />
+                      {format('ui.resource.featured')}
+                    </label>
+                  </div>
+                  <hr class='h-px border-dashed' />
+                </>
+              }
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>
                   {`${format('app.submit')} ${format('ui.resource.label')}`}
