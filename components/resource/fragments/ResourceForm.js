@@ -69,6 +69,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }
   })
 
+  const [resourceAuthor] = resource?.authors ?? []
   const { handleSubmit, register, control, watch, setValue, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -82,7 +83,9 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       spotlight: resource?.spotlight,
       resourceLink: resource?.resourceLink,
       resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType),
-      resourceTopic: resource?.resourceTopic
+      resourceTopic: resource?.resourceTopic,
+      authorName: resourceAuthor?.name,
+      authorEmail: resourceAuthor?.email
     }
   })
 
@@ -116,7 +119,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         featured,
         spotlight,
         resourceLink,
-        resourceType,
+        resourceType: resourceType?.value,
         resourceTopic,
         authorName,
         authorEmail
@@ -251,7 +254,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
-              <hr class='h-px border-dashed' />
+              <hr className='h-px border-dashed' />
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='authorName'>
                   {format('ui.resource.authorName')}
@@ -276,11 +279,11 @@ const ResourceForm = React.memo(({ resource, organization }) => {
               </div>
               {user?.isAdminUser &&
                 <>
-                  <hr class='h-px border-dashed' />
+                  <hr className='h-px border-dashed' />
                   <div className='text-base text-dial-blueberry font-semibold'>
                     {format('app.adminOnly')}
                   </div>
-                  <hr class='h-px border-dashed' />
+                  <hr className='h-px border-dashed' />
                   <div className='flex flex-wrap'>
                     <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
                       <Checkbox {...register('showInExchange')} />
@@ -291,7 +294,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                       {format('ui.resource.showInWizard')}
                     </label>
                   </div>
-                  <hr class='h-px border-dashed' />
+                  <hr className='h-px border-dashed' />
                   <div className='flex flex-wrap'>
                     <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
                       <Checkbox {...register('spotlight', { onChange: onSpotlightChecked })} />
@@ -302,7 +305,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                       {format('ui.resource.featured')}
                     </label>
                   </div>
-                  <hr class='h-px border-dashed' />
+                  <hr className='h-px border-dashed' />
                 </>
               }
               <div className='flex flex-wrap text-base mt-6 gap-3'>

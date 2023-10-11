@@ -171,6 +171,10 @@ export const RESOURCE_DETAIL_QUERY = gql`
       
       featured
       spotlight
+
+      authors {
+        name
+      }
       
       organizations {
         id

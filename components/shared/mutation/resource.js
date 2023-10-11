@@ -27,7 +27,7 @@ export const CREATE_RESOURCE = gql`
     $showInExchange: Boolean
     $showInWizard: Boolean
     $organizationSlug: String
-    $authorName: String
+    $authorName: String!
     $authorEmail: String
   ) {
     createResource(
@@ -59,8 +59,9 @@ export const CREATE_RESOURCE = gql`
         resourceType
         resourceTopic
 
-        authorName
-        authorEmail
+        authors {
+          name
+        }
       }
       errors
     }
