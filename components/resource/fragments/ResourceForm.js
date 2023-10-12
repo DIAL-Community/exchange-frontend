@@ -16,7 +16,7 @@ import FileUploader from '../../shared/form/FileUploader'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
-import { generateResourceTypeOptions } from '../../shared/form/options'
+import { generateResourceTopicOptions, generateResourceTypeOptions } from '../../shared/form/options'
 import Select from '../../shared/form/Select'
 
 const ResourceForm = React.memo(({ resource, organization }) => {
@@ -38,6 +38,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const { locale } = router
 
   const resourceTypeOptions = useMemo(() => generateResourceTypeOptions(format), [format])
+  const resourceTopicOptions = useMemo(() => generateResourceTopicOptions(format), [format])
 
   const [updateResource, { reset }] = useMutation(CREATE_RESOURCE, {
     refetchQueries: [{
@@ -208,10 +209,18 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 <label htmlFor='resourceTopic'>
                   {format('ui.resource.resourceTopic')}
                 </label>
-                <Input
-                  {...register('resourceTopic')}
-                  id='resourceTopic'
-                  placeholder={format('ui.resource.resourceTopic')}
+                <Controller
+                  name='resourceTopic'
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      isSearch
+                      isBorderless
+                      options={resourceTopicOptions}
+                      placeholder={format('ui.resource.resourceTopic')}
+                    />
+                  )}
                 />
               </div>
               <div className='flex flex-col gap-y-2'>

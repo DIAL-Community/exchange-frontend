@@ -24,6 +24,13 @@ export const generateResourceTypeOptions = (format) => [
   { label: format('ui.resource.type.whitepaper'), value: 'ui.resource.type.whitepaper' }
 ]
 
+export const generateResourceTopicOptions = (format) => [
+  { label: format('ui.resource.topic.laws'), value: 'ui.resource.topic.laws' },
+  { label: format('ui.resource.topic.oversight'), value: 'ui.resource.topic.oversight' },
+  { label: format('ui.resource.topic.participation'), value: 'ui.resource.topic.participation' },
+  { label: format('ui.resource.topic.technology'), value: 'ui.resource.topic.technology' }
+]
+
 export const generateMappingStatusOptions = (format) => [
   { label: format('shared.mappingStatus.beta'), value: MappingStatus.BETA },
   { label: format('shared.mappingStatus.mature'), value: MappingStatus.MATURE },

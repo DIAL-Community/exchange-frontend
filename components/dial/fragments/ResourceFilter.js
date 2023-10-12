@@ -1,29 +1,26 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useContext } from 'react'
-import {
-  WorkflowFilterContext,
-  WorkflowFilterDispatchContext
-} from '../../context/WorkflowFilterContext'
-import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
-import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
+import { ResourceTypeActiveFilters, ResourceTypeAutocomplete } from '../../shared/filter/ResourceType'
+import { ResourceFilterContext, ResourceFilterDispatchContext } from '../../context/ResourceFilterContext'
+import { ResourceTopicActiveFilters, ResourceTopicAutocomplete } from '../../shared/filter/ResourceTopic'
 
 const ResourceFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, useCases } = useContext(WorkflowFilterContext)
-  const { setSdgs, setUseCases } = useContext(WorkflowFilterDispatchContext)
+  const { resourceTypes, resourceTopics } = useContext(ResourceFilterContext)
+  const { setResourceTypes, setResourceTopics } = useContext(ResourceFilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
-    setSdgs([])
-    setUseCases([])
+    setResourceTypes([])
+    setResourceTopics([])
   }
 
   const filteringWorkflow = () => {
     let count = 0
-    count = count + sdgs.length
-    count = count + useCases.length
+    count = count + resourceTypes.length
+    count = count + resourceTopics.length
 
     return count > 0
   }
@@ -45,8 +42,14 @@ const ResourceFilter = () => {
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
-            <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
-            <UseCaseActiveFilters useCases={useCases} setUseCases={setUseCases} />
+            <ResourceTypeActiveFilters
+              resourceTypes={resourceTypes}
+              setResourceTypes={setResourceTypes}
+            />
+            <ResourceTopicActiveFilters
+              resourceTopics={resourceTopics}
+              setResourceTopics={setResourceTopics}
+            />
           </div>
         </div>
       }
@@ -55,9 +58,15 @@ const ResourceFilter = () => {
           {format('ui.filter.primary.title')}:
         </div>
         <hr className='border-b border-dial-slate-200'/>
-        <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
+        <ResourceTypeAutocomplete
+          resourceTypes={resourceTypes}
+          setResourceTypes={setResourceTypes}
+        />
         <hr className='border-b border-dial-slate-200'/>
-        <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
+        <ResourceTopicAutocomplete
+          resourceTopics={resourceTopics}
+          setResourceTopics={setResourceTopics}
+        />
         <hr className='border-b border-dial-slate-200'/>
       </div>
     </div>

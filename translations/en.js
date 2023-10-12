@@ -1819,9 +1819,18 @@ export const en = {
   'ui.resource.featured': 'Featured resource',
   'ui.resource.spotlight': 'Spotlight resource',
   
+  'ui.resource.type.label': 'Resource Type',
+  'ui.resource.type.header': 'Resource Types',
   'ui.resource.type.caseStudy': 'Case Study',
   'ui.resource.type.spotlight': 'Spotlight',
   'ui.resource.type.whitepaper': 'White Paper',
+  
+  'ui.resource.topic.label': 'Resource Topic',
+  'ui.resource.topic.header': 'Resource Topics',
+  'ui.resource.topic.laws': 'Laws, Policies and Regulations',
+  'ui.resource.topic.oversight': 'Oversight and Accountability',
+  'ui.resource.topic.participation': 'Participation and Agency',
+  'ui.resource.topic.technology': 'Technology and Architecture',
 
   'ui.resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
   'ui.resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
