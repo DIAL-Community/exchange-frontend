@@ -52,6 +52,7 @@ export const DatasetTypeSelect = ({
       {showFilter &&
         <Select
           async
+          isBorderless
           aria-label={format('filter.byEntity', { entity: format('ui.datasetType.label') })}
           className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions

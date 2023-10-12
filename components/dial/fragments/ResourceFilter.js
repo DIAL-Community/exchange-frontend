@@ -3,22 +3,25 @@ import { useCallback, useContext } from 'react'
 import { ResourceTypeActiveFilters, ResourceTypeAutocomplete } from '../../shared/filter/ResourceType'
 import { ResourceFilterContext, ResourceFilterDispatchContext } from '../../context/ResourceFilterContext'
 import { ResourceTopicActiveFilters, ResourceTopicAutocomplete } from '../../shared/filter/ResourceTopic'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 
 const ResourceFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { resourceTypes, resourceTopics } = useContext(ResourceFilterContext)
-  const { setResourceTypes, setResourceTopics } = useContext(ResourceFilterDispatchContext)
+  const { resourceCountries, resourceTypes, resourceTopics } = useContext(ResourceFilterContext)
+  const { setResourceCountries, setResourceTypes, setResourceTopics } = useContext(ResourceFilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
+    setResourceCountries([])
     setResourceTypes([])
     setResourceTopics([])
   }
 
   const filteringWorkflow = () => {
     let count = 0
+    count = count + resourceCountries.length
     count = count + resourceTypes.length
     count = count + resourceTopics.length
 
@@ -50,6 +53,10 @@ const ResourceFilter = () => {
               resourceTopics={resourceTopics}
               setResourceTopics={setResourceTopics}
             />
+            <CountryActiveFilters
+              countries={resourceCountries}
+              setCountries={setResourceCountries}
+            />
           </div>
         </div>
       }
@@ -66,6 +73,11 @@ const ResourceFilter = () => {
         <ResourceTopicAutocomplete
           resourceTopics={resourceTopics}
           setResourceTopics={setResourceTopics}
+        />
+        <hr className='border-b border-dial-slate-200'/>
+        <CountryAutocomplete
+          countries={resourceCountries}
+          setCountries={setResourceCountries}
         />
         <hr className='border-b border-dial-slate-200'/>
       </div>

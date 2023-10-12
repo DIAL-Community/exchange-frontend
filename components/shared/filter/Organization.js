@@ -69,6 +69,7 @@ export const OrganizationAutocomplete = ({
       {showFilter &&
         <Select
           async
+          isBorderless
           aria-label={format('filter.byEntity', { entity: format(entityKey) })}
           className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions

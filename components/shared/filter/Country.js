@@ -52,6 +52,7 @@ export const CountryAutocomplete = ({
       {showFilter &&
         <Select
           async
+          isBorderless
           aria-label={format('filter.byEntity', { entity: format('ui.country.label') })}
           className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions

@@ -64,7 +64,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           <div className='flex flex-col gap-y-4'>
             <div className='flex items-center gap-6'>
               <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
-                {resource.resourceTopic}
+                {format(resource.resourceTopic)}
               </div>
               <div className='text-sm'>
                 {format(resource.resourceType)}
