@@ -103,10 +103,4 @@ export const CandidateActionType = {
   REJECT: 'REJECT'
 }
 
-export const ResourceType = {
-  CASE_STUDY: 'CASE-STUDY',
-  SPOTLIGHT: 'SPOTLIGHT',
-  WHITEPAPER: 'WHITEPAPER'
-}
-
 export const DEFAULT_PAGE_SIZE = 8

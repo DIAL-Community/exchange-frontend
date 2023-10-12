@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Avatar from 'boring-avatars'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
@@ -9,6 +10,10 @@ import { DisplayType } from '../../utils/constants'
 const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const avatarColors = ['#000542', '#2E3192', '#485CD5', '#FAA92B', '#FAA92B']
+
+  const [resourceAuthor] = resource?.authors ?? []
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
@@ -26,11 +31,6 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
             {resource?.parsedDescription && parse(resource?.parsedDescription)}
-          </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
-            <div className='text-sm'>
-              {format('ui.organization.header')} ({resource.organizations?.length ?? 0})
-            </div>
           </div>
         </div>
       </div>
@@ -51,34 +51,57 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
     </div>
 
   const displaySpotlightCard = () =>
-    <div className='flex flex-row gap-x-10'>
-      <div className='overflow-hidden basis-2/5 shrink-0'>
-        <img
-          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-          alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-          className='aspect-[3/2]	hover:scale-110 transition-all duration-500'
-        />
-      </div>
-      <div className='hover:bg-dial-ice px-8 py-6'>
-        <div className='flex flex-col gap-y-4'>
-          <div className='text-3xl font-semibold text-dial-iris-blue'>
-            {resource.name}
-          </div>
-          <div className='text-xl leading-8 italic line-clamp-6 text-dial-sapphire'>
-            {resource?.parsedDescription && parse(resource?.parsedDescription)}
+    <div className='group spotlight-card'>
+      <div className='flex flex-row gap-x-10'>
+        <div className='overflow-hidden basis-2/5 shrink-0'>
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+            alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
+            className='aspect-[3/2]	group-hover:scale-110 transition-all duration-500'
+          />
+        </div>
+        <div className='group-hover:bg-dial-ice px-8 py-6'>
+          <div className='flex flex-col gap-y-4'>
+            <div className='flex items-center gap-6'>
+              <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
+                {resource.resourceTopic}
+              </div>
+              <div className='text-sm'>
+                {format(resource.resourceType)}
+              </div>
+            </div>
+            <div className='text-3xl font-semibold text-dial-iris-blue'>
+              {resource.name}
+            </div>
+            <div className='text-xl leading-8 italic line-clamp-6 text-dial-sapphire'>
+              {resource?.parsedDescription && parse(resource?.parsedDescription)}
+            </div>
+            {resourceAuthor &&
+              <div className='flex flex-row items-center gap-3'>
+                <Avatar
+                  size={40}
+                  name={resourceAuthor.name}
+                  variant='beam'
+                  colors={avatarColors}
+                />
+                <div className='text-dial-sapphire'>
+                  {resourceAuthor.name}
+                </div>
+              </div>
+            }
           </div>
         </div>
       </div>
     </div>
 
   const displayFeaturedCard = () =>
-    <div className='hover:bg-dial-ice p-6'>
-      <div className='flex flex-col gap-y-3'>
+    <div className='group featured-card'>
+      <div className='flex flex-col gap-y-3 group-hover:bg-dial-ice p-6'>
         <div className='overflow-hidden'>
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-            className='aspect-[3/2]	hover:scale-110 transition-all duration-500'
+            className='aspect-[3/2]	group-hover:scale-110 transition-all duration-500'
           />
         </div>
         <div className='text-lg font-semibold text-dial-plum'>
@@ -87,6 +110,19 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
         <div className='line-clamp-4 text-dial-stratos'>
           {resource?.parsedDescription && parse(resource?.parsedDescription)}
         </div>
+        {resourceAuthor &&
+          <div className='flex flex-row items-center gap-3'>
+            <Avatar
+              size={40}
+              name={resourceAuthor?.name}
+              variant='beam'
+              colors={avatarColors}
+            />
+            <div className='text-dial-sapphire'>
+              {resourceAuthor?.name}
+            </div>
+          </div>
+        }
       </div>
     </div>
 

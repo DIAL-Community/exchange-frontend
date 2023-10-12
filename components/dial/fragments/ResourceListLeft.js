@@ -4,6 +4,7 @@ import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
 import { QueryParamContext } from '../../context/QueryParamContext'
+import ResourceFilter from './ResourceFilter'
 
 const ResourceListLeft = () => {
   const { query } = useRouter()
@@ -30,6 +31,7 @@ const ResourceListLeft = () => {
   return (
     <div className='bg-dial-slate-100 h-full'>
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
+        <ResourceFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
         <hr className='border-b border-dial-slate-200'/>
         <Share />

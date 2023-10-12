@@ -38,9 +38,14 @@ export const EndorsingYearSelect = ({
     return options.filter(({ label }) => label.indexOf(input) >= 0)
   }
 
+  const toggleFilter = (event) => {
+    event.preventDefault()
+    setShowFilter(!showFilter)
+  }
+
   return (
     <div className='flex flex-col gap-y-3'>
-      <a href='#' className='flex' onClick={() => setShowFilter(!showFilter)}>
+      <a href='#' className='flex' onClick={toggleFilter}>
         <div className='text-dial-stratos text-sm py-2'>
           {format('ui.endorsingYear.label')}
         </div>

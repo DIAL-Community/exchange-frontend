@@ -1821,7 +1821,7 @@ export const en = {
   
   'ui.resource.type.caseStudy': 'Case Study',
   'ui.resource.type.spotlight': 'Spotlight',
-  'ui.resource.type.whitepaper': 'Whitepaper',
+  'ui.resource.type.whitepaper': 'White Paper',
 
   'ui.resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
   'ui.resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
