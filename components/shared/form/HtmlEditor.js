@@ -10,6 +10,8 @@ export const HtmlEditor = ({
   editorId,
   placeholder,
   className,
+  fontSize,
+  lineHeight,
   isInvalid = false
 }) => {
   const editorRef = useRef(null)
@@ -58,7 +60,9 @@ export const HtmlEditor = ({
               }
               body {
                 font-family: 'Poppins', sans-serif;
-                font-size: 12pt;
+                /* Using text-base from tailwind */
+                font-size: ${fontSize ?? '1rem'};
+                line-height: ${lineHeight ?? '1.5rem'};
               }
               .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
                 margin-left: 1rem;

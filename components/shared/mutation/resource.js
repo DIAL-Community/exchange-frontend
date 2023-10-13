@@ -67,3 +67,48 @@ export const CREATE_RESOURCE = gql`
     }
   }
 `
+
+export const UPDATE_RESOURCE_TAGS = gql`
+  mutation UpdateResourceTags(
+    $slug: String!
+    $tagNames: [String!]!
+  ) {
+    updateResourceTags(
+      slug: $slug
+      tagNames: $tagNames
+    ) {
+      resource {
+        id
+        name
+        slug
+        tags
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_RESOURCE_COUNTRIES = gql`
+  mutation UpdateResourceCountries(
+    $slug: String!
+    $countrySlugs: [String!]!
+  ) {
+    updateResourceCountries(
+      slug: $slug
+      countrySlugs: $countrySlugs
+    ) {
+      resource {
+        id
+        slug
+        name
+        countries {
+          id
+          name
+          slug
+          code
+        }
+      }
+      errors
+    }
+  }
+`

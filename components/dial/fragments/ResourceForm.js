@@ -50,7 +50,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }],
     onCompleted: (data) => {
       if (data.createResource.resource && data.createResource.errors.length === 0) {
-        const redirectPath = `/${locale}/resources/${data.createResource.resource.slug}`
+        const redirectPath = `/${locale}/resources/dial/${data.createResource.resource.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showSuccessMessage(
@@ -148,7 +148,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/resources/${slug}`)
+    router.push(`/${locale}/resources/dial/${slug}`)
   }
 
   const onSpotlightChecked = (event) => {
@@ -162,7 +162,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     : canEdit
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-stratos'>
             <div className='flex flex-col gap-y-6 text-sm'>
               <div className='text-xl font-semibold'>
                 {resource

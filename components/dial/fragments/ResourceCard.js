@@ -11,9 +11,8 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const avatarColors = ['#2E3192', '#FF8700', '#96A2EF', '#FFCFBB', '#485CD5' ]
-
   const [resourceAuthor] = resource?.authors ?? []
+  const avatarColors = ['#2E3192', '#FF8700', '#96A2EF', '#FFCFBB', '#485CD5' ]
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
@@ -64,10 +63,10 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           <div className='flex flex-col gap-y-4'>
             <div className='flex items-center gap-6'>
               <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
-                {format(resource.resourceTopic)}
+                {format(resource.resourceTopic ?? 'ui.resource.topic.unspecified')}
               </div>
               <div className='text-sm'>
-                {format(resource.resourceType)}
+                {format(resource.resourceType ?? 'ui.resource.type.unspecified')}
               </div>
             </div>
             <div className='text-3xl font-semibold text-dial-iris-blue'>
@@ -129,7 +128,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={`/resources/${resource.slug}`}>
+      <Link href={`/resources/dial/${resource.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
         {displayType === DisplayType.FEATURED_CARD && displayFeaturedCard()}

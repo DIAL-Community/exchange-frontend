@@ -21,6 +21,7 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       id
       name
       slug
+      tags
       imageFile
       
       description
@@ -29,7 +30,6 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       resourceLink
       resourceType
       resourceTopic
-      resourceTags
 
       publishedDate
 
@@ -157,6 +157,7 @@ export const RESOURCE_DETAIL_QUERY = gql`
       id
       name
       slug
+      tags
       imageFile
       
       description
@@ -174,6 +175,13 @@ export const RESOURCE_DETAIL_QUERY = gql`
 
       authors {
         name
+      }
+
+      countries {
+        id
+        name
+        slug
+        code
       }
       
       organizations {
