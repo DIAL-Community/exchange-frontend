@@ -11,7 +11,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const avatarColors = ['#000542', '#2E3192', '#485CD5', '#FAA92B', '#FAA92B']
+  const avatarColors = ['#2E3192', '#FF8700', '#96A2EF', '#FFCFBB', '#485CD5' ]
 
   const [resourceAuthor] = resource?.authors ?? []
 
@@ -76,19 +76,17 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
             <div className='text-xl leading-8 italic line-clamp-6 text-dial-sapphire'>
               {resource?.parsedDescription && parse(resource?.parsedDescription)}
             </div>
-            {resourceAuthor &&
-              <div className='flex flex-row items-center gap-3'>
-                <Avatar
-                  size={40}
-                  name={resourceAuthor.name}
-                  variant='beam'
-                  colors={avatarColors}
-                />
-                <div className='text-dial-sapphire'>
-                  {resourceAuthor.name}
-                </div>
+            <div className='flex flex-row items-center gap-3'>
+              <Avatar
+                size={40}
+                name={resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
+                variant='beam'
+                colors={avatarColors}
+              />
+              <div className='text-dial-sapphire'>
+                {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
               </div>
-            }
+            </div>
           </div>
         </div>
       </div>
@@ -104,25 +102,28 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
             className='aspect-[3/2]	group-hover:scale-110 transition-all duration-500'
           />
         </div>
-        <div className='text-lg font-semibold text-dial-plum'>
+        <div className='text-xl font-semibold text-dial-iris-blue'>
           {resource.name}
         </div>
-        <div className='line-clamp-4 text-dial-stratos'>
+        <div className='line-clamp-4 text-dial-sapphire'>
           {resource?.parsedDescription && parse(resource?.parsedDescription)}
         </div>
-        {resourceAuthor &&
-          <div className='flex flex-row items-center gap-3'>
-            <Avatar
-              size={40}
-              name={resourceAuthor?.name}
-              variant='beam'
-              colors={avatarColors}
-            />
-            <div className='text-dial-sapphire'>
-              {resourceAuthor?.name}
-            </div>
+        {resource.resourceType &&
+          <div className='text-sm'>
+            {format(resource.resourceType)}
           </div>
         }
+        <div className='flex flex-row items-center gap-3'>
+          <Avatar
+            size={40}
+            name={resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
+            variant='beam'
+            colors={avatarColors}
+          />
+          <div className='text-dial-sapphire'>
+            {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
+          </div>
+        </div>
       </div>
     </div>
 

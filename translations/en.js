@@ -1818,6 +1818,7 @@ export const en = {
   'ui.resource.authorEmail': 'Author Email',
   'ui.resource.featured': 'Featured resource',
   'ui.resource.spotlight': 'Spotlight resource',
+  'ui.resource.anonymousAuthor': 'Anonymous',
   
   'ui.resource.type.label': 'Resource Type',
   'ui.resource.type.header': 'Resource Types',

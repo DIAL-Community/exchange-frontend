@@ -2,12 +2,12 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
-import ClientOnly from '../../lib/ClientOnly'
-import ResourceList from '../../components/dial/ResourceList'
-import ResourceHeader from '../../components/dial/ResourceHeader'
-import ResourceFooter from '../../components/dial/ResourceFooter'
-import ResourceRibbon from '../../components/dial/ResourceRibbon'
-import QueryNotification from '../../components/shared/QueryNotification'
+import ResourceList from '../../../components/dial/ResourceList'
+import ResourceHeader from '../../../components/dial/ResourceHeader'
+import ResourceFooter from '../../../components/dial/ResourceFooter'
+import ResourceRibbon from '../../../components/dial/ResourceRibbon'
+import QueryNotification from '../../../components/shared/QueryNotification'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const ResourceListPage = () => {
   const { formatMessage } = useIntl()

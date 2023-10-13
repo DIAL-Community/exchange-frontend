@@ -43,14 +43,14 @@ export const PAGINATED_RESOURCES_QUERY = gql`
 export const CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeResource(
     $search: String
-    $resourceType: String
-    $resourceTopic: String
+    $resourceTypes: [String!]
+    $resourceTopics: [String!]
   ) {
     paginationAttributeResource(
       search: $search
       compartmentalized: true
-      resourceType: $resourceType
-      resourceTopic: $resourceTopic
+      resourceTypes: $resourceTypes
+      resourceTopics: $resourceTopics
     ) {
       totalCount
     }
@@ -62,8 +62,8 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
     $limit: Int!
     $offset: Int!
     $search: String
-    $resourceType: String
-    $resourceTopic: String
+    $resourceTypes: [String!]
+    $resourceTopics: [String!]
   ) {
     spotlightResources: paginatedResources(
       spotlightLength: 1
@@ -116,8 +116,8 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
     paginatedResources(
       search: $search
       compartmentalized: true
-      resourceType: $resourceType
-      resourceTopic: $resourceTopic
+      resourceTypes: $resourceTypes
+      resourceTopics: $resourceTopics
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id

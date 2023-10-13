@@ -1,18 +1,20 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { DisplayType } from '../../utils/constants'
-import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { ResourceFilterContext } from '../../context/ResourceFilterContext'
 import { CUSTOM_PAGINATED_RESOURCES_QUERY } from '../../shared/query/resource'
 import ResourceCard from './ResourceCard'
 import ResourceListLeft from './ResourceListLeft'
 
 const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(FilterContext)
+  const { search, resourceTypes, resourceTopics } = useContext(ResourceFilterContext)
 
   const { loading, error, data } = useQuery(CUSTOM_PAGINATED_RESOURCES_QUERY, {
     variables: {
       search,
+      resourceTypes: resourceTypes.map(r => r.value),
+      resourceTopics: resourceTopics.map(r => r.value),
       limit: defaultPageSize,
       offset: pageOffset
     }
