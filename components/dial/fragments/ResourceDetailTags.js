@@ -88,10 +88,10 @@ const ResourceDetailTags = ({ resource, canEdit, headerRef }) => {
     </div>
 
   const displayModeBody = tags.length
-    ? <div className='italic'>
+    ? <div className='italic text-dial-stratos'>
       {tags.join(', ')}
     </div>
-    : <div className='text-sm text-dial-stratos'>
+    : <div className='text-dial-stratos'>
       {format('ui.common.detail.noData', {
         entity: format('ui.tag.label'),
         base: format('ui.resource.label')

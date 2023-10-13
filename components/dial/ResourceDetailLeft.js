@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
@@ -9,6 +9,7 @@ import Bookmark from '../shared/common/Bookmark'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { prependUrlWithProtocol } from '../utils/utilities'
 import DeleteResource from './DeleteResource'
+import { topicColors } from './utilities/common'
 
 const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
   const { formatMessage } = useIntl()
@@ -36,8 +37,10 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
       <div className='flex flex-col gap-y-3'>
         <div className='flex items-center gap-6'>
           {resource.resourceTopic &&
-            <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
-              {format(resource.resourceTopic)}
+            <div className={`${topicColors(resource.resourceTopic)} rounded-md shadow-lg`}>
+              <div className='text-sm px-5 py-2'>
+                {format(resource.resourceTopic)}
+              </div>
             </div>
           }
           {resource.resourceType &&
@@ -45,8 +48,13 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
               {format(resource.resourceType)}
             </div>
           }
+          <div className='ml-auto'>
+            {resource.publishedDate &&
+              <FormattedDate value={resource.publishedDate} />
+            }
+          </div>
           {canEdit && (
-            <div className='flex gap-x-3 ml-auto'>
+            <div className='flex gap-x-3'>
               <EditButton type='link' href={editPath} />
               {isAdminUser && <DeleteResource resource={resource} />}
             </div>

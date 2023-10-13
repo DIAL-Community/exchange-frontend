@@ -1,4 +1,3 @@
-import Avatar from 'boring-avatars'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
@@ -10,8 +9,6 @@ const ResourceDetailHeader = ({ resource }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const avatarColors = ['#2E3192', '#FF8700', '#96A2EF', '#FFCFBB', '#485CD5' ]
-
   const { isAdminUser, isEditorUser } = useUser()
   const canEdit = isAdminUser || isEditorUser
 
@@ -22,11 +19,10 @@ const ResourceDetailHeader = ({ resource }) => {
       </div>
       {resource?.authors.map((author, index) =>
         <div key={index} className='flex flex-row items-center gap-3'>
-          <Avatar
-            size={40}
-            name={author?.name ?? format('ui.resource.anonymousAuthor')}
-            variant='beam'
-            colors={avatarColors}
+          <img
+            src='/ui/v1/author-header.svg'
+            className='badge-avatar w-10 h-10'
+            alt='Author picture'
           />
           <div className='text-dial-stratos'>
             {author?.name}

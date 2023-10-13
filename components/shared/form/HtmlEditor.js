@@ -46,12 +46,14 @@ export const HtmlEditor = ({
               help charmap quickbars emoticons autoresize
             `,
             toolbar1: `
-              undo redo | fontfamily fontsize | bold italic underline strikethrough forecolor backcolor |
+              undo redo | fontfamily fontsize lineheight | bold italic underline strikethrough forecolor backcolor |
               link insertfile image media codesample`,
             toolbar2: `
               alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat |
               ltr rtl | charmap emoticons
             `,
+            line_height_formats: '1 1.25 1.5 1.75 2 2.25 2.5',
+            font_size_formats: '12pt 14pt 16pt 18pt 20pt 24pt 30pt 36pt 48pt',
             contextmenu: false,
             toolbar_sticky: true,
             content_style: `

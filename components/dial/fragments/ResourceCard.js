@@ -1,18 +1,17 @@
 import Link from 'next/link'
-import Avatar from 'boring-avatars'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { FaXmark } from 'react-icons/fa6'
 import { isValidFn } from '../../utils/utilities'
 import { DisplayType } from '../../utils/constants'
+import { topicColors } from '../utilities/common'
 
 const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [resourceAuthor] = resource?.authors ?? []
-  const avatarColors = ['#2E3192', '#FF8700', '#96A2EF', '#FFCFBB', '#485CD5' ]
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
@@ -51,7 +50,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
 
   const displaySpotlightCard = () =>
     <div className='group spotlight-card'>
-      <div className='flex flex-row gap-x-10'>
+      <div className='flex flex-col lg:flex-row gap-x-10'>
         <div className='overflow-hidden basis-2/5 shrink-0'>
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
@@ -59,12 +58,14 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
             className='aspect-[3/2]	group-hover:scale-110 transition-all duration-500'
           />
         </div>
-        <div className='group-hover:bg-dial-ice px-8 py-6'>
+        <div className='group-hover:bg-dial-ice lg:px-8 py-6'>
           <div className='flex flex-col gap-y-4'>
             <div className='flex items-center gap-6'>
               {resource.resourceTopic &&
-                <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
-                  {format(resource.resourceTopic)}
+                <div className={`${topicColors(resource.resourceTopic)} rounded-md shadow-lg`}>
+                  <div className='text-sm px-5 py-2'>
+                    {format(resource.resourceTopic)}
+                  </div>
                 </div>
               }
               {resource.resourceType &&
@@ -80,11 +81,10 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
               {resource?.parsedDescription && parse(resource?.parsedDescription)}
             </div>
             <div className='flex flex-row items-center gap-3'>
-              <Avatar
-                size={40}
-                name={resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
-                variant='beam'
-                colors={avatarColors}
+              <img
+                src='/ui/v1/author-header.svg'
+                className='badge-avatar w-10 h-10'
+                alt='Author picture'
               />
               <div className='text-dial-sapphire'>
                 {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
@@ -107,8 +107,10 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
         </div>
         {resource.resourceTopic &&
           <div className='flex'>
-            <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
-              {format(resource.resourceTopic)}
+            <div className={`${topicColors(resource.resourceTopic)} rounded-md shadow-lg`}>
+              <div className='text-sm px-5 py-2'>
+                {format(resource.resourceTopic)}
+              </div>
             </div>
           </div>
         }
@@ -124,11 +126,10 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           </div>
         }
         <div className='flex flex-row items-center gap-2'>
-          <Avatar
-            size={32}
-            name={resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
-            variant='beam'
-            colors={avatarColors}
+          <img
+            src='/ui/v1/author-header.svg'
+            className='badge-avatar w-10 h-10'
+            alt='Author picture'
           />
           <div className='text-dial-stratos'>
             {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
