@@ -62,12 +62,16 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
         <div className='group-hover:bg-dial-ice px-8 py-6'>
           <div className='flex flex-col gap-y-4'>
             <div className='flex items-center gap-6'>
-              <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
-                {format(resource.resourceTopic ?? 'ui.resource.topic.unspecified')}
-              </div>
-              <div className='text-sm'>
-                {format(resource.resourceType ?? 'ui.resource.type.unspecified')}
-              </div>
+              {resource.resourceTopic &&
+                <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
+                  {format(resource.resourceTopic)}
+                </div>
+              }
+              {resource.resourceType &&
+                <div className='text-sm'>
+                  {format(resource.resourceType)}
+                </div>
+              }
             </div>
             <div className='text-3xl font-semibold text-dial-iris-blue'>
               {resource.name}
@@ -101,6 +105,13 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
             className='aspect-[3/2]	group-hover:scale-110 transition-all duration-500'
           />
         </div>
+        {resource.resourceTopic &&
+          <div className='flex'>
+            <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
+              {format(resource.resourceTopic)}
+            </div>
+          </div>
+        }
         <div className='text-xl font-semibold text-dial-iris-blue'>
           {resource.name}
         </div>
@@ -112,14 +123,14 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
             {format(resource.resourceType)}
           </div>
         }
-        <div className='flex flex-row items-center gap-3'>
+        <div className='flex flex-row items-center gap-2'>
           <Avatar
-            size={40}
+            size={32}
             name={resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
             variant='beam'
             colors={avatarColors}
           />
-          <div className='text-dial-sapphire'>
+          <div className='text-dial-stratos'>
             {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
           </div>
         </div>

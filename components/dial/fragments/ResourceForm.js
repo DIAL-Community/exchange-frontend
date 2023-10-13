@@ -121,7 +121,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         spotlight,
         resourceLink,
         resourceType: resourceType?.value,
-        resourceTopic,
+        resourceTopic: resourceTopic?.value,
         authorName,
         authorEmail
       }

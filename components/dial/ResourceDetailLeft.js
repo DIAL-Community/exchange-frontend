@@ -35,12 +35,16 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='flex items-center gap-6'>
-          <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
-            {format(resource.resourceTopic ?? 'ui.resource.topic.unspecified')}
-          </div>
-          <div className='text-sm'>
-            {format(resource.resourceType ?? 'ui.resource.type.unspecified')}
-          </div>
+          {resource.resourceTopic &&
+            <div className='bg-dial-acid text-sm px-5 py-2 rounded-md shadow-lg'>
+              {format(resource.resourceTopic)}
+            </div>
+          }
+          {resource.resourceType &&
+            <div className='text-sm'>
+              {format(resource.resourceType)}
+            </div>
+          }
           {canEdit && (
             <div className='flex gap-x-3 ml-auto'>
               <EditButton type='link' href={editPath} />

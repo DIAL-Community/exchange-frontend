@@ -96,7 +96,7 @@ const ResourceDetailCountries = ({ resource, canEdit, headerRef }) => {
   }
 
   const displayModeBody = countries.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
+    ? <div className='block'>
       {countries?.map(country => country.name).join(', ')}
     </div>
     : <div className='text-sm text-dial-stratos'>
