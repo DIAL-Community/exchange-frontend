@@ -189,7 +189,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   {format('ui.resource.publishedDate')}
                 </label>
                 <Input
-                  {...register('publishedDate', { required: format('validation.required'), valueAsDate: true })}
+                  {...register('publishedDate', { required: format('validation.required') })}
                   type='date'
                   placeholder={format('ui.resource.publishedDate')}
                   isInvalid={errors.publishedDate}
