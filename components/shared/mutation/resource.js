@@ -26,6 +26,7 @@ export const CREATE_RESOURCE = gql`
     $resourceTopic: String
     $showInExchange: Boolean
     $showInWizard: Boolean
+    $publishedDate: ISO8601Date!
     $organizationSlug: String
     $authorName: String!
     $authorEmail: String
@@ -42,6 +43,7 @@ export const CREATE_RESOURCE = gql`
       resourceTopic: $resourceTopic
       showInExchange: $showInExchange
       showInWizard: $showInWizard
+      publishedDate: $publishedDate
       organizationSlug: $organizationSlug
       authorName: $authorName
       authorEmail: $authorEmail
@@ -51,6 +53,7 @@ export const CREATE_RESOURCE = gql`
         name
         slug
         description
+        publishedDate
 
         featured
         spotlight

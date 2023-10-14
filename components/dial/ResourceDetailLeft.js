@@ -50,7 +50,12 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
           }
           <div className='ml-auto'>
             {resource.publishedDate &&
-              <FormattedDate value={resource.publishedDate} />
+              <FormattedDate
+                value={resource.publishedDate}
+                year="numeric"
+                month="long"
+                day="2-digit"
+              />
             }
           </div>
           {canEdit && (

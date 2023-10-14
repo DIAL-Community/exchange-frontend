@@ -159,6 +159,7 @@ export const RESOURCE_DETAIL_QUERY = gql`
       slug
       tags
       imageFile
+      publishedDate
       
       description
       parsedDescription
