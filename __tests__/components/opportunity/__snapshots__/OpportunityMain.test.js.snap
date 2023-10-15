@@ -393,6 +393,43 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           Opportunity description.
                         </div>
                         <div
+                          class="flex flex-row gap-x-3"
+                        >
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              RFP Status
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              OPEN
+                            </div>
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              Closing Date
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              10/3/2023
+                            </div>
+                          </div>
+                        </div>
+                        <div
                           class="flex gap-x-2 text-dial-stratos"
                         >
                           <div
@@ -466,6 +503,43 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           class="line-clamp-4 text-dial-stratos"
                         >
                           Opportunity description.
+                        </div>
+                        <div
+                          class="flex flex-row gap-x-3"
+                        >
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              RFP Status
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              OPEN
+                            </div>
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              Closing Date
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              10/5/2023
+                            </div>
+                          </div>
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -543,6 +617,43 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           Another opportunity description.
                         </div>
                         <div
+                          class="flex flex-row gap-x-3"
+                        >
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              RFP Status
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              OPEN
+                            </div>
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              Closing Date
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              10/6/2023
+                            </div>
+                          </div>
+                        </div>
+                        <div
                           class="flex gap-x-2 text-dial-stratos"
                         >
                           <div
@@ -618,6 +729,43 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           Some opportunity description.
                         </div>
                         <div
+                          class="flex flex-row gap-x-3"
+                        >
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              RFP Status
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              OPEN
+                            </div>
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              Closing Date
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              10/23/2023
+                            </div>
+                          </div>
+                        </div>
+                        <div
                           class="flex gap-x-2 text-dial-stratos"
                         >
                           <div
@@ -691,6 +839,43 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           class="line-clamp-4 text-dial-stratos"
                         >
                           Based opportunity description.
+                        </div>
+                        <div
+                          class="flex flex-row gap-x-3"
+                        >
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              RFP Status
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              OPEN
+                            </div>
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="flex flex-row gap-x-2"
+                          >
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              Closing Date
+                              :
+                            </div>
+                            <div
+                              class="text-sm text-dial-stratos"
+                            >
+                              10/13/2023
+                            </div>
+                          </div>
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"

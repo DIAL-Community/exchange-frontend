@@ -8,6 +8,8 @@ export const paginatedOpportunities = {
         'imageFile': '/assets/opportunities/opportunity_placeholder.png',
         'description': 'Opportunity description.',
         'tags': [],
+        'closingDate': '2023-10-04',
+        'opportunityStatus': 'OPEN',
         'sectors': [
           {
             'id': '246'
@@ -27,6 +29,8 @@ export const paginatedOpportunities = {
         'imageFile': '/assets/opportunities/opportunity_placeholder.png',
         'description': 'Opportunity description.',
         'tags': [],
+        'closingDate': '2023-10-06',
+        'opportunityStatus': 'OPEN',
         'sectors': [
           {
             'id': '246'
@@ -58,6 +62,8 @@ export const paginatedOpportunities = {
         'imageFile': '/assets/opportunities/opportunity_placeholder.png',
         'description': 'Another opportunity description.',
         'tags': [],
+        'closingDate': '2023-10-07',
+        'opportunityStatus': 'OPEN',
         'sectors': [
           {
             'id': '246'
@@ -86,6 +92,8 @@ export const paginatedOpportunities = {
         'imageFile': '/assets/opportunities/opportunity_placeholder.png',
         'description': 'Some opportunity description.',
         'tags': [],
+        'closingDate': '2023-10-24',
+        'opportunityStatus': 'OPEN',
         'sectors': [
           {
             'id': '178'
@@ -138,6 +146,8 @@ export const paginatedOpportunities = {
         'imageFile': '/assets/opportunities/opportunity_placeholder.png',
         'description': 'Based opportunity description.',
         'tags': [],
+        'closingDate': '2023-10-14',
+        'opportunityStatus': 'OPEN',
         'sectors': [
           {
             'id': '246'
