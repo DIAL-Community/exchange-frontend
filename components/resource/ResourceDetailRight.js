@@ -64,7 +64,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
               rel='noreferrer'
               className='flex border-b border-dial-iris-blue '>
               <div className='line-clamp-1 break-all'>
-                {resource.resourceLink}
+                {resource.linkDesc ? resource.linkDesc : resource.resourceLink}
               </div>
             </a>
             &nbsp;⧉

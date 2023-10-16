@@ -28,6 +28,7 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       parsedDescription
 
       resourceLink
+      linkDesc
       resourceType
       resourceTopic
 
@@ -80,6 +81,7 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       parsedDescription
 
       resourceLink
+      linkDesc
       resourceType
       resourceTopic
 
@@ -104,6 +106,7 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       parsedDescription
 
       resourceLink
+      linkDesc
       resourceType
       resourceTopic
 
@@ -129,6 +132,7 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       parsedDescription
 
       resourceLink
+      linkDesc
       resourceType
       resourceTopic
 
@@ -165,6 +169,7 @@ export const RESOURCE_DETAIL_QUERY = gql`
       parsedDescription
 
       resourceLink
+      linkDesc
       resourceType
       resourceTopic
       

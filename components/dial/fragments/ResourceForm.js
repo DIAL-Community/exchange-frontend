@@ -84,6 +84,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       featured: resource?.featured,
       spotlight: resource?.spotlight,
       resourceLink: resource?.resourceLink,
+      linkDesc: resource?.linkDesc,
       resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType),
       resourceTopic: resource?.resourceTopic,
       authorName: resourceAuthor?.name,
@@ -106,6 +107,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         featured,
         spotlight,
         resourceLink,
+        linkDesc,
         resourceType,
         resourceTopic,
         authorName,
@@ -123,6 +125,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         featured,
         spotlight,
         resourceLink,
+        linkDesc,
         resourceType: resourceType?.value,
         resourceTopic: resourceTopic?.value,
         authorName,
@@ -258,6 +261,18 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   rules={{ required: format('validation.required') }}
                 />
                 {errors.resourceLink && <ValidationError value={errors.resourceLink?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' htmlFor='linkDesc'>
+                  {format('ui.resource.linkDesc')}
+                </label>
+                <Input
+                  {...register('linkDesc', { required: format('validation.required') })}
+                  id='linkDesc'
+                  placeholder={format('ui.resource.linkDesc')}
+                  isInvalid={errors.linkDesc}
+                />
+                {errors.linkDesc && <ValidationError value={errors.linkDesc?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field'>
