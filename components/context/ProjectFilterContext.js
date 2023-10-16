@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const ProjectFilterContext = createContext()
 const ProjectFilterDispatchContext = createContext()
@@ -9,30 +9,38 @@ const ProjectFilterProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const [sectors, setSectors] = useState([])
   const [organizations, setOrganizations] = useState([])
-  const [sdgs, setSDGs] = useState([])
+  const [sdgs, setSdgs] = useState([])
   const [tags, setTags] = useState([])
 
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
 
-  const setSdgs = setSDGs
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const projectFilterValues = {
-    origins, countries, products, sectors, organizations, sdgs, tags, search, sortColumn, sortDirection
+    origins,
+    countries,
+    products,
+    sectors,
+    organizations,
+    sdgs,
+    tags,
+    search,
+    pageOffset,
+    pageNumber
   }
+
   const projectFilterDispatchValues = {
     setOrigins,
     setCountries,
     setProducts,
     setSectors,
     setOrganizations,
-    setSDGs,
     setSdgs,
     setTags,
     setSearch,
-    setSortColumn,
-    setSortDirection
+    setPageNumber,
+    setPageOffset
   }
 
   return (

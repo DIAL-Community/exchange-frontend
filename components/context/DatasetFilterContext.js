@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const DatasetFilterContext = createContext()
 const DatasetFilterDispatchContext = createContext()
@@ -8,15 +8,14 @@ const DatasetFilterProvider = ({ children }) => {
   const [countries, setCountries] = useState([])
   const [sectors, setSectors] = useState([])
   const [organizations, setOrganizations] = useState([])
-  const [sdgs, setSDGs] = useState([])
+  const [sdgs, setSdgs] = useState([])
   const [tags, setTags] = useState([])
   const [datasetTypes, setDatasetTypes] = useState([])
 
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
 
-  const setSdgs = setSDGs
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const datasetFilterValues = {
     origins,
@@ -27,21 +26,20 @@ const DatasetFilterProvider = ({ children }) => {
     tags,
     datasetTypes,
     search,
-    sortColumn,
-    sortDirection
+    pageOffset,
+    pageNumber
   }
   const datasetFilterDispatchValues = {
     setOrigins,
     setCountries,
     setSectors,
     setOrganizations,
-    setSDGs,
     setSdgs,
     setTags,
     setDatasetTypes,
     setSearch,
-    setSortColumn,
-    setSortDirection
+    setPageNumber,
+    setPageOffset
   }
 
   return (

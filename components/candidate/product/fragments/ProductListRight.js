@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { ProductFilterContext } from '../../../context/ProductFilterContext'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../../context/ProductFilterContext'
 import { CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/candidateProduct'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import Pagination from '../../../shared/Pagination'
@@ -14,8 +14,9 @@ const ProductListRight = () => {
 
   const { search } = useContext(ProductFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(ProductFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(ProductFilterDispatchContext)
+
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -30,11 +31,6 @@ const ProductListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
 
   const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY, {
     variables: { search }

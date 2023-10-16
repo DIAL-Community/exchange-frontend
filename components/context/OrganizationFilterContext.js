@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const OrganizationFilterContext = createContext()
 const OrganizationFilterDispatchContext = createContext()
@@ -16,8 +16,12 @@ const OrganizationFilterProvider = ({ children }) => {
   const [buildingBlocks, setBuildingBlocks] = useState([])
 
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
+
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
+  const [storefrontPageNumber, setStorefrontPageNumber] = useState(0)
+  const [storefrontPageOffset, setStorefrontPageOffset] = useState(0)
 
   const organizationFilterValues = {
     aggregator,
@@ -30,8 +34,10 @@ const OrganizationFilterProvider = ({ children }) => {
     certifications,
     buildingBlocks,
     search,
-    sortColumn,
-    sortDirection
+    pageOffset,
+    pageNumber,
+    storefrontPageOffset,
+    storefrontPageNumber
   }
 
   const organizationFilterDispatchValues = {
@@ -45,8 +51,10 @@ const OrganizationFilterProvider = ({ children }) => {
     setCertifications,
     setBuildingBlocks,
     setSearch,
-    setSortColumn,
-    setSortDirection
+    setPageNumber,
+    setPageOffset,
+    setStorefrontPageNumber,
+    setStorefrontPageOffset
   }
 
   return (
