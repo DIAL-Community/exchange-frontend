@@ -1711,11 +1711,11 @@ export const en = {
       </li>
       <li>
         If you are seeking services from a vendor to help you implement a digital project, post
-        the opportunity here and amplify it to the Exchange’s community of service providers.  
+        the RFP here and amplify it to the Exchange’s community of service providers.  
       </li>
       <li>
         We also offer data sharing possibilities. Join others in automating a sync to the Exchange.
-        Every time you post an opportunity to your own portal, the Exchange can aggregate the information
+        Every time you post an RFP to your own portal, the Exchange can aggregate the information
         directly. For more information, email us at <email>issues@exchange.dial.global</email>.
       </li>
     </ul>
@@ -1730,12 +1730,12 @@ export const en = {
   'ui.opportunity.contact': 'Contact Information',
   'ui.opportunity.contactName': 'Full Name',
   'ui.opportunity.contactEmail': 'Email Address',
-  'ui.opportunity.opportunityType': 'Opportunity Type',
-  'ui.opportunity.opportunityStatus': 'Opportunity Status',
+  'ui.opportunity.opportunityType': 'RFP Type',
+  'ui.opportunity.opportunityStatus': 'RFP Status',
   'ui.opportunity.openingDate': 'Opening Date',
   'ui.opportunity.closingDate': 'Closing Date',
   'ui.opportunity.description': 'Description',
-  'filter.opportunity.showClosed': 'Show closed opportunities',
+  'filter.opportunity.showClosed': 'Show closed RFPs',
 
   'ui.opportunity.source': 'Source',
 
@@ -1749,8 +1749,8 @@ export const en = {
   'ui.opportunity.status.closed': 'Closed',
   'ui.opportunity.status.upcoming': 'Upcoming',
 
-  'ui.opportunity.submit.success': 'Opportunity data saved.',
-  'ui.opportunity.submit.failed': 'Fail to save opportunity data saved.',
+  'ui.opportunity.submit.success': 'RFP data saved.',
+  'ui.opportunity.submit.failed': 'Fail to save RFP data saved.',
 
   'ui.opportunity.no-building-block': 'No building block assigned.',
   'ui.opportunity.noCountry': 'No country assigned.',
@@ -2058,7 +2058,7 @@ export const en = {
       <li>
         Are you seeking services from a vendor to help you implement a digital project? Browse
         storefronts to see which vendors have expertise and invite them to apply/bid to your
-        opportunity.
+        RFP.
       </li>
     </ul>  
   `,
@@ -2128,7 +2128,7 @@ export const en = {
     Say goodbye to endless hours spent sifting through individual RFPs. Our RFP Opportunities
     Radar aggregates requests from organizations, allowing you to explore a wide range of
     opportunities in one convenient location. Gain unprecedented visibility into the digital
-    landscape and seize opportunities that align with your expertise. Have an opportunity
+    landscape and seize opportunities that align with your expertise. Have an RFP
     you’d like to circulate? Submit it here.
   `,
   'ui.opportunity.subTagLine': 'Learn more about RFP radar.',

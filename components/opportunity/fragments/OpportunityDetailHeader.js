@@ -69,7 +69,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
               {format('ui.opportunity.closingDate')}
             </div>
             <div className='flex flex-col gap-y-2 text-dial-stratos'>
-              {!opportunity.closingDate && format('general.na')}
+              {!opportunity.closingDate && format('general.unknown')}
               {opportunity.closingDate && <FormattedDate value={opportunity.closingDate} />}
             </div>
           </div>
