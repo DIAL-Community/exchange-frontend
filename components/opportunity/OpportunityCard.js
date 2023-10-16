@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedDate, useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { FaXmark } from 'react-icons/fa6'
@@ -37,6 +37,26 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissHandler }) =>
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
             {opportunity?.description && parse(opportunity?.description)}
+          </div>
+          <div className='flex flex-row gap-x-3'>
+            <div className='flex flex-row gap-x-2'>
+              <div className='text-sm text-dial-stratos'>
+                {format('ui.opportunity.opportunityStatus')}:
+              </div>
+              <div className='text-sm text-dial-stratos'>
+                {opportunity.opportunityStatus ?? format('general.unknown')}
+              </div>
+            </div>
+            <div className='border-r border-dial-slate-400' />
+            <div className='flex flex-row gap-x-2'>
+              <div className='text-sm text-dial-stratos'>
+                {format('ui.opportunity.closingDate')}:
+              </div>
+              <div className='text-sm text-dial-stratos'>
+                {!opportunity.closingDate && format('general.unknown')}
+                {opportunity.closingDate && <FormattedDate value={opportunity.closingDate} />}
+              </div>
+            </div>
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
