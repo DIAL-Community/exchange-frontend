@@ -1,34 +1,39 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const BuildingBlockFilterContext = createContext()
 const BuildingBlockFilterDispatchContext = createContext()
 
 const BuildingBlockFilterProvider = ({ children }) => {
   const [showMature, setShowMature] = useState(false)
-  const [sdgs, setSDGs] = useState([])
+  const [sdgs, setSdgs] = useState([])
   const [useCases, setUseCases] = useState([])
   const [workflows, setWorkflows] = useState([])
   const [categoryTypes, setCategoryTypes] = useState([])
 
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
 
-  const setSdgs = setSDGs
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const buildingBlockFilterValues = {
-    showMature, sdgs, useCases, workflows, categoryTypes, search, sortColumn, sortDirection
+    showMature,
+    sdgs,
+    useCases,
+    workflows,
+    categoryTypes,
+    search,
+    pageOffset,
+    pageNumber
   }
   const buildingBlockFilterDispatchValues = {
     setShowMature,
-    setSDGs,
     setSdgs,
     setUseCases,
     setWorkflows,
     setCategoryTypes,
     setSearch,
-    setSortColumn,
-    setSortDirection
+    setPageNumber,
+    setPageOffset
   }
 
   return (

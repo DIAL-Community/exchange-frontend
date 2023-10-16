@@ -55,16 +55,16 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='text-xl font-semibold text-dial-plum pb-3'>
-            {format('ui.resource.link')}
+            {format('ui.resource.resourceLink')}
           </div>
           <div className='flex text-dial-stratos'>
             <a
-              href={prependUrlWithProtocol(resource.link)}
+              href={prependUrlWithProtocol(resource.resourceLink)}
               target='_blank'
               rel='noreferrer'
               className='flex border-b border-dial-iris-blue '>
               <div className='line-clamp-1 break-all'>
-                {resource.link}
+                {resource.resourceLink}
               </div>
             </a>
             &nbsp;⧉
@@ -98,7 +98,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
           }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={resource} objectType={ObjectType.RESOURCE} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

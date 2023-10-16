@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { OrganizationFilterContext } from '../../../context/OrganizationFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../../context/OrganizationFilterContext'
 import { CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/candidateOrganization'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import Pagination from '../../../shared/Pagination'
@@ -14,8 +14,9 @@ const OrganizationListRight = () => {
 
   const { search } = useContext(OrganizationFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(OrganizationFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(OrganizationFilterDispatchContext)
+
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -30,11 +31,6 @@ const OrganizationListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
 
   const { loading, error, data } = useQuery(CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

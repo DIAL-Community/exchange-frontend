@@ -86,28 +86,6 @@ const HeroCarousel = () => {
           </DigitalExchangeHero>
         </SwiperSlide>
         <SwiperSlide>
-          <GovStackHero>
-            <div className='flex flex-col gap-y-6 text-white px-8 xl:px-56 py-[6rem] xl:py-[8rem]'>
-              <div className='text-3xl'>
-                {format('ui.hero.govExchange.title')}
-              </div>
-              <div className='text-base'>
-                {format('ui.hero.govExchange.tagLine')}
-              </div>
-              <div className='flex text-sm text-dial-stratos'>
-                <a
-                  href='//www.govstack.global/'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='rounded px-5 py-2.5 bg-dial-sunshine'
-                >
-                  {format('ui.hero.govExchange.learnMore')}
-                </a>
-              </div>
-            </div>
-          </GovStackHero>
-        </SwiperSlide>
-        <SwiperSlide>
           <MarketplaceHero>
             <div className='flex flex-col gap-y-6 text-dial-stratos px-8 xl:px-56 py-[6rem] xl:py-[8rem]'>
               <div className='text-3xl'>

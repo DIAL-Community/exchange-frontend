@@ -65,13 +65,17 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }
   })
 
-  const { handleSubmit, register, control, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, watch, setValue, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
       name: resource?.name,
-      link: resource?.link,
+      resourceLink: resource?.resourceLink,
+      resourceType: resource?.resourceType,
+      resourceTopic: resource?.resourceTopic,
+      featured: resource?.featured,
+      spotlight: resource?.spotlight,
       description: resource?.description,
       showInExchange: resource?.showInExchange,
       showInWizard: resource?.showInWizard
@@ -86,20 +90,28 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       const { userEmail, userToken } = user
       const {
         name,
-        link,
         description,
+        resourceLink,
+        resourceType,
+        resourceTopic,
         showInExchange,
         showInWizard,
-        imageFile
+        imageFile,
+        featured,
+        spotlight
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
-        name,
         slug,
-        link,
+        name,
         description,
+        resourceLink,
+        resourceType,
+        resourceTopic,
         showInExchange,
-        showInWizard
+        showInWizard,
+        featured,
+        spotlight
       }
 
       if (imageFile) {
@@ -125,6 +137,12 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const cancelForm = () => {
     setReverting(true)
     router.push(`/${locale}/resources/${slug}`)
+  }
+
+  const onSpotlightChecked = (event) => {
+    if (event.target.checked) {
+      setValue('featured', event.target.checked)
+    }
   }
 
   return loadingUserSession
@@ -158,24 +176,24 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 <FileUploader {...register('imageFile')} />
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='link'>
-                  {format('ui.resource.link')}
+                <label className='required-field' htmlFor='resourceLink'>
+                  {format('ui.resource.resourceLink')}
                 </label>
                 <Controller
-                  name='link'
+                  name='resourceLink'
                   control={control}
                   render={({ field: { value, onChange } }) => (
                     <UrlInput
                       value={value}
                       onChange={onChange}
-                      id='link'
+                      id='resourceLink'
                       isInvalid={errors.website}
-                      placeholder={format('ui.resource.link')}
+                      placeholder={format('ui.resource.resourceLink')}
                     />
                   )}
                   rules={{ required: format('validation.required') }}
                 />
-                {errors.link && <ValidationError value={errors.link?.message} />}
+                {errors.resourceLink && <ValidationError value={errors.resourceLink?.message} />}
               </div>
               {user?.isAdminUser &&
                 <label className='flex gap-x-2 mb-2 items-center self-start'>
@@ -208,6 +226,20 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   rules={{ required: format('validation.required') }}
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='flex flex-wrap'>
+                {user?.isAdminUser &&
+                  <label className='flex gap-x-2 mb-2 items-center self-start basis-1/2 shrink-0'>
+                    <Checkbox {...register('spotlight', { onChange: onSpotlightChecked })} />
+                    {format('ui.resource.spotlight')}
+                  </label>
+                }
+                {user?.isAdminUser &&
+                  <label className='flex gap-x-2 mb-2 items-center self-start basis-1/2 shrink-0'>
+                    <Checkbox {...register('featured')} disabled={watch('spotlight')} />
+                    {format('ui.resource.featured')}
+                  </label>
+                }
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>
