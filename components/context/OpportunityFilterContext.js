@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const OpportunityFilterContext = createContext()
 const OpportunityFilterDispatchContext = createContext()
@@ -13,8 +13,9 @@ const OpportunityFilterProvider = ({ children }) => {
   const [showClosed, setShowClosed] = useState(false)
 
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
+
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const opportunityFilterValues = {
     buildingBlocks,
@@ -25,9 +26,10 @@ const OpportunityFilterProvider = ({ children }) => {
     useCases,
     showClosed,
     search,
-    sortColumn,
-    sortDirection
+    pageOffset,
+    pageNumber
   }
+
   const opportunityFilterDispatchValues = {
     setBuildingBlocks,
     setCountries,
@@ -37,8 +39,8 @@ const OpportunityFilterProvider = ({ children }) => {
     setUseCases,
     setShowClosed,
     setSearch,
-    setSortColumn,
-    setSortDirection
+    setPageNumber,
+    setPageOffset
   }
 
   return (

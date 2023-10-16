@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const OrganizationFilterContext = createContext()
 const OrganizationFilterDispatchContext = createContext()
@@ -6,11 +6,19 @@ const OrganizationFilterDispatchContext = createContext()
 const OrganizationFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const candidateOrganizationFilterValues = {
-    search
+    search,
+    pageOffset,
+    pageNumber
   }
+
   const candidateOrganizationFilterDispatchValues = {
-    setSearch
+    setSearch,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

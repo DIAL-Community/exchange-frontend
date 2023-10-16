@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const UseCaseFilterContext = createContext()
 const UseCaseFilterDispatchContext = createContext()
@@ -7,26 +7,31 @@ const UseCaseFilterProvider = ({ children }) => {
   const [showBeta, setShowBeta] = useState(false)
   const [govStackOnly, setShowGovStack] = useState(false)
   const [sectors, setSectors] = useState([])
-  const [sdgs, setSDGs] = useState([])
+  const [sdgs, setSdgs] = useState([])
 
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
 
-  const setSdgs = setSDGs
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const useCaseFilterValues = {
-    showBeta, govStackOnly, sectors, sdgs, search, sortColumn, sortDirection
+    showBeta,
+    govStackOnly,
+    sectors,
+    sdgs,
+    search,
+    pageOffset,
+    pageNumber
   }
+
   const useCaseFilterDispatchValues = {
     setShowBeta,
     setShowGovStack,
     setSectors,
-    setSDGs,
     setSdgs,
     setSearch,
-    setSortColumn,
-    setSortDirection
+    setPageNumber,
+    setPageOffset
   }
 
   return (

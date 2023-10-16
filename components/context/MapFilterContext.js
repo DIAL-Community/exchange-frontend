@@ -17,7 +17,15 @@ const MapFilterContextProvider = ({ children }) => {
   const [search, setSearch] = useState('')
 
   const mapFilterValues = {
-    aggregators, operators, services, orgSectors, years, sectors, products, tags, search
+    aggregators,
+    operators,
+    services,
+    orgSectors,
+    years,
+    sectors,
+    products,
+    tags,
+    search
   }
 
   const mapFilterDispatchValues = {

@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { WorkflowFilterContext } from '../../context/WorkflowFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../context/WorkflowFilterContext'
 import { WORKFLOW_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/workflow'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -12,11 +12,10 @@ const WorkflowListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(WorkflowFilterContext)
-  const { sdgs, useCases } = useContext(WorkflowFilterContext)
+  const { search, sdgs, useCases } = useContext(WorkflowFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(WorkflowFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(WorkflowFilterDispatchContext)
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -31,11 +30,6 @@ const WorkflowListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
 
   const { loading, error, data } = useQuery(WORKFLOW_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

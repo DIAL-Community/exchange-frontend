@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../context/OrganizationFilterContext'
 import { STOREFRONT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -12,11 +12,19 @@ const StorefrontListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(OrganizationFilterContext)
-  const { sectors, countries, specialties, certifications, buildingBlocks } = useContext(OrganizationFilterContext)
+  const { search, sectors, countries } = useContext(OrganizationFilterContext)
+  const { specialties, certifications, buildingBlocks } = useContext(OrganizationFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const {
+    storefrontPageNumber: pageNumber,
+    storefrontPageOffset: pageOffset
+  } = useContext(OrganizationFilterContext)
+
+  const {
+    setStorefrontPageNumber: setPageNumber,
+    setStorefrontPageOffset: setPageOffset
+  } = useContext(OrganizationFilterDispatchContext)
+
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -31,11 +39,6 @@ const StorefrontListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search, sectors])
 
   const { loading, error, data } = useQuery(STOREFRONT_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

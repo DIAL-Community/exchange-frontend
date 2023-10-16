@@ -15,23 +15,31 @@ export const DELETE_RESOURCE = gql`
 
 export const CREATE_RESOURCE = gql`
   mutation CreateResource(
-    $name: String!
     $slug: String!
+    $name: String!
     $imageFile: Upload
     $description: String
-    $link: String
-    $showInExchange: Boolean
+    $resourceLink: String
+    $resourceType: String
+    $resourceTopic: String
     $showInWizard: Boolean
+    $showInExchange: Boolean
+    $featured: Boolean
+    $spotlight: Boolean
     $organizationSlug: String
   ) {
     createResource(
-      name: $name
       slug: $slug
-      link: $link
+      name: $name
       imageFile: $imageFile
       description: $description
-      showInExchange: $showInExchange
+      resourceLink: $resourceLink
+      resourceType: $resourceType
+      resourceTopic: $resourceTopic
       showInWizard: $showInWizard
+      showInExchange: $showInExchange
+      featured: $featured
+      spotlight: $spotlight
       organizationSlug: $organizationSlug
     ) {
       resource {
@@ -39,7 +47,9 @@ export const CREATE_RESOURCE = gql`
         name
         slug
         description
-        link
+        resourceLink
+        resourceType
+        resourceTopic
       }
       errors
     }
