@@ -31,20 +31,6 @@ const DigitalExchangeHero = ({ children }) => {
   )
 }
 
-const GovStackHero = ({ children }) => {
-  return (
-    <div
-      className='bg-cover bg-no-repeat'
-      style={{
-        backgroundImage: 'url("/ui/v1/hero-gs-bg.svg")',
-        height: '400px'
-      }}
-    >
-      {children}
-    </div>
-  )
-}
-
 const MarketplaceHero = ({ children }) => {
   return (
     <div
