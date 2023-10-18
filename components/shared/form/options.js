@@ -21,7 +21,8 @@ export const generateCategoryOptions = (format) => [
 export const generateResourceTypeOptions = (format) => [
   { label: format('ui.resource.type.caseStudy'), value: 'ui.resource.type.caseStudy' },
   { label: format('ui.resource.type.spotlight'), value: 'ui.resource.type.spotlight' },
-  { label: format('ui.resource.type.whitepaper'), value: 'ui.resource.type.whitepaper' }
+  { label: format('ui.resource.type.whitepaper'), value: 'ui.resource.type.whitepaper' },
+  { label: format('ui.resource.type.expertcomment'), value: 'ui.resource.type.expertcomment' }
 ]
 
 export const generateResourceTopicOptions = (format) => [

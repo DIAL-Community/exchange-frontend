@@ -1828,6 +1828,7 @@ export const en = {
   'ui.resource.type.caseStudy': 'Case Study',
   'ui.resource.type.spotlight': 'Spotlight',
   'ui.resource.type.whitepaper': 'White Paper',
+  'ui.resource.type.expertcomment': 'Expert Comment',
   'ui.resource.type.unspecified': 'Unspecified Type',
   
   'ui.resource.topic.label': 'Resource Topic',
