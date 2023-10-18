@@ -23,6 +23,7 @@ export const CREATE_RESOURCE = gql`
     $spotlight: Boolean
     $resourceLink: String
     $linkDesc: String
+    $source: String
     $resourceType: String
     $resourceTopic: String
     $showInExchange: Boolean
@@ -41,6 +42,7 @@ export const CREATE_RESOURCE = gql`
       spotlight: $spotlight
       resourceLink: $resourceLink
       linkDesc: $linkDesc
+      source: $source
       resourceType: $resourceType
       resourceTopic: $resourceTopic
       showInExchange: $showInExchange
@@ -62,6 +64,7 @@ export const CREATE_RESOURCE = gql`
 
         resourceLink
         linkDesc
+        source
         resourceType
         resourceTopic
 

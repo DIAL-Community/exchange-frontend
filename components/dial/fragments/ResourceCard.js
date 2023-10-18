@@ -5,7 +5,6 @@ import parse from 'html-react-parser'
 import { FaXmark } from 'react-icons/fa6'
 import { isValidFn } from '../../utils/utilities'
 import { DisplayType } from '../../utils/constants'
-import { topicColors } from '../utilities/common'
 
 const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const { formatMessage } = useIntl()
@@ -20,7 +19,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-            className='aspect-[3/2]'
+            className='aspect-[5/4]'
           />
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
@@ -65,13 +64,8 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
         <div className='group-hover:bg-dial-ice lg:px-8 py-6'>
           <div className='flex flex-col gap-y-4'>
             <div className='flex items-center gap-6'>
-              {resource.resourceTopic &&
-                <div className={`${topicColors(resource.resourceTopic)} rounded-md shadow-lg`}>
-                  <div className='text-sm px-5 py-2'>
-                    {format(resource.resourceTopic)}
-                  </div>
-                </div>
-              }
+              {resource.tags && resource.tags.map((tag, i) =>
+                (<div key={i} className='bg-dial-plum text-white rounded-md shadow-lg text-xs px-2 py-2'>{tag}</div>))}
               {resource.resourceType &&
                 <div className='text-sm'>
                   {format(resource.resourceType)}
@@ -94,10 +88,6 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
                 {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
               </div>
             </div>
-            <div className='flex items-center gap-6'>
-              {resource.tags && resource.tags.map((tag, i) =>
-                (<div key={i} className='bg-dial-plum text-white rounded-md shadow-lg text-xs px-2 py-2'>{tag}</div>))}
-            </div>
           </div>
         </div>
       </div>
@@ -110,21 +100,21 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-            className='aspect-[3/2]	group-hover:scale-110 transition-all duration-500'
+            className='aspect-[5/4]	group-hover:scale-110 transition-all duration-500'
           />
         </div>
-        {resource.resourceTopic &&
-          <div className='flex'>
-            <div className={`${topicColors(resource.resourceTopic)} rounded-md shadow-lg`}>
-              <div className='text-sm px-5 py-2'>
-                {format(resource.resourceTopic)}
-              </div>
-            </div>
+        { resource.tags.length > 0 &&
+          <div className='flex items-center gap-3'>
+            {resource.tags.map((tag, i) =>
+              (<div key={i} className='bg-dial-plum text-white rounded-md shadow-lg text-xs px-2 py-2'>{tag}</div>))}
           </div>
         }
         <div className='text-xl font-semibold text-dial-iris-blue'>
           {resource.name}
         </div>
+        { resource.source &&
+          <div className='text-xs'>This resource provided by {resource.source}</div>
+        }
         <div className='line-clamp-4 text-dial-sapphire'>
           {resource?.parsedDescription && parse(resource?.parsedDescription)}
         </div>
@@ -142,10 +132,6 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           <div className='text-dial-stratos'>
             {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
           </div>
-        </div>
-        <div className='flex items-center gap-3'>
-          {resource.tags && resource.tags.map((tag, i) =>
-            (<div key={i} className='bg-dial-plum text-white rounded-md shadow-lg text-xs px-2 py-2'>{tag}</div>))}
         </div>
       </div>
     </div>

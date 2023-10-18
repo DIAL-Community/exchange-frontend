@@ -8,18 +8,21 @@ const ResourceFilterProvider = ({ children }) => {
   const [resourceTypes, setResourceTypes] = useState([])
   const [resourceTopics, setResourceTopics] = useState([])
   const [resourceCountries, setResourceCountries] = useState([])
+  const [resourceTags, setResourceTags] = useState([])
 
   const resourceFilterValues = {
     search,
     resourceTypes,
     resourceTopics,
-    resourceCountries
+    resourceCountries,
+    resourceTags
   }
   const resourceFilterDispatchValues = {
     setSearch,
     setResourceTypes,
     setResourceTopics,
-    setResourceCountries
+    setResourceCountries,
+    setResourceTags
   }
 
   return (

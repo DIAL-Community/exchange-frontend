@@ -84,6 +84,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       spotlight: resource?.spotlight,
       resourceLink: resource?.resourceLink,
       linkDesc: resource?.linkDesc,
+      source: resource?.source,
       resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType),
       resourceTopic: resource?.resourceTopic,
       authorName: resourceAuthor?.name,
@@ -106,6 +107,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         spotlight,
         resourceLink,
         linkDesc,
+        source,
         resourceType,
         resourceTopic,
         authorName,
@@ -123,6 +125,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         spotlight,
         resourceLink,
         linkDesc,
+        source,
         resourceType: resourceType?.value,
         resourceTopic,
         authorName,
@@ -257,6 +260,18 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   isInvalid={errors.linkDesc}
                 />
                 {errors.linkDesc && <ValidationError value={errors.linkDesc?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label htmlFor='source'>
+                  {format('ui.resource.source')}
+                </label>
+                <Input
+                  {...register('source')}
+                  id='source'
+                  placeholder={format('ui.resource.source')}
+                  isInvalid={errors.source}
+                />
+                {errors.source && <ValidationError value={errors.source?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field'>

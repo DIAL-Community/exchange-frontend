@@ -11,7 +11,7 @@ const ResourceList = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, resourceTypes, resourceTopics } = useContext(ResourceFilterContext)
+  const { search, resourceTypes, resourceTopics, resourceTags } = useContext(ResourceFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -34,7 +34,8 @@ const ResourceList = () => {
     variables: {
       search,
       resourceTypes: resourceTypes.map(r => r.value),
-      resourceTopics: resourceTopics.map(r => r.value)
+      resourceTopics: resourceTopics.map(r => r.value),
+      tags: resourceTags.map(r => r.value)
     }
   })
 

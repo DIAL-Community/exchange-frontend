@@ -1813,6 +1813,7 @@ export const en = {
   'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
   'ui.resource.resourceLink': 'Resource Link',
   'ui.resource.linkDesc': 'Resource Link Description',
+  'ui.resource.source': 'Source',
   'ui.resource.resourceType': 'Resource Type',
   'ui.resource.resourceTopic': 'Resource Topic',
   'ui.resource.authorName': 'Author Name',

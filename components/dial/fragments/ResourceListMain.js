@@ -10,7 +10,7 @@ import ResourceListLeft from './ResourceListLeft'
 import ResourceSearchBar from './ResourceSearchBar'
 
 const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
-  const { resourceTypes, resourceTopics } = useContext(ResourceFilterContext)
+  const { resourceTypes, resourceTopics, resourceTags } = useContext(ResourceFilterContext)
   const { search } = useContext(FilterContext)
 
   const topRef = useRef(null)
@@ -20,6 +20,7 @@ const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
       search,
       resourceTypes: resourceTypes.map(r => r.value),
       resourceTopics: resourceTopics.map(r => r.value),
+      tags: resourceTags.map(r => r.label),
       limit: defaultPageSize,
       offset: pageOffset
     }
