@@ -30,6 +30,10 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           <div className='line-clamp-4 text-dial-stratos'>
             {resource?.parsedDescription && parse(resource?.parsedDescription)}
           </div>
+          <div className='flex items-center gap-3'>
+            {resource.tags && resource.tags.map((tag, i) =>
+              (<div key={i} className='bg-dial-plum text-white rounded-md shadow-lg text-xs px-2 py-2'>{tag}</div>))}
+          </div>
         </div>
       </div>
     </div>
@@ -90,6 +94,10 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
                 {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
               </div>
             </div>
+            <div className='flex items-center gap-6'>
+              {resource.tags && resource.tags.map((tag, i) =>
+                (<div key={i} className='bg-dial-plum text-white rounded-md shadow-lg text-xs px-2 py-2'>{tag}</div>))}
+            </div>
           </div>
         </div>
       </div>
@@ -134,6 +142,10 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
           <div className='text-dial-stratos'>
             {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
           </div>
+        </div>
+        <div className='flex items-center gap-3'>
+          {resource.tags && resource.tags.map((tag, i) =>
+            (<div key={i} className='bg-dial-plum text-white rounded-md shadow-lg text-xs px-2 py-2'>{tag}</div>))}
         </div>
       </div>
     </div>

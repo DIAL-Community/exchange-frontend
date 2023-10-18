@@ -1,14 +1,19 @@
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { useQuery } from '@apollo/client'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { ResourceFilterContext } from '../../context/ResourceFilterContext'
+import { FilterContext } from '../../context/FilterContext'
 import { CUSTOM_PAGINATED_RESOURCES_QUERY } from '../../shared/query/resource'
 import ResourceCard from './ResourceCard'
 import ResourceListLeft from './ResourceListLeft'
+import ResourceSearchBar from './ResourceSearchBar'
 
 const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
-  const { search, resourceTypes, resourceTopics } = useContext(ResourceFilterContext)
+  const { resourceTypes, resourceTopics } = useContext(ResourceFilterContext)
+  const { search } = useContext(FilterContext)
+
+  const topRef = useRef(null)
 
   const { loading, error, data } = useQuery(CUSTOM_PAGINATED_RESOURCES_QUERY, {
     variables: {
@@ -51,6 +56,7 @@ const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
             />
           )}
         </div>
+        <ResourceSearchBar ref={topRef} />
         <div className='flex flex-col lg:flex-row gap-x-8'>
           <div className='lg:basis-1/3'>
             <ResourceListLeft />

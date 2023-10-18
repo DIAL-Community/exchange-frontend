@@ -27,6 +27,14 @@ const ResourceHeader = ({ isOnAuthPage = false }) => {
             <>
               <li className='text-xl relative text-right intro-resource'>
                 <a
+                  href='//dial.global/about-the-digital-impact-alliance'
+                  className='text-white hover:text-dial-sunshine'
+                >
+                  About
+                </a>
+              </li>
+              <li className='text-xl relative text-right intro-resource'>
+                <a
                   href='//dial.global/our-work/'
                   className='text-white hover:text-dial-sunshine'
                 >
@@ -38,15 +46,15 @@ const ResourceHeader = ({ isOnAuthPage = false }) => {
                   href='/resources/dial'
                   className='text-white hover:text-dial-sunshine'
                 >
-                  Resources
+                  Resource Hub
                 </Link>
               </li>
               <li className='text-xl relative text-right intro-resource'>
                 <a
-                  href='//dial.global'
+                  href='//dial.global/about-the-digital-impact-alliance/contact-us'
                   className='text-white hover:text-dial-sunshine'
                 >
-                  Latest
+                  Contact
                 </a>
               </li>
             </>

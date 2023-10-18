@@ -90,6 +90,7 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       authors {
         name
       }
+      tags
     }
     featuredResources: paginatedResources(
       featuredLength: 3
@@ -115,6 +116,7 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       authors {
         name
       }
+      tags
     }
     paginatedResources(
       search: $search
@@ -141,6 +143,7 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       authors {
         name
       }
+      tags
     }
   }
 `
