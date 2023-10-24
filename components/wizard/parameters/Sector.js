@@ -14,11 +14,11 @@ export const SectorAutocomplete = ({ sectors, setSectors }) => {
     return <NotFound />
   }
 
-  const toggleSector = (slug) => {
-    if (sectors.indexOf(slug) >= 0) {
-      setSectors(sectors => sectors.filter(sector => sector !== slug))
+  const toggleSector = (id) => {
+    if (sectors.indexOf(id) >= 0) {
+      setSectors(sectors => sectors.filter(sector => sector !== id))
     } else {
-      setSectors(sectors => [...sectors, slug])
+      setSectors(sectors => [...sectors, id])
     }
   }
 
@@ -30,8 +30,8 @@ export const SectorAutocomplete = ({ sectors, setSectors }) => {
             <Checkbox
               id={`sector-${index}`}
               className='focus:ring-0'
-              onChange={() => toggleSector(sector.slug)}
-              value={sectors.indexOf(sector.slug) >= 0}
+              onChange={() => toggleSector(sector.id)}
+              value={sectors.indexOf(sector.id) >= 0}
             />
             <div className='text-sm'>
               <label htmlFor={`sector-${index}`} className='font-medium text-dial-stratos'>

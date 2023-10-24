@@ -488,7 +488,7 @@ export const en = {
   'wizard.results.resources': 'Additional Resources',
   'wizard.results.resourcesDesc': 'Here are some additional resources that may be helpful:',
   'wizard.results.products': 'Candidate Products',
-  'wizard.results.productsDesc': 'Here are products that are aligned with the building blocks, sector, or tags for the project',
+  'wizard.results.productsDesc': 'Here are products that are aligned with the building blocks, use cases, sectors, or tags that were selected.',
   'wizard.results.noProducts': 'We cannot provide recommendations on specific products or tools based on the information provided.',
   'wizard.results.playbooks': 'Playbooks',
   'wizard.results.playbooksDesc': 'Here are playbooks that are aligned with the sector and tags for the project.',
@@ -2218,10 +2218,7 @@ export const en = {
     The following open data (datasets, content, AI models) may be relevant for the project.
   `,
   'ui.wizard.product.description': `
-    Here are products that are aligned with the building blocks, sector, or tags for the project
-  `,
-  'ui.wizard.product.description': `
-    Here are products that are aligned with the building blocks, sector, or tags for the project
+  Here are products that are aligned with the building blocks, use cases, sectors, or tags that were selected.
   `,
   'ui.wizard.project.description': `
     Here are projects that have been implemented in the same Sector or have
@@ -2230,9 +2227,7 @@ export const en = {
   'ui.wizard.useCase.question': 'Select a specific Use case, if applicable',
   'ui.wizard.useCase.question.subtitle': 'What is a Use case?',
   'ui.wizard.useCase.description': `
-    The following use case was selected and provides a breakdown of all of the steps that
-    may be required as well as the workflows or business processes that will be needed at
-    each step.
+    The following use cases were selected or may be relevant for the sector and SDGs you selected.
   `,
   'ui.wizard.sector.question': 'Select the sector that your project supports',
   'ui.wizard.sector.question.subtitle': 'You can select multiple sectors',
