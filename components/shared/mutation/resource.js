@@ -19,37 +19,104 @@ export const CREATE_RESOURCE = gql`
     $name: String!
     $imageFile: Upload
     $description: String
-    $resourceLink: String
-    $resourceType: String
-    $resourceTopic: String
-    $showInWizard: Boolean
-    $showInExchange: Boolean
     $featured: Boolean
     $spotlight: Boolean
+    $resourceLink: String
+    $linkDesc: String
+    $source: String
+    $resourceType: String
+    $resourceTopic: String
+    $showInExchange: Boolean
+    $showInWizard: Boolean
+    $publishedDate: ISO8601Date!
     $organizationSlug: String
+    $authorName: String!
+    $authorEmail: String
   ) {
     createResource(
       slug: $slug
       name: $name
+      slug: $slug
       imageFile: $imageFile
       description: $description
-      resourceLink: $resourceLink
-      resourceType: $resourceType
-      resourceTopic: $resourceTopic
-      showInWizard: $showInWizard
-      showInExchange: $showInExchange
       featured: $featured
       spotlight: $spotlight
+      resourceLink: $resourceLink
+      linkDesc: $linkDesc
+      source: $source
+      resourceType: $resourceType
+      resourceTopic: $resourceTopic
+      showInExchange: $showInExchange
+      showInWizard: $showInWizard
+      publishedDate: $publishedDate
       organizationSlug: $organizationSlug
+      authorName: $authorName
+      authorEmail: $authorEmail
     ) {
       resource {
         id
         name
         slug
         description
+        publishedDate
+
+        featured
+        spotlight
+
         resourceLink
+        linkDesc
+        source
         resourceType
         resourceTopic
+
+        authors {
+          name
+        }
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_RESOURCE_TAGS = gql`
+  mutation UpdateResourceTags(
+    $slug: String!
+    $tagNames: [String!]!
+  ) {
+    updateResourceTags(
+      slug: $slug
+      tagNames: $tagNames
+    ) {
+      resource {
+        id
+        name
+        slug
+        tags
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_RESOURCE_COUNTRIES = gql`
+  mutation UpdateResourceCountries(
+    $slug: String!
+    $countrySlugs: [String!]!
+  ) {
+    updateResourceCountries(
+      slug: $slug
+      countrySlugs: $countrySlugs
+    ) {
+      resource {
+        id
+        slug
+        name
+        countries {
+          id
+          name
+          slug
+          code
+        }
       }
       errors
     }

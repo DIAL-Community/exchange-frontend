@@ -33,9 +33,14 @@ export const DatasetTypeSelect = ({
     return options.filter(({ label }) => label.indexOf(input) >= 0)
   }
 
+  const toggleFilter = (event) => {
+    event.preventDefault()
+    setShowFilter(!showFilter)
+  }
+
   return (
     <div className='flex flex-col gap-y-3'>
-      <a href='#' className='flex' onClick={() => setShowFilter(!showFilter)}>
+      <a href='#' className='flex' onClick={toggleFilter}>
         <div className='text-dial-stratos text-sm py-2'>
           {format('ui.datasetType.label')}
         </div>
@@ -47,6 +52,7 @@ export const DatasetTypeSelect = ({
       {showFilter &&
         <Select
           async
+          isBorderless
           aria-label={format('filter.byEntity', { entity: format('ui.datasetType.label') })}
           className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
