@@ -19,11 +19,11 @@ export const BuildingBlockMultiSelect = ({ buildingBlocks, setBuildingBlocks }) 
     return <NotFound />
   }
 
-  const toggleBuildingBlock = (slug) => {
-    if (buildingBlocks.indexOf(slug) >= 0) {
-      setBuildingBlocks(buildingBlocks => [...buildingBlocks.filter(buildingBlock => buildingBlock !== slug)])
+  const toggleBuildingBlock = (id) => {
+    if (buildingBlocks.indexOf(id) >= 0) {
+      setBuildingBlocks(buildingBlocks => [...buildingBlocks.filter(buildingBlock => buildingBlock !== id)])
     } else {
-      setBuildingBlocks(buildingBlocks => [...buildingBlocks, slug])
+      setBuildingBlocks(buildingBlocks => [...buildingBlocks, id])
     }
   }
 
@@ -36,8 +36,8 @@ export const BuildingBlockMultiSelect = ({ buildingBlocks, setBuildingBlocks }) 
               id={`building-block-${index}`}
               ariaDescribedBy={`building-block-${index}-text`}
               className='focus:ring-0'
-              onChange={() => toggleBuildingBlock(buildingBlock.slug)}
-              value={buildingBlocks.indexOf(buildingBlock.slug) >= 0}
+              onChange={() => toggleBuildingBlock(buildingBlock.id)}
+              value={buildingBlocks.indexOf(buildingBlock.id) >= 0}
             />
             <div className='text-sm'>
               <label htmlFor={`building-block-${index}`} className='font-medium text-dial-stratos'>

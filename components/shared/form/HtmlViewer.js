@@ -3,7 +3,7 @@ import { Editor } from '@tinymce/tinymce-react'
 import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa6'
 
-export const HtmlViewer = ({ initialContent, editorId, className }) => {
+export const HtmlViewer = ({ initialContent, editorId, className, fontSize, lineHeight }) => {
   const editorRef = useRef(null)
   const [loading, setLoading] = useState(true)
 
@@ -35,7 +35,9 @@ export const HtmlViewer = ({ initialContent, editorId, className }) => {
               body {
                 margin: 0;
                 font-family: 'Poppins', sans-serif;
-                font-size: 12pt;
+                /* Using text-base from tailwind */
+                font-size: ${fontSize ?? '1rem'};
+                line-height: ${lineHeight ?? '1.5rem'};
                 overflow: auto;
               }
 

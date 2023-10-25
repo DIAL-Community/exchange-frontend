@@ -25,7 +25,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
             {resource.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {resource?.description && parse(resource?.description)}
+            {resource?.parsedDescription && parse(resource?.parsedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>

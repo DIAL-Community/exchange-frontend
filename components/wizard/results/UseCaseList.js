@@ -21,10 +21,14 @@ const UseCaseList = ({ headerRef }) => {
     setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
   }
 
-  const { sdgs } = useContext(WizardContext)
+  const { sdgs, buildingBlocks, sectors, useCases: inputUseCases } = useContext(WizardContext)
+
   const { loading, error, data } = useQuery(WIZARD_USE_CASES_QUERY, {
     variables: {
       sdgs: sdgs.map(sdg => sdg.value),
+      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
+      sectors,
+      useCases: inputUseCases.map(useCase => useCase.value),
       limit: DEFAULT_PAGE_SIZE,
       offset: pageOffset
     }
@@ -34,13 +38,13 @@ const UseCaseList = ({ headerRef }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedUseCases && !data?.paginationAttributeUseCase) {
+  } else if (!data?.paginatedWizardUseCases && !data?.paginationWizardAttributeUseCase) {
     return <NotFound />
   }
 
   const {
-    paginatedUseCases: useCases,
-    paginationAttributeUseCase: paginationAttribute
+    paginatedWizardUseCases: useCases,
+    paginationWizardAttributeUseCase: paginationAttribute
   } = data
 
   return (

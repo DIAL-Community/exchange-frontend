@@ -41,6 +41,7 @@ export const en = {
   'app.new': 'New {entity}',
   'app.changePassword': 'Change Password',
   'app.deleteAccount': 'Delete Account',
+  'app.adminOnly': 'Admin Only',
 
   'general.pastSuffix': 'ago',
 
@@ -488,7 +489,7 @@ export const en = {
   'wizard.results.resources': 'Additional Resources',
   'wizard.results.resourcesDesc': 'Here are some additional resources that may be helpful:',
   'wizard.results.products': 'Candidate Products',
-  'wizard.results.productsDesc': 'Here are products that are aligned with the building blocks, sector, or tags for the project',
+  'wizard.results.productsDesc': 'Here are products that are aligned with the building blocks, use cases, sectors, or tags that were selected.',
   'wizard.results.noProducts': 'We cannot provide recommendations on specific products or tools based on the information provided.',
   'wizard.results.playbooks': 'Playbooks',
   'wizard.results.playbooksDesc': 'Here are playbooks that are aligned with the sector and tags for the project.',
@@ -1806,15 +1807,37 @@ export const en = {
 
   'ui.resource.label': 'Resource',
   'ui.resource.header': 'Resources',
-  'ui.resource.resourceLink': 'Resource Link',
-  'ui.resource.resourceType': 'Resource Type',
-  'ui.resource.resourceTopic': 'Resource Topic',
   'ui.resource.visitLink': 'Visit Resource',
   'ui.resource.imageFile': 'Resource Logo',
   'ui.resource.showInExchange': 'Show resource in the Exchange',
   'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
+  'ui.resource.resourceLink': 'Resource Link',
+  'ui.resource.linkDesc': 'Resource Link Description',
+  'ui.resource.source': 'Source',
+  'ui.resource.resourceType': 'Resource Type',
+  'ui.resource.resourceTopic': 'Resource Topic',
+  'ui.resource.authorName': 'Author Name',
+  'ui.resource.authorEmail': 'Author Email',
   'ui.resource.featured': 'Featured resource',
   'ui.resource.spotlight': 'Spotlight resource',
+  'ui.resource.publishedDate': 'Published On',
+  'ui.resource.anonymousAuthor': 'Anonymous',
+  
+  'ui.resource.type.label': 'Resource Type',
+  'ui.resource.type.header': 'Resource Types',
+  'ui.resource.type.caseStudy': 'Case Study',
+  'ui.resource.type.spotlight': 'Spotlight',
+  'ui.resource.type.whitepaper': 'White Paper',
+  'ui.resource.type.expertcomment': 'Expert Comment',
+  'ui.resource.type.unspecified': 'Unspecified Type',
+  
+  'ui.resource.topic.label': 'Resource Topic',
+  'ui.resource.topic.header': 'Resource Topics',
+  'ui.resource.topic.laws': 'Laws, Policies and Regulations',
+  'ui.resource.topic.oversight': 'Oversight and Accountability',
+  'ui.resource.topic.participation': 'Participation and Agency',
+  'ui.resource.topic.technology': 'Technology and Architecture',
+  'ui.resource.topic.unspecified': 'Unspecified Topic',
 
   'ui.resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
   'ui.resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
@@ -2218,10 +2241,7 @@ export const en = {
     The following open data (datasets, content, AI models) may be relevant for the project.
   `,
   'ui.wizard.product.description': `
-    Here are products that are aligned with the building blocks, sector, or tags for the project
-  `,
-  'ui.wizard.product.description': `
-    Here are products that are aligned with the building blocks, sector, or tags for the project
+  Here are products that are aligned with the building blocks, use cases, sectors, or tags that were selected.
   `,
   'ui.wizard.project.description': `
     Here are projects that have been implemented in the same Sector or have
@@ -2230,9 +2250,7 @@ export const en = {
   'ui.wizard.useCase.question': 'Select a specific Use case, if applicable',
   'ui.wizard.useCase.question.subtitle': 'What is a Use case?',
   'ui.wizard.useCase.description': `
-    The following use case was selected and provides a breakdown of all of the steps that
-    may be required as well as the workflows or business processes that will be needed at
-    each step.
+    The following use cases were selected or may be relevant for the sector and SDGs you selected.
   `,
   'ui.wizard.sector.question': 'Select the sector that your project supports',
   'ui.wizard.sector.question.subtitle': 'You can select multiple sectors',

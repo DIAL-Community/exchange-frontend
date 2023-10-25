@@ -33,9 +33,14 @@ export const CountryAutocomplete = ({
     }))
   )
 
+  const toggleFilter = (event) => {
+    event.preventDefault()
+    setShowFilter(!showFilter)
+  }
+
   return (
     <div className='flex flex-col gap-y-3'>
-      <a href='#' className='flex' onClick={() => setShowFilter(!showFilter)}>
+      <a href='#' className='flex' onClick={toggleFilter}>
         <div className='text-dial-stratos text-sm py-2'>
           {format('ui.country.label')}
         </div>
@@ -47,6 +52,7 @@ export const CountryAutocomplete = ({
       {showFilter &&
         <Select
           async
+          isBorderless
           aria-label={format('filter.byEntity', { entity: format('ui.country.label') })}
           className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
