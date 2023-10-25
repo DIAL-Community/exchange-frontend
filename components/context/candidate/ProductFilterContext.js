@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const ProductFilterContext = createContext()
 const ProductFilterDispatchContext = createContext()
@@ -6,11 +6,19 @@ const ProductFilterDispatchContext = createContext()
 const ProductFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const candidateProductFilterValues = {
-    search
+    search,
+    pageOffset,
+    pageNumber
   }
+
   const candidateProductFilterDispatchValues = {
-    setSearch
+    setSearch,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

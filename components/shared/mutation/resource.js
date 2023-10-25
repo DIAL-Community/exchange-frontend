@@ -15,8 +15,8 @@ export const DELETE_RESOURCE = gql`
 
 export const CREATE_RESOURCE = gql`
   mutation CreateResource(
-    $name: String!
     $slug: String!
+    $name: String!
     $imageFile: Upload
     $description: String
     $featured: Boolean
@@ -34,6 +34,7 @@ export const CREATE_RESOURCE = gql`
     $authorEmail: String
   ) {
     createResource(
+      slug: $slug
       name: $name
       slug: $slug
       imageFile: $imageFile

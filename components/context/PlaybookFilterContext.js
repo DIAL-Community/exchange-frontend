@@ -1,28 +1,29 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const PlaybookFilterContext = createContext()
 const PlaybookFilterDispatchContext = createContext()
 
 const PlaybookFilterProvider = ({ children }) => {
-  const [products, setProducts] = useState([])
   const [tags, setTags] = useState([])
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
+  const [products, setProducts] = useState([])
+
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const playbookFilterValues = {
-    products,
     tags,
     search,
-    sortColumn,
-    sortDirection
+    products,
+    pageOffset,
+    pageNumber
   }
   const playbookFilterDispatchValues = {
-    setProducts,
     setTags,
     setSearch,
-    setSortColumn,
-    setSortDirection
+    setProducts,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { ProjectFilterContext } from '../../context/ProjectFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { ProjectFilterContext, ProjectFilterDispatchContext } from '../../context/ProjectFilterContext'
 import { PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/project'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -12,12 +12,11 @@ const ProjectListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(ProjectFilterContext)
+  const { search, sdgs, origins } = useContext(ProjectFilterContext)
   const { countries, products, organizations, sectors, tags } = useContext(ProjectFilterContext)
-  const { sdgs, origins } = useContext(ProjectFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(ProjectFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(ProjectFilterDispatchContext)
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -32,11 +31,6 @@ const ProjectListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search, countries, products, organizations, sectors, tags, sdgs, origins])
 
   const { loading, error, data } = useQuery(PROJECT_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

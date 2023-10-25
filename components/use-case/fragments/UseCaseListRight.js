@@ -1,7 +1,7 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { UseCaseFilterContext } from '../../context/UseCaseFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../../context/UseCaseFilterContext'
 import { USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/useCase'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -14,8 +14,8 @@ const UseCaseListRight = () => {
 
   const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { pageNumber, pageOffset } = useContext(UseCaseFilterContext)
+  const { setPageNumber, setPageOffset } = useContext(UseCaseFilterDispatchContext)
   const topRef = useRef(null)
 
   const handlePageClick = (event) => {
@@ -30,11 +30,6 @@ const UseCaseListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search, sdgs, showBeta, govStackOnly])
 
   const { loading, error, data } = useQuery(USE_CASE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

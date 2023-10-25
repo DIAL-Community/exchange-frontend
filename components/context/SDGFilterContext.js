@@ -1,19 +1,13 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const SDGFilterContext = createContext()
 const SDGFilterDispatchContext = createContext()
 
 const SDGFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
 
-  const sdgFilterValues = { search, sortColumn, sortDirection }
-  const sdgFilterDispatchValues = {
-    setSearch,
-    setSortColumn,
-    setSortDirection
-  }
+  const sdgFilterValues = { search }
+  const sdgFilterDispatchValues = { setSearch }
 
   return (
     <SDGFilterContext.Provider value={sdgFilterValues}>

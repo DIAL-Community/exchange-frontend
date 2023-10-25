@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const DatasetFilterContext = createContext()
 const DatasetFilterDispatchContext = createContext()
@@ -6,11 +6,19 @@ const DatasetFilterDispatchContext = createContext()
 const DatasetFilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
 
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
+
   const candidateDatasetFilterValues = {
-    search
+    search,
+    pageOffset,
+    pageNumber
   }
+
   const candidateDatasetFilterDispatchValues = {
-    setSearch
+    setSearch,
+    setPageNumber,
+    setPageOffset
   }
 
   return (

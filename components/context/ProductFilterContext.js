@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const ProductFilterContext = createContext()
 const ProductFilterDispatchContext = createContext()
@@ -10,7 +10,7 @@ const ProductFilterProvider = ({ children }) => {
   const [countries, setCountries] = useState([])
   const [sectors, setSectors] = useState([])
   const [organizations, setOrganizations] = useState([])
-  const [sdgs, setSDGs] = useState([])
+  const [sdgs, setSdgs] = useState([])
   const [tags, setTags] = useState([])
   const [useCases, setUseCases] = useState([])
   const [workflows, setWorkflows] = useState([])
@@ -22,10 +22,9 @@ const ProductFilterProvider = ({ children }) => {
   const [comparedProducts, setComparedProducts] = useState([])
 
   const [search, setSearch] = useState('')
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
 
-  const setSdgs = setSDGs
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const productFilterValues = {
     isEndorsed,
@@ -44,9 +43,10 @@ const ProductFilterProvider = ({ children }) => {
     isLinkedWithDpi,
     comparedProducts,
     search,
-    sortColumn,
-    sortDirection
+    pageOffset,
+    pageNumber
   }
+
   const productFilterDispatchValues = {
     setIsEndorsed,
     setProductDeployable,
@@ -54,7 +54,6 @@ const ProductFilterProvider = ({ children }) => {
     setCountries,
     setSectors,
     setOrganizations,
-    setSDGs,
     setSdgs,
     setTags,
     setUseCases,
@@ -65,8 +64,8 @@ const ProductFilterProvider = ({ children }) => {
     setIsLinkedWithDpi,
     setComparedProducts,
     setSearch,
-    setSortColumn,
-    setSortDirection
+    setPageNumber,
+    setPageOffset
   }
 
   return (

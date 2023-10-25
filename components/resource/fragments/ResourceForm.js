@@ -116,6 +116,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
+        slug,
         name,
         slug,
         description,

@@ -10,9 +10,9 @@ export const RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
 
 export const PAGINATED_RESOURCES_QUERY = gql`
   query PaginatedResources(
-    $search: String
     $limit: Int!
     $offset: Int!
+    $search: String
   ) {
     paginatedResources(
       search: $search
