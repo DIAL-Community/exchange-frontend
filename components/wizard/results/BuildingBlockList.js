@@ -21,11 +21,12 @@ const BuildingBlockList = ({ headerRef }) => {
     setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
   }
 
-  const { sdgs, useCases } = useContext(WizardContext)
+  const { sdgs, useCases, buildingBlocks: filterBlocks } = useContext(WizardContext)
   const { loading, error, data } = useQuery(WIZARD_BUILDING_BLOCKS_QUERY, {
     variables: {
       sdgs: sdgs.map(sdg => sdg.value),
       useCases: useCases.map(useCase => useCase.value),
+      filterBlocks,
       limit: DEFAULT_PAGE_SIZE,
       offset: pageOffset
     }
