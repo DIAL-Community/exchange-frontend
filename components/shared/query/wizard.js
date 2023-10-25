@@ -4,12 +4,14 @@ export const WIZARD_BUILDING_BLOCKS_QUERY = gql`
   query WizardBuildingBlocks(
     $sdgs: [String!]
     $useCases: [String!]
+    $filterBlocks: [String!]
     $limit: Int!
     $offset: Int!
   ) {
     paginatedBuildingBlocks(
       sdgs: $sdgs
       useCases: $useCases
+      filterBlocks: $filterBlocks
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
@@ -21,6 +23,7 @@ export const WIZARD_BUILDING_BLOCKS_QUERY = gql`
     paginationAttributeBuildingBlock(
       sdgs: $sdgs
       useCases: $useCases
+      filterBlocks: $filterBlocks
     ) {
       totalCount
     }
@@ -29,12 +32,18 @@ export const WIZARD_BUILDING_BLOCKS_QUERY = gql`
 
 export const WIZARD_USE_CASES_QUERY = gql`
   query WizardUseCases(
+    $useCases: [String!]
+    $sectors: [String!]
+    $buildingBlocks: [String!]
     $sdgs: [String!]
     $limit: Int!
     $offset: Int!
   ) {
-    paginatedUseCases(
+    paginatedWizardUseCases(
       sdgs: $sdgs
+      sectors: $sectors
+      useCases: $useCases
+      buildingBlocks: $buildingBlocks
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
@@ -43,8 +52,11 @@ export const WIZARD_USE_CASES_QUERY = gql`
       imageFile
       maturity
     }
-    paginationAttributeUseCase(
+    paginationWizardAttributeUseCase(
       sdgs: $sdgs
+      useCases: $useCases
+      sectors: $sectors
+      buildingBlocks: $buildingBlocks
     ) {
       totalCount
     }
@@ -169,10 +181,11 @@ export const WIZARD_EXTENDED_DATA_QUERY = gql`
         url
       }
       resources {
+        slug
         phase
         name
-        imageUrl
-        link
+        imageFile
+        resourceLink
         description
       }
     }
