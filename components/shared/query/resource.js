@@ -21,11 +21,23 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       id
       name
       slug
+      tags
       imageFile
+      
       description
+      parsedDescription
+
       resourceLink
+      linkDesc
+      source
       resourceType
       resourceTopic
+
+      publishedDate
+
+      authors {
+        name
+      }
     }
   }
 `
@@ -33,14 +45,16 @@ export const PAGINATED_RESOURCES_QUERY = gql`
 export const CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeResource(
     $search: String
-    $resourceType: String
-    $resourceTopic: String
+    $resourceTypes: [String!]
+    $resourceTopics: [String!]
+    $tags: [String!]
   ) {
     paginationAttributeResource(
       search: $search
       compartmentalized: true
-      resourceType: $resourceType
-      resourceTopic: $resourceTopic
+      resourceTypes: $resourceTypes
+      resourceTopics: $resourceTopics
+      tags: $tags
     ) {
       totalCount
     }
@@ -52,8 +66,9 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
     $limit: Int!
     $offset: Int!
     $search: String
-    $resourceType: String
-    $resourceTopic: String
+    $resourceTypes: [String!]
+    $resourceTopics: [String!]
+    $tags: [String!]
   ) {
     spotlightResources: paginatedResources(
       spotlightLength: 1
@@ -65,10 +80,22 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       name
       slug
       imageFile
+      
       description
+      parsedDescription
+
       resourceLink
+      linkDesc
+      source
       resourceType
       resourceTopic
+
+      publishedDate
+
+      authors {
+        name
+      }
+      tags
     }
     featuredResources: paginatedResources(
       featuredLength: 3
@@ -80,26 +107,51 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       name
       slug
       imageFile
+      
       description
+      parsedDescription
+
       resourceLink
+      linkDesc
+      source
       resourceType
       resourceTopic
+
+      publishedDate
+
+      authors {
+        name
+      }
+      tags
     }
     paginatedResources(
       search: $search
       compartmentalized: true
-      resourceType: $resourceType
-      resourceTopic: $resourceTopic
+      resourceTypes: $resourceTypes
+      resourceTopics: $resourceTopics
+      tags: $tags
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
       name
       slug
       imageFile
+      
       description
+      parsedDescription
+
       resourceLink
+      linkDesc
+      source
       resourceType
       resourceTopic
+
+      publishedDate
+
+      authors {
+        name
+      }
+      tags
     }
   }
 `
@@ -120,15 +172,36 @@ export const RESOURCE_DETAIL_QUERY = gql`
       id
       name
       slug
+      tags
       imageFile
+      publishedDate
+      
       description
+      parsedDescription
+
       resourceLink
+      linkDesc
+      source
       resourceType
       resourceTopic
+      
       showInExchange
       showInWizard
+      
       featured
       spotlight
+
+      authors {
+        name
+      }
+
+      countries {
+        id
+        name
+        slug
+        code
+      }
+      
       organizations {
         id
         name

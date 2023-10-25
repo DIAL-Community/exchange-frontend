@@ -10,6 +10,8 @@ export const HtmlEditor = ({
   editorId,
   placeholder,
   className,
+  fontSize,
+  lineHeight,
   isInvalid = false
 }) => {
   const editorRef = useRef(null)
@@ -44,12 +46,14 @@ export const HtmlEditor = ({
               help charmap quickbars emoticons autoresize
             `,
             toolbar1: `
-              undo redo | fontfamily fontsize | bold italic underline strikethrough forecolor backcolor |
+              undo redo | fontfamily fontsize lineheight | bold italic underline strikethrough forecolor backcolor |
               link insertfile image media codesample`,
             toolbar2: `
               alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat |
               ltr rtl | charmap emoticons
             `,
+            line_height_formats: '1 1.25 1.5 1.75 2 2.25 2.5',
+            font_size_formats: '12pt 14pt 16pt 18pt 20pt 24pt 30pt 36pt 48pt',
             contextmenu: false,
             toolbar_sticky: true,
             content_style: `
@@ -58,7 +62,9 @@ export const HtmlEditor = ({
               }
               body {
                 font-family: 'Poppins', sans-serif;
-                font-size: 12pt;
+                /* Using text-base from tailwind */
+                font-size: ${fontSize ?? '1rem'};
+                line-height: ${lineHeight ?? '1.5rem'};
               }
               .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
                 margin-left: 1rem;

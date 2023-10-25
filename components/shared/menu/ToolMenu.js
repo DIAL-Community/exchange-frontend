@@ -5,7 +5,7 @@ import { SUPPORTING_NAVIGATION_ITEMS, TOOL_NAVIGATION_ITEMS } from '../../utils/
 import { TOOL_MENU, MenuHeader } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
 
-const ToolMenu = ({ currentOpenMenu, onToggleDropdown }) => {
+const ToolMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -13,7 +13,7 @@ const ToolMenu = ({ currentOpenMenu, onToggleDropdown }) => {
     <>
       <MenuHeader
         id={TOOL_MENU}
-        title='header.tools'
+        title={title ? title : 'header.tools'}
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

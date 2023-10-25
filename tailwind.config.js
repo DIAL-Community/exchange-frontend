@@ -91,6 +91,9 @@ module.exports = {
           light: '#ebeaf9',
           DEFAULT: '#d9d7f8'
         },
+        'dial-acid': {
+          DEFAULT: '#beeb1a'
+        },
         // Part of the UX refresh.
         'govstack-blue': {
           DEFAULT: '#0539e3',

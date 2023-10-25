@@ -13,7 +13,7 @@ const ResourceDetailHeader = ({ resource }) => {
       <div className='flex justify-center items-center py-16 bg-white rounded border'>
         <div className='w-20 h-20 mx-auto'>
           <img
-            src='/ui/v1/resource-header.svg'
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
             className='object-contain w-16 h-16'
           />
