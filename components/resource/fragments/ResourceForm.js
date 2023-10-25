@@ -118,7 +118,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       const variables = {
         slug,
         name,
-        slug,
         description,
         showInWizard,
         showInExchange,
