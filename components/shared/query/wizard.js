@@ -181,10 +181,11 @@ export const WIZARD_EXTENDED_DATA_QUERY = gql`
         url
       }
       resources {
+        slug
         phase
         name
-        imageUrl
-        link
+        imageFile
+        resourceLink
         description
       }
     }

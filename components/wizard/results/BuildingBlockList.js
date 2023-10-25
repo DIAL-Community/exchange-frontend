@@ -22,7 +22,6 @@ const BuildingBlockList = ({ headerRef }) => {
   }
 
   const { sdgs, useCases, buildingBlocks: filterBlocks } = useContext(WizardContext)
-  console.log(filterBlocks)
   const { loading, error, data } = useQuery(WIZARD_BUILDING_BLOCKS_QUERY, {
     variables: {
       sdgs: sdgs.map(sdg => sdg.value),
