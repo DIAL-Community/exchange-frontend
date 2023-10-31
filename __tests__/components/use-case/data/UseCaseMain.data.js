@@ -13,6 +13,7 @@ export const paginatedUseCases = {
           'slug': 'sustainable_infrastructure',
           'name': 'Infrastructure durable'
         },
+        'parsedDescription': 'Some parsed description.',
         'sanitizedDescription': 'Some description',
         'buildingBlocks': null,
         'sdgTargets': [
@@ -38,6 +39,7 @@ export const paginatedUseCases = {
           'slug': 'environment_and_climate',
           'name': 'Environment and Climate'
         },
+        'parsedDescription': 'Some parsed description.',
         'sanitizedDescription': 'Some other description',
         'buildingBlocks': null,
         'sdgTargets': [
@@ -71,6 +73,7 @@ export const paginatedUseCases = {
           'slug': 'agriculture_and_rural_developmen',
           'name': 'Agriculture and Rural Development'
         },
+        'parsedDescription': 'Some parsed description.',
         'sanitizedDescription': 'Some more description',
         'buildingBlocks': null,
         'sdgTargets': [

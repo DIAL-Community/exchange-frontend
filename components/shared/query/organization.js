@@ -65,6 +65,7 @@ export const PAGINATED_ORGANIZATIONS_QUERY = gql`
       name
       slug
       imageFile
+      parsedDescription
       organizationDescription {
         id
         description
@@ -155,6 +156,7 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
       slug
       isMni
       website
+      aliases
       imageFile
       isEndorser
       whenEndorsed

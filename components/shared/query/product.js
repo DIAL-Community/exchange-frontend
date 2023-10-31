@@ -84,6 +84,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       sdgs {
         id
       }
+      parsedDescription
       productDescription {
         id
         description
@@ -109,6 +110,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       id
       name
       slug
+      aliases
       imageFile
       website
       commercialProduct

@@ -66,6 +66,7 @@ export const PAGINATED_PROJECTS_QUERY = gql`
       id
       name
       slug
+      parsedDescription
       projectDescription {
         id
         locale

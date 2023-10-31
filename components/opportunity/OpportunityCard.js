@@ -36,7 +36,7 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissHandler }) =>
             {opportunity.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {opportunity?.description && parse(opportunity?.description)}
+            {opportunity?.parsedDescription && parse(opportunity?.parsedDescription)}
           </div>
           <div className='flex flex-row gap-x-3'>
             <div className='flex flex-row gap-x-2'>

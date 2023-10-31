@@ -203,12 +203,20 @@ const OrganizationForm = React.memo(({ organization }) => {
                     />
                     {isLastAlias(aliasIdx) && (
                       <span>
-                        <IconButton icon={<FaPlus />} onClick={() => append({ value: '' })} />
+                        <IconButton
+                          className='bg-dial-sapphire'
+                          icon={<FaPlus />}
+                          onClick={() => append({ value: '' })}
+                        />
                       </span>
                     )}
                     {!isSingleAlias && (
                       <span>
-                        <IconButton icon={<FaMinus />} onClick={() => remove(aliasIdx)} />
+                        <IconButton
+                          className='bg-dial-sapphire'
+                          icon={<FaMinus />}
+                          onClick={() => remove(aliasIdx)}
+                        />
                       </span>
                     )}
                   </div>
@@ -272,7 +280,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                 <Checkbox {...register('hasStorefront')} />
                 {format('organization.hasStorefront')}
               </label>
-              <div className='block flex flex-col gap-y-2'>
+              <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
                   {format('organization.description')}
                 </label>

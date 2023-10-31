@@ -37,7 +37,7 @@ const UseCaseCard = ({ displayType, index, useCase, dismissHandler }) => {
             {useCase.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {parse(useCase?.sanitizedDescription)}
+            {useCase?.parsedDescription && parse(useCase?.parsedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>

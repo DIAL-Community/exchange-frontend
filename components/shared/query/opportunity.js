@@ -55,6 +55,7 @@ export const PAGINATED_OPPORTUNITIES_QUERY = gql`
       name
       imageFile
       description
+      parsedDescription
       opportunityStatus
       closingDate
       tags
