@@ -53,7 +53,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
             {product.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {product?.productDescription && parse(product?.productDescription.description)}
+            {product?.parsedDescription && parse(product?.parsedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>

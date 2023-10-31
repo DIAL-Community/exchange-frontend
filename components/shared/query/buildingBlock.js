@@ -49,6 +49,7 @@ export const PAGINATED_BUILDING_BLOCKS_QUERY = gql`
       maturity
       category
       specUrl
+      parsedDescription
       buildingBlockDescription {
         id
         description

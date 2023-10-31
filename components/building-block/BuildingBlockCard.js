@@ -11,8 +11,6 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const buildingBlockDescription = buildingBlock.buildingBlockDescription
-
   const displayLargeCard = () =>
     <div className={`${disabled && 'opacity-20'}`}>
       <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-warm-beech'}`}>
@@ -40,7 +38,7 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
               {buildingBlock.name}
             </div>
             <div className='line-clamp-4 max-w-3xl'>
-              {buildingBlockDescription && parse(buildingBlockDescription?.description)}
+              {buildingBlock?.parsedDescription && parse(buildingBlock?.parsedDescription)}
             </div>
             <div className='flex gap-x-2 text-dial-stratos'>
               <div className='text-sm'>

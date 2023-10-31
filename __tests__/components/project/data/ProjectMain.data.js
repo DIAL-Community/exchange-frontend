@@ -5,6 +5,7 @@ export const paginatedProjects = {
         'id': '1',
         'name': 'HelloMAMA',
         'slug': 'hellomama',
+        'parsedDescription': 'Some parsed description.',
         'projectDescription': {
           'id': '1',
           'locale': 'en',
@@ -37,6 +38,7 @@ export const paginatedProjects = {
         'id': '2',
         'name': 'Hoji Mobile Data Collection and Analysis Platform',
         'slug': 'hoji_mobile_data_collection_and',
+        'parsedDescription': 'Some parsed description.',
         'projectDescription': {
           'id': '2',
           'locale': 'en',
@@ -50,6 +52,7 @@ export const paginatedProjects = {
         'id': '3',
         'name': 'USAID funded  - CaTSS OpenMRS Electronic Medical Record System for 19  ART Clinics',
         'slug': 'usaid_funded__catss_openmrs_elec',
+        'parsedDescription': 'Some parsed description.',
         'projectDescription': {
           'id': '3',
           'locale': 'en',
@@ -77,6 +80,7 @@ export const paginatedProjects = {
         'id': '4',
         'name': 'mTrac',
         'slug': 'mtrac',
+        'parsedDescription': 'Some parsed description.',
         'projectDescription': {
           'id': '4',
           'locale': 'en',
@@ -122,6 +126,7 @@ export const paginatedProjects = {
         'id': '5',
         'name': 'electronic Integrated Disease Surveillance and Response (eIDSR)',
         'slug': 'electronic_integrated_disease_su',
+        'parsedDescription': 'Some parsed description.',
         'projectDescription': {
           'id': '5',
           'locale': 'en',
@@ -155,6 +160,7 @@ export const paginatedProjects = {
         'id': '6',
         'name': 'UgandaEMR (OpenMRS)',
         'slug': 'ugandaemr_openmrs',
+        'parsedDescription': 'Some parsed description.',
         'projectDescription': {
           'id': '6',
           'locale': 'en',
@@ -182,6 +188,7 @@ export const paginatedProjects = {
         'id': '7',
         'name': 'Improving health worker adherence to IPTp provision guidelines through sending text messages',
         'slug': 'improving_health_worker_adherenc',
+        'parsedDescription': 'Some parsed description.',
         'projectDescription': {
           'id': '7',
           'locale': 'en',

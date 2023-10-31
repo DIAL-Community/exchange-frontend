@@ -6,6 +6,7 @@ export const paginatedOrganizations = {
         'name': 'Creative Space Startups',
         'slug': 'creative_space_startups',
         'imageFile': '/assets/organizations/organization_placeholder.png',
+        'parsedDescription': 'Some parsed description.',
         'organizationDescription': {
           'id': '273716',
           'description': 'Create space startups description.',
@@ -20,6 +21,7 @@ export const paginatedOrganizations = {
         'name': 'Newlogic',
         'slug': 'newlogic',
         'imageFile': '/assets/organizations/newlogic.png',
+        'parsedDescription': 'Some parsed description.',
         'organizationDescription': {
           'id': '273684',
           'description': 'Newlogic description.',
@@ -57,6 +59,7 @@ export const paginatedOrganizations = {
         'name': 'Soldevelo',
         'slug': 'soldevelo',
         'imageFile': '/assets/organizations/organization_placeholder.png',
+        'parsedDescription': 'Some parsed description.',
         'organizationDescription': {
           'id': '273721',
           'description': 'Soldevelo description.',
@@ -71,6 +74,7 @@ export const paginatedOrganizations = {
         'name': 'Summum Go Digital',
         'slug': 'summum_consulting_group',
         'imageFile': '/assets/organizations/organization_placeholder.png',
+        'parsedDescription': null,
         'organizationDescription': null,
         'sectors': [],
         'countries': [],
@@ -81,6 +85,7 @@ export const paginatedOrganizations = {
         'name': 'Zarttech',
         'slug': 'brandon_thompson',
         'imageFile': '/assets/organizations/organization_placeholder.png',
+        'parsedDescription': 'Some parsed description.',
         'organizationDescription': {
           'id': '273717',
           'description': 'Zarttech description',

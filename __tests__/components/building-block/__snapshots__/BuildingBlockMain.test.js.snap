@@ -378,7 +378,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                           <div
                             class="line-clamp-4 max-w-3xl"
                           >
-                            Some description
+                            Some parsed description.
                           </div>
                           <div
                             class="flex gap-x-2 text-dial-stratos"
@@ -455,7 +455,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                           <div
                             class="line-clamp-4 max-w-3xl"
                           >
-                             other description
+                            Some parsed description.
                           </div>
                           <div
                             class="flex gap-x-2 text-dial-stratos"
