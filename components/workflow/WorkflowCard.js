@@ -36,7 +36,7 @@ const WorkflowCard = ({ displayType, index, workflow, dismissHandler }) => {
             {workflow.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {workflow?.workflowDescription && parse(workflow?.workflowDescription.description)}
+            {workflow?.parsedDescription && parse(workflow?.parsedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>

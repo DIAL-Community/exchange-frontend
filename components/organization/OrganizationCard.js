@@ -36,7 +36,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissHandler }) 
             {organization.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {organization?.organizationDescription && parse(organization?.organizationDescription.description)}
+            {organization?.parsedDescription && parse(organization?.parsedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>

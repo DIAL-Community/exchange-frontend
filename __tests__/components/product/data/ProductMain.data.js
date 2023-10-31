@@ -12,6 +12,7 @@ export const paginatedProducts = {
         'origins': [],
         'buildingBlocks': [],
         'sdgs': [],
+        'parsedDescription': null,
         'productDescription': null,
         'mainRepository': {
           'license': 'AGPL-3.0'
@@ -49,6 +50,7 @@ export const paginatedProducts = {
             'id': '20'
           }
         ],
+        'parsedDescription': 'Some parsed description.',
         'productDescription': {
           'id': '1835397',
           'description': 'Some description',
@@ -83,6 +85,7 @@ export const paginatedProducts = {
             'id': '21'
           }
         ],
+        'parsedDescription': 'Some parsed description.',
         'productDescription': {
           'id': '1835369',
           'description': 'Some other description',
@@ -114,6 +117,7 @@ export const paginatedProducts = {
             'id': '23'
           }
         ],
+        'parsedDescription': 'Some parsed description.',
         'productDescription': {
           'id': '1585',
           'description': 'Some more description',

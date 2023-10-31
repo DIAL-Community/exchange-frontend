@@ -272,7 +272,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                 <Checkbox {...register('hasStorefront')} />
                 {format('organization.hasStorefront')}
               </label>
-              <div className='block flex flex-col gap-y-2'>
+              <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
                   {format('organization.description')}
                 </label>
