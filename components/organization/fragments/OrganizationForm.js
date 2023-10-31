@@ -203,12 +203,20 @@ const OrganizationForm = React.memo(({ organization }) => {
                     />
                     {isLastAlias(aliasIdx) && (
                       <span>
-                        <IconButton icon={<FaPlus />} onClick={() => append({ value: '' })} />
+                        <IconButton
+                          className='bg-dial-sapphire'
+                          icon={<FaPlus />}
+                          onClick={() => append({ value: '' })}
+                        />
                       </span>
                     )}
                     {!isSingleAlias && (
                       <span>
-                        <IconButton icon={<FaMinus />} onClick={() => remove(aliasIdx)} />
+                        <IconButton
+                          className='bg-dial-sapphire'
+                          icon={<FaMinus />}
+                          onClick={() => remove(aliasIdx)}
+                        />
                       </span>
                     )}
                   </div>
