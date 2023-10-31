@@ -109,6 +109,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       id
       name
       slug
+      aliases
       imageFile
       website
       commercialProduct

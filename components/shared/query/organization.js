@@ -155,6 +155,7 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
       slug
       isMni
       website
+      aliases
       imageFile
       isEndorser
       whenEndorsed
