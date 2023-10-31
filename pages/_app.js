@@ -44,6 +44,7 @@ import CatalogContext from '../lib/CatalogContext'
 import CandidateContext from '../lib/CandidateContext'
 import { ToastContextProvider } from '../lib/ToastContext'
 import { useApollo } from '../lib/apolloClient'
+import ErrorBoundary from '../components/shared/ErrorBoundary'
 
 export function reportWebVitals (metric) {
   // https://nextjs.org/docs/advanced-features/measuring-performance
@@ -136,7 +137,9 @@ const App = ({ Component, pageProps }) => {
             <CookieConsentProvider>
               <DndProvider backend={HTML5Backend}>
                 <ApplicationDefaultContexts>
-                  <Component {...pageProps} />
+                  <ErrorBoundary>
+                    <Component {...pageProps} />
+                  </ErrorBoundary>
                 </ApplicationDefaultContexts>
               </DndProvider>
             </CookieConsentProvider>
