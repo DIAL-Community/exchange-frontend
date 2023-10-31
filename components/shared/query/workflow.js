@@ -44,6 +44,7 @@ export const PAGINATED_WORKFLOWS_QUERY = gql`
       name
       slug
       imageFile
+      parsedDescription
       workflowDescription {
         id
         description

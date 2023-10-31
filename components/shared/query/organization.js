@@ -65,6 +65,7 @@ export const PAGINATED_ORGANIZATIONS_QUERY = gql`
       name
       slug
       imageFile
+      parsedDescription
       organizationDescription {
         id
         description

@@ -7,6 +7,7 @@ export const paginatedDatasets = {
         'slug': 'advocacy_training_for_community',
         'imageFile': '/assets/datasets/content_placeholder.svg',
         'tags': [],
+        'parsedDescription': 'Some parsed description.',
         'datasetDescription': {
           'id': '6228',
           'description': 'A free digital training that equips Community Health Workers (CHWs)',
@@ -28,6 +29,7 @@ export const paginatedDatasets = {
         'slug': 'african_drone_and_data_academy',
         'imageFile': '/assets/datasets/content_placeholder.svg',
         'tags': [],
+        'parsedDescription': 'Some parsed description.',
         'datasetDescription': {
           'id': '6219',
           'description': 'MOOCs that provide youth with 21st-century skills related to drone technology and data analysis',
@@ -49,6 +51,7 @@ export const paginatedDatasets = {
         'slug': 'african_storybook',
         'imageFile': '/assets/datasets/content_placeholder.svg',
         'tags': [],
+        'parsedDescription': 'Some parsed description.',
         'datasetDescription': {
           'id': '6217',
           'description': 'Provides open access to picture storybooks.',
@@ -71,6 +74,7 @@ export const paginatedDatasets = {
         'slug': 'african_terrestrial_fibre_networ',
         'imageFile': '/assets/datasets/dataset_placeholder.svg',
         'tags': [],
+        'parsedDescription': 'Some parsed description.',
         'datasetDescription': {
           'id': '80',
           'description': 'Open Source map of fibre optic infrastructure projects across the African continent.',
@@ -93,6 +97,7 @@ export const paginatedDatasets = {
         'slug': 'africarising_dataverse',
         'imageFile': '/assets/products/africarising_dataverse.png',
         'tags': [],
+        'parsedDescription': 'Some parsed description.',
         'datasetDescription': {
           'id': '1655',
           'description': 'Africa Research in Sustainable Intensification for the Next Generation (Africa RISING)',
@@ -118,6 +123,7 @@ export const paginatedDatasets = {
         'slug': 'ai_agro',
         'imageFile': '/assets/products/ai_agro.png',
         'tags': [],
+        'parsedDescription': 'Some parsed description.',
         'datasetDescription': {
           'id': '6142',
           'description': 'Open Source Precision Agriculture with Drones leverages a set of machine learning algorithms',
@@ -142,6 +148,7 @@ export const paginatedDatasets = {
         'slug': 'angaza_elimu',
         'imageFile': '/assets/datasets/content_placeholder.svg',
         'tags': [],
+        'parsedDescription': 'Some parsed description.',
         'datasetDescription': {
           'id': '3085',
           'description': 'Adaptive assessments for better learning outcomes',
@@ -160,6 +167,7 @@ export const paginatedDatasets = {
         'slug': 'antura_and_the_letters',
         'imageFile': '/assets/products/antura_and_the_letters.png',
         'tags': [],
+        'parsedDescription': 'Some parsed description.',
         'datasetDescription': {
           'id': '6230',
           'description': ' Open source smartphone application that teaches children how to read in Arabic.',

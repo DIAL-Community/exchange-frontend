@@ -390,7 +390,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Opportunity description.
+                          Some parsed description.
                         </div>
                         <div
                           class="flex flex-row gap-x-3"
@@ -502,7 +502,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Opportunity description.
+                          Some parsed description.
                         </div>
                         <div
                           class="flex flex-row gap-x-3"
@@ -614,7 +614,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Another opportunity description.
+                          Some parsed description.
                         </div>
                         <div
                           class="flex flex-row gap-x-3"
@@ -726,7 +726,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Some opportunity description.
+                          Some parsed description.
                         </div>
                         <div
                           class="flex flex-row gap-x-3"
@@ -838,7 +838,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Based opportunity description.
+                          Some parsed description.
                         </div>
                         <div
                           class="flex flex-row gap-x-3"

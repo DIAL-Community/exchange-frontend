@@ -481,7 +481,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Some description
+                          Some parsed description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -558,7 +558,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Some other description
+                          Some parsed description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -635,7 +635,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Some more description
+                          Some parsed description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"

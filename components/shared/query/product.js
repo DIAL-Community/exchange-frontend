@@ -84,6 +84,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       sdgs {
         id
       }
+      parsedDescription
       productDescription {
         id
         description
