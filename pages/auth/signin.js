@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Header from '../../components/shared/Header'
 import Footer from '../../components/shared/Footer'
 
-export default function SignIn ({ csrfToken }) {
+export default function SignIn ({ csrfToken, tenant }) {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -48,6 +48,7 @@ export default function SignIn ({ csrfToken }) {
             }
           >
             <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
+            <input name='tenant' type='hidden' defaultValue={tenant} />
             {process.env.NEXT_PUBLIC_AUTH_TYPE !== 'auth0' && (
               <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-6'>
                 <div className='flex flex-col gap-2'>
@@ -116,7 +117,7 @@ export default function SignIn ({ csrfToken }) {
 }
 
 export async function getServerSideProps (ctx) {
-  const { resolvedUrl, query, locale } = ctx
+  const { resolvedUrl, query, locale, req } = ctx
 
   const session = await getSession(ctx)
 
@@ -143,7 +144,8 @@ export async function getServerSideProps (ctx) {
 
   return {
     props: {
-      csrfToken: await getCsrfToken(ctx)
+      csrfToken: await getCsrfToken(ctx),
+      tenant: req.headers.host
     }
   }
 }
