@@ -102,7 +102,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                   <span
                     class="mx-2 my-auto text-sm"
                   >
-                    Show use cases from GovStack
+                    Show only use cases from GovStack
                   </span>
                 </label>
               </div>

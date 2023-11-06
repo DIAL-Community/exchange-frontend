@@ -8,7 +8,8 @@ export const OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY = gql`
     $useCases: [String!]
     $sectors: [String!]
     $tags: [String!]
-    $showClosed: Boolean,
+    $showClosed: Boolean
+    $showGovStackOnly: Boolean
     $search: String!
   ) {
     paginationAttributeOpportunity(
@@ -19,6 +20,7 @@ export const OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY = gql`
       sectors: $sectors
       tags: $tags
       showClosed: $showClosed
+      showGovStackOnly: $showGovStackOnly
       search: $search
     ) {
       totalCount
@@ -34,7 +36,8 @@ export const PAGINATED_OPPORTUNITIES_QUERY = gql`
     $useCases: [String!]
     $sectors: [String!]
     $tags: [String!]
-    $showClosed: Boolean,
+    $showClosed: Boolean
+    $showGovStackOnly: Boolean
     $search: String!
     $limit: Int!
     $offset: Int!
@@ -47,6 +50,7 @@ export const PAGINATED_OPPORTUNITIES_QUERY = gql`
       sectors: $sectors
       tags: $tags
       showClosed: $showClosed
+      showGovStackOnly: $showGovStackOnly
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {

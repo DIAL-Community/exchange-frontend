@@ -181,6 +181,19 @@ exports[`Unit tests for the building block main page. Should render list of buil
                     Show only published building blocks
                   </span>
                 </label>
+                <label
+                  class="flex py-2"
+                >
+                  <input
+                    class="h-5 w-5"
+                    type="checkbox"
+                  />
+                  <span
+                    class="mx-2 my-auto text-sm"
+                  >
+                    Show only building blocks from GovStack
+                  </span>
+                </label>
               </div>
             </div>
             <div

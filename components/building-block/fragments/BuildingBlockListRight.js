@@ -15,7 +15,8 @@ const BuildingBlockListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
+  const { showMature, showGovStackOnly } = useContext(BuildingBlockFilterContext)
+  const { search, sdgs, useCases, workflows, categoryTypes } = useContext(BuildingBlockFilterContext)
 
   const { pageNumber, pageOffset } = useContext(BuildingBlockFilterContext)
   const { setPageNumber, setPageOffset } = useContext(BuildingBlockFilterDispatchContext)
@@ -42,7 +43,8 @@ const BuildingBlockListRight = () => {
       useCases: useCases.map(useCase => useCase.value),
       workflows: workflows.map(workflow => workflow.value),
       categoryTypes: categoryTypes.map(categoryType => categoryType.value),
-      showMature
+      showMature,
+      showGovStackOnly
     }
   })
 

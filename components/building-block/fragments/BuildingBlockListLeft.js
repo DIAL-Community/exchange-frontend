@@ -18,14 +18,15 @@ const BuildingBlockListLeft = () => {
   const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
   const { setShowMature, setSdgs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
 
-  const { categoryTypes } = useContext(BuildingBlockFilterContext)
-  const { setCategoryTypes } = useContext(BuildingBlockFilterDispatchContext)
+  const { categoryTypes, showGovStackOnly } = useContext(BuildingBlockFilterContext)
+  const { setCategoryTypes, setShowGovStackOnly } = useContext(BuildingBlockFilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = '/building-blocks'
 
     const showMatureFilter = showMature ? 'showMature=true' : ''
+    const showGovStackOnlyFilter = showGovStackOnly ? 'showGovStackOnly=true' : ''
     const sdgFilters = sdgs.map((sdg) => `sdgs=${sdg.value}--${sdg.label}`)
     const useCaseFilters = useCases.map((useCase) => `useCases=${useCase.value}--${useCase.label}`)
     const workflowFilters = workflows.map((workflow) => `workflows=${workflow.value}--${workflow.label}`)
@@ -37,6 +38,7 @@ const BuildingBlockListLeft = () => {
     const filterParameters = [
       activeFilter,
       showMatureFilter,
+      showGovStackOnlyFilter,
       ...sdgFilters,
       ...useCaseFilters,
       ...workflowFilters,
@@ -52,6 +54,7 @@ const BuildingBlockListLeft = () => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
     if (query?.shareCatalog && Object.getOwnPropertyNames(query).length > 1 && !interactionDetected) {
       setShowMature(query.showMature === 'true')
+      setShowGovStackOnly(query.showGovStackOnly === 'true')
       parseQuery(query, 'sdgs', sdgs, setSdgs)
       parseQuery(query, 'useCases', useCases, setUseCases)
       parseQuery(query, 'workflows', workflows, setWorkflows)

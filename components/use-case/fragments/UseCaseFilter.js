@@ -12,28 +12,27 @@ const UseCaseFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, showBeta, govStackOnly } = useContext(UseCaseFilterContext)
-  const { setSdgs, setShowBeta, setShowGovStack } = useContext(UseCaseFilterDispatchContext)
+  const { sdgs, showBeta, showGovStackOnly } = useContext(UseCaseFilterContext)
+  const { setSdgs, setShowBeta, setShowGovStackOnly } = useContext(UseCaseFilterDispatchContext)
 
   const toggleShowBeta = () => {
     setShowBeta(!showBeta)
   }
 
-  const toggleShowGovStack = () => {
-    setShowGovStack(!govStackOnly)
+  const toggleShowGovStackOnly = () => {
+    setShowGovStackOnly(!showGovStackOnly)
   }
 
-  const clearFilter = (e) => {
-    e.preventDefault()
+  const clearFilter = () => {
     setSdgs([])
     setShowBeta(false)
-    setShowGovStack(false)
+    setShowGovStackOnly(false)
   }
 
   const filteringUseCase = () => {
     let count = 0
     count = showBeta ? count + 1 : count
-    count = govStackOnly ? count + 1 : count
+    count = showGovStackOnly ? count + 1 : count
     count = count + sdgs.length
 
     return count > 0
@@ -69,12 +68,12 @@ const UseCaseFilter = () => {
                 </div>
               </div>
             )}
-            {govStackOnly && (
+            {showGovStackOnly && (
               <div className='bg-dial-slate-400 text-white px-2 py-1 rounded'>
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
-                    {format('ui.useCase.filter.govStackOnly')}
-                    <button type='button' onClick={toggleShowGovStack}>
+                    {format('ui.useCase.filter.showGovStackOnly')}
+                    <button type='button' onClick={toggleShowGovStackOnly}>
                       <FaXmark size='1rem' />
                     </button>
                   </div>
@@ -104,9 +103,9 @@ const UseCaseFilter = () => {
         </label>
         <hr className='border-b border-dial-slate-200'/>
         <label className='flex py-2'>
-          <Checkbox onChange={toggleShowGovStack} value={govStackOnly} />
+          <Checkbox onChange={toggleShowGovStackOnly} value={showGovStackOnly} />
           <span className='mx-2 my-auto text-sm'>
-            {format('ui.useCase.filter.govStackOnly')}
+            {format('ui.useCase.filter.showGovStackOnly')}
           </span>
         </label>
       </div>

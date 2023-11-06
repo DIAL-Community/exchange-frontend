@@ -599,7 +599,7 @@
   "filter.organization.aggregatorOnly": "Pouze agregátoři",
   "filter.organization.endorserOnly": "Pouze schvalující organizace",
   "filter.useCase.showDraft": "Zobrazit návrhy (neověřených) případů použití",
-  "filter.useCase.govStackOnly": "Zobrazit pouze případy použití GovStack",
+  "filter.useCase.showGovStackOnly": "Zobrazit pouze případy použití GovStack",
 
   "filter.product.forCovid": "Nástroje COVID-19",
   "filter.product.endorsed": "Zobrazit podporované produkty",
@@ -1308,7 +1308,7 @@
   "opportunity.openingDate": "Datum zahájení",
   "opportunity.closingDate": "Datum ukončení",
   "opportunity.description": "Popis",
-  "filter.opportunity.showClosed": "Zobrazit uzavřené příležitosti",
+  "ui.opportunity.filter.showClosed": "Zobrazit uzavřené příležitosti",
 
   "opportunity.source": "Zdroj",
 
@@ -1414,7 +1414,7 @@
   "ui.useCase.createNew": "Vytvořit nový případ užití",
 
   "ui.useCase.filter.showDraft": "Zobrazit návrh (neověřených) případů užití",
-  "ui.useCase.filter.govStackOnly": "Zobrazit případy užití z GovStacku",
+  "ui.useCase.filter.showGovStackOnly": "Zobrazit případy užití z GovStacku",
 
   "ui.useCase.detail.steps": "Kroky případu použití",
   "ui.useCase.parent.detail": "Nadřazený případ užití",

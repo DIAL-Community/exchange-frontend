@@ -248,6 +248,8 @@ export const en = {
   'ui.product.comparison.title': 'Comparison of Products',
   'ui.product.comparison.filter': 'Filter comparison',
   'ui.product.comparison.showHighlight': 'Highlight differences',
+  
+  'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
 
   'product.languages': 'Languages',
   'product.website': 'Website',
@@ -370,8 +372,6 @@ export const en = {
   'organization.noOffice': 'We do not have any Office Locations information for this Organization.',
   'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
 
-  'ui.buildingBlock.header': 'Building Blocks',
-  'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.specification': 'Specification',
   'ui.buildingBlock.specification.description': `
     GovStack is defining the technical specifications that define each building block.
@@ -624,11 +624,9 @@ export const en = {
   'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
 
   'workflow.header': 'Workflows',
-  'ui.product.header': 'Products',
   'ui.dataset.header': 'Open Data',
 
   'workflow.label': 'Workflow',
-  'ui.product.label': 'Product',
   'ui.dataset.label': 'Dataset',
 
   'organization.detail.website': 'Website',
@@ -733,7 +731,7 @@ export const en = {
   'filter.organization.aggregatorOnly': 'Only Aggregators',
   'filter.organization.endorserOnly': 'Only Endorser Organizations',
   'filter.useCase.showDraft': 'Show Draft (non-Validated) Use Cases',
-  'filter.useCase.govStackOnly': 'Show GovStack Only Use Cases',
+  'filter.useCase.showGovStackOnly': 'Show GovStack Only Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
   'filter.project.forCovid': 'COVID-19 Projects',
@@ -1736,7 +1734,8 @@ export const en = {
   'ui.opportunity.openingDate': 'Opening Date',
   'ui.opportunity.closingDate': 'Closing Date',
   'ui.opportunity.description': 'Description',
-  'filter.opportunity.showClosed': 'Show closed RFPs',
+  'ui.opportunity.filter.showClosed': 'Show closed RFPs',
+  'ui.opportunity.filter.showGovStackOnly': 'Show only RFPs from GovStack',
 
   'ui.opportunity.source': 'Source',
 
@@ -1890,7 +1889,7 @@ export const en = {
   'ui.useCase.createNew': 'Create a new Use Case',
 
   'ui.useCase.filter.showDraft': 'Show draft (non-validated) use cases',
-  'ui.useCase.filter.govStackOnly': 'Show use cases from GovStack',
+  'ui.useCase.filter.showGovStackOnly': 'Show only use cases from GovStack',
 
   'ui.useCase.detail.steps': 'Use Case Steps',
   'ui.useCase.parent.detail': 'Parent Use Case',
@@ -1957,8 +1956,6 @@ export const en = {
   'ui.sdgTarget.longLabel': 'Sustainable Development Goal Target',
   'ui.sdgTarget.longHeader': 'Sustainable Development Goal Targets',
 
-  'ui.product.label': 'Product',
-  'ui.product.header': 'Products',
   'ui.product.whatIs': 'What is a Product?',
   'ui.product.createNew': 'Create a new Product',
 
@@ -2043,6 +2040,7 @@ export const en = {
   `,
 
   'ui.buildingBlock.filter.showMature': 'Show only published building blocks',
+  'ui.buildingBlock.filter.showGovStackOnly': 'Show only building blocks from GovStack',
   'ui.categoryType.label': 'Building Block Category Type',
 
   'ui.tag.label': 'Tag',

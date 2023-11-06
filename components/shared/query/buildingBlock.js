@@ -8,6 +8,7 @@ export const BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY = gql`
     $workflows: [String!]
     $categoryTypes: [String!]
     $showMature: Boolean
+    $showGovStackOnly: Boolean
   ) {
     paginationAttributeBuildingBlock(
       search: $search
@@ -16,6 +17,7 @@ export const BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY = gql`
       workflows: $workflows
       categoryTypes: $categoryTypes
       showMature: $showMature
+      showGovStackOnly: $showGovStackOnly
     ) {
       totalCount
     }
@@ -29,6 +31,7 @@ export const PAGINATED_BUILDING_BLOCKS_QUERY = gql`
     $workflows: [String!]
     $categoryTypes: [String!]
     $showMature: Boolean
+    $showGovStackOnly: Boolean
     $search: String
     $limit: Int!
     $offset: Int!
@@ -39,6 +42,7 @@ export const PAGINATED_BUILDING_BLOCKS_QUERY = gql`
       workflows: $workflows
       categoryTypes: $categoryTypes
       showMature: $showMature
+      showGovStackOnly: $showGovStackOnly
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {

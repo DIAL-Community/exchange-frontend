@@ -7,14 +7,14 @@ import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
+  const { sdgs, showBeta, showGovStackOnly, search } = useContext(UseCaseFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_USE_CASES_QUERY, {
     variables: {
       search,
       sdgs: sdgs.map(sdg => sdg.value),
       showBeta,
-      govStackOnly,
+      showGovStackOnly,
       limit: defaultPageSize,
       offset: pageOffset
     }

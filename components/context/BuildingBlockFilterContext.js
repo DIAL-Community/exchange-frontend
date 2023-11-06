@@ -5,6 +5,7 @@ const BuildingBlockFilterDispatchContext = createContext()
 
 const BuildingBlockFilterProvider = ({ children }) => {
   const [showMature, setShowMature] = useState(false)
+  const [showGovStackOnly, setShowGovStackOnly] = useState(false)
   const [sdgs, setSdgs] = useState([])
   const [useCases, setUseCases] = useState([])
   const [workflows, setWorkflows] = useState([])
@@ -17,6 +18,7 @@ const BuildingBlockFilterProvider = ({ children }) => {
 
   const buildingBlockFilterValues = {
     showMature,
+    showGovStackOnly,
     sdgs,
     useCases,
     workflows,
@@ -27,6 +29,7 @@ const BuildingBlockFilterProvider = ({ children }) => {
   }
   const buildingBlockFilterDispatchValues = {
     setShowMature,
+    setShowGovStackOnly,
     setSdgs,
     setUseCases,
     setWorkflows,

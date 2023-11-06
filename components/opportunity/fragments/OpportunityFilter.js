@@ -25,7 +25,8 @@ const OpportunityFilter = () => {
     sectors,
     useCases,
     tags,
-    showClosed
+    showClosed,
+    showGovStackOnly
   } = useContext(OpportunityFilterContext)
 
   const {
@@ -35,7 +36,8 @@ const OpportunityFilter = () => {
     setSectors,
     setUseCases,
     setTags,
-    setShowClosed
+    setShowClosed,
+    setShowGovStackOnly
   } = useContext(OpportunityFilterDispatchContext)
 
   const [expanded, setExpanded] = useState(false)
@@ -44,9 +46,14 @@ const OpportunityFilter = () => {
     setShowClosed(!showClosed)
   }
 
-  const clearFilter = (e) => {
-    e.preventDefault()
+  const toggleShowGovStackOnly = () => {
+    setShowGovStackOnly(!showGovStackOnly)
+  }
+
+  const clearFilter = () => {
     setShowClosed(false)
+    setShowGovStackOnly(false)
+
     setBuildingBlocks([])
     setCountries([])
     setOrganizations([])
@@ -62,7 +69,8 @@ const OpportunityFilter = () => {
       + sectors.length
       + useCases.length
       + tags.length
-      + showClosed ? 1 : 0 > 0
+      + showClosed ? 1 : 0
+      + showGovStackOnly ? 1 : 0 > 0
   }
 
   return (
@@ -92,8 +100,20 @@ const OpportunityFilter = () => {
               <div className='bg-dial-slate-400 px-2 py-1 rounded text-white'>
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
-                    {format('filter.opportunity.showClosed')}
+                    {format('ui.opportunity.filter.showClosed')}
                     <button type='button' onClick={toggleClosedOpportunityFilter}>
+                      <FaXmark size='1rem' />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {showGovStackOnly && (
+              <div className='bg-dial-slate-400 text-white px-2 py-1 rounded'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('ui.opportunity.filter.showGovStackOnly')}
+                    <button type='button' onClick={toggleShowGovStackOnly}>
                       <FaXmark size='1rem' />
                     </button>
                   </div>
@@ -135,7 +155,13 @@ const OpportunityFilter = () => {
             <label className='flex py-2'>
               <Checkbox value={showClosed} onChange={toggleClosedOpportunityFilter} />
               <span className='mx-2 my-auto text-sm'>
-                {format('filter.opportunity.showClosed')}
+                {format('ui.opportunity.filter.showClosed')}
+              </span>
+            </label>
+            <label className='flex py-2'>
+              <Checkbox onChange={toggleShowGovStackOnly} value={showGovStackOnly} />
+              <span className='mx-2 my-auto text-sm'>
+                {format('ui.opportunity.filter.showGovStackOnly')}
               </span>
             </label>
             <hr className='border-b border-dial-slate-200'/>
