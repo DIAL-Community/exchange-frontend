@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { FaXTwitter, FaLinkedin } from 'react-icons/fa6'
+import { FaLinkedin } from 'react-icons/fa6'
 
 const PoweredBy = () => {
   const { formatMessage } = useIntl()
