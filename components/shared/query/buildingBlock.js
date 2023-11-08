@@ -53,6 +53,7 @@ export const PAGINATED_BUILDING_BLOCKS_QUERY = gql`
       maturity
       category
       specUrl
+      govStackEntity
       parsedDescription
       buildingBlockDescription {
         id
@@ -79,6 +80,7 @@ export const BUILDING_BLOCK_DETAIL_QUERY = gql`
       maturity
       category
       specUrl
+      govStackEntity
       buildingBlockDescription {
         id
         description

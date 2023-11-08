@@ -52,7 +52,7 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
             <div className='flex gap-2 text-xs text-white'>
               <div
                 className={classNames(
-                  'px-6 py-0.5 rounded',
+                  'px-6 py-1 rounded',
                   buildingBlock.maturity === MaturityStatus.DRAFT
                     ? 'border border-dial-orange text-dial-orange'
                     : 'bg-dial-orange'
@@ -61,8 +61,13 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
                 {buildingBlock.maturity}
               </div>
               {buildingBlock.category === CategoryType.DPI &&
-                <div className='bg-dial-orange rounded px-6 py-0.5'>
+                <div className='bg-dial-orange rounded px-6 py-1'>
                   {buildingBlock.category}
+                </div>
+              }
+              {buildingBlock.govStackEntity &&
+                <div className='bg-dial-iris-blue rounded px-6 py-1'>
+                  {format('govstack.label')}
                 </div>
               }
             </div>
@@ -92,7 +97,7 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
             <div className='flex gap-2 text-xs text-white'>
               <div
                 className={classNames(
-                  'px-6 py-0.5 rounded',
+                  'px-6 py-1 rounded',
                   buildingBlock.maturity === MaturityStatus.DRAFT
                     ? 'border border-dial-orange text-dial-orange'
                     : 'bg-dial-orange'
@@ -101,8 +106,13 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
                 {buildingBlock.maturity}
               </div>
               {buildingBlock.category === CategoryType.DPI &&
-                <div className='bg-dial-orange rounded text-xs px-6 py-0.5'>
+                <div className='bg-dial-orange rounded px-6 py-1'>
                   {buildingBlock.category}
+                </div>
+              }
+              {buildingBlock.govStackEntity &&
+                <div className='bg-dial-iris-blue rounded px-6 py-1'>
+                  {format('govstack.label')}
                 </div>
               }
             </div>

@@ -32,44 +32,56 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
           </div>
         }
       </div>
-      {buildingBlock.specUrl &&
-        <div className='flex flex-col gap-y-3 text-dial-sapphire'>
-          <div className='text-sm font-semibold'>
-            {format('ui.buildingBlock.specification')}
+      <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
+        {buildingBlock.govStackEntity &&
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('ui.buildingBlock.source')}
+            </div>
+            <div className='flex text-dial-stratos'>
+              {format('govstack.label')}
+            </div>
           </div>
-          <div className='text-sm text-dial-stratos'>
-            {format('ui.buildingBlock.specification.description')}
+        }
+        {buildingBlock.specUrl &&
+          <div className='flex flex-col gap-y-3 text-dial-sapphire'>
+            <div className='text-sm font-semibold'>
+              {format('ui.buildingBlock.specification')}
+            </div>
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.buildingBlock.specification.description')}
+            </div>
+            <div className='flex text-sm text-dial-stratos'>
+              <a
+                href={prependUrlWithProtocol(buildingBlock.specUrl)}
+                target='_blank'
+                rel='noreferrer'
+                className='flex border-b border-dial-iris-blue'
+              >
+                <div className='line-clamp-1 break-all'>
+                  {format('ui.buildingBlock.specification.view')}
+                </div>
+              </a>
+              &nbsp;⧉
+            </div>
           </div>
-          <div className='flex text-sm text-dial-stratos'>
-            <a
-              href={prependUrlWithProtocol(buildingBlock.specUrl)}
-              target='_blank'
-              rel='noreferrer'
-              className='flex border-b border-dial-iris-blue'
-            >
-              <div className='line-clamp-1 break-all'>
-                {format('ui.buildingBlock.specification.view')}
-              </div>
-            </a>
-            &nbsp;⧉
+        }
+        <div className='flex gap-x-3'>
+          <div className='flex flex-col gap-y-3 text-sm grow shrink-0'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('buildingBlock.maturity')}
+            </div>
+            <div className='flex text-dial-stratos'>
+              {buildingBlock.maturity}
+            </div>
           </div>
-        </div>
-      }
-      <div className='flex gap-x-3'>
-        <div className='flex flex-col gap-y-3 text-sm grow shrink-0'>
-          <div className='font-semibold text-dial-sapphire'>
-            {format('buildingBlock.maturity')}
-          </div>
-          <div className='flex text-dial-stratos'>
-            {buildingBlock.maturity}
-          </div>
-        </div>
-        <div className='flex flex-col gap-y-3 text-sm grow shrink-0'>
-          <div className='font-semibold text-dial-sapphire'>
-            {format('ui.buildingBlock.category')}
-          </div>
-          <div className='flex text-dial-stratos'>
-            {buildingBlock.category ?? CategoryType.FUNCTIONAL}
+          <div className='flex flex-col gap-y-3 text-sm grow shrink-0'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('ui.buildingBlock.category')}
+            </div>
+            <div className='flex text-dial-stratos'>
+              {buildingBlock.category ?? CategoryType.FUNCTIONAL}
+            </div>
           </div>
         </div>
       </div>

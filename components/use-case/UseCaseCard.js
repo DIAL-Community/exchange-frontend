@@ -48,10 +48,15 @@ const UseCaseCard = ({ displayType, index, useCase, dismissHandler }) => {
               {format('ui.buildingBlock.header')} ({useCase.buildingBlocks?.length ?? 0})
             </div>
           </div>
-          <div className='flex text-[10px] text-white'>
-            <div className='px-6 py-1 rounded-lg bg-dial-blueberry'>
+          <div className='flex gap-2 text-xs text-white'>
+            <div className='px-6 py-1 rounded bg-dial-blueberry'>
               {useCase.maturity}
             </div>
+            {useCase.govStackEntity &&
+              <div className='bg-dial-iris-blue rounded px-6 py-1'>
+                {format('govstack.label')}
+              </div>
+            }
           </div>
         </div>
       </div>

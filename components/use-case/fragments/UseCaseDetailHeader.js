@@ -31,25 +31,37 @@ const UseCaseDetailHeader = ({ useCase }) => {
           </div>
         }
       </div>
-      {useCase.markdownUrl &&
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-blueberry'>
-            {format('useCase.markdownUrl')}
+      <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
+        {useCase.govStackEntity &&
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('ui.useCase.source')}
+            </div>
+            <div className='flex text-dial-stratos'>
+              {format('govstack.label')}
+            </div>
           </div>
-          <div className='flex text-dial-stratos'>
-            <a
-              href={prependUrlWithProtocol(useCase.markdownUrl)}
-              target='_blank'
-              rel='noreferrer'
-              className='flex border-b border-dial-iris-blue '>
-              <div className='line-clamp-1 break-all'>
-                {useCase.markdownUrl}
-              </div>
-            </a>
-            &nbsp;⧉
+        }
+        {useCase.markdownUrl &&
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-dial-blueberry'>
+              {format('useCase.markdownUrl')}
+            </div>
+            <div className='flex text-dial-stratos'>
+              <a
+                href={prependUrlWithProtocol(useCase.markdownUrl)}
+                target='_blank'
+                rel='noreferrer'
+                className='flex border-b border-dial-iris-blue '>
+                <div className='line-clamp-1 break-all'>
+                  {useCase.markdownUrl}
+                </div>
+              </a>
+              &nbsp;⧉
+            </div>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
   )
 }

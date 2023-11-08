@@ -75,6 +75,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       slug
       tags
       imageFile
+      govStackEntity
       overallMaturityScore
       commercialProduct
       origins {
@@ -123,7 +124,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       hostingModel
       languages
       haveOwner
-      tags
+      govStackEntity
       productDescription {
         id
         description
@@ -211,6 +212,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       overallMaturityScore
       maturityScoreDetails
       isLinkedWithDpi
+      tags
     }
   }
 `

@@ -54,9 +54,9 @@ const ProductListLeft = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
+      activeFilter, endorsedFilter, deployableFilter, ...originFilters,
       ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
-      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters,
+      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, ...licenseTypesFilter,
       linkedWithDpiFilter, showGovStackOnlyFilter
     ].filter(f => f).join('&')
 

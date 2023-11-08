@@ -420,9 +420,14 @@ exports[`Unit tests for the building block main page. Should render list of buil
                             class="flex gap-2 text-xs text-white"
                           >
                             <div
-                              class="px-6 py-0.5 rounded border border-dial-orange text-dial-orange"
+                              class="px-6 py-1 rounded border border-dial-orange text-dial-orange"
                             >
                               DRAFT
+                            </div>
+                            <div
+                              class="bg-dial-iris-blue rounded px-6 py-1"
+                            >
+                              GovStack
                             </div>
                           </div>
                         </div>
@@ -497,12 +502,12 @@ exports[`Unit tests for the building block main page. Should render list of buil
                             class="flex gap-2 text-xs text-white"
                           >
                             <div
-                              class="px-6 py-0.5 rounded bg-dial-orange"
+                              class="px-6 py-1 rounded bg-dial-orange"
                             >
                               PUBLISHED
                             </div>
                             <div
-                              class="bg-dial-orange rounded px-6 py-0.5"
+                              class="bg-dial-orange rounded px-6 py-1"
                             >
                               DPI
                             </div>

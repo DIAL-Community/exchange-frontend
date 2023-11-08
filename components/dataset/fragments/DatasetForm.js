@@ -311,7 +311,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                   placeholder={format('ui.dataset.dataFormat')}
                 />
               </div>
-              <div className='block flex flex-col gap-y-2'>
+              <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
                   {format('ui.dataset.description')}
                 </label>

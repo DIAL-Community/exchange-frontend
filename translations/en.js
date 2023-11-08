@@ -240,6 +240,9 @@ export const en = {
 
   'ui.product.rubric.label': 'Evaluation Rubric',
   'ui.product.project.count': 'Number of Projects',
+
+  'ui.product.source': 'Source',
+  'ui.product.govStackEntity': 'Product is a part of GovStack',
   
   'ui.product.compare': 'Compare',
   'ui.product.compare.clear': 'Clear all',
@@ -450,8 +453,6 @@ export const en = {
   'ui.sdgTarget.header': 'SDG Targets',
   'ui.sdgTarget.label': 'SDG Target',
 
-  'ui.useCase.header': 'Use Cases',
-  'ui.useCase.label': 'Use Case',
   'useCase.sdgTarget': 'SDG Targets',
   'useCase.workflow': 'Workflows',
   'useCase.noSdgTarget': 'We do not have any SDG Target information for this Use Case.',
@@ -1693,6 +1694,9 @@ export const en = {
   'ui.opportunity.label': 'Opportunity',
   'ui.opportunity.header': 'Opportunities',
 
+  'ui.opportunity.source': 'Source',
+  'ui.opportunity.govStackEntity': 'Opportunity is a part of GovStack',
+
   'ui.opportunity.whatIs': 'What is RFP Radar?',
   'ui.opportunity.createNew': 'Create a new RFP',
   'ui.opportunity.hint.title': 'What is RFP Radar?',
@@ -1888,6 +1892,8 @@ export const en = {
   'ui.useCase.whatIs': 'What is a Use Case?',
   'ui.useCase.createNew': 'Create a new Use Case',
 
+  'ui.useCase.source': 'Source',
+  'ui.useCase.govStackEntity': 'Use case is a part of GovStack',
   'ui.useCase.filter.showDraft': 'Show draft (non-validated) use cases',
   'ui.useCase.filter.showGovStackOnly': 'Show only use cases from GovStack',
 
@@ -2038,6 +2044,8 @@ export const en = {
     are developed, products that are aligned with the specifications will be tagged as
     such.
   `,
+  'ui.buildingBlock.source': 'Source',
+  'ui.buildingBlock.govStackEntity': 'Building block is a part of GovStack',
 
   'ui.buildingBlock.filter.showMature': 'Show only published building blocks',
   'ui.buildingBlock.filter.showGovStackOnly': 'Show only building blocks from GovStack',

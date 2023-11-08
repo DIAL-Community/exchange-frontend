@@ -27,6 +27,7 @@ export const CREATE_OPPORTUNITY = gql`
     $opportunityType: String!
     $opportunityStatus: String!
     $opportunityOrigin: String!
+    $govStackEntity: Boolean
   ) {
     createOpportunity(
       slug: $slug
@@ -41,6 +42,7 @@ export const CREATE_OPPORTUNITY = gql`
       opportunityType: $opportunityType
       opportunityStatus: $opportunityStatus
       opportunityOrigin: $opportunityOrigin
+      govStackEntity: $govStackEntity
     ) {
       opportunity {
         id
@@ -50,6 +52,7 @@ export const CREATE_OPPORTUNITY = gql`
         imageFile
         webAddress
         description
+        govStackEntity
         opportunityStatus
         opportunityType
         closingDate

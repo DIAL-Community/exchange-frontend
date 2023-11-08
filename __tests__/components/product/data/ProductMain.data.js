@@ -12,6 +12,7 @@ export const paginatedProducts = {
         'origins': [],
         'buildingBlocks': [],
         'sdgs': [],
+        'govStackEntity': false,
         'parsedDescription': null,
         'productDescription': null,
         'mainRepository': {
@@ -50,6 +51,7 @@ export const paginatedProducts = {
             'id': '20'
           }
         ],
+        'govStackEntity': true,
         'parsedDescription': 'Some parsed description.',
         'productDescription': {
           'id': '1835397',
@@ -85,6 +87,7 @@ export const paginatedProducts = {
             'id': '21'
           }
         ],
+        'govStackEntity': false,
         'parsedDescription': 'Some parsed description.',
         'productDescription': {
           'id': '1835369',
@@ -117,6 +120,7 @@ export const paginatedProducts = {
             'id': '23'
           }
         ],
+        'govStackEntity': true,
         'parsedDescription': 'Some parsed description.',
         'productDescription': {
           'id': '1585',

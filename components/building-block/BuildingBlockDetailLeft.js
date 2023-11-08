@@ -13,7 +13,7 @@ const BuildingBlockDetailLeft = ({ scrollRef, buildingBlock }) => {
         <hr className='border-b border-dial-slate-200'/>
         <BuildingBlockDetailNav scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={buildingBlock} objectType={ObjectType.BUILDING_BLOCK} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

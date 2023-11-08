@@ -20,6 +20,7 @@ import {
 } from '../../shared/query/buildingBlock'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
 
 const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -80,7 +81,8 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
       maturity: maturityOptions.find(({ value: maturity }) => maturity === buildingBlock?.maturity),
       category: categoryOptions.find(({ value: category }) => category === buildingBlock?.category),
       description: buildingBlock?.buildingBlockDescription?.description,
-      specUrl: buildingBlock?.specUrl
+      specUrl: buildingBlock?.specUrl,
+      govStackEntity: buildingBlock?.govStackEntity
     }
   })
 
@@ -88,14 +90,15 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
     if (user) {
       setMutating(true)
       const { userEmail, userToken } = user
-      const { name, maturity, category, imageFile, description, specUrl } = data
+      const { name, maturity, category, imageFile, description, specUrl, govStackEntity } = data
       const variables = {
         name,
         slug,
         maturity: maturity.value,
         category: category ? category.value : null,
         description,
-        specUrl
+        specUrl,
+        govStackEntity
       }
 
       if (imageFile) {
@@ -196,7 +199,13 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                 )}
               />
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            {isAdminUser &&
+              <label className='flex gap-x-2 items-center self-start'>
+                <Checkbox {...register('govStackEntity')} />
+                {format('ui.buildingBlock.govStackEntity')}
+              </label>
+            }
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field'>{format('buildingBlock.description')}</label>
               <Controller
                 name='description'

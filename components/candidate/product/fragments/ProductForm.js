@@ -194,7 +194,7 @@ const ProductForm = React.memo(({ product }) => {
                 )}
               />
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field'>
                 {format('ui.candidateProduct.description')}
               </label>

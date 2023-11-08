@@ -55,6 +55,7 @@ export const PAGINATED_USE_CASES_QUERY = gql`
         slug
         name
       }
+      govStackEntity
       parsedDescription
       sanitizedDescription
       buildingBlocks {
@@ -84,6 +85,7 @@ export const USE_CASE_DETAIL_QUERY = gql`
       maturity
       imageFile
       markdownUrl
+      govStackEntity
       useCaseDescription {
         id
         description

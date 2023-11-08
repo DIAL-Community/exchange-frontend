@@ -59,6 +59,7 @@ export const PAGINATED_OPPORTUNITIES_QUERY = gql`
       name
       imageFile
       description
+      govStackEntity
       parsedDescription
       opportunityStatus
       closingDate
@@ -92,6 +93,7 @@ export const OPPORTUNITY_DETAIL_QUERY = gql`
       openingDate
       contactName
       contactEmail
+      govStackEntity
       origin {
         id
         name

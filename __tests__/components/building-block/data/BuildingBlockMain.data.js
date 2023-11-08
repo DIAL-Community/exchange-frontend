@@ -9,6 +9,7 @@ export const paginatedBuildingBlocks = {
         'maturity': 'DRAFT',
         'category': null,
         'specUrl': null,
+        'govStackEntity': true,
         'parsedDescription': 'Some parsed description.',
         'buildingBlockDescription': {
           'id': '48',
@@ -34,6 +35,7 @@ export const paginatedBuildingBlocks = {
         'maturity': 'PUBLISHED',
         'category': 'DPI',
         'specUrl': null,
+        'govStackEntity': false,
         'parsedDescription': 'Some parsed description.',
         'buildingBlockDescription': {
           'id': '2',

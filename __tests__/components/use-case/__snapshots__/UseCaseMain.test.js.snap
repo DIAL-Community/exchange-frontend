@@ -325,10 +325,10 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           </div>
                         </div>
                         <div
-                          class="flex text-[10px] text-white"
+                          class="flex gap-2 text-xs text-white"
                         >
                           <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
+                            class="px-6 py-1 rounded bg-dial-blueberry"
                           >
                             PUBLISHED
                           </div>
@@ -398,12 +398,17 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           </div>
                         </div>
                         <div
-                          class="flex text-[10px] text-white"
+                          class="flex gap-2 text-xs text-white"
                         >
                           <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
+                            class="px-6 py-1 rounded bg-dial-blueberry"
                           >
                             PUBLISHED
+                          </div>
+                          <div
+                            class="bg-dial-iris-blue rounded px-6 py-1"
+                          >
+                            GovStack
                           </div>
                         </div>
                       </div>
@@ -471,12 +476,17 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           </div>
                         </div>
                         <div
-                          class="flex text-[10px] text-white"
+                          class="flex gap-2 text-xs text-white"
                         >
                           <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
+                            class="px-6 py-1 rounded bg-dial-blueberry"
                           >
                             PUBLISHED
+                          </div>
+                          <div
+                            class="bg-dial-iris-blue rounded px-6 py-1"
+                          >
+                            GovStack
                           </div>
                         </div>
                       </div>

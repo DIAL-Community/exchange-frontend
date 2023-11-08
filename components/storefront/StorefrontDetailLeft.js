@@ -13,7 +13,7 @@ const StorefrontDetailLeft = ({ scrollRef, organization }) => {
         <hr className='border-b border-dial-slate-200'/>
         <StorefrontDetailNav organization={organization} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={organization} objectType={ObjectType.ORGANIZATION} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />
