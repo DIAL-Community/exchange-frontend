@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { FaXTwitter, FaLinkedin } from 'react-icons/fa6'
+import { FaLinkedin } from 'react-icons/fa6'
 
 const PoweredBy = () => {
   const { formatMessage } = useIntl()
@@ -26,9 +26,6 @@ const PoweredBy = () => {
         </div>
       </div>
       <div className='flex gap-2 ml-auto'>
-        <a href='//x.com/DIALCommunity' target='_blank' rel='noreferrer'>
-          <FaXTwitter size='2rem' className='text-dial-iris-blue'/>
-        </a>
         <a
           href='//www.linkedin.com/company/digital-impact-alliance/'
           target='_blank'
