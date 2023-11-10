@@ -1693,6 +1693,11 @@ export const en = {
   'filter.entity.opportunities': 'Opportunities',
   'ui.opportunity.label': 'Opportunity',
   'ui.opportunity.header': 'Opportunities',
+  
+  'opportunity.hint.subtitle': `
+    The RFP Radar aggregates requests from different organizations, allowing you to explore
+    a wide range of opportunities in one convenient location.
+  `,
 
   'ui.opportunity.source': 'Source',
   'ui.opportunity.govStackEntity': 'Opportunity is a part of GovStack',
