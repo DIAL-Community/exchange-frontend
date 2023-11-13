@@ -464,12 +464,12 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           </div>
                         </div>
                         <div
-                          class="flex gap-2 text-xs text-white"
+                          class="flex gap-2 text-xs text-dial-iris-blue"
                         >
                           <div
-                            class="bg-dial-iris-blue rounded px-6 py-1"
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
                           >
-                            GovStack
+                            GOVSTACK
                           </div>
                         </div>
                       </div>
@@ -585,7 +585,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           </div>
                         </div>
                         <div
-                          class="flex gap-2 text-xs text-white"
+                          class="flex gap-2 text-xs text-dial-iris-blue"
                         />
                       </div>
                     </div>
@@ -700,7 +700,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           </div>
                         </div>
                         <div
-                          class="flex gap-2 text-xs text-white"
+                          class="flex gap-2 text-xs text-dial-iris-blue"
                         />
                       </div>
                     </div>
@@ -815,7 +815,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           </div>
                         </div>
                         <div
-                          class="flex gap-2 text-xs text-white"
+                          class="flex gap-2 text-xs text-dial-iris-blue"
                         />
                       </div>
                     </div>
@@ -930,12 +930,12 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                           </div>
                         </div>
                         <div
-                          class="flex gap-2 text-xs text-white"
+                          class="flex gap-2 text-xs text-dial-iris-blue"
                         >
                           <div
-                            class="bg-dial-iris-blue rounded px-6 py-1"
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
                           >
-                            GovStack
+                            GOVSTACK
                           </div>
                         </div>
                       </div>

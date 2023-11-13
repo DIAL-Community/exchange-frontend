@@ -513,9 +513,9 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           class="flex gap-2 text-xs text-white"
                         >
                           <div
-                            class="bg-dial-iris-blue rounded px-6 py-1"
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
                           >
-                            GovStack
+                            GOVSTACK
                           </div>
                         </div>
                       </div>
@@ -679,9 +679,9 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           class="flex gap-2 text-xs text-white"
                         >
                           <div
-                            class="bg-dial-iris-blue rounded px-6 py-1"
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
                           >
-                            GovStack
+                            GOVSTACK
                           </div>
                         </div>
                       </div>

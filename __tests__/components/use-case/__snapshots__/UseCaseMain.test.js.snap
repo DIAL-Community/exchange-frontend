@@ -406,9 +406,9 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                             PUBLISHED
                           </div>
                           <div
-                            class="bg-dial-iris-blue rounded px-6 py-1"
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
                           >
-                            GovStack
+                            GOVSTACK
                           </div>
                         </div>
                       </div>
@@ -484,9 +484,9 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                             PUBLISHED
                           </div>
                           <div
-                            class="bg-dial-iris-blue rounded px-6 py-1"
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
                           >
-                            GovStack
+                            GOVSTACK
                           </div>
                         </div>
                       </div>
