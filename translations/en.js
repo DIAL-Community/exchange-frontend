@@ -242,7 +242,7 @@ export const en = {
   'ui.product.project.count': 'Number of Projects',
 
   'ui.product.source': 'Source',
-  'ui.product.govStackEntity': 'Product is a part of GovStack',
+  'ui.product.govStackEntity': 'GovStack product',
   
   'ui.product.compare': 'Compare',
   'ui.product.compare.clear': 'Clear all',
@@ -1700,7 +1700,7 @@ export const en = {
   `,
 
   'ui.opportunity.source': 'Source',
-  'ui.opportunity.govStackEntity': 'Opportunity is a part of GovStack',
+  'ui.opportunity.govStackEntity': 'GovStack RFP',
 
   'ui.opportunity.whatIs': 'What is RFP Radar?',
   'ui.opportunity.createNew': 'Create a new RFP',
@@ -1898,7 +1898,7 @@ export const en = {
   'ui.useCase.createNew': 'Create a new Use Case',
 
   'ui.useCase.source': 'Source',
-  'ui.useCase.govStackEntity': 'Use case is a part of GovStack',
+  'ui.useCase.govStackEntity': 'GovStack use case',
   'ui.useCase.filter.showDraft': 'Show draft (non-validated) use cases',
   'ui.useCase.filter.showGovStackOnly': 'Show only use cases from GovStack',
 
@@ -2050,7 +2050,7 @@ export const en = {
     such.
   `,
   'ui.buildingBlock.source': 'Source',
-  'ui.buildingBlock.govStackEntity': 'Building block is a part of GovStack',
+  'ui.buildingBlock.govStackEntity': 'GovStack building block',
 
   'ui.buildingBlock.filter.showMature': 'Show only published building blocks',
   'ui.buildingBlock.filter.showGovStackOnly': 'Show only building blocks from GovStack',

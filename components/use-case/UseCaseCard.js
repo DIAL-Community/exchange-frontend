@@ -53,8 +53,8 @@ const UseCaseCard = ({ displayType, index, useCase, dismissHandler }) => {
               {useCase.maturity}
             </div>
             {useCase.govStackEntity &&
-              <div className='bg-dial-iris-blue rounded px-6 py-1'>
-                {format('govstack.label')}
+              <div className='border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1'>
+                {format('govstack.label').toUpperCase()}
               </div>
             }
           </div>

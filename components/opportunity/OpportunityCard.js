@@ -71,10 +71,10 @@ const OpportunityCard = ({ displayType, index, opportunity, dismissHandler }) =>
               {format('ui.country.header')} ({opportunity.countries?.length ?? 0})
             </div>
           </div>
-          <div className='flex gap-2 text-xs text-white'>
+          <div className='flex gap-2 text-xs text-dial-iris-blue'>
             {opportunity.govStackEntity &&
-              <div className='bg-dial-iris-blue rounded px-6 py-1'>
-                {format('govstack.label')}
+              <div className='border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1'>
+                {format('govstack.label').toUpperCase()}
               </div>
             }
           </div>

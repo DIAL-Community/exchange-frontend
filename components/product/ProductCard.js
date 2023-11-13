@@ -66,8 +66,8 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
           </div>
           <div className='flex gap-2 text-xs text-white'>
             {product.govStackEntity &&
-              <div className='bg-dial-iris-blue rounded px-6 py-1'>
-                {format('govstack.label')}
+              <div className='border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1'>
+                {format('govstack.label').toUpperCase()}
               </div>
             }
           </div>

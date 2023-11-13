@@ -50,6 +50,11 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
               </div>
             </div>
             <div className='flex gap-2 text-xs text-white'>
+              {buildingBlock.govStackEntity &&
+                <div className='border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1'>
+                  {format('govstack.label').toUpperCase()}
+                </div>
+              }
               <div
                 className={classNames(
                   'px-6 py-1 rounded',
@@ -63,11 +68,6 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
               {buildingBlock.category === CategoryType.DPI &&
                 <div className='bg-dial-orange rounded px-6 py-1'>
                   {buildingBlock.category}
-                </div>
-              }
-              {buildingBlock.govStackEntity &&
-                <div className='bg-dial-iris-blue rounded px-6 py-1'>
-                  {format('govstack.label')}
                 </div>
               }
             </div>
