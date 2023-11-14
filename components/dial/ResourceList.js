@@ -11,7 +11,7 @@ const ResourceList = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, resourceTypes, resourceTopics, resourceTags } = useContext(ResourceFilterContext)
+  const { search, resourceTypes, resourceTopics, resourceTags, resourceCountries } = useContext(ResourceFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -33,9 +33,10 @@ const ResourceList = () => {
   const { loading, error, data } = useQuery(CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
+      tags: resourceTags.map(r => r.value),
+      countries: resourceCountries.map(r => r.label),
       resourceTypes: resourceTypes.map(r => r.value),
-      resourceTopics: resourceTopics.map(r => r.value),
-      tags: resourceTags.map(r => r.value)
+      resourceTopics: resourceTopics.map(r => r.value)
     }
   })
 
