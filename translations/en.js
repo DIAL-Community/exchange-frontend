@@ -108,6 +108,7 @@ export const en = {
   'header.marketplace': 'Marketplace',
   'header.tools': 'Tools',
   'header.supportingTools': 'Supporting Tools',
+  'header.govstack': 'GovStack Portal',
 
   'footer.text.firstLine': `
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
