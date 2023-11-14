@@ -49,14 +49,14 @@ const UseCaseCard = ({ displayType, index, useCase, dismissHandler }) => {
             </div>
           </div>
           <div className='flex gap-2 text-xs text-white'>
-            <div className='px-6 py-1 rounded bg-dial-blueberry'>
-              {useCase.maturity}
-            </div>
             {useCase.govStackEntity &&
               <div className='border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1'>
                 {format('govstack.label').toUpperCase()}
               </div>
             }
+            <div className='px-6 py-1 rounded bg-dial-blueberry'>
+              {useCase.maturity}
+            </div>
           </div>
         </div>
       </div>
