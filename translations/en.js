@@ -2200,7 +2200,7 @@ export const en = {
   `,
 
   'ui.hero.govExchange.title': 'GovExchange',
-  'ui.hero.govExchange.tagLine': 'A key offering of GovStack. Find building blocks, use cases, products and more.',
+  'ui.hero.govExchange.tagLine': 'A key offering of GovStack. Find Building Blocks, Use Cases, Products and more.',
   'ui.hero.govExchange.learnMore': 'Learn more about GovStack',
 
   'ui.wizard.title': 'New to the Digital Impact Exchange?',
@@ -2375,5 +2375,7 @@ export const en = {
   'ui.taskTracker.incomplete': 'Last run was not successful.',
   'ui.taskTracker.lastStartedDate': 'Last started date',
   'ui.taskTracker.lastReceivedMessage': 'Last Received Message',
-  'ui.taskTracker.filter.showFailedOnly': 'Show failed only'
+  'ui.taskTracker.filter.showFailedOnly': 'Show failed only',
+
+  'ui.govstack.tagLine': 'The Digital Impact Exchange is closely aligned with GovStack, a multi-stakeholder, community-driven initiative that is focused on accelerating national digital transformation worldwide. Click on the links below to see Use Cases, Building Blocks, and Products that are aligned with the GovStack approach, as well as RFPs for GovStack implementations.',
 }
