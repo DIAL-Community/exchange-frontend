@@ -334,7 +334,7 @@ export const STOREFRONT_DETAIL_QUERY = gql`
         id
         name
         slug
-        link
+        resourceLink
       }
     }
   }

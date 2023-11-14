@@ -279,9 +279,6 @@ const Covid19Resources = () => (
       <Content />
       <Footer />
     </ClientOnly>
-    <Header />
-    <Content />
-    <Footer />
   </>
 )
 
