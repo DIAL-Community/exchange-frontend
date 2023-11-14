@@ -5,29 +5,40 @@ import { ResourceFilterContext, ResourceFilterDispatchContext } from '../../cont
 import { ResourceTopicActiveFilters, ResourceTopicAutocomplete } from '../../shared/filter/ResourceTopic'
 import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { COUNTRIES_WITH_RESOURCES_SEARCH_QUERY } from '../../shared/query/country'
 
 const ResourceFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { resourceCountries, resourceTypes, resourceTopics, resourceTags } = useContext(ResourceFilterContext)
-  const { setResourceCountries, setResourceTypes, setResourceTopics, setResourceTags }
-    = useContext(ResourceFilterDispatchContext)
+  const {
+    resourceTags,
+    resourceTypes,
+    resourceTopics,
+    resourceCountries
+  } = useContext(ResourceFilterContext)
+
+  const {
+    setResourceTags,
+    setResourceTypes,
+    setResourceTopics,
+    setResourceCountries
+  } = useContext(ResourceFilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
-    setResourceCountries([])
+    setResourceTags([])
     setResourceTypes([])
     setResourceTopics([])
-    setResourceTags([])
+    setResourceCountries([])
   }
 
   const filteringWorkflow = () => {
     let count = 0
-    count = count + resourceCountries.length
+    count = count + resourceTags.length
     count = count + resourceTypes.length
     count = count + resourceTopics.length
-    count = count + resourceTags.length
+    count = count + resourceCountries.length
 
     return count > 0
   }
@@ -84,9 +95,11 @@ const ResourceFilter = () => {
         />
         <hr className='border-b border-dial-slate-200'/>
         <CountryAutocomplete
+          searchQuery={COUNTRIES_WITH_RESOURCES_SEARCH_QUERY}
           countries={resourceCountries}
           setCountries={setResourceCountries}
         />
+        <hr className='border-b border-dial-slate-200'/>
         <TagAutocomplete
           tags={resourceTags}
           setTags={setResourceTags}
