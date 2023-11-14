@@ -15,7 +15,8 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     sectors,
     useCases,
     tags,
-    showClosed
+    showClosed,
+    showGovStackOnly
   } = useContext(OpportunityFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_OPPORTUNITIES_QUERY, {
@@ -28,6 +29,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
       showClosed,
+      showGovStackOnly,
       limit: defaultPageSize,
       offset: pageOffset
     }

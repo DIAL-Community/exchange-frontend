@@ -181,6 +181,19 @@ exports[`Unit tests for the building block main page. Should render list of buil
                     Show only published building blocks
                   </span>
                 </label>
+                <label
+                  class="flex py-2"
+                >
+                  <input
+                    class="h-5 w-5"
+                    type="checkbox"
+                  />
+                  <span
+                    class="mx-2 my-auto text-sm"
+                  >
+                    Show only building blocks from GovStack
+                  </span>
+                </label>
               </div>
             </div>
             <div
@@ -407,7 +420,12 @@ exports[`Unit tests for the building block main page. Should render list of buil
                             class="flex gap-2 text-xs text-white"
                           >
                             <div
-                              class="px-6 py-0.5 rounded border border-dial-orange text-dial-orange"
+                              class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
+                            >
+                              GOVSTACK
+                            </div>
+                            <div
+                              class="px-6 py-1 rounded border border-dial-orange text-dial-orange"
                             >
                               DRAFT
                             </div>
@@ -484,12 +502,12 @@ exports[`Unit tests for the building block main page. Should render list of buil
                             class="flex gap-2 text-xs text-white"
                           >
                             <div
-                              class="px-6 py-0.5 rounded bg-dial-orange"
+                              class="px-6 py-1 rounded bg-dial-orange"
                             >
                               PUBLISHED
                             </div>
                             <div
-                              class="bg-dial-orange rounded px-6 py-0.5"
+                              class="bg-dial-orange rounded px-6 py-1"
                             >
                               DPI
                             </div>

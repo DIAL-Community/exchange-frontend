@@ -218,7 +218,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                 }
               />
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='description-editor'>
                 {format('ui.dataset.description')}
               </label>

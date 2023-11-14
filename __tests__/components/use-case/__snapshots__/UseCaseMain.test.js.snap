@@ -102,7 +102,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                   <span
                     class="mx-2 my-auto text-sm"
                   >
-                    Show use cases from GovStack
+                    Show only use cases from GovStack
                   </span>
                 </label>
               </div>
@@ -325,10 +325,10 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           </div>
                         </div>
                         <div
-                          class="flex text-[10px] text-white"
+                          class="flex gap-2 text-xs text-white"
                         >
                           <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
+                            class="px-6 py-1 rounded bg-dial-blueberry"
                           >
                             PUBLISHED
                           </div>
@@ -398,10 +398,15 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           </div>
                         </div>
                         <div
-                          class="flex text-[10px] text-white"
+                          class="flex gap-2 text-xs text-white"
                         >
                           <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
+                          >
+                            GOVSTACK
+                          </div>
+                          <div
+                            class="px-6 py-1 rounded bg-dial-blueberry"
                           >
                             PUBLISHED
                           </div>
@@ -471,10 +476,15 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           </div>
                         </div>
                         <div
-                          class="flex text-[10px] text-white"
+                          class="flex gap-2 text-xs text-white"
                         >
                           <div
-                            class="px-6 py-1 rounded-lg bg-dial-blueberry"
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
+                          >
+                            GOVSTACK
+                          </div>
+                          <div
+                            class="px-6 py-1 rounded bg-dial-blueberry"
                           >
                             PUBLISHED
                           </div>

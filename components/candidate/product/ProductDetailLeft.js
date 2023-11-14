@@ -10,7 +10,7 @@ const ProductDetailLeft = ({ scrollRef, product }) => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <ProductDetailHeader product={product}/>
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={product} objectType={ObjectType.PRODUCT} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

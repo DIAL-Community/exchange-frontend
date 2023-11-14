@@ -19,6 +19,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
     $sdgs: [String!]
     $origins: [String!]
     $isLinkedWithDpi: Boolean
+    $showGovStackOnly: Boolean
     $search: String
   ) {
     paginationAttributeProduct(
@@ -31,6 +32,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
       sdgs: $sdgs
       origins: $origins
       isLinkedWithDpi: $isLinkedWithDpi
+      showGovStackOnly: $showGovStackOnly
       search: $search
     ) {
       totalCount
@@ -49,6 +51,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $sdgs: [String!]
     $origins: [String!]
     $isLinkedWithDpi: Boolean
+    $showGovStackOnly: Boolean
     $search: String
     $limit: Int!
     $offset: Int!
@@ -63,6 +66,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       sdgs: $sdgs
       origins: $origins
       isLinkedWithDpi: $isLinkedWithDpi
+      showGovStackOnly: $showGovStackOnly
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
@@ -71,6 +75,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       slug
       tags
       imageFile
+      govStackEntity
       overallMaturityScore
       commercialProduct
       origins {
@@ -119,7 +124,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       hostingModel
       languages
       haveOwner
-      tags
+      govStackEntity
       productDescription {
         id
         description
@@ -207,6 +212,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       overallMaturityScore
       maturityScoreDetails
       isLinkedWithDpi
+      tags
     }
   }
 `

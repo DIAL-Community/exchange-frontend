@@ -13,24 +13,44 @@ const BuildingBlockFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
-  const { setSdgs, setUseCases, setWorkflows, setCategoryTypes, setShowMature }
-    = useContext(BuildingBlockFilterDispatchContext)
+  const {
+    sdgs,
+    useCases,
+    workflows,
+    categoryTypes,
+    showMature,
+    showGovStackOnly
+  } = useContext(BuildingBlockFilterContext)
 
-  const clearFilter = (e) => {
-    e.preventDefault()
+  const {
+    setSdgs,
+    setUseCases,
+    setWorkflows,
+    setCategoryTypes,
+    setShowMature,
+    setShowGovStackOnly
+  } = useContext(BuildingBlockFilterDispatchContext)
+
+  const clearFilter = () => {
     setSdgs([])
     setUseCases([])
     setWorkflows([])
     setCategoryTypes([])
     setShowMature(false)
+    setShowGovStackOnly(false)
   }
 
   const toggleShowMature = () => setShowMature(!showMature)
 
+  const toggleShowGovStackOnly = () => {
+    setShowGovStackOnly(!showGovStackOnly)
+  }
+
   const filteringBuildingBlock = () => {
-    let count = showMature ? 1 : 0
-    count = count + sdgs.length + useCases.length + workflows.length + categoryTypes.length > 0
+    let count = 0
+    count = count + showMature ? 1 : 0
+    count = count + showGovStackOnly ? 1 : 0
+    count = count + sdgs.length + useCases.length + workflows.length + categoryTypes.length
 
     return count > 0
   }
@@ -68,6 +88,18 @@ const BuildingBlockFilter = () => {
                 </div>
               </div>
             )}
+            {showGovStackOnly && (
+              <div className='bg-dial-slate-400 text-white px-2 py-1 rounded'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('ui.buildingBlock.filter.showGovStackOnly')}
+                    <button type='button' onClick={toggleShowGovStackOnly}>
+                      <FaXmark size='1rem' />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       }
@@ -93,6 +125,12 @@ const BuildingBlockFilter = () => {
           <Checkbox onChange={toggleShowMature} value={showMature} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.buildingBlock.filter.showMature')}
+          </span>
+        </label>
+        <label className='flex py-2'>
+          <Checkbox onChange={toggleShowGovStackOnly} value={showGovStackOnly} />
+          <span className='mx-2 my-auto text-sm'>
+            {format('ui.buildingBlock.filter.showGovStackOnly')}
           </span>
         </label>
       </div>

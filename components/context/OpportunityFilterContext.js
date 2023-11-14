@@ -11,6 +11,7 @@ const OpportunityFilterProvider = ({ children }) => {
   const [tags, setTags] = useState([])
   const [useCases, setUseCases] = useState([])
   const [showClosed, setShowClosed] = useState(false)
+  const [showGovStackOnly, setShowGovStackOnly] = useState(false)
 
   const [search, setSearch] = useState('')
 
@@ -25,6 +26,7 @@ const OpportunityFilterProvider = ({ children }) => {
     tags,
     useCases,
     showClosed,
+    showGovStackOnly,
     search,
     pageOffset,
     pageNumber
@@ -38,6 +40,7 @@ const OpportunityFilterProvider = ({ children }) => {
     setTags,
     setUseCases,
     setShowClosed,
+    setShowGovStackOnly,
     setSearch,
     setPageNumber,
     setPageOffset

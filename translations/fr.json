@@ -589,7 +589,7 @@
   "filter.organization.aggregatorOnly": "Agrégateurs uniquement",
   "filter.organization.endorserOnly": "Uniquement les organisations d’endosseurs",
   "filter.useCase.showDraft": "Afficher projet de cas d’utilisation (non validés)",
-  "filter.useCase.govStackOnly": "Afficher les cas d'utilisation GovStack uniquement",
+  "filter.useCase.showGovStackOnly": "Afficher les cas d'utilisation GovStack uniquement",
 
   "filter.product.forCovid": "Outils COVID-19",
   "filter.product.endorsed": "Afficher les produits approuvés",
@@ -1297,7 +1297,7 @@
   "ui.opportunity.openingDate": "Date d'ouverture",
   "ui.opportunity.closingDate": "Date de clôture",
   "ui.opportunity.description": "Description",
-  "filter.opportunity.showClosed": "Afficher les opportunités closes",
+  "ui.opportunity.filter.showClosed": "Afficher les opportunités closes",
 
   "ui.opportunity.source": "Source",
 
@@ -1405,7 +1405,7 @@
   "ui.useCase.createNew": "Créer un nouveau cas d'utilisation",
 
   "ui.useCase.filter.showDraft": "Afficher projet de cas d’utilisation (non validés)",
-  "ui.useCase.filter.govStackOnly": "Afficher les cas d'utilisation depuis GovStack",
+  "ui.useCase.filter.showGovStackOnly": "Afficher les cas d'utilisation depuis GovStack",
 
   "ui.useCase.detail.steps": "Étapes du cas d’utilisation",
   "ui.useCase.parent.detail": "Cas d'utilisation parent",

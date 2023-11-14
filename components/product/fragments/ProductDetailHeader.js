@@ -38,6 +38,16 @@ const ProductDetailHeader = ({ product }) => {
         }
       </div>
       <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
+        {product.govStackEntity &&
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('ui.product.source')}
+            </div>
+            <div className='flex text-dial-stratos'>
+              {format('govstack.label')}
+            </div>
+          </div>
+        }
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-sapphire'>
             {format('product.website')}

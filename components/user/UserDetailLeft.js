@@ -13,7 +13,7 @@ const UserDetailLeft = ({ scrollRef, user }) => {
         <hr className='border-b border-dial-slate-200'/>
         <UserDetailNav user={user} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={user} objectType={ObjectType.USER} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

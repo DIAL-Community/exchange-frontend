@@ -48,6 +48,9 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
           >
             {format('header.dialResourcesPortal')}
           </a>
+          <Link href='/govstack' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('header.govstack')}
+          </Link>
         </div>
       }
     </>

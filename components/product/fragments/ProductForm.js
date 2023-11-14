@@ -82,7 +82,8 @@ const ProductForm = React.memo(({ product }) => {
       hostingModel: product?.hostingModel,
       pricingModel: product?.pricingModel,
       pricingDetails: product?.pricingDetails,
-      pricingUrl: product?.pricingUrl
+      pricingUrl: product?.pricingUrl,
+      govStackEntity: product?.govStackEntity
     }
   })
 
@@ -111,7 +112,8 @@ const ProductForm = React.memo(({ product }) => {
         pricingUrl,
         hostingModel,
         pricingModel,
-        pricingDetails
+        pricingDetails,
+        govStackEntity
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -124,7 +126,8 @@ const ProductForm = React.memo(({ product }) => {
         pricingUrl,
         hostingModel,
         pricingModel,
-        pricingDetails
+        pricingDetails,
+        govStackEntity
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -217,7 +220,13 @@ const ProductForm = React.memo(({ product }) => {
               <label>{format('product.imageFile')}</label>
               <FileUploader {...register('imageFile')} />
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            {isAdminUser &&
+              <label className='flex gap-x-2 items-center self-start'>
+                <Checkbox {...register('govStackEntity')} />
+                {format('ui.product.govStackEntity')}
+              </label>
+            }
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field'>{format('product.description')}</label>
               <Controller
                 name='description'
@@ -280,7 +289,7 @@ const ProductForm = React.memo(({ product }) => {
                 placeholder={format('product.pricingModel')}
               />
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2'>
               <label>{format('product.pricing.details')}</label>
               <Controller
                 name='pricingDetails'

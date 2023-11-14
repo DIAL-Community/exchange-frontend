@@ -133,7 +133,7 @@ const TaskTrackerForm = React.memo(({ taskTracker }) => {
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
               </div>
-              <div className='block flex flex-col gap-y-2'>
+              <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
                   {format('taskTracker.description')}
                 </label>

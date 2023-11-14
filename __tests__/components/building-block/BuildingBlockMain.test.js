@@ -16,13 +16,31 @@ describe('Unit tests for the building block main page.', () => {
   test('Should render list of building blocks.', async () => {
     const mockBuildingBlockPaginationAttribute = generateMockApolloData(
       BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY,
-      { search: '', sdgs: [], useCases: [], workflows: [], categoryTypes: [], showMature:false },
+      {
+        search: '',
+        sdgs: [],
+        useCases: [],
+        workflows: [],
+        categoryTypes: [],
+        showMature:false,
+        showGovStackOnly: false
+      },
       null,
       buildingBlockPaginationAttribute
     )
     const mockPaginatedBuildingBlocks = generateMockApolloData(
       PAGINATED_BUILDING_BLOCKS_QUERY,
-      { search: '', sdgs: [], useCases: [], workflows: [], categoryTypes: [], showMature:false, limit: 8, offset: 0 },
+      {
+        search: '',
+        sdgs: [],
+        useCases: [],
+        workflows: [],
+        categoryTypes: [],
+        showMature:false,
+        showGovStackOnly: false,
+        limit: 8,
+        offset: 0
+      },
       null,
       paginatedBuildingBlocks
     )

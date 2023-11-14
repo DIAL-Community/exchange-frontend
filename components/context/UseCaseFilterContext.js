@@ -5,7 +5,7 @@ const UseCaseFilterDispatchContext = createContext()
 
 const UseCaseFilterProvider = ({ children }) => {
   const [showBeta, setShowBeta] = useState(false)
-  const [govStackOnly, setShowGovStack] = useState(false)
+  const [showGovStackOnly, setShowGovStackOnly] = useState(false)
   const [sectors, setSectors] = useState([])
   const [sdgs, setSdgs] = useState([])
 
@@ -16,7 +16,7 @@ const UseCaseFilterProvider = ({ children }) => {
 
   const useCaseFilterValues = {
     showBeta,
-    govStackOnly,
+    showGovStackOnly,
     sectors,
     sdgs,
     search,
@@ -26,7 +26,7 @@ const UseCaseFilterProvider = ({ children }) => {
 
   const useCaseFilterDispatchValues = {
     setShowBeta,
-    setShowGovStack,
+    setShowGovStackOnly,
     setSectors,
     setSdgs,
     setSearch,

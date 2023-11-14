@@ -12,7 +12,7 @@ const ProductListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, isLinkedWithDpi } = useContext(ProductFilterContext)
+  const { search, isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
   const { licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
 
@@ -44,7 +44,8 @@ const ProductListRight = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       workflows: workflows.map(workflow => workflow.id),
       origins: origins.map(origin => origin.value),
-      isLinkedWithDpi
+      isLinkedWithDpi,
+      showGovStackOnly
     }
   })
 
