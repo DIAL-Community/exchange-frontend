@@ -1,10 +1,19 @@
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
+import { isMobile } from 'react-device-detect'
 
 const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClickHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const [pageRange, setPageRange] = useState(1)
+
+  useEffect(() => {
+    if (!isMobile) {
+      setPageRange(5)
+    }
+  }, [])
 
   const firstRecord = pageNumber * defaultPageSize + 1
   const lastRecord = (pageNumber + 1) * defaultPageSize > totalCount
@@ -29,8 +38,8 @@ const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClic
           previousLabel={format('ui.pagination.prevLabel')}
           forcePage={pageNumber}
           onPageChange={pageClickHandler}
-          pageRangeDisplayed={1}
-          marginPagesDisplayed={2}
+          pageRangeDisplayed={pageRange}
+          marginPagesDisplayed={1}
           pageCount={Math.ceil(totalCount / defaultPageSize)}
           renderOnZeroPageCount={null}
           disabledClassName='opacity-30'
