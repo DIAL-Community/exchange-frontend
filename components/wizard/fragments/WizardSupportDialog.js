@@ -56,7 +56,7 @@ const WizardSupportDialog = ({ isOpen, onClose }) => {
             <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {format('wizard.additionalSupport')}
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>
                 {format('app.name')}
               </label>
@@ -68,7 +68,7 @@ const WizardSupportDialog = ({ isOpen, onClose }) => {
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='email-address'>
                 {format('app.email')}
               </label>
@@ -85,7 +85,7 @@ const WizardSupportDialog = ({ isOpen, onClose }) => {
               />
               {errors.emailAddress && <ValidationError value={errors.emailAddress?.message} />}
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='message'>
                 {format('wizard.additionalSupport.message')}
               </label>

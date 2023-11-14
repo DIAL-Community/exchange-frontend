@@ -22,7 +22,8 @@ const OpportunityListLeft = () => {
     sectors,
     useCases,
     tags,
-    showClosed
+    showClosed,
+    showGovStackOnly
   } = useContext(OpportunityFilterContext)
 
   const {
@@ -32,7 +33,8 @@ const OpportunityListLeft = () => {
     setSectors,
     setUseCases,
     setTags,
-    setShowClosed
+    setShowClosed,
+    setShowGovStackOnly
   } = useContext(OpportunityFilterDispatchContext)
 
   const sharableLink = () => {
@@ -49,12 +51,13 @@ const OpportunityListLeft = () => {
     const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
-    const closedFilter = showClosed ? 'showClosed=true' : ''
+    const showClosedFilter = showClosed ? 'showClosed=true' : ''
+    const showGovStackOnlyFilter = showGovStackOnly ? 'showGovStackOnly=true' : ''
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter, ...countryFilters, ...buildingBlockFilters, ...organizationFilters,
-      ...useCaseFilters, ...sectorFilters, ...tagFilters, closedFilter
+      ...useCaseFilters, ...sectorFilters, ...tagFilters, showClosedFilter, showGovStackOnlyFilter
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -71,6 +74,7 @@ const OpportunityListLeft = () => {
       parseQuery(query, 'sectors', sectors, setSectors)
       parseQuery(query, 'tags', tags, setTags)
       setShowClosed(query.showClosed === 'true')
+      setShowGovStackOnly(query.showGovStackOnly === 'true')
     }
   })
 

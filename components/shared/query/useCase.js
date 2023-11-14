@@ -15,13 +15,13 @@ export const USE_CASE_PAGINATION_ATTRIBUTES_QUERY = gql`
     $search: String
     $sdgs: [String!]
     $showBeta: Boolean
-    $govStackOnly: Boolean
+    $showGovStackOnly: Boolean
   ) {
     paginationAttributeUseCase(
       search: $search
       sdgs: $sdgs
       showBeta: $showBeta
-      govStackOnly: $govStackOnly
+      showGovStackOnly: $showGovStackOnly
     ) {
       totalCount
     }
@@ -33,7 +33,7 @@ export const PAGINATED_USE_CASES_QUERY = gql`
     $search: String
     $sdgs: [String!]
     $showBeta: Boolean
-    $govStackOnly: Boolean
+    $showGovStackOnly: Boolean
     $limit: Int!
     $offset: Int!
   ) {
@@ -41,7 +41,7 @@ export const PAGINATED_USE_CASES_QUERY = gql`
       search: $search
       sdgs: $sdgs
       showBeta: $showBeta
-      govStackOnly: $govStackOnly
+      showGovStackOnly: $showGovStackOnly
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
@@ -55,6 +55,7 @@ export const PAGINATED_USE_CASES_QUERY = gql`
         slug
         name
       }
+      govStackEntity
       parsedDescription
       sanitizedDescription
       buildingBlocks {
@@ -84,6 +85,7 @@ export const USE_CASE_DETAIL_QUERY = gql`
       maturity
       imageFile
       markdownUrl
+      govStackEntity
       useCaseDescription {
         id
         description

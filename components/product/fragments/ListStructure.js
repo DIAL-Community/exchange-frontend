@@ -9,7 +9,7 @@ import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(ProductFilterContext)
 
-  const { isLinkedWithDpi } = useContext(ProductFilterContext)
+  const { isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
   const { licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
 
@@ -25,6 +25,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       workflows: workflows.map(workflow => workflow.id),
       origins: origins.map(origin => origin.value),
       isLinkedWithDpi,
+      showGovStackOnly,
       limit: defaultPageSize,
       offset: pageOffset
     }

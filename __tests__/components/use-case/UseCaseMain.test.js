@@ -16,13 +16,13 @@ describe('Unit tests for the use case main page.', () => {
   test('Should render list of use cases.', async () => {
     const mockUseCasePaginationAttribute = generateMockApolloData(
       USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
-      { search:'', sdgs: [], showBeta: false, govStackOnly: false },
+      { search:'', sdgs: [], showBeta: false, showGovStackOnly: false },
       null,
       useCasePaginationAttribute
     )
     const mockPaginatedUseCases = generateMockApolloData(
       PAGINATED_USE_CASES_QUERY,
-      { search:'', sdgs: [], showBeta: false, govStackOnly: false, limit: 8, offset: 0 },
+      { search:'', sdgs: [], showBeta: false, showGovStackOnly: false, limit: 8, offset: 0 },
       null,
       paginatedUseCases
     )

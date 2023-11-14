@@ -108,6 +108,7 @@ export const en = {
   'header.marketplace': 'Marketplace',
   'header.tools': 'Tools',
   'header.supportingTools': 'Supporting Tools',
+  'header.govstack': 'GovStack Portal',
 
   'footer.text.firstLine': `
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
@@ -240,6 +241,9 @@ export const en = {
 
   'ui.product.rubric.label': 'Evaluation Rubric',
   'ui.product.project.count': 'Number of Projects',
+
+  'ui.product.source': 'Source',
+  'ui.product.govStackEntity': 'GovStack product',
   
   'ui.product.compare': 'Compare',
   'ui.product.compare.clear': 'Clear all',
@@ -248,6 +252,8 @@ export const en = {
   'ui.product.comparison.title': 'Comparison of Products',
   'ui.product.comparison.filter': 'Filter comparison',
   'ui.product.comparison.showHighlight': 'Highlight differences',
+  
+  'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
 
   'product.languages': 'Languages',
   'product.website': 'Website',
@@ -370,8 +376,6 @@ export const en = {
   'organization.noOffice': 'We do not have any Office Locations information for this Organization.',
   'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
 
-  'ui.buildingBlock.header': 'Building Blocks',
-  'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.specification': 'Specification',
   'ui.buildingBlock.specification.description': `
     GovStack is defining the technical specifications that define each building block.
@@ -450,8 +454,6 @@ export const en = {
   'ui.sdgTarget.header': 'SDG Targets',
   'ui.sdgTarget.label': 'SDG Target',
 
-  'ui.useCase.header': 'Use Cases',
-  'ui.useCase.label': 'Use Case',
   'useCase.sdgTarget': 'SDG Targets',
   'useCase.workflow': 'Workflows',
   'useCase.noSdgTarget': 'We do not have any SDG Target information for this Use Case.',
@@ -624,11 +626,9 @@ export const en = {
   'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
 
   'workflow.header': 'Workflows',
-  'ui.product.header': 'Products',
   'ui.dataset.header': 'Open Data',
 
   'workflow.label': 'Workflow',
-  'ui.product.label': 'Product',
   'ui.dataset.label': 'Dataset',
 
   'organization.detail.website': 'Website',
@@ -733,7 +733,7 @@ export const en = {
   'filter.organization.aggregatorOnly': 'Only Aggregators',
   'filter.organization.endorserOnly': 'Only Endorser Organizations',
   'filter.useCase.showDraft': 'Show Draft (non-Validated) Use Cases',
-  'filter.useCase.govStackOnly': 'Show GovStack Only Use Cases',
+  'filter.useCase.showGovStackOnly': 'Show GovStack Only Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
   'filter.project.forCovid': 'COVID-19 Projects',
@@ -1694,6 +1694,14 @@ export const en = {
   'filter.entity.opportunities': 'Opportunities',
   'ui.opportunity.label': 'Opportunity',
   'ui.opportunity.header': 'Opportunities',
+  
+  'opportunity.hint.subtitle': `
+    The RFP Radar aggregates requests from different organizations, allowing you to explore
+    a wide range of opportunities in one convenient location.
+  `,
+
+  'ui.opportunity.source': 'Source',
+  'ui.opportunity.govStackEntity': 'GovStack RFP',
 
   'ui.opportunity.whatIs': 'What is RFP Radar?',
   'ui.opportunity.createNew': 'Create a new RFP',
@@ -1736,7 +1744,8 @@ export const en = {
   'ui.opportunity.openingDate': 'Opening Date',
   'ui.opportunity.closingDate': 'Closing Date',
   'ui.opportunity.description': 'Description',
-  'filter.opportunity.showClosed': 'Show closed RFPs',
+  'ui.opportunity.filter.showClosed': 'Show closed RFPs',
+  'ui.opportunity.filter.showGovStackOnly': 'Show only RFPs from GovStack',
 
   'ui.opportunity.source': 'Source',
 
@@ -1889,8 +1898,10 @@ export const en = {
   'ui.useCase.whatIs': 'What is a Use Case?',
   'ui.useCase.createNew': 'Create a new Use Case',
 
+  'ui.useCase.source': 'Source',
+  'ui.useCase.govStackEntity': 'GovStack use case',
   'ui.useCase.filter.showDraft': 'Show draft (non-validated) use cases',
-  'ui.useCase.filter.govStackOnly': 'Show use cases from GovStack',
+  'ui.useCase.filter.showGovStackOnly': 'Show only use cases from GovStack',
 
   'ui.useCase.detail.steps': 'Use Case Steps',
   'ui.useCase.parent.detail': 'Parent Use Case',
@@ -1957,8 +1968,6 @@ export const en = {
   'ui.sdgTarget.longLabel': 'Sustainable Development Goal Target',
   'ui.sdgTarget.longHeader': 'Sustainable Development Goal Targets',
 
-  'ui.product.label': 'Product',
-  'ui.product.header': 'Products',
   'ui.product.whatIs': 'What is a Product?',
   'ui.product.createNew': 'Create a new Product',
 
@@ -2041,8 +2050,11 @@ export const en = {
     are developed, products that are aligned with the specifications will be tagged as
     such.
   `,
+  'ui.buildingBlock.source': 'Source',
+  'ui.buildingBlock.govStackEntity': 'GovStack building block',
 
   'ui.buildingBlock.filter.showMature': 'Show only published building blocks',
+  'ui.buildingBlock.filter.showGovStackOnly': 'Show only building blocks from GovStack',
   'ui.categoryType.label': 'Building Block Category Type',
 
   'ui.tag.label': 'Tag',
@@ -2188,7 +2200,7 @@ export const en = {
   `,
 
   'ui.hero.govExchange.title': 'GovExchange',
-  'ui.hero.govExchange.tagLine': 'A key offering of GovStack. Find building blocks, use cases, products and more.',
+  'ui.hero.govExchange.tagLine': 'A key offering of GovStack. Find Building Blocks, Use Cases, Products and more.',
   'ui.hero.govExchange.learnMore': 'Learn more about GovStack',
 
   'ui.wizard.title': 'New to the Digital Impact Exchange?',
@@ -2363,5 +2375,7 @@ export const en = {
   'ui.taskTracker.incomplete': 'Last run was not successful.',
   'ui.taskTracker.lastStartedDate': 'Last started date',
   'ui.taskTracker.lastReceivedMessage': 'Last Received Message',
-  'ui.taskTracker.filter.showFailedOnly': 'Show failed only'
+  'ui.taskTracker.filter.showFailedOnly': 'Show failed only',
+
+  'ui.govstack.tagLine': 'The Digital Impact Exchange is closely aligned with GovStack, a multi-stakeholder, community-driven initiative that is focused on accelerating national digital transformation worldwide. Click on the links below to see Use Cases, Building Blocks, and Products that are aligned with the GovStack approach, as well as RFPs for GovStack implementations.',
 }

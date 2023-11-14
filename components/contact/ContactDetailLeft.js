@@ -13,7 +13,7 @@ const ContactDetailLeft = ({ scrollRef, contact }) => {
         <hr className='border-b border-dial-slate-200'/>
         <ContactDetailNav contact={contact} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={contact} objectType={ObjectType.CONTACT} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

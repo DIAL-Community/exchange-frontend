@@ -212,7 +212,7 @@ const StorefrontForm = React.memo(({ organization }) => {
                 <label className='text-dial-sapphire'>{format('organization.imageFile')}</label>
                 <FileUploader {...register('imageFile')} />
               </div>
-              <div className='block flex flex-col gap-y-2'>
+              <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
                   {format('organization.description')}
                 </label>

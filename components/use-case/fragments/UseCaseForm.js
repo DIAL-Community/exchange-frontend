@@ -18,6 +18,7 @@ import { PAGINATED_USE_CASES_QUERY, USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from 
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import UrlInput from '../../shared/form/UrlInput'
+import Checkbox from '../../shared/form/Checkbox'
 
 const UseCaseForm = React.memo(({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -96,7 +97,8 @@ const UseCaseForm = React.memo(({ useCase }) => {
       name: useCase?.name,
       maturity: maturityOptions.find(({ value }) => value === useCase?.maturity),
       description: useCase?.useCaseDescription?.description,
-      markdownUrl: useCase?.markdownUrl
+      markdownUrl: useCase?.markdownUrl,
+      govStackEntity: useCase?.govStackEntity
     }
   })
 
@@ -113,14 +115,15 @@ const UseCaseForm = React.memo(({ useCase }) => {
     if (user) {
       setMutating(true)
       const { userEmail, userToken } = user
-      const { name, sector, maturity, imageFile, description, markdownUrl } = data
+      const { name, sector, maturity, imageFile, description, markdownUrl, govStackEntity } = data
       const variables = {
         name,
         slug,
         sectorSlug: sector.slug,
         maturity: maturity.value,
         description,
-        markdownUrl
+        markdownUrl,
+        govStackEntity
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -236,7 +239,13 @@ const UseCaseForm = React.memo(({ useCase }) => {
               </label>
               <FileUploader {...register('imageFile')} id='image-uploader' />
             </div>
-            <div className='block flex flex-col gap-y-2'>
+            {isAdminUser &&
+              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+                <Checkbox {...register('govStackEntity')} />
+                {format('ui.useCase.govStackEntity')}
+              </label>
+            }
+            <div className='flex flex-col gap-y-2'>
               <label className='text-dial-sapphire required-field'>{format('useCase.description')}</label>
               <Controller
                 name='description'

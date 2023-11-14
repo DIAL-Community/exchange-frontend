@@ -429,6 +429,9 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                             )
                           </div>
                         </div>
+                        <div
+                          class="flex gap-2 text-xs text-white"
+                        />
                       </div>
                     </div>
                   </div>
@@ -504,6 +507,15 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                              (
                             0
                             )
+                          </div>
+                        </div>
+                        <div
+                          class="flex gap-2 text-xs text-white"
+                        >
+                          <div
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
+                          >
+                            GOVSTACK
                           </div>
                         </div>
                       </div>
@@ -583,6 +595,9 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                             )
                           </div>
                         </div>
+                        <div
+                          class="flex gap-2 text-xs text-white"
+                        />
                       </div>
                     </div>
                   </div>
@@ -658,6 +673,15 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                              (
                             0
                             )
+                          </div>
+                        </div>
+                        <div
+                          class="flex gap-2 text-xs text-white"
+                        >
+                          <div
+                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
+                          >
+                            GOVSTACK
                           </div>
                         </div>
                       </div>

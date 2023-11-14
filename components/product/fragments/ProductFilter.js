@@ -28,13 +28,17 @@ const ProductFilter = () => {
   const { licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
   const { setLicenseTypes, setSdgs, setOrigins, setWorkflows } = useContext(ProductFilterDispatchContext)
 
-  const { isLinkedWithDpi } = useContext(ProductFilterContext)
-  const { setIsLinkedWithDpi } = useContext(ProductFilterDispatchContext)
+  const { isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
+  const { setIsLinkedWithDpi, setShowGovStackOnly } = useContext(ProductFilterDispatchContext)
 
   const [expanded, setExpanded] = useState(false)
 
   const toggleIsLinkedWithDpi = () => {
     setIsLinkedWithDpi(!isLinkedWithDpi)
+  }
+
+  const toggleShowGovStackOnly = () => {
+    setShowGovStackOnly(!showGovStackOnly)
   }
 
   const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
@@ -50,10 +54,9 @@ const ProductFilter = () => {
     )
   }
 
-  const clearFilter = (e) => {
-    e.preventDefault()
-
+  const clearFilter = () => {
     setIsLinkedWithDpi(false)
+    setShowGovStackOnly(false)
 
     setSdgs([])
     setUseCases([])
@@ -69,6 +72,7 @@ const ProductFilter = () => {
   const filteringProduct = () => {
 
     return isLinkedWithDpi ? 1 : 0 +
+      showGovStackOnly ? 1 : 0 +
       sdgs.length +
       workflows.length +
       buildingBlocks.length +
@@ -110,6 +114,18 @@ const ProductFilter = () => {
                   <div className='flex gap-x-1'>
                     {format('filter.product.linkedWithDpi')}
                     <button type='button' onClick={toggleIsLinkedWithDpi}>
+                      <FaXmark size='1rem' />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {showGovStackOnly && (
+              <div className='bg-dial-slate-400 text-white px-2 py-1 rounded'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('ui.product.filter.showGovStackOnly')}
+                    <button type='button' onClick={toggleShowGovStackOnly}>
                       <FaXmark size='1rem' />
                     </button>
                   </div>
@@ -162,6 +178,12 @@ const ProductFilter = () => {
               <Checkbox value={isCovid19TagActive} onChange={toggleCovid19Tag} />
               <span className='mx-2 my-auto text-sm'>
                 {format('filter.product.forCovid')}
+              </span>
+            </label>
+            <label className='flex py-2'>
+              <Checkbox onChange={toggleShowGovStackOnly} value={showGovStackOnly} />
+              <span className='mx-2 my-auto text-sm'>
+                {format('ui.product.filter.showGovStackOnly')}
               </span>
             </label>
             <hr className='border-b border-dial-slate-200'/>

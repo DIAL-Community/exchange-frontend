@@ -26,7 +26,8 @@ describe('Unit tests for the product main page.', () => {
         sdgs: [],
         workflows: [],
         origins: [],
-        isLinkedWithDpi: false
+        isLinkedWithDpi: false,
+        showGovStackOnly: false
       },
       null,
       productPaginationAttribute
@@ -44,6 +45,7 @@ describe('Unit tests for the product main page.', () => {
         workflows: [],
         origins: [],
         isLinkedWithDpi: false,
+        showGovStackOnly: false,
         limit: 8,
         offset: 0
       },

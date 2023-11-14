@@ -9,6 +9,7 @@ export const CREATE_USE_CASE = gql`
     $imageFile: Upload
     $description: String!
     $markdownUrl: String
+    $govStackEntity: Boolean
   ) {
     createUseCase(
       name: $name
@@ -18,12 +19,14 @@ export const CREATE_USE_CASE = gql`
       imageFile: $imageFile
       description: $description
       markdownUrl: $markdownUrl
+      govStackEntity: $govStackEntity
     ) {
       useCase {
         id
         slug
         name
         maturity
+        govStackEntity
         buildingBlocks {
           id
           name

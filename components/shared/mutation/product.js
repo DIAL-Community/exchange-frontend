@@ -13,6 +13,7 @@ export const CREATE_PRODUCT = gql`
     $pricingModel: String
     $hostingModel: String
     $commercialProduct: Boolean
+    $govStackEntity: Boolean
   ) {
     createProduct(
       name: $name
@@ -26,6 +27,7 @@ export const CREATE_PRODUCT = gql`
       pricingModel: $pricingModel
       hostingModel: $hostingModel
       commercialProduct: $commercialProduct
+      govStackEntity: $govStackEntity
     ) {
       product {
         id
@@ -34,6 +36,7 @@ export const CREATE_PRODUCT = gql`
         aliases
         website
         imageFile
+        govStackEntity
         productDescription {
           id
           description

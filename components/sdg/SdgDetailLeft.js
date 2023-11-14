@@ -13,7 +13,7 @@ const SdgDetailLeft = ({ scrollRef, sdg }) => {
         <hr className='border-b border-dial-slate-200'/>
         <SdgDetailNav sdg={sdg} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={sdg} objectType={ObjectType.SDG} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

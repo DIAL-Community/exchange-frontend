@@ -18,6 +18,7 @@ const ProductFilterProvider = ({ children }) => {
   const [endorsers, setEndorsers] = useState([])
   const [licenseTypes, setLicenseTypes] = useState([])
   const [isLinkedWithDpi, setIsLinkedWithDpi] = useState(false)
+  const [showGovStackOnly, setShowGovStackOnly] = useState(false)
 
   const [comparedProducts, setComparedProducts] = useState([])
 
@@ -41,6 +42,7 @@ const ProductFilterProvider = ({ children }) => {
     endorsers,
     licenseTypes,
     isLinkedWithDpi,
+    showGovStackOnly,
     comparedProducts,
     search,
     pageOffset,
@@ -62,6 +64,7 @@ const ProductFilterProvider = ({ children }) => {
     setEndorsers,
     setLicenseTypes,
     setIsLinkedWithDpi,
+    setShowGovStackOnly,
     setComparedProducts,
     setSearch,
     setPageNumber,

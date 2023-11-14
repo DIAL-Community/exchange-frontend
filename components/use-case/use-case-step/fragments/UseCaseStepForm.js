@@ -143,7 +143,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
                   />
                   {errors.stepNumber && <ValidationError value={errors.stepNumber?.message} />}
                 </div>
-                <div className='block flex flex-col gap-y-2'>
+                <div className='flex flex-col gap-y-2'>
                   <label className='required-field text-dial-blueberry'>
                     {format('use-case-step.description')}
                   </label>
