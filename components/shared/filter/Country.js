@@ -10,6 +10,7 @@ import Select from '../form/Select'
 export const CountryAutocomplete = ({
   countries,
   setCountries,
+  searchQuery = COUNTRY_SEARCH_QUERY,
   placeholder = null,
   isSearch = false
 }) => {
@@ -57,7 +58,7 @@ export const CountryAutocomplete = ({
           className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
-          loadOptions={(input) => fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedCountriesCallback)}
+          loadOptions={(input) => fetchSelectOptions(client, input, searchQuery, fetchedCountriesCallback)}
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.country.header') })}
           onChange={selectCountry}
           placeholder={controlPlaceholder}

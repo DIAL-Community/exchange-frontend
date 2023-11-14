@@ -34,7 +34,6 @@ export const CREATE_RESOURCE = gql`
     $authorEmail: String
   ) {
     createResource(
-      slug: $slug
       name: $name
       slug: $slug
       imageFile: $imageFile

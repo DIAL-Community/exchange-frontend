@@ -11,6 +11,17 @@ export const COUNTRY_SEARCH_QUERY = gql`
   }
 `
 
+export const COUNTRIES_WITH_RESOURCES_SEARCH_QUERY = gql`
+  query CountriesWithResources($search: String) {
+    countries: countriesWithResources(search: $search) {
+      id
+      name
+      slug
+      code
+    }
+  }
+`
+
 export const COUNTRY_CODES_QUERY = gql`
   query Countries($search: String!) {
     countries(search: $search) {
