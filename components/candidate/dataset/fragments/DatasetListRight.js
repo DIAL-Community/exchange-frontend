@@ -1,7 +1,8 @@
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useRef } from 'react'
-import { DatasetFilterContext, DatasetFilterDispatchContext } from '../../../context/candidate/DatasetFilterContext'
+import { DatasetFilterContext } from '../../../context/candidate/DatasetFilterContext'
 import { CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/candidateDataset'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import Pagination from '../../../shared/Pagination'
@@ -15,21 +16,17 @@ const DatasetListRight = () => {
   const { search } = useContext(DatasetFilterContext)
 
   const { pageNumber, pageOffset } = useContext(DatasetFilterContext)
-  const { setPageNumber, setPageOffset } = useContext(DatasetFilterDispatchContext)
 
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
-
-    if (topRef && topRef.current) {
-      topRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'start'
-      })
-    }
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = nextSelectedPage ? nextSelectedPage : selected
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
   }
 
   const { loading, error, data } = useQuery(CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY, {
@@ -50,7 +47,7 @@ const DatasetListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeCandidateDataset.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </>

@@ -1,7 +1,8 @@
-import { useCallback, useContext, useRef } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../context/ProductFilterContext'
+import { useCallback, useContext, useRef } from 'react'
+import { ProductFilterContext } from '../../../context/ProductFilterContext'
 import { CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/candidateProduct'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import Pagination from '../../../shared/Pagination'
@@ -15,21 +16,17 @@ const ProductListRight = () => {
   const { search } = useContext(ProductFilterContext)
 
   const { pageNumber, pageOffset } = useContext(ProductFilterContext)
-  const { setPageNumber, setPageOffset } = useContext(ProductFilterDispatchContext)
 
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
-
-    if (topRef && topRef.current) {
-      topRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'start'
-      })
-    }
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = nextSelectedPage ? nextSelectedPage : selected
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
   }
 
   const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY, {
@@ -50,7 +47,7 @@ const ProductListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeCandidateProduct.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </>

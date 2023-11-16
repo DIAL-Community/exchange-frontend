@@ -1,8 +1,10 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useRef } from 'react'
 import { FilterContext } from '../../../context/FilterContext'
 import { CANDIDATE_ROLE_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/candidateRole'
+import { RoleFilterContext } from '../../../context/candidate/RoleFilterContext'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import Pagination from '../../../shared/Pagination'
 import ListStructure from './ListStructure'
@@ -14,27 +16,19 @@ const RoleListRight = () => {
 
   const { search } = useContext(FilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const [pageNumber, pageOffset] = useContext(RoleFilterContext)
+
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
-
-    if (topRef && topRef.current) {
-      topRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'start'
-      })
-    }
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = nextSelectedPage ? nextSelectedPage : selected
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
 
   const { loading, error, data } = useQuery(CANDIDATE_ROLE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: { search }
@@ -54,7 +48,7 @@ const RoleListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeCandidateRole.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          pageClickHandler={onClickHandler}
         />
       }
     </>

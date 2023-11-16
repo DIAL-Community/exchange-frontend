@@ -21,8 +21,8 @@ const BuildingBlockListRight = () => {
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const onClickHandler = ({ nextSelectedPage }) => {
-    const destinationPage = nextSelectedPage ? nextSelectedPage : 0
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = nextSelectedPage ? nextSelectedPage : selected
     push(
       { query: { ...query, page: destinationPage + 1 } },
       undefined,
