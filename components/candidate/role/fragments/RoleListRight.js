@@ -16,7 +16,7 @@ const RoleListRight = () => {
 
   const { search } = useContext(FilterContext)
 
-  const [pageNumber, pageOffset] = useContext(RoleFilterContext)
+  const { pageNumber, pageOffset } = useContext(RoleFilterContext)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
@@ -48,7 +48,7 @@ const RoleListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeCandidateRole.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={onClickHandler}
+          onClickHandler={onClickHandler}
         />
       }
     </>

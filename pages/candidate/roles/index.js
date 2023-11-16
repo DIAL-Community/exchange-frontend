@@ -20,7 +20,7 @@ const RoleListPage = () => {
   const [activeTab, setActiveTab] = useState(0)
 
   const { query: { page } } = useRouter()
-  const [setPageNumber, setPageOffset] = useContext(RoleFilterDispatchContext)
+  const { setPageNumber, setPageOffset } = useContext(RoleFilterDispatchContext)
 
   useEffect(() => {
     if (page) {
