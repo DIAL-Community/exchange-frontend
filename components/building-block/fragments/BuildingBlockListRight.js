@@ -1,10 +1,8 @@
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
 import { useCallback, useContext, useRef } from 'react'
-import {
-  BuildingBlockFilterContext,
-  BuildingBlockFilterDispatchContext
-} from '../../context/BuildingBlockFilterContext'
+import { BuildingBlockFilterContext } from '../../context/BuildingBlockFilterContext'
 import { BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/buildingBlock'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -19,21 +17,17 @@ const BuildingBlockListRight = () => {
   const { search, sdgs, useCases, workflows, categoryTypes } = useContext(BuildingBlockFilterContext)
 
   const { pageNumber, pageOffset } = useContext(BuildingBlockFilterContext)
-  const { setPageNumber, setPageOffset } = useContext(BuildingBlockFilterDispatchContext)
 
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
-
-    if (topRef && topRef.current) {
-      topRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'start'
-      })
-    }
+  const onClickHandler = ({ nextSelectedPage }) => {
+    const destinationPage = nextSelectedPage ? nextSelectedPage : 0
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
   }
 
   const { loading, error, data } = useQuery(BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, {
@@ -62,7 +56,7 @@ const BuildingBlockListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeBuildingBlock.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </>

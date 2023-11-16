@@ -6,9 +6,11 @@ import BuildingBlockCard from '../BuildingBlockCard'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
-const ListStructure = ({ pageOffset, defaultPageSize }) => {
+const ListStructure = ({ defaultPageSize }) => {
   const { showMature, showGovStackOnly } = useContext(BuildingBlockFilterContext)
   const { search, sdgs, useCases, workflows, categoryTypes } = useContext(BuildingBlockFilterContext)
+
+  const { pageOffset } = useContext(BuildingBlockFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_BUILDING_BLOCKS_QUERY, {
     variables: {
