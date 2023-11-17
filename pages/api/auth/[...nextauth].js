@@ -22,7 +22,8 @@ const handler = NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       credentials: {
         username: { label: 'Username', type: 'text', placeholder: 'email' },
-        password: { label: 'Password', type: 'password' }
+        password: { label: 'Password', type: 'password' },
+        tenant: { label: 'Tenant', type: 'text', placeholder: 'tenant' }
       },
       authorize: async (credentials) => {
         const authBody = {
@@ -44,11 +45,12 @@ const handler = NextAuth({
               'X-Requested-With': 'XMLHttpRequest',
               'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
               'Access-Control-Allow-Credentials': true,
-              'Access-Control-Allow-Headers': 'Set-Cookie'
+              'Access-Control-Allow-Headers': 'Set-Cookie',
               // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
+              'X-Tenant-ID': credentials.tenant
             },
             // redirect: 'follow', // manual, *follow, error
-            // referrerPolicy: 'no-referrer',
+            referrerPolicy: 'origin-when-cross-origin',
             //   no-referrer,
             //   *no-referrer-when-downgrade,
             //   origin,
@@ -114,6 +116,9 @@ const handler = NextAuth({
     },
     signIn: async({ user }) => {
       return !(user instanceof Error)
+    },
+    async redirect({ url }) {
+      return url
     }
   },
   pages: {
