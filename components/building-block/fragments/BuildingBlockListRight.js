@@ -1,13 +1,13 @@
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useRef } from 'react'
+import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { BuildingBlockFilterContext } from '../../context/BuildingBlockFilterContext'
 import { BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/buildingBlock'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
-import ListStructure from './ListStructure'
 import BuildingBlockSearchBar from './BuildingBlockSearchBar'
+import ListStructure from './ListStructure'
 
 const BuildingBlockListRight = () => {
   const { formatMessage } = useIntl()
@@ -16,18 +16,36 @@ const BuildingBlockListRight = () => {
   const { showMature, showGovStackOnly } = useContext(BuildingBlockFilterContext)
   const { search, sdgs, useCases, workflows, categoryTypes } = useContext(BuildingBlockFilterContext)
 
-  const { pageNumber, pageOffset } = useContext(BuildingBlockFilterContext)
+  const [ pageNumber, setPageNumber ] = useState(0)
+  const [ pageOffset, setPageOffset ] = useState(0)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
+  const { page } = query
+
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
   const onClickHandler = ({ nextSelectedPage, selected }) => {
-    const destinationPage = nextSelectedPage ? nextSelectedPage : selected
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
     push(
       { query: { ...query, page: destinationPage + 1 } },
       undefined,
       { shallow: true }
     )
+    // Scroll to top of the page
+    if (topRef && topRef.current) {
+      topRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'start'
+      })
+    }
   }
 
   const { loading, error, data } = useQuery(BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, {

@@ -1,7 +1,6 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import ClientOnly from '../../../lib/ClientOnly'
 import QueryNotification from '../../../components/shared/QueryNotification'
@@ -10,24 +9,12 @@ import Footer from '../../../components/shared/Footer'
 import DatasetRibbon from '../../../components/candidate/dataset/DatasetRibbon'
 import DatasetTabNav from '../../../components/candidate/dataset/DatasetTabNav'
 import DatasetMain from '../../../components/candidate/dataset/DatasetMain'
-import { DEFAULT_PAGE_SIZE } from '../../../components/utils/constants'
-import { DatasetFilterDispatchContext } from '../../../components/context/candidate/DatasetFilterContext'
 
 const DatasetListPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [activeTab, setActiveTab] = useState(0)
-
-  const { query: { page } } = useRouter()
-  const { setPageNumber, setPageOffset } = useContext(DatasetFilterDispatchContext)
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
 
   return (
     <>

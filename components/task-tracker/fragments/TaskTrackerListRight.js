@@ -1,12 +1,13 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { FilterContext } from '../../context/FilterContext'
 import { TASK_TRACKER_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/taskTracker'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
-import ListStructure from './ListStructure'
 import TaskTrackerSearchBar from './TaskTrackerSearchBar'
+import ListStructure from './ListStructure'
 
 const TaskTrackerListRight = () => {
   const { formatMessage } = useIntl()
@@ -14,14 +15,29 @@ const TaskTrackerListRight = () => {
 
   const { search, showFailedOnly } = useContext(FilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const [ pageNumber, setPageNumber ] = useState(0)
+  const [ pageOffset, setPageOffset ] = useState(0)
+
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
+  const { page } = query
 
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
+    // Scroll to top of the page
     if (topRef && topRef.current) {
       topRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -57,7 +73,7 @@ const TaskTrackerListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeTaskTracker.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </>
