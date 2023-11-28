@@ -38,7 +38,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
           format('toast.delete.success', { entity: format('ui.buildingBlock.label') }),
-          () => router.push(`${locale}/building-blocks`)
+          () => router.push(`/${locale}/building-blocks`)
         )
       } else {
         setDisplayConfirmDialog(false)
