@@ -118,6 +118,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       aliases
       imageFile
       website
+      extraAttributes
       commercialProduct
       pricingModel
       pricingDetails
@@ -213,6 +214,12 @@ export const PRODUCT_DETAIL_QUERY = gql`
       maturityScoreDetails
       isLinkedWithDpi
       tags
+      countries {
+        id
+        name
+        code
+        slug
+      }
     }
   }
 `

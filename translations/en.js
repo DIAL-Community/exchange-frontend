@@ -1982,6 +1982,7 @@ export const en = {
   'ui.product.pricing.pricingModel': 'Pricing Model',
   'ui.product.pricing.detailPricing': 'Detail Pricing Information',
   'ui.product.details': 'Product Details',
+  'ui.product.extraAttributes': 'Additional Information',
   
   'ui.maturityScore.label': 'Maturity Score',
   'ui.maturityScore.header': 'Maturity Scores',
