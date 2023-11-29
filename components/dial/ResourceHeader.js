@@ -12,7 +12,7 @@ import AdminMenu from '../shared/menu/AdminMenu'
 import UserMenu from '../shared/menu/UserMenu'
 import ResourceMenu from '../shared/menu/ResourceMenu'
 import MarketplaceMenu from '../shared/menu/MarketplaceMenu'
-import ToolMenu from '../shared/menu/ToolMenu'
+import HubToolMenu from './menu/HubToolMenu'
 
 const dropdownMenuStyles = classNames(
   'px-3 py-2',
@@ -130,7 +130,7 @@ const Header = ({ isOnAuthPage = false }) => {
                 <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} title='Insights' />
               </li>
               <li className='relative text-right intro-tools'>
-                <ToolMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                <HubToolMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
               <li className='relative text-right intro-marketplace'>
                 <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher}
