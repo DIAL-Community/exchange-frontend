@@ -1,17 +1,19 @@
-import { useQuery } from '@apollo/client'
-import { useCallback, useState } from 'react'
+import Link from 'next/link'
 import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { useCallback, useState } from 'react'
 import { signIn, signOut } from 'next-auth/react'
 import classNames from 'classnames'
 import { useUser } from '../../lib/hooks'
 import MobileMenu from '../shared/MobileMenu'
-import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../shared/query/user'
+import UserMenu from '../shared/menu/UserMenu'
+import HelpMenu from '../shared/menu/HelpMenu'
 import { NONE } from '../shared/menu/MenuCommon'
 import AdminMenu from '../shared/menu/AdminMenu'
-import UserMenu from '../shared/menu/UserMenu'
-import ResourceMenu from '../shared/menu/ResourceMenu'
+import LanguageMenu from '../shared/menu/LanguageMenu'
 import MarketplaceMenu from '../shared/menu/MarketplaceMenu'
+import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../shared/query/user'
 import HubToolMenu from './menu/HubToolMenu'
 
 const dropdownMenuStyles = classNames(
@@ -20,7 +22,7 @@ const dropdownMenuStyles = classNames(
   'hover:bg-dial-menu-hover rounded-md'
 )
 
-const Header = ({ isOnAuthPage = false }) => {
+const ResourceHeader = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
@@ -114,31 +116,54 @@ const Header = ({ isOnAuthPage = false }) => {
     </li>
 
   return (
-    <header className='z-50 sticky top-0 bg-dial-stratos max-w-catalog mx-auto'>
-      <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-lg'>
-        <a href='//dial.global' className='w-32 my-auto'>
+    <header className='z-50 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
+      <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
+        <Link href='/' className='my-auto'>
           <img
-            src='/ui/v1/dial-header.svg'
-            alt={format('ui.image.logoAlt', { name: 'Digital Impact Alliance Logo' })}
+            className='object-center object-contain'
+            src='/ui/v1/exchange-logo.svg'
+            alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
-        </a>
+        </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
         <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
           {!isOnAuthPage &&
             <>
-              <li className='relative text-right intro-resource'>
-                <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} title='Insights' />
+              <li className='text-right intro-overview-signup intro-signup'>
+                <a
+                  href='//dial.global'
+                  role='menuitem'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='px-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
+                >
+                  {format('header.dialWebsite')}
+                </a>
+              </li>
+              <li className='relative text-right intro-marketplace'>
+                <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
               <li className='relative text-right intro-tools'>
                 <HubToolMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
-              <li className='relative text-right intro-marketplace'>
-                <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher}
-                  title='Connect' />
+              <li className='text-right'>
+                <Link
+                  href='/hub'
+                  role='menuitem'
+                  className='px-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
+                >
+                  {format('header.knowledgeHub')}
+                </Link>
               </li>
               { user ? withUser : withoutUser }
+              <li className='relative text-right'>
+                <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+              </li>
             </>
           }
+          <li className='relative text-right'>
+            <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+          </li>
         </ul>
       </div>
       <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
@@ -178,4 +203,4 @@ const HamburgerMenu = ({ menuExpanded, onMenuClicked }) => {
   )
 }
 
-export default Header
+export default ResourceHeader

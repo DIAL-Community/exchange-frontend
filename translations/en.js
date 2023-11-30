@@ -107,6 +107,9 @@ export const en = {
   'header.newsletter': 'Join Our Newsletter',
   'header.marketplace': 'Marketplace',
   'header.tools': 'Tools',
+  'header.otherTools': 'Other Tools',
+  'header.knowledgeHub': 'Knowledge Hub',
+  'header.dialWebsite': 'DIAL Website',
   'header.supportingTools': 'Supporting Tools',
   'header.govstack': 'GovStack Portal',
 

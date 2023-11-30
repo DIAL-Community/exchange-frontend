@@ -37,7 +37,7 @@ const HubToolMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
             )
           })}
           <div className='bg-dial-slate-300 text-dial-stratos font-semibold px-4 py-3'>
-            {format('header.supportingTools')}
+            {format('header.otherTools')}
           </div>
           <Link href='/wizard' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('header.wizard')}
