@@ -976,8 +976,9 @@ export const en = {
   'signIn.email.placeholder': 'Your email address',
   'signIn.password': 'Password',
   'signIn.password.hint': 'Enter your password.',
-  'signIn.confirmation.required': 'Account need to be activated first.',
+  'signIn.confirmation.required': 'Account needs to be activated first.',
   'signIn.confirmationEmail': 'Request activation here.',
+  'signIn.invalidCredentials': 'Invalid username or password. Please try again.',
 
   'confirmation.email': 'Email Address',
   'confirmation.email.placeholder': 'Your email address',
