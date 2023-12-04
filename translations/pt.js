@@ -979,7 +979,7 @@ export const pt = {
   "entity.filename": "Nome do ficheiro",
   "entity.uploaded": "Ficheiro carregado e processado de forma bem-sucedida.",
 
-  "upload.supportedFormats": "Nota: os tipos de ficheiros suportados são jpg, png e bmp",
+  "logo.supportedFormats": "Nota: os tipos de ficheiros suportados são jpg, png e bmp",
 
   "app.exporting": "A exportar dados...",
   "app.exportAsJson": "Exportar dados (JSON)",

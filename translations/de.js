@@ -969,7 +969,7 @@ export const de = {
   "entity.filename": "Dateiname",
   "entity.uploaded": "Datei erfolgreich hochgeladen und verarbeitet.",
 
-  "upload.supportedFormats": "Hinweis: Unterstützte Dateitypen sind JPG, PNG und BMP",
+  "logo.supportedFormats": "Hinweis: Unterstützte Dateitypen sind JPG, PNG und BMP",
 
   "app.exporting": "Export von Daten ...",
   "app.exportAsJson": "Export von Daten (JSON)",

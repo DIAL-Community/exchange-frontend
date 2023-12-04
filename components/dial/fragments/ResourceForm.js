@@ -50,7 +50,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }],
     onCompleted: (data) => {
       if (data.createResource.resource && data.createResource.errors.length === 0) {
-        const redirectPath = `/${locale}/resources/dial/${data.createResource.resource.slug}`
+        const redirectPath = `/${locale}/hub/${data.createResource.resource.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showSuccessMessage(
@@ -114,7 +114,8 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         resourceTopic,
         authorName,
         authorEmail,
-        imageFile
+        imageFile,
+        resourceFile
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -137,6 +138,10 @@ const ResourceForm = React.memo(({ resource, organization }) => {
 
       if (imageFile) {
         variables.imageFile = imageFile[0]
+      }
+
+      if (resourceFile) {
+        variables.resourceFile = resourceFile[0]
       }
 
       if (organization) {
@@ -245,6 +250,17 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   )}
                 />
               </div>
+              <hr className='h-px border-dashed' />
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' htmlFor='resourceFile'>
+                  {format('ui.resource.resourceFile')}
+                </label>
+                <FileUploader
+                  {...register('resourceFile')}
+                  fileTypes={['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx']}
+                  fileTypesDisclaimer='resource.supportedFormats'
+                />
+              </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='resourceLink'>
                   {format('ui.resource.resourceLink')}
@@ -277,6 +293,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 />
                 {errors.linkDesc && <ValidationError value={errors.linkDesc?.message} />}
               </div>
+              <hr className='h-px border-dashed' />
               <div className='flex flex-col gap-y-2'>
                 <label htmlFor='source'>
                   {format('ui.resource.source')}

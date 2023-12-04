@@ -1380,7 +1380,8 @@ export const en = {
   'entity.filename': 'File Name',
   'entity.uploaded': 'File uploaded and processed successfully.',
 
-  'upload.supportedFormats': 'Note: Supported file types are jpg, png, and bmp',
+  'logo.supportedFormats': 'Note: Supported file types are jpg, png, and bmp',
+  'resource.supportedFormats': 'Note: Supported file types are doc, docx, and pdf',
 
   'app.exporting': 'Exporting Data ...',
   'app.exportAsJson': 'Export Data (JSON)',
@@ -1823,6 +1824,7 @@ export const en = {
   'ui.resource.imageFile': 'Resource Logo',
   'ui.resource.showInExchange': 'Show resource in the Exchange',
   'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
+  'ui.resource.resourceFile': 'Resource File',
   'ui.resource.resourceLink': 'Resource Link',
   'ui.resource.linkDesc': 'Resource Link Description',
   'ui.resource.source': 'Source',
