@@ -24,6 +24,7 @@ import {
   OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY,
   PAGINATED_OPPORTUNITIES_QUERY
 } from '../../shared/query/opportunity'
+import Checkbox from '../../shared/form/Checkbox'
 
 const OpportunityForm = React.memo(({ opportunity }) => {
   const { formatMessage } = useIntl()
@@ -108,7 +109,8 @@ const OpportunityForm = React.memo(({ opportunity }) => {
       opportunityStatus:
         statusOptions.find(
           ({ value: status }) => status === opportunity?.opportunityStatus
-        ) ?? defaultStatusOption
+        ) ?? defaultStatusOption,
+      govStackEntity: opportunity?.govStackEntity
     }
   })
 
@@ -129,7 +131,8 @@ const OpportunityForm = React.memo(({ opportunity }) => {
         closingDate,
         opportunityType,
         opportunityStatus,
-        opportunityOrigin
+        opportunityOrigin,
+        govStackEntity
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -143,7 +146,8 @@ const OpportunityForm = React.memo(({ opportunity }) => {
         closingDate,
         opportunityType: opportunityType?.value,
         opportunityStatus: opportunityStatus?.value,
-        opportunityOrigin: opportunityOrigin?.value
+        opportunityOrigin: opportunityOrigin?.value,
+        govStackEntity
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -320,6 +324,12 @@ const OpportunityForm = React.memo(({ opportunity }) => {
               />
               {errors.contactEmail && <ValidationError value={errors.contactEmail?.message} />}
             </div>
+            {isAdminUser &&
+              <label className='flex gap-x-2 items-center self-start'>
+                <Checkbox {...register('govStackEntity')} />
+                {format('ui.opportunity.govStackEntity')}
+              </label>
+            }
             <div className='flex flex-col gap-y-2'>
               <label className='required-field'>
                 {format('ui.opportunity.description')}

@@ -9,6 +9,7 @@ export const CREATE_BUILDING_BLOCK = gql`
     $imageFile: Upload
     $description: String!
     $specUrl: String
+    $govStackEntity: Boolean
   ) {
     createBuildingBlock(
       name: $name
@@ -18,14 +19,16 @@ export const CREATE_BUILDING_BLOCK = gql`
       imageFile: $imageFile
       description: $description
       specUrl: $specUrl
+      govStackEntity: $govStackEntity
     ) {
       buildingBlock {
         id
         name
         slug
+        specUrl
         maturity
         category
-        specUrl
+        govStackEntity
         buildingBlockDescription {
           id
           description

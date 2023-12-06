@@ -13,7 +13,7 @@ const CityDetailLeft = ({ scrollRef, city }) => {
         <hr className='border-b border-dial-slate-200'/>
         <CityDetailNav city={city} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={city} objectType={ObjectType.CITY} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

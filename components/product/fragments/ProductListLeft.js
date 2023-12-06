@@ -17,13 +17,13 @@ const ProductListLeft = () => {
 
   const {
     isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi
+    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi, showGovStackOnly
   } = useContext(ProductFilterContext)
 
   const {
     setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
     setOrigins, setSdgs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
-    setLicenseTypes, setIsLinkedWithDpi
+    setLicenseTypes, setIsLinkedWithDpi, setShowGovStackOnly
   } = useContext(ProductFilterDispatchContext)
 
   const sharableLink = () => {
@@ -50,12 +50,14 @@ const ProductListLeft = () => {
       licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
     )
     const linkedWithDpiFilter = isLinkedWithDpi ? 'isLinkedWithDpi=true' : ''
+    const showGovStackOnlyFilter = showGovStackOnly ? 'showGovStackOnly=true' : ''
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
+      activeFilter, endorsedFilter, deployableFilter, ...originFilters,
       ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
-      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, linkedWithDpiFilter
+      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, ...licenseTypesFilter,
+      linkedWithDpiFilter, showGovStackOnlyFilter
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -69,6 +71,8 @@ const ProductListLeft = () => {
       query.shareCatalog && !interactionDetected
     ) {
       setIsEndorsed(query.isEndorsed === 'true')
+      setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
+      setShowGovStackOnly(query.showGovStackOnly === 'true')
       setProductDeployable(query.productDeployable === 'true')
       parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
       parseQuery(query, 'origins', origins, setOrigins)
@@ -81,7 +85,6 @@ const ProductListLeft = () => {
       parseQuery(query, 'workflows', workflows, setWorkflows)
       parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
       parseQuery(query, 'endorsers', endorsers, setEndorsers)
-      setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
     }
   })
 

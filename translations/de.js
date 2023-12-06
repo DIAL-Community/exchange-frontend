@@ -589,7 +589,7 @@ export const de = {
   "filter.organization.aggregatorOnly": "Nur Aggregatoren",
   "filter.organization.endorserOnly": "Nur Förderorganisationen",
   "filter.useCase.showDraft": "Entwurfsanwendungsfälle (nicht validiert) anzeigen",
-  "filter.useCase.govStackOnly": "Nur GovStack-Anwendungsfälle anzeigen",
+  "filter.useCase.showGovStackOnly": "Nur GovStack-Anwendungsfälle anzeigen",
 
   "filter.product.forCovid": "COVID-19 Tools",
   "filter.product.endorsed": "Empfohlene Produkte anzeigen",
@@ -1297,7 +1297,7 @@ export const de = {
   "ui.opportunity.openingDate": "Eröffnungsdatum",
   "ui.opportunity.closingDate": "Einsendeschluss",
   "ui.opportunity.description": "Beschreibung",
-  "filter.opportunity.showClosed": "Geschlossene Gelegenheiten anzeigen",
+  "ui.opportunity.filter.showClosed": "Geschlossene Gelegenheiten anzeigen",
 
   "ui.opportunity.source": "Quelle",
 
@@ -1405,7 +1405,7 @@ export const de = {
   "ui.useCase.createNew": "Erstelle einen neuen Anwendungsfall",
 
   "ui.useCase.filter.showDraft": "Entwürfe (nicht validierter) Anwendungsfälle anzeigen",
-  "ui.useCase.filter.govStackOnly": "Anwendungsfälle von GovStack anzeigen",
+  "ui.useCase.filter.showGovStackOnly": "Anwendungsfälle von GovStack anzeigen",
 
   "ui.useCase.detail.steps": "Schritte in Anwendungsfall",
   "ui.useCase.parent.detail": "Übergeordneter Anwendungsfall",

@@ -64,6 +64,13 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
               {format('ui.buildingBlock.header')} ({product.buildingBlocks?.length ?? 0})
             </div>
           </div>
+          <div className='flex gap-2 text-xs text-white'>
+            {product.govStackEntity &&
+              <div className='border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1'>
+                {format('govstack.label').toUpperCase()}
+              </div>
+            }
+          </div>
         </div>
       </div>
     </div>

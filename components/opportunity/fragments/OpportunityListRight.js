@@ -20,7 +20,8 @@ const OpportunityListRight = () => {
     useCases,
     sectors,
     tags,
-    showClosed
+    showClosed,
+    showGovStackOnly
   } = useContext(OpportunityFilterContext)
 
   const { pageNumber, pageOffset } = useContext(OpportunityFilterContext)
@@ -50,7 +51,8 @@ const OpportunityListRight = () => {
       useCases: useCases.map(useCase => useCase.value),
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
-      showClosed
+      showClosed,
+      showGovStackOnly
     }
   })
 

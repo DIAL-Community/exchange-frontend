@@ -10,7 +10,7 @@ const RoleDetailLeft = ({ scrollRef, role }) => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <RoleDetailHeader role={role}/>
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={role} objectType={ObjectType.ROLE} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

@@ -13,7 +13,7 @@ const RubricCategoryDetailLeft = ({ scrollRef, rubricCategory }) => {
         <hr className='border-b border-dial-slate-200'/>
         <RubricCategoryDetailNav rubricCategory={rubricCategory} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={rubricCategory} objectType={ObjectType.SDG} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

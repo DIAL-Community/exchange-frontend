@@ -3,24 +3,23 @@ import { useQuery } from '@apollo/client'
 import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { ResourceFilterContext } from '../../context/ResourceFilterContext'
-import { FilterContext } from '../../context/FilterContext'
 import { CUSTOM_PAGINATED_RESOURCES_QUERY } from '../../shared/query/resource'
 import ResourceCard from './ResourceCard'
 import ResourceListLeft from './ResourceListLeft'
 import ResourceSearchBar from './ResourceSearchBar'
 
 const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
-  const { resourceTypes, resourceTopics, resourceTags } = useContext(ResourceFilterContext)
-  const { search } = useContext(FilterContext)
+  const { search, resourceTags, resourceTypes, resourceTopics, resourceCountries } = useContext(ResourceFilterContext)
 
   const topRef = useRef(null)
 
   const { loading, error, data } = useQuery(CUSTOM_PAGINATED_RESOURCES_QUERY, {
     variables: {
       search,
+      tags: resourceTags.map(r => r.label),
+      countries: resourceCountries.map(r => r.label),
       resourceTypes: resourceTypes.map(r => r.value),
       resourceTopics: resourceTopics.map(r => r.value),
-      tags: resourceTags.map(r => r.label),
       limit: defaultPageSize,
       offset: pageOffset
     }
@@ -37,8 +36,8 @@ const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
   const { featuredResources, spotlightResources, paginatedResources } = data
 
   return (
-    <div className='flex flex-col gap-y-12'>
-      <div className='flex flex-col gap-8'>
+    <div className='flex flex-col gap-y-6'>
+      <div className='flex flex-col gap-8 py-6'>
         {spotlightResources.map((resource, index) =>
           <ResourceCard
             key={index}

@@ -45,12 +45,14 @@ export const PAGINATED_RESOURCES_QUERY = gql`
 export const CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeResource(
     $search: String
+    $countries: [String!]
     $resourceTypes: [String!]
     $resourceTopics: [String!]
     $tags: [String!]
   ) {
     paginationAttributeResource(
       search: $search
+      countries: $countries
       compartmentalized: true
       resourceTypes: $resourceTypes
       resourceTopics: $resourceTopics
@@ -66,9 +68,10 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
     $limit: Int!
     $offset: Int!
     $search: String
+    $tags: [String!]
+    $countries: [String!]
     $resourceTypes: [String!]
     $resourceTopics: [String!]
-    $tags: [String!]
   ) {
     spotlightResources: paginatedResources(
       spotlightLength: 1
@@ -126,10 +129,11 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
     }
     paginatedResources(
       search: $search
+      tags: $tags
+      countries: $countries
       compartmentalized: true
       resourceTypes: $resourceTypes
       resourceTopics: $resourceTopics
-      tags: $tags
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id

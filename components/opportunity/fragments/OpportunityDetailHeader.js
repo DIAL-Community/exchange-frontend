@@ -37,6 +37,16 @@ const OpportunityDetailHeader = ({ opportunity }) => {
         }
       </div>
       <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
+        {opportunity.govStackEntity &&
+          <div className='flex flex-col gap-y-3'>
+            <div className='font-semibold text-dial-sapphire'>
+              {format('ui.opportunity.source')}
+            </div>
+            <div className='flex text-dial-stratos'>
+              {format('govstack.label')}
+            </div>
+          </div>
+        }
         <div className='flex flex-col gap-y-3'>
           <div className='font-semibold text-dial-sapphire'>
             {format('ui.opportunity.webAddress')}

@@ -24,7 +24,8 @@ describe('Unit tests for the opportunity main page.', () => {
         useCases: [],
         sectors: [],
         tags: [],
-        showClosed: false
+        showClosed: false,
+        showGovStackOnly: false
       },
       null,
       opportunityPaginationAttribute
@@ -40,6 +41,7 @@ describe('Unit tests for the opportunity main page.', () => {
         sectors: [],
         tags: [],
         showClosed: false,
+        showGovStackOnly: false,
         limit: 8,
         offset: 0
       },

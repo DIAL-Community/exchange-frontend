@@ -7,7 +7,8 @@ import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search, sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
+  const { showMature, showGovStackOnly } = useContext(BuildingBlockFilterContext)
+  const { search, sdgs, useCases, workflows, categoryTypes } = useContext(BuildingBlockFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_BUILDING_BLOCKS_QUERY, {
     variables: {
@@ -17,6 +18,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       workflows: workflows.map(workflow => workflow.value),
       categoryTypes: categoryTypes.map(categoryType => categoryType.value),
       showMature,
+      showGovStackOnly,
       limit: defaultPageSize,
       offset: pageOffset
     }

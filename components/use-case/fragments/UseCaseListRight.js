@@ -12,7 +12,7 @@ const UseCaseListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
+  const { sdgs, showBeta, showGovStackOnly, search } = useContext(UseCaseFilterContext)
 
   const { pageNumber, pageOffset } = useContext(UseCaseFilterContext)
   const { setPageNumber, setPageOffset } = useContext(UseCaseFilterDispatchContext)
@@ -36,7 +36,7 @@ const UseCaseListRight = () => {
       search,
       sdgs: sdgs.map(sdg => sdg.value),
       showBeta,
-      govStackOnly
+      showGovStackOnly
     }
   })
 

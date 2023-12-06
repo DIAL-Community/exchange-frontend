@@ -13,7 +13,7 @@ const DatasetDetailLeft = ({ scrollRef, dataset }) => {
         <hr className='border-b border-dial-slate-200'/>
         <DatasetDetailNav dataset={dataset} scrollRef={scrollRef} />
         <hr className='border-b border-dial-slate-200'/>
-        <div className='hidden lg:block flex flex-col gap-y-3'>
+        <div className='hidden lg:flex flex-col gap-y-3'>
           <Bookmark object={dataset} objectType={ObjectType.DATASET} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

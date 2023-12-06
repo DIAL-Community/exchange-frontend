@@ -12,22 +12,22 @@ const UseCaseListLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
-  const { sdgs, showBeta, govStackOnly } = useContext(UseCaseFilterContext)
-  const { setSdgs, setShowBeta, setShowGovStack } = useContext(UseCaseFilterDispatchContext)
+  const { sdgs, showBeta, showGovStackOnly } = useContext(UseCaseFilterContext)
+  const { setSdgs, setShowBeta, setShowGovStackOnly } = useContext(UseCaseFilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = '/use-cases'
 
     const showBetaFilter = showBeta ? 'showBeta=true' : ''
-    const govStackOnlyFilter = govStackOnly ? 'govStackOnly=true' : ''
+    const showGovStackOnlyFilter = showGovStackOnly ? 'showGovStackOnly=true' : ''
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter,
       showBetaFilter,
-      govStackOnlyFilter,
+      showGovStackOnlyFilter,
       ...sdgFilters
     ].filter(f => f).join('&')
 
@@ -38,7 +38,7 @@ const UseCaseListLeft = () => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
     if (query?.shareCatalog &&  Object.getOwnPropertyNames(query).length > 1 && !interactionDetected) {
       setShowBeta(query.showBeta === 'true')
-      setShowGovStack(query.govStackOnly === 'true')
+      setShowGovStackOnly(query.showGovStackOnly === 'true')
       parseQuery(query, 'sdgs', sdgs, setSdgs)
     }
   })

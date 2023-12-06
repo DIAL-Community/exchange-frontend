@@ -9,6 +9,7 @@ export const paginatedOpportunities = {
         'description': 'Opportunity description.',
         'parsedDescription': 'Some parsed description.',
         'tags': [],
+        'govStackEntity': true,
         'closingDate': '2023-10-04T00:00:00.000',
         'opportunityStatus': 'OPEN',
         'sectors': [
@@ -31,6 +32,7 @@ export const paginatedOpportunities = {
         'description': 'Opportunity description.',
         'parsedDescription': 'Some parsed description.',
         'tags': [],
+        'govStackEntity': false,
         'closingDate': '2023-10-06T00:00:00.000',
         'opportunityStatus': 'OPEN',
         'sectors': [
@@ -65,6 +67,7 @@ export const paginatedOpportunities = {
         'description': 'Another opportunity description.',
         'parsedDescription': 'Some parsed description.',
         'tags': [],
+        'govStackEntity': false,
         'closingDate': '2023-10-07T00:00:00.000',
         'opportunityStatus': 'OPEN',
         'sectors': [
@@ -96,6 +99,7 @@ export const paginatedOpportunities = {
         'description': 'Some opportunity description.',
         'parsedDescription': 'Some parsed description.',
         'tags': [],
+        'govStackEntity': false,
         'closingDate': '2023-10-24T00:00:00.000',
         'opportunityStatus': 'OPEN',
         'sectors': [
@@ -151,6 +155,7 @@ export const paginatedOpportunities = {
         'description': 'Based opportunity description.',
         'parsedDescription': 'Some parsed description.',
         'tags': [],
+        'govStackEntity': true,
         'closingDate': '2023-10-14T00:00:00.000',
         'opportunityStatus': 'OPEN',
         'sectors': [
