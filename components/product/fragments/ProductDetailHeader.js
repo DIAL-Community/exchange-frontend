@@ -23,7 +23,7 @@ const ProductDetailHeader = ({ product }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-              className='object-contain w-20 h-20'
+              className='object-contain'
             />
           </div>
         }

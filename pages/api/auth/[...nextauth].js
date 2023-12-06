@@ -67,9 +67,9 @@ const handler = NextAuth({
           return response.json()
         } else if (response.status === 403) {
           // 304: User is good, unconfirmed.
-          return null
+          return { error: 'RequireConfirmation' }
         } else {
-          return new Error('Unable to authenticate')
+          return { error: 'InvalidCredentials' }
         }
       }
     })
@@ -115,7 +115,11 @@ const handler = NextAuth({
       }
     },
     signIn: async({ user }) => {
-      return !(user instanceof Error)
+      if (user?.error) {
+        throw new Error(user.error)
+      }
+
+      return true
     },
     async redirect({ url }) {
       return url
