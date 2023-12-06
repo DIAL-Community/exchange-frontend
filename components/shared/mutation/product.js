@@ -114,6 +114,31 @@ export const UPDATE_PRODUCT_SECTORS = gql`
   }
 `
 
+export const UPDATE_PRODUCT_COUNTRIES = gql`
+  mutation UpdateProductCountries(
+    $slug: String!
+    $countrySlugs: [String!]!
+  ) {
+    updateProductCountries(
+      slug: $slug
+      countrySlugs: $countrySlugs
+    ) {
+      product {
+        id
+        slug
+        name
+        countries {
+          id
+          name
+          slug
+          code
+        }
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_PRODUCT_PROJECTS = gql`
   mutation UpdateProductProjects(
     $slug: String!
