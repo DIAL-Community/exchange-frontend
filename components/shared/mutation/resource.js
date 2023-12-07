@@ -23,7 +23,7 @@ export const CREATE_RESOURCE = gql`
     $spotlight: Boolean
     $resourceFile: Upload
     $resourceLink: String
-    $linkDesc: String
+    $linkDescription: String
     $source: String
     $resourceType: String
     $resourceTopic: String
@@ -43,7 +43,7 @@ export const CREATE_RESOURCE = gql`
       spotlight: $spotlight
       resourceFile: $resourceFile
       resourceLink: $resourceLink
-      linkDesc: $linkDesc
+      linkDescription: $linkDescription
       source: $source
       resourceType: $resourceType
       resourceTopic: $resourceTopic
@@ -66,7 +66,7 @@ export const CREATE_RESOURCE = gql`
 
         resourceFile
         resourceLink
-        linkDesc
+        linkDescription
         source
         resourceType
         resourceTopic

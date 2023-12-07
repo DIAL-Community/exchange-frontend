@@ -84,7 +84,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       featured: resource?.featured,
       spotlight: resource?.spotlight,
       resourceLink: resource?.resourceLink,
-      linkDesc: resource?.linkDesc,
+      linkDescription: resource?.linkDescription,
       source: resource?.source,
       resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType),
       resourceTopic: resource?.resourceTopic,
@@ -108,7 +108,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         featured,
         spotlight,
         resourceLink,
-        linkDesc,
+        linkDescription,
         source,
         resourceType,
         resourceTopic,
@@ -128,7 +128,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         featured,
         spotlight,
         resourceLink,
-        linkDesc,
+        linkDescription,
         source,
         resourceType: resourceType?.value,
         resourceTopic: resourceTopic?.value,
@@ -252,7 +252,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
               </div>
               <hr className='h-px border-dashed' />
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='resourceFile'>
+                <label htmlFor='resourceFile'>
                   {format('ui.resource.resourceFile')}
                 </label>
                 <FileUploader
@@ -262,7 +262,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 />
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='resourceLink'>
+                <label htmlFor='resourceLink'>
                   {format('ui.resource.resourceLink')}
                 </label>
                 <Controller
@@ -273,25 +273,22 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                       value={value}
                       onChange={onChange}
                       id='resourceLink'
-                      isInvalid={errors.website}
                       placeholder={format('ui.resource.resourceLink')}
                     />
                   )}
-                  rules={{ required: format('validation.required') }}
                 />
-                {errors.resourceLink && <ValidationError value={errors.resourceLink?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='linkDesc'>
-                  {format('ui.resource.linkDesc')}
+                <label className='required-field' htmlFor='linkDescription'>
+                  {format('ui.resource.linkDescription')}
                 </label>
                 <Input
-                  {...register('linkDesc', { required: format('validation.required') })}
-                  id='linkDesc'
-                  placeholder={format('ui.resource.linkDesc')}
-                  isInvalid={errors.linkDesc}
+                  {...register('linkDescription', { required: format('validation.required') })}
+                  id='linkDescription'
+                  placeholder={format('ui.resource.linkDescription')}
+                  isInvalid={errors.linkDescription}
                 />
-                {errors.linkDesc && <ValidationError value={errors.linkDesc?.message} />}
+                {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
               </div>
               <hr className='h-px border-dashed' />
               <div className='flex flex-col gap-y-2'>
