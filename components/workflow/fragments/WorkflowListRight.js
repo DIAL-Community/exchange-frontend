@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useRef } from 'react'
-import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../context/WorkflowFilterContext'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { WorkflowFilterContext } from '../../context/WorkflowFilterContext'
 import { WORKFLOW_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/workflow'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
-import ListStructure from './ListStructure'
 import WorkflowSearchBar from './WorkflowSearchBar'
+import ListStructure from './ListStructure'
 
 const WorkflowListRight = () => {
   const { formatMessage } = useIntl()
@@ -14,14 +15,29 @@ const WorkflowListRight = () => {
 
   const { search, sdgs, useCases } = useContext(WorkflowFilterContext)
 
-  const { pageNumber, pageOffset } = useContext(WorkflowFilterContext)
-  const { setPageNumber, setPageOffset } = useContext(WorkflowFilterDispatchContext)
+  const [ pageNumber, setPageNumber ] = useState(0)
+  const [ pageOffset, setPageOffset ] = useState(0)
+
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
+  const { page } = query
 
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
+    // Scroll to top of the page
     if (topRef && topRef.current) {
       topRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -53,7 +69,7 @@ const WorkflowListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeWorkflow.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </>

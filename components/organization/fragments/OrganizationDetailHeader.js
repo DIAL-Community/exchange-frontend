@@ -22,7 +22,7 @@ const OrganizationDetailHeader = ({ organization }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
-              className='object-contain w-20 h-20'
+              className='object-contain'
             />
           </div>
         }

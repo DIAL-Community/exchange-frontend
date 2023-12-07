@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useRef } from 'react'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../context/OrganizationFilterContext'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
 import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
-import ListStructure from './ListStructure'
 import OrganizationSearchBar from './OrganizationSearchBar'
+import ListStructure from './ListStructure'
 
 const OrganizationListRight = () => {
   const { formatMessage } = useIntl()
@@ -14,14 +15,29 @@ const OrganizationListRight = () => {
 
   const { aggregator, endorser, sectors, countries, years, search } = useContext(OrganizationFilterContext)
 
-  const { pageNumber, pageOffset } = useContext(OrganizationFilterContext)
-  const { setPageNumber, setPageOffset } = useContext(OrganizationFilterDispatchContext)
+  const [ pageNumber, setPageNumber ] = useState(0)
+  const [ pageOffset, setPageOffset ] = useState(0)
+
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
+  const { page } = query
 
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
+    // Scroll to top of the page
     if (topRef && topRef.current) {
       topRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -56,7 +72,7 @@ const OrganizationListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeOrganization.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </>

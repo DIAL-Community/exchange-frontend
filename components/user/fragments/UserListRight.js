@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useRef } from 'react'
-import { UserFilterContext, UserFilterDispatchContext } from '../../context/UserFilterContext'
+import { useCallback, useContext, useEffect, useRef } from 'react'
+import { UserFilterContext } from '../../context/UserFilterContext'
 import { USER_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/user'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
@@ -14,14 +16,29 @@ const UserListRight = () => {
 
   const { search } = useContext(UserFilterContext)
 
-  const { pageNumber, pageOffset } = useContext(UserFilterContext)
-  const { setPageNumber, setPageOffset } = useContext(UserFilterDispatchContext)
+  const [ pageNumber, setPageNumber ] = useState(0)
+  const [ pageOffset, setPageOffset ] = useState(0)
+
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
+  const { page } = query
 
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
+    // Scroll to top of the page
     if (topRef && topRef.current) {
       topRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -51,7 +68,7 @@ const UserListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeUser.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </>
