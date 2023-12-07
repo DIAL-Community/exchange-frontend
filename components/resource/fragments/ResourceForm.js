@@ -80,6 +80,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       description: resource?.description,
       showInWizard: resource?.showInWizard,
       showInExchange: resource?.showInExchange,
+      publishedDate: resource?.publishedDate,
       featured: resource?.featured,
       spotlight: resource?.spotlight,
       resourceLink: resource?.resourceLink,
@@ -103,6 +104,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         description,
         showInWizard,
         showInExchange,
+        publishedDate,
         featured,
         spotlight,
         resourceLink,
@@ -121,6 +123,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         description,
         showInWizard,
         showInExchange,
+        publishedDate,
         featured,
         spotlight,
         resourceLink,
@@ -186,6 +189,19 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field'>
+                  {format('ui.resource.publishedDate')}
+                </label>
+                <Input
+                  {...register('publishedDate', { required: format('validation.required') })}
+                  type='date'
+                  placeholder={format('ui.resource.publishedDate')}
+                  isInvalid={errors.publishedDate}
+                  defaultValue={new Date().toISOString().substring(0, 10)}
+                />
+                {errors.publishedDate && <ValidationError value={errors.publishedDate?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className=''>
