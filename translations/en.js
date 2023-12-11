@@ -2131,12 +2131,12 @@ export const en = {
   'ui.office.label': 'Office',
   'ui.office.header': 'Offices',
 
-  'ui.region.label': 'Region / State / Province',
-  'ui.region.header': 'Regions / States / Provinces',
+  'ui.province.label': 'Region / State / Province',
+  'ui.province.header': 'Regions / States / Provinces',
 
   'ui.city.label': 'City',
   'ui.city.header': 'Cities',
-  'ui.city.description': 'City in {regionName}, {countryName}.',
+  'ui.city.description': 'City in {provinceName}, {countryName}.',
   'ui.city.createNew': 'Create a new City',
 
   'ui.candidate.submitter': 'Submitted by',

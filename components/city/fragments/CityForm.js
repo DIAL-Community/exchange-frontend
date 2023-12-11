@@ -65,8 +65,8 @@ const CityForm = React.memo(({ city }) => {
     shouldUnregister: true,
     defaultValues: {
       cityName: city?.name,
-      regionName: city?.region?.name,
-      countryName: city?.region?.country?.name
+      provinceName: city?.province?.name,
+      countryName: city?.province?.country?.name
     }
   })
 
@@ -76,12 +76,12 @@ const CityForm = React.memo(({ city }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { cityName, regionName, countryName } = data
+      const { cityName, provinceName, countryName } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         slug,
         cityName,
-        regionName,
+        provinceName,
         countryName
       }
 
@@ -127,16 +127,16 @@ const CityForm = React.memo(({ city }) => {
                 {errors.cityName && <ValidationError value={errors.cityName?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='regionName'>
-                  {format('ui.region.label')}
+                <label className='text-dial-sapphire required-field' htmlFor='provinceName'>
+                  {format('ui.province.label')}
                 </label>
                 <Input
-                  {...register('regionName', { required: format('validation.required') })}
-                  id='regionName'
-                  placeholder={format('ui.region.label')}
-                  isInvalid={errors.regionName}
+                  {...register('provinceName', { required: format('validation.required') })}
+                  id='provinceName'
+                  placeholder={format('ui.province.label')}
+                  isInvalid={errors.provinceName}
                 />
-                {errors.regionName && <ValidationError value={errors.regionName?.message} />}
+                {errors.provinceName && <ValidationError value={errors.provinceName?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='countryName'>

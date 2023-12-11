@@ -172,7 +172,7 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
         id
         name
         slug
-        region {
+        province {
           id
           name
         }
@@ -260,7 +260,7 @@ export const STOREFRONT_DETAIL_QUERY = gql`
         id
         name
         slug
-        region {
+        province {
           id
           name
         }

@@ -53,8 +53,8 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
         <CityMarker city={city} />
         <div className='text-sm text-dial-stratos'>
           {format('ui.city.description', {
-            regionName: city.region.name,
-            countryName: city.region.country.name
+            provinceName: city.province.name,
+            countryName: city.province.country.name
           })}
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
@@ -63,7 +63,7 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
             {format('ui.country.label')}
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-            <CountryCard country={city.region.country} displayType={DisplayType.SMALL_CARD} />
+            <CountryCard country={city.province.country} displayType={DisplayType.SMALL_CARD} />
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>

@@ -215,7 +215,7 @@ export const UPDATE_ORGANIZATION_OFFICES = gql`
             name
             slug
           }
-          region {
+          province {
             id
             name
             slug

@@ -2470,34 +2470,46 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esri/arcgis-rest-geocoding@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "@esri/arcgis-rest-geocoding@npm:3.7.0"
+"@esri/arcgis-rest-fetch@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@esri/arcgis-rest-fetch@npm:4.0.0"
   dependencies:
-    "@esri/arcgis-rest-types": ^3.7.0
+    node-fetch: ^3.0.0
+  checksum: f2f0e55553e95adb96eea36a618c849e504eef4d8c6b1efc6e896e033024adf11b6a1dbebb0fa55589851a1a9e6bea5180ed1ddd171bb78712260a42989c3c27
+  languageName: node
+  linkType: hard
+
+"@esri/arcgis-rest-form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@esri/arcgis-rest-form-data@npm:4.0.0"
+  dependencies:
+    formdata-node: ^4.1.0
+  checksum: 3cbdcd1850cc72f6c7ffe32e98dc3868db21c86962ff1afffeaeb9f6006d408329fc4f492477e5cf2bedcc2c078ff5f58927935be08e62edb8ccec9dbe563f57
+  languageName: node
+  linkType: hard
+
+"@esri/arcgis-rest-geocoding@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@esri/arcgis-rest-geocoding@npm:4.0.2"
+  dependencies:
     "@terraformer/arcgis": ^2.0.7
     "@types/terraformer__arcgis": ^2.0.0
-    tslib: ^1.13.0
+    tslib: ^2.3.0
   peerDependencies:
-    "@esri/arcgis-rest-auth": ^3.0.0
-    "@esri/arcgis-rest-request": ^3.0.0
-  checksum: 9a13207e8e999884d0eadf2be90593fb1484246e07b43b24af876da97863dfe0bd13b561c7f4a454e4bb83275b9b68f6344b87d7a57b469f12fa74e25c8b70d5
+    "@esri/arcgis-rest-request": ^4.0.0
+  checksum: 90664e9bc10da91ff36495aa9796b6e86b23a36b9ebc84fc95278686a16e4ee0ec46a91e38c63619a22ca8bd6dc69b47218e53628700c4d64a09fd4b1a9865d8
   languageName: node
   linkType: hard
 
-"@esri/arcgis-rest-request@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "@esri/arcgis-rest-request@npm:3.7.0"
+"@esri/arcgis-rest-request@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@esri/arcgis-rest-request@npm:4.2.0"
   dependencies:
-    tslib: ^1.10.0
-  checksum: 908f0845e8a53092c7cd3d8e69e1ac7f9c215542f9aa85ca8a83c8c2aa176d13e18d1702830a79e4c8a301b0bc6f8436ce270dceca7d37df4668ba059808868d
-  languageName: node
-  linkType: hard
-
-"@esri/arcgis-rest-types@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "@esri/arcgis-rest-types@npm:3.7.0"
-  checksum: 66f5b2b4c65bf4cd17ea347a031fe6c570c4fcaac55662ac6d554a4d1c87adbe91de0c240c3d285af98e441c99b9385271cec2aaeed789f2acd457b8cfcb3c99
+    "@esri/arcgis-rest-fetch": ^4.0.0
+    "@esri/arcgis-rest-form-data": ^4.0.0
+    mitt: ^3.0.0
+    tslib: ^2.3.1
+  checksum: 6086b58f584960a943ece473cf1c3b3f0ca9649ba15cc7739353a3c93edee181ec9e80c9afff0abd2643c7f17062af281ccd0a8158f6271c7ac6cbd54eee2d70
   languageName: node
   linkType: hard
 
@@ -7146,8 +7158,8 @@ __metadata:
   dependencies:
     "@apollo/client": ^3.8.3
     "@babel/core": ^7.22.17
-    "@esri/arcgis-rest-geocoding": ^3.7.0
-    "@esri/arcgis-rest-request": ^3.7.0
+    "@esri/arcgis-rest-geocoding": ^4.0.2
+    "@esri/arcgis-rest-request": ^4.2.0
     "@handsontable/react": ^13.1.0
     "@headlessui/react": ^1.7.17
     "@next/bundle-analyzer": ^13.4.19
@@ -10777,7 +10789,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formdata-node@npm:^4.0.0":
+"formdata-node@npm:^4.0.0, formdata-node@npm:^4.1.0":
   version: 4.4.1
   resolution: "formdata-node@npm:4.4.1"
   dependencies:
@@ -15591,6 +15603,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mitt@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "mitt@npm:3.0.1"
+  checksum: b55a489ac9c2949ab166b7f060601d3b6d893a852515ae9eca4e11df01c013876df777ea109317622b5c1c60e8aae252558e33c8c94e14124db38f64a39614b1
+  languageName: node
+  linkType: hard
+
 "mkdirp-classic@npm:^0.5.2, mkdirp-classic@npm:^0.5.3":
   version: 0.5.3
   resolution: "mkdirp-classic@npm:0.5.3"
@@ -15920,6 +15939,17 @@ __metadata:
     encoding:
       optional: true
   checksum: 3bc1655203d47ee8e313c0d96664b9673a3d4dd8002740318e9d27d14ef306693a4b2ef8d6525775056fd912a19e23f3ac0d7111ad8925877b7567b29a625592
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^3.0.0":
+  version: 3.3.2
+  resolution: "node-fetch@npm:3.3.2"
+  dependencies:
+    data-uri-to-buffer: ^4.0.0
+    fetch-blob: ^3.1.4
+    formdata-polyfill: ^4.0.10
+  checksum: 06a04095a2ddf05b0830a0d5302699704d59bda3102894ea64c7b9d4c865ecdff2d90fd042df7f5bc40337266961cb6183dcc808ea4f3000d024f422b462da92
   languageName: node
   linkType: hard
 
@@ -21527,7 +21557,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.10.0, tslib@npm:^1.13.0, tslib@npm:^1.8.1":
+"tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
@@ -21538,6 +21568,13 @@ __metadata:
   version: 2.6.0
   resolution: "tslib@npm:2.6.0"
   checksum: c01066038f950016a18106ddeca4649b4d76caa76ec5a31e2a26e10586a59fceb4ee45e96719bf6c715648e7c14085a81fee5c62f7e9ebee68e77a5396e5538f
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.3.1":
+  version: 2.6.2
+  resolution: "tslib@npm:2.6.2"
+  checksum: 329ea56123005922f39642318e3d1f0f8265d1e7fcb92c633e0809521da75eeaca28d2cf96d7248229deb40e5c19adf408259f4b9640afd20d13aecc1430f3ad
   languageName: node
   linkType: hard
 
