@@ -72,7 +72,7 @@ const TagListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeTag.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={onClickHandler}
+          onClickHandler={onClickHandler}
         />
       }
     </>
