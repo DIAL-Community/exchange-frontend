@@ -56,7 +56,6 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <div className='text-xl font-semibold text-dial-plum pb-3'>
             {format('ui.resource.resourceLink')}
-            {format('ui.resource.resourceLink')}
           </div>
           <div className='flex text-dial-stratos'>
             <a
@@ -65,7 +64,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
               rel='noreferrer'
               className='flex border-b border-dial-iris-blue '>
               <div className='line-clamp-1 break-all'>
-                {resource.linkDesc ? resource.linkDesc : resource.resourceLink}
+                {resource.linkDescription ? resource.linkDescription : resource.resourceLink}
               </div>
             </a>
             &nbsp;⧉

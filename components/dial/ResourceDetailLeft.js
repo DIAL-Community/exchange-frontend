@@ -32,6 +32,17 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
 
   const editPath = `${resource.slug}/edit`
 
+  const generateResourceUrl = () => {
+    let resourceLinkUrl
+    if (resource.resourceFile) {
+      resourceLinkUrl = `${process.env.NEXT_PUBLIC_GRAPHQL_SERVER}${resource.resourceFile}`
+    } else if (resource.resourceLink) {
+      resourceLinkUrl = prependUrlWithProtocol(resource.resourceLink)
+    }
+
+    return resourceLinkUrl
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
@@ -81,12 +92,17 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
           </div>
           <div className='flex text-dial-stratos'>
             <a
-              href={prependUrlWithProtocol(resource.resourceLink)}
+              href={generateResourceUrl()}
               target='_blank'
               rel='noreferrer'
               className='flex border-b border-dial-iris-blue '>
               <div className='line-clamp-1 break-all'>
-                {resource.linkDesc ? resource.linkDesc : resource.resourceLink}
+                {resource.linkDescription
+                  ? resource.linkDescription
+                  : resource.resourceFile
+                    ? resource.resourceFile
+                    : resource.resourceLink
+                }
               </div>
             </a>
             &nbsp;⧉

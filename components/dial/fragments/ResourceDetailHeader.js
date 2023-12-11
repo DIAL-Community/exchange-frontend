@@ -12,6 +12,17 @@ const ResourceDetailHeader = ({ resource }) => {
   const { isAdminUser, isEditorUser } = useUser()
   const canEdit = isAdminUser || isEditorUser
 
+  const generateResourceUrl = () => {
+    let resourceLinkUrl
+    if (resource.resourceFile) {
+      resourceLinkUrl = `${process.env.NEXT_PUBLIC_GRAPHQL_SERVER}${resource.resourceFile}`
+    } else if (resource.resourceLink) {
+      resourceLinkUrl = prependUrlWithProtocol(resource.resourceLink)
+    }
+
+    return resourceLinkUrl
+  }
+
   return (
     <div className='flex flex-col gap-y-4 py-3'>
       <div className='text-dial-stratos font-semibold'>
@@ -36,12 +47,17 @@ const ResourceDetailHeader = ({ resource }) => {
         </div>
         <div className='flex text-dial-stratos'>
           <a
-            href={prependUrlWithProtocol(resource.resourceLink)}
+            href={generateResourceUrl()}
             target='_blank'
             rel='noreferrer'
             className='flex border-b border-dial-iris-blue '>
             <div className='line-clamp-1 break-all'>
-              {resource.linkDesc ? resource.linkDesc : resource.resourceLink}
+              {resource.linkDescription
+                ? resource.linkDescription
+                : resource.resourceFile
+                  ? resource.resourceFile
+                  : resource.resourceLink
+              }
             </div>
           </a>
           &nbsp;⧉

@@ -29,7 +29,7 @@ const ResourceEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map['dial'] = 'dial'
+    map['hub'] = 'hub'
     map[resource.slug] = resource.name
 
     return map

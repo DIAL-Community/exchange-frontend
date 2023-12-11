@@ -969,7 +969,7 @@
   "entity.filename": "File Name",
   "entity.uploaded": "File uploaded and processed successfully.",
 
-  "upload.supportedFormats": "Note: Supported file types are jpg, png, and bmp",
+  "logo.supportedFormats": "Note: Supported file types are jpg, png, and bmp",
 
   "app.exporting": "Exporting Data ...",
   "app.exportAsJson": "Export Data (JSON)",

@@ -979,7 +979,7 @@ export const cs = {
   "entity.filename": "Název souboru",
   "entity.uploaded": "Soubor byl úspěšně nahrán a zpracován.",
 
-  "upload.supportedFormats": "Poznámka: Podporované typy souborů jsou jpg, png a bmp.",
+  "logo.supportedFormats": "Poznámka: Podporované typy souborů jsou jpg, png a bmp.",
 
   "app.exporting": "Exportování dat ...",
   "app.exportAsJson": "Export dat (JSON)",
