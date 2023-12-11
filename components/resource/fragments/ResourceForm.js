@@ -80,10 +80,11 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       description: resource?.description,
       showInWizard: resource?.showInWizard,
       showInExchange: resource?.showInExchange,
+      publishedDate: resource?.publishedDate,
       featured: resource?.featured,
       spotlight: resource?.spotlight,
       resourceLink: resource?.resourceLink,
-      linkDesc: resource?.linkDesc,
+      linkDescription: resource?.linkDescription,
       source: resource?.source,
       resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType),
       resourceTopic: resource?.resourceTopic,
@@ -103,10 +104,11 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         description,
         showInWizard,
         showInExchange,
+        publishedDate,
         featured,
         spotlight,
         resourceLink,
-        linkDesc,
+        linkDescription,
         source,
         resourceType,
         resourceTopic,
@@ -121,10 +123,11 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         description,
         showInWizard,
         showInExchange,
+        publishedDate,
         featured,
         spotlight,
         resourceLink,
-        linkDesc,
+        linkDescription,
         source,
         resourceType: resourceType?.value,
         resourceTopic,
@@ -186,6 +189,19 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field'>
+                  {format('ui.resource.publishedDate')}
+                </label>
+                <Input
+                  {...register('publishedDate', { required: format('validation.required') })}
+                  type='date'
+                  placeholder={format('ui.resource.publishedDate')}
+                  isInvalid={errors.publishedDate}
+                  defaultValue={new Date().toISOString().substring(0, 10)}
+                />
+                {errors.publishedDate && <ValidationError value={errors.publishedDate?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className=''>
@@ -250,16 +266,16 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 {errors.resourceLink && <ValidationError value={errors.resourceLink?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='linkDesc'>
-                  {format('ui.resource.linkDesc')}
+                <label className='required-field' htmlFor='linkDescription'>
+                  {format('ui.resource.linkDescription')}
                 </label>
                 <Input
-                  {...register('linkDesc', { required: format('validation.required') })}
-                  id='linkDesc'
-                  placeholder={format('ui.resource.linkDesc')}
-                  isInvalid={errors.linkDesc}
+                  {...register('linkDescription', { required: format('validation.required') })}
+                  id='linkDescription'
+                  placeholder={format('ui.resource.linkDescription')}
+                  isInvalid={errors.linkDescription}
                 />
-                {errors.linkDesc && <ValidationError value={errors.linkDesc?.message} />}
+                {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label htmlFor='source'>
