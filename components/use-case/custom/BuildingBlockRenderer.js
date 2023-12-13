@@ -27,7 +27,7 @@ const UseCaseBuildingBlockRenderer = ({ useCaseBuildingBlocks, stepBuildingBlock
         }
       </div>
       <div className='border-b border-dashed border-dial-lavender' />
-      <div className='grid grid-cols-1'>
+      <div className='grid grid-cols-1 gap-3'>
         {categoryDPI
           .map((buildingBlock, index) =>
             <BuildingBlockCard
