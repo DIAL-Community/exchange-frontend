@@ -107,6 +107,9 @@ export const en = {
   'header.newsletter': 'Join Our Newsletter',
   'header.marketplace': 'Marketplace',
   'header.tools': 'Tools',
+  'header.otherTools': 'Other Tools',
+  'header.knowledgeHub': 'Knowledge Hub',
+  'header.dialWebsite': 'DIAL Website',
   'header.supportingTools': 'Supporting Tools',
   'header.govstack': 'GovStack Portal',
 
@@ -976,8 +979,9 @@ export const en = {
   'signIn.email.placeholder': 'Your email address',
   'signIn.password': 'Password',
   'signIn.password.hint': 'Enter your password.',
-  'signIn.confirmation.required': 'Account need to be activated first.',
+  'signIn.confirmation.required': 'Account needs to be activated first.',
   'signIn.confirmationEmail': 'Request activation here.',
+  'signIn.invalidCredentials': 'Invalid username or password. Please try again.',
 
   'confirmation.email': 'Email Address',
   'confirmation.email.placeholder': 'Your email address',
@@ -1377,7 +1381,8 @@ export const en = {
   'entity.filename': 'File Name',
   'entity.uploaded': 'File uploaded and processed successfully.',
 
-  'upload.supportedFormats': 'Note: Supported file types are jpg, png, and bmp',
+  'logo.supportedFormats': 'Note: Supported file types are jpg, png, and bmp',
+  'resource.supportedFormats': 'Note: Supported file types are doc, docx, and pdf',
 
   'app.exporting': 'Exporting Data ...',
   'app.exportAsJson': 'Export Data (JSON)',
@@ -1820,8 +1825,9 @@ export const en = {
   'ui.resource.imageFile': 'Resource Logo',
   'ui.resource.showInExchange': 'Show resource in the Exchange',
   'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
+  'ui.resource.resourceFile': 'Resource File',
   'ui.resource.resourceLink': 'Resource Link',
-  'ui.resource.linkDesc': 'Resource Link Description',
+  'ui.resource.linkDescription': 'Resource Link Description',
   'ui.resource.source': 'Source',
   'ui.resource.resourceType': 'Resource Type',
   'ui.resource.resourceTopic': 'Resource Topic',
@@ -1982,6 +1988,7 @@ export const en = {
   'ui.product.pricing.pricingModel': 'Pricing Model',
   'ui.product.pricing.detailPricing': 'Detail Pricing Information',
   'ui.product.details': 'Product Details',
+  'ui.product.extraAttributes': 'Additional Information',
   
   'ui.maturityScore.label': 'Maturity Score',
   'ui.maturityScore.header': 'Maturity Scores',

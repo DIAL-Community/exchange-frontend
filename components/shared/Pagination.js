@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { isMobile } from 'react-device-detect'
 
-const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClickHandler }) => {
+const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, onClickHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -37,7 +37,7 @@ const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClic
           nextLabel={format('ui.pagination.nextLabel')}
           previousLabel={format('ui.pagination.prevLabel')}
           forcePage={pageNumber}
-          onPageChange={pageClickHandler}
+          onClick={onClickHandler}
           pageRangeDisplayed={pageRange}
           marginPagesDisplayed={1}
           pageCount={Math.ceil(totalCount / defaultPageSize)}

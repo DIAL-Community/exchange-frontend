@@ -138,7 +138,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={`/resources/dial/${resource.slug}`}>
+      <Link href={`/hub/${resource.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
         {displayType === DisplayType.FEATURED_CARD && displayFeaturedCard()}

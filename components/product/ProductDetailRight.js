@@ -15,6 +15,7 @@ import ProductRepositoryCard from './repository/ProductRepositoryCard'
 import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
+import ProductDetailCountries from './fragments/ProductDetailCountries'
 import ProductCard from './ProductCard'
 import DeleteProduct from './DeleteProduct'
 
@@ -178,10 +179,12 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const canEdit = isAdminUser || isEditorUser || isProductOwner
 
   const descRef = useRef()
+  const extraRef = useRef()
   const pricingRef = useRef()
   const sdgRef = useRef()
   const buildingBlockRef = useRef()
   const organizationRef = useRef()
+  const countryRef = useRef()
   const tagRef = useRef()
   const commentsSectionRef = useRef()
   const productRepositoryRef = useRef()
@@ -195,6 +198,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
+      { value: 'ui.product.extraAttributes', ref: extraRef },
       { value: 'ui.product.pricing.title', ref: pricingRef },
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
@@ -236,6 +240,23 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             editorId='product-description'
           />
         </div>
+        {product?.extraAttributes.length && (
+          <>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+            <div className='flex flex-col gap-y-3'>
+              <div className='text-xl font-semibold text-dial-meadow pb-3' ref={extraRef}>
+                {format('ui.product.extraAttributes')}
+              </div>
+              {product.extraAttributes.map((attr, i) => {
+                return (
+                  <div key={i} className='flex flex-row gap-3 text-sm'>
+                    {attr.name}: {attr.value}
+                  </div>
+                )}
+              )}
+            </div>
+          </>
+        )}
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='text-xl font-semibold text-dial-meadow pb-3' ref={pricingRef}>
@@ -291,6 +312,14 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             product={product}
             canEdit={canEdit}
             headerRef={organizationRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProductDetailCountries
+            product={product}
+            canEdit={canEdit}
+            headerRef={countryRef}
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />

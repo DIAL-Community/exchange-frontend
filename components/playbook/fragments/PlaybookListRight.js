@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useRef } from 'react'
-import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../../context/PlaybookFilterContext'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { PlaybookFilterContext } from '../../context/PlaybookFilterContext'
 import { PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/playbook'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
-import ListStructure from './ListStructure'
 import PlaybookSearchBar from './PlaybookSearchBar'
+import ListStructure from './ListStructure'
 
 const PlaybookListRight = () => {
   const { formatMessage } = useIntl()
@@ -14,14 +15,29 @@ const PlaybookListRight = () => {
 
   const { search, tags } = useContext(PlaybookFilterContext)
 
-  const { pageNumber, pageOffset } = useContext(PlaybookFilterContext)
-  const { setPageNumber, setPageOffset } = useContext(PlaybookFilterDispatchContext)
+  const [ pageNumber, setPageNumber ] = useState(0)
+  const [ pageOffset, setPageOffset ] = useState(0)
+
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
+  const { page } = query
 
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
+    // Scroll to top of the page
     if (topRef && topRef.current) {
       topRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -52,7 +68,7 @@ const PlaybookListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributePlaybook.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          pageClickHandler={onClickHandler}
         />
       }
     </>

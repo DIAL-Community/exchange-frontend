@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useRef } from 'react'
-import { ProjectFilterContext, ProjectFilterDispatchContext } from '../../context/ProjectFilterContext'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { ProjectFilterContext } from '../../context/ProjectFilterContext'
 import { PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/project'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
-import ListStructure from './ListStructure'
 import ProjectSearchBar from './ProjectSearchBar'
+import ListStructure from './ListStructure'
 
 const ProjectListRight = () => {
   const { formatMessage } = useIntl()
@@ -15,14 +16,29 @@ const ProjectListRight = () => {
   const { search, sdgs, origins } = useContext(ProjectFilterContext)
   const { countries, products, organizations, sectors, tags } = useContext(ProjectFilterContext)
 
-  const { pageNumber, pageOffset } = useContext(ProjectFilterContext)
-  const { setPageNumber, setPageOffset } = useContext(ProjectFilterDispatchContext)
+  const [ pageNumber, setPageNumber ] = useState(0)
+  const [ pageOffset, setPageOffset ] = useState(0)
+
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
+  const { page } = query
 
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
+    // Scroll to top of the page
     if (topRef && topRef.current) {
       topRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -59,7 +75,7 @@ const ProjectListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeProject.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </>
