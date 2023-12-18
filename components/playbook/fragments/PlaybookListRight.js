@@ -68,7 +68,7 @@ const PlaybookListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributePlaybook.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={onClickHandler}
+          onClickHandler={onClickHandler}
         />
       }
     </>

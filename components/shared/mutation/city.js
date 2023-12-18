@@ -17,13 +17,13 @@ export const CREATE_CITY = gql`
   mutation CreateCity(
     $slug: String
     $cityName: String!
-    $regionName: String!
+    $provinceName: String!
     $countryName: String!
   ) {
     createCity(
       slug: $slug
       cityName: $cityName
-      regionName: $regionName
+      provinceName: $provinceName
       countryName: $countryName
     ) {
       city {

@@ -19,6 +19,7 @@ const basePathMappings = {
   'cities': 'ui.city.header',
   'contacts': 'ui.contact.header',
   'countries': 'ui.country.header',
+  'regions': 'ui.region.header',
   'datasets': 'ui.dataset.header',
   'moves': 'ui.move.header',
   'opportunities': 'ui.opportunity.header',

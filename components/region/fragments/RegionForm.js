@@ -3,21 +3,22 @@ import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa6'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
-import { CREATE_CITY } from '../../shared/mutation/city'
+import { CREATE_REGION } from '../../shared/mutation/region'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import { CITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CITIES_QUERY } from '../../shared/query/city'
+import { REGION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_REGIONS_QUERY } from '../../shared/query/region'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 
-const CityForm = React.memo(({ city }) => {
+const RegionForm = React.memo(({ region }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const slug = city?.slug ?? ''
+  const slug = region?.slug ?? ''
 
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
@@ -29,44 +30,43 @@ const CityForm = React.memo(({ city }) => {
   const router = useRouter()
   const { locale } = router
 
-  const [updateCity, { reset }] = useMutation(CREATE_CITY, {
+  const [updateRegion, { reset }] = useMutation(CREATE_REGION, {
     refetchQueries: [{
-      query: CITY_PAGINATION_ATTRIBUTES_QUERY,
+      query: REGION_PAGINATION_ATTRIBUTES_QUERY,
       variables: { search: '' }
     }, {
-      query: PAGINATED_CITIES_QUERY,
+      query: PAGINATED_REGIONS_QUERY,
       variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
     }],
     onCompleted: (data) => {
-      if (data.createCity.city && data.createCity.errors.length === 0) {
-        const redirectPath = `/${locale}/cities/${data.createCity.city.slug}`
+      if (data.createRegion.region && data.createRegion.errors.length === 0) {
+        const redirectPath = `/${locale}/regions/${data.createRegion.region.slug}`
         const redirectHandler = () => router.push(redirectPath)
+        setMutating(false)
         showSuccessMessage(
-          format('toast.submit.success', { entity: format('ui.city.label') }),
+          format('toast.submit.success', { entity: format('ui.region.label') }),
           redirectHandler
         )
-        setMutating(false)
       } else {
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.city.label') }))
         setMutating(false)
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.region.label') }))
         reset()
       }
     },
     onError: () => {
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.city.label') }))
       setMutating(false)
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.region.label') }))
       reset()
     }
   })
 
-  const { handleSubmit, register, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      cityName: city?.name,
-      provinceName: city?.province?.name,
-      countryName: city?.province?.country?.name
+      name: region?.name,
+      description: region?.description
     }
   })
 
@@ -76,16 +76,18 @@ const CityForm = React.memo(({ city }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { cityName, provinceName, countryName } = data
+      const {
+        name,
+        description
+      } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
+        name,
         slug,
-        cityName,
-        provinceName,
-        countryName
+        description
       }
 
-      updateCity({
+      updateRegion({
         variables,
         context: {
           headers: {
@@ -99,7 +101,7 @@ const CityForm = React.memo(({ city }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/cities/${slug}`)
+    router.push(`/${locale}/regions/${slug}`)
   }
 
   return loadingUserSession
@@ -110,49 +112,45 @@ const CityForm = React.memo(({ city }) => {
           <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
             <div className='flex flex-col gap-y-6 text-sm'>
               <div className='text-xl font-semibold'>
-                {city
-                  ? format('app.editEntity', { entity: city.name })
-                  : `${format('app.createNew')} ${format('ui.city.label')}`}
+                {region
+                  ? format('app.editEntity', { entity: region.name })
+                  : `${format('app.createNew')} ${format('ui.region.label')}`}
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='cityName'>
-                  {format('ui.city.label')}
+                <label className='text-dial-sapphire required-field' htmlFor='name'>
+                  {format('ui.region.name.label')}
                 </label>
                 <Input
-                  {...register('cityName', { required: format('validation.required') })}
-                  id='cityName'
-                  placeholder={format('ui.city.label')}
-                  isInvalid={errors.cityName}
+                  {...register('name', { required: format('validation.required') })}
+                  id='name'
+                  placeholder={format('ui.region.name.label')}
+                  isInvalid={errors.name}
                 />
-                {errors.cityName && <ValidationError value={errors.cityName?.message} />}
+                {errors.name && <ValidationError value={errors.name?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='provinceName'>
-                  {format('ui.province.label')}
+                <label className='text-dial-sapphire required-field'>
+                  {format('ui.region.description.label')}
                 </label>
-                <Input
-                  {...register('provinceName', { required: format('validation.required') })}
-                  id='provinceName'
-                  placeholder={format('ui.province.label')}
-                  isInvalid={errors.provinceName}
+                <Controller
+                  name='description'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <HtmlEditor
+                      editorId='description-editor'
+                      onChange={onChange}
+                      initialContent={value}
+                      placeholder={format('region.description')}
+                      isInvalid={errors.description}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
                 />
-                {errors.provinceName && <ValidationError value={errors.provinceName?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='countryName'>
-                  {format('ui.country.label')}
-                </label>
-                <Input
-                  {...register('countryName', { required: format('validation.required') })}
-                  id='countryName'
-                  placeholder={format('ui.country.label')}
-                  isInvalid={errors.countryName}
-                />
-                {errors.countryName && <ValidationError value={errors.countryName?.message} />}
+                {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                  {`${format('app.submit')} ${format('ui.city.label')}`}
+                  {`${format('app.submit')} ${format('ui.region.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>
                 <button
@@ -172,6 +170,6 @@ const CityForm = React.memo(({ city }) => {
       : <Unauthorized />
 })
 
-CityForm.displayName = 'CityForm'
+RegionForm.displayName = 'RegionForm'
 
-export default CityForm
+export default RegionForm
