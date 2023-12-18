@@ -2,19 +2,18 @@ import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
-import { STOREFRONT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
+import { FilterContext } from '../../context/FilterContext'
+import { REGION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/region'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
+import RegionSearchBar from './RegionSearchBar'
 import ListStructure from './ListStructure'
-import StorefrontSearchBar from './StorefrontSearchBar'
 
-const StorefrontListRight = () => {
+const RegionListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, sectors, countries } = useContext(OrganizationFilterContext)
-  const { specialties, certifications, buildingBlocks } = useContext(OrganizationFilterContext)
+  const { search } = useContext(FilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)
@@ -38,6 +37,7 @@ const StorefrontListRight = () => {
       undefined,
       { shallow: true }
     )
+    // Scroll to top of the page
     if (topRef && topRef.current) {
       topRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -47,20 +47,20 @@ const StorefrontListRight = () => {
     }
   }
 
-  const { loading, error, data } = useQuery(STOREFRONT_PAGINATION_ATTRIBUTES_QUERY, {
+  useEffect(() => {
+    setPageNumber(0)
+    setPageOffset(0)
+  }, [search])
+
+  const { loading, error, data } = useQuery(REGION_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
-      search,
-      countries: countries.map(country => country.value),
-      sectors: sectors.map(sector => sector.value),
-      specialties: specialties.map(specialty => specialty.value),
-      certifications: certifications.map(certification => certification.value),
-      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value)
+      search
     }
   })
 
   return (
     <>
-      <StorefrontSearchBar ref={topRef} />
+      <RegionSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
@@ -70,7 +70,7 @@ const StorefrontListRight = () => {
       { data &&
         <Pagination
           pageNumber={pageNumber}
-          totalCount={data.paginationAttributeStorefront.totalCount}
+          totalCount={data.paginationAttributeRegion.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
           onClickHandler={onClickHandler}
         />
@@ -79,4 +79,4 @@ const StorefrontListRight = () => {
   )
 }
 
-export default StorefrontListRight
+export default RegionListRight

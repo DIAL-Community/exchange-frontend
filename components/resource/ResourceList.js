@@ -109,7 +109,7 @@ const ResourceList = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeResource.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={handlePageClick}
         />
       }
     </div>

@@ -21,7 +21,7 @@ export const PAGINATED_CITIES_QUERY = gql`
       id
       name
       slug
-      region {
+      province {
         id
         name
         slug
@@ -47,7 +47,7 @@ export const CITY_DETAIL_QUERY = gql`
       slug
       latitude
       longitude
-      region {
+      province {
         id
         name
         slug

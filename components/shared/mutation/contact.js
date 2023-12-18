@@ -3,10 +3,10 @@ import { gql } from '@apollo/client'
 export const DELETE_CONTACT = gql`
   mutation DeleteContact($id: ID!) {
     deleteContact(id: $id) {
-      country {
-       id
-       slug
-       name
+      contact {
+        id
+        slug
+        name
       }
       errors
     }

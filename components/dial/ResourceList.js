@@ -1,6 +1,7 @@
-import { useCallback, useContext, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 import { ResourceFilterContext } from '../context/ResourceFilterContext'
 import { CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../shared/query/resource'
@@ -15,12 +16,26 @@ const ResourceList = () => {
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
+
   const topRef = useRef(null)
+  const { push, query } = useRouter()
 
-  const handlePageClick = (event) => {
-    setPageNumber(event.selected)
-    setPageOffset(event.selected * DEFAULT_PAGE_SIZE)
+  const { page } = query
 
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
     if (topRef && topRef.current) {
       topRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -53,7 +68,7 @@ const ResourceList = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeResource.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={handlePageClick}
+          onClickHandler={onClickHandler}
         />
       }
     </div>

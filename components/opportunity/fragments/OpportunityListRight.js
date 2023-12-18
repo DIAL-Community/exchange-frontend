@@ -85,7 +85,7 @@ const OpportunityListRight = () => {
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeOpportunity.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
-          pageClickHandler={onClickHandler}
+          onClickHandler={onClickHandler}
         />
       }
     </>
