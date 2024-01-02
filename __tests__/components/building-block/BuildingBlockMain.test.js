@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils'
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
@@ -55,8 +56,11 @@ describe('Unit tests for the building block main page.', () => {
       </CustomMockedProvider>
     )
 
+    await act(() => new Promise((resolve) => setTimeout(resolve, 30)))
+
     expect(await screen.findByText('Analytics and business intelligence')).toBeInTheDocument()
     expect(await screen.findByText('Artificial intelligence')).toBeInTheDocument()
+    expect(await screen.findByText('Showing 1 - 8 of 23 total')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 })

@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils'
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
@@ -36,6 +37,8 @@ describe('Unit tests for the dataset main page.', () => {
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
+
+    await act(() => new Promise((resolve) => setTimeout(resolve, 30)))
 
     expect(await screen.findByText('Advocacy Training for Community Health Workers')).toBeInTheDocument()
     expect(await screen.findByText('African Storybook')).toBeInTheDocument()
