@@ -2396,4 +2396,12 @@ export const en = {
   'ui.region.createNew': 'Create new region',
   'ui.region.name.label': 'Region Name',
   'ui.region.description.label': 'Region Description',
+
+  'ui.sync.label': 'Sync',
+  'ui.sync.header': 'Syncs',
+  'ui.sync.createNew': 'Create new sync',
+  'ui.sync.name.label': 'Sync Name',
+  'ui.sync.direction': 'Sync Direction',
+  'ui.sync.source.label': 'Source',
+  'ui.sync.destination.label': 'Destination'
 }

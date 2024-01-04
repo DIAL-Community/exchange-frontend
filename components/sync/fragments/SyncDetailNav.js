@@ -9,9 +9,6 @@ const SyncDetailNav = ({ scrollRef }) => {
   const navOptions = [{
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
-  }, {
-    label: format('ui.organization.header'),
-    value: 'ui.organization.header'
   }]
 
   const onNavigationChange = (selectedNav) => {

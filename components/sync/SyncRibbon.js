@@ -7,13 +7,15 @@ const SyncRibbon = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const titleImage =
-    <img
-      src='/ui/v1/user-header.svg'
-      alt={format('ui.image.logoAlt', { name: format('ui.sync.label') })}
-      width={70}
-      height={70}
-      className='object-contain mx-auto'
-    />
+    <div className='bg-dial-plum rounded-full w-[70px] h-[70px] flex items-center'>
+      <img
+        src='/ui/v1/sync-header.svg'
+        alt={format('ui.image.logoAlt', { name: format('ui.sync.label') })}
+        width={40}
+        height={40}
+        className='object-contain mx-auto white-filter'
+      />
+    </div>
 
   return (
     <Ribbon

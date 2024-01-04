@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const CONTACT_PAGINATION_ATTRIBUTES_QUERY = gql`
+export const SYNC_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeSync($search: String) {
     paginationAttributeSync(search: $search) {
       totalCount
@@ -8,7 +8,7 @@ export const CONTACT_PAGINATION_ATTRIBUTES_QUERY = gql`
   }
 `
 
-export const PAGINATED_CONTACTS_QUERY = gql`
+export const PAGINATED_SYNCS_QUERY = gql`
   query PaginatedSyncs(
     $search: String
     $limit: Int!
@@ -21,29 +21,22 @@ export const PAGINATED_CONTACTS_QUERY = gql`
       id
       name
       slug
-      email
-      title
-      organizations {
-        id
-      }
+      description
+      tenantSource
+      tenantDestination
     }
   }
 `
 
-export const CONTACT_DETAIL_QUERY = gql`
+export const SYNC_DETAIL_QUERY = gql`
   query Sync($slug: String!) {
     sync(slug: $slug) {
       id
       name
       slug
-      email
-      title
-      organizations {
-        id
-        name
-        slug
-        imageFile
-      }
+      description
+      tenantSource
+      tenantDestination
     }
   }
 `

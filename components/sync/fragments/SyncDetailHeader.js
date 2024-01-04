@@ -13,22 +13,11 @@ const SyncDetailHeader = ({ sync }) => {
       <div className='flex justify-center items-center py-16 bg-white rounded border'>
         <div className='w-20 h-20 mx-auto'>
           <img
-            src='/ui/v1/user-header.svg'
+            src='/ui/v1/sync-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.sync.label') })}
             className='object-contain w-16 h-16'
           />
         </div>
-      </div>
-      <div className='text-sm'>
-        <a
-          className='border-b border-dial-iris-blue'
-          href={`mailto:${sync.email}`}
-          target='_blank'
-          rel='noreferrer'
-        >
-          {sync.email}
-          &nbsp;⧉
-        </a>
       </div>
     </div>
   )

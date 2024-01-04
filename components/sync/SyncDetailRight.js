@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
+import { FaArrowRightLong } from 'react-icons/fa6'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { DisplayType, ObjectType } from '../utils/constants'
+import { ObjectType } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { useUser } from '../../lib/hooks'
 import Share from '../shared/common/Share'
 import Bookmark from '../shared/common/Bookmark'
-import OrganizationCard from '../organization/OrganizationCard'
 import CommentsSection from '../shared/comment/CommentsSection'
+import { HtmlViewer } from '../shared/form/HtmlViewer'
 import DeleteSync from './DeleteSync'
 
 const SyncDetailRight = forwardRef(({ sync }, ref) => {
@@ -17,14 +18,12 @@ const SyncDetailRight = forwardRef(({ sync }, ref) => {
   const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
-  const organizationRef = useRef()
   const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.detail.description', ref: descRef },
-      { value: 'ui.organization.header', ref: organizationRef },
       { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
@@ -45,37 +44,24 @@ const SyncDetailRight = forwardRef(({ sync }, ref) => {
           {format('ui.common.detail.description')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {sync.title}
+          <HtmlViewer
+            initialContent={sync?.description}
+            editorId='workflow-description'
+          />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={organizationRef}>
-            {format('ui.organization.header')}
+          <div className='text-xl font-semibold text-dial-plum py-3'>
+            {format('ui.sync.direction')}
           </div>
-          {sync?.organizations.length <= 0 &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('ui.organization.label'),
-                base: format('ui.sync.label')
-              })}
-            </div>
-          }
-          {sync?.organizations.length > 0 &&
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-              {sync?.organizations?.map((organization, index) =>
-                <div key={`organization-${index}`}>
-                  <OrganizationCard
-                    index={index}
-                    organization={organization}
-                    displayType={DisplayType.SMALL_CARD}
-                  />
-                </div>
-              )}
-            </div>
-          }
+          <div className='flex gap-x-2 text-dial-stratos'>
+            {sync.tenantSource}
+            <FaArrowRightLong className='my-auto' />
+            {sync.tenantDestination}
+          </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={sync} objectType={ObjectType.SYNC} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

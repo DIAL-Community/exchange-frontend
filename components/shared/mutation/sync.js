@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const DELETE_CONTACT = gql`
+export const DELETE_SYNC = gql`
   mutation DeleteSync($id: ID!) {
     deleteSync(id: $id) {
       sync {
@@ -13,25 +13,28 @@ export const DELETE_CONTACT = gql`
   }
 `
 
-export const CREATE_CONTACT = gql`
+export const CREATE_SYNC = gql`
   mutation CreateSync(
     $name: String!
     $slug: String!
-    $email: String!
-    $title: String!
+    $description: String!
+    $source: String!
+    $destination: String!
   ) {
     createSync(
       name: $name
       slug: $slug
-      email: $email
-      title: $title
+      description: $description
+      source: $source
+      destination: $destination
     ) {
       sync {
         id
         name
         slug
-        email
-        title
+        description
+        tenantSource
+        tenantDestination
       }
       errors
     }

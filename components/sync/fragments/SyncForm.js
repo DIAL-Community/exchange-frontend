@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa6'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 import Input from '../../shared/form/Input'
@@ -12,6 +12,7 @@ import { CREATE_SYNC } from '../../shared/mutation/sync'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { SYNC_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_SYNCS_QUERY } from '../../shared/query/sync'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 
 const SyncForm = React.memo(({ sync }) => {
   const { formatMessage } = useIntl()
@@ -59,14 +60,15 @@ const SyncForm = React.memo(({ sync }) => {
     }
   })
 
-  const { handleSubmit, register, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
       name: sync?.name,
-      email: sync?.email,
-      title: sync?.title
+      description: sync?.description,
+      source: sync?.tenantSource,
+      destination: sync?.tenantDestination
     }
   })
 
@@ -78,15 +80,17 @@ const SyncForm = React.memo(({ sync }) => {
       const { userEmail, userToken } = user
       const {
         name,
-        email,
-        title
+        description,
+        source,
+        destination
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
-        email,
-        title
+        description,
+        source,
+        destination
       }
 
       updateSync({
@@ -132,27 +136,47 @@ const SyncForm = React.memo(({ sync }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='name'>
-                  {format('ui.sync.email.label')}
+                  {format('ui.sync.source.label')}
                 </label>
                 <Input
-                  {...register('email', { required: format('validation.required') })}
-                  id='email'
-                  placeholder={format('ui.sync.email.label')}
-                  isInvalid={errors.email}
+                  {...register('source', { required: format('validation.required') })}
+                  id='source'
+                  placeholder={format('ui.sync.source.label')}
+                  isInvalid={errors.source}
                 />
-                {errors.email && <ValidationError value={errors.email?.message} />}
+                {errors.source && <ValidationError value={errors.source?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='name'>
-                  {format('ui.sync.title.label')}
+                  {format('ui.sync.destination.label')}
                 </label>
                 <Input
-                  {...register('title', { required: format('validation.required') })}
-                  id='title'
-                  placeholder={format('ui.sync.title.label')}
-                  isInvalid={errors.title}
+                  {...register('destination', { required: format('validation.required') })}
+                  id='destination'
+                  placeholder={format('ui.sync.destination.label')}
+                  isInvalid={errors.destination}
                 />
-                {errors.title && <ValidationError value={errors.title?.message} />}
+                {errors.destination && <ValidationError value={errors.destination?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field'>
+                  {format('ui.dataset.description')}
+                </label>
+                <Controller
+                  name='description'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <HtmlEditor
+                      editorId='description-editor'
+                      onChange={onChange}
+                      initialContent={value}
+                      placeholder={format('ui.dataset.description')}
+                      isInvalid={errors.description}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
+                />
+                {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>

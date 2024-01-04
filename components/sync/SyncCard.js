@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedDate, FormattedTime, useIntl } from 'react-intl'
 import Link from 'next/link'
-import { FaXmark } from 'react-icons/fa6'
+import { FaXmark, FaArrowRightLong } from 'react-icons/fa6'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
@@ -12,29 +12,31 @@ const SyncCard = ({ displayType, index, sync, dismissHandler }) => {
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        <div className='w-20 h-20 mx-auto'>
+        <div className='w-16 h-16 mx-auto bg-dial-plum rounded-full'>
           <img
-            src='/ui/v1/user-header.svg'
+            src='/ui/v1/sync-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.sync.label') })}
-            className='object-contain w-16 h-16'
+            className='object-contain w-8 h-8 mx-auto mt-4 white-filter'
           />
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-plum'>
             {sync.name}
           </div>
-          <div className='flex flex-col gap-y-1'>
-            <div className='text-sm text-dial-stratos'>
-              {sync.email ?? format('general.na')}
-            </div>
-            <div className='text-sm text-dial-stratos'>
-              {sync.title ?? format('general.na')}
-            </div>
+          <div className='flex gap-x-2 text-sm text-dial-stratos'>
+            {sync.tenantSource}
+            <FaArrowRightLong className='my-auto' />
+            {sync.tenantDestination}
           </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
-            <div className='text-sm'>
-              {format('ui.organization.header')} ({sync.organizations?.length ?? 0})
-            </div>
+          <div className='flex flex-col gap-1'>
+            {sync.lastSyncAt &&
+              <div className='text-xs italic'>
+                <span className='pr-[2px]'>{format('ui.sync.lastSyncAt')}:</span>
+                <FormattedDate value={sync.lastSyncAt} />
+                &nbsp;
+                <FormattedTime value={sync.lastSyncAt} />
+              </div>
+            }
           </div>
         </div>
       </div>
@@ -44,7 +46,7 @@ const SyncCard = ({ displayType, index, sync, dismissHandler }) => {
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-24'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         <img
-          src='/ui/v1/user-header.svg'
+          src='/ui/v1/sync-header.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.sync.header') })}
           className='object-contain w-10 h-10 my-auto'
         />
@@ -52,11 +54,8 @@ const SyncCard = ({ displayType, index, sync, dismissHandler }) => {
           <div className='text-sm font-semibold text-dial-iris-blue'>
             {sync.name}
           </div>
-          <div className='text-xs line-clamp-1'>
-            {sync.email}
-          </div>
-          <div className='text-xs line-clamp-1'>
-            {sync.title}
+          <div className='flex gap-x-2 text-xs'>
+            {sync.tenantSource} <FaArrowRightLong /> {sync.tenantDestination}
           </div>
         </div>
       </div>
