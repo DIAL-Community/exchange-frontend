@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import classNames from 'classnames'
-import { useUser } from '../../lib/hooks'
+import { useActiveTenant, useUser } from '../../lib/hooks'
 import { NONE } from './menu/MenuCommon'
 import AdminMenu from './menu/AdminMenu'
 import UserMenu from './menu/UserMenu'
@@ -26,6 +26,8 @@ const dropdownMenuStyles = classNames(
 const Header = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
+
+  const { tenant } = useActiveTenant()
 
   const { user, isAdminUser } = useUser()
   const signInUser = (e) => {
@@ -122,7 +124,7 @@ const Header = ({ isOnAuthPage = false }) => {
         <Link href='/' className='my-auto'>
           <img
             className='object-center object-contain'
-            src='/ui/v1/exchange-logo.svg'
+            src={tenant === 'fao' ? '/ui/v1/fao-exchange.svg' : '/ui/v1/exchange-logo.svg'}
             alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
         </Link>
