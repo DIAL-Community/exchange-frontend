@@ -1,9 +1,12 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { useActiveTenant } from '../../../lib/hooks'
 
 const Partner = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { tenant } = useActiveTenant()
 
   return (
     <div className='flex flex-col gap-3 py-3'>
@@ -63,6 +66,18 @@ const Partner = () => {
             className='object-contain'
           />
         </a>
+        {tenant === 'fao' &&
+          <a href='//www.fao.org' target='_blank' rel='noreferrer'>
+            <div className='flex h-full my-auto bg-white px-2 rounded-md'>
+              <img
+                src='/ui/v1/fao-logo.svg'
+                alt={format('ui.image.logoAlt', { name: 'BMZ' })}
+                width={100}
+                className='object-contain'
+              />
+            </div>
+          </a>
+        }
       </div>
     </div>
   )
