@@ -68,7 +68,8 @@ const SyncForm = React.memo(({ sync }) => {
       name: sync?.name,
       description: sync?.description,
       source: sync?.tenantSource,
-      destination: sync?.tenantDestination
+      destination: sync?.tenantDestination,
+      synchronizedModels: sync?.syncConfiguration['models'] || []
     }
   })
 
@@ -82,7 +83,8 @@ const SyncForm = React.memo(({ sync }) => {
         name,
         description,
         source,
-        destination
+        destination,
+        synchronizedModels
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -90,7 +92,8 @@ const SyncForm = React.memo(({ sync }) => {
         slug,
         description,
         source,
-        destination
+        destination,
+        synchronizedModels
       }
 
       updateSync({
@@ -109,6 +112,17 @@ const SyncForm = React.memo(({ sync }) => {
     setReverting(true)
     router.push(`/${locale}/syncs/${slug}`)
   }
+
+  const SYNCHRONIZABLE_MODELS = [{
+    'label': format('ui.product.label'),
+    'value': 'Product'
+  }, {
+    'label': format('ui.useCase.label'),
+    'value': 'UseCase'
+  }, {
+    'label': format('ui.buildingBlock.label'),
+    'value': 'BuildingBlock'
+  }]
 
   return loadingUserSession
     ? <Loading />
@@ -160,7 +174,7 @@ const SyncForm = React.memo(({ sync }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
-                  {format('ui.dataset.description')}
+                  {format('ui.sync.description')}
                 </label>
                 <Controller
                   name='description'
@@ -170,13 +184,28 @@ const SyncForm = React.memo(({ sync }) => {
                       editorId='description-editor'
                       onChange={onChange}
                       initialContent={value}
-                      placeholder={format('ui.dataset.description')}
+                      placeholder={format('ui.sync.description')}
                       isInvalid={errors.description}
                     />
                   )}
                   rules={{ required: format('validation.required') }}
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='text-dial-sapphire required-field'>
+                {format('ui.sync.synchronizedModels')}
+              </div>
+              <div className='grid grid-cols-2 gap-4 text-dial-sapphire'>
+                {SYNCHRONIZABLE_MODELS.map(({ label, value }) => (
+                  <label key={value} className='flex gap-x-2 items-center'>
+                    <input
+                      type='checkbox'
+                      value={value}
+                      {...register('synchronizedModels')}
+                    />
+                    {label}
+                  </label>
+                ))}
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>

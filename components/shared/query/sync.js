@@ -24,6 +24,7 @@ export const PAGINATED_SYNCS_QUERY = gql`
       description
       tenantSource
       tenantDestination
+      syncConfiguration
     }
   }
 `
@@ -37,6 +38,7 @@ export const SYNC_DETAIL_QUERY = gql`
       description
       tenantSource
       tenantDestination
+      syncConfiguration
     }
   }
 `

@@ -51,13 +51,21 @@ const SyncDetailRight = forwardRef(({ sync }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-plum py-3'>
+          <div className='font-semibold text-dial-plum py-3'>
             {format('ui.sync.direction')}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             {sync.tenantSource}
             <FaArrowRightLong className='my-auto' />
             {sync.tenantDestination}
+          </div>
+        </div>
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-plum py-3'>
+            {format('ui.sync.synchronizedModels')}
+          </div>
+          <div className='flex gap-x-2 text-dial-stratos'>
+            {sync.syncConfiguration['models'].join(', ')}
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />

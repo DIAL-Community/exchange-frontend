@@ -20,6 +20,7 @@ export const CREATE_SYNC = gql`
     $description: String!
     $source: String!
     $destination: String!
+    $synchronizedModels: [String!]!
   ) {
     createSync(
       name: $name
@@ -27,6 +28,7 @@ export const CREATE_SYNC = gql`
       description: $description
       source: $source
       destination: $destination
+      synchronizedModels: $synchronizedModels
     ) {
       sync {
         id
@@ -35,6 +37,7 @@ export const CREATE_SYNC = gql`
         description
         tenantSource
         tenantDestination
+        syncConfiguration
       }
       errors
     }

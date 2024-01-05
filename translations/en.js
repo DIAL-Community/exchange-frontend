@@ -2402,6 +2402,8 @@ export const en = {
   'ui.sync.createNew': 'Create new sync',
   'ui.sync.name.label': 'Sync Name',
   'ui.sync.direction': 'Sync Direction',
+  'ui.sync.description': 'Sync Description',
   'ui.sync.source.label': 'Source',
-  'ui.sync.destination.label': 'Destination'
+  'ui.sync.destination.label': 'Destination',
+  'ui.sync.synchronizedModels': 'Synchronized Models',
 }
