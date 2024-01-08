@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { FiPlusCircle } from 'react-icons/fi'
 import { forwardRef, useCallback, useContext } from 'react'
@@ -24,14 +25,14 @@ const ResourceSearchBar = forwardRef((_, ref) => {
         />
       </div>
       {canEdit &&
-        <a href='/hub/create'>
+        <Link href='/hub/create'>
           <div className='flex bg-dial-iris-blue text-white px-4 py-2 rounded gap-x-2'>
             <FiPlusCircle className='my-auto' />
             <span className='text-sm'>
               {format('app.create')}
             </span>
           </div>
-        </a>
+        </Link>
       }
     </div>
   )
