@@ -2385,10 +2385,9 @@ export const en = {
   'ui.taskTracker.filter.showFailedOnly': 'Show failed only',
 
   'ui.govstack.tagLine': `
-    The Digital Impact Exchange is closely aligned with GovStack, a multi-stakeholder, community-driven initiative
-    that is focused on accelerating national digital transformation worldwide. Click on the links below to see
-    Use Cases, Building Blocks, and Products that are aligned with the GovStack approach, as well as RFPs for
-    GovStack implementations.
+    The Digital Impact Exchange, in partnership with GovStack, provides a list of Use Cases, Building Blocks,
+    and Products that are aligned with the GovStack approach. On this page, you can also find Opportunities
+    and RFPs related to GovStack.
   `,
 
   'ui.region.label': 'Region',

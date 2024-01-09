@@ -10,12 +10,12 @@ const ToolDefinition = () => {
     <div className='lg:px-8 xl:px-56 text-dial-stratos'>
       <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
         <div className='text-2xl font-semibold'>
-          {format('ui.tool.getStarted')} ...
+          {format('ui.tool.getStarted')}
         </div>
         <div className='text-sm max-w-5xl'>
           {format('ui.govstack.tagLine')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
           <Link href='/use-cases?shareCatalog=true&showGovStackOnly=true' className='rounded-md shadow-lg border'>
             <div className='px-8 py-6'>
               <div className='flex flex-col gap-6'>
