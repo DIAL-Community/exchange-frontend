@@ -5,7 +5,6 @@ import { useCallback } from 'react'
 import ClientOnly from '../../lib/ClientOnly'
 import Header from '../../components/shared/Header'
 import Footer from '../../components/shared/Footer'
-import Carousel from '../../components/govstack/Carousel'
 import Definition from '../../components/govstack/Definition'
 import QueryNotification from '../../components/shared/QueryNotification'
 
@@ -24,9 +23,8 @@ const LandingPage = () => {
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
-          <div className='xl:min-h-screen'>
-            <Carousel />
-            <div className='py-12'>
+          <div className='xl:min-h-[60vh] 3xl:min-h-[70vh]'>
+            <div className='pt-8 pb-12'>
               <Definition />
             </div>
           </div>

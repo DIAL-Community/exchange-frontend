@@ -213,6 +213,9 @@ module.exports = {
       },
       fontFamily: {
         DEFAULT: '"Poppins", sans-serif'
+      },
+      screens: {
+        '3xl': '1921px'
       }
     }
   },
