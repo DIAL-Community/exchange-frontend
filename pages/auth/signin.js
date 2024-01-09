@@ -9,8 +9,9 @@ import Link from 'next/link'
 import Input from '../../components/shared/form/Input'
 import Header from '../../components/shared/Header'
 import Footer from '../../components/shared/Footer'
+import { useActiveTenant } from '../../lib/hooks'
 
-export default function SignIn ({ csrfToken, tenant }) {
+export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -20,6 +21,8 @@ export default function SignIn ({ csrfToken, tenant }) {
 
   const router = useRouter()
   const { query } = router
+
+  const { hostname } = useActiveTenant()
 
   useEffect(() => {
     if (query?.error === 'CredentialsSignin') {
@@ -35,7 +38,7 @@ export default function SignIn ({ csrfToken, tenant }) {
     const payload = {
       username,
       password,
-      tenant,
+      hostname,
       csrfToken,
       redirect: false
     }
@@ -151,7 +154,7 @@ export default function SignIn ({ csrfToken, tenant }) {
 }
 
 export async function getServerSideProps (ctx) {
-  const { resolvedUrl, query, locale, req } = ctx
+  const { resolvedUrl, query, locale } = ctx
 
   const session = await getSession(ctx)
 
@@ -178,8 +181,7 @@ export async function getServerSideProps (ctx) {
 
   return {
     props: {
-      csrfToken: await getCsrfToken(ctx),
-      tenant: req.headers.host
+      csrfToken: await getCsrfToken(ctx)
     }
   }
 }
