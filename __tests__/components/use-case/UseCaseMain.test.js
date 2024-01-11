@@ -14,6 +14,21 @@ import { paginatedUseCases, useCasePaginationAttribute } from './data/UseCaseMai
 mockNextUseRouter()
 describe('Unit tests for the use case main page.', () => {
   test('Should render list of use cases.', async () => {
+    //  Mock tenant API call for not-secured tenant
+    jest
+      .spyOn(global, 'fetch')
+      .mockImplementation(
+        jest.fn(
+          () => Promise.resolve({
+            json: () => Promise.resolve({
+              tenant: 'default',
+              secured: false,
+              hostname: 'default'
+            })
+          })
+        )
+      )
+
     const mockUseCasePaginationAttribute = generateMockApolloData(
       USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
       { search:'', sdgs: [], showBeta: false, showGovStackOnly: false },
