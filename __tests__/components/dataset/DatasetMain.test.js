@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
-import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import DatasetMain from '../../../components/dataset/DatasetMain'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
@@ -11,6 +11,7 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { DatasetFilterProvider } from '../../../components/context/DatasetFilterContext'
 import { paginatedDatasets, datasetPaginationAttribute } from './data/DatasetMain.data'
 
+mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the dataset main page.', () => {
   test('Should render list of datasets.', async () => {

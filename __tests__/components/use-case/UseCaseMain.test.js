@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
-import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import UseCaseMain from '../../../components/use-case/UseCaseMain'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
@@ -11,24 +11,10 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { UseCaseFilterProvider } from '../../../components/context/UseCaseFilterContext'
 import { paginatedUseCases, useCasePaginationAttribute } from './data/UseCaseMain.data'
 
+mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the use case main page.', () => {
   test('Should render list of use cases.', async () => {
-    //  Mock tenant API call for not-secured tenant
-    jest
-      .spyOn(global, 'fetch')
-      .mockImplementation(
-        jest.fn(
-          () => Promise.resolve({
-            json: () => Promise.resolve({
-              tenant: 'default',
-              secured: false,
-              hostname: 'default'
-            })
-          })
-        )
-      )
-
     const mockUseCasePaginationAttribute = generateMockApolloData(
       USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
       { search:'', sdgs: [], showBeta: false, showGovStackOnly: false },
