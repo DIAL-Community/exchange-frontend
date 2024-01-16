@@ -69,7 +69,7 @@ const DatasetList = ({ headerRef }) => {
         pageNumber={pageNumber}
         totalCount={paginationAttribute.totalCount}
         defaultPageSize={DEFAULT_PAGE_SIZE}
-        pageClickHandler={handlePageClick}
+        onClickHandler={handlePageClick}
       />
     </div>
   )

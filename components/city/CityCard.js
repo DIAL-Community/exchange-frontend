@@ -21,12 +21,12 @@ const CityCard = ({ displayType, index, city, dismissHandler }) => {
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-plum'>
-            {[city.name, city.region.name, city.region.country.name].filter(name => name).join(', ')}
+            {[city.name, city.province.name, city.province.country.name].filter(name => name).join(', ')}
           </div>
           <div className='text-sm text-dial-stratos'>
             {format('ui.city.description', {
-              regionName: city.region.name,
-              countryName: city.region.country.name
+              provinceName: city.province.name,
+              countryName: city.province.country.name
             })}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
