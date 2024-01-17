@@ -20,6 +20,7 @@ const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
       countries: resourceCountries.map(r => r.label),
       resourceTypes: resourceTypes.map(r => r.value),
       resourceTopics: resourceTopics.map(r => r.value),
+      compartmentalized: !search || search === '' ? true : false,
       limit: defaultPageSize,
       offset: pageOffset
     }
@@ -33,19 +34,11 @@ const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
     return <NotFound />
   }
 
-  const { featuredResources, spotlightResources, paginatedResources } = data
+  const { featuredResources, paginatedResources } = data
 
   return (
     <div className='flex flex-col gap-y-6'>
       <div className='flex flex-col gap-8 py-6'>
-        {spotlightResources.map((resource, index) =>
-          <ResourceCard
-            key={index}
-            index={index}
-            resource={resource}
-            displayType={DisplayType.SPOTLIGHT_CARD}
-          />
-        )}
         <div className='grid lg:grid-cols-3 gap-x-4 -mx-6'>
           {featuredResources.map((resource, index) =>
             <ResourceCard

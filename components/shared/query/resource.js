@@ -72,34 +72,8 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
     $countries: [String!]
     $resourceTypes: [String!]
     $resourceTopics: [String!]
+    $compartmentalized: Boolean
   ) {
-    spotlightResources: paginatedResources(
-      spotlightLength: 1
-      spotlightOnly: true
-      compartmentalized: true
-      offsetAttributes: { limit: $limit, offset: $offset }
-    ) {
-      id
-      name
-      slug
-      imageFile
-      
-      description
-      parsedDescription
-
-      resourceLink
-      linkDescription
-      source
-      resourceType
-      resourceTopic
-
-      publishedDate
-
-      authors {
-        name
-      }
-      tags
-    }
     featuredResources: paginatedResources(
       featuredLength: 3
       featuredOnly: true
@@ -131,7 +105,7 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       search: $search
       tags: $tags
       countries: $countries
-      compartmentalized: true
+      compartmentalized: $compartmentalized
       resourceTypes: $resourceTypes
       resourceTopics: $resourceTopics
       offsetAttributes: { limit: $limit, offset: $offset }
