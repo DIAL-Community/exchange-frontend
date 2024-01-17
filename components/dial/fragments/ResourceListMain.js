@@ -37,34 +37,32 @@ const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
   const { featuredResources, paginatedResources } = data
 
   return (
-    <div className='flex flex-col gap-y-6'>
-      <div className='flex flex-col gap-8 py-6'>
-        <div className='grid lg:grid-cols-3 gap-x-4 -mx-6'>
-          {featuredResources.map((resource, index) =>
-            <ResourceCard
-              key={index}
-              index={index}
-              resource={resource}
-              displayType={DisplayType.FEATURED_CARD}
-            />
-          )}
+    <div className='flex flex-col gap-4 py-6'>
+      <div className='grid lg:grid-cols-3 gap-x-4 -mx-6'>
+        {featuredResources.map((resource, index) =>
+          <ResourceCard
+            key={index}
+            index={index}
+            resource={resource}
+            displayType={DisplayType.FEATURED_CARD}
+          />
+        )}
+      </div>
+      <ResourceSearchBar ref={topRef} />
+      <div className='flex flex-col lg:flex-row gap-x-8'>
+        <div className='lg:basis-1/3'>
+          <ResourceListLeft />
         </div>
-        <ResourceSearchBar ref={topRef} />
-        <div className='flex flex-col lg:flex-row gap-x-8'>
-          <div className='lg:basis-1/3'>
-            <ResourceListLeft />
-          </div>
-          <div className='lg:basis-2/3'>
-            <div className='grid grid-cols-1 gap-3'>
-              {paginatedResources.map((resource, index) =>
-                <ResourceCard
-                  key={index}
-                  index={index}
-                  resource={resource}
-                  displayType={DisplayType.LARGE_CARD}
-                />
-              )}
-            </div>
+        <div className='lg:basis-2/3'>
+          <div className='grid grid-cols-1 gap-3'>
+            {paginatedResources.map((resource, index) =>
+              <ResourceCard
+                key={index}
+                index={index}
+                resource={resource}
+                displayType={DisplayType.LARGE_CARD}
+              />
+            )}
           </div>
         </div>
       </div>

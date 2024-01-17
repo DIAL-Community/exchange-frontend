@@ -1,19 +1,22 @@
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
+
 const ResourceRibbon = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   return (
     <div
-      className='rounded-b-[64px] z-40 bg-cover bg-top h-[400px] md:h-[300px]'
+      className='rounded-b-[64px] z-40 bg-cover bg-top h-[160px]'
       style={{
         backgroundImage: 'url("/ui/v1/research-header.png")'
       }}
     >
-      <div className='lg:h-[260px] pt-[60px] md:pt-[80px] lg:pt-[20px]'>
-        <div className='flex h-full items-center'>
-          <div className='px-8 xl:px-56 text-4xl text-white'>
-            Digital transformation is constantly evolving. So is our collective knowledge.
-            <div className='py-3 text-xl text-white italic'>
-            We have created – and curated – a diverse range of resources designed to help those working at the
-            forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
-            </div>
+      <div className='flex h-full items-center'>
+        <div className='px-8 xl:px-56 text-2xl text-white'>
+          {format('ui.hub.ribbon.tagLine')}
+          <div className='py-3 text-base text-white italic'>
+            {format('ui.hub.ribbon.subTagLine')}
           </div>
         </div>
       </div>

@@ -2395,4 +2395,10 @@ export const en = {
   'ui.region.createNew': 'Create new region',
   'ui.region.name.label': 'Region Name',
   'ui.region.description.label': 'Region Description',
+
+  'ui.hub.ribbon.subTagLine': `
+    We have created – and curated – a diverse range of resources designed to help those working at the
+    forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
+  `,
+  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.'
 }
