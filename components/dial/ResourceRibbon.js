@@ -7,7 +7,7 @@ const ResourceRibbon = () => {
 
   return (
     <div
-      className='rounded-b-[64px] z-40 bg-cover bg-top h-[160px]'
+      className='rounded-b-[32px] z-40 bg-cover bg-top h-[160px]'
       style={{
         backgroundImage: 'url("/ui/v1/research-header.png")'
       }}
