@@ -72,7 +72,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   })
 
   const [resourceAuthor] = resource?.authors ?? []
-  const { handleSubmit, register, control, watch, setValue, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -83,7 +83,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       showInExchange: resource?.showInExchange,
       publishedDate: resource?.publishedDate,
       featured: resource?.featured,
-      spotlight: resource?.spotlight,
       resourceLink: resource?.resourceLink,
       linkDescription: resource?.linkDescription,
       source: resource?.source,
@@ -107,7 +106,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         showInExchange,
         publishedDate,
         featured,
-        spotlight,
         resourceLink,
         linkDescription,
         source,
@@ -127,7 +125,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         showInExchange,
         publishedDate,
         featured,
-        spotlight,
         resourceLink,
         linkDescription,
         source,
@@ -164,12 +161,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const cancelForm = () => {
     setReverting(true)
     router.push(`/${locale}/hub/${slug}`)
-  }
-
-  const onSpotlightChecked = (event) => {
-    if (event.target.checked) {
-      setValue('featured', event.target.checked)
-    }
   }
 
   const toggleUsingFile = (e) => {
@@ -422,11 +413,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   <hr className='h-px border-dashed' />
                   <div className='flex flex-wrap'>
                     <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
-                      <Checkbox {...register('spotlight', { onChange: onSpotlightChecked })} />
-                      {format('ui.resource.spotlight')}
-                    </label>
-                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
-                      <Checkbox {...register('featured')} disabled={watch('spotlight')} />
+                      <Checkbox {...register('featured')} />
                       {format('ui.resource.featured')}
                     </label>
                   </div>

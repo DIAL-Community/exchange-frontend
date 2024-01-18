@@ -169,7 +169,6 @@ export const RESOURCE_DETAIL_QUERY = gql`
       showInWizard
       
       featured
-      spotlight
 
       authors {
         name

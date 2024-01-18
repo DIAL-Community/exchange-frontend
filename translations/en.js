@@ -1834,7 +1834,6 @@ export const en = {
   'ui.resource.authorName': 'Author Name',
   'ui.resource.authorEmail': 'Author Email',
   'ui.resource.featured': 'Featured resource',
-  'ui.resource.spotlight': 'Spotlight resource',
   'ui.resource.publishedDate': 'Published On',
   'ui.resource.anonymousAuthor': 'Anonymous',
   

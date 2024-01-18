@@ -30,7 +30,7 @@ const ResourceListMain = ({ pageOffset, defaultPageSize }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedResources && !data?.spotlightResources && !data?.featuredResources) {
+  } else if (!data?.paginatedResources && !data?.featuredResources) {
     return <NotFound />
   }
 
