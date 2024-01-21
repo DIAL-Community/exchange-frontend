@@ -18,6 +18,7 @@ import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores
 import ProductDetailCountries from './fragments/ProductDetailCountries'
 import ProductCard from './ProductCard'
 import DeleteProduct from './DeleteProduct'
+import ProductDetailResources from './fragments/ProductDetailResources'
 
 const ProductSource = ({ product, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -183,6 +184,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const pricingRef = useRef()
   const sdgRef = useRef()
   const buildingBlockRef = useRef()
+  const resourceRef = useRef()
   const organizationRef = useRef()
   const countryRef = useRef()
   const tagRef = useRef()
@@ -202,6 +204,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       { value: 'ui.product.pricing.title', ref: pricingRef },
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
+      { value: 'ui.resource.header', ref:resourceRef },
       { value: 'ui.organization.header', ref: organizationRef },
 
       { value: 'productRepository.header', ref: productRepositoryRef },
@@ -308,6 +311,14 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
+          <ProductDetailResources
+            product={product}
+            canEdit={canEdit}
+            headerRef={resourceRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
           <ProductDetailOrganizations
             product={product}
             canEdit={canEdit}
@@ -393,7 +404,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={product} objectType={ObjectType.PRODUCT} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />
