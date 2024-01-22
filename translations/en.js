@@ -2400,7 +2400,7 @@ export const en = {
     We have created – and curated – a diverse range of resources designed to help those working at the
     forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
   `,
-  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.'
+  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
 
   'ui.sync.label': 'Sync',
   'ui.sync.header': 'Syncs',
