@@ -7,6 +7,7 @@ import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 import { DatasetTypeActiveFilters, DatasetTypeSelect } from '../../shared/filter/DatasetType'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 
 const DatasetFilter = () => {
   const { formatMessage } = useIntl()
@@ -14,6 +15,9 @@ const DatasetFilter = () => {
 
   const { sectors, tags, sdgs, origins, datasetTypes } = useContext(DatasetFilterContext)
   const { setSectors, setTags, setSdgs, setOrigins, setDatasetTypes } = useContext(DatasetFilterDispatchContext)
+
+  const { countries } = useContext(DatasetFilterContext)
+  const { setCountries } = useContext(DatasetFilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
@@ -23,6 +27,7 @@ const DatasetFilter = () => {
     setTags([])
     setSdgs([])
     setOrigins([])
+    setCountries([])
   }
 
   const filteringDataset = () => {
@@ -31,7 +36,8 @@ const DatasetFilter = () => {
       datasetTypes.length +
       tags.length +
       sdgs.length +
-      origins.length > 0
+      origins.length +
+      countries.length > 0
   }
 
   return (
@@ -56,6 +62,7 @@ const DatasetFilter = () => {
             <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
             <TagActiveFilters tags={tags} setTags={setTags} />
+            <CountryActiveFilters countries={countries} setCountries={setCountries} />
           </div>
         </div>
       }
@@ -74,6 +81,7 @@ const DatasetFilter = () => {
         <hr className='border-b border-dial-slate-200'/>
         <TagAutocomplete tags={tags} setTags={setTags} />
         <hr className='border-b border-dial-slate-200'/>
+        <CountryAutocomplete countries={countries} setCountries={setCountries} />
       </div>
     </div>
   )

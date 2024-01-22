@@ -15,7 +15,7 @@ const ProductListRight = () => {
 
   const { search, isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
-  const { licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)
@@ -55,6 +55,7 @@ const ProductListRight = () => {
       useCases: useCases.map(useCase => useCase.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
       sectors: sectors.map(sector => sector.value),
+      countries: countries.map(country => country.value),
       tags: tags.map(tag => tag.label),
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
       sdgs: sdgs.map(sdg => sdg.value),

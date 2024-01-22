@@ -1835,7 +1835,6 @@ export const en = {
   'ui.resource.authorName': 'Author Name',
   'ui.resource.authorEmail': 'Author Email',
   'ui.resource.featured': 'Featured resource',
-  'ui.resource.spotlight': 'Spotlight resource',
   'ui.resource.publishedDate': 'Published On',
   'ui.resource.anonymousAuthor': 'Anonymous',
   
@@ -2386,10 +2385,9 @@ export const en = {
   'ui.taskTracker.filter.showFailedOnly': 'Show failed only',
 
   'ui.govstack.tagLine': `
-    The Digital Impact Exchange is closely aligned with GovStack, a multi-stakeholder, community-driven initiative
-    that is focused on accelerating national digital transformation worldwide. Click on the links below to see
-    Use Cases, Building Blocks, and Products that are aligned with the GovStack approach, as well as RFPs for
-    GovStack implementations.
+    The Digital Impact Exchange, in partnership with GovStack, provides a list of Use Cases, Building Blocks,
+    and Products that are aligned with the GovStack approach. On this page, you can also find Opportunities
+    and RFPs related to GovStack.
   `,
 
   'ui.region.label': 'Region',
@@ -2397,4 +2395,10 @@ export const en = {
   'ui.region.createNew': 'Create new region',
   'ui.region.name.label': 'Region Name',
   'ui.region.description.label': 'Region Description',
+
+  'ui.hub.ribbon.subTagLine': `
+    We have created – and curated – a diverse range of resources designed to help those working at the
+    forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
+  `,
+  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.'
 }
