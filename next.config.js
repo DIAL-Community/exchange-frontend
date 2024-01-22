@@ -4,6 +4,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer(withRemoveImports({
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback.fs = false
+    }
+
+    return config
+  },
   i18n: {
     locales: ['en', 'fr', 'de', 'cs', 'es', 'pt', 'sw'],
     defaultLocale: 'en',
