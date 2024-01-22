@@ -167,6 +167,12 @@ export const PRODUCT_DETAIL_QUERY = gql`
         slug
         imageFile
       }
+      resources {
+        id
+        slug
+        name
+        imageFile
+      }
       currentProjects(first:10) {
         id
         name
