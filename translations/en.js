@@ -42,6 +42,7 @@ export const en = {
   'app.changePassword': 'Change Password',
   'app.deleteAccount': 'Delete Account',
   'app.adminOnly': 'Admin Only',
+  'app.loginRequired': 'Please login or sign up to access this resource.',
 
   'general.pastSuffix': 'ago',
 
@@ -1834,7 +1835,6 @@ export const en = {
   'ui.resource.authorName': 'Author Name',
   'ui.resource.authorEmail': 'Author Email',
   'ui.resource.featured': 'Featured resource',
-  'ui.resource.spotlight': 'Spotlight resource',
   'ui.resource.publishedDate': 'Published On',
   'ui.resource.anonymousAuthor': 'Anonymous',
   
@@ -2395,4 +2395,10 @@ export const en = {
   'ui.region.createNew': 'Create new region',
   'ui.region.name.label': 'Region Name',
   'ui.region.description.label': 'Region Description',
+
+  'ui.hub.ribbon.subTagLine': `
+    We have created – and curated – a diverse range of resources designed to help those working at the
+    forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
+  `,
+  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.'
 }

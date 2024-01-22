@@ -28,7 +28,7 @@ const ResourceListPage = () => {
         <QueryNotification />
         <ResourceHeader />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col gap-y-12'>
+        <div className='flex flex-col'>
           <ResourceRibbon />
           <ResourceList />
         </div>

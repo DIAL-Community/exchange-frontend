@@ -1,7 +1,7 @@
 import { act } from 'react-dom/test-utils'
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
-import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import ProductMain from '../../../components/product/ProductMain'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
@@ -12,6 +12,7 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { ProductFilterProvider } from '../../../components/context/ProductFilterContext'
 import { paginatedProducts, productPaginationAttribute } from './data/ProductMain.data'
 
+mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the product main page.', () => {
   test('Should render list of products.', async () => {
@@ -23,6 +24,7 @@ describe('Unit tests for the product main page.', () => {
         buildingBlocks: [],
         sectors: [],
         tags: [],
+        countries: [],
         licenseTypes: [],
         sdgs: [],
         workflows: [],
@@ -41,6 +43,7 @@ describe('Unit tests for the product main page.', () => {
         buildingBlocks: [],
         sectors: [],
         tags: [],
+        countries: [],
         licenseTypes: [],
         sdgs: [],
         workflows: [],

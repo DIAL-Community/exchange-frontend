@@ -1,7 +1,7 @@
 import { act } from 'react-dom/test-utils'
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
-import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import BuildingBlockMain from '../../../components/building-block/BuildingBlockMain'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
@@ -12,6 +12,7 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { BuildingBlockFilterProvider } from '../../../components/context/BuildingBlockFilterContext'
 import { paginatedBuildingBlocks, buildingBlockPaginationAttribute } from './data/BuildingBlockMain.data'
 
+mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the building block main page.', () => {
   test('Should render list of building blocks.', async () => {

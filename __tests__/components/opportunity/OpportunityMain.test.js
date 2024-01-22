@@ -1,7 +1,7 @@
 import { act } from 'react-dom/test-utils'
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
-import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import OpportunityMain from '../../../components/opportunity/OpportunityMain'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
@@ -12,6 +12,7 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { OpportunityFilterProvider } from '../../../components/context/OpportunityFilterContext'
 import { paginatedOpportunities, opportunityPaginationAttribute } from './data/OpportunityMain.data'
 
+mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the opportunity main page.', () => {
   test('Should render list of opportunities.', async () => {

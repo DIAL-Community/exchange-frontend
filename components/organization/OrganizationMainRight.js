@@ -1,11 +1,22 @@
+import { useActiveTenant, useUser } from '../../lib/hooks'
+import RequireAuth from '../shared/RequireAuth'
 import OrganizationDefinition from './fragments/OrganizationDefinition'
 import OrganizationListRight from './fragments/OrganizationListRight'
 import OrganizationForm from './fragments/OrganizationForm'
 
 const OrganizationMainRight = ({ activeTab }) => {
+  const { user } = useUser()
+  const { secured } = useActiveTenant()
+
+  const initialDisplay = secured
+    ? user
+      ? <OrganizationListRight />
+      : <RequireAuth />
+    : <OrganizationListRight />
+
   return (
     <div className='min-h-[50vh]'>
-      { activeTab === 0 && <OrganizationListRight /> }
+      { activeTab === 0 && initialDisplay }
       { activeTab === 1 && <OrganizationDefinition /> }
       { activeTab === 2 && <OrganizationForm /> }
     </div>
