@@ -1,7 +1,7 @@
-import { useActiveTenant, useUser } from '../../lib/hooks'
-import RequireAuth from '../shared/RequireAuth'
-import OrganizationListRight from './fragments/OrganizationListRight'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
+import RequireAuth from '../../shared/RequireAuth'
 import OrganizationForm from './fragments/OrganizationForm'
+import OrganizationListRight from './fragments/OrganizationListRight'
 
 const OrganizationMainRight = ({ activeTab }) => {
   const { user } = useUser()

@@ -1,5 +1,5 @@
-import { useActiveTenant, useUser } from '../../lib/hooks'
-import RequireAuth from '../shared/RequireAuth'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
+import RequireAuth from '../../shared/RequireAuth'
 import RoleListRight from './fragments/RoleListRight'
 
 const RoleMainRight = ({ activeTab }) => {

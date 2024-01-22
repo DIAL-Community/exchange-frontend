@@ -1,7 +1,7 @@
-import { useActiveTenant, useUser } from '../../lib/hooks'
-import RequireAuth from '../shared/RequireAuth'
-import ProductListRight from './fragments/ProductListRight'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
+import RequireAuth from '../../shared/RequireAuth'
 import ProductForm from './fragments/ProductForm'
+import ProductListRight from './fragments/ProductListRight'
 
 const ProductMainRight = ({ activeTab }) => {
   const { user } = useUser()
