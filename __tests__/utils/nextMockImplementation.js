@@ -40,6 +40,19 @@ export const mockNextUseRouter = (values = {}) => {
   useRouter.mockImplementation(() => ({ ...mergedValues }))
 }
 
+export const mockTenantApi = (tenant = 'default', secured = false, hostname = 'default') => {
+  //  Mock tenant API call for not-secured tenant
+  jest
+    .spyOn(global, 'fetch')
+    .mockImplementation(
+      jest.fn(
+        () => Promise.resolve({
+          json: () => Promise.resolve({ tenant, secured, hostname })
+        })
+      )
+    )
+}
+
 /**
  * Default properties of mocked useSession implementation.
  */

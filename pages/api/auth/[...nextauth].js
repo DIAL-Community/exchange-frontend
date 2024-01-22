@@ -23,7 +23,7 @@ const handler = NextAuth({
       credentials: {
         username: { label: 'Username', type: 'text', placeholder: 'email' },
         password: { label: 'Password', type: 'password' },
-        tenant: { label: 'Tenant', type: 'text', placeholder: 'tenant' }
+        hostname: { label: 'Hostname', type: 'text', placeholder: 'hostname' }
       },
       authorize: async (credentials) => {
         const authBody = {
@@ -47,7 +47,7 @@ const handler = NextAuth({
               'Access-Control-Allow-Credentials': true,
               'Access-Control-Allow-Headers': 'Set-Cookie',
               // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
-              'X-Tenant-ID': credentials.tenant
+              'X-Tenant-Host': credentials.hostname
             },
             // redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'origin-when-cross-origin',
