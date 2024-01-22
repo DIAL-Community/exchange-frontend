@@ -16,13 +16,13 @@ describe('Unit tests for the dataset main page.', () => {
   test('Should render list of datasets.', async () => {
     const mockDatasetPaginationAttribute = generateMockApolloData(
       DATASET_PAGINATION_ATTRIBUTES_QUERY,
-      { search:'', origins: [], sdgs: [], sectors: [], tags: [], datasetTypes: [] },
+      { search:'', origins: [], sdgs: [], sectors: [], tags: [], datasetTypes: [], countries: [] },
       null,
       datasetPaginationAttribute
     )
     const mockPaginatedDatasets = generateMockApolloData(
       PAGINATED_DATASETS_QUERY,
-      { search:'', origins: [], sdgs: [], sectors: [], tags: [], datasetTypes: [], limit: 8, offset: 0 },
+      { search:'', origins: [], sdgs: [], sectors: [], tags: [], datasetTypes: [], countries: [], limit: 8, offset: 0 },
       null,
       paginatedDatasets
     )
