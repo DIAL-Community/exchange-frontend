@@ -51,48 +51,6 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       </div>
     </div>
 
-  const displaySpotlightCard = () =>
-    <div className='group spotlight-card'>
-      <div className='flex flex-col lg:flex-row gap-x-10'>
-        <div className='overflow-hidden basis-2/5 shrink-0'>
-          <img
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-            alt={format('ui.image.logoAlt', { name: format('ui.resource.header') })}
-            className='aspect-[3/2]	group-hover:scale-110 transition-all duration-500'
-          />
-        </div>
-        <div className='group-hover:bg-dial-ice lg:px-8 py-6'>
-          <div className='flex flex-col gap-y-4'>
-            <div className='flex items-center gap-6'>
-              {resource.tags && resource.tags.map((tag, i) =>
-                (<div key={i} className='bg-dial-plum text-white rounded-md shadow-lg text-xs px-2 py-2'>{tag}</div>))}
-              {resource.resourceType &&
-                <div className='text-sm'>
-                  {format(resource.resourceType)}
-                </div>
-              }
-            </div>
-            <div className='text-3xl font-semibold text-dial-iris-blue'>
-              {resource.name}
-            </div>
-            <div className='text-xl leading-8 italic line-clamp-6 text-dial-sapphire'>
-              {resource?.parsedDescription && parse(resource?.parsedDescription)}
-            </div>
-            <div className='flex flex-row items-center gap-3'>
-              <img
-                src='/ui/v1/author-header.svg'
-                className='badge-avatar w-10 h-10'
-                alt='Author picture'
-              />
-              <div className='text-dial-sapphire'>
-                {resourceAuthor?.name ?? format('ui.resource.anonymousAuthor')}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   const displayFeaturedCard = () =>
     <div className='group featured-card'>
       <div className='flex flex-col gap-y-3 group-hover:bg-dial-ice p-6'>
@@ -142,7 +100,6 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
         {displayType === DisplayType.FEATURED_CARD && displayFeaturedCard()}
-        {displayType === DisplayType.SPOTLIGHT_CARD && displaySpotlightCard()}
       </Link>
       { isValidFn(dismissHandler) &&
         <button type='button' className='absolute top-2 right-2'>
