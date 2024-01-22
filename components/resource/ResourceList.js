@@ -26,23 +26,14 @@ const ResourceListContent = ({ pageOffset, defaultPageSize }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.paginatedResources && !data?.spotlightResources && !data?.featuredResources) {
+  } else if (!data?.paginatedResources && !data?.featuredResources) {
     return <NotFound />
   }
 
-  const { featuredResources, spotlightResources, paginatedResources } = data
+  const { featuredResources, paginatedResources } = data
 
   return (
     <div className='flex flex-col gap-3'>
-      {spotlightResources.map((resource, index) =>
-        <div key={index}>
-          <ResourceCard
-            index={index}
-            resource={resource}
-            displayType={DisplayType.SPOTLIGHT_CARD}
-          />
-        </div>
-      )}
       <div className='flex flex-row gap-x-3'>
         {featuredResources.map((resource, index) =>
           <div key={index}>

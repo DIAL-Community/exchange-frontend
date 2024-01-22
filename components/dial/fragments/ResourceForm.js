@@ -1,11 +1,12 @@
-import React, { useState, useCallback, useContext, useMemo } from 'react'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa6'
 import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
+import React, { useState, useCallback, useContext, useMemo } from 'react'
 import { ToastContext } from '../../../lib/ToastContext'
-import { useOrganizationOwnerUser, useUser } from '../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_RESOURCE } from '../../shared/mutation/resource'
@@ -26,11 +27,11 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const slug = resource?.slug ?? ''
 
   const { user, loadingUserSession } = useUser()
-  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
-  const canEdit = user?.isAdminUser || user?.isEditorUser || (organization && isOrganizationOwner)
+  const canEdit = user?.isAdminUser || user?.isEditorUser
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+  const [usingFile, setUsingFile] = useState(true)
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -71,7 +72,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   })
 
   const [resourceAuthor] = resource?.authors ?? []
-  const { handleSubmit, register, control, watch, setValue, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -82,7 +83,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       showInExchange: resource?.showInExchange,
       publishedDate: resource?.publishedDate,
       featured: resource?.featured,
-      spotlight: resource?.spotlight,
       resourceLink: resource?.resourceLink,
       linkDescription: resource?.linkDescription,
       source: resource?.source,
@@ -106,7 +106,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         showInExchange,
         publishedDate,
         featured,
-        spotlight,
         resourceLink,
         linkDescription,
         source,
@@ -126,7 +125,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         showInExchange,
         publishedDate,
         featured,
-        spotlight,
         resourceLink,
         linkDescription,
         source,
@@ -162,13 +160,12 @@ const ResourceForm = React.memo(({ resource, organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/resources/dial/${slug}`)
+    router.push(`/${locale}/hub/${slug}`)
   }
 
-  const onSpotlightChecked = (event) => {
-    if (event.target.checked) {
-      setValue('featured', event.target.checked)
-    }
+  const toggleUsingFile = (e) => {
+    e.preventDefault()
+    setUsingFile(!usingFile)
   }
 
   return loadingUserSession
@@ -250,47 +247,97 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   )}
                 />
               </div>
-              <hr className='h-px border-dashed' />
-              <div className='flex flex-col gap-y-2'>
-                <label htmlFor='resourceFile'>
-                  {format('ui.resource.resourceFile')}
-                </label>
-                <FileUploader
-                  {...register('resourceFile')}
-                  fileTypes={['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx']}
-                  fileTypesDisclaimer='resource.supportedFormats'
-                />
+              <div className='flex flex-col'>
+                <ul class="flex flex-wrap gap-x-4 -mb-px">
+                  <li class="me-2">
+                    <a
+                      href='#'
+                      onClick={toggleUsingFile}
+                      class={classNames(
+                        'inline-block py-3 border-b-2',
+                        usingFile
+                          ? 'border-dial-sunshine'
+                          : 'border-transparent'
+                      )}
+                    >
+                      Resource File
+                    </a>
+                  </li>
+                  <li class="me-2">
+                    <a
+                      href='#'
+                      onClick={toggleUsingFile}
+                      class={classNames(
+                        'inline-block py-3 border-b-2',
+                        usingFile
+                          ? 'border-transparent'
+                          : 'border-dial-sunshine'
+                      )}
+                    >
+                      Resource URL
+                    </a>
+                  </li>
+                </ul>
+                {usingFile &&
+                  <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+                    <div className='flex flex-col gap-y-2'>
+                      <label htmlFor='resourceFile'>
+                        {format('ui.resource.resourceFile')}
+                      </label>
+                      <FileUploader
+                        {...register('resourceFile')}
+                        fileTypes={['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx']}
+                        fileTypesDisclaimer='resource.supportedFormats'
+                      />
+                    </div>
+                    <div className='flex flex-col gap-y-2'>
+                      <label className='required-field' htmlFor='linkDescription'>
+                        {format('ui.resource.linkDescription')}
+                      </label>
+                      <Input
+                        {...register('linkDescription', { required: format('validation.required') })}
+                        id='linkDescription'
+                        placeholder={format('ui.resource.linkDescription')}
+                        isInvalid={errors.linkDescription}
+                      />
+                      {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
+                    </div>
+                  </div>
+                }
+                {!usingFile &&
+                  <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+                    <div className='flex flex-col gap-y-2'>
+                      <label htmlFor='resourceLink'>
+                        {format('ui.resource.resourceLink')}
+                      </label>
+                      <Controller
+                        name='resourceLink'
+                        control={control}
+                        render={({ field: { value, onChange } }) => (
+                          <UrlInput
+                            value={value}
+                            onChange={onChange}
+                            id='resourceLink'
+                            placeholder={format('ui.resource.resourceLink')}
+                          />
+                        )}
+                      />
+                    </div>
+                    <div className='flex flex-col gap-y-2'>
+                      <label className='required-field' htmlFor='linkDescription'>
+                        {format('ui.resource.linkDescription')}
+                      </label>
+                      <Input
+                        {...register('linkDescription', { required: format('validation.required') })}
+                        id='linkDescription'
+                        placeholder={format('ui.resource.linkDescription')}
+                        isInvalid={errors.linkDescription}
+                      />
+                      {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
+                    </div>
+                  </div>
+                }
               </div>
-              <div className='flex flex-col gap-y-2'>
-                <label htmlFor='resourceLink'>
-                  {format('ui.resource.resourceLink')}
-                </label>
-                <Controller
-                  name='resourceLink'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <UrlInput
-                      value={value}
-                      onChange={onChange}
-                      id='resourceLink'
-                      placeholder={format('ui.resource.resourceLink')}
-                    />
-                  )}
-                />
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='linkDescription'>
-                  {format('ui.resource.linkDescription')}
-                </label>
-                <Input
-                  {...register('linkDescription', { required: format('validation.required') })}
-                  id='linkDescription'
-                  placeholder={format('ui.resource.linkDescription')}
-                  isInvalid={errors.linkDescription}
-                />
-                {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
-              </div>
-              <hr className='h-px border-dashed' />
               <div className='flex flex-col gap-y-2'>
                 <label htmlFor='source'>
                   {format('ui.resource.source')}
@@ -366,11 +413,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                   <hr className='h-px border-dashed' />
                   <div className='flex flex-wrap'>
                     <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
-                      <Checkbox {...register('spotlight', { onChange: onSpotlightChecked })} />
-                      {format('ui.resource.spotlight')}
-                    </label>
-                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
-                      <Checkbox {...register('featured')} disabled={watch('spotlight')} />
+                      <Checkbox {...register('featured')} />
                       {format('ui.resource.featured')}
                     </label>
                   </div>

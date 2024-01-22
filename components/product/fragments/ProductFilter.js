@@ -15,6 +15,7 @@ import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/U
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 import { BuildingBlockAutocomplete, BuildingBlockActiveFilters } from '../../shared/filter/BuildingBlock'
 import Checkbox from '../../shared/form/Checkbox'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 
 const COVID_19_LABEL = 'COVID-19'
 
@@ -25,8 +26,8 @@ const ProductFilter = () => {
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
   const { setUseCases, setBuildingBlocks, setSectors, setTags } = useContext(ProductFilterDispatchContext)
 
-  const { licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
-  const { setLicenseTypes, setSdgs, setOrigins, setWorkflows } = useContext(ProductFilterDispatchContext)
+  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const { setCountries, setLicenseTypes, setSdgs, setOrigins, setWorkflows } = useContext(ProductFilterDispatchContext)
 
   const { isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
   const { setIsLinkedWithDpi, setShowGovStackOnly } = useContext(ProductFilterDispatchContext)
@@ -63,6 +64,7 @@ const ProductFilter = () => {
     setWorkflows([])
     setBuildingBlocks([])
 
+    setCountries([])
     setOrigins([])
     setSectors([])
     setTags([])
@@ -80,6 +82,7 @@ const ProductFilter = () => {
       origins.length +
       sectors.length +
       tags.length +
+      countries.length +
       licenseTypes.length > 0
   }
 
@@ -104,6 +107,7 @@ const ProductFilter = () => {
             <BuildingBlockActiveFilters buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />
             <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
             <TagActiveFilters tags={tags} setTags={setTags} />
+            <CountryActiveFilters countries={countries} setCountries={setCountries} />
             <LicenseTypeActiveFilters licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
             <WorkflowActiveFilters workflows={workflows} setWorkflows={setWorkflows} />
             <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
@@ -186,6 +190,8 @@ const ProductFilter = () => {
                 {format('ui.product.filter.showGovStackOnly')}
               </span>
             </label>
+            <hr className='border-b border-dial-slate-200'/>
+            <CountryAutocomplete countries={countries} setCountries={setCountries} />
             <hr className='border-b border-dial-slate-200'/>
             <LicenseTypeAutocomplete licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
             <hr className='border-b border-dial-slate-200'/>

@@ -11,7 +11,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
 
   const { isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
-  const { licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PRODUCTS_QUERY, {
     variables: {
@@ -20,6 +20,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
+      countries: countries.map(country => country.value),
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
       sdgs: sdgs.map(sdg => sdg.value),
       workflows: workflows.map(workflow => workflow.id),

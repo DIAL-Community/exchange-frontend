@@ -9,7 +9,7 @@ import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(DatasetFilterContext)
 
-  const { sectors, sdgs, tags, origins, datasetTypes } = useContext(DatasetFilterContext)
+  const { sectors, sdgs, tags, origins, datasetTypes, countries } = useContext(DatasetFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_DATASETS_QUERY, {
     variables: {
@@ -19,6 +19,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
       datasetTypes: datasetTypes.map(datasetType => datasetType.value),
+      countries: countries.map(country => country.value),
       limit: defaultPageSize,
       offset: pageOffset
     }

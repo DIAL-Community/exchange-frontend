@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
-import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import ProjectMain from '../../../components/project/ProjectMain'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
@@ -11,6 +11,7 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { ProjectFilterProvider } from '../../../components/context/ProjectFilterContext'
 import { paginatedProjects, projectPaginationAttribute } from './data/ProjectMain.data'
 
+mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the project main page.', () => {
   test('Should render list of projects.', async () => {
