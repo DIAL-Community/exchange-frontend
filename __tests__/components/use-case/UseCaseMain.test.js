@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
-import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import UseCaseMain from '../../../components/use-case/UseCaseMain'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
@@ -11,6 +11,7 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { UseCaseFilterProvider } from '../../../components/context/UseCaseFilterContext'
 import { paginatedUseCases, useCasePaginationAttribute } from './data/UseCaseMain.data'
 
+mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the use case main page.', () => {
   test('Should render list of use cases.', async () => {

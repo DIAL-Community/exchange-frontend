@@ -42,6 +42,7 @@ export const en = {
   'app.changePassword': 'Change Password',
   'app.deleteAccount': 'Delete Account',
   'app.adminOnly': 'Admin Only',
+  'app.loginRequired': 'Please login or sign up to access this resource.',
 
   'general.pastSuffix': 'ago',
 
