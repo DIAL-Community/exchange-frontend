@@ -189,6 +189,34 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                 <hr
                   class="border-b border-dial-slate-200"
                 />
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <a
+                    class="flex"
+                    href="#"
+                  >
+                    <div
+                      class="text-dial-stratos text-sm py-2"
+                    >
+                      Country
+                    </div>
+                    <svg
+                      class="ml-auto text-dial-stratos my-auto"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
             <div
