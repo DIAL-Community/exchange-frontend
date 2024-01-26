@@ -1,17 +1,17 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
+import ResourceCard from '../../hub/fragments/ResourceCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
-import { DisplayType } from '../../utils/constants'
+import Select from '../../shared/form/Select'
 import { UPDATE_ORGANIZATION_RESOURCES } from '../../shared/mutation/organization'
-import ResourceCard from '../../resource/ResourceCard'
 import { RESOURCE_SEARCH_QUERY } from '../../shared/query/resource'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
 const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
