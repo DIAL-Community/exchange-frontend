@@ -175,6 +175,7 @@ export const RESOURCE_DETAIL_QUERY = gql`
         slug
         name
         email
+        picture
       }
 
       countries {
