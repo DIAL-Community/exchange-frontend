@@ -1,23 +1,27 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import classNames from 'classnames'
+import { useRouter } from 'next/router'
+import { FaCircleChevronDown, FaCircleChevronUp } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
+import CountryCard from '../../country/CountryCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
-import { DisplayType } from '../../utils/constants'
+import Select from '../../shared/form/Select'
 import { UPDATE_PRODUCT_COUNTRIES } from '../../shared/mutation/product'
-import CountryCard from '../../country/CountryCard'
 import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
 const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
+
+  const [expanded, setExpanded] = useState(false)
 
   const [countries, setCountries] = useState(product.countries)
   const [isDirty, setIsDirty] = useState(false)
@@ -97,15 +101,51 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
     setIsDirty(false)
   }
 
+  const toggleExpanded = () => setExpanded(!expanded)
+
   const displayModeBody = countries.length
-    ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-      {countries?.map((country, index) =>
-        <div key={`country-${index}`}>
-          <CountryCard country={country} displayType={DisplayType.SMALL_CARD} />
+    ? <div className='flex flex-col gap-y-3'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
+        {countries?.slice(0, 4).map((country, index) =>
+          <div key={`country-${index}`}>
+            <CountryCard country={country} displayType={DisplayType.SMALL_CARD} />
+          </div>
+        )}
+      </div>
+      <div className='overflow-hidden'>
+        <div
+          className={classNames(
+            !expanded ? '-mt-[100%]' : 'mt-0',
+            'will-change-auto transition-all duration-500 ease-in-out',
+            'grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'
+          )}
+        >
+          {countries?.slice(4).map((country, index) =>
+            <div key={`country-${index}`}>
+              <CountryCard country={country} displayType={DisplayType.SMALL_CARD} />
+            </div>
+          )}
         </div>
-      )}
+      </div>
+      {countries?.length > 4 && expanded && <div />}
+      {countries?.length > 4 &&
+        <div className='flex justify-center items-center border-t-2 border-dashed'>
+          <label className='text-dial-sapphire'>
+            <input
+              type='checkbox'
+              className='hidden'
+              checked={expanded}
+              onChange={toggleExpanded}
+            />
+            {expanded
+              ? <FaCircleChevronUp size='1.25rem' className='-mt-3' />
+              : <FaCircleChevronDown size='1.25rem'  className='-mt-3' />
+            }
+          </label>
+        </div>
+      }
     </div>
-    : <div className='text-sm text-dial-stratos'>
+    : <div className='text-sm text-dial-stratos mb-4'>
       {format( 'ui.common.detail.noData', {
         entity: format('ui.country.label'),
         base: format('ui.product.label')

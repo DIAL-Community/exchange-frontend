@@ -333,7 +333,6 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             headerRef={countryRef}
           />
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='text-dial-meadow text-xl font-semibold'>
           {format('ui.product.details')}
         </div>
