@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
 import ResourceDetailLeft from './ResourceDetailLeft'
 import ResourceDetailRight from './ResourceDetailRight'
 
@@ -37,11 +37,11 @@ const ResourceDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-2/3'>
-          <ResourceDetailLeft ref={scrollRef} resource={resource} />
-        </div>
         <div className='lg:basis-1/3'>
-          <ResourceDetailRight scrollRef={scrollRef} resource={resource} />
+          <ResourceDetailLeft scrollRef={scrollRef} resource={resource} />
+        </div>
+        <div className='lg:basis-2/3'>
+          <ResourceDetailRight ref={scrollRef} resource={resource} />
         </div>
       </div>
     </div>

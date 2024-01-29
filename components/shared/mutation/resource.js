@@ -121,3 +121,28 @@ export const UPDATE_RESOURCE_COUNTRIES = gql`
     }
   }
 `
+
+export const UPDATE_RESOURCE_PRODUCTS = gql`
+  mutation UpdateResourceProducts(
+    $slug: String!
+    $productSlugs: [String!]!
+  ) {
+    updateResourceProducts(
+      slug: $slug
+      productSlugs: $productSlugs
+    ) {
+      resource {
+        id
+        slug
+        name
+        products {
+          id
+          name
+          slug
+          imageFile
+        }
+      }
+      errors
+    }
+  }
+`
