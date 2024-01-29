@@ -1,11 +1,11 @@
+import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
+import ResourceCreate from '../../../components/hub/ResourceCreate'
+import Footer from '../../../components/hub/ResourceFooter'
+import Header from '../../../components/hub/ResourceHeader'
 import ClientOnly from '../../../lib/ClientOnly'
-import Header from '../../../components/dial/ResourceHeader'
-import Footer from '../../../components/dial/ResourceFooter'
-import ResourceCreate from '../../../components/dial/ResourceCreate'
 
 const CreateResourcePage = () => {
   const { formatMessage } = useIntl()

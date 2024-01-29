@@ -2,8 +2,8 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
-import ResourceDetailTags from './ResourceDetailTags'
 import ResourceDetailCountries from './ResourceDetailCountries'
+import ResourceDetailTags from './ResourceDetailTags'
 
 const ResourceDetailHeader = ({ resource }) => {
   const { formatMessage } = useIntl()
@@ -24,15 +24,15 @@ const ResourceDetailHeader = ({ resource }) => {
   }
 
   return (
-    <div className='flex flex-col gap-y-4 py-3'>
+    <div className='flex flex-col gap-y-3 py-3'>
       <div className='text-dial-stratos font-semibold'>
-        {format('ui.resource.authorName')}
+        {format('ui.resource.author.header')}
       </div>
       {resource?.authors.map((author, index) =>
         <div key={index} className='flex flex-row items-center gap-3'>
           <img
-            src='/ui/v1/author-header.svg'
-            className='badge-avatar w-10 h-10'
+            src={author?.picture}
+            className='badge-avatar w-8 h-8'
             alt='Author picture'
           />
           <div className='text-dial-stratos'>
