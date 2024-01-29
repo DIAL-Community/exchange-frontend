@@ -1,24 +1,27 @@
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import classNames from 'classnames'
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { FaSpinner } from 'react-icons/fa6'
-import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
-import React, { useState, useCallback, useContext, useMemo } from 'react'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
+import FileUploader from '../../shared/form/FileUploader'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
+import { generateResourceTopicOptions, generateResourceTypeOptions } from '../../shared/form/options'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_RESOURCE } from '../../shared/mutation/resource'
-import Checkbox from '../../shared/form/Checkbox'
-import UrlInput from '../../shared/form/UrlInput'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
-import FileUploader from '../../shared/form/FileUploader'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { AUTHOR_SEARCH_QUERY } from '../../shared/query/author'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
-import { generateResourceTopicOptions, generateResourceTypeOptions } from '../../shared/form/options'
-import Select from '../../shared/form/Select'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
 const ResourceForm = React.memo(({ resource, organization }) => {
   const { formatMessage } = useIntl()
@@ -26,12 +29,17 @@ const ResourceForm = React.memo(({ resource, organization }) => {
 
   const slug = resource?.slug ?? ''
 
+  const client = useApolloClient()
+
   const { user, loadingUserSession } = useUser()
   const canEdit = user?.isAdminUser || user?.isEditorUser
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
   const [usingFile, setUsingFile] = useState(true)
+
+  const [searchingAuthor, setSearchingAuthor] = useState(true)
+  const [authors, setAuthors] = useState(() => (resource?.authors ?? []))
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -71,8 +79,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }
   })
 
-  const [resourceAuthor] = resource?.authors ?? []
-  const { handleSubmit, register, control, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, getValues, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -87,9 +94,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       linkDescription: resource?.linkDescription,
       source: resource?.source,
       resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType),
-      resourceTopic: resource?.resourceTopic,
-      authorName: resourceAuthor?.name,
-      authorEmail: resourceAuthor?.email
+      resourceTopic: resource?.resourceTopic
     }
   })
 
@@ -111,8 +116,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         source,
         resourceType,
         resourceTopic,
-        authorName,
-        authorEmail,
         imageFile,
         resourceFile
       } = data
@@ -130,8 +133,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         source,
         resourceType: resourceType?.value,
         resourceTopic: resourceTopic?.value,
-        authorName,
-        authorEmail
+        authors: authors.map(({ name, email }) => ({ name, email }))
       }
 
       if (imageFile) {
@@ -166,6 +168,41 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const toggleUsingFile = (e) => {
     e.preventDefault()
     setUsingFile(!usingFile)
+  }
+
+  const toggleAddingAuthor = (e) => {
+    e.preventDefault()
+    setSearchingAuthor(!searchingAuthor)
+  }
+
+  const fetchedAuthorsCallback = (data) => (
+    data.authors?.map((author) => ({
+      id: author.id,
+      name: author.name,
+      slug: author.slug,
+      label: author.name,
+      email: author.email
+    }))
+  )
+
+  const removeAuthor = (author) => {
+    setAuthors((authors) => authors.filter(({ name }) => author.name !== name))
+  }
+
+  const addAuthor = (author) => {
+    setAuthors((authors) => ([
+      ...[
+        ...authors.filter(({ id }) => id !== author.id),
+        { id: author.id, name: author.name, email: author.email, slug: author.slug  }
+      ]
+    ]))
+  }
+
+  const appendAuthor = () => {
+    setAuthors((authors) => ([
+      ...authors,
+      { name: getValues('authorName'), email: getValues('authorEmail') }
+    ]))
   }
 
   return loadingUserSession
@@ -255,12 +292,10 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                       onClick={toggleUsingFile}
                       class={classNames(
                         'inline-block py-3 border-b-2',
-                        usingFile
-                          ? 'border-dial-sunshine'
-                          : 'border-transparent'
+                        usingFile ? 'border-dial-sunshine' : 'border-transparent'
                       )}
                     >
-                      Resource File
+                      {format('ui.resource.toggle.resourceFile')}
                     </a>
                   </li>
                   <li class="me-2">
@@ -269,12 +304,10 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                       onClick={toggleUsingFile}
                       class={classNames(
                         'inline-block py-3 border-b-2',
-                        usingFile
-                          ? 'border-transparent'
-                          : 'border-dial-sunshine'
+                        usingFile ? 'border-transparent' : 'border-dial-sunshine'
                       )}
                     >
-                      Resource URL
+                      {format('ui.resource.toggle.resourceUrl')}
                     </a>
                   </li>
                 </ul>
@@ -371,27 +404,105 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
               <hr className='h-px border-dashed' />
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='authorName'>
-                  {format('ui.resource.authorName')}
-                </label>
-                <Input
-                  {...register('authorName', { required: format('validation.required') })}
-                  id='authorName'
-                  placeholder={format('ui.resource.authorName')}
-                  isInvalid={errors.authorName}
-                />
-                {errors.authorName && <ValidationError value={errors.authorName?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label htmlFor='authorEmail'>
-                  {format('ui.resource.authorEmail')}
-                </label>
-                <Input
-                  {...register('authorEmail')}
-                  id='authorEmail'
-                  placeholder={format('ui.resource.authorEmail')}
-                />
+              <div className='flex flex-col'>
+                <ul class="flex flex-wrap gap-x-4 -mb-px">
+                  <li class="me-2">
+                    <a
+                      href='#'
+                      onClick={toggleAddingAuthor}
+                      class={classNames(
+                        'inline-block py-3 border-b-2',
+                        searchingAuthor ? 'border-dial-sunshine' : 'border-transparent'
+                      )}
+                    >
+                      {format('ui.resource.toggle.searchAuthor')}
+                    </a>
+                  </li>
+                  <li class="me-2">
+                    <a
+                      href='#'
+                      onClick={toggleAddingAuthor}
+                      class={classNames(
+                        'inline-block py-3 border-b-2',
+                        searchingAuthor ? 'border-transparent' : 'border-dial-sunshine'
+                      )}
+                    >
+                      {format('ui.resource.toggle.addAuthor')}
+                    </a>
+                  </li>
+                </ul>
+                {searchingAuthor &&
+                  <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+                    <label className='flex flex-col gap-y-2'>
+                      {`${format('app.searchAndAssign')} ${format('ui.resource.author.label')}`}
+                      <Select
+                        async
+                        isSearch
+                        isBorderless
+                        defaultOptions
+                        cacheOptions
+                        placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+                        loadOptions={(input) =>
+                          fetchSelectOptions(client, input, AUTHOR_SEARCH_QUERY, fetchedAuthorsCallback)
+                        }
+                        noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.author.label') })}
+                        onChange={addAuthor}
+                        value={null}
+                      />
+                    </label>
+                    <div className='flex flex-wrap gap-3'>
+                      {authors.map((author, authorIdx) => (
+                        <Pill
+                          key={`author-${authorIdx}`}
+                          label={author.name}
+                          onRemove={() => removeAuthor(author)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                }
+                {!searchingAuthor &&
+                  <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+                    <div className='flex flex-col gap-y-2'>
+                      <label htmlFor='authorName'>
+                        {format('ui.resource.author.name')}
+                      </label>
+                      <Input
+                        {...register('authorName')}
+                        id='authorName'
+                        placeholder={format('ui.resource.author.name')}
+                      />
+                    </div>
+                    <div className='flex flex-col gap-y-2'>
+                      <label htmlFor='authorEmail'>
+                        {format('ui.resource.author.email')}
+                      </label>
+                      <Input
+                        {...register('authorEmail')}
+                        id='authorEmail'
+                        placeholder={format('ui.resource.author.email')}
+                      />
+                    </div>
+                    <button
+                      type='button'
+                      className='submit-button ml-auto'
+                      disabled={mutating || reverting}
+                      onClick={appendAuthor}
+                    >
+                      {format('ui.resource.author.add')}
+                      {reverting && <FaSpinner className='spinner ml-3' />}
+                    </button>
+                    <div className='flex flex-wrap gap-3'>
+                      {authors.map((author, authorIdx) => (
+                        <Pill
+                          key={`author-${authorIdx}`}
+                          label={author.name}
+                          onRemove={() => removeAuthor(author)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                }
               </div>
               {user?.isAdminUser &&
                 <>

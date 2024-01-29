@@ -1,15 +1,15 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
+import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
-import EditableSection from '../../shared/EditableSection'
-import { fetchSelectOptions } from '../../utils/search'
-import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
 import { UPDATE_RESOURCE_COUNTRIES } from '../../shared/mutation/resource'
+import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
+import { fetchSelectOptions } from '../../utils/search'
 
 const ResourceDetailCountries = ({ resource, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -58,10 +58,8 @@ const ResourceDetailCountries = ({ resource, canEdit, headerRef }) => {
 
   const addCountry = (country) => {
     setCountries([
-      ...[
-        ...countries.filter(({ id }) => id !== country.id),
-        { id: country.id, name: country.name, slug: country.slug  }
-      ]
+      ...countries.filter(({ id }) => id !== country.id),
+      { id: country.id, name: country.name, slug: country.slug  }
     ])
     setIsDirty(true)
   }

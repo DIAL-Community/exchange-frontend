@@ -167,7 +167,7 @@ export const RESOURCE_DETAIL_QUERY = gql`
 
       resourceFile
       resourceLink
-      linkDescription: linkDescription
+      linkDescription
 
       source
       resourceType
@@ -179,7 +179,11 @@ export const RESOURCE_DETAIL_QUERY = gql`
       featured
 
       authors {
+        id
+        slug
         name
+        email
+        picture
       }
 
       countries {

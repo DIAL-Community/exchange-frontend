@@ -30,8 +30,7 @@ export const CREATE_RESOURCE = gql`
     $showInWizard: Boolean
     $publishedDate: ISO8601Date!
     $organizationSlug: String
-    $authorName: String!
-    $authorEmail: String
+    $authors: [JSON!]
   ) {
     createResource(
       name: $name
@@ -49,8 +48,7 @@ export const CREATE_RESOURCE = gql`
       showInWizard: $showInWizard
       publishedDate: $publishedDate
       organizationSlug: $organizationSlug
-      authorName: $authorName
-      authorEmail: $authorEmail
+      authors: $authors
     ) {
       resource {
         id
@@ -69,7 +67,10 @@ export const CREATE_RESOURCE = gql`
         resourceTopic
 
         authors {
+          id
+          slug
           name
+          email
         }
       }
       errors

@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { WIZARD_EXTENDED_DATA_QUERY } from '../../shared/query/wizard'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import ResourceCard from '../../resource/ResourceCard'
+import ResourceCard from '../../hub/fragments/ResourceCard'
 import DigitalPrinciple from '../../principles/DigitalPrinciple'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { WIZARD_EXTENDED_DATA_QUERY } from '../../shared/query/wizard'
 import { DisplayType } from '../../utils/constants'
 
 const WizardExtendedData = () => {
