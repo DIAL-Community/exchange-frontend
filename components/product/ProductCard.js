@@ -1,12 +1,12 @@
 import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import parse from 'html-react-parser'
+import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
-import { DisplayType } from '../utils/constants'
-import { isValidFn } from '../utils/utilities'
+import { useIntl } from 'react-intl'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
 import Checkbox from '../shared/form/Checkbox'
+import { DisplayType } from '../utils/constants'
+import { isValidFn } from '../utils/utilities'
 
 const ProductCard = ({ displayType, index, product, dismissHandler }) => {
   const { formatMessage } = useIntl()
@@ -62,6 +62,10 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
             <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.buildingBlock.header')} ({product.buildingBlocks?.length ?? 0})
+            </div>
+            <div className='border-r border-dial-slate-400' />
+            <div className='text-sm'>
+              {format('ui.country.header')} ({product.countries?.length ?? 0})
             </div>
           </div>
           <div className='flex gap-2 text-xs text-white'>

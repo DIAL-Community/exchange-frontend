@@ -428,6 +428,17 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                             0
                             )
                           </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            0
+                            )
+                          </div>
                         </div>
                         <div
                           class="flex gap-2 text-xs text-white"
@@ -504,6 +515,17 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                             class="text-sm"
                           >
                             Building Blocks
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
                              (
                             0
                             )
@@ -594,6 +616,17 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                             0
                             )
                           </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
+                             (
+                            0
+                            )
+                          </div>
                         </div>
                         <div
                           class="flex gap-2 text-xs text-white"
@@ -670,6 +703,17 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                             class="text-sm"
                           >
                             Building Blocks
+                             (
+                            0
+                            )
+                          </div>
+                          <div
+                            class="border-r border-dial-slate-400"
+                          />
+                          <div
+                            class="text-sm"
+                          >
+                            Countries
                              (
                             0
                             )
