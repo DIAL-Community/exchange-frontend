@@ -1,9 +1,9 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useMemo, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { BsDash, BsPlus } from 'react-icons/bs'
-import Select from '../form/Select'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { generateResourceTypeOptions } from '../form/options'
+import Select from '../form/Select'
 
 export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, placeholder }) => {
   const [showFilter, setShowFilter] = useState(false)
