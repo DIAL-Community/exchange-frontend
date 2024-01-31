@@ -1,17 +1,18 @@
-import { FormattedDate, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../utils/constants'
+import { FormattedDate, useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
+import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
-import CommentsSection from '../shared/comment/CommentsSection'
+import { ObjectType } from '../utils/constants'
 import { prependUrlWithProtocol } from '../utils/utilities'
 import DeleteResource from './DeleteResource'
+import ResourceDetailProducts from './fragments/ResourceDetailProducts'
 import { topicColors } from './utilities/common'
 
-const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
+const ResourceDetailRight = forwardRef(({ resource }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -19,12 +20,14 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
   const canEdit = isAdminUser || isEditorUser
 
   const titleRef = useRef()
+  const productRef = useRef()
   const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.scrollToTop', ref: titleRef },
+      { value: 'ui.product.label', ref: productRef },
       { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
@@ -87,7 +90,7 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-stratos pb-3'>
+          <div className='font-semibold text-dial-stratos pb-3'>
             {format('ui.resource.resourceLink')}
           </div>
           <div className='flex text-dial-stratos'>
@@ -109,6 +112,14 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ResourceDetailProducts
+            resource={resource}
+            canEdit={canEdit}
+            headerRef={productRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={resource} objectType={ObjectType.RESOURCE} />
           <hr className='border-b border-dial-slate-200'/>
@@ -125,6 +136,6 @@ const ResourceDetailLeft = forwardRef(({ resource }, ref) => {
   )
 })
 
-ResourceDetailLeft.displayName = 'ResourceDetailLeft'
+ResourceDetailRight.displayName = 'ResourceDetailRight'
 
-export default ResourceDetailLeft
+export default ResourceDetailRight

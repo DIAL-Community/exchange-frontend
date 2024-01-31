@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import ResourceDetailRight from './ResourceDetailRight'
+import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
 import ResourceDetailLeft from './ResourceDetailLeft'
+import ResourceDetailRight from './ResourceDetailRight'
 
 const ResourceDetail = ({ slug }) => {
   const scrollRef = useRef(null)
@@ -25,6 +25,7 @@ const ResourceDetail = ({ slug }) => {
 
   const slugNameMapping = (() => {
     const map = {}
+    map['hub'] = 'hub'
     map[resource.slug] = resource.name
 
     return map

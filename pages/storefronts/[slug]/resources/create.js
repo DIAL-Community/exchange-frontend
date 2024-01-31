@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../../../../components/shared/query/organization'
+import ResourceForm from '../../../../components/hub/fragments/ResourceForm'
 import { Error, Loading, NotFound } from '../../../../components/shared/FetchStatus'
-import Header from '../../../../components/shared/Header'
-import ClientOnly from '../../../../lib/ClientOnly'
 import Footer from '../../../../components/shared/Footer'
-import ResourceForm from '../../../../components/resource/fragments/ResourceForm'
+import Header from '../../../../components/shared/Header'
+import { ORGANIZATION_DETAIL_QUERY } from '../../../../components/shared/query/organization'
+import ClientOnly from '../../../../lib/ClientOnly'
 
 const CreateResource = () => {
   const { locale, query } = useRouter()
