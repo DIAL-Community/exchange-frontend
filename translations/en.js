@@ -2405,6 +2405,7 @@ export const en = {
   'ui.resource.toggle.addAuthor': 'Add Author',
   'ui.resource.toggle.searchAuthor': 'Search Author',
   
+  'ui.resource.author.add': 'Add Author',
   'ui.resource.author.label': 'Author',
   'ui.resource.author.header': 'Authors',
   'ui.resource.author.name': 'Author\'s Name',
@@ -2420,4 +2421,13 @@ export const en = {
   'ui.sync.source.label': 'Source',
   'ui.sync.destination.label': 'Destination',
   'ui.sync.synchronizedModels': 'Synchronized Models',
+
+  'ui.syncTenant.header': 'Sync Tenants',
+  'ui.syncTenant.searchFor': 'Sync search for',
+  'ui.syncTenant.sourceTenants': 'Source Tenants',
+  'ui.syncTenant.destinationTenants': 'Destination Tenants',
+
+  'ui.tenants.default': 'Default',
+  'ui.tenants.fao': 'FAO',
+
 }

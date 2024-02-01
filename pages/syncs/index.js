@@ -1,13 +1,13 @@
+import { useCallback, useState } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useCallback, useState } from 'react'
 import { Tooltip } from 'react-tooltip'
-import ClientOnly from '../../lib/ClientOnly'
-import Header from '../../components/shared/Header'
 import Footer from '../../components/shared/Footer'
+import Header from '../../components/shared/Header'
+import SyncMain from '../../components/sync/SyncMain'
 import SyncRibbon from '../../components/sync/SyncRibbon'
 import SyncTabNav from '../../components/sync/SyncTabNav'
-import SyncMain from '../../components/sync/SyncMain'
+import ClientOnly from '../../lib/ClientOnly'
 
 const SyncListPage = () => {
   const { formatMessage } = useIntl()
@@ -18,11 +18,11 @@ const SyncListPage = () => {
   return (
     <>
       <NextSeo
-        title={format('ui.storefront.header')}
+        title={format('ui.sync.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.storefront.header')?.toLocaleLowerCase() }
+            { entities: format('ui.sync.header')?.toLocaleLowerCase() }
           )
         }
       />

@@ -6,9 +6,6 @@ export const PROJECT_SEARCH_QUERY = gql`
       id
       name
       slug
-      origin {
-        slug
-      }
     }
   }
 `
