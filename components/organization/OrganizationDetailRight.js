@@ -1,18 +1,18 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../utils/constants'
+import { useIntl } from 'react-intl'
+import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
+import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
-import CommentsSection from '../shared/comment/CommentsSection'
+import { ObjectType } from '../utils/constants'
 import DeleteOrganization from './DeleteOrganization'
-import OrganizationDetailProducts from './fragments/OrganizationDetailProducts'
-import OrganizationDetailCountries from './fragments/OrganizationDetailCountries'
-import OrganizationDetailProjects from './fragments/OrganizationDetailProjects'
 import OrganizationDetailContacts from './fragments/OrganizationDetailContacts'
+import OrganizationDetailCountries from './fragments/OrganizationDetailCountries'
 import OrganizationDetailOffices from './fragments/OrganizationDetailOffices'
+import OrganizationDetailProducts from './fragments/OrganizationDetailProducts'
+import OrganizationDetailProjects from './fragments/OrganizationDetailProjects'
 
 const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
   const { formatMessage } = useIntl()
@@ -106,7 +106,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={organization} objectType={ObjectType.ORGANIZATION} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

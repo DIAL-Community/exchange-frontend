@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { DisplayType, ObjectType } from '../utils/constants'
-import CommentsSection from '../shared/comment/CommentsSection'
-import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
-import EditButton from '../shared/form/EditButton'
-import CreateButton from '../shared/form/CreateButton'
 import CategoryIndicatorCard from '../category-indicator/CategoryIndicatorCard'
+import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
+import CreateButton from '../shared/form/CreateButton'
+import EditButton from '../shared/form/EditButton'
+import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteRubricCategory from './DeleteRubricCategory'
 
 const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
@@ -82,7 +82,7 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={rubricCategory} objectType={ObjectType.RUBRIC_CATEGORY} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

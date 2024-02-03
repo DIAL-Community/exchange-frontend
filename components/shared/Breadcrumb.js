@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import Link from 'next/link'
 
 const convertBreadcrumb = string => {
   return string
@@ -30,6 +30,7 @@ const basePathMappings = {
   'projects': 'ui.project.header',
   'repositories': 'productRepository.header',
   'resources': 'ui.resource.header',
+  'resource-topics': 'ui.resourceTopic.header',
   'rubric-categories': 'ui.rubricCategory.header',
   'category-indicators': 'categoryIndicator.header',
   'sdgs': 'ui.sdg.header',

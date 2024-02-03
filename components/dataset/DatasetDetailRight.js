@@ -1,18 +1,18 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../utils/constants'
-import EditButton from '../shared/form/EditButton'
-import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
-import { prependUrlWithProtocol } from '../utils/utilities'
-import Share from '../shared/common/Share'
 import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
+import EditButton from '../shared/form/EditButton'
+import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { ObjectType } from '../utils/constants'
+import { prependUrlWithProtocol } from '../utils/utilities'
 import DeleteDataset from './DeleteDataset'
-import DatasetDetailTags from './fragments/DatasetDetailTags'
-import DatasetDetailSdgs from './fragments/DatasetDetailSdgs'
 import DatasetDetailCountries from './fragments/DatasetDetailCountries'
 import DatasetDetailOrganizations from './fragments/DatasetDetailOrganizations'
+import DatasetDetailSdgs from './fragments/DatasetDetailSdgs'
+import DatasetDetailTags from './fragments/DatasetDetailTags'
 
 const DatasetSource = ({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -144,7 +144,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={dataset} objectType={ObjectType.DATASET} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

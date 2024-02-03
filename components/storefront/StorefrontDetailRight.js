@@ -1,22 +1,22 @@
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../utils/constants'
+import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
+import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
-import CommentsSection from '../shared/comment/CommentsSection'
+import { ObjectType } from '../utils/constants'
 import DeleteStorefront from './DeleteStorefront'
-import StorefrontDetailCountries from './fragments/StorefrontDetailCountries'
-import StorefrontDetailProjects from './fragments/StorefrontDetailProjects'
+import StorefrontDetailBuildingBlockCertifications from './fragments/StorefrontDetailBuildingBlocks'
 import StorefrontDetailContacts from './fragments/StorefrontDetailContacts'
+import StorefrontDetailCountries from './fragments/StorefrontDetailCountries'
 import StorefrontDetailOffices from './fragments/StorefrontDetailOffices'
+import StorefrontDetailProductCertifications from './fragments/StorefrontDetailProducts'
+import StorefrontDetailProjects from './fragments/StorefrontDetailProjects'
 import StorefrontDetailResources from './fragments/StorefrontDetailResources'
 import StorefrontDetailSpecialties from './fragments/StorefrontDetailSpecialties'
-import StorefrontDetailProductCertifications from './fragments/StorefrontDetailProducts'
-import StorefrontDetailBuildingBlockCertifications from './fragments/StorefrontDetailBuildingBlocks'
 
 const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
   const { formatMessage } = useIntl()
@@ -170,7 +170,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={organization} objectType={ObjectType.ORGANIZATION} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

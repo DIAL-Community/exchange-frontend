@@ -1,13 +1,13 @@
-import { FormattedDate, FormattedTime, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { DisplayType, ObjectType } from '../utils/constants'
-import EditButton from '../shared/form/EditButton'
+import { FormattedDate, FormattedTime, useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
-import ProductCard from '../product/ProductCard'
 import OrganizationCard from '../organization/OrganizationCard'
+import ProductCard from '../product/ProductCard'
 import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
+import EditButton from '../shared/form/EditButton'
+import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteUser from './DeleteUser'
 
 const UserDetailRight = forwardRef(({ user }, ref) => {
@@ -127,7 +127,7 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
           }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={user} objectType={ObjectType.USER} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

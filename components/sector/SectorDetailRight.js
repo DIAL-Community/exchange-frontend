@@ -1,16 +1,16 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { DisplayType, ObjectType } from '../utils/constants'
-import EditButton from '../shared/form/EditButton'
-import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
-import CommentsSection from '../shared/comment/CommentsSection'
 import DatasetCard from '../dataset/DatasetCard'
 import OrganizationCard from '../organization/OrganizationCard'
 import ProductCard from '../product/ProductCard'
 import ProjectCard from '../project/ProjectCard'
+import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
+import EditButton from '../shared/form/EditButton'
+import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteSector from './DeleteSector'
 
 const SectorDetailRight = forwardRef(({ sector }, ref) => {
@@ -167,7 +167,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={sector} objectType={ObjectType.SECTOR} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />
