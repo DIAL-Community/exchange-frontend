@@ -2409,4 +2409,7 @@ export const en = {
   'ui.resource.author.header': 'Authors',
   'ui.resource.author.name': 'Author\'s Name',
   'ui.resource.author.email': 'Author\'s Email',
+  
+  'ui.resourceTopic.label': 'Resource Topic',
+  'ui.resourceTopic.header': 'Resource Topics',
 }

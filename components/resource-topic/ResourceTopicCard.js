@@ -22,19 +22,7 @@ const ResourceTopicCard = ({ displayType, index, resourceTopic, dismissHandler }
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.dataset.header')} ({resourceTopic.datasets?.length ?? 0})
-            </div>
-            <div className='border-r border-dial-slate-400' />
-            <div className='text-sm'>
-              {format('ui.product.header')} ({resourceTopic.products?.length ?? 0})
-            </div>
-            <div className='border-r border-dial-slate-400' />
-            <div className='text-sm'>
-              {format('ui.project.header')} ({resourceTopic.projects?.length ?? 0})
-            </div>
-            <div className='border-r border-dial-slate-400' />
-            <div className='text-sm'>
-              {format('ui.useCase.header')} ({resourceTopic.useCases?.length ?? 0})
+              {format('ui.resource.header')} ({resourceTopic.resource?.length ?? 0})
             </div>
           </div>
         </div>
