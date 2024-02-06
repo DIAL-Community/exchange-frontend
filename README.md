@@ -11,7 +11,7 @@ The catalog supports the [SDG Digital Investment Framework](https://digitalimpac
 
 ## Repositories
 Note that this repository contains the code for the front-end for the Catalog. It requires connection to the 
-Catalog back-end/API, which can be referenced at: https://gitlab.com/dial/online-catalog/product-registry/-/tree/development
+Catalog back-end/API, which can be referenced at: https://gitlab.com/hub/online-catalog/product-registry/-/tree/development
 
 ## Documentation
 Complete documentation is available (including detailed installation and configuration instructions) at [DIAL Online Catalog Documentation](https://docs.dial.community/projects/product-registry/en/latest/)

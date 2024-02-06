@@ -239,6 +239,31 @@ export const UPDATE_PRODUCT_SDGS = gql`
   }
 `
 
+export const UPDATE_PRODUCT_RESOURCES = gql`
+  mutation UpdateProductResources(
+    $slug: String!
+    $resourceSlugs: [String!]!
+  ) {
+    updateProductResources(
+      slug: $slug
+      resourceSlugs: $resourceSlugs
+    ) {
+      product {
+        id
+        name
+        slug
+        resources {
+          id
+          name
+          slug
+          imageFile
+        }
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
   mutation UpdateProductIndicators(
     $slug: String!

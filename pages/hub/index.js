@@ -1,11 +1,11 @@
+import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
-import ResourceList from '../../components/dial/ResourceList'
-import ResourceHeader from '../../components/dial/ResourceHeader'
-import ResourceFooter from '../../components/dial/ResourceFooter'
-import ResourceRibbon from '../../components/dial/ResourceRibbon'
+import ResourceFooter from '../../components/hub/ResourceFooter'
+import ResourceHeader from '../../components/hub/ResourceHeader'
+import ResourceList from '../../components/hub/ResourceList'
+import ResourceRibbon from '../../components/hub/ResourceRibbon'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
@@ -28,7 +28,7 @@ const ResourceListPage = () => {
         <QueryNotification />
         <ResourceHeader />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col gap-y-12'>
+        <div className='flex flex-col'>
           <ResourceRibbon />
           <ResourceList />
         </div>

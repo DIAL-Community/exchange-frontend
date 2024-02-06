@@ -72,34 +72,8 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
     $countries: [String!]
     $resourceTypes: [String!]
     $resourceTopics: [String!]
+    $compartmentalized: Boolean
   ) {
-    spotlightResources: paginatedResources(
-      spotlightLength: 1
-      spotlightOnly: true
-      compartmentalized: true
-      offsetAttributes: { limit: $limit, offset: $offset }
-    ) {
-      id
-      name
-      slug
-      imageFile
-      
-      description
-      parsedDescription
-
-      resourceLink
-      linkDescription
-      source
-      resourceType
-      resourceTopic
-
-      publishedDate
-
-      authors {
-        name
-      }
-      tags
-    }
     featuredResources: paginatedResources(
       featuredLength: 3
       featuredOnly: true
@@ -122,6 +96,10 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
 
       publishedDate
 
+      products {
+        id
+      }
+
       authors {
         name
       }
@@ -131,7 +109,7 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       search: $search
       tags: $tags
       countries: $countries
-      compartmentalized: true
+      compartmentalized: $compartmentalized
       resourceTypes: $resourceTypes
       resourceTopics: $resourceTopics
       offsetAttributes: { limit: $limit, offset: $offset }
@@ -151,6 +129,10 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       resourceTopic
 
       publishedDate
+
+      products {
+        id
+      }
 
       authors {
         name
@@ -185,7 +167,7 @@ export const RESOURCE_DETAIL_QUERY = gql`
 
       resourceFile
       resourceLink
-      linkDescription: linkDescription
+      linkDescription
 
       source
       resourceType
@@ -195,10 +177,13 @@ export const RESOURCE_DETAIL_QUERY = gql`
       showInWizard
       
       featured
-      spotlight
 
       authors {
+        id
+        slug
         name
+        email
+        picture
       }
 
       countries {
@@ -209,6 +194,13 @@ export const RESOURCE_DETAIL_QUERY = gql`
       }
       
       organizations {
+        id
+        name
+        slug
+        imageFile
+      }
+
+      products {
         id
         name
         slug

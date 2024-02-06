@@ -14,6 +14,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
     $buildingBlocks: [String!]
     $sectors: [String!]
     $tags: [String!]
+    $countries: [String!]
     $licenseTypes: [String!]
     $workflows: [String!]
     $sdgs: [String!]
@@ -27,6 +28,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
       buildingBlocks: $buildingBlocks
       sectors: $sectors
       tags: $tags
+      countries: $countries
       licenseTypes: $licenseTypes
       workflows: $workflows
       sdgs: $sdgs
@@ -46,6 +48,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $buildingBlocks: [String!]
     $sectors: [String!]
     $tags: [String!]
+    $countries: [String!]
     $licenseTypes: [String!]
     $workflows: [String!]
     $sdgs: [String!]
@@ -61,6 +64,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       buildingBlocks: $buildingBlocks
       sectors: $sectors
       tags: $tags
+      countries: $countries
       licenseTypes: $licenseTypes
       workflows: $workflows
       sdgs: $sdgs
@@ -87,6 +91,9 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
         id
       }
       sdgs {
+        id
+      }
+      countries {
         id
       }
       parsedDescription
@@ -131,6 +138,12 @@ export const PRODUCT_DETAIL_QUERY = gql`
         description
         locale
       }
+      countries {
+        id
+        name
+        slug
+        code
+      }
       origins {
         id
         name
@@ -165,6 +178,12 @@ export const PRODUCT_DETAIL_QUERY = gql`
         id
         name
         slug
+        imageFile
+      }
+      resources {
+        id
+        slug
+        name
         imageFile
       }
       currentProjects(first:10) {

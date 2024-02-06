@@ -167,7 +167,7 @@ const SectorDetailRight = forwardRef(({ sector }, ref) => {
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={sector} objectType={ObjectType.SECTOR} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

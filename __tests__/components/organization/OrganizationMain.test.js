@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import { render } from '../../test-utils'
-import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import OrganizationMain from '../../../components/organization/OrganizationMain'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
@@ -11,6 +11,7 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { OrganizationFilterProvider } from '../../../components/context/OrganizationFilterContext'
 import { paginatedOrganizations, organizationPaginationAttribute } from './data/OrganizationMain.data'
 
+mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the organization main page.', () => {
   test('Should render list of organizations.', async () => {

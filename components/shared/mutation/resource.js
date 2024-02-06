@@ -20,7 +20,6 @@ export const CREATE_RESOURCE = gql`
     $imageFile: Upload
     $description: String
     $featured: Boolean
-    $spotlight: Boolean
     $resourceFile: Upload
     $resourceLink: String
     $linkDescription: String
@@ -31,8 +30,7 @@ export const CREATE_RESOURCE = gql`
     $showInWizard: Boolean
     $publishedDate: ISO8601Date!
     $organizationSlug: String
-    $authorName: String!
-    $authorEmail: String
+    $authors: [JSON!]
   ) {
     createResource(
       name: $name
@@ -40,7 +38,6 @@ export const CREATE_RESOURCE = gql`
       imageFile: $imageFile
       description: $description
       featured: $featured
-      spotlight: $spotlight
       resourceFile: $resourceFile
       resourceLink: $resourceLink
       linkDescription: $linkDescription
@@ -51,8 +48,7 @@ export const CREATE_RESOURCE = gql`
       showInWizard: $showInWizard
       publishedDate: $publishedDate
       organizationSlug: $organizationSlug
-      authorName: $authorName
-      authorEmail: $authorEmail
+      authors: $authors
     ) {
       resource {
         id
@@ -62,7 +58,6 @@ export const CREATE_RESOURCE = gql`
         publishedDate
 
         featured
-        spotlight
 
         resourceFile
         resourceLink
@@ -72,7 +67,10 @@ export const CREATE_RESOURCE = gql`
         resourceTopic
 
         authors {
+          id
+          slug
           name
+          email
         }
       }
       errors
@@ -118,6 +116,31 @@ export const UPDATE_RESOURCE_COUNTRIES = gql`
           name
           slug
           code
+        }
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_RESOURCE_PRODUCTS = gql`
+  mutation UpdateResourceProducts(
+    $slug: String!
+    $productSlugs: [String!]!
+  ) {
+    updateResourceProducts(
+      slug: $slug
+      productSlugs: $productSlugs
+    ) {
+      resource {
+        id
+        slug
+        name
+        products {
+          id
+          name
+          slug
+          imageFile
         }
       }
       errors

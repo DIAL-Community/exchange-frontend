@@ -18,6 +18,7 @@ export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
     $tags: [String!]
     $origins: [String!]
     $datasetTypes: [String!]
+    $countries: [String!]
   ) {
     paginationAttributeDataset(
       search: $search
@@ -26,6 +27,7 @@ export const DATASET_PAGINATION_ATTRIBUTES_QUERY = gql`
       tags: $tags
       origins: $origins
       datasetTypes: $datasetTypes
+      countries: $countries
     ) {
       totalCount
     }
@@ -40,6 +42,7 @@ export const PAGINATED_DATASETS_QUERY = gql`
     $tags: [String!]
     $origins: [String!]
     $datasetTypes: [String!]
+    $countries: [String!]
     $limit: Int!
     $offset: Int!
   ) {
@@ -50,6 +53,7 @@ export const PAGINATED_DATASETS_QUERY = gql`
       tags: $tags
       origins: $origins
       datasetTypes: $datasetTypes
+      countries: $countries
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
@@ -94,6 +98,12 @@ export const DATASET_DETAIL_QUERY = gql`
         description
         locale
       }
+      countries {
+        id
+        name
+        slug
+        code
+      }
       origins {
         id
         name
@@ -110,6 +120,7 @@ export const DATASET_DETAIL_QUERY = gql`
         id
         name
         slug
+        number
         imageFile
       }
       sectors {

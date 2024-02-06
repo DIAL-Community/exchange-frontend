@@ -2,8 +2,7 @@ export const DisplayType = {
   LARGE_CARD: 'large-card',
   SMALL_CARD: 'small-card',
   PINNED_CARD: 'pinned-card',
-  FEATURED_CARD: 'featured-card',
-  SPOTLIGHT_CARD: 'spotlight-card'
+  FEATURED_CARD: 'featured-card'
 }
 
 export const ORIGIN_SLUG_ACRONYMS = {
@@ -82,6 +81,7 @@ export const ObjectType = {
   CANDIDATE_ORGANIZATION: 'CANDIDATE_ORGANIZATION',
   CANDIDATE_PRODUCT: 'CANDIDATE_PRODUCT',
   CANDIDATE_ROLE: 'CANDIDATE_ROLE',
+  RESOURCE: 'RESOURCE',
   TAG: 'TAG',
   SECTOR: 'SECTOR',
   COUNTRY: 'COUNTRY',

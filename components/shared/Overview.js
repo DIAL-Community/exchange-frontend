@@ -27,7 +27,7 @@ const Overview = ({ enabled, steps, startIndex, endIndex, previousPath, nextPath
   }
 
   const onExitHandler = () => {
-    Cookies.set(completedKey, true)
+    Cookies.set(completedKey, true, { expires: 365 })
   }
 
   return (
