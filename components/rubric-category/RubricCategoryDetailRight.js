@@ -82,7 +82,7 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={rubricCategory} objectType={ObjectType.RUBRIC_CATEGORY} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

@@ -120,6 +120,7 @@ export const DATASET_DETAIL_QUERY = gql`
         id
         name
         slug
+        number
         imageFile
       }
       sectors {

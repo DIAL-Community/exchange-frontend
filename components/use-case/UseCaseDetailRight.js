@@ -166,7 +166,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           <UseCaseDetailTags useCase={useCase} canEdit={canEdit} headerRef={tagRef} />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={useCase} objectType={ObjectType.USE_CASE} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />
