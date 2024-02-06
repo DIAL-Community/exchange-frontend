@@ -285,12 +285,12 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 />
               </div>
               <div className='flex flex-col'>
-                <ul class="flex flex-wrap gap-x-4 -mb-px">
-                  <li class="me-2">
+                <ul className="flex flex-wrap gap-x-4 -mb-px">
+                  <li className="me-2">
                     <a
                       href='#'
                       onClick={toggleUsingFile}
-                      class={classNames(
+                      className={classNames(
                         'inline-block py-3 border-b-2',
                         usingFile ? 'border-dial-sunshine' : 'border-transparent'
                       )}
@@ -298,11 +298,11 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                       {format('ui.resource.toggle.resourceFile')}
                     </a>
                   </li>
-                  <li class="me-2">
+                  <li className="me-2">
                     <a
                       href='#'
                       onClick={toggleUsingFile}
-                      class={classNames(
+                      className={classNames(
                         'inline-block py-3 border-b-2',
                         usingFile ? 'border-transparent' : 'border-dial-sunshine'
                       )}
@@ -405,12 +405,12 @@ const ResourceForm = React.memo(({ resource, organization }) => {
               </div>
               <hr className='h-px border-dashed' />
               <div className='flex flex-col'>
-                <ul class="flex flex-wrap gap-x-4 -mb-px">
-                  <li class="me-2">
+                <ul className="flex flex-wrap gap-x-4 -mb-px">
+                  <li className="me-2">
                     <a
                       href='#'
                       onClick={toggleAddingAuthor}
-                      class={classNames(
+                      className={classNames(
                         'inline-block py-3 border-b-2',
                         searchingAuthor ? 'border-dial-sunshine' : 'border-transparent'
                       )}
@@ -418,11 +418,11 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                       {format('ui.resource.toggle.searchAuthor')}
                     </a>
                   </li>
-                  <li class="me-2">
+                  <li className="me-2">
                     <a
                       href='#'
                       onClick={toggleAddingAuthor}
-                      class={classNames(
+                      className={classNames(
                         'inline-block py-3 border-b-2',
                         searchingAuthor ? 'border-transparent' : 'border-dial-sunshine'
                       )}
