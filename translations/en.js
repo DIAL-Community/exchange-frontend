@@ -2405,10 +2405,31 @@ export const en = {
   'ui.resource.toggle.addAuthor': 'Add Author',
   'ui.resource.toggle.searchAuthor': 'Search Author',
   
+  'ui.resource.author.add': 'Add Author',
   'ui.resource.author.label': 'Author',
   'ui.resource.author.header': 'Authors',
   'ui.resource.author.name': 'Author\'s Name',
   'ui.resource.author.email': 'Author\'s Email',
+  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+
+  'ui.sync.label': 'Sync',
+  'ui.sync.header': 'Syncs',
+  'ui.sync.createNew': 'Create new sync',
+  'ui.sync.name.label': 'Sync Name',
+  'ui.sync.direction': 'Sync Direction',
+  'ui.sync.description': 'Sync Description',
+  'ui.sync.source.label': 'Source',
+  'ui.sync.destination.label': 'Destination',
+  'ui.sync.synchronizedModels': 'Synchronized Models',
+
+  'ui.syncTenant.header': 'Sync Tenants',
+  'ui.syncTenant.searchFor': 'Sync search for',
+  'ui.syncTenant.sourceTenants': 'Source Tenants',
+  'ui.syncTenant.destinationTenants': 'Destination Tenants',
+
+  'ui.tenants.default': 'Default',
+  'ui.tenants.fao': 'FAO',
+
   
   'ui.resourceTopic.label': 'Resource Topic',
   'ui.resourceTopic.header': 'Resource Topics',
