@@ -1,11 +1,8 @@
-import { useIntl } from 'react-intl'
+import { useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { FaXmark } from 'react-icons/fa6'
-import { useCallback, useContext } from 'react'
-import {
-  ProductFilterContext,
-  ProductFilterDispatchContext
-} from '../../context/ProductFilterContext'
+import { useIntl } from 'react-intl'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../context/ProductFilterContext'
 
 const ProductCompareBar = () => {
   const { formatMessage } = useIntl()
@@ -34,7 +31,7 @@ const ProductCompareBar = () => {
   return (
     <>
       {comparedProducts.length > 0 &&
-        <div class='fixed bottom-0 bg-dial-meadow max-w-catalog w-screen'>
+        <div className='fixed bottom-0 bg-dial-meadow max-w-catalog w-screen'>
           <div className='px-4 lg:px-8 xl:px-56 text-dial-stratos text-sm'>
             <div className='flex flex-row items-center'>
               <div className='flex flex-col gap-y-3'>

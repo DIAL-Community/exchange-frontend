@@ -1832,8 +1832,6 @@ export const en = {
   'ui.resource.source': 'Source',
   'ui.resource.resourceType': 'Resource Type',
   'ui.resource.resourceTopic': 'Resource Topic',
-  'ui.resource.authorName': 'Author Name',
-  'ui.resource.authorEmail': 'Author Email',
   'ui.resource.featured': 'Featured resource',
   'ui.resource.publishedDate': 'Published On',
   'ui.resource.anonymousAuthor': 'Anonymous',
@@ -2400,5 +2398,36 @@ export const en = {
     We have created – and curated – a diverse range of resources designed to help those working at the
     forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
   `,
-  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.'
+  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+
+  'ui.resource.toggle.resourceUrl': 'Resource URL',
+  'ui.resource.toggle.resourceFile': 'Resource File',
+  'ui.resource.toggle.addAuthor': 'Add Author',
+  'ui.resource.toggle.searchAuthor': 'Search Author',
+  
+  'ui.resource.author.add': 'Add Author',
+  'ui.resource.author.label': 'Author',
+  'ui.resource.author.header': 'Authors',
+  'ui.resource.author.name': 'Author\'s Name',
+  'ui.resource.author.email': 'Author\'s Email',
+  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+
+  'ui.sync.label': 'Sync',
+  'ui.sync.header': 'Syncs',
+  'ui.sync.createNew': 'Create new sync',
+  'ui.sync.name.label': 'Sync Name',
+  'ui.sync.direction': 'Sync Direction',
+  'ui.sync.description': 'Sync Description',
+  'ui.sync.source.label': 'Source',
+  'ui.sync.destination.label': 'Destination',
+  'ui.sync.synchronizedModels': 'Synchronized Models',
+
+  'ui.syncTenant.header': 'Sync Tenants',
+  'ui.syncTenant.searchFor': 'Sync search for',
+  'ui.syncTenant.sourceTenants': 'Source Tenants',
+  'ui.syncTenant.destinationTenants': 'Destination Tenants',
+
+  'ui.tenants.default': 'Default',
+  'ui.tenants.fao': 'FAO',
+
 }

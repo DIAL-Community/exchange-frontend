@@ -96,6 +96,10 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
 
       publishedDate
 
+      products {
+        id
+      }
+
       authors {
         name
       }
@@ -125,6 +129,10 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       resourceTopic
 
       publishedDate
+
+      products {
+        id
+      }
 
       authors {
         name
@@ -159,7 +167,7 @@ export const RESOURCE_DETAIL_QUERY = gql`
 
       resourceFile
       resourceLink
-      linkDescription: linkDescription
+      linkDescription
 
       source
       resourceType
@@ -171,7 +179,11 @@ export const RESOURCE_DETAIL_QUERY = gql`
       featured
 
       authors {
+        id
+        slug
         name
+        email
+        picture
       }
 
       countries {
@@ -182,6 +194,13 @@ export const RESOURCE_DETAIL_QUERY = gql`
       }
       
       organizations {
+        id
+        name
+        slug
+        imageFile
+      }
+
+      products {
         id
         name
         slug

@@ -78,7 +78,7 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
           {categoryIndicator?.scriptName ?? format('general.na')}
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={categoryIndicator} objectType={ObjectType.CATEGORY_INDICATOR} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />

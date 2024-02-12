@@ -35,6 +35,7 @@ const basePathMappings = {
   'sdgs': 'ui.sdg.header',
   'sectors': 'ui.sector.header',
   'storefronts': 'ui.storefront.header',
+  'syncs': 'ui.sync.header',
   'tags': 'ui.tag.header',
   'task-trackers': 'ui.taskTracker.header',
   'users': 'ui.user.header',

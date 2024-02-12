@@ -93,6 +93,9 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       sdgs {
         id
       }
+      countries {
+        id
+      }
       parsedDescription
       productDescription {
         id

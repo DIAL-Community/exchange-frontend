@@ -144,7 +144,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='block lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={dataset} objectType={ObjectType.DATASET} />
           <hr className='border-b border-dial-slate-200'/>
           <Share />
