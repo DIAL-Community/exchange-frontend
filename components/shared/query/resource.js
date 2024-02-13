@@ -31,11 +31,15 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       linkDescription
       source
       resourceType
-      resourceTopic
+      resourceTopics {
+        id
+        name
+      }
 
       publishedDate
 
       authors {
+        id
         name
       }
     }
@@ -92,7 +96,10 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       linkDescription
       source
       resourceType
-      resourceTopic
+
+      resourceTopics {
+        id
+      }
 
       publishedDate
 
@@ -126,7 +133,10 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       linkDescription
       source
       resourceType
-      resourceTopic
+
+      resourceTopics {
+        id
+      }
 
       publishedDate
 
@@ -171,7 +181,12 @@ export const RESOURCE_DETAIL_QUERY = gql`
 
       source
       resourceType
-      resourceTopic
+        
+      resourceTopics {
+        id
+        slug
+        name
+      }
       
       showInExchange
       showInWizard

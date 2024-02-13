@@ -125,19 +125,19 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='name'>
-                  {format('resourceTopic.name')}
+                  {format('ui.resourceTopic.name')}
                 </label>
                 <Input
                   {...register('name', { required: format('validation.required') })}
                   id='name'
-                  placeholder={format('resourceTopic.name')}
+                  placeholder={format('ui.resourceTopic.name')}
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>
-                  {format('resourceTopic.description')}
+                  {format('ui.resourceTopic.description')}
                 </label>
                 <Controller
                   name='description'
@@ -147,7 +147,7 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
                       editorId='description-editor'
                       onChange={onChange}
                       initialContent={value}
-                      placeholder={format('resourceTopic.description')}
+                      placeholder={format('ui.resourceTopic.description')}
                       isInvalid={errors.description}
                     />
                   )}

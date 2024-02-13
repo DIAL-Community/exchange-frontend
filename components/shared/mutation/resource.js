@@ -25,7 +25,7 @@ export const CREATE_RESOURCE = gql`
     $linkDescription: String
     $source: String
     $resourceType: String
-    $resourceTopic: String
+    $resourceTopics: [String!]
     $showInExchange: Boolean
     $showInWizard: Boolean
     $publishedDate: ISO8601Date!
@@ -43,7 +43,7 @@ export const CREATE_RESOURCE = gql`
       linkDescription: $linkDescription
       source: $source
       resourceType: $resourceType
-      resourceTopic: $resourceTopic
+      resourceTopics: $resourceTopics
       showInExchange: $showInExchange
       showInWizard: $showInWizard
       publishedDate: $publishedDate
@@ -64,7 +64,12 @@ export const CREATE_RESOURCE = gql`
         linkDescription
         source
         resourceType
-        resourceTopic
+        
+        resourceTopics {
+          id
+          slug
+          name
+        }
 
         authors {
           id

@@ -2433,4 +2433,8 @@ export const en = {
   
   'ui.resourceTopic.label': 'Resource Topic',
   'ui.resourceTopic.header': 'Resource Topics',
+  'ui.resourceTopic.createNew': 'Create new resource topic',
+  'ui.resourceTopic.whatIs': 'What is a Resource Topic?',
+  'ui.resourceTopic.name': 'Resource Topic Name',
+  'ui.resourceTopic.description': 'Resource Topic Description',
 }

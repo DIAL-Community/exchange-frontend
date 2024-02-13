@@ -50,11 +50,15 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='flex items-center gap-6'>
-          {resource.resourceTopic &&
-            <div className={`${topicColors(resource.resourceTopic)} rounded-md shadow-lg`}>
-              <div className='text-sm px-5 py-2'>
-                {format(resource.resourceTopic)}
-              </div>
+          {resource.resourceTopics &&
+            <div className='flex flex-wrap gap-x-3 gap-y-2'>
+              {resource.resourceTopics.map((topic, index) => (
+                <div key={index} className={`${topicColors(topic.name)} rounded-md shadow-lg`}>
+                  <div className='text-sm px-5 py-2'>
+                    {topic.name}
+                  </div>
+                </div>
+              ))}
             </div>
           }
           {resource.resourceType &&

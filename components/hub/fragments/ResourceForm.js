@@ -12,7 +12,7 @@ import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
-import { generateResourceTopicOptions, generateResourceTypeOptions } from '../../shared/form/options'
+import { generateResourceTypeOptions } from '../../shared/form/options'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
 import UrlInput from '../../shared/form/UrlInput'
@@ -20,6 +20,7 @@ import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_RESOURCE } from '../../shared/mutation/resource'
 import { AUTHOR_SEARCH_QUERY } from '../../shared/query/author'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
+import { RESOURCE_TOPIC_SEARCH_QUERY } from '../../shared/query/resourceTopic'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
@@ -41,13 +42,14 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const [searchingAuthor, setSearchingAuthor] = useState(true)
   const [authors, setAuthors] = useState(() => (resource?.authors ?? []))
 
+  const [resourceTopics, setResourceTopics] = useState(() => (resource?.resourceTopics ?? []))
+
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
 
   const resourceTypeOptions = useMemo(() => generateResourceTypeOptions(format), [format])
-  const resourceTopicOptions = useMemo(() => generateResourceTopicOptions(format), [format])
 
   const [updateResource, { reset }] = useMutation(CREATE_RESOURCE, {
     refetchQueries: [{
@@ -93,8 +95,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       resourceLink: resource?.resourceLink,
       linkDescription: resource?.linkDescription,
       source: resource?.source,
-      resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType),
-      resourceTopic: resource?.resourceTopic
+      resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType)
     }
   })
 
@@ -115,7 +116,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         linkDescription,
         source,
         resourceType,
-        resourceTopic,
         imageFile,
         resourceFile
       } = data
@@ -132,7 +132,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         linkDescription,
         source,
         resourceType: resourceType?.value,
-        resourceTopic: resourceTopic?.value,
+        resourceTopics: resourceTopics.map(({ name }) => name ),
         authors: authors.map(({ name, email }) => ({ name, email }))
       }
 
@@ -205,6 +205,28 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     ]))
   }
 
+  const fetchedResourceTopicsCallback = (data) => (
+    data.resourceTopics?.map((resourceTopic) => ({
+      id: resourceTopic.id,
+      name: resourceTopic.name,
+      slug: resourceTopic.slug,
+      label: resourceTopic.name
+    }))
+  )
+
+  const removeResourceTopic = (resourceTopic) => {
+    setResourceTopics((resourceTopics) => resourceTopics.filter(({ name }) => resourceTopic.name !== name))
+  }
+
+  const addResourceTopic = (resourceTopic) => {
+    setResourceTopics((resourceTopics) => ([
+      ...[
+        ...resourceTopics.filter(({ id }) => id !== resourceTopic.id),
+        { id: resourceTopic.id, name: resourceTopic.name, slug: resourceTopic.slug  }
+      ]
+    ]))
+  }
+
   return loadingUserSession
     ? <Loading />
     : canEdit
@@ -267,22 +289,32 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 />
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label htmlFor='resourceTopic'>
+                <label className='flex flex-col gap-y-2'>
                   {format('ui.resource.resourceTopic')}
+                  <Select
+                    async
+                    isSearch
+                    isBorderless
+                    defaultOptions
+                    cacheOptions
+                    placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+                    loadOptions={(input) =>
+                      fetchSelectOptions(client, input, RESOURCE_TOPIC_SEARCH_QUERY, fetchedResourceTopicsCallback)
+                    }
+                    noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.resourceTopic') })}
+                    onChange={addResourceTopic}
+                    value={null}
+                  />
                 </label>
-                <Controller
-                  name='resourceTopic'
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      isSearch
-                      isBorderless
-                      options={resourceTopicOptions}
-                      placeholder={format('ui.resource.resourceTopic')}
+                <div className='flex flex-wrap gap-3'>
+                  {resourceTopics.map((resourceTopic, resourceTopicIdx) => (
+                    <Pill
+                      key={`resource-topic-${resourceTopicIdx}`}
+                      label={resourceTopic.name}
+                      onRemove={() => removeResourceTopic(resourceTopic)}
                     />
-                  )}
-                />
+                  ))}
+                </div>
               </div>
               <div className='flex flex-col'>
                 <ul className="flex flex-wrap gap-x-4 -mb-px">
