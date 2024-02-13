@@ -29,7 +29,6 @@ export const PAGINATED_RESOURCES_QUERY = gql`
 
       resourceLink
       linkDescription
-      source
       resourceType
       resourceTopics {
         id
@@ -94,7 +93,6 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
 
       resourceLink
       linkDescription
-      source
       resourceType
 
       resourceTopics {
@@ -131,7 +129,6 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
 
       resourceLink
       linkDescription
-      source
       resourceType
 
       resourceTopics {
@@ -179,9 +176,13 @@ export const RESOURCE_DETAIL_QUERY = gql`
       resourceLink
       linkDescription
 
-      source
+      source {
+        id
+        name
+        slug
+        imageFile
+      }
       resourceType
-        
       resourceTopics {
         id
         slug

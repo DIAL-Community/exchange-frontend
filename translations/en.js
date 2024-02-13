@@ -1843,6 +1843,10 @@ export const en = {
   'ui.resource.type.whitepaper': 'White Paper',
   'ui.resource.type.expertComment': 'Expert Comment',
   'ui.resource.type.unspecified': 'Unspecified Type',
+  'ui.resource.type.blog': 'Blog',
+  'ui.resource.type.book': 'Book',
+  'ui.resource.type.report': 'Report',
+  'ui.resource.type.workingPaper': 'Working Paper',
   
   'ui.resource.topic.label': 'Resource Topic',
   'ui.resource.topic.header': 'Resource Topics',
@@ -2435,6 +2439,14 @@ export const en = {
   'ui.resourceTopic.header': 'Resource Topics',
   'ui.resourceTopic.createNew': 'Create new resource topic',
   'ui.resourceTopic.whatIs': 'What is a Resource Topic?',
+  
   'ui.resourceTopic.name': 'Resource Topic Name',
   'ui.resourceTopic.description': 'Resource Topic Description',
+
+  'ui.resource.toggle.searchSourceStructure': 'Search Source',
+  'ui.resource.toggle.createSourceStructure': 'Create Source',
+  'ui.resource.source.add': 'Add Source',
+  'ui.source.name': 'Source Name',
+  'ui.source.website': 'Source Website',
+  'ui.source.imageFile': 'Source Logo File',
 }
