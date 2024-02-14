@@ -105,7 +105,7 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
         </div>
       )}
     </div>
-    : <div className='text-sm text-dial-stratos'>
+    : <div className='text-base text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
         entity: format('ui.product.label'),
         base: format('ui.organization.label')
@@ -113,7 +113,7 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
     </div>
 
   const sectionHeader =
-    <div className='font-semibold text-dial-stratos' ref={headerRef}>
+    <div className='text-xl font-semibold text-dial-stratos' ref={headerRef}>
       {format('ui.product.header')}
     </div>
 

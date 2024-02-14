@@ -25,6 +25,26 @@ const ResourceDetailHeader = ({ resource }) => {
 
   return (
     <div className='flex flex-col gap-y-3 py-3'>
+      <div className='flex justify-center items-center py-16 bg-white rounded border'>
+        {resource.imageFile.indexOf('placeholder.svg') < 0 &&
+          <div className='w-20 h-20 px-1 py-1 rounded-full bg-dial-orange'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              className='object-contain dial-ochre-filter w-14 h-14 mx-auto my-2 white-filter'
+            />
+          </div>
+        }
+        {resource.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='w-20 h-20'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              className='object-contain dial-ochre-filter'
+            />
+          </div>
+        }
+      </div>
       <div className='text-dial-stratos font-semibold'>
         {format('ui.resource.author.header')}
       </div>

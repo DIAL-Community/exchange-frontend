@@ -97,7 +97,7 @@ const ResourceAuthor = ({ authors, setAuthors, mutating, reverting, register, ge
         </li>
       </ul>
       {searchingAuthor &&
-        <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+        <div className='flex flex-col gap-y-3 border px-6 pb-6 pt-4'>
           <label className='flex flex-col gap-y-2'>
             {`${format('app.searchAndAssign')} ${format('ui.resource.author.label')}`}
             <Select
@@ -241,7 +241,7 @@ const ResourceSourceStructure = ({ sourceStructure, setSourceStructure, mutating
         </li>
       </ul>
       {creatingSource &&
-        <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+        <div className='flex flex-col gap-y-3 border px-6 pb-6 pt-4'>
           <label className='flex flex-col gap-y-2'>
             {format('ui.organization.label')}
             <Select
@@ -267,10 +267,13 @@ const ResourceSourceStructure = ({ sourceStructure, setSourceStructure, mutating
               />
             </div>
           }
+          <div className='text-xs italic text-dial-stratos'>
+            {format('ui.resource.source.logoAsAlt')}
+          </div>
         </div>
       }
       {!creatingSource &&
-        <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+        <div className='flex flex-col gap-y-3 border px-6 pb-6 pt-4'>
           <div className='flex flex-col gap-y-2'>
             <label htmlFor='sourceName'>
               {format('ui.source.name')}
@@ -317,6 +320,9 @@ const ResourceSourceStructure = ({ sourceStructure, setSourceStructure, mutating
               />
             </div>
           }
+          <div className='text-xs italic text-dial-stratos'>
+            {format('ui.resource.source.logoAsAlt')}
+          </div>
         </div>
       }
     </div>
@@ -349,8 +355,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         website: resource.source.website
       }
     }
-
-    return {}
   })
 
   const [resourceTopics, setResourceTopics] = useState(() => (resource?.resourceTopics ?? []))
