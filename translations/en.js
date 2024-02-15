@@ -2446,7 +2446,9 @@ export const en = {
   'ui.resource.toggle.searchSourceStructure': 'Search Source',
   'ui.resource.toggle.createSourceStructure': 'Create Source',
   'ui.resource.source.add': 'Add Source',
-  'ui.resource.source.logoAsAlt': 'Use source logo as alternative for resource logo when resource logo is not provided.',
+  'ui.resource.source.logoAsAlt': `
+    Source's logo will be used as an alternative for resource's logo when logo is not provided.
+  `,
 
   'ui.source.name': 'Source Name',
   'ui.source.website': 'Source Website',
