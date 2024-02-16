@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
@@ -60,6 +61,17 @@ const ResourceDetailHeader = ({ resource }) => {
           </div>
         </div>
       )}
+      <hr className='border-b border-dial-blue-chalk my-3' />
+      <div className='text-dial-stratos font-semibold'>
+        {format('ui.resource.source')}
+      </div>
+      {resource.source &&
+        <Link href={`/organizations/${resource.source.slug}`} className='flex'>
+          <div className='border-b border-dial-iris-blue '>
+            {resource.source.name}
+          </div>
+        </Link>
+      }
       <hr className='border-b border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-y-2'>
         <div className='font-semibold text-dial-stratos'>
