@@ -443,14 +443,14 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         featured,
         resourceLink,
         linkDescription,
-        sourceName: sourceStructure.name,
-        sourceWebsite: sourceStructure.website,
+        sourceName: sourceStructure?.name,
+        sourceWebsite: sourceStructure?.website,
         resourceType: resourceType?.value,
-        resourceTopics: resourceTopics.map(({ name }) => name ),
-        authors: authors.map(({ name, email }) => ({ name, email }))
+        resourceTopics: resourceTopics?.map(({ name }) => name ),
+        authors: authors?.map(({ name, email }) => ({ name, email }))
       }
 
-      if (sourceStructure.logoFile) {
+      if (sourceStructure?.logoFile) {
         variables.sourceLogoFile = sourceStructure.logoFile[0]
       }
 
