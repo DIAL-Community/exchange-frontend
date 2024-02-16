@@ -33,6 +33,7 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       resourceTopics {
         id
         name
+        slug
       }
 
       publishedDate
@@ -40,6 +41,7 @@ export const PAGINATED_RESOURCES_QUERY = gql`
       authors {
         id
         name
+        slug
       }
     }
   }
@@ -97,6 +99,8 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
 
       resourceTopics {
         id
+        name
+        slug
       }
 
       publishedDate
@@ -106,7 +110,9 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       }
 
       authors {
+        id
         name
+        slug
       }
       tags
     }
@@ -133,6 +139,8 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
 
       resourceTopics {
         id
+        name
+        slug
       }
 
       publishedDate
@@ -142,7 +150,9 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       }
 
       authors {
+        id
         name
+        slug
       }
       tags
     }

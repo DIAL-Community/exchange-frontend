@@ -113,7 +113,7 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
     </div>
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-stratos' ref={headerRef}>
+    <div className='font-semibold text-dial-stratos' ref={headerRef}>
       {format('ui.product.header')}
     </div>
 

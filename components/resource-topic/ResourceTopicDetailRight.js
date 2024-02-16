@@ -65,7 +65,7 @@ const ResourceTopicDetailRight = forwardRef(({ resourceTopic }, ref) => {
             </div>
           }
           {resourceTopic?.resources.length > 0 &&
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
+            <div className='grid grid-cols-1 gap-x-8 gap-y-3'>
               {resourceTopic?.resources?.map((resource, index) =>
                 <div key={`resource-${index}`}>
                   <ResourceCard

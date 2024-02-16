@@ -94,7 +94,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-stratos pb-3'>
+          <div className='font-semibold text-dial-stratos pb-3'>
             {format('ui.resource.resourceLink')}
           </div>
           <div className='flex text-dial-stratos'>
