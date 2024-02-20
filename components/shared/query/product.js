@@ -21,6 +21,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
     $origins: [String!]
     $isLinkedWithDpi: Boolean
     $showGovStackOnly: Boolean
+    $showDpgaOnly: Boolean
     $search: String
   ) {
     paginationAttributeProduct(
@@ -35,6 +36,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
       origins: $origins
       isLinkedWithDpi: $isLinkedWithDpi
       showGovStackOnly: $showGovStackOnly
+      showDpgaOnly: $showDpgaOnly
       search: $search
     ) {
       totalCount
@@ -55,6 +57,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $origins: [String!]
     $isLinkedWithDpi: Boolean
     $showGovStackOnly: Boolean
+    $showDpgaOnly: Boolean
     $search: String
     $limit: Int!
     $offset: Int!
@@ -71,6 +74,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       origins: $origins
       isLinkedWithDpi: $isLinkedWithDpi
       showGovStackOnly: $showGovStackOnly
+      showDpgaOnly: $showDpgaOnly
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {

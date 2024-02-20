@@ -224,7 +224,7 @@
   "product.noInteroperableProduct": "Pro tento produkt nemáme k dispozici žádné informace o interoperabilitě.",
   "product.noIncludedProduct": "K tomuto produktu nemáme žádné informace.",
   "product.noEndorser": "Pro tento produkt nemáme žádné informace o schvalovateli.",
-  "product.noDatasource": "Pro tento produkt nemáme k dispozici žádné informace o zdroji dat.",
+  "product.noDataSource": "Pro tento produkt nemáme k dispozici žádné informace o zdroji dat.",
 
   "product.pricingInformation": "Informace o ceně produktu",
   "product.commercialProduct": "Tento produkt je komerční.",
