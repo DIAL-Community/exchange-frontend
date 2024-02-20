@@ -1,11 +1,11 @@
-import { FormattedDate, useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { FormattedDate, useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
-import { CandidateActionType, ObjectType } from '../../utils/constants'
-import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import Share from '../../shared/common/Share'
-import Bookmark from '../../shared/common/Bookmark'
 import CommentsSection from '../../shared/comment/CommentsSection'
+import Bookmark from '../../shared/common/Bookmark'
+import Share from '../../shared/common/Share'
+import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { CandidateActionType, ObjectType } from '../../utils/constants'
 import RoleActionButton from './fragments/RoleActionButton'
 
 const RoleDetailRight = forwardRef(({ role }, ref) => {

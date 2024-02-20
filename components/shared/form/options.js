@@ -1,11 +1,6 @@
 import {
-  CategoryType,
-  LicenseTypeFilter,
-  MappingStatus,
-  MaturityStatus,
-  ORIGIN_SLUG_EXPANSIONS,
-  OpportunityStatus,
-  OpportunityType
+  CategoryType, LicenseTypeFilter, MappingStatus, MaturityStatus, OpportunityStatus, OpportunityType,
+  ORIGIN_SLUG_EXPANSIONS
 } from '../../utils/constants'
 
 export const generateMaturityOptions = (format) => [
@@ -22,40 +17,44 @@ export const generateResourceTypeOptions = (format) => [
   { label: format('ui.resource.type.caseStudy'), value: 'ui.resource.type.caseStudy' },
   { label: format('ui.resource.type.spotlight'), value: 'ui.resource.type.spotlight' },
   { label: format('ui.resource.type.whitepaper'), value: 'ui.resource.type.whitepaper' },
-  { label: format('ui.resource.type.expertcomment'), value: 'ui.resource.type.expertcomment' }
-]
+  { label: format('ui.resource.type.expertComment'), value: 'ui.resource.type.expertComment' },
+  { label: format('ui.resource.type.report'), value: 'ui.resource.type.report' },
+  { label: format('ui.resource.type.blog'), value: 'ui.resource.type.blog' },
+  { label: format('ui.resource.type.workingPaper'), value: 'ui.resource.type.workingPaper' },
+  { label: format('ui.resource.type.book'), value: 'ui.resource.type.book' }
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateResourceTopicOptions = (format) => [
   { label: format('ui.resource.topic.laws'), value: 'ui.resource.topic.laws' },
   { label: format('ui.resource.topic.oversight'), value: 'ui.resource.topic.oversight' },
   { label: format('ui.resource.topic.participation'), value: 'ui.resource.topic.participation' },
   { label: format('ui.resource.topic.technology'), value: 'ui.resource.topic.technology' }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateMappingStatusOptions = (format) => [
   { label: format('shared.mappingStatus.beta'), value: MappingStatus.BETA },
   { label: format('shared.mappingStatus.mature'), value: MappingStatus.MATURE },
   { label: format('shared.mappingStatus.selfReported'), value: MappingStatus.SELF_REPORTED },
   { label: format('shared.mappingStatus.validated'), value: MappingStatus.VALIDATED }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateLicenseTypeOptions = (format) => [
   { label: format('licenseType.allType'), value: LicenseTypeFilter.ALL },
   { label: format('licenseType.commercialOnly'), value: LicenseTypeFilter.COMMERCIAL },
   { label: format('licenseType.ossOnly'), value: LicenseTypeFilter.OPEN_SOURCE }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateCategoryTypeOptions = (format) => [
   { label: format('buildingBlock.category.dpi'), value: CategoryType.DPI },
   { label: format('buildingBlock.category.functional'), value: CategoryType.FUNCTIONAL }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateDatasetTypeOptions = (format) => [
   { label: format('ui.dataset.type.dataset'), value: 'dataset' },
   { label: format('ui.dataset.type.content'), value: 'content' },
   { label: format('ui.dataset.type.standard'), value: 'standard' },
   { label: format('ui.dataset.type.aiModel'), value: 'ai_model' }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateLanguageOptions = (format) => [
   { label: format('locale.english.label'), value: 'en' },
@@ -73,13 +72,13 @@ export const generateOpportunityTypeOptions = (format) => [
   { label: format('ui.opportunity.type.innovation'), value: OpportunityType.INNOVATION },
   { label: format('ui.opportunity.type.tender'), value: OpportunityType.TENDER },
   { label: format('ui.opportunity.type.other'), value: OpportunityType.OTHER }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateOpportunityStatusOptions = (format) => [
   { label: format('ui.opportunity.status.closed'), value: OpportunityStatus.CLOSED },
   { label: format('ui.opportunity.status.open'), value: OpportunityStatus.OPEN },
   { label: format('ui.opportunity.status.upcoming'), value: OpportunityStatus.UPCOMING }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateOriginOptions = () => Object.keys(ORIGIN_SLUG_EXPANSIONS).map(key => {
   return { label: ORIGIN_SLUG_EXPANSIONS[key], value: key }
@@ -92,7 +91,7 @@ export const generateSpecialtyOptions = () => [
   { value: 'SaaS / Hosting Services', label: 'SaaS / Hosting Services' },
   { value: 'UX & Design', label: 'UX & Design' },
   { value: 'Web Development', label: 'Web Development' }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateMobileServiceOptions = () => [
   { label: 'Airtime', value: 'Airtime' },
@@ -107,10 +106,10 @@ export const generateMobileServiceOptions = () => [
   { label: 'User-Interface', value: 'User-Interface' },
   { label: 'USSD', value: 'USSD' },
   { label: 'Voice', value: 'Voice' }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateCategoryIndicatorTypes = (format) => [
   { label: format('shared.categoryIndicator.type.numeric'), value: 'numeric' },
   { label: format('shared.categoryIndicator.type.scale'), value: 'scale' },
   { label: format('shared.categoryIndicator.type.boolean'), value: 'boolean' }
-]
+].sort((a, b) => a.label.localeCompare(b.label))
