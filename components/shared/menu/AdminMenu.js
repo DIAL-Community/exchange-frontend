@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { useCallback } from 'react'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { ADMIN_MENU, MenuHeader } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
@@ -36,6 +36,10 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           </Link>
           <Link href='/sectors' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.sector.header')}
+          </Link>
+          <div className='mx-4 border-b border-dial-slate-300' />
+          <Link href='/resource-topics' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.resourceTopic.header')}
           </Link>
           <Link href='/tags' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.tag.header')}

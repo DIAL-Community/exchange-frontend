@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
@@ -25,6 +26,26 @@ const ResourceDetailHeader = ({ resource }) => {
 
   return (
     <div className='flex flex-col gap-y-3 py-3'>
+      <div className='flex justify-center items-center py-16 bg-white rounded border'>
+        {resource.imageFile.indexOf('placeholder.svg') < 0 &&
+          <div className='w-20 h-20 px-1 py-1 rounded-full bg-dial-orange'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              className='object-contain dial-ochre-filter w-14 h-14 mx-auto my-2 white-filter'
+            />
+          </div>
+        }
+        {resource.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='w-20 h-20'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              className='object-contain dial-ochre-filter'
+            />
+          </div>
+        }
+      </div>
       <div className='text-dial-stratos font-semibold'>
         {format('ui.resource.author.header')}
       </div>
@@ -40,6 +61,17 @@ const ResourceDetailHeader = ({ resource }) => {
           </div>
         </div>
       )}
+      <hr className='border-b border-dial-blue-chalk my-3' />
+      <div className='text-dial-stratos font-semibold'>
+        {format('ui.resource.source')}
+      </div>
+      {resource.source &&
+        <Link href={`/organizations/${resource.source.slug}`} className='flex'>
+          <div className='border-b border-dial-iris-blue '>
+            {resource.source.name}
+          </div>
+        </Link>
+      }
       <hr className='border-b border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-y-2'>
         <div className='font-semibold text-dial-stratos'>

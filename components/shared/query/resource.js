@@ -29,14 +29,19 @@ export const PAGINATED_RESOURCES_QUERY = gql`
 
       resourceLink
       linkDescription
-      source
       resourceType
-      resourceTopic
+      resourceTopics {
+        id
+        name
+        slug
+      }
 
       publishedDate
 
       authors {
+        id
         name
+        slug
       }
     }
   }
@@ -90,9 +95,13 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
 
       resourceLink
       linkDescription
-      source
       resourceType
-      resourceTopic
+
+      resourceTopics {
+        id
+        name
+        slug
+      }
 
       publishedDate
 
@@ -101,7 +110,9 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       }
 
       authors {
+        id
         name
+        slug
       }
       tags
     }
@@ -124,9 +135,13 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
 
       resourceLink
       linkDescription
-      source
       resourceType
-      resourceTopic
+
+      resourceTopics {
+        id
+        name
+        slug
+      }
 
       publishedDate
 
@@ -135,7 +150,9 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
       }
 
       authors {
+        id
         name
+        slug
       }
       tags
     }
@@ -169,9 +186,18 @@ export const RESOURCE_DETAIL_QUERY = gql`
       resourceLink
       linkDescription
 
-      source
+      source {
+        id
+        name
+        slug
+        imageFile
+      }
       resourceType
-      resourceTopic
+      resourceTopics {
+        id
+        slug
+        name
+      }
       
       showInExchange
       showInWizard

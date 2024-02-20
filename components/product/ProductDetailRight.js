@@ -24,18 +24,22 @@ const ProductSource = ({ product, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const origins = product.origins?.filter(origin => {
+    return origin.slug !== 'dpga' || (origin.slug === 'dpga' && product.endorsers.length > 0)
+  })
+
   return (
     <div className='flex flex-col gap-y-3' ref={headerRef}>
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.source')}
       </div>
       <div className='flex flex-col gap-3'>
-        {product.origins?.length <= 0 &&
+        {origins?.length <= 0 &&
           <div className='text-sm'>
-            {format('product.noDatasource')}
+            {format('product.noDataSource')}
           </div>
         }
-        {product.origins.map((origin, i) => {
+        {origins.map((origin, i) => {
           return (
             <div key={i} className='flex flex-row gap-3'>
               <div className='block w-12 relative'>
@@ -46,11 +50,6 @@ const ProductSource = ({ product, headerRef }) => {
                 />
               </div>
               <div className='inline my-auto text-sm'>{origin.name}</div>
-              {origin.slug === 'dpga' && product.endorsers.length === 0 && (
-                <div className='inline my-auto text-xs italic'>
-                  {format('product.nominee')}
-                </div>
-              )}
               {origin.slug === 'dpga' && (
                 <a
                   href={`https://digitalpublicgoods.net/registry/${product.slug.replaceAll('_', '-')}`}
