@@ -258,6 +258,7 @@ export const en = {
   'ui.product.comparison.showHighlight': 'Highlight differences',
   
   'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
+  'ui.product.filter.showDpgaOnly': 'Show only Digital Public Goods',
 
   'product.languages': 'Languages',
   'product.website': 'Website',
@@ -319,7 +320,7 @@ export const en = {
   'product.noInteroperableProduct': 'We do not have any interoperable product information for this product.',
   'product.noIncludedProduct': 'We do not have any product included information for this product.',
   'product.noEndorser': 'We do not have any endorser information for this product.',
-  'product.noDatasource': 'We do not have any datasource information for this product.',
+  'product.noDataSource': 'We do not have any datasource information for this product.',
 
   'product.pricingInformation': 'Product Pricing Information',
   'product.commercialProduct': 'This product is commercial product.',
