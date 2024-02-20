@@ -1,14 +1,11 @@
-import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../context/ProductFilterContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
-import {
-  ProductFilterContext,
-  ProductFilterDispatchContext
-} from '../../context/ProductFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../context/QueryParamContext'
 import ProductFilter from './ProductFilter'
 
 const ProductListLeft = () => {
@@ -17,13 +14,14 @@ const ProductListLeft = () => {
 
   const {
     isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi, showGovStackOnly
+    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi,
+    showGovStackOnly, showDpgaOnly
   } = useContext(ProductFilterContext)
 
   const {
     setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
     setOrigins, setSdgs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
-    setLicenseTypes, setIsLinkedWithDpi, setShowGovStackOnly
+    setLicenseTypes, setIsLinkedWithDpi, setShowGovStackOnly, setShowDpgaOnly
   } = useContext(ProductFilterDispatchContext)
 
   const sharableLink = () => {
@@ -51,13 +49,14 @@ const ProductListLeft = () => {
     )
     const linkedWithDpiFilter = isLinkedWithDpi ? 'isLinkedWithDpi=true' : ''
     const showGovStackOnlyFilter = showGovStackOnly ? 'showGovStackOnly=true' : ''
+    const showDpgaOnlyFilter = showDpgaOnly ? 'showDpgaOnly=true' : ''
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter, endorsedFilter, deployableFilter, ...originFilters,
       ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
       ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, ...licenseTypesFilter,
-      linkedWithDpiFilter, showGovStackOnlyFilter
+      linkedWithDpiFilter, showGovStackOnlyFilter, showDpgaOnlyFilter
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -73,6 +72,7 @@ const ProductListLeft = () => {
       setIsEndorsed(query.isEndorsed === 'true')
       setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
       setShowGovStackOnly(query.showGovStackOnly === 'true')
+      setShowDpgaOnly(query.showDpgaOnly === 'true')
       setProductDeployable(query.productDeployable === 'true')
       parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
       parseQuery(query, 'origins', origins, setOrigins)

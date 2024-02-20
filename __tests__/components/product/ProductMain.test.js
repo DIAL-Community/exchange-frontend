@@ -1,14 +1,11 @@
 import { screen } from '@testing-library/dom'
-import { render } from '../../test-utils'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import ProductMain from '../../../components/product/ProductMain'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_PRODUCTS_QUERY
-} from '../../../components/shared/query/product'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { ProductFilterProvider } from '../../../components/context/ProductFilterContext'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import ProductMain from '../../../components/product/ProductMain'
+import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../../components/shared/query/product'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import { paginatedProducts, productPaginationAttribute } from './data/ProductMain.data'
 
 mockTenantApi()
@@ -29,7 +26,8 @@ describe('Unit tests for the product main page.', () => {
         workflows: [],
         origins: [],
         isLinkedWithDpi: false,
-        showGovStackOnly: false
+        showGovStackOnly: false,
+        showDpgaOnly: false
       },
       null,
       productPaginationAttribute
@@ -49,6 +47,7 @@ describe('Unit tests for the product main page.', () => {
         origins: [],
         isLinkedWithDpi: false,
         showGovStackOnly: false,
+        showDpgaOnly: false,
         limit: 8,
         offset: 0
       },

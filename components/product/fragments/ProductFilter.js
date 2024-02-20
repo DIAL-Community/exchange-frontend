@@ -1,21 +1,17 @@
 import { useCallback, useContext, useState } from 'react'
+import { FaAngleDown, FaAngleUp, FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { FaXmark } from 'react-icons/fa6'
-import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
-import {
-  ProductFilterContext,
-  ProductFilterDispatchContext
-} from '../../context/ProductFilterContext'
-import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../context/ProductFilterContext'
+import { BuildingBlockActiveFilters, BuildingBlockAutocomplete } from '../../shared/filter/BuildingBlock'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 import { LicenseTypeActiveFilters, LicenseTypeAutocomplete } from '../../shared/filter/LicenseType'
 import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
-import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
-import { WorkflowActiveFilters, WorkflowAutocomplete } from '../../shared/filter/Workflow'
-import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
-import { BuildingBlockAutocomplete, BuildingBlockActiveFilters } from '../../shared/filter/BuildingBlock'
+import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
+import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
+import { WorkflowActiveFilters, WorkflowAutocomplete } from '../../shared/filter/Workflow'
 import Checkbox from '../../shared/form/Checkbox'
-import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 
 const COVID_19_LABEL = 'COVID-19'
 
@@ -29,8 +25,8 @@ const ProductFilter = () => {
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
   const { setCountries, setLicenseTypes, setSdgs, setOrigins, setWorkflows } = useContext(ProductFilterDispatchContext)
 
-  const { isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
-  const { setIsLinkedWithDpi, setShowGovStackOnly } = useContext(ProductFilterDispatchContext)
+  const { isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
+  const { setIsLinkedWithDpi, setShowGovStackOnly, setShowDpgaOnly } = useContext(ProductFilterDispatchContext)
 
   const [expanded, setExpanded] = useState(false)
 
@@ -40,6 +36,10 @@ const ProductFilter = () => {
 
   const toggleShowGovStackOnly = () => {
     setShowGovStackOnly(!showGovStackOnly)
+  }
+
+  const toggleShowDpgaOnly = () => {
+    setShowDpgaOnly(!showDpgaOnly)
   }
 
   const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
@@ -58,6 +58,7 @@ const ProductFilter = () => {
   const clearFilter = () => {
     setIsLinkedWithDpi(false)
     setShowGovStackOnly(false)
+    setShowDpgaOnly(false)
 
     setSdgs([])
     setUseCases([])
@@ -75,6 +76,7 @@ const ProductFilter = () => {
 
     return isLinkedWithDpi ? 1 : 0 +
       showGovStackOnly ? 1 : 0 +
+      showDpgaOnly ? 1 : 0 +
       sdgs.length +
       workflows.length +
       buildingBlocks.length +
@@ -136,6 +138,18 @@ const ProductFilter = () => {
                 </div>
               </div>
             )}
+            {showDpgaOnly && (
+              <div className='bg-dial-slate-400 text-white px-2 py-1 rounded'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('ui.product.filter.showDpgaOnly')}
+                    <button type='button' onClick={toggleShowDpgaOnly}>
+                      <FaXmark size='1rem' />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       }
@@ -188,6 +202,12 @@ const ProductFilter = () => {
               <Checkbox onChange={toggleShowGovStackOnly} value={showGovStackOnly} />
               <span className='mx-2 my-auto text-sm'>
                 {format('ui.product.filter.showGovStackOnly')}
+              </span>
+            </label>
+            <label className='flex py-2'>
+              <Checkbox onChange={toggleShowDpgaOnly} value={showDpgaOnly} />
+              <span className='mx-2 my-auto text-sm'>
+                {format('ui.product.filter.showDpgaOnly')}
               </span>
             </label>
             <hr className='border-b border-dial-slate-200'/>

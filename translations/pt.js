@@ -224,7 +224,7 @@ export const pt = {
   "product.noInteroperableProduct": "Não temos qualquer informação interoperativa para este produto.",
   "product.noIncludedProduct": "Não temos qualquer informação sobre o produto incluído para este produto.",
   "product.noEndorser": "Não temos qualquer informação do endossante para este produto.",
-  "product.noDatasource": "Não temos qualquer informação da fonte de dados para este produto.",
+  "product.noDataSource": "Não temos qualquer informação da fonte de dados para este produto.",
 
   "product.pricingInformation": "Informação sobre preços de produtos",
   "product.commercialProduct": "Este produto é um produto comercial.",
