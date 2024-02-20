@@ -258,7 +258,7 @@ export const en = {
   'ui.product.comparison.showHighlight': 'Highlight differences',
   
   'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
-  'ui.product.filter.showDpgaOnly': 'Show only products from DPGA',
+  'ui.product.filter.showDpgaOnly': 'Show only Digital Public Goods',
 
   'product.languages': 'Languages',
   'product.website': 'Website',
