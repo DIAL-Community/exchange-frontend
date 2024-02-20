@@ -7,7 +7,6 @@ const ResourceTopicMainLeft = ({ activeTab }) => {
     <>
       { activeTab === 0 && <ResourceTopicListLeft /> }
       { activeTab === 1 && <ResourceTopicSimpleLeft />}
-      { activeTab === 2 && <ResourceTopicSimpleLeft /> }
     </>
   )
 }

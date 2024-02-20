@@ -6,8 +6,7 @@ const ResourceTopicTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.resourceTopic.header',
-    'ui.resourceTopic.whatIs'
+    'ui.resourceTopic.header'
   ])
 
   useEffect(() => {
