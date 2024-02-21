@@ -1,11 +1,11 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
 import { ProductFilterContext } from '../../context/ProductFilterContext'
+import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import Pagination from '../../shared/Pagination'
 import ListStructure from './ListStructure'
 import ProductSearchBar from './ProductSearchBar'
 
@@ -13,7 +13,7 @@ const ProductListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
+  const { search, isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
 
@@ -62,7 +62,8 @@ const ProductListRight = () => {
       workflows: workflows.map(workflow => workflow.id),
       origins: origins.map(origin => origin.value),
       isLinkedWithDpi,
-      showGovStackOnly
+      showGovStackOnly,
+      showDpgaOnly
     }
   })
 

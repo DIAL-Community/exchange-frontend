@@ -1,4 +1,5 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import Link from 'next/link'
 import { FormattedDate, useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -50,11 +51,17 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='flex items-center gap-6'>
-          {resource.resourceTopic &&
-            <div className={`${topicColors(resource.resourceTopic)} rounded-md shadow-lg`}>
-              <div className='text-sm px-5 py-2'>
-                {format(resource.resourceTopic)}
-              </div>
+          {resource.resourceTopics &&
+            <div className='flex flex-wrap gap-x-3 gap-y-2'>
+              {resource.resourceTopics.map((resourceTopic, index) => (
+                <Link key={index} href={`/resource-topics/${resourceTopic.slug}`}>
+                  <div className={`${topicColors(resourceTopic.name)} rounded-md shadow-lg`}>
+                    <div className='text-sm px-5 py-2'>
+                      {resourceTopic.name}
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           }
           {resource.resourceType &&

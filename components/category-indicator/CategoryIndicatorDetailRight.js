@@ -1,12 +1,12 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../utils/constants'
-import CommentsSection from '../shared/comment/CommentsSection'
-import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
+import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
+import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { ObjectType } from '../utils/constants'
 import DeleteCategoryIndicator from './DeleteCategoryIndicator'
 
 const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => {

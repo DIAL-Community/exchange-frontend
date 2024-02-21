@@ -1,15 +1,15 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../utils/constants'
+import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
+import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
-import CommentsSection from '../shared/comment/CommentsSection'
+import { ObjectType } from '../utils/constants'
 import DeleteBuildingBlock from './DeleteBuildingBlock'
-import BuildingBlockDetailWorkflows from './fragments/BuildingBlockDetailWorkflows'
 import BuildingBlockDetailProducts from './fragments/BuildingBlockDetailProducts'
+import BuildingBlockDetailWorkflows from './fragments/BuildingBlockDetailWorkflows'
 
 const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
   const { formatMessage } = useIntl()

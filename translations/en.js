@@ -258,6 +258,7 @@ export const en = {
   'ui.product.comparison.showHighlight': 'Highlight differences',
   
   'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
+  'ui.product.filter.showDpgaOnly': 'Show only Digital Public Goods',
 
   'product.languages': 'Languages',
   'product.website': 'Website',
@@ -319,7 +320,7 @@ export const en = {
   'product.noInteroperableProduct': 'We do not have any interoperable product information for this product.',
   'product.noIncludedProduct': 'We do not have any product included information for this product.',
   'product.noEndorser': 'We do not have any endorser information for this product.',
-  'product.noDatasource': 'We do not have any datasource information for this product.',
+  'product.noDataSource': 'We do not have any datasource information for this product.',
 
   'product.pricingInformation': 'Product Pricing Information',
   'product.commercialProduct': 'This product is commercial product.',
@@ -1841,8 +1842,12 @@ export const en = {
   'ui.resource.type.caseStudy': 'Case Study',
   'ui.resource.type.spotlight': 'Spotlight',
   'ui.resource.type.whitepaper': 'White Paper',
-  'ui.resource.type.expertcomment': 'Expert Comment',
+  'ui.resource.type.expertComment': 'Expert Comment',
   'ui.resource.type.unspecified': 'Unspecified Type',
+  'ui.resource.type.blog': 'Blog',
+  'ui.resource.type.book': 'Book',
+  'ui.resource.type.report': 'Report',
+  'ui.resource.type.workingPaper': 'Working Paper',
   
   'ui.resource.topic.label': 'Resource Topic',
   'ui.resource.topic.header': 'Resource Topics',
@@ -2430,4 +2435,23 @@ export const en = {
   'ui.tenants.default': 'Default',
   'ui.tenants.fao': 'FAO',
 
+  
+  'ui.resourceTopic.label': 'Resource Topic',
+  'ui.resourceTopic.header': 'Resource Topics',
+  'ui.resourceTopic.createNew': 'Create new resource topic',
+  'ui.resourceTopic.whatIs': 'What is a Resource Topic?',
+  
+  'ui.resourceTopic.name': 'Resource Topic Name',
+  'ui.resourceTopic.description': 'Resource Topic Description',
+
+  'ui.resource.toggle.searchSourceStructure': 'Search Source',
+  'ui.resource.toggle.createSourceStructure': 'Create Source',
+  'ui.resource.source.add': 'Add Source',
+  'ui.resource.source.logoAsAlt': `
+    Source's logo will be used as an alternative for resource's logo when logo is not provided.
+  `,
+
+  'ui.source.name': 'Source Name',
+  'ui.source.website': 'Source Website',
+  'ui.source.imageFile': 'Source Logo File',
 }

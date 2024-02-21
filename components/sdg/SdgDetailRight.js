@@ -1,9 +1,9 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { ObjectType } from '../utils/constants'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
+import { useIntl } from 'react-intl'
 import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
+import { ObjectType } from '../utils/constants'
 
 const SdgSdgTargets = ({ sdg, headerRef }) => {
   const { formatMessage } = useIntl()
