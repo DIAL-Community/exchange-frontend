@@ -23,9 +23,11 @@ export const CREATE_RESOURCE = gql`
     $resourceFile: Upload
     $resourceLink: String
     $linkDescription: String
-    $source: String
+    $sourceName: String
+    $sourceWebsite: String
+    $sourceLogoFile: Upload
     $resourceType: String
-    $resourceTopic: String
+    $resourceTopics: [String!]
     $showInExchange: Boolean
     $showInWizard: Boolean
     $publishedDate: ISO8601Date!
@@ -41,9 +43,11 @@ export const CREATE_RESOURCE = gql`
       resourceFile: $resourceFile
       resourceLink: $resourceLink
       linkDescription: $linkDescription
-      source: $source
+      sourceName: $sourceName
+      sourceWebsite: $sourceWebsite
+      sourceLogoFile: $sourceLogoFile
       resourceType: $resourceType
-      resourceTopic: $resourceTopic
+      resourceTopics: $resourceTopics
       showInExchange: $showInExchange
       showInWizard: $showInWizard
       publishedDate: $publishedDate
@@ -62,9 +66,19 @@ export const CREATE_RESOURCE = gql`
         resourceFile
         resourceLink
         linkDescription
-        source
+        
+        source {
+          id
+          name
+          slug
+          imageFile
+        }
         resourceType
-        resourceTopic
+        resourceTopics {
+          id
+          slug
+          name
+        }
 
         authors {
           id

@@ -227,7 +227,7 @@
   "product.noInteroperableProduct": "Für dieses Produkt liegen uns keine interoperablen Produktinformationen vor.",
   "product.noIncludedProduct": "Für dieses Produkt liegen uns keine Produktinformationen vor.",
   "product.noEndorser": "Für dieses Produkt liegen uns keine Endorser-Informationen vor.",
-  "product.noDatasource": "Für dieses Produkt liegen uns keine Datenquelleninformationen vor.",
+  "product.noDataSource": "Für dieses Produkt liegen uns keine Datenquelleninformationen vor.",
 
   "product.pricingInformation": "Informationen zu Produktpreisen",
   "product.commercialProduct": "Bei diesem Produkt handelt es sich um ein kommerzielles Produkt.",

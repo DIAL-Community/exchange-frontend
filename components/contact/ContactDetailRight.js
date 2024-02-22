@@ -1,12 +1,12 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { DisplayType, ObjectType } from '../utils/constants'
-import EditButton from '../shared/form/EditButton'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
-import Share from '../shared/common/Share'
-import Bookmark from '../shared/common/Bookmark'
 import OrganizationCard from '../organization/OrganizationCard'
 import CommentsSection from '../shared/comment/CommentsSection'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
+import EditButton from '../shared/form/EditButton'
+import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteContact from './DeleteContact'
 
 const ContactDetailRight = forwardRef(({ contact }, ref) => {

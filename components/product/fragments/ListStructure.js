@@ -1,15 +1,15 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
 import { ProductFilterContext } from '../../context/ProductFilterContext'
-import ProductCard from '../ProductCard'
-import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
+import { DisplayType } from '../../utils/constants'
+import ProductCard from '../ProductCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(ProductFilterContext)
 
-  const { isLinkedWithDpi, showGovStackOnly } = useContext(ProductFilterContext)
+  const { isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
 
@@ -27,6 +27,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       origins: origins.map(origin => origin.value),
       isLinkedWithDpi,
       showGovStackOnly,
+      showDpgaOnly,
       limit: defaultPageSize,
       offset: pageOffset
     }
