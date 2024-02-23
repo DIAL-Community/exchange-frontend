@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
-import ResourceCard from '../hub/fragments/ResourceCard'
+import ResourceCard from '../resources/fragments/ResourceCard'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
