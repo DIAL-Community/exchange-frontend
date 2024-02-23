@@ -2399,11 +2399,11 @@ export const en = {
   'ui.region.name.label': 'Region Name',
   'ui.region.description.label': 'Region Description',
 
-  'ui.hub.ribbon.subTagLine': `
+  'ui.resources.ribbon.subTagLine': `
     We have created – and curated – a diverse range of resources designed to help those working at the
     forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
   `,
-  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+  'ui.resources.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
 
   'ui.resource.toggle.resourceUrl': 'Resource URL',
   'ui.resource.toggle.resourceFile': 'Resource File',
@@ -2415,7 +2415,7 @@ export const en = {
   'ui.resource.author.header': 'Authors',
   'ui.resource.author.name': 'Author\'s Name',
   'ui.resource.author.email': 'Author\'s Email',
-  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+  'ui.resources.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
 
   'ui.sync.label': 'Sync',
   'ui.sync.header': 'Syncs',

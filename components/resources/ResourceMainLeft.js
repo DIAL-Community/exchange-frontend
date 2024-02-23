@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
-import Bookmark from '../../shared/common/Bookmark'
-import Share from '../../shared/common/Share'
-import { ObjectType } from '../../utils/constants'
-import { QueryParamContext } from '../../context/QueryParamContext'
-import ResourceFilter from './ResourceFilter'
+import { useRouter } from 'next/router'
+import { QueryParamContext } from '../context/QueryParamContext'
+import Bookmark from '../shared/common/Bookmark'
+import Share from '../shared/common/Share'
+import { ObjectType } from '../utils/constants'
+import ResourceFilter from './fragments/ResourceFilter'
 
-const ResourceListLeft = () => {
+const ResourceMainLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
@@ -41,4 +41,4 @@ const ResourceListLeft = () => {
   )
 }
 
-export default ResourceListLeft
+export default ResourceMainLeft

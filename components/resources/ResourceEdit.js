@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
 import ResourceForm from './fragments/ResourceForm'
 import ResourceEditLeft from './ResourceEditLeft'
 
@@ -29,7 +29,7 @@ const ResourceEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map['hub'] = 'hub'
+    map['resources'] = 'resources'
     map[resource.slug] = resource.name
 
     return map

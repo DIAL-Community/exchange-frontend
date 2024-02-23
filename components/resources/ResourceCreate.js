@@ -13,7 +13,7 @@ const ResourceCreate = () => {
       create: format('app.create')
     }
 
-    map['hub'] = 'hub'
+    map['resources'] = 'resources'
 
     return map
   })()

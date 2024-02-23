@@ -2,14 +2,12 @@ import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import ResourceFooter from '../../components/hub/ResourceFooter'
-import ResourceHeader from '../../components/hub/ResourceHeader'
-import ResourceList from '../../components/hub/ResourceList'
-import ResourceRibbon from '../../components/hub/ResourceRibbon'
-import QueryNotification from '../../components/shared/QueryNotification'
-import ClientOnly from '../../lib/ClientOnly'
+import ResourceCreate from '../../../components/resources/ResourceCreate'
+import Footer from '../../../components/resources/ResourceFooter'
+import Header from '../../../components/resources/ResourceHeader'
+import ClientOnly from '../../../lib/ClientOnly'
 
-const ResourceListPage = () => {
+const CreateResourcePage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,17 +23,13 @@ const ResourceListPage = () => {
         }
       />
       <ClientOnly>
-        <QueryNotification />
-        <ResourceHeader />
+        <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <div className='flex flex-col'>
-          <ResourceRibbon />
-          <ResourceList />
-        </div>
-        <ResourceFooter />
+        <ResourceCreate />
+        <Footer />
       </ClientOnly>
     </>
   )
 }
 
-export default ResourceListPage
+export default CreateResourcePage

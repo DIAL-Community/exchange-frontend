@@ -1,18 +1,17 @@
+import { useCallback, useEffect, useState } from 'react'
+import classNames from 'classnames'
+import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useCallback, useState } from 'react'
-import { signIn, signOut } from 'next-auth/react'
-import classNames from 'classnames'
 import { useUser } from '../../lib/hooks'
-import MobileMenu from '../shared/MobileMenu'
-import UserMenu from '../shared/menu/UserMenu'
-import HelpMenu from '../shared/menu/HelpMenu'
-import { NONE } from '../shared/menu/MenuCommon'
 import AdminMenu from '../shared/menu/AdminMenu'
+import HelpMenu from '../shared/menu/HelpMenu'
 import LanguageMenu from '../shared/menu/LanguageMenu'
 import MarketplaceMenu from '../shared/menu/MarketplaceMenu'
+import { NONE } from '../shared/menu/MenuCommon'
+import UserMenu from '../shared/menu/UserMenu'
+import MobileMenu from '../shared/MobileMenu'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../shared/query/user'
 import HubToolMenu from './menu/HubToolMenu'
 
@@ -148,7 +147,7 @@ const ResourceHeader = ({ isOnAuthPage = false }) => {
               </li>
               <li className='text-right'>
                 <Link
-                  href='/hub'
+                  href='/resources'
                   role='menuitem'
                   className='px-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
                 >

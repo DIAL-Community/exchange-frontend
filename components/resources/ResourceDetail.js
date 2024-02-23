@@ -25,7 +25,7 @@ const ResourceDetail = ({ slug }) => {
 
   const slugNameMapping = (() => {
     const map = {}
-    map['hub'] = 'hub'
+    map['resources'] = 'resources'
     map[resource.slug] = resource.name
 
     return map

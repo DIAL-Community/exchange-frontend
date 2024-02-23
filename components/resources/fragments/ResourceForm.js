@@ -376,7 +376,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }],
     onCompleted: (data) => {
       if (data.createResource.resource && data.createResource.errors.length === 0) {
-        const redirectPath = `/${locale}/hub/${data.createResource.resource.slug}`
+        const redirectPath = `/${locale}/resources/${data.createResource.resource.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showSuccessMessage(
@@ -480,7 +480,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/hub/${slug}`)
+    router.push(`/${locale}/resources/${slug}`)
   }
 
   const toggleUsingFile = (e) => {

@@ -1,64 +1,18 @@
 import { gql } from '@apollo/client'
 
 export const RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeResource($search: String) {
-    paginationAttributeResource(search: $search) {
-      totalCount
-    }
-  }
-`
-
-export const PAGINATED_RESOURCES_QUERY = gql`
-  query PaginatedResources(
-    $limit: Int!
-    $offset: Int!
-    $search: String
-  ) {
-    paginatedResources(
-      search: $search
-      offsetAttributes: { limit: $limit, offset: $offset }
-    ) {
-      id
-      name
-      slug
-      tags
-      imageFile
-      
-      description
-      parsedDescription
-
-      resourceLink
-      linkDescription
-      resourceType
-      resourceTopics {
-        id
-        name
-        slug
-      }
-
-      publishedDate
-
-      authors {
-        id
-        name
-        slug
-      }
-    }
-  }
-`
-
-export const CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeResource(
     $search: String
+    $tags: [String!]
     $countries: [String!]
     $resourceTypes: [String!]
     $resourceTopics: [String!]
-    $tags: [String!]
+    $compartmentalized: Boolean
   ) {
     paginationAttributeResource(
       search: $search
       countries: $countries
-      compartmentalized: true
+      compartmentalized: $compartmentalized
       resourceTypes: $resourceTypes
       resourceTopics: $resourceTopics
       tags: $tags
@@ -68,7 +22,53 @@ export const CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
   }
 `
 
-export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
+export const FEATURED_RESOURCES_QUERY = gql`
+  query PaginatedResources(
+    $limit: Int!
+    $offset: Int!
+    $compartmentalized: Boolean
+  ) {
+    featuredResources: paginatedResources(
+      featuredLength: 3
+      featuredOnly: true
+      compartmentalized: $compartmentalized
+      offsetAttributes: { limit: $limit, offset: $offset }
+    ) {
+      id
+      name
+      slug
+      imageFile
+
+      description
+      parsedDescription
+    
+      resourceLink
+      linkDescription
+      resourceType
+    
+      resourceTopics {
+        id
+        name
+        slug
+      }
+    
+      publishedDate
+    
+      products {
+        id
+      }
+    
+      authors {
+        id
+        name
+        slug
+      }
+      tags
+    }
+  }
+`
+
+export const PAGINATED_RESOURCES_QUERY = gql`
   query PaginatedResources(
     $limit: Int!
     $offset: Int!
@@ -79,43 +79,6 @@ export const CUSTOM_PAGINATED_RESOURCES_QUERY =  gql`
     $resourceTopics: [String!]
     $compartmentalized: Boolean
   ) {
-    featuredResources: paginatedResources(
-      featuredLength: 3
-      featuredOnly: true
-      compartmentalized: true
-      offsetAttributes: { limit: $limit, offset: $offset }
-    ) {
-      id
-      name
-      slug
-      imageFile
-      
-      description
-      parsedDescription
-
-      resourceLink
-      linkDescription
-      resourceType
-
-      resourceTopics {
-        id
-        name
-        slug
-      }
-
-      publishedDate
-
-      products {
-        id
-      }
-
-      authors {
-        id
-        name
-        slug
-      }
-      tags
-    }
     paginatedResources(
       search: $search
       tags: $tags

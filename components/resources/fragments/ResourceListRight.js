@@ -1,14 +1,15 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
-import { ResourceFilterContext } from '../context/ResourceFilterContext'
-import { CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../shared/query/resource'
-import Pagination from '../shared/Pagination'
-import ResourceListMain from './fragments/ResourceListMain'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { ResourceFilterContext } from '../../context/ResourceFilterContext'
+import Pagination from '../../shared/Pagination'
+import { RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import ListStructure from './ListStructure'
+import ResourceSearchBar from './ResourceSearchBar'
 
-const ResourceList = () => {
+const ResourceListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -45,7 +46,7 @@ const ResourceList = () => {
     }
   }
 
-  const { loading, error, data } = useQuery(CUSTOM_RESOURCE_PAGINATION_ATTRIBUTES_QUERY, {
+  const { loading, error, data } = useQuery(RESOURCE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
       tags: resourceTags.map(r => r.value),
@@ -56,8 +57,9 @@ const ResourceList = () => {
   })
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56'>
-      <ResourceListMain
+    <>
+      <ResourceSearchBar ref={topRef} />
+      <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
       />
@@ -71,8 +73,8 @@ const ResourceList = () => {
           onClickHandler={onClickHandler}
         />
       }
-    </div>
+    </>
   )
 }
 
-export default ResourceList
+export default ResourceListRight

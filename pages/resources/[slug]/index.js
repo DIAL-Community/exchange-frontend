@@ -1,15 +1,18 @@
 import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import ResourceCreate from '../../../components/hub/ResourceCreate'
-import Footer from '../../../components/hub/ResourceFooter'
-import Header from '../../../components/hub/ResourceHeader'
+import ResourceDetail from '../../../components/resources/ResourceDetail'
+import Footer from '../../../components/resources/ResourceFooter'
+import Header from '../../../components/resources/ResourceHeader'
 import ClientOnly from '../../../lib/ClientOnly'
 
-const CreateResourcePage = () => {
+const ResourcePage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { query: { slug } } = useRouter()
 
   return (
     <>
@@ -25,11 +28,11 @@ const CreateResourcePage = () => {
       <ClientOnly>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <ResourceCreate />
+        <ResourceDetail slug={slug} />
         <Footer />
       </ClientOnly>
     </>
   )
 }
 
-export default CreateResourcePage
+export default ResourcePage
