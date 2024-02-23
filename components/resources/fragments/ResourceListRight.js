@@ -49,6 +49,7 @@ const ResourceListRight = () => {
   const { loading, error, data } = useQuery(RESOURCE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
+      compartmentalized: false,
       tags: resourceTags.map(r => r.value),
       countries: resourceCountries.map(r => r.label),
       resourceTypes: resourceTypes.map(r => r.value),
