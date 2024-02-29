@@ -18,7 +18,9 @@ const Custom500 = () => {
   const dpi500 =
     <>
       <DpiHeader />
-      <InternalServerError />
+      <div className='min-h-[70vh] bg-dial-alice-blue'>
+        <InternalServerError />
+      </div>
       <DpiFooter />
     </>
 

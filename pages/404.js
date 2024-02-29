@@ -18,7 +18,9 @@ const Custom404 = () => {
   const dpi404 =
     <>
       <DpiHeader />
-      <NotFound />
+      <div className='min-h-[70vh] bg-dial-alice-blue'>
+        <NotFound />
+      </div>
       <DpiFooter />
     </>
 
