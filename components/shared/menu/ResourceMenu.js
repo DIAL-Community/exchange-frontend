@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { useCallback } from 'react'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { MenuHeader, RESOURCE_MENU } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
@@ -24,30 +24,9 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
           <Link href='/wizard' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('header.wizard')}
           </Link>
-          <a
-            href='//digitalimpactalliance.org/research/sdg-digital-investment-framework/'
-            className={DEFAULT_DROPDOWN_MENU_STYLES}
-            target='_blank'
-            rel='noreferrer'
-            role='menuitem'
-          >
-            {format('header.SDGFramework')}
-          </a>
           <Link href='/resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('header.blogs')}
+            {format('header.insights')}
           </Link>
-          <Link href='/covid-19-resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('header.covidResources')}
-          </Link>
-          <a
-            href='//resources.dial.community/'
-            className={DEFAULT_DROPDOWN_MENU_STYLES}
-            target='_blank'
-            rel='noreferrer'
-            role='menuitem'
-          >
-            {format('header.dialResourcesPortal')}
-          </a>
           <Link href='/govstack' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('header.govstack')}
           </Link>

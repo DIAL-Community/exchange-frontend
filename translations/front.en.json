@@ -95,7 +95,7 @@
   "header.admin.deploys": "Deploys",
   "header.newsletter": "Join Our Newsletter",
   "header.marketplace": "Marketplace",
-  "header.tools": "Tools",
+  "header.catalog": "Tools",
   "header.supportingTools": "Supporting Tools",
 
   "footer.text.firstLine": "The Digital Impact Alliance is a partnership amongst some of the world’s most active digital development champions. We are grateful for the support of our Founding Partners.",
@@ -1356,7 +1356,7 @@
 
   "ui.resource.subHeader": "These article and blogs provide information about the Digital Impact Exchange and how it can be used to support the deployment of digital technologies.",
 
-  "header.blogs": "Blogs / Articles",
+  "header.insights": "Blogs / Articles",
 
   "ui.resource.link": "Resource Location",
   "ui.resource.visitLink": "Visit Resource",

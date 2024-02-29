@@ -13,7 +13,7 @@ import { NONE } from '../shared/menu/MenuCommon'
 import UserMenu from '../shared/menu/UserMenu'
 import MobileMenu from '../shared/MobileMenu'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../shared/query/user'
-import HubToolMenu from './menu/HubToolMenu'
+import ResourceMenu from './menu/ResourceMenu'
 
 const dropdownMenuStyles = classNames(
   'px-3 py-2',
@@ -128,22 +128,11 @@ const ResourceHeader = ({ isOnAuthPage = false }) => {
         <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
           {!isOnAuthPage &&
             <>
-              <li className='text-right intro-overview-signup intro-signup'>
-                <a
-                  href='//dial.global'
-                  role='menuitem'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='px-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
-                >
-                  {format('header.dialWebsite')}
-                </a>
-              </li>
               <li className='relative text-right intro-marketplace'>
                 <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
               <li className='relative text-right intro-tools'>
-                <HubToolMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
               <li className='text-right'>
                 <Link

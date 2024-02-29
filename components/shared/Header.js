@@ -1,20 +1,19 @@
-import { useQuery } from '@apollo/client'
-import { useCallback, useState } from 'react'
-import { useEffect } from 'react'
-import { useIntl } from 'react-intl'
+import { useCallback, useEffect, useState } from 'react'
+import classNames from 'classnames'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
-import classNames from 'classnames'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
 import { useActiveTenant, useUser } from '../../lib/hooks'
-import { NONE } from './menu/MenuCommon'
 import AdminMenu from './menu/AdminMenu'
-import UserMenu from './menu/UserMenu'
+import CatalogMenu from './menu/CatalogMenu'
 import HelpMenu from './menu/HelpMenu'
-import ResourceMenu from './menu/ResourceMenu'
 import LanguageMenu from './menu/LanguageMenu'
 import MarketplaceMenu from './menu/MarketplaceMenu'
+import { NONE } from './menu/MenuCommon'
+import ResourceMenu from './menu/ResourceMenu'
+import UserMenu from './menu/UserMenu'
 import MobileMenu from './MobileMenu'
-import ToolMenu from './menu/ToolMenu'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from './query/user'
 
 const dropdownMenuStyles = classNames(
@@ -136,7 +135,7 @@ const Header = ({ isOnAuthPage = false }) => {
                 <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
               <li className='relative text-right intro-tools'>
-                <ToolMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                <CatalogMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
               <li className='relative text-right intro-resource'>
                 <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />

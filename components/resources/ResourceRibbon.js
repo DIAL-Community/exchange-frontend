@@ -21,7 +21,7 @@ const ResourceRibbon = () => {
     <Ribbon
       ribbonBg='bg-dial-violet'
       titleImage={titleImage}
-      titleKey={'ui.project.header'}
+      titleKey={'ui.resource.header'}
       titleColor='text-dial-plum'
     />
   )

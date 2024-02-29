@@ -107,7 +107,7 @@ export const en = {
   'header.admin.deploys': 'Deploys',
   'header.newsletter': 'Join Our Newsletter',
   'header.marketplace': 'Marketplace',
-  'header.tools': 'Tools',
+  'header.catalog': 'Tools',
   'header.otherTools': 'Other Tools',
   'header.knowledgeHub': 'Knowledge Hub',
   'header.dialWebsite': 'DIAL Website',
@@ -1819,7 +1819,7 @@ export const en = {
     and how it can be used to support the deployment of digital technologies.
   `,
 
-  'header.blogs': 'Blogs / Articles',
+  'header.insights': 'Insights',
 
   'ui.resource.label': 'Resource',
   'ui.resource.header': 'Resources',

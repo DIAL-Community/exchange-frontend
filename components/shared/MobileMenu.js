@@ -1,9 +1,9 @@
-import Link from 'next/link'
-import { useIntl } from 'react-intl'
-import { signIn, signOut } from 'next-auth/react'
-import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
 import { useCallback, useState } from 'react'
+import { signIn, signOut } from 'next-auth/react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
 import { SUPPORTING_NAVIGATION_ITEMS, TOOL_NAVIGATION_ITEMS } from '../utils/header'
 import { HELP_MENU, LANGUAGE_MENU, MARKETPLACE_MENU, NONE, RESOURCE_MENU, USER_MENU } from './menu/MenuCommon'
@@ -62,34 +62,34 @@ const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
 }
 
 const ToolMenu = ({ currentMenu, setCurrentMenu }) => {
-  const TOOL_MENU = 'menu-tool'
+  const CATALOG_MENU = 'menu-catalog'
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
   const toggleSubMenu = () => {
-    setCurrentMenu(currentMenu === TOOL_MENU ? NONE : TOOL_MENU)
+    setCurrentMenu(currentMenu === CATALOG_MENU ? NONE : CATALOG_MENU)
   }
 
   return (
     <li>
       <a
         href='tool'
-        id={TOOL_MENU}
+        id={CATALOG_MENU}
         onClick={(e) => {
           e.preventDefault()
           toggleSubMenu()
         }}
       >
         <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          {format('header.tools')}
-          {currentMenu === TOOL_MENU
+          {format('header.catalog')}
+          {currentMenu === CATALOG_MENU
             ? <RiArrowUpSLine className='text-base inline my-auto' />
             : <RiArrowDownSLine className='text-base inline my-auto' />
           }
         </div>
       </a>
-      {currentMenu === TOOL_MENU &&
+      {currentMenu === CATALOG_MENU &&
         <ul className='px-6'>
           {Object.entries(TOOL_NAVIGATION_ITEMS).map(([key, value]) => {
             return (
@@ -181,7 +181,7 @@ const ResourceMenu = ({ currentMenu, setCurrentMenu }) => {
     link: '//digitalimpactalliance.org/research/sdg-digital-investment-framework/',
     external: true
   }, {
-    label: 'header.blogs',
+    label: 'header.insights',
     link: '/resources'
   }]
 
