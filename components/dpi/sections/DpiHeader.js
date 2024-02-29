@@ -3,7 +3,7 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 import { NONE } from '../../shared/menu/MenuCommon'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../shared/query/user'
 import DpiMobileMenu from '../menu/DpiMobileMenu'
@@ -13,8 +13,6 @@ const menuStyles = 'py-3 cursor-pointer border-b border-transparent hover:border
 const DpiHeader = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
-
-  const { tenant } = useActiveTenant()
 
   const { user } = useUser()
 
@@ -75,11 +73,10 @@ const DpiHeader = () => {
     <header className='z-50 sticky top-0 bg-dial-stratos max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
-          <img
-            className='object-center object-contain'
-            src={tenant === 'fao' ? '/ui/v1/fao-exchange.svg' : '/ui/v1/exchange-logo.svg'}
-            alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
-          />
+          <div className='flex flex-col gap-1 text-white'>
+            <div className='text-base'>{format('dpi.header.title')}</div>
+            <div className='text-lg font-semibold'>{format('dpi.header.subtitle')}</div>
+          </div>
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
         <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>

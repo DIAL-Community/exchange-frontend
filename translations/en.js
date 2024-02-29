@@ -2455,6 +2455,13 @@ export const en = {
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
 
+  'dpi.header.title': 'Brought to you by',
+  'dpi.header.subtitle': 'the Digital Impact Alliance',
+  'dpi.footer.connect.subTitle': `
+    Sign up for our newsletter to learn more about the Digital Public Infrastructure
+    and how you can be involved.
+  `,
+
   'dpi.header.topic': 'Topics',
   'dpi.header.country': 'Countries',
   'dpi.header.resourceFinder': 'Resource Finder',
