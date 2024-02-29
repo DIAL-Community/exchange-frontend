@@ -2457,7 +2457,7 @@ export const en = {
 
   'dpi.header.title': 'Brought to you by',
   'dpi.header.subtitle': 'the Digital Impact Alliance',
-  'dpi.footer.connect.subTitle': `
+  'dpi.footer.connect.subtitle': `
     Sign up for our newsletter to learn more about the Digital Public Infrastructure
     and how you can be involved.
   `,
@@ -2465,4 +2465,19 @@ export const en = {
   'dpi.header.topic': 'Topics',
   'dpi.header.country': 'Countries',
   'dpi.header.resourceFinder': 'Resource Finder',
+
+  'dpi.wizard.title': 'New to the DPI Resource Hub?',
+  'dpi.wizard.tagLine': `
+    Our Recommendations Wizard can help get you started to find you a curated
+    list of resources, tailored to wherever you are in a project lifecycle —
+    ideation, planning, implementation, or monitoring/evaluation.
+  `,
+  
+
+  'dpi.landing.main.title': 'DPI Resource Hub',
+  'dpi.landing.main.subtitle': `
+    The Resource Hub offers data, case studies, and analysis to help policymakers,
+    researchers and other stakeholders gather insights on countries' progress on
+    digital public infrastructure
+  `
 }
