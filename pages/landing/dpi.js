@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import Footer from '../../components/shared/Footer'
-import Header from '../../components/shared/Header'
+import DpiFooter from '../../components/dpi/sections/DpiFooter'
+import DpiHeader from '../../components/dpi/sections/DpiHeader'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
@@ -17,7 +17,7 @@ const DpiPage = () => {
       />
       <ClientOnly>
         <QueryNotification />
-        <Header />
+        <DpiHeader />
         <div className='flex flex-col'>
           <div className='xl:min-h-screen'>
             <div className="max-w-catalog mx-auto image-block-hack image-h-full-hack relative">
@@ -38,7 +38,7 @@ const DpiPage = () => {
             </div>
           </div>
         </div>
-        <Footer />
+        <DpiFooter />
       </ClientOnly>
     </>
   )

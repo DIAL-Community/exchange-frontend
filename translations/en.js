@@ -2454,4 +2454,8 @@ export const en = {
   'ui.source.name': 'Source Name',
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
+
+  'dpi.header.topic': 'Topics',
+  'dpi.header.country': 'Countries',
+  'dpi.header.resourceFinder': 'Resource Finder',
 }
