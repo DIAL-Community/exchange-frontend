@@ -2473,6 +2473,8 @@ export const en = {
     ideation, planning, implementation, or monitoring/evaluation.
   `,
   
+  'dpi.breadcrumb.country': 'Country Profiles',
+  'dpi.breadcrumb.topic': 'Research by Topics',
 
   'dpi.landing.main.title': 'DPI Resource Hub',
   'dpi.landing.main.subtitle': `

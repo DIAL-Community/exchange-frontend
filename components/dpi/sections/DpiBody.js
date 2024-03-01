@@ -20,7 +20,7 @@ const DpiBody = () => {
   const handleChange = (e) => setSearchTerm(e.target.value)
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[50vh] py-12'>
+    <div className='px-4 lg:px-8 xl:px-56 min-h-[50vh] py-8'>
       <div className='flex flex-col gap-6'>
         <div className='text-2xl font-semibold'>
           {format('dpi.landing.main.title')}
