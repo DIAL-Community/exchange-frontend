@@ -38,7 +38,7 @@ const DeleteResourceTopic = ({ resourceTopic }) => {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
           format('toast.delete.success', { entity: format('ui.resourceTopic.label') }),
-          () => router.push(`/${locale}/resourceTopics`)
+          () => router.push(`/${locale}/resource-topics`)
         )
       } else {
         setDisplayConfirmDialog(false)

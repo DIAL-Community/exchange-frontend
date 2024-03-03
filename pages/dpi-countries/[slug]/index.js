@@ -1,4 +1,5 @@
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import DpiCountry from '../../../components/dpi/sections/DpiCountry'
 import DpiFooter from '../../../components/dpi/sections/DpiFooter'
@@ -10,6 +11,8 @@ const DpiCountryPage = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
+  const { query: { slug } } = useRouter()
+
   return (
     <>
       <NextSeo
@@ -19,7 +22,7 @@ const DpiCountryPage = () => {
       <ClientOnly>
         <QueryNotification />
         <DpiHeader />
-        <DpiCountry />
+        <DpiCountry slug={slug} />
         <DpiFooter />
       </ClientOnly>
     </>
