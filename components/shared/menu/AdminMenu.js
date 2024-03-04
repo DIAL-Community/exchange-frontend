@@ -25,9 +25,6 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             {format('ui.taskTracker.header')}
           </Link>
           <div className='mx-4 border-b border-dial-slate-300' />
-          <Link href='/cities' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.city.header')}
-          </Link>
           <Link href='/countries' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.country.header')}
           </Link>

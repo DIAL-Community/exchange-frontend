@@ -123,7 +123,7 @@ const Header = ({ isOnAuthPage = false }) => {
         <Link href='/' className='my-auto'>
           <img
             className='object-center object-contain'
-            src={tenant === 'fao' ? '/ui/v1/fao-exchange.svg' : '/ui/v1/exchange-logo.svg'}
+            src={tenant === 'fao' ? '/ui/v1/exchange-logo.svg' : '/ui/v1/exchange-logo.svg'}
             alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
         </Link>

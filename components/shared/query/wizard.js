@@ -34,7 +34,6 @@ export const WIZARD_USE_CASES_QUERY = gql`
   query WizardUseCases(
     $useCases: [String!]
     $sectors: [String!]
-    $buildingBlocks: [String!]
     $sdgs: [String!]
     $limit: Int!
     $offset: Int!
@@ -43,7 +42,6 @@ export const WIZARD_USE_CASES_QUERY = gql`
       sdgs: $sdgs
       sectors: $sectors
       useCases: $useCases
-      buildingBlocks: $buildingBlocks
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
@@ -56,7 +54,6 @@ export const WIZARD_USE_CASES_QUERY = gql`
       sdgs: $sdgs
       useCases: $useCases
       sectors: $sectors
-      buildingBlocks: $buildingBlocks
     ) {
       totalCount
     }
