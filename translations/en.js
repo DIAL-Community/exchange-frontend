@@ -2443,6 +2443,8 @@ export const en = {
   
   'ui.resourceTopic.name': 'Resource Topic Name',
   'ui.resourceTopic.description': 'Resource Topic Description',
+  'ui.resourceTopic.parentTopic': 'Parent Topic',
+  'ui.resourceTopic.subTopics': 'Sub-Topics',
 
   'ui.resource.toggle.searchSourceStructure': 'Search Source',
   'ui.resource.toggle.createSourceStructure': 'Create Source',

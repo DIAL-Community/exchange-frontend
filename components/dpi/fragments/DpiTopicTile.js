@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import Link from 'next/link'
+import parse from 'html-react-parser'
 import { useQuery } from '@apollo/client'
 import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
@@ -28,9 +29,12 @@ const DpiTopicTile = () => {
     <div className='grid grid-cols-3 gap-3'>
       {resourceTopics.map((resourceTopic, index) =>
         <Link key={index} href={`/dpi-topics/${resourceTopic.slug}`}>
-          <div className='bg-dial-stratos text-white'>
-            <div className='py-16 px-8'>
+          <div className='bg-dial-stratos text-white py-16'>
+            <div className='px-8 py-2 text-xl font-bold'>
               {resourceTopic.name}
+            </div>
+            <div className='px-8 text-sm font-italic'>
+              {parse(resourceTopic.resourceTopicDescription?.description)}
             </div>
           </div>
         </Link>

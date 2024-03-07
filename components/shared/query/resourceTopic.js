@@ -6,6 +6,14 @@ export const RESOURCE_TOPIC_SEARCH_QUERY = gql`
       id
       name
       slug
+      resourceTopicDescription {
+        description
+      }
+      subtopics {
+        id
+        name
+        slug
+      }
     }
   }
 `
@@ -49,10 +57,20 @@ export const RESOURCE_TOPIC_DETAIL_QUERY = gql`
       id
       name
       slug
+      parentTopic {
+        id
+        name
+        slug
+      }
       resourceTopicDescription {
         id
         description
         locale
+      }
+      subtopics {
+        id
+        name
+        slug
       }
       resources {
         id

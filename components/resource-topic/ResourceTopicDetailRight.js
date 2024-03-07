@@ -8,6 +8,7 @@ import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../utils/constants'
+import ResourceTopicCard from './ResourceTopicCard'
 import DeleteResourceTopic from './DeleteResourceTopic'
 
 const ResourceTopicDetailRight = forwardRef(({ resourceTopic }, ref) => {
@@ -18,6 +19,7 @@ const ResourceTopicDetailRight = forwardRef(({ resourceTopic }, ref) => {
   const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
+  const subtopicsRef = useRef()
   const resourceRef = useRef()
   const commentsSectionRef = useRef()
 
@@ -50,6 +52,33 @@ const ResourceTopicDetailRight = forwardRef(({ resourceTopic }, ref) => {
             initialContent={resourceTopic?.resourceTopicDescription?.description}
             editorId='resourceTopic-description'
           />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3' ref={subtopicsRef}>
+            {format('ui.resourceTopic.subTopics')}
+          </div>
+          {resourceTopic?.subtopics?.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.resourceTopic.subtopics'),
+                base: format('ui.resourceTopic.label')
+              })}
+            </div>
+          }
+          {resourceTopic?.subtopics?.length > 0 &&
+            <div className='grid grid-cols-1 gap-x-8 gap-y-3'>
+              {resourceTopic?.subtopics?.map((subtopic, index) =>
+                <div key={`resource-${index}`}>
+                  <ResourceTopicCard
+                    index={index}
+                    resourceTopic={subtopic}
+                    displayType={DisplayType.SMALL_CARD}
+                  />
+                </div>
+              )}
+            </div>
+          }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
