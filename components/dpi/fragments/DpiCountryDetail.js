@@ -7,7 +7,7 @@ const DpiCountryDetail = ({ country }) => {
       <div className='grid grid-cols-3 gap-3'>
         {country.organizations.map((organization, index) => {
           return (
-            <div className='p-4 border rounded" key={index}>
+            <div className='p-4 border rounded' key={index}>
               <div className='line-clamp-1 overflow-auto'>
                 {organization.name}
               </div>
