@@ -1,36 +1,33 @@
-import { useCallback } from 'react'
-import Link from 'next/link'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
+import { STEPS } from '../../wizard/commons'
+import WizardContent from '../../wizard/WizardContent'
+import { WizardContext } from '../../wizard/WizardContext'
+import WizardHeader from '../../wizard/WizardHeader'
 
 const DpiWizard = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { currentStep } = useContext(WizardContext)
+
   return (
-    <div className='relative h-[400px] lg:h-[297px]'>
-      <div className='absolute top-0 left-0 w-full h-[400px] lg:h-[297px] bg-dial-white-linen' />
-      <div className='absolute top-0 left-0 w-full h-[400px] lg:h-[297px]'>
-        <div
-          className='bg-cover lg:bg-auto bg-right bg-no-repeat h-[400px] lg:h-[297px]'
-          style={{ backgroundImage: 'url("/ui/v1/wizard-bg.svg")' }}
-        >
-          <div className='lg:px-8 xl:px-56'>
-            <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-6'>
-              <div className='text-2xl font-semibold mt-12'>
-                {format('dpi.wizard.title')}
-              </div>
-              <div className='max-w-5xl'>
-                {format('dpi.wizard.tagLine')}
-              </div>
-              <div className='flex text-sm text-dial-stratos'>
-                <Link href='/wizard' className='rounded px-5 py-2.5 bg-dial-sunshine intro-wizard'>
-                  {format('ui.wizard.launch')}
-                </Link>
-              </div>
-            </div>
-          </div>
+    <div className='flex flex-col gap-4 py-4'>
+      <div className='px-4 lg:px-8 xl:px-56 flex flex-col gap-4'>
+        <div className='text-2xl font-semibold'>
+          {format('dpi.wizard.title')}
         </div>
+        <div className='max-w-prose'>
+          {format('dpi.wizard.tagLine')}
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-4' />
       </div>
+      {currentStep < STEPS.length &&
+        <div className='flex flex-col gap-8'>
+          <WizardHeader />
+          <WizardContent />
+        </div>
+      }
     </div>
   )
 }

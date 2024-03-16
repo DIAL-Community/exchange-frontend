@@ -73,9 +73,14 @@ const DpiHeader = () => {
     <header className='z-50 sticky top-0 bg-dial-stratos max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
-          <div className='flex flex-col gap-1 text-white'>
-            <div className='text-base'>{format('dpi.header.title')}</div>
-            <div className='text-lg font-semibold'>{format('dpi.header.subtitle')}</div>
+          <div className='flex gap-1 text-white'>
+            <div className='text-xs w-16 my-auto'>{format('dpi.header.title')}</div>
+            <img
+              src='/ui/v1/dial-logo-yg.svg'
+              alt={format('ui.image.logoAlt', { name: 'DIAL' })}
+              width={96}
+              className='object-contain'
+            />
           </div>
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />

@@ -7,6 +7,7 @@ export const RESOURCE_TOPIC_SEARCH_QUERY = gql`
       name
       slug
       resourceTopicDescription {
+        id
         description
       }
       subtopics {

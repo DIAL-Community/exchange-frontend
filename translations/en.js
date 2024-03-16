@@ -2468,7 +2468,7 @@ export const en = {
   'dpi.header.country': 'Countries',
   'dpi.header.resourceFinder': 'Resource Finder',
 
-  'dpi.wizard.title': 'New to the DPI Resource Hub?',
+  'dpi.wizard.title': 'Get Started',
   'dpi.wizard.tagLine': `
     Our Recommendations Wizard can help get you started to find you a curated
     list of resources, tailored to wherever you are in a project lifecycle —
@@ -2478,10 +2478,16 @@ export const en = {
   'dpi.breadcrumb.country': 'Country Profiles',
   'dpi.breadcrumb.topic': 'Research by Topics',
 
-  'dpi.landing.main.title': 'DPI Resource Hub',
+  'dpi.landing.main.title': 'Welcome to the Resource Hub',
   'dpi.landing.main.subtitle': `
-    The Resource Hub offers data, case studies, and analysis to help policymakers,
-    researchers and other stakeholders gather insights on countries' progress on
-    digital public infrastructure
+    The Resource Hub is an online space which offers data, case studies, and analysis to
+    help policymakers, researchers and other stakeholders gather insights on countries'
+    progress on digital public infrastructure.
+  `,
+  'dpi.landing.browseTopics': 'Browse <break></break> Topics',
+  'dpi.landing.featuredCountries': 'Featured <break></break> Countries',
+  'dpi.topic.subtitle': `
+    Topics showcases a series of knowledge products published by DIAL and its partners
+    on key issues surrounding digital public infrastructure.
   `
 }
