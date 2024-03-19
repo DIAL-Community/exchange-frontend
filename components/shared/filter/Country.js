@@ -12,7 +12,8 @@ export const CountryAutocomplete = ({
   setCountries,
   searchQuery = COUNTRY_SEARCH_QUERY,
   placeholder = null,
-  isSearch = false
+  isSearch = false,
+  inline = false
 }) => {
   const client = useApolloClient()
   const [showFilter, setShowFilter] = useState(false)
@@ -39,7 +40,24 @@ export const CountryAutocomplete = ({
     setShowFilter(!showFilter)
   }
 
-  return (
+  return inline ? (
+    <div className='flex flex-col gap-y-3'>
+      <Select
+        async
+        isBorderless
+        aria-label={format('filter.byEntity', { entity: format('ui.country.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input) => fetchSelectOptions(client, input, searchQuery, fetchedCountriesCallback)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.country.header') })}
+        onChange={selectCountry}
+        placeholder={controlPlaceholder}
+        value=''
+        isSearch={isSearch}
+      />
+    </div>
+  ) : (
     <div className='flex flex-col gap-y-3'>
       <a href='#' className='flex' onClick={toggleFilter}>
         <div className='text-dial-stratos text-sm py-2'>
@@ -70,8 +88,7 @@ export const CountryAutocomplete = ({
   )
 }
 
-export const CountryActiveFilters = (props) => {
-  const { countries, setCountries } = props
+export const CountryActiveFilters = ({ countries, setCountries }) => {
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])

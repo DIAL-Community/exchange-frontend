@@ -46,6 +46,33 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       </div>
     </div>
 
+  const displayDpiCard = () =>
+    <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+      <div className='w-80 pb-4 mx-auto relative'>
+        <Link href={`/dpi-resources/${resource.slug}`}>
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+            alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+            className='aspect-[5/4] bg-cover'
+          />
+        </Link>
+        <div className='absolute top-1/2 left-10 -translate-y-1/2'>
+          <Link href={`/dpi-resources/${resource.slug}`}>
+            <div className='text-lg font-semibold text-white'>
+              {resource.name}
+            </div>
+          </Link>
+        </div>
+      </div>
+      <div className='px-4 mx-auto'>
+        <Link href={`/dpi-resources/${resource.slug}`}>
+          <div className='line-clamp-4 text-dial-stratos'>
+            {resource?.parsedDescription && parse(resource?.parsedDescription)}
+          </div>
+        </Link>
+      </div>
+    </div>
+
   const displaySmallCard = () =>
     <Link href={`/resources/${resource.slug}`}>
       <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
@@ -121,6 +148,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       {displayType === DisplayType.FEATURED_CARD && displayFeaturedCard()}
+      {displayType === DisplayType.DPI_CARD && displayDpiCard()}
       { isValidFn(dismissHandler) &&
         <button type='button' className='absolute top-2 right-2'>
           <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />

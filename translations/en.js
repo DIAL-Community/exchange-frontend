@@ -2489,5 +2489,6 @@ export const en = {
   'dpi.topic.subtitle': `
     Topics showcases a series of knowledge products published by DIAL and its partners
     on key issues surrounding digital public infrastructure.
-  `
+  `,
+  'dpi.topic.reports': 'Reports and Articles',
 }

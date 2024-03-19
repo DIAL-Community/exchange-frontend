@@ -21,6 +21,7 @@ const basePathMappings = {
   'countries': 'ui.country.header',
   'regions': 'ui.region.header',
   'datasets': 'ui.dataset.header',
+  'dpi-topics': 'dpi-resources',
   'moves': 'ui.move.header',
   'opportunities': 'ui.opportunity.header',
   'organizations': 'ui.organization.header',
