@@ -6,16 +6,19 @@ const DpiBody = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 py-8 bg-dial-teal text-white '>
-      <div className='flex flex-col gap-2 max-w-prose'>
-        <div className='text-[3.5rem] leading-tight font-light py-3'>
-          {format('dpi.landing.main.title')}
-        </div>
-        <div className='max-w-prose'>
-          {format('dpi.landing.main.subtitle')}
+    <>
+      <img className='relative' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-cover.png'/>
+      <div className='absolute top-1/2 -translate-y-1/2 px-4 lg:px-8 xl:px-56 py-8 text-white '>
+        <div className='flex flex-col gap-2 max-w-prose'>
+          <div className='text-[3.5rem] leading-tight font-light py-3'>
+            {format('dpi.landing.main.title')}
+          </div>
+          <div className='max-w-prose'>
+            {format('dpi.landing.main.subtitle')}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

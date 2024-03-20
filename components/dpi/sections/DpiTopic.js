@@ -31,7 +31,8 @@ const DpiTopic = ({ slug }) => {
 
   return (
     <div className='flex flex-col gap-6 pb-12'>
-      <div className='bg-dial-teal px-4 lg:px-8 xl:px-56 pt-6 min-h-[20rem]'>
+      <img className='relative h-80' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.png'/>
+      <div className='absolute w-full top-28 left-1/2 -translate-x-1/2 px-4 lg:px-8 xl:px-56 pt-6 min-h-[20rem]'>
         <DpiBreadcrumb slugNameMapping={slugNameMapping} />
         <div className='text-2xl text-center text-white py-8 mx-auto max-w-prose'>
           {resourceTopic.name}
