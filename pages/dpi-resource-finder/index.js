@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import DpiFooter from '../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../components/dpi/sections/DpiHeader'
-import DpiResourceFinder from '../../components/dpi/sections/DpiResourceFinder'
+import DpiResources from '../../components/dpi/sections/DpiResources'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
@@ -19,7 +19,7 @@ const DpiPage = () => {
       <ClientOnly>
         <QueryNotification />
         <DpiHeader />
-        <DpiResourceFinder />
+        <DpiResources />
         <DpiFooter />
       </ClientOnly>
     </>

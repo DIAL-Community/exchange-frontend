@@ -2497,4 +2497,8 @@ export const en = {
     on key issues surrounding digital public infrastructure.
   `,
   'dpi.topic.reports': 'Reports and Articles',
+  'dpi.resourcefinder.title': 'Resource finder',
+  'dpi.resourcefinder.subtitle': `Quickly search and filter through our library to
+    find resources relevant to a specific topic, country, or project.
+  `
 }

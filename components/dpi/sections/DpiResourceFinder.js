@@ -31,18 +31,20 @@ const DpiResourceFinder = () => {
   const { resourceTopicResources } = data
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
-      <DpiResourceFilter />
-      <div className='grid grid-cols-3 gap-3'>
-        {resourceTopicResources.map((resource, index) => {
-          return (
-            <div className='line-clamp-2 overflow-auto' key={index}>
-              <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD}  />
-            </div>
-          )
-        })}
+    <>
+      <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
+        <DpiResourceFilter />
+        <div className='grid grid-cols-3 gap-3'>
+          {resourceTopicResources.map((resource, index) => {
+            return (
+              <div className='line-clamp-2 overflow-auto' key={index}>
+                <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD}  />
+              </div>
+            )
+          })}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
