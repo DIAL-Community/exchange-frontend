@@ -2464,7 +2464,7 @@ export const en = {
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
 
-  'dpi.header.title': 'Brought to you by',
+  'dpi.header.title': 'Resources for DPI',
   'dpi.header.subtitle': 'the Digital Impact Alliance',
   'dpi.footer.connect.subtitle': `
     Sign up for our newsletter to learn more about the Digital Public Infrastructure
@@ -2485,11 +2485,10 @@ export const en = {
   'dpi.breadcrumb.country': 'Country Profiles',
   'dpi.breadcrumb.topic': 'Research by Topics',
 
-  'dpi.landing.main.title': 'Welcome to the Resource Hub',
+  'dpi.landing.main.title': 'Resources for DPI',
   'dpi.landing.main.subtitle': `
-    The Resource Hub is an online space which offers data, case studies, and analysis to
-    help policymakers, researchers and other stakeholders gather insights on countries'
-    progress on digital public infrastructure.
+  An online resource hub offering data, insights, and tools to help policymakers, 
+  governments and development actors advance progress on digital public infrastructure.
   `,
   'dpi.landing.browseTopics': 'Browse <break></break> Topics',
   'dpi.landing.featuredCountries': 'Featured <break></break> Countries',

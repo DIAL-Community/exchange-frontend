@@ -70,17 +70,17 @@ const DpiHeader = () => {
   })
 
   return (
-    <header className='z-50 sticky top-0 bg-dial-stratos max-w-catalog mx-auto'>
+    <header className='z-50 sticky top-0 bg-dial-deep-purple max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
           <div className='flex gap-1 text-white'>
-            <div className='text-xs w-16 my-auto'>{format('dpi.header.title')}</div>
             <img
-              src='/ui/v1/dial-logo-yg.svg'
+              src='/ui/v1/dial-logo-white.svg'
               alt={format('ui.image.logoAlt', { name: 'DIAL' })}
-              width={96}
-              className='object-contain'
+              width={128}
+              className='object-contain px-4 border-r'
             />
+            <div className='text-xl leading-6 w-24 my-auto px-4'>{format('dpi.header.title')}</div>
           </div>
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />

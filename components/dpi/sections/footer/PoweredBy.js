@@ -14,7 +14,7 @@ const PoweredBy = () => {
       <div className='flex gap-x-8'>
         <a href='//dial.global' target='_blank' rel='noreferrer'>
           <img
-            src='/ui/v1/dial-logo-yg.svg'
+            src='/ui/v1/dial-logo-white.svg'
             alt={format('ui.image.logoAlt', { name: 'DIAL' })}
             width={96}
             className='object-contain'
