@@ -2473,7 +2473,7 @@ export const en = {
 
   'dpi.header.topic': 'Topics',
   'dpi.header.country': 'Countries',
-  'dpi.header.resourceFinder': 'Resource Finder',
+  'dpi.header.resourceFinder': 'Resource finder',
 
   'dpi.wizard.title': 'Get Started',
   'dpi.wizard.tagLine': `

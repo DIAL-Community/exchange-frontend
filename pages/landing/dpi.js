@@ -3,10 +3,8 @@ import { useIntl } from 'react-intl'
 import DpiBody from '../../components/dpi/sections/DpiBody'
 import DpiFooter from '../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../components/dpi/sections/DpiHeader'
-import DpiLinks from '../../components/dpi/sections/DpiLinks'
 import DpiResourceFinder from '../../components/dpi/sections/DpiResourceFinder'
 import QueryNotification from '../../components/shared/QueryNotification'
-import DpiWizardDefinition from '../../components/dpi/sections/DpiWizardDefinition'
 import ClientOnly from '../../lib/ClientOnly'
 
 const DpiPage = () => {
@@ -23,8 +21,6 @@ const DpiPage = () => {
         <QueryNotification />
         <DpiHeader />
         <DpiBody />
-        <DpiLinks />
-        <DpiWizardDefinition />
         <DpiResourceFinder />
         <DpiFooter />
       </ClientOnly>

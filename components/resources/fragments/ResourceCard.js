@@ -48,25 +48,21 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
 
   const displayDpiCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
-      <div className='w-80 pb-4 mx-auto relative'>
+      <div className='w-80 pb-4 mx-auto flex flex-col'>
         <Link href={`/dpi-resources/${resource.slug}`}>
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-            className='aspect-[5/4] bg-cover'
+            className='w-full aspect-[5/4] bg-cover'
           />
         </Link>
-        <div className='absolute top-1/2 left-10 -translate-y-1/2'>
-          <Link href={`/dpi-resources/${resource.slug}`}>
-            <div className='text-lg font-semibold text-white'>
-              {resource.name}
-            </div>
-          </Link>
-        </div>
-      </div>
-      <div className='px-4 mx-auto'>
         <Link href={`/dpi-resources/${resource.slug}`}>
-          <div className='line-clamp-4 text-dial-stratos'>
+          <div className='text-lg font-semibold text-dial-stratos'>
+            {resource.name}
+          </div>
+        </Link>
+        <Link href={`/dpi-resources/${resource.slug}`}>
+          <div className='line-clamp-4 text-dial-stratos text-sm'>
             {resource?.parsedDescription && parse(resource?.parsedDescription)}
           </div>
         </Link>

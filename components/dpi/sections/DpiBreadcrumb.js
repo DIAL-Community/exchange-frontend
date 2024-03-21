@@ -59,12 +59,12 @@ const DpiBreadcrumb = ({ slugNameMapping }) => {
 
   return (
     <div className='whitespace-nowrap text-ellipsis overflow-hidden'>
-      <Link href='/' className='inline text-base font-semibold'>
+      <Link href='/' className='inline text-dial-gray font-semibold'>
         {format('app.home')}
       </Link>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
-          <div key={i} className='inline text-base font-semibold'>
+          <div key={i} className='inline text-dial-gray font-semibold'>
             {BREADCRUMB_SEPARATOR}
             <Link href={breadcrumb.href}>
               {convertBreadcrumb(breadcrumb.breadcrumb)}
