@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
+import { useQuery } from '@apollo/client'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { RESOURCE_TOPIC_DETAIL_QUERY } from '../../shared/query/resourceTopic'
 import DpiTopicDetail from '../fragments/DpiTopicDetail'
@@ -31,9 +31,13 @@ const DpiTopic = ({ slug }) => {
 
   return (
     <div className='flex flex-col gap-6 pb-12'>
-      <img className='relative h-80' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.png'/>
-      <div className='absolute w-full top-28 left-1/2 -translate-x-1/2 px-4 lg:px-8 xl:px-56 pt-6 min-h-[20rem]'>
-        <DpiBreadcrumb slugNameMapping={slugNameMapping} />
+      <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg'/>
+      <div className='absolute w-full top-[6.5rem] left-1/2 -translate-x-1/2 min-h-[20rem]'>
+        <div className='max-w-catalog mx-auto'>
+          <div className='px-4 lg:px-8 xl:px-56'>
+            <DpiBreadcrumb slugNameMapping={slugNameMapping} />
+          </div>
+        </div>
         <div className='text-2xl text-center text-white py-5 uppercase mx-auto max-w-prose'>
           {resourceTopic.name}
         </div>

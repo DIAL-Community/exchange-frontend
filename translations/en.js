@@ -2487,14 +2487,18 @@ export const en = {
 
   'dpi.landing.main.title': 'Resources for DPI',
   'dpi.landing.main.subtitle': `
-  An online resource hub offering data, insights, and tools to help policymakers, 
-  governments and development actors advance progress on digital public infrastructure.
+    An online resource hub offering data, insights, and tools to help policymakers, 
+    governments and development actors advance progress on digital public infrastructure.
   `,
   'dpi.landing.browseTopics': 'Browse <break></break> Topics',
   'dpi.landing.featuredCountries': 'Featured <break></break> Countries',
   'dpi.topic.subtitle': `
     Topics showcases a series of knowledge products published by DIAL and its partners
     on key issues surrounding digital public infrastructure.
+  `,
+  'dpi.country.subtitle': `
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium ex lacus,
+    lacinia vestibulum turpis interdum sit amet.
   `,
   'dpi.topic.reports': 'Reports and Articles',
   'dpi.resourcefinder.title': 'Resource finder',

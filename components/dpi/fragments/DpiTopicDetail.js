@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { useQuery } from '@apollo/client'
 import { FormattedMessage } from 'react-intl'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import ResourceCard from '../../resources/fragments/ResourceCard'
+import { useQuery } from '@apollo/client'
 import { ResourceFilterContext } from '../../context/ResourceFilterContext'
+import ResourceCard from '../../resources/fragments/ResourceCard'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { RESOURCE_TOPIC_RESOURCES_QUERY } from '../../shared/query/resourceTopic'
 import { DisplayType } from '../../utils/constants'
 import DpiResourceFilter from './DpiResourceFilter'
@@ -41,14 +41,10 @@ const DpiTopicDetail = ({ resourceTopic }) => {
         />
       </div>
       <DpiResourceFilter />
-      <div className='grid grid-cols-3 gap-3'>
-        {resourceTopicResources.map((resource, index) => {
-          return (
-            <div className='line-clamp-2 overflow-auto' key={index}>
-              <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD}  />
-            </div>
-          )
-        })}
+      <div className='grid grid-cols-3 gap-8'>
+        {resourceTopicResources.map((resource, index) =>
+          <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD}  />
+        )}
       </div>
     </div>
   )

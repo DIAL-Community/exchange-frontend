@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
+import { COUNTRIES_WITH_RESOURCES_SEARCH_QUERY } from '../../shared/query/country'
 
 const DpiCountryTile = () => {
   const { formatMessage } = useIntl()
@@ -12,7 +12,7 @@ const DpiCountryTile = () => {
 
   const { search } = useContext(FilterContext)
 
-  const { loading, error, data } = useQuery(COUNTRY_SEARCH_QUERY, {
+  const { loading, error, data } = useQuery(COUNTRIES_WITH_RESOURCES_SEARCH_QUERY, {
     variables: {
       search
     }

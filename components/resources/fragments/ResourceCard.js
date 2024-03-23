@@ -47,14 +47,14 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
     </div>
 
   const displayDpiCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
-      <div className='w-80 pb-4 mx-auto flex flex-col'>
-        <div className='w-full h-64 flex justify-center items-center'>
+    <div className={`rounded-lg min-h-[6rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+      <div className='min-w-80 pb-4 mx-auto flex flex-col'>
+        <div className='w-full h-64 3xl:h-80 flex justify-center items-center'>
           <Link href={`/dpi-resources/${resource.slug}`}>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-              className='aspect-[5/4] bg-cover'
+              className='aspect-[5/4]'
             />
           </Link>
         </div>

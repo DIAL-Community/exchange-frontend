@@ -7,8 +7,8 @@ const DpiBody = () => {
 
   return (
     <div className='relative'>
-      <img className='h-96 w-full' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-cover.png'/>
-      <div className='absolute top-1/2 -translate-y-1/2 px-4 lg:px-8 xl:px-56 py-8 text-white '>
+      <img className='h-96 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-cover.svg' />
+      <div className='absolute top-1/2 -translate-y-1/2 px-4 lg:px-8 xl:px-56 text-white'>
         <div className='flex flex-col gap-2 max-w-prose'>
           <div className='text-[3.5rem] leading-tight font-light py-3'>
             {format('dpi.landing.main.title')}

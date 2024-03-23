@@ -5,7 +5,7 @@ const DpiTopics = () => {
 
   return (
     <div className='flex flex-col gap-6 pb-12'>
-      <img className='relative h-64 w-full' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.png'/>
+      <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg' />
       <div className='absolute w-full top-28 left-1/2 -translate-x-1/2 px-4 lg:px-8 pt-6 min-h-[20rem]'>
         <div className='text-2xl text-center text-white py-8 mx-auto max-w-prose'>
           <FormattedMessage
@@ -16,8 +16,10 @@ const DpiTopics = () => {
           />
         </div>
       </div>
-      <div className='-mt-[5rem] z-20'>
-        <DpiTopicTile />
+      <div className='px-4 lg:px-8 xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]'>
+        <div className='-mt-[8rem] z-20'>
+          <DpiTopicTile />
+        </div>
       </div>
     </div>
   )

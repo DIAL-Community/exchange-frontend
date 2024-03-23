@@ -5,7 +5,7 @@ export const SearchInput = ({ value, placeholder, onChange }) => (
     <input
       id='search-bar'
       type='text'
-      className='form-input w-full border'
+      className='w-full border text-sm'
       placeholder={placeholder}
       onChange={onChange}
       value={value}
