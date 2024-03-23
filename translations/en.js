@@ -2501,8 +2501,8 @@ export const en = {
     lacinia vestibulum turpis interdum sit amet.
   `,
   'dpi.topic.reports': 'Reports and Articles',
-  'dpi.resourcefinder.title': 'Resource finder',
-  'dpi.resourcefinder.subtitle': `Quickly search and filter through our library to
+  'dpi.resourceFinder.title': 'Resource finder',
+  'dpi.resourceFinder.subtitle': `Quickly search and filter through our library to
     find resources relevant to a specific topic, country, or project.
   `
 }

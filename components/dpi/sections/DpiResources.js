@@ -4,19 +4,19 @@ import DpiResourceFinder from './DpiResourceFinder'
 const DpiResources = () => {
   return (
     <>
-      <img className='h-64 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg'/>
-      <div className='absolute w-full top-28 left-1/2 -translate-x-1/2 px-4 lg:px-8 xl:px-56 pt-6 min-h-[20rem]'>
-        <div className='text-2xl text-center text-white py-5 uppercase mx-auto max-w-prose'>
+      <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg'/>
+      <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
+        <div className='text-2xl text-center text-white pt-20 pb-10 uppercase mx-auto max-w-prose'>
           <FormattedMessage
-            id='dpi.resourcefinder.title'
+            id='dpi.resourceFinder.title'
             values={{
               break: () => <br />
             }}
           />
         </div>
-        <div className='text-lg text-center text-white pb-8 mx-auto max-w-prose'>
+        <div className='text-lg text-center text-white mx-auto max-w-prose'>
           <FormattedMessage
-            id='dpi.resourcefinder.subtitle'
+            id='dpi.resourceFinder.subtitle'
             values={{
               break: () => <br />
             }}

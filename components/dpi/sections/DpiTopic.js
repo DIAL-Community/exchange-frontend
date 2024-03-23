@@ -30,9 +30,9 @@ const DpiTopic = ({ slug }) => {
   })()
 
   return (
-    <div className='flex flex-col gap-6 pb-12'>
+    <div className='flex flex-col gap-6'>
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg'/>
-      <div className='absolute w-full top-[6.5rem] left-1/2 -translate-x-1/2 min-h-[20rem]'>
+      <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto'>
           <div className='px-4 lg:px-8 xl:px-56'>
             <DpiBreadcrumb slugNameMapping={slugNameMapping} />
