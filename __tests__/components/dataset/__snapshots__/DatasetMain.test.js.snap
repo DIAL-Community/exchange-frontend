@@ -347,7 +347,7 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   for="search-bar"
                 >
                   <input
-                    class="form-input w-full border"
+                    class="w-full border text-sm"
                     id="search-bar"
                     placeholder="Search"
                     type="text"

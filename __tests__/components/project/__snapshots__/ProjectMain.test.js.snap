@@ -326,7 +326,7 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   for="search-bar"
                 >
                   <input
-                    class="form-input w-full border"
+                    class="w-full border text-sm"
                     id="search-bar"
                     placeholder="Search"
                     type="text"

@@ -289,7 +289,7 @@ exports[`Unit tests for the organization main page. Should render list of organi
                   for="search-bar"
                 >
                   <input
-                    class="form-input w-full border"
+                    class="w-full border text-sm"
                     id="search-bar"
                     placeholder="Search"
                     type="text"
