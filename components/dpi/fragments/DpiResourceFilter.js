@@ -1,9 +1,9 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext } from 'react'
-import { ResourceTypeActiveFilters, ResourceTypeAutocomplete } from '../../shared/filter/ResourceType'
+import { useIntl } from 'react-intl'
 import { ResourceFilterContext, ResourceFilterDispatchContext } from '../../context/ResourceFilterContext'
-import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 import ResourceSearchBar from '../../resources/fragments/ResourceSearchBar'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
+import { ResourceTypeActiveFilters, ResourceTypeAutocomplete } from '../../shared/filter/ResourceType'
 import { COUNTRIES_WITH_RESOURCES_SEARCH_QUERY } from '../../shared/query/country'
 
 const DpiResourceFilter = () => {
