@@ -49,7 +49,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const displayDpiCard = () =>
     <div className={`rounded-lg min-h-[6rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='min-w-80 pb-4 mx-auto flex flex-col'>
-        <div className='w-full h-64 3xl:h-80 flex justify-center items-center'>
+        <div className='w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center'>
           <Link href={`/dpi-resources/${resource.slug}`}>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}

@@ -14,7 +14,7 @@ const DpiPagination = ({ pageNumber, totalCount, defaultPageSize, onClickHandler
   return (
     <div className={`flex flex-col gap-y-4 my-6 ${theme === 'light' && 'text-dial-slate-300'}`}>
       <hr className='border-b border-dial-slate-300'/>
-      <div className='flex flex-col xl:flex-row gap-x-16 gap-y-3'>
+      <div className='flex flex-col md:flex-row gap-x-16 gap-y-3'>
         <div className='my-auto text-sm'>
           {totalCount <= 0 && format('ui.pagination.noRecord')}
           {totalCount > 0 && format('ui.pagination.showingLabel', {

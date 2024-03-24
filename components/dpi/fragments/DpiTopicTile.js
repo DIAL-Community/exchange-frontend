@@ -25,7 +25,7 @@ const DpiTopicTile = () => {
   const { resourceTopics } = data
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-3xl mx-auto'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-3xl mx-auto'>
       {resourceTopics.map((resourceTopic, index) =>
         <Link key={index} href={`/dpi-topics/${resourceTopic.slug}`}>
           <div className='bg-dial-deep-purple text-white py-16 aspect-square relative flex justify-center'>

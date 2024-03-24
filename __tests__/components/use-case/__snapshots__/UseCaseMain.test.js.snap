@@ -228,7 +228,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                 </button>
               </div>
               <div
-                class="ml-auto w-full max-w-prose"
+                class="ml-auto w-full"
               >
                 <label
                   class="relative"

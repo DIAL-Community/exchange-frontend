@@ -1,10 +1,10 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { ResourceFilterContext, ResourceFilterDispatchContext } from '../../context/ResourceFilterContext'
-import ResourceSearchBar from '../../resources/fragments/ResourceSearchBar'
 import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 import { ResourceTypeActiveFilters, ResourceTypeAutocomplete } from '../../shared/filter/ResourceType'
 import { COUNTRIES_WITH_RESOURCES_SEARCH_QUERY } from '../../shared/query/country'
+import DpiResourceSearchBar from './DpiResourceSearchBar'
 
 const DpiResourceFilter = () => {
   const { formatMessage } = useIntl()
@@ -41,7 +41,7 @@ const DpiResourceFilter = () => {
   return (
     <div className='flex flex-col gap-y-4 py-3'>
       {filteringWorkflow() &&
-      <div className='grid grid-cols-3'>
+      <div className='grid grid-cols-1 xl:grid-cols-3'>
         <div className='flex flex-col gap-y-3'>
           <div className='flex'>
             <div className='text-sm font-semibold text-dial-sapphire'>
@@ -68,32 +68,24 @@ const DpiResourceFilter = () => {
         </div>
       </div>
       }
-      <div className='grid grid-cols-3'>
-        <div className='flex flex-col gap-y-2'>
-          <div className='text-sm font-semibold text-dial-sapphire'>
-            {format('ui.filter.primary.title')}:
-          </div>
+      <div className='flex flex-col gap-y-2'>
+        <div className='text-sm font-semibold text-dial-sapphire'>
+          {format('ui.filter.primary.title')}:
         </div>
       </div>
-      <div className='grid grid-cols-3 gap-4'>
-        <div className='py-3'>
-          <ResourceTypeAutocomplete
-            resourceTypes={resourceTypes}
-            setResourceTypes={setResourceTypes}
-            inline={true}
-          />
-        </div>
-        <div className='py-3'>
-          <CountryAutocomplete
-            searchQuery={COUNTRIES_WITH_RESOURCES_SEARCH_QUERY}
-            countries={resourceCountries}
-            setCountries={setResourceCountries}
-            inline={true}
-          />
-        </div>
-        <div>
-          <ResourceSearchBar />
-        </div>
+      <div className='grid grid-cols-1 xl:grid-cols-3 gap-8'>
+        <ResourceTypeAutocomplete
+          resourceTypes={resourceTypes}
+          setResourceTypes={setResourceTypes}
+          inline={true}
+        />
+        <CountryAutocomplete
+          searchQuery={COUNTRIES_WITH_RESOURCES_SEARCH_QUERY}
+          countries={resourceCountries}
+          setCountries={setResourceCountries}
+          inline={true}
+        />
+        <DpiResourceSearchBar />
       </div>
     </div>
   )

@@ -29,7 +29,7 @@ const DpiCountryTile = () => {
   const { countries } = data
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-3 gap-3'>
+    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3'>
       {countries.map((country, index) =>
         <Link key={index} href={`/dpi-countries/${country.slug}`}>
           <div className='border border-rounded bg-dial-slate-100 flex gap-4 items-center'>

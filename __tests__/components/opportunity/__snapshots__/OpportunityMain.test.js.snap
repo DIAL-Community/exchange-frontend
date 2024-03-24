@@ -319,7 +319,7 @@ exports[`Unit tests for the opportunity main page. Should render list of opportu
                 </button>
               </div>
               <div
-                class="ml-auto w-full max-w-prose"
+                class="ml-auto w-full"
               >
                 <label
                   class="relative"

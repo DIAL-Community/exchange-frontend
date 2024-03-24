@@ -317,7 +317,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                 </button>
               </div>
               <div
-                class="ml-auto w-full max-w-prose"
+                class="ml-auto w-full"
               >
                 <label
                   class="relative"

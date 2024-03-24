@@ -33,7 +33,7 @@ const DpiResourceTile = ({ resources }) => {
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
       <DpiResourceFilter />
-      <div className='grid grid-cols-3 gap-8'>
+      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
         {displayedResources.map((resource, index) =>
           <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD}  />
         )}

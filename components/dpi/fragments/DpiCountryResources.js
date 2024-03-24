@@ -36,12 +36,12 @@ const DpiCountryResources = ({ country }) => {
 
   return (
     <div className='resource-section'>
-      <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh]'>
-        <div className='text-xl text-center py-8'>
+      <div className='px-4 lg:px-8 xl:px-56'>
+        <div className='text-xl text-center pt-4 pb-8'>
           {format('dpi.topic.reports')}
         </div>
         <DpiResourceFilter />
-        <div className='grid grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
           {displayedResources.map((resource, index) =>
             <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD} />
           )}
