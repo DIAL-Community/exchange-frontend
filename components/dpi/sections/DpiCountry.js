@@ -49,7 +49,9 @@ const DpiCountry = ({ slug }) => {
           className='h-16 mx-auto'
         />
       </div>
-      <DpiCountryDetail country={country} />
+      <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
+        <DpiCountryDetail country={country} />
+      </div>
     </div>
   )
 }

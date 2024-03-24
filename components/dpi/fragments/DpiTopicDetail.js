@@ -32,7 +32,7 @@ const DpiTopicDetail = ({ resourceTopic }) => {
 
   return (
     <div className='flex flex-col gap-5'>
-      <div className='h3 text-center'>
+      <div className='text-lg text-center'>
         <FormattedMessage
           id='dpi.topic.reports'
           values={{
