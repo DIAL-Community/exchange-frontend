@@ -15,7 +15,7 @@ const DpiPagination = ({ pageNumber, totalCount, defaultPageSize, onClickHandler
     <div className={`flex flex-col gap-y-4 my-6 ${theme === 'light' && 'text-dial-slate-300'}`}>
       <hr className='border-b border-dial-slate-300'/>
       <div className='flex flex-col xl:flex-row gap-x-16 gap-y-3'>
-        <div className='my-auto text-sm font-semibold'>
+        <div className='my-auto text-sm'>
           {totalCount <= 0 && format('ui.pagination.noRecord')}
           {totalCount > 0 && format('ui.pagination.showingLabel', {
             firstRecord,
@@ -38,14 +38,11 @@ const DpiPagination = ({ pageNumber, totalCount, defaultPageSize, onClickHandler
           // Flex the main container and add gap
           containerClassName='flex gap-x-3 text-sm'
           // Each will have rounded border
-          pageClassName='border border-current rounded-md'
           activeClassName={`${theme === 'light' && 'text-white'} font-semibold`}
           // Set the width, height, leading and text center to center text
           pageLinkClassName='block w-10 h-10 leading-10 text-center'
           // Previous and next link will have similar treatment
-          previousClassName='border border-current rounded-md'
           previousLinkClassName='block w-10 h-10 leading-10 text-center'
-          nextClassName='border border-current rounded-md'
           nextLinkClassName='block w-10 h-10 leading-10 text-center'
         />
       </div>

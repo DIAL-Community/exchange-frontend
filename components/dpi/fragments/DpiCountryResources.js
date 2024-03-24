@@ -38,7 +38,7 @@ const DpiCountryResources = ({ country }) => {
     <div className='resource-section'>
       <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh]'>
         <div className='text-xl text-center py-8'>
-          {format('ui.resource.header')}
+          {format('dpi.topic.reports')}
         </div>
         <DpiResourceFilter />
         <div className='grid grid-cols-3 gap-8'>

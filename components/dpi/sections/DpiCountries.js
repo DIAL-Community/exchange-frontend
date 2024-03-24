@@ -1,5 +1,5 @@
 import { FormattedMessage } from 'react-intl'
-import DpiCountryTile from '../fragments/DpiCountryTile '
+import DpiCountryTile from '../fragments/DpiCountryTile'
 
 const DpiCountries = () => {
 
