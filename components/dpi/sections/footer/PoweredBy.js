@@ -7,10 +7,9 @@ const PoweredBy = () => {
 
   return (
     <div className='flex flex-col gap-3 py-3'>
-      <div className='text-lg text-dial-cotton font-semibold'>
+      <div className='text-xs text-dial-cotton'>
         {format('ui.footer.poweredBy.title')}
       </div>
-      <hr className='border-b border-dial-angel'/>
       <div className='flex gap-x-8'>
         <a href='//dial.global' target='_blank' rel='noreferrer'>
           <img

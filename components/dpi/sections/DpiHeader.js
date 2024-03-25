@@ -87,17 +87,17 @@ const DpiHeader = () => {
         <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
           <li className='relative text-right text-lg'>
             <Link href='/dpi-topics' role='menuitem' className={menuStyles}>
-              {format('dpi.header.topic')}
+              {format('dpi.header.topic').toUpperCase()}
             </Link>
           </li>
           <li className='relative text-right text-lg'>
             <Link href='/dpi-countries' role='menuitem' className={menuStyles}>
-              {format('dpi.header.country')}
+              {format('dpi.header.country').toUpperCase()}
             </Link>
           </li>
           <li className='relative text-right text-lg'>
             <Link href='/dpi-resource-finder' role='menuitem' className={menuStyles}>
-              {format('dpi.header.resourceFinder')}
+              {format('dpi.header.resourceFinder').toUpperCase()}
             </Link>
           </li>
         </ul>

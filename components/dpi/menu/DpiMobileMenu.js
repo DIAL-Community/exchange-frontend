@@ -16,17 +16,17 @@ const DpiMobileMenu = ({ menuExpanded }) => {
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-auto gap-4 p-4'>
               <li className='relative text-right text-lg'>
                 <Link href='/dpi-topics' role='menuitem' className={menuStyles}>
-                  {format('dpi.header.topic')}
+                  {format('dpi.header.topic').toUpperCase()}
                 </Link>
               </li>
               <li className='relative text-right text-lg'>
                 <Link href='/dpi-countries' role='menuitem' className={menuStyles}>
-                  {format('dpi.header.country')}
+                  {format('dpi.header.country').toUpperCase()}
                 </Link>
               </li>
               <li className='relative text-right text-lg'>
                 <Link href='/dpi-resource-finder' role='menuitem' className={menuStyles}>
-                  {format('dpi.header.resourceFinder')}
+                  {format('dpi.header.resourceFinder').toUpperCase()}
                 </Link>
               </li>
             </ul>

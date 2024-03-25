@@ -2488,7 +2488,7 @@ export const en = {
   'dpi.landing.main.title': 'Resources for DPI',
   'dpi.landing.main.subtitle': `
     An online resource hub offering data, insights, and tools to help policymakers, 
-    governments and development actors advance progress on digital public infrastructure.
+    governments and development actors to advance progress on digital public infrastructure.
   `,
   'dpi.landing.browseTopics': 'Browse <break></break> Topics',
   'dpi.landing.featuredCountries': 'Featured <break></break> Countries',
