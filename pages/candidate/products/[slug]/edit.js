@@ -25,7 +25,7 @@ const EditProductPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <ProductEdit slug={slug} locale={locale} />

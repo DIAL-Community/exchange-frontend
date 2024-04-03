@@ -25,7 +25,7 @@ const ResourceTopicPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <ResourceTopicDetail slug={slug} />

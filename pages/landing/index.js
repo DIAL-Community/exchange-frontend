@@ -1,18 +1,18 @@
+import { useCallback, useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import { useCallback, useEffect, useState } from 'react'
-import ClientOnly from '../../lib/ClientOnly'
-import Header from '../../components/shared/Header'
 import Footer from '../../components/shared/Footer'
+import Header from '../../components/shared/Header'
 import HeroCarousel from '../../components/shared/HeroCarousel'
-import ToolDefinition from '../../components/shared/ToolDefinition'
-import WizardDefinition from '../../components/shared/WizardDefinition'
 import MarketplaceDefinition from '../../components/shared/MarketplaceDefinition'
-import { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../../lib/intro'
 import Overview from '../../components/shared/Overview'
 import QueryNotification from '../../components/shared/QueryNotification'
+import ToolDefinition from '../../components/shared/ToolDefinition'
+import WizardDefinition from '../../components/shared/WizardDefinition'
+import ClientOnly from '../../lib/ClientOnly'
+import { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../../lib/intro'
 
 const LandingPage = () => {
   const { formatMessage } = useIntl()
@@ -33,7 +33,7 @@ const LandingPage = () => {
         title={format('app.title')}
         description={format('seo.description.about')}
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />

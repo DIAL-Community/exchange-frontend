@@ -25,7 +25,7 @@ const ResourcePage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='dpi'>
         <DpiHeader />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <ResourceDetail slug={slug} />

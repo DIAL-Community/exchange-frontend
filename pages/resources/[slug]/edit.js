@@ -25,7 +25,7 @@ const EditResourcePage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <ResourceEdit slug={slug} locale={locale} />
