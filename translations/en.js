@@ -2504,5 +2504,7 @@ export const en = {
   'dpi.resourceFinder.title': 'Resource finder',
   'dpi.resourceFinder.subtitle': `Quickly search and filter through our library to
     find resources relevant to a specific topic, country, or project.
-  `
+  `,
+
+  'ui.chatbot.header': 'Ask our Chatbot'
 }
