@@ -2506,5 +2506,6 @@ export const en = {
     find resources relevant to a specific topic, country, or project.
   `,
 
+  'ui.chatbot.question': 'Question',
   'ui.chatbot.header': 'Ask our Chatbot'
 }

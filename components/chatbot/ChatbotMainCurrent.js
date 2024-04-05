@@ -8,7 +8,7 @@ import { ToastContext } from '../../lib/ToastContext'
 import { CREATE_CHATBOT_CONVERSATION } from '../shared/mutation/chatbot'
 import { CHATBOT_CONVERSATIONS } from '../shared/query/chatbot'
 
-const ChatbotMainCurrent = ({ sessionIdentifier, setSessionIdentifier }) => {
+const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, setCurrentConversation }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -27,23 +27,26 @@ const ChatbotMainCurrent = ({ sessionIdentifier, setSessionIdentifier }) => {
   const [createChatbotConversation, { reset }] = useMutation(CREATE_CHATBOT_CONVERSATION, {
     refetchQueries: [{
       query: CHATBOT_CONVERSATIONS,
-      variables: { sessionIdentifier }
+      variables: {
+        currentIdentifier: currentConversation?.identifier ?? '',
+        sessionIdentifier: currentConversation?.sessionIdentifier ?? existingSessionIdentifier
+      }
     }],
     onCompleted: (data) => {
       const { createChatbotConversation: response } = data
       if (response.chatbotConversation && response.errors.length === 0) {
-        showSuccessMessage(format('toast.submit.success', { entity: format('ui.chatbot.label') }))
-        setSessionIdentifier(response.chatbotConversation.sessionIdentifier)
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.chatbot.question') }))
+        setCurrentConversation(response.chatbotConversation)
         setCurrentQuestion('')
         setMutating(false)
       } else {
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.chatbot.label') }))
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.chatbot.question') }))
         setMutating(false)
         reset()
       }
     },
     onError: () => {
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.chatbot.label') }))
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.chatbot.question') }))
       setMutating(false)
       reset()
     }
@@ -55,7 +58,10 @@ const ChatbotMainCurrent = ({ sessionIdentifier, setSessionIdentifier }) => {
       setMutating(true)
       // Send graph query to the backend. Set the base variables needed to perform update.
       const { userEmail, userToken } = user
-      const variables = { sessionIdentifier, chatbotQuestion: currentQuestion }
+      const variables = {
+        sessionIdentifier: currentConversation?.sessionIdentifier ?? existingSessionIdentifier,
+        chatbotQuestion: currentQuestion
+      }
 
       createChatbotConversation({
         variables,
@@ -80,7 +86,12 @@ const ChatbotMainCurrent = ({ sessionIdentifier, setSessionIdentifier }) => {
           className='text-sm grow'
           disabled={mutating || !user}
         />
-        <button type='button' onClick={submitQuestion} className='submit-button text-sm' disabled={mutating || !user}>
+        <button
+          type='button'
+          onClick={submitQuestion}
+          className='submit-button text-sm'
+          disabled={mutating || !user || !currentQuestion}
+        >
           {`${format('app.submit')}`}
           {mutating && <FaSpinner className='spinner ml-3' />}
         </button>

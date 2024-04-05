@@ -1,20 +1,36 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ChatbotMainCurrent from './ChatbotMainCurrent'
 import ChatbotMainHistory from './ChatbotMainHistory'
 
-const ChatbotMain = () => {
-  const [sessionIdentifier, setSessionIdentifier] = useState('')
+const ChatbotMain = ({ existingSessionIdentifier }) => {
+  const [currentText, setCurrentText] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const [currentConversation, setCurrentConversation] = useState()
+
+  useEffect(() => {
+    if (currentConversation) {
+      setCurrentText('')
+      setCurrentIndex(0)
+    }
+  }, [currentConversation])
 
   return (
     <div className='px-4 lg:px-8 xl:px-56 h-[65vh] bg-dial-angel'>
-      <div className='flex flex-col py-8 h-full'>
+      <div className='flex flex-col py-6 h-full'>
         <ChatbotMainHistory
-          sessionIdentifier={sessionIdentifier}
-          setSessionIdentifier={setSessionIdentifier}
+          existingSessionIdentifier={existingSessionIdentifier ?? ''}
+          currentText={currentText}
+          setCurrentText={setCurrentText}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          currentConversation={currentConversation}
+          setCurrentConversation={setCurrentConversation}
         />
         <ChatbotMainCurrent
-          sessionIdentifier={sessionIdentifier}
-          setSessionIdentifier={setSessionIdentifier}
+          existingSessionIdentifier={existingSessionIdentifier ?? ''}
+          currentConversation={currentConversation}
+          setCurrentConversation={setCurrentConversation}
         />
       </div>
     </div>
