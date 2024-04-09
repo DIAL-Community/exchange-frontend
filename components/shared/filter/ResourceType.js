@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { generateResourceTypeOptions } from '../form/options'
 import Select from '../form/Select'
 
-export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, placeholder }) => {
+export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, placeholder, inline=false }) => {
   const [showFilter, setShowFilter] = useState(false)
 
   const { formatMessage } = useIntl()
@@ -28,7 +28,21 @@ export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, plac
     setShowFilter(!showFilter)
   }
 
-  return (
+  return inline ? (
+    <Select
+      async
+      isBorderless
+      aria-label={format('filter.byEntity', { entity: format('ui.resource.type.label') })}
+      className='rounded text-sm text-dial-gray-dark my-auto'
+      cacheOptions
+      defaultOptions
+      loadOptions={loadOptions}
+      noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.type.label') })}
+      onChange={selectResourceType}
+      placeholder={controlPlaceholder}
+      value=''
+    />
+  ) :(
     <div className='flex flex-col gap-y-3'>
       <a href='#' className='flex' onClick={toggleFilter}>
         <div className='text-dial-stratos text-sm py-2'>

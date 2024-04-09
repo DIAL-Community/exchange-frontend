@@ -17,7 +17,7 @@ const EndorserMapPage = () => {
         description={format('seo.description.maps')}
       />
       <Header />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <MapContainer />
       </ClientOnly>
       <Footer />

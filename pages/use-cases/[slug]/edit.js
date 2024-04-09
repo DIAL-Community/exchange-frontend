@@ -25,7 +25,7 @@ const EditUseCasePage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <UseCaseEdit slug={slug} locale={locale} />

@@ -26,7 +26,7 @@ const UseCaseStepPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <UseCaseStepDetail slug={slug} stepSlug={stepSlug} />

@@ -104,11 +104,26 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
       </div>
     </div>
 
+  const displayDpiCard = () =>
+    <div className='flex flex-col gap-2'>
+      <div className='min-h-[12rem] flex items-center justify-center bg-white'>
+        <img
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+          alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+          className='object-contain max-h-[6rem]'
+        />
+      </div>
+      <div className='text-center text-white'>
+        {product.name}
+      </div>
+    </div>
+
   return (
     <div className='relative'>
       <Link href={`/products/${product.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
+        {displayType === DisplayType.DPI_CARD && displayDpiCard()}
       </Link>
       <div className='absolute top-2 right-2'>
         {isValidFn(dismissHandler) &&

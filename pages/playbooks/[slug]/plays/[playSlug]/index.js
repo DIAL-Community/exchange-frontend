@@ -25,7 +25,7 @@ const Play = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <PlaybookDetailProvider>
           <PlayDetail playSlug={playSlug} playbookSlug={slug} locale={locale} />

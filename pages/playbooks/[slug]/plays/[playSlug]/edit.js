@@ -24,7 +24,7 @@ function EditPlay() {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <PlayEdit
           playSlug={playSlug}
