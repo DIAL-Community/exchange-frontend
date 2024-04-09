@@ -1,16 +1,18 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
+import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_RESOURCE_TOPIC } from '../../shared/mutation/resourceTopic'
+import { RESOURCE_TOPIC_SEARCH_QUERY } from '../../shared/query/resourceTopic'
 import {
   PAGINATED_RESOURCE_TOPICS_QUERY, RESOURCE_TOPIC_PAGINATION_ATTRIBUTES_QUERY
 } from '../../shared/query/resourceTopic'
@@ -31,6 +33,20 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
 
   const router = useRouter()
   const { locale } = router
+
+  const { data: parentTopicsData, loading: loadingParentTopics } = useQuery(RESOURCE_TOPIC_SEARCH_QUERY, {
+    variables: { search: '', locale }
+  })
+
+  const parentTopicOptions = useMemo(
+    () =>
+      parentTopicsData?.resourceTopics?.map(({ id, slug, name }) => ({
+        label: name,
+        value: parseInt(id),
+        slug
+      })) ?? [],
+    [parentTopicsData]
+  )
 
   const [updateResourceTopic, { reset }] = useMutation(CREATE_RESOURCE_TOPIC, {
     refetchQueries: [{
@@ -66,6 +82,7 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
     handleSubmit,
     register,
     control,
+    setValue,
     formState: { errors }
   } = useForm({
     mode: 'onSubmit',
@@ -73,9 +90,19 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
     shouldUnregister: true,
     defaultValues: {
       name: resourceTopic?.name,
-      description: resourceTopic?.resourceTopicDescription?.description
+      description: resourceTopic?.resourceTopicDescription?.description,
+      parentTopic: resourceTopic?.parentTopic?.id
     }
   })
+
+  useEffect(
+    () => {
+      setValue(
+        'parentTopic',
+        parentTopicOptions.find(({ value }) => value === resourceTopic?.parentTopic?.id) | null
+      )},
+    [parentTopicOptions, setValue, resourceTopic?.parentTopic?.id]
+  )
 
   const doUpsert = async (data) => {
     if (user) {
@@ -85,13 +112,16 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
       const { userEmail, userToken } = user
       const {
         name,
-        description
+        description,
+        parentTopic
       } = data
+
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
-        description
+        description,
+        parentTopicId: parentTopic?.value
       }
 
       updateResourceTopic({
@@ -111,7 +141,7 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
     router.push(`/${locale}/resource-topics/${slug}`)
   }
 
-  return loadingUserSession
+  return loadingUserSession|| loadingParentTopics
     ? <Loading />
     : isAdminUser || isEditorUser
       ? (
@@ -154,6 +184,28 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
                   rules={{ required: format('validation.required') }}
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field text-dial-blueberry' htmlFor='parentTopic'>
+                  {format('ui.resourceTopic.parentTopic')}
+                </label>
+                <Controller
+                  name='parentTopic'
+                  control={control}
+                  defaultValue={parentTopicOptions.find(({ id }) => id === resourceTopic?.parentTopic?.id)}
+                  render={({ field }) => (
+                    <Select
+                      id='parentTopic'
+                      {...field}
+                      isSearch
+                      isBorderless
+                      options={parentTopicOptions}
+                      placeholder={format('ui.resourceTopic.parentTopic')}
+                      isInvalid={errors.parentTopic}
+                    />
+                  )}
+                />
+                {errors.parentTopic && <ValidationError value={errors.parentTopic?.message} />}
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>

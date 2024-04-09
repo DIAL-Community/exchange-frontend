@@ -29,7 +29,7 @@ const RepositoryListPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Loading />
         <Footer />

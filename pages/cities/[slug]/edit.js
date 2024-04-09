@@ -25,7 +25,7 @@ const EditCityPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <CityEdit slug={slug} locale={locale} />

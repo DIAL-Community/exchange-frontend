@@ -24,7 +24,7 @@ const ProductRepository = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <ProductRepositoryDetail productSlug={slug} repositorySlug={repositorySlug} />
         <Footer />

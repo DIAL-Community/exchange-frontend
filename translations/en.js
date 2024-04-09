@@ -107,7 +107,7 @@ export const en = {
   'header.admin.deploys': 'Deploys',
   'header.newsletter': 'Join Our Newsletter',
   'header.marketplace': 'Marketplace',
-  'header.tools': 'Tools',
+  'header.catalog': 'Tools',
   'header.otherTools': 'Other Tools',
   'header.knowledgeHub': 'Knowledge Hub',
   'header.dialWebsite': 'DIAL Website',
@@ -1819,7 +1819,7 @@ export const en = {
     and how it can be used to support the deployment of digital technologies.
   `,
 
-  'header.blogs': 'Blogs / Articles',
+  'header.insights': 'Insights',
 
   'ui.resource.label': 'Resource',
   'ui.resource.header': 'Resources',
@@ -2221,6 +2221,13 @@ export const en = {
   `,
   'ui.wizard.launch': 'Launch Recommendations Wizard',
 
+  'ui.dpi.wizard.title': 'Get Started',
+  'ui.dpi.wizard.tagLine': `
+    Our Recommendations Wizard can help get you started to fnd you a curated list of resources, 
+    tailored to wherever you are in a project lifecycle — ideation, planning, implementation, 
+    or monitoring/evaluation.
+  `,
+
   'toast.submit.success': '{entity} submitted successfully.',
   'toast.submit.failure': 'Failed to submit {entity}.',
   'toast.delete.success': '{entity} deleted successfully.',
@@ -2399,11 +2406,11 @@ export const en = {
   'ui.region.name.label': 'Region Name',
   'ui.region.description.label': 'Region Description',
 
-  'ui.hub.ribbon.subTagLine': `
+  'ui.resources.ribbon.subTagLine': `
     We have created – and curated – a diverse range of resources designed to help those working at the
     forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
   `,
-  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+  'ui.resources.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
 
   'ui.resource.toggle.resourceUrl': 'Resource URL',
   'ui.resource.toggle.resourceFile': 'Resource File',
@@ -2415,7 +2422,7 @@ export const en = {
   'ui.resource.author.header': 'Authors',
   'ui.resource.author.name': 'Author\'s Name',
   'ui.resource.author.email': 'Author\'s Email',
-  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+  'ui.resources.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
 
   'ui.sync.label': 'Sync',
   'ui.sync.header': 'Syncs',
@@ -2443,6 +2450,8 @@ export const en = {
   
   'ui.resourceTopic.name': 'Resource Topic Name',
   'ui.resourceTopic.description': 'Resource Topic Description',
+  'ui.resourceTopic.parentTopic': 'Parent Topic',
+  'ui.resourceTopic.subTopics': 'Sub-Topics',
 
   'ui.resource.toggle.searchSourceStructure': 'Search Source',
   'ui.resource.toggle.createSourceStructure': 'Create Source',
@@ -2454,4 +2463,49 @@ export const en = {
   'ui.source.name': 'Source Name',
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
+
+  'dpi.header.title': 'Resources for DPI',
+  'dpi.header.subtitle': 'the Digital Impact Alliance',
+  'dpi.footer.connect.subtitle': `
+    Sign up for our newsletter to learn more about the Digital Public Infrastructure
+    and how you can be involved.
+  `,
+
+  'dpi.header.topic': 'Topics',
+  'dpi.header.country': 'Countries',
+  'dpi.header.resourceFinder': 'Resource finder',
+
+  'dpi.wizard.title': 'Get Started',
+  'dpi.wizard.tagLine': `
+    Our Recommendations Wizard can help get you started to find you a curated
+    list of resources, tailored to wherever you are in a project lifecycle —
+    ideation, planning, implementation, or monitoring/evaluation.
+  `,
+  
+  'dpi.breadcrumb.country': 'Country Profiles',
+  'dpi.breadcrumb.topic': 'Research by Topics',
+
+  'dpi.landing.main.title': 'Resources for DPI',
+  'dpi.landing.main.subtitle': `
+    An online resource hub offering data, insights, and tools to help policymakers, 
+    governments and development actors to advance progress on digital public infrastructure.
+  `,
+  'dpi.landing.browseTopics': 'Browse <break></break> Topics',
+  'dpi.landing.featuredCountries': 'Featured <break></break> Countries',
+  'dpi.topic.subtitle': `
+    Topics showcases a series of knowledge products published by DIAL and its partners
+    on key issues surrounding digital public infrastructure.
+  `,
+  'dpi.country.subtitle': `
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium ex lacus,
+    lacinia vestibulum turpis interdum sit amet.
+  `,
+  'dpi.topic.reports': 'Reports and Articles',
+  'dpi.resourceFinder.title': 'Resource finder',
+  'dpi.resourceFinder.subtitle': `Quickly search and filter through our library to
+    find resources relevant to a specific topic, country, or project.
+  `,
+
+  'ui.chatbot.question': 'Question',
+  'ui.chatbot.header': 'Ask our Chatbot'
 }

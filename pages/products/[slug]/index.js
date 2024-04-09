@@ -25,7 +25,7 @@ const ProductPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <ProductDetail slug={slug} />

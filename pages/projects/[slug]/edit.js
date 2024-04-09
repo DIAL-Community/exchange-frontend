@@ -25,7 +25,7 @@ const EditProjectPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <ProjectEdit slug={slug} locale={locale} />

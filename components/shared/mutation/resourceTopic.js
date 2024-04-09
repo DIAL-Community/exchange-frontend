@@ -16,16 +16,23 @@ export const CREATE_RESOURCE_TOPIC = gql`
     $name: String!
     $slug: String!
     $description: String
+    $parentTopicId: ID
   ) {
     createResourceTopic(
       name: $name
       slug: $slug
       description: $description
+      parentTopicId: $parentTopicId
     ) {
       resourceTopic {
         id
         name
         slug
+        parentTopic {
+          id
+          name
+          slug
+        }
         resourceTopicDescription {
           id
           description

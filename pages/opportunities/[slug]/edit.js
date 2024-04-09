@@ -25,7 +25,7 @@ const EditOpportunityPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <OpportunityEdit slug={slug} locale={locale} />

@@ -28,7 +28,7 @@ const CreateProject = () => {
   return (
     <>
       <Header />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <ProjectForm storefront={data?.storefront} />
       </ClientOnly>
       <Footer />

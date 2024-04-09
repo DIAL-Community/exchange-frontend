@@ -1,6 +1,6 @@
-import { useIntl } from 'react-intl'
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import { useCallback } from 'react'
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
+import { useIntl } from 'react-intl'
 
 export const ABOUT_MENU = 'menu-about'
 export const ADMIN_MENU = 'menu-admin'
@@ -8,7 +8,7 @@ export const HELP_MENU = 'menu-help'
 export const LANGUAGE_MENU = 'menu-language'
 export const MARKETPLACE_MENU = 'menu-marketplace'
 export const RESOURCE_MENU = 'menu-resource'
-export const TOOL_MENU = 'menu-tool'
+export const CATALOG_MENU = 'menu-catalog'
 export const USER_MENU = 'menu-user'
 
 export const NONE = ''

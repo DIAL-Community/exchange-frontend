@@ -1367,7 +1367,7 @@ export const pt = {
 
   "resource.subHeader": "Estes artigos e blogues fornecem informações sobre o Digital Impact Exchangel e sobre a forma como este pode ser utilizado para apoiar a implementação de tecnologias digitais.",
 
-  "header.blogs": "Blogues / Artigos",
+  "header.insights": "Blogues / Artigos",
 
   "resource.link": "Localização dos recursos",
   "resource.visitLink": "Recurso de visita",
