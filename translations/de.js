@@ -95,7 +95,7 @@ export const de = {
   "header.admin.deploys": "Nutzt",
   "header.newsletter": "Abonniere unseren Newsletter",
   "header.marketplace": "Marktplatz",
-  "header.tools": "Tools",
+  "header.catalog": "Tools",
   "header.supportingTools": "Unterstützende Tools",
 
   "footer.text.firstLine": "Die Digital Impact Alliance ist ein Zusammenschluss von Akteuren, die zu den weltweit aktivsten digitalen Entwicklern gehören. Wir sind dankbar für die Unterstützung unserer Gründungspartner.",
@@ -1356,7 +1356,7 @@ export const de = {
 
   "ui.resource.subHeader": "Diese Artikel und Blogs bieten Informationen über den Digital Impact Exchange und wie er zur Unterstützung des Einsatzes digitaler Technologien genutzt werden kann.",
 
-  "header.blogs": "Blogs / Artikel",
+  "header.insights": "Blogs / Artikel",
 
   "ui.resource.link": "Ressourcenstandort",
   "ui.resource.visitLink": "Besuche die Ressource",

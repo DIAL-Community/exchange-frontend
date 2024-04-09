@@ -29,7 +29,7 @@ const UseCaseStepListPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Loading />
         <Footer />

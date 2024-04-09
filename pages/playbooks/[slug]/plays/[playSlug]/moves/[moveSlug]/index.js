@@ -24,7 +24,7 @@ const Move = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <MoveDetail
           moveSlug={moveSlug}

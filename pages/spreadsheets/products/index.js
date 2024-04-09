@@ -18,7 +18,7 @@ const ProductSpreadsheet = () => {
     <>
       <QueryNotification />
       <Header />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <div style={{ minHeight: '70vh' }}>
           {loadingUserSession ?
             <Loading /> :

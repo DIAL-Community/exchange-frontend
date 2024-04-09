@@ -1367,7 +1367,7 @@ export const cs = {
 
   "resource.subHeader": "Tento článek a blogy poskytují informace o  Digital Impact Exchange a o tom, jak ji lze využít k podpoře zavádění digitálních technologií.",
 
-  "header.blogs": "Blogy / články",
+  "header.insights": "Blogy / články",
 
   "resource.link": "Umístění zdroje",
   "resource.visitLink": "Navštívit zdroj",

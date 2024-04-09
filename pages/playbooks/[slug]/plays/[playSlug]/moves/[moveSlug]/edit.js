@@ -24,7 +24,7 @@ const EditMove = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <MoveEdit
           moveSlug={moveSlug}

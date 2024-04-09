@@ -18,7 +18,7 @@ const LandingPage = () => {
         title={format('app.title')}
         description={format('seo.description.about')}
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />

@@ -25,7 +25,7 @@ const EditCountryPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <CountryEdit slug={slug} locale={locale} />

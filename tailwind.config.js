@@ -19,6 +19,9 @@ module.exports = {
         'dial-iris-blue': {
           DEFAULT: '#485cd5'
         },
+        'dial-deep-purple': {
+          DEFAULT: '#2e3192'
+        },
         'dial-slate': {
           100: '#f1f5f9',
           200: '#e2e8f0',

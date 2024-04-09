@@ -213,7 +213,7 @@ const EndorserPageInformation = () => {
 
 const EndorserPage = () => {
   return (
-    <ClientOnly>
+    <ClientOnly clientTenant='default'>
       <EndorserPageInformation />
     </ClientOnly>
   )

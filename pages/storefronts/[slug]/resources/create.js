@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import ResourceForm from '../../../../components/hub/fragments/ResourceForm'
+import ResourceForm from '../../../../components/resources/fragments/ResourceForm'
 import { Error, Loading, NotFound } from '../../../../components/shared/FetchStatus'
 import Footer from '../../../../components/shared/Footer'
 import Header from '../../../../components/shared/Header'
@@ -28,7 +28,7 @@ const CreateResource = () => {
   return (
     <>
       <Header />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <ResourceForm storefront={data?.storefront} />
       </ClientOnly>
       <Footer />

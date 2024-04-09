@@ -25,7 +25,7 @@ const BuildingBlockPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <BuildingBlockDetail slug={slug} />

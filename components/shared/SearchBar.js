@@ -1,5 +1,5 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { SearchInput } from './form/SearchInput'
 
 const SearchBar = ({ search, setSearch, mobileFilter }) => {
@@ -22,7 +22,7 @@ const SearchBar = ({ search, setSearch, mobileFilter }) => {
   return (
     <div className='flex flex-row gap-3'>
       {mobileFilter}
-      <div className='ml-auto w-full max-w-prose'>
+      <div className='ml-auto w-full'>
         <SearchInput
           value={searchTerm}
           onChange={handleChange}

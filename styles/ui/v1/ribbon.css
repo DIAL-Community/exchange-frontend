@@ -1,11 +1,12 @@
 :root {
-  --tab-height: 52px;
-  --header-height: 92px;
+  --ui-header-height: 92px;
 
   --ribbon-outer-height: 8.5rem;
   --ribbon-inner-height: 6rem;
   --ribbon-difference: calc(var(--ribbon-outer-height) - var(--ribbon-inner-height));
 
+  --tab-height: 52px;
+  
   --playbook-header-height: 84px;
 
   --spacer-padding: 0.75rem;
@@ -21,31 +22,31 @@
 
 .ribbon-outer {
   position: sticky;
-  top: calc(var(--header-height) - var(--ribbon-difference));
+  top: calc(var(--ui-header-height) - var(--ribbon-difference));
   height: var(--ribbon-outer-height);
 }
 
 .ribbon-inner {
   position: sticky;
-  top: var(--header-height);
+  top: var(--ui-header-height);
   height: var(--ribbon-inner-height);
 }
 
 .sticky-under-ribbon {
   position: sticky;
-  top: calc(var(--header-height) + var(--ribbon-inner-height));
+  top: calc(var(--ui-header-height) + var(--ribbon-inner-height));
 
   padding-top: var(--spacer-padding);
 }
 
 .sticky-under-tab {
   position: sticky;
-  top: calc(var(--header-height) + var(--ribbon-inner-height));
+  top: calc(var(--ui-header-height) + var(--ribbon-inner-height));
 
   padding-top: var(--spacer-padding);
 }
 
 .ribbon-detail {
   position: sticky;
-  top: var(--header-height)
+  top: var(--ui-header-height)
 }

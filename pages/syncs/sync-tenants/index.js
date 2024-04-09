@@ -22,7 +22,7 @@ const SyncPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='lg:px-8 xl:px-56 flex flex-col'>

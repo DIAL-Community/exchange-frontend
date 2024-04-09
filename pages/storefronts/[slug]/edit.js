@@ -25,7 +25,7 @@ const EditStorefrontPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <StorefrontEdit slug={slug} locale={locale} />

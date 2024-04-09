@@ -29,7 +29,7 @@ const RubricCategoryIndicatorsPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Loading />
         <Footer />

@@ -25,7 +25,7 @@ const EditRubricCategoryPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <RubricCategoryEdit categorySlug={slug} locale={locale} />

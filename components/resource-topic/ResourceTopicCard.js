@@ -22,7 +22,7 @@ const ResourceTopicCard = ({ displayType, index, resourceTopic, dismissHandler }
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.resource.header')} ({resourceTopic.resource?.length ?? 0})
+              {format('ui.resource.header')} ({resourceTopic.resources?.length ?? 0})
             </div>
           </div>
         </div>

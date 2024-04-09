@@ -273,7 +273,7 @@ const Content = () => {
 
 const Covid19Resources = () => (
   <>
-    <ClientOnly>
+    <ClientOnly clientTenant='default'>
       <QueryNotification />
       <Header />
       <Content />

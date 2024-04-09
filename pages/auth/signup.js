@@ -138,7 +138,7 @@ const SignUp = () => {
     <>
       <Header isOnAuthPage />
       <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
-      <ClientOnly>
+      <ClientOnly clientTenant='default'>
         <div className='bg-dial-gray-dark min-h-[70vh]'>
           <div className='pt-4 pb-8 text-dial-sapphire'>
             <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
