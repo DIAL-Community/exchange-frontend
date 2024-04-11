@@ -12,7 +12,7 @@ const DownloadPdf = () => {
   const { locale } = router
 
   return (
-    <ClientOnly clientTenant='default'>
+    <ClientOnly clientTenants={['default', 'fao']}>
       <PlaybookPdf locale={locale} />
     </ClientOnly>
   )

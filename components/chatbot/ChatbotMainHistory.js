@@ -12,8 +12,6 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
 
   const AVATAR_CSS_TEXT = 'rounded-full w-8 h-8 flex items-center justify-center'
 
-  console.log('Here')
-
   const { query: { uuid } } = useRouter()
 
   const { loading, error, data } = useQuery(CHATBOT_CONVERSATIONS, {

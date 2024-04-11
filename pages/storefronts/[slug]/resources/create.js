@@ -28,7 +28,7 @@ const CreateResource = () => {
   return (
     <>
       <Header />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <ResourceForm storefront={data?.storefront} />
       </ClientOnly>
       <Footer />
