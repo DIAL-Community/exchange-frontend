@@ -18,7 +18,7 @@ const DatasetSpreadsheet = () => {
     <>
       <QueryNotification />
       <Header />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <div style={{ minHeight: '70vh' }}>
           {loadingUserSession ?
             <Loading /> :

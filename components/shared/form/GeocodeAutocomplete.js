@@ -22,12 +22,8 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
 
   const fetchLocationOptions = async (searchText) => {
 
-    console.log('ARCGIS Token: ', authentication)
-
     if (searchText !== '') {
       const response = await suggest(searchText, { authentication, params: { countryCode: countryCodes } })
-
-      console.log('ARCGIS Response: ', response)
 
       return response?.suggestions?.map(({ text, magicKey }) => ({
         value: magicKey,

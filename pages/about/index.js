@@ -18,7 +18,7 @@ const AboutPage = () => {
         title={format('header.about')}
         description={format('seo.description.about')}
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <QueryNotification />
         <Header />
         <div className='flex flex-col'>

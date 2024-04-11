@@ -24,7 +24,7 @@ const CreatePlay = () => {
           )
         }
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <Header />
         <PlayCreate
           playbookSlug={slug}

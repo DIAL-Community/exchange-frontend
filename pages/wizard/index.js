@@ -18,7 +18,7 @@ const Wizard = () => {
         description={format('seo.description.about')}
       />
       <Header />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <WizardContextProvider>
           <WizardMain />
         </WizardContextProvider>

@@ -11,7 +11,7 @@ const EmbeddedPlaybook = () => {
 
   return (
     <>
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <EmbeddedHeader />
         <PlaybookDetailProvider>
           <PlaybookDetail slug={slug} locale={locale} />
