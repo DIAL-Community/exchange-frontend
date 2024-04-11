@@ -24,7 +24,7 @@ const CreateMove = () => {
           )
         }
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <Header />
         <MoveCreate
           playSlug={playSlug}

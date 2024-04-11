@@ -25,7 +25,7 @@ const EditRegionPage = () => {
           )
         }
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <RegionEdit slug={slug} locale={locale} />

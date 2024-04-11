@@ -27,7 +27,7 @@ const ResourceTopicListPage = () => {
           )
         }
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={['default', 'fao']}>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />

@@ -16,7 +16,7 @@ const DpiCountriesPage = () => {
         title={format('app.title')}
         description={format('seo.description.about')}
       />
-      <ClientOnly clientTenant='dpi'>
+      <ClientOnly clientTenants={['dpi']}>
         <QueryNotification />
         <DpiHeader />
         <DpiCountries />
