@@ -10,7 +10,7 @@ import TagRibbon from '../../components/tag/TagRibbon'
 import TagTabNav from '../../components/tag/TagTabNav'
 import TagMain from '../../components/tag/TagMain'
 
-const TagListPage = () => {
+const TagListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -27,7 +27,7 @@ const TagListPage = () => {
           )
         }
       />
-      <ClientOnly clientTenants={['default', 'fao']}>
+      <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
@@ -40,6 +40,14 @@ const TagListPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default TagListPage

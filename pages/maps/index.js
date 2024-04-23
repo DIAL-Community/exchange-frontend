@@ -7,7 +7,7 @@ import Header from '../../components/shared/Header'
 import { Loading } from '../../components/shared/FetchStatus'
 import Footer from '../../components/shared/Footer'
 
-const MapListPage = () => {
+const MapListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -28,13 +28,21 @@ const MapListPage = () => {
           )
         }
       />
-      <ClientOnly clientTenants={['default', 'fao']}>
+      <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <Loading />
         <Footer />
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default MapListPage

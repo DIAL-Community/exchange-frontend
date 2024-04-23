@@ -10,7 +10,7 @@ import RegionRibbon from '../../components/region/RegionRibbon'
 import RegionTabNav from '../../components/region/RegionTabNav'
 import RegionMain from '../../components/region/RegionMain'
 
-const RegionListPage = () => {
+const RegionListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -27,7 +27,7 @@ const RegionListPage = () => {
           )
         }
       />
-      <ClientOnly clientTenants={['default', 'fao']}>
+      <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
@@ -40,6 +40,14 @@ const RegionListPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default RegionListPage

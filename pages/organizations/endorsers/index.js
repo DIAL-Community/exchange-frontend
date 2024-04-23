@@ -211,12 +211,20 @@ const EndorserPageInformation = () => {
   )
 }
 
-const EndorserPage = () => {
+const EndorserPage = ({ defaultTenants }) => {
   return (
-    <ClientOnly clientTenants={['default', 'fao']}>
+    <ClientOnly clientTenants={defaultTenants}>
       <EndorserPageInformation />
     </ClientOnly>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default EndorserPage
