@@ -28,12 +28,4 @@ const DpiPage = ({ dpiTenants }) => {
   )
 }
 
-export async function getServerSideProps() {
-  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
-  const { dpiTenants } = await response.json()
-
-  // Passing data to the page as props
-  return { props: { dpiTenants } }
-}
-
 export default DpiPage
