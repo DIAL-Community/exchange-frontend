@@ -1,17 +1,17 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import ProductCard from '../../../product/ProductCard'
-import { DisplayType } from '../../../utils/constants'
-import { fetchSelectOptions } from '../../../utils/search'
-import Pill from '../../../shared/form/Pill'
-import Select from '../../../shared/form/Select'
-import EditableSection from '../../../shared/EditableSection'
-import { PRODUCT_SEARCH_QUERY } from '../../../shared/query/product'
-import { UPDATE_USE_CASE_STEP_PRODUCTS } from '../../../shared/mutation/useCaseStep'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
+import ProductCard from '../../../product/ProductCard'
+import EditableSection from '../../../shared/EditableSection'
+import Pill from '../../../shared/form/Pill'
+import Select from '../../../shared/form/Select'
+import { UPDATE_USE_CASE_STEP_PRODUCTS } from '../../../shared/mutation/useCaseStep'
+import { PRODUCT_SEARCH_QUERY } from '../../../shared/query/product'
+import { DisplayType } from '../../../utils/constants'
+import { fetchSelectOptions } from '../../../utils/search'
 
 const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -117,6 +117,11 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
       {format('ui.product.header')}
     </div>
 
+  const sectionDisclaimer =
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.useCaseStep.overview.product')}
+    </div>
+
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
@@ -151,6 +156,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
     <EditableSection
       canEdit={canEdit}
       sectionHeader={sectionHeader}
+      sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

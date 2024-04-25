@@ -2497,8 +2497,7 @@ export const en = {
     on key issues surrounding digital public infrastructure.
   `,
   'dpi.country.subtitle': `
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium ex lacus,
-    lacinia vestibulum turpis interdum sit amet.
+    Find tools and resources related to how DPI has been implemented in a specific country.
   `,
   'dpi.topic.reports': 'Reports and Articles',
   'dpi.resourceFinder.title': 'Resource finder',
@@ -2507,5 +2506,50 @@ export const en = {
   `,
 
   'ui.chatbot.question': 'Question',
-  'ui.chatbot.header': 'Ask our Chatbot'
+  'ui.chatbot.header': 'Ask our Chatbot',
+
+  'ui.product.overview.pricing': `
+    Pricing information is only available for commercial software if the product team has provided information.
+  `,
+  'ui.product.overview.sdg': 'This product is mapped to the following SDGs.',  
+  'ui.product.overview.buildingBlock': `
+    DIAL works closely with the GovStack to map digital platforms with key Building Block functionalities.
+    Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative
+    examples of how these tools may support building block functionalities.
+  `,
+  'ui.product.overview.resource': 'Here are some additional resources that relate to this product.',
+  'ui.product.overview.organization': `
+    The following organizations support the development and / or implementation of this product.
+  `, 
+  'ui.product.overview.country': 'This product is deployed in the following countries.',
+  'ui.product.overview.repository': `
+    This information is retrieved from the location where software code and related files are stored.
+    Only the most frequently maintained repositories are listed here. For more information, visit GitHub.
+  `,
+  'ui.product.overview.source': 'The original provider of this information.',
+  'ui.product.overview.interoperable': 'Other products that can work together or interact seamlessly with this product.',
+  'ui.product.overview.included': 'Other products that are included or bundled together in this product.',
+  'ui.product.overview.maturity': `
+    These maturity scores have been sourced from organizations such as Digital Square and GitHub.
+    These maturity scores are not an endorsement, but a reflection of ratings given by various
+    organizations and collected via automated methods. For more information visit the Exchange Documentation.
+  `,
+
+  'ui.buildingBlock.overview.product': 'Products that fulfil the technical specifications of this building block.',
+
+  'ui.useCase.overview.useCaseStep': 'List of individual actions or task performed within this use case.',
+  'ui.useCase.overview.sdg': 'This use case is mapped to the following SDGs.', 
+  'ui.useCase.overview.buildingBlock': `
+    DIAL works closely with GovStack to map use cases with Building Blocks. All building blocks required
+    for this use case are listed below. Foundational building blocks (also known as Digital Public Infrastructure
+    appear below the dotted line).
+  `, 
+  'ui.useCaseStep.overview.dataset': 'The following datasets are associated with this use case.',
+  'ui.useCaseStep.overview.product': 'The following products are associated with this use case.', 
+  'ui.useCaseStep.overview.buildingBlock': `
+    DIAL works closely with GovStack to map use case steps with Building Blocks. All building blocks
+    required for the use case are listed below. Only the building blocks required in this step are
+    highlighted. Foundational building blocks (also known as Digital Public Infrastructure appear
+    below the dotted line).
+  ` 
 }

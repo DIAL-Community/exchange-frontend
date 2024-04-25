@@ -111,6 +111,12 @@ query Country($slug: String!) {
       slug
       imageFile
     }
+    dpiProducts {
+      id
+      name
+      slug
+      imageFile
+    }
   }
 }
 `

@@ -1,18 +1,18 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import SdgCard from '../../sdg/SdgCard'
-import { DisplayType } from '../../utils/constants'
-import Select from '../../shared/form/Select'
-import { fetchSelectOptions } from '../../utils/search'
-import Pill from '../../shared/form/Pill'
-import EditableSection from '../../shared/EditableSection'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
+import SdgCard from '../../sdg/SdgCard'
+import EditableSection from '../../shared/EditableSection'
 import { generateMappingStatusOptions } from '../../shared/form/options'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
 import { UPDATE_PRODUCT_SDGS } from '../../shared/mutation/product'
 import { SDG_SEARCH_QUERY } from '../../shared/query/sdg'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
 const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -143,6 +143,11 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
       {format('ui.sdg.longHeader')}
     </div>
 
+  const sectionDisclaimer =
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.product.overview.sdg')}
+    </div>
+
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2 mb-2'>
@@ -187,6 +192,7 @@ const ProductDetailSdgs = ({ product, canEdit, headerRef }) => {
     <EditableSection
       canEdit={canEdit}
       sectionHeader={sectionHeader}
+      sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

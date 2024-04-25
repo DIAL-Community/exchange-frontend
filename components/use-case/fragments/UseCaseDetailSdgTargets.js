@@ -1,17 +1,17 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import SdgTargetCard from '../../sdg-target/SdgTargetCard'
-import { DisplayType } from '../../utils/constants'
-import Select from '../../shared/form/Select'
-import { fetchSelectOptions } from '../../utils/search'
-import Pill from '../../shared/form/Pill'
-import EditableSection from '../../shared/EditableSection'
-import { UPDATE_USE_CASE_SDG_TARGETS } from '../../shared/mutation/useCase'
-import { SDG_TARGET_SEARCH_QUERY } from '../../shared/query/sdgTarget'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
+import SdgTargetCard from '../../sdg-target/SdgTargetCard'
+import EditableSection from '../../shared/EditableSection'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import { UPDATE_USE_CASE_SDG_TARGETS } from '../../shared/mutation/useCase'
+import { SDG_TARGET_SEARCH_QUERY } from '../../shared/query/sdgTarget'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
 const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -124,6 +124,11 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
       {format('ui.sdgTarget.header')}
     </div>
 
+  const sectionDisclaimer =
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.useCase.overview.sdg')}
+    </div>
+
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
@@ -161,6 +166,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
     <EditableSection
       canEdit={canEdit}
       sectionHeader={sectionHeader}
+      sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

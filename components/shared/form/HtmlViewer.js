@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { Editor } from '@tinymce/tinymce-react'
 import classNames from 'classnames'
+import parse from 'html-react-parser'
 import { FaSpinner } from 'react-icons/fa6'
+import { Editor } from '@tinymce/tinymce-react'
 
 export const HtmlViewer = ({ initialContent, editorId, className, fontSize, lineHeight }) => {
   const editorRef = useRef(null)
@@ -12,6 +13,9 @@ export const HtmlViewer = ({ initialContent, editorId, className, fontSize, line
       {loading && (
         <FaSpinner size='2em' className='absolute text-lg inset-x-1/2 top-10 spinner' />
       )}
+      <div className='html-react-parser-viewer text-base'>
+        {initialContent && parse(initialContent)}
+      </div>
       <div className={classNames(className, 'html-viewer')}>
         <Editor
           id={editorId || 'tinymce-editor'}

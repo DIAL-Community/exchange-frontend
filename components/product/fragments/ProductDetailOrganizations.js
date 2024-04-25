@@ -1,17 +1,17 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { UPDATE_PRODUCT_ORGANIZATIONS } from '../../shared/mutation/product'
-import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
-import OrganizationCard from '../../organization/OrganizationCard'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
+import OrganizationCard from '../../organization/OrganizationCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
 import Select from '../../shared/form/Select'
+import { UPDATE_PRODUCT_ORGANIZATIONS } from '../../shared/mutation/product'
+import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
 import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
 const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -120,8 +120,8 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
     </div>
 
   const sectionDisclaimer =
-    <div className='text-sm italic text-dial-stratos'>
-      {format('ui.organization.disclaimer', { entity: format('ui.product.label') })}
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.product.overview.organization')}
     </div>
 
   const editModeBody =
