@@ -9,7 +9,7 @@ import Footer from '../../../components/shared/Footer'
 import PlaybookEdit from '../../../components/playbook/PlaybookEdit'
 import { PlaybookDetailProvider } from '../../../components/playbook/context/PlaybookDetailContext'
 
-function EditPlaybook () {
+const EditPlaybook = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -26,7 +26,7 @@ function EditPlaybook () {
           )
         }
       />
-      <ClientOnly clientTenants={['default', 'fao']}>
+      <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <PlaybookDetailProvider>
@@ -36,6 +36,14 @@ function EditPlaybook () {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default EditPlaybook

@@ -6,7 +6,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 import Footer from '../../../components/shared/Footer'
 import MapContainer from '../../../components/maps/MapContainer'
 
-const ProjectMapPage = () => {
+const ProjectMapPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
@@ -17,12 +17,20 @@ const ProjectMapPage = () => {
         description={format('seo.description.maps')}
       />
       <Header />
-      <ClientOnly clientTenants={['default', 'fao']}>
+      <ClientOnly clientTenants={defaultTenants}>
         <MapContainer />
       </ClientOnly>
       <Footer />
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default ProjectMapPage

@@ -15,7 +15,7 @@ const DpiCountryProducts = ({ country }) => {
 
   useEffect(() => {
     setDisplayedProducts(
-      country.products.slice(
+      country.dpiProducts.slice(
         0,
         DEFAULT_PAGE_SIZE
       )
@@ -26,7 +26,7 @@ const DpiCountryProducts = ({ country }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
     setPageNumber(destinationPage)
     setDisplayedProducts(
-      country.products.slice(
+      country.dpiProducts.slice(
         destinationPage * DEFAULT_PAGE_SIZE,
         (destinationPage + 1) * DEFAULT_PAGE_SIZE
       )
@@ -46,7 +46,7 @@ const DpiCountryProducts = ({ country }) => {
         </div>
         <DpiPagination
           pageNumber={pageNumber}
-          totalCount={country.products.length}
+          totalCount={country.dpiProducts.length}
           defaultPageSize={DEFAULT_PAGE_SIZE}
           onClickHandler={onClickHandler}
           theme='light'

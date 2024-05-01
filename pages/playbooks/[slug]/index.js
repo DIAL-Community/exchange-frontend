@@ -9,7 +9,7 @@ import Footer from '../../../components/shared/Footer'
 import PlaybookDetail from '../../../components/playbook/PlaybookDetail'
 import { PlaybookDetailProvider } from '../../../components/playbook/context/PlaybookDetailContext'
 
-const Playbook = () => {
+const Playbook = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -26,7 +26,7 @@ const Playbook = () => {
           )
         }
       />
-      <ClientOnly clientTenants={['default', 'fao']}>
+      <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <PlaybookDetailProvider>
@@ -36,6 +36,14 @@ const Playbook = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default Playbook

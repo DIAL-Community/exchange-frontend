@@ -33,6 +33,9 @@ const ProductSource = ({ product, headerRef }) => {
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.source')}
       </div>
+      <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+        {format('ui.product.overview.source')}
+      </div>
       <div className='flex flex-col gap-3'>
         {origins?.length <= 0 &&
           <div className='text-sm'>
@@ -118,6 +121,9 @@ const ProductInteroperable = ({ product, headerRef }) => {
     <div className='flex flex-col gap-y-3' ref={headerRef}>
       <div className='text-lg font-semibold text-dial-meadow'>
         {format('product.interoperable')}
+      </div>
+      <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+        {format('ui.product.overview.interoperable')}
       </div>
       {product.interoperatesWith.length > 0
         ? (
@@ -264,6 +270,9 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           <div className='text-xl font-semibold text-dial-meadow pb-3' ref={pricingRef}>
             {format('ui.product.pricing.title')}
           </div>
+          <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+            {format('ui.product.overview.pricing')}
+          </div>
           <div className='text-sm flex flex-row gap-2'>
             {format('ui.product.pricing.hostingModel')}:
             <div className='font-semibold inline'>
@@ -332,10 +341,11 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             headerRef={countryRef}
           />
         </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='text-dial-meadow text-xl font-semibold'>
           {format('ui.product.details')}
         </div>
-        <div className='border-b border-transparent my-2' />
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='flex flex-row gap-3'>
             <div className='text-dial-meadow text-lg font-semibold' ref={productRepositoryRef}>
@@ -350,6 +360,9 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
                 />
               </div>
             }
+          </div>
+          <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+            {format('ui.product.overview.repository')}
           </div>
           {!product.mainRepository &&
           <div className='text-sm text-dial-stratos'>

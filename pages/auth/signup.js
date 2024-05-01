@@ -60,7 +60,7 @@ const strengthClasses = {
   4: 'strength-good'
 }
 
-const SignUp = () => {
+const SignUp = ({ defaultTenants }) => {
   const router = useRouter()
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -138,7 +138,7 @@ const SignUp = () => {
     <>
       <Header isOnAuthPage />
       <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
-      <ClientOnly clientTenants={['default', 'fao']}>
+      <ClientOnly clientTenants={defaultTenants}>
         <div className='bg-dial-gray-dark min-h-[70vh]'>
           <div className='pt-4 pb-8 text-dial-sapphire'>
             <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
@@ -254,10 +254,11 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
-
 export async function getServerSideProps (ctx) {
   const session = await getSession(ctx)
+
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
 
   if (session) {
     return {
@@ -269,7 +270,10 @@ export async function getServerSideProps (ctx) {
 
   return {
     props: {
-      csrfToken: await getCsrfToken(ctx)
+      csrfToken: await getCsrfToken(ctx),
+      defaultTenants
     }
   }
 }
+
+export default SignUp
