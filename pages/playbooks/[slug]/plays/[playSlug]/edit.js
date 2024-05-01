@@ -7,7 +7,7 @@ import PlayEdit from '../../../../../components/play/PlayEdit'
 import Header from '../../../../../components/shared/Header'
 import Footer from '../../../../../components/shared/Footer'
 
-function EditPlay() {
+const EditPlay = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -24,7 +24,7 @@ function EditPlay() {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <PlayEdit
           playSlug={playSlug}
@@ -35,6 +35,14 @@ function EditPlay() {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default EditPlay

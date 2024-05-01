@@ -95,7 +95,7 @@ export const fr = {
   "header.admin.deploys": "Déploiements",
   "header.newsletter": "S'abonner à notre newsletter",
   "header.marketplace": "Place de marché",
-  "header.tools": "Outils",
+  "header.catalog": "Outils",
   "header.supportingTools": "Outils de support",
 
   "footer.text.firstLine": "La Digital Impact Alliance (DIAL) est un partenariat entre plusieurs des acteurs des plus actifs du développement numérique dans le monde. Nous sommes reconnaissants du soutien de nos associés fondateurs.",
@@ -1356,7 +1356,7 @@ export const fr = {
 
   "ui.resource.subHeader": "Ces articles et blogs fournissent des informations sur le Digital Impact Exchange et sur la manière dont il peut servir à soutenir le déploiement de technologies numériques.",
 
-  "header.blogs": "Blogs / Articles",
+  "header.insights": "Blogs / Articles",
 
   "ui.resource.link": "Emplacement des ressources",
   "ui.resource.visitLink": "Visiter la ressource",

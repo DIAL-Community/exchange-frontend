@@ -11,14 +11,14 @@ const ProductSpreadsheetWithoutSSR = dynamic(
   { ssr: false }
 )
 
-const ProductSpreadsheet = () => {
+const ProductSpreadsheet = ({ defaultTenants }) => {
   const { isAdminUser, loadingUserSession } = useUser()
 
   return (
     <>
       <QueryNotification />
       <Header />
-      <ClientOnly>
+      <ClientOnly clientTenants={defaultTenants}>
         <div style={{ minHeight: '70vh' }}>
           {loadingUserSession ?
             <Loading /> :
@@ -29,6 +29,14 @@ const ProductSpreadsheet = () => {
       <Footer />
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default ProductSpreadsheet

@@ -107,7 +107,7 @@ export const en = {
   'header.admin.deploys': 'Deploys',
   'header.newsletter': 'Join Our Newsletter',
   'header.marketplace': 'Marketplace',
-  'header.tools': 'Tools',
+  'header.catalog': 'Tools',
   'header.otherTools': 'Other Tools',
   'header.knowledgeHub': 'Knowledge Hub',
   'header.dialWebsite': 'DIAL Website',
@@ -1819,7 +1819,7 @@ export const en = {
     and how it can be used to support the deployment of digital technologies.
   `,
 
-  'header.blogs': 'Blogs / Articles',
+  'header.insights': 'Insights',
 
   'ui.resource.label': 'Resource',
   'ui.resource.header': 'Resources',
@@ -2221,6 +2221,13 @@ export const en = {
   `,
   'ui.wizard.launch': 'Launch Recommendations Wizard',
 
+  'ui.dpi.wizard.title': 'Get Started',
+  'ui.dpi.wizard.tagLine': `
+    Our Recommendations Wizard can help get you started to fnd you a curated list of resources, 
+    tailored to wherever you are in a project lifecycle — ideation, planning, implementation, 
+    or monitoring/evaluation.
+  `,
+
   'toast.submit.success': '{entity} submitted successfully.',
   'toast.submit.failure': 'Failed to submit {entity}.',
   'toast.delete.success': '{entity} deleted successfully.',
@@ -2399,11 +2406,11 @@ export const en = {
   'ui.region.name.label': 'Region Name',
   'ui.region.description.label': 'Region Description',
 
-  'ui.hub.ribbon.subTagLine': `
+  'ui.resources.ribbon.subTagLine': `
     We have created – and curated – a diverse range of resources designed to help those working at the
     forefront of digital transformation around the world build trusted and inclusive digital ecosystems.
   `,
-  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+  'ui.resources.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
 
   'ui.resource.toggle.resourceUrl': 'Resource URL',
   'ui.resource.toggle.resourceFile': 'Resource File',
@@ -2415,7 +2422,7 @@ export const en = {
   'ui.resource.author.header': 'Authors',
   'ui.resource.author.name': 'Author\'s Name',
   'ui.resource.author.email': 'Author\'s Email',
-  'ui.hub.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
+  'ui.resources.ribbon.tagLine': 'Digital transformation is constantly evolving. So is our collective knowledge.',
 
   'ui.sync.label': 'Sync',
   'ui.sync.header': 'Syncs',
@@ -2443,6 +2450,8 @@ export const en = {
   
   'ui.resourceTopic.name': 'Resource Topic Name',
   'ui.resourceTopic.description': 'Resource Topic Description',
+  'ui.resourceTopic.parentTopic': 'Parent Topic',
+  'ui.resourceTopic.subTopics': 'Sub-Topics',
 
   'ui.resource.toggle.searchSourceStructure': 'Search Source',
   'ui.resource.toggle.createSourceStructure': 'Create Source',
@@ -2454,4 +2463,96 @@ export const en = {
   'ui.source.name': 'Source Name',
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
+
+  'dpi.header.title': 'Resources for DPI',
+  'dpi.header.subtitle': 'the Digital Impact Alliance',
+  'dpi.footer.connect.subtitle': `
+    Sign up for our newsletter to learn more about the Digital Public Infrastructure
+    and how you can be involved.
+  `,
+
+  'dpi.header.topic': 'Topics',
+  'dpi.header.country': 'Countries',
+  'dpi.header.resourceFinder': 'Resource finder',
+
+  'dpi.wizard.title': 'Get Started',
+  'dpi.wizard.tagLine': `
+    Our Recommendations Wizard can help get you started to find you a curated
+    list of resources, tailored to wherever you are in a project lifecycle —
+    ideation, planning, implementation, or monitoring/evaluation.
+  `,
+  
+  'dpi.breadcrumb.country': 'Country Profiles',
+  'dpi.breadcrumb.topic': 'Research by Topics',
+
+  'dpi.landing.main.title': 'Resources for DPI',
+  'dpi.landing.main.subtitle': `
+    An online resource hub offering data, insights, and tools to help policymakers, 
+    governments and development actors to advance progress on digital public infrastructure.
+  `,
+  'dpi.landing.browseTopics': 'Browse <break></break> Topics',
+  'dpi.landing.featuredCountries': 'Featured <break></break> Countries',
+  'dpi.topic.subtitle': `
+    Topics showcases a series of knowledge products published by DIAL and its partners
+    on key issues surrounding digital public infrastructure.
+  `,
+  'dpi.country.subtitle': `
+    Find tools and resources related to how DPI has been implemented in a specific country.
+  `,
+  'dpi.topic.reports': 'Reports and Articles',
+  'dpi.resourceFinder.title': 'Resource finder',
+  'dpi.resourceFinder.subtitle': `Quickly search and filter through our library to
+    find resources relevant to a specific topic, country, or project.
+  `,
+
+  'ui.chatbot.question': 'Question',
+  'ui.chatbot.header': 'Ask our Chatbot',
+  'ui.chatbot.userRequired': 'Please login to use the exchange chatbot function.',
+  'ui.chatbot.createSession': 'Create Separate Session',
+  'ui.chatbot.viewSession': 'View Current Conversation',
+
+  'ui.product.overview.pricing': `
+    Pricing information is only available for commercial software if the product team has provided information.
+  `,
+  'ui.product.overview.sdg': 'This product is mapped to the following SDGs.',  
+  'ui.product.overview.buildingBlock': `
+    DIAL works closely with the GovStack to map digital platforms with key Building Block functionalities.
+    Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative
+    examples of how these tools may support building block functionalities.
+  `,
+  'ui.product.overview.resource': 'Here are some additional resources that relate to this product.',
+  'ui.product.overview.organization': `
+    The following organizations support the development and / or implementation of this product.
+  `, 
+  'ui.product.overview.country': 'This product is deployed in the following countries.',
+  'ui.product.overview.repository': `
+    This information is retrieved from the location where software code and related files are stored.
+    Only the most frequently maintained repositories are listed here. For more information, visit GitHub.
+  `,
+  'ui.product.overview.source': 'The original provider of this information.',
+  'ui.product.overview.interoperable': 'Other products that can work together or interact seamlessly with this product.',
+  'ui.product.overview.included': 'Other products that are included or bundled together in this product.',
+  'ui.product.overview.maturity': `
+    These maturity scores have been sourced from organizations such as Digital Square and GitHub.
+    These maturity scores are not an endorsement, but a reflection of ratings given by various
+    organizations and collected via automated methods. For more information visit the Exchange Documentation.
+  `,
+
+  'ui.buildingBlock.overview.product': 'Products that fulfil the technical specifications of this building block.',
+
+  'ui.useCase.overview.useCaseStep': 'List of individual actions or task performed within this use case.',
+  'ui.useCase.overview.sdg': 'This use case is mapped to the following SDGs.', 
+  'ui.useCase.overview.buildingBlock': `
+    DIAL works closely with GovStack to map use cases with Building Blocks. All building blocks required
+    for this use case are listed below. Foundational building blocks (also known as Digital Public Infrastructure
+    appear below the dotted line).
+  `, 
+  'ui.useCaseStep.overview.dataset': 'The following datasets are associated with this use case.',
+  'ui.useCaseStep.overview.product': 'The following products are associated with this use case.', 
+  'ui.useCaseStep.overview.buildingBlock': `
+    DIAL works closely with GovStack to map use case steps with Building Blocks. All building blocks
+    required for the use case are listed below. Only the building blocks required in this step are
+    highlighted. Foundational building blocks (also known as Digital Public Infrastructure appear
+    below the dotted line).
+  ` 
 }

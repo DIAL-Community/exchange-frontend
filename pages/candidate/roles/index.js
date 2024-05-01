@@ -10,7 +10,7 @@ import RoleRibbon from '../../../components/candidate/role/RoleRibbon'
 import RoleTabNav from '../../../components/candidate/role/RoleTabNav'
 import RoleMain from '../../../components/candidate/role/RoleMain'
 
-const RoleListPage = () => {
+const RoleListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -27,7 +27,7 @@ const RoleListPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
@@ -40,6 +40,14 @@ const RoleListPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default RoleListPage

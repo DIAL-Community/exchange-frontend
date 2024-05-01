@@ -8,7 +8,7 @@ import Footer from '../../components/shared/Footer'
 import Definition from '../../components/govstack/Definition'
 import QueryNotification from '../../components/shared/QueryNotification'
 
-const LandingPage = () => {
+const LandingPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -18,7 +18,7 @@ const LandingPage = () => {
         title={format('app.title')}
         description={format('seo.description.about')}
       />
-      <ClientOnly>
+      <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
@@ -33,6 +33,14 @@ const LandingPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default LandingPage

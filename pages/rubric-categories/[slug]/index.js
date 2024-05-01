@@ -8,7 +8,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 import Footer from '../../../components/shared/Footer'
 import RubricCategoryDetail from '../../../components/rubric-category/RubricCategoryDetail'
 
-const RubricCategoryPage = () => {
+const RubricCategoryPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,7 +25,7 @@ const RubricCategoryPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <RubricCategoryDetail categorySlug={slug} />
@@ -33,6 +33,14 @@ const RubricCategoryPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default RubricCategoryPage

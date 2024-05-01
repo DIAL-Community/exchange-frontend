@@ -10,7 +10,7 @@ import ProjectRibbon from '../../components/project/ProjectRibbon'
 import ProjectTabNav from '../../components/project/ProjectTabNav'
 import ProjectMain from '../../components/project/ProjectMain'
 
-const ProjectListPage = () => {
+const ProjectListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -27,7 +27,7 @@ const ProjectListPage = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
@@ -40,6 +40,14 @@ const ProjectListPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default ProjectListPage

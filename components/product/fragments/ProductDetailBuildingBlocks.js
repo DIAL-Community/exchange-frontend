@@ -1,18 +1,18 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
-import EditableSection from '../../shared/EditableSection'
-import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
-import { DisplayType } from '../../utils/constants'
-import { UPDATE_PRODUCT_BUILDING_BLOCKS } from '../../shared/mutation/product'
-import { generateMappingStatusOptions } from '../../shared/form/options'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
 import BuildingBlockCard from '../../building-block/BuildingBlockCard'
+import EditableSection from '../../shared/EditableSection'
+import { generateMappingStatusOptions } from '../../shared/form/options'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import { UPDATE_PRODUCT_BUILDING_BLOCKS } from '../../shared/mutation/product'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
 const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -141,8 +141,8 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
     </div>
 
   const sectionDisclaimer =
-    <div className='text-xs text-justify italic text-dial-stratos mb-3'>
-      {format('ui.buildingBlock.disclaimer')}
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.product.overview.buildingBlock')}
     </div>
 
   const editModeBody =

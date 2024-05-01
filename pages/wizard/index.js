@@ -7,7 +7,7 @@ import Header from '../../components/shared/Header'
 import WizardMain from '../../components/wizard/WizardMain'
 import { WizardContextProvider } from '../../components/wizard/WizardContext'
 
-const Wizard = () => {
+const Wizard = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -18,7 +18,7 @@ const Wizard = () => {
         description={format('seo.description.about')}
       />
       <Header />
-      <ClientOnly>
+      <ClientOnly clientTenants={defaultTenants}>
         <WizardContextProvider>
           <WizardMain />
         </WizardContextProvider>
@@ -26,6 +26,14 @@ const Wizard = () => {
       <Footer />
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default Wizard

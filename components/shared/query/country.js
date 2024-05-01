@@ -87,3 +87,36 @@ export const COUNTRY_DETAIL_QUERY = gql`
     }
   }
 `
+
+export const DPI_COUNTRY_DETAIL_QUERY =  gql`
+query Country($slug: String!) {
+  country(slug: $slug) {
+    id
+    name
+    slug
+    code
+    codeLonger
+    latitude
+    longitude
+    resources {
+      id
+      name
+      slug
+      imageFile
+      parsedDescription
+    }
+    products {
+      id
+      name
+      slug
+      imageFile
+    }
+    dpiProducts {
+      id
+      name
+      slug
+      imageFile
+    }
+  }
+}
+`

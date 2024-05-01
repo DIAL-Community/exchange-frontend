@@ -7,7 +7,7 @@ import Footer from '../../../../../../../components/shared/Footer'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
 import MoveCreate from '../../../../../../../components/move/MoveCreate'
 
-const CreateMove = () => {
+const CreateMove = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -24,7 +24,7 @@ const CreateMove = () => {
           )
         }
       />
-      <ClientOnly>
+      <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <MoveCreate
           playSlug={playSlug}
@@ -35,6 +35,14 @@ const CreateMove = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default CreateMove

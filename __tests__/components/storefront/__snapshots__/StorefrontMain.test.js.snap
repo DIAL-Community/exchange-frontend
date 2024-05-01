@@ -250,14 +250,14 @@ exports[`Unit tests for the storefront main page. Should render list of storefro
                 </button>
               </div>
               <div
-                class="ml-auto w-full max-w-prose"
+                class="ml-auto w-full"
               >
                 <label
                   class="relative"
                   for="search-bar"
                 >
                   <input
-                    class="form-input w-full border"
+                    class="w-full border text-sm"
                     id="search-bar"
                     placeholder="Search"
                     type="text"

@@ -6,5 +6,5 @@ export default async function arcGisToken(_, res) {
     clientSecret: process.env.ESRI_CLIENT_SECRET
   }).getToken()
 
-  res.status(200).json({ token })
+  return res.status(200).json({ token })
 }

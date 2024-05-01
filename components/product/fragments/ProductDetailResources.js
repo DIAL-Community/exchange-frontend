@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import ResourceCard from '../../hub/fragments/ResourceCard'
+import ResourceCard from '../../resources/fragments/ResourceCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
@@ -115,6 +115,11 @@ const ProductDetailResources = ({ product, canEdit, headerRef }) => {
       {format('ui.resource.header')}
     </div>
 
+  const sectionDisclaimer =
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.product.overview.resource')}
+    </div>
+
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
@@ -149,6 +154,7 @@ const ProductDetailResources = ({ product, canEdit, headerRef }) => {
     <EditableSection
       canEdit={canEdit}
       sectionHeader={sectionHeader}
+      sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}
