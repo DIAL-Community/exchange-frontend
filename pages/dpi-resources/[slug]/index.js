@@ -8,7 +8,7 @@ import DpiFooter from '../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../components/dpi/sections/DpiHeader'
 import ClientOnly from '../../../lib/ClientOnly'
 
-const ResourcePage = () => {
+const ResourcePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,7 +25,7 @@ const ResourcePage = () => {
           )
         }
       />
-      <ClientOnly clientTenants={['dpi']}>
+      <ClientOnly clientTenants={dpiTenants}>
         <DpiHeader />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <ResourceDetail slug={slug} />
@@ -33,6 +33,14 @@ const ResourcePage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { dpiTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { dpiTenants } }
 }
 
 export default ResourcePage

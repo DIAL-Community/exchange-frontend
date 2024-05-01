@@ -7,15 +7,23 @@ const PlaybookPdf = dynamic(
   { ssr: true }
 )
 
-const DownloadPdf = () => {
+const DownloadPdf = ({ defaultTenants }) => {
   const router = useRouter()
   const { locale } = router
 
   return (
-    <ClientOnly clientTenants={['default', 'fao']}>
+    <ClientOnly clientTenants={defaultTenants}>
       <PlaybookPdf locale={locale} />
     </ClientOnly>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default DownloadPdf

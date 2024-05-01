@@ -7,7 +7,7 @@ import DpiResources from '../../components/dpi/sections/DpiResources'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
-const DpiPage = () => {
+const DpiPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -17,7 +17,7 @@ const DpiPage = () => {
         title={format('app.title')}
         description={format('seo.description.about')}
       />
-      <ClientOnly clientTenants={['dpi']}>
+      <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
         <DpiBody />

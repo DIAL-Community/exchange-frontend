@@ -157,6 +157,11 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
       {format('ui.country.header')}
     </div>
 
+  const sectionDisclaimer =
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.product.overview.country')}
+    </div>
+
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
@@ -191,6 +196,7 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
     <EditableSection
       canEdit={canEdit}
       sectionHeader={sectionHeader}
+      sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

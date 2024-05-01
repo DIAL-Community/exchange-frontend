@@ -7,7 +7,7 @@ import DpiTopic from '../../../components/dpi/sections/DpiTopic'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
 
-const DpiTopicPage = () => {
+const DpiTopicPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -19,7 +19,7 @@ const DpiTopicPage = () => {
         title={format('app.title')}
         description={format('seo.description.about')}
       />
-      <ClientOnly clientTenants={['dpi']}>
+      <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
         <DpiTopic slug={slug} />
@@ -27,6 +27,14 @@ const DpiTopicPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { dpiTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { dpiTenants } }
 }
 
 export default DpiTopicPage

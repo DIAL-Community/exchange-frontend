@@ -11,7 +11,7 @@ import ProductTabNav from '../../components/product/ProductTabNav'
 import ProductMain from '../../components/product/ProductMain'
 import ProductCompareBar from '../../components/product/fragments/ProductCompareBar'
 
-const ProductListPage = () => {
+const ProductListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -28,7 +28,7 @@ const ProductListPage = () => {
           )
         }
       />
-      <ClientOnly clientTenants={['default', 'fao']}>
+      <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
@@ -42,6 +42,14 @@ const ProductListPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default ProductListPage
