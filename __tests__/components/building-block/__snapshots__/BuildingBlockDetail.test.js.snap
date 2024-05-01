@@ -1,0 +1,727 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the building block main page. Should render detail of a building block. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="lg:px-8 xl:px-56 flex flex-col"
+  >
+    <div
+      class="px-4 lg:px-6 py-4 bg-dial-warm-beech text-dial-stratos ribbon-detail z-40"
+    >
+      <div
+        class="whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="h5"
+          href="/"
+        >
+          Home
+        </a>
+      </div>
+    </div>
+    <div
+      class="flex flex-col lg:flex-row gap-x-8"
+    >
+      <div
+        class="lg:basis-1/3"
+      >
+        <div
+          class="bg-dial-slate-100 lg:h-full"
+        >
+          <div
+            class="flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3"
+          >
+            <div
+              class="flex flex-col gap-y-4 py-3"
+            >
+              <div
+                class="text-xl text-dial-ochre font-semibold"
+              >
+                Analytics and business intelligence
+              </div>
+              <div
+                class="flex justify-center items-center py-16 bg-white rounded border"
+              >
+                <div
+                  class="w-20 h-20 px-1 py-1 rounded-full bg-dial-orange"
+                >
+                  <img
+                    alt="Logo of Building Block."
+                    class="object-contain dial-ochre-filter w-14 h-14 mx-auto my-2 white-filter"
+                    src="http://localhost:3000//assets/building-blocks/analytics-and-business-intelligence.svg"
+                  />
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
+              >
+                <div
+                  class="flex gap-x-3"
+                >
+                  <div
+                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                  >
+                    <div
+                      class="font-semibold text-dial-sapphire"
+                    >
+                      Maturity
+                    </div>
+                    <div
+                      class="flex text-dial-stratos"
+                    >
+                      DRAFT
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                  >
+                    <div
+                      class="font-semibold text-dial-sapphire"
+                    >
+                      Category
+                    </div>
+                    <div
+                      class="flex text-dial-stratos"
+                    >
+                      FUNCTIONAL
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-slate-200"
+            />
+            <div
+              class="flex flex-col gap-y-3 text-sm py-3"
+            >
+              <div
+                class="font-semibold text-dial-ochre"
+              >
+                Jump To
+              </div>
+              <div
+                class=" css-1uaxf62-container"
+              >
+                <span
+                  class="css-1f43avz-a11yText-A11yText"
+                  id="react-select-:r0:-live-region"
+                />
+                <span
+                  aria-atomic="false"
+                  aria-live="polite"
+                  aria-relevant="additions text"
+                  class="css-1f43avz-a11yText-A11yText"
+                />
+                <div
+                  class="react-select__control css-afrqkl-control"
+                >
+                  <div
+                    class="react-select__value-container css-17t7gkf-ValueContainer"
+                  >
+                    <div
+                      class="react-select__placeholder css-5rjclb-placeholder"
+                      id="react-select-:r0:-placeholder"
+                    >
+                      Select...
+                    </div>
+                    <div
+                      class="react-select__input-container css-qbdosj-Input"
+                      data-value=""
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        aria-describedby="react-select-:r0:-placeholder"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        aria-label="Current active navigation"
+                        autocapitalize="none"
+                        autocomplete="off"
+                        autocorrect="off"
+                        class="react-select__input"
+                        id="async-select-id-undefined"
+                        role="combobox"
+                        spellcheck="false"
+                        style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                        tabindex="0"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                  >
+                    <span
+                      class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                    />
+                    <div
+                      aria-hidden="true"
+                      class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="css-tj5bde-Svg"
+                        focusable="false"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        width="20"
+                      >
+                        <path
+                          d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-slate-200"
+            />
+            <div
+              class="hidden lg:flex flex-col gap-y-3"
+            >
+              <div
+                class="flex flex-col gap-3 py-3"
+              >
+                <div
+                  class="text-lg text-dial-sapphire font-semibold"
+                >
+                  Bookmark
+                </div>
+                <button
+                  class="group flex flex-row gap-x-3"
+                  type="button"
+                >
+                  <img
+                    alt="Logo of Bookmark."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/bookmark-icon.svg"
+                    width="40"
+                  />
+                  <div
+                    class="my-auto border-b border-transparent group-hover:border-dial-slate-500"
+                  >
+                    <div
+                      class="text-sm text-dial-stratos text-left"
+                    >
+                      Bookmark this page.
+                    </div>
+                  </div>
+                </button>
+                <div
+                  class="text-sm text-dial-stratos"
+                >
+                  Your bookmarks can be found in your Account page.
+                </div>
+              </div>
+              <hr
+                class="border-b border-dial-slate-200"
+              />
+              <div
+                class="flex flex-col gap-3 py-3"
+              >
+                <div
+                  class="text-lg text-dial-sapphire font-semibold"
+                >
+                  Share
+                </div>
+                <div
+                  class="flex flex-row gap-3"
+                >
+                  <img
+                    alt="Logo of Twitter."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/twitter-icon.svg"
+                    width="40"
+                  />
+                  <img
+                    alt="Logo of LinkedIn."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/linkedin-icon.svg"
+                    width="40"
+                  />
+                  <img
+                    alt="Logo of Email."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/email-icon.svg"
+                    width="40"
+                  />
+                  <img
+                    alt="Logo of Copy."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/copy-icon.svg"
+                    width="40"
+                  />
+                </div>
+              </div>
+              <hr
+                class="border-b border-dial-slate-200"
+              />
+              <div
+                class="flex flex-col gap-3 py-3"
+              >
+                <div
+                  class="text-lg text-dial-sapphire font-semibold"
+                >
+                  Comment
+                </div>
+                <div
+                  class="text-sm text-dial-stratos"
+                >
+                  
+    Have a question for the community on this Building Block or have some insight you would like to share?
+  
+                </div>
+                <div
+                  class="flex text-white"
+                >
+                  <div
+                    class="bg-dial-iris-blue rounded-md text-sm"
+                  >
+                    <button
+                      class="px-5 py-3"
+                      type="button"
+                    >
+                      Post a comment
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="border-b border-dial-slate-200"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="lg:basis-2/3"
+      >
+        <div
+          class="px-4 lg:px-0 py-4 lg:py-6"
+        >
+          <div
+            class="flex flex-col gap-y-3"
+          >
+            <div
+              class="text-xl font-semibold text-dial-ochre py-3"
+            >
+              Description
+            </div>
+            <div
+              class="block"
+            >
+              <div
+                class="relative"
+              >
+                <div
+                  class="html-react-parser-viewer text-base"
+                >
+                  Building block description goes here.
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-blue-chalk my-3"
+            />
+            <div
+              class="flex flex-col gap-y-3"
+            >
+              <div
+                class="flex flex-col gap-y-3"
+              >
+                <div
+                  class="flex flex-row gap-3"
+                >
+                  <div
+                    class="text-xl font-semibold text-dial-ochre"
+                  >
+                    Products
+                  </div>
+                  <div
+                    class="flex gap-3 ml-auto"
+                  />
+                </div>
+                <div
+                  class="text-xs text-justify italic text-dial-stratos mb-2"
+                >
+                  Products that fulfil the technical specifications of this building block.
+                </div>
+                <div
+                  class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3"
+                >
+                  <div>
+                    <div
+                      class="relative"
+                    >
+                      <a
+                        href="/products/agrinfo-jembe"
+                      >
+                        <div
+                          class="rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16"
+                        >
+                          <div
+                            class="flex flex-row gap-x-3 px-6 h-full"
+                          >
+                            <img
+                              alt="Logo of Products."
+                              class="object-contain w-10 h-10 my-auto min-w-[2.5rem]"
+                              src="http://localhost:3000//assets/products/agrinfo-jembe.png"
+                            />
+                            <div
+                              class="text-sm font-semibold my-auto text-dial-meadow line-clamp-2"
+                            >
+                              AgrInfo Jembe
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      <div
+                        class="absolute top-2 right-2"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="relative"
+                    >
+                      <a
+                        href="/products/goldkeys"
+                      >
+                        <div
+                          class="rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16"
+                        >
+                          <div
+                            class="flex flex-row gap-x-3 px-6 h-full"
+                          >
+                            <img
+                              alt="Logo of Products."
+                              class="object-contain w-10 h-10 my-auto min-w-[2.5rem]"
+                              src="http://localhost:3000//assets/products/goldkeys.png"
+                            />
+                            <div
+                              class="text-sm font-semibold my-auto text-dial-meadow line-clamp-2"
+                            >
+                              Goldkeys
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      <div
+                        class="absolute top-2 right-2"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-blue-chalk my-3"
+            />
+            <div
+              class="flex flex-col gap-y-3"
+            >
+              <div
+                class="flex flex-col gap-y-3"
+              >
+                <div
+                  class="flex flex-row gap-3"
+                >
+                  <div
+                    class="text-xl font-semibold text-dial-ochre"
+                  >
+                    Workflows
+                  </div>
+                  <div
+                    class="flex gap-3 ml-auto"
+                  />
+                </div>
+                <div
+                  class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3"
+                >
+                  <div>
+                    <div
+                      class="relative"
+                    >
+                      <a
+                        href="/workflows/data-analysis-and-business-intelligence"
+                      >
+                        <div
+                          class="rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16"
+                        >
+                          <div
+                            class="flex flex-row gap-x-3 px-6 h-full"
+                          >
+                            <div
+                              class="rounded-full bg-dial-plum w-10 h-10 my-auto min-w-[2.5rem]"
+                            >
+                              <img
+                                alt="Logo of Workflows."
+                                class="object-contain w-6 h-6 mx-auto mt-2 white-filter"
+                                src="http://localhost:3000//assets/workflows/data-analysis-and-business-intelligence.svg"
+                              />
+                            </div>
+                            <div
+                              class="text-sm font-semibold text-dial-plum my-auto"
+                            >
+                              Data Analysis and Business Intelligence
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-blue-chalk my-3"
+            />
+            <div
+              class="lg:hidden flex flex-col gap-y-3"
+            >
+              <div
+                class="flex flex-col gap-3 py-3"
+              >
+                <div
+                  class="text-lg text-dial-sapphire font-semibold"
+                >
+                  Bookmark
+                </div>
+                <button
+                  class="group flex flex-row gap-x-3"
+                  type="button"
+                >
+                  <img
+                    alt="Logo of Bookmark."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/bookmark-icon.svg"
+                    width="40"
+                  />
+                  <div
+                    class="my-auto border-b border-transparent group-hover:border-dial-slate-500"
+                  >
+                    <div
+                      class="text-sm text-dial-stratos text-left"
+                    >
+                      Bookmark this page.
+                    </div>
+                  </div>
+                </button>
+                <div
+                  class="text-sm text-dial-stratos"
+                >
+                  Your bookmarks can be found in your Account page.
+                </div>
+              </div>
+              <hr
+                class="border-b border-dial-slate-200"
+              />
+              <div
+                class="flex flex-col gap-3 py-3"
+              >
+                <div
+                  class="text-lg text-dial-sapphire font-semibold"
+                >
+                  Share
+                </div>
+                <div
+                  class="flex flex-row gap-3"
+                >
+                  <img
+                    alt="Logo of Twitter."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/twitter-icon.svg"
+                    width="40"
+                  />
+                  <img
+                    alt="Logo of LinkedIn."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/linkedin-icon.svg"
+                    width="40"
+                  />
+                  <img
+                    alt="Logo of Email."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/email-icon.svg"
+                    width="40"
+                  />
+                  <img
+                    alt="Logo of Copy."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/copy-icon.svg"
+                    width="40"
+                  />
+                </div>
+              </div>
+              <hr
+                class="border-b border-dial-slate-200"
+              />
+            </div>
+            <div
+              class="text-dial-sapphire"
+            >
+              <div
+                id="comments-section"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for the building block main page. Should render unathorized for non logged in user. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="lg:px-8 xl:px-56 flex flex-col"
+  >
+    <div
+      class="px-4 lg:px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40"
+    >
+      <div
+        class="whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="h5"
+          href="/"
+        >
+          Home
+        </a>
+      </div>
+    </div>
+    <div
+      class="flex flex-col lg:flex-row gap-x-8"
+    >
+      <div
+        class="lg:basis-1/3"
+      >
+        <div
+          class="bg-dial-slate-100 lg:h-full"
+        >
+          <div
+            class="flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3"
+          >
+            <div
+              class="flex flex-col gap-y-4 py-3"
+            >
+              <div
+                class="text-xl text-dial-ochre font-semibold"
+              >
+                Analytics and business intelligence
+              </div>
+              <div
+                class="flex justify-center items-center py-16 bg-white rounded border"
+              >
+                <div
+                  class="w-20 h-20 px-1 py-1 rounded-full bg-dial-orange"
+                >
+                  <img
+                    alt="Logo of Building Block."
+                    class="object-contain dial-ochre-filter w-14 h-14 mx-auto my-2 white-filter"
+                    src="http://localhost:3000//assets/building-blocks/analytics-and-business-intelligence.svg"
+                  />
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
+              >
+                <div
+                  class="flex gap-x-3"
+                >
+                  <div
+                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                  >
+                    <div
+                      class="font-semibold text-dial-sapphire"
+                    >
+                      Maturity
+                    </div>
+                    <div
+                      class="flex text-dial-stratos"
+                    >
+                      DRAFT
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                  >
+                    <div
+                      class="font-semibold text-dial-sapphire"
+                    >
+                      Category
+                    </div>
+                    <div
+                      class="flex text-dial-stratos"
+                    >
+                      FUNCTIONAL
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-slate-200"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="lg:basis-2/3"
+      >
+        <div
+          class="h-[60vh]"
+        >
+          <div
+            class="flex bg-dial-alice-blue h-full"
+          >
+            <div
+              class="text-dial-stratos text-lg w-full my-auto flex flex-col gap-4"
+            >
+              <svg
+                class="mx-auto"
+                fill="currentColor"
+                height="3em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="3em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                />
+              </svg>
+              <div
+                class="text-center mt-5"
+              >
+                You are not authorized to view this page
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
