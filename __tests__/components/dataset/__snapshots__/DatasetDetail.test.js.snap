@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the building block detail page. Should render detail of a building block. 1`] = `
+exports[`Unit tests for the dataset detail page. Should render detail of a dataset. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -9,7 +9,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
     class="lg:px-8 xl:px-56 flex flex-col"
   >
     <div
-      class="px-4 lg:px-6 py-4 bg-dial-warm-beech text-dial-stratos ribbon-detail z-40"
+      class="px-4 lg:px-6 py-4 bg-dial-violet text-dial-stratos ribbon-detail z-40"
     >
       <div
         class="whitespace-nowrap text-ellipsis overflow-hidden"
@@ -38,20 +38,20 @@ exports[`Unit tests for the building block detail page. Should render detail of 
               class="flex flex-col gap-y-4 py-3"
             >
               <div
-                class="text-xl text-dial-ochre font-semibold"
+                class="text-xl text-dial-plum font-semibold"
               >
-                Analytics and business intelligence
+                AI Agro
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
               >
                 <div
-                  class="w-20 h-20 px-1 py-1 rounded-full bg-dial-orange"
+                  class="inline"
                 >
                   <img
-                    alt="Logo of Building Block."
-                    class="object-contain dial-ochre-filter w-14 h-14 mx-auto my-2 white-filter"
-                    src="http://localhost:3000//assets/building-blocks/analytics-and-business-intelligence.svg"
+                    alt="Logo of Dataset."
+                    class="object-contain w-20 h-20"
+                    src="http://localhost:3000//assets/products/ai-agro.png"
                   />
                 </div>
               </div>
@@ -59,35 +59,50 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                 class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
               >
                 <div
-                  class="flex gap-x-3"
+                  class="flex flex-col gap-y-3"
                 >
                   <div
-                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                    class="font-semibold text-dial-sapphire"
                   >
-                    <div
-                      class="font-semibold text-dial-sapphire"
-                    >
-                      Maturity
-                    </div>
-                    <div
-                      class="flex text-dial-stratos"
-                    >
-                      DRAFT
-                    </div>
+                    Open Data Website
                   </div>
                   <div
-                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                    class="flex text-dial-stratos"
+                  >
+                    <a
+                      class="flex border-b border-dial-iris-blue "
+                      href="//rentadrone.cl/developers/ai-agro"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <div
+                        class="line-clamp-1 break-all"
+                      >
+                        rentadrone.cl/developers/ai-agro
+                      </div>
+                    </a>
+                     ⧉
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="flex flex-row gap-3"
                   >
                     <div
                       class="font-semibold text-dial-sapphire"
                     >
-                      Category
+                      Sectors
                     </div>
                     <div
-                      class="flex text-dial-stratos"
-                    >
-                      FUNCTIONAL
-                    </div>
+                      class="flex gap-3 ml-auto"
+                    />
+                  </div>
+                  <div
+                    class="text-sm text-dial-stratos"
+                  >
+                    N/A
                   </div>
                 </div>
               </div>
@@ -99,7 +114,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
               class="flex flex-col gap-y-3 text-sm py-3"
             >
               <div
-                class="font-semibold text-dial-ochre"
+                class="font-semibold text-dial-plum"
               >
                 Jump To
               </div>
@@ -279,7 +294,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   class="text-sm text-dial-stratos"
                 >
                   
-    Have a question for the community on this Building Block or have some insight you would like to share?
+    Have a question for the community on this Dataset or have some insight you would like to share?
   
                 </div>
                 <div
@@ -314,7 +329,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
             class="flex flex-col gap-y-3"
           >
             <div
-              class="text-xl font-semibold text-dial-ochre py-3"
+              class="text-xl font-semibold text-dial-plum py-3"
             >
               Description
             </div>
@@ -327,7 +342,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                 <div
                   class="html-react-parser-viewer text-base"
                 >
-                  Building block description.
+                  Dataset description
                 </div>
               </div>
             </div>
@@ -338,89 +353,29 @@ exports[`Unit tests for the building block detail page. Should render detail of 
               class="flex flex-col gap-y-3"
             >
               <div
-                class="flex flex-col gap-y-3"
+                class="text-xl font-semibold text-dial-plum"
+              >
+                Source
+              </div>
+              <div
+                class="flex flex-col gap-3 mt-3"
               >
                 <div
                   class="flex flex-row gap-3"
                 >
                   <div
-                    class="text-xl font-semibold text-dial-ochre"
+                    class="block w-12 relative"
                   >
-                    Products
+                    <img
+                      alt="Logo for: Digital Public Goods Alliance"
+                      class="object-contain"
+                      src="/images/origins/dpga.png"
+                    />
                   </div>
                   <div
-                    class="flex gap-3 ml-auto"
-                  />
-                </div>
-                <div
-                  class="text-xs text-justify italic text-dial-stratos mb-2"
-                >
-                  Products that fulfil the technical specifications of this building block.
-                </div>
-                <div
-                  class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3"
-                >
-                  <div>
-                    <div
-                      class="relative"
-                    >
-                      <a
-                        href="/products/agrinfo-jembe"
-                      >
-                        <div
-                          class="rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16"
-                        >
-                          <div
-                            class="flex flex-row gap-x-3 px-6 h-full"
-                          >
-                            <img
-                              alt="Logo of Products."
-                              class="object-contain w-10 h-10 my-auto min-w-[2.5rem]"
-                              src="http://localhost:3000//assets/products/agrinfo-jembe.png"
-                            />
-                            <div
-                              class="text-sm font-semibold my-auto text-dial-meadow line-clamp-2"
-                            >
-                              AgrInfo Jembe
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                      <div
-                        class="absolute top-2 right-2"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      class="relative"
-                    >
-                      <a
-                        href="/products/goldkeys"
-                      >
-                        <div
-                          class="rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16"
-                        >
-                          <div
-                            class="flex flex-row gap-x-3 px-6 h-full"
-                          >
-                            <img
-                              alt="Logo of Products."
-                              class="object-contain w-10 h-10 my-auto min-w-[2.5rem]"
-                              src="http://localhost:3000//assets/products/goldkeys.png"
-                            />
-                            <div
-                              class="text-sm font-semibold my-auto text-dial-meadow line-clamp-2"
-                            >
-                              Goldkeys
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                      <div
-                        class="absolute top-2 right-2"
-                      />
-                    </div>
+                    class="inline my-auto text-sm"
+                  >
+                    Digital Public Goods Alliance
                   </div>
                 </div>
               </div>
@@ -438,9 +393,97 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   class="flex flex-row gap-3"
                 >
                   <div
-                    class="text-xl font-semibold text-dial-ochre"
+                    class="text-xl font-semibold text-dial-plum"
                   >
-                    Workflows
+                    Sustainable Development Goals
+                  </div>
+                  <div
+                    class="flex gap-3 ml-auto"
+                  />
+                </div>
+                <div
+                  class="text-sm text-dial-stratos"
+                >
+                  We do not have any SDG information for this Dataset.
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-blue-chalk my-3"
+            />
+            <div
+              class="flex flex-col gap-y-3"
+            >
+              <div
+                class="flex flex-col gap-y-3"
+              >
+                <div
+                  class="flex flex-row gap-3"
+                >
+                  <div
+                    class="text-xl font-semibold text-dial-plum"
+                  >
+                    Organizations
+                  </div>
+                  <div
+                    class="flex gap-3 ml-auto"
+                  />
+                </div>
+                <div
+                  class="text-sm italic text-dial-stratos"
+                >
+                  
+    The following organizations support the development and / or implementation of this Dataset.
+  
+                </div>
+                <div
+                  class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3"
+                >
+                  <div
+                    class="relative"
+                  >
+                    <a
+                      href="/organizations/rentadronecl"
+                    >
+                      <div
+                        class="rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16"
+                      >
+                        <div
+                          class="flex flex-row gap-x-3 px-6 h-full"
+                        >
+                          <img
+                            alt="Logo of Organizations."
+                            class="object-contain w-10 h-10 my-auto min-w-[2.5rem]"
+                            src="http://localhost:3000//assets/organizations/rentadronecl.png"
+                          />
+                          <div
+                            class="text-sm font-semibold text-dial-plum my-auto line-clamp-2"
+                          >
+                            Rentadrone.cl
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-blue-chalk my-3"
+            />
+            <div
+              class="flex flex-col gap-y-3"
+            >
+              <div
+                class="flex flex-col gap-y-3"
+              >
+                <div
+                  class="flex flex-row gap-3"
+                >
+                  <div
+                    class="text-xl font-semibold text-dial-plum"
+                  >
+                    Countries
                   </div>
                   <div
                     class="flex gap-3 ml-auto"
@@ -454,7 +497,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                       class="relative"
                     >
                       <a
-                        href="/workflows/data-analysis-and-business-intelligence"
+                        href="/countries/au"
                       >
                         <div
                           class="rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16"
@@ -462,25 +505,133 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                           <div
                             class="flex flex-row gap-x-3 px-6 h-full"
                           >
+                            <img
+                              alt="Flag for country: AU."
+                              class="object-contain w-10 h-10 my-auto"
+                              src="https://flagsapi.com/AU/flat/64.png"
+                            />
                             <div
-                              class="rounded-full bg-dial-plum w-10 h-10 my-auto min-w-[2.5rem]"
+                              class="text-sm font-semibold text-dial-plum my-auto line-clamp-1"
                             >
-                              <img
-                                alt="Logo of Workflows."
-                                class="object-contain w-6 h-6 mx-auto mt-2 white-filter"
-                                src="http://localhost:3000//assets/workflows/data-analysis-and-business-intelligence.svg"
-                              />
-                            </div>
-                            <div
-                              class="text-sm font-semibold text-dial-plum my-auto"
-                            >
-                              Data Analysis and Business Intelligence
+                              Australia
                             </div>
                           </div>
                         </div>
                       </a>
                     </div>
                   </div>
+                  <div>
+                    <div
+                      class="relative"
+                    >
+                      <a
+                        href="/countries/cl"
+                      >
+                        <div
+                          class="rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16"
+                        >
+                          <div
+                            class="flex flex-row gap-x-3 px-6 h-full"
+                          >
+                            <img
+                              alt="Flag for country: CL."
+                              class="object-contain w-10 h-10 my-auto"
+                              src="https://flagsapi.com/CL/flat/64.png"
+                            />
+                            <div
+                              class="text-sm font-semibold text-dial-plum my-auto line-clamp-1"
+                            >
+                              Chile
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="relative"
+                    >
+                      <a
+                        href="/countries/mx"
+                      >
+                        <div
+                          class="rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16"
+                        >
+                          <div
+                            class="flex flex-row gap-x-3 px-6 h-full"
+                          >
+                            <img
+                              alt="Flag for country: MX."
+                              class="object-contain w-10 h-10 my-auto"
+                              src="https://flagsapi.com/MX/flat/64.png"
+                            />
+                            <div
+                              class="text-sm font-semibold text-dial-plum my-auto line-clamp-1"
+                            >
+                              Mexico
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="relative"
+                    >
+                      <a
+                        href="/countries/pe"
+                      >
+                        <div
+                          class="rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16"
+                        >
+                          <div
+                            class="flex flex-row gap-x-3 px-6 h-full"
+                          >
+                            <img
+                              alt="Flag for country: PE."
+                              class="object-contain w-10 h-10 my-auto"
+                              src="https://flagsapi.com/PE/flat/64.png"
+                            />
+                            <div
+                              class="text-sm font-semibold text-dial-plum my-auto line-clamp-1"
+                            >
+                              Peru
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-blue-chalk my-3"
+            />
+            <div
+              class="flex flex-col gap-y-3"
+            >
+              <div
+                class="flex flex-col gap-y-3"
+              >
+                <div
+                  class="flex flex-row gap-3"
+                >
+                  <div
+                    class="text-xl font-semibold text-dial-plum"
+                  >
+                    Tags
+                  </div>
+                  <div
+                    class="flex gap-3 ml-auto"
+                  />
+                </div>
+                <div
+                  class="text-sm text-dial-stratos"
+                >
+                  We do not have any Tag information for this Dataset.
                 </div>
               </div>
             </div>
@@ -588,7 +739,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
 </div>
 `;
 
-exports[`Unit tests for the building block detail page. Should render edit page for logged in user. 1`] = `
+exports[`Unit tests for the dataset detail page. Should render edit page for logged in user. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -626,20 +777,20 @@ exports[`Unit tests for the building block detail page. Should render edit page 
               class="flex flex-col gap-y-4 py-3"
             >
               <div
-                class="text-xl text-dial-ochre font-semibold"
+                class="text-xl text-dial-plum font-semibold"
               >
-                Analytics and business intelligence -- Edited
+                AI Agro
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
               >
                 <div
-                  class="w-20 h-20 px-1 py-1 rounded-full bg-dial-orange"
+                  class="inline"
                 >
                   <img
-                    alt="Logo of Building Block."
-                    class="object-contain dial-ochre-filter w-14 h-14 mx-auto my-2 white-filter"
-                    src="http://localhost:3000//assets/building-blocks/analytics-and-business-intelligence.svg"
+                    alt="Logo of Dataset."
+                    class="object-contain w-20 h-20"
+                    src="http://localhost:3000//assets/products/ai-agro.png"
                   />
                 </div>
               </div>
@@ -647,35 +798,80 @@ exports[`Unit tests for the building block detail page. Should render edit page 
                 class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
               >
                 <div
-                  class="flex gap-x-3"
+                  class="flex flex-col gap-y-3"
                 >
                   <div
-                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                    class="font-semibold text-dial-sapphire"
+                  >
+                    Open Data Website
+                  </div>
+                  <div
+                    class="flex text-dial-stratos"
+                  >
+                    <a
+                      class="flex border-b border-dial-iris-blue "
+                      href="//rentadrone.cl/developers/ai-agro"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <div
+                        class="line-clamp-1 break-all"
+                      >
+                        rentadrone.cl/developers/ai-agro
+                      </div>
+                    </a>
+                     ⧉
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="flex flex-row gap-3"
                   >
                     <div
                       class="font-semibold text-dial-sapphire"
                     >
-                      Maturity
+                      Sectors
                     </div>
                     <div
-                      class="flex text-dial-stratos"
+                      class="flex gap-3 ml-auto"
                     >
-                      DRAFT
+                      <button
+                        class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
+                        type="button"
+                      >
+                        <svg
+                          class="inline pb-0.5"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 20h9"
+                          />
+                          <path
+                            d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                          />
+                        </svg>
+                        <span
+                          class="text-sm px-1"
+                        >
+                          Edit
+                        </span>
+                      </button>
                     </div>
                   </div>
                   <div
-                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                    class="text-sm text-dial-stratos"
                   >
-                    <div
-                      class="font-semibold text-dial-sapphire"
-                    >
-                      Category
-                    </div>
-                    <div
-                      class="flex text-dial-stratos"
-                    >
-                      FUNCTIONAL
-                    </div>
+                    N/A
                   </div>
                 </div>
               </div>
@@ -691,7 +887,7 @@ exports[`Unit tests for the building block detail page. Should render edit page 
       >
         <form>
           <div
-            class="px-4 lg:px-0 py-4 lg:py-6 text-dial-ochre"
+            class="px-4 lg:px-0 py-4 lg:py-6 text-dial-plum"
           >
             <div
               class="flex flex-col gap-y-6 text-sm"
@@ -699,36 +895,121 @@ exports[`Unit tests for the building block detail page. Should render edit page 
               <div
                 class="text-xl font-semibold"
               >
-                Edit Analytics and business intelligence -- Edited
+                Edit AI Agro
               </div>
               <div
-                class="form-field-wrapper"
+                class="flex flex-col gap-y-2"
               >
                 <label
-                  class="required-field"
+                  class="text-dial-sapphire required-field"
                   for="name"
                 >
-                  Name
+                  Open Data Name
                 </label>
                 <input
                   class="w-full text-sm"
                   id="name"
                   name="name"
-                  placeholder="Name"
+                  placeholder="Open Data Name"
                   type="text"
                   value=""
                 />
               </div>
               <div
-                class="form-field-wrapper"
+                class="flex flex-col gap-y-2"
               >
                 <label
-                  class="required-field"
+                  class="text-dial-sapphire"
                 >
-                  Maturity
+                  Open Data Other Name
                 </label>
                 <div
-                  class=" css-1uaxf62-container"
+                  class="flex gap-x-2"
+                >
+                  <input
+                    class="w-full text-sm"
+                    name="aliases.0.value"
+                    placeholder="Open Data Other Name"
+                    type="text"
+                    value=""
+                  />
+                  <span>
+                    <button
+                      class="shadow-md px-3 py-2.5 hover:bg-dial-angel"
+                      type="button"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 448 512"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                        />
+                      </svg>
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="text-dial-sapphire required-field"
+                  for="website"
+                >
+                  Open Data Website
+                </label>
+                <div
+                  class="border border-transparent url-input bg-white flex items-center"
+                >
+                  <span
+                    class="select-none text-dial-gray"
+                  >
+                    https://
+                  </span>
+                  <input
+                    class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
+                    id="website"
+                    placeholder="Open Data Website"
+                    value="rentadrone.cl/developers/ai-agro"
+                  />
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="text-dial-sapphire"
+                  for="visualizationUrl"
+                >
+                  Open Data Visualization URL
+                </label>
+                <div
+                  class="border border-transparent url-input bg-white flex items-center"
+                >
+                  <input
+                    class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
+                    id="visualizationUrl"
+                    placeholder="Open Data Visualization URL"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="text-dial-sapphire"
+                >
+                  Open Data Type
+                </label>
+                <div
+                  class=" css-sqp82o-container"
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
@@ -749,7 +1030,7 @@ exports[`Unit tests for the building block detail page. Should render edit page 
                       <div
                         class="react-select__single-value css-1dimb5e-singleValue"
                       >
-                        Draft
+                        AI Model
                       </div>
                       <div
                         class="react-select__input-container css-qbdosj-Input"
@@ -763,7 +1044,7 @@ exports[`Unit tests for the building block detail page. Should render edit page 
                           autocomplete="off"
                           autocorrect="off"
                           class="react-select__input"
-                          id="react-select-id-maturity"
+                          id="react-select-id-datasetType"
                           role="combobox"
                           spellcheck="false"
                           style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -785,19 +1066,14 @@ exports[`Unit tests for the building block detail page. Should render edit page 
                       >
                         <svg
                           aria-hidden="true"
-                          class="text-lg"
-                          fill="none"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
+                          class="css-tj5bde-Svg"
+                          focusable="false"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          width="20"
                         >
                           <path
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
                           />
                         </svg>
                       </div>
@@ -806,96 +1082,12 @@ exports[`Unit tests for the building block detail page. Should render edit page 
                 </div>
               </div>
               <div
-                class="form-field-wrapper"
+                class="flex flex-col gap-y-2"
               >
-                <label>
-                  Building Block Category
-                </label>
-                <div
-                  class=" css-1uaxf62-container"
+                <label
+                  class="text-dial-sapphire"
                 >
-                  <span
-                    class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-:r2:-live-region"
-                  />
-                  <span
-                    aria-atomic="false"
-                    aria-live="polite"
-                    aria-relevant="additions text"
-                    class="css-1f43avz-a11yText-A11yText"
-                  />
-                  <div
-                    class="react-select__control css-afrqkl-control"
-                  >
-                    <div
-                      class="react-select__value-container css-17t7gkf-ValueContainer"
-                    >
-                      <div
-                        class="react-select__placeholder css-5rjclb-placeholder"
-                        id="react-select-:r2:-placeholder"
-                      >
-                        Building Block Category
-                      </div>
-                      <div
-                        class="react-select__input-container css-qbdosj-Input"
-                        data-value=""
-                      >
-                        <input
-                          aria-autocomplete="list"
-                          aria-describedby="react-select-:r2:-placeholder"
-                          aria-expanded="false"
-                          aria-haspopup="true"
-                          autocapitalize="none"
-                          autocomplete="off"
-                          autocorrect="off"
-                          class="react-select__input"
-                          id="react-select-id-category"
-                          role="combobox"
-                          spellcheck="false"
-                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                          tabindex="0"
-                          type="text"
-                          value=""
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                    >
-                      <span
-                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
-                      />
-                      <div
-                        aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="text-lg"
-                          fill="none"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="form-field-wrapper"
-              >
-                <label>
-                  Logo Upload
+                  Logo
                 </label>
                 <label
                   class="flex items-center"
@@ -942,37 +1134,100 @@ exports[`Unit tests for the building block detail page. Should render edit page 
                 </div>
               </div>
               <div
-                class="form-field-wrapper"
+                class="flex flex-col gap-y-2"
               >
-                <label>
-                  GovStack Specification URL
-                </label>
-                <div
-                  class="border border-transparent url-input bg-white flex items-center"
+                <label
+                  class="text-dial-sapphire"
+                  for="geographicCoverage"
                 >
-                  <input
-                    class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
-                    id="specUrl"
-                    placeholder="GovStack Specification URL"
-                    value=""
-                  />
-                </div>
-              </div>
-              <label
-                class="flex gap-x-2 items-center self-start"
-              >
+                  Geographic Coverage
+                </label>
                 <input
-                  class="h-5 w-5"
-                  name="govStackEntity"
-                  type="checkbox"
+                  class="w-full text-sm"
+                  id="geographicCoverage"
+                  name="geographicCoverage"
+                  placeholder="Geographic Coverage"
+                  type="text"
+                  value=""
                 />
-                GovStack building block
-              </label>
+              </div>
               <div
                 class="flex flex-col gap-y-2"
               >
                 <label
-                  class="required-field"
+                  class="text-dial-sapphire"
+                  for="timeRange"
+                >
+                  Time Range
+                </label>
+                <input
+                  class="w-full text-sm"
+                  id="timeRange"
+                  name="timeRange"
+                  placeholder="Time Range"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="text-dial-sapphire"
+                  for="license"
+                >
+                  License
+                </label>
+                <input
+                  class="w-full text-sm"
+                  id="license"
+                  name="license"
+                  placeholder="License"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="text-dial-sapphire"
+                  for="languages"
+                >
+                  Languages
+                </label>
+                <input
+                  class="w-full text-sm"
+                  id="languages"
+                  name="languages"
+                  placeholder="Languages"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="text-dial-sapphire"
+                  for="dataFormat"
+                >
+                  Data Format
+                </label>
+                <input
+                  class="w-full text-sm"
+                  id="dataFormat"
+                  name="dataFormat"
+                  placeholder="Data Format"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="text-dial-sapphire required-field"
                 >
                   Description
                 </label>
@@ -1011,7 +1266,7 @@ exports[`Unit tests for the building block detail page. Should render edit page 
                   disabled=""
                   type="submit"
                 >
-                  Submit Building Block
+                  Submit Dataset
                   <svg
                     class="spinner ml-3"
                     fill="currentColor"
@@ -1044,7 +1299,7 @@ exports[`Unit tests for the building block detail page. Should render edit page 
 </div>
 `;
 
-exports[`Unit tests for the building block detail page. Should render unauthorized for non logged in user. 1`] = `
+exports[`Unit tests for the dataset detail page. Should render unauthorized for non logged in user. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -1082,20 +1337,20 @@ exports[`Unit tests for the building block detail page. Should render unauthoriz
               class="flex flex-col gap-y-4 py-3"
             >
               <div
-                class="text-xl text-dial-ochre font-semibold"
+                class="text-xl text-dial-plum font-semibold"
               >
-                Analytics and business intelligence
+                AI Agro
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
               >
                 <div
-                  class="w-20 h-20 px-1 py-1 rounded-full bg-dial-orange"
+                  class="inline"
                 >
                   <img
-                    alt="Logo of Building Block."
-                    class="object-contain dial-ochre-filter w-14 h-14 mx-auto my-2 white-filter"
-                    src="http://localhost:3000//assets/building-blocks/analytics-and-business-intelligence.svg"
+                    alt="Logo of Dataset."
+                    class="object-contain w-20 h-20"
+                    src="http://localhost:3000//assets/products/ai-agro.png"
                   />
                 </div>
               </div>
@@ -1103,35 +1358,50 @@ exports[`Unit tests for the building block detail page. Should render unauthoriz
                 class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
               >
                 <div
-                  class="flex gap-x-3"
+                  class="flex flex-col gap-y-3"
                 >
                   <div
-                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                    class="font-semibold text-dial-sapphire"
                   >
-                    <div
-                      class="font-semibold text-dial-sapphire"
-                    >
-                      Maturity
-                    </div>
-                    <div
-                      class="flex text-dial-stratos"
-                    >
-                      DRAFT
-                    </div>
+                    Open Data Website
                   </div>
                   <div
-                    class="flex flex-col gap-y-3 text-sm grow shrink-0"
+                    class="flex text-dial-stratos"
+                  >
+                    <a
+                      class="flex border-b border-dial-iris-blue "
+                      href="//rentadrone.cl/developers/ai-agro"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <div
+                        class="line-clamp-1 break-all"
+                      >
+                        rentadrone.cl/developers/ai-agro
+                      </div>
+                    </a>
+                     ⧉
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="flex flex-row gap-3"
                   >
                     <div
                       class="font-semibold text-dial-sapphire"
                     >
-                      Category
+                      Sectors
                     </div>
                     <div
-                      class="flex text-dial-stratos"
-                    >
-                      FUNCTIONAL
-                    </div>
+                      class="flex gap-3 ml-auto"
+                    />
+                  </div>
+                  <div
+                    class="text-sm text-dial-stratos"
+                  >
+                    N/A
                   </div>
                 </div>
               </div>

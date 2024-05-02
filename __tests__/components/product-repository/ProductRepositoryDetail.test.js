@@ -96,12 +96,14 @@ describe('Unit tests for the product main page.', () => {
     )
 
     const { container } = render(
-      <CustomMockedProvider mocks={[
-        mockOwnedProducts,
-        mockProductRepositories,
-        mockProductRepositoryDetail,
-        mockCreateProductRepository
-      ]}>
+      <CustomMockedProvider
+        mocks={[
+          mockOwnedProducts,
+          mockProductRepositories,
+          mockProductRepositoryDetail,
+          mockCreateProductRepository
+        ]}
+      >
         <QueryParamContextProvider>
           <ProductFilterProvider>
             <ProductRepositoryEdit productSlug={'firma'} repositorySlug={'firma-repository'} />

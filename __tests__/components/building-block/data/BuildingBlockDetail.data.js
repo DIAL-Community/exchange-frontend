@@ -11,7 +11,7 @@ export const buildingBlockDetail = {
       'govStackEntity': false,
       'buildingBlockDescription': {
         'id': '1',
-        'description': 'Building block description goes here.',
+        'description': 'Building block description.',
         'locale': 'en',
         '__typename': 'BuildingBlockDescription'
       },
@@ -47,4 +47,29 @@ export const buildingBlockDetail = {
   }
 }
 
-export const buildingBlockComments = { 'data': { 'comments': [] } }
+export const commentsQuery = { 'data': { 'comments': [] } }
+
+export const createBuildingBlock = {
+  'data': {
+    'createBuildingBlock': {
+      'buildingBlock': {
+        'id': '25',
+        'name': 'Analytics and business intelligence -- Edited',
+        'slug': 'analytics-and-business-intelligence',
+        'specUrl': null,
+        'maturity': 'DRAFT',
+        'category': null,
+        'govStackEntity': false,
+        'buildingBlockDescription': {
+          'id': '1',
+          'description': 'Building block description',
+          'locale': 'en',
+          '__typename': 'BuildingBlockDescription'
+        },
+        '__typename': 'BuildingBlock'
+      },
+      'errors': [],
+      '__typename': 'CreateBuildingBlockPayload'
+    }
+  }
+}

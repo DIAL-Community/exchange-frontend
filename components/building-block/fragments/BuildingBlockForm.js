@@ -1,26 +1,25 @@
-import React, { useState, useCallback, useMemo, useContext } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import Input from '../../shared/form/Input'
-import ValidationError from '../../shared/form/ValidationError'
-import Select from '../../shared/form/Select'
-import FileUploader from '../../shared/form/FileUploader'
-import UrlInput from '../../shared/form/UrlInput'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
-import { CREATE_BUILDING_BLOCK } from '../../shared/mutation/buildingBlock'
-import { generateCategoryOptions, generateMaturityOptions } from '../../shared/form/options'
-import {
-  PAGINATED_BUILDING_BLOCKS_QUERY,
-  BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY
-} from '../../shared/query/buildingBlock'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
+import FileUploader from '../../shared/form/FileUploader'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import Input from '../../shared/form/Input'
+import { generateCategoryOptions, generateMaturityOptions } from '../../shared/form/options'
+import Select from '../../shared/form/Select'
+import UrlInput from '../../shared/form/UrlInput'
+import ValidationError from '../../shared/form/ValidationError'
+import { CREATE_BUILDING_BLOCK } from '../../shared/mutation/buildingBlock'
+import {
+  BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY
+} from '../../shared/query/buildingBlock'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -81,7 +80,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
       maturity: maturityOptions.find(({ value: maturity }) => maturity === buildingBlock?.maturity),
       category: categoryOptions.find(({ value: category }) => category === buildingBlock?.category),
       description: buildingBlock?.buildingBlockDescription?.description,
-      specUrl: buildingBlock?.specUrl,
+      specUrl: buildingBlock?.specUrl ?? '',
       govStackEntity: buildingBlock?.govStackEntity
     }
   })
