@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import parse from 'html-react-parser'
+import Link from 'next/link'
+import { useIntl } from 'react-intl'
 import { DisplayType } from '../utils/constants'
 
 const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
@@ -23,7 +23,7 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
             {sdgTarget.name}
           </div>
           <div className='line-clamp-4 max-w-3xl'>
-            {parse(sdgTarget?.sanitizedDescription)}
+            {sdgTarget?.sanitizedDescription && parse(sdgTarget?.sanitizedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>

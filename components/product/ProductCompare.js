@@ -1,24 +1,20 @@
-import Link from 'next/link'
-import classNames from 'classnames'
-import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
-import { useQuery } from '@apollo/client'
-import { FaArrowLeft, FaSliders } from 'react-icons/fa6'
 import { useCallback, useState } from 'react'
+import classNames from 'classnames'
+import parse from 'html-react-parser'
+import Link from 'next/link'
 import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel
+  Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel
 } from 'react-accessible-accordion'
-import { PRODUCT_COMPARE_QUERY } from '../shared/query/product'
-import Dialog from '../shared/Dialog'
+import { FaArrowLeft, FaSliders } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
 import BarChart from '../shared/BarChart'
-import RadarChart from '../shared/RadarChart'
 import Breadcrumb from '../shared/Breadcrumb'
-import Checkbox from '../shared/form/Checkbox'
+import Dialog from '../shared/Dialog'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import Checkbox from '../shared/form/Checkbox'
+import { PRODUCT_COMPARE_QUERY } from '../shared/query/product'
+import RadarChart from '../shared/RadarChart'
 
 const MATURITY_SCORE_MULTIPLIER = 10
 const MAX_MATURITY_SCORE = 100
@@ -67,7 +63,7 @@ const MaturityCategory = ({ category }) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                   <div className='text-sm text-dial-stratos pl-4'>
-                    {parse(indicator.description)}
+                    {indicator?.description && parse(indicator.description)}
                   </div>
                   <div className='text-sm text-dial-stratos pl-4'>
                     {format('categoryIndicator.weight')}: {indicator.weight}
