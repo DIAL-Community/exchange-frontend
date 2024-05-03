@@ -27,6 +27,10 @@ export const CREATE_USE_CASE = gql`
         name
         maturity
         govStackEntity
+        useCaseDescription {
+          id
+          description
+        }
         buildingBlocks {
           id
           name

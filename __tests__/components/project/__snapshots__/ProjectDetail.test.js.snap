@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the organization detail page. Should render detail of a organization. 1`] = `
+exports[`Unit tests for the project detail page. Should render detail of a project. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -40,20 +40,7 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                AI4GOV
-              </div>
-              <div
-                class="flex justify-center items-center py-16 bg-white rounded border"
-              >
-                <div
-                  class="inline"
-                >
-                  <img
-                    alt="Logo of Organization."
-                    class="object-contain"
-                    src="http://localhost:3000//assets/organizations/ai4gov.png"
-                  />
-                </div>
+                Colombia HMIS
               </div>
               <div
                 class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
@@ -64,21 +51,21 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                   <div
                     class="font-semibold text-dial-sapphire"
                   >
-                    Website
+                    Project URL
                   </div>
                   <div
                     class="flex text-dial-stratos"
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//www.ai4gov.net"
+                      href="//digitalhealthatlas.org/en/-/projects/1047/published"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        www.ai4gov.net
+                        digitalhealthatlas.org/en/-/projects/1047/published
                       </div>
                     </a>
                      ⧉
@@ -100,39 +87,23 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                     />
                   </div>
                   <div
-                    class="flex flex-col gap-y-2"
+                    class="text-sm text-dial-stratos"
                   >
-                    <div>
-                      <div>
-                        Digital, Data, and Technology
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        Education and Social Development
-                      </div>
-                    </div>
+                    N/A
                   </div>
                 </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
                 <div
-                  class="flex flex-col gap-y-2 text-xs grow shrink-0"
+                  class="flex flex-col gap-y-3"
                 >
                   <div
-                    class="text-sm italic"
+                    class="font-semibold text-dial-sapphire"
                   >
-                    Organization is an endorser of the Principle for Digital Development.
+                    Origin
                   </div>
                   <div
-                    class="flex gap-x-1 italic text-dial-stratos"
+                    class="flex flex-col gap-y-2 text-dial-stratos"
                   >
-                    <span>
-                      Endorsed in
-                      :
-                    </span>
-                    8/20/2019
+                    Digital Health Atlas
                   </div>
                 </div>
               </div>
@@ -183,7 +154,7 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
 </div>
 `;
 
-exports[`Unit tests for the organization detail page. Should render edit page for logged in user. 1`] = `
+exports[`Unit tests for the project detail page. Should render edit page for logged in user. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -223,20 +194,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                AI4GOV -- Edited
-              </div>
-              <div
-                class="flex justify-center items-center py-16 bg-white rounded border"
-              >
-                <div
-                  class="inline"
-                >
-                  <img
-                    alt="Logo of Organization."
-                    class="object-contain"
-                    src="http://localhost:3000//assets/organizations/ai4gov.png"
-                  />
-                </div>
+                Colombia HMIS -- Edited
               </div>
               <div
                 class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
@@ -247,21 +205,21 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                   <div
                     class="font-semibold text-dial-sapphire"
                   >
-                    Website
+                    Project URL
                   </div>
                   <div
                     class="flex text-dial-stratos"
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//www.ai4gov.net"
+                      href="//digitalhealthatlas.org/en/-/projects/1047/published"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        www.ai4gov.net
+                        digitalhealthatlas.org/en/-/projects/1047/published
                       </div>
                     </a>
                      ⧉
@@ -313,39 +271,23 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                     </div>
                   </div>
                   <div
-                    class="flex flex-col gap-y-2"
+                    class="text-sm text-dial-stratos"
                   >
-                    <div>
-                      <div>
-                        Digital, Data, and Technology
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        Education and Social Development
-                      </div>
-                    </div>
+                    N/A
                   </div>
                 </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
                 <div
-                  class="flex flex-col gap-y-2 text-xs grow shrink-0"
+                  class="flex flex-col gap-y-3"
                 >
                   <div
-                    class="text-sm italic"
+                    class="font-semibold text-dial-sapphire"
                   >
-                    Organization is an endorser of the Principle for Digital Development.
+                    Origin
                   </div>
                   <div
-                    class="flex gap-x-1 italic text-dial-stratos"
+                    class="flex flex-col gap-y-2 text-dial-stratos"
                   >
-                    <span>
-                      Endorsed in
-                      :
-                    </span>
-                    8/20/2019
+                    Digital Health Atlas
                   </div>
                 </div>
               </div>
@@ -369,13 +311,13 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
               <div
                 class="text-xl font-semibold"
               >
-                Edit AI4GOV -- Edited
+                Edit Colombia HMIS -- Edited
               </div>
               <div
                 class="flex flex-col gap-y-2"
               >
                 <label
-                  class="text-dial-sapphire required-field"
+                  class="required-field"
                   for="name"
                 >
                   Name
@@ -393,50 +335,9 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                 class="flex flex-col gap-y-2"
               >
                 <label
-                  class="text-dial-sapphire"
+                  for="projectUrl"
                 >
-                  Aliases
-                </label>
-                <div
-                  class="flex gap-x-2"
-                >
-                  <input
-                    class="w-full text-sm"
-                    name="aliases.0.value"
-                    placeholder="Alias"
-                    type="text"
-                    value=""
-                  />
-                  <span>
-                    <button
-                      class="bg-dial-sapphire shadow-md px-3 py-2.5 hover:bg-dial-angel"
-                      type="button"
-                    >
-                      <svg
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 448 512"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-                        />
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-              </div>
-              <div
-                class="flex flex-col gap-y-2"
-              >
-                <label
-                  class="text-dial-sapphire required-field"
-                  for="website"
-                >
-                  Website
+                  Project URL
                 </label>
                 <div
                   class="border border-transparent url-input bg-white flex items-center"
@@ -448,9 +349,9 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                   </span>
                   <input
                     class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
-                    id="website"
-                    placeholder="Website"
-                    value="www.ai4gov.net"
+                    id="projectUrl"
+                    placeholder="Project URL"
+                    value="digitalhealthatlas.org/en/-/projects/1047/published"
                   />
                 </div>
               </div>
@@ -458,186 +359,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                 class="flex flex-col gap-y-2"
               >
                 <label
-                  class="text-dial-sapphire"
-                >
-                  Logo
-                </label>
-                <label
-                  class="flex items-center"
-                >
-                  <input
-                    accept=".jpg,.jpeg,.png,.bmp"
-                    class="bg-white file:hidden w-full text-sm"
-                    name="imageFile"
-                    type="file"
-                  />
-                  <div
-                    class="-ml-11 flex p-1"
-                  >
-                    <span
-                      class="h-full pl-1 border-l text-dial-gray-dark border-dial-gray-dark"
-                    >
-                      <svg
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        version="1.1"
-                        viewBox="0 0 16 16"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13 14h-10v-2l3-5 4.109 5 2.891-2v4z"
-                        />
-                        <path
-                          d="M13 7.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5 0.672-1.5 1.5-1.5c0.828 0 1.5 0.672 1.5 1.5z"
-                        />
-                        <path
-                          d="M14.341 3.579c-0.347-0.473-0.831-1.027-1.362-1.558s-1.085-1.015-1.558-1.362c-0.806-0.591-1.197-0.659-1.421-0.659h-7.75c-0.689 0-1.25 0.561-1.25 1.25v13.5c0 0.689 0.561 1.25 1.25 1.25h11.5c0.689 0 1.25-0.561 1.25-1.25v-9.75c0-0.224-0.068-0.615-0.659-1.421zM12.271 2.729c0.48 0.48 0.856 0.912 1.134 1.271h-2.406v-2.405c0.359 0.278 0.792 0.654 1.271 1.134zM14 14.75c0 0.136-0.114 0.25-0.25 0.25h-11.5c-0.135 0-0.25-0.114-0.25-0.25v-13.5c0-0.135 0.115-0.25 0.25-0.25 0 0 7.749-0 7.75 0v3.5c0 0.276 0.224 0.5 0.5 0.5h3.5v9.75z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </label>
-                <div
-                  class="text-xs italic text-dial-stratos"
-                >
-                  Note: Supported file types are jpg, png, and bmp
-                </div>
-              </div>
-              <label
-                class="flex gap-x-2 items-center self-start text-dial-sapphire"
-              >
-                <input
-                  class="h-5 w-5"
-                  name="isEndorser"
-                  type="checkbox"
-                />
-                Organization is an endorser of the Principle for Digital Development.
-              </label>
-              <div
-                class="flex flex-col gap-y-2"
-              >
-                <label
-                  class="text-dial-sapphire"
-                >
-                  Endorsed Date
-                </label>
-                <input
-                  class="w-full text-sm"
-                  name="whenEndorsed"
-                  placeholder="Endorsed Date"
-                  type="date"
-                  value=""
-                />
-              </div>
-              <div
-                class="flex flex-col gap-y-2"
-              >
-                <label
-                  class="text-dial-sapphire"
-                >
-                  Endorser Level
-                </label>
-                <div
-                  class=" css-sqp82o-container"
-                >
-                  <span
-                    class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-:r0:-live-region"
-                  />
-                  <span
-                    aria-atomic="false"
-                    aria-live="polite"
-                    aria-relevant="additions text"
-                    class="css-1f43avz-a11yText-A11yText"
-                  />
-                  <div
-                    class="react-select__control css-afrqkl-control"
-                  >
-                    <div
-                      class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
-                    >
-                      <div
-                        class="react-select__single-value css-1dimb5e-singleValue"
-                      >
-                        None
-                      </div>
-                      <div
-                        class="react-select__input-container css-qbdosj-Input"
-                        data-value=""
-                      >
-                        <input
-                          aria-autocomplete="list"
-                          aria-expanded="false"
-                          aria-haspopup="true"
-                          autocapitalize="none"
-                          autocomplete="off"
-                          autocorrect="off"
-                          class="react-select__input"
-                          id="react-select-id-endorserLevel"
-                          role="combobox"
-                          spellcheck="false"
-                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                          tabindex="0"
-                          type="text"
-                          value=""
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                    >
-                      <span
-                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
-                      />
-                      <div
-                        aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="css-tj5bde-Svg"
-                          focusable="false"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          width="20"
-                        >
-                          <path
-                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <label
-                class="flex gap-x-2 items-center self-start text-dial-sapphire"
-              >
-                <input
-                  class="h-5 w-5"
-                  name="isMni"
-                  type="checkbox"
-                />
-                Organization is a mobile network integrator organization.
-              </label>
-              <label
-                class="flex gap-x-2 items-center self-start text-dial-sapphire"
-              >
-                <input
-                  class="h-5 w-5"
-                  name="hasStorefront"
-                  type="checkbox"
-                />
-                Organization has a storefront.
-              </label>
-              <div
-                class="flex flex-col gap-y-2"
-              >
-                <label
-                  class="text-dial-sapphire required-field"
+                  class="required-field"
                 >
                   Description
                 </label>
@@ -676,7 +398,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                   disabled=""
                   type="submit"
                 >
-                  Submit Organization
+                  Submit Project
                   <svg
                     class="spinner ml-3"
                     fill="currentColor"
@@ -709,7 +431,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
 </div>
 `;
 
-exports[`Unit tests for the organization detail page. Should render unauthorized for non logged in user. 1`] = `
+exports[`Unit tests for the project detail page. Should render unauthorized for non logged in user. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -749,20 +471,7 @@ exports[`Unit tests for the organization detail page. Should render unauthorized
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                AI4GOV
-              </div>
-              <div
-                class="flex justify-center items-center py-16 bg-white rounded border"
-              >
-                <div
-                  class="inline"
-                >
-                  <img
-                    alt="Logo of Organization."
-                    class="object-contain"
-                    src="http://localhost:3000//assets/organizations/ai4gov.png"
-                  />
-                </div>
+                Colombia HMIS
               </div>
               <div
                 class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
@@ -773,21 +482,21 @@ exports[`Unit tests for the organization detail page. Should render unauthorized
                   <div
                     class="font-semibold text-dial-sapphire"
                   >
-                    Website
+                    Project URL
                   </div>
                   <div
                     class="flex text-dial-stratos"
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//www.ai4gov.net"
+                      href="//digitalhealthatlas.org/en/-/projects/1047/published"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        www.ai4gov.net
+                        digitalhealthatlas.org/en/-/projects/1047/published
                       </div>
                     </a>
                      ⧉
@@ -809,39 +518,23 @@ exports[`Unit tests for the organization detail page. Should render unauthorized
                     />
                   </div>
                   <div
-                    class="flex flex-col gap-y-2"
+                    class="text-sm text-dial-stratos"
                   >
-                    <div>
-                      <div>
-                        Digital, Data, and Technology
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        Education and Social Development
-                      </div>
-                    </div>
+                    N/A
                   </div>
                 </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
                 <div
-                  class="flex flex-col gap-y-2 text-xs grow shrink-0"
+                  class="flex flex-col gap-y-3"
                 >
                   <div
-                    class="text-sm italic"
+                    class="font-semibold text-dial-sapphire"
                   >
-                    Organization is an endorser of the Principle for Digital Development.
+                    Origin
                   </div>
                   <div
-                    class="flex gap-x-1 italic text-dial-stratos"
+                    class="flex flex-col gap-y-2 text-dial-stratos"
                   >
-                    <span>
-                      Endorsed in
-                      :
-                    </span>
-                    8/20/2019
+                    Digital Health Atlas
                   </div>
                 </div>
               </div>

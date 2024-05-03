@@ -1,45 +1,45 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
-import OrganizationEdit from '../../../components/organization/OrganizationEdit'
 import { CREATE_ORGANIZATION } from '../../../components/shared/mutation/organization'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  ORGANIZATION_DETAIL_QUERY, ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY
+  ORGANIZATION_DETAIL_QUERY, PAGINATED_STOREFRONTS_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY
 } from '../../../components/shared/query/organization'
+import StorefrontEdit from '../../../components/storefront/StorefrontEdit'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import { commentsQuery, createOrganization, organizationDetail } from './data/OrganizationDetail.data'
-import { organizationPaginationAttribute, paginatedOrganizations } from './data/OrganizationMain.data'
+import { commentsQuery, createStorefront, storefrontDetail } from './data/StorefrontDetail.data'
+import { paginatedStorefronts, storefrontPaginationAttribute } from './data/StorefrontMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
-describe('Unit tests for the organization detail page.', () => {
-  const mockOrganization = generateMockApolloData(
+describe('Unit tests for the storefront detail page.', () => {
+  const mockStorefront = generateMockApolloData(
     ORGANIZATION_DETAIL_QUERY,
     {
       'slug': 'ai4gov'
     },
     null,
-    organizationDetail
+    storefrontDetail
   )
 
-  const mockOrganizationComments = generateMockApolloData(
+  const mockStorefrontComments = generateMockApolloData(
     COMMENTS_QUERY,
     {
       'commentObjectId': 190,
-      'commentObjectType': 'ORGANIZATION'
+      'commentObjectType': 'STOREFRONT'
     },
     null,
     commentsQuery
   )
 
-  test('Should render detail of a organization.', async () => {
+  test('Should render detail of a storefront.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOrganization, mockOrganizationComments]}>
+      <CustomMockedProvider mocks={[mockStorefront, mockStorefrontComments]}>
         <QueryParamContextProvider>
-          <OrganizationEdit slug='ai4gov' />
+          <StorefrontEdit slug='ai4gov' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -50,9 +50,9 @@ describe('Unit tests for the organization detail page.', () => {
 
   test('Should render unauthorized for non logged in user.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOrganization, mockOrganizationComments]}>
+      <CustomMockedProvider mocks={[mockStorefront, mockStorefrontComments]}>
         <QueryParamContextProvider>
-          <OrganizationEdit slug='ai4gov' />
+          <StorefrontEdit slug='ai4gov' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -70,48 +70,42 @@ describe('Unit tests for the organization detail page.', () => {
       {
         'name': 'AI4GOV -- Edited',
         'slug': 'ai4gov',
-        'aliases': [
-          ''
-        ],
+        'aliases': [''],
         'website': 'www.ai4gov.net',
-        'isEndorser': true,
-        'whenEndorsed': '2019-08-21',
-        'endorserLevel': 'none',
-        'isMni': false,
         'description': 'Description for the organization.',
-        'hasStorefront': false
+        'hasStorefront': true
       },
       null,
-      createOrganization
+      createStorefront
     )
 
-    const mockOrganizationPaginationAttribute = generateMockApolloData(
-      ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
-      { search:'' },
+    const mockStorefrontPaginationAttribute = generateMockApolloData(
+      STOREFRONT_PAGINATION_ATTRIBUTES_QUERY,
+      { search: '' },
       null,
-      organizationPaginationAttribute
+      storefrontPaginationAttribute
     )
 
-    const mockPaginatedOrganizations = generateMockApolloData(
-      PAGINATED_ORGANIZATIONS_QUERY,
-      { search:'', limit: 8, offset: 0 },
+    const mockPaginatedStorefronts = generateMockApolloData(
+      PAGINATED_STOREFRONTS_QUERY,
+      { search: '', limit: 8, offset: 0 },
       null,
-      paginatedOrganizations
+      paginatedStorefronts
     )
 
     const { container } = render(
       <CustomMockedProvider
         mocks={[
-          mockOrganization,
-          mockOrganizationComments,
+          mockStorefront,
+          mockStorefrontComments,
           mockCreateBuildingBlock,
-          mockOrganizationPaginationAttribute,
-          mockPaginatedOrganizations,
-          mockOrganization
+          mockStorefrontPaginationAttribute,
+          mockPaginatedStorefronts,
+          mockStorefront
         ]}
       >
         <QueryParamContextProvider>
-          <OrganizationEdit slug='ai4gov' />
+          <StorefrontEdit slug='ai4gov' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -125,7 +119,7 @@ describe('Unit tests for the organization detail page.', () => {
     await user.type(repositoryNameInput, ' -- Edited')
     expect(repositoryNameInput.value).toBe('AI4GOV -- Edited')
 
-    const repositorySubmitButton = screen.getByText('Submit Organization')
+    const repositorySubmitButton = screen.getByText('Submit Storefront')
     await user.click(repositorySubmitButton)
 
     expect(container).toMatchSnapshot()

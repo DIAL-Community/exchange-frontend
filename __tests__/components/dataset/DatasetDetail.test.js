@@ -1,7 +1,5 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
-import { BuildingBlockFilterProvider } from '../../../components/context/BuildingBlockFilterContext'
-import { ProductFilterProvider } from '../../../components/context/ProductFilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import DatasetDetail from '../../../components/dataset/DatasetDetail'
 import DatasetEdit from '../../../components/dataset/DatasetEdit'
@@ -42,11 +40,7 @@ describe('Unit tests for the dataset detail page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockDataset, mockDatasetComments]}>
         <QueryParamContextProvider>
-          <BuildingBlockFilterProvider>
-            <ProductFilterProvider>
-              <DatasetDetail slug='ai-agro' />
-            </ProductFilterProvider>
-          </BuildingBlockFilterProvider>
+          <DatasetDetail slug='ai-agro' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -59,11 +53,7 @@ describe('Unit tests for the dataset detail page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockDataset, mockDatasetComments]}>
         <QueryParamContextProvider>
-          <BuildingBlockFilterProvider>
-            <ProductFilterProvider>
-              <DatasetEdit slug='ai-agro' />
-            </ProductFilterProvider>
-          </BuildingBlockFilterProvider>
+          <DatasetEdit slug='ai-agro' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -124,11 +114,7 @@ describe('Unit tests for the dataset detail page.', () => {
         ]}
       >
         <QueryParamContextProvider>
-          <BuildingBlockFilterProvider>
-            <ProductFilterProvider>
-              <DatasetEdit slug='ai-agro' />
-            </ProductFilterProvider>
-          </BuildingBlockFilterProvider>
+          <DatasetEdit slug='ai-agro' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
