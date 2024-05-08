@@ -1,9 +1,9 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useEffect, useState } from 'react'
-import ReactPaginate from 'react-paginate'
 import { isMobile } from 'react-device-detect'
+import { useIntl } from 'react-intl'
+import ReactPaginate from 'react-paginate'
 
-const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, onClickHandler }) => {
+const Pagination = ({ pageNumber, totalCount, defaultPageSize, onClickHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -64,4 +64,4 @@ const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, onClickH
 
 }
 
-export default PaginationStructure
+export default Pagination

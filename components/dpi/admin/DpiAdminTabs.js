@@ -34,7 +34,7 @@ const DpiAdminTabs = () => {
   ]
 
   return (
-    <ul class="flex-column space-y space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
+    <ul class="flex-column space-y space-y-4 text-sm font-medium text-dial-slate-300 md:me-4 mb-4 md:mb-0">
       {tabItems.map((item, index) => {
         return (
           <li key={`tab-${index}`}>
@@ -42,8 +42,8 @@ const DpiAdminTabs = () => {
               className={classNames(
                 'inline-flex items-center px-4 py-3 rounded-lg w-full',
                 pathname === item.href
-                  ? 'text-white active bg-blue-600'
-                  : 'bg-gray-800 hover:bg-gray-700 hover:text-white'
+                  ? 'text-white active bg-dial-iris-blue'
+                  : 'bg-dial-slate-800 hover:bg-dial-slate-700 hover:text-white'
               )}
             >
               <div className='flex gap-2'>
