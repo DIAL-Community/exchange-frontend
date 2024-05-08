@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import DpiProfileDashboard from '../../../components/dpi/admin/DpiProfileDashboard'
+import DpiAdminSettings from '../../../components/dpi/admin/DpiAdminSettings'
 import DpiFooter from '../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../components/dpi/sections/DpiHeader'
 import { Unauthorized } from '../../../components/shared/FetchStatus'
@@ -31,7 +31,7 @@ const DpiAdminSettingPage = ({ dpiTenants }) => {
         <QueryNotification />
         <DpiHeader />
         { status === 'unauthenticated' && <Unauthorized />}
-        { status === 'authenticated' && <DpiProfileDashboard />}
+        { status === 'authenticated' && <DpiAdminSettings />}
         <DpiFooter />
       </ClientOnly>
     </>

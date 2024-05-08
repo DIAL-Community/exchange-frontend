@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import DpiAdminTabs from './DpiAdminTabs'
 
-const DpiProfileDashboard = () => {
+const DpiAdminProfile = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -60,4 +60,4 @@ const DpiProfileDashboard = () => {
   )
 }
 
-export default DpiProfileDashboard
+export default DpiAdminProfile
