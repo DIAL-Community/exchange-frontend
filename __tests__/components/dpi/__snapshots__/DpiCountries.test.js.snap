@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the opportunity detail page. Should render detail of a opportunity. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="flex flex-col gap-6 pb-12"
+  >
+    <img
+      alt="DIAL DPI Resource Hub"
+      class="h-80 w-full object-cover"
+      src="/images/hero-image/dpi-hero.svg"
+    />
+    <div
+      class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
+    >
+      <div
+        class="text-2xl text-center text-white py-16 md:py-24 lg:py-28 xl:py-32 mx-auto max-w-prose"
+      >
+        
+    Find tools and resources related to how DPI has been implemented in a specific country.
+  
+      </div>
+    </div>
+    <div
+      class="px-4 lg:px-8 xl:px-56  min-h-[40vh] 2xl:min-h-[50vh]"
+    >
+      <div
+        class="flex flex-col gap-6"
+      >
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3"
+        >
+          <a
+            href="/dpi-countries/et"
+          >
+            <div
+              class="border border-rounded bg-dial-slate-100 flex gap-4 items-center"
+            >
+              <img
+                alt="Flag for country: ET."
+                class="object-contain w-20 h-20 px-4"
+                src="https://flagsapi.com/ET/flat/64.png"
+              />
+              <div
+                class="font-semibold"
+              >
+                Ethiopia
+              </div>
+            </div>
+          </a>
+          <a
+            href="/dpi-countries/ke"
+          >
+            <div
+              class="border border-rounded bg-dial-slate-100 flex gap-4 items-center"
+            >
+              <img
+                alt="Flag for country: KE."
+                class="object-contain w-20 h-20 px-4"
+                src="https://flagsapi.com/KE/flat/64.png"
+              />
+              <div
+                class="font-semibold"
+              >
+                Kenya
+              </div>
+            </div>
+          </a>
+          <a
+            href="/dpi-countries/ug"
+          >
+            <div
+              class="border border-rounded bg-dial-slate-100 flex gap-4 items-center"
+            >
+              <img
+                alt="Flag for country: UG."
+                class="object-contain w-20 h-20 px-4"
+                src="https://flagsapi.com/UG/flat/64.png"
+              />
+              <div
+                class="font-semibold"
+              >
+                Uganda
+              </div>
+            </div>
+          </a>
+          <a
+            href="/dpi-countries/zm"
+          >
+            <div
+              class="border border-rounded bg-dial-slate-100 flex gap-4 items-center"
+            >
+              <img
+                alt="Flag for country: ZM."
+                class="object-contain w-20 h-20 px-4"
+                src="https://flagsapi.com/ZM/flat/64.png"
+              />
+              <div
+                class="font-semibold"
+              >
+                Zambia
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
