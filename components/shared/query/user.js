@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const USER_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeUser($search: String) {
-    paginationAttributeUser(search: $search) {
+  query PaginationAttributeUser($search: String, $roles: [String!]) {
+    paginationAttributeUser(search: $search,  roles: $roles) {
       totalCount
     }
   }
@@ -11,10 +11,12 @@ export const USER_PAGINATION_ATTRIBUTES_QUERY = gql`
 export const PAGINATED_USERS_QUERY = gql`
   query PaginatedUsers(
     $search: String
+    $roles: [String!]
     $limit: Int!
     $offset: Int!
   ) {
     paginatedUsers(
+      roles: $roles
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
