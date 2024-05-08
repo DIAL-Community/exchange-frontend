@@ -2554,5 +2554,10 @@ export const en = {
     required for the use case are listed below. Only the building blocks required in this step are
     highlighted. Foundational building blocks (also known as Digital Public Infrastructure appear
     below the dotted line).
-  ` 
+  `,
+
+  'ui.dpi.admin.profile': 'Profile',
+  'ui.dpi.admin.users': 'Users',
+  'ui.dpi.admin.settings': 'Settings',
+  'ui.dpi.admin.broadcast': 'Broadcast',
 }
