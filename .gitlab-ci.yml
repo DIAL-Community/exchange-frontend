@@ -28,7 +28,6 @@ variables:
 
 build_react:
   tags:
-    - docker
     - test
   stage: build
   script:
@@ -38,7 +37,6 @@ build_react:
 
 test:
   tags:
-    - docker
     - test
   stage: test
   script:
