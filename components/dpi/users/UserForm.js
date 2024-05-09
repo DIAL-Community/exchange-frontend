@@ -1,13 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { useEmailValidation, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { Error, Loading, NotFound, Unauthorized } from '../../shared/FetchStatus'
-import { ProductActiveFilters, ProductAutocomplete } from '../../shared/filter/Product'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
 import Pill from '../../shared/form/Pill'
@@ -23,31 +22,8 @@ const UserForm = React.memo(({ user }) => {
   const id = user?.id ?? ''
   const { user: currentUser, loadingUserSession } = useUser()
 
-  const parseProducts = (products = []) => {
-    return products.map(product => {
-      return {
-        label: product.name,
-        value: product.id,
-        slug: product.slug
-      }
-    })
-  }
-
-  const parseOrganization = (organization = null) => {
-    if (organization) {
-      return {
-        label: organization.name,
-        value: organization.slug,
-        slug: organization.slug,
-        website: organization.website
-      }
-    }
-  }
-
   const router = useRouter()
   const [roles, setRoles] = useState(user ? user.roles : [])
-  const [products, setProducts] = useState(parseProducts(user?.products))
-  const [organization, setOrganization] = useState(parseOrganization(user?.organization))
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -59,7 +35,7 @@ const UserForm = React.memo(({ user }) => {
   useEffect(() => {
   }, [])
 
-  const { handleSubmit, register, control, getValues, formState: { errors } } = useForm({
+  const { handleSubmit, register, formState: { errors } } = useForm({
     mode: 'onBlur',
     shouldUnregister: true,
     defaultValues: {
@@ -104,10 +80,9 @@ const UserForm = React.memo(({ user }) => {
     return <NotFound />
   }
 
-  const { organizations, userRoles } = data
+  const { userRoles } = data
 
   const roleOptions =  userRoles?.map(role => ({ label: role, value: role }))
-  const organizationOptions = organizations?.map(({ slug, name, website }) => ({ label: name, value: slug, slug, website }))
 
   const doUpsert = async (data) => {
     if (currentUser) {
@@ -119,8 +94,6 @@ const UserForm = React.memo(({ user }) => {
         variables: {
           email,
           roles,
-          products,
-          organizations: [organization],
           username,
           confirmed
         },
@@ -145,14 +118,6 @@ const UserForm = React.memo(({ user }) => {
   const cancelForm = () => {
     setReverting(true)
     router.push(`/${locale}/users/${id}`)
-  }
-
-  const validateOrganizationDomain = (value) => {
-    if (value && !user && !value.domain.includes(getValues('email').split('@')[1])) {
-      return format('validation.organization-domain')
-    }
-
-    return true
   }
 
   return loadingUserSession
@@ -213,46 +178,6 @@ const UserForm = React.memo(({ user }) => {
                     ))}
                   </div>
                 }
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label htmlFor='organization'>
-                  {format('user.organization')}
-                </label>
-                <Controller
-                  name='organization'
-                  control={control}
-                  defaultValue={organizationOptions.find(({ value }) => value === user?.organization?.slug)}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      isSearch
-                      options={organizationOptions}
-                      placeholder={format('user.organization.placeholder')}
-                      isInvalid={errors.organization}
-                      isClearable
-                      onChange={setOrganization}
-                      value={organization}
-                    />
-                  )}
-                  rules={{ validate: validateOrganizationDomain }}
-                />
-                {errors.organization
-                  ? <ValidationError value={errors.organization?.message} />
-                  : !user &&
-                    <div className='text-dial-stratos italic'>
-                      {format('user.organization.inform.message')}
-                    </div>
-                }
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <ProductAutocomplete
-                  products={products}
-                  setProducts={setProducts}
-                  placeholder={format('user.products.placeholder')}
-                />
-                <div className='flex flex-row flex-wrap gap-1 text-sm'>
-                  <ProductActiveFilters {...{ products, setProducts }} />
-                </div>
               </div>
               <label className='flex gap-x-2 items-center my-auto'>
                 <Checkbox {...register('confirmed')} />

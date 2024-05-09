@@ -52,7 +52,7 @@ const DpiAdminUsers = () => {
   const { loading, error, data } = useQuery(USER_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
-      roles: ['admin', 'user']
+      roles: ['adli_admin', 'adli_user']
     }
   })
 

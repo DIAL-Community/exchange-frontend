@@ -1,7 +1,7 @@
-import classNames from 'classnames'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
 import { Fragment, useCallback, useRef } from 'react'
+import classNames from 'classnames'
+import { FaSpinner } from 'react-icons/fa'
+import { useIntl } from 'react-intl'
 import { Dialog as DialogHeadlessui, Transition } from '@headlessui/react'
 
 export const DialogType = {
@@ -26,7 +26,7 @@ const Dialog = ({
   const initialFocusRef = useRef(null)
 
   return (
-    <Transition appear show={isOpen} as={Fragment} data-testid='dialog'>
+    <Transition appear show={isOpen} as={Fragment}>
       <DialogHeadlessui initialFocus={initialFocusRef} as='div' className='fixed z-100' onClose={onClose} >
         <div className='fixed inset-0 bg-dial-gray opacity-80' />
         <div className='fixed inset-0 flex items-center justify-center'>
@@ -51,7 +51,7 @@ const Dialog = ({
                   'bg-white': dialogType === DialogType.DETAILS
                 }, 'overflow-auto py-4 px-8 flex flex-col gap-3')}
               >
-                <div className='flex justify-start text-xl' data-testid='dialog-body'>
+                <div className='flex justify-start text-xl'>
                   {children}
                 </div>
                 <div className='flex justify-start gap-3 text-sm' >
@@ -63,7 +63,7 @@ const Dialog = ({
                       disabled={isSubmitInProgress}
                     >
                       {format(`${isSubmitInProgress ? 'app.submitting' : 'app.submit'}`)}
-                      {isSubmitInProgress && <FaSpinner className='spinner ml-3 inline' data-testid='submit-spinner' />}
+                      {isSubmitInProgress && <FaSpinner className='spinner ml-3 inline' />}
                     </button>
                   )}
                   {cancelButton && (
@@ -86,7 +86,6 @@ const Dialog = ({
                       onClick={onClose}
                       className='close-button'
                       disabled={isSubmitInProgress}
-                      data-testid='close-button'
                     >
                       {format('app.close')}
                     </button>

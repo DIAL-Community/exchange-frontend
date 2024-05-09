@@ -10,7 +10,7 @@ const UserList = ({ pageOffset, defaultPageSize }) => {
   const { loading, error, data } = useQuery(PAGINATED_USERS_QUERY, {
     variables: {
       search,
-      roles: ['admin', 'user'],
+      roles: ['adli_admin', 'adli_user'],
       limit: defaultPageSize,
       offset: pageOffset
     }
