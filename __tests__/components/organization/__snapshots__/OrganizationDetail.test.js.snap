@@ -114,27 +114,6 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                     </div>
                   </div>
                 </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
-                <div
-                  class="flex flex-col gap-y-2 text-xs grow shrink-0"
-                >
-                  <div
-                    class="text-sm italic"
-                  >
-                    Organization is an endorser of the Principle for Digital Development.
-                  </div>
-                  <div
-                    class="flex gap-x-1 italic text-dial-stratos"
-                  >
-                    <span>
-                      Endorsed in
-                      :
-                    </span>
-                    8/20/2019
-                  </div>
-                </div>
               </div>
             </div>
             <hr
@@ -325,27 +304,6 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                         Education and Social Development
                       </div>
                     </div>
-                  </div>
-                </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
-                <div
-                  class="flex flex-col gap-y-2 text-xs grow shrink-0"
-                >
-                  <div
-                    class="text-sm italic"
-                  >
-                    Organization is an endorser of the Principle for Digital Development.
-                  </div>
-                  <div
-                    class="flex gap-x-1 italic text-dial-stratos"
-                  >
-                    <span>
-                      Endorsed in
-                      :
-                    </span>
-                    8/20/2019
                   </div>
                 </div>
               </div>
@@ -821,27 +779,6 @@ exports[`Unit tests for the organization detail page. Should render unauthorized
                         Education and Social Development
                       </div>
                     </div>
-                  </div>
-                </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
-                <div
-                  class="flex flex-col gap-y-2 text-xs grow shrink-0"
-                >
-                  <div
-                    class="text-sm italic"
-                  >
-                    Organization is an endorser of the Principle for Digital Development.
-                  </div>
-                  <div
-                    class="flex gap-x-1 italic text-dial-stratos"
-                  >
-                    <span>
-                      Endorsed in
-                      :
-                    </span>
-                    8/20/2019
                   </div>
                 </div>
               </div>

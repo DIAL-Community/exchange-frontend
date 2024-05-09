@@ -75,7 +75,7 @@ describe('Unit tests for the organization detail page.', () => {
         ],
         'website': 'www.ai4gov.net',
         'isEndorser': true,
-        'whenEndorsed': '2019-08-21',
+        'whenEndorsed': null,
         'endorserLevel': 'none',
         'isMni': false,
         'description': 'Description for the organization.',
