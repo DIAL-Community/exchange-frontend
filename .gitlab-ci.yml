@@ -29,7 +29,7 @@ variables:
 build_react:
   tags:
     - docker
-    - gitlab.org
+    - test
   stage: build
   script:
     - yarn install
@@ -39,7 +39,7 @@ build_react:
 test:
   tags:
     - docker
-    - gitlab.org
+    - test
   stage: test
   script:
     - yarn test --maxWorkers=2
