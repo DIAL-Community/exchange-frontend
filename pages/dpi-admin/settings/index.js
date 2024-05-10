@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import DpiAdminSettings from '../../../components/dpi/admin/DpiAdminSettings'
 import DpiFooter from '../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../components/dpi/sections/DpiHeader'
-import { Unauthorized } from '../../../components/shared/FetchStatus'
+import { Loading } from '../../../components/shared/FetchStatus'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
 
@@ -30,7 +30,7 @@ const DpiAdminSettingPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Unauthorized />}
+        { status === 'unauthenticated' && <Loading />}
         { status === 'authenticated' && <DpiAdminSettings />}
         <DpiFooter />
       </ClientOnly>

@@ -3,24 +3,22 @@ import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useEmailValidation, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Error, Loading, NotFound, Unauthorized } from '../../shared/FetchStatus'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
-import { CREATE_USER } from '../../shared/mutation/user'
-import { USER_FORM_SELECTION_QUERY } from '../../shared/query/user'
+import { CREATE_ADLI_USER } from '../../shared/mutation/user'
 
 const UserForm = React.memo(({ user }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const id = user?.id ?? ''
-  const { user: currentUser, loadingUserSession } = useUser()
+  const { user: loggedInUser, loadingUserSession } = useUser()
 
   const router = useRouter()
   const [roles, setRoles] = useState(user ? user.roles : [])
@@ -47,12 +45,12 @@ const UserForm = React.memo(({ user }) => {
     }
   })
 
-  const [updateUser, { called, reset }] = useMutation(CREATE_USER, {
+  const [updateUser, { called, reset }] = useMutation(CREATE_ADLI_USER, {
     onCompleted: (data) => {
-      const { createUser: response } = data
+      const { createAdliUser: response } = data
       if (response?.user && response?.errors?.length === 0) {
         setMutating(false)
-        const redirectPath = `/${locale}/users/${data.createUser.user.id}`
+        const redirectPath = `/dpi-admin/users/${response?.user.id}`
         const redirectHandler = () => router.push(redirectPath)
         showSuccessMessage(
           format('toast.submit.success', { entity: format('ui.user.label') }),
@@ -71,23 +69,10 @@ const UserForm = React.memo(({ user }) => {
     }
   })
 
-  const { loading, error, data } = useQuery(USER_FORM_SELECTION_QUERY)
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.organizations && !data.userRoles) {
-    return <NotFound />
-  }
-
-  const { userRoles } = data
-
-  const roleOptions =  userRoles?.map(role => ({ label: role, value: role }))
-
   const doUpsert = async (data) => {
-    if (currentUser) {
+    if (loggedInUser) {
       setMutating(true)
-      const { userEmail, userToken } = currentUser
+      const { userEmail, userToken } = loggedInUser
 
       const { email, username, confirmed } = data
       updateUser({
@@ -108,7 +93,7 @@ const UserForm = React.memo(({ user }) => {
   }
 
   const addRole = (selectedRole) => {
-    setRoles([...roles.filter((role) => role !== selectedRole.label), selectedRole.label ])
+    setRoles([...roles.filter((role) => role !== selectedRole.value), selectedRole.value ])
   }
 
   const removeRole = (role) => {
@@ -117,15 +102,20 @@ const UserForm = React.memo(({ user }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/users/${id}`)
+    router.push(`/dpi-admin/users/${user?.userId ?? ''}`)
   }
+
+  const roleOptions = [
+    { label: 'adli_admin', value: 'adli_admin' },
+    { label: 'adli_user', value: 'adli_user' }
+  ]
 
   return loadingUserSession
     ? <Loading />
-    : currentUser.isAdminUser || currentUser.isEditorUser
+    : loggedInUser.isAdminUser || loggedInUser.isAdliAdminUser
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-stratos'>
+          <div className='px-4 lg:px-0 py-4 lg:py-6'>
             <div className='flex flex-col gap-y-6 text-sm'>
               <div className='text-xl font-semibold'>
                 {user

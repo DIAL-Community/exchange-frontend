@@ -2,7 +2,9 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { useUser } from '../../../lib/hooks'
 import { UserFilterContext } from '../../context/UserFilterContext'
+import CreateButton from '../../shared/form/CreateButton'
 import Pagination from '../../shared/Pagination'
 import { USER_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/user'
 import UserSearchBar from '../../user/fragments/UserSearchBar'
@@ -15,6 +17,7 @@ const DpiAdminUsers = () => {
 
   const DEFAULT_PAGE_SIZE = 5
 
+  const { user } = useUser()
   const { search } = useContext(UserFilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
@@ -58,9 +61,19 @@ const DpiAdminUsers = () => {
 
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
-      <div class="md:flex">
+      <div className="md:flex">
         <DpiAdminTabs />
-        <div class="py-6 px-8 text-medium text-white bg-dial-slate-800 rounded-lg w-full min-h-[70vh]">
+        <div className="py-6 px-8 text-medium text-white bg-dial-slate-800 rounded-lg w-full min-h-[70vh]">
+          {(user.isAdminUser || user.isAdliAdminUser) &&
+            <div className='flex'>
+              <CreateButton
+                type='link'
+                label={format('app.create')}
+                className='ml-auto'
+                href={'/dpi-admin/users/create'}
+              />
+            </div>
+          }
           <UserSearchBar ref={topRef} />
           <UserList pageOffset={pageOffset} defaultPageSize={DEFAULT_PAGE_SIZE} />
           { loading && format('ui.pagination.loadingInfo') }

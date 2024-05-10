@@ -5,11 +5,11 @@ import { useIntl } from 'react-intl'
 import DpiAdminBroadcast from '../../../components/dpi/admin/DpiAdminBroadcast'
 import DpiFooter from '../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../components/dpi/sections/DpiHeader'
-import { Unauthorized } from '../../../components/shared/FetchStatus'
+import { Loading } from '../../../components/shared/FetchStatus'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
 
-const DpiAdminUserPage = ({ dpiTenants }) => {
+const DpiAdminBroadcastPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -30,7 +30,7 @@ const DpiAdminUserPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Unauthorized />}
+        { status === 'unauthenticated' && <Loading />}
         { status === 'authenticated' && <DpiAdminBroadcast />}
         <DpiFooter />
       </ClientOnly>
@@ -46,4 +46,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default DpiAdminUserPage
+export default DpiAdminBroadcastPage

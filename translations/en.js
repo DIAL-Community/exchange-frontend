@@ -2474,6 +2474,7 @@ export const en = {
   'dpi.header.topic': 'Topics',
   'dpi.header.country': 'Countries',
   'dpi.header.resourceFinder': 'Resource finder',
+  'dpi.header.expertNetwork': 'Expert Network',
 
   'dpi.wizard.title': 'Get Started',
   'dpi.wizard.tagLine': `
@@ -2503,6 +2504,13 @@ export const en = {
   'dpi.resourceFinder.title': 'Resource finder',
   'dpi.resourceFinder.subtitle': `Quickly search and filter through our library to
     find resources relevant to a specific topic, country, or project.
+  `,
+
+  'dpi.expertNetwork.title': 'Expert Network',
+  'dpi.expertNetwork.subtitle': `
+    The Africa Data Leadership Initiative (ADLI) is a ​peer learning and exchange network
+    designed by and for African policymakers, legislators, researchers, technologists, and
+    digital rights advocates working on data governance and digital platforms and services. 
   `,
 
   'ui.chatbot.question': 'Question',
@@ -2556,8 +2564,9 @@ export const en = {
     below the dotted line).
   `,
 
-  'ui.dpi.admin.profile': 'Profile',
-  'ui.dpi.admin.users': 'Users',
-  'ui.dpi.admin.settings': 'Settings',
-  'ui.dpi.admin.broadcast': 'Broadcast',
+  'dpi.admin.profile': 'Profile',
+  'dpi.admin.users': 'Users',
+  'dpi.admin.settings': 'Settings',
+  'dpi.admin.broadcast': 'Broadcast',
+  'dpi.admin.signOut': 'Sign Out',
 }

@@ -1,6 +1,6 @@
-import { useIntl } from 'react-intl'
-import { FaSpinner, FaCircleExclamation, FaDownload } from 'react-icons/fa6'
 import { useCallback } from 'react'
+import { FaCircleExclamation, FaDownload, FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 
 export const Loading = () => {
   const { formatMessage } = useIntl()
