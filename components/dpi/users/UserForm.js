@@ -40,7 +40,6 @@ const UserForm = React.memo(({ user }) => {
       roles: user?.roles,
       email: user?.email,
       username: user?.username,
-      products: user?.products.map(prod => prod.name),
       confirmed: user?.confirmed
     }
   })

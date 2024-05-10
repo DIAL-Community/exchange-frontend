@@ -2,12 +2,12 @@ import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { UserFilterContext } from '../../context/UserFilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import { PAGINATED_USERS_QUERY } from '../../shared/query/user'
+import { PAGINATED_DPI_USERS_QUERY } from '../../shared/query/user'
 import UserCard from './UserCard'
 
 const UserList = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(UserFilterContext)
-  const { loading, error, data } = useQuery(PAGINATED_USERS_QUERY, {
+  const { loading, error, data } = useQuery(PAGINATED_DPI_USERS_QUERY, {
     variables: {
       search,
       roles: ['adli_admin', 'adli_user'],

@@ -1,12 +1,12 @@
 import classNames from 'classnames'
 import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../../shared/FetchStatus'
-import { USER_DETAIL_QUERY } from '../../shared/query/user'
+import { DPI_USER_DETAIL_QUERY } from '../../shared/query/user'
 import UserForm from '../users/UserForm'
 import DpiAdminTabs from './DpiAdminTabs'
 
 const DpiAdminUserForm = ({ userId }) => {
-  const { loading, error, data } = useQuery(USER_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(DPI_USER_DETAIL_QUERY, {
     variables: { userId }
   })
 

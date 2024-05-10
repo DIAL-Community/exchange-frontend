@@ -8,6 +8,27 @@ export const USER_PAGINATION_ATTRIBUTES_QUERY = gql`
   }
 `
 
+export const PAGINATED_DPI_USERS_QUERY = gql`
+  query PaginatedUsers(
+    $search: String
+    $roles: [String!]
+    $limit: Int!
+    $offset: Int!
+  ) {
+    paginatedUsers(
+      roles: $roles
+      search: $search
+      offsetAttributes: { limit: $limit, offset: $offset }
+    ) {
+      id
+      email
+      roles
+      username
+      confirmedAt
+    }
+  }
+`
+
 export const PAGINATED_USERS_QUERY = gql`
   query PaginatedUsers(
     $search: String
@@ -37,6 +58,20 @@ export const PAGINATED_USERS_QUERY = gql`
         slug
         imageFile
       }
+    }
+  }
+`
+
+export const DPI_USER_DETAIL_QUERY = gql`
+  query User($userId: String!) {
+    user(userId: $userId) {
+      id
+      email
+      roles
+      username
+      createdAt
+      confirmed
+      confirmedAt
     }
   }
 `

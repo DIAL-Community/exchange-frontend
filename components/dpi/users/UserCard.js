@@ -16,15 +16,6 @@ const UserCard = ({ index, user }) => {
           <div className='line-clamp-4 text-sm'>
             {user?.roles.map(x => x.toUpperCase()).join(', ')}
           </div>
-          <div className='flex gap-x-2'>
-            <div className='text-sm'>
-              {format('ui.product.header')} ({user.products?.length ?? 0})
-            </div>
-            <div className='border-r border-dial-slate-400' />
-            <div className='text-sm'>
-              {format('ui.organization.label')}: {user.organization?.name ?? format('general.na')}
-            </div>
-          </div>
           <div className='line-clamp-1 text-xs italic'>
             {format('ui.user.confirmedAt')}:&nbsp;
             {user.confirmedAt ? <FormattedDate value={user.confirmedAt} /> : format('general.na')}
