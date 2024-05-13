@@ -100,6 +100,11 @@ const DpiHeader = () => {
               {format('dpi.header.resourceFinder').toUpperCase()}
             </Link>
           </li>
+          <li className='relative text-right text-lg'>
+            <Link href='/dpi-expert-network' role='menuitem' className={menuStyles}>
+              {format('dpi.header.expertNetwork').toUpperCase()}
+            </Link>
+          </li>
         </ul>
       </div>
       <DpiMobileMenu menuExpanded={menuExpanded} />

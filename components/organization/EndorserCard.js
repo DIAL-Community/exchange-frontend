@@ -1,7 +1,7 @@
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCallback } from 'react'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { prependUrlWithProtocol } from '../../lib/utilities'
@@ -66,7 +66,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
     </div>
 
   const cardDisplayType = () =>
-    <div data-testid='org-card' className={`group ${containerElementStyle}`}>
+    <div className={`group ${containerElementStyle}`}>
       <div className='bg-white shadow-lg rounded-lg h-full border-t'>
         <div className='flex flex-col'>
           <div className='relative'>
