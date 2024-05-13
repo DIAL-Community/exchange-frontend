@@ -1,24 +1,24 @@
-import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation, useQuery } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import Input from '../../shared/form/Input'
-import ValidationError from '../../shared/form/ValidationError'
-import Select from '../../shared/form/Select'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import Input from '../../shared/form/Input'
+import { generateMaturityOptions } from '../../shared/form/options'
+import Select from '../../shared/form/Select'
+import UrlInput from '../../shared/form/UrlInput'
+import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_USE_CASE } from '../../shared/mutation/useCase'
 import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
-import { generateMaturityOptions } from '../../shared/form/options'
 import { PAGINATED_USE_CASES_QUERY, USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/useCase'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import UrlInput from '../../shared/form/UrlInput'
-import Checkbox from '../../shared/form/Checkbox'
 
 const UseCaseForm = React.memo(({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -97,7 +97,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
       name: useCase?.name,
       maturity: maturityOptions.find(({ value }) => value === useCase?.maturity),
       description: useCase?.useCaseDescription?.description,
-      markdownUrl: useCase?.markdownUrl,
+      markdownUrl: useCase?.markdownUrl ?? '',
       govStackEntity: useCase?.govStackEntity
     }
   })

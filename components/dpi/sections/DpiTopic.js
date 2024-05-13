@@ -42,7 +42,7 @@ const DpiTopic = ({ slug }) => {
           {resourceTopic.name}
         </div>
         <div className='text-lg text-center text-white pb-8 mx-auto max-w-prose'>
-          {parse(resourceTopic.resourceTopicDescription?.description)}
+          {resourceTopic.resourceTopicDescription && parse(resourceTopic.resourceTopicDescription?.description)}
         </div>
       </div>
       <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
