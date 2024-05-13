@@ -1,17 +1,17 @@
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { saveAs } from 'file-saver'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useCallback, useContext, useEffect, useState } from 'react'
-import { FilterContext } from '../context/FilterContext'
-import { ProductFilterContext } from '../context/ProductFilterContext'
-import { DatasetFilterContext } from '../context/DatasetFilterContext'
-import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
+import { useOrganizationOwnerUser, useProductOwnerUser, useUser } from '../../lib/hooks'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
+import { DatasetFilterContext } from '../context/DatasetFilterContext'
+import { FilterContext } from '../context/FilterContext'
+import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
+import { ProductFilterContext } from '../context/ProductFilterContext'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
 import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
-import { useOrganizationOwnerUser, useProductOwnerUser, useUser } from '../../lib/hooks'
 import { SearchInput } from './SearchInput'
 import ViewSwitcher from './ViewSwitcher'
 
@@ -240,10 +240,7 @@ const SearchFilter = ({
       <div className='flex flex-wrap gap-4'>
         <div className='hidden md:flex text-xl font-semibold intro-overview-card-view mt-auto gap-3'>
           <div className='h1 my-auto'>{format(hint)}</div>
-          <span
-            data-testid='list-counter'
-            className='px-2 py-1.5 rounded text-dial-gray-dark bg-dial-sunshine'
-          >
+          <span className='px-2 py-1.5 rounded text-dial-gray-dark bg-dial-sunshine'>
             {resultCounts[hint]}
           </span>
         </div>
@@ -270,7 +267,6 @@ const SearchFilter = ({
           <div className='flex flex-wrap gap-2 text-xs text-dial-stratos'>
             {createNew &&
               <a className='bg-dial-iris-blue px-2 py-1 rounded-md text-white'
-                data-testid='create-new'
                 href={generateCreateLink()}
                 onClick={(event) => {
                   if (onCreateNewClick) {
