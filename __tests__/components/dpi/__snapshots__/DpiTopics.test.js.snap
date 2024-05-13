@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the opportunity detail page. Should render detail of a opportunity. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="flex flex-col gap-6 pb-12"
+  >
+    <img
+      alt="DIAL DPI Resource Hub"
+      class="h-80 w-full object-cover"
+      src="/images/hero-image/dpi-hero.svg"
+    />
+    <div
+      class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
+    >
+      <div
+        class="text-2xl text-center text-white py-6 md:py-12 lg:py-16 xl:py-16 mx-auto max-w-prose"
+      >
+        
+    Topics showcases a series of knowledge products published by DIAL and its partners
+    on key issues surrounding digital public infrastructure.
+  
+      </div>
+    </div>
+    <div
+      class="px-4 lg:px-8 xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]"
+    >
+      <div
+        class="-mt-[8rem] z-20"
+      >
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-3xl mx-auto"
+        >
+          <a
+            href="/dpi-topics/ai--machine-learning"
+          >
+            <div
+              class="bg-dial-deep-purple text-white py-16 aspect-square relative flex justify-center"
+            >
+              <img
+                alt="AI + Machine Learning"
+                class="h-full"
+                src="/images/dpi/ai.png"
+              />
+              <div
+                class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
+              >
+                AI + Machine Learning
+              </div>
+            </div>
+          </a>
+          <a
+            href="/dpi-topics/consent"
+          >
+            <div
+              class="bg-dial-deep-purple text-white py-16 aspect-square relative flex justify-center"
+            >
+              <img
+                alt="Consent"
+                class="h-full"
+                src="/images/dpi/consent.png"
+              />
+              <div
+                class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
+              >
+                Consent
+              </div>
+            </div>
+          </a>
+          <a
+            href="/dpi-topics/data-privacy"
+          >
+            <div
+              class="bg-dial-deep-purple text-white py-16 aspect-square relative flex justify-center"
+            >
+              <img
+                alt="Data Privacy"
+                class="h-full"
+                src="/images/dpi/data.png"
+              />
+              <div
+                class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
+              >
+                Data Privacy
+              </div>
+            </div>
+          </a>
+          <a
+            href="/dpi-topics/data-exchange"
+          >
+            <div
+              class="bg-dial-deep-purple text-white py-16 aspect-square relative flex justify-center"
+            >
+              <img
+                alt="Data Exchange"
+                class="h-full"
+                src="/images/dpi/data.png"
+              />
+              <div
+                class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
+              >
+                Data Exchange
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

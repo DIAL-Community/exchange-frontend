@@ -1,0 +1,380 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the opportunity detail page. Should render detail of a opportunity. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8"
+  >
+    <div
+      class="flex flex-col gap-y-4 py-3"
+    >
+      <div
+        class="flex flex-col gap-y-2"
+      >
+        <div
+          class="text-sm font-semibold text-dial-sapphire"
+        >
+          Filter your results by
+          :
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-1 xl:grid-cols-3 gap-8"
+      >
+        <div
+          class="rounded text-sm text-dial-gray-dark my-auto css-1uaxf62-container"
+        >
+          <span
+            class="css-1f43avz-a11yText-A11yText"
+            id="react-select-:r0:-live-region"
+          />
+          <span
+            aria-atomic="false"
+            aria-live="polite"
+            aria-relevant="additions text"
+            class="css-1f43avz-a11yText-A11yText"
+          />
+          <div
+            class="react-select__control css-afrqkl-control"
+          >
+            <div
+              class="react-select__value-container css-17t7gkf-ValueContainer"
+            >
+              <div
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r0:-placeholder"
+              >
+                Filter by Resource Type
+              </div>
+              <div
+                class="react-select__input-container css-qbdosj-Input"
+                data-value=""
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-describedby="react-select-:r0:-placeholder"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-label="Filter by Resource Type"
+                  autocapitalize="none"
+                  autocomplete="off"
+                  autocorrect="off"
+                  class="react-select__input"
+                  id="async-select-id-undefined"
+                  role="combobox"
+                  spellcheck="false"
+                  style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+            >
+              <span
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+              />
+              <div
+                aria-hidden="true"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="css-tj5bde-Svg"
+                  focusable="false"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  width="20"
+                >
+                  <path
+                    d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-y-3"
+        >
+          <div
+            class="rounded text-sm text-dial-gray-dark my-auto css-1uaxf62-container"
+          >
+            <span
+              class="css-1f43avz-a11yText-A11yText"
+              id="react-select-:r1:-live-region"
+            />
+            <span
+              aria-atomic="false"
+              aria-live="polite"
+              aria-relevant="additions text"
+              class="css-1f43avz-a11yText-A11yText"
+            />
+            <div
+              class="react-select__control css-afrqkl-control"
+            >
+              <div
+                class="react-select__value-container css-17t7gkf-ValueContainer"
+              >
+                <div
+                  class="react-select__placeholder css-5rjclb-placeholder"
+                  id="react-select-:r1:-placeholder"
+                >
+                  Filter by Country
+                </div>
+                <div
+                  class="react-select__input-container css-qbdosj-Input"
+                  data-value=""
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-describedby="react-select-:r1:-placeholder"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-label="Filter by Country"
+                    autocapitalize="none"
+                    autocomplete="off"
+                    autocorrect="off"
+                    class="react-select__input"
+                    id="async-select-id-undefined"
+                    role="combobox"
+                    spellcheck="false"
+                    style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                    tabindex="0"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+              >
+                <span
+                  class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                />
+                <div
+                  aria-hidden="true"
+                  class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-row gap-3"
+        >
+          <div
+            class="ml-auto w-full"
+          >
+            <label
+              class="relative"
+              for="search-bar"
+            >
+              <input
+                class="w-full border text-sm"
+                id="search-bar"
+                placeholder="Search"
+                type="text"
+                value=""
+              />
+              <svg
+                class="absolute top-1/2 transform -translate-y-1/2 right-2"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
+    >
+      <div
+        class="relative"
+      >
+        <div
+          class="rounded-lg min-h-[6rem] false"
+        >
+          <div
+            class="min-w-80 pb-4 mx-auto flex flex-col"
+          >
+            <div
+              class="w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center"
+            >
+              <a
+                href="/dpi-resources/co-creating-our-digital-future"
+              >
+                <img
+                  alt="Logo of Resource."
+                  class="aspect-[5/4]"
+                  src="http://localhost:3000//assets/resources/resource-placeholder.svg"
+                />
+              </a>
+            </div>
+            <a
+              href="/dpi-resources/co-creating-our-digital-future"
+            >
+              <div
+                class="text-lg font-semibold text-dial-stratos"
+              >
+                Co-Creating Our Digital Future
+              </div>
+            </a>
+            <a
+              href="/dpi-resources/co-creating-our-digital-future"
+            >
+              <div
+                class="line-clamp-4 text-dial-stratos text-sm"
+              >
+                Description goes here.
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative"
+      >
+        <div
+          class="rounded-lg min-h-[6rem] false"
+        >
+          <div
+            class="min-w-80 pb-4 mx-auto flex flex-col"
+          >
+            <div
+              class="w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center"
+            >
+              <a
+                href="/dpi-resources/human-centered-data-governance"
+              >
+                <img
+                  alt="Logo of Resource."
+                  class="aspect-[5/4]"
+                  src="http://localhost:3000//assets/resources/resource-placeholder.svg"
+                />
+              </a>
+            </div>
+            <a
+              href="/dpi-resources/human-centered-data-governance"
+            >
+              <div
+                class="text-lg font-semibold text-dial-stratos"
+              >
+                Human-Centered Data Governance
+              </div>
+            </a>
+            <a
+              href="/dpi-resources/human-centered-data-governance"
+            >
+              <div
+                class="line-clamp-4 text-dial-stratos text-sm"
+              >
+                Description some more.
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col gap-y-4 my-6 false"
+    >
+      <hr
+        class="border-b border-dial-slate-300"
+      />
+      <div
+        class="flex flex-col md:flex-row gap-x-16 gap-y-3"
+      >
+        <div
+          class="my-auto text-sm"
+        >
+          Showing 1 - 2 of 2 total
+        </div>
+        <ul
+          aria-label="Pagination"
+          class="flex gap-x-3 text-sm"
+          role="navigation"
+        >
+          <li
+            class="previous opacity-30"
+          >
+            <a
+              aria-disabled="true"
+              aria-label="Previous page"
+              class="block w-10 h-10 leading-10 text-center "
+              rel="prev"
+              role="button"
+              tabindex="-1"
+            >
+              &lt;
+            </a>
+          </li>
+          <li
+            class="false font-semibold"
+          >
+            <a
+              aria-current="page"
+              aria-label="Page 1 is your current page"
+              class="block w-10 h-10 leading-10 text-center"
+              rel="canonical"
+              role="button"
+              tabindex="-1"
+            >
+              1
+            </a>
+          </li>
+          <li
+            class="next opacity-30"
+          >
+            <a
+              aria-disabled="true"
+              aria-label="Next page"
+              class="block w-10 h-10 leading-10 text-center "
+              rel="next"
+              role="button"
+              tabindex="-1"
+            >
+              &gt;
+            </a>
+          </li>
+        </ul>
+      </div>
+      <hr
+        class="border-b border-dial-slate-300"
+      />
+    </div>
+  </div>
+</div>
+`;
