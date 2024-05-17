@@ -10,7 +10,7 @@ import DpiMobileMenu from '../menu/DpiMobileMenu'
 
 const menuStyles = 'py-3 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
 
-const DpiHeader = () => {
+const DpiHeader = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
@@ -84,28 +84,30 @@ const DpiHeader = () => {
           </div>
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
-        <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
-          <li className='relative text-right text-lg'>
-            <Link href='/dpi-topics' role='menuitem' className={menuStyles}>
-              {format('dpi.header.topic').toUpperCase()}
-            </Link>
-          </li>
-          <li className='relative text-right text-lg'>
-            <Link href='/dpi-countries' role='menuitem' className={menuStyles}>
-              {format('dpi.header.country').toUpperCase()}
-            </Link>
-          </li>
-          <li className='relative text-right text-lg'>
-            <Link href='/dpi-resource-finder' role='menuitem' className={menuStyles}>
-              {format('dpi.header.resourceFinder').toUpperCase()}
-            </Link>
-          </li>
-          <li className='relative text-right text-lg'>
-            <Link href='/dpi-expert-network' role='menuitem' className={menuStyles}>
-              {format('dpi.header.expertNetwork').toUpperCase()}
-            </Link>
-          </li>
-        </ul>
+        {!isOnAuthPage &&
+          <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
+            <li className='relative text-right text-lg'>
+              <Link href='/dpi-topics' role='menuitem' className={menuStyles}>
+                {format('dpi.header.topic').toUpperCase()}
+              </Link>
+            </li>
+            <li className='relative text-right text-lg'>
+              <Link href='/dpi-countries' role='menuitem' className={menuStyles}>
+                {format('dpi.header.country').toUpperCase()}
+              </Link>
+            </li>
+            <li className='relative text-right text-lg'>
+              <Link href='/dpi-resource-finder' role='menuitem' className={menuStyles}>
+                {format('dpi.header.resourceFinder').toUpperCase()}
+              </Link>
+            </li>
+            <li className='relative text-right text-lg'>
+              <Link href='/dpi-expert-network' role='menuitem' className={menuStyles}>
+                {format('dpi.header.expertNetwork').toUpperCase()}
+              </Link>
+            </li>
+          </ul>
+        }
       </div>
       <DpiMobileMenu menuExpanded={menuExpanded} />
     </header>
