@@ -78,6 +78,7 @@ export const PLAYBOOK_DETAIL_QUERY = gql`
         slug
         playMoves {
           id
+          slug
           name
         }
         playDescription {

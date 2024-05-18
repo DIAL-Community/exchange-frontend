@@ -2569,4 +2569,6 @@ export const en = {
   'dpi.admin.settings': 'Settings',
   'dpi.admin.broadcast': 'Broadcast',
   'dpi.admin.signOut': 'Sign Out',
+
+  'dpi.curriculum.module': 'Module'
 }
