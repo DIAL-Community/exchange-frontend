@@ -1,8 +1,9 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { HiExternalLink } from 'react-icons/hi'
+import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
@@ -110,7 +111,7 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, expande
   )
 }
 
-const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, ref }) => {
+const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRefs }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -118,6 +119,20 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, ref }) =>
     variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug  },
     context: { headers: { 'Accept-Language': locale } }
   })
+
+  const { ref } = useInView({
+    threshold: 0,
+    onChange: (inView) => {
+      console.log('Is in view? inView=', inView, ', slug=', moduleSlug)
+    }
+  })
+
+  const scrollRef = useRef(null)
+  useEffect(() => {
+    if (moduleRefs.current) {
+      moduleRefs.current[moduleSlug] = scrollRef
+    }
+  }, [scrollRef, moduleRefs, moduleSlug])
 
   if (loading) {
     return <Loading />
@@ -131,8 +146,8 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, ref }) =>
   const { playMoves: subModules } = module
 
   return (
-    <div className='my-3' ref={ref}>
-      <div className='flex flex-col gap-3'>
+    <div className='my-3 intersection-observer' ref={ref}>
+      <div className='flex flex-col gap-3' ref={scrollRef}>
         <div className='font-semibold text-2xl'>
           {`${format('dpi.curriculum.module')} ${index + 1}. ${module.name}`}
         </div>

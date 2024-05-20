@@ -1,7 +1,6 @@
-import { forwardRef } from 'react'
 import CurriculumModule from './CurriculumModule'
 
-const CurriculumModules = forwardRef(({ curriculum }, ref) => {
+const CurriculumModules = ({ curriculum, moduleRefs }) => {
   const { plays: modules } = curriculum
 
   return (
@@ -13,14 +12,12 @@ const CurriculumModules = forwardRef(({ curriculum }, ref) => {
             index={i}
             curriculumSlug={curriculum.slug}
             moduleSlug={module.slug}
-            ref={ref}
+            moduleRefs={moduleRefs}
           />
         </div>
       )}
     </div>
   )
-})
-
-CurriculumModules.displayName = 'CurriculumModules'
+}
 
 export default CurriculumModules
