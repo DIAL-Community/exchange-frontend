@@ -24,7 +24,7 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
 
   return (
     <div className='intersection-observer' ref={ref}>
-      <div className='flex flex-col gap-3' ref={scrollRef}>
+      <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
         <div className='flex flex-wrap gap-3'>
           <div className='font-semibold text-2xl'>
             {format('ui.playbook.overview')}

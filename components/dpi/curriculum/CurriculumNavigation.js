@@ -1,16 +1,20 @@
-import { useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
 import { useIntl } from 'react-intl'
+import { CurriculumContext } from './CurriculumContext'
 import { OVERVIEW_SLUG_NAME } from './CurriculumDetail'
 
-const CurriculumNavigation = (props) => {
+const CurriculumNavigation = ({ moduleRefs }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { currentSlug, setCurrentSlug } = props
-  const { moduleNames, subModuleNames } = props
-
-  const { moduleRefs } = props
+  const {
+    currentSlug,
+    setCurrentSlug,
+    modules,
+    moduleNames,
+    subModuleNames
+  } = useContext(CurriculumContext)
 
   const navigateToPlay = (e, slug) => {
     e.preventDefault()
@@ -20,8 +24,8 @@ const CurriculumNavigation = (props) => {
       const scrollTargetRef = moduleRefs.current[slug]
       scrollTargetRef?.current?.scrollIntoView({
         behavior: 'smooth',
-        block: 'center',
-        inline: 'start'
+        block: 'start',
+        inline: 'nearest'
       })
     }
   }
@@ -38,30 +42,32 @@ const CurriculumNavigation = (props) => {
             </a>
           </div>
         </div>
-        {Object.keys(moduleNames).map((moduleSlug, index) => (
-          <div
-            key={`module-${index}`}
-            className={currentSlug === moduleSlug ? 'bg-dial-slate-500' : undefined}
-          >
-            <a href='#' onClick={(e) => navigateToPlay(e, moduleSlug)}>
-              <div className={currentSlug === moduleSlug ? 'bg-dial-slate-500 text-white' : undefined}>
-                <div className='flex flex-col gap-y-1 py-3 px-8'>
-                  {`${format('dpi.curriculum.module')} ${index + 1}. ${moduleNames[moduleSlug]}`}
-                  {
-                    currentSlug === moduleSlug &&
-                    subModuleNames[moduleSlug] &&
-                    subModuleNames[moduleSlug].map((moveName, index) =>
-                      <div key={`playbook-play-move-${index}`} className='flex gap-x-2'>
-                        <MdPlayArrow size='0.8rem' className='my-auto' />
-                        {moveName}
-                      </div>
-                    )
-                  }
+        {modules
+          .map(module => module.moduleSlug)
+          .map((moduleSlug, index) => (
+            <div
+              key={`module-${index}`}
+              className={currentSlug === moduleSlug ? 'bg-dial-slate-500' : undefined}
+            >
+              <a href='#' onClick={(e) => navigateToPlay(e, moduleSlug)}>
+                <div className={currentSlug === moduleSlug ? 'bg-dial-slate-500 text-white' : undefined}>
+                  <div className='flex flex-col gap-y-1 py-3 px-8'>
+                    {`${format('dpi.curriculum.module')} ${index + 1}. ${moduleNames[moduleSlug]}`}
+                    {
+                      currentSlug === moduleSlug &&
+                      subModuleNames[moduleSlug] &&
+                      subModuleNames[moduleSlug].map((moveName, index) =>
+                        <div key={`playbook-play-move-${index}`} className='flex gap-x-2'>
+                          <MdPlayArrow size='0.8rem' className='my-auto' />
+                          {moveName}
+                        </div>
+                      )
+                    }
+                  </div>
                 </div>
-              </div>
-            </a>
-          </div>
-        ))}
+              </a>
+            </div>
+          ))}
       </div>
     </div>
   )
