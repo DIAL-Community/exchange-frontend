@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { OVERVIEW_SLUG_NAME } from './CurriculumDetail'
+import { OVERVIEW_SLUG_NAME } from './CurriculumContext'
 
 const CurriculumHeader = ({ curriculum, moduleRefs }) => {
   const { formatMessage } = useIntl()
