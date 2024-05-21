@@ -1,12 +1,12 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import DpiCurriculum from '../../components/dpi/sections/DpiCurriculum'
+import DpiDashboard from '../../components/dpi/sections/DpiDashboard'
 import DpiFooter from '../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../components/dpi/sections/DpiHeader'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
-const DpiCurriculumPage = ({ dpiTenants }) => {
+const DpiCountriesPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -19,7 +19,7 @@ const DpiCurriculumPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        <DpiCurriculum />
+        <DpiDashboard />
         <DpiFooter />
       </ClientOnly>
     </>
@@ -34,4 +34,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default DpiCurriculumPage
+export default DpiCountriesPage

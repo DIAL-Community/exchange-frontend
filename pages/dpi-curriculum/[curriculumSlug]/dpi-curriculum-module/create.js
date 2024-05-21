@@ -1,14 +1,17 @@
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import DpiCurriculum from '../../components/dpi/sections/DpiCurriculum'
-import DpiFooter from '../../components/dpi/sections/DpiFooter'
-import DpiHeader from '../../components/dpi/sections/DpiHeader'
-import QueryNotification from '../../components/shared/QueryNotification'
-import ClientOnly from '../../lib/ClientOnly'
+import { CreateDpiCurriculumModule } from '../../../../components/dpi/sections/DpiCurriculumModuleForm'
+import DpiFooter from '../../../../components/dpi/sections/DpiFooter'
+import DpiHeader from '../../../../components/dpi/sections/DpiHeader'
+import QueryNotification from '../../../../components/shared/QueryNotification'
+import ClientOnly from '../../../../lib/ClientOnly'
 
-const DpiCurriculumPage = ({ dpiTenants }) => {
+const CreateDpiCurriculumModulePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
+
+  const { query: { curriculumSlug } } = useRouter()
 
   return (
     <>
@@ -19,7 +22,7 @@ const DpiCurriculumPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        <DpiCurriculum />
+        <CreateDpiCurriculumModule curriculumSlug={curriculumSlug} />
         <DpiFooter />
       </ClientOnly>
     </>
@@ -34,4 +37,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default DpiCurriculumPage
+export default CreateDpiCurriculumModulePage

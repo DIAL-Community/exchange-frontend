@@ -7,12 +7,14 @@ const CurriculumContext = createContext()
 const CurriculumContextProvider = ({ children }) => {
   // Currently active slug
   const [currentSlug, setCurrentSlug] = useState(OVERVIEW_SLUG_NAME)
+  // List of modules ordered by the defined ordering (playOrder field).
+  const [modules, setModules] = useState([])
   // Map of module slugs to module names.
   const [moduleNames, setModuleNames] = useState({})
   // Map of module slugs to list of sub module names.
   const [subModuleNames, setSubModuleNames] = useState({})
-  // List of modules ordered by the defined ordering (playOrder field).
-  const [modules, setModules] = useState([])
+  // Map of module slugs to percentage of displayed modules.
+  const [modulePercentages, setModulePercentages] = useState({})
 
   const values = {
     currentSlug,
@@ -20,9 +22,11 @@ const CurriculumContextProvider = ({ children }) => {
     modules,
     moduleNames,
     subModuleNames,
+    modulePercentages,
     setModules,
     setModuleNames,
-    setSubModuleNames
+    setSubModuleNames,
+    setModulePercentages
   }
 
   return (

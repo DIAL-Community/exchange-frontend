@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
@@ -10,6 +10,7 @@ import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { MOVE_PREVIEW_QUERY, PLAY_QUERY } from '../../shared/query/play'
 import { prependUrlWithProtocol } from '../../utils/utilities'
+import { CurriculumContext } from './CurriculumContext'
 
 const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, expanded = false }) => {
   const { formatMessage } = useIntl()
@@ -120,10 +121,20 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
     context: { headers: { 'Accept-Language': locale } }
   })
 
+  const { setModulePercentages } = useContext(CurriculumContext)
+
   const { ref } = useInView({
-    threshold: 0,
-    onChange: (inView) => {
+    threshold: [0.001, 0.2, 0.4, 0.6, 0.8, 0.999],
+    onChange: (inView, entry) => {
+      setModulePercentages(
+        previousModulePercentage => ({
+          ...previousModulePercentage,
+          [moduleSlug]: entry.intersectionRatio
+        })
+      )
+
       console.log('Is in view? inView=', inView, ', slug=', moduleSlug)
+      console.log('Entry data: ', entry)
     }
   })
 

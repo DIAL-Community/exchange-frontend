@@ -1,17 +1,27 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useContext, useEffect, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { OVERVIEW_SLUG_NAME } from './CurriculumContext'
+import { CurriculumContext, OVERVIEW_SLUG_NAME } from './CurriculumContext'
 
 const CurriculumHeader = ({ curriculum, moduleRefs }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { setModulePercentages } = useContext(CurriculumContext)
+
   const { ref } = useInView({
-    threshold: 0,
-    onChange: (inView) => {
+    threshold: [0.001, 0.2, 0.4, 0.6, 0.8, 0.999],
+    onChange: (inView, entry) => {
+      setModulePercentages(
+        previousModulePercentage => ({
+          ...previousModulePercentage,
+          [OVERVIEW_SLUG_NAME]: entry.intersectionRatio
+        })
+      )
+
       console.log('Is in view? inView=', inView, ', slug=', OVERVIEW_SLUG_NAME)
+      console.log('Entry data: ', entry)
     }
   })
 

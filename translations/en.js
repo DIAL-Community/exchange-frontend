@@ -2476,6 +2476,10 @@ export const en = {
   'dpi.header.resourceFinder': 'Resource finder',
   'dpi.header.expertNetwork': 'Expert Network',
 
+  'dpi.exportNetwork.login': 'ADLI Member Login',
+  'dpi.exportNetwork.learnMore': 'Learn more about ADLI',
+  'dpi.exportNetwork.memberDashboard': 'ADLI Members Access',
+
   'dpi.wizard.title': 'Get Started',
   'dpi.wizard.tagLine': `
     Our Recommendations Wizard can help get you started to find you a curated
