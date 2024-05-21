@@ -1,8 +1,7 @@
 import { useCallback, useContext } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
 import { useIntl } from 'react-intl'
-import { CurriculumContext } from './CurriculumContext'
-import { OVERVIEW_SLUG_NAME } from './CurriculumDetail'
+import { CurriculumContext, OVERVIEW_SLUG_NAME } from './CurriculumContext'
 
 const CurriculumNavigation = ({ moduleRefs }) => {
   const { formatMessage } = useIntl()
