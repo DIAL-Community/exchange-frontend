@@ -2574,5 +2574,15 @@ export const en = {
   'dpi.admin.broadcast': 'Broadcast',
   'dpi.admin.signOut': 'Sign Out',
 
-  'dpi.curriculum.module': 'Module'
+  'dpi.curriculum.author': 'Author',
+  'dpi.curriculum.overview': 'Overview',
+
+  'dpi.curriculum.module.label': 'Module',
+
+  'dpi.curriculum.module.rearrange': 'Rearrange Modules',
+  'dpi.curriculum.subModule.rearrange': 'Rearrange Sub Modules',
+
+  'dpi.breadcrumb.curriculum': 'Curriculum',
+  'dpi.breadcrumb.curriculumModule': 'Module',
+  'dpi.breadcrumb.curriculumSubModule': 'Sub Module',
 }

@@ -16,7 +16,10 @@ const convertBreadcrumb = string => {
 const basePathMappings = {
   'dpi-countries': 'dpi.breadcrumb.country',
   'dpi-topics': 'dpi.breadcrumb.topic',
-  'dpi-resource-finder': 'dpi.breadcrumb.resourceFinder'
+  'dpi-resource-finder': 'dpi.breadcrumb.resourceFinder',
+  'dpi-curriculum': 'dpi.breadcrumb.curriculum',
+  'dpi-curriculum-module': 'dpi.breadcrumb.curriculumModule',
+  'dpi-curriculum-sub-module': 'dpi.breadcrumb.curriculumSubModule'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
@@ -59,12 +62,12 @@ const DpiBreadcrumb = ({ slugNameMapping }) => {
 
   return (
     <div className='whitespace-nowrap text-ellipsis overflow-hidden text-sm'>
-      <Link href='/' className='inline text-dial-gray'>
+      <Link href='/' className='inline'>
         {format('app.home')}
       </Link>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
-          <div key={i} className='inline text-dial-gray'>
+          <div key={i} className='inline'>
             {BREADCRUMB_SEPARATOR}
             <Link href={breadcrumb.href}>
               {convertBreadcrumb(breadcrumb.breadcrumb)}

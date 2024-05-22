@@ -1,10 +1,16 @@
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PLAY_QUERY } from '../../shared/query/play'
 import CurriculumModuleForm from '../curriculum/forms/CurriculumModuleForm'
+import DpiBreadcrumb from './DpiBreadcrumb'
 
 const EditDpiCurriculumModule = ({ curriculumSlug, curriculumModuleSlug }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const router = useRouter()
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
@@ -22,14 +28,33 @@ const EditDpiCurriculumModule = ({ curriculumSlug, curriculumModuleSlug }) => {
 
   const { playbook: curriculum, play: curriculumModule } = data
 
+  const slugNameMapping = (() => {
+    const map = {
+      edit: format('app.edit')
+    }
+    map[curriculum.slug] = curriculum.name
+    map[curriculumModule.slug] = curriculumModule.name
+
+    return map
+  })()
+
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
+      <div
+        className='py-4 px-6 sticky bg-dial-blue-chalk text-dial-stratos'
+        style={{ top: 'var(--header-height)' }}
+      >
+        <DpiBreadcrumb slugNameMapping={slugNameMapping} />
+      </div>
       <CurriculumModuleForm curriculum={curriculum} curriculumModule={curriculumModule} />
     </div>
   )
 }
 
 const CreateDpiCurriculumModule = ({ curriculumSlug }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const router = useRouter()
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
@@ -47,8 +72,23 @@ const CreateDpiCurriculumModule = ({ curriculumSlug }) => {
 
   const { playbook: curriculum } = data
 
+  const slugNameMapping = (() => {
+    const map = {
+      edit: format('app.edit')
+    }
+    map[curriculum.slug] = curriculum.name
+
+    return map
+  })()
+
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
+      <div
+        className='py-4 px-6 sticky bg-dial-blue-chalk text-dial-stratos'
+        style={{ top: 'var(--header-height)' }}
+      >
+        <DpiBreadcrumb slugNameMapping={slugNameMapping} />
+      </div>
       <CurriculumModuleForm curriculum={curriculum} />
     </div>
   )

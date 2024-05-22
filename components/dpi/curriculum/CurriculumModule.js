@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
+import { FiMove } from 'react-icons/fi'
 import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
@@ -11,6 +12,7 @@ import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { MOVE_PREVIEW_QUERY, PLAY_QUERY } from '../../shared/query/play'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import { CurriculumContext } from './CurriculumContext'
+import RearrangeSubModules from './forms/RearrangeSubModules'
 
 const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, expanded = false }) => {
   const { formatMessage } = useIntl()
@@ -122,6 +124,10 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
   })
 
   const { setModulePercentages } = useContext(CurriculumContext)
+  const [displayRearrangeDialog, setDisplayRearrangeDialog] = useState(false)
+  const onRearrangeDialogClose = () => {
+    setDisplayRearrangeDialog(false)
+  }
 
   const { ref } = useInView({
     threshold: [0.001, 0.2, 0.4, 0.6, 0.8, 0.999],
@@ -160,9 +166,21 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
     <div className='my-3 intersection-observer' ref={ref}>
       <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
         <div className='font-semibold text-2xl'>
-          {`${format('dpi.curriculum.module')} ${index + 1}. ${module.name}`}
+          {`${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
         </div>
         <HtmlViewer initialContent={module?.playDescription?.description} />
+        <div className='flex ml-auto'>
+          <button
+            type='button'
+            onClick={() => setDisplayRearrangeDialog(!displayRearrangeDialog)}
+            className='cursor-pointer bg-dial-iris-blue px-2 py-2 rounded text-white'
+          >
+            <FiMove className='inline pb-0.5' />
+            <span className='text-sm px-1'>
+              {format('dpi.curriculum.subModule.rearrange')}
+            </span>
+          </button>
+        </div>
         {subModules.map((subModule, index) =>
           <CurriculumSubmodule
             key={index}
@@ -171,6 +189,11 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
             subModuleSlug={subModule.slug}
           />
         )}
+        <RearrangeSubModules
+          onRearrangeDialogClose={onRearrangeDialogClose}
+          displayRearrangeDialog={displayRearrangeDialog}
+          module={module}
+        />
       </div>
     </div>
   )

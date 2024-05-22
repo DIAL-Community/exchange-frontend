@@ -20,13 +20,13 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
         class="max-w-catalog mx-auto"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56"
+          class="px-4 lg:px-8 xl:px-56 text-dial-gray"
         >
           <div
             class="whitespace-nowrap text-ellipsis overflow-hidden text-sm"
           >
             <a
-              class="inline text-dial-gray"
+              class="inline"
               href="/"
             >
               Home

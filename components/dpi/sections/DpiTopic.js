@@ -34,7 +34,7 @@ const DpiTopic = ({ slug }) => {
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg'/>
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto'>
-          <div className='px-4 lg:px-8 xl:px-56'>
+          <div className='px-4 lg:px-8 xl:px-56 text-dial-gray'>
             <DpiBreadcrumb slugNameMapping={slugNameMapping} />
           </div>
         </div>
