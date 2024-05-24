@@ -238,7 +238,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
 
   return loadingUserSession
     ? <Loading />
-    : user?.isAdminUser || user?.isEditorUser
+    : user?.isAdminUser || user?.isEditorUser || user?.isAdliAdminUser
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
           <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>

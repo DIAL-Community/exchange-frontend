@@ -41,7 +41,7 @@ const CurriculumTopNavigation = ({ moduleRefs }) => {
               return (
                 <a key={index} href='#' onClick={(e) => navigateToPlay(e, moduleSlug)}>
                   <div className={`step text-dial-stratos ${index <= currentSlugIndex && 'active'}`}>
-                    {index + 1}
+                    {index}
                   </div>
                 </a>
               )

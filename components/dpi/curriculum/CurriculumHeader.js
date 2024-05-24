@@ -1,19 +1,13 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { FiMove } from 'react-icons/fi'
+import { useCallback, useContext, useEffect, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { CurriculumContext, OVERVIEW_SLUG_VALUE } from './CurriculumContext'
-import RearrangeModules from './forms/RearrangeModules'
+import CurriculumDetailMenu from './CurriculumDetailMenu'
 
 const CurriculumHeader = ({ curriculum, moduleRefs }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const [displayRearrangeDialog, setDisplayRearrangeDialog] = useState(false)
-  const onRearrangeDialogClose = () => {
-    setDisplayRearrangeDialog(false)
-  }
 
   const { setModulePercentages } = useContext(CurriculumContext)
 
@@ -26,9 +20,6 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
           [OVERVIEW_SLUG_VALUE]: entry.intersectionRatio
         })
       )
-
-      // console.log('Is in view? inView=', inView, ', slug=', OVERVIEW_SLUG_VALUE)
-      // console.log('Entry data: ', entry)
     }
   })
 
@@ -42,18 +33,7 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
   return (
     <div className='intersection-observer' ref={ref}>
       <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef} data-slug={OVERVIEW_SLUG_VALUE}>
-        <div className='flex ml-auto'>
-          <button
-            type='button'
-            onClick={() => setDisplayRearrangeDialog(!displayRearrangeDialog)}
-            className='cursor-pointer bg-dial-iris-blue px-2 py-2 rounded text-white'
-          >
-            <FiMove className='inline pb-0.5' />
-            <span className='text-sm px-1'>
-              {format('dpi.curriculum.module.rearrange')}
-            </span>
-          </button>
-        </div>
+        <CurriculumDetailMenu curriculum={curriculum} />
         <div className='flex flex-wrap gap-3'>
           <div className='font-semibold text-2xl'>
             {format('dpi.curriculum.overview')}
@@ -76,11 +56,6 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
             </div>
           </div>
         }
-        <RearrangeModules
-          onRearrangeDialogClose={onRearrangeDialogClose}
-          displayRearrangeDialog={displayRearrangeDialog}
-          curriculum={curriculum}
-        />
       </div>
     </div>
   )

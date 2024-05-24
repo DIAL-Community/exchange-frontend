@@ -138,9 +138,6 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
           [moduleSlug]: entry.intersectionRatio
         })
       )
-
-      // console.log('Is in view? inView=', inView, ', slug=', moduleSlug)
-      // console.log('Entry data: ', entry)
     }
   })
 

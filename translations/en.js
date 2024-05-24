@@ -2579,6 +2579,7 @@ export const en = {
   'dpi.curriculum.author': 'Author',
   'dpi.curriculum.overview': 'Overview',
 
+  'dpi.curriculum.module.add': 'Add Module',
   'dpi.curriculum.module.label': 'Module',
 
   'dpi.curriculum.module.rearrange': 'Rearrange Modules',

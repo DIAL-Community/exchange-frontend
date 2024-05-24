@@ -87,14 +87,17 @@ const CurriculumSideNavigation = ({ moduleRefs }) => {
               >
                 <div className={currentSlug === moduleSlug ? 'bg-dial-slate-500 text-white' : undefined}>
                   <div className='flex flex-col gap-y-1 py-3 px-8'>
-                    {`${format('dpi.curriculum.module.label')} ${index + 1}. ${moduleNames[moduleSlug]}`}
+                    {index <= 0
+                      ? moduleNames[moduleSlug]
+                      : `${format('dpi.curriculum.module.label')} ${index}. ${moduleNames[moduleSlug]}`
+                    }
                     {
                       currentSlug === moduleSlug &&
                       subModuleNames[moduleSlug] &&
-                      subModuleNames[moduleSlug].map((moveName, index) =>
+                      subModuleNames[moduleSlug].map((subModuleName, index) =>
                         <div key={`playbook-play-move-${index}`} className='flex gap-x-2'>
                           <MdPlayArrow size='0.8rem' className='my-auto' />
-                          {moveName}
+                          {subModuleName}
                         </div>
                       )
                     }

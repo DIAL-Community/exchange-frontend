@@ -33,7 +33,7 @@ const ModuleCard = ({ module }) => {
             className='bg-dial-sapphire text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
             onClick={() => assignModule(module)}
           >
-            {format('dpi.curriculum.module.assign')}
+            {format('app.assign')}
           </button>
         </div>
       </div>
