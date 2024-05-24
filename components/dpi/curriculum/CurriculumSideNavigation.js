@@ -1,9 +1,9 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
 import { useIntl } from 'react-intl'
-import { CurriculumContext, OVERVIEW_SLUG_NAME } from './CurriculumContext'
+import { CurriculumContext } from './CurriculumContext'
 
-const CurriculumNavigation = ({ moduleRefs }) => {
+const CurriculumSideNavigation = ({ moduleRefs }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -12,12 +12,16 @@ const CurriculumNavigation = ({ moduleRefs }) => {
     setCurrentSlug,
     modules,
     moduleNames,
-    subModuleNames
+    subModuleNames,
+    modulePercentages,
+    directAccess,
+    setDirectAccess
   } = useContext(CurriculumContext)
 
   const navigateToPlay = (e, slug) => {
     e.preventDefault()
     setCurrentSlug(slug)
+    setDirectAccess(true)
 
     if (moduleRefs && moduleRefs.current) {
       const scrollTargetRef = moduleRefs.current[slug]
@@ -29,18 +33,45 @@ const CurriculumNavigation = ({ moduleRefs }) => {
     }
   }
 
+  useEffect(() => {
+    const findModuleWithHighestPercentage = () => {
+      let currentMaxIndex = 0
+      let { moduleSlug: currentMaxModuleSlug } = modules[currentMaxIndex]
+      let currentMaxPercentage = modulePercentages[currentMaxModuleSlug]
+
+      for (let i = 1; i < modules.length; i++) {
+        let { moduleSlug: currentMaxModuleSlug } = modules[i]
+        if (modulePercentages[currentMaxModuleSlug] >= currentMaxPercentage) {
+          currentMaxIndex = i
+          currentMaxPercentage = modulePercentages[currentMaxModuleSlug]
+        }
+      }
+
+      return modules[currentMaxIndex]
+    }
+
+    const eventHandler = () => {
+      console.log('Scroll end event triggered')
+      if (directAccess) {
+        setDirectAccess(false)
+      } else {
+        console.log('Percentage: ', modulePercentages)
+        const { moduleSlug } = findModuleWithHighestPercentage()
+        setCurrentSlug(moduleSlug)
+        setDirectAccess(false)
+      }
+    }
+
+    document.addEventListener('scrollend', eventHandler)
+
+    return () => {
+      document.removeEventListener('scrollend', eventHandler)
+    }
+  }, [directAccess, setDirectAccess, modules, modulePercentages, setCurrentSlug])
+
   return (
     <div className='sticky sticky-under-header'>
       <div className=' flex flex-col text-dial-stratos'>
-        <div className={currentSlug === OVERVIEW_SLUG_NAME ? 'hover:bg-dial-slate-300' : undefined}>
-          <div className={currentSlug === OVERVIEW_SLUG_NAME ? 'bg-dial-slate-500 text-white' : undefined}>
-            <a href='#' onClick={(e) => navigateToPlay(e, OVERVIEW_SLUG_NAME)}>
-              <div className='py-4 px-8'>
-                {format('ui.playbook.overview')}
-              </div>
-            </a>
-          </div>
-        </div>
         {modules
           .map(module => module.moduleSlug)
           .map((moduleSlug, index) => (
@@ -48,7 +79,10 @@ const CurriculumNavigation = ({ moduleRefs }) => {
               key={`module-${index}`}
               className={currentSlug === moduleSlug ? 'bg-dial-slate-500' : undefined}
             >
-              <a href='#' onClick={(e) => navigateToPlay(e, moduleSlug)}>
+              <a
+                href={`/navigate-to-${moduleSlug}`}
+                onClick={(e) => navigateToPlay(e, moduleSlug)}
+              >
                 <div className={currentSlug === moduleSlug ? 'bg-dial-slate-500 text-white' : undefined}>
                   <div className='flex flex-col gap-y-1 py-3 px-8'>
                     {`${format('dpi.curriculum.module.label')} ${index + 1}. ${moduleNames[moduleSlug]}`}
@@ -72,4 +106,4 @@ const CurriculumNavigation = ({ moduleRefs }) => {
   )
 }
 
-export default CurriculumNavigation
+export default CurriculumSideNavigation

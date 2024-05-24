@@ -1,10 +1,14 @@
-import { useContext, useEffect, useRef } from 'react'
-import { CurriculumContext } from './CurriculumContext'
+import { useCallback, useContext, useEffect, useRef } from 'react'
+import { useIntl } from 'react-intl'
+import { CurriculumContext, OVERVIEW_SLUG_VALUE } from './CurriculumContext'
 import CurriculumHeader from './CurriculumHeader'
 import CurriculumModules from './CurriculumModules'
-import CurriculumNavigation from './CurriculumNavigation'
+import CurriculumSideNavigation from './CurriculumSideNavigation'
+import CurriculumTopNavigation from './CurriculumTopNavigation'
 
 const CurriculumDetail = ({ curriculum }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const moduleRefs = useRef({})
 
@@ -18,23 +22,32 @@ const CurriculumDetail = ({ curriculum }) => {
     const { plays: modules, playbookPlays: curriculumModules } = curriculum
     if (modules) {
       setModules([
-        ... curriculumModules.map(curriculumModule => {
-          return ({
+        {
+          moduleId: 0,
+          moduleName: format('dpi.curriculum.overview'),
+          moduleSlug: OVERVIEW_SLUG_VALUE,
+          moduleOrder: 0
+        },
+        ... curriculumModules
+          .map(curriculumModule => ({
             moduleId: curriculumModule.id,
             moduleName: curriculumModule.playName,
             moduleSlug: curriculumModule.playSlug,
-            moduleOrder: curriculumModule.playOrder
-          })
-        })].sort((a, b) => a.moduleOrder - b.moduleOrder))
+            moduleOrder: curriculumModule.playOrder + 1
+          }))
+          .sort((a, b) => a.moduleOrder - b.moduleOrder)
+      ])
 
       setModuleNames(previousModuleNames => {
         const currentModuleNames = { ...previousModuleNames }
+        currentModuleNames[OVERVIEW_SLUG_VALUE] = format('dpi.curriculum.overview')
         modules.forEach(module => {
           currentModuleNames[module.slug] = module.name
         })
 
         return currentModuleNames
       })
+
       setSubModuleNames(previousSubModuleNames => {
         const currentSubModuleNames = { ...previousSubModuleNames }
         modules.forEach(module => {
@@ -46,15 +59,16 @@ const CurriculumDetail = ({ curriculum }) => {
         return currentSubModuleNames
       })
     }
-  }, [curriculum, setModules, setModuleNames, setSubModuleNames])
+  }, [format, curriculum, setModules, setModuleNames, setSubModuleNames])
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <CurriculumNavigation moduleRefs={moduleRefs} />
+          <CurriculumSideNavigation moduleRefs={moduleRefs} />
         </div>
         <div className='lg:basis-2/3'>
+          <CurriculumTopNavigation moduleRefs={moduleRefs} />
           <div className='px-4 lg:px-0 py-4 lg:py-6'>
             <div className='flex flex-col gap-y-3'>
               <CurriculumHeader curriculum={curriculum} moduleRefs={moduleRefs} />

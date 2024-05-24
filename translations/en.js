@@ -2568,6 +2568,8 @@ export const en = {
     below the dotted line).
   `,
 
+  'dpi.dashboard.subtitle': 'Members only area',
+
   'dpi.admin.profile': 'Profile',
   'dpi.admin.users': 'Users',
   'dpi.admin.settings': 'Settings',

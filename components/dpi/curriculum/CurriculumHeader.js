@@ -3,7 +3,7 @@ import { FiMove } from 'react-icons/fi'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CurriculumContext, OVERVIEW_SLUG_NAME } from './CurriculumContext'
+import { CurriculumContext, OVERVIEW_SLUG_VALUE } from './CurriculumContext'
 import RearrangeModules from './forms/RearrangeModules'
 
 const CurriculumHeader = ({ curriculum, moduleRefs }) => {
@@ -23,25 +23,25 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
       setModulePercentages(
         previousModulePercentage => ({
           ...previousModulePercentage,
-          [OVERVIEW_SLUG_NAME]: entry.intersectionRatio
+          [OVERVIEW_SLUG_VALUE]: entry.intersectionRatio
         })
       )
 
-      console.log('Is in view? inView=', inView, ', slug=', OVERVIEW_SLUG_NAME)
-      console.log('Entry data: ', entry)
+      // console.log('Is in view? inView=', inView, ', slug=', OVERVIEW_SLUG_VALUE)
+      // console.log('Entry data: ', entry)
     }
   })
 
   const scrollRef = useRef(null)
   useEffect(() => {
     if (moduleRefs.current) {
-      moduleRefs.current[OVERVIEW_SLUG_NAME] = scrollRef
+      moduleRefs.current[OVERVIEW_SLUG_VALUE] = scrollRef
     }
   }, [scrollRef, moduleRefs])
 
   return (
     <div className='intersection-observer' ref={ref}>
-      <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
+      <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef} data-slug={OVERVIEW_SLUG_VALUE}>
         <div className='flex ml-auto'>
           <button
             type='button'

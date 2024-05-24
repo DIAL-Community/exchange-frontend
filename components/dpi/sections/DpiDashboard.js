@@ -1,6 +1,15 @@
-import { FormattedMessage } from 'react-intl'
+import { useCallback } from 'react'
+import Link from 'next/link'
+import { FaCircleExclamation } from 'react-icons/fa6'
+import { FormattedMessage, useIntl } from 'react-intl'
+import { useUser } from '../../../lib/hooks'
 
 const DpiDashboard = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { user } = useUser()
+
   return (
     <div className='flex flex-col gap-6 pb-12'>
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg' />
@@ -14,21 +23,41 @@ const DpiDashboard = () => {
           />
         </div>
       </div>
-      <div className='px-4 lg:px-8 xl:px-96 min-h-[40vh] 2xl:min-h-[50vh]'>
-        <div className="grid grid-cols-2 gap-3">
-          <div className='bg-dial-deep-purple text-white py-8 aspect-square relative flex justify-center'>
-            Curriculum
+      <div className='px-4 lg:px-8 min-h-[40vh] 2xl:min-h-[50vh]'>
+        {!user &&
+          <div className='flex items-center'>
+            <div className='text-dial-stratos text-lg w-full my-auto flex flex-col gap-4'>
+              <FaCircleExclamation size='3em' className='mx-auto' />
+              <div className='text-center mt-5'>{format('general.unauthorized')}</div>
+            </div>
           </div>
-          <div className='bg-dial-deep-purple text-white py-8 aspect-square relative flex justify-center'>
-            Announcements
+        }
+        {user &&
+          <div className="grid grid-cols-2 gap-8 mx-auto max-w-4xl">
+            <div className='border border-dial-deep-purple py-8 aspect-video'>
+              <div className='flex justify-center'>
+                <Link href='/dpi-curriculum'>
+                  Curriculum
+                </Link>
+              </div>
+            </div>
+            <div className='border border-dial-deep-purple py-8 aspect-video'>
+              <div className='flex justify-center'>
+                Announcements
+              </div>
+            </div>
+            <div className='border border-dial-deep-purple py-8 aspect-video'>
+              <div className='flex justify-center'>
+                Linkedin Group
+              </div>
+            </div>
+            <div className='border border-dial-deep-purple py-8 aspect-video'>
+              <div className='flex justify-center'>
+                Upcoming events
+              </div>
+            </div>
           </div>
-          <div className='bg-dial-deep-purple text-white py-8 aspect-square relative flex justify-center'>
-            Linkedin Group
-          </div>
-          <div className='bg-dial-deep-purple text-white py-8 aspect-square relative flex justify-center'>
-            Upcoming events
-          </div>
-        </div>
+        }
       </div>
     </div>
   )

@@ -34,21 +34,14 @@ const DpiExpertNetwork = () => {
               <FormattedMessage id='dpi.exportNetwork.learnMore' />
             </a>
             {user && (
-              <Link
-                href='/dpi-dashboard'
-                className='flex'
-              >
+              <Link href='/dpi-dashboard' className='flex'>
                 <span className='text-white border-b border-transparent hover:border-white'>
                   <FormattedMessage id='dpi.exportNetwork.memberDashboard' />
                 </span>
               </Link>
             )}
             {!user && (
-              <Link
-                href='/dpi-member-login'
-                onClick={signInUser}
-                className='flex'
-              >
+              <Link href='/dpi-member-login' onClick={signInUser} className='flex'>
                 <span className='text-white border-b border-transparent hover:border-white'>
                   <FormattedMessage id='dpi.exportNetwork.login' />
                 </span>
@@ -59,7 +52,7 @@ const DpiExpertNetwork = () => {
       </div>
       <div className='px-4 lg:px-8 xl:px-56  min-h-[40vh] 2xl:min-h-[50vh]'>
         <div className='flex flex-col gap-6'>
-          ADLI Data
+          ADLI Members
         </div>
       </div>
     </div>

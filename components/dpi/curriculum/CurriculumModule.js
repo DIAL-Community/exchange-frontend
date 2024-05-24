@@ -139,8 +139,8 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
         })
       )
 
-      console.log('Is in view? inView=', inView, ', slug=', moduleSlug)
-      console.log('Entry data: ', entry)
+      // console.log('Is in view? inView=', inView, ', slug=', moduleSlug)
+      // console.log('Entry data: ', entry)
     }
   })
 
@@ -164,7 +164,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
 
   return (
     <div className='my-3 intersection-observer' ref={ref}>
-      <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
+      <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef} data-slug={module.slug}>
         <div className='font-semibold text-2xl'>
           {`${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
         </div>
