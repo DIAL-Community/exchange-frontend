@@ -50,12 +50,14 @@ const CurriculumSideNavigation = ({ moduleRefs }) => {
       return modules[currentMaxIndex]
     }
 
-    const eventHandler = () => {
-      console.log('Scroll end event triggered')
+    const eventHandler = (event) => {
+      if (process.env.NEXT_PUBLIC_ENABLE_DEBUG_MESSAGES) {
+        console.log('Scroll event triggered. Event data: ', event)
+      }
+
       if (directAccess) {
         setDirectAccess(false)
       } else {
-        console.log('Percentage: ', modulePercentages)
         const { moduleSlug } = findModuleWithHighestPercentage()
         setCurrentSlug(moduleSlug)
         setDirectAccess(false)
