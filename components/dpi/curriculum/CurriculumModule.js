@@ -7,12 +7,16 @@ import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
 import { useLazyQuery, useQuery } from '@apollo/client'
+import { useUser } from '../../../lib/hooks'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import CreateButton from '../../shared/form/CreateButton'
+import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { MOVE_PREVIEW_QUERY, PLAY_QUERY } from '../../shared/query/play'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import { CurriculumContext } from './CurriculumContext'
 import RearrangeSubModules from './forms/RearrangeSubModules'
+import UnassignModule from './UnassignModule'
 
 const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, expanded = false }) => {
   const { formatMessage } = useIntl()
@@ -123,6 +127,9 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
     context: { headers: { 'Accept-Language': locale } }
   })
 
+  const { loadingUserSession, user } = useUser()
+  const allowedToEdit = () => user?.isAdliAdminUser || user?.isAdminUser || user?.isEditorUser
+
   const { setModulePercentages } = useContext(CurriculumContext)
   const [displayRearrangeDialog, setDisplayRearrangeDialog] = useState(false)
   const onRearrangeDialogClose = () => {
@@ -159,39 +166,66 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
   const { play: module } = data
   const { playMoves: subModules } = module
 
+  const generateEditLink = () => {
+    return `/dpi-curriculum/${curriculumSlug}/dpi-curriculum-module/${moduleSlug}/edit`
+  }
+
+  const generateAddSubModuleLink = () => {
+    return `/dpi-curriculum/${curriculumSlug}/dpi-curriculum-module/${moduleSlug}/dpi-curriculum-submodule/create`
+  }
+
   return (
     <div className='my-3 intersection-observer' ref={ref}>
-      <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef} data-slug={module.slug}>
-        <div className='font-semibold text-2xl'>
-          {`${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
-        </div>
-        <HtmlViewer initialContent={module?.playDescription?.description} />
-        <div className='flex ml-auto'>
-          <button
-            type='button'
-            onClick={() => setDisplayRearrangeDialog(!displayRearrangeDialog)}
-            className='cursor-pointer bg-dial-iris-blue px-2 py-2 rounded text-white'
-          >
-            <FiMove className='inline pb-0.5' />
-            <span className='text-sm px-1'>
-              {format('dpi.curriculum.subModule.rearrange')}
-            </span>
-          </button>
-        </div>
-        {subModules.map((subModule, index) =>
-          <CurriculumSubmodule
-            key={index}
-            moduleSlug={moduleSlug}
-            subModuleName={subModule.name}
-            subModuleSlug={subModule.slug}
-          />
+      {loadingUserSession
+        ? <div className='absolute top-2 right-2'>{format('general.loadingData')}</div>
+        : (
+          <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
+            <div className='flex flex-wrap gap-3'>
+              <div className='font-semibold text-2xl'>
+                {`${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
+              </div>
+              <div className='ml-auto my-auto flex gap-2'>
+                {allowedToEdit() && <EditButton type='link' href={generateEditLink()} />}
+                {allowedToEdit() && <UnassignModule curriculumSlug={curriculumSlug} moduleSlug={moduleSlug} />}
+              </div>
+            </div>
+            <HtmlViewer initialContent={module?.playDescription?.description} />
+            <div className='flex gap-2 ml-auto'>
+              {allowedToEdit() &&
+                <CreateButton
+                  type='link'
+                  label={format('ui.move.add')}
+                  href={generateAddSubModuleLink()}
+                />
+              }
+              {allowedToEdit() && subModules.length > 0 &&
+                <button
+                  type='button'
+                  onClick={() => setDisplayRearrangeDialog(!displayRearrangeDialog)}
+                  className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
+                >
+                  <FiMove className='inline pb-0.5' />
+                  <span className='text-sm px-1'>
+                    {format('dpi.curriculum.subModule.rearrange')}
+                  </span>
+                </button>
+              }
+            </div>
+            {subModules.map((subModule, index) =>
+              <CurriculumSubmodule
+                key={index}
+                moduleSlug={moduleSlug}
+                subModuleName={subModule.name}
+                subModuleSlug={subModule.slug}
+              />
+            )}
+            <RearrangeSubModules
+              onRearrangeDialogClose={onRearrangeDialogClose}
+              displayRearrangeDialog={displayRearrangeDialog}
+              module={module}
+            />
+          </div>
         )}
-        <RearrangeSubModules
-          onRearrangeDialogClose={onRearrangeDialogClose}
-          displayRearrangeDialog={displayRearrangeDialog}
-          module={module}
-        />
-      </div>
     </div>
   )
 }

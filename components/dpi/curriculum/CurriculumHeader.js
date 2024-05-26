@@ -32,7 +32,7 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
 
   return (
     <div className='intersection-observer' ref={ref}>
-      <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef} data-slug={OVERVIEW_SLUG_VALUE}>
+      <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
         <CurriculumDetailMenu curriculum={curriculum} />
         <div className='flex flex-wrap gap-3'>
           <div className='font-semibold text-2xl'>

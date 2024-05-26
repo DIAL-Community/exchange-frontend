@@ -119,7 +119,7 @@ const RearrangeControls = ({ module, onClose }) => {
   }
 
   return (
-    <div className='flex gap-3 ml-auto'>
+    <div className='flex flex-row gap-3 text-sm ml-auto'>
       <button
         type='button'
         onClick={() => {

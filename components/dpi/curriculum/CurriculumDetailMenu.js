@@ -12,7 +12,7 @@ const CurriculumDetailMenu = ({ curriculum }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loadingUserSession, user } = useUser()
-  const allowedToEdit = user.isAdliAdminUser || user.isAdminUser || user.isEditorUser
+  const allowedToEdit = () => user?.isAdliAdminUser || user?.isAdminUser || user?.isEditorUser
 
   const [displayRearrangeDialog, setDisplayRearrangeDialog] = useState(false)
   const onRearrangeDialogClose = () => {
@@ -30,17 +30,17 @@ const CurriculumDetailMenu = ({ curriculum }) => {
   return (
     <div className='flex flex-col xl:flex-row gap-3 '>
       {loadingUserSession
-        ? <div>Loading...</div>
+        ? <div className='absolute top-2 right-2'>{format('general.loadingData')}</div>
         : (
           <div className='ml-auto flex flex-wrap justify-end gap-2'>
-            {allowedToEdit &&
+            {allowedToEdit() &&
               <CreateButton
                 type='link'
                 label={format('dpi.curriculum.module.add')}
                 href={generateAddModuleLink()}
               />
             }
-            {allowedToEdit &&
+            {allowedToEdit() &&
               <button
                 type='button'
                 onClick={() => setDisplayRearrangeDialog(!displayRearrangeDialog)}
@@ -52,8 +52,8 @@ const CurriculumDetailMenu = ({ curriculum }) => {
                 </span>
               </button>
             }
-            {allowedToEdit && <EditButton type='link' href={generateEditLink()} />}
-            {user.isAdminUser && <DeleteCurriculum curriculum={curriculum} />}
+            {allowedToEdit() && <EditButton type='link' href={generateEditLink()} />}
+            {user?.isAdminUser && <DeleteCurriculum curriculum={curriculum} />}
           </div>
         )}
       <RearrangeModules
