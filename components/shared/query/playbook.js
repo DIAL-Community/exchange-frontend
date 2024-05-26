@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const PLAYBOOK_SEARCH_QUERY = gql`
-  query Playbooks($search: String ) {
-    playbooks(search: $search ) {
+  query Playbooks($search: String, $owner: String!) {
+    playbooks(search: $search, owner: $owner) {
       id
       name
       slug
@@ -13,10 +13,12 @@ export const PLAYBOOK_SEARCH_QUERY = gql`
 export const PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributePlaybook(
     $tags: [String!]
+    $owner: String!
     $search: String
   ) {
     paginationAttributePlaybook(
       tags: $tags
+      owner: $owner
       search: $search
     ) {
       totalCount
@@ -27,12 +29,14 @@ export const PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY = gql`
 export const PAGINATED_PLAYBOOKS_QUERY = gql`
   query PaginatedPlaybooks(
     $tags: [String!]
+    $owner: String!
     $search: String
     $limit: Int!
     $offset: Int!
   ) {
     paginatedPlaybooks(
       tags: $tags
+      owner: $owner
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
@@ -51,8 +55,8 @@ export const PAGINATED_PLAYBOOKS_QUERY = gql`
 `
 
 export const PLAYBOOK_DETAIL_QUERY = gql`
-  query Playbook($slug: String!) {
-    playbook(slug: $slug) {
+  query Playbook($slug: String!, $owner: String!) {
+    playbook(slug: $slug, owner: $owner) {
       id
       slug
       name
