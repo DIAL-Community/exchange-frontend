@@ -4,7 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
+import { useActiveTenant, useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
@@ -23,6 +23,8 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
+
+  const { tenant } = useActiveTenant()
 
   const router = useRouter()
   const { user, loadingUserSession } = useUser()
@@ -90,6 +92,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
         name,
         slug,
         description,
+        owner: tenant,
         tags: tags.map(tag => tag.label),
         playbookSlug: curriculum.slug,
         productSlugs: products.map(({ slug }) => slug),
@@ -131,6 +134,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
         name,
         slug,
         description,
+        owner: tenant,
         tags: tags.map(tag => tag.label),
         playbookSlug: curriculum.slug,
         productSlugs: products.map(({ slug }) => slug),
@@ -153,7 +157,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tags, products, buildingBlocks, curriculum, router, watch, autoSavePlay])
+  }, [user, slug, tenant, tags, products, buildingBlocks, curriculum, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)

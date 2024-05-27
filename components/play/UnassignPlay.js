@@ -1,13 +1,13 @@
-import { useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
+import { useMutation } from '@apollo/client'
+import { useActiveTenant, useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
-import { UNASSIGN_PLAYBOOK_PLAY } from '../shared/mutation/playbook'
-import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 import DeleteButton from '../shared/form/DeleteButton'
+import { UNASSIGN_PLAYBOOK_PLAY } from '../shared/mutation/playbook'
+import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 
 const UnassignPlay = ({ playbookSlug, playSlug }) => {
   const { formatMessage } = useIntl()
@@ -19,13 +19,13 @@ const UnassignPlay = ({ playbookSlug, playSlug }) => {
   const { locale } = router
 
   const { user } = useUser()
-
+  const { tenant } = useActiveTenant()
   const { showToast } = useContext(ToastContext)
 
   const [deletePlaybookPlay, { called, reset }] = useMutation(UNASSIGN_PLAYBOOK_PLAY, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: playbookSlug }
+      variables: { slug: playbookSlug, owner: tenant }
     }],
     onCompleted: (data) => {
       const { deletePlaybookPlay: response } = data
@@ -54,7 +54,7 @@ const UnassignPlay = ({ playbookSlug, playSlug }) => {
       const { userEmail, userToken } = user
 
       deletePlaybookPlay({
-        variables: { playSlug, playbookSlug },
+        variables: { playSlug, playbookSlug, owner: tenant },
         context: {
           headers: {
             'Accept-Language': locale,

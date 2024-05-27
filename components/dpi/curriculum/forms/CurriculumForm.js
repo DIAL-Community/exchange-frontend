@@ -5,7 +5,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
+import { useActiveTenant, useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import Checkbox from '../../../shared/form/Checkbox'
@@ -59,6 +59,8 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
 
   const router = useRouter()
   const { user, loadingUserSession } = useUser()
+
+  const { tenant } = useActiveTenant()
 
   const client = useApolloClient()
 
@@ -137,6 +139,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       const variables = {
         name,
         slug,
+        owner: tenant,
         author,
         overview,
         audience,
@@ -182,6 +185,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       const variables = {
         name,
         slug,
+        owner: tenant,
         author,
         overview,
         audience,
@@ -204,7 +208,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tags, locale, watch, autoSavePlaybook])
+  }, [user, slug, tenant, tags, locale, watch, autoSavePlaybook])
 
   const cancelForm = () => {
     setReverting(true)

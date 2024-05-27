@@ -1,28 +1,30 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useApolloClient, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
-import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
+import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { useUser } from '../../../lib/hooks'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
-import ValidationError from '../../shared/form/ValidationError'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
-import { fetchSelectOptions } from '../../utils/search'
-import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
+import ValidationError from '../../shared/form/ValidationError'
 import { AUTOSAVE_PLAY, CREATE_PLAY } from '../../shared/mutation/play'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
+import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
+import { fetchSelectOptions } from '../../utils/search'
 
 export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
+
+  const { tenant } = useActiveTenant()
 
   const router = useRouter()
   const { locale } = router
@@ -91,6 +93,7 @@ export const PlayForm = ({ playbook, play }) => {
         name,
         slug,
         description,
+        owner: tenant,
         tags: tags.map(tag => tag.label),
         playbookSlug: playbook.slug,
         productSlugs: products.map(({ slug }) => slug),
@@ -132,6 +135,7 @@ export const PlayForm = ({ playbook, play }) => {
         name,
         slug,
         description,
+        owner: tenant,
         tags: tags.map(tag => tag.label),
         playbookSlug: playbook.slug,
         productSlugs: products.map(({ slug }) => slug),
@@ -154,7 +158,7 @@ export const PlayForm = ({ playbook, play }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tags, products, buildingBlocks, playbook, router, watch, autoSavePlay])
+  }, [user, slug, tenant, tags, products, buildingBlocks, playbook, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)
@@ -322,7 +326,7 @@ export const PlayForm = ({ playbook, play }) => {
                   ))}
                 </div>
               </div>
-              <label className='block text-dial-sapphire flex flex-col gap-y-2'>
+              <label className='text-dial-sapphire flex flex-col gap-y-2'>
                 <p className='required-field'> {format('ui.play.description')}</p>
                 <Controller
                   name='description'

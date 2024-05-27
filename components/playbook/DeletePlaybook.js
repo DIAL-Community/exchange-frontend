@@ -1,13 +1,13 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { useActiveTenant, useUser } from '../../lib/hooks'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
-import { useUser } from '../../lib/hooks'
+import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
 import { DELETE_PLAYBOOK } from '../shared/mutation/playbook'
 import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
-import DeleteButton from '../shared/form/DeleteButton'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 
 const DeletePlaybook = ({ playbook }) => {
   const { formatMessage } = useIntl()
@@ -17,6 +17,8 @@ const DeletePlaybook = ({ playbook }) => {
 
   const router = useRouter()
   const { locale } = router
+
+  const { tenant } = useActiveTenant()
 
   const { user } = useUser()
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
@@ -28,7 +30,7 @@ const DeletePlaybook = ({ playbook }) => {
   const [deletePlaybook, { called, reset }] = useMutation(DELETE_PLAYBOOK, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: playbook.slug }
+      variables: { slug: playbook.slug, owner: tenant }
     }],
     onCompleted: (data) => {
       const { deletePlaybook: response } = data

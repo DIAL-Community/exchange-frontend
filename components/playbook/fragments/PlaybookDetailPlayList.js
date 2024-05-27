@@ -1,12 +1,16 @@
 import { useQuery } from '@apollo/client'
-import { PLAYS_QUERY } from '../../shared/query/play'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { useActiveTenant } from '../../../lib/hooks'
 import PlayDetailRight from '../../play/PlayDetailRight'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PLAYS_QUERY } from '../../shared/query/play'
 
 const PlaybookDetailPlayList = ({ locale, playbook }) => {
+  const { tenant } = useActiveTenant()
+
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
     variables: {
-      playbookSlug: playbook.slug
+      playbookSlug: playbook.slug,
+      owner: tenant
     },
     context: { headers: { 'Accept-Language': locale } }
   })

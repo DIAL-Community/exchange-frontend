@@ -2,6 +2,7 @@ import { useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { useActiveTenant } from '../../../../lib/hooks'
 import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 import { PLAYS_QUERY } from '../../../shared/query/play'
@@ -48,9 +49,11 @@ const ExistingModuleList = () => {
   const { locale } = useRouter()
   const { currentModules } = useContext(DraggableContext)
 
+  const { tenant } = useActiveTenant()
+
   const { search } = useContext(FilterContext)
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
-    variables: { search },
+    variables: { search, owner: tenant },
     context: { headers: { 'Accept-Language': locale } }
   })
 

@@ -1,26 +1,18 @@
-import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
 import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa'
-import {
-  PlayFilterContext,
-  PlayFilterDispatchContext,
-  PlayFilterProvider
-} from '../context/PlayFilterContext'
-import { SearchInput } from '../shared/form/SearchInput'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { Dialog, Transition } from '@headlessui/react'
+import { useActiveTenant, useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
-import { PLAYS_QUERY } from '../shared/query/play'
+import { PlayFilterContext, PlayFilterDispatchContext, PlayFilterProvider } from '../context/PlayFilterContext'
+import { SearchInput } from '../shared/form/SearchInput'
 import { UPDATE_PLAYBOOK_PLAYS } from '../shared/mutation/playbook'
-import { useUser } from '../../lib/hooks'
-import {
-  PlayListContext,
-  PlayListDispatchContext,
-  PlayListProvider
-} from './context/PlayListContext'
-import PlayListDraggable from './PlayListDraggable'
+import { PLAYS_QUERY } from '../shared/query/play'
+import { PlayListContext, PlayListDispatchContext, PlayListProvider } from './context/PlayListContext'
 import PlayListQuery from './PlayList'
+import PlayListDraggable from './PlayListDraggable'
 
 const RearrangePlay = ({ displayDragable, onDragableClose, playbook }) => {
   const { formatMessage } = useIntl()
@@ -130,6 +122,7 @@ const RearrangeControls = ({ playbook, onClose }) => {
   const [loading, setLoading] = useState(false)
 
   const { user } = useUser()
+  const { tenant } = useActiveTenant()
 
   const { dirty, currentPlays } = useContext(PlayListContext)
   const { setDirty } = useContext(PlayListDispatchContext)
@@ -139,7 +132,7 @@ const RearrangeControls = ({ playbook, onClose }) => {
     UPDATE_PLAYBOOK_PLAYS, {
       refetchQueries: [{
         query: PLAYS_QUERY,
-        variables: { playbookSlug: playbook.slug }
+        variables: { playbookSlug: playbook.slug, owner: tenant }
       }],
       onCompleted: (data) => {
         const { updatePlaybookPlays: response } = data
@@ -170,7 +163,8 @@ const RearrangeControls = ({ playbook, onClose }) => {
       updatePlayMoves({
         variables: {
           slug: playbook.slug,
-          playSlugs: currentPlays.map(({ slug }) => slug)
+          playSlugs: currentPlays.map(({ slug }) => slug),
+          owner: tenant
         },
         context: {
           headers: {

@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
@@ -18,6 +18,8 @@ const DeleteCurriculum = ({ curriculum }) => {
   const router = useRouter()
   const { locale } = router
 
+  const { tenant } = useActiveTenant()
+
   const { user } = useUser()
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
 
@@ -28,7 +30,7 @@ const DeleteCurriculum = ({ curriculum }) => {
   const [deleteCurriculum, { called, reset }] = useMutation(DELETE_PLAYBOOK, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: curriculum.slug }
+      variables: { slug: curriculum.slug, owner: tenant }
     }],
     onCompleted: (data) => {
       const { deleteCurriculum: response } = data

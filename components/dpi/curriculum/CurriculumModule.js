@@ -7,7 +7,7 @@ import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
 import { useLazyQuery, useQuery } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import CreateButton from '../../shared/form/CreateButton'
 import EditButton from '../../shared/form/EditButton'
@@ -122,8 +122,10 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { tenant } = useActiveTenant()
+
   const { data, loading, error } = useQuery(PLAY_QUERY, {
-    variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug  },
+    variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: tenant },
     context: { headers: { 'Accept-Language': locale } }
   })
 
@@ -194,7 +196,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
               {allowedToEdit() &&
                 <CreateButton
                   type='link'
-                  label={format('ui.move.add')}
+                  label={format('dpi.curriculum.subModule.add')}
                   href={generateAddSubModuleLink()}
                 />
               }
