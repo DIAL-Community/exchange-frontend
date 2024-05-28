@@ -91,6 +91,7 @@ export const PLAYBOOK_DETAIL_QUERY = gql`
         }
       }
       draft
+      ownedBy
     }
   }
 `

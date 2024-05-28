@@ -31,13 +31,13 @@ export const MOVE_QUERY = gql`
 `
 
 export const PLAY_QUERY = gql`
-  query Play($playbookSlug: String!, $playSlug: String!) {
-    play(slug: $playSlug) {
+  query Play($playbookSlug: String!, $playSlug: String!, $owner: String) {
+    play(slug: $playSlug, owner: $owner) {
       id
       name
       slug
     }
-    playbook(slug: $playbookSlug) {
+    playbook(slug: $playbookSlug, owner: $owner) {
       id
       name
       slug

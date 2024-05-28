@@ -2568,7 +2568,12 @@ export const en = {
     below the dotted line).
   `,
 
-  'dpi.dashboard.subtitle': 'Members only area',
+  'dpi.dashboard.subtitle': `
+    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi at
+    posuere elit, in auctor est. Suspendisse potenti. Nam nec sollicitudin metus. Quisque sodales eu
+    lectus eu tempus. Sed tincidunt laoreet molestie. Sed vel venenatis dui.
+  `,
+  'dpi.dashboard.signOut': 'Sign Out',
 
   'dpi.admin.profile': 'Profile',
   'dpi.admin.users': 'Users',
@@ -2576,14 +2581,23 @@ export const en = {
   'dpi.admin.broadcast': 'Broadcast',
   'dpi.admin.signOut': 'Sign Out',
 
+  'dpi.curriculum.header': 'Curricula',
+  'dpi.curriculum.label': 'Curriculum',
+
   'dpi.curriculum.author': 'Author',
   'dpi.curriculum.overview': 'Overview',
 
   'dpi.curriculum.module.add': 'Add Module',
   'dpi.curriculum.module.label': 'Module',
-
+  'dpi.curriculum.module.unassign.confirmation': 'Are you sure you want to remove this module from the current curriculum?',
+  'dpi.curriculum.module.unassign': 'Unassign Module',
   'dpi.curriculum.module.rearrange': 'Rearrange Modules',
+
+  'ui.curriculum.delete.confirm.message': 'Are you sure you want to delete this curriculum?',
+
+  'dpi.curriculum.subModule.add': 'Add Sub Module',
   'dpi.curriculum.subModule.rearrange': 'Rearrange Sub Modules',
+  
 
   'dpi.breadcrumb.curriculum': 'Curriculum',
   'dpi.breadcrumb.curriculumModule': 'Module',

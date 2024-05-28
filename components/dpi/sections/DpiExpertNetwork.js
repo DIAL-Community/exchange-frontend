@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { FormattedMessage } from 'react-intl'
@@ -10,6 +11,27 @@ const DpiExpertNetwork = () => {
     e.preventDefault()
     signIn()
   }
+
+  const [mockedNetworkMembers, setMockedNetworkMembers] = useState([])
+  useState(() => {
+    const generateRandomUsers = async () => {
+      const randomUserUrl = 'https://randomuser.me/api/?results=12'
+      const response = await fetch(randomUserUrl, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+
+      if (response.status === 200) {
+        const data = await response.json()
+        const { results } = data
+        setMockedNetworkMembers(results)
+      }
+    }
+
+    generateRandomUsers()
+  }, [])
 
   return (
     <div className='flex flex-col gap-6 pb-12 max-w-catalog'>
@@ -28,7 +50,7 @@ const DpiExpertNetwork = () => {
             <a
               target='_blank'
               rel='noreferrer'
-              href='//https://dial.global/work/adli/'
+              href='//dial.global/work/adli/'
               className='text-white border-b border-transparent hover:border-white'
             >
               <FormattedMessage id='dpi.exportNetwork.learnMore' />
@@ -51,8 +73,19 @@ const DpiExpertNetwork = () => {
         </div>
       </div>
       <div className='px-4 lg:px-8 xl:px-56  min-h-[40vh] 2xl:min-h-[50vh]'>
-        <div className='flex flex-col gap-6'>
-          ADLI Members
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+          {mockedNetworkMembers.map((member, index) => (
+            <div key={index} className='flex items-center gap-4'>
+              <img className='h-32 w-32 object-cover rounded-full' alt='DPI Member' src={member.picture.large} />
+              <div className='flex flex-col'>
+                <span className='text-lg font-bold'>
+                  {`${member.name.title}. ${member.name.first} ${member.name.last}`}
+                </span>
+                <span className='text-sm'>{member.email}</span>
+                <span className='text-sm'>{member.phone}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

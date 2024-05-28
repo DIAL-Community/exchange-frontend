@@ -6,7 +6,7 @@ import DpiHeader from '../../components/dpi/sections/DpiHeader'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
-const DpiCountriesPage = ({ dpiTenants }) => {
+const DpiDashboardPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -34,4 +34,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default DpiCountriesPage
+export default DpiDashboardPage
