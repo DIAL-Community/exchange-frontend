@@ -5,7 +5,7 @@ import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
-import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../../lib/ToastContext'
+import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../../shared/mutation/move'
@@ -248,41 +248,26 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
     curriculumSubModule ? curriculumSubModule.resources.map((resource, i) => ({ ...resource, i })) : []
   )
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
   const [createMove, { reset }] = useMutation(CREATE_MOVE, {
     onCompleted: (data) => {
       setMutating(false)
       const { createMove: response } = data
       if (response?.errors.length === 0 && response.move) {
-        showToast(
-          format('ui.move.submitted.success'),
-          'success',
-          'top-center',
-          DEFAULT_AUTO_CLOSE_DELAY,
-          null,
-          () => router.push(`/dpi-curriculum/${curriculum.slug}`)
+        setMutating(false)
+        showSuccessMessage(
+          format('dpi.curriculum.subModule.submitted'),
+          () => router.push(`/playbooks/${curriculum.slug}`)
         )
       } else {
+        showFailureMessage(response.errors)
         setMutating(false)
-        showToast(
-          <div className='flex flex-col'>
-            <span>{response.errors}</span>
-          </div>,
-          'error',
-          'top-center'
-        )
         reset()
       }
     },
     onError: (error) => {
+      showFailureMessage(error?.message)
       setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{error?.message}</span>
-        </div>,
-        'error',
-        'top-center'
-      )
       reset()
     }
   })
@@ -297,7 +282,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
       if (response.errors.length === 0 && response.move) {
         setMutating(false)
         setMoveSlug(response.move.slug)
-        showToast(format('ui.move.autoSaved'), 'success', 'top-right')
+        showSuccessMessage(format('dpi.curriculum.subModule.autoSaved'))
       }
     }
   })

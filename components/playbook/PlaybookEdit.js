@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant } from '../../lib/hooks'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
@@ -12,11 +11,8 @@ const PlaybookEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { tenant } = useActiveTenant()
-
   const { loading, error, data } = useQuery(PLAYBOOK_DETAIL_QUERY, {
-    variables: { slug, owner: tenant },
-    skip: !slug || !tenant
+    variables: { slug, owner: 'public' }
   })
 
   if (loading) {

@@ -2,7 +2,6 @@ import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant } from '../../../lib/hooks'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PLAY_QUERY } from '../../shared/query/play'
 import CurriculumModuleForm from '../curriculum/forms/CurriculumModuleForm'
@@ -13,10 +12,9 @@ const EditDpiCurriculumModule = ({ curriculumSlug, curriculumModuleSlug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { tenant } = useActiveTenant()
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
-    variables: { playSlug: curriculumModuleSlug, playbookSlug: curriculumSlug, owner: tenant },
+    variables: { playSlug: curriculumModuleSlug, playbookSlug: curriculumSlug, owner: 'dpi' },
     context: { headers: { 'Accept-Language': router.locale } }
   })
 
@@ -58,10 +56,9 @@ const CreateDpiCurriculumModule = ({ curriculumSlug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { tenant } = useActiveTenant()
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
-    variables: { playSlug: '', playbookSlug: curriculumSlug, owner: tenant },
+    variables: { playSlug: '', playbookSlug: curriculumSlug, owner: 'dpi' },
     context: { headers: { 'Accept-Language': router.locale } }
   })
 

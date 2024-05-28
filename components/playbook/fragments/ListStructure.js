@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant } from '../../../lib/hooks'
 import { PlaybookFilterContext } from '../../context/PlaybookFilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
@@ -10,18 +9,15 @@ import PlaybookCard from '../PlaybookCard'
 const ListStructure = ({ defaultPageSize, pageOffset }) => {
   const { search, tags, products } = useContext(PlaybookFilterContext)
 
-  const { tenant } = useActiveTenant()
-
   const { loading, error, data } = useQuery(PAGINATED_PLAYBOOKS_QUERY, {
     variables: {
       search,
-      owner: tenant,
+      owner: 'public',
       products: products.map(product => product.value),
       tags: tags.map(tag => tag.label),
       limit: defaultPageSize,
       offset: pageOffset
-    },
-    skip: !tenant
+    }
   })
 
   if (loading) {

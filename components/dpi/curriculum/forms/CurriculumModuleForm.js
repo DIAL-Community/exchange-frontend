@@ -42,7 +42,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
     onCompleted: () => {
       setMutating(false)
       showSuccessMessage(
-        format('ui.play.submitted'),
+        format('dpi.curriculum.module.submitted'),
         () => router.push(`/playbooks/${curriculum.slug}`)
       )
     }
@@ -58,7 +58,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
       if (response.errors.length === 0 && response.play) {
         setMutating(false)
         setSlug(response.play.slug)
-        showSuccessMessage(format('ui.play.autoSaved'))
+        showSuccessMessage(format('dpi.curriculum.module.autoSaved'))
       }
     }
   })
@@ -92,7 +92,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
         name,
         slug,
         description,
-        owner: tenant,
+        owner: 'dpi',
         tags: tags.map(tag => tag.label),
         playbookSlug: curriculum.slug,
         productSlugs: products.map(({ slug }) => slug),
@@ -134,7 +134,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
         name,
         slug,
         description,
-        owner: tenant,
+        owner: 'dpi',
         tags: tags.map(tag => tag.label),
         playbookSlug: curriculum.slug,
         productSlugs: products.map(({ slug }) => slug),

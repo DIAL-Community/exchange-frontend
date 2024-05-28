@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 import DeleteButton from '../shared/form/DeleteButton'
@@ -19,13 +19,12 @@ const UnassignPlay = ({ playbookSlug, playSlug }) => {
   const { locale } = router
 
   const { user } = useUser()
-  const { tenant } = useActiveTenant()
   const { showToast } = useContext(ToastContext)
 
   const [deletePlaybookPlay, { called, reset }] = useMutation(UNASSIGN_PLAYBOOK_PLAY, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: playbookSlug, owner: tenant }
+      variables: { slug: playbookSlug, owner: 'public' }
     }],
     onCompleted: (data) => {
       const { deletePlaybookPlay: response } = data
@@ -54,7 +53,7 @@ const UnassignPlay = ({ playbookSlug, playSlug }) => {
       const { userEmail, userToken } = user
 
       deletePlaybookPlay({
-        variables: { playSlug, playbookSlug, owner: tenant },
+        variables: { playSlug, playbookSlug, owner: 'public' },
         context: {
           headers: {
             'Accept-Language': locale,

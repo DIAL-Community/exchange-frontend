@@ -7,7 +7,7 @@ import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
 import { useLazyQuery, useQuery } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import CreateButton from '../../shared/form/CreateButton'
 import EditButton from '../../shared/form/EditButton'
@@ -33,8 +33,7 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, expande
 
   const [loadDetailData, { data, called, loading }] = useLazyQuery(MOVE_PREVIEW_QUERY, {
     variables: { playSlug: moduleSlug, slug: subModuleSlug },
-    context: { headers: { 'Accept-Language': locale } },
-    skip: !subModuleSlug
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   return (
@@ -122,12 +121,9 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { tenant } = useActiveTenant()
-
   const { data, loading, error } = useQuery(PLAY_QUERY, {
-    variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: tenant },
-    context: { headers: { 'Accept-Language': locale } },
-    skip:!moduleSlug ||!curriculumSlug || !tenant
+    variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: 'dpi' },
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   const { loadingUserSession, user } = useUser()

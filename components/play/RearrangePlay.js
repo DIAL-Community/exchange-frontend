@@ -4,7 +4,7 @@ import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { Dialog, Transition } from '@headlessui/react'
-import { useActiveTenant, useUser } from '../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { PlayFilterContext, PlayFilterDispatchContext, PlayFilterProvider } from '../context/PlayFilterContext'
 import { SearchInput } from '../shared/form/SearchInput'
@@ -122,7 +122,6 @@ const RearrangeControls = ({ playbook, onClose }) => {
   const [loading, setLoading] = useState(false)
 
   const { user } = useUser()
-  const { tenant } = useActiveTenant()
 
   const { dirty, currentPlays } = useContext(PlayListContext)
   const { setDirty } = useContext(PlayListDispatchContext)
@@ -132,7 +131,7 @@ const RearrangeControls = ({ playbook, onClose }) => {
     UPDATE_PLAYBOOK_PLAYS, {
       refetchQueries: [{
         query: PLAYS_QUERY,
-        variables: { playbookSlug: playbook.slug, owner: tenant }
+        variables: { playbookSlug: playbook.slug, owner: 'public' }
       }],
       onCompleted: (data) => {
         const { updatePlaybookPlays: response } = data
@@ -164,7 +163,7 @@ const RearrangeControls = ({ playbook, onClose }) => {
         variables: {
           slug: playbook.slug,
           playSlugs: currentPlays.map(({ slug }) => slug),
-          owner: tenant
+          owner: 'public'
         },
         context: {
           headers: {

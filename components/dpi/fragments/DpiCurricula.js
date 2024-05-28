@@ -3,7 +3,6 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant } from '../../../lib/hooks'
 import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
 import DpiPagination from './DpiPagination'
 
@@ -70,11 +69,8 @@ const DpiCurricula = () => {
   const [curricula, setCurricula] = useState([])
   const [displayedCurricula, setDisplayedCurricula] = useState([])
 
-  const { tenant } = useActiveTenant()
-
   useQuery(PAGINATED_PLAYBOOKS_QUERY, {
-    variables: { owner: tenant, limit: 100, offset: 0 },
-    skip: !tenant,
+    variables: { owner: 'dpi', limit: 100, offset: 0 },
     onCompleted: (data) => {
       const { paginatedPlaybooks: curricula } = data
       setCurricula(curricula)

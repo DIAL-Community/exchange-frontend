@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../../lib/hooks'
+import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
@@ -19,13 +19,12 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
   const { locale } = router
 
   const { user } = useUser()
-  const { tenant } = useActiveTenant()
   const { showToast } = useContext(ToastContext)
 
   const [deleteCurriculumModule, { called, reset }] = useMutation(UNASSIGN_PLAYBOOK_PLAY, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: curriculumSlug, owner: tenant }
+      variables: { slug: curriculumSlug, owner: 'dpi' }
     }],
     onCompleted: (data) => {
       const { deletePlaybookPlay: response } = data
@@ -57,7 +56,7 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
         variables: {
           playSlug: moduleSlug,
           playbookSlug: curriculumSlug,
-          owner: tenant
+          owner: 'dpi'
         },
         context: {
           headers: {

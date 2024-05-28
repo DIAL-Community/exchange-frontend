@@ -135,7 +135,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       const variables = {
         name,
         slug,
-        owner: tenant,
+        owner: 'dpi',
         author,
         overview,
         audience: '',
@@ -181,7 +181,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       const variables = {
         name,
         slug,
-        owner: tenant,
+        owner: 'dpi',
         author,
         overview,
         audience,

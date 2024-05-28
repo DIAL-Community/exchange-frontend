@@ -2,7 +2,6 @@ import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant } from '../../../lib/hooks'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/playbook'
 import CurriculumForm from '../curriculum/forms/CurriculumForm'
@@ -13,10 +12,9 @@ const EditDpiCurriculum = ({ curriculumSlug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { tenant } = useActiveTenant()
 
   const { data, loading, error } = useQuery(PLAYBOOK_DETAIL_QUERY, {
-    variables: { slug: curriculumSlug, owner: tenant },
+    variables: { slug: curriculumSlug, owner: 'dpi' },
     context: { headers: { 'Accept-Language': router.locale } }
   })
 

@@ -4,7 +4,7 @@ import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { Dialog, Transition } from '@headlessui/react'
-import { useActiveTenant, useUser } from '../../../../lib/hooks'
+import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { FilterContext } from '../../../context/FilterContext'
 import { SearchInput } from '../../../shared/form/SearchInput'
@@ -118,7 +118,6 @@ const RearrangeControls = ({ curriculum, onClose }) => {
   const [loading, setLoading] = useState(false)
 
   const { user } = useUser()
-  const { tenant } = useActiveTenant()
 
   const { dirty, setDirty, currentModules } = useContext(DraggableContext)
   const { showFailureMessage, showSuccessMessage } = useContext(ToastContext)
@@ -127,7 +126,7 @@ const RearrangeControls = ({ curriculum, onClose }) => {
     UPDATE_PLAYBOOK_PLAYS, {
       refetchQueries: [{
         query: PLAYS_QUERY,
-        variables: { playbookSlug: curriculum.slug, owner: tenant }
+        variables: { playbookSlug: curriculum.slug, owner: 'dpi' }
       }],
       onCompleted: (data) => {
         const { updatePlaybookPlays: response } = data
@@ -159,7 +158,7 @@ const RearrangeControls = ({ curriculum, onClose }) => {
         variables: {
           slug: curriculum.slug,
           playSlugs: currentModules.map(({ slug }) => slug),
-          owner: tenant
+          owner: 'dpi'
         },
         context: {
           headers: {

@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant } from '../../lib/hooks'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import { PLAY_QUERY } from '../shared/query/play'
@@ -8,11 +7,9 @@ import PlayDetailLeft from './PlayDetailLeft'
 import PlayDetailRight from './PlayDetailRight'
 
 const PlayDetail = ({ playSlug, playbookSlug, locale }) => {
-  const { tenant } = useActiveTenant()
   const { data, loading, error } = useQuery(PLAY_QUERY, {
-    variables: { playSlug, playbookSlug, owner: tenant },
-    context: { headers: { 'Accept-Language': locale } },
-    skip: !playSlug || !playbookSlug || !tenant
+    variables: { playSlug, playbookSlug, owner: 'public' },
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   const scrollRef = useRef(null)

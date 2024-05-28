@@ -138,7 +138,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       const variables = {
         name,
         slug,
-        owner: tenant,
+        owner: 'public',
         author,
         overview,
         audience,
@@ -184,7 +184,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       const variables = {
         name,
         slug,
-        owner: tenant,
+        owner: 'public',
         author,
         overview,
         audience,
