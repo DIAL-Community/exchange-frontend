@@ -2584,21 +2584,22 @@ export const en = {
   'dpi.curriculum.header': 'Curricula',
   'dpi.curriculum.label': 'Curriculum',
 
+  'dpi.curriculum.name': 'Name',
   'dpi.curriculum.author': 'Author',
   'dpi.curriculum.overview': 'Overview',
   'dpi.curriculum.cover': 'Cover / Logo',
-  'dpi.curriculum.name': 'Name',
+  
   'dpi.curriculum.save': 'Save',
   'dpi.curriculum.submitted': 'Curriculum saved.',
   'dpi.curriculum.autoSaved': 'Curriculum saved.',
 
   'dpi.curriculum.module.add': 'Add Module',
   'dpi.curriculum.module.label': 'Module',
-  'dpi.curriculum.module.unassign.confirmation': 'Are you sure you want to remove this module from the current curriculum?',
-  'dpi.curriculum.module.unassign': 'Unassign Module',
   'dpi.curriculum.module.rearrange': 'Rearrange Modules',
   'dpi.curriculum.module.submitted': 'Module saved.',
-  'dpi.curriculum.module.autoSaved': 'Curriculum saved.',
+  'dpi.curriculum.module.autoSaved': 'Module saved.',
+  'dpi.curriculum.module.unassign.title': 'Unassign Module',
+  'dpi.curriculum.module.unassign.confirmation': 'Are you sure you want to remove this module from the current curriculum?',
 
   'ui.curriculum.delete.confirm.message': 'Are you sure you want to delete this curriculum?',
 
@@ -2606,7 +2607,12 @@ export const en = {
   'dpi.curriculum.subModule.rearrange': 'Rearrange Sub Modules',
   'dpi.curriculum.subModule.submitted': 'Sub module saved.',
   'dpi.curriculum.subModule.autoSaved': 'Sub module saved.',
-  
+  'dpi.curriculum.submodule.unassign.title': 'Removing Sub Module',
+  'dpi.curriculum.submodule.unassign.confirmation': 'Are you sure you want to remove this sub module from the current curriculum?',
+
+
+  'dpi.announcement.label': 'Announcement',
+  'dpi.announcement.header': 'Announcements',
 
   'dpi.breadcrumb.curriculum': 'Curriculum',
   'dpi.breadcrumb.curriculumModule': 'Module',

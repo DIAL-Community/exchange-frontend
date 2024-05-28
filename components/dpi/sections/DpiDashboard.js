@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FaCircleExclamation } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
+import DpiAnnouncements from '../fragments/DpiAnnouncements'
 import DpiCurricula from '../fragments/DpiCurricula'
 
 const DpiDashboard = () => {
@@ -48,20 +49,11 @@ const DpiDashboard = () => {
         </div>
       }
       {user &&
-        <div className='flex flex-col gap-6 min-h-[30vh]'>
+        <div className='flex flex-col min-h-[30vh]'>
           <DpiCurricula />
+          <DpiAnnouncements />
         </div>
       }
-      <div className='px-4 lg:px-8 min-h-[30vh]'>
-        {!user &&
-          <div className='flex items-center'>
-            <div className='text-dial-stratos text-lg w-full my-auto flex flex-col gap-4'>
-              <FaCircleExclamation size='3em' className='mx-auto' />
-              <div className='text-center mt-5'>{format('general.unauthorized')}</div>
-            </div>
-          </div>
-        }
-      </div>
     </div>
   )
 }

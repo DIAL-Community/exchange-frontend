@@ -27,6 +27,7 @@ export const PLAYS_QUERY = gql`
         name
         slug
         imageFile
+        maturity
       }
     }
   }

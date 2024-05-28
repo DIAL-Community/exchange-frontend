@@ -76,7 +76,7 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
     <>
       <DeleteButton title='ui.play.unassign' type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
-        title={format('dpi.curriculum.module.unassign')}
+        title={format('dpi.curriculum.module.unassign.title')}
         message={format('dpi.curriculum.module.unassign.confirmation')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}

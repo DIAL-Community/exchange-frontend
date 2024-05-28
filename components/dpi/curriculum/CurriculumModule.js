@@ -2,10 +2,10 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
-import { FiMove } from 'react-icons/fi'
+import { FiEdit3, FiMove } from 'react-icons/fi'
 import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
-import { useIntl } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
@@ -17,12 +17,16 @@ import { prependUrlWithProtocol } from '../../utils/utilities'
 import { CurriculumContext } from './CurriculumContext'
 import RearrangeSubModules from './forms/RearrangeSubModules'
 import UnassignModule from './UnassignModule'
+import UnassignSubModule from './UnassignSubModule'
 
-const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, expanded = false }) => {
+const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curriculumSlug, expanded = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [openingDetail, setOpeningDetail] = useState(expanded)
+
+  const { user } = useUser()
+  const allowedToEdit = () => user?.isAdliAdminUser || user?.isAdminUser || user?.isEditorUser
 
   const toggleDetail = () => {
     setOpeningDetail(!openingDetail)
@@ -35,6 +39,14 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, expande
     variables: { playSlug: moduleSlug, slug: subModuleSlug },
     context: { headers: { 'Accept-Language': locale } }
   })
+
+  const generateEditLink = () => {
+    return '' +
+      `/dpi-curriculum/${curriculumSlug}` +
+      `/dpi-curriculum-module/${moduleSlug}` +
+      `/dpi-curriculum-submodule/${subModuleSlug}` +
+      '/edit'
+  }
 
   return (
     <div className='flex flex-col border border-dial-orange-light'>
@@ -55,6 +67,24 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, expande
           </div>
           <div className='ml-auto my-auto px-4'>
             <div className='flex gap-2 pb-3 lg:pb-0'>
+              {allowedToEdit() &&
+                <a
+                  href={generateEditLink()}
+                  className='cursor-pointer bg-white px-2 py-0.5 rounded'
+                >
+                  <FiEdit3 className='inline pb-0.5' />
+                  <span className='text-sm px-1'>
+                    <FormattedMessage id='app.edit' />
+                  </span>
+                </a>
+              }
+              {allowedToEdit() &&
+                <UnassignSubModule
+                  curriculumSlug={curriculumSlug}
+                  moduleSlug={moduleSlug}
+                  subModuleSlug={subModuleSlug}
+                />
+              }
               <button
                 type='button'
                 onClick={toggleDetail}
@@ -216,6 +246,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
                 moduleSlug={moduleSlug}
                 subModuleName={subModule.name}
                 subModuleSlug={subModule.slug}
+                curriculumSlug={curriculumSlug}
               />
             )}
             <RearrangeSubModules

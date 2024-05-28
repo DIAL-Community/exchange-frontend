@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { MOVE_QUERY } from '../shared/query/move'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { MOVE_QUERY } from '../shared/query/move'
 import MoveForm from './fragments/MoveForm'
 import MoveEditLeft from './MoveEditLeft'
 
@@ -12,7 +12,7 @@ const MoveEdit = ({ moveSlug, playSlug, playbookSlug, locale }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(MOVE_QUERY, {
-    variables: { moveSlug, playSlug, playbookSlug },
+    variables: { moveSlug, playSlug, playbookSlug, owner: 'public' },
     context: { headers: { 'Accept-Language': locale } }
   })
 

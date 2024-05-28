@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant } from '../../lib/hooks'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import { PLAY_QUERY } from '../shared/query/play'
@@ -12,10 +11,8 @@ const MoveCreate = ({ playSlug, playbookSlug, locale }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { tenant } = useActiveTenant()
-
   const { loading, error, data } = useQuery(PLAY_QUERY, {
-    variables: { playSlug, playbookSlug, owner: tenant },
+    variables: { playSlug, playbookSlug, owner: 'public' },
     context: { headers: { 'Accept-Language': locale } }
   })
 

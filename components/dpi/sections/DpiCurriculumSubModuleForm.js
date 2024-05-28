@@ -18,7 +18,8 @@ const EditDpiCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug, curr
     variables: {
       moveSlug: curriculumSubModuleSlug,
       playSlug: curriculumModuleSlug,
-      playbookSlug: curriculumSlug
+      playbookSlug: curriculumSlug,
+      owner: 'dpi'
     },
     context: { headers: { 'Accept-Language': router.locale } }
   })

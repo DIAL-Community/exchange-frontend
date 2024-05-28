@@ -3,13 +3,13 @@ import { useRouter } from 'next/router'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import { UNASSIGN_PLAY_MOVE } from '../shared/mutation/move'
-import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import { UNASSIGN_PLAY_MOVE } from '../../shared/mutation/move'
+import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/playbook'
 
-const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
+const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,24 +22,24 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [deletePlayMove, { called, reset }] = useMutation(UNASSIGN_PLAY_MOVE, {
+  const [deleteSubmodule, { called, reset }] = useMutation(UNASSIGN_PLAY_MOVE, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: playbookSlug, owner: 'public' }
+      variables: { slug: curriculumSlug, owner: 'dpi' }
     }],
     onCompleted: (data) => {
       const { deletePlayMove: response } = data
       if (response?.play && response?.errors?.length === 0) {
-        showToast(format('toast.play.unassign.success'), 'success', 'top-center')
+        showToast(format('toast.submodule.unassign.success'), 'success', 'top-center')
         setDisplayConfirmDialog(false)
       } else {
-        showToast(format('toast.play.unassign.failure'), 'error', 'top-center')
+        showToast(format('toast.submodule.unassign.failure'), 'error', 'top-center')
         setDisplayConfirmDialog(false)
         reset()
       }
     },
     onError: () => {
-      showToast(format('toast.play.unassign.failure'), 'error', 'top-center')
+      showToast(format('toast.submodule.unassign.failure'), 'error', 'top-center')
       setDisplayConfirmDialog(false)
       reset()
     }
@@ -49,8 +49,11 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
     if (user && (user.isAdminUser || user.isEditorUser)) {
       const { userEmail, userToken } = user
 
-      deletePlayMove({
-        variables: { moveSlug, playSlug },
+      deleteSubmodule({
+        variables: {
+          playSlug: moduleSlug,
+          moveSlug: subModuleSlug
+        },
         context: {
           headers: {
             'Accept-Language': locale,
@@ -78,8 +81,8 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
         </span>
       </button>
       <ConfirmActionDialog
-        title={format('ui.move.unassign.title')}
-        message={format('ui.move.unassign.confirmation')}
+        title={format('dpi.curriculum.submodule.unassign.title')}
+        message={format('dpi.curriculum.submodule.unassign.confirmation')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}
@@ -88,4 +91,4 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
   )
 }
 
-export default UnassignMove
+export default UnassignSubModule

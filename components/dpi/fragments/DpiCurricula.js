@@ -90,7 +90,7 @@ const DpiCurricula = () => {
   }, [curricula])
 
   return (
-    <div className='product-section bg-dial-sapphire'>
+    <div className='curriculum-section bg-dial-sapphire'>
       <div className='px-4 lg:px-8 xl:px-56'>
         <div className='text-2xl text-center py-8 text-white'>
           {format('dpi.curriculum.header')}

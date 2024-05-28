@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { CurriculumContext } from './CurriculumContext'
 
-const CurriculumTopNavigation = ({ moduleRefs }) => {
+const CurriculumTopNavigation = ({ curriculum, moduleRefs }) => {
   const [currentSlugIndex, setCurrentSlugIndex] = useState(0)
 
   const {
@@ -32,8 +32,11 @@ const CurriculumTopNavigation = ({ moduleRefs }) => {
   }, [currentSlug, modules])
 
   return (
-    <div className='sticky sticky-under-header bg-white'>
-      <div className='flex py-3 overflow-x-auto'>
+    <div className='sticky sticky-under-header bg-dial-lavender'>
+      <div className='flex px-3 py-3 overflow-x-auto'>
+        <div className='text-xl font-semibold my-auto'>
+          {curriculum.name}
+        </div>
         <div className='ml-auto play-progress'>
           <div className='play-progress-bar-base' />
           <div className='play-progress-number'>

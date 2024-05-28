@@ -63,13 +63,13 @@ const CurriculumDetail = ({ curriculum }) => {
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
+      <CurriculumTopNavigation curriculum={curriculum} moduleRefs={moduleRefs} />
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <CurriculumSideNavigation moduleRefs={moduleRefs} />
+          <CurriculumSideNavigation curriculum={curriculum} moduleRefs={moduleRefs} />
         </div>
         <div className='lg:basis-2/3'>
-          <CurriculumTopNavigation moduleRefs={moduleRefs} />
-          <div className='px-4 lg:px-0 py-4 lg:py-6'>
+          <div className='px-4 lg:px-0 py-4'>
             <div className='flex flex-col gap-y-3'>
               <CurriculumHeader curriculum={curriculum} moduleRefs={moduleRefs} />
               <CurriculumModules curriculum={curriculum} moduleRefs={moduleRefs} />
