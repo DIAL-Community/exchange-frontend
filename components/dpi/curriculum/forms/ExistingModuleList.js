@@ -54,7 +54,8 @@ const ExistingModuleList = () => {
   const { search } = useContext(FilterContext)
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
     variables: { search, owner: tenant },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !search || !tenant
   })
 
   if (loading) {

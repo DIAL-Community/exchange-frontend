@@ -351,7 +351,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {`${format('ui.play.submitAndAssign')} ${format('ui.play.label')}`}
+                  {`${format('dpi.curriculum.save')} ${format('dpi.curriculum.module.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

@@ -11,7 +11,8 @@ const PlaybookDetail = ({ slug, locale }) => {
   const { tenant } = useActiveTenant()
   const { data, loading, error } = useQuery(PLAYBOOK_DETAIL_QUERY, {
     variables: { slug, owner: tenant },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !slug || !tenant
   })
 
   const scrollRef = useRef(null)

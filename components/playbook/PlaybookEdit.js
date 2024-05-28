@@ -15,7 +15,8 @@ const PlaybookEdit = ({ slug }) => {
   const { tenant } = useActiveTenant()
 
   const { loading, error, data } = useQuery(PLAYBOOK_DETAIL_QUERY, {
-    variables: { slug, owner: tenant }
+    variables: { slug, owner: tenant },
+    skip: !slug || !tenant
   })
 
   if (loading) {

@@ -126,7 +126,8 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
 
   const { data, loading, error } = useQuery(PLAY_QUERY, {
     variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: tenant },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    skip:!moduleSlug ||!curriculumSlug || !tenant
   })
 
   const { loadingUserSession, user } = useUser()

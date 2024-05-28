@@ -55,7 +55,8 @@ const PlaybookListRight = () => {
       search,
       owner: tenant,
       tags: tags.map(tag => tag.label)
-    }
+    },
+    skip: !tenant
   })
 
   return (

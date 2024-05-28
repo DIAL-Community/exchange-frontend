@@ -74,6 +74,7 @@ const DpiCurricula = () => {
 
   useQuery(PAGINATED_PLAYBOOKS_QUERY, {
     variables: { owner: tenant, limit: 100, offset: 0 },
+    skip: !tenant,
     onCompleted: (data) => {
       const { paginatedPlaybooks: curricula } = data
       setCurricula(curricula)

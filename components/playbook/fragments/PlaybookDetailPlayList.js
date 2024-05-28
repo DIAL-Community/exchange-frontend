@@ -12,7 +12,8 @@ const PlaybookDetailPlayList = ({ locale, playbook }) => {
       playbookSlug: playbook.slug,
       owner: tenant
     },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !tenant
   })
 
   // Loading and error handler section.

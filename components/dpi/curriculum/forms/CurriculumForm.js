@@ -114,13 +114,9 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
     defaultValues: {
       name: curriculum?.name,
       author: curriculum?.author,
-      overview: curriculum?.playbookDescription.overview,
-      audience: curriculum?.playbookDescription.audience,
-      outcomes: curriculum?.playbookDescription.outcomes,
-      published: curriculum ? !curriculum.draft : false
+      overview: curriculum?.playbookDescription.overview
     }
   })
-  const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
 
   const [slug, setSlug] = useState(curriculum ? curriculum.slug : '')
   const [tags, setTags] = useState(curriculum?.tags.map(tag => ({ label: tag, value: tag })) ?? [])
@@ -133,7 +129,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, cover, author, overview, audience, outcomes, published } = data
+      const { name, cover, author, overview } = data
       const [coverFile] = cover
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -142,11 +138,11 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
         owner: tenant,
         author,
         overview,
-        audience,
-        outcomes,
+        audience: '',
+        outcomes: '',
         cover: coverFile,
         tags: tags.map(tag => tag.label),
-        draft: !published
+        draft: false
       }
 
       updatePlaybook({
@@ -190,7 +186,8 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
         overview,
         audience,
         outcomes,
-        tags: tags.map(tag => tag.label)
+        tags: tags.map(tag => tag.label),
+        draft: false
       }
       autoSavePlaybook({
         variables,
@@ -309,18 +306,8 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
                 required
                 isInvalid={errors.overview}
               />
-              <FormTextEditor
-                control={control}
-                name='audience'
-                placeholder={format('dpi.curriculum.audience')}
-              />
-              <FormTextEditor
-                control={control}
-                name='outcomes'
-                placeholder={format('dpi.curriculum.outcomes')}
-              />
-              <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
+              <label className='gap-x-2 mb-2 items-center self-start hidden'>
+                <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} value='true' checked='true' />
                 {format('dpi.curriculum.published')}
               </label>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
@@ -329,7 +316,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {format(isPublished ? 'dpi.curriculum.publish' : 'dpi.curriculum.saveAsDraft')}
+                  {format('dpi.curriculum.save')}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

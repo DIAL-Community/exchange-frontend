@@ -10,7 +10,8 @@ const DpiCurriculum = ({ curriculumSlug = 'cdr-analytics-for-covid19-with-flowki
   const { tenant } = useActiveTenant()
   const { data, loading, error } = useQuery(PLAYBOOK_DETAIL_QUERY, {
     variables: { slug: curriculumSlug, owner: tenant },
-    context: { headers: { 'Accept-Language': 'en' } }
+    context: { headers: { 'Accept-Language': 'en' } },
+    skip: !curriculumSlug || !tenant
   })
 
   if (loading) {

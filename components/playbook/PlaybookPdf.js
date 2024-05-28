@@ -228,7 +228,8 @@ const PlaybookPdf = ({ locale }) => {
 
   const { loading, error, data } = useQuery(PLAYBOOK_DETAIL_QUERY, {
     variables: { slug, owner: tenant },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !slug || !tenant
   })
 
   if (loading) {

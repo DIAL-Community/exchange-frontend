@@ -25,7 +25,8 @@ const PlayListQuery = () => {
   const { search } = useContext(PlayFilterContext)
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
     variables: { search, owner: tenant },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !tenant
   })
 
   if (loading) {

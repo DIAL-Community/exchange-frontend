@@ -20,7 +20,8 @@ const ListStructure = ({ defaultPageSize, pageOffset }) => {
       tags: tags.map(tag => tag.label),
       limit: defaultPageSize,
       offset: pageOffset
-    }
+    },
+    skip: !tenant
   })
 
   if (loading) {
