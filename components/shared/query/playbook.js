@@ -49,6 +49,9 @@ export const PAGINATED_PLAYBOOKS_QUERY = gql`
         id
         sanitizedOverview
       }
+      plays {
+        id
+      }
       draft
     }
   }

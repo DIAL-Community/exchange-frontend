@@ -2595,6 +2595,7 @@ export const en = {
 
   'dpi.curriculum.module.add': 'Add Module',
   'dpi.curriculum.module.label': 'Module',
+  'dpi.curriculum.module.header': 'Modules',
   'dpi.curriculum.module.rearrange': 'Rearrange Modules',
   'dpi.curriculum.module.submitted': 'Module saved.',
   'dpi.curriculum.module.autoSaved': 'Module saved.',
@@ -2617,4 +2618,30 @@ export const en = {
   'dpi.breadcrumb.curriculum': 'Curriculum',
   'dpi.breadcrumb.curriculumModule': 'Module',
   'dpi.breadcrumb.curriculumSubModule': 'Sub Module',
+
+  'dpi.broadcast.label': 'Message',
+  'dpi.broadcast.header': 'Messages',
+  'dpi.broadcast.title': 'Message Title',
+  'dpi.broadcast.messageType': 'Message Type',
+  'dpi.broadcast.messageTemplate.label': 'Message Template',
+  'dpi.broadcast.messageTemplate.placeholder': `
+    Create your message template here.
+  `,
+  'dpi.broadcast.messageTemplate.hint': `
+    Available variables:
+    <ul>
+      <li>'%{current_date}%', current server date when this message created.</li>
+      <li>'%{current_time}%', current server time when this message created.</li>
+      <li>'%{current_datetime}%', current server date time when this message created.</li>
+      <li>'%{user_email}%', current email of the user receiving this message.</li>
+      <li>'%{user_username}%', current username of the user receiving this message.</li>
+    </ul>
+  `,
+  'dpi.broadcast.announcementDatetime': 'Announcement Date & Time',
+  'dpi.broadcast.eventDateTime': 'Event Date & Time',
+  'dpi.broadcast.eventLocation': 'Event Location',
+  
+  'dpi.broadcast.messageType.announcement': 'Announcement',
+  'dpi.broadcast.messageType.email': 'Email',
+  'dpi.broadcast.messageType.event': 'Event'
 }

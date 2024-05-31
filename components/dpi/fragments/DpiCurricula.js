@@ -15,7 +15,7 @@ const CurriculumCard = ({ index, curriculum }) => {
   const { playbookDescription: curriculumDescription } = curriculum
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[12rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {curriculum.imageFile.indexOf('placeholder.svg') < 0 &&
           <div className='w-20 h-20 bg-white border shrink-0 flex justify-center'>
@@ -45,6 +45,10 @@ const CurriculumCard = ({ index, curriculum }) => {
           <div className='flex gap-x-2 text-dial-cotton'>
             <div className='text-sm'>
               {format('ui.tag.header')} ({curriculum.tags?.length ?? 0})
+            </div>
+            <div className='border border-r border-dial-slate-300' />
+            <div className='text-sm'>
+              {format('dpi.curriculum.module.header')} ({curriculum.plays?.length ?? 0})
             </div>
           </div>
         </div>
@@ -95,9 +99,12 @@ const DpiCurricula = () => {
         <div className='text-2xl text-center py-8 text-white'>
           {format('dpi.curriculum.header')}
         </div>
-        <div className='flex flex-col gap-8'>
+        <div className='flex flex-col gap-4'>
           {displayedCurricula.map((curriculum, index) =>
-            <CurriculumCard key={index} curriculum={curriculum} />
+            <>
+              <hr className='border-b border-dial-slate-200' />
+              <CurriculumCard key={index} curriculum={curriculum} />
+            </>
           )}
         </div>
         <DpiPagination
