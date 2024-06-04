@@ -2573,9 +2573,10 @@ export const en = {
   `,
 
   'dpi.dashboard.subtitle': `
-    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi at
-    posuere elit, in auctor est. Suspendisse potenti. Nam nec sollicitudin metus. Quisque sodales eu
-    lectus eu tempus. Sed tincidunt laoreet molestie. Sed vel venenatis dui.
+    Welcome to your Africa Data Leadership Initiative (ADLI) learning and engagement platform. This space
+    is designed to be a dynamic forum to share your experiences and solutions related to data governance.
+    We hope that through peer-to-peer learning, strategic partnerships, and continuous adaptation, we can
+    collectively promote and advance equitable progress across the continent.
   `,
   'dpi.dashboard.signOut': 'Sign Out',
 
@@ -2587,6 +2588,11 @@ export const en = {
 
   'dpi.curriculum.header': 'Curricula',
   'dpi.curriculum.label': 'Curriculum',
+  'dpi.curriculum.title': 'ADLI Learning Jouney',
+  'dpi.curriculum.subtitle': `
+    Follow the virtual learning sessions here. Use this space to track the six-session learning journey,
+    find useful links, and engage with other network participants.
+  `,
 
   'dpi.curriculum.name': 'Name',
   'dpi.curriculum.author': 'Author',
@@ -2615,9 +2621,11 @@ export const en = {
   'dpi.curriculum.submodule.unassign.title': 'Removing Sub Module',
   'dpi.curriculum.submodule.unassign.confirmation': 'Are you sure you want to remove this sub module from the current curriculum?',
 
-
   'dpi.announcement.label': 'Announcement',
   'dpi.announcement.header': 'Announcements',
+
+  'dpi.event.label': 'Event',
+  'dpi.event.header': 'Events',
 
   'dpi.breadcrumb.curriculum': 'Curriculum',
   'dpi.breadcrumb.curriculumModule': 'Module',

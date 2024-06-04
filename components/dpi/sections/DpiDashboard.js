@@ -6,6 +6,11 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import DpiAnnouncements from '../fragments/DpiAnnouncements'
 import DpiCurricula from '../fragments/DpiCurricula'
+import DpiEvents from '../fragments/DpiEvents'
+
+export const stripeClasses = (stripeIndex) => {
+  return stripeIndex % 2 === 0 ? 'text-dial-stratos' : 'text-dial-cotton bg-dial-sapphire'
+}
 
 const DpiDashboard = () => {
   const { formatMessage } = useIntl()
@@ -23,7 +28,7 @@ const DpiDashboard = () => {
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg' />
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
         <div className='flex gap-8 justify-center mx-auto'>
-          <div className='text-2xl text-center text-dial-cotton max-w-prose py-20'>
+          <div className='text-2xl text-center text-dial-cotton max-w-5xl py-20'>
             <FormattedMessage
               id='dpi.dashboard.subtitle'
               values={{
@@ -50,8 +55,9 @@ const DpiDashboard = () => {
       }
       {user &&
         <div className='flex flex-col min-h-[30vh]'>
-          <DpiCurricula />
-          <DpiAnnouncements />
+          <DpiCurricula stripeIndex={0}/>
+          <DpiAnnouncements stripeIndex={1}/>
+          <DpiEvents stripeIndex={2}/>
         </div>
       }
     </div>

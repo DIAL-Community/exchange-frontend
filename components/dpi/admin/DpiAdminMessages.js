@@ -45,7 +45,7 @@ const DpiAdminMessages = () => {
                 </div>
               }
             </div>
-            <div className='text-2xl text-center pb-6'>
+            <div className='text-2xl pb-6'>
               {format('dpi.broadcast.header')}
             </div>
             <MessageFilter

@@ -62,7 +62,7 @@ const CurriculumDetail = ({ curriculum }) => {
   }, [format, curriculum, setModules, setModuleNames, setSubModuleNames])
 
   return (
-    <div className='lg:px-8 xl:px-56 flex flex-col'>
+    <div className='lg:px-8 xl:px-56 flex flex-col min-h-[80vh]'>
       <CurriculumTopNavigation curriculum={curriculum} moduleRefs={moduleRefs} />
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>

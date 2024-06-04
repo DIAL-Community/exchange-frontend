@@ -1,30 +1,27 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { MESSAGE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/message'
+import { PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/playbook'
 import DpiPagination from '../fragments/DpiPagination'
-import { MESSAGE_PAGE_SIZE } from './constant'
+import { MESSAGE_PAGE_SIZE } from '../message/constant'
 
-const MessagePagination = ({ search, messageType, pageNumber, onClickHandler, theme='light' }) => {
+const CurriculumPagination = ({ pageNumber, onClickHandler, theme='light' }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(MESSAGE_PAGINATION_ATTRIBUTES_QUERY, {
-    variables: {
-      search,
-      messageType
-    }
+  const { loading, error, data } = useQuery(PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY, {
+    variables: { owner: 'dpi' }
   })
 
   if (loading) {
     return format('general.fetchingData')
   } else if (error) {
     return format('general.fetchError')
-  } else if (!data?.paginationAttributeMessage) {
+  } else if (!data?.paginationAttributePlaybook) {
     return format('app.notFound')
   }
 
-  const { paginationAttributeMessage: { totalCount } } = data
+  const { paginationAttributePlaybook: { totalCount } } = data
 
   return (
     <DpiPagination
@@ -37,4 +34,4 @@ const MessagePagination = ({ search, messageType, pageNumber, onClickHandler, th
   )
 }
 
-export default MessagePagination
+export default CurriculumPagination
