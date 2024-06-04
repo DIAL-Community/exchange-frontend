@@ -1,15 +1,24 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
+import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { CreateDpiCurriculum } from '../../components/dpi/sections/DpiCurriculumForm'
 import DpiFooter from '../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../components/dpi/sections/DpiHeader'
+import { Loading } from '../../components/shared/FetchStatus'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
 const CreateDpiCurriculumPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { status } = useSession()
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      void signIn()
+    }
+  }, [status])
 
   return (
     <>
@@ -20,6 +29,8 @@ const CreateDpiCurriculumPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
+        { status === 'unauthenticated' && <Loading />}
+        { status === 'authenticated' && <CreateDpiCurriculum />}
         <CreateDpiCurriculum />
         <DpiFooter />
       </ClientOnly>

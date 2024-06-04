@@ -114,82 +114,80 @@ const UserForm = React.memo(({ user }) => {
     : loggedInUser.isAdminUser || loggedInUser.isAdliAdminUser
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {user
-                  ? format('app.editEntity', { entity: user.username })
-                  : `${format('app.createNew')} ${format('user.label')}`}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='email'>
-                  {format('user.email')}
-                </label>
-                <Input
-                  {...register('email', {
-                    required: format('validation.required'),
-                    validate: value => isUniqueUserEmail(value, user)
-                  })}
-                  isInvalid={errors.email}
-                  placeholder={format('user.email.placeholder')}
-                />
-                {errors.email && <ValidationError value={errors.email?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='username' >
-                  {format('user.username')}
-                </label>
-                <Input
-                  {...register('username', { required: format('validation.required') })}
-                  isInvalid={errors.username}
-                  placeholder={format('user.username.placeholder')}
-                />
-                {errors.username && <ValidationError value={errors.username?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label htmlFor='roles'>
-                  {format('user.roles')}
-                </label>
-                <Select
-                  options={roleOptions}
-                  placeholder={format('user.roles.placeholder')}
-                  onChange={addRole}
-                  value={null}
-                />
-                {roles.length > 0 &&
-                  <div className='flex flex-wrap gap-3'>
-                    {roles.map((role, roleIdx) => (
-                      <Pill
-                        key={`roles-${roleIdx}`}
-                        label={role}
-                        onRemove={() => removeRole(role)}
-                      />
-                    ))}
-                  </div>
-                }
-              </div>
-              <label className='flex gap-x-2 items-center my-auto'>
-                <Checkbox {...register('confirmed')} />
-                {format('user.confirmed')}
+          <div className='flex flex-col gap-y-6 text-sm'>
+            <div className='text-xl font-semibold'>
+              {user
+                ? format('app.editEntity', { entity: user.username })
+                : `${format('app.createNew')} ${format('user.label')}`}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='email'>
+                {format('user.email')}
               </label>
-              <div className='flex flex-wrap gap-3'>
-                <button
-                  className='submit-button'
-                  type='submit' disabled={called}
-                >
-                  {format('user.submit')}
-                  {called && <FaSpinner className='spinner ml-3' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3' />}
-                </button>
-              </div>
+              <Input
+                {...register('email', {
+                  required: format('validation.required'),
+                  validate: value => isUniqueUserEmail(value, user)
+                })}
+                isInvalid={errors.email}
+                placeholder={format('user.email.placeholder')}
+              />
+              {errors.email && <ValidationError value={errors.email?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='username' >
+                {format('user.username')}
+              </label>
+              <Input
+                {...register('username', { required: format('validation.required') })}
+                isInvalid={errors.username}
+                placeholder={format('user.username.placeholder')}
+              />
+              {errors.username && <ValidationError value={errors.username?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='roles'>
+                {format('user.roles')}
+              </label>
+              <Select
+                options={roleOptions}
+                placeholder={format('user.roles.placeholder')}
+                onChange={addRole}
+                value={null}
+              />
+              {roles.length > 0 &&
+                <div className='flex flex-wrap gap-3'>
+                  {roles.map((role, roleIdx) => (
+                    <Pill
+                      key={`roles-${roleIdx}`}
+                      label={role}
+                      onRemove={() => removeRole(role)}
+                    />
+                  ))}
+                </div>
+              }
+            </div>
+            <label className='flex gap-x-2 items-center my-auto'>
+              <Checkbox {...register('confirmed')} />
+              {format('user.confirmed')}
+            </label>
+            <div className='flex flex-wrap gap-3'>
+              <button
+                className='submit-button'
+                type='submit' disabled={called}
+              >
+                {format('user.submit')}
+                {called && <FaSpinner className='spinner ml-3' />}
+              </button>
+              <button
+                type='button'
+                className='cancel-button'
+                disabled={mutating || reverting}
+                onClick={cancelForm}
+              >
+                {format('app.cancel')}
+                {reverting && <FaSpinner className='spinner ml-3' />}
+              </button>
             </div>
           </div>
         </form>

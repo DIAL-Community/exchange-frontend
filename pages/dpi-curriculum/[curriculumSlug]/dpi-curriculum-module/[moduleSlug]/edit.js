@@ -1,10 +1,12 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
+import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { EditDpiCurriculumModule } from '../../../../../components/dpi/sections/DpiCurriculumModuleForm'
 import DpiFooter from '../../../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../../../components/dpi/sections/DpiHeader'
+import { Loading } from '../../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../../components/shared/QueryNotification'
 import ClientOnly from '../../../../../lib/ClientOnly'
 
@@ -13,6 +15,13 @@ const EditDpiCurriculumModulePage = ({ dpiTenants }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { query: { curriculumSlug, moduleSlug: curriculumModuleSlug } } = useRouter()
+
+  const { status } = useSession()
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      void signIn()
+    }
+  }, [status])
 
   return (
     <>
@@ -23,10 +32,13 @@ const EditDpiCurriculumModulePage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        <EditDpiCurriculumModule
-          curriculumSlug={curriculumSlug}
-          curriculumModuleSlug={curriculumModuleSlug}
-        />
+        { status === 'unauthenticated' && <Loading />}
+        { status === 'authenticated' &&
+          <EditDpiCurriculumModule
+            curriculumSlug={curriculumSlug}
+            curriculumModuleSlug={curriculumModuleSlug}
+          />
+        }
         <DpiFooter />
       </ClientOnly>
     </>
