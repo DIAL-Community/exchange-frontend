@@ -1,5 +1,6 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import DatePicker from 'react-datepicker'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
@@ -28,8 +29,6 @@ const MessageForm = ({ message }) => {
   const messageTypeOptions = generateMessageTypeOptions(format)
   const [defaultMessageType] = messageTypeOptions
 
-  const [currentMessageType, setCurrentMessageType] = useState(defaultMessageType)
-
   const { user, loadingUserSession } = useUser()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -46,7 +45,18 @@ const MessageForm = ({ message }) => {
       const { createMessage: response } = data
       if (response.errors.length === 0 && response.message) {
         setMutating(false)
-        showSuccessMessage(format('dpi.curriculum.submitted'))
+        showSuccessMessage(
+          format('dpi.broadcast.submitted', {
+            type: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
+              ? format('dpi.broadcast.messageType.announcement')
+              : message.messageType === DPI_EVENT_MESSAGE_TYPE
+                ? format('dpi.broadcast.messageType.event')
+                : format('dpi.broadcast.messageType.email')
+          }),
+          () => {
+            router.push(`/dpi-admin/broadcasts/${response.message.slug}`)
+          }
+        )
       } else {
         showFailureMessage(response.errors)
         setMutating(false)
@@ -55,7 +65,7 @@ const MessageForm = ({ message }) => {
     }
   })
 
-  const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, watch, clearErrors, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -63,20 +73,11 @@ const MessageForm = ({ message }) => {
       name: message?.name,
       messageType: messageTypeOptions.find(({ value }) => value === message?.messageType) ?? defaultMessageType,
       messageTemplate: message?.messageTemplate,
-      messageDatetime: message?.messageDatetime,
       visible: message?.visible ?? true
     }
   })
 
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === 'messageType') {
-        setCurrentMessageType(value[name])
-      }
-    })
-
-    return () => subscription.unsubscribe()
-  }, [watch])
+  const currentMessageType = watch('messageType')
 
   const doUpsert = async (data) => {
     if (user) {
@@ -84,13 +85,16 @@ const MessageForm = ({ message }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, messageType, messageTemplate, messageDatetime, visible } = data
+      const { name, messageType: { value: messageTypeValue }, messageTemplate, messageDatetime, visible } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
+
+      console.log('Data received: ', data)
+      console.log('Message datetime: ', messageDatetime.toISOString())
       const variables = {
         name,
-        messageType: messageType.value,
+        messageType: messageTypeValue,
         messageTemplate,
-        messageDatetime: messageDatetime ?? new Date().toISOString(),
+        messageDatetime: messageDatetime.toISOString(),
         visible
       }
 
@@ -108,7 +112,8 @@ const MessageForm = ({ message }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push('/dpi-admin/broadcasts')
+    const slug = message?.slug
+    router.push(`/dpi-admin/broadcasts/${slug}`)
   }
 
   const handleEventLocation = (eventLocation) => {
@@ -135,6 +140,7 @@ const MessageForm = ({ message }) => {
                 <Input
                   {...register('name', { required: format('validation.required') })}
                   id='name'
+                  onClick={() => clearErrors('name')}
                   placeholder={format('dpi.broadcast.title')}
                   isInvalid={errors.name}
                 />
@@ -154,6 +160,11 @@ const MessageForm = ({ message }) => {
                       initialContent={value}
                       placeholder={format('dpi.broadcast.messageTemplate.placeholder')}
                       isInvalid={errors.description}
+                      initInstanceCallback={(editor) => {
+                        editor.on('click', () => {
+                          clearErrors('messageTemplate')
+                        })
+                      }}
                     />
                   )}
                   rules={{ required: format('validation.required') }}
@@ -183,17 +194,39 @@ const MessageForm = ({ message }) => {
                   {errors.messageType && <ValidationError value={errors.messageType?.message} />}
                 </div>
                 {currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE &&
-                  <div className='lg:basis-1/2 flex flex-col gap-y-2'>
+                  <div className='lg:basis-1/2 flex flex-col gap-2'>
                     <label className='required-field'>
                       {format('dpi.broadcast.announcementDatetime')}
                     </label>
-                    <Input
-                      {...register('messageDatetime', { required: format('validation.required'), valueAsNumber: true })}
-                      type='datetime-local'
-                      placeholder={format('dpi.broadcast.announcementDatetime')}
-                      isInvalid={errors.messageDatetime}
-                      defaultValue={message?.messageDatetime}
-                      value={message?.messageDatetime}
+                    <Controller
+                      name='messageDatetime'
+                      control={control}
+                      defaultValue={message?.messageDatetime ? new Date(message.messageDatetime) : new Date()}
+                      rules={{ required: format('validation.required') }}
+                      render={({ field: { onChange, value, ref, name } }) => {
+                        return (
+                          <DatePicker
+                            ref={(elem) => {
+                              elem && ref(elem.input)
+                            }}
+                            name={name}
+                            className='h-[38px] w-full'
+                            placeholderText={format('dpi.broadcast.announcementDatetime')}
+                            onChange={(date) => {
+                              onChange(date)
+                              console.log('Date data received: ', date.toISOString())
+                            }}
+                            onFocus={() => clearErrors(['messageDatetime'])}
+                            selected={value}
+                            isInvalid={errors.messageDatetime}
+                            showTimeSelect
+                            timeFormat="p"
+                            timeIntervals={15}
+                            dateFormat="Pp"
+                            showPopperArrow={false}
+                          />
+                        )
+                      }}
                     />
                     {errors.messageDatetime && <ValidationError value={errors.messageDatetime?.message} />}
                   </div>
@@ -201,15 +234,37 @@ const MessageForm = ({ message }) => {
                 {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
                   <div className='lg:basis-1/2 flex flex-col gap-y-2'>
                     <label className='required-field'>
-                      {format('dpi.broadcast.eventDateTime')}
+                      {format('dpi.broadcast.eventDatetime')}
                     </label>
-                    <Input
-                      {...register('messageDatetime', { required: format('validation.required'), valueAsNumber: true })}
-                      type='datetime-local'
-                      placeholder={format('dpi.broadcast.eventDateTime')}
-                      isInvalid={errors.messageDatetime}
-                      defaultValue={message?.messageDatetime}
-                      value={message?.messageDatetime}
+                    <Controller
+                      name='messageDatetime'
+                      control={control}
+                      defaultValue={message?.messageDatetime ? new Date(message.messageDatetime) : new Date()}
+                      rules={{ required: format('validation.required') }}
+                      render={({ field: { onChange, value, ref, name } }) => {
+                        return (
+                          <DatePicker
+                            ref={(elem) => {
+                              elem && ref(elem.input)
+                            }}
+                            name={name}
+                            className='h-[38px] w-full'
+                            placeholderText={format('dpi.broadcast.eventDatetime')}
+                            onChange={(date) => {
+                              onChange(date)
+                              console.log('Date data received: ', date.toISOString())
+                            }}
+                            onFocus={() => clearErrors(['messageDatetime'])}
+                            selected={value}
+                            isInvalid={errors.messageDatetime}
+                            showTimeSelect
+                            timeFormat="p"
+                            timeIntervals={15}
+                            dateFormat="Pp"
+                            showPopperArrow={false}
+                          />
+                        )
+                      }}
                     />
                     {errors.messageDatetime && <ValidationError value={errors.messageDatetime?.message} />}
                   </div>

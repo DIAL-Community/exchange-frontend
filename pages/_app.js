@@ -1,3 +1,4 @@
+import 'react-datepicker/dist/react-datepicker.css'
 import 'react-tooltip/dist/react-tooltip.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'handsontable/dist/handsontable.full.css'

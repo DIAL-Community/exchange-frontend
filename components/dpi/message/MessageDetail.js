@@ -11,7 +11,7 @@ import { UPDATE_MESSAGE_VISIBILITY } from '../../shared/mutation/message'
 import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, findMessageTypeLabel } from './constant'
 
 const MessageDetail = ({ message }) => {
-  const { formatMessage } = useIntl()
+  const { formatMessage, formatDate, formatTime } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { user } = useUser()
@@ -50,7 +50,7 @@ const MessageDetail = ({ message }) => {
   return (
     <div className='relative flex flex-col gap-y-3 text-dial-cotton'>
       {(user.isAdliAdminUser || user.isAdminUser) && (
-        <div className='absolute top-0 right-0'>
+        <div className='absolute -top-1 -right-1'>
           <div className='flex gap-2'>
             <Link
               href={editPath}
@@ -86,6 +86,10 @@ const MessageDetail = ({ message }) => {
           </div>
         </div>
       )}
+      <div className='text-2xl font-semibold'>
+        {message.name}
+      </div>
+      <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='text-xl font-semibold'>
         {format('dpi.broadcast.messageType')}
       </div>
@@ -111,7 +115,15 @@ const MessageDetail = ({ message }) => {
         </div>
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
-      <div className='flex gap-3 text-sm italic'>
+      <div className='flex flex-col gap-3 text-sm italic'>
+        <div className='flex gap-2'>
+          {format('dpi.broadcast.messageDatetime.note', {
+            type: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
+              ? format('dpi.broadcast.messageType.announcement').toLowerCase()
+              : format('dpi.broadcast.messageType.event').toLowerCase(),
+            dateValue: `${formatDate(message.messageDatetime)} ${formatTime(message.messageDatetime)}`
+          })}
+        </div>
         <div className={message.visible? 'text-green-500' : 'text-red-500'}>
           {message.visible
             ? format('dpi.broadcast.visible', {

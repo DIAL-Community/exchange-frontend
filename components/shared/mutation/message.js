@@ -32,7 +32,7 @@ export const CREATE_MESSAGE = gql`
     $name: String!
     $messageType: String!
     $messageTemplate: String!
-    $messageDatetime: ISO8601Date!
+    $messageDatetime: ISO8601DateTime!
     $visible: Boolean
     $location: String
     $locationType: String

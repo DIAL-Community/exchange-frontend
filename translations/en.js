@@ -2645,10 +2645,12 @@ export const en = {
     </ul>
   `,
   'dpi.broadcast.announcementDatetime': 'Announcement Date & Time',
-  'dpi.broadcast.eventDateTime': 'Event Date & Time',
+  'dpi.broadcast.eventDatetime': 'Event Date & Time',
   'dpi.broadcast.eventLocation': 'Event Location',
+  'dpi.broadcast.messageDatetime.note': 'Date of the {type} is {dateValue}',
 
   'dpi.broadcast.visibility.updated': 'Visibility updated.',
+  'dpi.broadcast.submitted': '{type} data saved.',
   
   'dpi.broadcast.messageType.announcement': 'Announcement',
   'dpi.broadcast.messageType.email': 'Email',
