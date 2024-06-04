@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import DpiBreadcrumb from '../sections/DpiBreadcrumb'
 import { CurriculumContext } from './CurriculumContext'
 
 const CurriculumTopNavigation = ({ curriculum, moduleRefs }) => {
@@ -31,10 +32,20 @@ const CurriculumTopNavigation = ({ curriculum, moduleRefs }) => {
     setCurrentSlugIndex(currentIndex)
   }, [currentSlug, modules])
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[curriculum.slug] = curriculum.name
+
+    return map
+  })()
+
   return (
     <div className='sticky sticky-under-header bg-dial-lavender'>
-      <div className='flex px-4 py-6 overflow-x-auto'>
-        <div className='px-4 text-xl font-semibold my-auto'>
+      <div className='relative flex px-4 py-6 overflow-x-auto'>
+        <div className='absolute top-2 left-8'>
+          <DpiBreadcrumb slugNameMapping={slugNameMapping} />
+        </div>
+        <div className='text-xl px-4 mt-3 font-semibold my-auto'>
           {curriculum.name}
         </div>
         <div className='ml-auto play-progress'>

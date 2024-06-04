@@ -36,7 +36,7 @@ const EventCard = ({ message }) => {
 
   return (
     <div className='relative'>
-      <Link href={`/dpi-admin/broadcasts/${message.slug}`}>
+      <Link href={`/dpi-dashboard/dpi-events/${message.slug}`}>
         {displayLargeCard()}
       </Link>
     </div>

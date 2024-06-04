@@ -2586,9 +2586,13 @@ export const en = {
   'dpi.admin.broadcast': 'Broadcast',
   'dpi.admin.signOut': 'Sign Out',
 
+  'dpi.breadcrumb.curriculum': 'ADLI Learning Journey',
+  'dpi.breadcrumb.curriculumModule': 'Module',
+  'dpi.breadcrumb.curriculumSubModule': 'Sub Module',
+
   'dpi.curriculum.header': 'Curricula',
   'dpi.curriculum.label': 'Curriculum',
-  'dpi.curriculum.title': 'ADLI Learning Jouney',
+  'dpi.curriculum.title': 'ADLI Learning Journey',
   'dpi.curriculum.subtitle': `
     Follow the virtual learning sessions here. Use this space to track the six-session learning journey,
     find useful links, and engage with other network participants.
@@ -2626,10 +2630,6 @@ export const en = {
 
   'dpi.event.label': 'Event',
   'dpi.event.header': 'Events',
-
-  'dpi.breadcrumb.curriculum': 'Curriculum',
-  'dpi.breadcrumb.curriculumModule': 'Module',
-  'dpi.breadcrumb.curriculumSubModule': 'Sub Module',
 
   'dpi.broadcast.label': 'Message',
   'dpi.broadcast.header': 'Messages',
