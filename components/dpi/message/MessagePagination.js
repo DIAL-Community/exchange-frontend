@@ -5,13 +5,14 @@ import { MESSAGE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/message'
 import DpiPagination from '../fragments/DpiPagination'
 import { MESSAGE_PAGE_SIZE } from './constant'
 
-const MessagePagination = ({ search, messageType, pageNumber, onClickHandler, theme='light' }) => {
+const MessagePagination = ({ search, visibleOnly, messageType, pageNumber, onClickHandler, theme='light' }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(MESSAGE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
+      visibleOnly,
       messageType
     }
   })

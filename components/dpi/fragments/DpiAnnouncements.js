@@ -49,6 +49,7 @@ const AnnouncementList = ({ pageNumber }) => {
 
   const { loading, error, data } = useQuery(PAGINATED_MESSAGES_QUERY, {
     variables: {
+      visibleOnly: true,
       messageType: DPI_ANNOUNCEMENT_MESSAGE_TYPE,
       limit: MESSAGE_PAGE_SIZE,
       offset: pageNumber * MESSAGE_PAGE_SIZE
@@ -96,6 +97,7 @@ const DpiAnnouncements = ({ stripeIndex }) => {
         </div>
         <AnnouncementList pageNumber={pageNumber} />
         <MessagePagination
+          visibleOnly
           messageType={DPI_ANNOUNCEMENT_MESSAGE_TYPE}
           pageNumber={pageNumber}
           onClickHandler={onClickHandler}
