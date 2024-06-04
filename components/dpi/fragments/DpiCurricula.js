@@ -36,7 +36,7 @@ const CurriculumCard = ({ index, curriculum }) => {
           </div>
         }
         <div className='flex flex-col gap-y-3'>
-          <div className='text-lg font-semibold text-white'>
+          <div className='text-lg font-semibold text-dial-cotton'>
             {curriculum.name}
           </div>
           <div className='line-clamp-4 text-dial-cotton'>
@@ -96,7 +96,7 @@ const DpiCurricula = () => {
   return (
     <div className='curriculum-section bg-dial-sapphire'>
       <div className='px-4 lg:px-8 xl:px-56'>
-        <div className='text-2xl text-center py-8 text-white'>
+        <div className='text-2xl text-center py-8 text-dial-cotton'>
           {format('dpi.curriculum.header')}
         </div>
         <div className='flex flex-col gap-4'>

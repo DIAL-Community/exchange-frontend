@@ -97,7 +97,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
               className='flex flex-col gap-4'
             >
               <div className='flex gap-2'>
-                <div className={`flex-shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
+                <div className={`shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
                   <FaUser />
                 </div>
                 <div className='my-auto'>
@@ -105,7 +105,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
                 </div>
               </div>
               <div className='flex gap-2'>
-                <div className={`flex-shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
+                <div className={`shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
                   <FaRobot />
                 </div>
                 <div className='my-auto'>
@@ -119,7 +119,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
         {currentConversation &&
           <div className='flex flex-col gap-4'>
             <div className='flex gap-2'>
-              <div className={`flex-shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
+              <div className={`shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
                 <FaUser />
               </div>
               <div className='my-auto'>
@@ -127,7 +127,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
               </div>
             </div>
             <div className='flex gap-2'>
-              <div className={`flex-shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
+              <div className={`shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
                 <FaRobot />
               </div>
               <div className='my-auto'>

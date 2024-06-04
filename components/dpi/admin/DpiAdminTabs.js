@@ -25,7 +25,7 @@ const DpiAdminTabs = () => {
     },
     {
       name: format('dpi.admin.broadcast'),
-      href: '/dpi-admin/broadcast',
+      href: '/dpi-admin/broadcasts',
       icon: <FaTowerBroadcast className='my-auto' />
     },
     {
@@ -53,8 +53,8 @@ const DpiAdminTabs = () => {
                 className={classNames(
                   'inline-flex items-center px-4 py-3 rounded-lg w-full',
                   pathname === item.href
-                    ? 'text-white active bg-dial-iris-blue'
-                    : 'bg-dial-slate-800 hover:bg-dial-slate-700 hover:text-white'
+                    ? 'text-dial-cotton active bg-dial-iris-blue'
+                    : 'bg-dial-slate-800 hover:bg-dial-slate-700 hover:text-dial-cotton'
                 )}
               >
                 <div className='flex gap-2'>
@@ -70,8 +70,8 @@ const DpiAdminTabs = () => {
                 className={classNames(
                   'inline-flex items-center px-4 py-3 rounded-lg w-full',
                   pathname === item.href
-                    ? 'text-white active bg-dial-iris-blue'
-                    : 'bg-dial-slate-800 hover:bg-dial-slate-700 hover:text-white'
+                    ? 'text-dial-cotton active bg-dial-iris-blue'
+                    : 'bg-dial-slate-800 hover:bg-dial-slate-700 hover:text-dial-cotton'
                 )}
               >
                 <div className='flex gap-2'>

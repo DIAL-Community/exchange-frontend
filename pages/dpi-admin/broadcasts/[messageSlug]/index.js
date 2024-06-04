@@ -1,19 +1,21 @@
 import { useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import DpiAdminBroadcast from '../../../components/dpi/admin/DpiAdminBroadcast'
-import DpiFooter from '../../../components/dpi/sections/DpiFooter'
-import DpiHeader from '../../../components/dpi/sections/DpiHeader'
-import { Loading } from '../../../components/shared/FetchStatus'
-import QueryNotification from '../../../components/shared/QueryNotification'
-import ClientOnly from '../../../lib/ClientOnly'
+import DpiAdminMessageDetail from '../../../../components/dpi/admin/DpiAdminMessageDetail'
+import DpiFooter from '../../../../components/dpi/sections/DpiFooter'
+import DpiHeader from '../../../../components/dpi/sections/DpiHeader'
+import { Loading } from '../../../../components/shared/FetchStatus'
+import QueryNotification from '../../../../components/shared/QueryNotification'
+import ClientOnly from '../../../../lib/ClientOnly'
 
 const DpiAdminBroadcastPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
   const { status } = useSession()
+  const { query: { messageSlug } } = useRouter()
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -31,7 +33,7 @@ const DpiAdminBroadcastPage = ({ dpiTenants }) => {
         <QueryNotification />
         <DpiHeader />
         { status === 'unauthenticated' && <Loading />}
-        { status === 'authenticated' && <DpiAdminBroadcast />}
+        { status === 'authenticated' && <DpiAdminMessageDetail messageSlug={messageSlug} /> }
         <DpiFooter />
       </ClientOnly>
     </>

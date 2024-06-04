@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -7,22 +7,28 @@ import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
 import GeocodeAutocomplete from '../../shared/form/GeocodeAutocomplete'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_MESSAGE } from '../../shared/mutation/message'
-import DpiAdminTabs from './DpiAdminTabs'
+import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE, generateMessageTypeOptions } from './constant'
 
-const BroadcastForm = ({ message }) => {
+const MessageForm = ({ message }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const [currentMessageType, setCurrentMessageType] = useState('announcement')
+  const router = useRouter()
+
+  const messageTypeOptions = generateMessageTypeOptions(format)
+  const [defaultMessageType] = messageTypeOptions
+
+  const [currentMessageType, setCurrentMessageType] = useState(defaultMessageType)
 
   const { user, loadingUserSession } = useUser()
 
@@ -49,15 +55,6 @@ const BroadcastForm = ({ message }) => {
     }
   })
 
-  const messageTypeOptions = useMemo(() => {
-    return [
-      { label: format('dpi.broadcast.messageType.announcement'), value: 'announcement' },
-      { label: format('dpi.broadcast.messageType.email'), value: 'email' },
-      { label: format('dpi.broadcast.messageType.event'), value: 'event' }
-    ]
-  }, [format])
-  const [ defaultMessageType ] = messageTypeOptions
-
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -66,14 +63,15 @@ const BroadcastForm = ({ message }) => {
       name: message?.name,
       messageType: messageTypeOptions.find(({ value }) => value === message?.messageType) ?? defaultMessageType,
       messageTemplate: message?.messageTemplate,
-      messageDateTime: new Date()
+      messageDatetime: message?.messageDatetime,
+      visible: message?.visible ?? true
     }
   })
 
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === 'messageType') {
-        setCurrentMessageType(value[name].value)
+        setCurrentMessageType(value[name])
       }
     })
 
@@ -110,7 +108,7 @@ const BroadcastForm = ({ message }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    // Maybe clear the form?
+    router.push('/dpi-admin/broadcasts')
   }
 
   const handleEventLocation = (eventLocation) => {
@@ -125,7 +123,10 @@ const BroadcastForm = ({ message }) => {
           <div className='px-4 lg:px-0 text-dial-slate-100'>
             <div className='flex flex-col gap-y-6 text-sm'>
               <div className='text-xl font-semibold'>
-                {`${format('app.createNew')} ${format('dpi.broadcast.label')}`}
+                {message
+                  ? `${format('app.editEntity', { entity: message.name })}`
+                  : `${format('app.createNew')} ${currentMessageType.label}`
+                }
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='name'>
@@ -141,7 +142,7 @@ const BroadcastForm = ({ message }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field'>
-                  {format('dpi.broadcast.messageTemplate.label')}
+                  {format('dpi.broadcast.messageTemplate')}
                 </label>
                 <Controller
                   name='messageTemplate'
@@ -159,62 +160,78 @@ const BroadcastForm = ({ message }) => {
                 />
                 {errors.messageTemplate && <ValidationError value={errors.messageTemplate?.message} />}
               </div>
-              <div className='form-field-wrapper'>
-                <label className='required-field'>
-                  {format('dpi.broadcast.messageType')}
-                </label>
-                <Controller
-                  name='messageType'
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      isSearch
-                      isBorderless
-                      options={messageTypeOptions}
-                      placeholder={format('dpi.broadcast.messageType')}
-                      isInvalid={errors.messageType}
+              <div className='flex gap-4'>
+                <div className='lg:basis-1/2 form-field-wrapper'>
+                  <label className='required-field'>
+                    {format('dpi.broadcast.messageType')}
+                  </label>
+                  <Controller
+                    name='messageType'
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        isSearch
+                        isBorderless
+                        options={messageTypeOptions}
+                        placeholder={format('dpi.broadcast.messageType')}
+                        isInvalid={errors.messageType}
+                      />
+                    )}
+                    rules={{ required: format('validation.required') }}
+                  />
+                  {errors.messageType && <ValidationError value={errors.messageType?.message} />}
+                </div>
+                {currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE &&
+                  <div className='lg:basis-1/2 flex flex-col gap-y-2'>
+                    <label className='required-field'>
+                      {format('dpi.broadcast.announcementDatetime')}
+                    </label>
+                    <Input
+                      {...register('messageDatetime', { required: format('validation.required'), valueAsNumber: true })}
+                      type='datetime-local'
+                      placeholder={format('dpi.broadcast.announcementDatetime')}
+                      isInvalid={errors.messageDatetime}
+                      defaultValue={message?.messageDatetime}
+                      value={message?.messageDatetime}
                     />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.messageType && <ValidationError value={errors.messageType?.message} />}
+                    {errors.messageDatetime && <ValidationError value={errors.messageDatetime?.message} />}
+                  </div>
+                }
+                {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
+                  <div className='lg:basis-1/2 flex flex-col gap-y-2'>
+                    <label className='required-field'>
+                      {format('dpi.broadcast.eventDateTime')}
+                    </label>
+                    <Input
+                      {...register('messageDatetime', { required: format('validation.required'), valueAsNumber: true })}
+                      type='datetime-local'
+                      placeholder={format('dpi.broadcast.eventDateTime')}
+                      isInvalid={errors.messageDatetime}
+                      defaultValue={message?.messageDatetime}
+                      value={message?.messageDatetime}
+                    />
+                    {errors.messageDatetime && <ValidationError value={errors.messageDatetime?.message} />}
+                  </div>
+                }
               </div>
-              {currentMessageType === 'announcement' &&
-                <div className='flex flex-col gap-y-2'>
-                  <label className='required-field'>
-                    {format('dpi.broadcast.announcementDatetime')}
-                  </label>
-                  <Input
-                    {...register('messageDateTime', { required: format('validation.required') })}
-                    type='datetime-local'
-                    placeholder={format('dpi.broadcast.announcementDatetime')}
-                    isInvalid={errors.messageDateTime}
-                  />
-                  {errors.messageDateTime && <ValidationError value={errors.messageDateTime?.message} />}
-                </div>
-              }
-              {currentMessageType === 'event' &&
-                <div className='flex flex-col gap-y-2'>
-                  <label className='required-field'>
-                    {format('dpi.broadcast.eventDateTime')}
-                  </label>
-                  <Input
-                    {...register('messageDateTime', { required: format('validation.required') })}
-                    type='datetime-local'
-                    placeholder={format('dpi.broadcast.eventDateTime')}
-                    isInvalid={errors.messageDateTime}
-                  />
-                  {errors.messageDateTime && <ValidationError value={errors.messageDateTime?.message} />}
-                </div>
-              }
-              {currentMessageType === 'event' &&
+              {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
                 <label className='flex flex-col gap-y-2 mb-2'>
                   {format('dpi.broadcast.eventLocation')}
                   <GeocodeAutocomplete
                     value={null}
                     onChange={handleEventLocation}
                   />
+                </label>
+              }
+              {[DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE].indexOf(currentMessageType.value) >= 0 &&
+                <label className='flex gap-x-2 items-center self-start'>
+                  <Checkbox {...register('visible')} />
+                  {format('dpi.broadcast.visible', {
+                    message_type: currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE
+                      ? format('dpi.broadcast.messageType.announcement')
+                      : format('dpi.broadcast.messageType.event')
+                  })}
                 </label>
               }
               <div className='flex flex-wrap text-sm gap-3'>
@@ -243,17 +260,4 @@ const BroadcastForm = ({ message }) => {
       : <Unauthorized />
 }
 
-const DpiAdminBroadcast = () => {
-  return (
-    <div className='px-4 lg:px-8 xl:px-56 h-[80vh] py-8'>
-      <div className="md:flex md:h-full">
-        <DpiAdminTabs />
-        <div className="p-12 text-medium text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full">
-          <BroadcastForm />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default DpiAdminBroadcast
+export default MessageForm

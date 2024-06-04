@@ -18,28 +18,28 @@ const DpiAdminProfile = () => {
             <div className='grid lg:grid-cols-2'>
               <div className='flex flex-col gap-8'>
                 <div className='flex flex-col gap-3'>
-                  <div className='text-lg text-white'>
+                  <div className='text-lg text-dial-cotton'>
                     {format('profile.username')}
                   </div>
-                  <div className='text-sm text-white'>
+                  <div className='text-sm text-dial-cotton'>
                     {user?.userName}
                   </div>
                 </div>
                 <div className='flex flex-col gap-3'>
-                  <div className='text-lg text-white'>
+                  <div className='text-lg text-dial-cotton'>
                     {format('profile.email')}
                   </div>
-                  <div className='text-sm text-white'>
+                  <div className='text-sm text-dial-cotton'>
                     {user?.userEmail}
                   </div>
                 </div>
               </div>
               <div className='flex flex-col gap-8'>
                 <div className='flex flex-col gap-3'>
-                  <div className='text-lg text-white'>
+                  <div className='text-lg text-dial-cotton'>
                     {format('profile.roles')}
                   </div>
-                  <div className='text-sm text-white'>
+                  <div className='text-sm text-dial-cotton'>
                     {user?.roles.join(', ')}
                   </div>
                 </div>

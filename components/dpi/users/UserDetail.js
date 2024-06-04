@@ -29,7 +29,7 @@ const UserDetail = ({ user }) => {
         <div className='text-xl font-semibold pb-3'>
           {format('user.roles')}
         </div>
-        <div className='line-clamp-4 text-sm'>
+        <div className='text-sm'>
           {user?.roles.map(x => x.toUpperCase()).join(', ')}
         </div>
       </div>

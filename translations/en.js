@@ -9,6 +9,8 @@ export const en = {
   'app.home': 'Home',
   'app.save': 'Save',
   'app.saving': 'Saving',
+  'app.publish': 'Publish',
+  'app.publishing': 'Publishing',
   'app.submit': 'Submit',
   'app.submitting': 'Submitting',
   'app.search': 'Search',
@@ -43,6 +45,8 @@ export const en = {
   'app.deleteAccount': 'Delete Account',
   'app.adminOnly': 'Admin Only',
   'app.loginRequired': 'Please login or sign up to access this resource.',
+  'app.hide': 'Hide',
+  'app.show': 'Show',
 
   'general.pastSuffix': 'ago',
 
@@ -2622,8 +2626,11 @@ export const en = {
   'dpi.broadcast.label': 'Message',
   'dpi.broadcast.header': 'Messages',
   'dpi.broadcast.title': 'Message Title',
+  'dpi.broadcast.visible': '{message_type} will be displayed to users.',
+  'dpi.broadcast.hidden': '{message_type} will be hidden from users.',
   'dpi.broadcast.messageType': 'Message Type',
-  'dpi.broadcast.messageTemplate.label': 'Message Template',
+  'dpi.broadcast.messageTemplate': 'Message Template',
+  'dpi.broadcast.parsedMessage': 'Processed Message Template',
   'dpi.broadcast.messageTemplate.placeholder': `
     Create your message template here.
   `,
@@ -2640,6 +2647,8 @@ export const en = {
   'dpi.broadcast.announcementDatetime': 'Announcement Date & Time',
   'dpi.broadcast.eventDateTime': 'Event Date & Time',
   'dpi.broadcast.eventLocation': 'Event Location',
+
+  'dpi.broadcast.visibility.updated': 'Visibility updated.',
   
   'dpi.broadcast.messageType.announcement': 'Announcement',
   'dpi.broadcast.messageType.email': 'Email',

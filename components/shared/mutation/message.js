@@ -13,6 +13,20 @@ export const DELETE_MESSAGE = gql`
   }
 `
 
+export const UPDATE_MESSAGE_VISIBILITY = gql`
+  mutation UpdateMessageVisibility($slug: String!, $visibility: Boolean!) {
+    updateMessageVisibility(slug: $slug, visibility: $visibility) {
+      message {
+        id
+        slug
+        name
+        visible
+      }
+      errors
+    }
+  }
+`
+
 export const CREATE_MESSAGE = gql`
   mutation CreateMessage(
     $name: String!

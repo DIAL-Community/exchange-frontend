@@ -23,7 +23,7 @@ const DpiDashboard = () => {
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg' />
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
         <div className='flex gap-8 justify-center mx-auto'>
-          <div className='text-2xl text-center text-white max-w-prose py-20'>
+          <div className='text-2xl text-center text-dial-cotton max-w-prose py-20'>
             <FormattedMessage
               id='dpi.dashboard.subtitle'
               values={{
@@ -33,7 +33,7 @@ const DpiDashboard = () => {
           </div>
           {user && (
             <Link href='/dpi-member-login' onClick={signOutUser} className='flex self-center'>
-              <span className='text-white border-b border-transparent hover:border-white'>
+              <span className='text-dial-cotton border-b border-transparent hover:border-white'>
                 <FormattedMessage id='dpi.dashboard.signOut' />
               </span>
             </Link>

@@ -1,16 +1,16 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { DPI_USER_DETAIL_QUERY } from '../../shared/query/user'
-import UserDetail from '../users/UserDetail'
+import { MESSAGE_DETAIL_QUERY } from '../../shared/query/message'
+import MessageDetail from '../message/MessageDetail'
 import DpiAdminTabs from './DpiAdminTabs'
 
-const DpiAdminUserDetail = ({ userId }) => {
+const DpiAdminMessageDetail = ({ messageSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, data } = useQuery(DPI_USER_DETAIL_QUERY, {
-    variables: { userId }
+  const { loading, data } = useQuery(MESSAGE_DETAIL_QUERY, {
+    variables: { slug: messageSlug }
   })
 
   return (
@@ -19,9 +19,9 @@ const DpiAdminUserDetail = ({ userId }) => {
         <DpiAdminTabs />
         <div className="p-12 text-medium text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full">
           {loading && format('general.fetchingData') }
-          {userId
+          {messageSlug
             ? data
-              ? <UserDetail user={data?.user} />
+              ? <MessageDetail message={data?.message} />
               : format('general.fetchError')
             : format('app.notFound')
           }
@@ -31,4 +31,4 @@ const DpiAdminUserDetail = ({ userId }) => {
   )
 }
 
-export default DpiAdminUserDetail
+export default DpiAdminMessageDetail

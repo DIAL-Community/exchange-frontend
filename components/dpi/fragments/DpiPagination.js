@@ -38,7 +38,7 @@ const DpiPagination = ({ pageNumber, totalCount, defaultPageSize, onClickHandler
           // Flex the main container and add gap
           containerClassName='flex gap-x-3 text-sm'
           // Each will have rounded border
-          activeClassName={`${theme === 'light' && 'text-white'} font-semibold`}
+          activeClassName={`${theme === 'light' && 'text-dial-cotton'} font-semibold`}
           // Set the width, height, leading and text center to center text
           pageLinkClassName='block w-10 h-10 leading-10 text-center'
           // Previous and next link will have similar treatment

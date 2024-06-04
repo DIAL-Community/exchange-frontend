@@ -38,10 +38,10 @@ const DpiTopic = ({ slug }) => {
             <DpiBreadcrumb slugNameMapping={slugNameMapping} />
           </div>
         </div>
-        <div className='text-2xl text-center text-white py-5 uppercase mx-auto max-w-prose'>
+        <div className='text-2xl text-center text-dial-cotton py-5 uppercase mx-auto max-w-prose'>
           {resourceTopic.name}
         </div>
-        <div className='text-lg text-center text-white pb-8 mx-auto max-w-prose'>
+        <div className='text-lg text-center text-dial-cotton pb-8 mx-auto max-w-prose'>
           {resourceTopic.resourceTopicDescription && parse(resourceTopic.resourceTopicDescription?.description)}
         </div>
       </div>

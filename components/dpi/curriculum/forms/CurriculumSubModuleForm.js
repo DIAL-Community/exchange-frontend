@@ -122,7 +122,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
         <div className='flex flex-row gap-3'>
           <button
             type='button'
-            className='bg-dial-purple text-white px-3 py-2 rounded disabled:opacity-50'
+            className='bg-dial-purple text-dial-cotton px-3 py-2 rounded disabled:opacity-50'
             disabled={mutating}
             onClick={saveForm}
           >
@@ -131,7 +131,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
           </button>
           <button
             type='button'
-            className='bg-dial-purple-light text-white px-3 py-2 rounded disabled:opacity-50'
+            className='bg-dial-purple-light text-dial-cotton px-3 py-2 rounded disabled:opacity-50'
             disabled={mutating}
             onClick={cancelForm}
           >

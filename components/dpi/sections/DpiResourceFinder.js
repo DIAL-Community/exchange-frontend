@@ -6,7 +6,7 @@ const DpiResourceFinder = () => {
     <>
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg'/>
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
-        <div className='text-2xl text-center text-white pt-20 pb-10 uppercase mx-auto max-w-prose'>
+        <div className='text-2xl text-center text-dial-cotton pt-20 pb-10 uppercase mx-auto max-w-prose'>
           <FormattedMessage
             id='dpi.resourceFinder.title'
             values={{
@@ -14,7 +14,7 @@ const DpiResourceFinder = () => {
             }}
           />
         </div>
-        <div className='text-lg text-center text-white mx-auto max-w-prose'>
+        <div className='text-lg text-center text-dial-cotton mx-auto max-w-prose'>
           <FormattedMessage
             id='dpi.resourceFinder.subtitle'
             values={{

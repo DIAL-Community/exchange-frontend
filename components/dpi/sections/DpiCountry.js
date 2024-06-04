@@ -40,7 +40,7 @@ const DpiCountry = ({ slug }) => {
             <DpiBreadcrumb slugNameMapping={slugNameMapping} />
           </div>
         </div>
-        <div className='text-2xl text-center text-white pt-20 pb-4 mx-auto max-w-prose'>
+        <div className='text-2xl text-center text-dial-cotton pt-20 pb-4 mx-auto max-w-prose'>
           {country.name}
         </div>
         <img

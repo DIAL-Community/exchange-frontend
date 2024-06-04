@@ -44,7 +44,7 @@ const CurriculumDetailMenu = ({ curriculum }) => {
               <button
                 type='button'
                 onClick={() => setDisplayRearrangeDialog(!displayRearrangeDialog)}
-                className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
+                className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-dial-cotton'
               >
                 <FiMove className='inline pb-0.5' />
                 <span className='text-sm px-1'>

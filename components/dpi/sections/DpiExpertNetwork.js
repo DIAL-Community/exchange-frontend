@@ -38,7 +38,7 @@ const DpiExpertNetwork = () => {
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg' />
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
         <div className='flex gap-8 justify-center mx-auto py-20'>
-          <div className='text-2xl text-center text-white  max-w-prose'>
+          <div className='text-2xl text-center text-dial-cotton  max-w-prose'>
             <FormattedMessage
               id='dpi.expertNetwork.subtitle'
               values={{
@@ -51,20 +51,20 @@ const DpiExpertNetwork = () => {
               target='_blank'
               rel='noreferrer'
               href='//dial.global/work/adli/'
-              className='text-white border-b border-transparent hover:border-white'
+              className='text-dial-cotton border-b border-transparent hover:border-white'
             >
               <FormattedMessage id='dpi.exportNetwork.learnMore' />
             </a>
             {user && (
               <Link href='/dpi-dashboard' className='flex'>
-                <span className='text-white border-b border-transparent hover:border-white'>
+                <span className='text-dial-cotton border-b border-transparent hover:border-white'>
                   <FormattedMessage id='dpi.exportNetwork.memberDashboard' />
                 </span>
               </Link>
             )}
             {!user && (
               <Link href='/dpi-member-login' onClick={signInUser} className='flex'>
-                <span className='text-white border-b border-transparent hover:border-white'>
+                <span className='text-dial-cotton border-b border-transparent hover:border-white'>
                   <FormattedMessage id='dpi.exportNetwork.login' />
                 </span>
               </Link>
