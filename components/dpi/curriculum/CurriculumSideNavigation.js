@@ -72,7 +72,7 @@ const CurriculumSideNavigation = ({ moduleRefs }) => {
   }, [directAccess, setDirectAccess, modules, modulePercentages, setCurrentSlug])
 
   return (
-    <div className='sticky' style={{ top: 'calc(var(--header-height) + var(--filter-height)' }}>
+    <div className='sticky' style={{ top: 'calc(var(--header-height) + var(--filter-height) + 1.5rem)' }}>
       <div className=' flex flex-col text-dial-stratos'>
         {modules
           .map(module => module.moduleSlug)

@@ -33,8 +33,8 @@ const CurriculumTopNavigation = ({ curriculum, moduleRefs }) => {
 
   return (
     <div className='sticky sticky-under-header bg-dial-lavender'>
-      <div className='flex px-3 py-3 overflow-x-auto'>
-        <div className='text-xl font-semibold my-auto'>
+      <div className='flex px-4 py-6 overflow-x-auto'>
+        <div className='px-4 text-xl font-semibold my-auto'>
           {curriculum.name}
         </div>
         <div className='ml-auto play-progress'>

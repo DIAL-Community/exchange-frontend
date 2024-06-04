@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
@@ -9,7 +10,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 
 const EditDpiCurriculumPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { query: { curriculumSlug } } = useRouter()
 
