@@ -13,6 +13,7 @@ import {
   MESSAGE_DETAIL_QUERY, MESSAGE_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_MESSAGES_QUERY
 } from '../../shared/query/message'
 import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE, MESSAGE_PAGE_SIZE } from '../message/constant'
+import DpiBreadcrumb from './DpiBreadcrumb'
 
 const EventDetail = ({ event }) => {
   const { formatMessage, formatDate, formatTime } = useIntl()
@@ -68,6 +69,13 @@ const EventDetail = ({ event }) => {
     updateMessageVisibility()
   }
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[event.slug] = event.name
+
+    return map
+  })()
+
   return (
     <div className='relative flex flex-col gap-y-3'>
       {(user.isAdliAdminUser || user.isAdminUser) && (
@@ -107,6 +115,7 @@ const EventDetail = ({ event }) => {
           </div>
         </div>
       )}
+      <DpiBreadcrumb slugNameMapping={slugNameMapping} />
       <div className='text-2xl font-semibold'>
         {event.name}
       </div>

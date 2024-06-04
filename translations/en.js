@@ -2490,9 +2490,6 @@ export const en = {
     list of resources, tailored to wherever you are in a project lifecycle —
     ideation, planning, implementation, or monitoring/evaluation.
   `,
-  
-  'dpi.breadcrumb.country': 'Country Profiles',
-  'dpi.breadcrumb.topic': 'Research by Topics',
 
   'dpi.landing.main.title': 'Resources for DPI',
   'dpi.landing.main.subtitle': `
@@ -2585,10 +2582,15 @@ export const en = {
   'dpi.admin.settings': 'Settings',
   'dpi.admin.broadcast': 'Broadcast',
   'dpi.admin.signOut': 'Sign Out',
+  
+  'dpi.breadcrumb.country': 'Country Profiles',
+  'dpi.breadcrumb.topic': 'Research by Topics',
 
   'dpi.breadcrumb.curriculum': 'ADLI Learning Journey',
   'dpi.breadcrumb.curriculumModule': 'Module',
   'dpi.breadcrumb.curriculumSubModule': 'Sub Module',
+
+  'dpi.breadcrumb.dashboard': 'ADLI Member Dashboard',
 
   'dpi.curriculum.header': 'Curricula',
   'dpi.curriculum.label': 'Curriculum',
@@ -2662,5 +2664,5 @@ export const en = {
   
   'dpi.broadcast.messageType.announcement': 'Announcement',
   'dpi.broadcast.messageType.email': 'Email',
-  'dpi.broadcast.messageType.event': 'Event'
+  'dpi.broadcast.messageType.event': 'Event',
 }

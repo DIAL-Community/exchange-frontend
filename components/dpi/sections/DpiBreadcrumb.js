@@ -16,6 +16,7 @@ const convertBreadcrumb = string => {
 const basePathMappings = {
   'dpi-countries': 'dpi.breadcrumb.country',
   'dpi-topics': 'dpi.breadcrumb.topic',
+  'dpi-dashboard': 'dpi.breadcrumb.dashboard',
   'dpi-resource-finder': 'dpi.breadcrumb.resourceFinder',
   'dpi-curriculum': 'dpi.breadcrumb.curriculum',
   'dpi-curriculum-module': 'dpi.breadcrumb.curriculumModule',
