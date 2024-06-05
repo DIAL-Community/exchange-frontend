@@ -2,10 +2,11 @@ import { useCallback, useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
+import { allowedToView } from '../../components/dpi/admin/utilities'
 import { CreateDpiCurriculum } from '../../components/dpi/sections/DpiCurriculumForm'
 import DpiFooter from '../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../components/dpi/sections/DpiHeader'
-import { Loading } from '../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
@@ -13,7 +14,7 @@ const CreateDpiCurriculumPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { status } = useSession()
+  const { data, status } = useSession()
   useEffect(() => {
     if (status === 'unauthenticated') {
       void signIn()
@@ -29,8 +30,12 @@ const CreateDpiCurriculumPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Loading />}
-        { status === 'authenticated' && <CreateDpiCurriculum />}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && allowedToView(data.user)
+            ? <CreateDpiCurriculum />
+            : <Unauthorized />
+        }
         <CreateDpiCurriculum />
         <DpiFooter />
       </ClientOnly>

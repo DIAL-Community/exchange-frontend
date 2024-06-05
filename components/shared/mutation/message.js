@@ -51,6 +51,7 @@ export const CREATE_MESSAGE = gql`
         name
         slug
         messageType
+        messageTemplate
         messageDatetime
         parsedMessage
         createdAt

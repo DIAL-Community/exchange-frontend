@@ -3,9 +3,10 @@ import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import DpiAdminUserForm from '../../../components/dpi/admin/DpiAdminUserForm'
+import { allowedToView } from '../../../components/dpi/admin/utilities'
 import DpiFooter from '../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../components/dpi/sections/DpiHeader'
-import { Loading } from '../../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
 
@@ -13,7 +14,7 @@ const DpiAdminCreateUserPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { status } = useSession()
+  const { status, data } = useSession()
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -30,8 +31,12 @@ const DpiAdminCreateUserPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Loading />}
-        { status === 'authenticated' && <DpiAdminUserForm />}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && allowedToView(data.user)
+            ? <DpiAdminUserForm />
+            : <Unauthorized />
+        }
         <DpiFooter />
       </ClientOnly>
     </>

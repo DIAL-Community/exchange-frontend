@@ -3,10 +3,11 @@ import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { allowedToView } from '../../../../components/dpi/admin/utilities'
 import { CreateDpiCurriculumModule } from '../../../../components/dpi/sections/DpiCurriculumModuleForm'
 import DpiFooter from '../../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../../components/dpi/sections/DpiHeader'
-import { Loading } from '../../../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../components/shared/QueryNotification'
 import ClientOnly from '../../../../lib/ClientOnly'
 
@@ -16,7 +17,7 @@ const CreateDpiCurriculumModulePage = ({ dpiTenants }) => {
 
   const { query: { curriculumSlug } } = useRouter()
 
-  const { status } = useSession()
+  const { data, status } = useSession()
   useEffect(() => {
     if (status === 'unauthenticated') {
       void signIn()
@@ -32,8 +33,12 @@ const CreateDpiCurriculumModulePage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Loading />}
-        { status === 'authenticated' && <CreateDpiCurriculumModule curriculumSlug={curriculumSlug} />}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && allowedToView(data.user)
+            ? <CreateDpiCurriculumModule curriculumSlug={curriculumSlug} />
+            : <Unauthorized />
+        }
         <DpiFooter />
       </ClientOnly>
     </>
