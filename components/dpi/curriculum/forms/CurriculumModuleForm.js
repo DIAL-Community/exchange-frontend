@@ -43,7 +43,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
       setMutating(false)
       showSuccessMessage(
         format('dpi.curriculum.module.submitted'),
-        () => router.push(`/playbooks/${curriculum.slug}`)
+        () => router.push(`/dpi-curriculum/${curriculum.slug}`)
       )
     }
   })

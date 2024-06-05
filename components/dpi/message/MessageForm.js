@@ -88,8 +88,6 @@ const MessageForm = ({ message }) => {
       const { name, messageType: { value: messageTypeValue }, messageTemplate, messageDatetime, visible } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
 
-      console.log('Data received: ', data)
-      console.log('Message datetime: ', messageDatetime.toISOString())
       const variables = {
         name,
         messageType: messageTypeValue,
@@ -212,10 +210,7 @@ const MessageForm = ({ message }) => {
                             name={name}
                             className='h-[38px] w-full'
                             placeholderText={format('dpi.broadcast.announcementDatetime')}
-                            onChange={(date) => {
-                              onChange(date)
-                              console.log('Date data received: ', date.toISOString())
-                            }}
+                            onChange={onChange}
                             onFocus={() => clearErrors(['messageDatetime'])}
                             selected={value}
                             isInvalid={errors.messageDatetime}
@@ -250,10 +245,7 @@ const MessageForm = ({ message }) => {
                             name={name}
                             className='h-[38px] w-full'
                             placeholderText={format('dpi.broadcast.eventDatetime')}
-                            onChange={(date) => {
-                              onChange(date)
-                              console.log('Date data received: ', date.toISOString())
-                            }}
+                            onChange={onChange}
                             onFocus={() => clearErrors(['messageDatetime'])}
                             selected={value}
                             isInvalid={errors.messageDatetime}

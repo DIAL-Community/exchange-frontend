@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { FiEdit3, FiMove } from 'react-icons/fi'
@@ -210,9 +211,12 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
         : (
           <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
             <div className='flex flex-wrap gap-3'>
-              <div className='font-semibold text-2xl'>
-                {`${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
-              </div>
+              <Link href={`${curriculumSlug}/dpi-curriculum-module/${module.slug}`}>
+                <div className='font-semibold text-2xl'>
+                  {!isNaN(index) && `${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
+                  {isNaN(index) && `${module.name}`}
+                </div>
+              </Link>
               <div className='ml-auto my-auto flex gap-2'>
                 {allowedToEdit() && <EditButton type='link' href={generateEditLink()} />}
                 {allowedToEdit() && <UnassignModule curriculumSlug={curriculumSlug} moduleSlug={moduleSlug} />}

@@ -57,6 +57,21 @@ export const PLAYBOOK_DETAIL_QUERY = gql`
   }
 `
 
+export const PLAY_BREADCRUMB_QUERY = gql`
+  query Playbook($playbookSlug: String!, $playSlug: String!, $owner: String!) {
+    play(slug: $playSlug, owner: $owner) {
+      id
+      name
+      slug
+    }
+    playbook(slug: $playbookSlug, owner: $owner) {
+      id
+      name
+      slug
+    }
+  }
+`
+
 export const MOVE_PREVIEW_QUERY = gql`
   query Move($playSlug: String!, $slug: String!) {
     move(playSlug: $playSlug, slug: $slug) {

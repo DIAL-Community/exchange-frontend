@@ -238,12 +238,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
   const [reverting, setReverting] = useState(false)
 
   const [moveSlug, setMoveSlug] = useState(curriculumSubModule ? curriculumSubModule.slug : '')
-  const [playSlug] = useState(
-    curriculumModule
-      ? curriculumModule.slug
-      : curriculumSubModule
-        ? curriculumSubModule.play.slug
-        : '')
+  const [playSlug] = useState(curriculumModule.slug)
   const [resources, setResources] = useState(
     curriculumSubModule ? curriculumSubModule.resources.map((resource, i) => ({ ...resource, i })) : []
   )
@@ -257,7 +252,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
         setMutating(false)
         showSuccessMessage(
           format('dpi.curriculum.subModule.submitted'),
-          () => router.push(`/playbooks/${curriculum.slug}`)
+          () => router.push(`/dpi-curriculum/${curriculum.slug}`)
         )
       } else {
         showFailureMessage(response.errors)
@@ -266,7 +261,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
       }
     },
     onError: (error) => {
-      showFailureMessage(error?.message)
+      showFailureMessage('Unable to process graph query.', error?.message)
       setMutating(false)
       reset()
     }
@@ -309,6 +304,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
           name,
           moveSlug,
           playSlug,
+          owner: 'dpi',
           description,
           resources
         },
@@ -347,6 +343,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
         name,
         moveSlug,
         playSlug,
+        owner: 'dpi',
         description,
         resources
       }

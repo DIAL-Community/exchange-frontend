@@ -29,26 +29,25 @@ export const CREATE_MOVE_RESOURCE = gql`
 const generateMutationText = (mutationFunc) => {
   return `
     mutation (
-      $playSlug: String!,
-      $moveSlug: String!,
-      $name: String!,
-      $description: String!,
+      $playSlug: String!
+      $moveSlug: String!
+      $owner: String!
+      $name: String!
+      $description: String!
       $resources: JSON!
     ) {
       ${mutationFunc} (
-        playSlug: $playSlug,
-        moveSlug: $moveSlug,
-        name: $name,
-        description: $description,
+        playSlug: $playSlug
+        moveSlug: $moveSlug
+        owner: $owner
+        name: $name
+        description: $description
         resources: $resources
       ) {
         move {
           id
           name
           slug
-          play {
-            slug
-          }
         }
         errors
       }

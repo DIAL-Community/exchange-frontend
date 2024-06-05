@@ -17,4 +17,58 @@
     padding-inline-start: 40px;
     unicode-bidi: isolate;
   }
+
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+  }
+
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+  }
+
+  a:-webkit-any-link:read-write {
+    cursor: text;
+  }
+
+  a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  table {
+    display: table;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border-spacing: 2px;
+    border-color: gray;
+  }
+
+  table:not([cellpadding]) td, table:not([cellpadding]) th {
+    padding: .4rem;
+  }
+
+  td {
+    display: table-cell;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+  }
+
+  table,
+  table caption,
+  table td,
+  table th {
+    border: 1px dashed #bbb;
+  }
 }
