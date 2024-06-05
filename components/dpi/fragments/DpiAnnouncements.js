@@ -20,7 +20,7 @@ const AnnouncementCard = ({ message }) => {
             {message.name}
           </div>
           <div className='line-clamp-4'>
-            {message.messageTemplate && parse(message.messageTemplate)}
+            {message.messageTemplate && parse(message.parsedMessage)}
           </div>
           <div className='flex'>
             <div className='text-sm italic'>
