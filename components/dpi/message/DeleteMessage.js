@@ -7,8 +7,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_MESSAGE } from '../../shared/mutation/message'
-import { PAGINATED_MESSAGES_QUERY } from '../../shared/query/message'
-import { MESSAGE_DETAIL_QUERY } from '../../shared/query/play'
+import { MESSAGE_DETAIL_QUERY, PAGINATED_MESSAGES_QUERY } from '../../shared/query/message'
 import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE } from './constant'
 
 const DeleteMessage = ({ message }) => {
