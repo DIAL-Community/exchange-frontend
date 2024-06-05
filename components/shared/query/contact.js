@@ -49,7 +49,7 @@ export const CONTACT_DETAIL_QUERY = gql`
 `
 
 export const ADLI_CONTACT_DETAIL_QUERY = gql`
-  query Contact($slug: String!, source: String) {
+  query Contact($slug: String!, $source: String) {
     contact(slug: $slug, source: $source) {
       id
       name
