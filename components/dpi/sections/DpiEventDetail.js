@@ -120,13 +120,8 @@ const EventDetail = ({ event }) => {
         {event.name}
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold'>
-          {format('dpi.broadcast.parsedMessage')}
-        </div>
-        <div className='text-sm'>
-          <HtmlViewer initialContent={event.parsedMessage} />
-        </div>
+      <div className='text-sm'>
+        <HtmlViewer initialContent={event.parsedMessage} />
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-3 text-sm italic'>
