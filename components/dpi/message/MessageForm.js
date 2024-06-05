@@ -47,9 +47,9 @@ const MessageForm = ({ message }) => {
         setMutating(false)
         showSuccessMessage(
           format('dpi.broadcast.submitted', {
-            type: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
+            type: response.message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
               ? format('dpi.broadcast.messageType.announcement')
-              : message.messageType === DPI_EVENT_MESSAGE_TYPE
+              : response.message.messageType === DPI_EVENT_MESSAGE_TYPE
                 ? format('dpi.broadcast.messageType.event')
                 : format('dpi.broadcast.messageType.email')
           }),
