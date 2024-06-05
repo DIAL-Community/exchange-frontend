@@ -275,7 +275,7 @@ const MessageForm = ({ message }) => {
                 <label className='flex gap-x-2 items-center self-start'>
                   <Checkbox {...register('visible')} />
                   {format('dpi.broadcast.visible', {
-                    message_type: currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE
+                    messageType: currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE
                       ? format('dpi.broadcast.messageType.announcement')
                       : format('dpi.broadcast.messageType.event')
                   })}

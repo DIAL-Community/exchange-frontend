@@ -2638,8 +2638,8 @@ export const en = {
   'dpi.broadcast.label': 'Message',
   'dpi.broadcast.header': 'Messages',
   'dpi.broadcast.title': 'Message Title',
-  'dpi.broadcast.visible': '{message_type} will be displayed to users.',
-  'dpi.broadcast.hidden': '{message_type} will be hidden from users.',
+  'dpi.broadcast.visible': '{messageType} will be displayed to users.',
+  'dpi.broadcast.hidden': '{messageType} will be hidden from users.',
   'dpi.broadcast.messageType': 'Message Type',
   'dpi.broadcast.messageTemplate': 'Message Template',
   'dpi.broadcast.parsedMessage': 'Processed Message Template',
@@ -2663,6 +2663,8 @@ export const en = {
 
   'dpi.broadcast.visibility.updated': 'Visibility updated.',
   'dpi.broadcast.submitted': '{type} data saved.',
+
+  'dpi.broadcast.delete.confirm.message': 'Are you sure you want to delete this {messageType}?',
   
   'dpi.broadcast.messageType.announcement': 'Announcement',
   'dpi.broadcast.messageType.email': 'Email',

@@ -7,6 +7,7 @@ export const DELETE_MESSAGE = gql`
         id
         slug
         name
+        messageType
       }
       errors
     }
@@ -21,6 +22,7 @@ export const UPDATE_MESSAGE_VISIBILITY = gql`
         slug
         name
         visible
+        messageType
       }
       errors
     }

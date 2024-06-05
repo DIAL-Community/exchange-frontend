@@ -19,7 +19,7 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
   const { locale } = router
 
   const { user } = useUser()
-  const { showToast } = useContext(ToastContext)
+  const { showFailureMessage, showSuccessMessage } = useContext(ToastContext)
 
   const [deleteCurriculumModule, { called, reset }] = useMutation(UNASSIGN_PLAYBOOK_PLAY, {
     refetchQueries: [{
@@ -29,20 +29,16 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
     onCompleted: (data) => {
       const { deletePlaybookPlay: response } = data
       if (response?.playbook && response?.errors?.length === 0) {
-        showToast(
-          format('toast.playbook.unassign.success'),
-          'success',
-          'top-center'
-        )
+        showSuccessMessage(format('toast.curriculum.unassign.success'))
         setDisplayConfirmDialog(false)
       } else {
-        showToast(format('toast.playbook.unassign.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.curriculum.unassign.failure'))
         setDisplayConfirmDialog(false)
         reset()
       }
     },
     onError: () => {
-      showToast(format('toast.playbook.unassign.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.curriculum.unassign.failure'))
       setDisplayConfirmDialog(false)
       reset()
     }

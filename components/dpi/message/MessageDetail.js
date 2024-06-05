@@ -9,6 +9,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { UPDATE_MESSAGE_VISIBILITY } from '../../shared/mutation/message'
 import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, findMessageTypeLabel } from './constant'
+import DeleteMessage from './DeleteMessage'
 
 const MessageDetail = ({ message }) => {
   const { formatMessage, formatDate, formatTime } = useIntl()
@@ -83,6 +84,7 @@ const MessageDetail = ({ message }) => {
                 </>
               }
             </button>
+            {(user?.isAdminUser || user?.isAdliAdminUser) && <DeleteMessage message={message} />}
           </div>
         </div>
       )}
@@ -127,12 +129,12 @@ const MessageDetail = ({ message }) => {
         <div className={message.visible? 'text-green-500' : 'text-red-500'}>
           {message.visible
             ? format('dpi.broadcast.visible', {
-              message_type: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
+              messageType: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
                 ? format('dpi.broadcast.messageType.announcement')
                 : format('dpi.broadcast.messageType.event')
             })
             : format('dpi.broadcast.hidden', {
-              message_type: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
+              messageType: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
                 ? format('dpi.broadcast.messageType.announcement')
                 : format('dpi.broadcast.messageType.event')
             })

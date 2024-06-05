@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
+import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_PLAYBOOK } from '../../shared/mutation/playbook'
@@ -13,7 +13,7 @@ const DeleteCurriculum = ({ curriculum }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showToast } = useContext(ToastContext)
+  const { showFailureMessage, showSuccessMessage } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -33,23 +33,19 @@ const DeleteCurriculum = ({ curriculum }) => {
     onCompleted: (data) => {
       const { deleteCurriculum: response } = data
       if (response?.curriculum && response?.errors?.length === 0) {
-        showToast(
+        showSuccessMessage(
           format('toast.curriculum.delete.success'),
-          'success',
-          'top-center',
-          DEFAULT_AUTO_CLOSE_DELAY,
-          null,
-          () => router.push(`/${locale}/curriculums`)
+          () => router.push('/dpi-curriculum')
         )
         setIsConfirmDialogOpen(false)
       } else {
-        showToast(format('toast.curriculum.delete.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.curriculum.delete.failure'))
         setIsConfirmDialogOpen(false)
         reset()
       }
     },
     onError: () => {
-      showToast(format('toast.curriculum.delete.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.curriculum.delete.failure'))
       setIsConfirmDialogOpen(false)
       reset()
     }

@@ -20,7 +20,7 @@ const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
 
   const { user } = useUser()
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [deleteSubmodule, { called, reset }] = useMutation(UNASSIGN_PLAY_MOVE, {
     refetchQueries: [{
@@ -30,16 +30,16 @@ const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
     onCompleted: (data) => {
       const { deletePlayMove: response } = data
       if (response?.play && response?.errors?.length === 0) {
-        showToast(format('toast.submodule.unassign.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.submodule.unassign.success'))
         setDisplayConfirmDialog(false)
       } else {
-        showToast(format('toast.submodule.unassign.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.submodule.unassign.failure'))
         setDisplayConfirmDialog(false)
         reset()
       }
     },
     onError: () => {
-      showToast(format('toast.submodule.unassign.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.submodule.unassign.failure'))
       setDisplayConfirmDialog(false)
       reset()
     }
