@@ -1,12 +1,20 @@
 .html-react-parser-viewer {
   p {
-    @apply my-4;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
   }
 
   ul {
-    @apply my-4;
-    @apply list-disc;
-    @apply list-inside;
-    @apply pl-8;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
   }
 }
