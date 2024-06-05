@@ -1,13 +1,16 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import CommentsSection from '../../shared/comment/CommentsSection'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PLAY_BREADCRUMB_QUERY } from '../../shared/query/play'
+import { ObjectType } from '../../utils/constants'
 import { CurriculumContextProvider } from '../curriculum/CurriculumContext'
 import CurriculumModule from '../curriculum/CurriculumModule'
 import DpiBreadcrumb from './DpiBreadcrumb'
 
 const DpiCurriculumModule = ({ curriculumSlug, moduleSlug }) => {
   const moduleRefs = useRef({})
+  const commentsSectionRef = useRef()
 
   const { loading, data, error } = useQuery(PLAY_BREADCRUMB_QUERY, {
     variables: { playbookSlug: curriculumSlug, playSlug: moduleSlug, owner: 'dpi' },
@@ -47,6 +50,11 @@ const DpiCurriculumModule = ({ curriculumSlug, moduleSlug }) => {
           moduleRefs={moduleRefs}
         />
       </CurriculumContextProvider>
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={curriculumModule.id}
+        objectType={ObjectType.PLAY}
+      />
     </div>
   )
 }

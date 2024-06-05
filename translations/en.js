@@ -2617,6 +2617,8 @@ export const en = {
   'dpi.curriculum.module.autoSaved': 'Module saved.',
   'dpi.curriculum.module.unassign.title': 'Unassign Module',
   'dpi.curriculum.module.unassign.confirmation': 'Are you sure you want to remove this module from the current curriculum?',
+  'dpi.curriculum.module.commentCount.title': '{commentCount} {commentCount, plural, one {comment} other {comments}}',
+  'dpi.curriculum.module.commentCount.join': 'Join the conversation',
 
   'ui.curriculum.delete.confirm.message': 'Are you sure you want to delete this curriculum?',
 

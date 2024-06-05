@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
+import { FaCommentAlt } from 'react-icons/fa'
 import { FiEdit3, FiMove } from 'react-icons/fi'
 import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
@@ -13,7 +14,9 @@ import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import CreateButton from '../../shared/form/CreateButton'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { COMMENTS_COUNT_QUERY } from '../../shared/query/comment'
 import { MOVE_PREVIEW_QUERY, PLAY_QUERY } from '../../shared/query/play'
+import { ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import { CurriculumContext } from './CurriculumContext'
 import RearrangeSubModules from './forms/RearrangeSubModules'
@@ -148,6 +151,34 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
   )
 }
 
+const ModuleCommentCount = ({ curriculumSlug, module, locale }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { data, loading, error } = useQuery(COMMENTS_COUNT_QUERY, {
+    variables: { commentObjectType: ObjectType.PLAY, commentObjectId: parseInt(module.id) },
+    context: { headers: { 'Accept-Language': locale } }
+  })
+
+  return (
+    <div className='text-sm flex gap-2'>
+      {loading && 'Counting comments...'}
+      {error && 'Error reading comments...'}
+      {data &&
+        <Link
+          href={`${curriculumSlug}/dpi-curriculum-module/${module.slug}`}
+          className='px-3 rounded border border-dial-blueberry hover:bg-dial-blueberry hover:text-dial-cotton'
+        >
+          <div className='flex gap-2 py-1'>
+            <FaCommentAlt className='my-auto' />
+            {format('dpi.curriculum.module.commentCount.title', { commentCount: data.countComments })}
+          </div>
+        </Link>
+      }
+    </div>
+  )
+}
+
 const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRefs }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -222,6 +253,13 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
                 {allowedToEdit() && <UnassignModule curriculumSlug={curriculumSlug} moduleSlug={moduleSlug} />}
               </div>
             </div>
+            {!isNaN(index) &&
+              <ModuleCommentCount
+                curriculumSlug={curriculumSlug}
+                module={module}
+                locale={locale}
+              />
+            }
             <HtmlViewer initialContent={module?.playDescription?.description} />
             <div className='flex gap-2 ml-auto'>
               {allowedToEdit() &&
