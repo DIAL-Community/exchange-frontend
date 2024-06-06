@@ -31,7 +31,6 @@ const DpiAdminUserPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        <DpiHeader />
         { status === 'unauthenticated' || status === 'loading'
           ? <Loading />
           : status === 'authenticated' && allowedToView(data.user)
