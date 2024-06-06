@@ -1,10 +1,7 @@
-import { useUser } from '../../../lib/hooks'
 import ProfileDetail from '../users/ProfileDetail'
 import DpiAdminTabs from './DpiAdminTabs'
 
-const DpiAdminProfile = () => {
-  const { user } =  useUser()
-
+const DpiAdminProfile = ({ user }) => {
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
       <div className="md:flex md:h-full">

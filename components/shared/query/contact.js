@@ -32,7 +32,7 @@ export const PAGINATED_CONTACTS_QUERY = gql`
 
 export const CONTACT_DETAIL_QUERY = gql`
   query Contact($slug: String!) {
-    contact(slug: $slug) {
+    contact(slug: $slug, source: "exchange") {
       id
       name
       slug
@@ -48,9 +48,14 @@ export const CONTACT_DETAIL_QUERY = gql`
   }
 `
 
-export const ADLI_CONTACT_DETAIL_QUERY = gql`
-  query ContactByEmail($slug: String!, $source: String) {
-    contactByEmail(email: $email, source: $source) {
+export const USER_CONTACT_DETAIL_QUERY = gql`
+  query UserContact($userId: String!, $email: String!, $source: String) {
+    user (userId: $userId) {
+      id
+      email
+      username
+    }
+    contact(email: $email, source: $source) {
       id
       name
       slug

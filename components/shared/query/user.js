@@ -62,7 +62,7 @@ export const PAGINATED_USERS_QUERY = gql`
   }
 `
 
-export const DPI_USER_DETAIL_QUERY = gql`
+export const SIMPLE_USER_DETAIL_QUERY = gql`
   query User($userId: String!) {
     user(userId: $userId) {
       id

@@ -1,16 +1,16 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { SIMPLE_USER_DETAIL_QUERY } from '../../shared/query/user'
-import ProfileDetail from '../users/ProfileDetail'
+import { USER_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
+import ContactForm from '../users/ContactForm'
 import DpiAdminTabs from './DpiAdminTabs'
 
-const DpiAdminUserDetail = ({ userId }) => {
+const DpiAdminContactForm = ({ userId, userEmail }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, data, error } = useQuery(SIMPLE_USER_DETAIL_QUERY, {
-    variables: { userId }
+  const { loading, data } = useQuery(USER_CONTACT_DETAIL_QUERY, {
+    variables: { userId, email: userEmail, source: 'adli' }
   })
 
   return (
@@ -20,11 +20,9 @@ const DpiAdminUserDetail = ({ userId }) => {
         <div className="p-12 text-medium text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full">
           {loading
             ? format('general.fetchingData')
-            : error
-              ? format('general.fetchError')
-              : userId && data
-                ? <ProfileDetail user={data?.user} />
-                : format('app.notFound')
+            : userEmail && data?.contact
+              ? <ContactForm user={data?.user} contact={data?.contact} />
+              : <ContactForm user={data?.user} />
           }
         </div>
       </div>
@@ -32,4 +30,4 @@ const DpiAdminUserDetail = ({ userId }) => {
   )
 }
 
-export default DpiAdminUserDetail
+export default DpiAdminContactForm

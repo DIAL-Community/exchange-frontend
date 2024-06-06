@@ -50,7 +50,7 @@ export const en = {
 
   'general.pastSuffix': 'ago',
 
-  'profile.profile': 'User Profile',
+  'profile.label': 'Profile',
   'profile.username': 'Username',
   'profile.email': 'Email',
   'profile.roles': 'Roles',

@@ -23,7 +23,7 @@ const UserDetail = ({ user }) => {
   return (
     <div className='relative flex flex-col gap-y-3'>
       {(loggedInUser.isAdliAdminUser || loggedInUser.isAdminUser) && (
-        <div className='cursor-pointer absolute -top-3 -right-1'>
+        <div className='cursor-pointer absolute -top-2 -right-1'>
           <Link href={generateEditPath()} className='bg-dial-iris-blue px-3 py-2 rounded text-white'>
             <FiEdit3 className='inline pb-0.5' />
             <span className='text-sm px-1'>

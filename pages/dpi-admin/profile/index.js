@@ -34,7 +34,7 @@ const DpiAdminProfilePage = ({ dpiTenants }) => {
         { status === 'unauthenticated' || status === 'loading'
           ? <Loading />
           : status === 'authenticated' && allowedToView(data.user)
-            ? <DpiAdminProfile />
+            ? <DpiAdminProfile user={data.user} />
             : <Unauthorized />
         }
         <DpiFooter />

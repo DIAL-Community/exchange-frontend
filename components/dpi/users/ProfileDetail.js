@@ -5,15 +5,15 @@ import { FiEdit3 } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import { ADLI_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
+import { USER_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import ContactCard from './ContactCard'
 import UserDetail from './UserDetail'
 
-const ContactBio = ({ contact }) => {
+const ContactBio = ({ user, contact }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user } = useUser()
+  const { user: loggedInUser } = useUser()
   const { asPath } = useRouter()
   const generateEditPath = () => {
     if (asPath.indexOf('dpi-admin/profile') >= 0) {
@@ -27,20 +27,20 @@ const ContactBio = ({ contact }) => {
 
   return (
     <div className='relative flex flex-col gap-3'>
-      {user && (
+      {loggedInUser && (
         <div className='cursor-pointer absolute -top-3 -right-1'>
           <Link href={generateEditPath()} className=' bg-dial-iris-blue px-3 py-2 rounded text-white'>
             <FiEdit3 className='inline pb-0.5' />
             <span className='text-sm px-1'>
-              {`${format('app.edit')} ${format('ui.user.profile')}`}
+              {`${format('app.edit')} ${format('profile.label')}`}
             </span>
           </Link>
         </div>
       )}
-      <div class="font-bold">
+      <div className="font-bold">
         About Me
       </div>
-      <p class="text-sm leading-6">
+      <p className="text-sm leading-6">
         {contact?.biography ?? format('dpi.admin.user.defaultBio')}
       </p>
       <hr className='border-b border-dial-blue-chalk my-3' />
@@ -49,19 +49,21 @@ const ContactBio = ({ contact }) => {
 }
 
 const ProfileDetail = ({ user }) => {
-  const { data } = useQuery(ADLI_CONTACT_DETAIL_QUERY, {
-    variables: { slug: user.email, source: 'adli' }
+  const userEmail = user.email ? user.email : user.userEmail
+
+  const { data } = useQuery(USER_CONTACT_DETAIL_QUERY, {
+    variables: { userId: `${user.id}`, email: userEmail, source: 'adli' }
   })
 
   return (
     <div className='flex flex-col gap-y-3 text-dial-cotton'>
       <div className='flex flex-row gap-12 py-8'>
-        <div className='shrink-0'>
-          <ContactCard contact={data?.contact} />
+        <div className='basis-2/5 shrink-0'>
+          <ContactCard user={user} contact={data?.contact} />
         </div>
         <div className='grow text-sm flex flex-col gap-3'>
-          <ContactBio contact={data?.contact} />
-          <UserDetail user={user} />
+          <ContactBio user={user} contact={data?.contact} />
+          <UserDetail user={user} contact={data?.contact} />
         </div>
       </div>
     </div>

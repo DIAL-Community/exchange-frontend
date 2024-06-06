@@ -142,18 +142,19 @@ const DpiAnnouncementDetail = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, data } = useQuery(MESSAGE_DETAIL_QUERY, {
+  const { loading, data, error } = useQuery(MESSAGE_DETAIL_QUERY, {
     variables: { slug }
   })
 
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
-      {loading && format('general.fetchingData') }
-      {slug
-        ? data
-          ? <AnnouncementDetail announcement={data?.message} />
-          : format('general.fetchError')
-        : format('app.notFound')
+      {loading
+        ? format('general.fetchingData')
+        : error
+          ? format('general.fetchError')
+          : slug && data
+            ? <AnnouncementDetail announcement={data?.message} />
+            : format('app.notFound')
       }
     </div>
   )

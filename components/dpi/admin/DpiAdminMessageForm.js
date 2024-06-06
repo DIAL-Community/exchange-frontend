@@ -9,7 +9,7 @@ const DpiAdminMessageForm = ({ messageSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, data } = useQuery(MESSAGE_DETAIL_QUERY, {
+  const { loading, data, error } = useQuery(MESSAGE_DETAIL_QUERY, {
     variables: { slug: messageSlug }
   })
 
@@ -18,12 +18,13 @@ const DpiAdminMessageForm = ({ messageSlug }) => {
       <div className="md:flex md:h-full">
         <DpiAdminTabs />
         <div className="p-12 text-medium text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full">
-          {loading && format('general.fetchingData') }
-          {messageSlug
-            ? data
-              ? <MessageForm message={data?.message} />
-              : format('general.fetchError')
-            : <MessageForm />
+          {loading
+            ? format('general.fetchingData')
+            : error
+              ? format('general.fetchError')
+              : messageSlug && data
+                ? <MessageForm message={data?.message} />
+                : <MessageForm />
           }
         </div>
       </div>

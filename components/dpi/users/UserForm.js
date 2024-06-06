@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -14,7 +14,7 @@ import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_ADLI_USER } from '../../shared/mutation/user'
 
-const UserForm = React.memo(({ user }) => {
+const UserForm = ({ user }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -30,7 +30,7 @@ const UserForm = React.memo(({ user }) => {
   const { isUniqueUserEmail } = useEmailValidation()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
-  const { handleSubmit, register, formState: { errors } } = useForm({
+  const { handleSubmit, register, watch, setValue, formState: { errors } } = useForm({
     mode: 'onBlur',
     shouldUnregister: true,
     defaultValues: {
@@ -40,6 +40,15 @@ const UserForm = React.memo(({ user }) => {
       confirmed: user?.confirmed
     }
   })
+
+  const emailWatcher = watch('email')
+  useEffect(() => {
+    if (emailWatcher) {
+      const emailMarkerIndex = emailWatcher.indexOf('@') >= 0 ? emailWatcher.indexOf('@') : emailWatcher.length
+      const defaultUsername = emailWatcher.substring(0, emailMarkerIndex)
+      setValue('username', defaultUsername)
+    }
+  }, [emailWatcher, setValue])
 
   const cancelRedirectPath = (user) => {
     if (asPath.indexOf('dpi-admin/profile') >= 0) {
@@ -205,8 +214,6 @@ const UserForm = React.memo(({ user }) => {
         </form>
       )
       : <Unauthorized />
-})
-
-UserForm.displayName = 'UserForm'
+}
 
 export default UserForm
