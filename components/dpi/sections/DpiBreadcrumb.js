@@ -19,8 +19,8 @@ const basePathMappings = {
   'dpi-dashboard': 'dpi.breadcrumb.dashboard',
   'dpi-resource-finder': 'dpi.breadcrumb.resourceFinder',
   'dpi-curriculum': 'dpi.breadcrumb.curriculum',
-  'dpi-curriculum-module': 'dpi.breadcrumb.curriculumModule',
-  'dpi-curriculum-sub-module': 'dpi.breadcrumb.curriculumSubModule'
+  'module': 'dpi.breadcrumb.curriculumModule',
+  'submodule': 'dpi.breadcrumb.curriculumSubModule'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>

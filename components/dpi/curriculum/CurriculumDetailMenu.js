@@ -24,7 +24,7 @@ const CurriculumDetailMenu = ({ curriculum }) => {
   }
 
   const generateAddModuleLink = () => {
-    return `/dpi-curriculum/${curriculum.slug}/dpi-curriculum-module/create`
+    return `/dpi-curriculum/${curriculum.slug}/module/create`
   }
 
   return (

@@ -11,7 +11,7 @@ import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus
 import QueryNotification from '../../../../components/shared/QueryNotification'
 import ClientOnly from '../../../../lib/ClientOnly'
 
-const DpiAdminBroadcastPage = ({ dpiTenants }) => {
+const DpiAdminEditBroadcastPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -53,4 +53,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default DpiAdminBroadcastPage
+export default DpiAdminEditBroadcastPage

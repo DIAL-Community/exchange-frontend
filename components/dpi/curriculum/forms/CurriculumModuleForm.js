@@ -229,11 +229,11 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
     : user?.isAdminUser || user?.isEditorUser || user?.isAdliAdminUser
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+          <div className='px-4 lg:px-0 py-4 lg:py-6'>
             <div className='flex flex-col gap-y-6 text-sm'>
               <div className='text-xl font-semibold'>
                 {curriculumModule && format('app.editEntity', { entity: curriculumModule.name })}
-                {!curriculumModule && `${format('app.createNew')} ${format('ui.play.label')}`}
+                {!curriculumModule && `${format('app.createNew')} ${format('dpi.curriculum.module.label')}`}
               </div>
               <label className='flex flex-col gap-y-2'>
                 <p className='required-field'>{format('ui.play.name')}</p>
@@ -299,7 +299,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
                 </div>
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire flex flex-col gap-y-2'>
+                <label className='flex flex-col gap-y-2'>
                   {format('ui.buildingBlock.header')}
                   <Select
                     async
@@ -325,7 +325,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
                   ))}
                 </div>
               </div>
-              <label className='text-dial-sapphire flex flex-col gap-y-2'>
+              <label className='flex flex-col gap-y-2'>
                 <p className='required-field'> {format('ui.play.description')}</p>
                 <Controller
                   name='description'

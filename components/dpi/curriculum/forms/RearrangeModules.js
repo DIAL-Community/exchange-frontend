@@ -49,7 +49,7 @@ const RearrangeModules = ({ displayRearrangeDialog, onRearrangeDialogClose, curr
               )}
             >
               <Dialog.Title>
-                <div className='px-4 text-xl text-dial-sapphire font-semibold'>
+                <div className='px-4 text-xl font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
                     {format('ui.play.rearrange')}
                   </div>

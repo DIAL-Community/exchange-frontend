@@ -10,7 +10,7 @@ import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
-const CreateDpiCurriculumPage = ({ dpiTenants }) => {
+const DpiCreateCurriculumPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -51,4 +51,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default CreateDpiCurriculumPage
+export default DpiCreateCurriculumPage

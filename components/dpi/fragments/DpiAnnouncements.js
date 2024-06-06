@@ -36,7 +36,7 @@ const AnnouncementCard = ({ message }) => {
 
   return (
     <div className='relative'>
-      <Link href={`/dpi-dashboard/dpi-announcements/${message.slug}`}>
+      <Link href={`/dpi-dashboard/announcements/${message.slug}`}>
         {displayLargeCard()}
       </Link>
     </div>

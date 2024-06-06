@@ -47,8 +47,8 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
   const generateEditLink = () => {
     return '' +
       `/dpi-curriculum/${curriculumSlug}` +
-      `/dpi-curriculum-module/${moduleSlug}` +
-      `/dpi-curriculum-submodule/${subModuleSlug}` +
+      `/module/${moduleSlug}` +
+      `/submodule/${subModuleSlug}` +
       '/edit'
   }
 
@@ -166,7 +166,7 @@ const ModuleCommentCount = ({ curriculumSlug, module, locale }) => {
       {error && 'Error reading comments...'}
       {data &&
         <Link
-          href={`${curriculumSlug}/dpi-curriculum-module/${module.slug}`}
+          href={`${curriculumSlug}/module/${module.slug}`}
           className='px-3 rounded border border-dial-blueberry hover:bg-dial-blueberry hover:text-dial-cotton'
         >
           <div className='flex gap-2 py-1'>
@@ -228,11 +228,11 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
   const { playMoves: subModules } = module
 
   const generateEditLink = () => {
-    return `/dpi-curriculum/${curriculumSlug}/dpi-curriculum-module/${moduleSlug}/edit`
+    return `/dpi-curriculum/${curriculumSlug}/module/${moduleSlug}/edit`
   }
 
   const generateAddSubModuleLink = () => {
-    return `/dpi-curriculum/${curriculumSlug}/dpi-curriculum-module/${moduleSlug}/dpi-curriculum-submodule/create`
+    return `/dpi-curriculum/${curriculumSlug}/module/${moduleSlug}/submodule/create`
   }
 
   return (
@@ -242,7 +242,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
         : (
           <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
             <div className='flex flex-wrap gap-3'>
-              <Link href={`${curriculumSlug}/dpi-curriculum-module/${module.slug}`}>
+              <Link href={`${curriculumSlug}/module/${module.slug}`}>
                 <div className='font-semibold text-2xl'>
                   {!isNaN(index) && `${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
                   {isNaN(index) && `${module.name}`}

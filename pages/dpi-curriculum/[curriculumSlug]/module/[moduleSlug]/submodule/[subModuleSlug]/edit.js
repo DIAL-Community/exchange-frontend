@@ -11,7 +11,7 @@ import { Loading, Unauthorized } from '../../../../../../../components/shared/Fe
 import QueryNotification from '../../../../../../../components/shared/QueryNotification'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
 
-const EditDpiCurriculumSubModulePage = ({ dpiTenants }) => {
+const DpiCurriculumEditSubModulePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -63,4 +63,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default EditDpiCurriculumSubModulePage
+export default DpiCurriculumEditSubModulePage
