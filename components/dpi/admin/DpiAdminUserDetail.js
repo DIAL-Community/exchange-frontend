@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { DPI_USER_DETAIL_QUERY } from '../../shared/query/user'
-import UserDetail from '../users/UserDetail'
+import ProfileDetail from '../users/ProfileDetail'
 import DpiAdminTabs from './DpiAdminTabs'
 
 const DpiAdminUserDetail = ({ userId }) => {
@@ -21,7 +21,7 @@ const DpiAdminUserDetail = ({ userId }) => {
           {loading && format('general.fetchingData') }
           {userId
             ? data
-              ? <UserDetail user={data?.user} />
+              ? <ProfileDetail user={data?.user} />
               : format('general.fetchError')
             : format('app.notFound')
           }

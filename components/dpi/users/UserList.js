@@ -29,7 +29,12 @@ const UserList = ({ pageNumber }) => {
 
   return (
     <div className='flex flex-col gap-3'>
-      {users.map((user, index) => <UserCard key={index} index={index} user={user} />)}
+      {users.map((user, index) =>
+        <div className='flex flex-col gap-y-4' key={index}>
+          <hr className='border-b border-gray-300 border-dashed' />
+          <UserCard key={index} user={user} />
+        </div>
+      )}
     </div>
   )
 }

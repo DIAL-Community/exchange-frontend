@@ -2582,6 +2582,14 @@ export const en = {
   'dpi.admin.settings': 'Settings',
   'dpi.admin.broadcast': 'Broadcast',
   'dpi.admin.signOut': 'Sign Out',
+
+  'dpi.admin.user.defaultBio': `
+    Feel free to replace this text with your own biography, allowing your unique story and personality to shine.
+    Use this space to highlight your passions, achievements, and what makes you distinctively you. Whether it's
+    your professional journey, personal milestones, or the dreams that drive you, let your words paint a vivid
+    picture of who you are. Share your experiences, aspirations, and the values that define you, creating a
+    biography that truly reflects your essence and resonates with those who read it.
+  `,
   
   'dpi.breadcrumb.country': 'Country Profiles',
   'dpi.breadcrumb.topic': 'Research by Topics',

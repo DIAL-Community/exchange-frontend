@@ -49,15 +49,15 @@ export const CONTACT_DETAIL_QUERY = gql`
 `
 
 export const ADLI_CONTACT_DETAIL_QUERY = gql`
-  query Contact($slug: String!, $source: String) {
-    contact(slug: $slug, source: $source) {
+  query ContactByEmail($slug: String!, $source: String) {
+    contactByEmail(email: $email, source: $source) {
       id
       name
       slug
       email
       title
       biography
-      imageUrl
+      imageFile
       socialNetworkingServices
     }
   }
