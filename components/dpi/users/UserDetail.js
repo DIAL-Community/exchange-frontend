@@ -1,18 +1,43 @@
 import { useCallback } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FiEdit3 } from 'react-icons/fi'
 import { FormattedDate, FormattedTime, useIntl } from 'react-intl'
+import { useUser } from '../../../lib/hooks'
 
 const UserDetail = ({ user }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { user: loggedInUser } = useUser()
+
+  const { asPath } = useRouter()
+  const generateEditPath = () => {
+    if (asPath.indexOf('dpi-admin/profile') >= 0) {
+      return '/dpi-admin/profile/edit-user'
+    } else {
+      return `/dpi-admin/users/${user.id}/edit-user`
+    }
+  }
+
   return (
-    <div className='flex flex-col gap-y-3'>
+    <div className='relative flex flex-col gap-y-3'>
+      {(loggedInUser.isAdliAdminUser || loggedInUser.isAdminUser) && (
+        <div className='cursor-pointer absolute -top-3 -right-1'>
+          <Link href={generateEditPath()} className='bg-dial-iris-blue px-3 py-2 rounded text-white'>
+            <FiEdit3 className='inline pb-0.5' />
+            <span className='text-sm px-1'>
+              {`${format('app.edit')} ${format('ui.user.label')}`}
+            </span>
+          </Link>
+        </div>
+      )}
       <div className='flex flex-col gap-y-3'>
         <div className='font-semibold'>
           {format('user.email')}
         </div>
         <div className='block'>
-          {user.email}
+          {user.email ?? user.userEmail}
         </div>
       </div>
       <hr className='border-b border-dial-blue-chalk my-3' />

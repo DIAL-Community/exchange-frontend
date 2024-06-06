@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -21,17 +21,14 @@ const UserForm = React.memo(({ user }) => {
   const { user: loggedInUser, loadingUserSession } = useUser()
 
   const router = useRouter()
+  const { locale, asPath } = router
+
   const [roles, setRoles] = useState(user ? user.roles : [])
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
-
-  const { locale } = useRouter()
   const { isUniqueUserEmail } = useEmailValidation()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
-
-  useEffect(() => {
-  }, [])
 
   const { handleSubmit, register, formState: { errors } } = useForm({
     mode: 'onBlur',
@@ -44,13 +41,28 @@ const UserForm = React.memo(({ user }) => {
     }
   })
 
+  const cancelRedirectPath = (user) => {
+    if (asPath.indexOf('dpi-admin/profile') >= 0) {
+      return '/dpi-admin/profile/'
+    } else {
+      return `/dpi-admin/users/${user?.id ?? ''}`
+    }
+  }
+
+  const successRedirectPath = (user) => {
+    if (asPath.indexOf('dpi-admin/profile') >= 0) {
+      return '/dpi-admin/profile'
+    } else {
+      return `/dpi-admin/users/${user?.id ?? ''}`
+    }
+  }
+
   const [updateUser, { called, reset }] = useMutation(CREATE_ADLI_USER, {
     onCompleted: (data) => {
       const { createAdliUser: response } = data
       if (response?.user && response?.errors?.length === 0) {
         setMutating(false)
-        const redirectPath = `/dpi-admin/users/${response?.user.id}`
-        const redirectHandler = () => router.push(redirectPath)
+        const redirectHandler = () => router.push(successRedirectPath(response?.user))
         showSuccessMessage(
           format('toast.submit.success', { entity: format('ui.user.label') }),
           redirectHandler
@@ -101,7 +113,7 @@ const UserForm = React.memo(({ user }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/dpi-admin/users/${user?.userId ?? ''}`)
+    router.push(cancelRedirectPath(user))
   }
 
   const roleOptions = [

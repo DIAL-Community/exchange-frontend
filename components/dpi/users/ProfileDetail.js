@@ -1,8 +1,10 @@
 import { useCallback } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FiEdit3 } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import EditButton from '../../shared/form/EditButton'
 import { ADLI_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import ContactCard from './ContactCard'
 import UserDetail from './UserDetail'
@@ -11,8 +13,30 @@ const ContactBio = ({ contact }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { user } = useUser()
+  const { asPath } = useRouter()
+  const generateEditPath = () => {
+    if (asPath.indexOf('dpi-admin/profile') >= 0) {
+      return '/dpi-admin/profile/edit-profile'
+    } else if (asPath.indexOf('dpi-admin/users') >= 0) {
+      return `/dpi-admin/users/${user.id}/edit-profile`
+    } else {
+      return '/dpi-dashboard/profile/edit-profile'
+    }
+  }
+
   return (
-    <div className='flex flex-col gap-3'>
+    <div className='relative flex flex-col gap-3'>
+      {user && (
+        <div className='cursor-pointer absolute -top-3 -right-1'>
+          <Link href={generateEditPath()} className=' bg-dial-iris-blue px-3 py-2 rounded text-white'>
+            <FiEdit3 className='inline pb-0.5' />
+            <span className='text-sm px-1'>
+              {`${format('app.edit')} ${format('ui.user.profile')}`}
+            </span>
+          </Link>
+        </div>
+      )}
       <div class="font-bold">
         About Me
       </div>
@@ -25,21 +49,12 @@ const ContactBio = ({ contact }) => {
 }
 
 const ProfileDetail = ({ user }) => {
-  const { user: loggedInUser } = useUser()
-
   const { data } = useQuery(ADLI_CONTACT_DETAIL_QUERY, {
     variables: { slug: user.email, source: 'adli' }
   })
 
-  const editPath = `/dpi-admin/users/${user.id}/edit`
-
   return (
-    <div className='relative flex flex-col gap-y-3 text-dial-cotton'>
-      {(loggedInUser.isAdliAdminUser || loggedInUser.isAdminUser) && (
-        <div className='absolute top-1 -right-1'>
-          <EditButton type='link' href={editPath} />
-        </div>
-      )}
+    <div className='flex flex-col gap-y-3 text-dial-cotton'>
       <div className='flex flex-row gap-12 py-8'>
         <div className='shrink-0'>
           <ContactCard contact={data?.contact} />
