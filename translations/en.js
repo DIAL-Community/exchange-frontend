@@ -2576,6 +2576,7 @@ export const en = {
     collectively promote and advance equitable progress across the continent.
   `,
   'dpi.dashboard.signOut': 'Sign Out',
+  'dpi.dashboard.profile': 'My Profile',
 
   'dpi.admin.profile': 'Profile',
   'dpi.admin.users': 'Users',

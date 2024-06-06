@@ -2,13 +2,15 @@ import { useCallback, useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
+import DpiAdminContactForm from '../../../components/dpi/admin/DpiAdminContactForm'
+import { allowedToView } from '../../../components/dpi/admin/utilities'
 import DpiFooter from '../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../components/dpi/sections/DpiHeader'
-import { Loading } from '../../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
 
-const DpiAdminEditUserPage = ({ dpiTenants }) => {
+const DpiAdminEditContactPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -29,8 +31,12 @@ const DpiAdminEditUserPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Loading />}
-        { status === 'authenticated' && `Editing user profile information for: ${data?.user.userEmail}.`}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && allowedToView(data.user)
+            ? <DpiAdminContactForm userId={data?.user.id} userEmail={data?.user.userEmail} />
+            : <Unauthorized />
+        }
         <DpiFooter />
       </ClientOnly>
     </>
@@ -45,4 +51,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default DpiAdminEditUserPage
+export default DpiAdminEditContactPage

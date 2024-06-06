@@ -37,11 +37,18 @@ const DpiDashboard = () => {
             />
           </div>
           {user && (
-            <Link href='/dpi-member-login' onClick={signOutUser} className='flex self-center'>
-              <span className='text-dial-cotton border-b border-transparent hover:border-white'>
-                <FormattedMessage id='dpi.dashboard.signOut' />
-              </span>
-            </Link>
+            <div className='flex flex-col self-center gap-3'>
+              <a href='/dpi-member-login' onClick={signOutUser}>
+                <span className='text-dial-cotton border-b border-transparent hover:border-white'>
+                  <FormattedMessage id='dpi.dashboard.signOut' />
+                </span>
+              </a>
+              <Link href='/dpi-dashboard/profile'>
+                <span className='text-dial-cotton border-b border-transparent hover:border-white'>
+                  <FormattedMessage id='dpi.dashboard.profile' />
+                </span>
+              </Link>
+            </div>
           )}
         </div>
       </div>

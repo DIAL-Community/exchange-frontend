@@ -17,11 +17,11 @@ const ContactBio = ({ user, contact }) => {
   const { asPath } = useRouter()
   const generateEditPath = () => {
     if (asPath.indexOf('dpi-admin/profile') >= 0) {
-      return '/dpi-admin/profile/edit-profile'
+      return '/dpi-admin/profile/edit-contact'
     } else if (asPath.indexOf('dpi-admin/users') >= 0) {
-      return `/dpi-admin/users/${user.id}/edit-profile`
+      return `/dpi-admin/users/${user.id}/edit-contact`
     } else {
-      return '/dpi-dashboard/profile/edit-profile'
+      return '/dpi-dashboard/profile/edit-contact'
     }
   }
 
@@ -56,7 +56,7 @@ const ProfileDetail = ({ user }) => {
   })
 
   return (
-    <div className='flex flex-col gap-y-3 text-dial-cotton'>
+    <div className='flex flex-col gap-y-3'>
       <div className='flex flex-row gap-12 py-8'>
         <div className='basis-2/5 shrink-0'>
           <ContactCard user={user} contact={data?.contact} />
