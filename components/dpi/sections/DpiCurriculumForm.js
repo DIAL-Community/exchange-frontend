@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/playbook'
+import { DPI_TENANT_NAME } from '../constants'
 import CurriculumForm from '../curriculum/forms/CurriculumForm'
 import DpiBreadcrumb from './DpiBreadcrumb'
 
@@ -14,7 +15,7 @@ const EditDpiCurriculum = ({ curriculumSlug }) => {
   const router = useRouter()
 
   const { data, loading, error } = useQuery(PLAYBOOK_DETAIL_QUERY, {
-    variables: { slug: curriculumSlug, owner: 'dpi' },
+    variables: { slug: curriculumSlug, owner: DPI_TENANT_NAME },
     context: { headers: { 'Accept-Language': router.locale } }
   })
 

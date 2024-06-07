@@ -8,6 +8,7 @@ import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_MESSAGE } from '../../shared/mutation/message'
 import { MESSAGE_DETAIL_QUERY, PAGINATED_MESSAGES_QUERY } from '../../shared/query/message'
+import { DPI_TENANT_NAME } from '../constants'
 import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE } from './constant'
 
 const DeleteMessage = ({ message }) => {
@@ -29,7 +30,7 @@ const DeleteMessage = ({ message }) => {
   const [deleteMessage, { called, reset }] = useMutation(DELETE_MESSAGE, {
     refetchQueries: [{
       query: MESSAGE_DETAIL_QUERY,
-      variables: { slug: message.slug, owner: 'dpi' }
+      variables: { slug: message.slug, owner: DPI_TENANT_NAME }
     }, {
       query: PAGINATED_MESSAGES_QUERY,
       variables: { }

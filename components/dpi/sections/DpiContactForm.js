@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { USER_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
+import { DPI_TENANT_NAME } from '../constants'
 import ContactForm from '../users/ContactForm'
 import DpiBreadcrumb from './DpiBreadcrumb'
 
@@ -10,7 +11,7 @@ const DpiContactForm = ({ userId, userEmail }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, data } = useQuery(USER_CONTACT_DETAIL_QUERY, {
-    variables: { userId: `${userId}`, email: `${userEmail}`, source: 'adli' }
+    variables: { userId: `${userId}`, email: `${userEmail}`, source: DPI_TENANT_NAME }
   })
 
   const slugNameMapping = (() => {

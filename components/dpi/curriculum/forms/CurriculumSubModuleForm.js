@@ -9,6 +9,7 @@ import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../../shared/mutation/move'
+import { DPI_TENANT_NAME } from '../../constants'
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
   const [mutating, setMutating] = useState(false)
@@ -304,7 +305,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
           name,
           moveSlug,
           playSlug,
-          owner: 'dpi',
+          owner: DPI_TENANT_NAME,
           description,
           resources
         },
@@ -343,7 +344,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
         name,
         moveSlug,
         playSlug,
-        owner: 'dpi',
+        owner: DPI_TENANT_NAME,
         description,
         resources
       }

@@ -32,7 +32,7 @@ const DpiCurriculumPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Loading />}
+        { (status === 'unauthenticated' || status === 'loading') && <Loading />}
         { status === 'authenticated' && <DpiCurriculum curriculumSlug={curriculumSlug} />}
         <DpiFooter />
       </ClientOnly>

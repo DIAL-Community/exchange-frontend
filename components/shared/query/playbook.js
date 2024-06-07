@@ -83,6 +83,7 @@ export const PLAYBOOK_DETAIL_QUERY = gql`
         id
         name
         slug
+        draft
         playMoves {
           id
           slug

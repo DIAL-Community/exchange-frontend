@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
+import { DPI_TENANT_NAME } from '../constants'
 import { CURRICULUM_PAGE_SIZE } from '../curriculum/constant'
 import CurriculumPagination from '../curriculum/CurriculumPagination'
 import { stripeClasses } from '../sections/DpiDashboard'
@@ -36,8 +37,13 @@ const CurriculumCard = ({ curriculum }) => {
           </div>
         }
         <div className='flex flex-col gap-y-3'>
-          <div className='text-lg font-semibold'>
+          <div className={`flex gap-x-2 text-lg font-semibold ${curriculum.draft && 'text-dial-sapphire'}`}>
             {curriculum.name}
+            {curriculum.draft &&
+              <span className='font-bold'>
+                ({format('ui.play.status.draft')})
+              </span>
+            }
           </div>
           <div className='line-clamp-4'>
             {curriculumDescription && parse(curriculumDescription?.sanitizedOverview)}
@@ -71,7 +77,7 @@ const CurriculumList = ({ pageNumber }) => {
 
   const { loading, error, data } = useQuery(PAGINATED_PLAYBOOKS_QUERY, {
     variables: {
-      owner: 'dpi',
+      owner: DPI_TENANT_NAME,
       limit: CURRICULUM_PAGE_SIZE,
       offset: pageNumber * CURRICULUM_PAGE_SIZE
     }

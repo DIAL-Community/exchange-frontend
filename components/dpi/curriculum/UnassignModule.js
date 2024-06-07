@@ -8,6 +8,7 @@ import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { UNASSIGN_PLAYBOOK_PLAY } from '../../shared/mutation/playbook'
 import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/play'
+import { DPI_TENANT_NAME } from '../constants'
 
 const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
   const { formatMessage } = useIntl()
@@ -24,7 +25,7 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
   const [deleteCurriculumModule, { called, reset }] = useMutation(UNASSIGN_PLAYBOOK_PLAY, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: curriculumSlug, owner: 'dpi' }
+      variables: { slug: curriculumSlug, owner: DPI_TENANT_NAME }
     }],
     onCompleted: (data) => {
       const { deletePlaybookPlay: response } = data
@@ -52,7 +53,7 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
         variables: {
           playSlug: moduleSlug,
           playbookSlug: curriculumSlug,
-          owner: 'dpi'
+          owner: DPI_TENANT_NAME
         },
         context: {
           headers: {

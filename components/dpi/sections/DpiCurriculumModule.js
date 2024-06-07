@@ -4,6 +4,7 @@ import CommentsSection from '../../shared/comment/CommentsSection'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PLAY_BREADCRUMB_QUERY } from '../../shared/query/play'
 import { ObjectType } from '../../utils/constants'
+import { DPI_TENANT_NAME } from '../constants'
 import { CurriculumContextProvider } from '../curriculum/CurriculumContext'
 import CurriculumModule from '../curriculum/CurriculumModule'
 import DpiBreadcrumb from './DpiBreadcrumb'
@@ -13,7 +14,7 @@ const DpiCurriculumModule = ({ curriculumSlug, moduleSlug }) => {
   const commentsSectionRef = useRef()
 
   const { loading, data, error } = useQuery(PLAY_BREADCRUMB_QUERY, {
-    variables: { playbookSlug: curriculumSlug, playSlug: moduleSlug, owner: 'dpi' },
+    variables: { playbookSlug: curriculumSlug, playSlug: moduleSlug, owner: DPI_TENANT_NAME },
     context: { headers: { 'Accept-Language': 'en' } }
   })
 

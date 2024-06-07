@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client'
 import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 import { PLAYS_QUERY } from '../../../shared/query/play'
+import { DPI_TENANT_NAME } from '../../constants'
 import { DraggableContext } from './DraggableContext'
 
 export const SOURCE_TYPE_ASSIGNING = 'source.type.assign'
@@ -50,7 +51,7 @@ const ExistingModuleList = () => {
 
   const { search } = useContext(FilterContext)
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
-    variables: { search, owner: 'dpi' },
+    variables: { search, owner: DPI_TENANT_NAME },
     context: { headers: { 'Accept-Language': locale } }
   })
 

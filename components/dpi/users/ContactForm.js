@@ -11,6 +11,7 @@ import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CONTACT } from '../../shared/mutation/contact'
 import { USER_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
+import { DPI_TENANT_NAME } from '../constants'
 
 const ContactForm = ({ user, contact }) => {
   const { formatMessage } = useIntl()
@@ -38,7 +39,7 @@ const ContactForm = ({ user, contact }) => {
   const [updateContact, { reset }] = useMutation(CREATE_CONTACT, {
     refetchQueries:[{
       query: USER_CONTACT_DETAIL_QUERY,
-      variables: { userId: user?.id, email: user?.email, source: 'adli' }
+      variables: { userId: user?.id, email: user?.email, source: DPI_TENANT_NAME }
     }],
     onCompleted: (data) => {
       const { createContact: response } = data
@@ -91,7 +92,7 @@ const ContactForm = ({ user, contact }) => {
         name,
         email,
         title,
-        source: 'adli'
+        source: DPI_TENANT_NAME
       }
 
       updateContact({

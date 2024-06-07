@@ -10,6 +10,7 @@ import { FilterContext } from '../../../context/FilterContext'
 import { SearchInput } from '../../../shared/form/SearchInput'
 import { UPDATE_PLAYBOOK_PLAYS } from '../../../shared/mutation/playbook'
 import { PLAYS_QUERY } from '../../../shared/query/play'
+import { DPI_TENANT_NAME } from '../../constants'
 import { DraggableContext, DraggableContextProvider } from './DraggableContext'
 import DraggableModules from './DraggableModules'
 import ExistingModuleList from './ExistingModuleList'
@@ -126,7 +127,7 @@ const RearrangeControls = ({ curriculum, onClose }) => {
     UPDATE_PLAYBOOK_PLAYS, {
       refetchQueries: [{
         query: PLAYS_QUERY,
-        variables: { playbookSlug: curriculum.slug, owner: 'dpi' }
+        variables: { playbookSlug: curriculum.slug, owner: DPI_TENANT_NAME }
       }],
       onCompleted: (data) => {
         const { updatePlaybookPlays: response } = data
@@ -157,8 +158,8 @@ const RearrangeControls = ({ curriculum, onClose }) => {
       updateModules({
         variables: {
           slug: curriculum.slug,
-          playSlugs: currentModules.map(({ slug }) => slug),
-          owner: 'dpi'
+          owner: DPI_TENANT_NAME,
+          playSlugs: currentModules.map(({ slug }) => slug)
         },
         context: {
           headers: {

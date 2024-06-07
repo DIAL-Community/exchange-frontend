@@ -18,6 +18,7 @@ import { COMMENTS_COUNT_QUERY } from '../../shared/query/comment'
 import { MOVE_PREVIEW_QUERY, PLAY_QUERY } from '../../shared/query/play'
 import { ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
+import { DPI_TENANT_NAME } from '../constants'
 import { CurriculumContext } from './CurriculumContext'
 import RearrangeSubModules from './forms/RearrangeSubModules'
 import UnassignModule from './UnassignModule'
@@ -184,7 +185,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { data, loading, error } = useQuery(PLAY_QUERY, {
-    variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: 'dpi' },
+    variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: DPI_TENANT_NAME },
     context: { headers: { 'Accept-Language': locale } }
   })
 
@@ -243,9 +244,14 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
           <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
             <div className='flex flex-wrap gap-3'>
               <Link href={`${curriculumSlug}/module/${module.slug}`}>
-                <div className='font-semibold text-2xl'>
+                <div className={`font-semibold text-2xl flex gap-2 ${module.draft && 'text-dial-sapphire'}`}>
                   {!isNaN(index) && `${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
                   {isNaN(index) && `${module.name}`}
+                  {module.draft &&
+                    <span className='font-bold'>
+                      ({format('ui.play.status.draft')})
+                    </span>
+                  }
                 </div>
               </Link>
               <div className='ml-auto my-auto flex gap-2'>

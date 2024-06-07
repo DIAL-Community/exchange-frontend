@@ -8,6 +8,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import { UNASSIGN_PLAY_MOVE } from '../../shared/mutation/move'
 import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/playbook'
+import { DPI_TENANT_NAME } from '../constants'
 
 const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
   const { formatMessage } = useIntl()
@@ -25,7 +26,7 @@ const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
   const [deleteSubmodule, { called, reset }] = useMutation(UNASSIGN_PLAY_MOVE, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: curriculumSlug, owner: 'dpi' }
+      variables: { slug: curriculumSlug, owner: DPI_TENANT_NAME }
     }],
     onCompleted: (data) => {
       const { deletePlayMove: response } = data

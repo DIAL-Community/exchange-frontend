@@ -7,6 +7,7 @@ import { useApolloClient, useMutation } from '@apollo/client'
 import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
 import Pill from '../../shared/form/Pill'
@@ -17,6 +18,8 @@ import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
 import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
 import { fetchSelectOptions } from '../../utils/search'
+
+const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
 export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
@@ -79,16 +82,19 @@ export const PlayForm = ({ playbook, play }) => {
     shouldUnregister: true,
     defaultValues: {
       name: play?.name,
-      description: play?.playDescription?.description
+      description: play?.playDescription?.description,
+      published: playbook ? !playbook.draft : false
     }
   })
+
+  const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
 
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
 
       const { userEmail, userToken } = user
-      const { name, description } = data
+      const { name, description, published } = data
       const variables = {
         name,
         slug,
@@ -97,7 +103,8 @@ export const PlayForm = ({ playbook, play }) => {
         tags: tags.map(tag => tag.label),
         playbookSlug: playbook.slug,
         productSlugs: products.map(({ slug }) => slug),
-        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
+        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug),
+        draft: !published
       }
 
       createPlay({
@@ -346,13 +353,17 @@ export const PlayForm = ({ playbook, play }) => {
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
               </label>
+              <label className='flex gap-x-2 mb-2 items-center self-start'>
+                <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
+                {format('ui.play.published')}
+              </label>
               <div className='flex flex-wrap gap-3'>
                 <button
                   type='submit'
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {`${format('ui.play.submitAndAssign')} ${format('ui.play.label')}`}
+                  {format(isPublished ? 'ui.play.publish' : 'ui.play.saveAsDraft')}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

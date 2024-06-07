@@ -32,7 +32,7 @@ const DpiAnnouncementPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Loading />}
+        { (status === 'unauthenticated' || status === 'loading') && <Loading />}
         { status === 'authenticated' && <DpiAnnouncementDetail slug={slug} />}
         <DpiFooter />
       </ClientOnly>

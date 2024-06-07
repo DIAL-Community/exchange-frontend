@@ -18,6 +18,7 @@ import ValidationError from '../../../shared/form/ValidationError'
 import { AUTOSAVE_PLAYBOOK, CREATE_PLAYBOOK } from '../../../shared/mutation/playbook'
 import { TAG_SEARCH_QUERY } from '../../../shared/query/tag'
 import { fetchSelectOptions } from '../../../utils/search'
+import { DPI_TENANT_NAME } from '../../constants'
 
 const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
@@ -136,7 +137,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       const variables = {
         name,
         slug,
-        owner: 'dpi',
+        owner: DPI_TENANT_NAME,
         author,
         overview,
         audience: '',
@@ -182,7 +183,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       const variables = {
         name,
         slug,
-        owner: 'dpi',
+        owner: DPI_TENANT_NAME,
         author,
         overview,
         audience,

@@ -30,7 +30,7 @@ const DpiDashboardEditContactPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Loading />}
+        { (status === 'unauthenticated' || status === 'loading') && <Loading />}
         { status === 'authenticated' && <DpiContactForm userId={data?.user.id} userEmail={data?.user.userEmail} />}
         <DpiFooter />
       </ClientOnly>

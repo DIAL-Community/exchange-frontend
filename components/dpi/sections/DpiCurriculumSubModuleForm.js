@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { MOVE_QUERY } from '../../shared/query/move'
 import { PLAY_QUERY } from '../../shared/query/play'
+import { DPI_TENANT_NAME } from '../constants'
 import CurriculumSubModuleForm from '../curriculum/forms/CurriculumSubModuleForm'
 import DpiBreadcrumb from './DpiBreadcrumb'
 
@@ -19,7 +20,7 @@ const EditDpiCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug, curr
       moveSlug: curriculumSubModuleSlug,
       playSlug: curriculumModuleSlug,
       playbookSlug: curriculumSlug,
-      owner: 'dpi'
+      owner: DPI_TENANT_NAME
     },
     context: { headers: { 'Accept-Language': router.locale } }
   })
@@ -73,7 +74,7 @@ const CreateDpiCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug }) 
   const router = useRouter()
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
-    variables: { playSlug: curriculumModuleSlug, playbookSlug: curriculumSlug, owner: 'dpi' },
+    variables: { playSlug: curriculumModuleSlug, playbookSlug: curriculumSlug, owner: DPI_TENANT_NAME },
     context: { headers: { 'Accept-Language': router.locale } }
   })
 

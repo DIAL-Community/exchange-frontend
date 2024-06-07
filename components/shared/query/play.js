@@ -95,6 +95,7 @@ export const PLAY_QUERY = gql`
       name
       slug
       tags
+      draft
       imageFile
       playDescription {
         id

@@ -8,6 +8,7 @@ import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_PLAYBOOK } from '../../shared/mutation/playbook'
 import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/play'
+import { DPI_TENANT_NAME } from '../constants'
 
 const DeleteCurriculum = ({ curriculum }) => {
   const { formatMessage } = useIntl()
@@ -28,7 +29,7 @@ const DeleteCurriculum = ({ curriculum }) => {
   const [deleteCurriculum, { called, reset }] = useMutation(DELETE_PLAYBOOK, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: curriculum.slug, owner: 'dpi' }
+      variables: { slug: curriculum.slug, owner: DPI_TENANT_NAME }
     }],
     onCompleted: (data) => {
       const { deleteCurriculum: response } = data

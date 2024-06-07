@@ -18,6 +18,7 @@ import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../shared/query/buildingBlock
 import { PRODUCT_SEARCH_QUERY } from '../../../shared/query/product'
 import { TAG_SEARCH_QUERY } from '../../../shared/query/tag'
 import { fetchSelectOptions } from '../../../utils/search'
+import { DPI_TENANT_NAME } from '../../constants'
 
 const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
@@ -81,7 +82,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
     shouldUnregister: true,
     defaultValues: {
       name: curriculumModule?.name,
-      published: !curriculum?.draft ?? true,
+      published: !curriculumModule?.draft ?? true,
       description: curriculumModule?.playDescription?.description
     }
   })
@@ -96,7 +97,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
         name,
         slug,
         description,
-        owner: 'dpi',
+        owner: DPI_TENANT_NAME,
         draft: !published,
         tags: tags.map(tag => tag.label),
         playbookSlug: curriculum.slug,
@@ -139,7 +140,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
         name,
         slug,
         description,
-        owner: 'dpi',
+        owner: DPI_TENANT_NAME,
         tags: tags.map(tag => tag.label),
         playbookSlug: curriculum.slug,
         productSlugs: products.map(({ slug }) => slug),
