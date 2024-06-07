@@ -5,8 +5,9 @@ const generatePlayMutation = (mutationName, pathName) => `
     $name: String!
     $slug: String!
     $owner: String!
-    $description: String!
+    $draft: Boolean
     $tags: [String!]
+    $description: String!
     $playbookSlug: String
     $productSlugs: [String!]
     $buildingBlockSlugs: [String!]
@@ -14,9 +15,10 @@ const generatePlayMutation = (mutationName, pathName) => `
     ${pathName} (
       name: $name
       slug: $slug
-      owner: $owner
-      description: $description
       tags: $tags
+      owner: $owner
+      draft: $draft
+      description: $description
       playbookSlug: $playbookSlug
       productSlugs: $productSlugs
       buildingBlockSlugs: $buildingBlockSlugs

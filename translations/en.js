@@ -2613,6 +2613,8 @@ export const en = {
   'dpi.curriculum.author': 'Author',
   'dpi.curriculum.overview': 'Overview',
   'dpi.curriculum.cover': 'Cover / Logo',
+
+  'dpi.curriculum.published': 'Published and viewable by members',
   
   'dpi.curriculum.save': 'Save',
   'dpi.curriculum.submitted': 'Curriculum saved.',

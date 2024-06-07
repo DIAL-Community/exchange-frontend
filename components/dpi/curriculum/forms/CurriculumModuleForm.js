@@ -7,6 +7,7 @@ import { useApolloClient, useMutation } from '@apollo/client'
 import { useActiveTenant, useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
+import Checkbox from '../../../shared/form/Checkbox'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import Input from '../../../shared/form/Input'
 import Pill from '../../../shared/form/Pill'
@@ -17,6 +18,8 @@ import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../shared/query/buildingBlock
 import { PRODUCT_SEARCH_QUERY } from '../../../shared/query/product'
 import { TAG_SEARCH_QUERY } from '../../../shared/query/tag'
 import { fetchSelectOptions } from '../../../utils/search'
+
+const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
 export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
   const { formatMessage } = useIntl()
@@ -78,6 +81,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
     shouldUnregister: true,
     defaultValues: {
       name: curriculumModule?.name,
+      published: !curriculum?.draft ?? true,
       description: curriculumModule?.playDescription?.description
     }
   })
@@ -87,12 +91,13 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
       setMutating(true)
 
       const { userEmail, userToken } = user
-      const { name, description } = data
+      const { name, description, published } = data
       const variables = {
         name,
         slug,
         description,
         owner: 'dpi',
+        draft: !published,
         tags: tags.map(tag => tag.label),
         playbookSlug: curriculum.slug,
         productSlugs: products.map(({ slug }) => slug),
@@ -344,6 +349,10 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
                   }}
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
+              </label>
+              <label className='flex gap-x-2 mb-2 items-center self-start'>
+                <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
+                {format('dpi.curriculum.published')}
               </label>
               <div className='flex flex-wrap gap-3'>
                 <button

@@ -5,26 +5,26 @@ const generatePlaybookMutation = (mutationName, mutationPath) =>
     mutation ${mutationName} (
       $name: String!
       $slug: String!
+      $cover: Upload
+      $draft: Boolean
       $owner: String!
       $author: String
-      $cover: Upload
-      $overview: String!
+      $tags: [String!]
       $audience: String
       $outcomes: String
-      $tags: [String!]
-      $draft: Boolean
+      $overview: String!
     ) {
       ${mutationPath}(
         name: $name
         slug: $slug
+        tags: $tags
+        cover: $cover
+        draft: $draft
         owner: $owner
         author: $author
-        cover: $cover
-        overview: $overview
         audience: $audience
         outcomes: $outcomes
-        tags: $tags
-        draft: $draft
+        overview: $overview
       ) {
         playbook {
           id

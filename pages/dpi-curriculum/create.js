@@ -36,7 +36,6 @@ const DpiCreateCurriculumPage = ({ dpiTenants }) => {
             ? <CreateDpiCurriculum />
             : <Unauthorized />
         }
-        <CreateDpiCurriculum />
         <DpiFooter />
       </ClientOnly>
     </>
