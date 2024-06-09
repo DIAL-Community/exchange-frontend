@@ -1,4 +1,4 @@
-import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa6'
+import { FaLinkedin, FaSquareFacebook, FaSquareInstagram, FaSquarePhone, FaSquareXTwitter } from 'react-icons/fa6'
 
 const ContactCard = ({ contact }) => {
   return (
@@ -29,22 +29,34 @@ const ContactCard = ({ contact }) => {
           <p className="text-sm text-center">
             {`${contact?.title ?? 'Title of Contact'}`}
           </p>
-          <div className="flex justify-center pt-5 pb-5">
-            <a href="#" className="mx-5">
-              <div aria-label="Github">
-                <FaGithub />
-              </div>
-            </a>
-            <a href="#" className="mx-5">
-              <div aria-label="Twitter">
-                <FaTwitter />
-              </div>
-            </a>
-            <a href="#" className="mx-5">
-              <div aria-label="Instagram">
-                <FaInstagram />
-              </div>
-            </a>
+          <div className="flex justify-center pt-6 pb-6">
+            {contact?.socialNetworkingServices.map((service, index) => (
+              service.name === 'phone'
+                ? <a
+                  key={index}
+                  href={`tel:${service.value}`}
+                  className="mx-5"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FaSquarePhone size='1.5rem' />
+                </a>
+                :
+                <a
+                  key={index}
+                  href={`//${service.value}`}
+                  className="mx-5"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div aria-label={service.name}>
+                    {service.name === 'linkedin'? <FaLinkedin size='1.5rem' /> : null}
+                    {service.name === 'twitter'? <FaSquareXTwitter size='1.5rem' /> : null}
+                    {service.name === 'instagram'? <FaSquareInstagram size='1.5rem' /> : null}
+                    {service.name === 'facebook'? <FaSquareFacebook size='1.5rem' /> : null}
+                  </div>
+                </a>
+            ))}
           </div>
         </div>
       </div>

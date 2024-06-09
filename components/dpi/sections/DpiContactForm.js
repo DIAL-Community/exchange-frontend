@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { USER_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
+import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import { DPI_TENANT_NAME } from '../constants'
 import ContactForm from '../users/ContactForm'
 import DpiBreadcrumb from './DpiBreadcrumb'
@@ -10,7 +10,7 @@ const DpiContactForm = ({ userId, userEmail }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, data } = useQuery(USER_CONTACT_DETAIL_QUERY, {
+  const { loading, data } = useQuery(HUB_CONTACT_DETAIL_QUERY, {
     variables: { userId: `${userId}`, email: `${userEmail}`, source: DPI_TENANT_NAME }
   })
 
@@ -33,8 +33,8 @@ const DpiContactForm = ({ userId, userEmail }) => {
         <div className="p-12 text-medium text-sapphire rounded-lg w-full h-full">
           {loading
             ? format('general.fetchingData')
-            : userEmail && data?.contact
-              ? <ContactForm user={data?.user} contact={data?.contact} />
+            : userEmail && data?.hubContact
+              ? <ContactForm user={data?.user} contact={data?.hubContact} />
               : <ContactForm user={data?.user} />
           }
         </div>

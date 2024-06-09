@@ -104,7 +104,7 @@ export const USER_DETAIL_QUERY = gql`
 
 export const USER_SEARCH_QUERY = gql`
   query Users($search: String) {
-    products(search: $search) {
+    users(search: $search) {
       id
       email
       username

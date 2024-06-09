@@ -5,7 +5,7 @@ import { FiEdit3 } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import { USER_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
+import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import { DPI_TENANT_NAME } from '../constants'
 import ContactCard from './ContactCard'
 import UserDetail from './UserDetail'
@@ -52,7 +52,7 @@ const ContactBio = ({ user, contact }) => {
 const ProfileDetail = ({ user }) => {
   const userEmail = user?.email ? user?.email : user?.userEmail
 
-  const { data } = useQuery(USER_CONTACT_DETAIL_QUERY, {
+  const { data } = useQuery(HUB_CONTACT_DETAIL_QUERY, {
     variables: { userId: `${user.id}`, email: userEmail, source: DPI_TENANT_NAME }
   })
 
@@ -60,11 +60,11 @@ const ProfileDetail = ({ user }) => {
     <div className='flex flex-col gap-y-3'>
       <div className='flex flex-row gap-12 py-8'>
         <div className='basis-2/5 shrink-0'>
-          <ContactCard user={user} contact={data?.contact} />
+          <ContactCard user={user} contact={data?.hubContact} />
         </div>
         <div className='grow text-sm flex flex-col gap-3'>
-          <ContactBio user={user} contact={data?.contact} />
-          <UserDetail user={user} contact={data?.contact} />
+          <ContactBio user={user} contact={data?.hubContact} />
+          <UserDetail user={user} contact={data?.hubContact} />
         </div>
       </div>
     </div>

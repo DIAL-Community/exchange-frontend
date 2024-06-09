@@ -48,14 +48,29 @@ export const CONTACT_DETAIL_QUERY = gql`
   }
 `
 
-export const USER_CONTACT_DETAIL_QUERY = gql`
+export const HUB_CONTACT_DETAIL_QUERY = gql`
   query UserContact($userId: String!, $email: String!, $source: String) {
     user (userId: $userId) {
       id
       email
       username
     }
-    contact(email: $email, source: $source) {
+    hubContact(email: $email, source: $source) {
+      id
+      name
+      slug
+      email
+      title
+      biography
+      imageFile
+      socialNetworkingServices
+    }
+  }
+`
+
+export const HUB_CONTACTS_QUERY = gql`
+  query HubContacts($search: String) {
+    hubContacts(search: $search) {
       id
       name
       slug

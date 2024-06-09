@@ -10,7 +10,7 @@ import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CONTACT } from '../../shared/mutation/contact'
-import { USER_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
+import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import { DPI_TENANT_NAME } from '../constants'
 
 const ContactForm = ({ user, contact }) => {
@@ -38,7 +38,7 @@ const ContactForm = ({ user, contact }) => {
 
   const [updateContact, { reset }] = useMutation(CREATE_CONTACT, {
     refetchQueries:[{
-      query: USER_CONTACT_DETAIL_QUERY,
+      query: HUB_CONTACT_DETAIL_QUERY,
       variables: { userId: user?.id, email: user?.email, source: DPI_TENANT_NAME }
     }],
     onCompleted: (data) => {
