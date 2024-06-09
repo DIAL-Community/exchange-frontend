@@ -42,8 +42,8 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             >
               <img
                 alt="AI + Machine Learning"
-                class="h-full"
-                src="/images/dpi/ai.png"
+                class="white-filter opacity-40"
+                src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
                 class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
@@ -60,8 +60,8 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             >
               <img
                 alt="Consent"
-                class="h-full"
-                src="/images/dpi/consent.png"
+                class="white-filter opacity-40"
+                src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
                 class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
@@ -78,8 +78,8 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             >
               <img
                 alt="Data Privacy"
-                class="h-full"
-                src="/images/dpi/data.png"
+                class="white-filter opacity-40"
+                src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
                 class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
@@ -96,8 +96,8 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             >
               <img
                 alt="Data Exchange"
-                class="h-full"
-                src="/images/dpi/data.png"
+                class="white-filter opacity-40"
+                src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
                 class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"

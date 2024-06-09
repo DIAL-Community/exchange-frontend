@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState, useMemo, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -7,14 +7,14 @@ import { useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_RESOURCE_TOPIC } from '../../shared/mutation/resourceTopic'
-import { RESOURCE_TOPIC_SEARCH_QUERY } from '../../shared/query/resourceTopic'
 import {
-  PAGINATED_RESOURCE_TOPICS_QUERY, RESOURCE_TOPIC_PAGINATION_ATTRIBUTES_QUERY
+  PAGINATED_RESOURCE_TOPICS_QUERY, RESOURCE_TOPIC_PAGINATION_ATTRIBUTES_QUERY, RESOURCE_TOPIC_SEARCH_QUERY
 } from '../../shared/query/resourceTopic'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
@@ -113,7 +113,8 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
       const {
         name,
         description,
-        parentTopic
+        parentTopic,
+        imageFile
       } = data
 
       // Send graph query to the backend. Set the base variables needed to perform update.
@@ -122,6 +123,10 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
         slug,
         description,
         parentTopicId: parentTopic?.value
+      }
+
+      if (imageFile) {
+        variables.imageFile = imageFile[0]
       }
 
       updateResourceTopic({
@@ -164,6 +169,12 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire' htmlFor='image-uploader'>
+                  {format('useCase.imageFile')}
+                </label>
+                <FileUploader {...register('imageFile')} id='image-uploader' />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field'>

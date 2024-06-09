@@ -13,7 +13,27 @@ const ResourceTopicCard = ({ displayType, index, resourceTopic, dismissHandler }
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[10rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
+        <div className='w-20 h-20'>
+          {resourceTopic.imageFile.indexOf('placeholder.svg') < 0 &&
+            <div className='flex items-center justify-center h-full bg-dial-plum rounded-full'>
+              <img
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resourceTopic.imageFile}
+                alt={format('ui.image.logoAlt', { name: format('ui.resourceTopic.label') })}
+                className='object-contain w-10 h-10 mx-auto my-2 white-filter'
+              />
+            </div>
+          }
+          {resourceTopic.imageFile.indexOf('placeholder.svg') >= 0 &&
+            <div className='flex items-center justify-center h-full bg-dial-plum rounded-full'>
+              <img
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resourceTopic.imageFile}
+                alt={format('ui.image.logoAlt', { name: format('ui.resourceTopic.label') })}
+                className='object-contain w-12 h-12 white-filter'
+              />
+            </div>
+          }
+        </div>
+        <div className='flex flex-col gap-y-3 grow'>
           <div className='text-lg font-semibold text-dial-plum'>
             {resourceTopic.name}
           </div>

@@ -6,6 +6,7 @@ export const RESOURCE_TOPIC_SEARCH_QUERY = gql`
       id
       name
       slug
+      imageFile
       resourceTopicDescription {
         id
         description
@@ -40,6 +41,7 @@ export const PAGINATED_RESOURCE_TOPICS_QUERY = gql`
       id
       name
       slug
+      imageFile
       resourceTopicDescription {
         id
         description
@@ -62,6 +64,7 @@ export const RESOURCE_TOPIC_DETAIL_QUERY = gql`
       id
       name
       slug
+      imageFile
       parentTopic {
         id
         name

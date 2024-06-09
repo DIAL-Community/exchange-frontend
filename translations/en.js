@@ -2078,6 +2078,7 @@ export const en = {
 
   'ui.tag.label': 'Tag',
   'ui.tag.header': 'Tags',
+  'ui.tag.createNew': 'Create a new Tag',
 
   'ui.sdg.label': 'SDG',
   'ui.sdg.header': 'SDGs',
