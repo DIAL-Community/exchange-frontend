@@ -4,11 +4,11 @@ import classNames from 'classnames'
 const URL_PREFIX = 'https://'
 const URL_PROTOCOL_REGEX = /^https?:\/{2}/i
 
+const TELEPHONY_PREFIX = 'tel:'
+const TELEPHONY_REGEX = /^tel:\d{10}$/i
+
 export const UrlInput = React.forwardRef(
-  (
-    { value, onChange, isInvalid = false, className, placeholder, ...otherProps },
-    ref
-  ) =>
+  ({ value, onChange, isInvalid = false, className, placeholder, isTelephony, ...otherProps }, ref) =>
     <div
       className={classNames(
         { 'validation-error': isInvalid },
@@ -19,14 +19,16 @@ export const UrlInput = React.forwardRef(
     >
       {value && (
         <span className='select-none text-dial-gray'>
-          {URL_PREFIX}
+          {isTelephony ? TELEPHONY_PREFIX : URL_PREFIX}
         </span>
       )}
       <input
         {...otherProps}
         ref={ref}
         value={value}
-        onChange={event => onChange(event.target.value?.replace(URL_PROTOCOL_REGEX, ''))}
+        onChange={event =>
+          onChange(event.target.value?.replace(isTelephony ? TELEPHONY_REGEX : URL_PROTOCOL_REGEX, ''))
+        }
         placeholder={placeholder}
         className='url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0'
       />

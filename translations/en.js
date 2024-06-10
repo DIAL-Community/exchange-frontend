@@ -449,6 +449,27 @@ export const en = {
   'ui.contact.title.label': 'Title',
   'ui.contact.createNew': 'Create New Contact Information',
 
+  'ui.contact.biography': 'About Me',
+  'ui.contact.biography.label': 'Biography',
+  'ui.contact.biography.placeholder': `
+    Feel free to replace this text with your own biography, allowing your unique story and personality to shine.
+    Use this space to highlight your passions, achievements, and what makes you distinctively you. Whether it's
+    your professional journey, personal milestones, or the dreams that drive you, let your words paint a vivid
+    picture of who you are. Share your experiences, aspirations, and the values that define you, creating a
+    biography that truly reflects your essence and resonates with those who read it.
+  `,
+
+  'ui.contact.sns': 'Social Networking Services',
+  'ui.contact.sns.placeholder': 'Social network account',
+  'ui.contact.sns.add': 'Add Social Network Account',
+
+  'ui.contact.snsType.placeholder': 'Social network type',
+  'ui.contact.snsType.facebook': 'Facebook',
+  'ui.contact.snsType.instagram': 'Instagram',
+  'ui.contact.snsType.linkedin': 'Linkedin',
+  'ui.contact.snsType.phone': 'Phone',
+  'ui.contact.snsType.twitter': 'Twitter',
+
   'ui.sector.header': 'Sectors',
   'ui.sector.label': 'Sector',
   'sector.parent-sector.label': 'Parent Sector',
@@ -2589,14 +2610,6 @@ export const en = {
   'dpi.admin.settings': 'Settings',
   'dpi.admin.broadcast': 'Broadcast',
   'dpi.admin.signOut': 'Sign Out',
-
-  'dpi.admin.user.defaultBio': `
-    Feel free to replace this text with your own biography, allowing your unique story and personality to shine.
-    Use this space to highlight your passions, achievements, and what makes you distinctively you. Whether it's
-    your professional journey, personal milestones, or the dreams that drive you, let your words paint a vivid
-    picture of who you are. Share your experiences, aspirations, and the values that define you, creating a
-    biography that truly reflects your essence and resonates with those who read it.
-  `,
   
   'dpi.breadcrumb.country': 'Country Profiles',
   'dpi.breadcrumb.topic': 'Research by Topics',

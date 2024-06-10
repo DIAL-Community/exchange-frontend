@@ -5,6 +5,7 @@ import { FiEdit3 } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
+import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import { DPI_TENANT_NAME } from '../constants'
 import ContactCard from './ContactCard'
@@ -39,11 +40,9 @@ const ContactBio = ({ user, contact }) => {
         </div>
       )}
       <div className="font-bold">
-        About Me
+        {format('ui.contact.biography')}
       </div>
-      <p className="text-sm leading-6">
-        {contact?.biography ?? format('dpi.admin.user.defaultBio')}
-      </p>
+      <HtmlViewer initialContent={contact?.biography ?? format('ui.contact.biography.placeholder')} />
       <hr className='border-b border-dial-blue-chalk my-3' />
     </div>
   )

@@ -1,17 +1,21 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
-import { FaSpinner } from 'react-icons/fa6'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaPlus, FaSpinner, FaTrash } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
+import Select from '../../shared/form/Select'
+import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CONTACT } from '../../shared/mutation/contact'
 import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import { DPI_TENANT_NAME } from '../constants'
+import { findSnsType, generateSnsTypeOptions, PHONE_MEDIA_TYPE } from './constant'
 
 const ContactForm = ({ user, contact }) => {
   const { formatMessage } = useIntl()
@@ -25,6 +29,8 @@ const ContactForm = ({ user, contact }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
+  const snsTypeOptions = generateSnsTypeOptions(format)
 
   const successRedirectPath = () => {
     if (asPath.indexOf('dpi-admin/profile') >= 0) {
@@ -63,16 +69,26 @@ const ContactForm = ({ user, contact }) => {
     }
   })
 
-  const { handleSubmit, register, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
       name: contact?.name,
       title: contact?.title,
-      email: user?.email
+      email: user?.email ?? contact?.email,
+      biography: contact?.biography,
+      sns: contact?.socialNetworkingServices.map(item => {
+        return {
+          type: findSnsType(item.name, format),
+          value: item.value
+        }
+      })
     }
   })
+
+  const snsWatcher = watch('sns')
+  const { fields, append, remove } = useFieldArray({ control, name: 'sns' })
 
   const doUpsert = async (data) => {
     if (user) {
@@ -81,18 +97,27 @@ const ContactForm = ({ user, contact }) => {
       // Pull all needed data from session and form.
       const slug = contact?.slug ?? ''
       const { userEmail, userToken } = user
-      const {
-        name,
-        email,
-        title
-      } = data
+      const { name, email, title, biography, sns } = data
+
+      const socialNetworkingServices = sns.map(item => {
+        const { type, value } = item
+
+        return {
+          name: type.value,
+          value
+        }
+      })
+
+      console.log('Received data: ', data)
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         slug,
         name,
         email,
         title,
-        source: DPI_TENANT_NAME
+        source: DPI_TENANT_NAME,
+        biography,
+        socialNetworkingServices
       }
 
       updateContact({
@@ -168,6 +193,80 @@ const ContactForm = ({ user, contact }) => {
                 isInvalid={errors.title}
               />
               {errors.title && <ValidationError value={errors.title?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field'>
+                {format('ui.contact.biography.label')}
+              </label>
+              <Controller
+                name='biography'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <HtmlEditor
+                    editorId='biography-editor'
+                    onChange={onChange}
+                    initialContent={value}
+                    placeholder={format('ui.contact.biography.placeholder')}
+                    isInvalid={errors.biography}
+                  />
+                )}
+                rules={{ required: format('validation.required') }}
+              />
+              {errors.biography && <ValidationError value={errors.biography?.message} />}
+            </div>
+            <div className='flex flex-col gap-3'>
+              <label id='social-networking-services'>
+                {format('ui.contact.sns')}
+              </label>
+              {fields.map((item, index) => (
+                <div className='flex gap-3' key={item.id}>
+                  <div className='basis-1/3'>
+                    <Controller
+                      name={`sns.${index}.type`}
+                      control={control}
+                      render={({ field }) => (
+                        <Select
+                          {...field}
+                          isBorderless
+                          options={snsTypeOptions}
+                          placeholder={format('ui.contact.snsType.placeholder')}
+                          isInvalid={errors.messageType}
+                          aria-labelledby='social-networking-services'
+                        />
+                      )}
+                      rules={{ required: format('validation.required') }}
+                    />
+                  </div>
+                  <div className='basis-2/3'>
+                    <Controller
+                      render={({ field }) =>
+                        <UrlInput
+                          {...field}
+                          className='w-full text-sm'
+                          placeholder={format('ui.contact.sns.placeholder')}
+                          aria-labelledby='social-networking-services'
+                          isTelephony={snsWatcher[index].type.value === PHONE_MEDIA_TYPE}
+                        />
+                      }
+                      name={`sns.${index}.value`}
+                      control={control}
+                    />
+                  </div>
+                  <button type="button" onClick={() => remove(index)}>
+                    <FaTrash />
+                  </button>
+                </div>
+              ))}
+              <div className='flex gap-3'>
+                <button
+                  type="button"
+                  className='px-3 py-2 flex items-center justify-center gap-2 bg-dial-sapphire'
+                  onClick={() => append({ value: '' })}
+                >
+                  <FaPlus />
+                  <span>{format('ui.contact.sns.add')}</span>
+                </button>
+              </div>
             </div>
             <div className='flex flex-wrap gap-3'>
               <button type='submit' className='submit-button' disabled={mutating || reverting}>
