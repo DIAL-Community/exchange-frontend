@@ -14,8 +14,6 @@ import Pill from '../../../shared/form/Pill'
 import Select from '../../../shared/form/Select'
 import ValidationError from '../../../shared/form/ValidationError'
 import { AUTOSAVE_PLAY, CREATE_PLAY } from '../../../shared/mutation/play'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../shared/query/buildingBlock'
-import { PRODUCT_SEARCH_QUERY } from '../../../shared/query/product'
 import { TAG_SEARCH_QUERY } from '../../../shared/query/tag'
 import { fetchSelectOptions } from '../../../utils/search'
 import { DPI_TENANT_NAME } from '../../constants'
@@ -68,12 +66,22 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
   })
 
   const [slug, setSlug] = useState(curriculumModule?.slug ?? '')
-  const [tags, setTags] = useState(curriculumModule?.tags.map(tag => ({ label: tag })) ?? [])
-  const [products, setProducts] = useState(
-    curriculumModule?.products?.map(product => ({ name: product.name, slug: product.slug })) ?? []
+  const [tags, setTags] = useState(
+    curriculumModule
+      ?.tags
+      ?.map(tag => ({ label: tag }))
+    ?? [])
+  const [products] = useState(
+    curriculumModule
+      ?.products
+      ?.map(product => ({ name: product.name, slug: product.slug }))
+    ?? []
   )
-  const [buildingBlocks, setBuildingBlocks] = useState(
-    curriculumModule?.buildingBlocks?.map(buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug })) ?? []
+  const [buildingBlocks] = useState(
+    curriculumModule
+      ?.buildingBlocks
+      ?.map(buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug }))
+    ?? []
   )
 
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
@@ -190,46 +198,6 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
   const loadTagOptions = (input) =>
     fetchSelectOptions(client, input, TAG_SEARCH_QUERY, fetchedTagsCallback)
 
-  const fetchedProductsCallback = (data) => (
-    data?.products?.map((product) => ({
-      value: product.slug,
-      label: product.name,
-      slug: product.slug
-    }))
-  )
-
-  const addProduct = (product) =>
-    setProducts([
-      ...products.filter(({ slug }) => slug !== product.slug),
-      { name: product.label, slug: product.slug }
-    ])
-
-  const removeProduct = (product) =>
-    setProducts([...products.filter(({ slug }) => slug !== product.slug)])
-
-  const loadProductOptions = (input) =>
-    fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)
-
-  const fetchedBuildingBlocksCallback = (data) => (
-    data?.buildingBlocks?.map((buildingBlock) => ({
-      value: buildingBlock.slug,
-      label: buildingBlock.name,
-      slug: buildingBlock.slug
-    }))
-  )
-
-  const addBuildingBlock =(buildingBlock) =>
-    setBuildingBlocks([
-      ...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug),
-      { name: buildingBlock.label, slug: buildingBlock.slug }
-    ])
-
-  const removeBuildingBlock = (buildingBlock) =>
-    setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug)])
-
-  const loadBuildingBlockOptions = (input) =>
-    fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
-
   return loadingUserSession
     ? <Loading />
     : user?.isAdminUser || user?.isEditorUser || user?.isAdliAdminUser
@@ -277,60 +245,6 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
                   ))}
                 </div>
               </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {format('ui.product.header')}
-                  <Select
-                    async
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('ui.product.header')}
-                    loadOptions={loadProductOptions}
-                    noOptionsMessage={() =>
-                      format('filter.searchFor', { entity: format('ui.product.header') })
-                    }
-                    onChange={addProduct}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-wrap gap-3 mt-2'>
-                  {products?.map((product, productIdx) =>(
-                    <Pill
-                      key={productIdx}
-                      label={product.name}
-                      onRemove={() => removeProduct(product)}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {format('ui.buildingBlock.header')}
-                  <Select
-                    async
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('ui.buildingBlock.header')}
-                    loadOptions={loadBuildingBlockOptions}
-                    noOptionsMessage={() =>
-                      format('filter.searchFor', { entity: format('ui.buildingBlock.header') })
-                    }
-                    onChange={addBuildingBlock}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-wrap gap-3 mt-2'>
-                  {buildingBlocks?.map((buildingBlock, buildingBlockIdx) =>(
-                    <Pill
-                      key={buildingBlockIdx}
-                      label={buildingBlock.name}
-                      onRemove={() => removeBuildingBlock(buildingBlock)}
-                    />
-                  ))}
-                </div>
-              </div>
               <label className='flex flex-col gap-y-2'>
                 <p className='required-field'> {format('ui.play.description')}</p>
                 <Controller
@@ -355,7 +269,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
                 <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
                 {format('dpi.curriculum.published')}
               </label>
-              <div className='flex flex-wrap gap-3'>
+              <div className='flex flex-wrap gap-3 text-sm'>
                 <button
                   type='submit'
                   className='submit-button'

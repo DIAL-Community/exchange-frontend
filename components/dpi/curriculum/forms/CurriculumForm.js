@@ -312,7 +312,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
                 <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
                 {format('dpi.curriculum.published')}
               </label>
-              <div className='flex flex-wrap text-base mt-6 gap-3'>
+              <div className='flex flex-wrap text-sm gap-3'>
                 <button
                   type='submit'
                   className='submit-button'

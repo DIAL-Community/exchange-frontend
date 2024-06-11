@@ -7,6 +7,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { UPDATE_PLAY_MOVES } from '../../../shared/mutation/play'
+import { DPI_TENANT_NAME } from '../../constants'
 import { DraggableContext, DraggableContextProvider } from './DraggableContext'
 import DraggableSubModules from './DraggableSubModules'
 
@@ -47,7 +48,7 @@ const RearrangeSubModules = ({ displayRearrangeDialog, onRearrangeDialogClose, m
               <Dialog.Title>
                 <div className='px-4 text-xl font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
-                    {format('ui.move.rearrange')}
+                    {format('dpi.curriculum.submodule.rearrange')}
                   </div>
                 </div>
               </Dialog.Title>
@@ -83,18 +84,18 @@ const RearrangeControls = ({ module, onClose }) => {
         if (response?.play && response?.errors?.length === 0) {
           setDirty(false)
           setLoading(false)
-          showToast(format('toast.move.rearrange.success'), 'success', 'top-center')
+          showToast(format('toast.submodule.rearrange.success'), 'success', 'top-center')
         } else {
           setDirty(false)
           setLoading(false)
-          showToast(format('toast.move.rearrange.failure'), 'error', 'top-center')
+          showToast(format('toast.submodule.rearrange.failure'), 'error', 'top-center')
           reset()
         }
       },
       onError: () => {
         setDirty(false)
         setLoading(false)
-        showToast(format('toast.move.rearrange.failure'), 'error', 'top-center')
+        showToast(format('toast.submodule.rearrange.failure'), 'error', 'top-center')
         reset()
       }
     }
@@ -107,7 +108,8 @@ const RearrangeControls = ({ module, onClose }) => {
       updatePlayMoves({
         variables: {
           slug: module.slug,
-          moveSlugs: currentSubModules.map(({ slug }) => slug)
+          moveSlugs: currentSubModules.map(({ slug }) => slug),
+          owner: DPI_TENANT_NAME
         },
         context: {
           headers: {

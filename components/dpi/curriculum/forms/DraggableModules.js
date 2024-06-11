@@ -38,7 +38,12 @@ const DraggableModules = ({ curriculum }) => {
   useEffect(() => {
     if (curriculum) {
       const { plays: modules } = curriculum
-      setCurrentModules(modules.map(module => ({ id: module.id, slug: module.slug, name: module.name })))
+      setCurrentModules(modules.map(module => ({
+        id: module.id,
+        slug: module.slug,
+        name: module.name,
+        draft: module.draft
+      })))
     }
   }, [curriculum, setCurrentModules])
 

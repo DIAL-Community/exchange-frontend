@@ -93,6 +93,11 @@ const DpiExpertNetwork = () => {
               ? format('general.fetchError')
               : data
                 ? shuffle(data.hubContacts)
+                  .filter(object => {
+                    const consent = object.extendedData.find((data) => data.key === 'consent')
+
+                    return consent?.value.toLowerCase() === 'yes'
+                  })
                   .filter((object, index) => index < 12 )
                   .map((member, index) => <NetworkMemberCard key={index} member={member} />)
                 : format('general.noData')

@@ -6,6 +6,7 @@ export const PLAYS_QUERY = gql`
       id
       slug
       name
+      draft
       imageFile
       playDescription {
         id

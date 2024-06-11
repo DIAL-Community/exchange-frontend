@@ -76,11 +76,7 @@ const ContactForm = React.memo(({ contact }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const {
-        name,
-        email,
-        title
-      } = data
+      const { name, email, title } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,

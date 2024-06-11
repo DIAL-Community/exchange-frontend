@@ -271,7 +271,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
               {allowedToEdit() &&
                 <CreateButton
                   type='link'
-                  label={format('dpi.curriculum.subModule.add')}
+                  label={format('dpi.curriculum.submodule.add')}
                   href={generateAddSubModuleLink()}
                 />
               }
@@ -283,7 +283,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
                 >
                   <FiMove className='inline pb-0.5' />
                   <span className='text-sm px-1'>
-                    {format('dpi.curriculum.subModule.rearrange')}
+                    {format('dpi.curriculum.submodule.rearrange')}
                   </span>
                 </button>
               }

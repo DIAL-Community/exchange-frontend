@@ -95,7 +95,7 @@ const CurriculumSideNavigation = ({ moduleRefs }) => {
                       currentSlug === moduleSlug &&
                       subModuleNames[moduleSlug] &&
                       subModuleNames[moduleSlug].map((subModuleName, index) =>
-                        <div key={`playbook-play-move-${index}`} className='flex gap-x-2'>
+                        <div key={`curriculum-module-submodule-${index}`} className='flex gap-x-2'>
                           <MdPlayArrow size='0.8rem' className='my-auto' />
                           {subModuleName}
                         </div>

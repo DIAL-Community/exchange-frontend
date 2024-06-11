@@ -252,7 +252,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
       if (response?.errors.length === 0 && response.move) {
         setMutating(false)
         showSuccessMessage(
-          format('dpi.curriculum.subModule.submitted'),
+          format('dpi.curriculum.submodule.submitted'),
           () => router.push(`/dpi-curriculum/${curriculum.slug}`)
         )
       } else {
@@ -278,7 +278,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
       if (response.errors.length === 0 && response.move) {
         setMutating(false)
         setMoveSlug(response.move.slug)
-        showSuccessMessage(format('dpi.curriculum.subModule.autoSaved'))
+        showSuccessMessage(format('dpi.curriculum.submodule.autoSaved'))
       }
     }
   })
@@ -446,13 +446,13 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
                   {`${format('app.createNew')} ${format('ui.resource.label')}`}
                 </div>
               </button>
-              <div className='flex flex-row gap-3'>
+              <div className='flex flex-row gap-3 text-sm'>
                 <button
                   type='submit'
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {`${format('app.submit')} ${format('ui.move.label')}`}
+                  {`${format('app.submit')} ${format('dpi.curriculum.submodule.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

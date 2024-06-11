@@ -1,8 +1,12 @@
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { FiMove } from 'react-icons/fi'
+import { useIntl } from 'react-intl'
 
 const DraggableCard = ({ id, entity, index, swapEntity }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const ref = useRef(null)
 
   const [{ handlerId }, drop] = useDrop({
@@ -78,8 +82,13 @@ const DraggableCard = ({ id, entity, index, swapEntity }) => {
         <div className='py-4 font-semibold w-4'>{index + 1})</div>
         <div ref={preview} className='w-full'>
           <div ref={ref} className={`${dndBorderStyles} flex flex-row gap-3 px-3 py-4 h-16`}>
-            <div className='font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
+            <div className={`font-semibold my-auto ${entity.draft && 'text-dial-sapphire'}`}>
               {entity.name}
+              {entity.draft &&
+                <span className='font-bold px-1'>
+                  ({format('ui.play.status.draft')})
+                </span>
+              }
             </div>
             <div className='my-auto ml-auto'>
               <FiMove />

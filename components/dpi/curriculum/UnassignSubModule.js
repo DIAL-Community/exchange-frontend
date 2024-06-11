@@ -31,29 +31,30 @@ const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
     onCompleted: (data) => {
       const { deletePlayMove: response } = data
       if (response?.play && response?.errors?.length === 0) {
-        showSuccessMessage(format('toast.submodule.unassign.success'))
+        showSuccessMessage(format('toast.module.unassign.success'))
         setDisplayConfirmDialog(false)
       } else {
-        showFailureMessage(format('toast.submodule.unassign.failure'))
+        showFailureMessage(format('toast.module.unassign.failure'))
         setDisplayConfirmDialog(false)
         reset()
       }
     },
     onError: () => {
-      showFailureMessage(format('toast.submodule.unassign.failure'))
+      showFailureMessage(format('toast.module.unassign.failure'))
       setDisplayConfirmDialog(false)
       reset()
     }
   })
 
   const onConfirmDelete = () => {
-    if (user && (user.isAdminUser || user.isEditorUser)) {
+    if (user?.isAdliAdminUser || user?.isAdminUser || user?.isEditorUser) {
       const { userEmail, userToken } = user
 
       deleteSubmodule({
         variables: {
           playSlug: moduleSlug,
-          moveSlug: subModuleSlug
+          moveSlug: subModuleSlug,
+          owner: DPI_TENANT_NAME
         },
         context: {
           headers: {

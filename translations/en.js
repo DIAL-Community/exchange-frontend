@@ -2645,19 +2645,34 @@ export const en = {
   'dpi.curriculum.module.rearrange': 'Rearrange Modules',
   'dpi.curriculum.module.submitted': 'Module saved.',
   'dpi.curriculum.module.autoSaved': 'Module saved.',
+  'dpi.curriculum.module.assignExistingModule': 'Assign Existing Module',
   'dpi.curriculum.module.unassign.title': 'Unassign Module',
   'dpi.curriculum.module.unassign.confirmation': 'Are you sure you want to remove this module from the current curriculum?',
   'dpi.curriculum.module.commentCount.title': '{commentCount} {commentCount, plural, one {comment} other {comments}}',
   'dpi.curriculum.module.commentCount.join': 'Join the conversation',
 
-  'ui.curriculum.delete.confirm.message': 'Are you sure you want to delete this curriculum?',
+  'dpi.curriculum.delete.confirm.message': 'Are you sure you want to delete this curriculum?',
 
-  'dpi.curriculum.subModule.add': 'Add Sub Module',
-  'dpi.curriculum.subModule.rearrange': 'Rearrange Sub Modules',
-  'dpi.curriculum.subModule.submitted': 'Sub module saved.',
-  'dpi.curriculum.subModule.autoSaved': 'Sub module saved.',
+  'toast.curriculum.unassign.success': 'Module removed from curriculum.',
+  'toast.curriculum.unassign.failure': 'Removing module from curriculum failed.',
+  'toast.module.unassign.success': 'Sub module removed from curriculum.',
+  'toast.module.unassign.failure': 'Removing sub module from curriculum failed.',
+
+  'toast.module.rearrange.success': 'Order for the modules saved successfully.',
+  'toast.module.rearrange.failure': 'Failed to save order for the modules.',
+
+
+  'dpi.curriculum.submodule.label': 'Sub Module',
+  'dpi.curriculum.submodule.header': 'Sub Modules',
+  'dpi.curriculum.submodule.add': 'Add Sub Module',
+  'dpi.curriculum.submodule.rearrange': 'Rearrange Sub Modules',
+  'dpi.curriculum.submodule.submitted': 'Sub module saved.',
+  'dpi.curriculum.submodule.autoSaved': 'Sub module saved.',
   'dpi.curriculum.submodule.unassign.title': 'Removing Sub Module',
   'dpi.curriculum.submodule.unassign.confirmation': 'Are you sure you want to remove this sub module from the current curriculum?',
+
+  'toast.submodule.rearrange.success': 'Order for the sub modules saved successfully.',
+  'toast.submodule.rearrange.failure': 'Failed to save order for the sub modules.',
 
   'dpi.announcement.label': 'Announcement',
   'dpi.announcement.header': 'Announcements',

@@ -25,13 +25,18 @@ const ModuleCard = ({ module }) => {
   return (
     <div className='bg-white border border-dial-gray text-dial-stratos border-opacity-50 shadow-md'>
       <div className='flex flex-row gap-4 px-3 py-4 h-16'>
-        <div className='w-3/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
+        <div className={`font-semibold my-auto ${module.draft && 'text-dial-sapphire'}`}>
           {module.name}
+          {module.draft &&
+            <span className='font-bold px-1'>
+              ({format('ui.play.status.draft')})
+            </span>
+          }
         </div>
         <div className='ml-auto my-auto text-sm'>
           <button
             type='button'
-            className='bg-dial-sapphire text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
+            className='bg-dial-sapphire text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50 shrink-0'
             onClick={() => assignModule(module)}
           >
             {format('app.assign')}

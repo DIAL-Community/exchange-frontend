@@ -52,7 +52,7 @@ const RearrangeModules = ({ displayRearrangeDialog, onRearrangeDialogClose, curr
               <Dialog.Title>
                 <div className='px-4 text-xl font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
-                    {format('ui.play.rearrange')}
+                    {format('dpi.curriculum.module.rearrange')}
                   </div>
                 </div>
               </Dialog.Title>
@@ -90,7 +90,7 @@ const ExistingModule = () => {
               value={search}
               onChange={handleChange}
               className='w-56 2xl:w-96'
-              placeholder={`${format('app.search')} ${format('ui.play.header')}`}
+              placeholder={`${format('app.search')} ${format('dpi.curriculum.module.header')}`}
             />
           </div>
           <div className='border-b' />
@@ -104,7 +104,7 @@ const ExistingModule = () => {
             className='cancel-button'
             onClick={() => { setShowModuleForm(true) }}
           >
-            {format('ui.play.assignExistingPlay')}
+            {format('dpi.curriculum.module.assignExistingModule')}
           </button>
         </div>
       }
@@ -134,19 +134,19 @@ const RearrangeControls = ({ curriculum, onClose }) => {
         if (response?.playbook && response?.errors?.length === 0) {
           setDirty(false)
           setLoading(false)
-          showSuccessMessage(format('toast.play.rearrange.success'))
+          showSuccessMessage(format('toast.module.rearrange.success'))
         } else {
           reset()
           setDirty(false)
           setLoading(false)
-          showFailureMessage(format('toast.play.rearrange.failure'))
+          showFailureMessage(format('toast.module.rearrange.failure'))
         }
       },
       onError: () => {
         reset()
         setDirty(false)
         setLoading(false)
-        showFailureMessage(format('toast.play.rearrange.failure'))
+        showFailureMessage(format('toast.module.rearrange.failure'))
       }
     }
   )

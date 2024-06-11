@@ -50,7 +50,7 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
       const { userEmail, userToken } = user
 
       deletePlayMove({
-        variables: { moveSlug, playSlug },
+        variables: { moveSlug, playSlug, owner: 'public' },
         context: {
           headers: {
             'Accept-Language': locale,
