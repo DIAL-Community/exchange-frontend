@@ -175,7 +175,12 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/dpi-curriculum/${curriculum.slug}`)
+    let route = '/dpi-curriculum'
+    if (curriculum) {
+      route = `${route}/${curriculum.slug}`
+    }
+
+    router.push(route)
   }
 
   const fetchedTagsCallback = (data) => (

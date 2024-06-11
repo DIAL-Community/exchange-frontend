@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { FaLinkedin, FaSquareFacebook, FaSquareInstagram, FaSquareXTwitter } from 'react-icons/fa6'
@@ -6,6 +6,7 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
+import DpiPagination from '../fragments/DpiPagination'
 import {
   FACEBOOK_SOCIAL_MEDIA_TYPE, INSTAGRAM_SOCIAL_MEDIA_TYPE, LINKEDIN_SOCIAL_MEDIA_TYPE, TWITTER_X_SOCIAL_MEDIA_TYPE
 } from '../users/constant'
@@ -21,30 +22,11 @@ const DpiExpertNetwork = () => {
     signIn()
   }
 
-  // https://stackoverflow.com/a/2450976/4351257
-  const shuffle = (array) => {
-    let shuffledArray = [...array]
-    let currentIndex = array.length
-
-    // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-
-      // Pick a remaining element...
-      let randomIndex = Math.floor(Math.random() * currentIndex)
-      currentIndex--
-
-      // And swap it with the current element.
-      [shuffledArray[currentIndex], shuffledArray[randomIndex]] = [
-        shuffledArray[randomIndex], shuffledArray[currentIndex]
-      ]
-    }
-
-    return shuffledArray
-  }
-
   const { loading, error, data } = useQuery(HUB_CONTACTS_QUERY, {
     variables: {}
   })
+
+  console.log('Data: ', data)
 
   return (
     <div className='flex flex-col gap-6 pb-12 max-w-catalog'>
@@ -86,25 +68,55 @@ const DpiExpertNetwork = () => {
         </div>
       </div>
       <div className='px-4 lg:px-8 xl:px-56  min-h-[40vh] 2xl:min-h-[50vh]'>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-12'>
-          {loading
-            ? format('general.fetchingData')
-            : error
-              ? format('general.fetchError')
-              : data
-                ? shuffle(data.hubContacts)
-                  .filter(object => {
-                    const consent = object.extendedData.find((data) => data.key === 'consent')
+        {loading
+          ? format('general.fetchingData')
+          : error
+            ? format('general.fetchError')
+            : data
+              ? <NetworkMembers
+                members={
+                  data?.hubContacts
+                    .filter(object => {
+                      const consent = object.extendedData.find((data) => data.key === 'consent')
 
-                    return consent?.value.toLowerCase() === 'yes'
-                  })
-                  .filter((object, index) => index < 12 )
-                  .map((member, index) => <NetworkMemberCard key={index} member={member} />)
-                : format('general.noData')
-          }
-        </div>
+                      return consent?.value.toLowerCase() === 'yes'
+                    })
+                }
+              />
+              : format('general.noData')
+        }
       </div>
     </div>
+  )
+}
+
+const NetworkMembers = ({ members }) => {
+  const DEFAULT_PAGE_COUNT = 12
+  const [pageNumber, setPageNumber] = useState(0)
+
+  const onClickHandler = useCallback(({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    setPageNumber(destinationPage)
+  }, [])
+
+  return (
+    <>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-12'>
+        {members
+          .slice(pageNumber * DEFAULT_PAGE_COUNT, (pageNumber + 1) * DEFAULT_PAGE_COUNT)
+          .map((member, index) => (
+            <NetworkMemberCard key={index} member={member} />
+          ))
+        }
+      </div>
+      <DpiPagination
+        onClickHandler={onClickHandler}
+        pageNumber={pageNumber}
+        totalCount={members.length}
+        defaultPageSize={DEFAULT_PAGE_COUNT}
+        theme={'dark'}
+      />
+    </>
   )
 }
 

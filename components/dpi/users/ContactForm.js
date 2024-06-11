@@ -31,12 +31,13 @@ const ContactForm = ({ user, contact }) => {
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const snsTypeOptions = generateSnsTypeOptions(format)
+  const [defaultSnsTypeOption] = snsTypeOptions
 
   const successRedirectPath = () => {
     if (asPath.indexOf('dpi-admin/profile') >= 0) {
       return '/dpi-admin/profile'
     } else if (asPath.indexOf('dpi-admin/users') >= 0) {
-      return `/dpi-admin/users/${user.id}`
+      return `/dpi-admin/users/${user?.id}`
     } else {
       return '/dpi-dashboard/profile'
     }
@@ -135,7 +136,7 @@ const ContactForm = ({ user, contact }) => {
     if (asPath.indexOf('dpi-admin/profile') >= 0) {
       return '/dpi-admin/profile'
     } else if (asPath.indexOf('dpi-admin/users') >= 0) {
-      return `/dpi-admin/users/${user.id}`
+      return `/dpi-admin/users/${user?.id ?? ''}`
     } else {
       return '/dpi-dashboard/profile'
     }
@@ -260,7 +261,7 @@ const ContactForm = ({ user, contact }) => {
                 <button
                   type="button"
                   className='px-3 py-2 flex items-center justify-center gap-2 bg-dial-sapphire'
-                  onClick={() => append({ value: '' })}
+                  onClick={() => append({ value: '', type: defaultSnsTypeOption })}
                 >
                   <FaPlus />
                   <span>{format('ui.contact.sns.add')}</span>

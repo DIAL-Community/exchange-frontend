@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
 import { useIntl } from 'react-intl'
+import { isDebugLoggingEnabled } from '../../../lib/utilities'
 import { CurriculumContext } from './CurriculumContext'
 
 const CurriculumSideNavigation = ({ moduleRefs }) => {
@@ -51,7 +52,7 @@ const CurriculumSideNavigation = ({ moduleRefs }) => {
     }
 
     const eventHandler = (event) => {
-      if (process.env.NEXT_PUBLIC_ENABLE_DEBUG_MESSAGES) {
+      if (isDebugLoggingEnabled()) {
         console.log('Scroll event triggered. Event data: ', event)
       }
 

@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
+import { isDebugLoggingEnabled } from '../../../lib/utilities'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import GeocodeAutocomplete from '../../shared/form/GeocodeAutocomplete'
@@ -110,12 +111,12 @@ const MessageForm = ({ message }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    const slug = message?.slug
+    const slug = message?.slug ?? ''
     router.push(`/dpi-admin/broadcasts/${slug}`)
   }
 
   const handleEventLocation = (eventLocation) => {
-    if (process.env.NEXT_PUBLIC_ENABLE_DEBUG_MESSAGES) {
+    if (isDebugLoggingEnabled()) {
       console.log('Received event location: ', eventLocation)
     }
   }

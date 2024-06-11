@@ -369,7 +369,11 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
 
   const cancelForm = () => {
     setReverting(true)
-    const route = `/dpi-curriculum/${curriculum.slug}`
+    let route = '/dpi-curriculum'
+    if (curriculum) {
+      route = `${route}/${curriculum.slug}`
+    }
+
     router.push(route)
   }
 

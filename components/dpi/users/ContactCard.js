@@ -10,6 +10,10 @@ const ContactCard = ({ contact }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const country = contact?.extendedData.find((data) => data.key === 'country')
+  const countryCode = contact?.extendedData.find((data) => data.key === 'country-slug')
+  const organization = contact?.extendedData.find((data) => data.key === 'organization')
+
   return (
     <div className="relative py-20">
       <div className="rounded overflow-hidden shadow-md">
@@ -38,6 +42,19 @@ const ContactCard = ({ contact }) => {
           <p className="text-sm text-center">
             {`${contact?.title ?? 'Title of Contact'}`}
           </p>
+          <div className='text-sm'>{organization?.value}</div>
+          {country?.value &&
+            <div className='flex gap-1 items-center'>
+              {countryCode?.value &&
+                <img
+                  src={`https://flagsapi.com/${countryCode?.value.toUpperCase()}/flat/64.png`}
+                  alt={format('ui.country.logoAlt', { countryName: country.code })}
+                  className='object-contain w-6	h-6'
+                />
+              }
+              <div className='text-sm'>{country?.value}</div>
+            </div>
+          }
           <div className="flex justify-center pt-6 pb-6">
             {contact?.socialNetworkingServices.map((service, index) => (
               service.name === PHONE_MEDIA_TYPE

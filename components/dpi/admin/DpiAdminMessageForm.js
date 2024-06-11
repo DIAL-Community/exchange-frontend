@@ -10,7 +10,8 @@ const DpiAdminMessageForm = ({ messageSlug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, data, error } = useQuery(MESSAGE_DETAIL_QUERY, {
-    variables: { slug: messageSlug }
+    variables: { slug: messageSlug },
+    skip: !messageSlug
   })
 
   return (

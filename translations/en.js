@@ -2475,6 +2475,7 @@ export const en = {
 
   
   'ui.resourceTopic.label': 'Resource Topic',
+  'ui.resourceTopic.label.humanized': 'Resource topic',
   'ui.resourceTopic.header': 'Resource Topics',
   'ui.resourceTopic.createNew': 'Create new resource topic',
   'ui.resourceTopic.whatIs': 'What is a Resource Topic?',
