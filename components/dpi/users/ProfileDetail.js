@@ -18,10 +18,10 @@ const ContactBio = ({ user, contact }) => {
   const { user: loggedInUser } = useUser()
   const { asPath } = useRouter()
   const generateEditPath = () => {
-    if (asPath.indexOf('dpi-admin/profile') >= 0) {
-      return '/dpi-admin/profile/edit-contact'
-    } else if (asPath.indexOf('dpi-admin/users') >= 0) {
+    if (asPath.indexOf('dpi-admin/users') >= 0) {
       return `/dpi-admin/users/${user.id}/edit-contact`
+    } else if (asPath.indexOf('/dpi-admin') >= 0) {
+      return '/dpi-admin/profile/edit-contact'
     } else {
       return '/dpi-dashboard/profile/edit-contact'
     }

@@ -34,7 +34,7 @@ const ContactForm = ({ user, contact }) => {
   const [defaultSnsTypeOption] = snsTypeOptions
 
   const successRedirectPath = () => {
-    if (asPath.indexOf('dpi-admin/profile') >= 0) {
+    if (asPath.indexOf('/dpi-admin/profile') >= 0) {
       return '/dpi-admin/profile'
     } else if (asPath.indexOf('dpi-admin/users') >= 0) {
       return `/dpi-admin/users/${user?.id}`
