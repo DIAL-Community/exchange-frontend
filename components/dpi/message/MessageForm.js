@@ -115,7 +115,9 @@ const MessageForm = ({ message }) => {
   }
 
   const handleEventLocation = (eventLocation) => {
-    console.log('Event location: ', eventLocation)
+    if (process.env.NEXT_PUBLIC_ENABLE_DEBUG_MESSAGES) {
+      console.log('Received event location: ', eventLocation)
+    }
   }
 
   return loadingUserSession

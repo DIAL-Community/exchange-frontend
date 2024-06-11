@@ -6,6 +6,9 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
+import {
+  FACEBOOK_SOCIAL_MEDIA_TYPE, INSTAGRAM_SOCIAL_MEDIA_TYPE, LINKEDIN_SOCIAL_MEDIA_TYPE, TWITTER_X_SOCIAL_MEDIA_TYPE
+} from '../users/constant'
 
 const DpiExpertNetwork = () => {
   const { formatMessage } = useIntl()
@@ -104,51 +107,57 @@ const NetworkMemberCard = ({ member }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const country = member.extendedData.find((data) => data.key === 'country')
+  const countryCode = member.extendedData.find((data) => data.key === 'country-slug')
+  const organization = member.extendedData.find((data) => data.key === 'organization')
+
   return (
     <div className='flex items-center gap-4'>
-      {member?.imageFile.indexOf('placeholder') < 0 &&
-        <div className="h-32 w-32 shrink-0">
-          <img
-            alt={format('dpi.expertNetwork.memberCard.alt')}
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + member.imageFile}
-            className="rounded-full object-cover h-full w-full"
-          />
-        </div>
-      }
-      {!member?.imageFile.indexOf('placeholder') >= 0 &&
-        <div className="h-24 w-24 flex justify-center items-center rounded-full bg-dial-sapphire shrink-0">
-          <img
-            alt={format('dpi.expertNetwork.memberCard.alt')}
-            src='/ui/v1/user-alt-placeholder.svg'
-            className="p-8 font-thin white-filter"
-          />
-        </div>
-      }
+      <div className="h-32 w-32 shrink-0">
+        <img
+          alt={format('dpi.expertNetwork.memberCard.alt')}
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + member.imageFile}
+          className="rounded-full object-cover h-full w-full"
+        />
+      </div>
       <div className='grow flex flex-col gap-1'>
-        <span className='text-lg font-bold'>
+        <div className='text-lg font-bold'>
           {member.name}
-        </span>
-        <span className='text-sm'>{member.title}</span>
+        </div>
+        <div className='text-sm'>{member.title}</div>
+        <div className='text-sm'>{organization?.value}</div>
+        {country?.value &&
+          <div className='flex gap-1 items-center'>
+            {countryCode?.value &&
+              <img
+                src={`https://flagsapi.com/${countryCode?.value.toUpperCase()}/flat/64.png`}
+                alt={format('ui.country.logoAlt', { countryName: country.code })}
+                className='object-contain w-6	h-6'
+              />
+            }
+            <div className='text-sm'>{country?.value}</div>
+          </div>
+        }
         {member.socialNetworkingServices.length > 0 &&
           <div className='flex gap-1'>
             {member.socialNetworkingServices
               .filter(service => service.value !== 'phone')
               .map((service, index) => (
-                <span key={index} className='text-sm'>
+                <div key={index} className='text-sm'>
                   <a
                     className='flex'
                     target='_blank'
                     rel='noreferrer'
                     href={`//${service.value}`}
                   >
-                    <div aria-label={service.name}>
-                      {service.name === 'linkedin' ? <FaLinkedin size='1.5rem' className='text-dial-sapphire' /> : null}
-                      {service.name === 'twitter' ? <FaSquareXTwitter size='1.5rem' /> : null}
-                      {service.name === 'instagram' ? <FaSquareInstagram size='1.5rem' /> : null}
-                      {service.name === 'facebook' ? <FaSquareFacebook size='1.5rem' /> : null}
+                    <div aria-label={service.name} className='text-dial-sapphire'>
+                      {service.name === LINKEDIN_SOCIAL_MEDIA_TYPE ? <FaLinkedin size='1.5rem' /> : null}
+                      {service.name === TWITTER_X_SOCIAL_MEDIA_TYPE ? <FaSquareXTwitter size='1.5rem' /> : null}
+                      {service.name === INSTAGRAM_SOCIAL_MEDIA_TYPE ? <FaSquareInstagram size='1.5rem' /> : null}
+                      {service.name === FACEBOOK_SOCIAL_MEDIA_TYPE ? <FaSquareFacebook size='1.5rem' /> : null}
                     </div>
                   </a>
-                </span>
+                </div>
               ))}
           </div>
         }

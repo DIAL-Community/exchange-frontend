@@ -79,6 +79,7 @@ export const HUB_CONTACTS_QUERY = gql`
       biography
       imageFile
       socialNetworkingServices
+      extendedData
     }
   }
 `

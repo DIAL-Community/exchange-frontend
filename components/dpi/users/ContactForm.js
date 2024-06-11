@@ -108,7 +108,6 @@ const ContactForm = ({ user, contact }) => {
         }
       })
 
-      console.log('Received data: ', data)
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         slug,
