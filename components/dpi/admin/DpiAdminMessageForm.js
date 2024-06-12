@@ -23,7 +23,7 @@ const DpiAdminMessageForm = ({ messageSlug }) => {
             ? format('general.fetchingData')
             : error
               ? format('general.fetchError')
-              : messageSlug && data
+              : messageSlug && data.message
                 ? <MessageForm message={data?.message} />
                 : <MessageForm />
           }

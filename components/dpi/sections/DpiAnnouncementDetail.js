@@ -152,7 +152,7 @@ const DpiAnnouncementDetail = ({ slug }) => {
         ? format('general.fetchingData')
         : error
           ? format('general.fetchError')
-          : slug && data
+          : slug && data.message
             ? <AnnouncementDetail announcement={data?.message} />
             : format('app.notFound')
       }

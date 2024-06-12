@@ -7,9 +7,11 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_MESSAGE } from '../../shared/mutation/message'
-import { MESSAGE_DETAIL_QUERY, PAGINATED_MESSAGES_QUERY } from '../../shared/query/message'
+import {
+  MESSAGE_DETAIL_QUERY, MESSAGE_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_MESSAGES_QUERY
+} from '../../shared/query/message'
 import { DPI_TENANT_NAME } from '../constants'
-import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE } from './constant'
+import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE, MESSAGE_PAGE_SIZE } from './constant'
 
 const DeleteMessage = ({ message }) => {
   const { formatMessage } = useIntl()
@@ -33,7 +35,9 @@ const DeleteMessage = ({ message }) => {
       variables: { slug: message.slug, owner: DPI_TENANT_NAME }
     }, {
       query: PAGINATED_MESSAGES_QUERY,
-      variables: { }
+      variables: { limit: MESSAGE_PAGE_SIZE, offset: 0 }
+    }, {
+      query: MESSAGE_PAGINATION_ATTRIBUTES_QUERY
     }],
     onCompleted: (data) => {
       const { deleteMessage: response } = data
