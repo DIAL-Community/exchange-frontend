@@ -1,14 +1,14 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { PLAY_QUERY } from '../shared/query/play'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import Breadcrumb from '../shared/Breadcrumb'
-import PlayDetailRight from './PlayDetailRight'
+import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { PLAY_QUERY } from '../shared/query/play'
 import PlayDetailLeft from './PlayDetailLeft'
+import PlayDetailRight from './PlayDetailRight'
 
 const PlayDetail = ({ playSlug, playbookSlug, locale }) => {
   const { data, loading, error } = useQuery(PLAY_QUERY, {
-    variables: { playSlug, playbookSlug  },
+    variables: { playSlug, playbookSlug, owner: 'public' },
     context: { headers: { 'Accept-Language': locale } }
   })
 

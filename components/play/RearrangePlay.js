@@ -1,26 +1,18 @@
-import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
 import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa'
-import {
-  PlayFilterContext,
-  PlayFilterDispatchContext,
-  PlayFilterProvider
-} from '../context/PlayFilterContext'
-import { SearchInput } from '../shared/form/SearchInput'
-import { ToastContext } from '../../lib/ToastContext'
-import { PLAYS_QUERY } from '../shared/query/play'
-import { UPDATE_PLAYBOOK_PLAYS } from '../shared/mutation/playbook'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { Dialog, Transition } from '@headlessui/react'
 import { useUser } from '../../lib/hooks'
-import {
-  PlayListContext,
-  PlayListDispatchContext,
-  PlayListProvider
-} from './context/PlayListContext'
-import PlayListDraggable from './PlayListDraggable'
+import { ToastContext } from '../../lib/ToastContext'
+import { PlayFilterContext, PlayFilterDispatchContext, PlayFilterProvider } from '../context/PlayFilterContext'
+import { SearchInput } from '../shared/form/SearchInput'
+import { UPDATE_PLAYBOOK_PLAYS } from '../shared/mutation/playbook'
+import { PLAYS_QUERY } from '../shared/query/play'
+import { PlayListContext, PlayListDispatchContext, PlayListProvider } from './context/PlayListContext'
 import PlayListQuery from './PlayList'
+import PlayListDraggable from './PlayListDraggable'
 
 const RearrangePlay = ({ displayDragable, onDragableClose, playbook }) => {
   const { formatMessage } = useIntl()
@@ -139,7 +131,7 @@ const RearrangeControls = ({ playbook, onClose }) => {
     UPDATE_PLAYBOOK_PLAYS, {
       refetchQueries: [{
         query: PLAYS_QUERY,
-        variables: { playbookSlug: playbook.slug }
+        variables: { playbookSlug: playbook.slug, owner: 'public' }
       }],
       onCompleted: (data) => {
         const { updatePlaybookPlays: response } = data
@@ -170,7 +162,8 @@ const RearrangeControls = ({ playbook, onClose }) => {
       updatePlayMoves({
         variables: {
           slug: playbook.slug,
-          playSlugs: currentPlays.map(({ slug }) => slug)
+          playSlugs: currentPlays.map(({ slug }) => slug),
+          owner: 'public'
         },
         context: {
           headers: {

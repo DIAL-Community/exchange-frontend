@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
-import { DELETE_BUILDING_BLOCK } from '../shared/mutation/buildingBlock'
-import { PAGINATED_BUILDING_BLOCKS_QUERY, BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
-import DeleteButton from '../shared/form/DeleteButton'
+import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
+import { DELETE_BUILDING_BLOCK } from '../shared/mutation/buildingBlock'
+import { BUILDING_BLOCK_DETAIL_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY } from '../shared/query/buildingBlock'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 
 const DeleteBuildingBlock = ({ buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -42,13 +42,13 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
         )
       } else {
         setDisplayConfirmDialog(false)
-        showFailureMessage(format('toast.city.delete.failure', { entity: format('ui.buildingBlock.label') }))
+        showFailureMessage(format('toast.delete.failure', { entity: format('ui.buildingBlock.label') }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showFailureMessage(format('toast.city.delete.failure', { entity: format('ui.buildingBlock.label') }))
+      showFailureMessage(format('toast.delete.failure', { entity: format('ui.buildingBlock.label') }))
       reset()
     }
   })

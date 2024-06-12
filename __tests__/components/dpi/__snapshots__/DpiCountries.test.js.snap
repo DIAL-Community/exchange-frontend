@@ -17,7 +17,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
     >
       <div
-        class="text-2xl text-center text-white py-16 md:py-24 lg:py-28 xl:py-32 mx-auto max-w-prose"
+        class="text-2xl text-center text-dial-cotton py-16 md:py-24 lg:py-28 xl:py-32 mx-auto max-w-prose"
       >
         
     Find tools and resources related to how DPI has been implemented in a specific country.

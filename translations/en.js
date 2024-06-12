@@ -9,6 +9,8 @@ export const en = {
   'app.home': 'Home',
   'app.save': 'Save',
   'app.saving': 'Saving',
+  'app.publish': 'Publish',
+  'app.publishing': 'Publishing',
   'app.submit': 'Submit',
   'app.submitting': 'Submitting',
   'app.search': 'Search',
@@ -43,10 +45,12 @@ export const en = {
   'app.deleteAccount': 'Delete Account',
   'app.adminOnly': 'Admin Only',
   'app.loginRequired': 'Please login or sign up to access this resource.',
+  'app.hide': 'Hide',
+  'app.show': 'Show',
 
   'general.pastSuffix': 'ago',
 
-  'profile.profile': 'User Profile',
+  'profile.label': 'Profile',
   'profile.username': 'Username',
   'profile.email': 'Email',
   'profile.roles': 'Roles',
@@ -445,6 +449,27 @@ export const en = {
   'ui.contact.title.label': 'Title',
   'ui.contact.createNew': 'Create New Contact Information',
 
+  'ui.contact.biography': 'About Me',
+  'ui.contact.biography.label': 'Biography',
+  'ui.contact.biography.placeholder': `
+    Feel free to replace this text with your own biography, allowing your unique story and personality to shine.
+    Use this space to highlight your passions, achievements, and what makes you distinctively you. Whether it's
+    your professional journey, personal milestones, or the dreams that drive you, let your words paint a vivid
+    picture of who you are. Share your experiences, aspirations, and the values that define you, creating a
+    biography that truly reflects your essence and resonates with those who read it.
+  `,
+
+  'ui.contact.sns': 'Social Networking Services',
+  'ui.contact.sns.placeholder': 'Social network account',
+  'ui.contact.sns.add': 'Add Social Network Account',
+
+  'ui.contact.snsType.placeholder': 'Social network type',
+  'ui.contact.snsType.facebook': 'Facebook',
+  'ui.contact.snsType.instagram': 'Instagram',
+  'ui.contact.snsType.linkedin': 'Linkedin',
+  'ui.contact.snsType.phone': 'Phone',
+  'ui.contact.snsType.twitter': 'Twitter',
+
   'ui.sector.header': 'Sectors',
   'ui.sector.label': 'Sector',
   'sector.parent-sector.label': 'Parent Sector',
@@ -812,9 +837,14 @@ export const en = {
   'ui.play.created': 'Created',
   'ui.play.updated': 'Updated',
   'ui.play.submit': 'Submit',
+  'ui.play.published': 'Published',
+  'ui.play.publish': 'Publish Playbook',
+  'ui.play.saveAsDraft': 'Save as Draft',
   'ui.play.name.placeholder': 'Play Name',
   'ui.play.tags.placeholder': 'Play Tags',
   'ui.play.move.name': 'Move Name',
+  'ui.play.status.draft': 'Draft',
+  'ui.play.status.published': 'Published',
 
   'ui.move.name': 'Name',
   'ui.move.name.placeholder': 'Move Name',
@@ -2069,6 +2099,7 @@ export const en = {
 
   'ui.tag.label': 'Tag',
   'ui.tag.header': 'Tags',
+  'ui.tag.createNew': 'Create a new Tag',
 
   'ui.sdg.label': 'SDG',
   'ui.sdg.header': 'SDGs',
@@ -2444,6 +2475,7 @@ export const en = {
 
   
   'ui.resourceTopic.label': 'Resource Topic',
+  'ui.resourceTopic.label.humanized': 'Resource topic',
   'ui.resourceTopic.header': 'Resource Topics',
   'ui.resourceTopic.createNew': 'Create new resource topic',
   'ui.resourceTopic.whatIs': 'What is a Resource Topic?',
@@ -2476,15 +2508,16 @@ export const en = {
   'dpi.header.resourceFinder': 'Resource finder',
   'dpi.header.expertNetwork': 'Expert Network',
 
+  'dpi.exportNetwork.login': 'ADLI Member Login',
+  'dpi.exportNetwork.learnMore': 'Learn more about ADLI',
+  'dpi.exportNetwork.memberDashboard': 'ADLI Members Access',
+
   'dpi.wizard.title': 'Get Started',
   'dpi.wizard.tagLine': `
     Our Recommendations Wizard can help get you started to find you a curated
     list of resources, tailored to wherever you are in a project lifecycle —
     ideation, planning, implementation, or monitoring/evaluation.
   `,
-  
-  'dpi.breadcrumb.country': 'Country Profiles',
-  'dpi.breadcrumb.topic': 'Research by Topics',
 
   'dpi.landing.main.title': 'Resources for DPI',
   'dpi.landing.main.subtitle': `
@@ -2564,9 +2597,122 @@ export const en = {
     below the dotted line).
   `,
 
+  'dpi.dashboard.subtitle': `
+    Welcome to your Africa Data Leadership Initiative (ADLI) learning and engagement platform. This space
+    is designed to be a dynamic forum to share your experiences and solutions related to data governance.
+    We hope that through peer-to-peer learning, strategic partnerships, and continuous adaptation, we can
+    collectively promote and advance equitable progress across the continent.
+  `,
+  'dpi.dashboard.signOut': 'Sign Out',
+  'dpi.dashboard.profile': 'My Profile',
+
   'dpi.admin.profile': 'Profile',
   'dpi.admin.users': 'Users',
   'dpi.admin.settings': 'Settings',
   'dpi.admin.broadcast': 'Broadcast',
   'dpi.admin.signOut': 'Sign Out',
+  
+  'dpi.breadcrumb.country': 'Country Profiles',
+  'dpi.breadcrumb.topic': 'Research by Topics',
+
+  'dpi.breadcrumb.curriculum': 'ADLI Learning Journey',
+  'dpi.breadcrumb.curriculumModule': 'Module',
+  'dpi.breadcrumb.curriculumSubModule': 'Sub Module',
+
+  'dpi.breadcrumb.dashboard': 'ADLI Member Dashboard',
+
+  'dpi.curriculum.header': 'Curricula',
+  'dpi.curriculum.label': 'Curriculum',
+  'dpi.curriculum.title': 'ADLI Learning Journey',
+  'dpi.curriculum.subtitle': `
+    Follow the virtual learning sessions here. Use this space to track the six-session learning journey,
+    find useful links, and engage with other network participants.
+  `,
+
+  'dpi.curriculum.name': 'Name',
+  'dpi.curriculum.author': 'Author',
+  'dpi.curriculum.overview': 'Overview',
+  'dpi.curriculum.cover': 'Cover / Logo',
+
+  'dpi.curriculum.published': 'Published and viewable by members',
+  
+  'dpi.curriculum.save': 'Save',
+  'dpi.curriculum.submitted': 'Curriculum saved.',
+  'dpi.curriculum.autoSaved': 'Curriculum saved.',
+
+  'dpi.curriculum.module.add': 'Add Module',
+  'dpi.curriculum.module.label': 'Module',
+  'dpi.curriculum.module.header': 'Modules',
+  'dpi.curriculum.module.rearrange': 'Rearrange Modules',
+  'dpi.curriculum.module.submitted': 'Module saved.',
+  'dpi.curriculum.module.autoSaved': 'Module saved.',
+  'dpi.curriculum.module.assignExistingModule': 'Assign Existing Module',
+  'dpi.curriculum.module.unassign.title': 'Unassign Module',
+  'dpi.curriculum.module.unassign.confirmation': 'Are you sure you want to remove this module from the current curriculum?',
+  'dpi.curriculum.module.commentCount.title': '{commentCount} {commentCount, plural, one {comment} other {comments}}',
+  'dpi.curriculum.module.commentCount.join': 'Join the conversation',
+
+  'dpi.curriculum.delete.confirm.message': 'Are you sure you want to delete this curriculum?',
+
+  'toast.curriculum.unassign.success': 'Module removed from curriculum.',
+  'toast.curriculum.unassign.failure': 'Removing module from curriculum failed.',
+  'toast.module.unassign.success': 'Sub module removed from curriculum.',
+  'toast.module.unassign.failure': 'Removing sub module from curriculum failed.',
+
+  'toast.module.rearrange.success': 'Order for the modules saved successfully.',
+  'toast.module.rearrange.failure': 'Failed to save order for the modules.',
+
+
+  'dpi.curriculum.submodule.label': 'Sub Module',
+  'dpi.curriculum.submodule.header': 'Sub Modules',
+  'dpi.curriculum.submodule.add': 'Add Sub Module',
+  'dpi.curriculum.submodule.rearrange': 'Rearrange Sub Modules',
+  'dpi.curriculum.submodule.submitted': 'Sub module saved.',
+  'dpi.curriculum.submodule.autoSaved': 'Sub module saved.',
+  'dpi.curriculum.submodule.unassign.title': 'Removing Sub Module',
+  'dpi.curriculum.submodule.unassign.confirmation': 'Are you sure you want to remove this sub module from the current curriculum?',
+
+  'toast.submodule.rearrange.success': 'Order for the sub modules saved successfully.',
+  'toast.submodule.rearrange.failure': 'Failed to save order for the sub modules.',
+
+  'dpi.announcement.label': 'Announcement',
+  'dpi.announcement.header': 'Announcements',
+
+  'dpi.event.label': 'Event',
+  'dpi.event.header': 'Events',
+
+  'dpi.broadcast.label': 'Message',
+  'dpi.broadcast.header': 'Messages',
+  'dpi.broadcast.title': 'Message Title',
+  'dpi.broadcast.visible': '{messageType} will be displayed to users.',
+  'dpi.broadcast.hidden': '{messageType} will be hidden from users.',
+  'dpi.broadcast.messageType': 'Message Type',
+  'dpi.broadcast.messageTemplate': 'Message Template',
+  'dpi.broadcast.parsedMessage': 'Processed Message Template',
+  'dpi.broadcast.messageTemplate.placeholder': `
+    Create your message template here.
+  `,
+  'dpi.broadcast.messageTemplate.hint': `
+    Available variables:
+    <ul>
+      <li>'%{current_date}%', current server date when this message created.</li>
+      <li>'%{current_time}%', current server time when this message created.</li>
+      <li>'%{current_datetime}%', current server date time when this message created.</li>
+      <li>'%{user_email}%', current email of the user receiving this message.</li>
+      <li>'%{user_username}%', current username of the user receiving this message.</li>
+    </ul>
+  `,
+  'dpi.broadcast.announcementDatetime': 'Announcement Date & Time',
+  'dpi.broadcast.eventDatetime': 'Event Date & Time',
+  'dpi.broadcast.eventLocation': 'Event Location',
+  'dpi.broadcast.messageDatetime.note': 'Date of the {type} is {dateValue}',
+
+  'dpi.broadcast.visibility.updated': 'Visibility updated.',
+  'dpi.broadcast.submitted': '{type} data saved.',
+
+  'dpi.broadcast.delete.confirm.message': 'Are you sure you want to delete this {messageType}?',
+  
+  'dpi.broadcast.messageType.announcement': 'Announcement',
+  'dpi.broadcast.messageType.email': 'Email',
+  'dpi.broadcast.messageType.event': 'Event',
 }

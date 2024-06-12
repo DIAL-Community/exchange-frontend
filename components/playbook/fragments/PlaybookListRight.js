@@ -1,13 +1,13 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
 import { PlaybookFilterContext } from '../../context/PlaybookFilterContext'
+import Pagination from '../../shared/Pagination'
 import { PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/playbook'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import Pagination from '../../shared/Pagination'
-import PlaybookSearchBar from './PlaybookSearchBar'
 import ListStructure from './ListStructure'
+import PlaybookSearchBar from './PlaybookSearchBar'
 
 const PlaybookListRight = () => {
   const { formatMessage } = useIntl()
@@ -50,6 +50,7 @@ const PlaybookListRight = () => {
   const { loading, error, data } = useQuery(PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
+      owner: 'public',
       tags: tags.map(tag => tag.label)
     }
   })

@@ -1,33 +1,31 @@
-import classNames from 'classnames'
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../shared/FetchStatus'
-import { DPI_USER_DETAIL_QUERY } from '../../shared/query/user'
+import { SIMPLE_USER_DETAIL_QUERY } from '../../shared/query/user'
 import UserForm from '../users/UserForm'
 import DpiAdminTabs from './DpiAdminTabs'
 
 const DpiAdminUserForm = ({ userId }) => {
-  const { loading, error, data } = useQuery(DPI_USER_DETAIL_QUERY, {
-    variables: { userId }
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { loading, data, error } = useQuery(SIMPLE_USER_DETAIL_QUERY, {
+    variables: { userId },
+    skip: !userId
   })
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 h-[80vh] py-8'>
+    <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
       <div className="md:flex md:h-full">
         <DpiAdminTabs />
-        <div
-          className={classNames(
-            'py-6 px-8 text-medium',
-            (!userId || data) && 'text-white bg-dial-slate-800',
-            (loading || error) && 'bg-dial-alice-blue',
-            'rounded-lg w-full min-h-[70vh]'
-          )}
-        >
-          {loading && <Loading /> }
-          {userId
-            ? data
-              ? <UserForm user={data.user} />
-              : <Error />
-            : <UserForm />
+        <div className="p-12 text-medium text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full">
+          {loading
+            ? format('general.fetchingData')
+            : error
+              ? format('general.fetchError')
+              : userId && data
+                ? <UserForm user={data?.user} />
+                : <UserForm />
           }
         </div>
       </div>

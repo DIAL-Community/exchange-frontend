@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { MOVE_QUERY } from '../shared/query/move'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import Breadcrumb from '../shared/Breadcrumb'
+import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { MOVE_QUERY } from '../shared/query/move'
 import MoveDetailLeft from './MoveDetailLeft'
 import MoveDetailRight from './MoveDetailRight'
 
@@ -11,7 +11,8 @@ const MoveDetail = ({ moveSlug, playSlug, playbookSlug, locale }) => {
     variables: {
       moveSlug,
       playSlug,
-      playbookSlug
+      playbookSlug,
+      owner: 'public'
     },
     context: { headers: { 'Accept-Language': locale } }
   })

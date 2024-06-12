@@ -7,7 +7,10 @@ import PlaybookDetailNavigation from './fragments/PlaybookDetailNavigation'
 const PlaybookDetailLeft = ({ scrollRef, playbook }) => {
   return (
     <div className='bg-dial-slate-100 lg:h-full'>
-      <div className='top-[176px] sticky flex flex-col gap-y-3'>
+      <div
+        className='sticky flex flex-col gap-y-3'
+        style={{ top: 'calc(var(--header-height) + var(--filter-height) + 1.25rem)' }}
+      >
         <PlaybookDetailNavigation playbook={playbook} />
         <div className='px-4 lg:px-6 flex flex-col gap-y-3 mt-3'>
           <hr className='border-b border-dial-slate-200'/>

@@ -1,19 +1,20 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import DpiAdminUsers from '../../../components/dpi/admin/DpiAdminUsers'
+import { allowedToView } from '../../../components/dpi/admin/utilities'
 import DpiFooter from '../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../components/dpi/sections/DpiHeader'
-import { Loading } from '../../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
 
-const DpiAdminUserPage = ({ dpiTenants }) => {
+const DpiAdminUserListPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { status } = useSession()
+  const { status, data } = useSession()
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -30,8 +31,12 @@ const DpiAdminUserPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <DpiHeader />
-        { status === 'unauthenticated' && <Loading />}
-        { status === 'authenticated' && <DpiAdminUsers />}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && allowedToView(data.user)
+            ? <DpiAdminUsers />
+            : <Unauthorized />
+        }
         <DpiFooter />
       </ClientOnly>
     </>
@@ -46,4 +51,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default DpiAdminUserPage
+export default DpiAdminUserListPage

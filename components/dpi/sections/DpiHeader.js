@@ -73,7 +73,7 @@ const DpiHeader = ({ isOnAuthPage = false }) => {
     <header className='z-50 sticky top-0 bg-dial-deep-purple max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
-          <div className='flex gap-1 text-white'>
+          <div className='flex gap-1 text-dial-cotton'>
             <img
               src='/ui/v1/dial-logo-white.svg'
               alt={format('ui.image.logoAlt', { name: 'DIAL' })}
@@ -125,7 +125,7 @@ const HamburgerMenu = ({ menuExpanded, onMenuClicked }) => {
         className='ml-auto my-auto cursor-pointer block md:hidden z-30'
       >
         <svg
-          className='fill-current text-white'
+          className='fill-current text-dial-cotton'
           xmlns='http://www.w3.org/2000/svg'
           width='16'
           height='16'

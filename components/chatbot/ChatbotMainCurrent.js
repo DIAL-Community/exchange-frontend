@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
@@ -52,8 +52,8 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
     }
   })
 
-  const submitQuestion = () => {
-    if (user) {
+  const submitQuestion = useCallback(() => {
+    if (user && currentQuestion) {
       // Set the loading indicator.
       setMutating(true)
       // Send graph query to the backend. Set the base variables needed to perform update.
@@ -73,7 +73,21 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
         }
       })
     }
-  }
+  }, [createChatbotConversation, currentConversation, existingSessionIdentifier, currentQuestion, locale, user])
+
+  const enterPressedHandler = useCallback((event) => {
+    if (event.key === 'Enter') {
+      submitQuestion()
+    }
+  }, [submitQuestion])
+
+  useEffect(() => {
+    document.addEventListener('keydown', enterPressedHandler, false)
+
+    return () => {
+      document.removeEventListener('keydown', enterPressedHandler, false)
+    }
+  }, [enterPressedHandler])
 
   return (
     <div className='flex flex-col'>
