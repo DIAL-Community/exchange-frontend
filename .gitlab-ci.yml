@@ -10,7 +10,7 @@ cache:
       files:
         - yarn.lock
     paths:
-      - .yarn/cache
+    - .yarn/cache
   - key: ${CI_COMMIT_REF_SLUG}
     paths:
     - .next/cache/
