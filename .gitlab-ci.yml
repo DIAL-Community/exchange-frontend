@@ -35,13 +35,45 @@ build_react:
     - yarn lint
     - yarn build
 
-test:
+test_react:
   tags:
     - test
   stage: test
   script:
     - yarn install
     - yarn test --maxWorkers=2
+
+docker_build_main:
+  # Official docker image.
+  image: docker:latest
+  stage: deploy
+  services:
+    - docker:dind
+  tags:
+    - gitlab-org
+  before_script:
+    - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD" $DOCKER_HUB_URL
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
+  only:
+    - main
+
+docker_build_other:
+  # Official docker image.
+  image: docker:latest
+  stage: deploy
+  services:
+    - docker:dind
+  tags:
+    - gitlab-org
+  before_script:
+    - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD" $DOCKER_HUB_URL
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  except:
+    - main
 
 deploy:
   tags:
