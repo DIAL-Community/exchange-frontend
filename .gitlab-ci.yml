@@ -38,11 +38,12 @@ build_react:
     - yarn lint
     - yarn build
 
-test:
+test_react:
   tags:
     - test
   stage: test
   script:
+    - yarn install
     - yarn test --maxWorkers=2
 
 deploy:
