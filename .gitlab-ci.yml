@@ -52,6 +52,7 @@ docker_build_main:
   tags:
     - gitlab-org
   before_script:
+    - unset DOCKER_HOST
     - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD" $DOCKER_HUB_URL
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
@@ -68,6 +69,7 @@ docker_build_other:
   tags:
     - gitlab-org
   before_script:
+    - unset DOCKER_HOST
     - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD" $DOCKER_HUB_URL
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
