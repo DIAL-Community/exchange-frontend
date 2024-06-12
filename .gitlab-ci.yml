@@ -6,11 +6,14 @@ stages:
   - deploy
 
 cache:
-  key:
-    files:
-      - yarn.lock
-  paths:
-    - .yarn/cache
+  - key:
+      files:
+        - yarn.lock
+    paths:
+      - .yarn/cache
+  - key: ${CI_COMMIT_REF_SLUG}
+    paths:
+    - .next/cache/
 
 variables:
   SERVER_IP: "$SERVER_IP"
@@ -42,40 +45,6 @@ test_react:
   script:
     - yarn install
     - yarn test --maxWorkers=2
-
-docker_build_main:
-  # Official docker image.
-  image: docker:latest
-  stage: deploy
-  services:
-    - docker:dind
-  tags:
-    - gitlab-org
-  before_script:
-    - unset DOCKER_HOST
-    - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD" $DOCKER_HUB_URL
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
-  only:
-    - main
-
-docker_build_other:
-  # Official docker image.
-  image: docker:latest
-  stage: deploy
-  services:
-    - docker:dind
-  tags:
-    - gitlab-org
-  before_script:
-    - unset DOCKER_HOST
-    - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD" $DOCKER_HUB_URL
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-  except:
-    - main
 
 deploy:
   tags:
