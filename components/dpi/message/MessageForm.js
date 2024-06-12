@@ -16,7 +16,10 @@ import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_MESSAGE } from '../../shared/mutation/message'
-import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE, generateMessageTypeOptions } from './constant'
+import { MESSAGE_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_MESSAGES_QUERY } from '../../shared/query/message'
+import {
+  DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE, generateMessageTypeOptions, MESSAGE_PAGE_SIZE
+} from './constant'
 
 const MessageForm = ({ message }) => {
   const { formatMessage } = useIntl()
@@ -36,6 +39,12 @@ const MessageForm = ({ message }) => {
 
   const { locale } = useRouter()
   const [createMessage, { reset }] = useMutation(CREATE_MESSAGE, {
+    refetchQueries: [{
+      query: PAGINATED_MESSAGES_QUERY,
+      variables: { limit: MESSAGE_PAGE_SIZE, offset: 0 }
+    }, {
+      query: MESSAGE_PAGINATION_ATTRIBUTES_QUERY
+    }],
     onError: (error) => {
       showFailureMessage(error?.message)
       setMutating(false)

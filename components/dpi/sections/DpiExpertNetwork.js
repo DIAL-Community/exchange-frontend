@@ -72,7 +72,7 @@ const DpiExpertNetwork = () => {
           ? format('general.fetchingData')
           : error
             ? format('general.fetchError')
-            : data
+            : data.hubContacts
               ? <NetworkMembers
                 members={
                   data?.hubContacts
