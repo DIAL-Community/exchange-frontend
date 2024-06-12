@@ -15,7 +15,7 @@ const DpiCountryProducts = ({ country }) => {
 
   useEffect(() => {
     setDisplayedProducts(
-      country.products.slice(
+      country.dpiProducts.slice(
         0,
         DEFAULT_PAGE_SIZE
       )
@@ -26,7 +26,7 @@ const DpiCountryProducts = ({ country }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
     setPageNumber(destinationPage)
     setDisplayedProducts(
-      country.products.slice(
+      country.dpiProducts.slice(
         destinationPage * DEFAULT_PAGE_SIZE,
         (destinationPage + 1) * DEFAULT_PAGE_SIZE
       )
@@ -36,7 +36,7 @@ const DpiCountryProducts = ({ country }) => {
   return (
     <div className='product-section bg-dial-sapphire'>
       <div className='px-4 lg:px-8 xl:px-56'>
-        <div className='text-xl text-center py-8 text-white'>
+        <div className='text-xl text-center py-8 text-dial-cotton'>
           {format('ui.product.header')}
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
@@ -46,7 +46,7 @@ const DpiCountryProducts = ({ country }) => {
         </div>
         <DpiPagination
           pageNumber={pageNumber}
-          totalCount={country.products.length}
+          totalCount={country.dpiProducts.length}
           defaultPageSize={DEFAULT_PAGE_SIZE}
           onClickHandler={onClickHandler}
           theme='light'

@@ -8,7 +8,7 @@ import QueryNotification from '../../components/shared/QueryNotification'
 import AboutRibbon from '../../components/about/AboutRibbon'
 import AboutMain from '../../components/about/AboutMain'
 
-const AboutPage = () => {
+const AboutPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -18,7 +18,7 @@ const AboutPage = () => {
         title={format('header.about')}
         description={format('seo.description.about')}
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <Header />
         <div className='flex flex-col'>
@@ -29,6 +29,14 @@ const AboutPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default AboutPage

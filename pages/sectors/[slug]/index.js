@@ -8,7 +8,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 import Footer from '../../../components/shared/Footer'
 import SectorDetail from '../../../components/sector/SectorDetail'
 
-const SectorPage = () => {
+const SectorPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,7 +25,7 @@ const SectorPage = () => {
           )
         }
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <SectorDetail slug={slug} />
@@ -33,6 +33,14 @@ const SectorPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default SectorPage

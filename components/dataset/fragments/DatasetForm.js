@@ -1,26 +1,23 @@
-import React, { useState, useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import Input from '../../shared/form/Input'
-import ValidationError from '../../shared/form/ValidationError'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
-import { CREATE_DATASET } from '../../shared/mutation/dataset'
 import IconButton from '../../shared/form/IconButton'
-import UrlInput from '../../shared/form/UrlInput'
-import Select from '../../shared/form/Select'
+import Input from '../../shared/form/Input'
 import { generateDatasetTypeOptions } from '../../shared/form/options'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Select from '../../shared/form/Select'
+import UrlInput from '../../shared/form/UrlInput'
+import ValidationError from '../../shared/form/ValidationError'
+import { CREATE_DATASET } from '../../shared/mutation/dataset'
+import { DATASET_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_DATASETS_QUERY } from '../../shared/query/dataset'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import {
-  DATASET_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_DATASETS_QUERY
-} from '../../shared/query/dataset'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -188,7 +185,7 @@ const DatasetForm = React.memo(({ dataset }) => {
                   <div key={alias.id} className='flex gap-x-2'>
                     <Input
                       {...register(`aliases.${aliasIdx}.value`)}
-                      placeholder={format('ui.dataset.alias')}
+                      placeholder={format('ui.dataset.aliases')}
                     />
                     {isLastAlias(aliasIdx) && (
                       <span>

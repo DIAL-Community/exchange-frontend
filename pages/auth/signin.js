@@ -1,15 +1,13 @@
-import { useRouter } from 'next/router'
-import { getCsrfToken, getSession } from 'next-auth/react'
-import { useIntl } from 'react-intl'
-import { useState, useRef, useEffect, useCallback } from 'react'
-import { FaSpinner } from 'react-icons/fa'
-import { signIn } from 'next-auth/react'
-import { useForm } from 'react-hook-form'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { getCsrfToken, getSession, signIn } from 'next-auth/react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa'
+import { useIntl } from 'react-intl'
 import Input from '../../components/shared/form/Input'
-import Header from '../../components/shared/Header'
-import Footer from '../../components/shared/Footer'
 import { useActiveTenant } from '../../lib/hooks'
+import AuthLayoutPage from './layout'
 
 export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()
@@ -70,8 +68,7 @@ export default function SignIn ({ csrfToken }) {
   }, [formEl])
 
   return (
-    <>
-      <Header isOnAuthPage />
+    <AuthLayoutPage isOnAuthPage={true}>
       <div className='bg-dial-gray-dark pt-40 pb-40 text-dial-sapphire max-w-catalog mx-auto min-h-[70vh]'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <form
@@ -148,8 +145,7 @@ export default function SignIn ({ csrfToken }) {
           </form>
         </div>
       </div>
-      <Footer />
-    </>
+    </AuthLayoutPage>
   )
 }
 

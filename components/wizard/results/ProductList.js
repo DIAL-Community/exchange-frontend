@@ -1,11 +1,11 @@
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useState } from 'react'
 import ProductCard from '../../product/ProductCard'
-import PaginationStructure from '../../shared/Pagination'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import { DisplayType } from '../../utils/constants'
+import Pagination from '../../shared/Pagination'
 import { WIZARD_PRODUCTS_QUERY } from '../../shared/query/wizard'
+import { DisplayType } from '../../utils/constants'
 import { WizardContext } from '../WizardContext'
 
 const ProductList = ({ headerRef }) => {
@@ -67,7 +67,7 @@ const ProductList = ({ headerRef }) => {
           />
         )}
       </div>
-      <PaginationStructure
+      <Pagination
         pageNumber={pageNumber}
         totalCount={paginationAttribute.totalCount}
         defaultPageSize={DEFAULT_PAGE_SIZE}

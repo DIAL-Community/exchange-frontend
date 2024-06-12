@@ -8,7 +8,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 import Footer from '../../../components/shared/Footer'
 import ProductEdit from '../../../components/product/ProductEdit'
 
-const EditProductPage = () => {
+const EditProductPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,7 +25,7 @@ const EditProductPage = () => {
           )
         }
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <ProductEdit slug={slug} locale={locale} />
@@ -33,6 +33,14 @@ const EditProductPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default EditProductPage

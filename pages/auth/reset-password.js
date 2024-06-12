@@ -1,13 +1,14 @@
+import { useCallback, useContext, useState } from 'react'
+import { getCsrfToken, getSession } from 'next-auth/react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useState } from 'react'
-import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
-import dynamic from 'next/dynamic'
-import { getCsrfToken, getSession } from 'next-auth/react'
-import Header from '../../components/shared/Header'
+import { useIntl } from 'react-intl'
 import Footer from '../../components/shared/Footer'
 import { ToastContext } from '../../lib/ToastContext'
+import AuthLayoutPage from './layout'
+
 const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const ResetPassword = () => {
@@ -53,8 +54,7 @@ const ResetPassword = () => {
   }
 
   return (
-    <>
-      <Header isOnAuthPage />
+    <AuthLayoutPage isOnAuthPage={true}>
       <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-28 max-w-catalog mx-auto min-h-[70vh]'>
         <div className='pt-4 text-dial-sapphire'>
@@ -106,7 +106,7 @@ const ResetPassword = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </AuthLayoutPage>
   )
 }
 

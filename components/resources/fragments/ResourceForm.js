@@ -208,7 +208,6 @@ const ResourceSourceStructure = ({ sourceStructure, setSourceStructure, mutating
   }
 
   const selectSourceStructure = (selectedSourceStructure) => {
-    console.log('selectedSourceStructure', selectedSourceStructure)
     setSourceStructure(selectedSourceStructure)
   }
 

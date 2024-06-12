@@ -5,13 +5,13 @@ import EmbeddedHeader from '../../../components/shared/EmbeddedHeader'
 import EmbeddedFooter from '../../../components/shared/EmbeddedFooter'
 import PlaybookDetail from '../../../components/playbook/PlaybookDetail'
 
-const EmbeddedPlaybook = () => {
+const EmbeddedPlaybook = ({ defaultTenants }) => {
   const router = useRouter()
   const { locale, query: { slug } } = router
 
   return (
     <>
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={defaultTenants}>
         <EmbeddedHeader />
         <PlaybookDetailProvider>
           <PlaybookDetail slug={slug} locale={locale} />
@@ -20,6 +20,14 @@ const EmbeddedPlaybook = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default EmbeddedPlaybook

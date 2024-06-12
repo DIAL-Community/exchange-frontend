@@ -28,7 +28,7 @@ variables:
 
 build_react:
   tags:
-    - docker
+    - test
   stage: build
   script:
     - yarn install
@@ -37,7 +37,7 @@ build_react:
 
 test:
   tags:
-    - docker
+    - test
   stage: test
   script:
     - yarn test --maxWorkers=2

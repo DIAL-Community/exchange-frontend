@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
+import { useIntl } from 'react-intl'
 import DeleteComment from './DeleteComment'
 
 const CommentCard = ({ commentId, authorFullName, authorAvatarUrl, text, replies, className }) => {
@@ -21,7 +21,7 @@ const CommentCard = ({ commentId, authorFullName, authorAvatarUrl, text, replies
             {authorFullName}
           </div>
           <div className='flex-1 text-justify'>
-            {parse(text)}
+            {text && parse(text)}
           </div>
         </div>
         <div className='flex ml-auto px-6'>

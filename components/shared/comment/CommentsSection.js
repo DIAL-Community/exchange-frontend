@@ -1,14 +1,15 @@
-import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useMutation, useQuery } from '@apollo/client'
 import classNames from 'classnames'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import EditButton from '../form/EditButton'
+import { useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import { CREATE_COMMENT, DELETE_COMMENT } from '../mutation/comment'
-import { COMMENTS_QUERY } from '../query/comment'
 import { Loading } from '../FetchStatus'
+import EditButton from '../form/EditButton'
+import { CREATE_COMMENT, DELETE_COMMENT } from '../mutation/comment'
+import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../query/comment'
 import CommentsList from './CommentsList'
+
 const CommentSection = dynamic(
   () => import('react-comments-section').then((module) => module.CommentSection),
   { ssr: false }
@@ -30,12 +31,27 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     variables: {
       commentObjectId: parseInt(objectId),
       commentObjectType: objectType
-    },
-    notifyOnNetworkStatusChange: true
+    }
   })
 
-  const [createComment] = useMutation(CREATE_COMMENT, { refetchQueries: ['CountComments'] })
-  const [deleteComment] = useMutation(DELETE_COMMENT, { refetchQueries: ['CountComments'] })
+  const [createComment] = useMutation(CREATE_COMMENT, {
+    refetchQueries: [{
+      query: COMMENTS_COUNT_QUERY,
+      variables: {
+        commentObjectId: parseInt(objectId),
+        commentObjectType: objectType
+      }
+    }]
+  })
+  const [deleteComment] = useMutation(DELETE_COMMENT, {
+    refetchQueries: [{
+      query: COMMENTS_COUNT_QUERY,
+      variables: {
+        commentObjectId: parseInt(objectId),
+        commentObjectType: objectType
+      }
+    }]
+  })
 
   const onCommentUpsertAction = (text, commentId, parentCommentId = null, parentOfRepliedCommentId = null) => {
     if (user) {
@@ -76,12 +92,24 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     }
   }
 
-  useEffect(() => document.addEventListener('click', handleClickOutside))
+  const getElementsByClassName = useCallback((className) => {
+    return Array.from(innerRef?.current?.getElementsByClassName(className) ?? [])
+  },[])
 
-  const getElementsByClassName = useCallback(
-    (className) => Array.from(innerRef?.current?.getElementsByClassName(className) ?? []),
-    []
-  )
+  const handleClickOutside = useCallback(({ target }) => {
+    const inputs = getElementsByClassName(INPUT_BORDERED_WRAPPER_CLASSNAME)
+    if (!inputs.some(element => element.contains(target))) {
+      inputs.forEach(input => input.classList.remove(FOCUSED_CLASSNAME))
+    }
+  }, [getElementsByClassName])
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside, false)
+    }
+  }, [handleClickOutside])
 
   const focusActiveElement = () => {
     const activeInput = document.activeElement.getElementsByClassName(INPUT_CLASSNAME)[FIRST_ELEMENT_INDEX]
@@ -93,13 +121,6 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
         input.classList.remove(FOCUSED_CLASSNAME)
       }
     })
-  }
-
-  const handleClickOutside = ({ target }) => {
-    const inputs = getElementsByClassName(INPUT_BORDERED_WRAPPER_CLASSNAME)
-    if (!inputs.some(element => element.contains(target))) {
-      inputs.forEach(input => input.classList.remove(FOCUSED_CLASSNAME))
-    }
   }
 
   const [commentData, setCommentData] = useState([])
@@ -125,13 +146,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     <div ref={commentsSectionRef} className={classNames(className, 'text-dial-sapphire')}>
       {loadingUserSession && <Loading />}
       {isInEditMode
-        ? (
-          <CommentsList
-            comments={data?.comments}
-            loading={loading}
-            onClose={toggleIsInEditMode}
-          />
-        )
+        ? <CommentsList comments={data?.comments} loading={loading} onClose={toggleIsInEditMode} />
         : (
           <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
             {isAdminUser && (

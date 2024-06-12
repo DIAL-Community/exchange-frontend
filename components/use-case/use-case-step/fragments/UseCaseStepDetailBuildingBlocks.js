@@ -1,15 +1,15 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { fetchSelectOptions } from '../../../utils/search'
-import Pill from '../../../shared/form/Pill'
-import Select from '../../../shared/form/Select'
-import EditableSection from '../../../shared/EditableSection'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../shared/query/buildingBlock'
-import { UPDATE_USE_CASE_STEP_BUILDING_BLOCKS } from '../../../shared/mutation/useCaseStep'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
+import EditableSection from '../../../shared/EditableSection'
+import Pill from '../../../shared/form/Pill'
+import Select from '../../../shared/form/Select'
+import { UPDATE_USE_CASE_STEP_BUILDING_BLOCKS } from '../../../shared/mutation/useCaseStep'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../shared/query/buildingBlock'
+import { fetchSelectOptions } from '../../../utils/search'
 import UseCaseBuildingBlockRenderer from '../../custom/BuildingBlockRenderer'
 
 const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, headerRef }) => {
@@ -114,6 +114,11 @@ const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, header
       {format('ui.buildingBlock.header')}
     </div>
 
+  const sectionDisclaimer =
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.useCaseStep.overview.buildingBlock')}
+    </div>
+
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
@@ -148,6 +153,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, header
     <EditableSection
       canEdit={canEdit}
       sectionHeader={sectionHeader}
+      sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

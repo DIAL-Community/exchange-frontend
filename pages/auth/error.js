@@ -1,16 +1,15 @@
+import { useCallback } from 'react'
 import { getCsrfToken, getSession } from 'next-auth/react'
 import Link from 'next/link'
-import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import Header from '../../components/shared/Header'
+import AuthLayoutPage from './layout'
 
 export default function Error () {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <>
-      <Header isOnAuthPage />
+    <AuthLayoutPage isOnAuthPage={true}>
       <div className='bg-dial-gray-dark pt-40 h-screen text-dial-sapphire'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
@@ -26,7 +25,7 @@ export default function Error () {
           </div>
         </div>
       </div>
-    </>
+    </AuthLayoutPage>
   )
 }
 

@@ -79,6 +79,9 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
               />
             }
           </div>
+          <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+            {format('ui.useCase.overview.useCaseStep')}
+          </div>
           <div className='flex flex-col gap-y-3'>
             {useCase?.useCaseSteps?.map((useCaseStep, index) =>
               <Link
@@ -148,6 +151,9 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <div className='text-xl font-semibold text-dial-blueberry' ref={buildingBlockRef}>
             {format('ui.buildingBlock.header')}
+          </div>
+          <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+            {format('ui.useCase.overview.buildingBlock')}
           </div>
           {useCase?.buildingBlocks?.length <= 0 &&
             <div className='text-sm text-dial-stratos'>

@@ -3,7 +3,7 @@ import { useActiveTenant } from '../lib/hooks'
 import DpiPage from './landing/dpi'
 import LandingPage from './landing/index'
 
-const RootPage = () => {
+const RootPage = ({ dpiTenants, defaultTenants }) => {
   const { waitingActiveTenant, tenant } = useActiveTenant()
 
   return (
@@ -11,11 +11,19 @@ const RootPage = () => {
       { waitingActiveTenant
         ? <Loading />
         : tenant === 'dpi'
-          ? <DpiPage />
-          : <LandingPage />
+          ? <DpiPage dpiTenants={dpiTenants} />
+          : <LandingPage defaultTenants={defaultTenants} />
       }
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { dpiTenants, defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { dpiTenants, defaultTenants } }
 }
 
 export default RootPage

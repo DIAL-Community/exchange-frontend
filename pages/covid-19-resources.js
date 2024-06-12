@@ -271,9 +271,9 @@ const Content = () => {
   )
 }
 
-const Covid19Resources = () => (
+const Covid19Resources = ({ defaultTenants }) => (
   <>
-    <ClientOnly clientTenant='default'>
+    <ClientOnly clientTenants={defaultTenants}>
       <QueryNotification />
       <Header />
       <Content />
@@ -281,5 +281,13 @@ const Covid19Resources = () => (
     </ClientOnly>
   </>
 )
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
+}
 
 export default Covid19Resources

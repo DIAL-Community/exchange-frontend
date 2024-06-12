@@ -7,7 +7,7 @@ import ClientOnly from '../../../../lib/ClientOnly'
 import Footer from '../../../../components/shared/Footer'
 import ProjectForm from '../../../../components/project/fragments/ProjectForm'
 
-const CreateProject = () => {
+const CreateProject = ({ defaultTenants }) => {
   const { locale, query } = useRouter()
   const { slug } = query
 
@@ -28,12 +28,20 @@ const CreateProject = () => {
   return (
     <>
       <Header />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={defaultTenants}>
         <ProjectForm storefront={data?.storefront} />
       </ClientOnly>
       <Footer />
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default CreateProject

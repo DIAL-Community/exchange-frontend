@@ -10,7 +10,7 @@ import OpportunityRibbon from '../../components/opportunity/OpportunityRibbon'
 import OpportunityTabNav from '../../components/opportunity/OpportunityTabNav'
 import OpportunityMain from '../../components/opportunity/OpportunityMain'
 
-const OpportunityListPage = () => {
+const OpportunityListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -27,7 +27,7 @@ const OpportunityListPage = () => {
           )
         }
       />
-      <ClientOnly clientTenant='default'>
+      <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
@@ -40,6 +40,14 @@ const OpportunityListPage = () => {
       </ClientOnly>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
+  const { defaultTenants } = await response.json()
+
+  // Passing data to the page as props
+  return { props: { defaultTenants } }
 }
 
 export default OpportunityListPage

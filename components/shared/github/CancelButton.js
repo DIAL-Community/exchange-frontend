@@ -14,7 +14,6 @@ const CancelButton = ({ onCancel }) => {
       onClick={onCancel}
       className='cancel-button'
       disabled={isMutating}
-      data-testid='cancel-button'
     >
       {format('app.cancel')}
     </button>

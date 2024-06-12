@@ -34,15 +34,15 @@ const DpiTopic = ({ slug }) => {
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/dpi-hero.svg'/>
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto'>
-          <div className='px-4 lg:px-8 xl:px-56'>
+          <div className='px-4 lg:px-8 xl:px-56 text-dial-gray'>
             <DpiBreadcrumb slugNameMapping={slugNameMapping} />
           </div>
         </div>
-        <div className='text-2xl text-center text-white py-5 uppercase mx-auto max-w-prose'>
+        <div className='text-2xl text-center text-dial-cotton py-5 uppercase mx-auto max-w-prose'>
           {resourceTopic.name}
         </div>
-        <div className='text-lg text-center text-white pb-8 mx-auto max-w-prose'>
-          {parse(resourceTopic.resourceTopicDescription?.description)}
+        <div className='text-lg text-center text-dial-cotton pb-8 mx-auto max-w-prose'>
+          {resourceTopic.resourceTopicDescription && parse(resourceTopic.resourceTopicDescription?.description)}
         </div>
       </div>
       <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>

@@ -1,9 +1,9 @@
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useState } from 'react'
-import { WIZARD_USE_CASES_QUERY } from '../../shared/query/wizard'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import PaginationStructure from '../../shared/Pagination'
+import Pagination from '../../shared/Pagination'
+import { WIZARD_USE_CASES_QUERY } from '../../shared/query/wizard'
 import UseCaseCard from '../../use-case/UseCaseCard'
 import { DisplayType } from '../../utils/constants'
 import { WizardContext } from '../WizardContext'
@@ -66,7 +66,7 @@ const UseCaseList = ({ headerRef }) => {
           />
         )}
       </div>
-      <PaginationStructure
+      <Pagination
         pageNumber={pageNumber}
         totalCount={paginationAttribute.totalCount}
         defaultPageSize={DEFAULT_PAGE_SIZE}

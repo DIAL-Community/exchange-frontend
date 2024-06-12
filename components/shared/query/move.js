@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const MOVE_QUERY = gql`
-  query Move($playbookSlug: String!, $playSlug: String!, $moveSlug: String!) {
+  query Move($playbookSlug: String!, $playSlug: String!, $moveSlug: String!, $owner: String!) {
     move(playSlug: $playSlug, slug: $moveSlug) {
       id
       name
@@ -17,12 +17,12 @@ export const MOVE_QUERY = gql`
         slug
       }
     }
-    play(slug: $playSlug) {
+    play(slug: $playSlug, owner: $owner) {
       id
       name
       slug
     }
-    playbook(slug: $playbookSlug) {
+    playbook(slug: $playbookSlug, owner: $owner) {
       id
       name
       slug
@@ -31,13 +31,13 @@ export const MOVE_QUERY = gql`
 `
 
 export const PLAY_QUERY = gql`
-  query Play($playbookSlug: String!, $playSlug: String!) {
-    play(slug: $playSlug) {
+  query Play($playbookSlug: String!, $playSlug: String!, $owner: String) {
+    play(slug: $playSlug, owner: $owner) {
       id
       name
       slug
     }
-    playbook(slug: $playbookSlug) {
+    playbook(slug: $playbookSlug, owner: $owner) {
       id
       name
       slug

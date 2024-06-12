@@ -1,8 +1,8 @@
-import { useQuery } from '@apollo/client'
-import { suggest, geocode, reverseGeocode } from '@esri/arcgis-rest-geocoding'
 import React, { useCallback, useMemo } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { geocode, reverseGeocode, suggest } from '@esri/arcgis-rest-geocoding'
 import { useArcGisToken } from '../../../lib/hooks'
 import { COUNTRY_CODES_QUERY } from '../query/country'
 import Select from './Select'
@@ -22,12 +22,8 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
 
   const fetchLocationOptions = async (searchText) => {
 
-    console.log('ARCGIS Token: ', authentication)
-
     if (searchText !== '') {
       const response = await suggest(searchText, { authentication, params: { countryCode: countryCodes } })
-
-      console.log('ARCGIS Response: ', response)
 
       return response?.suggestions?.map(({ text, magicKey }) => ({
         value: magicKey,
@@ -60,18 +56,16 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
   return (
     loadingCountries
       ? <FaSpinner size='2em' className='spinner' />
-      : (
-        <Select
-          ref={ref}
-          async
-          isSearch
-          placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={input => fetchLocationOptions(input)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('location.header') })}
-          onChange={setLocation}
-          value={value}
-        />
-      )
+      : <Select
+        ref={ref}
+        async
+        isSearch
+        placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+        loadOptions={input => fetchLocationOptions(input)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('location.header') })}
+        onChange={setLocation}
+        value={value}
+      />
   )
 })
 

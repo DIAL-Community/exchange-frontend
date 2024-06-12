@@ -1,14 +1,14 @@
-import { useState, useEffect, useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
-import { useIntl } from 'react-intl'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
-import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
-import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../shared/mutation/move'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../shared/mutation/move'
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
   const [mutating, setMutating] = useState(false)
@@ -320,6 +320,7 @@ const MoveForm = ({ playbook, play, move }) => {
           name,
           moveSlug,
           playSlug,
+          owner: 'public',
           description,
           resources
         },
@@ -358,6 +359,7 @@ const MoveForm = ({ playbook, play, move }) => {
         name,
         moveSlug,
         playSlug,
+        owner: 'public',
         description,
         resources
       }
