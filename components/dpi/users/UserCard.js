@@ -2,12 +2,12 @@ import { useCallback } from 'react'
 import Link from 'next/link'
 import { FormattedDate, useIntl } from 'react-intl'
 
-const UserCard = ({ index, user }) => {
+const UserCard = ({ user }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-violet text-dial-stratos'}`}>
+    <div className='px-4 py-6 rounded-lg'>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-base font-semibold'>

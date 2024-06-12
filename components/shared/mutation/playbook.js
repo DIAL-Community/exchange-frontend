@@ -3,26 +3,28 @@ import { gql } from '@apollo/client'
 const generatePlaybookMutation = (mutationName, mutationPath) =>
   `
     mutation ${mutationName} (
-      $name: String!,
-      $slug: String!,
-      $author: String,
-      $cover: Upload,
-      $overview: String!,
-      $audience: String,
-      $outcomes: String,
-      $tags: [String!],
+      $name: String!
+      $slug: String!
+      $cover: Upload
       $draft: Boolean
+      $owner: String!
+      $author: String
+      $tags: [String!]
+      $audience: String
+      $outcomes: String
+      $overview: String!
     ) {
       ${mutationPath}(
-        name: $name,
-        slug: $slug,
-        author: $author,
-        cover: $cover,
-        overview: $overview,
-        audience: $audience,
-        outcomes: $outcomes,
-        tags: $tags,
+        name: $name
+        slug: $slug
+        tags: $tags
+        cover: $cover
         draft: $draft
+        owner: $owner
+        author: $author
+        audience: $audience
+        outcomes: $outcomes
+        overview: $overview
       ) {
         playbook {
           id
@@ -77,8 +79,8 @@ export const APPLY_AS_CONTENT_EDITOR = gql`
 `
 
 export const UNASSIGN_PLAYBOOK_PLAY = gql`
-  mutation DeletePlaybookPlay ($playbookSlug: String!, $playSlug: String!) {
-    deletePlaybookPlay(playbookSlug: $playbookSlug, playSlug: $playSlug) {
+  mutation DeletePlaybookPlay ($playbookSlug: String!, $playSlug: String!, $owner: String!) {
+    deletePlaybookPlay(playbookSlug: $playbookSlug, playSlug: $playSlug, owner: $owner) {
       playbook {
         id
       }
@@ -91,10 +93,12 @@ export const UPDATE_PLAYBOOK_PLAYS = gql`
   mutation UpdatePlaybookPlays (
     $playSlugs: [String!]!
     $slug: String!
+    $owner: String!
   ) {
     updatePlaybookPlays (
       playSlugs: $playSlugs
       slug: $slug
+      owner: $owner
     ) {
       playbook {
         id

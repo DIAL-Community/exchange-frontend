@@ -62,7 +62,7 @@ export const PAGINATED_USERS_QUERY = gql`
   }
 `
 
-export const DPI_USER_DETAIL_QUERY = gql`
+export const SIMPLE_USER_DETAIL_QUERY = gql`
   query User($userId: String!) {
     user(userId: $userId) {
       id
@@ -104,7 +104,7 @@ export const USER_DETAIL_QUERY = gql`
 
 export const USER_SEARCH_QUERY = gql`
   query Users($search: String) {
-    products(search: $search) {
+    users(search: $search) {
       id
       email
       username

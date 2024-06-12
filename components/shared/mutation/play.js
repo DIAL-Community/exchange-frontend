@@ -4,8 +4,10 @@ const generatePlayMutation = (mutationName, pathName) => `
   mutation ${mutationName} (
     $name: String!
     $slug: String!
-    $description: String!
+    $owner: String!
+    $draft: Boolean
     $tags: [String!]
+    $description: String!
     $playbookSlug: String
     $productSlugs: [String!]
     $buildingBlockSlugs: [String!]
@@ -13,8 +15,10 @@ const generatePlayMutation = (mutationName, pathName) => `
     ${pathName} (
       name: $name
       slug: $slug
-      description: $description
       tags: $tags
+      owner: $owner
+      draft: $draft
+      description: $description
       playbookSlug: $playbookSlug
       productSlugs: $productSlugs
       buildingBlockSlugs: $buildingBlockSlugs
@@ -36,10 +40,12 @@ export const UPDATE_PLAY_MOVES = gql`
   mutation UpdatePlayMoves (
     $moveSlugs: [String!]!
     $slug: String!
+    $owner: String!
   ) {
     updatePlayMoves (
       moveSlugs: $moveSlugs
       slug: $slug
+      owner: $owner
     ) {
       play {
         id

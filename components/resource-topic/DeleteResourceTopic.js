@@ -37,18 +37,24 @@ const DeleteResourceTopic = ({ resourceTopic }) => {
       if (response?.resourceTopic && response?.errors?.length === 0) {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
-          format('toast.delete.success', { entity: format('ui.resourceTopic.label') }),
+          format('toast.delete.success', {
+            entity: format('ui.resourceTopic.label.humanized')
+          }),
           () => router.push(`/${locale}/resource-topics`)
         )
       } else {
         setDisplayConfirmDialog(false)
-        showFailureMessage(format('toast.delete.failure', { entity: format('ui.resourceTopic.label') }))
+        showFailureMessage(format('toast.delete.failure', {
+          entity: format('ui.resourceTopic.label').toLowerCase()
+        }))
         reset()
       }
     },
     onError: () => {
       setDisplayConfirmDialog(false)
-      showFailureMessage(format('toast.delete.failure', { entity: format('ui.resourceTopic.label') }))
+      showFailureMessage(format('toast.delete.failure', {
+        entity: format('ui.resourceTopic.label').toLowerCase()
+      }))
       reset()
     }
   })
@@ -75,7 +81,7 @@ const DeleteResourceTopic = ({ resourceTopic }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: resourceTopic.name })}
-        message={format('delete.confirm.message', { entity: format('ui.resourceTopic.label') })}
+        message={format('delete.confirm.message', { entity: format('ui.resourceTopic.label').toLowerCase() })}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

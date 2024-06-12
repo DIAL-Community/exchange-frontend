@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
-import { useRouter } from 'next/router'
-import { useIntl, IntlProvider } from 'react-intl'
-import { PDFDownloadLink, Document, Page, Text, StyleSheet } from '@react-pdf/renderer'
-import { gql, useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
+import { useRouter } from 'next/router'
 import { HiExternalLink } from 'react-icons/hi'
+import { IntlProvider, useIntl } from 'react-intl'
+import { gql, useQuery } from '@apollo/client'
+import { Document, Page, PDFDownloadLink, StyleSheet, Text } from '@react-pdf/renderer'
 import { Error, Loading, NotFound, ReadyToDownload } from '../shared/FetchStatus'
 import { prependUrlWithProtocol } from '../utils/utilities'
 
@@ -224,7 +224,7 @@ const PlaybookPdf = ({ locale }) => {
   const { slug } = query
 
   const { loading, error, data } = useQuery(PLAYBOOK_DETAIL_QUERY, {
-    variables: { slug },
+    variables: { slug, owner: 'public' },
     context: { headers: { 'Accept-Language': locale } }
   })
 

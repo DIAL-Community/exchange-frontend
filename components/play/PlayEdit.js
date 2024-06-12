@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PLAY_QUERY } from '../shared/query/play'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { PLAY_QUERY } from '../shared/query/play'
 import PlayForm from './fragments/PlayForm'
 import PlayEditLeft from './PlayEditLeft'
 
@@ -12,7 +12,7 @@ const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
-    variables: { playSlug, playbookSlug },
+    variables: { playSlug, playbookSlug, owner: 'public' },
     context: { headers: { 'Accept-Language': locale } }
   })
 

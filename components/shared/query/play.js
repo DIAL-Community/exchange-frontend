@@ -1,11 +1,12 @@
 import { gql } from '@apollo/client'
 
 export const PLAYS_QUERY = gql`
-  query Plays($search: String, $playbookSlug: String) {
-    plays(search: $search, playbookSlug: $playbookSlug) {
+  query Plays($search: String, $owner: String!, $playbookSlug: String) {
+    plays(search: $search, owner: $owner, playbookSlug: $playbookSlug) {
       id
       slug
       name
+      draft
       imageFile
       playDescription {
         id
@@ -27,14 +28,15 @@ export const PLAYS_QUERY = gql`
         name
         slug
         imageFile
+        maturity
       }
     }
   }
 `
 
 export const REFRESH_PLAY_QUERY =   gql`
-  query Play($slug: String!) {
-    play(slug: $slug) {
+  query Play($slug: String!, $owner: String!) {
+    play(slug: $slug, owner: $owner) {
       id
       name
       slug
@@ -47,8 +49,23 @@ export const REFRESH_PLAY_QUERY =   gql`
 `
 
 export const PLAYBOOK_DETAIL_QUERY = gql`
-  query Playbook($playbookSlug: String!) {
-    playbook(slug: $playbookSlug) {
+  query Playbook($playbookSlug: String!, $owner: String!) {
+    playbook(slug: $playbookSlug, owner: $owner) {
+      id
+      name
+      slug
+    }
+  }
+`
+
+export const PLAY_BREADCRUMB_QUERY = gql`
+  query Playbook($playbookSlug: String!, $playSlug: String!, $owner: String!) {
+    play(slug: $playSlug, owner: $owner) {
+      id
+      name
+      slug
+    }
+    playbook(slug: $playbookSlug, owner: $owner) {
       id
       name
       slug
@@ -73,12 +90,13 @@ export const MOVE_PREVIEW_QUERY = gql`
 `
 
 export const PLAY_QUERY = gql`
-  query Play($playbookSlug: String!, $playSlug: String!) {
-    play(slug: $playSlug) {
+  query Play($playbookSlug: String!, $playSlug: String!, $owner: String!) {
+    play(slug: $playSlug, owner: $owner) {
       id
       name
       slug
       tags
+      draft
       imageFile
       playDescription {
         id
@@ -107,7 +125,7 @@ export const PLAY_QUERY = gql`
         imageFile
       }
     }
-    playbook(slug: $playbookSlug) {
+    playbook(slug: $playbookSlug, owner: $owner) {
       id
       name
       slug

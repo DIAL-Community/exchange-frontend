@@ -1,13 +1,13 @@
 import { getServerSideSitemap } from 'next-sitemap'
-import { initializeApollo } from '../../../lib/apolloClient'
 import { PLAYBOOK_SEARCH_QUERY } from '../../../components/shared/query/playbook'
+import { initializeApollo } from '../../../lib/apolloClient'
 
 export const getServerSideProps = async (ctx) => {
   const client = initializeApollo({})
 
   const data = await client.query({
     query: PLAYBOOK_SEARCH_QUERY,
-    variables: { search: '' }
+    variables: { search: '', owner: 'public' }
   })
 
   const fields = data.data.playbooks.map((playbook) => ({

@@ -15,12 +15,14 @@ export const CREATE_RESOURCE_TOPIC = gql`
   mutation CreateResourceTopic(
     $name: String!
     $slug: String!
+    $imageFile: Upload
     $description: String
     $parentTopicId: ID
   ) {
     createResourceTopic(
       name: $name
       slug: $slug
+      imageFile: $imageFile
       description: $description
       parentTopicId: $parentTopicId
     ) {
@@ -28,6 +30,7 @@ export const CREATE_RESOURCE_TOPIC = gql`
         id
         name
         slug
+        imageFile
         parentTopic {
           id
           name

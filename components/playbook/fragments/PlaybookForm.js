@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react'
-import { useRouter } from 'next/router'
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
-import { Controller, useForm } from 'react-hook-form'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import classNames from 'classnames'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
-import ValidationError from '../../shared/form/ValidationError'
-import { useUser } from '../../../lib/hooks'
-import { AUTOSAVE_PLAYBOOK, CREATE_PLAYBOOK } from '../../shared/mutation/playbook'
+import { useRouter } from 'next/router'
+import { Controller, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa'
+import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import Input from '../../shared/form/Input'
-import FileUploader from '../../shared/form/FileUploader'
-import Checkbox from '../../shared/form/Checkbox'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { fetchSelectOptions } from '../../utils/search'
-import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
+import Checkbox from '../../shared/form/Checkbox'
+import FileUploader from '../../shared/form/FileUploader'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import Input from '../../shared/form/Input'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import ValidationError from '../../shared/form/ValidationError'
+import { AUTOSAVE_PLAYBOOK, CREATE_PLAYBOOK } from '../../shared/mutation/playbook'
+import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
+import { fetchSelectOptions } from '../../utils/search'
 
 const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
@@ -59,6 +59,8 @@ export const PlaybookForm = React.memo(({ playbook }) => {
 
   const router = useRouter()
   const { user, loadingUserSession } = useUser()
+
+  const { tenant } = useActiveTenant()
 
   const client = useApolloClient()
 
@@ -136,6 +138,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       const variables = {
         name,
         slug,
+        owner: 'public',
         author,
         overview,
         audience,
@@ -181,6 +184,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       const variables = {
         name,
         slug,
+        owner: 'public',
         author,
         overview,
         audience,
@@ -203,7 +207,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tags, locale, watch, autoSavePlaybook])
+  }, [user, slug, tenant, tags, locale, watch, autoSavePlaybook])
 
   const cancelForm = () => {
     setReverting(true)

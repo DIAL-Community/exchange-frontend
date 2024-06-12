@@ -4,6 +4,7 @@ export const resourceTopic = {
       'id': '9',
       'name': 'Data Privacy',
       'slug': 'data-privacy',
+      'imageFile': '/assets/resources/resource-placeholder.svg',
       'parentTopic': null,
       'resourceTopicDescription': null,
       'subtopics': [],

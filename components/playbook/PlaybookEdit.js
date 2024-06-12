@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 import PlaybookForm from './fragments/PlaybookForm'
 import PlaybookEditLeft from './PlaybookEditLeft'
 
@@ -12,7 +12,7 @@ const PlaybookEdit = ({ slug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(PLAYBOOK_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug, owner: 'public' }
   })
 
   if (loading) {

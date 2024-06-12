@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import DpiExpertNetwork from '../../components/dpi/sections/DpiExpertNetwork'
@@ -8,7 +9,7 @@ import ClientOnly from '../../lib/ClientOnly'
 
 const DpiExpertNetworkPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>
