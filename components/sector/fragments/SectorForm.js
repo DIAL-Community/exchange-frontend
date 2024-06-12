@@ -1,20 +1,20 @@
-import React, { useState, useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
+import { generateLanguageOptions } from '../../shared/form/options'
+import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_SECTOR } from '../../shared/mutation/sector'
-import Checkbox from '../../shared/form/Checkbox'
-import Select from '../../shared/form/Select'
-import { generateLanguageOptions } from '../../shared/form/options'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { PAGINATED_SECTORS_QUERY, SECTOR_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/sector'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const SectorForm = React.memo(({ sector }) => {
   const { formatMessage } = useIntl()
@@ -133,7 +133,7 @@ const SectorForm = React.memo(({ sector }) => {
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
               </div>
-              <div className='flex flex-col gap-y-2 mb-2' data-testid='sector-locale'>
+              <div className='flex flex-col gap-y-2 mb-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='locale'>
                   {format('locale.label')}
                 </label>

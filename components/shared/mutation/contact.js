@@ -19,12 +19,18 @@ export const CREATE_CONTACT = gql`
     $slug: String!
     $email: String!
     $title: String!
+    $source: String!
+    $biography: String
+    $socialNetworkingServices: JSON
   ) {
     createContact(
       name: $name
       slug: $slug
       email: $email
       title: $title
+      source: $source
+      biography: $biography
+      socialNetworkingServices: $socialNetworkingServices
     ) {
       contact {
         id
@@ -32,6 +38,9 @@ export const CREATE_CONTACT = gql`
         slug
         email
         title
+        source
+        biography
+        socialNetworkingServices
       }
       errors
     }

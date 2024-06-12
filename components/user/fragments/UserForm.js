@@ -1,20 +1,20 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation, useQuery } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation, useQuery } from '@apollo/client'
 import { useEmailValidation, useUser } from '../../../lib/hooks'
-import Input from '../../shared/form/Input'
-import ValidationError from '../../shared/form/ValidationError'
-import { CREATE_USER } from '../../shared/mutation/user'
-import Select from '../../shared/form/Select'
+import { ToastContext } from '../../../lib/ToastContext'
 import { Error, Loading, NotFound, Unauthorized } from '../../shared/FetchStatus'
-import { USER_FORM_SELECTION_QUERY } from '../../shared/query/user'
-import Pill from '../../shared/form/Pill'
 import { ProductActiveFilters, ProductAutocomplete } from '../../shared/filter/Product'
 import Checkbox from '../../shared/form/Checkbox'
+import Input from '../../shared/form/Input'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import ValidationError from '../../shared/form/ValidationError'
+import { CREATE_USER } from '../../shared/mutation/user'
+import { USER_FORM_SELECTION_QUERY } from '../../shared/query/user'
 
 const UserForm = React.memo(({ user }) => {
   const { formatMessage } = useIntl()
@@ -177,7 +177,6 @@ const UserForm = React.memo(({ user }) => {
                     validate: value => isUniqueUserEmail(value, user)
                   })}
                   isInvalid={errors.email}
-                  data-testid='email-input'
                   placeholder={format('user.email.placeholder')}
                 />
                 {errors.email && <ValidationError value={errors.email?.message} />}
@@ -189,7 +188,6 @@ const UserForm = React.memo(({ user }) => {
                 <Input
                   {...register('username', { required: format('validation.required') })}
                   isInvalid={errors.username}
-                  data-testid='username-input'
                   placeholder={format('user.username.placeholder')}
                 />
                 {errors.username && <ValidationError value={errors.username?.message} />}

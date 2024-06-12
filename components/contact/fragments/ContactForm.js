@@ -1,17 +1,17 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CONTACT } from '../../shared/mutation/contact'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { CONTACT_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CONTACTS_QUERY } from '../../shared/query/contact'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const ContactForm = React.memo(({ contact }) => {
   const { formatMessage } = useIntl()
@@ -76,17 +76,14 @@ const ContactForm = React.memo(({ contact }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const {
-        name,
-        email,
-        title
-      } = data
+      const { name, email, title } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
         email,
-        title
+        title,
+        source: 'exchange'
       }
 
       updateContact({

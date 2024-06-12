@@ -1,18 +1,18 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
 import { PlaybookFilterContext } from '../../context/PlaybookFilterContext'
-import PlaybookCard from '../PlaybookCard'
-import { DisplayType } from '../../utils/constants'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
+import { DisplayType } from '../../utils/constants'
+import PlaybookCard from '../PlaybookCard'
 
 const ListStructure = ({ defaultPageSize, pageOffset }) => {
-  const { search } = useContext(PlaybookFilterContext)
-  const { tags, products } = useContext(PlaybookFilterContext)
+  const { search, tags, products } = useContext(PlaybookFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PLAYBOOKS_QUERY, {
     variables: {
       search,
+      owner: 'public',
       products: products.map(product => product.value),
       tags: tags.map(tag => tag.label),
       limit: defaultPageSize,

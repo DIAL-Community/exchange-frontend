@@ -3,12 +3,12 @@ import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import ResourceDetail from '../../../components/resources/ResourceDetail'
 import DpiFooter from '../../../components/dpi/sections/DpiFooter'
 import DpiHeader from '../../../components/dpi/sections/DpiHeader'
+import ResourceDetail from '../../../components/resources/ResourceDetail'
 import ClientOnly from '../../../lib/ClientOnly'
 
-const ResourcePage = ({ dpiTenants }) => {
+const DpiResourcePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -43,4 +43,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default ResourcePage
+export default DpiResourcePage

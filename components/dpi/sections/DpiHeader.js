@@ -10,7 +10,7 @@ import DpiMobileMenu from '../menu/DpiMobileMenu'
 
 const menuStyles = 'py-3 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
 
-const DpiHeader = () => {
+const DpiHeader = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
@@ -73,7 +73,7 @@ const DpiHeader = () => {
     <header className='z-50 sticky top-0 bg-dial-deep-purple max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
-          <div className='flex gap-1 text-white'>
+          <div className='flex gap-1 text-dial-cotton'>
             <img
               src='/ui/v1/dial-logo-white.svg'
               alt={format('ui.image.logoAlt', { name: 'DIAL' })}
@@ -84,23 +84,30 @@ const DpiHeader = () => {
           </div>
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
-        <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
-          <li className='relative text-right text-lg'>
-            <Link href='/dpi-topics' role='menuitem' className={menuStyles}>
-              {format('dpi.header.topic').toUpperCase()}
-            </Link>
-          </li>
-          <li className='relative text-right text-lg'>
-            <Link href='/dpi-countries' role='menuitem' className={menuStyles}>
-              {format('dpi.header.country').toUpperCase()}
-            </Link>
-          </li>
-          <li className='relative text-right text-lg'>
-            <Link href='/dpi-resource-finder' role='menuitem' className={menuStyles}>
-              {format('dpi.header.resourceFinder').toUpperCase()}
-            </Link>
-          </li>
-        </ul>
+        {!isOnAuthPage &&
+          <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
+            <li className='relative text-right text-lg'>
+              <Link href='/dpi-topics' role='menuitem' className={menuStyles}>
+                {format('dpi.header.topic').toUpperCase()}
+              </Link>
+            </li>
+            <li className='relative text-right text-lg'>
+              <Link href='/dpi-countries' role='menuitem' className={menuStyles}>
+                {format('dpi.header.country').toUpperCase()}
+              </Link>
+            </li>
+            <li className='relative text-right text-lg'>
+              <Link href='/dpi-resource-finder' role='menuitem' className={menuStyles}>
+                {format('dpi.header.resourceFinder').toUpperCase()}
+              </Link>
+            </li>
+            <li className='relative text-right text-lg'>
+              <Link href='/dpi-expert-network' role='menuitem' className={menuStyles}>
+                {format('dpi.header.expertNetwork').toUpperCase()}
+              </Link>
+            </li>
+          </ul>
+        }
       </div>
       <DpiMobileMenu menuExpanded={menuExpanded} />
     </header>
@@ -118,7 +125,7 @@ const HamburgerMenu = ({ menuExpanded, onMenuClicked }) => {
         className='ml-auto my-auto cursor-pointer block md:hidden z-30'
       >
         <svg
-          className='fill-current text-white'
+          className='fill-current text-dial-cotton'
           xmlns='http://www.w3.org/2000/svg'
           width='16'
           height='16'

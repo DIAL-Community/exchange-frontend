@@ -38,6 +38,30 @@ export const CREATE_USER = gql`
   }
 `
 
+export const CREATE_ADLI_USER = gql`
+  mutation (
+    $email: String!
+    $roles: JSON!
+    $username: String!
+    $confirmed: Boolean
+  ) {
+    createAdliUser(
+      email: $email
+      roles: $roles
+      username: $username
+      confirmed: $confirmed
+    ) {
+      user {
+        id
+        email
+        username
+        roles
+      }
+      errors
+    }
+  }
+`
+
 export const APPLY_AS_OWNER = gql`
   mutation ApplyAsOwner(
     $entity: String!

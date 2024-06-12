@@ -12,7 +12,7 @@ const DpiMobileMenu = ({ menuExpanded }) => {
     <>
       {menuExpanded &&
         <div className='absolute top-16 right-0 w-full max-w-md'>
-          <div className='shadow-lg bg-dial-stratos text-white cursor-pointer'>
+          <div className='shadow-lg bg-dial-stratos text-dial-cotton cursor-pointer'>
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-auto gap-4 p-4'>
               <li className='relative text-right text-lg'>
                 <Link href='/dpi-topics' role='menuitem' className={menuStyles}>

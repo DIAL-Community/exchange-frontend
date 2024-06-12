@@ -1,7 +1,7 @@
-import { Octokit } from '@octokit/core'
 import { useCallback, useContext, useMemo } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
+import { Octokit } from '@octokit/core'
 import { ToastContext } from '../../../lib/ToastContext'
 import { DEFAULT_BRANCH_NAME, prependPadding } from './common'
 import { EditorContext, EditorContextDispatch } from './EditorContext'
@@ -150,10 +150,9 @@ const SubmitButton = () => {
       }}
       className='submit-button'
       disabled={!isDirty || isMutating}
-      data-testid='submit-button'
     >
       {format(`${isMutating ? 'app.submitting' : 'app.submit'}`)}
-      {isMutating && <FaSpinner className='spinner ml-3 inline' data-testid='submit-spinner' />}
+      {isMutating && <FaSpinner className='spinner ml-3 inline' />}
     </button>
   )
 }

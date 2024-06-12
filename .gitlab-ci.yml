@@ -6,11 +6,14 @@ stages:
   - deploy
 
 cache:
-  key:
-    files:
-      - yarn.lock
-  paths:
-    - node_modules/
+  - key:
+      files:
+        - yarn.lock
+    paths:
+    - .yarn/cache
+  - key: ${CI_COMMIT_REF_SLUG}
+    paths:
+    - .next/cache/
 
 variables:
   SERVER_IP: "$SERVER_IP"
@@ -28,18 +31,19 @@ variables:
 
 build_react:
   tags:
-    - docker
+    - test
   stage: build
   script:
     - yarn install
     - yarn lint
     - yarn build
 
-test:
+test_react:
   tags:
-    - docker
+    - test
   stage: test
   script:
+    - yarn install
     - yarn test --maxWorkers=2
 
 deploy:

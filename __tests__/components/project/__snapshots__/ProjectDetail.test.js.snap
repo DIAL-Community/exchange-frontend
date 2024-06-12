@@ -1,0 +1,586 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the project detail page. Should render detail of a project. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="lg:px-8 xl:px-56 flex flex-col"
+  >
+    <div
+      class="px-4 lg:px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40"
+    >
+      <div
+        class="whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="h5"
+          href="/"
+        >
+          Home
+        </a>
+      </div>
+    </div>
+    <div
+      class="flex flex-col lg:flex-row gap-x-8"
+    >
+      <div
+        class="lg:basis-1/3"
+      >
+        <div
+          class="bg-dial-slate-100 lg:h-full"
+        >
+          <div
+            class="flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3"
+          >
+            <div
+              class="flex flex-col gap-y-4 py-3"
+            >
+              <div
+                class="text-xl text-dial-plum font-semibold"
+              >
+                Colombia HMIS
+              </div>
+              <div
+                class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
+              >
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="font-semibold text-dial-sapphire"
+                  >
+                    Project URL
+                  </div>
+                  <div
+                    class="flex text-dial-stratos"
+                  >
+                    <a
+                      class="flex border-b border-dial-iris-blue "
+                      href="//digitalhealthatlas.org/en/-/projects/1047/published"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <div
+                        class="line-clamp-1 break-all"
+                      >
+                        digitalhealthatlas.org/en/-/projects/1047/published
+                      </div>
+                    </a>
+                     ⧉
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="flex flex-row gap-3"
+                  >
+                    <div
+                      class="font-semibold text-dial-sapphire"
+                    >
+                      Sectors
+                    </div>
+                    <div
+                      class="flex gap-3 ml-auto"
+                    />
+                  </div>
+                  <div
+                    class="text-sm text-dial-stratos"
+                  >
+                    N/A
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="font-semibold text-dial-sapphire"
+                  >
+                    Origin
+                  </div>
+                  <div
+                    class="flex flex-col gap-y-2 text-dial-stratos"
+                  >
+                    Digital Health Atlas
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-slate-200"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="lg:basis-2/3"
+      >
+        <div
+          class="h-[60vh]"
+        >
+          <div
+            class="flex bg-dial-alice-blue h-full"
+          >
+            <div
+              class="text-dial-stratos text-lg w-full my-auto flex flex-col gap-4"
+            >
+              <svg
+                class="mx-auto"
+                fill="currentColor"
+                height="3em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="3em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                />
+              </svg>
+              <div
+                class="text-center mt-5"
+              >
+                You are not authorized to view this page
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for the project detail page. Should render edit page for logged in user. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="lg:px-8 xl:px-56 flex flex-col"
+  >
+    <div
+      class="px-4 lg:px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40"
+    >
+      <div
+        class="whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="h5"
+          href="/"
+        >
+          Home
+        </a>
+      </div>
+    </div>
+    <div
+      class="flex flex-col lg:flex-row gap-x-8"
+    >
+      <div
+        class="lg:basis-1/3"
+      >
+        <div
+          class="bg-dial-slate-100 lg:h-full"
+        >
+          <div
+            class="flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3"
+          >
+            <div
+              class="flex flex-col gap-y-4 py-3"
+            >
+              <div
+                class="text-xl text-dial-plum font-semibold"
+              >
+                Colombia HMIS -- Edited
+              </div>
+              <div
+                class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
+              >
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="font-semibold text-dial-sapphire"
+                  >
+                    Project URL
+                  </div>
+                  <div
+                    class="flex text-dial-stratos"
+                  >
+                    <a
+                      class="flex border-b border-dial-iris-blue "
+                      href="//digitalhealthatlas.org/en/-/projects/1047/published"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <div
+                        class="line-clamp-1 break-all"
+                      >
+                        digitalhealthatlas.org/en/-/projects/1047/published
+                      </div>
+                    </a>
+                     ⧉
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="flex flex-row gap-3"
+                  >
+                    <div
+                      class="font-semibold text-dial-sapphire"
+                    >
+                      Sectors
+                    </div>
+                    <div
+                      class="flex gap-3 ml-auto"
+                    >
+                      <button
+                        class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
+                        type="button"
+                      >
+                        <svg
+                          class="inline pb-0.5"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 20h9"
+                          />
+                          <path
+                            d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                          />
+                        </svg>
+                        <span
+                          class="text-sm px-1"
+                        >
+                          Edit
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="text-sm text-dial-stratos"
+                  >
+                    N/A
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="font-semibold text-dial-sapphire"
+                  >
+                    Origin
+                  </div>
+                  <div
+                    class="flex flex-col gap-y-2 text-dial-stratos"
+                  >
+                    Digital Health Atlas
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-slate-200"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="lg:basis-2/3"
+      >
+        <form>
+          <div
+            class="px-4 lg:px-0 py-4 lg:py-6 text-dial-plum"
+          >
+            <div
+              class="flex flex-col gap-y-6 text-sm"
+            >
+              <div
+                class="text-xl font-semibold"
+              >
+                Edit Colombia HMIS -- Edited
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="required-field"
+                  for="name"
+                >
+                  Name
+                </label>
+                <input
+                  class="w-full text-sm"
+                  id="name"
+                  name="name"
+                  placeholder="Name"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  for="projectUrl"
+                >
+                  Project URL
+                </label>
+                <div
+                  class="border border-transparent url-input bg-white flex items-center"
+                >
+                  <span
+                    class="select-none text-dial-gray"
+                  >
+                    https://
+                  </span>
+                  <input
+                    class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
+                    id="projectUrl"
+                    placeholder="Project URL"
+                    value="digitalhealthatlas.org/en/-/projects/1047/published"
+                  />
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-y-2"
+              >
+                <label
+                  class="required-field"
+                >
+                  Description
+                </label>
+                <div
+                  class="relative"
+                >
+                  <svg
+                    class="absolute text-lg inset-x-1/2 top-10 spinner"
+                    fill="currentColor"
+                    height="2em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="2em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
+                    />
+                  </svg>
+                  <div
+                    class="html-editor"
+                  >
+                    <textarea
+                      id="description-editor"
+                      style="visibility: hidden;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-wrap text-base mt-6 gap-3"
+              >
+                <button
+                  class="submit-button"
+                  disabled=""
+                  type="submit"
+                >
+                  Submit Project
+                  <svg
+                    class="spinner ml-3"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
+                    />
+                  </svg>
+                </button>
+                <button
+                  class="cancel-button"
+                  disabled=""
+                  type="button"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for the project detail page. Should render unauthorized for non logged in user. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="lg:px-8 xl:px-56 flex flex-col"
+  >
+    <div
+      class="px-4 lg:px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40"
+    >
+      <div
+        class="whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="h5"
+          href="/"
+        >
+          Home
+        </a>
+      </div>
+    </div>
+    <div
+      class="flex flex-col lg:flex-row gap-x-8"
+    >
+      <div
+        class="lg:basis-1/3"
+      >
+        <div
+          class="bg-dial-slate-100 lg:h-full"
+        >
+          <div
+            class="flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3"
+          >
+            <div
+              class="flex flex-col gap-y-4 py-3"
+            >
+              <div
+                class="text-xl text-dial-plum font-semibold"
+              >
+                Colombia HMIS
+              </div>
+              <div
+                class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
+              >
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="font-semibold text-dial-sapphire"
+                  >
+                    Project URL
+                  </div>
+                  <div
+                    class="flex text-dial-stratos"
+                  >
+                    <a
+                      class="flex border-b border-dial-iris-blue "
+                      href="//digitalhealthatlas.org/en/-/projects/1047/published"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <div
+                        class="line-clamp-1 break-all"
+                      >
+                        digitalhealthatlas.org/en/-/projects/1047/published
+                      </div>
+                    </a>
+                     ⧉
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="flex flex-row gap-3"
+                  >
+                    <div
+                      class="font-semibold text-dial-sapphire"
+                    >
+                      Sectors
+                    </div>
+                    <div
+                      class="flex gap-3 ml-auto"
+                    />
+                  </div>
+                  <div
+                    class="text-sm text-dial-stratos"
+                  >
+                    N/A
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-3"
+                >
+                  <div
+                    class="font-semibold text-dial-sapphire"
+                  >
+                    Origin
+                  </div>
+                  <div
+                    class="flex flex-col gap-y-2 text-dial-stratos"
+                  >
+                    Digital Health Atlas
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="border-b border-dial-slate-200"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="lg:basis-2/3"
+      >
+        <div
+          class="h-[60vh]"
+        >
+          <div
+            class="flex bg-dial-alice-blue h-full"
+          >
+            <div
+              class="text-dial-stratos text-lg w-full my-auto flex flex-col gap-4"
+            >
+              <svg
+                class="mx-auto"
+                fill="currentColor"
+                height="3em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="3em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                />
+              </svg>
+              <div
+                class="text-center mt-5"
+              >
+                You are not authorized to view this page
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

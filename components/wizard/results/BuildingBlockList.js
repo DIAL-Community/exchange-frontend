@@ -1,12 +1,12 @@
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useState } from 'react'
-import PaginationStructure from '../../shared/Pagination'
-import { DisplayType } from '../../utils/constants'
 import BuildingBlockCard from '../../building-block/BuildingBlockCard'
-import { WizardContext } from '../WizardContext'
-import { WIZARD_BUILDING_BLOCKS_QUERY } from '../../shared/query/wizard'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import Pagination from '../../shared/Pagination'
+import { WIZARD_BUILDING_BLOCKS_QUERY } from '../../shared/query/wizard'
+import { DisplayType } from '../../utils/constants'
+import { WizardContext } from '../WizardContext'
 
 const BuildingBlockList = ({ headerRef }) => {
   const { formatMessage } = useIntl()
@@ -65,7 +65,7 @@ const BuildingBlockList = ({ headerRef }) => {
           />
         )}
       </div>
-      <PaginationStructure
+      <Pagination
         pageNumber={pageNumber}
         totalCount={paginationAttribute.totalCount}
         defaultPageSize={DEFAULT_PAGE_SIZE}

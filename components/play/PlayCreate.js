@@ -12,7 +12,7 @@ const PlayCreate = ({ playbookSlug, locale }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
-    variables: { playSlug: '', playbookSlug },
+    variables: { playSlug: '', playbookSlug, owner: 'public' },
     context: { headers: { 'Accept-Language': locale } }
   })
 

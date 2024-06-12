@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
+import { ToastContext } from '../../lib/ToastContext'
+import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
 import { DELETE_USER } from '../shared/mutation/user'
 import { PAGINATED_USERS_QUERY, USER_DETAIL_QUERY } from '../shared/query/user'
-import DeleteButton from '../shared/form/DeleteButton'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 
 const DeleteUser = ({ user }) => {
   const { formatMessage } = useIntl()
@@ -27,7 +27,7 @@ const DeleteUser = ({ user }) => {
   const [deleteUser, { called, reset }] = useMutation(DELETE_USER, {
     refetchQueries: [{
       query: USER_DETAIL_QUERY,
-      variables: { slug: user.slug }
+      variables: { slug: user.id }
     }, {
       query: PAGINATED_USERS_QUERY,
       variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }

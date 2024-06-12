@@ -11,10 +11,11 @@ FROM base AS build
 LABEL stage=build
 ENV NODE_ENV=production
 WORKDIR /app
-COPY . .
 COPY --from=base /app/.yarn ./.yarn
 COPY --from=base /app/node_modules ./node_modules
-RUN yarn build && yarn sitemap 
+COPY . .
+RUN yarn sitemap
+RUN yarn build 
 
 FROM node:18.16-alpine AS prod
 ENV NODE_ENV=production

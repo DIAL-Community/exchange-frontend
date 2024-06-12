@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import DpiFooter from '../../components/dpi/sections/DpiFooter'
@@ -6,9 +7,9 @@ import DpiResources from '../../components/dpi/sections/DpiResources'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
-const DpiPage = ({ dpiTenants }) => {
+const DpiResourceFinderPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>
@@ -34,4 +35,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default DpiPage
+export default DpiResourceFinderPage

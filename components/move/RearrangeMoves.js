@@ -1,11 +1,11 @@
-import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useCallback, useContext, useState } from 'react'
-import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
 import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { Dialog, Transition } from '@headlessui/react'
 import { useUser } from '../../lib/hooks'
+import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_PLAY_MOVES } from '../shared/mutation/play'
 import { MoveListContext, MoveListDispatchContext, MoveListProvider } from './context/MoveListContext'
 import MoveListDraggable from './MoveListDraggable'
@@ -108,7 +108,8 @@ const RearrangeControls = ({ play, onClose }) => {
       updatePlayMoves({
         variables: {
           slug: play.slug,
-          moveSlugs: currentMoves.map(({ slug }) => slug)
+          moveSlugs: currentMoves.map(({ slug }) => slug),
+          owner: 'public'
         },
         context: {
           headers: {

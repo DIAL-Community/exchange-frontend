@@ -1,32 +1,26 @@
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel
-} from 'react-accessible-accordion'
-import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { Controller, useFieldArray, useForm } from 'react-hook-form'
-import { useMutation, useQuery } from '@apollo/client'
+import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
-import EditableSection from '../../shared/EditableSection'
-import { Loading } from '../../shared/FetchStatus'
-import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../shared/query/product'
+import {
+  Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel
+} from 'react-accessible-accordion'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
+import { useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import {
-  getCategoryIndicatorBooleanOptions,
-  getCategoryIndicatorNumericOptions,
-  getCategoryIndicatorScaleOptions
-} from '../../utils/maturity'
-import { UPDATE_PRODUCT_CATEGORY_INDICATORS } from '../../shared/mutation/product'
 import BarChart from '../../shared/BarChart'
-import RadarChart from '../../shared/RadarChart'
 import Dialog from '../../shared/Dialog'
+import EditableSection from '../../shared/EditableSection'
+import { Loading } from '../../shared/FetchStatus'
 import Select from '../../shared/form/Select'
+import { UPDATE_PRODUCT_CATEGORY_INDICATORS } from '../../shared/mutation/product'
+import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../shared/query/product'
+import RadarChart from '../../shared/RadarChart'
 import { CategoryIndicatorType } from '../../utils/constants'
+import {
+  getCategoryIndicatorBooleanOptions, getCategoryIndicatorNumericOptions, getCategoryIndicatorScaleOptions
+} from '../../utils/maturity'
 
 const MATURITY_SCORE_MULTIPLIER = 10
 const MAX_MATURITY_SCORE = 100
@@ -78,7 +72,7 @@ const MaturityCategory = ({ category }) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                   <div className='text-sm text-dial-stratos pl-4'>
-                    {parse(indicator.description)}
+                    {indicator?.description && parse(indicator.description)}
                   </div>
                   <div className='text-sm text-dial-stratos pl-4'>
                     {format('categoryIndicator.weight')}: {indicator.weight}
@@ -415,7 +409,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
                 <div className='grid grid-cols-4 gap-8'>
                   <div className='text-sm col-span-3'>
                     {name}
-                    <div className='text-dial-stratos'>{parse(description)}</div>
+                    <div className='text-dial-stratos'>{description && parse(description)}</div>
                   </div>
                   <div className='col-span-1'>
                     <Controller
