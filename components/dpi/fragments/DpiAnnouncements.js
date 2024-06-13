@@ -14,21 +14,19 @@ const AnnouncementCard = ({ message }) => {
 
   const displayLargeCard = () =>
     <div className={`py-6 rounded-lg min-h-[12rem]} ${message.visible? 'opacity-100' : 'opacity-10'}`}>
-      <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        <div className='flex flex-col gap-y-3'>
-          <div className='text-lg font-semibold'>
-            {message.name}
+      <div className='flex flex-col gap-y-3'>
+        <div className='text-lg font-semibold'>
+          {message.name}
+        </div>
+        <div className='line-clamp-4'>
+          {message.messageTemplate && parse(message.parsedMessage)}
+        </div>
+        <div className='flex'>
+          <div className='text-sm italic grow'>
+            {findMessageTypeLabel(message.messageType, format)}
           </div>
-          <div className='line-clamp-4'>
-            {message.messageTemplate && parse(message.parsedMessage)}
-          </div>
-          <div className='flex'>
-            <div className='text-sm italic'>
-              {findMessageTypeLabel(message.messageType, format)}
-            </div>
-            <div className='ml-auto'>
-              <FormattedDate date={message.messageDate} />
-            </div>
+          <div className='ml-auto'>
+            <FormattedDate date={message.messageDate} />
           </div>
         </div>
       </div>
