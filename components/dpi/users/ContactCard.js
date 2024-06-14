@@ -42,9 +42,9 @@ const ContactCard = ({ contact }) => {
           <p className="text-sm text-center">
             {`${contact?.title ?? 'Title of Contact'}`}
           </p>
-          <div className='text-sm'>{organization?.value}</div>
+          <div className='text-sm text-center'>{organization?.value}</div>
           {country?.value &&
-            <div className='flex gap-1 items-center'>
+            <div className='flex gap-1 justify-center items-center'>
               {countryCode?.value &&
                 <img
                   src={`https://flagsapi.com/${countryCode?.value.toUpperCase()}/flat/64.png`}
