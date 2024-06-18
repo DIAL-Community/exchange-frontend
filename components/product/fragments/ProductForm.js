@@ -1,22 +1,22 @@
-import React, { useState, useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { useProductOwnerUser, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { useUser } from '../../../lib/hooks'
-import Input from '../../shared/form/Input'
-import ValidationError from '../../shared/form/ValidationError'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
-import { CREATE_PRODUCT } from '../../shared/mutation/product'
 import IconButton from '../../shared/form/IconButton'
+import Input from '../../shared/form/Input'
 import UrlInput from '../../shared/form/UrlInput'
-import Checkbox from '../../shared/form/Checkbox'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import ValidationError from '../../shared/form/ValidationError'
+import { CREATE_PRODUCT } from '../../shared/mutation/product'
 import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -24,6 +24,7 @@ const ProductForm = React.memo(({ product }) => {
 
   const slug = product?.slug ?? ''
 
+  const { isProductOwner } = useProductOwnerUser(product)
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
@@ -152,7 +153,7 @@ const ProductForm = React.memo(({ product }) => {
 
   return loadingUserSession
     ? <Loading />
-    : isAdminUser || isEditorUser ?
+    : isAdminUser || isEditorUser || isProductOwner ?
       <form onSubmit={handleSubmit(doUpsert)}>
         <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-meadow'>
           <div className='flex flex-col gap-y-6 text-sm'>

@@ -23,7 +23,7 @@ const DpiAdminUserForm = ({ userId }) => {
             ? format('general.fetchingData')
             : error
               ? format('general.fetchError')
-              : userId && data
+              : userId && data.user
                 ? <UserForm user={data?.user} />
                 : <UserForm />
           }

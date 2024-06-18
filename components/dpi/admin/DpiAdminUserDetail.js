@@ -22,7 +22,7 @@ const DpiAdminUserDetail = ({ userId }) => {
             ? format('general.fetchingData')
             : error
               ? format('general.fetchError')
-              : userId && data
+              : userId && data.user
                 ? <ProfileDetail user={data?.user} />
                 : format('app.notFound')
           }

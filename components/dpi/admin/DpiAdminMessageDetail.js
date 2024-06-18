@@ -22,7 +22,7 @@ const DpiAdminMessageDetail = ({ messageSlug }) => {
             ? format('general.fetchingData')
             : error
               ? format('general.fetchError')
-              : messageSlug && data
+              : messageSlug && data.message
                 ? <MessageDetail message={data?.message} />
                 : format('app.notFound')
           }

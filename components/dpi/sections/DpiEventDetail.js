@@ -152,7 +152,7 @@ const DpiEventDetail = ({ slug }) => {
         ? format('general.fetchingData')
         : error
           ? format('general.fetchError')
-          : slug && data
+          : slug && data.message
             ? <EventDetail event={data?.message} />
             : format('app.notFound')
       }

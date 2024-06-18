@@ -15,16 +15,16 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        <div className='w-20 h-20 mx-auto'>
+        <div className='flex items-center my-auto w-24 h-24 shrink-0'>
           <Link href={`/resources/${resource.slug}`}>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-              className='aspect-[5/4]'
+              className='aspect-auto'
             />
           </Link>
         </div>
-        <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
+        <div className='flex flex-col gap-y-3 max-w-3xl'>
           <Link href={`/resources/${resource.slug}`}>
             <div className='text-lg font-semibold text-dial-plum'>
               {resource.name}

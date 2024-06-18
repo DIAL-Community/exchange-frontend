@@ -7,7 +7,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { UNASSIGN_PLAYBOOK_PLAY } from '../../shared/mutation/playbook'
-import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/play'
+import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/playbook'
 import { DPI_TENANT_NAME } from '../constants'
 
 const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
