@@ -6,7 +6,7 @@ export const MOVE_QUERY = gql`
       id
       name
       slug
-      resources
+      inlineResources
       moveDescription {
         id
         description
@@ -51,7 +51,7 @@ export const MOVE_PREVIEW_QUERY = gql`
       id
       slug
       name
-      resources
+      inlineResources
       moveDescription {
         description
       }

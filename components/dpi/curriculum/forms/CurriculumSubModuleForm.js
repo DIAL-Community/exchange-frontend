@@ -3,12 +3,16 @@ import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
+import Pill from '../../../shared/form/Pill'
+import Select from '../../../shared/form/Select'
 import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../../shared/mutation/move'
+import { RESOURCE_SEARCH_QUERY } from '../../../shared/query/resource'
+import { fetchSelectOptions } from '../../../utils/search'
 import { DPI_TENANT_NAME } from '../../constants'
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
@@ -233,6 +237,8 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const client = useApolloClient()
+
   const router = useRouter()
   const { user, loadingUserSession } = useUser()
   const [mutating, setMutating] = useState(false)
@@ -240,8 +246,15 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
 
   const [moveSlug, setMoveSlug] = useState(curriculumSubModule ? curriculumSubModule.slug : '')
   const [playSlug] = useState(curriculumModule.slug)
+  const [inlineResources, setInlineResources] = useState(
+    curriculumSubModule ? curriculumSubModule.inlineResources.map((resource, i) => ({ ...resource, i })) : []
+  )
+
   const [resources, setResources] = useState(
-    curriculumSubModule ? curriculumSubModule.resources.map((resource, i) => ({ ...resource, i })) : []
+    curriculumSubModule?.resources?.map(resource => ({
+      link: resource.link,
+      description: resource.linkDescription
+    })) ?? []
   )
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -307,7 +320,8 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
           playSlug,
           owner: DPI_TENANT_NAME,
           description,
-          resources
+          inlineResources,
+          resourceSlugs: []
         },
         context: {
           headers: {
@@ -346,7 +360,8 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
         playSlug,
         owner: DPI_TENANT_NAME,
         description,
-        resources
+        inlineResources,
+        resourceSlugs: []
       }
 
       autoSaveMove({
@@ -365,7 +380,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, moveSlug, playSlug, resources, router, watch, autoSaveMove])
+  }, [user, moveSlug, playSlug, inlineResources, router, watch, autoSaveMove])
 
   const cancelForm = () => {
     setReverting(true)
@@ -377,27 +392,48 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
     router.push(route)
   }
 
-  const addResource = (resource) => {
-    setResources([...resources, resource])
+  const fetchedResourcesCallback = (data) => (
+    data.resources?.map((resource) => ({
+      id: resource.id,
+      name: resource.name,
+      slug: resource.slug,
+      label: resource.name
+    }))
+  )
+
+  const addResource = (resource) =>
+    setResources([
+      ...resources.filter(({ slug }) => slug !== resource.slug),
+      { name: resource.label, slug: resource.slug }
+    ])
+
+  const removeResource = (resource) =>
+    setResources([...resources.filter(({ slug }) => slug !== resource.slug)])
+
+  const loadResourceOptions = (input) =>
+    fetchSelectOptions(client, input, RESOURCE_SEARCH_QUERY, fetchedResourcesCallback)
+
+  const addInlineResource = (resource) => {
+    setInlineResources([...inlineResources, resource])
   }
 
-  const updateResource = (index, resource) => {
-    for (let i = 0; i < resources.length; i++) {
+  const updateInlineResource = (index, resource) => {
+    for (let i = 0; i < inlineResources.length; i++) {
       if (index !== i) {
         continue
       }
 
-      const currentResource = resources[i]
+      const currentResource = inlineResources[i]
       currentResource.name = resource.name
       currentResource.description = resource.description
       currentResource.url = resource.url
     }
 
-    setResources([...resources])
+    setInlineResources([...inlineResources])
   }
 
-  const removeResource = (index, resource) => {
-    setResources(resources.filter((r, i) => i !== index && r.name !== resource.name))
+  const removeInlineResource = (index, resource) => {
+    setInlineResources(inlineResources.filter((r, i) => i !== index && r.name !== resource.name))
   }
 
   return loadingUserSession
@@ -423,6 +459,33 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
                 fieldLabel='ui.move.description'
                 fieldName='description'
               />
+              <div className='flex flex-col gap-y-2'>
+                <label className='flex flex-col gap-y-2'>
+                  {format('ui.resource.header')}
+                  <Select
+                    async
+                    isBorderless
+                    defaultOptions
+                    cacheOptions
+                    placeholder={format('ui.resource.header')}
+                    loadOptions={loadResourceOptions}
+                    noOptionsMessage={() =>
+                      format('filter.searchFor', { entity: format('ui.resource.header') })
+                    }
+                    onChange={addResource}
+                    value={null}
+                  />
+                </label>
+                <div className='flex flex-wrap gap-3 mt-2'>
+                  {resources?.map((resource, resourceIdx) =>(
+                    <Pill
+                      key={resourceIdx}
+                      label={resource.name}
+                      onRemove={() => removeResource(resource)}
+                    />
+                  ))}
+                </div>
+              </div>
               <div className='flex flex-col gap-y-3'>
                 <div className='text-sm'>
                   {format('ui.resource.header')}
@@ -431,20 +494,20 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
                   {format('ui.move.assignedResources')}
                 </div>
                 <div className='flex flex-col gap-y-4'>
-                  {resources && resources.map((resource, i) =>
+                  {inlineResources && inlineResources.map((resource, i) =>
                     <ResourceRenderer
                       key={i}
                       index={i}
                       moveSlug={moveSlug}
                       playSlug={playSlug}
                       resource={resource}
-                      updateResource={updateResource}
-                      removeResource={removeResource}
+                      updateResource={updateInlineResource}
+                      removeResource={removeInlineResource}
                     />
                   )}
                 </div>
               </div>
-              <button type='button' className='flex gap-2 text-dial-iris-blue' onClick={() => addResource({})}>
+              <button type='button' className='flex gap-2 text-dial-iris-blue' onClick={() => addInlineResource({})}>
                 <FaPlusCircle className='my-auto text-dial-iris-blue' />
                 <div className='text-dial-iris-blue'>
                   {`${format('app.createNew')} ${format('ui.resource.label')}`}

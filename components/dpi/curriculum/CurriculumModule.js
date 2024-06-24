@@ -110,11 +110,11 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
           { data &&
             <div>
               <HtmlViewer initialContent={data.move?.moveDescription?.description} />
-              {data?.move?.resources && data?.move?.resources.length > 0 &&
+              {data?.move?.inlineResources && data?.move?.inlineResources.length > 0 &&
                 <div>
                   <div className='font-semibold py-2'>{format('ui.move.resources.header')}</div>
                   <div className='flex flex-wrap gap-3'>
-                    {data?.move?.resources
+                    {data?.move?.inlineResources
                       .filter(resource => resource.url && resource.name)
                       .map(resource => (
                         <a

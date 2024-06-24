@@ -34,7 +34,8 @@ const generateMutationText = (mutationFunc) => {
       $owner: String!
       $name: String!
       $description: String!
-      $resources: JSON!
+      $resourceSlugs: [String!]
+      $inlineResources: JSON!
     ) {
       ${mutationFunc} (
         playSlug: $playSlug
@@ -42,7 +43,8 @@ const generateMutationText = (mutationFunc) => {
         owner: $owner
         name: $name
         description: $description
-        resources: $resources
+        resourceSlugs: $resourceSlugs
+        inlineResources: $inlineResources
       ) {
         move {
           id
