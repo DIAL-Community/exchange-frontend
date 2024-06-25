@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { FaCommentAlt } from 'react-icons/fa'
+import { FaArrowRight } from 'react-icons/fa6'
 import { FiEdit3, FiMove } from 'react-icons/fi'
 import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
@@ -110,8 +111,35 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
           { data &&
             <div>
               <HtmlViewer initialContent={data.move?.moveDescription?.description} />
+              {data?.move?.resources && data?.move?.resources.length > 0 &&
+                <div className='text-sm'>
+                  <div className='font-semibold py-2'>{format('ui.move.resources.header')}</div>
+                  <div className='flex flex-wrap gap-3'>
+                    {data?.move?.resources
+                      .filter(resource => resource.name && resource.slug)
+                      .map(resource => (
+                        <Link
+                          key={resource.id}
+                          href={`/dpi-resources/${resource.slug}`}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          <div className='group border border-gray-300 hover:border-dial-sunshine shadow-md'>
+                            <div className='flex gap-3 px-3'>
+                              <div className='flex flex-col gap-2 px-3 py-4'>
+                                <div className='font-semibold'>{resource.name}</div>
+                              </div>
+                              <FaArrowRight className='my-auto shrink-0' />
+                            </div>
+                          </div>
+                        </Link>
+                      ))
+                    }
+                  </div>
+                </div>
+              }
               {data?.move?.inlineResources && data?.move?.inlineResources.length > 0 &&
-                <div>
+                <div className='text-sm'>
                   <div className='font-semibold py-2'>{format('ui.move.resources.header')}</div>
                   <div className='flex flex-wrap gap-3'>
                     {data?.move?.inlineResources
@@ -123,19 +151,13 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
                           target='_blank'
                           rel='noreferrer'
                         >
-                          <div
-                            key={resource.i}
-                            className={classNames(
-                              'group border-2 border-gray-300 hover:border-dial-sunshine',
-                              'shadow-md'
-                            )}
-                          >
-                            <div className='flex'>
+                          <div className='group border border-gray-300 hover:border-dial-sunshine shadow-md'>
+                            <div className='flex gap-3 px-3'>
                               <div className='flex flex-col gap-2 px-3 py-4'>
                                 <div className='font-semibold'>{resource.name}</div>
                                 <div className='text-sm'>{resource.description}</div>
                               </div>
-                              <HiExternalLink className='ml-auto px-2' size='2.2em' />
+                              <HiExternalLink className='my-auto shrink-0' />
                             </div>
                           </div>
                         </a>

@@ -6,6 +6,13 @@ export const MOVE_QUERY = gql`
       id
       name
       slug
+      resources {
+        id
+        name
+        slug
+        resourceLink
+        linkDescription
+      }
       inlineResources
       moveDescription {
         id
@@ -13,6 +20,7 @@ export const MOVE_QUERY = gql`
         locale
       }
       play {
+        id
         name
         slug
       }
@@ -51,8 +59,16 @@ export const MOVE_PREVIEW_QUERY = gql`
       id
       slug
       name
+      resources {
+        id
+        name
+        slug
+        resourceLink
+        linkDescription
+      }
       inlineResources
       moveDescription {
+        id
         description
       }
     }

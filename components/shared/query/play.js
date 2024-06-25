@@ -80,6 +80,13 @@ export const MOVE_PREVIEW_QUERY = gql`
       slug
       name
       moveOrder
+      resources {
+        id
+        name
+        slug
+        resourceLink
+        linkDescription
+      }
       inlineResources
       moveDescription {
         id
@@ -107,6 +114,13 @@ export const PLAY_QUERY = gql`
         id
         name
         slug
+        resources {
+          id
+          name
+          slug
+          resourceLink
+          linkDescription
+        }
         inlineResources
         moveDescription {
           id
@@ -115,11 +129,13 @@ export const PLAY_QUERY = gql`
         }
       }
       products {
+        id
         name
         slug
         imageFile
       }
       buildingBlocks {
+        id
         name
         slug
         imageFile

@@ -2,13 +2,13 @@ import { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
+import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import Pill from '../../../shared/form/Pill'
 import Select from '../../../shared/form/Select'
 import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../../shared/mutation/move'
 import { RESOURCE_SEARCH_QUERY } from '../../../shared/query/resource'
@@ -252,8 +252,10 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
 
   const [resources, setResources] = useState(
     curriculumSubModule?.resources?.map(resource => ({
-      link: resource.link,
-      description: resource.linkDescription
+      id: resource.id,
+      slug: resource.slug,
+      name: resource.name,
+      resourceLink: resource.resourceLink
     })) ?? []
   )
 
@@ -321,7 +323,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
           owner: DPI_TENANT_NAME,
           description,
           inlineResources,
-          resourceSlugs: []
+          resourceSlugs: resources.map((resource) => resource.slug)
         },
         context: {
           headers: {
@@ -361,7 +363,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
         owner: DPI_TENANT_NAME,
         description,
         inlineResources,
-        resourceSlugs: []
+        resourceSlugs: resources.map((resource) => resource.slug)
       }
 
       autoSaveMove({
@@ -380,7 +382,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, moveSlug, playSlug, inlineResources, router, watch, autoSaveMove])
+  }, [user, moveSlug, playSlug, inlineResources, resources, router, watch, autoSaveMove])
 
   const cancelForm = () => {
     setReverting(true)
@@ -397,14 +399,15 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
       id: resource.id,
       name: resource.name,
       slug: resource.slug,
-      label: resource.name
+      label: resource.name,
+      resourceLink: resource.resourceLink
     }))
   )
 
   const addResource = (resource) =>
     setResources([
       ...resources.filter(({ slug }) => slug !== resource.slug),
-      { name: resource.label, slug: resource.slug }
+      { name: resource.label, slug: resource.slug, resourceLink: resource.resourceLink }
     ])
 
   const removeResource = (resource) =>
@@ -476,13 +479,20 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
                     value={null}
                   />
                 </label>
-                <div className='flex flex-wrap gap-3 mt-2'>
+                <div className='flex flex-col gap-3 mt-2'>
                   {resources?.map((resource, resourceIdx) =>(
-                    <Pill
+                    <div
                       key={resourceIdx}
-                      label={resource.name}
-                      onRemove={() => removeResource(resource)}
-                    />
+                      className='shadow-md flex flex-col gap-1 px-2 py-1 bg-white text-dial-stratos'
+                    >
+                      <div className='flex gap-2'>
+                        <div className='line-clamp-1'>{resource.name}</div>
+                        <button className='ml-auto shrink-0' type='button' onClick={() => removeResource(resource)}>
+                          <FaXmark className='text-dial-stratos' size='1rem' />
+                        </button>
+                      </div>
+                      <div className='text-xs line-clamp-1 text-dial-deep-purple'>{resource.resourceLink}</div>
+                    </div>
                   ))}
                 </div>
               </div>
