@@ -2546,6 +2546,14 @@ export const en = {
     digital rights advocates working on data governance and digital platforms and services. 
   `,
 
+  'health.landing.main.title': 'Africa HealthTech Marketplace',
+  'health.landing.main.subtitle': `Enhancing visibility and trust in digital health solutions`,
+  'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Alliance',
+
+  'health.header.about': 'About',
+  'health.header.products': 'Products',
+  'health.header.faq': 'FAQ',
+
   'ui.chatbot.question': 'Question',
   'ui.chatbot.header': 'Ask our Chatbot',
   'ui.chatbot.userRequired': 'Please login to use the exchange chatbot function.',

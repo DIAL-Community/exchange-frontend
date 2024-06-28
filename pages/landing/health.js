@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import DpiBody from '../../components/dpi/sections/DpiBody'
-import DpiFooter from '../../components/dpi/sections/DpiFooter'
-import DpiHeader from '../../components/dpi/sections/DpiHeader'
-import DpiResources from '../../components/dpi/sections/DpiResources'
+import HealthBody from '../../components/health/sections/HealthBody'
+import HealthFooter from '../../components/health/sections/HealthFooter'
+import HealthHeader from '../../components/health/sections/HealthHeader'
+import HealthProducts from '../../components/health/sections/HealthProducts'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
@@ -20,10 +20,10 @@ const HealthPage = ({ defaultTenants }) => {
       />
       <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
-        <DpiHeader />
-        <DpiBody />
-        <DpiResources />
-        <DpiFooter />
+        <HealthHeader />
+        <HealthBody />
+        <HealthProducts />
+        <HealthFooter />
       </ClientOnly>
     </>
   )
