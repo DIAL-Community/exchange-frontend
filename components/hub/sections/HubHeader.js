@@ -80,28 +80,30 @@ const HubHeader = ({ isOnAuthPage = false }) => {
               width={128}
               className='object-contain px-4 border-r'
             />
-            <div className='text-xl leading-6 w-24 my-auto px-4'>{format('dpi.header.title')}</div>
+            <div className='2xl:text-xl w-24 my-auto px-4'>
+              {format('dpi.header.title')}
+            </div>
           </div>
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
         {!isOnAuthPage &&
           <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
-            <li className='relative text-right text-lg'>
+            <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/topics' role='menuitem' className={menuStyles}>
                 {format('dpi.header.topic').toUpperCase()}
               </Link>
             </li>
-            <li className='relative text-right text-lg'>
+            <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/countries' role='menuitem' className={menuStyles}>
                 {format('dpi.header.country').toUpperCase()}
               </Link>
             </li>
-            <li className='relative text-right text-lg'>
+            <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/resource-finder' role='menuitem' className={menuStyles}>
                 {format('dpi.header.resourceFinder').toUpperCase()}
               </Link>
             </li>
-            <li className='relative text-right text-lg'>
+            <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
                 {format('dpi.header.expertNetwork').toUpperCase()}
               </Link>

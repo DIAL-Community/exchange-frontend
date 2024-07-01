@@ -4,7 +4,7 @@ import HubBreadcrumb from './HubBreadcrumb'
 const HubProfileDetail = ({ user }) => {
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh]'>
+    <div className='md:px-4 lg:px-8 xl:px-56 min-h-[80vh]'>
       <div
         className='py-4 px-6 sticky bg-dial-blue-chalk text-dial-stratos'
         style={{ top: 'var(--header-height)' }}

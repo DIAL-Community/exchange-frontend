@@ -17,28 +17,33 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
     >
       <div
-        class="text-2xl text-center text-dial-cotton py-6 md:py-12 lg:py-16 xl:py-16 mx-auto max-w-prose"
+        class="flex flex-col gap-8 justify-center mx-auto py-12 px-4 xl:flex-row xl:py-20"
       >
-        
+        <div
+          class="md:text-xl 2xl:text-2xl text-center text-dial-cotton max-w-prose"
+        >
+          
     Topics showcases a series of knowledge products published by DIAL and its partners
     on key issues surrounding digital public infrastructure.
   
+        </div>
       </div>
     </div>
     <div
-      class="px-4 lg:px-8 xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]"
+      class="px-24 md:px-56 min-h-[40vh] 2xl:min-h-[50vh]"
     >
       <div
         class="-mt-[8rem] z-20"
       >
         <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-3xl mx-auto"
+          class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-xl 2xl:max-w-2xl mx-auto"
         >
           <a
+            class="text-dial-cotton"
             href="/hub/topics/ai--machine-learning"
           >
             <div
-              class="bg-dial-deep-purple text-dial-cotton py-16 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center"
             >
               <img
                 alt="AI + Machine Learning"
@@ -46,17 +51,18 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
-                class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
+                class="absolute left-1/2 -translate-x-1/2 bottom-8 text-center uppercase 2xl:text-lg"
               >
                 AI + Machine Learning
               </div>
             </div>
           </a>
           <a
+            class="text-dial-cotton"
             href="/hub/topics/consent"
           >
             <div
-              class="bg-dial-deep-purple text-dial-cotton py-16 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center"
             >
               <img
                 alt="Consent"
@@ -64,17 +70,18 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
-                class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
+                class="absolute left-1/2 -translate-x-1/2 bottom-8 text-center uppercase 2xl:text-lg"
               >
                 Consent
               </div>
             </div>
           </a>
           <a
+            class="text-dial-cotton"
             href="/hub/topics/data-privacy"
           >
             <div
-              class="bg-dial-deep-purple text-dial-cotton py-16 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center"
             >
               <img
                 alt="Data Privacy"
@@ -82,17 +89,18 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
-                class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
+                class="absolute left-1/2 -translate-x-1/2 bottom-8 text-center uppercase 2xl:text-lg"
               >
                 Data Privacy
               </div>
             </div>
           </a>
           <a
+            class="text-dial-cotton"
             href="/hub/topics/data-exchange"
           >
             <div
-              class="bg-dial-deep-purple text-dial-cotton py-16 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center"
             >
               <img
                 alt="Data Exchange"
@@ -100,7 +108,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
-                class="absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg"
+                class="absolute left-1/2 -translate-x-1/2 bottom-8 text-center uppercase 2xl:text-lg"
               >
                 Data Exchange
               </div>

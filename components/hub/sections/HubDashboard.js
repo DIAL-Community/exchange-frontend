@@ -27,8 +27,8 @@ const HubDashboard = () => {
     <div className='flex flex-col'>
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/hub-hero.svg' />
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
-        <div className='flex gap-8 justify-center mx-auto'>
-          <div className='text-2xl text-center text-dial-cotton max-w-5xl py-20'>
+        <div className='flex flex-col gap-8 justify-center mx-auto py-12 px-4 xl:flex-row xl:py-20'>
+          <div className='md:text-xl 2xl:text-2xl text-center text-dial-cotton lg:max-w-prose line-clamp-6'>
             <FormattedMessage
               id='dpi.dashboard.subtitle'
               values={{
@@ -37,7 +37,7 @@ const HubDashboard = () => {
             />
           </div>
           {user && (
-            <div className='flex flex-col self-center gap-3'>
+            <div className='flex flex-col ml-auto xl:ml-0 gap-2 text-sm lg:text-base xl:gap-4'>
               <a href='/hub/member-login' onClick={signOutUser}>
                 <span className='text-dial-cotton border-b border-transparent hover:border-white'>
                   <FormattedMessage id='dpi.dashboard.signOut' />

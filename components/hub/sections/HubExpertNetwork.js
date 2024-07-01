@@ -32,8 +32,8 @@ const HubExpertNetwork = () => {
     <div className='flex flex-col gap-6 pb-12 max-w-catalog'>
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/hub-hero.svg' />
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
-        <div className='flex gap-8 justify-center mx-auto py-20'>
-          <div className='text-2xl text-center text-dial-cotton  max-w-prose'>
+        <div className='flex flex-col gap-8 justify-center mx-auto py-12 px-4 xl:flex-row xl:py-20'>
+          <div className='md:text-xl 2xl:text-2xl text-center text-dial-cotton lg:max-w-prose line-clamp-6'>
             <FormattedMessage
               id='dpi.expertNetwork.subtitle'
               values={{
@@ -41,7 +41,7 @@ const HubExpertNetwork = () => {
               }}
             />
           </div>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col ml-auto xl:ml-0 gap-2 text-sm lg:text-base xl:gap-4'>
             <a
               target='_blank'
               rel='noreferrer'
@@ -101,7 +101,7 @@ const NetworkMembers = ({ members }) => {
 
   return (
     <>
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-12'>
+      <div className='grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-12'>
         {members
           .slice(pageNumber * DEFAULT_PAGE_COUNT, (pageNumber + 1) * DEFAULT_PAGE_COUNT)
           .map((member, index) => (
@@ -130,7 +130,7 @@ const NetworkMemberCard = ({ member }) => {
 
   return (
     <div className='flex items-center gap-4'>
-      <div className="h-32 w-32 shrink-0">
+      <div className="h-24 w-24 2xl:h-32 2xl:w-32 shrink-0">
         <img
           alt={format('dpi.expertNetwork.memberCard.alt')}
           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + member.imageFile}

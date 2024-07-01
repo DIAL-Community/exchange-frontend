@@ -57,7 +57,7 @@ const ProfileDetail = ({ user }) => {
 
   return (
     <div className='flex flex-col gap-y-3'>
-      <div className='flex flex-row gap-12 py-8'>
+      <div className='flex flex-col md:flex-row gap-12 py-8'>
         <div className='basis-2/5 shrink-0'>
           <ContactCard user={user} contact={data?.hubContact} />
         </div>

@@ -25,16 +25,16 @@ const HubTopicTile = () => {
   const { resourceTopics } = data
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-3xl mx-auto'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-xl 2xl:max-w-2xl mx-auto'>
       {resourceTopics.map((resourceTopic, index) =>
-        <Link key={index} href={`/hub/topics/${resourceTopic.slug}`}>
-          <div className='bg-dial-deep-purple text-dial-cotton py-16 aspect-square relative flex justify-center'>
+        <Link key={index} href={`/hub/topics/${resourceTopic.slug}`} className='text-dial-cotton'>
+          <div className='bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center'>
             <img
               className='white-filter opacity-40'
               alt={resourceTopic.name}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resourceTopic.imageFile}
             />
-            <div className='absolute left-1/2 -translate-x-1/2 bottom-20 uppercase px-8 py-2 text-lg'>
+            <div className='absolute left-1/2 -translate-x-1/2 bottom-8 text-center uppercase 2xl:text-lg'>
               {resourceTopic.name}
             </div>
           </div>
