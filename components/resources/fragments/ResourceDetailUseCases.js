@@ -4,22 +4,22 @@ import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import ProductCard from '../../product/ProductCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
-import { UPDATE_RESOURCE_PRODUCTS } from '../../shared/mutation/resource'
-import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
+import { UPDATE_RESOURCE_USE_CASES } from '../../shared/mutation/resource'
+import { USE_CASE_SEARCH_QUERY } from '../../shared/query/useCase'
+import UseCaseCard from '../../use-case/UseCaseCard'
 import { DisplayType } from '../../utils/constants'
-import { fetchSelectOptions } from '../../utils/search'
+import { fetchSelectOptionsWithMaturity } from '../../utils/search'
 
-const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
+const ResourceDetailUseCases = ({ resource, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [products, setProducts] = useState(resource.products)
+  const [useCases, setUseCases] = useState(resource.useCases)
   const [isDirty, setIsDirty] = useState(false)
 
   const { user } = useUser()
@@ -27,49 +27,49 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
-  const [updateResourceProducts, { loading, reset }] = useMutation(UPDATE_RESOURCE_PRODUCTS, {
+  const [updateResourceUseCases, { loading, reset }] = useMutation(UPDATE_RESOURCE_USE_CASES, {
     onError() {
       setIsDirty(false)
-      setProducts(resource?.products)
-      showFailureMessage(format('toast.submit.failure', { entity: format('ui.product.header') }))
+      setUseCases(resource?.useCases)
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.useCase.header') }))
       reset()
     },
     onCompleted: (data) => {
-      const { updateResourceProducts: response } = data
+      const { updateResourceUseCases: response } = data
       if (response?.resource && response?.errors?.length === 0) {
         setIsDirty(false)
-        setProducts(response?.resource?.products)
-        showSuccessMessage(format('toast.submit.success', { entity: format('ui.product.header') }))
+        setUseCases(response?.resource?.useCases)
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.useCase.header') }))
       } else {
         setIsDirty(false)
-        setProducts(resource?.products)
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.product.header') }))
+        setUseCases(resource?.useCases)
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.useCase.header') }))
         reset()
       }
     }
   })
 
-  const fetchedProductsCallback = (data) => (
-    data.products?.map((product) => ({
-      id: product.id,
-      name: product.name,
-      slug: product.slug,
-      label: product.name
+  const fetchedUseCasesCallback = (data) => (
+    data.useCases?.map((useCase) => ({
+      id: useCase.id,
+      name: useCase.name,
+      slug: useCase.slug,
+      label: useCase.name
     }))
   )
 
-  const addProduct = (product) => {
-    setProducts([
+  const addUseCase = (useCase) => {
+    setUseCases([
       ...[
-        ...products.filter(({ id }) => id !== product.id),
-        { id: product.id, name: product.name, slug: product.slug  }
+        ...useCases.filter(({ id }) => id !== useCase.id),
+        { id: useCase.id, name: useCase.name, slug: useCase.slug  }
       ]
     ])
     setIsDirty(true)
   }
 
-  const removeProduct = (product) => {
-    setProducts([...products.filter(({ id }) => id !== product.id)])
+  const removeUseCase = (useCase) => {
+    setUseCases([...useCases.filter(({ id }) => id !== useCase.id)])
     setIsDirty(true)
   }
 
@@ -77,9 +77,9 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
     if (user) {
       const { userEmail, userToken } = user
 
-      updateResourceProducts({
+      updateResourceUseCases({
         variables: {
-          productSlugs: products.map(({ slug }) => slug),
+          useCaseSlugs: useCases.map(({ slug }) => slug),
           slug: resource.slug
         },
         context: {
@@ -93,34 +93,34 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setProducts(resource.products)
+    setUseCases(resource.useCases)
     setIsDirty(false)
   }
 
-  const displayModeBody = products.length
+  const displayModeBody = useCases.length
     ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
-      {products?.map((product, index) =>
-        <div key={`product-${index}`}>
-          <ProductCard product={product} displayType={DisplayType.SMALL_CARD} />
+      {useCases?.map((useCase, index) =>
+        <div key={`useCase-${index}`}>
+          <UseCaseCard useCase={useCase} displayType={DisplayType.SMALL_CARD} />
         </div>
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
-        entity: format('ui.product.label'),
+        entity: format('ui.useCase.label'),
         base: format('ui.resource.label')
       })}
     </div>
 
   const sectionHeader =
     <div className='font-semibold text-dial-stratos' ref={headerRef}>
-      {format('ui.product.header')}
+      {format('ui.useCase.header')}
     </div>
 
   const editModeBody =
     <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2'>
-        {`${format('app.searchAndAssign')} ${format('ui.product.label')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.useCase.label')}`}
         <Select
           async
           isSearch
@@ -129,19 +129,19 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) =>
-            fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)
+            fetchSelectOptionsWithMaturity(client, input, USE_CASE_SEARCH_QUERY, fetchedUseCasesCallback)
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.label') })}
-          onChange={addProduct}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.useCase.label') })}
+          onChange={addUseCase}
           value={null}
         />
       </label>
       <div className='flex flex-wrap gap-3'>
-        {products.map((product, productIdx) => (
+        {useCases.map((useCase, useCaseIdx) => (
           <Pill
-            key={`products-${productIdx}`}
-            label={product.name}
-            onRemove={() => removeProduct(product)}
+            key={`usecases-${useCaseIdx}`}
+            label={useCase.name}
+            onRemove={() => removeUseCase(useCase)}
           />
         ))}
       </div>
@@ -161,4 +161,4 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
   )
 }
 
-export default ResourceDetailProducts
+export default ResourceDetailUseCases
