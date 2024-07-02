@@ -23,15 +23,15 @@ const MessageFilter = ({ search, setSearch, setMessageType }) => {
   ]
 
   return (
-    <div className="flex flex-col gap-8 lg:flex-row">
-      <div className="lg:basis-1/2 shrink-0">
+    <div className='flex flex-col gap-4 lg:gap-8 lg:flex-row text-sm'>
+      <div className='lg:basis-1/2 shrink-0'>
         <SearchInput
           value={search}
           onChange={handleSearchChange}
           placeholder={format('app.search')}
         />
       </div>
-      <div className="flex w-full">
+      <div className='flex w-full'>
         <div className='basis-1/2 shrink-0 my-auto text-right px-4'>
           {format('dpi.broadcast.messageType')}
         </div>

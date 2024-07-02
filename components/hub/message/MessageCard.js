@@ -70,7 +70,7 @@ const MessageCard = ({ message }) => {
       <Link href={`/hub/admin/broadcasts/${message.slug}`}>
         {displayLargeCard()}
       </Link>
-      <div className='absolute top-0 right-0 cursor-pointer'>
+      <div className='lg:absolute top-0 right-0 cursor-pointer'>
         {(user.isAdminUser || user.isAdliAdminUser) &&
           <button
             onClick={toggleMessageVisibility}

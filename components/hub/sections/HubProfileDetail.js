@@ -11,9 +11,11 @@ const HubProfileDetail = ({ user }) => {
       >
         <HubBreadcrumb slugNameMapping={{}} />
       </div>
-      <div className="md:flex md:h-full">
-        <div className="p-12 text-medium text-dial-sapphire rounded-lg w-full h-full">
-          <ProfileDetail user={user} />
+      <div className='md:flex md:h-full'>
+        <div className='text-dial-sapphire rounded-lg w-full h-full'>
+          <div className='p-6 lg:p-12'>
+            <ProfileDetail user={user} />
+          </div>
         </div>
       </div>
     </div>

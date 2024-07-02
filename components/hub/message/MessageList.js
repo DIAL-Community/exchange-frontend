@@ -31,7 +31,7 @@ const MessageList = ({ pageNumber, search, messageType }) => {
   return (
     <div className='flex flex-col gap-2'>
       {messages.map((message, index) =>
-        <div className='flex flex-col gap-y-4' key={index}>
+        <div className='flex flex-col gap-y-2' key={index}>
           <hr className='border-b border-gray-300 border-dashed' />
           <MessageCard key={index} message={message} />
         </div>

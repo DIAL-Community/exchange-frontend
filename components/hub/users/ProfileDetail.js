@@ -39,7 +39,7 @@ const ContactBio = ({ user, contact }) => {
           </Link>
         </div>
       )}
-      <div className="font-bold">
+      <div className='font-bold'>
         {format('ui.contact.biography')}
       </div>
       <HtmlViewer initialContent={contact?.biography ?? format('ui.contact.biography.placeholder')} />

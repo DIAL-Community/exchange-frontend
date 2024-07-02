@@ -17,7 +17,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
     >
       <div
-        class="flex flex-col gap-8 justify-center mx-auto py-12 px-4 xl:flex-row xl:py-20"
+        class="flex flex-col gap-8 items-center justify-items-center mx-auto py-12 px-4 xl:py-20"
       >
         <div
           class="md:text-xl 2xl:text-2xl text-center text-dial-cotton max-w-prose"

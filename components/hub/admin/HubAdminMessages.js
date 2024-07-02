@@ -26,9 +26,9 @@ const HubAdminMessages = () => {
 
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
-      <div className="md:flex md:h-full">
+      <div className='md:flex md:h-full'>
         <HubAdminTabs />
-        <div className="p-12 text-medium text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full">
+        <div className='py-6 px-6 md:px-8 text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full'>
           <div className='message-list-section text-dial-cotton relative flex flex-col gap-4'>
             <div className='absolute top-0 right-0'>
               {(user.isAdminUser || user.isAdliAdminUser) &&
@@ -45,7 +45,7 @@ const HubAdminMessages = () => {
                 </div>
               }
             </div>
-            <div className='text-2xl pb-6'>
+            <div className='text-lg lg:text-2xl pb-6'>
               {format('dpi.broadcast.header')}
             </div>
             <MessageFilter

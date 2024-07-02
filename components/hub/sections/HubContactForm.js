@@ -29,8 +29,8 @@ const HubContactForm = ({ userId, userEmail }) => {
       >
         <HubBreadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className="md:flex md:h-full">
-        <div className="p-6 md:p-12 text-medium text-sapphire rounded-lg w-full h-full">
+      <div className='md:flex md:h-full'>
+        <div className='p-6 md:p-12 text-medium text-sapphire rounded-lg w-full h-full'>
           {loading
             ? format('general.fetchingData')
             : userEmail && data?.hubContact

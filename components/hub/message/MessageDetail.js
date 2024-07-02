@@ -49,9 +49,9 @@ const MessageDetail = ({ message }) => {
   }
 
   return (
-    <div className='relative flex flex-col gap-y-3 text-dial-cotton'>
+    <div className='relative flex flex-col gap-y-3 text-dial-cotton text-sm'>
       {(user.isAdliAdminUser || user.isAdminUser) && (
-        <div className='absolute -top-1 -right-1'>
+        <div className='ml-auto lg:absolute -top-1 -right-1'>
           <div className='flex gap-2'>
             <Link
               href={editPath}
@@ -88,11 +88,11 @@ const MessageDetail = ({ message }) => {
           </div>
         </div>
       )}
-      <div className='text-2xl font-semibold'>
+      <div className='text-lg lg:text-2xl font-semibold'>
         {message.name}
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
-      <div className='text-xl font-semibold'>
+      <div className='lg:text-xl font-semibold'>
         {format('dpi.broadcast.messageType')}
       </div>
       <div className='block'>
@@ -100,20 +100,26 @@ const MessageDetail = ({ message }) => {
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold'>
+        <div className='lg:text-xl font-semibold'>
           {format('dpi.broadcast.messageTemplate')}
         </div>
         <div className='text-sm'>
-          <HtmlViewer initialContent={message.messageTemplate} />
+          <HtmlViewer
+            initialContent={message.messageTemplate}
+            extraClassNames='md:text-base'
+          />
         </div>
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold'>
+        <div className='lg:text-xl font-semibold'>
           {format('dpi.broadcast.parsedMessage')}
         </div>
         <div className='text-sm'>
-          <HtmlViewer initialContent={message.parsedMessage} />
+          <HtmlViewer
+            initialContent={message.parsedMessage}
+            extraClassNames='md:text-base'
+          />
         </div>
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />

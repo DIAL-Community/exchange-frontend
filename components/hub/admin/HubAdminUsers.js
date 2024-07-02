@@ -27,21 +27,23 @@ const HubAdminUsers = () => {
 
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
-      <div className="md:flex">
+      <div className='md:flex md:h-full'>
         <HubAdminTabs />
-        <div className="py-6 px-8 text-medium text-dial-cotton bg-dial-slate-800 rounded-lg w-full min-h-[70vh]">
-          <div className='flex justify-end gap-4'>
+        <div className="py-6 px-6 md:px-8 text-dial-cotton bg-dial-slate-800 rounded-lg w-full min-h-[70vh]">
+          <div className='flex lg:justify-end gap-4'>
             <UserSearchBar ref={topRef} />
             {(user.isAdminUser || user.isAdliAdminUser) &&
               <div className='flex items-center'>
                 <Link
                   href={'/hub/admin/users/create'}
-                  className='cursor-pointer bg-dial-iris-blue px-4 py-2 rounded text-dial-cotton'
+                  className='cursor-pointer bg-dial-iris-blue px-3 py-2 rounded text-dial-cotton'
                 >
-                  <FiPlusCircle className='inline pb-0.5' />
-                  <span className='text-sm px-1'>
-                    {format('app.create')}
-                  </span>
+                  <div className='flex flex-row gap-1 items-center justify-items-center'>
+                    <FiPlusCircle className='inline' />
+                    <span className='text-sm'>
+                      {format('app.create')}
+                    </span>
+                  </div>
                 </Link>
               </div>
             }

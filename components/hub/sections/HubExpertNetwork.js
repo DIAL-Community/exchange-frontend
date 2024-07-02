@@ -130,11 +130,11 @@ const NetworkMemberCard = ({ member }) => {
 
   return (
     <div className='flex items-center gap-4'>
-      <div className="h-24 w-24 2xl:h-32 2xl:w-32 shrink-0">
+      <div className='h-24 w-24 2xl:h-32 2xl:w-32 shrink-0'>
         <img
           alt={format('dpi.expertNetwork.memberCard.alt')}
           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + member.imageFile}
-          className="rounded-full object-cover h-full w-full"
+          className='rounded-full object-cover h-full w-full'
         />
       </div>
       <div className='grow flex flex-col gap-1'>

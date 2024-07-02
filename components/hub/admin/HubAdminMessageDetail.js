@@ -15,17 +15,19 @@ const HubAdminMessageDetail = ({ messageSlug }) => {
 
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
-      <div className="md:flex md:h-full">
+      <div className='md:flex md:h-full'>
         <HubAdminTabs />
-        <div className="p-12 text-medium text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full">
-          {loading
-            ? format('general.fetchingData')
-            : error
-              ? format('general.fetchError')
-              : messageSlug && data.message
-                ? <MessageDetail message={data?.message} />
-                : format('app.notFound')
-          }
+        <div className='text-dial-slate-400 bg-dial-slate-800 rounded-lg w-full h-full'>
+          <div className='p-6 lg:p-12'>
+            {loading
+              ? format('general.fetchingData')
+              : error
+                ? format('general.fetchError')
+                : messageSlug && data.message
+                  ? <MessageDetail message={data?.message} />
+                  : format('app.notFound')
+            }
+          </div>
         </div>
       </div>
     </div>

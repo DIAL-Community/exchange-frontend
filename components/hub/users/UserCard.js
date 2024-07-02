@@ -7,7 +7,7 @@ const UserCard = ({ user }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className='px-4 py-6 rounded-lg'>
+    <div className='py-6 rounded-lg'>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-base font-semibold'>

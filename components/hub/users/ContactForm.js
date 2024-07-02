@@ -152,8 +152,8 @@ const ContactForm = ({ user, contact }) => {
     : loggedInUser
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='flex flex-col gap-y-6 text-sm'>
-            <div className='text-xl font-semibold'>
+          <div className='flex flex-col gap-y-4 md:gap-y-6 text-sm'>
+            <div className='text-lg md:text-xl font-semibold'>
               {contact
                 ? format('app.editEntity', { entity: contact.name })
                 : `${format('app.createNew')} ${format('ui.contact.label')}`}
