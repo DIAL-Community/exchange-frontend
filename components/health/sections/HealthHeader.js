@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import UserMenu from '../../shared/menu/UserMenu'
+import AdminMenu from '../../shared/menu/AdminMenu'
 import { useUser } from '../../../lib/hooks'
 import { NONE } from '../../shared/menu/MenuCommon'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../shared/query/user'
@@ -15,7 +16,7 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
-  const { user } = useUser()
+  const { user, isAdminUser } = useUser()
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [currentOpenMenu, setCurrentOpenMenu] = useState(NONE)
