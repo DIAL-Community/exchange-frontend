@@ -3,6 +3,8 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import AdminMenu from '../../shared/menu/AdminMenu'
+import UserMenu from '../../shared/menu/UserMenu'
 import { useUser } from '../../../lib/hooks'
 import { NONE } from '../../shared/menu/MenuCommon'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../shared/query/user'
@@ -14,13 +16,24 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
-  const { user } = useUser()
+  const { user, isAdminUser } = useUser()
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [currentOpenMenu, setCurrentOpenMenu] = useState(NONE)
 
+  const signInUser = (e) => {
+    e.preventDefault()
+    process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0'
+      ? signIn('Auth0', { callbackUrl: process.env.NEXT_PUBLIC_API_URL })
+      : signIn()
+  }
+
   const toggleMobileMenu = () => {
     setMenuExpanded(!menuExpanded)
+  }
+
+  const toggleDropdownSwitcher = (expectedMenuItem) => {
+    setCurrentOpenMenu(currentOpenMenu === expectedMenuItem ? NONE : expectedMenuItem)
   }
 
   useEffect(() => {
@@ -69,6 +82,25 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
     }
   })
 
+  const withUser =
+    <>
+      <li className='relative text-right text-lg text-gray intro-overview-signup'>
+        <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+      </li>
+    </>
+
+  const withoutUser =
+    <li className='text-right intro-overview-signup intro-signup'>
+      <a
+        href='signIn'
+        role='menuitem'
+        className='px-3 py-2 text-gray text-lg hover:text-slate-600 hover:bg-dial-menu-hover rounded-md'
+        onClick={signInUser}
+      >
+        {format('header.signIn').toUpperCase()}
+      </a>
+    </li>
+
   return (
     <header className='z-50 sticky top-0 bg-white max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
@@ -100,10 +132,11 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
                 {format('health.header.faq').toUpperCase()}
               </Link>
             </li>
+            { user ? withUser : withoutUser }
           </ul>
         }
       </div>
-      <HealthMobileMenu menuExpanded={menuExpanded} />
+      <HealthMobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
     </header>
   )
 }

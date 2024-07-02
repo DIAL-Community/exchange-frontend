@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/client'
 import { ProductFilterContext } from '../../context/ProductFilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import ListStructure from '../fragments/ListStructure'
 import ProductSearchBar from '../fragments/ProductSearchBar'
 
@@ -24,6 +23,8 @@ const HealthProducts = () => {
   const { push, query } = useRouter()
 
   const { page } = query
+
+  const DEFAULT_PAGE_SIZE = 16
 
   useEffect(() => {
     if (page) {

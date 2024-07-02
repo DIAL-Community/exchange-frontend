@@ -5,6 +5,7 @@ import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
 import { DisplayType } from '../../utils/constants'
 import ProductCard from '../../product/ProductCard'
+import ProductFilter from './ProductFilter'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(ProductFilterContext)
@@ -44,16 +45,13 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { paginatedProducts: products } = data
 
   return (
-    <div className='flex flex-col gap-3'>
-      {products.map((product, index) =>
-        <div key={index}>
-          <ProductCard
-            index={index}
-            product={product}
-            displayType={DisplayType.LARGE_CARD}
-          />
-        </div>
-      )}
+    <div className='px-4 lg:px-8 min-h-[70vh] py-8'>
+      <ProductFilter />
+      <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-8'>
+        {products.map((product, index) =>
+          <ProductCard key={index} product={product} displayType={DisplayType.GRID_CARD}  />
+        )}
+      </div>
     </div>
   )
 }

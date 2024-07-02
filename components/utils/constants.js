@@ -3,7 +3,8 @@ export const DisplayType = {
   SMALL_CARD: 'small-card',
   PINNED_CARD: 'pinned-card',
   FEATURED_CARD: 'featured-card',
-  DPI_CARD: 'dpi-card'
+  DPI_CARD: 'dpi-card',
+  GRID_CARD: 'grid-card'
 }
 
 export const ORIGIN_SLUG_ACRONYMS = {
