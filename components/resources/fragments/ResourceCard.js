@@ -46,11 +46,11 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       </div>
     </div>
 
-  const displayDpiCard = () =>
+  const displayHubCard = () =>
     <div className={`rounded-lg min-h-[6rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='min-w-80 pb-4 mx-auto flex flex-col'>
         <div className='w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center'>
-          <Link href={`/dpi-resources/${resource.slug}`}>
+          <Link href={`/hub/resources/${resource.slug}`}>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
@@ -146,7 +146,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       {displayType === DisplayType.FEATURED_CARD && displayFeaturedCard()}
-      {displayType === DisplayType.DPI_CARD && displayDpiCard()}
+      {displayType === DisplayType.DPI_CARD && displayHubCard()}
       { isValidFn(dismissHandler) &&
         <button type='button' className='absolute top-2 right-2'>
           <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />

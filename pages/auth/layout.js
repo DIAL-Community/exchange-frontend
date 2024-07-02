@@ -1,5 +1,5 @@
-import DpiFooter from '../../components/dpi/sections/DpiFooter'
-import DpiHeader from '../../components/dpi/sections/DpiHeader'
+import HubFooter from '../../components/hub/sections/HubFooter'
+import HubHeader from '../../components/hub/sections/HubHeader'
 import { Loading } from '../../components/shared/FetchStatus'
 import Footer from '../../components/shared/Footer'
 import Header from '../../components/shared/Header'
@@ -13,8 +13,16 @@ const AuthLayoutPage = ({ isOnAuthPage, children }) => {
       { waitingActiveTenant
         ? <Loading />
         : tenant === 'dpi'
-          ? <><DpiHeader isOnAuthPage={isOnAuthPage} /> {children} <DpiFooter /></>
-          : <><Header isOnAuthPage={isOnAuthPage} /> {children} <Footer /> </>
+          ? <>
+            <HubHeader isOnAuthPage={isOnAuthPage} />
+            {children}
+            <HubFooter />
+          </>
+          : <>
+            <Header isOnAuthPage={isOnAuthPage} />
+            {children}
+            <Footer />
+          </>
       }
     </>
   )
