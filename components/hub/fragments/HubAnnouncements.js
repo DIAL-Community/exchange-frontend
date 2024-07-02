@@ -13,12 +13,12 @@ const AnnouncementCard = ({ message }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`py-6 rounded-lg min-h-[12rem]} ${message.visible? 'opacity-100' : 'opacity-10'}`}>
+    <div className={`rounded-lg min-h-[12rem]} ${message.visible? 'opacity-100' : 'opacity-10'}`}>
       <div className='flex flex-col gap-y-3'>
         <div className='text-lg font-semibold'>
           {message.name}
         </div>
-        <div className='line-clamp-4'>
+        <div className='line-clamp-4 text-justify'>
           {message.messageTemplate && parse(message.parsedMessage)}
         </div>
         <div className='flex'>

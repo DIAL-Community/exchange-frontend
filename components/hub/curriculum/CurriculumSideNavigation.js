@@ -87,7 +87,7 @@ const CurriculumSideNavigation = ({ moduleRefs }) => {
                 onClick={(e) => navigateToPlay(e, moduleSlug)}
               >
                 <div className={currentSlug === moduleSlug ? 'bg-dial-slate-500 text-dial-cotton' : undefined}>
-                  <div className='flex flex-col gap-y-1 py-3 px-8'>
+                  <div className='flex flex-col gap-y-1 py-3 px-4 lg:px-8'>
                     {index <= 0
                       ? moduleNames[moduleSlug]
                       : `${format('dpi.curriculum.module.label')} ${index}. ${moduleNames[moduleSlug]}`

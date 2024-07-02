@@ -41,14 +41,14 @@ const CurriculumTopNavigation = ({ curriculum, moduleRefs }) => {
 
   return (
     <div className='sticky sticky-under-header bg-dial-lavender'>
-      <div className='relative flex px-4 py-6 overflow-x-auto'>
-        <div className='absolute top-2 left-8'>
+      <div className='relative flex flex-col lg:flex-row gap-3 lg:px-4 py-6 overflow-x-auto'>
+        <div className='absolute top-2 left-4 lg:left-8'>
           <HubBreadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        <div className='text-xl px-4 mt-3 font-semibold my-auto'>
+        <div className='text-base lg:text-xl px-4 mt-3 font-semibold my-auto line-clamp-1'>
           {curriculum.name}
         </div>
-        <div className='ml-auto play-progress'>
+        <div className='ml-4 mr-4 lg:ml-auto play-progress'>
           <div className='play-progress-bar-base' />
           <div className='play-progress-number'>
             {modules.map(({ moduleSlug }, index) => {

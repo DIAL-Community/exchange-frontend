@@ -16,19 +16,19 @@ const CurriculumCard = ({ curriculum }) => {
   const { playbookDescription: curriculumDescription } = curriculum
 
   const displayLargeCard = () =>
-    <div className='px-4 py-6 rounded-lg min-h-[12rem]'>
+    <div className='rounded-lg min-h-[12rem]'>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {curriculum.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='w-20 h-20 bg-white border shrink-0 flex justify-center'>
+          <div className='bg-white border shrink-0 flex items-center justify-items-center'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + curriculum.imageFile}
               alt={format('ui.image.logoAlt', { name: format('dpi.curriculum.label') })}
-              className='object-contain w-16 h-16 mx-auto self-center'
+              className='object-contain w-16 h-16'
             />
           </div>
         }
         {curriculum.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20 bg-white rounded-full shrink-0 flex justify-center'>
+          <div className='bg-white rounded-full shrink-0 flex items-center justify-items-center'>
             <img
               src='/ui/v1/playbook-header.svg'
               alt={format('ui.image.logoAlt', { name: format('dpi.curriculum.label') })}
@@ -37,15 +37,17 @@ const CurriculumCard = ({ curriculum }) => {
           </div>
         }
         <div className='flex flex-col gap-y-3'>
-          <div className={`flex gap-x-2 text-lg font-semibold ${curriculum.draft && 'text-dial-sapphire'}`}>
-            {curriculum.name}
+          <div className={`flex gap-x-2 ${curriculum.draft && 'text-dial-sapphire'}`}>
+            <div className='lg:text-lg font-semibold line-clamp-1'>
+              {curriculum.name}
+            </div>
             {curriculum.draft &&
-              <span className='font-bold'>
+              <span className='font-bold ml-auto'>
                 ({format('ui.play.status.draft')})
               </span>
             }
           </div>
-          <div className='line-clamp-4'>
+          <div className='line-clamp-4 text-justify'>
             {curriculumDescription && parse(curriculumDescription?.sanitizedOverview)}
           </div>
           <div className='flex gap-x-2'>
@@ -119,7 +121,7 @@ const HubCurricula = ({ stripeIndex }) => {
   return (
     <div className={`curriculum-section ${stripeClasses(stripeIndex)}`}>
       <div className='px-4 lg:px-8 xl:px-56'>
-        <div className='text-2xl pt-8 pb-2 '>
+        <div className='text-lg lg:text-2xl pt-8 pb-2 '>
           {format('dpi.curriculum.title')}
         </div>
         <div className='text-sm pt-2 pb-4 max-w-prose'>
