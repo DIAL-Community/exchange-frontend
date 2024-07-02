@@ -128,6 +128,7 @@ export const RESOURCE_SEARCH_QUERY = gql`
       id
       name
       slug
+      resourceLink
     }
   }
 `
