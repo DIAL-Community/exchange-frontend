@@ -1,15 +1,17 @@
 import { useCallback, useState } from 'react'
-import { useRouter } from 'next/router'
 import classNames from 'classnames'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
+import { FaArrowRight } from 'react-icons/fa6'
 import { FiEdit3 } from 'react-icons/fi'
+import { HiExternalLink } from 'react-icons/hi'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useLazyQuery } from '@apollo/client'
-import { HiExternalLink } from 'react-icons/hi'
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { useUser } from '../../lib/hooks'
+import UnassignMove from '../move/UnassignMove'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { MOVE_PREVIEW_QUERY } from '../shared/query/move'
-import UnassignMove from '../move/UnassignMove'
 import { prependUrlWithProtocol } from '../utils/utilities'
 
 const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = false }) => {
@@ -103,10 +105,39 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
                 editorId={`move-${data.move?.id}-desc`}
               />
               {data?.move?.resources && data?.move?.resources.length > 0 &&
-                <>
+                <div className='text-sm'>
                   <div className='font-semibold py-2'>{format('ui.move.resources.header')}</div>
                   <div className='flex flex-wrap gap-3'>
                     {data?.move?.resources
+                      .filter(resource => resource.resourceLink && resource.name)
+                      .map(resource => {
+                        return (
+                          <Link
+                            key={resource.id}
+                            href={`/resources/${resource.slug}`}
+                            target='_blank'
+                            rel='noreferrer'
+                          >
+                            <div className='group border border-gray-300 hover:border-dial-sunshine shadow-md'>
+                              <div className='flex gap-3 px-3'>
+                                <div className='flex flex-col gap-2 px-3 py-4'>
+                                  <div className='font-semibold'>{resource.name}</div>
+                                </div>
+                                <FaArrowRight className='my-auto' />
+                              </div>
+                            </div>
+                          </Link>
+                        )
+                      })
+                    }
+                  </div>
+                </div>
+              }
+              {data?.move?.inlineResources && data?.move?.inlineResources.length > 0 &&
+                <div className='text-sm'>
+                  <div className='font-semibold py-2'>{format('ui.move.resources.header')}</div>
+                  <div className='flex flex-wrap gap-3'>
+                    {data?.move?.inlineResources
                       .filter(resource => resource.url && resource.name)
                       .map(resource => {
                         return (
@@ -116,19 +147,13 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
                             target='_blank'
                             rel='noreferrer'
                           >
-                            <div
-                              key={resource.i}
-                              className={classNames(
-                                'group border-2 border-gray-300 hover:border-dial-sunshine',
-                                'shadow-md'
-                              )}
-                            >
-                              <div className='flex'>
+                            <div className='group border border-gray-300 hover:border-dial-sunshine shadow-md'>
+                              <div className='flex gap-3 px-3'>
                                 <div className='flex flex-col gap-2 px-3 py-4'>
                                   <div className='font-semibold'>{resource.name}</div>
                                   <div className='text-sm'>{resource.description}</div>
                                 </div>
-                                <HiExternalLink className='ml-auto px-2' size='2.2em' />
+                                <HiExternalLink className='my-auto' />
                               </div>
                             </div>
                           </a>
@@ -136,7 +161,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
                       })
                     }
                   </div>
-                </>
+                </div>
               }
             </>
           }
