@@ -30,7 +30,7 @@ const HubExpertNetwork = () => {
 
   return (
     <div className='flex flex-col gap-6 pb-12 max-w-catalog'>
-      <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/hub-hero.svg' />
+      <img className='h-72 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/hub-hero.svg' />
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
         <div className='flex flex-col gap-8 justify-center mx-auto py-12 px-4 xl:flex-row xl:py-20'>
           <div className='md:text-xl 2xl:text-2xl text-center text-dial-cotton lg:max-w-prose line-clamp-6'>

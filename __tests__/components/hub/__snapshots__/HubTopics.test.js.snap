@@ -30,7 +30,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       </div>
     </div>
     <div
-      class="px-24 md:px-56 min-h-[40vh] 2xl:min-h-[50vh]"
+      class="px-24 md:px-36 lg:px-56 min-h-[55vh]"
     >
       <div
         class="-mt-[8rem] z-20"
@@ -43,7 +43,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             href="/hub/topics/ai--machine-learning"
           >
             <div
-              class="bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center"
             >
               <img
                 alt="AI + Machine Learning"
@@ -62,7 +62,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             href="/hub/topics/consent"
           >
             <div
-              class="bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center"
             >
               <img
                 alt="Consent"
@@ -81,7 +81,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             href="/hub/topics/data-privacy"
           >
             <div
-              class="bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center"
             >
               <img
                 alt="Data Privacy"
@@ -100,7 +100,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             href="/hub/topics/data-exchange"
           >
             <div
-              class="bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center"
             >
               <img
                 alt="Data Exchange"

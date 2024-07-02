@@ -28,7 +28,7 @@ const HubTopicTile = () => {
     <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-xl 2xl:max-w-2xl mx-auto'>
       {resourceTopics.map((resourceTopic, index) =>
         <Link key={index} href={`/hub/topics/${resourceTopic.slug}`} className='text-dial-cotton'>
-          <div className='bg-dial-deep-purple py-16 md:py-24 aspect-square relative flex justify-center'>
+          <div className='bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center'>
             <img
               className='white-filter opacity-40'
               alt={resourceTopic.name}

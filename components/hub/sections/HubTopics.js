@@ -18,7 +18,7 @@ const HubTopics = () => {
           </div>
         </div>
       </div>
-      <div className='px-24 md:px-56 min-h-[40vh] 2xl:min-h-[50vh]'>
+      <div className='px-24 md:px-36 lg:px-56 min-h-[55vh]'>
         <div className='-mt-[8rem] z-20'>
           <HubTopicTile />
         </div>
