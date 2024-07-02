@@ -9,7 +9,7 @@ const ResourceRibbon = () => {
   const titleImage =
     <div className='bg-dial-plum rounded-full w-[70px] h-[70px] flex items-center'>
       <img
-        src='/ui/v1/research-header.svg'
+        src='/ui/v1/resource-header.svg'
         alt={format('ui.image.logoAlt', { name: format('ui.project.label') })}
         width={40}
         height={40}

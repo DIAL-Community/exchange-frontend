@@ -33,8 +33,8 @@ const PLAYBOOK_DETAIL_QUERY = gql`
           id
           slug
           name
-          resources
           moveOrder
+          inlineResources
           moveDescription {
             id
             description

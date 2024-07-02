@@ -2,13 +2,17 @@ import { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
+import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
+import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import Select from '../../shared/form/Select'
 import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../shared/mutation/move'
+import { RESOURCE_SEARCH_QUERY } from '../../shared/query/resource'
+import { fetchSelectOptions } from '../../utils/search'
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
   const [mutating, setMutating] = useState(false)
@@ -232,6 +236,8 @@ const MoveForm = ({ playbook, play, move }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const client = useApolloClient()
+
   const router = useRouter()
   const { user, loadingUserSession } = useUser()
   const [mutating, setMutating] = useState(false)
@@ -239,45 +245,47 @@ const MoveForm = ({ playbook, play, move }) => {
 
   const [moveSlug, setMoveSlug] = useState(move ? move.slug : '')
   const [playSlug] = useState(play ? play.slug : move ? move.play.slug : '')
+  const [inlineResources, setInlineResources] = useState(
+    move ? move.inlineResources.map((resource, i) => ({ ...resource, i })) : []
+  )
+
   const [resources, setResources] = useState(
-    move ? move.resources.map((resource, i) => ({ ...resource, i })) : []
+    move?.resources?.map(resource => ({
+      id: resource.id,
+      slug: resource.slug,
+      name: resource.name,
+      resourceLink: resource.resourceLink
+    })) ?? []
   )
 
   const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
   const [createMove, { reset }] = useMutation(CREATE_MOVE, {
     onCompleted: (data) => {
       setMutating(false)
       const { locale } = router
       const { createMove: response } = data
       if (response?.errors.length === 0 && response.move) {
-        showToast(
+        showSuccessMessage(
           format('ui.move.submitted.success'),
-          'success',
-          'top-center',
-          DEFAULT_AUTO_CLOSE_DELAY,
-          null,
           () => router.push(`/${locale}/playbooks/${playbook.slug}`)
         )
       } else {
         setMutating(false)
-        showToast(
+        showFailureMessage(
           <div className='flex flex-col'>
             <span>{response.errors}</span>
-          </div>,
-          'error',
-          'top-center'
+          </div>
         )
         reset()
       }
     },
     onError: (error) => {
       setMutating(false)
-      showToast(
+      showFailureMessage(
         <div className='flex flex-col'>
-          <span>{error?.message}</span>
-        </div>,
-        'error',
-        'top-center'
+          <span>{error}</span>
+        </div>
       )
       reset()
     }
@@ -322,7 +330,8 @@ const MoveForm = ({ playbook, play, move }) => {
           playSlug,
           owner: 'public',
           description,
-          resources
+          inlineResources,
+          resourceSlugs: resources.map((resource) => resource.slug)
         },
         context: {
           headers: {
@@ -361,7 +370,8 @@ const MoveForm = ({ playbook, play, move }) => {
         playSlug,
         owner: 'public',
         description,
-        resources
+        inlineResources,
+        resourceSlugs: resources.map((resource) => resource.slug)
       }
 
       autoSaveMove({
@@ -380,7 +390,7 @@ const MoveForm = ({ playbook, play, move }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, moveSlug, playSlug, resources, router, watch, autoSaveMove])
+  }, [user, moveSlug, playSlug, inlineResources, resources, router, watch, autoSaveMove])
 
   const cancelForm = () => {
     setReverting(true)
@@ -388,27 +398,49 @@ const MoveForm = ({ playbook, play, move }) => {
     router.push(route)
   }
 
-  const addResource = (resource) => {
-    setResources([...resources, resource])
+  const fetchedResourcesCallback = (data) => (
+    data.resources?.map((resource) => ({
+      id: resource.id,
+      name: resource.name,
+      slug: resource.slug,
+      label: resource.name,
+      resourceLink: resource.resourceLink
+    }))
+  )
+
+  const addResource = (resource) =>
+    setResources([
+      ...resources.filter(({ slug }) => slug !== resource.slug),
+      { name: resource.label, slug: resource.slug, resourceLink: resource.resourceLink }
+    ])
+
+  const removeResource = (resource) =>
+    setResources([...resources.filter(({ slug }) => slug !== resource.slug)])
+
+  const loadResourceOptions = (input) =>
+    fetchSelectOptions(client, input, RESOURCE_SEARCH_QUERY, fetchedResourcesCallback)
+
+  const addInlineResource = (resource) => {
+    setInlineResources([...inlineResources, resource])
   }
 
-  const updateResource = (index, resource) => {
-    for (let i = 0; i < resources.length; i++) {
+  const updateInlineResource = (index, resource) => {
+    for (let i = 0; i < inlineResources.length; i++) {
       if (index !== i) {
         continue
       }
 
-      const currentResource = resources[i]
+      const currentResource = inlineResources[i]
       currentResource.name = resource.name
       currentResource.description = resource.description
       currentResource.url = resource.url
     }
 
-    setResources([...resources])
+    setResources([...inlineResources])
   }
 
-  const removeResource = (index, resource) => {
-    setResources(resources.filter((r, i) => i !== index && r.name !== resource.name))
+  const removeInlineResource = (index, resource) => {
+    setResources(inlineResources.filter((r, i) => i !== index && r.name !== resource.name))
   }
 
   return loadingUserSession
@@ -434,6 +466,40 @@ const MoveForm = ({ playbook, play, move }) => {
                 fieldLabel='ui.move.description'
                 fieldName='description'
               />
+              <div className='flex flex-col gap-y-2'>
+                <label className='flex flex-col gap-y-2'>
+                  {format('ui.resource.header')}
+                  <Select
+                    async
+                    isBorderless
+                    defaultOptions
+                    cacheOptions
+                    placeholder={format('ui.resource.header')}
+                    loadOptions={loadResourceOptions}
+                    noOptionsMessage={() =>
+                      format('filter.searchFor', { entity: format('ui.resource.header') })
+                    }
+                    onChange={addResource}
+                    value={null}
+                  />
+                </label>
+                <div className='flex flex-col gap-3 mt-2'>
+                  {resources?.map((resource, resourceIdx) =>(
+                    <div
+                      key={resourceIdx}
+                      className='shadow-md flex flex-col gap-1 px-2 py-1 bg-white text-dial-stratos'
+                    >
+                      <div className='flex gap-2'>
+                        <div className='line-clamp-1'>{resource.name}</div>
+                        <button className='ml-auto shrink-0' type='button' onClick={() => removeResource(resource)}>
+                          <FaXmark className='text-dial-stratos' size='1rem' />
+                        </button>
+                      </div>
+                      <div className='text-xs line-clamp-1 text-dial-deep-purple'>{resource.resourceLink}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div className='flex flex-col gap-y-3'>
                 <div className='text-sm'>
                   {format('ui.resource.header')}
@@ -441,21 +507,21 @@ const MoveForm = ({ playbook, play, move }) => {
                 <div className='text-xs italic text-dial-stratos'>
                   {format('ui.move.assignedResources')}
                 </div>
-                <div className='flex flex-col gap-y-3 gap-y-4'>
-                  {resources && resources.map((resource, i) =>
+                <div className='flex flex-col gap-y-4'>
+                  {inlineResources && inlineResources.map((resource, i) =>
                     <ResourceRenderer
                       key={i}
                       index={i}
                       moveSlug={moveSlug}
                       playSlug={playSlug}
                       resource={resource}
-                      updateResource={updateResource}
-                      removeResource={removeResource}
+                      updateResource={updateInlineResource}
+                      removeResource={removeInlineResource}
                     />
                   )}
                 </div>
               </div>
-              <button type='button' className='flex gap-2 text-dial-iris-blue' onClick={() => addResource({})}>
+              <button type='button' className='flex gap-2 text-dial-iris-blue' onClick={() => addInlineResource({})}>
                 <FaPlusCircle className='my-auto text-dial-iris-blue' />
                 <div className='text-dial-iris-blue'>
                   {`${format('app.createNew')} ${format('ui.resource.label')}`}

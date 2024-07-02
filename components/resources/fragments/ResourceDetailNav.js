@@ -9,6 +9,15 @@ const ResourceDetailNav = ({ scrollRef }) => {
   const navOptions = [{
     label: format('ui.common.scrollToTop'),
     value: 'ui.common.scrollToTop'
+  }, {
+    label: format('ui.buildingBlock.header'),
+    value: 'ui.buildingBlock.header'
+  }, {
+    label: format('ui.product.header'),
+    value: 'ui.product.header'
+  }, {
+    label: format('ui.useCase.header'),
+    value: 'ui.useCase.header'
   }]
 
   const onNavigationChange = (selectedNav) => {

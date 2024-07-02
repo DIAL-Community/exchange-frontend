@@ -128,6 +128,7 @@ export const RESOURCE_SEARCH_QUERY = gql`
       id
       name
       slug
+      resourceLink
     }
   }
 `
@@ -181,6 +182,15 @@ export const RESOURCE_DETAIL_QUERY = gql`
         slug
         code
       }
+
+      buildingBlocks {
+        id
+        name
+        slug
+        imageFile
+        maturity
+        category
+      }
       
       organizations {
         id
@@ -190,6 +200,13 @@ export const RESOURCE_DETAIL_QUERY = gql`
       }
 
       products {
+        id
+        name
+        slug
+        imageFile
+      }
+
+      useCases {
         id
         name
         slug

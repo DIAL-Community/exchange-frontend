@@ -97,7 +97,7 @@ const ResourceDetailCountries = ({ resource, canEdit, headerRef }) => {
     ? <div className='text-dial-stratos'>
       {countries?.map(country => country.name).join(', ')}
     </div>
-    : <div className='text-dial-stratos'>
+    : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
         entity: format('ui.country.label'),
         base: format('ui.resource.label')

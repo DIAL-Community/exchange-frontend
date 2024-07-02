@@ -1,5 +1,5 @@
-import DpiFooter from '../components/dpi/sections/DpiFooter'
-import DpiHeader from '../components/dpi/sections/DpiHeader'
+import HubFooter from '../components/hub/sections/HubFooter'
+import HubHeader from '../components/hub/sections/HubHeader'
 import { Loading, NotFound } from '../components/shared/FetchStatus'
 import Footer from '../components/shared/Footer'
 import Header from '../components/shared/Header'
@@ -17,11 +17,11 @@ const Custom404 = () => {
 
   const dpi404 =
     <>
-      <DpiHeader />
+      <HubHeader />
       <div className='min-h-[70vh] bg-dial-alice-blue'>
         <NotFound />
       </div>
-      <DpiFooter />
+      <HubFooter />
     </>
 
   return (

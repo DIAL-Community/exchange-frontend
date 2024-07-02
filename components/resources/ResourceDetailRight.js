@@ -10,7 +10,9 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
 import { prependUrlWithProtocol } from '../utils/utilities'
 import DeleteResource from './DeleteResource'
+import ResourceDetailBuildingBlocks from './fragments/ResourceDetailBuildingBlocks'
 import ResourceDetailProducts from './fragments/ResourceDetailProducts'
+import ResourceDetailUseCases from './fragments/ResourceDetailUseCases'
 import { topicColors } from './utilities/common'
 
 const ResourceDetailRight = forwardRef(({ resource }, ref) => {
@@ -21,14 +23,18 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
   const canEdit = isAdminUser || isEditorUser
 
   const titleRef = useRef()
+  const buildingBlockRef = useRef()
   const productRef = useRef()
+  const useCaseRef = useRef()
   const commentsSectionRef = useRef()
 
   useImperativeHandle(
     ref,
     () => [
       { value: 'ui.common.scrollToTop', ref: titleRef },
+      { value: 'ui.buildingBlock.label', ref: buildingBlockRef },
       { value: 'ui.product.label', ref: productRef },
+      { value: 'ui.useCase.label', ref: useCaseRef },
       { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
@@ -120,10 +126,26 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
+          <ResourceDetailBuildingBlocks
+            resource={resource}
+            canEdit={canEdit}
+            headerRef={buildingBlockRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
           <ResourceDetailProducts
             resource={resource}
             canEdit={canEdit}
             headerRef={productRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ResourceDetailUseCases
+            resource={resource}
+            canEdit={canEdit}
+            headerRef={useCaseRef}
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
