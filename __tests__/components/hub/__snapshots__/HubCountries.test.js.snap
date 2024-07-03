@@ -10,7 +10,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
   >
     <img
       alt="DIAL DPI Resource Hub"
-      class="h-36 xl:h-80 w-full object-cover"
+      class="h-48 xl:h-80 w-full object-cover"
       src="/images/hero-image/hub-hero.svg"
     />
     <div
@@ -23,7 +23,11 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           class="md:text-xl 2xl:text-2xl text-center text-dial-cotton lg:max-w-prose line-clamp-6"
         >
           
-    Find tools and resources related to how DPI has been implemented in a specific country.
+    Dive into an in-depth look at the digital setup in different countries. Our country
+    profiles provide detailed info on digital initiatives, laws, and key players.
+    Understand the challenges and opportunities for growth. Access resources and case
+    studies for real-world examples. Whether you're a policymaker, researcher, or just
+    curious, these profiles offer insights into the DPI landscape. 
   
         </div>
       </div>

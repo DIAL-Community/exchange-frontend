@@ -90,7 +90,7 @@ const CurriculumSideNavigation = ({ moduleRefs }) => {
                   <div className='flex flex-col gap-y-1 py-3 px-4 lg:px-8'>
                     {index <= 0
                       ? moduleNames[moduleSlug]
-                      : `${format('dpi.curriculum.module.label')} ${index}. ${moduleNames[moduleSlug]}`
+                      : `${format('hub.curriculum.module.label')} ${index}. ${moduleNames[moduleSlug]}`
                     }
                     {
                       currentSlug === moduleSlug &&

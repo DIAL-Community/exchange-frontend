@@ -6,6 +6,7 @@ export const countriesWithResources = {
         name: 'Ethiopia',
         slug: 'et',
         code: 'ET',
+        description: 'Some description',
         __typename: 'Country'
       },
       {
@@ -13,6 +14,7 @@ export const countriesWithResources = {
         name: 'Kenya',
         slug: 'ke',
         code: 'KE',
+        description: 'Some description',
         __typename: 'Country'
       },
       {
@@ -20,6 +22,7 @@ export const countriesWithResources = {
         name: 'Uganda',
         slug: 'ug',
         code: 'UG',
+        description: 'Some description',
         __typename: 'Country'
       },
       {
@@ -27,6 +30,7 @@ export const countriesWithResources = {
         name: 'Zambia',
         slug: 'zm',
         code: 'ZM',
+        description: 'Some description',
         __typename: 'Country'
       }
     ]
@@ -43,6 +47,7 @@ export const countryResources = {
       codeLonger: 'ZMB',
       latitude: '-13.133897',
       longitude: '27.849332',
+      description: 'Some description',
       resources: [
         {
           id: '113',

@@ -16,7 +16,7 @@ const HubContactForm = ({ userId, userEmail }) => {
 
   const slugNameMapping = (() => {
     const map = {}
-    map['profile'] = format('dpi.dashboard.profile')
+    map['profile'] = format('hub.dashboard.profile')
 
     return map
   })()

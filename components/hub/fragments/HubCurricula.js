@@ -22,7 +22,7 @@ const CurriculumCard = ({ curriculum }) => {
           <div className='bg-white border shrink-0 flex items-center justify-items-center'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + curriculum.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('dpi.curriculum.label') })}
+              alt={format('ui.image.logoAlt', { name: format('hub.curriculum.label') })}
               className='object-contain w-16 h-16'
             />
           </div>
@@ -31,7 +31,7 @@ const CurriculumCard = ({ curriculum }) => {
           <div className='bg-white rounded-full shrink-0 flex items-center justify-items-center'>
             <img
               src='/ui/v1/playbook-header.svg'
-              alt={format('ui.image.logoAlt', { name: format('dpi.curriculum.label') })}
+              alt={format('ui.image.logoAlt', { name: format('hub.curriculum.label') })}
               className='object-contain w-12 h-12 mx-auto self-center'
             />
           </div>
@@ -56,7 +56,7 @@ const CurriculumCard = ({ curriculum }) => {
             </div>
             <div className='border border-r border-dial-slate-300' />
             <div className='text-sm'>
-              {format('dpi.curriculum.module.header')} ({curriculum.plays?.length ?? 0})
+              {format('hub.curriculum.module.header')} ({curriculum.plays?.length ?? 0})
             </div>
           </div>
         </div>
@@ -122,10 +122,10 @@ const HubCurricula = ({ stripeIndex }) => {
     <div className={`curriculum-section ${stripeClasses(stripeIndex)}`}>
       <div className='px-4 lg:px-8 xl:px-56'>
         <div className='text-lg lg:text-2xl pt-8 pb-2 '>
-          {format('dpi.curriculum.title')}
+          {format('hub.curriculum.title')}
         </div>
         <div className='text-sm pt-2 pb-4 max-w-prose'>
-          {format('dpi.curriculum.subtitle')}
+          {format('hub.curriculum.subtitle')}
         </div>
         <CurriculumList pageNumber={pageNumber} />
         <CurriculumPagination

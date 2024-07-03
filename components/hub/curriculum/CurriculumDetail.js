@@ -24,7 +24,7 @@ const CurriculumDetail = ({ curriculum }) => {
       setModules([
         {
           moduleId: 0,
-          moduleName: format('dpi.curriculum.overview'),
+          moduleName: format('hub.curriculum.overview'),
           moduleSlug: OVERVIEW_SLUG_VALUE,
           moduleOrder: 0
         },
@@ -40,7 +40,7 @@ const CurriculumDetail = ({ curriculum }) => {
 
       setModuleNames(previousModuleNames => {
         const currentModuleNames = { ...previousModuleNames }
-        currentModuleNames[OVERVIEW_SLUG_VALUE] = format('dpi.curriculum.overview')
+        currentModuleNames[OVERVIEW_SLUG_VALUE] = format('hub.curriculum.overview')
         modules.forEach(module => {
           currentModuleNames[module.slug] = module.name
         })

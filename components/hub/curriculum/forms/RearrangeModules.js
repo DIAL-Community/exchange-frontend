@@ -52,7 +52,7 @@ const RearrangeModules = ({ displayRearrangeDialog, onRearrangeDialogClose, curr
               <Dialog.Title>
                 <div className='px-4 text-xl font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
-                    {format('dpi.curriculum.module.rearrange')}
+                    {format('hub.curriculum.module.rearrange')}
                   </div>
                 </div>
               </Dialog.Title>
@@ -90,7 +90,7 @@ const ExistingModule = () => {
               value={search}
               onChange={handleChange}
               className='w-56 2xl:w-96'
-              placeholder={`${format('app.search')} ${format('dpi.curriculum.module.header')}`}
+              placeholder={`${format('app.search')} ${format('hub.curriculum.module.header')}`}
             />
           </div>
           <div className='border-b' />
@@ -104,7 +104,7 @@ const ExistingModule = () => {
             className='cancel-button'
             onClick={() => { setShowModuleForm(true) }}
           >
-            {format('dpi.curriculum.module.assignExistingModule')}
+            {format('hub.curriculum.module.assignExistingModule')}
           </button>
         </div>
       }

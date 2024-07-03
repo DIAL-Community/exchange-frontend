@@ -83,8 +83,8 @@ const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
         </span>
       </button>
       <ConfirmActionDialog
-        title={format('dpi.curriculum.submodule.unassign.title')}
-        message={format('dpi.curriculum.submodule.unassign.confirmation')}
+        title={format('hub.curriculum.submodule.unassign.title')}
+        message={format('hub.curriculum.submodule.unassign.confirmation')}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

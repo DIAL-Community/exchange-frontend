@@ -46,7 +46,7 @@ const HubAdminMessages = () => {
               }
             </div>
             <div className='text-lg lg:text-2xl pb-6'>
-              {format('dpi.broadcast.header')}
+              {format('hub.broadcast.header')}
             </div>
             <MessageFilter
               search={search}

@@ -49,6 +49,19 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       class="flex flex-col gap-6"
     >
       <div
+        class="px-4 lg:px-8 xl:px-56"
+      >
+        <div
+          class="relative"
+        >
+          <div
+            class="html-react-parser-viewer text-base"
+          >
+            Some description
+          </div>
+        </div>
+      </div>
+      <div
         class="product-section bg-dial-sapphire"
       >
         <div

@@ -34,7 +34,7 @@ const MessageDetail = ({ message }) => {
       const { updateMessageVisibility: response } = data
       if (response.errors.length === 0 && response.message) {
         setMutating(false)
-        showSuccessMessage(format('dpi.broadcast.visibility.updated'))
+        showSuccessMessage(format('hub.broadcast.visibility.updated'))
       } else {
         showFailureMessage(response.errors)
         setMutating(false)
@@ -93,7 +93,7 @@ const MessageDetail = ({ message }) => {
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='lg:text-xl font-semibold'>
-        {format('dpi.broadcast.messageType')}
+        {format('hub.broadcast.messageType')}
       </div>
       <div className='block'>
         {findMessageTypeLabel(message.messageType, format)}
@@ -101,7 +101,7 @@ const MessageDetail = ({ message }) => {
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-y-3'>
         <div className='lg:text-xl font-semibold'>
-          {format('dpi.broadcast.messageTemplate')}
+          {format('hub.broadcast.messageTemplate')}
         </div>
         <div className='text-sm'>
           <HtmlViewer
@@ -113,7 +113,7 @@ const MessageDetail = ({ message }) => {
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-y-3'>
         <div className='lg:text-xl font-semibold'>
-          {format('dpi.broadcast.parsedMessage')}
+          {format('hub.broadcast.parsedMessage')}
         </div>
         <div className='text-sm'>
           <HtmlViewer
@@ -125,24 +125,24 @@ const MessageDetail = ({ message }) => {
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-3 text-sm italic'>
         <div className='flex gap-2'>
-          {format('dpi.broadcast.messageDatetime.note', {
+          {format('hub.broadcast.messageDatetime.note', {
             type: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-              ? format('dpi.broadcast.messageType.announcement').toLowerCase()
-              : format('dpi.broadcast.messageType.event').toLowerCase(),
+              ? format('hub.broadcast.messageType.announcement').toLowerCase()
+              : format('hub.broadcast.messageType.event').toLowerCase(),
             dateValue: `${formatDate(message.messageDatetime)} ${formatTime(message.messageDatetime)}`
           })}
         </div>
         <div className={message.visible? 'text-green-500' : 'text-red-500'}>
           {message.visible
-            ? format('dpi.broadcast.visible', {
+            ? format('hub.broadcast.visible', {
               messageType: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-                ? format('dpi.broadcast.messageType.announcement')
-                : format('dpi.broadcast.messageType.event')
+                ? format('hub.broadcast.messageType.announcement')
+                : format('hub.broadcast.messageType.event')
             })
-            : format('dpi.broadcast.hidden', {
+            : format('hub.broadcast.hidden', {
               messageType: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-                ? format('dpi.broadcast.messageType.announcement')
-                : format('dpi.broadcast.messageType.event')
+                ? format('hub.broadcast.messageType.announcement')
+                : format('hub.broadcast.messageType.event')
             })
           }
         </div>

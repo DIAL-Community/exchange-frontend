@@ -34,7 +34,7 @@ const HubTopicDetail = ({ resourceTopic }) => {
     <div className='flex flex-col gap-5'>
       <div className='text-lg text-center'>
         <FormattedMessage
-          id='dpi.topic.reports'
+          id='hub.topic.reports'
           values={{
             break: () => <br />
           }}
