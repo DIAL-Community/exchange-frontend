@@ -55,7 +55,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           Reports and Articles
         </div>
         <div
-          class="flex flex-col gap-y-4 py-3"
+          class="flex flex-col gap-y-4 mb-6"
         >
           <div
             class="flex flex-col gap-y-2"
@@ -288,17 +288,17 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               class="rounded-lg min-h-[6rem] false"
             >
               <div
-                class="min-w-80 pb-4 mx-auto flex flex-col"
+                class="min-w-80 pb-4 mx-auto flex flex-col gap-3"
               >
                 <div
-                  class="w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center"
+                  class="w-full flex justify-center items-center"
                 >
                   <a
                     href="/hub/resources/renegotiating-the-faustian-bargain-for-data"
                   >
                     <img
                       alt="Logo of Resource."
-                      class="aspect-[5/4]"
+                      class="aspect-[773/447]"
                       src="http://localhost:3000//assets/resources/resource-placeholder.svg"
                     />
                   </a>

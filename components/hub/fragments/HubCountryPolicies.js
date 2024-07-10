@@ -30,15 +30,15 @@ const PolicyCard = ({ resource }) => {
   )
 }
 
-const PolicyPagination = ({ search, country, pageNumber, onClickHandler, theme='light' }) => {
+const PolicyPagination = ({ country, pageNumber, onClickHandler, theme='light' }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(RESOURCE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
-      search,
-      resourceTypes: ['Government Document'],
-      countries: [country.name]
+      search: '',
+      countries: [country.id],
+      resourceTypes: ['Government Document']
     }
   })
 
@@ -69,7 +69,8 @@ const PolicyList = ({ country, pageNumber }) => {
 
   const { loading, error, data } = useQuery(PAGINATED_RESOURCES_QUERY, {
     variables: {
-      countries: [country.name],
+      search: '',
+      countries: [country.id],
       resourceTypes: ['Government Document'],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
@@ -111,7 +112,7 @@ const HubCountryPolicies = ({ country }) => {
 
   return (
     <div className='policy-section bg-dial-sapphire'>
-      <div className='px-4 lg:px-8 xl:px-56 text-dial-cotton'>
+      <div className='px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col'>
         <div className='text-2xl py-8'>
           {format('hub.country.policies')}
         </div>

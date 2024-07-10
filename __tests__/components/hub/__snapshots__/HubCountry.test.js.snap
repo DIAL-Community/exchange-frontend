@@ -46,7 +46,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       />
     </div>
     <div
-      class="flex flex-col gap-6"
+      class="flex flex-col"
     >
       <div
         class="px-4 lg:px-8 xl:px-56"
@@ -65,37 +65,397 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
         class="policy-section bg-dial-sapphire"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 text-dial-cotton"
+          class="px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col"
         >
           <div
             class="text-2xl py-8"
           >
             Key Policies, Legal and Regulatory Frameworks
           </div>
-          Error fetching data. Please check your network connection.
-          Error fetching data. Please check your network connection.
+          <div
+            class="flex flex-col gap-2"
+          >
+            <div
+              class="flex flex-col gap-y-4"
+            >
+              <hr
+                class="border-b border-gray-300 border-dashed"
+              />
+              <div
+                class="relative"
+              >
+                <a
+                  href="/hub/resources/sierra-leone-national-data-strategy-2023"
+                >
+                  <div
+                    class="rounded-lg min-h-[10rem]"
+                  >
+                    <div
+                      class="flex flex-col gap-y-3"
+                    >
+                      <div
+                        class="text-lg font-semibold"
+                      >
+                        Sierra Leone National Data Strategy (2023)
+                      </div>
+                      <div
+                        class="line-clamp-4 text-justify"
+                      >
+                        Some parsed description
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-y-4"
+            >
+              <hr
+                class="border-b border-gray-300 border-dashed"
+              />
+              <div
+                class="relative"
+              >
+                <a
+                  href="/hub/resources/sierra-leone-national-cyber-security-strategy-2021-2025"
+                >
+                  <div
+                    class="rounded-lg min-h-[10rem]"
+                  >
+                    <div
+                      class="flex flex-col gap-y-3"
+                    >
+                      <div
+                        class="text-lg font-semibold"
+                      >
+                        Sierra Leone National Cyber Security Strategy (2021-2025)
+                      </div>
+                      <div
+                        class="line-clamp-4 text-justify"
+                      >
+                        Some parsed description
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-y-4"
+            >
+              <hr
+                class="border-b border-gray-300 border-dashed"
+              />
+              <div
+                class="relative"
+              >
+                <a
+                  href="/hub/resources/sierra-leone-national-cyber-security-policy-2021"
+                >
+                  <div
+                    class="rounded-lg min-h-[10rem]"
+                  >
+                    <div
+                      class="flex flex-col gap-y-3"
+                    >
+                      <div
+                        class="text-lg font-semibold"
+                      >
+                        Sierra Leone National Cyber Security Policy (2021)
+                      </div>
+                      <div
+                        class="line-clamp-4 text-justify"
+                      >
+                        Some parsed description
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-y-4"
+            >
+              <hr
+                class="border-b border-gray-300 border-dashed"
+              />
+              <div
+                class="relative"
+              >
+                <a
+                  href="/hub/resources/sierra-leone-national-innovation--digital-strategy"
+                >
+                  <div
+                    class="rounded-lg min-h-[10rem]"
+                  >
+                    <div
+                      class="flex flex-col gap-y-3"
+                    >
+                      <div
+                        class="text-lg font-semibold"
+                      >
+                        Sierra Leone National Innovation & Digital Strategy
+                      </div>
+                      <div
+                        class="line-clamp-4 text-justify"
+                      >
+                        Some parsed description
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-y-4 my-6 text-dial-slate-300"
+          >
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+            <div
+              class="flex flex-col md:flex-row gap-x-16 gap-y-3"
+            >
+              <div
+                class="my-auto text-sm"
+              >
+                Showing 1 - 4 of 4 total
+              </div>
+              <ul
+                aria-label="Pagination"
+                class="flex gap-x-3 text-sm"
+                role="navigation"
+              >
+                <li
+                  class="previous opacity-30"
+                >
+                  <a
+                    aria-disabled="true"
+                    aria-label="Previous page"
+                    class="block w-10 h-10 leading-10 text-center "
+                    rel="prev"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    &lt;
+                  </a>
+                </li>
+                <li
+                  class="text-dial-cotton font-semibold"
+                >
+                  <a
+                    aria-current="page"
+                    aria-label="Page 1 is your current page"
+                    class="block w-10 h-10 leading-10 text-center"
+                    rel="canonical"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    1
+                  </a>
+                </li>
+                <li
+                  class="next opacity-30"
+                >
+                  <a
+                    aria-disabled="true"
+                    aria-label="Next page"
+                    class="block w-10 h-10 leading-10 text-center "
+                    rel="next"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    &gt;
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+          </div>
         </div>
       </div>
       <div
         class="website-section"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 text-dial-stratos"
+          class="px-4 lg:px-8 xl:px-56 text-dial-stratos flex flex-col"
         >
           <div
             class="text-2xl py-8"
           >
             Key Government Websites
           </div>
-          Error fetching data. Please check your network connection.
-          Error fetching data. Please check your network connection.
+          <div
+            class="grid md:grid-cols-2 gap-4"
+          >
+            <div
+              class="border bg-dial-yellow rounded-md min-h-[2rem]"
+            >
+              <div
+                class="p-3 flex flex-col gap-y-1"
+              >
+                <div
+                  class="text-lg font-semibold"
+                >
+                  <a
+                    href="/hub/resources/stats-sl-open-data-dashboard"
+                  >
+                    Stats SL Open Data Dashboard
+                  </a>
+                </div>
+                <div
+                  class="line-clamp-4 text-justify text-sm"
+                >
+                  <a
+                    class="line-clamp-1"
+                    href="//www.statistics.sl/index.php/what-we-offer/open-data-free-datasets.html"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    www.statistics.sl/index.php/what-we-offer/open-data-free-datasets.html
+                     ⧉
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="border bg-dial-yellow rounded-md min-h-[2rem]"
+            >
+              <div
+                class="p-3 flex flex-col gap-y-1"
+              >
+                <div
+                  class="text-lg font-semibold"
+                >
+                  <a
+                    href="/hub/resources/sierra-leone-data-portal"
+                  >
+                    Sierra Leone Data Portal
+                  </a>
+                </div>
+                <div
+                  class="line-clamp-4 text-justify text-sm"
+                >
+                  <a
+                    class="line-clamp-1"
+                    href="//sierraleone.opendataforafrica.org/data/#menu=topic"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    sierraleone.opendataforafrica.org/data/#menu=topic
+                     ⧉
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="border bg-dial-yellow rounded-md min-h-[2rem]"
+            >
+              <div
+                class="p-3 flex flex-col gap-y-1"
+              >
+                <div
+                  class="text-lg font-semibold"
+                >
+                  <a
+                    href="/hub/resources/sirerra-leone-citizens-portal"
+                  >
+                    Sirerra Leone Citizen's Portal
+                  </a>
+                </div>
+                <div
+                  class="line-clamp-4 text-justify text-sm"
+                >
+                  <a
+                    class="line-clamp-1"
+                    href="//portal.moppa.gov.sl"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    portal.moppa.gov.sl
+                     ⧉
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-y-4 my-6 false"
+          >
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+            <div
+              class="flex flex-col md:flex-row gap-x-16 gap-y-3"
+            >
+              <div
+                class="my-auto text-sm"
+              >
+                Showing 1 - 3 of 3 total
+              </div>
+              <ul
+                aria-label="Pagination"
+                class="flex gap-x-3 text-sm"
+                role="navigation"
+              >
+                <li
+                  class="previous opacity-30"
+                >
+                  <a
+                    aria-disabled="true"
+                    aria-label="Previous page"
+                    class="block w-10 h-10 leading-10 text-center "
+                    rel="prev"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    &lt;
+                  </a>
+                </li>
+                <li
+                  class="false font-semibold"
+                >
+                  <a
+                    aria-current="page"
+                    aria-label="Page 1 is your current page"
+                    class="block w-10 h-10 leading-10 text-center"
+                    rel="canonical"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    1
+                  </a>
+                </li>
+                <li
+                  class="next opacity-30"
+                >
+                  <a
+                    aria-disabled="true"
+                    aria-label="Next page"
+                    class="block w-10 h-10 leading-10 text-center "
+                    rel="next"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    &gt;
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+          </div>
         </div>
       </div>
       <div
         class="product-section bg-dial-sapphire"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56"
+          class="px-4 lg:px-8 xl:px-56 flex flex-col"
         >
           <div
             class="text-xl text-center py-8 text-dial-cotton"
@@ -237,15 +597,18 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
         class="resource-section"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56"
+          class="px-4 lg:px-8 xl:px-56 flex flex-col"
         >
           <div
-            class="text-xl text-center pt-4 pb-8"
+            class="text-xl text-center py-8"
           >
             Reports and Articles
           </div>
+          <hr
+            class="border-b border-gray-300 border-dashed mb-6"
+          />
           <div
-            class="flex flex-col gap-y-4 py-3"
+            class="flex flex-col gap-y-4 mb-6"
           >
             <div
               class="flex flex-col gap-y-2"
@@ -478,17 +841,17 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="rounded-lg min-h-[6rem] false"
               >
                 <div
-                  class="min-w-80 pb-4 mx-auto flex flex-col"
+                  class="min-w-80 pb-4 mx-auto flex flex-col gap-3"
                 >
                   <div
-                    class="w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center"
+                    class="w-full flex justify-center items-center"
                   >
                     <a
                       href="/hub/resources/national-digital-transformation-strategy-zambia"
                     >
                       <img
                         alt="Logo of Resource."
-                        class="aspect-[5/4]"
+                        class="aspect-[773/447]"
                         src="http://localhost:3000//assets/resources/resource-placeholder.svg"
                       />
                     </a>
@@ -521,17 +884,17 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="rounded-lg min-h-[6rem] false"
               >
                 <div
-                  class="min-w-80 pb-4 mx-auto flex flex-col"
+                  class="min-w-80 pb-4 mx-auto flex flex-col gap-3"
                 >
                   <div
-                    class="w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center"
+                    class="w-full flex justify-center items-center"
                   >
                     <a
                       href="/hub/resources/zambias-egovernment-interoperability-standard"
                     >
                       <img
                         alt="Logo of Resource."
-                        class="aspect-[5/4]"
+                        class="aspect-[773/447]"
                         src="http://localhost:3000//assets/resources/resource-placeholder.svg"
                       />
                     </a>
@@ -564,17 +927,17 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="rounded-lg min-h-[6rem] false"
               >
                 <div
-                  class="min-w-80 pb-4 mx-auto flex flex-col"
+                  class="min-w-80 pb-4 mx-auto flex flex-col gap-3"
                 >
                   <div
-                    class="w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center"
+                    class="w-full flex justify-center items-center"
                   >
                     <a
                       href="/hub/resources/zambias-smart-government-master-plan"
                     >
                       <img
                         alt="Logo of Resource."
-                        class="aspect-[5/4]"
+                        class="aspect-[773/447]"
                         src="http://localhost:3000//assets/resources/resource-placeholder.svg"
                       />
                     </a>

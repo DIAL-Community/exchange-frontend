@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react'
-import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
@@ -10,35 +9,40 @@ const DEFAULT_PAGE_SIZE = 6
 
 const WebsiteCard = ({ resource }) => {
   const displayLargeCard = () =>
-    <div className='rounded-lg min-h-[10rem]'>
-      <div className='flex flex-col gap-y-3'>
+    <div className='border bg-dial-yellow rounded-md min-h-[2rem]'>
+      <div className='p-3 flex flex-col gap-y-1'>
         <div className='text-lg font-semibold'>
-          {resource.name}
+          <Link href={`/hub/resources/${resource.slug}`}>
+            {resource.name}
+          </Link>
         </div>
-        <div className='line-clamp-4 text-justify'>
-          {resource.parsedDescription && parse(resource.parsedDescription)}
+        <div className='line-clamp-4 text-justify text-sm'>
+          <a
+            target='_blank'
+            rel='noreferrer'
+            href={`//${resource.resourceLink}`}
+            className='line-clamp-1'
+          >
+            {resource.resourceLink}&nbsp;⧉
+          </a>
         </div>
       </div>
     </div>
 
   return (
-    <div className='relative'>
-      <Link href={`/hub/resources/${resource.slug}`}>
-        {displayLargeCard()}
-      </Link>
-    </div>
+    displayLargeCard()
   )
 }
 
-const WebsitePagination = ({ search, country, pageNumber, onClickHandler, theme='light' }) => {
+const WebsitePagination = ({ country, pageNumber, onClickHandler, theme='light' }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(RESOURCE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
-      search,
+      search: '',
       resourceTypes: ['National Website'],
-      countries: [country.name]
+      countries: [country.id]
     }
   })
 
@@ -69,7 +73,8 @@ const WebsiteList = ({ country, pageNumber }) => {
 
   const { loading, error, data } = useQuery(PAGINATED_RESOURCES_QUERY, {
     variables: {
-      countries: [country.name],
+      search: '',
+      countries: [country.id],
       resourceTypes: ['National Website'],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
@@ -87,12 +92,9 @@ const WebsiteList = ({ country, pageNumber }) => {
   const { paginatedResources: resources } = data
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='grid md:grid-cols-2 gap-4'>
       {resources.map((resource, index) =>
-        <div className='flex flex-col gap-y-4' key={index}>
-          <hr className='border-b border-gray-300 border-dashed' />
-          <WebsiteCard key={index} resource={resource} />
-        </div>
+        <WebsiteCard key={index} resource={resource} />
       )}
     </div>
   )
@@ -111,7 +113,7 @@ const HubCountryWebsites = ({ country }) => {
 
   return (
     <div className='website-section'>
-      <div className='px-4 lg:px-8 xl:px-56 text-dial-stratos'>
+      <div className='px-4 lg:px-8 xl:px-56 text-dial-stratos flex flex-col'>
         <div className='text-2xl py-8'>
           {format('hub.country.websites')}
         </div>
