@@ -2538,6 +2538,8 @@ export const en = {
     studies for real-world examples. Whether you're a policymaker, researcher, or just
     curious, these profiles offer insights into the DPI landscape. 
   `,
+  'hub.country.websites': 'Key Government Websites',
+  'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
   'hub.topic.reports': 'Reports and Articles',
   'hub.resourceFinder.title': 'Resource finder',
   'hub.resourceFinder.subtitle': `Quickly search and filter through our library to

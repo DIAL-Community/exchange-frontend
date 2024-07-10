@@ -13,7 +13,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const [resourceAuthor] = resource?.authors ?? []
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[12rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='flex items-center my-auto w-24 h-24 shrink-0'>
           <Link href={`/resources/${resource.slug}`}>

@@ -62,6 +62,36 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
         </div>
       </div>
       <div
+        class="policy-section bg-dial-sapphire"
+      >
+        <div
+          class="px-4 lg:px-8 xl:px-56 text-dial-cotton"
+        >
+          <div
+            class="text-2xl py-8"
+          >
+            Key Policies, Legal and Regulatory Frameworks
+          </div>
+          Error fetching data. Please check your network connection.
+          Error fetching data. Please check your network connection.
+        </div>
+      </div>
+      <div
+        class="website-section"
+      >
+        <div
+          class="px-4 lg:px-8 xl:px-56 text-dial-stratos"
+        >
+          <div
+            class="text-2xl py-8"
+          >
+            Key Government Websites
+          </div>
+          Error fetching data. Please check your network connection.
+          Error fetching data. Please check your network connection.
+        </div>
+      </div>
+      <div
         class="product-section bg-dial-sapphire"
       >
         <div
