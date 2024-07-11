@@ -2,7 +2,10 @@
 // Only translate texts inside curly brace after 'one', 'other', and '= 0'
 
 export const en = {
+  // Potentially not need to be translated, used for page view tracking on our analytics
   'app.title': 'Digital Impact Exchange',
+  // -- end of page view tracking --
+  
   'app.edit': 'Edit',
   'app.comment': 'Comments',
   'app.noComment': 'Start a Conversation',
@@ -1546,8 +1549,14 @@ export const en = {
   'shared.mappingStatus.validated': 'Validated',
   'shared.maturity.draft': 'Draft',
   'shared.maturity.published': 'Published',
-  'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by the Digital Impact Exchange to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
-  'shared.metadata.description.listOfKey': 'List of key {entities} provided by the Digital Impact Exchange, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
+  'shared.metadata.description.comprehensiveListOf': `
+    Comprehensive list of {entities} provided by the Digital Impact Exchange to support users in discovering
+    digital technologies designed to address the Sustainable Development Goals (SDGs).
+  `,
+  'shared.metadata.description.listOfKey': `
+    List of key {entities} provided by the Digital Impact Exchange, to support users in the deployment of digital
+    technologies designed to address the Sustainable Development Goals (SDGs).
+  `,
   'shared.comment.delete.confirm.message': 'Are you sure you want to delete this comment?',
   'shared.comment.delete.confirm.header': 'Deleting a comment',
   'shared.comment.no-comments': 'There are no comments',
@@ -1562,8 +1571,14 @@ export const en = {
   'shared.categoryIndicator.assigned': 'Category Indicators with data',
   'shared.categoryIndicator.notAssigned': 'Category Indicators without data',
 
-  'seo.description.about': 'The Digital Impact Exchange is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
-  'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
+  'seo.description.about': `
+    The Digital Impact Exchange is an interactive online tool providing data and resources for donors, governments,
+    procurers, and implementers to support their digital initiatives.
+  `,
+  'seo.description.maps': `
+    Interactive map views showing where specific digital platforms have been implemented
+    as well as the countries where various digital development organizations work.
+  `,
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
@@ -1850,7 +1865,7 @@ export const en = {
     and how it can be used to support the deployment of digital technologies.
   `,
 
-  'header.insights': 'Insights',
+  'header.insights': 'Resource Hub',
 
   'ui.resource.label': 'Resource',
   'ui.resource.header': 'Resources',
@@ -2506,7 +2521,7 @@ export const en = {
 
   'hub.header.topic': 'Topics',
   'hub.header.country': 'Countries',
-  'hub.header.resourceFinder': 'Resource finder',
+  'hub.header.resourceFinder': 'Resource Finder',
   'hub.header.expertNetwork': 'Expert Network',
 
   'hub.exportNetwork.login': 'ADLI Member Login',
@@ -2520,6 +2535,10 @@ export const en = {
     ideation, planning, implementation, or monitoring/evaluation.
   `,
 
+  // Potentially not need to be translated, used for page view tracking on our analytics 
+  'hub.title': 'Resources for DPI',
+  // -- end of page view tracking --
+  
   'hub.landing.main.title': 'Resources for DPI',
   'hub.landing.main.subtitle': `
     An online resource hub offering data, insights, and tools to help policymakers, 
@@ -2541,7 +2560,7 @@ export const en = {
   'hub.country.websites': 'Key Government Websites',
   'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
   'hub.topic.reports': 'Reports and Articles',
-  'hub.resourceFinder.title': 'Resource finder',
+  'hub.resourceFinder.title': 'Resource Finder',
   'hub.resourceFinder.subtitle': `Quickly search and filter through our library to
     find resources relevant to a specific topic, country, or project.
   `,

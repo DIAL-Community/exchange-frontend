@@ -3,13 +3,13 @@ import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { allowedToView } from '../../../../../components/hub/admin/utilities'
+import { CreateHubCurriculumModule } from '../../../../../components/hub/sections/HubCurriculumModuleForm'
+import HubFooter from '../../../../../components/hub/sections/HubFooter'
+import HubHeader from '../../../../../components/hub/sections/HubHeader'
+import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../../components/shared/QueryNotification'
 import ClientOnly from '../../../../../lib/ClientOnly'
-import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
-import HubHeader from '../../../../../components/hub/sections/HubHeader'
-import { CreateHubCurriculumModule } from '../../../../../components/hub/sections/HubCurriculumModuleForm'
-import { allowedToView } from '../../../../../components/hub/admin/utilities'
-import HubFooter from '../../../../../components/hub/sections/HubFooter'
 
 const HubCurriculumCreateModulePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
@@ -27,8 +27,8 @@ const HubCurriculumCreateModulePage = ({ dpiTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('app.title')}
-        description={format('seo.description.about')}
+        title={format('hub.curriculum.label')}
+        description={format('hub.curriculum.title')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
