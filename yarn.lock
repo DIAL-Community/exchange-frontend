@@ -3433,6 +3433,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/third-parties@npm:^14.2.5":
+  version: 14.2.5
+  resolution: "@next/third-parties@npm:14.2.5"
+  dependencies:
+    third-party-capital: "npm:1.0.20"
+  peerDependencies:
+    next: ^13.0.0 || ^14.0.0
+    react: ^18.2.0
+  checksum: 10/c3ff237d9d3abb1ef5f0be278e25c60725d89b26a78d0380560e67f2943700da9feb93ea63b3974219a24018829d600953da3bc7cacb1daaa19d36079b7894f5
+  languageName: node
+  linkType: hard
+
 "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1":
   version: 5.1.1-v1
   resolution: "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1"
@@ -7189,6 +7201,7 @@ __metadata:
     "@handsontable/react": "npm:^13.1.0"
     "@headlessui/react": "npm:^1.7.17"
     "@next/bundle-analyzer": "npm:^13.4.19"
+    "@next/third-parties": "npm:^14.2.5"
     "@octokit/core": "npm:^5.0.0"
     "@popperjs/core": "npm:^2.11.8"
     "@react-pdf/renderer": "npm:^3.1.12"
@@ -21369,6 +21382,13 @@ __metadata:
   dependencies:
     any-promise: "npm:^1.0.0"
   checksum: 10/486e1283a867440a904e36741ff1a177faa827cf94d69506f7e3ae4187b9afdf9ec368b3d8da225c192bfe2eb943f3f0080594156bf39f21b57cd1411e2e7f6d
+  languageName: node
+  linkType: hard
+
+"third-party-capital@npm:1.0.20":
+  version: 1.0.20
+  resolution: "third-party-capital@npm:1.0.20"
+  checksum: 10/40e2531b428a21f05531fc62ef82859c0071211eff09588baf75d4b525096bbdb4f93e17e2d538849db8d4fc3cceb074933d7be59fddc26f86718fbbe852a97f
   languageName: node
   linkType: hard
 

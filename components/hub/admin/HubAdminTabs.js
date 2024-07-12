@@ -14,27 +14,27 @@ const HubAdminTabs = () => {
 
   const  tabItems = [
     {
-      name: format('dpi.admin.profile'),
+      name: format('hub.admin.profile'),
       href: '/hub/admin/profile',
       icon: <FaUser className='my-auto' />
     },
     {
-      name: format('dpi.admin.users'),
+      name: format('hub.admin.users'),
       href: '/hub/admin/users',
       icon: <FaUserGroup className='my-auto' />
     },
     {
-      name: format('dpi.admin.broadcast'),
+      name: format('hub.admin.broadcast'),
       href: '/hub/admin/broadcasts',
       icon: <FaTowerBroadcast className='my-auto' />
     },
     {
-      name: format('dpi.admin.settings'),
+      name: format('hub.admin.settings'),
       href: '/hub/admin/settings',
       icon: <FaGears className='my-auto' />
     },
     {
-      name: format('dpi.admin.signOut'),
+      name: format('hub.admin.signOut'),
       handler: (event) => {
         event.preventDefault()
         signOut({ callbackUrl: '/' })

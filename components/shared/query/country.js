@@ -18,6 +18,7 @@ export const COUNTRIES_WITH_RESOURCES_SEARCH_QUERY = gql`
       name
       slug
       code
+      description
     }
   }
 `
@@ -73,6 +74,7 @@ export const COUNTRY_DETAIL_QUERY = gql`
       codeLonger
       latitude
       longitude
+      description
       organizations {
         id
         name
@@ -98,6 +100,7 @@ query Country($slug: String!) {
     codeLonger
     latitude
     longitude
+    description
     resources {
       id
       name

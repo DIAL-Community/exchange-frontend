@@ -36,13 +36,13 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
         <CurriculumDetailMenu curriculum={curriculum} />
         <div className='flex flex-wrap gap-3'>
           <div className='font-semibold text-2xl'>
-            {format('dpi.curriculum.overview')}
+            {format('hub.curriculum.overview')}
           </div>
         </div>
         <HtmlViewer initialContent={curriculum?.playbookDescription?.overview} />
         {curriculum.author &&
           <div>
-            <div className='h4'>{format('dpi.curriculum.author')}</div>
+            <div className='h4'>{format('hub.curriculum.author')}</div>
             <div className='text-dial-gray-dark'>{curriculum.author}</div>
           </div>
         }

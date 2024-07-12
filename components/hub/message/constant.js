@@ -14,8 +14,8 @@ export const findMessageTypeLabel = (messageType, format) => {
 
 export const generateMessageTypeOptions = (format) => {
   return [
-    { label: format('dpi.broadcast.messageType.announcement'), value: DPI_ANNOUNCEMENT_MESSAGE_TYPE },
-    { label: format('dpi.broadcast.messageType.email'), value: DPI_EMAIL_MESSAGE_TYPE },
-    { label: format('dpi.broadcast.messageType.event'), value: DPI_EVENT_MESSAGE_TYPE }
+    { label: format('hub.broadcast.messageType.announcement'), value: DPI_ANNOUNCEMENT_MESSAGE_TYPE },
+    { label: format('hub.broadcast.messageType.email'), value: DPI_EMAIL_MESSAGE_TYPE },
+    { label: format('hub.broadcast.messageType.event'), value: DPI_EVENT_MESSAGE_TYPE }
   ]
 }

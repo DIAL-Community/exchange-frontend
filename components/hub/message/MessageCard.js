@@ -31,7 +31,7 @@ const MessageCard = ({ message }) => {
       const { updateMessageVisibility: response } = data
       if (response.errors.length === 0 && response.message) {
         setMutating(false)
-        showSuccessMessage(format('dpi.broadcast.visibility.updated'))
+        showSuccessMessage(format('hub.broadcast.visibility.updated'))
       } else {
         showFailureMessage(response.errors)
         setMutating(false)

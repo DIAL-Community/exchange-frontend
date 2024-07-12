@@ -91,7 +91,7 @@ const HubAnnouncements = ({ stripeIndex }) => {
     <div className={`announcement-section ${stripeClasses(stripeIndex)}`}>
       <div className='px-4 lg:px-8 xl:px-56'>
         <div className='text-2xl py-8 '>
-          {format('dpi.announcement.header')}
+          {format('hub.announcement.header')}
         </div>
         <AnnouncementList pageNumber={pageNumber} />
         <MessagePagination

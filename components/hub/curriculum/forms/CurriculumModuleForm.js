@@ -44,7 +44,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
     onCompleted: () => {
       setMutating(false)
       showSuccessMessage(
-        format('dpi.curriculum.module.submitted'),
+        format('hub.curriculum.module.submitted'),
         () => router.push(`/hub/curriculum/${curriculum.slug}`)
       )
     }
@@ -60,7 +60,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
       if (response.errors.length === 0 && response.play) {
         setMutating(false)
         setSlug(response.play.slug)
-        showSuccessMessage(format('dpi.curriculum.module.autoSaved'))
+        showSuccessMessage(format('hub.curriculum.module.autoSaved'))
       }
     }
   })
@@ -212,7 +212,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
             <div className='flex flex-col gap-y-6 text-sm'>
               <div className='text-xl font-semibold'>
                 {curriculumModule && format('app.editEntity', { entity: curriculumModule.name })}
-                {!curriculumModule && `${format('app.createNew')} ${format('dpi.curriculum.module.label')}`}
+                {!curriculumModule && `${format('app.createNew')} ${format('hub.curriculum.module.label')}`}
               </div>
               <label className='flex flex-col gap-y-2'>
                 <p className='required-field'>{format('ui.play.name')}</p>
@@ -272,7 +272,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
               </label>
               <label className='flex gap-x-2 mb-2 items-center self-start'>
                 <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
-                {format('dpi.curriculum.published')}
+                {format('hub.curriculum.published')}
               </label>
               <div className='flex flex-wrap gap-3 text-sm'>
                 <button
@@ -280,7 +280,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {`${format('dpi.curriculum.save')} ${format('dpi.curriculum.module.label')}`}
+                  {`${format('hub.curriculum.save')} ${format('hub.curriculum.module.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

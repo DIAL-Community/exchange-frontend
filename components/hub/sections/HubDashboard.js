@@ -30,7 +30,7 @@ const HubDashboard = () => {
         <div className='flex flex-col gap-8 justify-center mx-auto py-12 px-4 xl:flex-row xl:py-20'>
           <div className='md:text-xl 2xl:text-2xl text-center text-dial-cotton lg:max-w-prose line-clamp-6'>
             <FormattedMessage
-              id='dpi.dashboard.subtitle'
+              id='hub.dashboard.subtitle'
               values={{
                 break: () => <br />
               }}
@@ -40,12 +40,12 @@ const HubDashboard = () => {
             <div className='flex flex-col ml-auto xl:ml-0 gap-2 text-sm lg:text-base xl:gap-4'>
               <a href='/hub/member-login' onClick={signOutUser}>
                 <span className='text-dial-cotton border-b border-transparent hover:border-white'>
-                  <FormattedMessage id='dpi.dashboard.signOut' />
+                  <FormattedMessage id='hub.dashboard.signOut' />
                 </span>
               </a>
               <Link href='/hub/dashboard/profile'>
                 <span className='text-dial-cotton border-b border-transparent hover:border-white'>
-                  <FormattedMessage id='dpi.dashboard.profile' />
+                  <FormattedMessage id='hub.dashboard.profile' />
                 </span>
               </Link>
             </div>

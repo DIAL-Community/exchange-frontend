@@ -54,7 +54,7 @@ const DraggableModules = ({ curriculum }) => {
 
   const displayNoData = () =>
     <div className='text-sm font-medium opacity-80'>
-      {format('noResults.entity', { entity: format('dpi.curriculum.module.label').toString().toLowerCase() })}
+      {format('noResults.entity', { entity: format('hub.curriculum.module.label').toString().toLowerCase() })}
     </div>
 
   return (

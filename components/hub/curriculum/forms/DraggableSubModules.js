@@ -36,7 +36,7 @@ const DraggableSubModules = ({ module }) => {
 
   const displayNoData = () =>
     <div className='text-sm font-medium opacity-80'>
-      {format('noResults.entity', { entity: format('dpi.curriculum.subModule.label').toString().toLowerCase() })}
+      {format('noResults.entity', { entity: format('hub.curriculum.subModule.label').toString().toLowerCase() })}
     </div>
 
   const displaySubModules = () =>
