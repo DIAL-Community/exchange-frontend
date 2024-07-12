@@ -35,7 +35,7 @@ const HubExpertNetwork = () => {
         <div className='flex flex-col gap-8 justify-center mx-auto py-12 px-4 xl:flex-row xl:py-20'>
           <div className='md:text-xl 2xl:text-2xl text-center text-dial-cotton lg:max-w-prose line-clamp-6'>
             <FormattedMessage
-              id='dpi.expertNetwork.subtitle'
+              id='hub.expertNetwork.subtitle'
               values={{
                 break: () => <br />
               }}
@@ -48,19 +48,19 @@ const HubExpertNetwork = () => {
               href='//dial.global/work/adli/'
               className='text-dial-cotton border-b border-transparent hover:border-white'
             >
-              <FormattedMessage id='dpi.exportNetwork.learnMore' />
+              <FormattedMessage id='hub.exportNetwork.learnMore' />
             </a>
             {user && (
               <Link href='/hub/dashboard' className='flex'>
                 <span className='text-dial-cotton border-b border-transparent hover:border-white'>
-                  <FormattedMessage id='dpi.exportNetwork.memberDashboard' />
+                  <FormattedMessage id='hub.exportNetwork.memberDashboard' />
                 </span>
               </Link>
             )}
             {!user && (
               <Link href='/hub/member-login' onClick={signInUser} className='flex'>
                 <span className='text-dial-cotton border-b border-transparent hover:border-white'>
-                  <FormattedMessage id='dpi.exportNetwork.login' />
+                  <FormattedMessage id='hub.exportNetwork.login' />
                 </span>
               </Link>
             )}
@@ -132,7 +132,7 @@ const NetworkMemberCard = ({ member }) => {
     <div className='flex items-center gap-4'>
       <div className='h-24 w-24 2xl:h-32 2xl:w-32 shrink-0'>
         <img
-          alt={format('dpi.expertNetwork.memberCard.alt')}
+          alt={format('hub.expertNetwork.memberCard.alt')}
           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + member.imageFile}
           className='rounded-full object-cover h-full w-full'
         />

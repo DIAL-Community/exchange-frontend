@@ -13,7 +13,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const [resourceAuthor] = resource?.authors ?? []
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg min-h-[12rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='flex items-center my-auto w-24 h-24 shrink-0'>
           <Link href={`/resources/${resource.slug}`}>
@@ -48,13 +48,13 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
 
   const displayHubCard = () =>
     <div className={`rounded-lg min-h-[6rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
-      <div className='min-w-80 pb-4 mx-auto flex flex-col'>
-        <div className='w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center'>
+      <div className='min-w-80 pb-4 mx-auto flex flex-col gap-3'>
+        <div className='w-full flex justify-center items-center'>
           <Link href={`/hub/resources/${resource.slug}`}>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-              className='aspect-[5/4]'
+              className='aspect-[773/447]'
             />
           </Link>
         </div>
@@ -146,7 +146,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       {displayType === DisplayType.FEATURED_CARD && displayFeaturedCard()}
-      {displayType === DisplayType.DPI_CARD && displayHubCard()}
+      {displayType === DisplayType.HUB_CARD && displayHubCard()}
       { isValidFn(dismissHandler) &&
         <button type='button' className='absolute top-2 right-2'>
           <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />

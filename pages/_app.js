@@ -29,7 +29,7 @@ import '../styles/ui/v1/swiper.css'
 import '../styles/ui/v1/comment.scss'
 import '../styles/ui/v1/wizard.scss'
 import '../styles/ui/v1/parser.scss'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { SessionProvider } from 'next-auth/react'
 import { DefaultSeo } from 'next-seo'
 import { Poppins } from 'next/font/google'
@@ -39,27 +39,14 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { IntlProvider, useIntl } from 'react-intl'
 import { ApolloProvider } from '@apollo/client'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { CookieConsentProvider } from '@use-cookie-consent/react'
 import ErrorBoundary from '../components/shared/ErrorBoundary'
 import { useApollo } from '../lib/apolloClient'
 import CandidateContext from '../lib/CandidateContext'
 import CatalogContext from '../lib/CatalogContext'
-import * as gtag from '../lib/gtag'
 import { ToastContextProvider } from '../lib/ToastContext'
 import * as translations from '../translations'
-
-export function reportWebVitals (metric) {
-  // https://nextjs.org/docs/advanced-features/measuring-performance
-  const reportWebVitals = false
-  if (reportWebVitals) {
-    gtag.event({
-      action: metric.name,
-      category: metric.label === 'web-vital' ? 'Web Vitals' : 'Next.js metric',
-      label: metric.id,
-      value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value)
-    })
-  }
-}
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700'],
@@ -72,38 +59,62 @@ const ApplicationDefaultContexts = ({ children }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const [currentTenant, setCurrentTenant] = useState(null)
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER}/tenant`)
+      .then(response => response.json())
+      .then(({ tenant }) => setCurrentTenant(tenant))
+  }, [])
+
+  const titleForTenant = (tenantName) => {
+    return tenantName !== 'dpi' ? format('app.title') : format('hub.title')
+  }
+
+  const imageForTenant = (tenantName) => {
+    return tenantName !== 'dpi'
+      ? 'https://exchange.dial.global/images/hero-image/exchange-hero.png'
+      : 'https://exchange.dial.global/images/hero-image/hub-hero.png'
+  }
+
   return (
-    <CatalogContext>
-      <CandidateContext>
-        <ToastContextProvider>
-          <DefaultSeo
-            titleTemplate={`%s | ${format('app.title')}`}
-            defaultTitle={format('app.title')}
-            description={format('wizard.getStarted.firstLine')}
-            additionalLinkTags={[{
-              rel: 'icon',
-              href: '/favicon.ico'
-            }]}
-            openGraph={{
-              title: format('app.title'),
-              type: 'website',
-              images: [
-                {
-                  url: 'https://exchange.dial.global/images/hero-image/exchange-hero.png',
-                  width: 700,
-                  height: 380,
-                  alt: 'Banner of Digital Impact Exchange'
-                }
-              ]
-            }}
-            twitter={{
-              cardType: 'summary_large_image'
-            }}
-          />
-          {children}
-        </ToastContextProvider>
-      </CandidateContext>
-    </CatalogContext>
+    <>
+      { !currentTenant && format('general.loadingData') }
+      { currentTenant && (
+        <CatalogContext>
+          <CandidateContext>
+            <ToastContextProvider>
+              <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID} />
+              <DefaultSeo
+                titleTemplate={`%s - ${currentTenant} | ${titleForTenant(currentTenant)}`}
+                defaultTitle={titleForTenant(currentTenant)}
+                description={format('wizard.getStarted.firstLine')}
+                additionalLinkTags={[{
+                  rel: 'icon',
+                  href: '/favicon.ico'
+                }]}
+                openGraph={{
+                  title: titleForTenant(currentTenant),
+                  type: 'website',
+                  images: [
+                    {
+                      url: imageForTenant(currentTenant),
+                      width: 700,
+                      height: 380,
+                      alt: `Banner of ${titleForTenant(currentTenant)}`
+                    }
+                  ]
+                }}
+                twitter={{
+                  cardType: 'summary_large_image'
+                }}
+              />
+              {children}
+            </ToastContextProvider>
+          </CandidateContext>
+        </CatalogContext>
+      )}
+    </>
   )
 }
 
@@ -113,18 +124,6 @@ const App = ({ Component, pageProps }) => {
   const messages = { ...translations.en, ...translations[locale] }
 
   const client = useApollo(pageProps)
-
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      gtag.pageview(url)
-    }
-
-    router.events.on('routeChangeComplete', handleRouteChange)
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
 
   return (
     <main className={poppins.className}>

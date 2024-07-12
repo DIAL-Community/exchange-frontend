@@ -33,13 +33,13 @@ const MessageFilter = ({ search, setSearch, setMessageType }) => {
       </div>
       <div className='flex w-full'>
         <div className='basis-1/2 shrink-0 my-auto text-right px-4'>
-          {format('dpi.broadcast.messageType')}
+          {format('hub.broadcast.messageType')}
         </div>
         <Select
           isBorderless
           className='basis-1/2 shrink-0'
           options={messageTypeOptions}
-          placeholder={format('dpi.broadcast.messageType')}
+          placeholder={format('hub.broadcast.messageType')}
           onChange={handleMessageTypeChange}
           value={selectedMessageType}
         />

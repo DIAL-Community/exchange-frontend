@@ -12,7 +12,7 @@ const Connect = () => {
       </div>
       <hr className='border-b border-dial-angel'/>
       <div className='text-sm text-dial-cotton'>
-        {format('dpi.footer.connect.subtitle')}
+        {format('hub.footer.connect.subtitle')}
       </div>
       <div className='flex text-dial-cotton pt-3'>
         <div className='bg-dial-sunshine rounded-md text-dial-stratos text-sm'>

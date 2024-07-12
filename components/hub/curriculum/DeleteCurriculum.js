@@ -35,18 +35,18 @@ const DeleteCurriculum = ({ curriculum }) => {
       const { deleteCurriculum: response } = data
       if (response?.curriculum && response?.errors?.length === 0) {
         showSuccessMessage(
-          format('toast.delete.success', { entity: format('dpi.curriculum.label') }),
+          format('toast.delete.success', { entity: format('hub.curriculum.label') }),
           () => router.push('/hub/curriculum')
         )
         setIsConfirmDialogOpen(false)
       } else {
-        showFailureMessage(format('toast.delete.failure', { entity: format('dpi.curriculum.label') }))
+        showFailureMessage(format('toast.delete.failure', { entity: format('hub.curriculum.label') }))
         setIsConfirmDialogOpen(false)
         reset()
       }
     },
     onError: () => {
-      showFailureMessage(format('toast.delete.failure', { entity: format('dpi.curriculum.label') }))
+      showFailureMessage(format('toast.delete.failure', { entity: format('hub.curriculum.label') }))
       setIsConfirmDialogOpen(false)
       reset()
     }
@@ -75,7 +75,7 @@ const DeleteCurriculum = ({ curriculum }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog}/>
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: curriculum.name })}
-        message={format('dpi.curriculum.delete.confirm.message')}
+        message={format('hub.curriculum.delete.confirm.message')}
         isOpen={isConfirmDialogOpen}
         onClose={toggleConfirmDialog}
         onConfirm={onConfirmDelete}

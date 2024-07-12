@@ -198,7 +198,7 @@ const ModuleCommentCount = ({ curriculumSlug, module, locale }) => {
         >
           <div className='flex gap-2 py-1'>
             <FaCommentAlt className='my-auto' />
-            {format('dpi.curriculum.module.commentCount.title', { commentCount: data.countComments })}
+            {format('hub.curriculum.module.commentCount.title', { commentCount: data.countComments })}
           </div>
         </Link>
       }
@@ -271,7 +271,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
             <div className='flex flex-wrap gap-3'>
               <Link href={`${curriculumSlug}/module/${module.slug}`}>
                 <div className={`font-semibold text-2xl flex gap-2 ${module.draft && 'text-dial-sapphire'}`}>
-                  {!isNaN(index) && `${format('dpi.curriculum.module.label')} ${index + 1}. ${module.name}`}
+                  {!isNaN(index) && `${format('hub.curriculum.module.label')} ${index + 1}. ${module.name}`}
                   {isNaN(index) && `${module.name}`}
                   {module.draft &&
                     <span className='font-bold'>
@@ -297,7 +297,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
               {allowedToEdit() &&
                 <CreateButton
                   type='link'
-                  label={format('dpi.curriculum.submodule.add')}
+                  label={format('hub.curriculum.submodule.add')}
                   href={generateAddSubModuleLink()}
                 />
               }
@@ -309,7 +309,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
                 >
                   <FiMove className='inline pb-0.5' />
                   <span className='text-sm px-1'>
-                    {format('dpi.curriculum.submodule.rearrange')}
+                    {format('hub.curriculum.submodule.rearrange')}
                   </span>
                 </button>
               }

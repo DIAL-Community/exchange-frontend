@@ -82,7 +82,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
         setMutating(false)
         setSlug(response.playbook.slug)
         showSuccessMessage(
-          format('dpi.curriculum.submitted'),
+          format('hub.curriculum.submitted'),
           () => router.push(`/hub/curriculum/${response.playbook.slug}`)
         )
       } else {
@@ -103,7 +103,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       const { autoSavePlaybook: response } = data
       if (response.errors.length === 0 && response.playbook) {
         setSlug(response.playbook.slug)
-        showSuccessMessage(format('dpi.curriculum.autoSaved'))
+        showSuccessMessage(format('hub.curriculum.autoSaved'))
       }
     }
   })
@@ -248,31 +248,31 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
             <div className='flex flex-col gap-y-6 text-sm'>
               <div className='text-xl font-semibold'>
                 {curriculum && format('app.editEntity', { entity: curriculum.name })}
-                {!curriculum && `${format('app.createNew')} ${format('dpi.curriculum.label')}`}
+                {!curriculum && `${format('app.createNew')} ${format('hub.curriculum.label')}`}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='name'>
-                  {format('dpi.curriculum.name')}
+                  {format('hub.curriculum.name')}
                 </label>
                 <Input
                   {...register('name', { required: format('validation.required') })}
                   id='name'
-                  placeholder={format('dpi.curriculum.name')}
+                  placeholder={format('hub.curriculum.name')}
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label>
-                  {format('dpi.curriculum.cover')}
+                  {format('hub.curriculum.cover')}
                 </label>
                 <FileUploader {...register('cover')} />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label htmlFor='author'>
-                  {format('dpi.curriculum.author')}
+                  {format('hub.curriculum.author')}
                 </label>
-                <Input id='author' {...register('author')} placeholder={format('dpi.curriculum.author')} />
+                <Input id='author' {...register('author')} placeholder={format('hub.curriculum.author')} />
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='flex flex-col gap-y-2'>
@@ -304,13 +304,13 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
               <FormTextEditor
                 control={control}
                 name='overview'
-                placeholder={format('dpi.curriculum.overview')}
+                placeholder={format('hub.curriculum.overview')}
                 required
                 isInvalid={errors.overview}
               />
               <label className='flex gap-x-2 mb-2 items-center self-start'>
                 <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
-                {format('dpi.curriculum.published')}
+                {format('hub.curriculum.published')}
               </label>
               <div className='flex flex-wrap text-sm gap-3'>
                 <button
@@ -318,7 +318,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {format('dpi.curriculum.save')}
+                  {format('hub.curriculum.save')}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button
