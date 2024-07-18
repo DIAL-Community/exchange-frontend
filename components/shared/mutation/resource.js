@@ -161,3 +161,57 @@ export const UPDATE_RESOURCE_PRODUCTS = gql`
     }
   }
 `
+
+export const UPDATE_RESOURCE_BUILDING_BLOCKS = gql`
+  mutation UpdateResourceBuildingBlocks(
+    $slug: String!
+    $buildingBlockSlugs: [String!]!
+    $mappingStatus: String
+  ) {
+    updateResourceBuildingBlocks(
+      slug: $slug
+      buildingBlockSlugs: $buildingBlockSlugs
+      mappingStatus: $mappingStatus
+    ) {
+      resource {
+        id
+        slug
+        name
+        buildingBlocks {
+          id
+          name
+          slug
+          imageFile
+          maturity
+        }
+        buildingBlocksMappingStatus
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_RESOURCE_USE_CASES = gql`
+  mutation UpdateResourceUseCases(
+    $slug: String!
+    $useCaseSlugs: [String!]!
+  ) {
+    updateResourceUseCases(
+      slug: $slug
+      useCaseSlugs: $useCaseSlugs
+    ) {
+      resource {
+        id
+        slug
+        name
+        useCases {
+          id
+          name
+          slug
+          imageFile
+        }
+      }
+      errors
+    }
+  }
+`

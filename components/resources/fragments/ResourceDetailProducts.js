@@ -105,10 +105,10 @@ const ResourceDetailProducts = ({ resource, canEdit, headerRef }) => {
         </div>
       )}
     </div>
-    : <div className='text-base text-dial-stratos'>
+    : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
         entity: format('ui.product.label'),
-        base: format('ui.organization.label')
+        base: format('ui.resource.label')
       })}
     </div>
 

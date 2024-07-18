@@ -1,26 +1,23 @@
-import React, { useState, useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { useOrganizationOwnerUser, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { useUser } from '../../../lib/hooks'
-import Input from '../../shared/form/Input'
-import ValidationError from '../../shared/form/ValidationError'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
-import { CREATE_ORGANIZATION } from '../../shared/mutation/organization'
 import IconButton from '../../shared/form/IconButton'
-import UrlInput from '../../shared/form/UrlInput'
-import Checkbox from '../../shared/form/Checkbox'
+import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import UrlInput from '../../shared/form/UrlInput'
+import ValidationError from '../../shared/form/ValidationError'
+import { CREATE_ORGANIZATION } from '../../shared/mutation/organization'
+import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/organization'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import {
-  ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_ORGANIZATIONS_QUERY
-} from '../../shared/query/organization'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
@@ -28,6 +25,7 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const slug = organization?.slug ?? ''
 
+  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
@@ -171,7 +169,7 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   return loadingUserSession
     ? <Loading />
-    : isAdminUser || isEditorUser
+    : isAdminUser || isEditorUser || isOrganizationOwner
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
           <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>

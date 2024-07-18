@@ -1,18 +1,18 @@
-import React, { useState, useCallback, useContext, forwardRef, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, useCallback, useContext, useImperativeHandle, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { useProductOwnerUser, useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
-import { useUser } from '../../../../lib/hooks'
-import Input from '../../../shared/form/Input'
-import ValidationError from '../../../shared/form/ValidationError'
-import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_PRODUCT_REPOSITORY } from '../../../shared/mutation/productRepository'
-import UrlInput from '../../../shared/form/UrlInput'
-import Checkbox from '../../../shared/form/Checkbox'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
+import Checkbox from '../../../shared/form/Checkbox'
+import { HtmlEditor } from '../../../shared/form/HtmlEditor'
+import Input from '../../../shared/form/Input'
+import UrlInput from '../../../shared/form/UrlInput'
+import ValidationError from '../../../shared/form/ValidationError'
+import { CREATE_PRODUCT_REPOSITORY } from '../../../shared/mutation/productRepository'
 
 const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) => {
   const { formatMessage } = useIntl()
@@ -21,6 +21,7 @@ const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) =
   const productSlug = product?.slug
   const repositorySlug = productRepository?.slug ?? ''
 
+  const { isProductOwner } = useProductOwnerUser(product)
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
@@ -120,7 +121,7 @@ const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) =
 
   return loadingUserSession
     ? <Loading />
-    : isAdminUser || isEditorUser ?
+    : isAdminUser || isEditorUser || isProductOwner ?
       <form onSubmit={handleSubmit(doUpsert)}>
         <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-meadow' ref={formRef}>
           <div className='flex flex-col gap-y-6 text-sm'>
