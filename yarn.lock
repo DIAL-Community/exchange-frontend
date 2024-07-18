@@ -6392,7 +6392,7 @@ __metadata:
     file-saver: "npm:^2.0.5"
     graphql: "npm:^16.9.0"
     handsontable: "npm:^14.4.0"
-    html-react-parser: "npm:^5.1.11"
+    html-react-parser: "npm:^5.1.12"
     iframe-resizer-react: "npm:^5.1.5"
     immutability-helper: "npm:^3.1.1"
     immutable: "npm:^4.3.6"
@@ -10199,13 +10199,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-dom-parser@npm:5.0.8":
-  version: 5.0.8
-  resolution: "html-dom-parser@npm:5.0.8"
+"html-dom-parser@npm:5.0.9":
+  version: 5.0.9
+  resolution: "html-dom-parser@npm:5.0.9"
   dependencies:
     domhandler: "npm:5.0.3"
     htmlparser2: "npm:9.1.0"
-  checksum: 10/fb1f67e151008abc00404e80d69d499ee365b7e8a1a618ad0ccaedfd28889c99fb8fcd0cf57464c7b0898784c28b9c0ef9704110d51bca6ff2e5367e5a0d13a3
+  checksum: 10/8db5fb8081a27407fd8124027ff11185b39b3d2ebea17b6404ae2c8286a6546106788c1582c25afcb1d2545c41f65e73e1d6f8c9e4df3cc1ff14cd5a4d25eac2
   languageName: node
   linkType: hard
 
@@ -10225,12 +10225,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-react-parser@npm:^5.1.11":
-  version: 5.1.11
-  resolution: "html-react-parser@npm:5.1.11"
+"html-react-parser@npm:^5.1.12":
+  version: 5.1.12
+  resolution: "html-react-parser@npm:5.1.12"
   dependencies:
     domhandler: "npm:5.0.3"
-    html-dom-parser: "npm:5.0.8"
+    html-dom-parser: "npm:5.0.9"
     react-property: "npm:2.0.2"
     style-to-js: "npm:1.1.12"
   peerDependencies:
@@ -10239,7 +10239,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10/9380c2b4ae38be8710b10f13d4741a37445a9f481e9c9faf22918bea6f7b1fcd5b19934bab371705891731eb78e1d4e6d9b5f013ab96ede864e28f70d1db4656
+  checksum: 10/d13e590ac3dd3933e4b27bcd8f1423a00ea911e523ea7365f2bbabbedbdf5219cf2998cca9c537d543485fdde7358bb5c9d85bc84aa6dad57b8b7d920cd89364
   languageName: node
   linkType: hard
 
