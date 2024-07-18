@@ -1,15 +1,12 @@
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 import { screen } from '@testing-library/dom'
-import { render } from '../../test-utils'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import UseCaseMain from '../../../components/use-case/UseCaseMain'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_USE_CASES_QUERY
-} from '../../../components/shared/query/useCase'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { UseCaseFilterProvider } from '../../../components/context/UseCaseFilterContext'
+import { PAGINATED_USE_CASES_QUERY, USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../../components/shared/query/useCase'
+import UseCaseMain from '../../../components/use-case/UseCaseMain'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import { paginatedUseCases, useCasePaginationAttribute } from './data/UseCaseMain.data'
 
 mockTenantApi()

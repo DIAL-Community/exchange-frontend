@@ -1,16 +1,15 @@
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 import { screen } from '@testing-library/dom'
-import { render } from '../../test-utils'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import OpportunityMain from '../../../components/opportunity/OpportunityMain'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_OPPORTUNITIES_QUERY
-} from '../../../components/shared/query/opportunity'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { OpportunityFilterProvider } from '../../../components/context/OpportunityFilterContext'
-import { paginatedOpportunities, opportunityPaginationAttribute } from './data/OpportunityMain.data'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import OpportunityMain from '../../../components/opportunity/OpportunityMain'
+import {
+  OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_OPPORTUNITIES_QUERY
+} from '../../../components/shared/query/opportunity'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { opportunityPaginationAttribute, paginatedOpportunities } from './data/OpportunityMain.data'
 
 mockTenantApi()
 mockNextUseRouter()

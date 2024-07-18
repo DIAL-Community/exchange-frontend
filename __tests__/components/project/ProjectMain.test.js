@@ -1,15 +1,12 @@
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 import { screen } from '@testing-library/dom'
-import { render } from '../../test-utils'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import ProjectMain from '../../../components/project/ProjectMain'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  PROJECT_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_PROJECTS_QUERY
-} from '../../../components/shared/query/project'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { ProjectFilterProvider } from '../../../components/context/ProjectFilterContext'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import ProjectMain from '../../../components/project/ProjectMain'
+import { PAGINATED_PROJECTS_QUERY, PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../../components/shared/query/project'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import { paginatedProjects, projectPaginationAttribute } from './data/ProjectMain.data'
 
 mockTenantApi()

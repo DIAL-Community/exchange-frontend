@@ -1,15 +1,14 @@
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 import { screen } from '@testing-library/dom'
-import { render } from '../../test-utils'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import StorefrontMain from '../../../components/storefront/StorefrontMain'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  STOREFRONT_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_STOREFRONTS_QUERY
-} from '../../../components/shared/query/organization'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { OrganizationFilterProvider } from '../../../components/context/OrganizationFilterContext'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import {
+  PAGINATED_STOREFRONTS_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY
+} from '../../../components/shared/query/organization'
+import StorefrontMain from '../../../components/storefront/StorefrontMain'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import { paginatedStorefronts, storefrontPaginationAttribute } from './data/StorefrontMain.data'
 
 mockTenantApi()

@@ -36,6 +36,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             aria-live="polite"
             aria-relevant="additions text"
             class="css-1f43avz-a11yText-A11yText"
+            role="log"
           />
           <div
             class="react-select__control css-afrqkl-control"
@@ -54,6 +55,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 data-value=""
               >
                 <input
+                  aria-activedescendant=""
                   aria-autocomplete="list"
                   aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
@@ -114,6 +116,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               aria-live="polite"
               aria-relevant="additions text"
               class="css-1f43avz-a11yText-A11yText"
+              role="log"
             />
             <div
               class="react-select__control css-afrqkl-control"
@@ -132,6 +135,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                   data-value=""
                 >
                   <input
+                    aria-activedescendant=""
                     aria-autocomplete="list"
                     aria-describedby="react-select-:r1:-placeholder"
                     aria-expanded="false"
@@ -210,7 +214,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                   fill="none"
                 />
                 <path
-                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                  d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
                 />
               </svg>
             </label>

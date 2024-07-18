@@ -1,4 +1,4 @@
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 import { screen } from '@testing-library/dom'
 import { ProductFilterProvider } from '../../../components/context/ProductFilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'

@@ -130,6 +130,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                   aria-live="polite"
                   aria-relevant="additions text"
                   class="css-1f43avz-a11yText-A11yText"
+                  role="log"
                 />
                 <div
                   class="react-select__control css-afrqkl-control"
@@ -148,6 +149,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                       data-value=""
                     >
                       <input
+                        aria-activedescendant=""
                         aria-autocomplete="list"
                         aria-describedby="react-select-:r0:-placeholder"
                         aria-expanded="false"
@@ -743,7 +745,71 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
 <div>
   <div
     class="Toastify"
-  />
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        data-in="true"
+        id="toastId"
+      >
+        <div
+          class="Toastify__toast-body"
+          role="alert"
+        >
+          <div
+            class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+          >
+            <svg
+              fill="var(--toastify-icon-color-success)"
+              height="100%"
+              viewBox="0 0 24 24"
+              width="100%"
+            >
+              <path
+                d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm6.927 8.2l-6.845 9.289a1.011 1.011 0 01-1.43.188l-4.888-3.908a1 1 0 111.25-1.562l4.076 3.261 6.227-8.451a1 1 0 111.61 1.183z"
+              />
+            </svg>
+          </div>
+          <div>
+            Dataset submitted successfully.
+          </div>
+        </div>
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          class="Toastify__progress-bar--wrp"
+          data-hidden="false"
+        >
+          <div
+            class="Toastify__progress-bar--bg Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+          />
+          <div
+            aria-hidden="false"
+            aria-label="notification timer"
+            class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+            role="progressbar"
+            style="animation-duration: 1000ms; animation-play-state: paused;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
   <div
     class="lg:px-8 xl:px-56 flex flex-col"
   >
@@ -1020,6 +1086,7 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
                     class="react-select__control css-afrqkl-control"
@@ -1037,6 +1104,7 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-expanded="false"
                           aria-haspopup="true"
