@@ -3,7 +3,6 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import AdminMenu from '../../shared/menu/AdminMenu'
 import UserMenu from '../../shared/menu/UserMenu'
 import { useUser } from '../../../lib/hooks'
 import { NONE } from '../../shared/menu/MenuCommon'
@@ -16,7 +15,7 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
-  const { user, isAdminUser } = useUser()
+  const { user } = useUser()
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [currentOpenMenu, setCurrentOpenMenu] = useState(NONE)
@@ -152,7 +151,7 @@ const HamburgerMenu = ({ menuExpanded, onMenuClicked }) => {
         className='ml-auto my-auto cursor-pointer block md:hidden z-30'
       >
         <svg
-          className='fill-current text-dial-cotton'
+          className='fill-current text-gray'
           xmlns='http://www.w3.org/2000/svg'
           width='16'
           height='16'

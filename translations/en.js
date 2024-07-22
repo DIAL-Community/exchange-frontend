@@ -478,6 +478,12 @@ export const en = {
   'sector.displayable.tooltip': 'Displayable',
   'sector.not-displayable.tooltip': 'Not Displayable',
 
+  'ui.category.header': 'Software Categories',
+  'ui.category.label': 'Software Category',
+
+  'ui.feature.header': 'Software Features',
+  'ui.feature.label': 'Software Feature',
+
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
 

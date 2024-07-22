@@ -243,6 +243,22 @@ export const PRODUCT_DETAIL_QUERY = gql`
         code
         slug
       }
+      softwareCategories {
+        id
+        name
+        slug
+        softwareFeatures {
+          id
+          name
+          slug
+        }
+      }
+      softwareFeatures {
+        id
+        name
+        slug
+        categoryId
+      }
     }
   }
 `

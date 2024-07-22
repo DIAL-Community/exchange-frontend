@@ -90,17 +90,17 @@ const HealthMobileMenu = ({ menuExpanded, setMenuExpanded }) => {
                   </button>
                 </div>
               }
-              <li className='relative text-right text-lg'>
+              <li className='relative flex gap-x-2 px-8 py-4 text-lg'>
                 <Link href='/health/about' role='menuitem' className={menuStyles}>
                   {format('health.header.about').toUpperCase()}
                 </Link>
               </li>
-              <li className='relative text-right text-lg'>
+              <li className='relative flex gap-x-2 px-8 py-4 text-lg'>
                 <Link href='/health/products' role='menuitem' className={menuStyles}>
                   {format('health.header.products').toUpperCase()}
                 </Link>
               </li>
-              <li className='relative text-right text-lg'>
+              <li className='relative flex gap-x-2 px-8 py-4 text-lg'>
                 <Link href='/health/faq' role='menuitem' className={menuStyles}>
                   {format('health.header.faq').toUpperCase()}
                 </Link>
