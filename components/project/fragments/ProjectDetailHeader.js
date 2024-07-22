@@ -19,7 +19,7 @@ const ProjectDetailHeader = ({ project }) => {
       <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
         { project.projectWebsite &&
           <div className='flex flex-col gap-y-3'>
-            <div className='font-semibold text-dial-sapphire'>
+            <div className='font-semibold text-dial-plum'>
               {format('project.url')}
             </div>
             <div className='flex text-dial-stratos'>
@@ -38,7 +38,7 @@ const ProjectDetailHeader = ({ project }) => {
         }
         <ProjectDetailSectors project={project} canEdit={canEdit} />
         <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-dial-sapphire'>
+          <div className='font-semibold text-dial-plum'>
             {format('ui.origin.label')}
           </div>
           <div className='flex flex-col gap-y-2 text-dial-stratos'>

@@ -25,7 +25,7 @@ const ResourceDetailHeader = ({ resource }) => {
   }
 
   return (
-    <div className='flex flex-col gap-y-3 py-3'>
+    <div className='flex flex-col gap-y-3 py-3 text-sm'>
       <div className='flex justify-center items-center bg-white rounded border'>
         {resource.imageFile.indexOf('placeholder.svg') < 0 &&
           <img
@@ -90,6 +90,25 @@ const ResourceDetailHeader = ({ resource }) => {
           </a>
           &nbsp;⧉
         </div>
+      </div>
+      <hr className='border-b border-dial-blue-chalk my-3' />
+      <div className='flex flex-col gap-y-2'>
+        <div className='font-semibold text-dial-stratos'>
+          {format('ui.resource.submittedBy')}
+        </div>
+        {resource?.submittedBy &&
+          <div className='my-auto text-sm flex'>
+            <a
+              className='border-b border-dial-iris-blue'
+              href={`mailto:${resource.submittedBy.email}`}
+              target='_blank'
+              rel='noreferrer'
+            >
+              {resource.submittedBy.email}
+            </a>
+          </div>
+        }
+        {!resource?.submittedBy && format('general.na')}
       </div>
       <hr className='border-b border-dial-blue-chalk my-3' />
       <ResourceDetailCountries resource={resource} canEdit={canEdit} />

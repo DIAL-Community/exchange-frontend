@@ -1875,6 +1875,7 @@ export const en = {
   'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
   'ui.resource.resourceFile': 'Resource File',
   'ui.resource.resourceLink': 'Resource Link',
+  'ui.resource.submittedBy': 'Submitted By',
   'ui.resource.linkDescription': 'Resource Link Description',
   'ui.resource.source': 'Source',
   'ui.resource.resourceType': 'Resource Type',
@@ -2631,6 +2632,7 @@ export const en = {
   `,
   'hub.dashboard.signOut': 'Sign Out',
   'hub.dashboard.profile': 'My Profile',
+  'hub.dashboard.createResource': 'Create Resource',
 
   'hub.admin.profile': 'Profile',
   'hub.admin.users': 'Users',

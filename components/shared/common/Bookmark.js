@@ -1,10 +1,10 @@
 import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { ADD_BOOKMARK } from '../mutation/bookmark'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
+import { ADD_BOOKMARK } from '../mutation/bookmark'
 
 const Bookmark = ({ object, sharableLink, objectType }) => {
   const { formatMessage } = useIntl()
@@ -54,7 +54,7 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
 
   return (
     <div className='flex flex-col gap-3 py-3'>
-      <div className='text-lg text-dial-sapphire font-semibold'>
+      <div className='text-dial-sapphire font-semibold'>
         {format('ui.bookmark.title')}
       </div>
       <button type='button' onClick={bookmarkThis} className='group flex flex-row gap-x-3'>

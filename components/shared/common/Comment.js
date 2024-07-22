@@ -18,7 +18,7 @@ const Comment = ({ entityKey, scrollRef }) => {
 
   return (
     <div className='flex flex-col gap-3 py-3'>
-      <div className='text-lg text-dial-sapphire font-semibold'>
+      <div className='text-dial-sapphire font-semibold'>
         {format('ui.comment.label')}
       </div>
       <div className='text-sm text-dial-stratos'>
