@@ -16,7 +16,7 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
-  const { user, isAdminUser } = useUser()
+  const { user } = useUser()
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [currentOpenMenu, setCurrentOpenMenu] = useState(NONE)
