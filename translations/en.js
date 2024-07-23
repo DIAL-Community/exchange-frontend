@@ -2630,8 +2630,11 @@ export const en = {
     We hope that through peer-to-peer learning, strategic partnerships, and continuous adaptation, we can
     collectively promote and advance equitable progress across the continent.
   `,
+
+  'hub.dashboard': 'Dashboard',
   'hub.dashboard.signOut': 'Sign Out',
   'hub.dashboard.profile': 'My Profile',
+  'hub.dashboard.chatbot': 'My Chatbot',
   'hub.dashboard.createResource': 'Create Resource',
 
   'hub.admin.profile': 'Profile',

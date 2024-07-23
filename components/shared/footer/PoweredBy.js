@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { FaLinkedin } from 'react-icons/fa6'
 
 const PoweredBy = () => {
   const { formatMessage } = useIntl()
@@ -24,15 +23,6 @@ const PoweredBy = () => {
         <div className='text-sm text-dial-stratos'>
           {format('ui.footer.poweredBy.subTitle')}
         </div>
-      </div>
-      <div className='flex gap-2 ml-auto'>
-        <a
-          href='//www.linkedin.com/company/digital-impact-alliance/'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <FaLinkedin size='2rem' className='text-dial-iris-blue'/>
-        </a>
       </div>
     </div>
   )

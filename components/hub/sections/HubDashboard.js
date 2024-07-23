@@ -61,6 +61,12 @@ const HubDashboard = () => {
                     <div className='border-r border-dial-slate-500' />
                   </>
                 }
+                <Link href='/hub/dashboard/chatbot'>
+                  <span className='border-b border-transparent hover:border-dial-yellow'>
+                    <FormattedMessage id='hub.dashboard.chatbot' />
+                  </span>
+                </Link>
+                <div className='border-r border-dial-slate-500' />
                 <Link href='/hub/dashboard/profile'>
                   <span className='border-b border-transparent hover:border-dial-yellow'>
                     <FormattedMessage id='hub.dashboard.profile' />

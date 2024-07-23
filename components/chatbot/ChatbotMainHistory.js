@@ -17,7 +17,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
 
   const AVATAR_CSS_TEXT = 'rounded-full w-8 h-8 flex items-center justify-center'
 
-  const { query: { uuid } } = useRouter()
+  const { asPath, query: { uuid } } = useRouter()
   const { loadingUserSession, user } = useUser()
 
   const { loading, error, data } = useQuery(CHATBOT_CONVERSATIONS, {
@@ -68,7 +68,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
         {currentConversation && !uuid && user &&
           <Link
             className='text-xs ml-auto my-auto border-b border-transparent hover:border-dial-sapphire py-1'
-            href={`/chatbot/${currentConversation.sessionIdentifier}`}
+            href={`${asPath.indexOf('/hub') >= 0 ? '' : '/'}chatbot/${currentConversation.sessionIdentifier}`}
           >
             {format('ui.chatbot.viewSession')}
           </Link>
@@ -76,7 +76,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
         {uuid && user &&
           <Link
             className='text-xs ml-auto my-auto border-b border-transparent hover:border-dial-sapphire py-1'
-            href='/chatbot'
+            href={`${asPath.indexOf('/hub') >= 0 ? '/hub/dashboard/' : '/'}chatbot`}
           >
             {format('ui.chatbot.createSession')}
           </Link>
