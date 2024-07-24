@@ -8,7 +8,7 @@ import Checkbox from '../shared/form/Checkbox'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
-const ProductCard = ({ displayType, index, product, dismissHandler }) => {
+const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = null }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -187,7 +187,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
 
   return (
     <div className='relative'>
-      <Link href={`/products/${product.slug}`}>
+      <Link href={`${urlPrefix ? urlPrefix : ''}/products/${product.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
         {displayType === DisplayType.HUB_CARD && displayDpiCard()}

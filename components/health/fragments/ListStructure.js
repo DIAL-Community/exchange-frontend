@@ -49,7 +49,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       <ProductFilter />
       <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-8'>
         {products.map((product, index) =>
-          <ProductCard key={index} product={product} displayType={DisplayType.GRID_CARD}  />
+          <ProductCard key={index} product={product} displayType={DisplayType.GRID_CARD} urlPrefix='/health' />
         )}
       </div>
     </div>

@@ -1,20 +1,30 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
+import { useRouter } from 'next/router'
 import ClientOnly from '../../../lib/ClientOnly'
+import { useUser } from '../../../lib/hooks'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import HealthHeader from '../../../components/health/sections/HealthHeader'
 import HealthFooter from '../../../components/health/sections/HealthFooter'
-import ProductTabNav from '../../../components/product/ProductTabNav'
-import ProductMain from '../../../components/product/ProductMain'
+import ProductRibbon from '../../../components/health/fragments/ProductRibbon'
+import HealthProducts from '../../../components/health/sections/HealthProducts'
 import ProductCompareBar from '../../../components/product/fragments/ProductCompareBar'
 
 const ProductListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [activeTab, setActiveTab] = useState(0)
+  const { user } = useUser()
+  const router = useRouter()
+
+  const createClicked = (e) => {
+    e.preventDefault()
+    if (user) {
+      router.push('/health/products/create')
+    }
+  }
 
   return (
     <>
@@ -32,8 +42,17 @@ const ProductListPage = ({ defaultTenants }) => {
         <HealthHeader />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
-          <ProductTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
-          <ProductMain activeTab={activeTab} />
+          <ProductRibbon />
+          { user?.isAdminUser &&
+          <div className='bg-dial-iris-blue rounded-md'>
+            <a href='#' onClick={createClicked}>
+              <div className='px-5 py-1.5'>
+                {format('app.create').toUpperCase()}
+              </div>
+            </a>
+          </div>
+          }
+          <HealthProducts />
           <ProductCompareBar />
         </div>
         <HealthFooter />
