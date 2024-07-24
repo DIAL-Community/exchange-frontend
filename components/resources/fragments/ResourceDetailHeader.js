@@ -63,7 +63,7 @@ const ResourceDetailHeader = ({ resource }) => {
       </div>
       {resource.source &&
         <Link href={`/organizations/${resource.source.slug}`} className='flex'>
-          <div className='border-b border-dial-iris-blue '>
+          <div className='border-b border-dial-iris-blue line-clamp-1 break-all'>
             {resource.source.name}
           </div>
         </Link>
@@ -91,25 +91,26 @@ const ResourceDetailHeader = ({ resource }) => {
           &nbsp;⧉
         </div>
       </div>
-      <hr className='border-b border-dial-blue-chalk my-3' />
-      <div className='flex flex-col gap-y-2'>
-        <div className='font-semibold text-dial-stratos'>
-          {format('ui.resource.submittedBy')}
-        </div>
-        {resource?.submittedBy &&
-          <div className='my-auto text-sm flex'>
-            <a
-              className='border-b border-dial-iris-blue'
-              href={`mailto:${resource.submittedBy.email}`}
-              target='_blank'
-              rel='noreferrer'
-            >
-              {resource.submittedBy.email}
-            </a>
+      {resource?.submittedBy &&
+        <>
+          <hr className='border-b border-dial-blue-chalk my-3' />
+          <div className='flex flex-col gap-y-2'>
+            <div className='font-semibold text-dial-stratos'>
+              {format('ui.resource.submittedBy')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${resource.submittedBy.email}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {resource.submittedBy.email}
+              </a>
+            </div>
           </div>
-        }
-        {!resource?.submittedBy && format('general.na')}
-      </div>
+        </>
+      }
       <hr className='border-b border-dial-blue-chalk my-3' />
       <ResourceDetailCountries resource={resource} canEdit={canEdit} />
       <hr className='border-b border-dial-blue-chalk my-3' />

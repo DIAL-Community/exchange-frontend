@@ -49,7 +49,7 @@ const HubDashboard = () => {
       {user &&
         <div className='flex flex-col min-h-[30vh]'>
           {user && (
-            <div className='ml-auto px-4 lg:px-8 xl:px-56'>
+            <div className='ml-auto px-4 lg:px-8 xl:px-56 font-medium'>
               <div className='flex flex-row gap-3 py-3'>
                 {(user?.isAdminUser || user?.isEditorUser || user.isAdliAdminUser) &&
                   <>

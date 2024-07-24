@@ -3,8 +3,8 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import ResourceCreate from '../../components/resources/ResourceCreate'
-import Footer from '../../components/resources/ResourceFooter'
-import Header from '../../components/resources/ResourceHeader'
+import Footer from '../../components/shared/Footer'
+import Header from '../../components/shared/Header'
 import ClientOnly from '../../lib/ClientOnly'
 
 const CreateResourcePage = ({ defaultTenants }) => {

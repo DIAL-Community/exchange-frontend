@@ -6,9 +6,9 @@ const PoweredBy = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='flex flex-col gap-3 py-3'>
-      <div className='text-lg text-dial-sapphire font-semibold'>
-        {format('ui.footer.poweredBy.title')}
+    <div className='flex flex-col gap-3 py-3 max-w-lg'>
+      <div className=' text-dial-sapphire font-semibold'>
+        Developed by
       </div>
       <hr className='border-b border-dial-angel'/>
       <div className='flex gap-x-8'>
