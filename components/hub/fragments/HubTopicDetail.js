@@ -34,7 +34,7 @@ const HubTopicDetail = ({ resourceTopic }) => {
     <div className='flex flex-col gap-5'>
       <div className='text-lg text-center'>
         <FormattedMessage
-          id='dpi.topic.reports'
+          id='hub.topic.reports'
           values={{
             break: () => <br />
           }}
@@ -43,7 +43,7 @@ const HubTopicDetail = ({ resourceTopic }) => {
       <HubResourceFilter />
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
         {resourceTopicResources.map((resource, index) =>
-          <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD}  />
+          <ResourceCard key={index} resource={resource} displayType={DisplayType.HUB_CARD}  />
         )}
       </div>
     </div>

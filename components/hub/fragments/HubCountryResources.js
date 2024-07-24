@@ -36,14 +36,15 @@ const HubCountryResources = ({ country }) => {
 
   return (
     <div className='resource-section'>
-      <div className='px-4 lg:px-8 xl:px-56'>
-        <div className='text-xl text-center pt-4 pb-8'>
-          {format('dpi.topic.reports')}
+      <div className='px-4 lg:px-8 xl:px-56 flex flex-col'>
+        <div className='text-xl text-center py-8'>
+          {format('hub.topic.reports')}
         </div>
+        <hr className='border-b border-gray-300 border-dashed mb-6' />
         <HubResourceFilter />
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
           {displayedResources.map((resource, index) =>
-            <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD} />
+            <ResourceCard key={index} resource={resource} displayType={DisplayType.HUB_CARD} />
           )}
         </div>
         <HubPagination

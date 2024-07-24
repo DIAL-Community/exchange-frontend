@@ -2,7 +2,10 @@
 // Only translate texts inside curly brace after 'one', 'other', and '= 0'
 
 export const en = {
+  // Potentially not need to be translated, used for page view tracking on our analytics
   'app.title': 'Digital Impact Exchange',
+  // -- end of page view tracking --
+  
   'app.edit': 'Edit',
   'app.comment': 'Comments',
   'app.noComment': 'Start a Conversation',
@@ -657,9 +660,10 @@ export const en = {
   'workflow.submit.success': 'Workflow submitted successfully',
   'workflow.submit.failure': 'Workflow submission failed',
 
-  'country.header': 'Countries',
   'country.label': 'Country',
-  'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
+  'country.header': 'Countries',
+  'country.description': 'Description',
+  'country.delete.confirm.message': 'Are you sure you want to delete this country?',
 
   'workflow.header': 'Workflows',
   'ui.dataset.header': 'Open Data',
@@ -1551,8 +1555,14 @@ export const en = {
   'shared.mappingStatus.validated': 'Validated',
   'shared.maturity.draft': 'Draft',
   'shared.maturity.published': 'Published',
-  'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by the Digital Impact Exchange to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
-  'shared.metadata.description.listOfKey': 'List of key {entities} provided by the Digital Impact Exchange, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
+  'shared.metadata.description.comprehensiveListOf': `
+    Comprehensive list of {entities} provided by the Digital Impact Exchange to support users in discovering
+    digital technologies designed to address the Sustainable Development Goals (SDGs).
+  `,
+  'shared.metadata.description.listOfKey': `
+    List of key {entities} provided by the Digital Impact Exchange, to support users in the deployment of digital
+    technologies designed to address the Sustainable Development Goals (SDGs).
+  `,
   'shared.comment.delete.confirm.message': 'Are you sure you want to delete this comment?',
   'shared.comment.delete.confirm.header': 'Deleting a comment',
   'shared.comment.no-comments': 'There are no comments',
@@ -1567,8 +1577,14 @@ export const en = {
   'shared.categoryIndicator.assigned': 'Category Indicators with data',
   'shared.categoryIndicator.notAssigned': 'Category Indicators without data',
 
-  'seo.description.about': 'The Digital Impact Exchange is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
-  'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
+  'seo.description.about': `
+    The Digital Impact Exchange is an interactive online tool providing data and resources for donors, governments,
+    procurers, and implementers to support their digital initiatives.
+  `,
+  'seo.description.maps': `
+    Interactive map views showing where specific digital platforms have been implemented
+    as well as the countries where various digital development organizations work.
+  `,
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
@@ -1855,7 +1871,7 @@ export const en = {
     and how it can be used to support the deployment of digital technologies.
   `,
 
-  'header.insights': 'Insights',
+  'header.insights': 'Resource Hub',
 
   'ui.resource.label': 'Resource',
   'ui.resource.header': 'Resources',
@@ -2502,51 +2518,61 @@ export const en = {
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
 
-  'dpi.header.title': 'Resources for DPI',
-  'dpi.header.subtitle': 'the Digital Impact Alliance',
-  'dpi.footer.connect.subtitle': `
+  'hub.header.title': 'Resources for DPI',
+  'hub.header.subtitle': 'the Digital Impact Alliance',
+  'hub.footer.connect.subtitle': `
     Sign up for our newsletter to learn more about the Digital Public Infrastructure
     and how you can be involved.
   `,
 
-  'dpi.header.topic': 'Topics',
-  'dpi.header.country': 'Countries',
-  'dpi.header.resourceFinder': 'Resource finder',
-  'dpi.header.expertNetwork': 'Expert Network',
+  'hub.header.topic': 'Topics',
+  'hub.header.country': 'Countries',
+  'hub.header.resourceFinder': 'Resource Finder',
+  'hub.header.expertNetwork': 'Expert Network',
 
-  'dpi.exportNetwork.login': 'ADLI Member Login',
-  'dpi.exportNetwork.learnMore': 'Learn more about ADLI',
-  'dpi.exportNetwork.memberDashboard': 'ADLI Members Access',
+  'hub.exportNetwork.login': 'ADLI Member Login',
+  'hub.exportNetwork.learnMore': 'Learn more about ADLI',
+  'hub.exportNetwork.memberDashboard': 'ADLI Members Access',
 
-  'dpi.wizard.title': 'Get Started',
-  'dpi.wizard.tagLine': `
+  'hub.wizard.title': 'Get Started',
+  'hub.wizard.tagLine': `
     Our Recommendations Wizard can help get you started to find you a curated
     list of resources, tailored to wherever you are in a project lifecycle —
     ideation, planning, implementation, or monitoring/evaluation.
   `,
 
-  'dpi.landing.main.title': 'Resources for DPI',
-  'dpi.landing.main.subtitle': `
+  // Potentially not need to be translated, used for page view tracking on our analytics 
+  'hub.title': 'Resources for DPI',
+  // -- end of page view tracking --
+  
+  'hub.landing.main.title': 'Resources for DPI',
+  'hub.landing.main.subtitle': `
     An online resource hub offering data, insights, and tools to help policymakers, 
     governments and development actors to advance progress on digital public infrastructure.
   `,
-  'dpi.landing.browseTopics': 'Browse <break></break> Topics',
-  'dpi.landing.featuredCountries': 'Featured <break></break> Countries',
-  'dpi.topic.subtitle': `
+  'hub.landing.browseTopics': 'Browse <break></break> Topics',
+  'hub.landing.featuredCountries': 'Featured <break></break> Countries',
+  'hub.topic.subtitle': `
     Topics showcases a series of knowledge products published by DIAL and its partners
     on key issues surrounding digital public infrastructure.
   `,
-  'dpi.country.subtitle': `
-    Find tools and resources related to how DPI has been implemented in a specific country.
+  'hub.country.subtitle': `
+    Dive into an in-depth look at the digital setup in different countries. Our country
+    profiles provide detailed info on digital initiatives, laws, and key players.
+    Understand the challenges and opportunities for growth. Access resources and case
+    studies for real-world examples. Whether you're a policymaker, researcher, or just
+    curious, these profiles offer insights into the DPI landscape. 
   `,
-  'dpi.topic.reports': 'Reports and Articles',
-  'dpi.resourceFinder.title': 'Resource finder',
-  'dpi.resourceFinder.subtitle': `Quickly search and filter through our library to
+  'hub.country.websites': 'Key Government Websites',
+  'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
+  'hub.topic.reports': 'Reports and Articles',
+  'hub.resourceFinder.title': 'Resource Finder',
+  'hub.resourceFinder.subtitle': `Quickly search and filter through our library to
     find resources relevant to a specific topic, country, or project.
   `,
 
-  'dpi.expertNetwork.title': 'Expert Network',
-  'dpi.expertNetwork.subtitle': `
+  'hub.expertNetwork.title': 'Expert Network',
+  'hub.expertNetwork.subtitle': `
     The Africa Data Leadership Initiative (ADLI) is a ​peer learning and exchange network
     designed by and for African policymakers, legislators, researchers, technologists, and
     digital rights advocates working on data governance and digital platforms and services. 
@@ -2611,62 +2637,62 @@ export const en = {
     below the dotted line).
   `,
 
-  'dpi.dashboard.subtitle': `
+  'hub.dashboard.subtitle': `
     Welcome to your Africa Data Leadership Initiative (ADLI) learning and engagement platform. This space
     is designed to be a dynamic forum to share your experiences and solutions related to data governance.
     We hope that through peer-to-peer learning, strategic partnerships, and continuous adaptation, we can
     collectively promote and advance equitable progress across the continent.
   `,
-  'dpi.dashboard.signOut': 'Sign Out',
-  'dpi.dashboard.profile': 'My Profile',
+  'hub.dashboard.signOut': 'Sign Out',
+  'hub.dashboard.profile': 'My Profile',
 
-  'dpi.admin.profile': 'Profile',
-  'dpi.admin.users': 'Users',
-  'dpi.admin.settings': 'Settings',
-  'dpi.admin.broadcast': 'Broadcast',
-  'dpi.admin.signOut': 'Sign Out',
+  'hub.admin.profile': 'Profile',
+  'hub.admin.users': 'Users',
+  'hub.admin.settings': 'Settings',
+  'hub.admin.broadcast': 'Broadcast',
+  'hub.admin.signOut': 'Sign Out',
   
-  'dpi.breadcrumb.country': 'Country Profiles',
-  'dpi.breadcrumb.topic': 'Research by Topics',
+  'hub.breadcrumb.country': 'Country Profiles',
+  'hub.breadcrumb.topic': 'Research by Topics',
 
-  'dpi.breadcrumb.curriculum': 'ADLI Learning Journey',
-  'dpi.breadcrumb.curriculumModule': 'Module',
-  'dpi.breadcrumb.curriculumSubModule': 'Sub Module',
+  'hub.breadcrumb.curriculum': 'ADLI Learning Journey',
+  'hub.breadcrumb.curriculumModule': 'Module',
+  'hub.breadcrumb.curriculumSubModule': 'Sub Module',
 
-  'dpi.breadcrumb.dashboard': 'ADLI Member Dashboard',
+  'hub.breadcrumb.dashboard': 'ADLI Member Dashboard',
 
-  'dpi.curriculum.header': 'Curricula',
-  'dpi.curriculum.label': 'Curriculum',
-  'dpi.curriculum.title': 'ADLI Learning Journey',
-  'dpi.curriculum.subtitle': `
+  'hub.curriculum.header': 'Curricula',
+  'hub.curriculum.label': 'Curriculum',
+  'hub.curriculum.title': 'ADLI Learning Journey',
+  'hub.curriculum.subtitle': `
     Follow the virtual learning sessions here. Use this space to track the six-session learning journey,
     find useful links, and engage with other network participants.
   `,
 
-  'dpi.curriculum.name': 'Name',
-  'dpi.curriculum.author': 'Author',
-  'dpi.curriculum.overview': 'Overview',
-  'dpi.curriculum.cover': 'Cover / Logo',
+  'hub.curriculum.name': 'Name',
+  'hub.curriculum.author': 'Author',
+  'hub.curriculum.overview': 'Overview',
+  'hub.curriculum.cover': 'Cover / Logo',
 
-  'dpi.curriculum.published': 'Published and viewable by members',
+  'hub.curriculum.published': 'Published and viewable by members',
   
-  'dpi.curriculum.save': 'Save',
-  'dpi.curriculum.submitted': 'Curriculum saved.',
-  'dpi.curriculum.autoSaved': 'Curriculum saved.',
+  'hub.curriculum.save': 'Save',
+  'hub.curriculum.submitted': 'Curriculum saved.',
+  'hub.curriculum.autoSaved': 'Curriculum saved.',
 
-  'dpi.curriculum.module.add': 'Add Module',
-  'dpi.curriculum.module.label': 'Module',
-  'dpi.curriculum.module.header': 'Modules',
-  'dpi.curriculum.module.rearrange': 'Rearrange Modules',
-  'dpi.curriculum.module.submitted': 'Module saved.',
-  'dpi.curriculum.module.autoSaved': 'Module saved.',
-  'dpi.curriculum.module.assignExistingModule': 'Assign Existing Module',
-  'dpi.curriculum.module.unassign.title': 'Unassign Module',
-  'dpi.curriculum.module.unassign.confirmation': 'Are you sure you want to remove this module from the current curriculum?',
-  'dpi.curriculum.module.commentCount.title': '{commentCount} {commentCount, plural, one {comment} other {comments}}',
-  'dpi.curriculum.module.commentCount.join': 'Join the conversation',
+  'hub.curriculum.module.add': 'Add Module',
+  'hub.curriculum.module.label': 'Module',
+  'hub.curriculum.module.header': 'Modules',
+  'hub.curriculum.module.rearrange': 'Rearrange Modules',
+  'hub.curriculum.module.submitted': 'Module saved.',
+  'hub.curriculum.module.autoSaved': 'Module saved.',
+  'hub.curriculum.module.assignExistingModule': 'Assign Existing Module',
+  'hub.curriculum.module.unassign.title': 'Unassign Module',
+  'hub.curriculum.module.unassign.confirmation': 'Are you sure you want to remove this module from the current curriculum?',
+  'hub.curriculum.module.commentCount.title': '{commentCount} {commentCount, plural, one {comment} other {comments}}',
+  'hub.curriculum.module.commentCount.join': 'Join the conversation',
 
-  'dpi.curriculum.delete.confirm.message': 'Are you sure you want to delete this curriculum?',
+  'hub.curriculum.delete.confirm.message': 'Are you sure you want to delete this curriculum?',
 
   'toast.curriculum.unassign.success': 'Module removed from curriculum.',
   'toast.curriculum.unassign.failure': 'Removing module from curriculum failed.',
@@ -2677,36 +2703,36 @@ export const en = {
   'toast.module.rearrange.failure': 'Failed to save order for the modules.',
 
 
-  'dpi.curriculum.submodule.label': 'Sub Module',
-  'dpi.curriculum.submodule.header': 'Sub Modules',
-  'dpi.curriculum.submodule.add': 'Add Sub Module',
-  'dpi.curriculum.submodule.rearrange': 'Rearrange Sub Modules',
-  'dpi.curriculum.submodule.submitted': 'Sub module saved.',
-  'dpi.curriculum.submodule.autoSaved': 'Sub module saved.',
-  'dpi.curriculum.submodule.unassign.title': 'Removing Sub Module',
-  'dpi.curriculum.submodule.unassign.confirmation': 'Are you sure you want to remove this sub module from the current curriculum?',
+  'hub.curriculum.submodule.label': 'Sub Module',
+  'hub.curriculum.submodule.header': 'Sub Modules',
+  'hub.curriculum.submodule.add': 'Add Sub Module',
+  'hub.curriculum.submodule.rearrange': 'Rearrange Sub Modules',
+  'hub.curriculum.submodule.submitted': 'Sub module saved.',
+  'hub.curriculum.submodule.autoSaved': 'Sub module saved.',
+  'hub.curriculum.submodule.unassign.title': 'Removing Sub Module',
+  'hub.curriculum.submodule.unassign.confirmation': 'Are you sure you want to remove this sub module from the current curriculum?',
 
   'toast.submodule.rearrange.success': 'Order for the sub modules saved successfully.',
   'toast.submodule.rearrange.failure': 'Failed to save order for the sub modules.',
 
-  'dpi.announcement.label': 'Announcement',
-  'dpi.announcement.header': 'Announcements',
+  'hub.announcement.label': 'Announcement',
+  'hub.announcement.header': 'Announcements',
 
-  'dpi.event.label': 'Event',
-  'dpi.event.header': 'Events',
+  'hub.event.label': 'Event',
+  'hub.event.header': 'Events',
 
-  'dpi.broadcast.label': 'Message',
-  'dpi.broadcast.header': 'Messages',
-  'dpi.broadcast.title': 'Message Title',
-  'dpi.broadcast.visible': '{messageType} will be displayed to users.',
-  'dpi.broadcast.hidden': '{messageType} will be hidden from users.',
-  'dpi.broadcast.messageType': 'Message Type',
-  'dpi.broadcast.messageTemplate': 'Message Template',
-  'dpi.broadcast.parsedMessage': 'Processed Message Template',
-  'dpi.broadcast.messageTemplate.placeholder': `
+  'hub.broadcast.label': 'Message',
+  'hub.broadcast.header': 'Messages',
+  'hub.broadcast.title': 'Message Title',
+  'hub.broadcast.visible': '{messageType} will be displayed to users.',
+  'hub.broadcast.hidden': '{messageType} will be hidden from users.',
+  'hub.broadcast.messageType': 'Message Type',
+  'hub.broadcast.messageTemplate': 'Message Template',
+  'hub.broadcast.parsedMessage': 'Processed Message Template',
+  'hub.broadcast.messageTemplate.placeholder': `
     Create your message template here.
   `,
-  'dpi.broadcast.messageTemplate.hint': `
+  'hub.broadcast.messageTemplate.hint': `
     Available variables:
     <ul>
       <li>'%{current_date}%', current server date when this message created.</li>
@@ -2716,17 +2742,17 @@ export const en = {
       <li>'%{user_username}%', current username of the user receiving this message.</li>
     </ul>
   `,
-  'dpi.broadcast.announcementDatetime': 'Announcement Date & Time',
-  'dpi.broadcast.eventDatetime': 'Event Date & Time',
-  'dpi.broadcast.eventLocation': 'Event Location',
-  'dpi.broadcast.messageDatetime.note': 'Date of the {type} is {dateValue}',
+  'hub.broadcast.announcementDatetime': 'Announcement Date & Time',
+  'hub.broadcast.eventDatetime': 'Event Date & Time',
+  'hub.broadcast.eventLocation': 'Event Location',
+  'hub.broadcast.messageDatetime.note': 'Date of the {type} is {dateValue}',
 
-  'dpi.broadcast.visibility.updated': 'Visibility updated.',
-  'dpi.broadcast.submitted': '{type} data saved.',
+  'hub.broadcast.visibility.updated': 'Visibility updated.',
+  'hub.broadcast.submitted': '{type} data saved.',
 
-  'dpi.broadcast.delete.confirm.message': 'Are you sure you want to delete this {messageType}?',
+  'hub.broadcast.delete.confirm.message': 'Are you sure you want to delete this {messageType}?',
   
-  'dpi.broadcast.messageType.announcement': 'Announcement',
-  'dpi.broadcast.messageType.email': 'Email',
-  'dpi.broadcast.messageType.event': 'Event',
+  'hub.broadcast.messageType.announcement': 'Announcement',
+  'hub.broadcast.messageType.email': 'Email',
+  'hub.broadcast.messageType.event': 'Event',
 }

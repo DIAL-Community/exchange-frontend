@@ -45,10 +45,10 @@ const DeleteMessage = ({ message }) => {
         showSuccessMessage(
           format('toast.delete.success', {
             entity: response?.message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-              ? format('dpi.broadcast.messageType.announcement')
+              ? format('hub.broadcast.messageType.announcement')
               : response?.message.messageType === DPI_EVENT_MESSAGE_TYPE
-                ? format('dpi.broadcast.messageType.event')
-                : format('dpi.broadcast.messageType.email')
+                ? format('hub.broadcast.messageType.event')
+                : format('hub.broadcast.messageType.email')
           }),
           () => router.push('/hub/admin/broadcasts')
         )
@@ -89,12 +89,12 @@ const DeleteMessage = ({ message }) => {
       <DeleteButton type='button' onClick={toggleConfirmDialog}/>
       <ConfirmActionDialog
         title={format('app.deletingEntity', { entity: message.name })}
-        message={format('dpi.broadcast.delete.confirm.message', {
+        message={format('hub.broadcast.delete.confirm.message', {
           messageType: message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-            ? format('dpi.broadcast.messageType.announcement').toLowerCase()
+            ? format('hub.broadcast.messageType.announcement').toLowerCase()
             : message.messageType === DPI_EVENT_MESSAGE_TYPE
-              ? format('dpi.broadcast.messageType.event').toLowerCase()
-              : format('dpi.broadcast.messageType.email').toLowerCase()
+              ? format('hub.broadcast.messageType.event').toLowerCase()
+              : format('hub.broadcast.messageType.email').toLowerCase()
         })}
         isOpen={isConfirmDialogOpen}
         onClose={toggleConfirmDialog}

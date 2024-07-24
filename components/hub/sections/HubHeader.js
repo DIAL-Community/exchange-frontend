@@ -81,7 +81,7 @@ const HubHeader = ({ isOnAuthPage = false }) => {
               className='object-contain px-4 border-r'
             />
             <div className='2xl:text-xl w-24 my-auto px-4'>
-              {format('dpi.header.title')}
+              {format('hub.header.title')}
             </div>
           </div>
         </Link>
@@ -90,22 +90,22 @@ const HubHeader = ({ isOnAuthPage = false }) => {
           <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
             <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/topics' role='menuitem' className={menuStyles}>
-                {format('dpi.header.topic').toUpperCase()}
+                {format('hub.header.topic').toUpperCase()}
               </Link>
             </li>
             <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/countries' role='menuitem' className={menuStyles}>
-                {format('dpi.header.country').toUpperCase()}
+                {format('hub.header.country').toUpperCase()}
               </Link>
             </li>
             <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/resource-finder' role='menuitem' className={menuStyles}>
-                {format('dpi.header.resourceFinder').toUpperCase()}
+                {format('hub.header.resourceFinder').toUpperCase()}
               </Link>
             </li>
             <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
-                {format('dpi.header.expertNetwork').toUpperCase()}
+                {format('hub.header.expertNetwork').toUpperCase()}
               </Link>
             </li>
           </ul>

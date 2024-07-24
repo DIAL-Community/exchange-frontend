@@ -91,7 +91,7 @@ const HubEvents = ({ stripeIndex }) => {
     <div className={`event-section ${stripeClasses(stripeIndex)}`}>
       <div className='px-4 lg:px-8 xl:px-56'>
         <div className='text-2xl py-8'>
-          {format('dpi.event.header')}
+          {format('hub.event.header')}
         </div>
         <EventList pageNumber={pageNumber} />
         <MessagePagination

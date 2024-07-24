@@ -35,7 +35,7 @@ const HubResourceTile = ({ resources }) => {
       <HubResourceFilter />
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
         {displayedResources.map((resource, index) =>
-          <ResourceCard key={index} resource={resource} displayType={DisplayType.DPI_CARD}  />
+          <ResourceCard key={index} resource={resource} displayType={DisplayType.HUB_CARD}  />
         )}
       </div>
       <HubPagination

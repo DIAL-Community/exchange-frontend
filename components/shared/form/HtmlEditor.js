@@ -35,7 +35,7 @@ export const HtmlEditor = ({
           value={initialContent}
           onEditorChange={handleEditorChange}
           init={{
-            max_height: 400,
+            max_height: 800,
             min_height: 240,
             autoresize_overflow_padding: 16,
             selector: '#' + editorId ?? 'tinymce-editor',

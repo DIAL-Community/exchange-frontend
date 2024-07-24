@@ -190,7 +190,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
       <Link href={`/products/${product.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
-        {displayType === DisplayType.DPI_CARD && displayDpiCard()}
+        {displayType === DisplayType.HUB_CARD && displayDpiCard()}
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
       </Link>
       <div className='absolute top-2 right-2'>

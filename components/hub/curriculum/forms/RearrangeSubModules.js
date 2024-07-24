@@ -48,7 +48,7 @@ const RearrangeSubModules = ({ displayRearrangeDialog, onRearrangeDialogClose, m
               <Dialog.Title>
                 <div className='px-4 text-xl font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
-                    {format('dpi.curriculum.submodule.rearrange')}
+                    {format('hub.curriculum.submodule.rearrange')}
                   </div>
                 </div>
               </Dialog.Title>

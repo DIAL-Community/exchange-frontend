@@ -36,7 +36,7 @@ const CurriculumDetailMenu = ({ curriculum }) => {
             {allowedToEdit() &&
               <CreateButton
                 type='link'
-                label={format('dpi.curriculum.module.add')}
+                label={format('hub.curriculum.module.add')}
                 href={generateAddModuleLink()}
               />
             }
@@ -48,7 +48,7 @@ const CurriculumDetailMenu = ({ curriculum }) => {
               >
                 <FiMove className='inline pb-0.5' />
                 <span className='text-sm px-1'>
-                  {format('dpi.curriculum.module.rearrange')}
+                  {format('hub.curriculum.module.rearrange')}
                 </span>
               </button>
             }
