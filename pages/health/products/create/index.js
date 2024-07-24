@@ -4,7 +4,7 @@ import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
 import HealthHeader from '../../../../components/health/sections/HealthHeader'
 import HealthFooter from '../../../../components/health/sections/HealthFooter'
-import ClientOnly from '../../../../../lib/ClientOnly'
+import ClientOnly from '../../../../lib/ClientOnly'
 import ProductCreate from '../../../../components/health/ProductCreate'
 
 const CreateProductPage = ({ defaultTenants }) => {
