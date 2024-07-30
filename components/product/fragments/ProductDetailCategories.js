@@ -78,7 +78,6 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
   }
 
   const addFeature = (feature) => {
-    console.log(feature)
     setFeatures([
       ...[
         ...features.filter(({ id }) => id !== feature.id),

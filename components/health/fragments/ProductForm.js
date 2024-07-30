@@ -46,7 +46,7 @@ const ProductForm = React.memo(({ product }) => {
     onCompleted: (data) => {
       if (data.createProduct.product && data.createProduct.errors.length === 0) {
         setMutating(false)
-        const redirectPath = `/${locale}/products/${data.createProduct.product.slug}`
+        const redirectPath = `/health/products/${data.createProduct.product.slug}`
         const redirectHandler = () => router.push(redirectPath)
         showSuccessMessage(
           format('toast.submit.success', { entity: format('ui.product.label') }),

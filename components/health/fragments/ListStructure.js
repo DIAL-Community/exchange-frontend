@@ -9,9 +9,9 @@ import ProductCard from '../../product/ProductCard'
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(ProductFilterContext)
 
-  const { isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const { softwareCategories, softwareFeatures } = useContext(ProductFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PRODUCTS_QUERY, {
     variables: {
@@ -25,9 +25,8 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       sdgs: sdgs.map(sdg => sdg.value),
       workflows: workflows.map(workflow => workflow.id),
       origins: origins.map(origin => origin.value),
-      isLinkedWithDpi,
-      showGovStackOnly,
-      showDpgaOnly,
+      softwareCategories: softwareCategories.map(category => category.value),
+      softwareFeatures: softwareFeatures.map(feature => feature.value),
       limit: defaultPageSize,
       offset: pageOffset
     }
