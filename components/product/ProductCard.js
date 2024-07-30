@@ -159,8 +159,8 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
               </span>
               <span className='my-auto'>
                 {product.buildingBlocks.length > 1
-                  ? format('building-block.header')
-                  : format('building-block.label')
+                  ? format('ui.buildingBlock.header')
+                  : format('ui.buildingBlock.label')
                 }
               </span>
               {product.linkedWithDpi &&

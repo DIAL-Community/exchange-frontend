@@ -55,6 +55,8 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $workflows: [String!]
     $sdgs: [String!]
     $origins: [String!]
+    $softwareCategories: [String!]
+    $softwareFeatures: [String!]
     $isLinkedWithDpi: Boolean
     $showGovStackOnly: Boolean
     $showDpgaOnly: Boolean
@@ -72,6 +74,8 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       workflows: $workflows
       sdgs: $sdgs
       origins: $origins
+      softwareCategories: $softwareCategories
+      softwareFeatures: $softwareFeatures
       isLinkedWithDpi: $isLinkedWithDpi
       showGovStackOnly: $showGovStackOnly
       showDpgaOnly: $showDpgaOnly
