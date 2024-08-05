@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
+import { useUser } from '../../lib/hooks'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
 import TabNav from '../shared/TabNav'
-import { ExportType, asyncExport, convertKeys } from '../utils/export'
-import { useUser } from '../../lib/hooks'
+import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
 const BuildingBlockTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
@@ -13,7 +13,7 @@ const BuildingBlockTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useEffect(() => {
-    if (user?.isAdminUser) {
+    if (user?.isAdminUser || user?.isEditorUser) {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.buildingBlock.createNew'),
         'ui.buildingBlock.createNew'

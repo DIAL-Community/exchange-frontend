@@ -26,13 +26,15 @@ const ResourceDetailHeader = ({ resource }) => {
 
   return (
     <div className='flex flex-col gap-y-3 py-3 text-sm'>
-      <div className='flex justify-center items-center bg-white rounded border'>
+      <div className='flex justify-center items-center bg-white rounded border min-h-[14rem]'>
         {resource.imageFile.indexOf('placeholder.svg') < 0 &&
-          <img
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-            alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
-            className='object-contain'
-          />
+          <div className='w-24 h-24 my-auto shrink-0'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              className='object-contain'
+            />
+          </div>
         }
         {resource.imageFile.indexOf('placeholder.svg') >= 0 &&
           <img
