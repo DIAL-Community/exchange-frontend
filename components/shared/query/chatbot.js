@@ -11,3 +11,9 @@ export const CHATBOT_CONVERSATIONS = gql`
     }
   }
 `
+
+export const CHATBOT_CONVERSATION_STARTERS = gql`
+  query ChatbotConversationStarters {
+	  chatbotConversationStarters
+  }
+`

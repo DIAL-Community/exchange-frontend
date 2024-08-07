@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
+import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaRobot, FaSpinner, FaUser } from 'react-icons/fa6'
@@ -61,6 +62,16 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
 
   const { chatbotConversations } = data
 
+  const formatText = (text) => {
+    const doubleStarParts = text.split('**')
+    const formattedDoubleStar = doubleStarParts
+      .map((part, index) => index % 2 !== 0 ? `<strong>${part}</strong>` : part)
+      .join('')
+    const formattedText = formattedDoubleStar.replace(/\n/g, '<br />')
+
+    return formattedText
+  }
+
   return (
     <div className='flex flex-col gap-6 h-full overflow-hidden'>
       <div className='flex'>
@@ -109,7 +120,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
                   <FaRobot />
                 </div>
                 <div className='my-auto'>
-                  {conversation.chatbotAnswer}
+                  {parse(formatText(conversation.chatbotAnswer))}
                 </div>
               </div>
               <hr className='my-3' />
@@ -131,7 +142,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
                 <FaRobot />
               </div>
               <div className='my-auto'>
-                {currentText}
+                {parse(formatText(currentText))}
               </div>
             </div>
             <hr className='my-3' />

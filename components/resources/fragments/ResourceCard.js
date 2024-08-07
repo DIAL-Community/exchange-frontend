@@ -61,12 +61,23 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
     <div className={`rounded-lg min-h-[6rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='min-w-80 pb-4 mx-auto flex flex-col gap-3'>
         <div className='w-full flex justify-center items-center'>
-          <Link href={`/hub/resources/${resource.slug}`}>
-            <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-              className='aspect-[773/447]'
-            />
+          <Link href={`/hub/resources/${resource.slug}`} className='w-full h-[267px]'>
+            {resource.imageFile.indexOf('placeholder.svg') >= 0 &&
+              <img
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+                className='aspect-auto h-[267px]'
+              />
+            }
+            {resource.imageFile.indexOf('placeholder.svg') < 0 &&
+              <div className='w-full h-full border border-dashed border-slate-300 flex justify-center items-center'>
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+                  className='h-24 m-auto'
+                />
+              </div>
+            }
           </Link>
         </div>
         <Link href={`/dpi-resources/${resource.slug}`}>
