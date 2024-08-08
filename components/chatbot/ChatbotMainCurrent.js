@@ -50,19 +50,24 @@ const ChatbotConversationStarter = ({ setCurrentQuestion, setShowStarterQuestion
         </div>
       }
       {data?.chatbotConversationStarters && data?.chatbotConversationStarters.length > 0 &&
-        <div className='flex flex-wrap gap-y-2 gap-x-3 text-sm'>
-          {[...conversationStarters]
-            .sort(() => 0.5 - Math.random())
-            .splice(0, MAX_DISPLAYED_STARTERS)
-            .map((starter, index) => (
-              <button
-                key={index}
-                className='bg-slate-100 hover:bg-slate-200 text-dial-stratos py-2 px-4 rounded'
-                onClick={() => selectQuestion(starter)}
-              >
-                {starter}
-              </button>
-            ))}
+        <div className='flex flex-col gap-3'>
+          <div className='text-sm font-medium text-dial-sapphire'>
+            {format('ui.chatbot.conversationStarterPrompt')}
+          </div>
+          <div className='flex flex-wrap gap-y-2 gap-x-3 text-sm'>
+            {[...conversationStarters]
+              .sort(() => 0.5 - Math.random())
+              .splice(0, MAX_DISPLAYED_STARTERS)
+              .map((starter, index) => (
+                <button
+                  key={index}
+                  className='bg-slate-100 hover:bg-slate-200 text-dial-stratos py-2 px-4 rounded'
+                  onClick={() => selectQuestion(starter)}
+                >
+                  {starter}
+                </button>
+              ))}
+          </div>
         </div>
       }
     </div>
@@ -162,7 +167,7 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
 
   return (
     <div className='flex flex-col gap-2'>
-      {showStarterQuestions && !currentQuestion &&
+      {user && showStarterQuestions && !currentQuestion &&
         <ChatbotConversationStarter
           setCurrentQuestion={setCurrentQuestion}
           setShowStarterQuestions={setShowStarterQuestions}

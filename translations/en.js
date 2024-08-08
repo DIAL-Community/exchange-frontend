@@ -2578,6 +2578,9 @@ export const en = {
   'ui.chatbot.userRequired': 'Please login to use the exchange chatbot function.',
   'ui.chatbot.createSession': 'Create Separate Session',
   'ui.chatbot.viewSession': 'View Current Conversation',
+  'ui.chatbot.conversationStarterPrompt': `
+    Hi, I'm Steve-bot and I'm here to help you answer your questions. Here are some things you can ask me:
+  `,
 
   'ui.product.overview.pricing': `
     Pricing information is only available for commercial software if the product team has provided information.
