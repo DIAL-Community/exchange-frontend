@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FaRobot, FaSpinner, FaUser } from 'react-icons/fa6'
+import { FaBookmark, FaRobot, FaSpinner, FaUser } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
@@ -14,7 +14,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { currentIndex, setCurrentIndex, currentText, setCurrentText } = props
-  const { identifier, sessionIdentifier, chatbotQuestion, chatbotAnswer } = currentConversation ?? {}
+  const { identifier, sessionIdentifier, chatbotQuestion, chatbotAnswer, chatbotReferences } = currentConversation ?? {}
 
   const AVATAR_CSS_TEXT = 'rounded-full w-8 h-8 flex items-center justify-center'
 
@@ -107,7 +107,7 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
               key={conversation.identifier}
               className='flex flex-col gap-4'
             >
-              <div className='flex gap-2'>
+              <div className='flex gap-3'>
                 <div className={`shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
                   <FaUser />
                 </div>
@@ -115,12 +115,36 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
                   {conversation.chatbotQuestion}
                 </div>
               </div>
-              <div className='flex gap-2'>
+              <div className='flex gap-3'>
                 <div className={`shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
                   <FaRobot />
                 </div>
                 <div className='my-auto'>
                   {parse(formatText(conversation.chatbotAnswer))}
+                </div>
+              </div>
+              <div className='flex gap-3'>
+                <div className={`shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
+                  <FaBookmark />
+                </div>
+                <div className='flex flex-col gap-2'>
+                  <div className='text-sm font-semibold'>
+                    {format('ui.chatbot.references')}:
+                  </div>
+                  {conversation.chatbotReferences?.map((reference, index) => (
+                    <div key={index} className='flex gap-2'>
+                      <div className='my-auto'>
+                        <Link
+                          className='border-b border-transparent hover:border-dial-sapphire py-1'
+                          href={reference}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          {reference}
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
               <hr className='my-3' />
@@ -143,6 +167,30 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
               </div>
               <div className='my-auto'>
                 {parse(formatText(currentText))}
+              </div>
+            </div>
+            <div className='flex gap-3'>
+              <div className={`shrink-0 bg-dial-sapphire text-white ${AVATAR_CSS_TEXT}`}>
+                <FaBookmark />
+              </div>
+              <div className='flex flex-col gap-2'>
+                <div className='text-sm font-semibold'>
+                  {format('ui.chatbot.references')}:
+                </div>
+                {chatbotReferences.map((reference, index) => (
+                  <div key={index} className='flex gap-2'>
+                    <div className='my-auto'>
+                      <Link
+                        className='border-b border-transparent hover:border-dial-sapphire py-1'
+                        href={reference}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        {reference}
+                      </Link>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             <hr className='my-3' />

@@ -8,6 +8,7 @@ export const CHATBOT_CONVERSATIONS = gql`
       sessionIdentifier
       chatbotAnswer
       chatbotQuestion
+      chatbotReferences(first: 2)
     }
   }
 `
