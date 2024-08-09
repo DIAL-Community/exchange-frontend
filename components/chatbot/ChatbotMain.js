@@ -16,7 +16,7 @@ const ChatbotMain = ({ existingSessionIdentifier }) => {
   }, [currentConversation])
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 h-[65vh] bg-dial-angel'>
+    <div className='px-4 lg:px-8 xl:px-56 h-[80vh] bg-dial-angel'>
       <div className='flex flex-col py-6 h-full'>
         <ChatbotMainHistory
           existingSessionIdentifier={existingSessionIdentifier ?? ''}

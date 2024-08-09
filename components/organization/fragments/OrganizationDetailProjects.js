@@ -1,26 +1,30 @@
 import { useApolloClient, useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { FaCircleChevronDown, FaCircleChevronUp } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
-import EditableSection from '../../shared/EditableSection'
-import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
-import { DisplayType, ObjectType } from '../../utils/constants'
-import { UPDATE_ORGANIZATION_PROJECTS } from '../../shared/mutation/organization'
 import ProjectCard from '../../project/ProjectCard'
+import EditableSection from '../../shared/EditableSection'
+import { Loading } from '../../shared/FetchStatus'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import { UPDATE_ORGANIZATION_PROJECTS } from '../../shared/mutation/organization'
+import { CREATE_STARRED_OBJECT, REMOVE_STARRED_OBJECT } from '../../shared/mutation/starredObject'
 import { PROJECT_SEARCH_QUERY } from '../../shared/query/project'
 import { STARRED_OBJECT_SEARCH_QUERY } from '../../shared/query/starredObject'
-import { Loading } from '../../shared/FetchStatus'
-import { CREATE_STARRED_OBJECT, REMOVE_STARRED_OBJECT } from '../../shared/mutation/starredObject'
+import { DisplayType, ObjectType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
 const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
+
+  const MAX_DISPLAYED_COUNTRIES = 6
+  const [expanded, setExpanded] = useState(false)
 
   const [stars, setStars] = useState([])
   const [projects, setProjects] = useState(organization.projects)
@@ -201,19 +205,50 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
     }
   }
 
+  const toggleExpanded = () => setExpanded(!expanded)
+
   const displayModeBody = projects.length
     ? <div className='flex flex-col gap-y-4'>
-      {projects?.map((project, index) =>
-        <div key={`project-${index}`}>
-          <ProjectCard
-            project={project}
-            displayType={DisplayType.SMALL_CARD}
-            starred={stars.indexOf(`${project.id}`) >= 0}
-            addStarHandler={() => addStarHandler(project)}
-            removeStarHandler={() => removeStarHandler(project)}
-          />
+      <div className='flex flex-col gap-y-4'>
+        {projects?.slice(0, MAX_DISPLAYED_COUNTRIES).map((project, index) =>
+          <div key={`project-${index}`}>
+            <ProjectCard
+              project={project}
+              displayType={DisplayType.SMALL_CARD}
+              starred={stars.indexOf(`${project.id}`) >= 0}
+              addStarHandler={() => addStarHandler(project)}
+              removeStarHandler={() => removeStarHandler(project)}
+            />
+          </div>
+        )}
+        {expanded && projects?.slice(MAX_DISPLAYED_COUNTRIES).map((project, index) =>
+          <div key={`project-${index}`}>
+            <ProjectCard
+              project={project}
+              displayType={DisplayType.SMALL_CARD}
+              starred={stars.indexOf(`${project.id}`) >= 0}
+              addStarHandler={() => addStarHandler(project)}
+              removeStarHandler={() => removeStarHandler(project)}
+            />
+          </div>
+        )}
+      </div>
+      {projects?.length > MAX_DISPLAYED_COUNTRIES &&
+        <div className='flex justify-center items-center border-t-2 border-dashed'>
+          <label className='text-dial-sapphire'>
+            <input
+              type='checkbox'
+              className='hidden'
+              checked={expanded}
+              onChange={toggleExpanded}
+            />
+            {expanded
+              ? <FaCircleChevronUp size='1.25rem' className='-mt-3' />
+              : <FaCircleChevronDown size='1.25rem'  className='-mt-3' />
+            }
+          </label>
         </div>
-      )}
+      }
     </div>
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {

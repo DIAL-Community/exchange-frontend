@@ -2,17 +2,84 @@ import { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { CREATE_CHATBOT_CONVERSATION } from '../shared/mutation/chatbot'
-import { CHATBOT_CONVERSATIONS } from '../shared/query/chatbot'
+import { CHATBOT_CONVERSATION_STARTERS, CHATBOT_CONVERSATIONS } from '../shared/query/chatbot'
+
+const ChatbotConversationStarter = ({ setCurrentQuestion, setShowStarterQuestions }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const MAX_DISPLAYED_STARTERS = 6
+
+  const { loading, data, error } = useQuery(CHATBOT_CONVERSATION_STARTERS)
+
+  if (loading) {
+    return (
+      <div className='flex justify-center'>
+        <FaSpinner className='animate-spin' />
+      </div>
+    )
+  } else if (error) {
+    return (
+      <div className='flex justify-center'>
+        {format('ui.chatbot.error.loading')}
+      </div>
+    )
+  }
+
+  const conversationStarters = data?.chatbotConversationStarters
+
+  const selectQuestion = (question) => {
+    setCurrentQuestion(question)
+    setShowStarterQuestions(false)
+  }
+
+  return (
+    <div className='flex flex-col gap-4'>
+      {loading &&
+        <div className='flex justify-center'>
+          <FaSpinner className='animate-spin' />
+        </div>
+      }
+      {!loading && error &&
+        <div className='flex justify-center'>
+          {format('ui.chatbot.error.loading')}
+        </div>
+      }
+      {data?.chatbotConversationStarters && data?.chatbotConversationStarters.length > 0 &&
+        <div className='flex flex-col gap-3'>
+          <div className='text-sm font-medium text-dial-sapphire'>
+            {format('ui.chatbot.conversationStarterPrompt')}
+          </div>
+          <div className='flex flex-wrap gap-y-2 gap-x-3 text-sm'>
+            {[...conversationStarters]
+              .sort(() => 0.5 - Math.random())
+              .splice(0, MAX_DISPLAYED_STARTERS)
+              .map((starter, index) => (
+                <button
+                  key={index}
+                  className='bg-slate-100 hover:bg-slate-200 text-dial-stratos py-2 px-4 rounded'
+                  onClick={() => selectQuestion(starter)}
+                >
+                  {starter}
+                </button>
+              ))}
+          </div>
+        </div>
+      }
+    </div>
+  )
+}
 
 const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, setCurrentConversation }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [currentQuestion, setCurrentQuestion] = useState('')
+  const [showStarterQuestions, setShowStarterQuestions] = useState(existingSessionIdentifier !== '' ? false : true)
 
   const [mutating, setMutating] = useState(false)
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -56,6 +123,7 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
     if (user && currentQuestion) {
       // Set the loading indicator.
       setMutating(true)
+      setShowStarterQuestions(false)
       // Send graph query to the backend. Set the base variables needed to perform update.
       const { userEmail, userToken } = user
       const variables = {
@@ -73,10 +141,18 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
         }
       })
     }
-  }, [createChatbotConversation, currentConversation, existingSessionIdentifier, currentQuestion, locale, user])
+  }, [
+    createChatbotConversation,
+    currentConversation,
+    existingSessionIdentifier,
+    currentQuestion,
+    locale,
+    user
+  ])
 
   const enterPressedHandler = useCallback((event) => {
     if (event.key === 'Enter') {
+      setShowStarterQuestions(false)
       submitQuestion()
     }
   }, [submitQuestion])
@@ -90,7 +166,13 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
   }, [enterPressedHandler])
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-2'>
+      {user && showStarterQuestions && !currentQuestion &&
+        <ChatbotConversationStarter
+          setCurrentQuestion={setCurrentQuestion}
+          setShowStarterQuestions={setShowStarterQuestions}
+        />
+      }
       <div className='flex gap-4 text-base mt-auto'>
         <input
           type='text'

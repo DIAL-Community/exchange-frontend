@@ -1875,6 +1875,7 @@ export const en = {
   'ui.resource.showInWizard': 'Show resource in the recommendation wizard',
   'ui.resource.resourceFile': 'Resource File',
   'ui.resource.resourceLink': 'Resource Link',
+  'ui.resource.submittedBy': 'Submitted By',
   'ui.resource.linkDescription': 'Resource Link Description',
   'ui.resource.source': 'Source',
   'ui.resource.resourceType': 'Resource Type',
@@ -2577,6 +2578,10 @@ export const en = {
   'ui.chatbot.userRequired': 'Please login to use the exchange chatbot function.',
   'ui.chatbot.createSession': 'Create Separate Session',
   'ui.chatbot.viewSession': 'View Current Conversation',
+  'ui.chatbot.conversationStarterPrompt': `
+    Hi, I'm Steve-bot and I'm here to help you answer your questions. Here are some things you can ask me:
+  `,
+  'ui.chatbot.references': 'References',
 
   'ui.product.overview.pricing': `
     Pricing information is only available for commercial software if the product team has provided information.
@@ -2629,8 +2634,12 @@ export const en = {
     We hope that through peer-to-peer learning, strategic partnerships, and continuous adaptation, we can
     collectively promote and advance equitable progress across the continent.
   `,
+
+  'hub.dashboard': 'Dashboard',
   'hub.dashboard.signOut': 'Sign Out',
   'hub.dashboard.profile': 'My Profile',
+  'hub.dashboard.chatbot': 'My Chatbot',
+  'hub.dashboard.createResource': 'Create Resource',
 
   'hub.admin.profile': 'Profile',
   'hub.admin.users': 'Users',

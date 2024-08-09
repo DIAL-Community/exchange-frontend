@@ -264,7 +264,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="flex flex-col gap-3 py-3"
               >
                 <div
-                  class="text-lg text-dial-sapphire font-semibold"
+                  class="text-dial-sapphire font-semibold"
                 >
                   Bookmark
                 </div>
@@ -302,7 +302,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="flex flex-col gap-3 py-3"
               >
                 <div
-                  class="text-lg text-dial-sapphire font-semibold"
+                  class="text-dial-sapphire font-semibold"
                 >
                   Share
                 </div>
@@ -346,7 +346,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="flex flex-col gap-3 py-3"
               >
                 <div
-                  class="text-lg text-dial-sapphire font-semibold"
+                  class="text-dial-sapphire font-semibold"
                 >
                   Comment
                 </div>
@@ -658,7 +658,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="flex flex-col gap-3 py-3"
               >
                 <div
-                  class="text-lg text-dial-sapphire font-semibold"
+                  class="text-dial-sapphire font-semibold"
                 >
                   Bookmark
                 </div>
@@ -696,7 +696,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="flex flex-col gap-3 py-3"
               >
                 <div
-                  class="text-lg text-dial-sapphire font-semibold"
+                  class="text-dial-sapphire font-semibold"
                 >
                   Share
                 </div>

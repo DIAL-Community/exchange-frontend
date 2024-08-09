@@ -16,7 +16,7 @@ const OrganizationDetailHeader = ({ organization }) => {
       <div className='text-xl text-dial-plum font-semibold'>
         {organization.name}
       </div>
-      <div className='flex justify-center items-center py-16 bg-white rounded border'>
+      <div className='flex justify-center items-center py-8 px-4 bg-white rounded border'>
         {organization.imageFile.indexOf('placeholder.svg') < 0 &&
           <div className='inline'>
             <img

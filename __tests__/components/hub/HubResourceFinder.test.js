@@ -15,7 +15,7 @@ describe('Unit tests for the opportunity detail page.', () => {
   const mockResourceTiles = generateMockApolloData(
     RESOURCE_TOPIC_RESOURCES_QUERY,
     {
-      'slug': '',
+      'slug': 'all',
       'search': '',
       'countries': [],
       'resourceTypes': []

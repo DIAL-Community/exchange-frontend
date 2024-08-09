@@ -142,6 +142,10 @@ export const RESOURCE_DETAIL_QUERY = gql`
       tags
       imageFile
       publishedDate
+      submittedBy {
+        id
+        email
+      }
       
       description
       parsedDescription

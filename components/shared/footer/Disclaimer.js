@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import { FaLinkedin } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 
 const Disclaimer = () => {
@@ -19,6 +20,15 @@ const Disclaimer = () => {
       </a>
       <div className='text-sm text-dial-stratos ml-auto'>
         {format('ui.footer.disclaimer.copyright', { year: new Date().getFullYear() })}
+      </div>
+      <div className='flex gap-2 ml-auto'>
+        <a
+          href='//www.linkedin.com/company/digital-impact-alliance/'
+          target='_blank'
+          rel='noreferrer'
+        >
+          <FaLinkedin size='2rem' className='text-dial-iris-blue'/>
+        </a>
       </div>
     </div>
   )

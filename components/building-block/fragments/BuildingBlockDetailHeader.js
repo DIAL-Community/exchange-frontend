@@ -35,7 +35,7 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
       <div className='flex flex-col gap-y-8 text-sm pt-6 pb-3'>
         {buildingBlock.govStackEntity &&
           <div className='flex flex-col gap-y-3'>
-            <div className='font-semibold text-dial-sapphire'>
+            <div className='font-semibold text-dial-ochre'>
               {format('ui.buildingBlock.source')}
             </div>
             <div className='flex text-dial-stratos'>
@@ -44,8 +44,8 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
           </div>
         }
         {buildingBlock.specUrl &&
-          <div className='flex flex-col gap-y-3 text-dial-sapphire'>
-            <div className='text-sm font-semibold'>
+          <div className='flex flex-col gap-y-3'>
+            <div className='text-sm font-semibold text-dial-ochre'>
               {format('ui.buildingBlock.specification')}
             </div>
             <div className='text-sm text-dial-stratos'>
@@ -68,7 +68,7 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
         }
         <div className='flex gap-x-3'>
           <div className='flex flex-col gap-y-3 text-sm grow shrink-0'>
-            <div className='font-semibold text-dial-sapphire'>
+            <div className='font-semibold text-dial-ochre'>
               {format('buildingBlock.maturity')}
             </div>
             <div className='flex text-dial-stratos'>
@@ -76,7 +76,7 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
             </div>
           </div>
           <div className='flex flex-col gap-y-3 text-sm grow shrink-0'>
-            <div className='font-semibold text-dial-sapphire'>
+            <div className='font-semibold text-dial-ochre'>
               {format('ui.buildingBlock.category')}
             </div>
             <div className='flex text-dial-stratos'>
