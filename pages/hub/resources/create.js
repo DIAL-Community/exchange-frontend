@@ -1,18 +1,15 @@
 import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
-import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import ResourceEdit from '../../../components/resources/ResourceEdit'
-import Footer from '../../../components/shared/Footer'
-import Header from '../../../components/shared/Header'
+import HubFooter from '../../../components/hub/sections/HubFooter'
+import HubHeader from '../../../components/hub/sections/HubHeader'
+import ResourceCreate from '../../../components/resources/ResourceCreate'
 import ClientOnly from '../../../lib/ClientOnly'
 
-const EditResourcePage = ({ defaultTenants }) => {
+const CreateResourcePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
@@ -25,11 +22,11 @@ const EditResourcePage = ({ defaultTenants }) => {
           )
         }
       />
-      <ClientOnly clientTenants={defaultTenants}>
-        <Header />
+      <ClientOnly clientTenants={dpiTenants}>
+        <HubHeader />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <ResourceEdit slug={slug} locale={locale} />
-        <Footer />
+        <ResourceCreate />
+        <HubFooter />
       </ClientOnly>
     </>
   )
@@ -37,10 +34,10 @@ const EditResourcePage = ({ defaultTenants }) => {
 
 export async function getServerSideProps() {
   const response = await fetch(process.env.NEXTAUTH_URL + '/api/tenants')
-  const { defaultTenants } = await response.json()
+  const { dpiTenants } = await response.json()
 
   // Passing data to the page as props
-  return { props: { defaultTenants } }
+  return { props: { dpiTenants } }
 }
 
-export default EditResourcePage
+export default CreateResourcePage

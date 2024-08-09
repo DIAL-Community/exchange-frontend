@@ -1,15 +1,15 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
+import Select from '../../shared/form/Select'
 import { UPDATE_PRODUCT_SECTORS } from '../../shared/mutation/product'
 import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
+import { fetchSelectOptions } from '../../utils/search'
 
 const ProductDetailSectors = ({ product, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -108,7 +108,7 @@ const ProductDetailSectors = ({ product, canEdit }) => {
     </div>
 
   const sectionHeader =
-    <div className='font-semibold text-dial-sapphire'>
+    <div className='font-semibold text-dial-meadow'>
       {format('ui.sector.header')}
     </div>
 

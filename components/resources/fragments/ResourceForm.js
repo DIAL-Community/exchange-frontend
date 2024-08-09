@@ -337,7 +337,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const client = useApolloClient()
 
   const { user, loadingUserSession } = useUser()
-  const canEdit = user?.isAdminUser || user?.isEditorUser
+  const canEdit = user?.isAdminUser || user?.isEditorUser || user?.isAdliAdminUser
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -361,7 +361,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
-  const { locale } = router
+  const { locale, asPath } = router
 
   const resourceTypeOptions = useMemo(() => generateResourceTypeOptions(format), [format])
 
@@ -375,7 +375,8 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }],
     onCompleted: (data) => {
       if (data.createResource.resource && data.createResource.errors.length === 0) {
-        const redirectPath = `/${locale}/resources/${data.createResource.resource.slug}`
+        const pathPrefix = asPath.indexOf('/hub') >= 0 ? '/hub/resources' : '/resources'
+        const redirectPath = `${pathPrefix}/${data.createResource.resource.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showSuccessMessage(

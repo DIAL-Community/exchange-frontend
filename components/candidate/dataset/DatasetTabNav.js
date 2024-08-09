@@ -10,7 +10,7 @@ const DatasetTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useEffect(() => {
-    if (user?.isAdminUser) {
+    if (user?.isAdminUser || user?.isEditorUser) {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.candidateDataset.createNew'),
         'ui.candidateDataset.createNew'
