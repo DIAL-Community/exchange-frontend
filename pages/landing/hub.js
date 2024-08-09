@@ -22,7 +22,7 @@ const HubPage = ({ dpiTenants }) => {
         <QueryNotification />
         <HubHeader />
         <HubBody />
-        <HubResources />
+        <HubResources showWithTopicOnly />
         <HubFooter />
       </ClientOnly>
     </>

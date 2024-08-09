@@ -10,7 +10,7 @@ const RubricCategoryTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useEffect(() => {
-    if (user && user?.isAdminUser) {
+    if (user?.isAdminUser || user?.isEditorUser) {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.rubricCategory.createNew'),
         'ui.rubricCategory.createNew'

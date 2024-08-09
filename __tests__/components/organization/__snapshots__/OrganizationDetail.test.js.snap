@@ -43,7 +43,7 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                 AI4GOV
               </div>
               <div
-                class="flex justify-center items-center py-16 bg-white rounded border"
+                class="flex justify-center items-center py-8 px-4 bg-white rounded border"
               >
                 <div
                   class="inline"
@@ -205,7 +205,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                 AI4GOV -- Edited
               </div>
               <div
-                class="flex justify-center items-center py-16 bg-white rounded border"
+                class="flex justify-center items-center py-8 px-4 bg-white rounded border"
               >
                 <div
                   class="inline"
@@ -710,7 +710,7 @@ exports[`Unit tests for the organization detail page. Should render unauthorized
                 AI4GOV
               </div>
               <div
-                class="flex justify-center items-center py-16 bg-white rounded border"
+                class="flex justify-center items-center py-8 px-4 bg-white rounded border"
               >
                 <div
                   class="inline"

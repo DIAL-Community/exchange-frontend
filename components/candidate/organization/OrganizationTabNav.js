@@ -10,7 +10,7 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useEffect(() => {
-    if (user?.isAdminUser) {
+    if (user?.isAdminUser || user?.isEditorUser) {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.organization.createNew'),
         'ui.candidateOrganization.createNew'

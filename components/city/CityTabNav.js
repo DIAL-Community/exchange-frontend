@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import TabNav from '../shared/TabNav'
 import { useUser } from '../../lib/hooks'
+import TabNav from '../shared/TabNav'
 
 const CityTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
@@ -10,7 +10,7 @@ const CityTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useEffect(() => {
-    if (user?.isAdminUser) {
+    if (user?.isAdminUser || user?.isEditorUser) {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.city.createNew'),
         'ui.city.createNew'
