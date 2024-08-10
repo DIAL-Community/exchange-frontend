@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
+import { FaUser } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
@@ -107,6 +108,16 @@ const HubHeader = ({ isOnAuthPage = false }) => {
               <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
                 {format('hub.header.expertNetwork').toUpperCase()}
               </Link>
+            </li>
+            <li className='relative text-right 2xl:text-lg'>
+              {user
+                ? <Link href='/hub/dashboard' role='menuitem' className='py-3 border-b border-transparent'>
+                  <FaUser />
+                </Link>
+                : <button role='menuitem' className='py-3 border-b border-transparent' onClick={() => signIn()}>
+                  <FaUser />
+                </button>
+              }
             </li>
           </ul>
         }

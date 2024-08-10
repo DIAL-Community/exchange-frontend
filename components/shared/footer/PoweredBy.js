@@ -1,15 +1,14 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { FaLinkedin } from 'react-icons/fa6'
 
 const PoweredBy = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='flex flex-col gap-3 py-3'>
-      <div className='text-lg text-dial-sapphire font-semibold'>
-        {format('ui.footer.poweredBy.title')}
+    <div className='flex flex-col gap-3 py-3 max-w-lg'>
+      <div className=' text-dial-sapphire font-semibold'>
+        Developed by
       </div>
       <hr className='border-b border-dial-angel'/>
       <div className='flex gap-x-8'>
@@ -24,15 +23,6 @@ const PoweredBy = () => {
         <div className='text-sm text-dial-stratos'>
           {format('ui.footer.poweredBy.subTitle')}
         </div>
-      </div>
-      <div className='flex gap-2 ml-auto'>
-        <a
-          href='//www.linkedin.com/company/digital-impact-alliance/'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <FaLinkedin size='2rem' className='text-dial-iris-blue'/>
-        </a>
       </div>
     </div>
   )

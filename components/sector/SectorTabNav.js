@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import TabNav from '../shared/TabNav'
 import { useUser } from '../../lib/hooks'
+import TabNav from '../shared/TabNav'
 
 const SectorTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
@@ -11,7 +11,7 @@ const SectorTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useEffect(() => {
-    if (user?.isAdminUser) {
+    if (user?.isAdminUser || user?.isEditorUser) {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.sector.createNew'),
         'ui.sector.createNew'

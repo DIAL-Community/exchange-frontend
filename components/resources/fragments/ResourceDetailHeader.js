@@ -25,14 +25,16 @@ const ResourceDetailHeader = ({ resource }) => {
   }
 
   return (
-    <div className='flex flex-col gap-y-3 py-3'>
-      <div className='flex justify-center items-center bg-white rounded border'>
+    <div className='flex flex-col gap-y-3 py-3 text-sm'>
+      <div className='flex justify-center items-center bg-white rounded border min-h-[14rem]'>
         {resource.imageFile.indexOf('placeholder.svg') < 0 &&
-          <img
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-            alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
-            className='object-contain'
-          />
+          <div className='w-24 h-24 my-auto shrink-0'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              className='object-contain'
+            />
+          </div>
         }
         {resource.imageFile.indexOf('placeholder.svg') >= 0 &&
           <img
@@ -63,7 +65,7 @@ const ResourceDetailHeader = ({ resource }) => {
       </div>
       {resource.source &&
         <Link href={`/organizations/${resource.source.slug}`} className='flex'>
-          <div className='border-b border-dial-iris-blue '>
+          <div className='border-b border-dial-iris-blue line-clamp-1 break-all'>
             {resource.source.name}
           </div>
         </Link>
@@ -91,6 +93,26 @@ const ResourceDetailHeader = ({ resource }) => {
           &nbsp;⧉
         </div>
       </div>
+      {resource?.submittedBy &&
+        <>
+          <hr className='border-b border-dial-blue-chalk my-3' />
+          <div className='flex flex-col gap-y-2'>
+            <div className='font-semibold text-dial-stratos'>
+              {format('ui.resource.submittedBy')}
+            </div>
+            <div className='my-auto text-sm flex'>
+              <a
+                className='border-b border-dial-iris-blue'
+                href={`mailto:${resource.submittedBy.email}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                {resource.submittedBy.email}
+              </a>
+            </div>
+          </div>
+        </>
+      }
       <hr className='border-b border-dial-blue-chalk my-3' />
       <ResourceDetailCountries resource={resource} canEdit={canEdit} />
       <hr className='border-b border-dial-blue-chalk my-3' />

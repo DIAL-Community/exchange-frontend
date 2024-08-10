@@ -238,11 +238,12 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               class="w-full flex justify-center items-center"
             >
               <a
+                class="w-full h-[267px]"
                 href="/hub/resources/co-creating-our-digital-future"
               >
                 <img
                   alt="Logo of Resource."
-                  class="aspect-[773/447]"
+                  class="aspect-auto h-[267px]"
                   src="http://localhost:3000//assets/resources/resource-placeholder.svg"
                 />
               </a>
@@ -281,11 +282,12 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               class="w-full flex justify-center items-center"
             >
               <a
+                class="w-full h-[267px]"
                 href="/hub/resources/human-centered-data-governance"
               >
                 <img
                   alt="Logo of Resource."
-                  class="aspect-[773/447]"
+                  class="aspect-auto h-[267px]"
                   src="http://localhost:3000//assets/resources/resource-placeholder.svg"
                 />
               </a>
