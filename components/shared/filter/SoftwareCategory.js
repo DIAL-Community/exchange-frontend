@@ -97,7 +97,7 @@ export const SoftwareCategoryActiveFilters =
           </div>
           <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm col-span-2'>
             <label className='flex flex-col gap-y-2'>
-              {`${format('filter.byEntity', { entity: format('ui.feature.label')})}`}
+              {`${format('filter.byEntity', { entity: format('ui.feature.label') })}`}
               <Select
                 isSearch
                 isBorderless
