@@ -13,24 +13,6 @@ export const generateCategoryOptions = (format) => [
   { label: format('buildingBlock.category.functional'), value: CategoryType.FUNCTIONAL }
 ]
 
-export const generateResourceTypeOptions = (format) => [
-  { label: format('ui.resource.type.caseStudy'), value: 'ui.resource.type.caseStudy' },
-  { label: format('ui.resource.type.spotlight'), value: 'ui.resource.type.spotlight' },
-  { label: format('ui.resource.type.whitepaper'), value: 'ui.resource.type.whitepaper' },
-  { label: format('ui.resource.type.expertComment'), value: 'ui.resource.type.expertComment' },
-  { label: format('ui.resource.type.report'), value: 'ui.resource.type.report' },
-  { label: format('ui.resource.type.blog'), value: 'ui.resource.type.blog' },
-  { label: format('ui.resource.type.workingPaper'), value: 'ui.resource.type.workingPaper' },
-  { label: format('ui.resource.type.book'), value: 'ui.resource.type.book' }
-].sort((a, b) => a.label.localeCompare(b.label))
-
-export const generateResourceTopicOptions = (format) => [
-  { label: format('ui.resource.topic.laws'), value: 'ui.resource.topic.laws' },
-  { label: format('ui.resource.topic.oversight'), value: 'ui.resource.topic.oversight' },
-  { label: format('ui.resource.topic.participation'), value: 'ui.resource.topic.participation' },
-  { label: format('ui.resource.topic.technology'), value: 'ui.resource.topic.technology' }
-].sort((a, b) => a.label.localeCompare(b.label))
-
 export const generateMappingStatusOptions = (format) => [
   { label: format('shared.mappingStatus.beta'), value: MappingStatus.BETA },
   { label: format('shared.mappingStatus.mature'), value: MappingStatus.MATURE },
