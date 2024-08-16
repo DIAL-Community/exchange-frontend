@@ -17,7 +17,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
     >
       <div
-        class="max-w-catalog mx-auto"
+        class="max-w-catalog mx-auto py-2"
       >
         <div
           class="px-4 lg:px-8 xl:px-56 text-dial-gray"

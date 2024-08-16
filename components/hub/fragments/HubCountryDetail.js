@@ -7,11 +7,15 @@ import HubCountryWebsites from './HubCountryWebsites'
 const HubCountryDetail = ({ country }) => {
   return (
     <div className='flex flex-col'>
-      { country?.description &&
-        <div className='px-4 lg:px-8 xl:px-56'>
-          <HtmlViewer initialContent={country?.description} />
+      <div className='policy-section'>
+        <div className='px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col'>
+          <div className='text-xl font-medium py-6 text-dial-stratos'>
+            Overview
+          </div>
+          { country?.description && <HtmlViewer initialContent={country?.description} />}
+          { !country?.description && <div className='pb-6 text-dial-stratos'>No description available</div>}
         </div>
-      }
+      </div>
       <HubCountryPolicies country={country} />
       <HubCountryWebsites country={country} />
       <HubCountryProducts country={country} />

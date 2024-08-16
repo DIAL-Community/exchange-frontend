@@ -10,14 +10,14 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
   >
     <img
       alt="DIAL DPI Resource Hub"
-      class="h-80 w-full object-cover"
+      class="h-36 w-full object-cover"
       src="/images/hero-image/hub-hero.svg"
     />
     <div
-      class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
+      class="absolute w-full left-1/2 -translate-x-1/2"
     >
       <div
-        class="max-w-catalog mx-auto"
+        class="max-w-catalog mx-auto py-2"
       >
         <div
           class="px-4 lg:px-8 xl:px-56 text-dial-gray"
@@ -35,29 +35,46 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
         </div>
       </div>
       <div
-        class="text-2xl text-center text-dial-cotton pt-20 pb-4 mx-auto max-w-prose"
+        class="max-w-catalog mx-auto py-1"
       >
-        Zambia
+        <div
+          class="flex gap-4 px-4 lg:px-8 xl:px-56"
+        >
+          <img
+            alt="Flag for country: ZM."
+            class="h-20"
+            src="https://flagcdn.com/zm.svg"
+          />
+          <div
+            class="text-2xl text-dial-cotton my-auto"
+          >
+            Zambia
+          </div>
+        </div>
       </div>
-      <img
-        alt="Flag for country: ZM."
-        class="h-16 mx-auto"
-        src="https://flagcdn.com/zm.svg"
-      />
     </div>
     <div
       class="flex flex-col"
     >
       <div
-        class="px-4 lg:px-8 xl:px-56"
+        class="policy-section"
       >
         <div
-          class="relative"
+          class="px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col"
         >
           <div
-            class="html-react-parser-viewer text-base"
+            class="text-xl font-medium py-6 text-dial-stratos"
           >
-            Some description
+            Overview
+          </div>
+          <div
+            class="relative"
+          >
+            <div
+              class="html-react-parser-viewer text-base"
+            >
+              Some description
+            </div>
           </div>
         </div>
       </div>
@@ -68,7 +85,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           class="px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col"
         >
           <div
-            class="text-2xl py-8"
+            class="text-xl font-medium py-6"
           >
             Key Policies, Legal and Regulatory Frameworks
           </div>
@@ -94,7 +111,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                       class="flex flex-col gap-y-3"
                     >
                       <div
-                        class="text-lg font-semibold"
+                        class="text-lg font-medium"
                       >
                         Sierra Leone National Data Strategy (2023)
                       </div>
@@ -127,7 +144,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                       class="flex flex-col gap-y-3"
                     >
                       <div
-                        class="text-lg font-semibold"
+                        class="text-lg font-medium"
                       >
                         Sierra Leone National Cyber Security Strategy (2021-2025)
                       </div>
@@ -160,7 +177,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                       class="flex flex-col gap-y-3"
                     >
                       <div
-                        class="text-lg font-semibold"
+                        class="text-lg font-medium"
                       >
                         Sierra Leone National Cyber Security Policy (2021)
                       </div>
@@ -193,7 +210,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                       class="flex flex-col gap-y-3"
                     >
                       <div
-                        class="text-lg font-semibold"
+                        class="text-lg font-medium"
                       >
                         Sierra Leone National Innovation & Digital Strategy
                       </div>
@@ -284,7 +301,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           class="px-4 lg:px-8 xl:px-56 text-dial-stratos flex flex-col"
         >
           <div
-            class="text-2xl py-8"
+            class="text-xl font-medium py-6"
           >
             Key Government Websites
           </div>
@@ -298,7 +315,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="p-3 flex flex-col gap-y-1"
               >
                 <div
-                  class="text-lg font-semibold"
+                  class="text-lg font-medium"
                 >
                   <a
                     href="/hub/resources/stats-sl-open-data-dashboard"
@@ -328,7 +345,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="p-3 flex flex-col gap-y-1"
               >
                 <div
-                  class="text-lg font-semibold"
+                  class="text-lg font-medium"
                 >
                   <a
                     href="/hub/resources/sierra-leone-data-portal"
@@ -358,7 +375,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 class="p-3 flex flex-col gap-y-1"
               >
                 <div
-                  class="text-lg font-semibold"
+                  class="text-lg font-medium"
                 >
                   <a
                     href="/hub/resources/sirerra-leone-citizens-portal"
@@ -458,7 +475,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           class="px-4 lg:px-8 xl:px-56 flex flex-col"
         >
           <div
-            class="text-xl text-center py-8 text-dial-cotton"
+            class="text-xl font-medium text-center py-6 text-dial-cotton"
           >
             Products
           </div>
@@ -600,7 +617,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           class="px-4 lg:px-8 xl:px-56 flex flex-col"
         >
           <div
-            class="text-xl text-center py-8"
+            class="text-xl font-medium text-center py-6"
           >
             Reports and Articles
           </div>

@@ -2552,11 +2552,9 @@ export const en = {
     on key issues surrounding digital public infrastructure.
   `,
   'hub.country.subtitle': `
-    Dive into an in-depth look at the digital setup in different countries. Our country
-    profiles provide detailed info on digital initiatives, laws, and key players.
-    Understand the challenges and opportunities for growth. Access resources and case
-    studies for real-world examples. Whether you're a policymaker, researcher, or just
-    curious, these profiles offer insights into the DPI landscape. 
+    Dive into an in-depth look at the digital setup in different countries. Country profiles provide
+    detailed info on digital initiatives, laws, and key players. Whether you're a policymaker, researcher,
+    or just curious, these profiles offer insights into the digital landscape. 
   `,
   'hub.country.websites': 'Key Government Websites',
   'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
