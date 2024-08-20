@@ -1,18 +1,18 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_SYNC } from '../../shared/mutation/sync'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { PAGINATED_SYNCS_QUERY, SYNC_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/sync'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import { SYNC_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_SYNCS_QUERY } from '../../shared/query/sync'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
 
 const SyncForm = React.memo(({ sync }) => {
   const { formatMessage } = useIntl()
@@ -134,7 +134,7 @@ const SyncForm = React.memo(({ sync }) => {
               <div className='text-xl font-semibold'>
                 {sync
                   ? format('app.editEntity', { entity: sync.name })
-                  : `${format('app.createNew')} ${format('sync.label')}`}
+                  : `${format('app.createNew')} ${format('ui.sync.label')}`}
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='name'>

@@ -2495,6 +2495,7 @@ export const en = {
 
   'ui.tenants.default': 'Default',
   'ui.tenants.fao': 'FAO',
+  'ui.tenants.health': 'Health Tech',
 
   
   'ui.resourceTopic.label': 'Resource Topic',

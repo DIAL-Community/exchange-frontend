@@ -96,7 +96,8 @@ const SyncTenants = () => {
 
   const generateTenants = (format) => [
     { label: format('ui.tenants.default'), value: 'public' },
-    { label: format('ui.tenants.fao'), value: 'fao' }
+    { label: format('ui.tenants.fao'), value: 'fao' },
+    { label: format('ui.tenants.health'), value: 'health' }
   ]
 
   return loadingUserSession
