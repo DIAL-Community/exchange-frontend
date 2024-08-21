@@ -22,6 +22,7 @@
     "@esri/arcgis-rest-request": "^4.2.0",
     "@handsontable/react": "^13.1.0",
     "@headlessui/react": "^1.7.17",
+    "@mcaptcha/react-glue": "0.1.0-alpha-3",
     "@next/bundle-analyzer": "^13.4.19",
     "@next/third-parties": "^14.2.5",
     "@octokit/core": "^5.0.0",

@@ -3338,6 +3338,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mcaptcha/core-glue@npm:^0.1.0-alpha-5":
+  version: 0.1.0-rc3
+  resolution: "@mcaptcha/core-glue@npm:0.1.0-rc3"
+  checksum: 10/5139e48108ccbc3eebfd9e80270242a6f22f65069545c69945c090940829afa4e339f33112469c556f37079b10f8183315ca73bf33b81ab9c69ae6036c5ed331
+  languageName: node
+  linkType: hard
+
+"@mcaptcha/react-glue@npm:0.1.0-alpha-3":
+  version: 0.1.0-alpha-3
+  resolution: "@mcaptcha/react-glue@npm:0.1.0-alpha-3"
+  dependencies:
+    "@mcaptcha/core-glue": "npm:^0.1.0-alpha-5"
+  peerDependencies:
+    react: ^16.0.0
+  checksum: 10/5c8b02a084335bf5553f67eda722ff1612aa50bda6db95e5c531d39e16678eec14707942f02a402484bf9f9238c52a3e53976064ab4f009802b4e298efc7d971
+  languageName: node
+  linkType: hard
+
 "@next/bundle-analyzer@npm:^13.4.19":
   version: 13.4.19
   resolution: "@next/bundle-analyzer@npm:13.4.19"
@@ -7200,6 +7218,7 @@ __metadata:
     "@esri/arcgis-rest-request": "npm:^4.2.0"
     "@handsontable/react": "npm:^13.1.0"
     "@headlessui/react": "npm:^1.7.17"
+    "@mcaptcha/react-glue": "npm:0.1.0-alpha-3"
     "@next/bundle-analyzer": "npm:^13.4.19"
     "@next/third-parties": "npm:^14.2.5"
     "@octokit/core": "npm:^5.0.0"

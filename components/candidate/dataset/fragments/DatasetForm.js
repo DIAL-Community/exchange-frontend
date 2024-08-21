@@ -1,32 +1,33 @@
-import React, { useState, useCallback, useContext, useMemo, useRef } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import {  FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
-import Input from '../../../shared/form/Input'
-import ValidationError from '../../../shared/form/ValidationError'
+import { ToastContext } from '../../../../lib/ToastContext'
+import { CustomMCaptcha } from '../../../shared/CustomMCaptcha'
+import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_CANDIDATE_DATASET } from '../../../shared/mutation/candidateDataset'
+import Input from '../../../shared/form/Input'
+import { generateDatasetTypeOptions } from '../../../shared/form/options'
 import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
-import { generateDatasetTypeOptions } from '../../../shared/form/options'
-import { Loading, Unauthorized } from '../../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import ValidationError from '../../../shared/form/ValidationError'
+import { CREATE_CANDIDATE_DATASET } from '../../../shared/mutation/candidateDataset'
 import {
-  CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_CANDIDATE_DATASETS_QUERY
+  CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CANDIDATE_DATASETS_QUERY
 } from '../../../shared/query/candidateDataset'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const captchaRef = useRef()
-  const [captchaValue, setCaptchaValue] = useState()
+  const [captchaToken, setCaptchaToken] = useState()
+  const config = {
+    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
+  }
 
   const slug = dataset?.slug ?? ''
 
@@ -116,7 +117,7 @@ const DatasetForm = React.memo(({ dataset }) => {
         datasetType: datasetType.value,
         submitterEmail,
         description,
-        captcha: captchaValue
+        captcha: captchaToken
       }
 
       updateDataset({
@@ -129,10 +130,6 @@ const DatasetForm = React.memo(({ dataset }) => {
         }
       })
     }
-  }
-
-  const updateCaptchaData = (value) => {
-    setCaptchaValue(value)
   }
 
   const cancelForm = () => {
@@ -250,16 +247,12 @@ const DatasetForm = React.memo(({ dataset }) => {
               />
               {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
             </div>
-            <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-              onChange={updateCaptchaData}
-              ref={captchaRef}
-            />
+            <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button
                 type='submit'
                 className='submit-button'
-                disabled={mutating || reverting || !captchaValue}
+                disabled={mutating || reverting || !captchaToken}
               >
                 {`${format('app.submit')} ${format('ui.dataset.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}

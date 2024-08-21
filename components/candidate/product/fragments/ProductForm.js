@@ -1,23 +1,22 @@
-import React, { useState, useCallback, useContext, useRef } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
-import Input from '../../../shared/form/Input'
-import ValidationError from '../../../shared/form/ValidationError'
-import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
-import UrlInput from '../../../shared/form/UrlInput'
+import { ToastContext } from '../../../../lib/ToastContext'
+import { CustomMCaptcha } from '../../../shared/CustomMCaptcha'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import { HtmlEditor } from '../../../shared/form/HtmlEditor'
+import Input from '../../../shared/form/Input'
+import UrlInput from '../../../shared/form/UrlInput'
+import ValidationError from '../../../shared/form/ValidationError'
+import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
 import {
-  CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_CANDIDATE_PRODUCTS_QUERY
+  CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CANDIDATE_PRODUCTS_QUERY
 } from '../../../shared/query/candidateProduct'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -25,8 +24,10 @@ const ProductForm = React.memo(({ product }) => {
 
   const slug = product?.slug ?? ''
 
-  const captchaRef = useRef()
-  const [captchaValue, setCaptchaValue] = useState()
+  const [captchaToken, setCaptchaToken] = useState()
+  const config = {
+    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
+  }
 
   const { user, loadingUserSession } = useUser()
 
@@ -109,7 +110,7 @@ const ProductForm = React.memo(({ product }) => {
         repository,
         description,
         submitterEmail,
-        captcha: captchaValue
+        captcha: captchaToken
       }
 
       updateProduct({
@@ -122,10 +123,6 @@ const ProductForm = React.memo(({ product }) => {
         }
       })
     }
-  }
-
-  const updateCaptchaData = (value) => {
-    setCaptchaValue(value)
   }
 
   const cancelForm = () => {
@@ -226,16 +223,12 @@ const ProductForm = React.memo(({ product }) => {
               />
               {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
             </div>
-            <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-              onChange={updateCaptchaData}
-              ref={captchaRef}
-            />
+            <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button
                 type='submit'
                 className='submit-button'
-                disabled={mutating || reverting || !captchaValue}
+                disabled={mutating || reverting || !captchaToken}
               >
                 {`${format('app.submit')} ${format('ui.product.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}

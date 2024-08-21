@@ -3,10 +3,10 @@ import { getCsrfToken, getSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import ReCAPTCHA from 'react-google-recaptcha'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import zxcvbn from 'zxcvbn'
+import { CustomMCaptcha } from '../../components/shared/CustomMCaptcha'
 import { ToastContext } from '../../lib/ToastContext'
 import AuthLayoutPage from './layout'
 
@@ -64,7 +64,11 @@ const SignUp = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
-  const [captcha, setCaptcha] = useState('')
+
+  const [captchaToken, setCaptchaToken] = useState()
+  const config = {
+    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
+  }
 
   const { showToast } = useContext(ToastContext)
 
@@ -83,7 +87,8 @@ const SignUp = () => {
         email: textFields.email,
         username: textFields.email.split('@')[0],
         password: textFields.password,
-        password_confirmation: textFields.passwordConfirmation
+        password_confirmation: textFields.passwordConfirmation,
+        captcha_token:  captchaToken
       }
     }
 
@@ -196,7 +201,7 @@ const SignUp = () => {
                     </p>
                   }
                 </div>
-                <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={setCaptcha} />
+                <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
                 <div className='flex items-center justify-between font-semibold text-sm'>
                   <div className='flex'>
                     <button
@@ -207,7 +212,7 @@ const SignUp = () => {
                         fieldValidations.password < 2 ||
                         !fieldValidations.passwordConfirmation ||
                         !fieldValidations.email ||
-                        !captcha
+                        !captchaToken
                       }
                     >
                       {format('app.signUp')}

@@ -1,31 +1,32 @@
-import React, { useState, useCallback, useContext, useRef } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
+import { ToastContext } from '../../../../lib/ToastContext'
+import { CustomMCaptcha } from '../../../shared/CustomMCaptcha'
+import { Loading, Unauthorized } from '../../../shared/FetchStatus'
+import Checkbox from '../../../shared/form/Checkbox'
+import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import Input from '../../../shared/form/Input'
 import UrlInput from '../../../shared/form/UrlInput'
-import Checkbox from '../../../shared/form/Checkbox'
 import ValidationError from '../../../shared/form/ValidationError'
-import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../shared/mutation/candidateOrganization'
-import { Loading, Unauthorized } from '../../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import {
-  CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY
+  CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY
 } from '../../../shared/query/candidateOrganization'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const captchaRef = useRef()
-  const [captchaValue, setCaptchaValue] = useState()
+  const [captchaToken, setCaptchaToken] = useState()
+  const config = {
+    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
+  }
 
   const slug = organization?.slug ?? ''
 
@@ -117,7 +118,7 @@ const OrganizationForm = React.memo(({ organization }) => {
         name,
         email,
         title,
-        captcha: captchaValue
+        captcha: captchaToken
       }
 
       updateOrganization({
@@ -130,10 +131,6 @@ const OrganizationForm = React.memo(({ organization }) => {
         }
       })
     }
-  }
-
-  const updateCaptchaData = (value) => {
-    setCaptchaValue(value)
   }
 
   const cancelForm = () => {
@@ -245,16 +242,12 @@ const OrganizationForm = React.memo(({ organization }) => {
                 placeholder={format('ui.candidateOrganization.title.placeholder')}
               />
             </div>
-            <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-              onChange={updateCaptchaData}
-              ref={captchaRef}
-            />
+            <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button
                 type='submit'
                 className='submit-button'
-                disabled={mutating || reverting || !captchaValue}
+                disabled={mutating || reverting || !captchaToken}
               >
                 {`${format('app.submit')} ${format('ui.organization.label')}`}
                 {mutating && <FaSpinner className='spinner ml-3' />}

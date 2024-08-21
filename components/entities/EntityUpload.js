@@ -1,21 +1,24 @@
-import { FaSpinner } from 'react-icons/fa'
-import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef, useState } from 'react'
+import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
+import { CustomMCaptcha } from '../shared/CustomMCaptcha'
 
 const EntityUpload = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [file, setFile] = useState('')
-  const [captcha, setCaptcha] = useState('')
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const { user } = useUser()
+  const [captchaToken, setCaptchaToken] = useState()
+  const config = {
+    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
+  }
+
   const fileRef = useRef()
-  const captchaRef = useRef()
+  const { user } = useUser()
 
   const handleSubmit = async (event) => {
     setLoading(true)
@@ -25,7 +28,7 @@ const EntityUpload = () => {
 
     const formData = new FormData()
     formData.append('entity_file', file, file.name)
-    formData.append('captcha', captcha)
+    formData.append('captcha', captchaToken)
     formData.append('user_email', userEmail)
     formData.append('user_token', userToken)
 
@@ -45,7 +48,6 @@ const EntityUpload = () => {
 
     if (response.status === 200) {
       fileRef.current.value = ''
-      captchaRef.current.reset()
       setSubmitted(true)
     }
 
@@ -75,7 +77,7 @@ const EntityUpload = () => {
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 />
               </div>
-              <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={setCaptcha} ref={captchaRef} />
+              <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
               <div className={`flex items-center justify-between font-semibold text-sm mt-4 ${file ? '' : 'pb-4'}`}>
                 <div className='flex'>
                   <button
@@ -83,7 +85,7 @@ const EntityUpload = () => {
                       bg-dial-gray-dark text-dial-gray-light py-2 px-4
                       rounded inline-flex items-center disabled:opacity-50
                     `}
-                    type='submit' disabled={loading || !captcha || !user}
+                    type='submit' disabled={loading || !captchaToken || !user}
                   >
                     {format('entity.process')}
                     {loading && <FaSpinner className='spinner ml-3' />}
