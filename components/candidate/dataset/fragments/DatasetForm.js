@@ -24,17 +24,13 @@ const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [captchaToken, setCaptchaToken] = useState()
-  const config = {
-    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
-  }
-
   const slug = dataset?.slug ?? ''
 
   const { user, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -247,7 +243,7 @@ const DatasetForm = React.memo(({ dataset }) => {
               />
               {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
             </div>
-            <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
+            <CustomMCaptcha setCaptchaToken={setCaptchaToken} />
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button
                 type='submit'

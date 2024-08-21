@@ -24,15 +24,11 @@ const ProductForm = React.memo(({ product }) => {
 
   const slug = product?.slug ?? ''
 
-  const [captchaToken, setCaptchaToken] = useState()
-  const config = {
-    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
-  }
-
   const { user, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -223,7 +219,7 @@ const ProductForm = React.memo(({ product }) => {
               />
               {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
             </div>
-            <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
+            <CustomMCaptcha setCaptchaToken={setCaptchaToken} />
             <div className='flex flex-wrap text-base mt-6 gap-3'>
               <button
                 type='submit'

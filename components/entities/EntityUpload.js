@@ -11,11 +11,7 @@ const EntityUpload = () => {
   const [file, setFile] = useState('')
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-
   const [captchaToken, setCaptchaToken] = useState()
-  const config = {
-    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
-  }
 
   const fileRef = useRef()
   const { user } = useUser()
@@ -77,7 +73,7 @@ const EntityUpload = () => {
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 />
               </div>
-              <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
+              <CustomMCaptcha setCaptchaToken={setCaptchaToken} />
               <div className={`flex items-center justify-between font-semibold text-sm mt-4 ${file ? '' : 'pb-4'}`}>
                 <div className='flex'>
                   <button

@@ -64,11 +64,7 @@ const SignUp = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
-
   const [captchaToken, setCaptchaToken] = useState()
-  const config = {
-    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
-  }
 
   const { showToast } = useContext(ToastContext)
 
@@ -201,7 +197,7 @@ const SignUp = () => {
                     </p>
                   }
                 </div>
-                <CustomMCaptcha config={config} setCaptchaToken={setCaptchaToken} />
+                <CustomMCaptcha setCaptchaToken={setCaptchaToken} />
                 <div className='flex items-center justify-between font-semibold text-sm'>
                   <div className='flex'>
                     <button

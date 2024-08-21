@@ -5,7 +5,7 @@ export const INPUT_NAME = 'mcaptcha__token'
 export const INPUT_LABEL_ID = 'mcaptcha__token-label'
 export const INSTRUCTIONS_URL = 'https://mcaptcha.org/docs/user-manual/how-to-mcaptcha-without-js/'
 
-export const CustomMCaptcha = ({ config, captchaToken, setCaptchaToken }) => {
+export const CustomMCaptcha = ({ captchaToken, setCaptchaToken }) => {
   const containerStyle = {
     width: '340px',
     height: '78px'
@@ -14,6 +14,12 @@ export const CustomMCaptcha = ({ config, captchaToken, setCaptchaToken }) => {
   const input = useRef(null)
   const label = useRef(null)
 
+  const config = {
+    // TODO: We will eventually need to change this to a production URL.
+    // For now, we're using a demo URL for testing. We need to roll out
+    // our own mcaptcha server, and then we can use that.
+    widgetLink: new URL('https://demo.mcaptcha.org/widget/?sitekey=oufG9xvsI39NSTk4rcI8L0bfythYLZ9k')
+  }
   const w = new Widget(config, setCaptchaToken)
 
   useEffect(() => {
