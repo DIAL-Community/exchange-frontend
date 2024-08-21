@@ -10,7 +10,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
   >
     <img
       alt="DIAL DPI Resource Hub"
-      class="h-36 w-full object-cover"
+      class="h-32 w-full object-cover"
       src="/images/hero-image/hub-hero.svg"
     />
     <div
@@ -42,7 +42,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
         >
           <img
             alt="Flag for country: ZM."
-            class="h-20"
+            class="h-16"
             src="https://flagcdn.com/zm.svg"
           />
           <div
@@ -57,15 +57,19 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       class="flex flex-col"
     >
       <div
-        class="policy-section"
+        class="description-section pb-4"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col"
+          class="px-4 lg:px-8 xl:px-56 text-dial-stratos flex flex-col"
         >
           <div
-            class="text-xl font-medium py-6 text-dial-stratos"
+            class="flex flex-flex-wrap gap-3"
           >
-            Overview
+            <div
+              class="text-xl font-medium py-6 "
+            >
+              Country Overview
+            </div>
           </div>
           <div
             class="relative"

@@ -10,7 +10,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
   >
     <img
       alt="DIAL DPI Resource Hub"
-      class="h-36 w-full object-cover"
+      class="h-32 w-full object-cover"
       src="/images/hero-image/hub-hero.svg"
     />
     <div
