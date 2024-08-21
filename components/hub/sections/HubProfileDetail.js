@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import ProfileDetail from '../users/ProfileDetail'
+import ProfileDetail from '../user/ProfileDetail'
 import HubBreadcrumb from './HubBreadcrumb'
 
 const HubProfileDetail = ({ user }) => {

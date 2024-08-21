@@ -434,7 +434,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         featured,
         resourceLink,
         linkDescription,
-        resourceType,
         imageFile,
         resourceFile
       } = data

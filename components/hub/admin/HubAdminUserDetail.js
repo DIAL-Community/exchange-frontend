@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { SIMPLE_USER_DETAIL_QUERY } from '../../shared/query/user'
-import ProfileDetail from '../users/ProfileDetail'
+import ProfileDetail from '../user/ProfileDetail'
 import HubAdminTabs from './HubAdminTabs'
 
 const HubAdminUserDetail = ({ userId }) => {

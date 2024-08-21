@@ -2162,8 +2162,11 @@ export const en = {
 
   'ui.country.label': 'Country',
   'ui.country.header': 'Countries',
+  'ui.country.overview': 'Country Overview',
   'ui.country.logoAlt': 'Flag for country: {countryName}.',
   'ui.country.createNew': 'Create a new Country',
+
+  'ui.country.descriptionNotAvailable': 'No description available.',
 
   'ui.compareTool.label': 'Comparison Tool',
   'ui.compareTool.header': 'Comparison Tools',
