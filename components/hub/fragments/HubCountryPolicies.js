@@ -12,7 +12,7 @@ const PolicyCard = ({ resource }) => {
   const displayLargeCard = () =>
     <div className='rounded-lg min-h-[10rem]'>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-lg font-semibold'>
+        <div className='text-lg font-medium'>
           {resource.name}
         </div>
         <div className='line-clamp-4 text-justify'>
@@ -113,7 +113,7 @@ const HubCountryPolicies = ({ country }) => {
   return (
     <div className='policy-section bg-dial-sapphire'>
       <div className='px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col'>
-        <div className='text-2xl py-8'>
+        <div className='text-xl font-medium py-6'>
           {format('hub.country.policies')}
         </div>
         <PolicyList country={country} pageNumber={pageNumber} />

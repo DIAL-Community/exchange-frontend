@@ -17,7 +17,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
     >
       <div
-        class="max-w-catalog mx-auto"
+        class="max-w-catalog mx-auto py-2"
       >
         <div
           class="px-4 lg:px-8 xl:px-56 text-dial-gray"
@@ -122,6 +122,20 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                 <div
                   class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                 >
+                  <div
+                    aria-hidden="true"
+                    class="react-select__indicator react-select__loading-indicator css-pogzpp-loadingIndicator"
+                  >
+                    <span
+                      class="css-1xtdfmb-LoadingDot"
+                    />
+                    <span
+                      class="css-zoievk-LoadingDot"
+                    />
+                    <span
+                      class="css-x748d8-LoadingDot"
+                    />
+                  </div>
                   <span
                     class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                   />
