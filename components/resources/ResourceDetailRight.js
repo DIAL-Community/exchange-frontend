@@ -57,7 +57,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='flex items-center gap-6'>
-          {resource.resourceTopics &&
+          {resource.resourceTopics && resource.resourceTopics.length > 0 &&
             <div className='flex flex-wrap gap-x-3 gap-y-2'>
               {resource.resourceTopics.map((resourceTopic, index) => (
                 <Link key={index} href={`/resource-topics/${resourceTopic.slug}`}>
@@ -71,7 +71,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
             </div>
           }
           {resource.resourceType &&
-            <div className='text-sm'>
+            <div className='text-sm px-5 py-2 shadow-lg'>
               {format(resource.resourceType)}
             </div>
           }

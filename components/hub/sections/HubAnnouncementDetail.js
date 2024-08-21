@@ -55,7 +55,7 @@ const AnnouncementDetail = ({ announcement }) => {
       const { updateMessageVisibility: response } = data
       if (response.errors.length === 0 && response.message) {
         setMutating(false)
-        showSuccessMessage(format('dpi.broadcast.visibility.updated'))
+        showSuccessMessage(format('hub.broadcast.visibility.updated'))
       } else {
         showFailureMessage(response.errors)
         setMutating(false)
@@ -126,10 +126,10 @@ const AnnouncementDetail = ({ announcement }) => {
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />
       <div className='flex flex-col gap-3 text-sm italic'>
         <div className='flex gap-2'>
-          {format('dpi.broadcast.messageDatetime.note', {
+          {format('hub.broadcast.messageDatetime.note', {
             type: announcement.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-              ? format('dpi.broadcast.messageType.announcement').toLowerCase()
-              : format('dpi.broadcast.messageType.announcement').toLowerCase(),
+              ? format('hub.broadcast.messageType.announcement').toLowerCase()
+              : format('hub.broadcast.messageType.announcement').toLowerCase(),
             dateValue: `${formatDate(announcement.messageDatetime)} ${formatTime(announcement.messageDatetime)}`
           })}
         </div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
@@ -12,7 +12,6 @@ import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
-import { generateResourceTypeOptions } from '../../shared/form/options'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
 import UrlInput from '../../shared/form/UrlInput'
@@ -20,7 +19,9 @@ import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_RESOURCE } from '../../shared/mutation/resource'
 import { AUTHOR_SEARCH_QUERY } from '../../shared/query/author'
 import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
-import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
+import {
+  PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY, RESOURCE_TYPE_SEARCH_QUERY
+} from '../../shared/query/resource'
 import { RESOURCE_TOPIC_SEARCH_QUERY } from '../../shared/query/resourceTopic'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
@@ -337,7 +338,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const client = useApolloClient()
 
   const { user, loadingUserSession } = useUser()
-  const canEdit = user?.isAdminUser || user?.isEditorUser
+  const canEdit = user?.isAdminUser || user?.isEditorUser || user?.isAdliAdminUser
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -361,9 +362,15 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
-  const { locale } = router
+  const { locale, asPath } = router
 
-  const resourceTypeOptions = useMemo(() => generateResourceTypeOptions(format), [format])
+  const [resourceType, setResourceType] = useState({ value: resource.resourceType, label:  resource.resourceType })
+  const fetchedResourceTypesCallback = (data) => (
+    data.resourceTypes?.map((resourceType) => ({
+      value: resourceType.name,
+      label: resourceType.name
+    }))
+  )
 
   const [updateResource, { reset }] = useMutation(CREATE_RESOURCE, {
     refetchQueries: [{
@@ -375,7 +382,8 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     }],
     onCompleted: (data) => {
       if (data.createResource.resource && data.createResource.errors.length === 0) {
-        const redirectPath = `/${locale}/resources/${data.createResource.resource.slug}`
+        const pathPrefix = asPath.indexOf('/hub') >= 0 ? '/hub/resources' : '/resources'
+        const redirectPath = `${pathPrefix}/${data.createResource.resource.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showSuccessMessage(
@@ -407,8 +415,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       publishedDate: resource?.publishedDate,
       featured: resource?.featured,
       resourceLink: resource?.resourceLink,
-      linkDescription: resource?.linkDescription,
-      resourceType: resourceTypeOptions?.find(({ value: type }) => type === resource?.resourceType)
+      linkDescription: resource?.linkDescription
     }
   })
 
@@ -427,7 +434,6 @@ const ResourceForm = React.memo(({ resource, organization }) => {
         featured,
         resourceLink,
         linkDescription,
-        resourceType,
         imageFile,
         resourceFile
       } = data
@@ -556,18 +562,19 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                 <label htmlFor='resourceTopic'>
                   {format('ui.resource.resourceType')}
                 </label>
-                <Controller
-                  name='resourceType'
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      isSearch
-                      isBorderless
-                      options={resourceTypeOptions}
-                      placeholder={format('ui.resource.resourceType')}
-                    />
-                  )}
+                <Select
+                  async
+                  isSearch
+                  isBorderless
+                  defaultOptions
+                  cacheOptions
+                  placeholder={format('ui.resource.resourceType')}
+                  loadOptions={(input) =>
+                    fetchSelectOptions(client, input, RESOURCE_TYPE_SEARCH_QUERY, fetchedResourceTypesCallback)
+                  }
+                  noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.resourceTopic') })}
+                  onChange={(value) => setResourceType(value)}
+                  value={resourceType}
                 />
               </div>
               <div className='flex flex-col gap-y-2'>

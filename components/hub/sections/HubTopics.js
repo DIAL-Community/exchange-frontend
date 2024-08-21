@@ -10,7 +10,7 @@ const HubTopics = () => {
         <div className='flex flex-col gap-8 items-center justify-items-center mx-auto py-12 px-4 xl:py-20'>
           <div className='md:text-xl 2xl:text-2xl text-center text-dial-cotton max-w-prose'>
             <FormattedMessage
-              id='dpi.topic.subtitle'
+              id='hub.topic.subtitle'
               values={{
                 break: () => <br />
               }}

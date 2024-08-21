@@ -2,10 +2,10 @@ import { useCallback, useEffect } from 'react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import ClientOnly from '../../../lib/ClientOnly'
+import HubFooter from '../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../components/hub/sections/HubHeader'
 import { Loading } from '../../../components/shared/FetchStatus'
-import HubFooter from '../../../components/hub/sections/HubFooter'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const HubCurriculumPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
@@ -20,8 +20,12 @@ const HubCurriculumPage = ({ dpiTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('app.title')}
-        description={format('seo.description.about')}
+        title={format('hub.curriculum.label')}
+        description={format('hub.curriculum.title')}
+      />
+      <NextSeo
+        title={format('hub.header.expertNetwork')}
+        description={format('hub.expertNetwork.subtitle')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <HubHeader />

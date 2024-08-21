@@ -13,18 +13,29 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
   const [resourceAuthor] = resource?.authors ?? []
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg min-h-[7rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
+    <div className={`px-4 py-6 rounded-lg h-[14rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        <div className='flex items-center my-auto w-24 h-24 shrink-0'>
-          <Link href={`/resources/${resource.slug}`}>
-            <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-              className='aspect-auto'
-            />
-          </Link>
-        </div>
-        <div className='flex flex-col gap-y-3 max-w-3xl'>
+        <Link href={`/resources/${resource.slug}`} className='flex items-center justify-center'>
+          {resource.imageFile.indexOf('placeholder.svg') >= 0 &&
+            <div className='w-24 h-24 py-4 my-auto shrink-0'>
+              <img
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+                className='aspect-auto'
+              />
+            </div>
+          }
+          {resource.imageFile.indexOf('placeholder.svg') < 0 &&
+            <div className='w-24 h-24 py-4 my-auto shrink-0'>
+              <img
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+                className='w-16 h-16 m-auto'
+              />
+            </div>
+          }
+        </Link>
+        <div className='flex flex-grow flex-col gap-y-3 max-w-3xl h-[11rem]'>
           <Link href={`/resources/${resource.slug}`}>
             <div className='text-lg font-semibold text-dial-plum'>
               {resource.name}
@@ -48,14 +59,25 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
 
   const displayHubCard = () =>
     <div className={`rounded-lg min-h-[6rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
-      <div className='min-w-80 pb-4 mx-auto flex flex-col'>
-        <div className='w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center'>
-          <Link href={`/hub/resources/${resource.slug}`}>
-            <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-              className='aspect-[5/4]'
-            />
+      <div className='min-w-80 pb-4 mx-auto flex flex-col gap-3'>
+        <div className='w-full flex justify-center items-center'>
+          <Link href={`/hub/resources/${resource.slug}`} className='w-full h-[267px]'>
+            {resource.imageFile.indexOf('placeholder.svg') >= 0 &&
+              <img
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+                className='aspect-auto h-[267px]'
+              />
+            }
+            {resource.imageFile.indexOf('placeholder.svg') < 0 &&
+              <div className='w-full h-full border border-dashed border-slate-300 flex justify-center items-center'>
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+                  className='h-24 m-auto'
+                />
+              </div>
+            }
           </Link>
         </div>
         <Link href={`/dpi-resources/${resource.slug}`}>
@@ -146,7 +168,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       {displayType === DisplayType.FEATURED_CARD && displayFeaturedCard()}
-      {displayType === DisplayType.DPI_CARD && displayHubCard()}
+      {displayType === DisplayType.HUB_CARD && displayHubCard()}
       { isValidFn(dismissHandler) &&
         <button type='button' className='absolute top-2 right-2'>
           <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />

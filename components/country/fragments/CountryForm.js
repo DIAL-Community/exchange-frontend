@@ -1,17 +1,18 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
+import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
-import { useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_COUNTRY } from '../../shared/mutation/country'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { COUNTRY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_COUNTRIES_QUERY } from '../../shared/query/country'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const CountryForm = React.memo(({ country }) => {
   const { formatMessage } = useIntl()
@@ -59,20 +60,23 @@ const CountryForm = React.memo(({ country }) => {
     }
   })
 
-  const { handleSubmit, register, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
-    defaultValues: { name: country?.name }
+    defaultValues: {
+      name: country?.name,
+      description: country?.description
+    }
   })
 
   const doUpsert = async (data) => {
     if (user) {
       const { userEmail, userToken } = user
-      const { name } = data
+      const { name, description } = data
 
       updateCountry({
-        variables: { name, slug },
+        variables: { name, slug, description },
         context: {
           headers: {
             'Accept-Language': locale,
@@ -111,6 +115,26 @@ const CountryForm = React.memo(({ country }) => {
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='text-dial-sapphire required-field'>
+                  {format('country.description')}
+                </label>
+                <Controller
+                  name='description'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <HtmlEditor
+                      editorId='description-editor'
+                      onChange={onChange}
+                      initialContent={value}
+                      placeholder={format('country.description')}
+                      isInvalid={errors.description}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
+                />
+                {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>

@@ -6,10 +6,10 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
     class="Toastify"
   />
   <div
-    class="px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8"
+    class="px-4 lg:px-8 xl:px-56 min-h-[70vh] py-6"
   >
     <div
-      class="flex flex-col gap-y-4 py-3"
+      class="flex flex-col gap-y-4 mb-6"
     >
       <div
         class="flex flex-col gap-y-2"
@@ -228,17 +228,18 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           class="rounded-lg min-h-[6rem] false"
         >
           <div
-            class="min-w-80 pb-4 mx-auto flex flex-col"
+            class="min-w-80 pb-4 mx-auto flex flex-col gap-3"
           >
             <div
-              class="w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center"
+              class="w-full flex justify-center items-center"
             >
               <a
+                class="w-full h-[267px]"
                 href="/hub/resources/co-creating-our-digital-future"
               >
                 <img
                   alt="Logo of Resource."
-                  class="aspect-[5/4]"
+                  class="aspect-auto h-[267px]"
                   src="http://localhost:3000//assets/resources/resource-placeholder.svg"
                 />
               </a>
@@ -271,17 +272,18 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           class="rounded-lg min-h-[6rem] false"
         >
           <div
-            class="min-w-80 pb-4 mx-auto flex flex-col"
+            class="min-w-80 pb-4 mx-auto flex flex-col gap-3"
           >
             <div
-              class="w-full h-60 lg:h-72 3xl:h-80 flex justify-center items-center"
+              class="w-full flex justify-center items-center"
             >
               <a
+                class="w-full h-[267px]"
                 href="/hub/resources/human-centered-data-governance"
               >
                 <img
                   alt="Logo of Resource."
-                  class="aspect-[5/4]"
+                  class="aspect-auto h-[267px]"
                   src="http://localhost:3000//assets/resources/resource-placeholder.svg"
                 />
               </a>

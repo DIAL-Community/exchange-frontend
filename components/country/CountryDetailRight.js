@@ -8,6 +8,7 @@ import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
+import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteCountry from './DeleteCountry'
 
@@ -50,6 +51,7 @@ const CountryDetailRight = forwardRef(({ country }, ref) => {
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
+        <HtmlViewer initialContent={country?.description} />
         <CountryMarker country={country} />
         <div className='flex flex-col gap-y-3'>
           <div className='text-sm text-dial-stratos'>

@@ -15,10 +15,10 @@ const HubWizard = () => {
     <div className='flex flex-col gap-4 py-4'>
       <div className='px-4 lg:px-8 xl:px-56 flex flex-col gap-4'>
         <div className='text-2xl font-semibold'>
-          {format('dpi.wizard.title')}
+          {format('hub.wizard.title')}
         </div>
         <div className='max-w-prose'>
-          {format('dpi.wizard.tagLine')}
+          {format('hub.wizard.tagLine')}
         </div>
         <hr className='border-b border-dial-blue-chalk my-4' />
       </div>

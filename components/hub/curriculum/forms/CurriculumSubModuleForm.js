@@ -267,7 +267,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
       if (response?.errors.length === 0 && response.move) {
         setMutating(false)
         showSuccessMessage(
-          format('dpi.curriculum.submodule.submitted'),
+          format('hub.curriculum.submodule.submitted'),
           () => router.push(`/hub/curriculum/${curriculum.slug}`)
         )
       } else {
@@ -293,7 +293,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
       if (response.errors.length === 0 && response.move) {
         setMutating(false)
         setMoveSlug(response.move.slug)
-        showSuccessMessage(format('dpi.curriculum.submodule.autoSaved'))
+        showSuccessMessage(format('hub.curriculum.submodule.autoSaved'))
       }
     }
   })
@@ -529,7 +529,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
                   className='submit-button'
                   disabled={mutating || reverting}
                 >
-                  {`${format('app.submit')} ${format('dpi.curriculum.submodule.label')}`}
+                  {`${format('app.submit')} ${format('hub.curriculum.submodule.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

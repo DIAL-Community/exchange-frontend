@@ -2,13 +2,13 @@ import { useCallback, useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import ClientOnly from '../../../../lib/ClientOnly'
-import QueryNotification from '../../../../components/shared/QueryNotification'
+import HubAdminContactForm from '../../../../components/hub/admin/HubAdminContactForm'
+import { allowedToView } from '../../../../components/hub/admin/utilities'
+import HubFooter from '../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../components/hub/sections/HubHeader'
 import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
-import { allowedToView } from '../../../../components/hub/admin/utilities'
-import HubAdminContactForm from '../../../../components/hub/admin/HubAdminContactForm'
-import HubFooter from '../../../../components/hub/sections/HubFooter'
+import QueryNotification from '../../../../components/shared/QueryNotification'
+import ClientOnly from '../../../../lib/ClientOnly'
 
 const HubAdminEditContactPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
@@ -25,8 +25,8 @@ const HubAdminEditContactPage = ({ dpiTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('app.title')}
-        description={format('seo.description.about')}
+        title={format('hub.admin.profile')}
+        description={format('hub.landing.main.subtitle')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />

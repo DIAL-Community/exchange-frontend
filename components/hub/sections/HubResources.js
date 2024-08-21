@@ -5,13 +5,13 @@ import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { RESOURCE_TOPIC_RESOURCES_QUERY } from '../../shared/query/resourceTopic'
 import HubResourceTile from '../fragments/HubResourceTile'
 
-const HubResources = () => {
+const HubResources = ({  showWithTopicOnly }) => {
 
   const { search, resourceTypes, resourceCountries } = useContext(ResourceFilterContext)
 
   const { loading, error, data } = useQuery(RESOURCE_TOPIC_RESOURCES_QUERY, {
     variables: {
-      slug: '',
+      slug:  showWithTopicOnly ? 'with-topic-only' : 'all',
       search,
       countries: resourceCountries.map(r => r.label),
       resourceTypes: resourceTypes.map(r => r.value)

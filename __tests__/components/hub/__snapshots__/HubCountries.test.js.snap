@@ -10,21 +10,19 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
   >
     <img
       alt="DIAL DPI Resource Hub"
-      class="h-36 xl:h-80 w-full object-cover"
+      class="h-32 w-full object-cover"
       src="/images/hero-image/hub-hero.svg"
     />
     <div
-      class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
+      class="absolute w-full left-1/2 -translate-x-1/2"
     >
       <div
-        class="flex flex-col gap-8 items-center justify-items-center mx-auto py-12 px-4 xl:py-20"
+        class="max-w-catalog mx-auto py-12"
       >
         <div
-          class="md:text-xl 2xl:text-2xl text-center text-dial-cotton lg:max-w-prose line-clamp-6"
+          class="text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray"
         >
-          
-    Find tools and resources related to how DPI has been implemented in a specific country.
-  
+          Country Profiles
         </div>
       </div>
     </div>
@@ -34,6 +32,15 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
       <div
         class="flex flex-col gap-6"
       >
+        <div
+          class="max-w-4xl"
+        >
+          
+    Dive into an in-depth look at the digital setup in different countries. Country profiles provide
+    detailed info on digital initiatives, laws, and key players. Whether you're a policymaker, researcher,
+    or just curious, these profiles offer insights into the digital landscape. 
+  
+        </div>
         <div
           class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3"
         >

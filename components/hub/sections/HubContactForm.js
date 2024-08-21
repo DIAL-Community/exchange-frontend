@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import { DPI_TENANT_NAME } from '../constants'
-import ContactForm from '../users/ContactForm'
+import ContactForm from '../user/ContactForm'
 import HubBreadcrumb from './HubBreadcrumb'
 
 const HubContactForm = ({ userId, userEmail }) => {
@@ -16,7 +16,7 @@ const HubContactForm = ({ userId, userEmail }) => {
 
   const slugNameMapping = (() => {
     const map = {}
-    map['profile'] = format('dpi.dashboard.profile')
+    map['profile'] = format('hub.dashboard.profile')
 
     return map
   })()

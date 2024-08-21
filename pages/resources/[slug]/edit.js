@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import ResourceEdit from '../../../components/resources/ResourceEdit'
-import Footer from '../../../components/resources/ResourceFooter'
-import Header from '../../../components/resources/ResourceHeader'
+import Footer from '../../../components/shared/Footer'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
 
 const EditResourcePage = ({ defaultTenants }) => {

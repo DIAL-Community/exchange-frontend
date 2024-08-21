@@ -1,11 +1,14 @@
-import { useIntl } from 'react-intl'
-import { useCallback, useMemo, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
+import { useCallback, useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useApolloClient } from '@apollo/client'
+import { fetchSelectOptions } from '../../utils/search'
 import Select from '../form/Select'
-import { generateResourceTopicOptions } from '../form/options'
+import { RESOURCE_TOPIC_SEARCH_QUERY } from '../query/resourceTopic'
 
 export const ResourceTopicAutocomplete = ({ resourceTopics, setResourceTopics, placeholder }) => {
+  const client = useApolloClient()
   const [showFilter, setShowFilter] = useState(false)
 
   const { formatMessage } = useIntl()
@@ -17,11 +20,15 @@ export const ResourceTopicAutocomplete = ({ resourceTopics, setResourceTopics, p
     setResourceTopics([...resourceTopics.filter(({ value }) => value !== resourceTopic.value), resourceTopic])
   }
 
-  const options = useMemo(() => generateResourceTopicOptions(format), [format])
-
-  const loadOptions = async (input) => {
-    return options.filter(({ label }) => label.indexOf(input) >= 0)
-  }
+  const fetchedResourceTopicsCallback = (data) => (
+    data.resourceTopics?.map((resourceTopic) => ({
+      id: resourceTopic.id,
+      name: resourceTopic.name,
+      slug: resourceTopic.slug,
+      label: resourceTopic.name,
+      value: resourceTopic.name
+    }))
+  )
 
   const toggleFilter = (event) => {
     event.preventDefault()
@@ -47,7 +54,9 @@ export const ResourceTopicAutocomplete = ({ resourceTopics, setResourceTopics, p
           className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
-          loadOptions={loadOptions}
+          loadOptions={(input) =>
+            fetchSelectOptions(client, input, RESOURCE_TOPIC_SEARCH_QUERY, fetchedResourceTopicsCallback)
+          }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.topic.label') })}
           onChange={selectResourceTopic}
           placeholder={controlPlaceholder}

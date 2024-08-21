@@ -56,12 +56,12 @@ const MessageForm = ({ message }) => {
       if (response.errors.length === 0 && response.message) {
         setMutating(false)
         showSuccessMessage(
-          format('dpi.broadcast.submitted', {
+          format('hub.broadcast.submitted', {
             type: response.message.messageType === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-              ? format('dpi.broadcast.messageType.announcement')
+              ? format('hub.broadcast.messageType.announcement')
               : response.message.messageType === DPI_EVENT_MESSAGE_TYPE
-                ? format('dpi.broadcast.messageType.event')
-                : format('dpi.broadcast.messageType.email')
+                ? format('hub.broadcast.messageType.event')
+                : format('hub.broadcast.messageType.email')
           }),
           () => {
             router.push(`/hub/admin/broadcasts/${response.message.slug}`)
@@ -144,20 +144,20 @@ const MessageForm = ({ message }) => {
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='name'>
-                {format('dpi.broadcast.title')}
+                {format('hub.broadcast.title')}
               </label>
               <Input
                 {...register('name', { required: format('validation.required') })}
                 id='name'
                 onClick={() => clearErrors('name')}
-                placeholder={format('dpi.broadcast.title')}
+                placeholder={format('hub.broadcast.title')}
                 isInvalid={errors.name}
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label className='required-field'>
-                {format('dpi.broadcast.messageTemplate')}
+                {format('hub.broadcast.messageTemplate')}
               </label>
               <Controller
                 name='messageTemplate'
@@ -167,7 +167,7 @@ const MessageForm = ({ message }) => {
                     editorId='message-template-editor'
                     onChange={onChange}
                     initialContent={value}
-                    placeholder={format('dpi.broadcast.messageTemplate.placeholder')}
+                    placeholder={format('hub.broadcast.messageTemplate.placeholder')}
                     isInvalid={errors.description}
                     initInstanceCallback={(editor) => {
                       editor.on('click', () => {
@@ -183,7 +183,7 @@ const MessageForm = ({ message }) => {
             <div className='flex flex-col md:flex-row gap-4'>
               <div className='basis-1/2 form-field-wrapper'>
                 <label className='required-field'>
-                  {format('dpi.broadcast.messageType')}
+                  {format('hub.broadcast.messageType')}
                 </label>
                 <Controller
                   name='messageType'
@@ -194,7 +194,7 @@ const MessageForm = ({ message }) => {
                       isSearch
                       isBorderless
                       options={messageTypeOptions}
-                      placeholder={format('dpi.broadcast.messageType')}
+                      placeholder={format('hub.broadcast.messageType')}
                       isInvalid={errors.messageType}
                     />
                   )}
@@ -205,7 +205,7 @@ const MessageForm = ({ message }) => {
               {currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE &&
                 <div className='lg:basis-1/2 flex flex-col gap-2'>
                   <label className='required-field'>
-                    {format('dpi.broadcast.announcementDatetime')}
+                    {format('hub.broadcast.announcementDatetime')}
                   </label>
                   <Controller
                     name='messageDatetime'
@@ -220,7 +220,7 @@ const MessageForm = ({ message }) => {
                           }}
                           name={name}
                           className='h-[38px] w-full'
-                          placeholderText={format('dpi.broadcast.announcementDatetime')}
+                          placeholderText={format('hub.broadcast.announcementDatetime')}
                           onChange={onChange}
                           onFocus={() => clearErrors(['messageDatetime'])}
                           selected={value}
@@ -240,7 +240,7 @@ const MessageForm = ({ message }) => {
               {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
                 <div className='lg:basis-1/2 flex flex-col gap-y-2'>
                   <label className='required-field'>
-                    {format('dpi.broadcast.eventDatetime')}
+                    {format('hub.broadcast.eventDatetime')}
                   </label>
                   <Controller
                     name='messageDatetime'
@@ -255,7 +255,7 @@ const MessageForm = ({ message }) => {
                           }}
                           name={name}
                           className='h-[38px] w-full'
-                          placeholderText={format('dpi.broadcast.eventDatetime')}
+                          placeholderText={format('hub.broadcast.eventDatetime')}
                           onChange={onChange}
                           onFocus={() => clearErrors(['messageDatetime'])}
                           selected={value}
@@ -275,7 +275,7 @@ const MessageForm = ({ message }) => {
             </div>
             {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
               <label className='flex flex-col gap-y-2 mb-2'>
-                {format('dpi.broadcast.eventLocation')}
+                {format('hub.broadcast.eventLocation')}
                 <GeocodeAutocomplete
                   value={null}
                   onChange={handleEventLocation}
@@ -285,10 +285,10 @@ const MessageForm = ({ message }) => {
             {[DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE].indexOf(currentMessageType.value) >= 0 &&
               <label className='flex gap-x-2 items-center self-start'>
                 <Checkbox {...register('visible')} />
-                {format('dpi.broadcast.visible', {
+                {format('hub.broadcast.visible', {
                   messageType: currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-                    ? format('dpi.broadcast.messageType.announcement')
-                    : format('dpi.broadcast.messageType.event')
+                    ? format('hub.broadcast.messageType.announcement')
+                    : format('hub.broadcast.messageType.event')
                 })}
               </label>
             }
@@ -298,7 +298,7 @@ const MessageForm = ({ message }) => {
                 className='submit-button'
                 disabled={mutating || reverting}
               >
-                {format('dpi.curriculum.save')}
+                {format('hub.curriculum.save')}
                 {mutating && <FaSpinner className='spinner ml-3 inline' />}
               </button>
               <button

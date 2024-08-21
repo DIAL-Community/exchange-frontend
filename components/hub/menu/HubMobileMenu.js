@@ -16,22 +16,22 @@ const HubMobileMenu = ({ menuExpanded }) => {
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-auto gap-4 p-4'>
               <li className='relative text-right text-lg'>
                 <Link href='/hub/topics' role='menuitem' className={menuStyles}>
-                  {format('dpi.header.topic').toUpperCase()}
+                  {format('hub.header.topic').toUpperCase()}
                 </Link>
               </li>
               <li className='relative text-right text-lg'>
                 <Link href='/hub/countries' role='menuitem' className={menuStyles}>
-                  {format('dpi.header.country').toUpperCase()}
+                  {format('hub.header.country').toUpperCase()}
                 </Link>
               </li>
               <li className='relative text-right text-lg'>
                 <Link href='/hub/resource-finder' role='menuitem' className={menuStyles}>
-                  {format('dpi.header.resourceFinder').toUpperCase()}
+                  {format('hub.header.resourceFinder').toUpperCase()}
                 </Link>
               </li>
               <li className='relative text-right text-lg'>
                 <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
-                  {format('dpi.header.expertNetwork').toUpperCase()}
+                  {format('hub.header.expertNetwork').toUpperCase()}
                 </Link>
               </li>
             </ul>

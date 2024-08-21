@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import TabNav from '../shared/TabNav'
+import { useRouter } from 'next/router'
 import { useUser } from '../../lib/hooks'
+import TabNav from '../shared/TabNav'
 
 const StorefrontTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
@@ -13,7 +13,7 @@ const StorefrontTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useEffect(() => {
-    if (user?.isAdminUser) {
+    if (user?.isAdminUser || user?.isEditorUser) {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.storefront.createNew'),
         'ui.storefront.createNew'

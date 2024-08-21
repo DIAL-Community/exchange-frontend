@@ -3,10 +3,10 @@ import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import ClientOnly from '../../../../lib/ClientOnly'
-import HubHeader from '../../../../components/hub/sections/HubHeader'
 import HubFooter from '../../../../components/hub/sections/HubFooter'
+import HubHeader from '../../../../components/hub/sections/HubHeader'
 import ResourceDetail from '../../../../components/resources/ResourceDetail'
+import ClientOnly from '../../../../lib/ClientOnly'
 
 const HubResourcePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()

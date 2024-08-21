@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import ClientOnly from '../../../lib/ClientOnly'
-import QueryNotification from '../../../components/shared/QueryNotification'
+import HubFooter from '../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../components/hub/sections/HubHeader'
 import HubTopics from '../../../components/hub/sections/HubTopics'
-import HubFooter from '../../../components/hub/sections/HubFooter'
+import QueryNotification from '../../../components/shared/QueryNotification'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const HubTopicsPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
@@ -14,8 +14,8 @@ const HubTopicsPage = ({ dpiTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('app.title')}
-        description={format('seo.description.about')}
+        title={format('ui.resource.topic.header')}
+        description={format('hub.topic.subtitle')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
