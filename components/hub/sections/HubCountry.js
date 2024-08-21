@@ -33,21 +33,25 @@ const HubCountry = ({ slug }) => {
 
   return (
     <div className='flex flex-col'>
-      <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/hub-hero.svg'/>
-      <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
-        <div className='max-w-catalog mx-auto'>
+      <img className='h-32 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/hub-hero.svg'/>
+      <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
+        <div className='max-w-catalog mx-auto py-2'>
           <div className='px-4 lg:px-8 xl:px-56 text-dial-gray'>
             <HubBreadcrumb slugNameMapping={slugNameMapping} />
           </div>
         </div>
-        <div className='text-2xl text-center text-dial-cotton pt-20 pb-4 mx-auto max-w-prose'>
-          {country.name}
+        <div className='max-w-catalog mx-auto py-1'>
+          <div className='flex gap-4 px-4 lg:px-8 xl:px-56'>
+            <img
+              src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
+              alt={format('ui.country.logoAlt', { countryName: country.code })}
+              className='h-16'
+            />
+            <div className='text-2xl text-dial-cotton my-auto'>
+              {country.name}
+            </div>
+          </div>
         </div>
-        <img
-          src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
-          alt={format('ui.country.logoAlt', { countryName: country.code })}
-          className='h-16 mx-auto'
-        />
       </div>
       <HubCountryDetail country={country} />
     </div>

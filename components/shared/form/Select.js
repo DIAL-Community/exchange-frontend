@@ -1,8 +1,8 @@
 import React, { useId } from 'react'
-import dynamic from 'next/dynamic'
-import ReactSelect, { components } from 'react-select'
-import { HiOutlineSearch } from 'react-icons/hi'
 import classNames from 'classnames'
+import dynamic from 'next/dynamic'
+import { HiOutlineSearch } from 'react-icons/hi'
+import ReactSelect, { components } from 'react-select'
 
 // https://github.com/JedWatson/react-select/issues/3590
 // Use property: menuIsOpen={true} to keep the select expanded

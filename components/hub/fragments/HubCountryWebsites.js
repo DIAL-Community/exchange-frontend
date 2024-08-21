@@ -11,7 +11,7 @@ const WebsiteCard = ({ resource }) => {
   const displayLargeCard = () =>
     <div className='border bg-dial-yellow rounded-md min-h-[2rem]'>
       <div className='p-3 flex flex-col gap-y-1'>
-        <div className='text-lg font-semibold'>
+        <div className='text-lg font-medium'>
           <Link href={`/hub/resources/${resource.slug}`}>
             {resource.name}
           </Link>
@@ -114,7 +114,7 @@ const HubCountryWebsites = ({ country }) => {
   return (
     <div className='website-section'>
       <div className='px-4 lg:px-8 xl:px-56 text-dial-stratos flex flex-col'>
-        <div className='text-2xl py-8'>
+        <div className='text-xl font-medium py-6'>
           {format('hub.country.websites')}
         </div>
         <WebsiteList country={country} pageNumber={pageNumber} />

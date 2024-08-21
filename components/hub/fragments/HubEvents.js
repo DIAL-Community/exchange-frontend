@@ -90,7 +90,7 @@ const HubEvents = ({ stripeIndex }) => {
   return (
     <div className={`event-section ${stripeClasses(stripeIndex)}`}>
       <div className='px-4 lg:px-8 xl:px-56'>
-        <div className='text-2xl py-8'>
+        <div className='text-2xl py-6'>
           {format('hub.event.header')}
         </div>
         <EventList pageNumber={pageNumber} />

@@ -42,7 +42,7 @@ export default function SignIn ({ csrfToken }) {
     }
     const res = await signIn('credentials', payload)
     if (!res?.error) {
-      router.push(query.callbackUrl)
+      router.push(query.callbackUrl || '/')
     } else {
       if (res?.error === 'RequireConfirmation') {
         setRequireConfirmation(true)
