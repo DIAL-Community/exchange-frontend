@@ -31,7 +31,7 @@ const HubResourceTile = ({ resources }) => {
   }, [resources])
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
+    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-6'>
       <HubResourceFilter />
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
         {displayedResources.map((resource, index) =>

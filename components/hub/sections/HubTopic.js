@@ -33,7 +33,7 @@ const HubTopic = ({ slug }) => {
     <div className='flex flex-col gap-6'>
       <img className='h-80 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/hub-hero.svg'/>
       <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
-        <div className='max-w-catalog mx-auto'>
+        <div className='max-w-catalog mx-auto py-2'>
           <div className='px-4 lg:px-8 xl:px-56 text-dial-gray'>
             <HubBreadcrumb slugNameMapping={slugNameMapping} />
           </div>

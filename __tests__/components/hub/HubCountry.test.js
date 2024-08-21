@@ -4,7 +4,9 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { ResourceFilterProvider } from '../../../components/context/ResourceFilterContext'
 import HubCountry from '../../../components/hub/sections/HubCountry'
 import { COUNTRIES_WITH_RESOURCES_SEARCH_QUERY, DPI_COUNTRY_DETAIL_QUERY } from '../../../components/shared/query/country'
-import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../../components/shared/query/resource'
+import {
+  PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY, RESOURCE_TYPE_SEARCH_QUERY
+} from '../../../components/shared/query/resource'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
@@ -12,6 +14,7 @@ import {
   countriesWithResources, countryResources, policyResourcePagination, policyResources, websiteResourcePagination,
   websiteResources
 } from './data/HubCountry.data'
+import { resourceTypes } from './data/HubResourceFinder.data'
 
 mockTenantApi()
 mockNextUseRouter()
@@ -82,6 +85,15 @@ describe('Unit tests for the opportunity detail page.', () => {
     countriesWithResources
   )
 
+  const mockResourceTypes = generateMockApolloData(
+    RESOURCE_TYPE_SEARCH_QUERY,
+    {
+      'search': ''
+    },
+    null,
+    resourceTypes
+  )
+
   test('Should render detail of a opportunity.', async () => {
     const { container } = render(
       <CustomMockedProvider
@@ -91,7 +103,8 @@ describe('Unit tests for the opportunity detail page.', () => {
           mockPolicyResources,
           mockPolicyResourcePagination,
           mockWebsiteResources,
-          mockWebsiteResourcePagination
+          mockWebsiteResourcePagination,
+          mockResourceTypes
         ]}
       >
         <QueryParamContextProvider>

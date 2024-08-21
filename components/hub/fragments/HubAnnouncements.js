@@ -90,7 +90,7 @@ const HubAnnouncements = ({ stripeIndex }) => {
   return (
     <div className={`announcement-section ${stripeClasses(stripeIndex)}`}>
       <div className='px-4 lg:px-8 xl:px-56'>
-        <div className='text-2xl py-8 '>
+        <div className='text-2xl py-6'>
           {format('hub.announcement.header')}
         </div>
         <AnnouncementList pageNumber={pageNumber} />
