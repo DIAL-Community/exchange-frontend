@@ -14,8 +14,8 @@ WORKDIR /app
 COPY --from=base /app/.yarn ./.yarn
 COPY --from=base /app/node_modules ./node_modules
 COPY . .
+RUN yarn build
 RUN yarn sitemap
-RUN yarn build 
 
 FROM node:18.16-alpine AS prod
 ENV NODE_ENV=production

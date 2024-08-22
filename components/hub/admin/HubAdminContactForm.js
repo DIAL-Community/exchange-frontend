@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import { DPI_TENANT_NAME } from '../constants'
-import ContactForm from '../users/ContactForm'
+import ContactForm from '../user/ContactForm'
 import HubAdminTabs from './HubAdminTabs'
 
 const HubAdminContactForm = ({ userId, userEmail }) => {

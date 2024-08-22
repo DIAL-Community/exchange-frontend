@@ -1,4 +1,4 @@
-import ProfileDetail from '../users/ProfileDetail'
+import ProfileDetail from '../user/ProfileDetail'
 import HubAdminTabs from './HubAdminTabs'
 
 const HubAdminProfile = ({ user }) => {
