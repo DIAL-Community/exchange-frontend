@@ -5,8 +5,8 @@ import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { UserFilterContext } from '../../context/UserFilterContext'
 import UserSearchBar from '../../user/fragments/UserSearchBar'
-import UserList from '../users/UserList'
-import UserPagination from '../users/UserPagination'
+import UserList from '../user/UserList'
+import UserPagination from '../user/UserPagination'
 import HubAdminTabs from './HubAdminTabs'
 
 const HubAdminUsers = () => {

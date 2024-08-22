@@ -1,11 +1,14 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { generateResourceTypeOptions } from '../form/options'
+import { useApolloClient } from '@apollo/client'
+import { fetchSelectOptions } from '../../utils/search'
 import Select from '../form/Select'
+import { RESOURCE_TYPE_SEARCH_QUERY } from '../query/resource'
 
 export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, placeholder, inline=false }) => {
+  const client = useApolloClient()
   const [showFilter, setShowFilter] = useState(false)
 
   const { formatMessage } = useIntl()
@@ -17,11 +20,15 @@ export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, plac
     setResourceTypes([...resourceTypes.filter(({ value }) => value !== resourceType.value), resourceType])
   }
 
-  const options = useMemo(() => generateResourceTypeOptions(format), [format])
-
-  const loadOptions = async (input) => {
-    return options.filter(({ label }) => label.indexOf(input) >= 0)
-  }
+  const fetchedResourceTypesCallback = (data) => (
+    data.resourceTypes?.map((resourceType) => ({
+      id: resourceType.id,
+      name: resourceType.name,
+      slug: resourceType.slug,
+      label: resourceType.name,
+      value: resourceType.name
+    }))
+  )
 
   const toggleFilter = (event) => {
     event.preventDefault()
@@ -36,7 +43,9 @@ export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, plac
       className='rounded text-sm text-dial-gray-dark my-auto'
       cacheOptions
       defaultOptions
-      loadOptions={loadOptions}
+      loadOptions={(input) =>
+        fetchSelectOptions(client, input, RESOURCE_TYPE_SEARCH_QUERY, fetchedResourceTypesCallback)
+      }
       noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.type.label') })}
       onChange={selectResourceType}
       placeholder={controlPlaceholder}
@@ -61,7 +70,9 @@ export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, plac
           className='rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
-          loadOptions={loadOptions}
+          loadOptions={(input) =>
+            fetchSelectOptions(client, input, RESOURCE_TYPE_SEARCH_QUERY, fetchedResourceTypesCallback)
+          }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.type.label') })}
           onChange={selectResourceType}
           placeholder={controlPlaceholder}

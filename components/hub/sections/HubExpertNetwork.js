@@ -9,7 +9,7 @@ import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
 import HubPagination from '../fragments/HubPagination'
 import {
   FACEBOOK_SOCIAL_MEDIA_TYPE, INSTAGRAM_SOCIAL_MEDIA_TYPE, LINKEDIN_SOCIAL_MEDIA_TYPE, TWITTER_X_SOCIAL_MEDIA_TYPE
-} from '../users/constant'
+} from '../user/constant'
 
 const HubExpertNetwork = () => {
   const { formatMessage } = useIntl()

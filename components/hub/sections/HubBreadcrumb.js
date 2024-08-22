@@ -14,11 +14,11 @@ const convertBreadcrumb = string => {
 }
 
 const basePathMappings = {
-  '/hub/countries': 'hub.breadcrumb.country',
-  '/hub/topics': 'hub.breadcrumb.topic',
-  '/hub/dashboard': 'hub.breadcrumb.dashboard',
-  '/hub/resource-finder': 'hub.breadcrumb.resourceFinder',
-  '/hub/curriculum': 'hub.breadcrumb.curriculum',
+  'countries': 'hub.breadcrumb.country',
+  'topics': 'hub.breadcrumb.topic',
+  'dashboard': 'hub.breadcrumb.dashboard',
+  'resource-finder': 'hub.breadcrumb.resourceFinder',
+  'curriculum': 'hub.breadcrumb.curriculum',
   'module': 'hub.breadcrumb.curriculumModule',
   'submodule': 'hub.breadcrumb.curriculumSubModule'
 }
