@@ -79,7 +79,6 @@ const ApplicationDefaultContexts = ({ children }) => {
 
   return (
     <>
-      { !currentTenant && format('general.loadingData') }
       { currentTenant && (
         <CatalogContext>
           <CandidateContext>
