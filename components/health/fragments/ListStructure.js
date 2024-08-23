@@ -4,7 +4,7 @@ import { ProductFilterContext } from '../../context/ProductFilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
 import { DisplayType } from '../../utils/constants'
-import ProductCard from '../../product/ProductCard'
+import ProductCard from '../../health/fragments/ProductCard'
 import ProductFilter from './ProductFilter'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
