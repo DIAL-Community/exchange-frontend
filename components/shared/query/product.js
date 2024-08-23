@@ -114,6 +114,11 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
         license
       }
       isLinkedWithDpi
+      softwareCategories {
+        id
+        name
+        slug
+      }
     }
   }
 `
