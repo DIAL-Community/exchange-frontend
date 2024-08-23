@@ -2546,7 +2546,7 @@ export const en = {
     ideation, planning, implementation, or monitoring/evaluation.
   `,
 
-  // Potentially not need to be translated, used for page view tracking on our analytics 
+  // Used for page view tracking on our analytics 
   'hub.title': 'Resources for DPI',
   // -- end of page view tracking --
   
