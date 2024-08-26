@@ -4,13 +4,16 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { ResourceFilterProvider } from '../../../components/context/ResourceFilterContext'
 import HubTopic from '../../../components/hub/sections/HubTopic'
 import { COUNTRIES_WITH_RESOURCES_SEARCH_QUERY } from '../../../components/shared/query/country'
-import { RESOURCE_TYPE_SEARCH_QUERY } from '../../../components/shared/query/resource'
-import { RESOURCE_TOPIC_DETAIL_QUERY, RESOURCE_TOPIC_RESOURCES_QUERY } from '../../../components/shared/query/resourceTopic'
+import {
+  PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY, RESOURCE_TYPE_SEARCH_QUERY
+} from '../../../components/shared/query/resource'
+import { RESOURCE_TOPIC_DETAIL_QUERY } from '../../../components/shared/query/resourceTopic'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { resourcePagination, resources } from './data/HubCountry.data'
 import { resourceTypes } from './data/HubResourceFinder.data'
-import { countriesWithResources, resourceTopic, resourceTopicResources } from './data/HubTopic.data'
+import { countriesWithResources, resourceTopic } from './data/HubTopic.data'
 
 mockTenantApi()
 mockNextUseRouter()
@@ -33,18 +36,6 @@ describe('Unit tests for the opportunity detail page.', () => {
     countriesWithResources
   )
 
-  const mockResourceTopicResources = generateMockApolloData(
-    RESOURCE_TOPIC_RESOURCES_QUERY,
-    {
-      'slug': 'data-privacy',
-      'search': '',
-      'countries': [],
-      'resourceTypes': []
-    },
-    null,
-    resourceTopicResources
-  )
-
   const mockResourceTypes = generateMockApolloData(
     RESOURCE_TYPE_SEARCH_QUERY,
     {
@@ -54,6 +45,32 @@ describe('Unit tests for the opportunity detail page.', () => {
     resourceTypes
   )
 
+  const mockResources = generateMockApolloData(
+    PAGINATED_RESOURCES_QUERY,
+    {
+      'search': '',
+      'countries': [],
+      'resourceTypes': [],
+      'resourceTopics':['Data Privacy'],
+      'limit': 6,
+      'offset': 0
+    },
+    null,
+    resources
+  )
+
+  const mockResourcePagination = generateMockApolloData(
+    RESOURCE_PAGINATION_ATTRIBUTES_QUERY,
+    {
+      'search': '',
+      'countries': [],
+      'resourceTypes': [],
+      'resourceTopics':['Data Privacy']
+    },
+    null,
+    resourcePagination
+  )
+
   test('Should render detail of a opportunity.', async () => {
     const { container } = render(
       <CustomMockedProvider
@@ -61,13 +78,14 @@ describe('Unit tests for the opportunity detail page.', () => {
           mockResourceTypes,
           mockResourceTopic,
           mockCountriesWithResources,
-          mockResourceTopicResources
+          mockResources,
+          mockResourcePagination
         ]}
       >
         <QueryParamContextProvider>
           <FilterContextProvider>
             <ResourceFilterProvider>
-              <HubTopic slug='data-privacy' />
+              <HubTopic slug='data-privacy' pageNumber={0} onClickHandler={() => {}} />
             </ResourceFilterProvider>
           </FilterContextProvider>
         </QueryParamContextProvider>
@@ -75,7 +93,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     )
 
     expect(await screen.findByText('Data Privacy')).toBeInTheDocument()
-    expect(await screen.findByText('Renegotiating the Faustian Bargain for Data')).toBeInTheDocument()
+    expect(await screen.findByText('Stats SL Open Data Dashboard')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 })

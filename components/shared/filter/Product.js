@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { useApolloClient } from '@apollo/client'
-import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
+import Select from '../form/Select'
 import { PRODUCT_SEARCH_QUERY } from '../query/product'
 
 export const ProductAutocomplete = ({ products, setProducts, placeholder }) => {
@@ -23,9 +23,10 @@ export const ProductAutocomplete = ({ products, setProducts, placeholder }) => {
 
   const fetchCallback = (data) => (
     data?.products.map((product) => ({
+      name: product.name,
+      slug: product.slug,
       label: product.name,
-      value: product.id,
-      slug: product.slug
+      value: product.id
     }))
   )
 

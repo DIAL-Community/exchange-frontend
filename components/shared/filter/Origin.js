@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { useApolloClient } from '@apollo/client'
-import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
+import Select from '../form/Select'
 import { ORIGIN_SEARCH_QUERY } from '../query/origin'
 
 export const OriginAutocomplete = ({ origins, setOrigins, placeholder }) => {
@@ -23,9 +23,10 @@ export const OriginAutocomplete = ({ origins, setOrigins, placeholder }) => {
 
   const fetchCallback = (data) => (
     data?.origins.map((origin) => ({
+      name: origin.name,
+      slug: origin.slug,
       label: origin.name,
-      value: origin.id,
-      slug: origin.slug
+      value: origin.id
     }))
   )
 

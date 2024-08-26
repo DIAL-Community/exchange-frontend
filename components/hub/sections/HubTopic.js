@@ -5,11 +5,9 @@ import { RESOURCE_TOPIC_DETAIL_QUERY } from '../../shared/query/resourceTopic'
 import HubTopicDetail from '../fragments/HubTopicDetail'
 import HubBreadcrumb from './HubBreadcrumb'
 
-const HubTopic = ({ slug }) => {
+const HubTopic = ({ slug, pageNumber, onClickHandler }) => {
   const { loading, error, data } = useQuery(RESOURCE_TOPIC_DETAIL_QUERY, {
-    variables: {
-      slug
-    }
+    variables: { slug }
   })
 
   if (loading) {
@@ -42,11 +40,11 @@ const HubTopic = ({ slug }) => {
           {resourceTopic.name}
         </div>
         <div className='text-lg text-center text-dial-cotton pb-8 mx-auto max-w-prose'>
-          {resourceTopic.resourceTopicDescription && parse(resourceTopic.resourceTopicDescription?.description)}
+          {resourceTopic?.resourceTopicDescription && parse(resourceTopic.resourceTopicDescription?.description)}
         </div>
       </div>
       <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
-        <HubTopicDetail resourceTopic={resourceTopic} />
+        <HubTopicDetail resourceTopic={resourceTopic} pageNumber={pageNumber} onClickHandler={onClickHandler} />
       </div>
     </div>
   )
