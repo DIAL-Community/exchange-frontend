@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
 import HubPagination from './HubPagination'
 
+export const NATIONAL_WEBSITE = 'National Website'
 const DEFAULT_PAGE_SIZE = 6
 
 const WebsiteCard = ({ resource }) => {
@@ -41,7 +42,7 @@ const WebsitePagination = ({ country, pageNumber, onClickHandler, theme='light' 
   const { loading, error, data } = useQuery(RESOURCE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search: '',
-      resourceTypes: ['National Website'],
+      resourceTypes: [NATIONAL_WEBSITE],
       countries: [country.id]
     }
   })
@@ -75,7 +76,7 @@ const WebsiteList = ({ country, pageNumber }) => {
     variables: {
       search: '',
       countries: [country.id],
-      resourceTypes: ['National Website'],
+      resourceTypes: [NATIONAL_WEBSITE],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
     }

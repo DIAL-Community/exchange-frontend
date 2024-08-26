@@ -67,6 +67,60 @@ describe('Unit tests for the opportunity detail page.', () => {
     websiteResourcePagination
   )
 
+  const mockResources = generateMockApolloData(
+    PAGINATED_RESOURCES_QUERY,
+    {
+      'search': '',
+      'countries': ['15'],
+      'resourceTypes': [
+        'Article',
+        'Blog',
+        'Book',
+        'Case Study',
+        'Essay',
+        'Expert Comment',
+        'Explainer',
+        'Guidance',
+        'Playbook',
+        'Report',
+        'Spotlight',
+        'Unspecified Type',
+        'White Paper',
+        'Working Papers'
+      ],
+      'limit': 6,
+      'offset': 0
+    },
+    null,
+    websiteResources
+  )
+
+  const mockResourcePagination = generateMockApolloData(
+    RESOURCE_PAGINATION_ATTRIBUTES_QUERY,
+    {
+      'search': '',
+      'countries': ['15'],
+      'resourceTypes': [
+        'Article',
+        'Blog',
+        'Book',
+        'Case Study',
+        'Essay',
+        'Expert Comment',
+        'Explainer',
+        'Guidance',
+        'Playbook',
+        'Report',
+        'Spotlight',
+        'Unspecified Type',
+        'White Paper',
+        'Working Papers'
+      ]
+    },
+    null,
+    websiteResourcePagination
+  )
+
   const mockCountry = generateMockApolloData(
     DPI_COUNTRY_DETAIL_QUERY,
     {
@@ -104,6 +158,8 @@ describe('Unit tests for the opportunity detail page.', () => {
           mockPolicyResourcePagination,
           mockWebsiteResources,
           mockWebsiteResourcePagination,
+          mockResources,
+          mockResourcePagination,
           mockResourceTypes
         ]}
       >

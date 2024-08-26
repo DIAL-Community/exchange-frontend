@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
 import HubPagination from './HubPagination'
 
+export const GOVERNMENT_DOCUMENT = 'Government Document'
 const DEFAULT_PAGE_SIZE = 6
 
 const PolicyCard = ({ resource }) => {
@@ -38,7 +39,7 @@ const PolicyPagination = ({ country, pageNumber, onClickHandler, theme='light' }
     variables: {
       search: '',
       countries: [country.id],
-      resourceTypes: ['Government Document']
+      resourceTypes: [GOVERNMENT_DOCUMENT]
     }
   })
 
@@ -71,7 +72,7 @@ const PolicyList = ({ country, pageNumber }) => {
     variables: {
       search: '',
       countries: [country.id],
-      resourceTypes: ['Government Document'],
+      resourceTypes: [GOVERNMENT_DOCUMENT],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
     }

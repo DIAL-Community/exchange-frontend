@@ -318,3 +318,53 @@ export const websiteResourcePagination = {
     }
   }
 }
+
+export const resources = {
+  'data': {
+    'paginatedResources': [
+      {
+        'id': '131',
+        'name': 'Stats SL Open Data Dashboard',
+        'slug': 'stats-sl-open-data-dashboard',
+        'imageFile': '/assets/resources/resource-placeholder.svg',
+        'description': '',
+        'parsedDescription': '',
+        'resourceLink': 'www.statistics.sl/index.php/what-we-offer/open-data-free-datasets.html',
+        'linkDescription': null,
+        'resourceType': 'National Website',
+        'resourceTopics': [],
+        'publishedDate': null,
+        'products': [],
+        'authors': [],
+        'tags': [],
+        '__typename': 'Resource'
+      },
+      {
+        'id': '132',
+        'name': 'Sierra Leone Data Portal',
+        'slug': 'sierra-leone-data-portal',
+        'imageFile': '/assets/resources/resource-placeholder.svg',
+        'description': '',
+        'parsedDescription': '',
+        'resourceLink': 'sierraleone.opendataforafrica.org/data/#menu=topic',
+        'linkDescription': null,
+        'resourceType': 'National Website',
+        'resourceTopics': [],
+        'publishedDate': null,
+        'products': [],
+        'authors': [],
+        'tags': [],
+        '__typename': 'Resource'
+      }
+    ]
+  }
+}
+
+export const resourcePagination = {
+  'data': {
+    'paginationAttributeResource': {
+      'totalCount': 2,
+      '__typename': 'PaginationAttributes'
+    }
+  }
+}
