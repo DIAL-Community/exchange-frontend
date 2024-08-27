@@ -51,6 +51,7 @@ const candidatePathMappings = {
   'datasets': 'ui.candidateDataset.header',
   'organizations': 'ui.candidateOrganization.header',
   'products': 'ui.candidateProduct.header',
+  'resources': 'ui.candidateResource.header',
   'roles': 'ui.candidateRole.header'
 }
 

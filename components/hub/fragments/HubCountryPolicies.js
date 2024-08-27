@@ -11,10 +11,12 @@ const DEFAULT_PAGE_SIZE = 6
 
 const PolicyCard = ({ resource }) => {
   const displayLargeCard = () =>
-    <div className='rounded-lg min-h-[10rem]'>
+    <div className='rounded-lg min-h-[10rem] group'>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-lg font-medium'>
-          {resource.name}
+        <div className='text-lg font-medium flex'>
+          <span className='border-b border-transparent group-hover:border-dial-cotton'>
+            {resource.name}
+          </span>
         </div>
         <div className='line-clamp-4 text-justify'>
           {resource.parsedDescription && parse(resource.parsedDescription)}

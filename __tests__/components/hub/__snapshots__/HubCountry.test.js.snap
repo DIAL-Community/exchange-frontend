@@ -109,15 +109,19 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                   href="/hub/resources/sierra-leone-national-data-strategy-2023"
                 >
                   <div
-                    class="rounded-lg min-h-[10rem]"
+                    class="rounded-lg min-h-[10rem] group"
                   >
                     <div
                       class="flex flex-col gap-y-3"
                     >
                       <div
-                        class="text-lg font-medium"
+                        class="text-lg font-medium flex"
                       >
-                        Sierra Leone National Data Strategy (2023)
+                        <span
+                          class="border-b border-transparent group-hover:border-dial-cotton"
+                        >
+                          Sierra Leone National Data Strategy (2023)
+                        </span>
                       </div>
                       <div
                         class="line-clamp-4 text-justify"
@@ -142,15 +146,19 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                   href="/hub/resources/sierra-leone-national-cyber-security-strategy-2021-2025"
                 >
                   <div
-                    class="rounded-lg min-h-[10rem]"
+                    class="rounded-lg min-h-[10rem] group"
                   >
                     <div
                       class="flex flex-col gap-y-3"
                     >
                       <div
-                        class="text-lg font-medium"
+                        class="text-lg font-medium flex"
                       >
-                        Sierra Leone National Cyber Security Strategy (2021-2025)
+                        <span
+                          class="border-b border-transparent group-hover:border-dial-cotton"
+                        >
+                          Sierra Leone National Cyber Security Strategy (2021-2025)
+                        </span>
                       </div>
                       <div
                         class="line-clamp-4 text-justify"
@@ -175,15 +183,19 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                   href="/hub/resources/sierra-leone-national-cyber-security-policy-2021"
                 >
                   <div
-                    class="rounded-lg min-h-[10rem]"
+                    class="rounded-lg min-h-[10rem] group"
                   >
                     <div
                       class="flex flex-col gap-y-3"
                     >
                       <div
-                        class="text-lg font-medium"
+                        class="text-lg font-medium flex"
                       >
-                        Sierra Leone National Cyber Security Policy (2021)
+                        <span
+                          class="border-b border-transparent group-hover:border-dial-cotton"
+                        >
+                          Sierra Leone National Cyber Security Policy (2021)
+                        </span>
                       </div>
                       <div
                         class="line-clamp-4 text-justify"
@@ -208,15 +220,19 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                   href="/hub/resources/sierra-leone-national-innovation--digital-strategy"
                 >
                   <div
-                    class="rounded-lg min-h-[10rem]"
+                    class="rounded-lg min-h-[10rem] group"
                   >
                     <div
                       class="flex flex-col gap-y-3"
                     >
                       <div
-                        class="text-lg font-medium"
+                        class="text-lg font-medium flex"
                       >
-                        Sierra Leone National Innovation & Digital Strategy
+                        <span
+                          class="border-b border-transparent group-hover:border-dial-cotton"
+                        >
+                          Sierra Leone National Innovation & Digital Strategy
+                        </span>
                       </div>
                       <div
                         class="line-clamp-4 text-justify"
@@ -316,90 +332,93 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               class="border bg-dial-yellow rounded-md min-h-[2rem]"
             >
               <div
-                class="p-3 flex flex-col gap-y-1"
+                class="flex flex-col"
               >
-                <div
-                  class="text-lg font-medium"
+                <a
+                  class="p-3 text-lg font-medium flex group"
+                  href="/hub/resources/stats-sl-open-data-dashboard"
                 >
-                  <a
-                    href="/hub/resources/stats-sl-open-data-dashboard"
+                  <div
+                    class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
                   >
                     Stats SL Open Data Dashboard
-                  </a>
-                </div>
-                <div
-                  class="line-clamp-4 text-justify text-sm"
+                  </div>
+                </a>
+                <a
+                  class="px-3 pb-3 text-justify text-sm flex group"
+                  href="//www.statistics.sl/index.php/what-we-offer/open-data-free-datasets.html"
+                  rel="noreferrer"
+                  target="_blank"
                 >
-                  <a
-                    class="line-clamp-1"
-                    href="//www.statistics.sl/index.php/what-we-offer/open-data-free-datasets.html"
-                    rel="noreferrer"
-                    target="_blank"
+                  <div
+                    class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
                   >
                     www.statistics.sl/index.php/what-we-offer/open-data-free-datasets.html
                      ⧉
-                  </a>
-                </div>
+                  </div>
+                </a>
               </div>
             </div>
             <div
               class="border bg-dial-yellow rounded-md min-h-[2rem]"
             >
               <div
-                class="p-3 flex flex-col gap-y-1"
+                class="flex flex-col"
               >
-                <div
-                  class="text-lg font-medium"
+                <a
+                  class="p-3 text-lg font-medium flex group"
+                  href="/hub/resources/sierra-leone-data-portal"
                 >
-                  <a
-                    href="/hub/resources/sierra-leone-data-portal"
+                  <div
+                    class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
                   >
                     Sierra Leone Data Portal
-                  </a>
-                </div>
-                <div
-                  class="line-clamp-4 text-justify text-sm"
+                  </div>
+                </a>
+                <a
+                  class="px-3 pb-3 text-justify text-sm flex group"
+                  href="//sierraleone.opendataforafrica.org/data/#menu=topic"
+                  rel="noreferrer"
+                  target="_blank"
                 >
-                  <a
-                    class="line-clamp-1"
-                    href="//sierraleone.opendataforafrica.org/data/#menu=topic"
-                    rel="noreferrer"
-                    target="_blank"
+                  <div
+                    class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
                   >
                     sierraleone.opendataforafrica.org/data/#menu=topic
                      ⧉
-                  </a>
-                </div>
+                  </div>
+                </a>
               </div>
             </div>
             <div
               class="border bg-dial-yellow rounded-md min-h-[2rem]"
             >
               <div
-                class="p-3 flex flex-col gap-y-1"
+                class="flex flex-col"
               >
-                <div
-                  class="text-lg font-medium"
+                <a
+                  class="p-3 text-lg font-medium flex group"
+                  href="/hub/resources/sirerra-leone-citizens-portal"
                 >
-                  <a
-                    href="/hub/resources/sirerra-leone-citizens-portal"
+                  <div
+                    class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
                   >
                     Sirerra Leone Citizen's Portal
-                  </a>
-                </div>
-                <div
-                  class="line-clamp-4 text-justify text-sm"
+                  </div>
+                </a>
+                <a
+                  class="px-3 pb-3 text-justify text-sm flex group"
+                  href="//portal.moppa.gov.sl"
+                  rel="noreferrer"
+                  target="_blank"
                 >
-                  <a
-                    class="line-clamp-1"
-                    href="//portal.moppa.gov.sl"
-                    rel="noreferrer"
-                    target="_blank"
+                  <div
+                    class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
                   >
                     portal.moppa.gov.sl
                      ⧉
-                  </a>
-                </div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>

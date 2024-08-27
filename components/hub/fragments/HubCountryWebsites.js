@@ -11,22 +11,25 @@ const DEFAULT_PAGE_SIZE = 6
 const WebsiteCard = ({ resource }) => {
   const displayLargeCard = () =>
     <div className='border bg-dial-yellow rounded-md min-h-[2rem]'>
-      <div className='p-3 flex flex-col gap-y-1'>
-        <div className='text-lg font-medium'>
-          <Link href={`/hub/resources/${resource.slug}`}>
+      <div className='flex flex-col'>
+        <Link
+          href={`/hub/resources/${resource.slug}`}
+          className='p-3 text-lg font-medium flex group'
+        >
+          <div className='line-clamp-1 border-b border-transparent group-hover:border-dial-stratos'>
             {resource.name}
-          </Link>
-        </div>
-        <div className='line-clamp-4 text-justify text-sm'>
-          <a
-            target='_blank'
-            rel='noreferrer'
-            href={`//${resource.resourceLink}`}
-            className='line-clamp-1'
-          >
+          </div>
+        </Link>
+        <a
+          target='_blank'
+          rel='noreferrer'
+          href={`//${resource.resourceLink}`}
+          className='px-3 pb-3 text-justify text-sm flex group'
+        >
+          <div className='line-clamp-1 border-b border-transparent group-hover:border-dial-stratos'>
             {resource.resourceLink}&nbsp;⧉
-          </a>
-        </div>
+          </div>
+        </a>
       </div>
     </div>
 
