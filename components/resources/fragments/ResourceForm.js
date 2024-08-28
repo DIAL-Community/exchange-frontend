@@ -364,7 +364,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const router = useRouter()
   const { locale, asPath } = router
 
-  const [resourceType, setResourceType] = useState({ value: resource.resourceType, label:  resource.resourceType })
+  const [resourceType, setResourceType] = useState({ value: resource?.resourceType, label:  resource?.resourceType })
   const fetchedResourceTypesCallback = (data) => (
     data.resourceTypes?.map((resourceType) => ({
       value: resourceType.name,

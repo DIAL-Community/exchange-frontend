@@ -8,6 +8,7 @@ import HubCountryPolicies from './HubCountryPolicies'
 import HubCountryProducts from './HubCountryProducts'
 import HubCountryResources from './HubCountryResources'
 import HubCountryWebsites from './HubCountryWebsites'
+import HubCountryCandidateResources from './HubCountryCandidateResources'
 
 const HubCountryDetail = ({ country }) => {
   const [editing, setEditing] = useState(false)
@@ -49,6 +50,7 @@ const HubCountryDetail = ({ country }) => {
       <HubCountryWebsites country={country} />
       <HubCountryProducts country={country} />
       <HubCountryResources country={country} />
+      <HubCountryCandidateResources country={country} />
     </div>
   )
 }

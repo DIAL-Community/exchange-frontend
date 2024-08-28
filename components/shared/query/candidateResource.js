@@ -1,8 +1,16 @@
 import { gql } from '@apollo/client'
 
 export const CANDIDATE_RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeCandidateResource($search: String) {
-    paginationAttributeCandidateResource(search: $search) {
+  query PaginationAttributeCandidateResource(
+    $search: String
+    $countries: [String!] 
+    $inReviewOnly: Boolean
+  ) {
+    paginationAttributeCandidateResource(
+      search: $search,
+      countries: $countries
+      inReviewOnly: $inReviewOnly
+    ) {
       totalCount
     }
   }
@@ -11,17 +19,22 @@ export const CANDIDATE_RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
 export const PAGINATED_CANDIDATE_RESOURCES_QUERY = gql`
   query PaginatedCandidateResources(
     $search: String
+    $countries: [String!]
+    $inReviewOnly: Boolean
     $limit: Int!
     $offset: Int!
   ) {
     paginatedCandidateResources(
       search: $search
+      countries: $countries
+      inReviewOnly: $inReviewOnly
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
       name
       slug
       description
+      parsedDescription
       publishedDate
       submitterEmail
       createdAt
@@ -37,6 +50,8 @@ export const CANDIDATE_RESOURCE_DETAIL_QUERY = gql`
       name
       slug
       description
+      parsedDescription
+
       resourceType
       resourceLink
       linkDescription

@@ -97,16 +97,21 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
               <div className='font-semibold text-red-700'>
                 {format('ui.candidate.rejectedBy')}
               </div>
-              <div className='my-auto text-sm flex'>
-                <a
-                  className='border-b border-dial-iris-blue'
-                  href={`mailto:${candidateResource.rejectedBy}`}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {candidateResource.rejectedBy}
-                </a>
-              </div>
+              {candidateResource.rejectedBy
+                ? <div className='my-auto text-sm flex'>
+                  <a
+                    className='border-b border-dial-iris-blue'
+                    href={`mailto:${candidateResource.rejectedBy}`}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    {candidateResource.rejectedBy}
+                  </a>
+                </div>
+                : <div className='my-auto text-sm flex'>
+                  {format('general.hidden')}
+                </div>
+              }
               <div className='text-xs italic'>
                 <span className='pr-[2px]'>{format('ui.candidate.rejectedOn')}:</span>
                 <FormattedDate value={candidateResource.rejectedDate} />
@@ -121,16 +126,21 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
               <div className='font-semibold text-green-700'>
                 {format('ui.candidate.approvedBy')}
               </div>
-              <div className='my-auto text-sm flex'>
-                <a
-                  className='border-b border-dial-iris-blue'
-                  href={`mailto:${candidateResource.approvedBy}`}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {candidateResource.approvedBy}
-                </a>
-              </div>
+              {candidateResource.approvedBy
+                ? <div className='my-auto text-sm flex'>
+                  <a
+                    className='border-b border-dial-iris-blue'
+                    href={`mailto:${candidateResource.approvedBy}`}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    {candidateResource.approvedBy}
+                  </a>
+                </div>
+                : <div className='my-auto text-sm flex'>
+                  {format('general.hidden')}
+                </div>
+              }
               <div className='text-xs italic'>
                 <span className='pr-[2px]'>{format('ui.candidate.approvedOn')}:</span>
                 <FormattedDate value={candidateResource.approvedDate} />

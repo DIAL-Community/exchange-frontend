@@ -112,7 +112,7 @@ const HubCountryResources = ({ country }) => {
     <div className='resource-section'>
       <div className='px-4 lg:px-8 xl:px-56 flex flex-col'>
         <div className='text-xl font-medium py-6'>
-          {format('hub.topic.reports')}
+          {format('hub.country.resources')}
         </div>
         <ResourceList
           country={country}

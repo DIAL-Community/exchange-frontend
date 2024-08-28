@@ -2574,10 +2574,13 @@ export const en = {
   `,
   'hub.landing.browseTopics': 'Browse <break></break> Topics',
   'hub.landing.featuredCountries': 'Featured <break></break> Countries',
+  
+  'hub.topic.reports': 'Reports and Articles',
   'hub.topic.subtitle': `
     Topics showcases a series of knowledge products published by DIAL and its partners
     on key issues surrounding digital public infrastructure.
   `,
+  
   'hub.country.subtitle': `
     Dive into an in-depth look at the digital setup in different countries. Country profiles provide
     detailed info on digital initiatives, laws, and key players. Whether you're a policymaker, researcher,
@@ -2585,7 +2588,9 @@ export const en = {
   `,
   'hub.country.websites': 'Key Government Websites',
   'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
-  'hub.topic.reports': 'Reports and Articles',
+  'hub.country.resources': 'Resources, Reports, and Articles',
+  'hub.country.candidateResources': 'Suggested Resources, Reports, and Articles',
+  
   'hub.resourceFinder.title': 'Resource Finder',
   'hub.resourceFinder.subtitle': `Quickly search and filter through our library to
     find resources relevant to a specific topic, country, or project.
