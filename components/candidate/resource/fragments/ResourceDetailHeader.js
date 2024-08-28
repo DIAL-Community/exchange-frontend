@@ -36,6 +36,22 @@ const ResourceDetailHeader = ({ candidateResource }) => {
             &nbsp;⧉
           </div>
         </div>
+        <div className='flex flex-col gap-y-3'>
+          <div className='font-semibold text-dial-meadow'>
+            {format('ui.country.header')}
+          </div>
+          {candidateResource.countries.length
+            ? <div className='text-dial-stratos'>
+              {candidateResource.countries?.map(country => country.name).join(', ')}
+            </div>
+            : <div className='text-sm text-dial-stratos'>
+              {format( 'ui.common.detail.noData', {
+                entity: format('ui.country.label'),
+                base: format('ui.resource.label')
+              })}
+            </div>
+          }
+        </div>
       </div>
     </div>
   )

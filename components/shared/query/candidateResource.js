@@ -22,6 +22,7 @@ export const PAGINATED_CANDIDATE_RESOURCES_QUERY = gql`
       name
       slug
       description
+      publishedDate
       submitterEmail
       createdAt
       rejected
@@ -39,8 +40,14 @@ export const CANDIDATE_RESOURCE_DETAIL_QUERY = gql`
       resourceType
       resourceLink
       linkDescription
+      publishedDate
       submitterEmail
       createdAt
+
+      countries {
+        id
+        name
+      }
 
       rejected
       rejectedDate

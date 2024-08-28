@@ -18,10 +18,14 @@ const ResourceCard = ({ displayType, index, candidateResource, dismissHandler })
 
   const bgColor = `${candidateResource.rejected}`.toLowerCase() === 'true'
     ? 'bg-red-700'
-    : 'bg-green-700'
+    : `${candidateResource.rejected}`.toLowerCase() === 'false'
+      ? 'bg-green-700'
+      : 'bg-dial-iris-blue'
   const candidateStatus = `${candidateResource.rejected}`.toLowerCase() === 'true'
     ? format('candidate.rejected')
-    : format('candidate.approved')
+    : `${candidateResource.rejected}`.toLowerCase() === 'false'
+      ? format('candidate.approved')
+      : format('candidate.inReview')
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
@@ -33,11 +37,9 @@ const ResourceCard = ({ displayType, index, candidateResource, dismissHandler })
             className='object-contain w-16 h-16'
           />
         </div>
-        {candidateResource.rejected !== null &&
-          <div className={`absolute top-2 right-2 ${bgColor} rounded`}>
-            <div className='text-white text-xs px-2 py-1'>{candidateStatus}</div>
-          </div>
-        }
+        <div className={`absolute top-2 right-2 ${bgColor} rounded`}>
+          <div className='text-white text-xs px-2 py-1'>{candidateStatus}</div>
+        </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-meadow line-clamp-1'>
             {candidateResource.name}

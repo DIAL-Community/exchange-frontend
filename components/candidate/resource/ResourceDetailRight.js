@@ -28,6 +28,17 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
+            <div className='my-auto'>
+              {candidateResource.publishedDate &&
+                <FormattedDate
+                  value={candidateResource.publishedDate}
+                  year="numeric"
+                  month="long"
+                  day="2-digit"
+                  timeZone='UTC'
+                />
+              }
+            </div>
             <ResourceActionButton candidateResource={candidateResource} actionType={CandidateActionType.REJECT} />
             <ResourceActionButton candidateResource={candidateResource} actionType={CandidateActionType.APPROVE} />
             <EditButton type='link' href={editPath} />

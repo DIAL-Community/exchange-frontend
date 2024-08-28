@@ -9,6 +9,7 @@ export const CREATE_CANDIDATE_RESOURCE = gql`
     $resourceType: String!
     $resourceLink: String!
     $linkDescription: String!
+    $publishedDate: ISO8601Date!
     $submitterEmail: String!
     $captcha: String!
   ) {
@@ -20,6 +21,7 @@ export const CREATE_CANDIDATE_RESOURCE = gql`
       resourceType: $resourceType
       resourceLink: $resourceLink
       linkDescription: $linkDescription
+      publishedDate: $publishedDate
       submitterEmail: $submitterEmail
       captcha: $captcha
     ) {
@@ -31,6 +33,7 @@ export const CREATE_CANDIDATE_RESOURCE = gql`
         resourceType
         resourceLink
         linkDescription
+        publishedDate
         submitterEmail
         createdAt
         rejected

@@ -20,6 +20,8 @@ import {
 import { RESOURCE_TYPE_SEARCH_QUERY } from '../../../shared/query/resource'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
+import Pill from '../../../shared/form/Pill'
+import { COUNTRY_SEARCH_QUERY } from '../../../shared/query/country'
 
 const ResourceForm = React.memo(({ candidateResource }) => {
   const { formatMessage } = useIntl()
@@ -96,6 +98,7 @@ const ResourceForm = React.memo(({ candidateResource }) => {
     shouldUnregister: true,
     defaultValues: {
       name: candidateResource?.name ?? '',
+      publishedDate: candidateResource?.publishedDate,
       resourceLink: candidateResource?.resourceLink ?? '',
       linkDescription: candidateResource?.linkDescription ?? '',
       submitterEmail: candidateResource?.submitterEmail ?? '',
@@ -114,6 +117,7 @@ const ResourceForm = React.memo(({ candidateResource }) => {
         description,
         resourceLink,
         linkDescription,
+        publishedDate,
         submitterEmail
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
@@ -124,8 +128,9 @@ const ResourceForm = React.memo(({ candidateResource }) => {
         resourceLink,
         linkDescription,
         resourceType: resourceType?.value,
+        countrySlugs: countries.map((country) => country.slug),
+        publishedDate,
         submitterEmail,
-        countrySlugs: [],
         captcha: captchaValue
       }
 
@@ -152,6 +157,29 @@ const ResourceForm = React.memo(({ candidateResource }) => {
     }
   }
 
+  const fetchedResourceTopicsCallback = (data) => (
+    data.countries?.map((country) => ({
+      id: country.id,
+      name: country.name,
+      slug: country.slug,
+      label: country.name
+    }))
+  )
+
+  const [countries, setCountries] = useState(() => (candidateResource?.countries ?? []))
+  const removeCountry = (country) => {
+    setCountries((countries) => countries.filter(({ slug }) => country.slug !== slug))
+  }
+
+  const addCountry = (country) => {
+    setCountries((countries) => ([
+      ...[
+        ...countries.filter(({ id }) => id !== country.id),
+        { id: country.id, name: country.name, slug: country.slug  }
+      ]
+    ]))
+  }
+
   return loadingUserSession
     ? <Loading />
     : user
@@ -176,8 +204,21 @@ const ResourceForm = React.memo(({ candidateResource }) => {
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
             <div className='flex flex-col gap-y-2'>
+              <label className='required-field'>
+                {format('ui.candidateResource.publishedDate')}
+              </label>
+              <Input
+                {...register('publishedDate', { required: format('validation.required') })}
+                type='date'
+                placeholder={format('ui.candidateResource.publishedDate.placeholder')}
+                isInvalid={errors.publishedDate}
+                defaultValue={new Date().toISOString().substring(0, 10)}
+              />
+              {errors.publishedDate && <ValidationError value={errors.publishedDate?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='resourceLink'>
-                {format('ui.candidateResource.resourceLink.hint')}
+                {format('ui.candidateResource.resourceLink')}
               </label>
               <Controller
                 name='resourceLink'
@@ -188,7 +229,7 @@ const ResourceForm = React.memo(({ candidateResource }) => {
                     onChange={onChange}
                     id='resourceLink'
                     isInvalid={errors.resourceLink}
-                    placeholder={format('ui.candidateResource.resourceLink')}
+                    placeholder={format('ui.candidateResource.resourceLink.placeholder')}
                   />
                 )}
                 rules={{ required: format('validation.required') }}
@@ -202,7 +243,7 @@ const ResourceForm = React.memo(({ candidateResource }) => {
               <Input
                 {...register('linkDescription', { required: format('validation.required') })}
                 id='linkDescription'
-                placeholder={format('ui.candidateResource.linkDescription')}
+                placeholder={format('ui.candidateResource.linkDescription.placeholder')}
                 isInvalid={errors.name}
               />
               {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
@@ -217,7 +258,7 @@ const ResourceForm = React.memo(({ candidateResource }) => {
                 isBorderless
                 defaultOptions
                 cacheOptions
-                placeholder={format('ui.candidateResource.resourceType')}
+                placeholder={format('ui.candidateResource.resourceType.placeholder')}
                 loadOptions={(input) =>
                   fetchSelectOptions(client, input, RESOURCE_TYPE_SEARCH_QUERY, fetchedResourceTypesCallback)
                 }
@@ -238,7 +279,7 @@ const ResourceForm = React.memo(({ candidateResource }) => {
                     editorId='description-editor'
                     onChange={onChange}
                     initialContent={value}
-                    placeholder={format('ui.candidateResource.description')}
+                    placeholder={format('ui.candidateResource.description.placeholder')}
                     isInvalid={errors.description}
                   />
                 )}
@@ -247,13 +288,41 @@ const ResourceForm = React.memo(({ candidateResource }) => {
               {errors.description && <ValidationError value={errors.description?.message} />}
             </div>
             <div className='flex flex-col gap-y-2'>
+              <label className='flex flex-col gap-y-2'>
+                {format('ui.country.header')}
+                <Select
+                  async
+                  isSearch
+                  isBorderless
+                  defaultOptions
+                  cacheOptions
+                  placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+                  loadOptions={(input) =>
+                    fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedResourceTopicsCallback)
+                  }
+                  noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.country.label') })}
+                  onChange={addCountry}
+                  value={null}
+                />
+              </label>
+              <div className='flex flex-wrap gap-3'>
+                {countries.map((country, countryIdx) => (
+                  <Pill
+                    key={`resource-topic-${countryIdx}`}
+                    label={country.name}
+                    onRemove={() => removeCountry(country)}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='flex flex-col gap-y-2'>
               <label className='required-field' htmlFor='submitterEmail'>
-                {format('ui.candidateResource.submitter.hint')}
+                {format('ui.candidateResource.submitter')}
               </label>
               <Input
                 {...register('submitterEmail', { required: format('validation.required') })}
                 id='submitterEmail'
-                placeholder={format('ui.candidateResource.submitter.hint')}
+                placeholder={format('ui.candidateResource.submitter.placeholder')}
                 isInvalid={errors.submitterEmail}
               />
               {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
