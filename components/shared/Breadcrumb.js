@@ -21,7 +21,6 @@ const basePathMappings = {
   'countries': 'ui.country.header',
   'regions': 'ui.region.header',
   'datasets': 'ui.dataset.header',
-  'dpi-topics': 'dpi-resources',
   'moves': 'ui.move.header',
   'opportunities': 'ui.opportunity.header',
   'organizations': 'ui.organization.header',
@@ -82,11 +81,20 @@ const Breadcrumb = ({ slugNameMapping }) => {
           return {}
         }
 
-        const label = !candidatePath && basePathMappings[path]
-          ? format(basePathMappings[path])
-          : candidatePath && candidatePathMappings[path]
-            ? format(candidatePathMappings[path])
-            : slugNameMapping[path]
+        /*
+          Path labeling resolution ordering:
+            - Override from slugNameMapping
+            - Override from basePathMappings
+            - Override from candidatePathMappings
+            - Fallback to slugNameMapping
+        */
+        const label = slugNameMapping && slugNameMapping[path]
+          ? format(slugNameMapping[path])
+          : !candidatePath && basePathMappings[path]
+            ? format(basePathMappings[path])
+            : candidatePath && candidatePathMappings[path]
+              ? format(candidatePathMappings[path])
+              : slugNameMapping[path]
 
         return {
           breadcrumb: label,

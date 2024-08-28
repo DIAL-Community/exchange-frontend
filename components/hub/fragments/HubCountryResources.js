@@ -1,16 +1,59 @@
 import { useCallback, useState } from 'react'
+import parse from 'html-react-parser'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import ResourceCard from '../../resources/fragments/ResourceCard'
 import {
   PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY, RESOURCE_TYPE_SEARCH_QUERY
 } from '../../shared/query/resource'
-import { DisplayType } from '../../utils/constants'
 import { GOVERNMENT_DOCUMENT } from './HubCountryPolicies'
 import { NATIONAL_WEBSITE } from './HubCountryWebsites'
 import HubPagination from './HubPagination'
 
 const DEFAULT_PAGE_SIZE = 6
+
+const ResourceCard = ({ resource, country }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const displayHubCard = () =>
+    <div className='rounded-lg min-h-[6rem]'>
+      <div className='min-w-80 pb-4 mx-auto flex flex-col gap-3'>
+        <div className='w-full flex justify-center items-center'>
+          {resource.imageFile.indexOf('placeholder.svg') >= 0 &&
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+              className='aspect-auto h-[267px]'
+            />
+          }
+          {resource.imageFile.indexOf('placeholder.svg') < 0 &&
+            <div className='w-full h-full border border-dashed border-slate-300 flex justify-center items-center'>
+              <img
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+                className='h-24 m-auto'
+              />
+            </div>
+          }
+        </div>
+        <div className='text-lg font-semibold text-dial-stratos'>
+          {resource.name}
+        </div>
+        <div className='line-clamp-4 text-dial-stratos text-sm'>
+          {resource?.parsedDescription && parse(resource?.parsedDescription)}
+        </div>
+      </div>
+    </div>
+
+  return (
+    <div className='relative'>
+      <Link href={`/hub/countries/${country.slug}/resources/${resource.slug}`}>
+        {displayHubCard()}
+      </Link>
+    </div>
+  )
+}
 
 const ResourcePagination = ({ country, pageNumber, resourceTypes, onClickHandler, theme='light' }) => {
   const { formatMessage } = useIntl()
@@ -72,7 +115,7 @@ const ResourceList = ({ country, pageNumber, resourceTypes }) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
       {resources.map((resource, index) =>
-        <ResourceCard key={index} resource={resource} displayType={DisplayType.HUB_CARD} />
+        <ResourceCard key={index} resource={resource} country={country} />
       )}
     </div>
   )

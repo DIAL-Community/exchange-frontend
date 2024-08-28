@@ -106,7 +106,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
                 class="relative"
               >
                 <a
-                  href="/hub/resources/sierra-leone-national-data-strategy-2023"
+                  href="/hub/countries/zm/resources/sierra-leone-national-data-strategy-2023"
                 >
                   <div
                     class="rounded-lg min-h-[10rem] group"
@@ -143,7 +143,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
                 class="relative"
               >
                 <a
-                  href="/hub/resources/sierra-leone-national-cyber-security-strategy-2021-2025"
+                  href="/hub/countries/zm/resources/sierra-leone-national-cyber-security-strategy-2021-2025"
                 >
                   <div
                     class="rounded-lg min-h-[10rem] group"
@@ -180,7 +180,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
                 class="relative"
               >
                 <a
-                  href="/hub/resources/sierra-leone-national-cyber-security-policy-2021"
+                  href="/hub/countries/zm/resources/sierra-leone-national-cyber-security-policy-2021"
                 >
                   <div
                     class="rounded-lg min-h-[10rem] group"
@@ -217,7 +217,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
                 class="relative"
               >
                 <a
-                  href="/hub/resources/sierra-leone-national-innovation--digital-strategy"
+                  href="/hub/countries/zm/resources/sierra-leone-national-innovation--digital-strategy"
                 >
                   <div
                     class="rounded-lg min-h-[10rem] group"
@@ -336,7 +336,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
               >
                 <a
                   class="p-3 text-lg font-medium flex group"
-                  href="/hub/resources/stats-sl-open-data-dashboard"
+                  href="/hub/countries/zm/resources/stats-sl-open-data-dashboard"
                 >
                   <div
                     class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
@@ -367,7 +367,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
               >
                 <a
                   class="p-3 text-lg font-medium flex group"
-                  href="/hub/resources/sierra-leone-data-portal-website"
+                  href="/hub/countries/zm/resources/sierra-leone-data-portal-website"
                 >
                   <div
                     class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
@@ -398,7 +398,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
               >
                 <a
                   class="p-3 text-lg font-medium flex group"
-                  href="/hub/resources/sierra-leone-citizen-portal"
+                  href="/hub/countries/zm/resources/sierra-leone-citizen-portal"
                 >
                   <div
                     class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
@@ -649,10 +649,10 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         </div>
       </div>
       <div
-        class="candidate-resource-section bg-dial-sapphire"
+        class="candidate-resource-section bg-dial-lavender"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 flex flex-col text-dial-cotton"
+          class="px-4 lg:px-8 xl:px-56 flex flex-col text-dial-stratos"
         >
           <div
             class="flex flex-col md:flex-row gap-3"
@@ -666,11 +666,11 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
               class="ml-auto text-sm flex justify-center items-center"
             >
               <a
-                class="cursor-pointer bg-white px-4 py-2 rounded text-dial-stratos"
+                class="cursor-pointer bg-dial-sapphire px-4 py-2 rounded "
                 href="/hub/resources/suggest"
               >
                 <div
-                  class="flex flex-row gap-1"
+                  class="flex flex-row gap-1 text-dial-cotton"
                 >
                   <svg
                     class="inline my-auto"
@@ -729,16 +729,16 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
                       class="text-lg font-medium flex"
                     >
                       <span
-                        class="border-b border-transparent group-hover:border-dial-cotton"
+                        class="border-b border-transparent group-hover:border-dial-stratos"
                       >
                         Test Adding More Candidate Resource
                       </span>
                     </div>
                     <div
-                      class="absolute top-2 right-2 bg-dial-cotton rounded"
+                      class="absolute top-2 right-2 bg-dial-sapphire rounded"
                     >
                       <div
-                        class="text-dial-stratos text-xs px-2 py-1"
+                        class="text-dial-cotton text-xs px-2 py-1"
                       >
                         In Review
                       </div>
@@ -754,7 +754,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
             </div>
           </div>
           <div
-            class="flex flex-col gap-y-4 my-6 text-dial-slate-300"
+            class="flex flex-col gap-y-4 my-6 false"
           >
             <hr
               class="border-b border-dial-slate-300"
@@ -787,7 +787,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
                   </a>
                 </li>
                 <li
-                  class="text-dial-cotton font-semibold"
+                  class="false font-semibold"
                 >
                   <a
                     aria-current="page"

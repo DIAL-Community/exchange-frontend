@@ -2,20 +2,21 @@ import { useCallback, useEffect } from 'react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import HubFooter from '../../../components/hub/sections/HubFooter'
-import HubHeader from '../../../components/hub/sections/HubHeader'
-import { Loading } from '../../../components/shared/FetchStatus'
-import ClientOnly from '../../../lib/ClientOnly'
+import HubFooter from '../../../../../components/hub/sections/HubFooter'
+import HubHeader from '../../../../../components/hub/sections/HubHeader'
+import { Loading } from '../../../../../components/shared/FetchStatus'
+import ClientOnly from '../../../../../lib/ClientOnly'
 
 const HubResourcesPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
+  const { query: { slug } } = router
 
   useEffect(() => {
-    router.push('/hub/resource-finder')
-  }, [router])
+    router.push(`/hub/countries/${slug}`)
+  }, [router, slug])
 
   return (
     <>

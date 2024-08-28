@@ -9,7 +9,7 @@ import HubPagination from './HubPagination'
 export const GOVERNMENT_DOCUMENT = 'Government Document'
 const DEFAULT_PAGE_SIZE = 6
 
-const PolicyCard = ({ resource }) => {
+const PolicyCard = ({ resource, country }) => {
   const displayLargeCard = () =>
     <div className='rounded-lg min-h-[10rem] group'>
       <div className='flex flex-col gap-y-3'>
@@ -26,7 +26,7 @@ const PolicyCard = ({ resource }) => {
 
   return (
     <div className='relative'>
-      <Link href={`/hub/resources/${resource.slug}`}>
+      <Link href={`/hub/countries/${country.slug}/resources/${resource.slug}`}>
         {displayLargeCard()}
       </Link>
     </div>
@@ -95,7 +95,7 @@ const PolicyList = ({ country, pageNumber }) => {
       {resources.map((resource, index) =>
         <div className='flex flex-col gap-y-4' key={index}>
           <hr className='border-b border-gray-300 border-dashed' />
-          <PolicyCard key={index} resource={resource} />
+          <PolicyCard key={index} resource={resource} country={country} />
         </div>
       )}
     </div>

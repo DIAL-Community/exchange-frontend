@@ -8,12 +8,12 @@ import HubPagination from './HubPagination'
 export const NATIONAL_WEBSITE = 'National Website'
 const DEFAULT_PAGE_SIZE = 6
 
-const WebsiteCard = ({ resource }) => {
+const WebsiteCard = ({ resource, country }) => {
   const displayLargeCard = () =>
     <div className='border bg-dial-yellow rounded-md min-h-[2rem]'>
       <div className='flex flex-col'>
         <Link
-          href={`/hub/resources/${resource.slug}`}
+          href={`/hub/countries/${country.slug}/resources/${resource.slug}`}
           className='p-3 text-lg font-medium flex group'
         >
           <div className='line-clamp-1 border-b border-transparent group-hover:border-dial-stratos'>
@@ -98,7 +98,7 @@ const WebsiteList = ({ country, pageNumber }) => {
   return (
     <div className='grid md:grid-cols-2 gap-4'>
       {resources.map((resource, index) =>
-        <WebsiteCard key={index} resource={resource} />
+        <WebsiteCard key={index} resource={resource} country={country} />
       )}
     </div>
   )

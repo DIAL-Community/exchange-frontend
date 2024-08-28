@@ -245,7 +245,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
               </a>
             </div>
             <a
-              href="/dpi-resources/stats-sl-open-data-dashboard"
+              href="/hub/resourcesstats-sl-open-data-dashboard"
             >
               <div
                 class="text-lg font-semibold text-dial-stratos"
@@ -254,7 +254,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
               </div>
             </a>
             <a
-              href="/dpi-resources/stats-sl-open-data-dashboard"
+              href="/hub/resourcesstats-sl-open-data-dashboard"
             >
               <div
                 class="line-clamp-4 text-dial-stratos text-sm"
@@ -287,7 +287,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
               </a>
             </div>
             <a
-              href="/dpi-resources/sierra-leone-data-portal"
+              href="/hub/resourcessierra-leone-data-portal"
             >
               <div
                 class="text-lg font-semibold text-dial-stratos"
@@ -296,7 +296,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
               </div>
             </a>
             <a
-              href="/dpi-resources/sierra-leone-data-portal"
+              href="/hub/resourcessierra-leone-data-portal"
             >
               <div
                 class="line-clamp-4 text-dial-stratos text-sm"

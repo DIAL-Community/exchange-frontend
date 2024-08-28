@@ -1,14 +1,13 @@
 import { useCallback, useState } from 'react'
+import parse from 'html-react-parser'
+import Link from 'next/link'
+import { FiPlusCircle } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import parse from 'html-react-parser'
-import { FiPlusCircle } from 'react-icons/fi'
-import Link from 'next/link'
-import { DisplayType } from '../../utils/constants'
 import {
-  CANDIDATE_RESOURCE_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_CANDIDATE_RESOURCES_QUERY
+  CANDIDATE_RESOURCE_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CANDIDATE_RESOURCES_QUERY
 } from '../../shared/query/candidateResource'
+import { DisplayType } from '../../utils/constants'
 import HubPagination from './HubPagination'
 
 const DEFAULT_PAGE_SIZE = 6
@@ -21,12 +20,12 @@ const ResourceCard = ({ displayType, resource }) => {
     <div className='rounded-lg min-h-[6rem] group'>
       <div className='flex flex-col gap-y-3 relative'>
         <div className='text-lg font-medium flex'>
-          <span className='border-b border-transparent group-hover:border-dial-cotton'>
+          <span className='border-b border-transparent group-hover:border-dial-stratos'>
             {resource.name}
           </span>
         </div>
-        <div className='absolute top-2 right-2 bg-dial-cotton rounded'>
-          <div className='text-dial-stratos text-xs px-2 py-1'>
+        <div className='absolute top-2 right-2 bg-dial-sapphire rounded'>
+          <div className='text-dial-cotton text-xs px-2 py-1'>
             {format('candidate.inReview')}
           </div>
         </div>
@@ -124,8 +123,8 @@ const HubCountryCandidateResources = ({ country }) => {
   }, [])
 
   return (
-    <div className='candidate-resource-section bg-dial-sapphire'>
-      <div className='px-4 lg:px-8 xl:px-56 flex flex-col text-dial-cotton'>
+    <div className='candidate-resource-section bg-dial-lavender'>
+      <div className='px-4 lg:px-8 xl:px-56 flex flex-col text-dial-stratos'>
         <div className='flex flex-col md:flex-row gap-3'>
           <div className='text-xl font-medium py-6'>
             {format('hub.country.candidateResources')}
@@ -133,9 +132,9 @@ const HubCountryCandidateResources = ({ country }) => {
           <div className='ml-auto text-sm flex justify-center items-center'>
             <Link
               href={'/hub/resources/suggest'}
-              className='cursor-pointer bg-white px-4 py-2 rounded text-dial-stratos'
+              className='cursor-pointer bg-dial-sapphire px-4 py-2 rounded '
             >
-              <div className='flex flex-row gap-1'>
+              <div className='flex flex-row gap-1 text-dial-cotton'>
                 <FiPlusCircle className='inline my-auto' />
                 {format('app.createNew')}
               </div>
@@ -150,7 +149,7 @@ const HubCountryCandidateResources = ({ country }) => {
           country={country}
           pageNumber={pageNumber}
           onClickHandler={onClickHandler}
-          theme={'light'}
+          theme={'dark'}
         />
       </div>
     </div>
