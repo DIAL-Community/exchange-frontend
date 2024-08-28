@@ -2296,8 +2296,8 @@ export const en = {
   `,
   'ui.wizard.launch': 'Launch Recommendations Wizard',
 
-  'ui.dpi.wizard.title': 'Get Started',
-  'ui.dpi.wizard.tagLine': `
+  'ui.hub.wizard.title': 'Get Started',
+  'ui.hub.wizard.tagLine': `
     Our Recommendations Wizard can help get you started to fnd you a curated list of resources, 
     tailored to wherever you are in a project lifecycle — ideation, planning, implementation, 
     or monitoring/evaluation.

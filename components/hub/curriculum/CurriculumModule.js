@@ -120,7 +120,7 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
                       .map(resource => (
                         <Link
                           key={resource.id}
-                          href={`/dpi-resources/${resource.slug}`}
+                          href={`/hub/resources/${resource.slug}`}
                           target='_blank'
                           rel='noreferrer'
                         >
