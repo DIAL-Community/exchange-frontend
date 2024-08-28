@@ -23,7 +23,7 @@ import { RESOURCE_TYPE_SEARCH_QUERY } from '../../../shared/query/resource'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
 
-const ResourceForm = React.memo(({ candidateResource }) => {
+const ResourceForm = React.memo(({ candidateResource, country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -166,7 +166,18 @@ const ResourceForm = React.memo(({ candidateResource }) => {
     }))
   )
 
-  const [countries, setCountries] = useState(() => (candidateResource?.countries ?? []))
+  const [countries, setCountries] = useState(() => {
+    return candidateResource?.countries
+      ? candidateResource.countries.map((country) => ({
+        id: country.id,
+        name: country.name,
+        slug: country.slug
+      }))
+      : country
+        ? [{ id: country.id, name: country.name, slug: country.slug }]
+        : []
+  })
+
   const removeCountry = (country) => {
     setCountries((countries) => countries.filter(({ slug }) => country.slug !== slug))
   }
