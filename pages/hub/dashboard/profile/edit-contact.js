@@ -25,7 +25,7 @@ const HubDashboardEditContactPage = ({ dpiTenants }) => {
     <>
       <NextSeo
         title={format('hub.dashboard.profile')}
-        description={format('hub.expertNetwork.subtitle')}
+        description={format('hub.adliNetwork.subtitle')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />

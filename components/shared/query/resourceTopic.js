@@ -66,6 +66,12 @@ export const RESOURCE_TOPIC_DETAIL_QUERY = gql`
         description
         locale
       }
+      resources {
+        id
+        name
+        slug
+        imageFile
+      }
     }
   }
 `

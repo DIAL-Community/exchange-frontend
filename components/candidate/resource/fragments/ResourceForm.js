@@ -10,6 +10,7 @@ import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import Input from '../../../shared/form/Input'
+import Pill from '../../../shared/form/Pill'
 import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
 import ValidationError from '../../../shared/form/ValidationError'
@@ -17,11 +18,10 @@ import { CREATE_CANDIDATE_RESOURCE } from '../../../shared/mutation/candidateRes
 import {
   CANDIDATE_RESOURCE_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CANDIDATE_RESOURCES_QUERY
 } from '../../../shared/query/candidateResource'
+import { COUNTRY_SEARCH_QUERY } from '../../../shared/query/country'
 import { RESOURCE_TYPE_SEARCH_QUERY } from '../../../shared/query/resource'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
-import Pill from '../../../shared/form/Pill'
-import { COUNTRY_SEARCH_QUERY } from '../../../shared/query/country'
 
 const ResourceForm = React.memo(({ candidateResource }) => {
   const { formatMessage } = useIntl()

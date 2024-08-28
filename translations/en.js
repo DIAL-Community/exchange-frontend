@@ -2550,7 +2550,7 @@ export const en = {
   'hub.header.topic': 'Topics',
   'hub.header.country': 'Countries',
   'hub.header.resourceFinder': 'Resource Finder',
-  'hub.header.expertNetwork': 'Expert Network',
+  'hub.header.adliNetwork': 'ADLI Network',
 
   'hub.exportNetwork.login': 'ADLI Member Login',
   'hub.exportNetwork.learnMore': 'Learn more about ADLI',
@@ -2590,14 +2590,15 @@ export const en = {
   'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
   'hub.country.resources': 'Resources, Reports, and Articles',
   'hub.country.candidateResources': 'Suggested Resources, Reports, and Articles',
+  'hub.country.suggestResource': 'Suggest a Resource, Report, or Article',
   
   'hub.resourceFinder.title': 'Resource Finder',
   'hub.resourceFinder.subtitle': `Quickly search and filter through our library to
     find resources relevant to a specific topic, country, or project.
   `,
 
-  'hub.expertNetwork.title': 'Expert Network',
-  'hub.expertNetwork.subtitle': `
+  'hub.adliNetwork.title': 'ADLI Network',
+  'hub.adliNetwork.subtitle': `
     The Africa Data Leadership Initiative (ADLI) is a ​peer learning and exchange network
     designed by and for African policymakers, legislators, researchers, technologists, and
     digital rights advocates working on data governance and digital platforms and services. 

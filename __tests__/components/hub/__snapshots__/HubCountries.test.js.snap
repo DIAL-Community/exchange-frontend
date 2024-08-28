@@ -6,10 +6,10 @@ exports[`Unit tests for the opportunity detail page. Should render country tiles
     class="Toastify"
   />
   <div
-    class="flex flex-col gap-6 pb-12"
+    class="flex flex-col gap-6 pb-12 max-w-catalog mx-auto"
   >
     <img
-      alt="DIAL DPI Resource Hub"
+      alt="DIAL Resource Hub"
       class="h-32 w-full object-cover"
       src="/images/hero-image/hub-hero.svg"
     />
@@ -27,7 +27,7 @@ exports[`Unit tests for the opportunity detail page. Should render country tiles
       </div>
     </div>
     <div
-      class="px-4 lg:px-8 xl:px-56 min-h-[60vh] lg:min-h-[65vh] 2xl:min-h-[50vh]"
+      class="px-4 lg:px-8 xl:px-56 min-h-[60vh] lg:min-h-[65vh]"
     >
       <div
         class="flex flex-col gap-6"

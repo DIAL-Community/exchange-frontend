@@ -7,7 +7,7 @@ import HubHeader from '../../../../../components/hub/sections/HubHeader'
 import { Loading } from '../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../lib/ClientOnly'
 
-const HubResourcesPage = ({ dpiTenants }) => {
+const HubCountryResourcesPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -41,4 +41,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default HubResourcesPage
+export default HubCountryResourcesPage

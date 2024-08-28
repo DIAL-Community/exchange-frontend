@@ -27,7 +27,7 @@ const HubAnnouncementPage = ({ dpiTenants }) => {
     <>
       <NextSeo
         title={format('hub.announcement.label')}
-        description={format('hub.expertNetwork.subtitle')}
+        description={format('hub.adliNetwork.subtitle')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />

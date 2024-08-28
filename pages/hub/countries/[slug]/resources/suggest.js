@@ -4,18 +4,18 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
 import { useQuery } from '@apollo/client'
-import HubFooter from '../../../../../../components/hub/sections/HubFooter'
-import HubHeader from '../../../../../../components/hub/sections/HubHeader'
-import ResourceDetail from '../../../../../../components/resources/ResourceDetail'
-import { Error, Loading, NotFound } from '../../../../../../components/shared/FetchStatus'
-import { COUNTRY_DETAIL_QUERY } from '../../../../../../components/shared/query/country'
-import ClientOnly from '../../../../../../lib/ClientOnly'
+import ResourceCreate from '../../../../../components/candidate/resource/ResourceCreate'
+import HubFooter from '../../../../../components/hub/sections/HubFooter'
+import HubHeader from '../../../../../components/hub/sections/HubHeader'
+import { Error, Loading, NotFound } from '../../../../../components/shared/FetchStatus'
+import { COUNTRY_DETAIL_QUERY } from '../../../../../components/shared/query/country'
+import ClientOnly from '../../../../../lib/ClientOnly'
 
-const HubCountryResourcePage = ({ dpiTenants }) => {
+const CreateCountryResourcePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { query: { slug, resourceSlug } } = useRouter()
+  const { query: { slug } } = useRouter()
 
   const { loading, error, data } = useQuery(COUNTRY_DETAIL_QUERY, {
     variables: { slug }
@@ -43,7 +43,7 @@ const HubCountryResourcePage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <HubHeader />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <ResourceDetail country={data?.country} slug={resourceSlug} />
+        <ResourceCreate country={data?.country} />
         <HubFooter />
       </ClientOnly>
     </>
@@ -58,4 +58,4 @@ export async function getServerSideProps() {
   return { props: { dpiTenants } }
 }
 
-export default HubCountryResourcePage
+export default CreateCountryResourcePage

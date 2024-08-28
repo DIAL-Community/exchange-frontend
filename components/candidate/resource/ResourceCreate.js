@@ -4,13 +4,18 @@ import Breadcrumb from '../../shared/Breadcrumb'
 import ResourceForm from './fragments/ResourceForm'
 import ResourceSimpleLeft from './fragments/ResourceSimpleLeft'
 
-const ResourceCreate = () => {
+const ResourceCreate = ({ country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const slugNameMapping = (() => {
     const map = {
       create: format('app.create')
+    }
+
+    if (country) {
+      map['countries'] = 'hub.breadcrumb.country'
+      map[country.slug] = country.name
     }
 
     return map
@@ -26,7 +31,7 @@ const ResourceCreate = () => {
           <ResourceSimpleLeft />
         </div>
         <div className='lg:basis-2/3'>
-          <ResourceForm />
+          <ResourceForm country={country} />
         </div>
       </div>
     </div>
