@@ -1,8 +1,8 @@
 import { forwardRef, useContext } from 'react'
 import { ProductFilterContext, ProductFilterDispatchContext }
-  from '../../context/ProductFilterContext'
-import SearchBar from '../../shared/SearchBar'
-import MobileFilter from '../../shared/MobileFilter'
+  from '../../../context/ProductFilterContext'
+import SearchBar from '../../../shared/SearchBar'
+import MobileFilter from '../../../shared/MobileFilter'
 import ProductFilter from './ProductFilter'
 
 const ProductSearchBar = forwardRef((_, ref) => {

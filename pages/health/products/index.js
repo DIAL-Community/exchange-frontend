@@ -8,7 +8,7 @@ import { useUser } from '../../../lib/hooks'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import HealthHeader from '../../../components/health/sections/HealthHeader'
 import HealthFooter from '../../../components/health/sections/HealthFooter'
-import ProductRibbon from '../../../components/health/fragments/ProductRibbon'
+import ProductRibbon from '../../../components/health/product/fragments/ProductRibbon'
 import HealthProducts from '../../../components/health/sections/HealthProducts'
 import ProductCompareBar from '../../../components/product/fragments/ProductCompareBar'
 

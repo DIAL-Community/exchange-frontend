@@ -2,10 +2,10 @@ import { useCallback, useContext } from 'react'
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../context/ProductFilterContext'
-import Checkbox from '../../shared/form/Checkbox'
-import { DisplayType } from '../../utils/constants'
-import { isValidFn } from '../../utils/utilities'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../../context/ProductFilterContext'
+import Checkbox from '../../../shared/form/Checkbox'
+import { DisplayType } from '../../../utils/constants'
+import { isValidFn } from '../../../utils/utilities'
 
 const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null }) => {
   const { formatMessage } = useIntl()

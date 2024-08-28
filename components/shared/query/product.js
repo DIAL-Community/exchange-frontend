@@ -146,6 +146,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       languages
       haveOwner
       govStackEntity
+      productStage
       productDescription {
         id
         description

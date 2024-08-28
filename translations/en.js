@@ -1946,6 +1946,7 @@ export const en = {
   'organization.hasStorefront': 'Organization has a storefront.',
 
   'ui.shared.jumpTo': 'Jump To',
+  'ui.shared.jumpToSection': 'Jump to section',
   'ui.shared.navigateTools': 'Navigate Tools',
   'ui.shared.exportJson': 'Export data (JSON)',
   'ui.shared.exportCsv': 'Export data (CSV)',

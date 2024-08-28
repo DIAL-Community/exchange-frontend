@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../context/ProductFilterContext'
-import { SoftwareCategoryActiveFilters, SoftwareCategoryAutocomplete } from '../../shared/filter/SoftwareCategory'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../../context/ProductFilterContext'
+import { SoftwareCategoryActiveFilters, SoftwareCategoryAutocomplete } from '../../../shared/filter/SoftwareCategory'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()

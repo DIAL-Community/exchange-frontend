@@ -5,8 +5,8 @@ import { useQuery } from '@apollo/client'
 import { ProductFilterContext } from '../../context/ProductFilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
-import ListStructure from '../fragments/ListStructure'
-import ProductSearchBar from '../fragments/ProductSearchBar'
+import ListStructure from '../product/fragments/ListStructure'
+import ProductSearchBar from '../product/fragments/ProductSearchBar'
 
 const HealthProducts = () => {
   const { formatMessage } = useIntl()
