@@ -1398,6 +1398,7 @@ export const en = {
   'candidate.approved': 'Approved',
   'candidate.reject': 'Decline',
   'candidate.approve': 'Approve',
+  'candidate.inReview': 'In Review',
 
   'candidate.feedback': 'Feedback',
   'candidate.feedback.placeholder': 'Reason for approval / rejection.',

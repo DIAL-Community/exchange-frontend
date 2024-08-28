@@ -35,3 +35,28 @@ export const CREATE_CANDIDATE_ORGANIZATION = gql`
     }
   }
 `
+
+export const CANDIDATE_ORGANIZATION_ACTION = gql`
+  mutation ApproveRejectCandidateOrganization (
+    $slug: String!
+    $action: String!
+  ) {
+    approveRejectCandidateOrganization (
+      slug: $slug
+      action: $action
+    ) {
+      candidateOrganization {
+        id
+        name
+        slug
+  
+        rejected
+        rejectedDate
+        rejectedBy
+        approvedDate
+        approvedBy
+      }
+      errors
+    }
+  }
+`
