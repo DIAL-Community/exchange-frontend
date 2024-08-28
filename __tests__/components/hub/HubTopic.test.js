@@ -71,7 +71,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     resourcePagination
   )
 
-  test('Should render detail of a opportunity.', async () => {
+  test('Should render topic tiles page.', async () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[

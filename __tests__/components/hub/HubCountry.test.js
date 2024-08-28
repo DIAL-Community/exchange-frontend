@@ -3,6 +3,10 @@ import { ProductFilterProvider } from '../../../components/context/ProductFilter
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { ResourceFilterProvider } from '../../../components/context/ResourceFilterContext'
 import HubCountry from '../../../components/hub/sections/HubCountry'
+import {
+  CANDIDATE_RESOURCE_PAGINATION_ATTRIBUTES_QUERY,
+  PAGINATED_CANDIDATE_RESOURCES_QUERY
+} from '../../../components/shared/query/candidateResource'
 import { COUNTRIES_WITH_RESOURCES_SEARCH_QUERY, DPI_COUNTRY_DETAIL_QUERY } from '../../../components/shared/query/country'
 import {
   PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY, RESOURCE_TYPE_SEARCH_QUERY
@@ -11,6 +15,8 @@ import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import {
+  candidateResourcePagination,
+  candidateResources,
   countriesWithResources, countryResources, policyResourcePagination, policyResources, websiteResourcePagination,
   websiteResources
 } from './data/HubCountry.data'
@@ -24,7 +30,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     {
       'search': '',
       'countries': ['15'],
-      'resourceTypes' :['Government Document'],
+      'resourceTypes': ['Government Document'],
       'limit': 6,
       'offset': 0
     },
@@ -65,6 +71,30 @@ describe('Unit tests for the opportunity detail page.', () => {
     },
     null,
     websiteResourcePagination
+  )
+
+  const mockCandidateResources = generateMockApolloData(
+    PAGINATED_CANDIDATE_RESOURCES_QUERY,
+    {
+      'search': '',
+      'countries': ['15'],
+      'inReviewOnly': true,
+      'limit': 6,
+      'offset': 0
+    },
+    null,
+    candidateResources
+  )
+
+  const mockCandidateResourcePagination = generateMockApolloData(
+    CANDIDATE_RESOURCE_PAGINATION_ATTRIBUTES_QUERY,
+    {
+      'search': '',
+      'countries': ['15'],
+      'inReviewOnly': true
+    },
+    null,
+    candidateResourcePagination
   )
 
   const mockResources = generateMockApolloData(
@@ -148,7 +178,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     resourceTypes
   )
 
-  test('Should render detail of a opportunity.', async () => {
+  test('Should render detail of a country detail page.', async () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
@@ -158,6 +188,8 @@ describe('Unit tests for the opportunity detail page.', () => {
           mockPolicyResourcePagination,
           mockWebsiteResources,
           mockWebsiteResourcePagination,
+          mockCandidateResources,
+          mockCandidateResourcePagination,
           mockResources,
           mockResourcePagination,
           mockResourceTypes
@@ -175,5 +207,11 @@ describe('Unit tests for the opportunity detail page.', () => {
 
     expect(await screen.findByText('Zambia')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
+
+    expect(await screen.findByText('Key Policies, Legal and Regulatory Frameworks')).toBeInTheDocument()
+    expect(await screen.findByText('Sierra Leone National Cyber Security Strategy (2021-2025)')).toBeInTheDocument()
+    expect(await screen.findByText('Key Government Websites')).toBeInTheDocument()
+    expect(await screen.findByText('Suggested Resources, Reports, and Articles')).toBeInTheDocument()
+    expect(await screen.findByText('Test Adding More Candidate Resource')).toBeInTheDocument()
   })
 })

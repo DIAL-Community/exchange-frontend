@@ -274,8 +274,8 @@ export const websiteResources = {
       },
       {
         'id': '132',
-        'name': 'Sierra Leone Data Portal',
-        'slug': 'sierra-leone-data-portal',
+        'name': 'Sierra Leone Data Portal Website',
+        'slug': 'sierra-leone-data-portal-website',
         'imageFile': '/assets/resources/resource-placeholder.svg',
         'description': '',
         'parsedDescription': '',
@@ -291,8 +291,8 @@ export const websiteResources = {
       },
       {
         'id': '133',
-        'name': 'Sirerra Leone Citizen\'s Portal',
-        'slug': 'sirerra-leone-citizens-portal',
+        'name': 'Sierra Leone Citizen Portal',
+        'slug': 'sierra-leone-citizen-portal',
         'imageFile': '/assets/resources/resource-placeholder.svg',
         'description': '',
         'parsedDescription': '',
@@ -364,6 +364,34 @@ export const resourcePagination = {
   'data': {
     'paginationAttributeResource': {
       'totalCount': 2,
+      '__typename': 'PaginationAttributes'
+    }
+  }
+}
+
+export const candidateResources = {
+  'data': {
+    'paginatedCandidateResources': [
+      {
+        'id': '6',
+        'name': 'Test Adding More Candidate Resource',
+        'slug': 'test-adding-more-candidate-resource',
+        'description': 'Example of description',
+        'parsedDescription': 'Parsed example of description',
+        'publishedDate': '2024-08-28',
+        'submitterEmail': null,
+        'createdAt': '2024-08-28',
+        'rejected': null,
+        '__typename': 'CandidateResource'
+      }
+    ]
+  }
+}
+
+export const candidateResourcePagination = {
+  'data': {
+    'paginationAttributeCandidateResource': {
+      'totalCount': 1,
       '__typename': 'PaginationAttributes'
     }
   }

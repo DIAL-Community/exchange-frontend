@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the opportunity detail page. Should render detail of a opportunity. 1`] = `
+exports[`Unit tests for the opportunity detail page. Should render detail of a country detail page. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -367,12 +367,12 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               >
                 <a
                   class="p-3 text-lg font-medium flex group"
-                  href="/hub/resources/sierra-leone-data-portal"
+                  href="/hub/resources/sierra-leone-data-portal-website"
                 >
                   <div
                     class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
                   >
-                    Sierra Leone Data Portal
+                    Sierra Leone Data Portal Website
                   </div>
                 </a>
                 <a
@@ -398,12 +398,12 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               >
                 <a
                   class="p-3 text-lg font-medium flex group"
-                  href="/hub/resources/sirerra-leone-citizens-portal"
+                  href="/hub/resources/sierra-leone-citizen-portal"
                 >
                   <div
                     class="line-clamp-1 border-b border-transparent group-hover:border-dial-stratos"
                   >
-                    Sirerra Leone Citizen's Portal
+                    Sierra Leone Citizen Portal
                   </div>
                 </a>
                 <a
@@ -642,10 +642,184 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
           <div
             class="text-xl font-medium py-6"
           >
-            Reports and Articles
+            Resources, Reports, and Articles
           </div>
           Fetching data ...
           Fetching data ...
+        </div>
+      </div>
+      <div
+        class="candidate-resource-section bg-dial-sapphire"
+      >
+        <div
+          class="px-4 lg:px-8 xl:px-56 flex flex-col text-dial-cotton"
+        >
+          <div
+            class="flex flex-col md:flex-row gap-3"
+          >
+            <div
+              class="text-xl font-medium py-6"
+            >
+              Suggested Resources, Reports, and Articles
+            </div>
+            <div
+              class="ml-auto text-sm flex justify-center items-center"
+            >
+              <a
+                class="cursor-pointer bg-white px-4 py-2 rounded text-dial-stratos"
+                href="/hub/resources/suggest"
+              >
+                <div
+                  class="flex flex-row gap-1"
+                >
+                  <svg
+                    class="inline my-auto"
+                    fill="none"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                    />
+                    <line
+                      x1="12"
+                      x2="12"
+                      y1="8"
+                      y2="16"
+                    />
+                    <line
+                      x1="8"
+                      x2="16"
+                      y1="12"
+                      y2="12"
+                    />
+                  </svg>
+                  Create New
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-2"
+          >
+            <div
+              class="flex flex-col gap-y-4"
+            >
+              <hr
+                class="border-b border-gray-300 border-dashed"
+              />
+              <div
+                class="relative"
+              >
+                <div
+                  class="rounded-lg min-h-[6rem] group"
+                >
+                  <div
+                    class="flex flex-col gap-y-3 relative"
+                  >
+                    <div
+                      class="text-lg font-medium flex"
+                    >
+                      <span
+                        class="border-b border-transparent group-hover:border-dial-cotton"
+                      >
+                        Test Adding More Candidate Resource
+                      </span>
+                    </div>
+                    <div
+                      class="absolute top-2 right-2 bg-dial-cotton rounded"
+                    >
+                      <div
+                        class="text-dial-stratos text-xs px-2 py-1"
+                      >
+                        In Review
+                      </div>
+                    </div>
+                    <div
+                      class="line-clamp-2 text-justify text-sm"
+                    >
+                      Parsed example of description
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-y-4 my-6 text-dial-slate-300"
+          >
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+            <div
+              class="flex flex-col md:flex-row gap-x-16 gap-y-3"
+            >
+              <div
+                class="my-auto text-sm"
+              >
+                Showing 1 - 1 of 1 total
+              </div>
+              <ul
+                aria-label="Pagination"
+                class="flex gap-x-3 text-sm"
+                role="navigation"
+              >
+                <li
+                  class="previous opacity-30"
+                >
+                  <a
+                    aria-disabled="true"
+                    aria-label="Previous page"
+                    class="block w-10 h-10 leading-10 text-center "
+                    rel="prev"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    &lt;
+                  </a>
+                </li>
+                <li
+                  class="text-dial-cotton font-semibold"
+                >
+                  <a
+                    aria-current="page"
+                    aria-label="Page 1 is your current page"
+                    class="block w-10 h-10 leading-10 text-center"
+                    rel="canonical"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    1
+                  </a>
+                </li>
+                <li
+                  class="next opacity-30"
+                >
+                  <a
+                    aria-disabled="true"
+                    aria-label="Next page"
+                    class="block w-10 h-10 leading-10 text-center "
+                    rel="next"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    &gt;
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+          </div>
         </div>
       </div>
     </div>

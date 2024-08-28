@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the opportunity detail page. Should render detail of a opportunity. 1`] = `
+exports[`Unit tests for the opportunity detail page. Should render resource finder page. 1`] = `
 <div>
   <div
     class="Toastify"
