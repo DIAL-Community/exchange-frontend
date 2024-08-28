@@ -26,8 +26,6 @@ const HubExpertNetwork = () => {
     variables: {}
   })
 
-  console.log('Data: ', data)
-
   return (
     <div className='flex flex-col gap-6 pb-12 max-w-catalog mx-auto'>
       <img className='h-32 w-full object-cover' alt='DIAL Resource Hub' src='/images/hero-image/hub-hero.svg' />
@@ -38,10 +36,10 @@ const HubExpertNetwork = () => {
           </div>
         </div>
       </div>
-      <div className='px-4 lg:px-8 xl:px-56  min-h-[40vh] 2xl:min-h-[50vh]'>
+      <div className='px-4 lg:px-8 xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]'>
         <div className='flex flex-col gap-12'>
-          <div className='flex flex-col lg:flex-row gap-6'>
-            <div className='lg:max-w-prose line-clamp-6'>
+          <div className='flex flex-col 2xl:flex-row gap-6'>
+            <div className='text-justify 2xl:max-w-4xl line-clamp-6'>
               <FormattedMessage
                 id='hub.adliNetwork.subtitle'
                 values={{
@@ -58,7 +56,7 @@ const HubExpertNetwork = () => {
               >
                 <FormattedMessage id='hub.exportNetwork.learnMore' />
               </a>
-              <div className='border border-r border-dial-slate-500' />
+              <div className='border-r border-dial-slate-500' />
               {user && (
                 <Link href='/hub/dashboard' className='flex'>
                   <span className='border-b border-transparent hover:border-dial-yellow'>
