@@ -113,7 +113,9 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
           />
         </div>
-        <div className="border-b border-transparent my-2"/>
+        <div className="text-justify text-black margin">
+          {product?.productStage ? `${format('app.productStage')} - ${product.productStage}` : ''}
+        </div>
         <ProductDetailMaturityScores
           slug={product.slug}
           overallMaturityScore={product.overallMaturityScore}

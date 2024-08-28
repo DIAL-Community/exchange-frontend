@@ -16,7 +16,8 @@ import UrlInput from '../../../shared/form/UrlInput'
 import ValidationError from '../../../shared/form/ValidationError'
 import { CREATE_PRODUCT } from '../../../shared/mutation/product'
 import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/product'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import { DEFAULT_PAGE_SIZE, ProductStageType } from '../../../utils/constants'
+import Select from '../../../shared/form/Select'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -29,6 +30,15 @@ const ProductForm = React.memo(({ product }) => {
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+
+  const [productStage, setProductStage] = useState(null)
+
+  const updateProductStageValue = (productStage) => setProductStage(productStage)
+
+  const productStageOptions = Object.keys(ProductStageType).map((key) => ({
+    value: ProductStageType[key],
+    label: ProductStageType[key].charAt(0).toUpperCase() + ProductStageType[key].slice(1)
+  }))
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -83,7 +93,8 @@ const ProductForm = React.memo(({ product }) => {
       hostingModel: product?.hostingModel,
       pricingModel: product?.pricingModel,
       pricingDetails: product?.pricingDetails,
-      pricingUrl: product?.pricingUrl
+      pricingUrl: product?.pricingUrl,
+      productStage: product?.productStage
     }
   })
 
@@ -112,7 +123,8 @@ const ProductForm = React.memo(({ product }) => {
         pricingUrl,
         hostingModel,
         pricingModel,
-        pricingDetails
+        pricingDetails,
+        productStage
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -125,7 +137,8 @@ const ProductForm = React.memo(({ product }) => {
         pricingUrl,
         hostingModel,
         pricingModel,
-        pricingDetails
+        pricingDetails,
+        productStage
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -218,10 +231,21 @@ const ProductForm = React.memo(({ product }) => {
               <label>{format('product.imageFile')}</label>
               <FileUploader {...register('imageFile')} />
             </div>
-            <div className='flex flex-col gap-y-2'>
-              <label className='required-field'>{format('product.description')}</label>
+            <div className="flex flex-col gap-y-2">
+              <label>{format('app.productStage')}</label>
+              <Select
+                {...register('productStage')}
+                isBorderless
+                options={productStageOptions}
+                placeholder={format('app.productStage')}
+                onChange={updateProductStageValue}
+                value={productStage}
+              />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <label className="required-field">{format('product.description')}</label>
               <Controller
-                name='description'
+                name="description"
                 control={control}
                 render={({ field: { value, onChange } }) => (
                   <HtmlEditor
