@@ -6,7 +6,7 @@ import { Tooltip } from 'react-tooltip'
 import HealthHeader from '../../../../components/health/sections/HealthHeader'
 import HealthFooter from '../../../../components/health/sections/HealthFooter'
 import ClientOnly from '../../../../lib/ClientOnly'
-import ProductDetail from '../../../../components/product/ProductDetail'
+import ProductDetail from '../../../../components/health/product/fragments/ProductDetail'
 
 const ProductPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()

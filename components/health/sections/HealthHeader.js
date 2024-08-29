@@ -93,7 +93,7 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
       <a
         href='signIn'
         role='menuitem'
-        className='px-3 py-2 text-gray text-lg hover:text-slate-600 hover:bg-dial-menu-hover rounded-md'
+        className='px-3 py-2 text-gray text-lg hover:text-white hover:bg-health-red rounded-md fi'
         onClick={signInUser}
       >
         {format('header.signIn').toUpperCase()}
@@ -101,7 +101,7 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
     </li>
 
   return (
-    <header className='z-50 sticky top-0 bg-white max-w-catalog mx-auto'>
+    <header className='z-50 sticky top-0 bg-white max-w-catalog mx-auto shadow-md'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
           <div className='flex gap-1 text-dial-cotton'>

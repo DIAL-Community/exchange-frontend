@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import Breadcrumb from '../../shared/Breadcrumb'
+import Breadcrumb from '../../../shared/Breadcrumb'
 
 const ProductRibbon = () => {
   const { formatMessage } = useIntl()
