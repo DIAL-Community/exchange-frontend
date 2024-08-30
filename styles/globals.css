@@ -96,6 +96,16 @@ body {
   color: #fab230;
 }
 
+.dynamic-truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.h-360 {
+  height: 360px;
+}
+
 .infinite-scroll-default-height {
   min-height: 50vh;
 }

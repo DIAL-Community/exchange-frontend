@@ -1,0 +1,92 @@
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { ProductFilterContext } from '../../context/ProductFilterContext'
+import Pagination from '../../shared/Pagination'
+import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
+import ListStructure from '../product/fragments/ListStructure'
+import ProductSearchBar from '../product/fragments/ProductSearchBar'
+
+const HealthProducts = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { search, isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
+  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
+  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+
+  const [ pageNumber, setPageNumber ] = useState(0)
+  const [ pageOffset, setPageOffset ] = useState(0)
+
+  const topRef = useRef(null)
+  const { push, query } = useRouter()
+
+  const { page } = query
+
+  const DEFAULT_PAGE_SIZE = 12
+
+  useEffect(() => {
+    if (page) {
+      setPageNumber(parseInt(page) - 1)
+      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+    }
+  }, [page, setPageNumber, setPageOffset])
+
+  const onClickHandler = ({ nextSelectedPage, selected }) => {
+    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    push(
+      { query: { ...query, page: destinationPage + 1 } },
+      undefined,
+      { shallow: true }
+    )
+    // Scroll to top of the page
+    if (topRef && topRef.current) {
+      topRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'start'
+      })
+    }
+  }
+
+  const { loading, error, data } = useQuery(PRODUCT_PAGINATION_ATTRIBUTES_QUERY, {
+    variables: {
+      search,
+      useCases: useCases.map(useCase => useCase.value),
+      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
+      sectors: sectors.map(sector => sector.value),
+      countries: countries.map(country => country.value),
+      tags: tags.map(tag => tag.label),
+      licenseTypes: licenseTypes.map(licenseType => licenseType.value),
+      sdgs: sdgs.map(sdg => sdg.value),
+      workflows: workflows.map(workflow => workflow.id),
+      origins: origins.map(origin => origin.value),
+      isLinkedWithDpi,
+      showGovStackOnly,
+      showDpgaOnly
+    }
+  })
+
+  return (
+    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
+      <ProductSearchBar ref={topRef} />
+      <ListStructure
+        pageOffset={pageOffset}
+        defaultPageSize={DEFAULT_PAGE_SIZE}
+      />
+      { loading && format('ui.pagination.loadingInfo') }
+      { error && format('ui.pagination.loadingInfoError') }
+      { data &&
+        <Pagination
+          pageNumber={pageNumber}
+          totalCount={data.paginationAttributeProduct.totalCount}
+          defaultPageSize={DEFAULT_PAGE_SIZE}
+          onClickHandler={onClickHandler}
+        />
+      }
+    </div>
+  )
+}
+
+export default HealthProducts
