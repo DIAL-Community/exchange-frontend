@@ -15,6 +15,7 @@ import ProductDetailCountries from './fragments/ProductDetailCountries'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
 import ProductDetailResources from './fragments/ProductDetailResources'
+import ProductDetailCategories from './fragments/ProductDetailCategories'
 import ProductDetailSdgs from './fragments/ProductDetailSdgs'
 import ProductDetailTags from './fragments/ProductDetailTags'
 import ProductCard from './ProductCard'
@@ -192,6 +193,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const resourceRef = useRef()
   const organizationRef = useRef()
   const countryRef = useRef()
+  const categoryRef = useRef()
   const tagRef = useRef()
   const commentsSectionRef = useRef()
   const productRepositoryRef = useRef()
@@ -339,6 +341,14 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             product={product}
             canEdit={canEdit}
             headerRef={countryRef}
+          />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProductDetailCategories
+            product={product}
+            canEdit={canEdit}
+            headerRef={categoryRef}
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />

@@ -481,6 +481,12 @@ export const en = {
   'sector.displayable.tooltip': 'Displayable',
   'sector.not-displayable.tooltip': 'Not Displayable',
 
+  'ui.category.header': 'Software Categories',
+  'ui.category.label': 'Software Category',
+
+  'ui.feature.header': 'Software Features',
+  'ui.feature.label': 'Software Feature',
+
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
 
@@ -1940,6 +1946,7 @@ export const en = {
   'organization.hasStorefront': 'Organization has a storefront.',
 
   'ui.shared.jumpTo': 'Jump To',
+  'ui.shared.jumpToSection': 'Jump to section',
   'ui.shared.navigateTools': 'Navigate Tools',
   'ui.shared.exportJson': 'Export data (JSON)',
   'ui.shared.exportCsv': 'Export data (CSV)',
@@ -2492,6 +2499,7 @@ export const en = {
 
   'ui.tenants.default': 'Default',
   'ui.tenants.fao': 'FAO',
+  'ui.tenants.health': 'Health Tech',
 
   
   'ui.resourceTopic.label': 'Resource Topic',
@@ -2573,6 +2581,14 @@ export const en = {
     designed by and for African policymakers, legislators, researchers, technologists, and
     digital rights advocates working on data governance and digital platforms and services. 
   `,
+
+  'health.landing.main.title': 'Africa HealthTech Marketplace',
+  'health.landing.main.subtitle': `Enhancing visibility and trust in digital health solutions`,
+  'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Alliance',
+
+  'health.header.about': 'About',
+  'health.header.products': 'Products',
+  'health.header.faq': 'FAQ',
 
   'ui.chatbot.question': 'Question',
   'ui.chatbot.header': 'Ask our Chatbot',

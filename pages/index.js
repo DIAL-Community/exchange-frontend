@@ -1,5 +1,6 @@
 import { Loading } from '../components/shared/FetchStatus'
 import { useActiveTenant } from '../lib/hooks'
+import HealthPage from './landing/health'
 import HubPage from './landing/hub'
 import LandingPage from './landing/index'
 
@@ -12,7 +13,9 @@ const RootPage = ({ dpiTenants, defaultTenants }) => {
         ? <Loading />
         : tenant === 'dpi'
           ? <HubPage dpiTenants={dpiTenants} />
-          : <LandingPage defaultTenants={defaultTenants} />
+          : tenant === 'health'
+            ? <HealthPage defaultTenants={defaultTenants} />
+            : <LandingPage defaultTenants={defaultTenants} />
       }
     </>
   )

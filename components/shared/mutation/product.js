@@ -114,6 +114,44 @@ export const UPDATE_PRODUCT_SECTORS = gql`
   }
 `
 
+export const UPDATE_PRODUCT_CATEGORIES = gql`
+  mutation UpdateProductCategories(
+    $slug: String!
+    $categorySlugs: [String!]!
+    $featureSlugs: [String!]!
+  ) {
+    updateProductCategories(
+      slug: $slug
+      categorySlugs: $categorySlugs
+      featureSlugs: $featureSlugs
+    ) {
+      product {
+        id
+        name
+        slug
+        softwareCategories {
+          id
+          name
+          slug
+          softwareFeatures {
+            id
+            name
+            slug
+            categoryId
+          }
+        }
+        softwareFeatures {
+          id
+          name
+          slug
+          categoryId
+        }
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_PRODUCT_COUNTRIES = gql`
   mutation UpdateProductCountries(
     $slug: String!
