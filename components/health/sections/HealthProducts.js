@@ -24,7 +24,7 @@ const HealthProducts = () => {
 
   const { page } = query
 
-  const DEFAULT_PAGE_SIZE = 16
+  const DEFAULT_PAGE_SIZE = 12
 
   useEffect(() => {
     if (page) {

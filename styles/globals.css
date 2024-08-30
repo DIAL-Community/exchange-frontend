@@ -96,12 +96,14 @@ body {
   color: #fab230;
 }
 
-.text-truncate-3 {
+.dynamic-truncate {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 48px;
+}
+
+.h-360 {
+  height: 360px;
 }
 
 .infinite-scroll-default-height {
