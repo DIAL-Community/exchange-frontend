@@ -233,14 +233,29 @@ const ProductForm = React.memo(({ product }) => {
             </div>
             <div className="flex flex-col gap-y-2">
               <label>{format('app.productStage')}</label>
-              <Select
-                {...register('productStage')}
-                isBorderless
-                options={productStageOptions}
-                placeholder={format('app.productStage')}
-                onChange={updateProductStageValue}
-                value={productStage}
+              <Controller
+                name="productStage"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    options={productStageOptions}
+                    placeholder={format('app.productStage')}
+                    onChange={(value) => {
+                      field.onChange(value.value)
+                      updateProductStageValue(value)
+                    }}
+                    value={productStage}
+                  />
+                )}
               />
+              {/*<Select*/}
+              {/*  {...register('productStage')}*/}
+              {/*  isBorderless*/}
+              {/*  options={productStageOptions}*/}
+              {/*  placeholder={format('app.productStage')}*/}
+              {/*  onChange={updateProductStageValue}*/}
+              {/*  value={productStage}*/}
+              {/*/>*/}
             </div>
             <div className="flex flex-col gap-y-2">
               <label className="required-field">{format('product.description')}</label>
