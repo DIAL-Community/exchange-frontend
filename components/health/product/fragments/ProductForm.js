@@ -158,7 +158,7 @@ const ProductForm = React.memo(({ product }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/products/${slug}`)
+    router.push(`/${locale}/health/products/${slug}`)
   }
 
   return loadingUserSession

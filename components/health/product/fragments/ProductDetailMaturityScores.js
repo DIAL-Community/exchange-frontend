@@ -250,18 +250,18 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
           refetchCategoryIndicators()
           setValidMaturityScores(sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails))
           setMaturityScore(data.updateProductIndicators.product.overallMaturityScore)
-          showSuccessMessage(format('toast.submit.failure', { entity: format('ui.categoryIndicator.header') }))
+          showSuccessMessage(format('toast.submit.success', { entity: format('categoryIndicator.header') }))
           setIsDirty(false)
         } else {
           setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
-          showFailureMessage(format('toast.submit.success', { entity: format('ui.categoryIndicator.header') }))
+          showFailureMessage(format('toast.submit.failure', { entity: format('categoryIndicator.header') }))
           setIsDirty(false)
           resetMutation()
         }
       },
       onError: () => {
         setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
-        showFailureMessage(format('toast.submit.failure', { entity: format('ui.categoryIndicator.header') }))
+        showFailureMessage(format('toast.submit.failure', { entity: format('categoryIndicator.header') }))
         setIsDirty(false)
         resetMutation()
       }
