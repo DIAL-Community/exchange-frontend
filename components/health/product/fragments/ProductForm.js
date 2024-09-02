@@ -248,14 +248,6 @@ const ProductForm = React.memo(({ product }) => {
                   />
                 )}
               />
-              {/*<Select*/}
-              {/*  {...register('productStage')}*/}
-              {/*  isBorderless*/}
-              {/*  options={productStageOptions}*/}
-              {/*  placeholder={format('app.productStage')}*/}
-              {/*  onChange={updateProductStageValue}*/}
-              {/*  value={productStage}*/}
-              {/*/>*/}
             </div>
             <div className="flex flex-col gap-y-2">
               <label className="required-field">{format('product.description')}</label>
