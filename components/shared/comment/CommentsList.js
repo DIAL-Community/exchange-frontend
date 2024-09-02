@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { Loading } from '../FetchStatus'
 import CommentCard from './CommentCard'
 
-const CommentsList = ({ comments, loading, onClose }) => {
+const CommentsList = ({ comments, loading, onClose, objectId, objectType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,6 +25,8 @@ const CommentsList = ({ comments, loading, onClose }) => {
                     authorAvatarUrl={avatarUrl}
                     text={text}
                     replies={replies}
+                    objectId={objectId}
+                    objectType={objectType}
                   />
                 ))}
               </div>
