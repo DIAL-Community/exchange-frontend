@@ -94,7 +94,7 @@ const ProductForm = React.memo(({ product }) => {
       pricingModel: product?.pricingModel,
       pricingDetails: product?.pricingDetails,
       pricingUrl: product?.pricingUrl,
-      productStage: product?.productStage
+      productStage: product?.productStage ?? null
     }
   })
 
