@@ -152,8 +152,6 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     }
   }, [data?.comments])
 
-  console.log(data)
-
   const [isInEditMode, setIsInEditMode] = useState(false)
 
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode)
