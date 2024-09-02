@@ -106,3 +106,9 @@ export const CandidateActionType = {
 }
 
 export const DEFAULT_PAGE_SIZE = 8
+
+export const ProductStageType = {
+  PILOT: 'pilot',
+  SCALING: 'scaling',
+  MATURE: 'mature'
+}
