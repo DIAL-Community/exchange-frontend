@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { useMutation, useQuery } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { Loading } from '../FetchStatus'
 import EditButton from '../form/EditButton'
@@ -41,11 +41,25 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
       }
+    },
+    {
+      query: COMMENTS_QUERY,
+      variables: {
+        commentObjectId: parseInt(objectId),
+        commentObjectType: objectType
+      }
     }]
   })
   const [deleteComment] = useMutation(DELETE_COMMENT, {
     refetchQueries: [{
       query: COMMENTS_COUNT_QUERY,
+      variables: {
+        commentObjectId: parseInt(objectId),
+        commentObjectType: objectType
+      }
+    },
+    {
+      query: COMMENTS_QUERY,
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
@@ -138,6 +152,8 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     }
   }, [data?.comments])
 
+  console.log(data)
+
   const [isInEditMode, setIsInEditMode] = useState(false)
 
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode)
@@ -146,7 +162,13 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     <div ref={commentsSectionRef} className={classNames(className, 'text-dial-sapphire')}>
       {loadingUserSession && <Loading />}
       {isInEditMode
-        ? <CommentsList comments={data?.comments} loading={loading} onClose={toggleIsInEditMode} />
+        ? <CommentsList
+          comments={data?.comments}
+          loading={loading}
+          onClose={toggleIsInEditMode}
+          objectId={objectId}
+          objectType={objectType}
+        />
         : (
           <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
             {isAdminUser && (
