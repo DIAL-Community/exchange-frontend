@@ -8,8 +8,12 @@ import { useUser } from '../../../lib/hooks'
 import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
 import HubPagination from '../fragments/HubPagination'
 import {
-  FACEBOOK_SOCIAL_MEDIA_TYPE, INSTAGRAM_SOCIAL_MEDIA_TYPE, LINKEDIN_SOCIAL_MEDIA_TYPE, TWITTER_X_SOCIAL_MEDIA_TYPE
+  FACEBOOK_SOCIAL_MEDIA_TYPE,
+  INSTAGRAM_SOCIAL_MEDIA_TYPE,
+  LINKEDIN_SOCIAL_MEDIA_TYPE,
+  TWITTER_X_SOCIAL_MEDIA_TYPE
 } from '../user/constant'
+import { allowedToBrowseAdliPages } from '../admin/utilities'
 
 const HubExpertNetwork = () => {
   const { formatMessage } = useIntl()
@@ -56,20 +60,25 @@ const HubExpertNetwork = () => {
               >
                 <FormattedMessage id='hub.exportNetwork.learnMore' />
               </a>
-              <div className='border-r border-dial-slate-500' />
-              {user && (
-                <Link href='/hub/dashboard' className='flex'>
-                  <span className='border-b border-transparent hover:border-dial-yellow'>
-                    <FormattedMessage id='hub.exportNetwork.memberDashboard' />
-                  </span>
-                </Link>
+              {user && allowedToBrowseAdliPages(user) && (
+                <>
+                  <div className='border-r border-dial-slate-500' />
+                  <Link href='/hub/dashboard' className='flex'>
+                    <span className='border-b border-transparent hover:border-dial-yellow'>
+                      <FormattedMessage id='hub.exportNetwork.memberDashboard' />
+                    </span>
+                  </Link>
+                </>
               )}
               {!user && (
-                <Link href='/hub/member-login' onClick={signInUser} className='flex'>
-                  <span className='border-b border-transparent hover:border-dial-yellow'>
-                    <FormattedMessage id='hub.exportNetwork.login' />
-                  </span>
-                </Link>
+                <>
+                  <div className='border-r border-dial-slate-500' />
+                  <Link href='/hub/member-login' onClick={signInUser} className='flex'>
+                    <span className='border-b border-transparent hover:border-dial-yellow'>
+                      <FormattedMessage id='hub.exportNetwork.login' />
+                    </span>
+                  </Link>
+                </>
               )}
             </div>
           </div>

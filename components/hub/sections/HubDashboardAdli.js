@@ -4,12 +4,15 @@ import Link from 'next/link'
 import { FaCircleExclamation } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
+import HubAnnouncements from '../fragments/HubAnnouncements'
+import HubCurricula from '../fragments/HubCurricula'
+import HubEvents from '../fragments/HubEvents'
 
 export const stripeClasses = (stripeIndex) => {
   return stripeIndex % 2 === 0 ? 'text-dial-stratos' : 'text-dial-cotton bg-dial-sapphire'
 }
 
-const HubDashboard = () => {
+const HubDashboardAdli = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -26,7 +29,7 @@ const HubDashboard = () => {
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-12'>
           <div className='text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray'>
-            Resource Hub Dashboard
+            ADLI Member Dashboard
           </div>
         </div>
       </div>
@@ -39,13 +42,13 @@ const HubDashboard = () => {
         </div>
       }
       {user &&
-        <div className='flex flex-col min-h-[70vh]'>
+        <div className='flex flex-col min-h-[30vh]'>
           {user && (
             <div className='px-4 lg:px-8 xl:px-56'>
               <div className='flex flex-col 2xl:flex-row gap-6'>
                 <div className='text-justify 2xl:max-w-4xl line-clamp-6'>
                   <FormattedMessage
-                    id='hub.dashboard.subtitle'
+                    id='hub.dashboard.adli.subtitle'
                     values={{
                       break: () => <br />
                     }}
@@ -83,10 +86,13 @@ const HubDashboard = () => {
               </div>
             </div>
           )}
+          <HubCurricula stripeIndex={0}/>
+          <HubAnnouncements stripeIndex={1}/>
+          <HubEvents stripeIndex={2}/>
         </div>
       }
     </div>
   )
 }
 
-export default HubDashboard
+export default HubDashboardAdli

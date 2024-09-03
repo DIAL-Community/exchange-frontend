@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import HubContactForm from '../../../../components/hub/sections/HubContactForm'
 import HubFooter from '../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../components/hub/sections/HubHeader'
-import { Loading } from '../../../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../components/shared/QueryNotification'
 import ClientOnly from '../../../../lib/ClientOnly'
 
@@ -30,8 +30,12 @@ const HubDashboardEditContactPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <HubHeader />
-        { (status === 'unauthenticated' || status === 'loading') && <Loading />}
-        { status === 'authenticated' && <HubContactForm userId={data?.user.id} userEmail={data?.user.userEmail} />}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && data?.user
+            ? <HubContactForm userId={data?.user.id} userEmail={data?.user.userEmail} />
+            : <Unauthorized />
+        }
         <HubFooter />
       </ClientOnly>
     </>

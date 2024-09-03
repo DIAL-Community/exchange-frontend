@@ -3,10 +3,11 @@ import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { allowedToBrowseAdliPages } from '../../../../components/hub/admin/utilities'
 import HubEventDetail from '../../../../components/hub/sections/HubEventDetail'
 import HubFooter from '../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../components/hub/sections/HubHeader'
-import { Loading } from '../../../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../components/shared/QueryNotification'
 import ClientOnly from '../../../../lib/ClientOnly'
 
@@ -16,7 +17,7 @@ const HubEventPage = ({ dpiTenants }) => {
 
   const { query: { slug } } = useRouter()
 
-  const { status } = useSession()
+  const { data, status } = useSession()
   useEffect(() => {
     if (status === 'unauthenticated') {
       void signIn()
@@ -32,8 +33,12 @@ const HubEventPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <HubHeader />
-        { (status === 'unauthenticated' || status === 'loading') && <Loading />}
-        { status === 'authenticated' && <HubEventDetail slug={slug} />}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && allowedToBrowseAdliPages(data?.user)
+            ? <HubEventDetail slug={slug} />
+            : <Unauthorized />
+        }
         <HubFooter />
       </ClientOnly>
     </>

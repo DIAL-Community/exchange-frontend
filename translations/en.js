@@ -2612,6 +2612,7 @@ export const en = {
     designed by and for African policymakers, legislators, researchers, technologists, and
     digital rights advocates working on data governance and digital platforms and services. 
   `,
+  'hub.adliNetwork.memberCard.alt': 'Photo of the ADLI member',
 
   'health.landing.main.title': 'Africa HealthTech Marketplace',
   'health.landing.main.subtitle': `Enhancing visibility and trust in digital health solutions`,
@@ -2677,6 +2678,9 @@ export const en = {
   `,
 
   'hub.dashboard.subtitle': `
+    Welcome to DIAL resource hub dashboard.
+  `,
+  'hub.dashboard.adli.subtitle': `
     Welcome to your Africa Data Leadership Initiative (ADLI) learning and engagement platform. This space
     is designed to be a dynamic forum to share your experiences and solutions related to data governance.
     We hope that through peer-to-peer learning, strategic partnerships, and continuous adaptation, we can
@@ -2702,7 +2706,8 @@ export const en = {
   'hub.breadcrumb.curriculumModule': 'Module',
   'hub.breadcrumb.curriculumSubModule': 'Sub Module',
 
-  'hub.breadcrumb.dashboard': 'ADLI Member Dashboard',
+  'hub.breadcrumb.dashboard': 'Resource Dashboard',
+  'hub.breadcrumb.dashboard.adli': 'ADLI Member Dashboard',
 
   'hub.curriculum.header': 'Curricula',
   'hub.curriculum.label': 'Curriculum',

@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import HubFooter from '../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../components/hub/sections/HubHeader'
 import HubProfileDetail from '../../../../components/hub/sections/HubProfileDetail'
-import { Loading } from '../../../../components/shared/FetchStatus'
+import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../components/shared/QueryNotification'
 import ClientOnly from '../../../../lib/ClientOnly'
 
@@ -14,7 +14,6 @@ const HubDashboardContactPage = ({ dpiTenants }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { status, data } = useSession()
-
   useEffect(() => {
     if (status === 'unauthenticated') {
       void signIn()
@@ -30,8 +29,12 @@ const HubDashboardContactPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <HubHeader />
-        { (status === 'unauthenticated' || status === 'loading') && <Loading />}
-        { status === 'authenticated' && <HubProfileDetail user={data?.user} />}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && data?.user
+            ? <HubProfileDetail user={data?.user} />
+            : <Unauthorized />
+        }
         <HubFooter />
       </ClientOnly>
     </>

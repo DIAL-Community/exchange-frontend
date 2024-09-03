@@ -1,15 +1,13 @@
-import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
 import ProfileDetail from '../user/ProfileDetail'
+import { allowedToBrowseAdliPages } from '../admin/utilities'
 import HubBreadcrumb from './HubBreadcrumb'
 
 const HubProfileDetail = ({ user }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
-
   const slugNameMapping = (() => {
     const map = {
-      'dashboard': format('hub.dashboard')
+      'dashboard': allowedToBrowseAdliPages(user)
+        ? 'hub.breadcrumb.dashboard.adli'
+        : 'hub.breadcrumb.dashboard'
     }
 
     return map
