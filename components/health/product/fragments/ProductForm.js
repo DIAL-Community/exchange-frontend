@@ -40,15 +40,8 @@ const ProductForm = React.memo(({ product }) => {
     label: ProductStageType[key].charAt(0).toUpperCase() + ProductStageType[key].slice(1)
   }))
 
-  const [productNameValue, setProductName] = useState(product?.name ?? '')
-
-  const handleChange = (event) => {
-    setProductName(event.target.value)
-  }
-
-  const handleBlur = (event) => {
-    const trimmedValue = event.target.value.trim()
-    setProductName(trimmedValue)
+  const handleTrimInputOnBlur = (event) => {
+    event.target.value = event.target.value.trim()
   }
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -192,9 +185,7 @@ const ProductForm = React.memo(({ product }) => {
                 id='name'
                 placeholder={format('product.name')}
                 isInvalid={errors.name}
-                value={productNameValue}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                onBlur={handleTrimInputOnBlur}
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
