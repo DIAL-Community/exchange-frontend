@@ -40,7 +40,7 @@ const ProductForm = React.memo(({ product }) => {
     label: ProductStageType[key].charAt(0).toUpperCase() + ProductStageType[key].slice(1)
   }))
 
-  const [productNameValue, setProductName] = useState('')
+  const [productNameValue, setProductName] = useState(product?.name ?? '')
 
   const handleChange = (event) => {
     setProductName(event.target.value)
