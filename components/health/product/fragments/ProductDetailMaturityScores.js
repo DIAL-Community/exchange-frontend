@@ -38,7 +38,7 @@ const MaturityCategory = ({ category }) => {
       <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
         <AccordionItemButton>
           <div className='inline text-xs uppercase font-semibold'>{category.name}</div>
-          <div className='inline text-xs uppercase my-2 sm:float-right'>
+          <div className='text-xs uppercase my-2 sm:float-right'>
             {`
               ${format('product.maturity.categoryScore')}:
               ${Math.round((category.overallScore / category.maximumScore) * MAX_MATURITY_SCORE)} /
@@ -62,12 +62,12 @@ const MaturityCategory = ({ category }) => {
                 <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
                   <AccordionItemButton>
                     <div className='inline text-xs uppercase font-semibold'>{indicator.name}</div>
-                    <p className='inline text-xs uppercase sm:float-right my-2'>
+                    <div className='text-xs uppercase sm:float-right my-2'>
                       {`
                         ${format('product.maturity.indicatorScore')}:
                         ${isNaN(indicatorScore) ? 'N/A' : scoreText}
                       `}
-                    </p>
+                    </div>
                   </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
