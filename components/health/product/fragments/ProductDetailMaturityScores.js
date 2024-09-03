@@ -38,7 +38,7 @@ const MaturityCategory = ({ category }) => {
       <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
         <AccordionItemButton>
           <div className='inline text-xs uppercase font-semibold'>{category.name}</div>
-          <div className='inline text-xs uppercase float-right mt-2'>
+          <div className='inline text-xs uppercase my-2 sm:float-right'>
             {`
               ${format('product.maturity.categoryScore')}:
               ${Math.round((category.overallScore / category.maximumScore) * MAX_MATURITY_SCORE)} /
@@ -62,12 +62,12 @@ const MaturityCategory = ({ category }) => {
                 <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
                   <AccordionItemButton>
                     <div className='inline text-xs uppercase font-semibold'>{indicator.name}</div>
-                    <div className='inline text-xs uppercase float-right mt-2'>
+                    <p className='inline text-xs uppercase sm:float-right my-2'>
                       {`
                         ${format('product.maturity.indicatorScore')}:
                         ${isNaN(indicatorScore) ? 'N/A' : scoreText}
                       `}
-                    </div>
+                    </p>
                   </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -377,7 +377,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
               <Accordion
                 allowMultipleExpanded
                 allowZeroExpanded
-                className='max-h-[60vh] overflow-auto'
+                className='max-h-[60vh] overflow-auto '
               >
                 {validMaturityScores?.map((category, categoryIdx) => (
                   <MaturityCategory key={categoryIdx} category={category} />
@@ -407,11 +407,11 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             .map(({ id, indicatorType, name, description }, indicatorIdx) => (
               <div key={indicatorIdx} className='py-4 mx-6 px-6 border-t border-dial-slate-400'>
                 <div className='grid grid-cols-4 gap-8'>
-                  <div className='text-sm col-span-3'>
+                  <div className='text-sm col-span-4 sm:col-span-2 md:col-span-3'>
                     {name}
                     <div className='text-dial-stratos'>{description && parse(description)}</div>
                   </div>
-                  <div className='col-span-1'>
+                  <div className=' col-span-4 sm:col-span-2 md:col-span-1'>
                     <Controller
                       name={
                         `${CATEGORY_INDICATORS_FIELD_ARRAY_NAME}.` +
