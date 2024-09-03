@@ -2688,6 +2688,8 @@ export const en = {
   `,
 
   'hub.dashboard': 'Dashboard',
+  'hub.dashboard.title': 'Resource Hub Dashboard',
+  'hub.dashboard.title.adli': 'ADLI Member Dashboard',
   'hub.dashboard.signOut': 'Sign Out',
   'hub.dashboard.profile': 'My Profile',
   'hub.dashboard.chatbot': 'My Chatbot',

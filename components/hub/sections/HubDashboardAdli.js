@@ -29,7 +29,7 @@ const HubDashboardAdli = () => {
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-12'>
           <div className='text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray'>
-            ADLI Member Dashboard
+            <FormattedMessage id='hub.dashboard.title.adli' />
           </div>
         </div>
       </div>
