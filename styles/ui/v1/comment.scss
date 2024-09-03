@@ -8,7 +8,7 @@
 /* Delete confirmation */
 .react-responsive-modal-modal {
   @apply p-8;
-  @apply w-1/2;
+  @apply w-3/4;
   @apply rounded-2xl;
   @apply max-w-prose;
 
@@ -70,6 +70,11 @@
       @apply text-lg;
       @apply text-dial-sapphire;
       @apply py-2;
+    }
+
+    .infoStyle {
+      @apply max-w-[74vw];
+      @apply break-words;
     }
 
     /* CommentsSection - no comments */

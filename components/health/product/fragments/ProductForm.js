@@ -40,6 +40,10 @@ const ProductForm = React.memo(({ product }) => {
     label: ProductStageType[key].charAt(0).toUpperCase() + ProductStageType[key].slice(1)
   }))
 
+  const handleTrimInputOnBlur = (event) => {
+    event.target.value = event.target.value.trim()
+  }
+
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const router = useRouter()
@@ -181,6 +185,7 @@ const ProductForm = React.memo(({ product }) => {
                 id='name'
                 placeholder={format('product.name')}
                 isInvalid={errors.name}
+                onBlur={handleTrimInputOnBlur}
               />
               {errors.name && <ValidationError value={errors.name?.message} />}
             </div>
