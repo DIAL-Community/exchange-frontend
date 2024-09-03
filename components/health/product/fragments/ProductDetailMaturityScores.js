@@ -377,7 +377,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
               <Accordion
                 allowMultipleExpanded
                 allowZeroExpanded
-                className='max-h-[60vh] overflow-auto '
+                className='max-h-[60vh] overflow-auto'
               >
                 {validMaturityScores?.map((category, categoryIdx) => (
                   <MaturityCategory key={categoryIdx} category={category} />
@@ -411,7 +411,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
                     {name}
                     <div className='text-dial-stratos'>{description && parse(description)}</div>
                   </div>
-                  <div className=' col-span-4 sm:col-span-2 md:col-span-1'>
+                  <div className='col-span-4 sm:col-span-2 md:col-span-1'>
                     <Controller
                       name={
                         `${CATEGORY_INDICATORS_FIELD_ARRAY_NAME}.` +
