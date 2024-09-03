@@ -85,7 +85,7 @@ const ApplicationDefaultContexts = ({ children }) => {
             <ToastContextProvider>
               <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID} />
               <DefaultSeo
-                titleTemplate={`%s - ${currentTenant} | ${titleForTenant(currentTenant)}`}
+                titleTemplate={`${titleForTenant(currentTenant)} | %s - ${currentTenant}`}
                 defaultTitle={titleForTenant(currentTenant)}
                 description={format('wizard.getStarted.firstLine')}
                 additionalLinkTags={[{

@@ -49,7 +49,17 @@ const HubCountryDetail = ({ country }) => {
       <HubCountryWebsites country={country} />
       <HubCountryProducts country={country} />
       <HubCountryResources country={country} />
-      <div className='mx-auto text-sm flex justify-center items-center'>
+      <div className='key-organization-section bg-dial-sapphire'>
+        <div className='px-4 lg:px-8 xl:px-56 flex flex-col text-dial-cotton'>
+          <div className='text-xl font-medium py-6'>
+            <FormattedMessage id='hub.country.organizations' />
+          </div>
+          <div className='text-sm mb-6'>
+            <FormattedMessage id='hub.country.noOrganizations' />
+          </div>
+        </div>
+      </div>
+      <div className='mx-auto text-sm flex justify-center items-center pt-12'>
         <Link
           href={`/hub/countries/${country.slug}/resources/suggest`}
           className='cursor-pointer bg-dial-sapphire px-4 py-2 rounded '

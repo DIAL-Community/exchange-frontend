@@ -649,7 +649,25 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         </div>
       </div>
       <div
-        class="mx-auto text-sm flex justify-center items-center"
+        class="key-organization-section bg-dial-sapphire"
+      >
+        <div
+          class="px-4 lg:px-8 xl:px-56 flex flex-col text-dial-cotton"
+        >
+          <div
+            class="text-xl font-medium py-6"
+          >
+            Key Organizations
+          </div>
+          <div
+            class="text-sm mb-6"
+          >
+            Key organization information will be available soon.
+          </div>
+        </div>
+      </div>
+      <div
+        class="mx-auto text-sm flex justify-center items-center pt-12"
       >
         <a
           class="cursor-pointer bg-dial-sapphire px-4 py-2 rounded "

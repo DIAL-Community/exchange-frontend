@@ -2595,6 +2595,8 @@ export const en = {
     detailed info on digital initiatives, laws, and key players. Whether you're a policymaker, researcher,
     or just curious, these profiles offer insights into the digital landscape. 
   `,
+  'hub.country.organizations': 'Key Organizations',
+  'hub.country.noOrganizations': 'Key organization information will be available soon.',
   'hub.country.websites': 'Key Government Websites',
   'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
   'hub.country.resources': 'Resources, Reports, and Articles',
