@@ -55,3 +55,4 @@ deploy:
    - 'ssh "$SERVER_IP" /root/gitlab-deploy.sh'
   only:
    - development
+   - HealthTech

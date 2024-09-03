@@ -3,7 +3,8 @@ export const DisplayType = {
   SMALL_CARD: 'small-card',
   PINNED_CARD: 'pinned-card',
   FEATURED_CARD: 'featured-card',
-  HUB_CARD: 'hub-card'
+  HUB_CARD: 'hub-card',
+  GRID_CARD: 'grid-card'
 }
 
 export const ORIGIN_SLUG_ACRONYMS = {
@@ -106,3 +107,9 @@ export const CandidateActionType = {
 }
 
 export const DEFAULT_PAGE_SIZE = 8
+
+export const ProductStageType = {
+  PILOT: 'pilot',
+  SCALING: 'scaling',
+  MATURE: 'mature'
+}
