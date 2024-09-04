@@ -50,6 +50,7 @@ export const en = {
   'app.loginRequired': 'Please login or sign up to access this resource.',
   'app.hide': 'Hide',
   'app.show': 'Show',
+  'app.productStage': 'Product stage',
 
   'general.pastSuffix': 'ago',
 

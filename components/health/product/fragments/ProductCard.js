@@ -58,9 +58,11 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
       <div
         className='bg-white shadow-lg rounded-xl h-360 border border-dial-gray hover:border-transparent'>
         <div className="flex flex-col h-full">
-          <div className="flex justify-center items-center py-12 bg-white rounded-xl border-health-red border-4 mx-4 my-4">
+          <div className="flex justify-center items-center py-12 bg-white rounded-xl
+                          border-health-red border-4 mx-4 my-4 max-h-[180px]"
+          >
             {product.imageFile.indexOf('placeholder.svg') < 0 &&
-              <div className="inline">
+              <div className="inline my-12 mx-16">
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
