@@ -23,6 +23,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
     $showGovStackOnly: Boolean
     $showDpgaOnly: Boolean
     $search: String
+    $productStage: String
   ) {
     paginationAttributeProduct(
       useCases: $useCases
@@ -38,6 +39,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
       showGovStackOnly: $showGovStackOnly
       showDpgaOnly: $showDpgaOnly
       search: $search
+      productStage: SproductStage
     ) {
       totalCount
     }
@@ -61,6 +63,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $showGovStackOnly: Boolean
     $showDpgaOnly: Boolean
     $search: String
+    $productStage: String
     $limit: Int!
     $offset: Int!
   ) {
@@ -80,6 +83,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       showGovStackOnly: $showGovStackOnly
       showDpgaOnly: $showDpgaOnly
       search: $search
+      productStage: $productStage
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
