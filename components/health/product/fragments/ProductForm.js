@@ -181,7 +181,11 @@ const ProductForm = React.memo(({ product }) => {
                 {format('product.name')}
               </label>
               <Input
-                {...register('name', { required: format('validation.required') })}
+                {...register(
+                  'name',
+                  { required: format('validation.required'),
+                    maxLength: { value: 80, message: format('validation.max-length.text', { maxLength: 80 }) }
+                  })}
                 id='name'
                 placeholder={format('product.name')}
                 isInvalid={errors.name}

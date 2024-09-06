@@ -50,16 +50,19 @@ const ProductDetailHeader = ({ product }) => {
             {format('product.website')}
           </div>
           <div className='flex text-dial-stratos'>
-            <a
-              href={prependUrlWithProtocol(product.website)}
-              target='_blank'
-              rel='noreferrer'
-              className='flex border-b border-dial-iris-blue '>
-              <div className='line-clamp-1 break-all'>
-                {product.website}
-              </div>
-            </a>
-            &nbsp;⧉
+            {product.website ?
+              <a
+                href={prependUrlWithProtocol(product.website)}
+                target='_blank'
+                rel='noreferrer'
+                className='flex border-b border-dial-iris-blue '>
+                <div className='line-clamp-1 break-all'>
+                  {product.website}
+                </div>
+                &nbsp;⧉
+              </a>
+              : <span className='text-dial-stratos'>{format('general.na').toUpperCase()}</span>
+            }
           </div>
         </div>
         <div className='flex flex-col gap-y-3'>
@@ -73,7 +76,6 @@ const ProductDetailHeader = ({ product }) => {
             }
           </div>
         </div>
-        <ProductDetailSectors product={product} canEdit={canEdit} />
       </div>
     </div>
   )

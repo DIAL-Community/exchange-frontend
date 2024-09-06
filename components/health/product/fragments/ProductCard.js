@@ -80,10 +80,10 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
               </div>
             }
           </div>
-          <div className="px-6 text-xl text-center font-semibold m-auto text-health-blue">
+          <div className="px-6 text-xl text-center font-semibold m-auto text-health-blue title-truncate">
             {product.name}
           </div>
-          <div className="text-xs text-dial-stratos font-medium h-full overflow-hidden " ref={textRef}>
+          <div className="text-xs text-dial-stratos font-medium h-full overflow-hidden" ref={textRef}>
             <div className="px-6 py-2 flex  mx-auto gap-2">
               <span
                 className="my-auto text-center m-auto dynamic-truncate"
