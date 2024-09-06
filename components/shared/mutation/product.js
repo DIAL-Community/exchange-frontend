@@ -180,6 +180,26 @@ export const UPDATE_PRODUCT_COUNTRIES = gql`
   }
 `
 
+export const UPDATE_PRODUCT_EXTRA_ATTRIBUTES = gql`
+  mutation UpdateProductExtraAttributes(
+    $slug: String!
+     $extraAttributes: [ExtraAttributeInput!]!
+  ) {
+    updateProductExtraAttributes(
+      slug: $slug
+      extraAttributes: $extraAttributes
+    ) {
+      product {
+        id
+        slug
+        name
+        extraAttributes
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_PRODUCT_PROJECTS = gql`
   mutation UpdateProductProjects(
     $slug: String!
