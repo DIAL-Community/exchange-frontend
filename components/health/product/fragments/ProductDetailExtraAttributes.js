@@ -129,7 +129,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
       {extraAttributes?.map((attribute, index) =>
         <div key={`extraAttribute-${index}`}>
           <div key={index} className='text-black'>
-            {`${attribute.name}: ${attribute.value}`}
+            {`${attribute.name}: ${attribute.value.length ? attribute.value : format('general.na')}`}
           </div>
         </div>
       )}
@@ -142,10 +142,10 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
     <>
       <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
         <div className='grid grid-cols-4 gap-y-2 gap-x-4'>
-          <label className='required-field col-span-3' htmlFor='name'>
+          <label className='col-span-3'>
             {format('extraAttributes.ownership')}
           </label>
-          <label className='required-field col-span-1' htmlFor='name'>
+          <label className='col-span-1'>
             {format('extraAttributes.type')}
           </label>
           <Input
@@ -170,10 +170,10 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
           />
         </div>
         <div className="grid grid-cols-4 gap-y-2 gap-x-4">
-          <label className="required-field col-span-3" htmlFor="name">
+          <label className="col-span-3">
             {format('extraAttributes.funders')}
           </label>
-          <label className="required-field col-span-1" htmlFor="name">
+          <label className="col-span-1">
             {format('extraAttributes.type')}
           </label>
           <Input
@@ -198,10 +198,10 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
           />
         </div>
         <div className="grid grid-cols-4 gap-y-2 gap-x-4">
-          <label className="required-field col-span-3" htmlFor="name">
+          <label className="col-span-3">
             {format('extraAttributes.impact')}
           </label>
-          <label className="required-field col-span-1" htmlFor="name">
+          <label className="col-span-1">
             {format('extraAttributes.type')}
           </label>
           <Input
@@ -226,10 +226,10 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
           />
         </div>
         <div className="grid grid-cols-4 gap-y-2 gap-x-4">
-          <label className="required-field col-span-3" htmlFor="name">
+          <label className="col-span-3">
             {format('extraAttributes.years')}
           </label>
-          <label className="required-field col-span-1" htmlFor="name">
+          <label className="col-span-1">
             {format('extraAttributes.type')}
           </label>
           <Input
