@@ -33,7 +33,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
       setInitialValues(formattedExtraAttributes)
       VariablesReset({ extraAttributes: formattedExtraAttributes })
     }
-  }, [VariablesReset])
+  }, [VariablesReset, product.extraAttributes])
 
   const { user } = useUser()
   const { locale } = useRouter()
