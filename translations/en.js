@@ -1600,6 +1600,7 @@ export const en = {
   'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
   'validation.min-length': 'Message must be at least {minLength} characters',
   'validation.max-length': 'Message cannot be more than {maxLength} characters',
+  'validation.max-length.text': 'Text cannot be more than {maxLength} characters',
   'validation.unique-email': 'This email is already assigned',
   'validation.organization-domain': 'The email address of the user must match the organization’s domain',
   'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
