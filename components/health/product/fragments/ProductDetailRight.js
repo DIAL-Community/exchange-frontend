@@ -15,6 +15,7 @@ import ProductDetailCountries from './ProductDetailCountries'
 import ProductDetailMaturityScores from './ProductDetailMaturityScores'
 import ProductDetailOrganizations from './ProductDetailOrganizations'
 import ProductDetailCategories from './ProductDetailCategories'
+import ProductDetailExtraAttributes from './ProductDetailExtraAttributes'
 
 const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
@@ -66,7 +67,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             {isAdminUser && <DeleteProduct product={product}/>}
           </div>
         )}
-        <div className='flex flex-wrap gap-3'>
+        <div className="flex flex-wrap gap-3">
           {product?.softwareCategories?.map((category, index) =>
             <div
               key={`category-${index}`}
@@ -85,24 +86,8 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             editorId="product-description"
           />
         </div>
-        {product?.extraAttributes.length && (
-          <>
-            <hr className="border-b border-health-gray my-3"/>
-            <div className="flex flex-col gap-y-3">
-              <div className="text-xl font-semibold text-dial-meadow pb-3" ref={extraRef}>
-                {format('ui.product.extraAttributes')}
-              </div>
-              {product.extraAttributes.map((attr, i) => {
-                return (
-                  <div key={i} className="flex flex-row gap-3 text-sm">
-                    {attr.name}: {attr.value}
-                  </div>
-                )
-              }
-              )}
-            </div>
-          </>
-        )}
+        <hr className="border-b border-health-gray my-3"/>
+        <ProductDetailExtraAttributes product={product} canEdit={canEdit} headerRef={extraRef} />
         <hr className="border-b border-health-gray my-3"/>
         <div className="text-health-blue text-xl font-semibold mt-6" ref={productMaturityRef}>
           {format('ui.maturityScore.header')}

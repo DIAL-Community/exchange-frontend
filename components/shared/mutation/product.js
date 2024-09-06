@@ -15,6 +15,7 @@ export const CREATE_PRODUCT = gql`
     $commercialProduct: Boolean
     $govStackEntity: Boolean
     $productStage: String
+    $extraAttributes: [ExtraAttributeInput!]!
   ) {
     createProduct(
       name: $name
@@ -30,6 +31,7 @@ export const CREATE_PRODUCT = gql`
       commercialProduct: $commercialProduct
       govStackEntity: $govStackEntity
       productStage: $productStage
+      extraAttributes: $extraAttributes
     ) {
       product {
         id
@@ -40,6 +42,7 @@ export const CREATE_PRODUCT = gql`
         imageFile
         govStackEntity
         productStage
+        extraAttributes
         productDescription {
           id
           description
@@ -174,6 +177,26 @@ export const UPDATE_PRODUCT_COUNTRIES = gql`
           slug
           code
         }
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_PRODUCT_EXTRA_ATTRIBUTES = gql`
+  mutation UpdateProductExtraAttributes(
+    $slug: String!
+     $extraAttributes: [ExtraAttributeInput!]!
+  ) {
+    updateProductExtraAttributes(
+      slug: $slug
+      extraAttributes: $extraAttributes
+    ) {
+      product {
+        id
+        slug
+        name
+        extraAttributes
       }
       errors
     }
