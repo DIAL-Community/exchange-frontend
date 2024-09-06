@@ -112,3 +112,9 @@ export const ProductStageType = {
   SCALING: 'scaling',
   MATURE: 'mature'
 }
+export const ProductExtraAttributeNames = [
+  'Local Ownership',
+  'Funders',
+  'Impact',
+  'Years in production'
+]
