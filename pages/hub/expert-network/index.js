@@ -14,8 +14,8 @@ const HubExpertNetworkPage = ({ dpiTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('hub.header.expertNetwork')}
-        description={format('hub.expertNetwork.subtitle')}
+        title={format('hub.header.adliNetwork')}
+        description={format('hub.adliNetwork.subtitle')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />

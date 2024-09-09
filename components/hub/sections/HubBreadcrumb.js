@@ -43,9 +43,17 @@ const HubBreadcrumb = ({ slugNameMapping }) => {
           return {}
         }
 
-        const label = basePathMappings[path]
-          ? format(basePathMappings[path])
-          : slugNameMapping[path]
+        /*
+          Path labeling resolution ordering:
+            - Override from slugNameMapping
+            - Override from basePathMappings
+            - Fallback to slugNameMapping
+        */
+        const label = slugNameMapping && slugNameMapping[path]
+          ? format(slugNameMapping[path])
+          : basePathMappings[path]
+            ? format(basePathMappings[path])
+            : slugNameMapping[path]
 
         return {
           breadcrumb: label,

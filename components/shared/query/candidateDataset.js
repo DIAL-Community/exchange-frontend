@@ -40,7 +40,6 @@ export const CANDIDATE_DATASET_DETAIL_QUERY = gql`
       visualizationUrl
       submitterEmail
       createdAt
-      rejected
 
       rejected
       rejectedDate

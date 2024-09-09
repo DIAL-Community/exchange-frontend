@@ -1400,11 +1400,31 @@ export const en = {
   'ui.candidateDataset.datasetType.hint': 'Data type of the Candidate Open Data',
   'ui.candidateDataset.submitter.hint': 'Submitter of the Candidate Open Data',
 
-  'candidate.header': 'Candidate',
+  'ui.candidateResource.name': 'Name',
+  'ui.candidateResource.name.placeholder': 'Name of the candidate resource.',
+  'ui.candidateResource.publishedDate': 'Published On',
+  'ui.candidateResource.publishedDate.placeholder': 'Date of the resource publication',
+  'ui.candidateResource.resourceLink': 'Link to the Resource',
+  'ui.candidateResource.resourceLink.placeholder': 'External link to the existing resource.',
+  'ui.candidateResource.linkDescription': 'Description to the Link',
+  'ui.candidateResource.linkDescription.placeholder': 'Description to the external link.',
+  'ui.candidateResource.description': 'Description',
+  'ui.candidateResource.description.placeholder': 'Description of the candidate resource.',
+  'ui.candidateResource.resourceType': 'Resource Type',
+  'ui.candidateResource.resourceType.placeholder': 'Type of the candidate resource',
+  'ui.candidateResource.submitter': 'Your Email Address',
+  'ui.candidateResource.submitter.placeholder': 'Email address of the candidate resource submitter.',
+  'ui.candidateResource.submit': 'Submit Candidate Resource',
+  'ui.candidateResource.created': 'Candidate resource submitted successfully.',
+  'ui.candidateResource.website.hint': 'Website of the candidate resource.',
+  'ui.candidateResource.submit.success': 'Candidate resource submitted successfully',
+  'ui.candidateResource.submit.failure': 'Candidate resource submission failed',
+
   'candidate.rejected': 'Declined',
   'candidate.approved': 'Approved',
   'candidate.reject': 'Decline',
   'candidate.approve': 'Approve',
+  'candidate.inReview': 'In Review',
 
   'candidate.feedback': 'Feedback',
   'candidate.feedback.placeholder': 'Reason for approval / rejection.',
@@ -2221,6 +2241,10 @@ export const en = {
   'ui.candidateDataset.header': 'Candidate Datasets',
   'ui.candidateDataset.createNew': 'Create a new Candidate Dataset',
 
+  'ui.candidateResource.label': 'Candidate Resource',
+  'ui.candidateResource.header': 'Candidate Resources',
+  'ui.candidateResource.createNew': 'Create a new Candidate Resource',
+
   'ui.candidateRole.label': 'Candidate Role',
   'ui.candidateRole.header': 'Candidate Roles',
   'ui.candidateRole.createNew': 'Create a new Candidate Role',
@@ -2280,8 +2304,8 @@ export const en = {
   `,
   'ui.wizard.launch': 'Launch Recommendations Wizard',
 
-  'ui.dpi.wizard.title': 'Get Started',
-  'ui.dpi.wizard.tagLine': `
+  'ui.hub.wizard.title': 'Get Started',
+  'ui.hub.wizard.tagLine': `
     Our Recommendations Wizard can help get you started to fnd you a curated list of resources, 
     tailored to wherever you are in a project lifecycle — ideation, planning, implementation, 
     or monitoring/evaluation.
@@ -2535,7 +2559,7 @@ export const en = {
   'hub.header.topic': 'Topics',
   'hub.header.country': 'Countries',
   'hub.header.resourceFinder': 'Resource Finder',
-  'hub.header.expertNetwork': 'Expert Network',
+  'hub.header.adliNetwork': 'ADLI Network',
 
   'hub.exportNetwork.login': 'ADLI Member Login',
   'hub.exportNetwork.learnMore': 'Learn more about ADLI',
@@ -2559,29 +2583,38 @@ export const en = {
   `,
   'hub.landing.browseTopics': 'Browse <break></break> Topics',
   'hub.landing.featuredCountries': 'Featured <break></break> Countries',
+  
+  'hub.topic.reports': 'Reports and Articles',
   'hub.topic.subtitle': `
     Topics showcases a series of knowledge products published by DIAL and its partners
     on key issues surrounding digital public infrastructure.
   `,
+  
   'hub.country.subtitle': `
     Dive into an in-depth look at the digital setup in different countries. Country profiles provide
     detailed info on digital initiatives, laws, and key players. Whether you're a policymaker, researcher,
     or just curious, these profiles offer insights into the digital landscape. 
   `,
+  'hub.country.organizations': 'Key Organizations',
+  'hub.country.noOrganizations': 'Key organization information will be available soon.',
   'hub.country.websites': 'Key Government Websites',
   'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
-  'hub.topic.reports': 'Reports and Articles',
+  'hub.country.resources': 'Resources, Reports, and Articles',
+  'hub.country.candidateResources': 'Suggested Resources, Reports, and Articles',
+  'hub.country.suggestResource': 'Suggest a Resource, Report, or Article',
+  
   'hub.resourceFinder.title': 'Resource Finder',
   'hub.resourceFinder.subtitle': `Quickly search and filter through our library to
     find resources relevant to a specific topic, country, or project.
   `,
 
-  'hub.expertNetwork.title': 'Expert Network',
-  'hub.expertNetwork.subtitle': `
+  'hub.adliNetwork.title': 'ADLI Network',
+  'hub.adliNetwork.subtitle': `
     The Africa Data Leadership Initiative (ADLI) is a ​peer learning and exchange network
     designed by and for African policymakers, legislators, researchers, technologists, and
     digital rights advocates working on data governance and digital platforms and services. 
   `,
+  'hub.adliNetwork.memberCard.alt': 'Photo of the ADLI member',
 
   'health.landing.main.title': 'Africa HealthTech Marketplace',
   'health.landing.main.subtitle': `Enhancing visibility and trust in digital health solutions`,
@@ -2647,6 +2680,9 @@ export const en = {
   `,
 
   'hub.dashboard.subtitle': `
+    Welcome to DIAL resource hub dashboard.
+  `,
+  'hub.dashboard.adli.subtitle': `
     Welcome to your Africa Data Leadership Initiative (ADLI) learning and engagement platform. This space
     is designed to be a dynamic forum to share your experiences and solutions related to data governance.
     We hope that through peer-to-peer learning, strategic partnerships, and continuous adaptation, we can
@@ -2654,6 +2690,8 @@ export const en = {
   `,
 
   'hub.dashboard': 'Dashboard',
+  'hub.dashboard.title': 'Resource Hub Dashboard',
+  'hub.dashboard.title.adli': 'ADLI Member Dashboard',
   'hub.dashboard.signOut': 'Sign Out',
   'hub.dashboard.profile': 'My Profile',
   'hub.dashboard.chatbot': 'My Chatbot',
@@ -2672,7 +2710,8 @@ export const en = {
   'hub.breadcrumb.curriculumModule': 'Module',
   'hub.breadcrumb.curriculumSubModule': 'Sub Module',
 
-  'hub.breadcrumb.dashboard': 'ADLI Member Dashboard',
+  'hub.breadcrumb.dashboard': 'Resource Dashboard',
+  'hub.breadcrumb.dashboard.adli': 'ADLI Member Dashboard',
 
   'hub.curriculum.header': 'Curricula',
   'hub.curriculum.label': 'Curriculum',

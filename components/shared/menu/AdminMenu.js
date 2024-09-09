@@ -51,6 +51,9 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           <Link href='/candidate/products' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.candidateProduct.header')}
           </Link>
+          <Link href='/candidate/resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.candidateResource.header')}
+          </Link>
           <Link href='/candidate/roles' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.candidateRole.header')}
           </Link>

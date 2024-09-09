@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { useCallback } from 'react'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
 const HubWizardDefinition = () => {
@@ -13,10 +13,10 @@ const HubWizardDefinition = () => {
         <div className='lg:px-8 xl:px-56'>
           <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-6'>
             <div className='text-2xl font-semibold mt-12 text-center'>
-              {format('ui.dpi.wizard.title')}
+              {format('ui.hub.wizard.title')}
             </div>
             <div className='max-w-5xl text-center'>
-              {format('ui.dpi.wizard.tagLine')}
+              {format('ui.hub.wizard.tagLine')}
             </div>
             <div className='text-sm text-dial-stratos flex justify-center'>
               <Link href='/wizard' className='rounded px-5 py-2.5 bg-dial-sunshine intro-wizard'>

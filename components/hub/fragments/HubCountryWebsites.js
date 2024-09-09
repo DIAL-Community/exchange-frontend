@@ -5,27 +5,31 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
 import HubPagination from './HubPagination'
 
+export const NATIONAL_WEBSITE = 'National Website'
 const DEFAULT_PAGE_SIZE = 6
 
-const WebsiteCard = ({ resource }) => {
+const WebsiteCard = ({ resource, country }) => {
   const displayLargeCard = () =>
     <div className='border bg-dial-yellow rounded-md min-h-[2rem]'>
-      <div className='p-3 flex flex-col gap-y-1'>
-        <div className='text-lg font-medium'>
-          <Link href={`/hub/resources/${resource.slug}`}>
+      <div className='flex flex-col'>
+        <Link
+          href={`/hub/countries/${country.slug}/resources/${resource.slug}`}
+          className='p-3 text-lg font-medium flex group'
+        >
+          <div className='line-clamp-1 border-b border-transparent group-hover:border-dial-stratos'>
             {resource.name}
-          </Link>
-        </div>
-        <div className='line-clamp-4 text-justify text-sm'>
-          <a
-            target='_blank'
-            rel='noreferrer'
-            href={`//${resource.resourceLink}`}
-            className='line-clamp-1'
-          >
+          </div>
+        </Link>
+        <a
+          target='_blank'
+          rel='noreferrer'
+          href={`//${resource.resourceLink}`}
+          className='px-3 pb-3 text-justify text-sm flex group'
+        >
+          <div className='line-clamp-1 border-b border-transparent group-hover:border-dial-stratos'>
             {resource.resourceLink}&nbsp;⧉
-          </a>
-        </div>
+          </div>
+        </a>
       </div>
     </div>
 
@@ -41,7 +45,7 @@ const WebsitePagination = ({ country, pageNumber, onClickHandler, theme='light' 
   const { loading, error, data } = useQuery(RESOURCE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search: '',
-      resourceTypes: ['National Website'],
+      resourceTypes: [NATIONAL_WEBSITE],
       countries: [country.id]
     }
   })
@@ -75,7 +79,7 @@ const WebsiteList = ({ country, pageNumber }) => {
     variables: {
       search: '',
       countries: [country.id],
-      resourceTypes: ['National Website'],
+      resourceTypes: [NATIONAL_WEBSITE],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
     }
@@ -94,7 +98,7 @@ const WebsiteList = ({ country, pageNumber }) => {
   return (
     <div className='grid md:grid-cols-2 gap-4'>
       {resources.map((resource, index) =>
-        <WebsiteCard key={index} resource={resource} />
+        <WebsiteCard key={index} resource={resource} country={country} />
       )}
     </div>
   )
