@@ -114,7 +114,7 @@ const ProductForm = React.memo(({ product }) => {
       })
       resetVariables({ extraAttributes: formattedExtraAttributes })
     }
-  }, [resetVariables, product.extraAttributes])
+  }, [resetVariables, product?.extraAttributes])
 
   const { fields: aliases, append, remove } = useFieldArray({
     control,

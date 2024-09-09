@@ -100,7 +100,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
-      {format('general.na')}
+      {format('product.noExtraAttributes')}
     </div>
 
   const editModeBody =

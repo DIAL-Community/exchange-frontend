@@ -261,6 +261,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
           id
           name
           slug
+          facilityScale
         }
       }
       softwareFeatures {
@@ -268,6 +269,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         name
         slug
         categoryId
+        facilityScale
       }
     }
   }

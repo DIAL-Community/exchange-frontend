@@ -629,6 +629,21 @@ export const en = {
   'product.card.buildingBlocks': 'Building Blocks',
   'product.card.sdgs': 'SDGs',
 
+
+  'product.noExtraAttributes': 'We do not have any Local Innovation information for this Product.',
+  'product.noCategories': 'We do not have any Software information for this Product.',
+
+  'product.features.facilityScale.detail.label': 'Facility Scale Details',
+  'product.features.details.faq.label': `For more information about facility scales, visit the 
+            <a
+            href='https://health.dial.community/health/faq'
+            target='_blank'
+            rel='noopener'
+            id='translation-link'
+          > 
+          FAQ
+        </a> page`,
+
   'ui.dataset.label': 'Open Data',
   'ui.dataset.website': 'Open Data Website',
   'ui.dataset.description': 'Description',
