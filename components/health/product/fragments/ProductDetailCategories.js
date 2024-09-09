@@ -94,9 +94,8 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
   }
 
   const featureDetails = (input) => {
-    const currCategory = categories.filter(({ id }) => id === input.id)
 
-    return currCategory && currCategory[0].softwareFeatures?.map((feature) => (
+    return input?.softwareFeatures?.map((feature) => (
       <>
         <div className='col-span-3 text-sm'>{feature.name}</div>
         <div className='col-span-1 text-sm'>{feature.facilityScale}</div>
@@ -147,15 +146,11 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
     }))
   }
 
-  const [isFacilityScaleDetailsDialogOpen, setIsFacilityScaleDetailsDialogOpen] = useState(
-    categories.map(() => false)
-  )
+  const [isFacilityScaleDetailsDialogOpen, setIsFacilityScaleDetailsDialogOpen] = useState(false)
+  const [categoryDetails, setCategoryDetails] = useState()
 
-  const toggleFacilityScaleDetailsDialog = (categoryIdx) => {
-    setIsFacilityScaleDetailsDialogOpen(prevState =>
-      prevState.map((isOpen, idx) => idx === categoryIdx ? !isOpen : isOpen)
-    )
-  }
+  const toggleFacilityScaleDetailsDialog = () =>
+    setIsFacilityScaleDetailsDialogOpen(!isFacilityScaleDetailsDialogOpen)
 
   const displayModeBody = categories.length
     ? <div className='flex flex-col gap-y-2'>
@@ -206,7 +201,12 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
                 <div className='py-4'>
                   <div className="pb-2">{`${format('ui.category.label')}`}
                     <span className="card-link-text underline cursor-pointer ml-2 float-right"
-                      onClick={() => toggleFacilityScaleDetailsDialog(categoryIdx)}>Facility Scales</span>
+                      onClick={() => {
+                        toggleFacilityScaleDetailsDialog()
+                        setCategoryDetails(category)
+                      }}>
+                      Facility Scales
+                    </span>
                   </div>
                   <Pill
                     label={category.name}
@@ -237,31 +237,31 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
                     ))}
                   </div>
                 </div>
-                <Dialog
-                  isOpen={isFacilityScaleDetailsDialogOpen[categoryIdx]}
-                  onClose={() => toggleFacilityScaleDetailsDialog(categoryIdx)}
-                  closeButton
-                >
-                  <div className="flex flex-col w-full">
-                    <div className="h4 inline mb-6">{format('product.features.facilityScale.detail.label')}</div>
-                    <div className="grid grid-cols-4">
-                      <label className="col-span-3">Name</label>
-                      <label className="col-span-1">Scale</label>
-                      {featureDetails(category)}
-                    </div>
-                    <div
-                      className='text-sm mt-8'
-                      dangerouslySetInnerHTML={{
-                        __html: format('product.features.details.faq.label')
-                      }}
-                    />
-                  </div>
-                </Dialog>
               </div>
             )
           }
           )}
         </div>
+        <Dialog
+          isOpen={isFacilityScaleDetailsDialogOpen}
+          onClose={toggleFacilityScaleDetailsDialog}
+          closeButton
+        >
+          <div className="flex flex-col w-full">
+            <div className="h4 inline mb-6">{format('product.features.facilityScale.detail.label')}</div>
+            <div className="grid grid-cols-4">
+              <label className="col-span-3">Name</label>
+              <label className="col-span-1">Scale</label>
+              {featureDetails(categoryDetails)}
+            </div>
+            <div
+              className='text-sm mt-8'
+              dangerouslySetInnerHTML={{
+                __html: format('product.features.details.faq.label')
+              }}
+            />
+          </div>
+        </Dialog>
       </div>
     </>
 

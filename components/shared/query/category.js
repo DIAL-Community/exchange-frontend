@@ -10,6 +10,7 @@ export const CATEGORY_SEARCH_QUERY = gql`
         id
         name
         slug
+        facilityScale
       }
     }
   }
