@@ -168,6 +168,10 @@ body {
   padding-bottom: 0.2rem;
 }
 
+#translation-link {
+  color: blue;
+}
+
 @layer components {
   .card-title {
     @apply font-semibold;
