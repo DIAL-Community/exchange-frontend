@@ -80,12 +80,12 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
             }
           </Link>
         </div>
-        <Link href={`/dpi-resources/${resource.slug}`}>
+        <Link href={`/hub/resources${resource.slug}`}>
           <div className='text-lg font-semibold text-dial-stratos'>
             {resource.name}
           </div>
         </Link>
-        <Link href={`/dpi-resources/${resource.slug}`}>
+        <Link href={`/hub/resources${resource.slug}`}>
           <div className='line-clamp-4 text-dial-stratos text-sm'>
             {resource?.parsedDescription && parse(resource?.parsedDescription)}
           </div>

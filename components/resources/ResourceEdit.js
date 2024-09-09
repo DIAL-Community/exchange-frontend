@@ -29,7 +29,6 @@ const ResourceEdit = ({ slug }) => {
     const map = {
       edit: format('app.edit')
     }
-    map['resources'] = 'resources'
     map[resource.slug] = resource.name
 
     return map

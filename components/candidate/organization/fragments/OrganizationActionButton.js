@@ -1,71 +1,57 @@
 import { useCallback, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
+import { CANDIDATE_ORGANIZATION_ACTION } from '../../../shared/mutation/candidateOrganization'
 import { CandidateActionType } from '../../../utils/constants'
 
-const OrganizationActionButton = ({ organization, actionType, refetch }) => {
+const OrganizationActionButton = ({ organization, actionType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const { user } = useUser()
 
-  const approveClickHandler = async () => {
-    setLoading(true)
-    if (user) {
-      const { userEmail, userToken } = user
-      const approvePath = process.env.NEXT_PUBLIC_RAILS_SERVER +
-        `/candidate_organizations/${organization.id}/approve` +
-        `?user_email=${userEmail}&user_token=${userToken}`
+  const { locale } = useRouter()
 
-      const response = await fetch(approvePath, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Set-Cookie'
+  const [candidateOrganizationApproval, { reset }] = useMutation(CANDIDATE_ORGANIZATION_ACTION, {
+    onCompleted: (data) => {
+      const { approveRejectCandidateOrganization: response } = data
+      if (response?.candidateOrganization && response?.errors?.length === 0) {
+        setLoading(false)
+      } else {
+        reset()
+        setLoading(false)
+      }
+    },
+    onError: () => {
+      reset()
+      setLoading(false)
+    }
+  })
+
+  const onClickHandler = async (actionType) => {
+    if (user) {
+      setLoading(true)
+      const { userEmail, userToken } = user
+      const variables = {
+        slug: organization.slug,
+        action: actionType === CandidateActionType.REJECT
+          ? CandidateActionType.REJECT
+          : CandidateActionType.APPROVE
+      }
+
+      candidateOrganizationApproval({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
         }
       })
-
-      if (response.status === 200) {
-        refetch({ variables: { slug: organization.slug } })
-      }
     }
-
-    setLoading(false)
-  }
-
-  const rejectClickHandler = async () => {
-    setLoading(true)
-    if (user) {
-      const { userEmail, userToken } = user
-      const approvePath = process.env.NEXT_PUBLIC_RAILS_SERVER +
-        `/candidate_organizations/${organization.id}/reject` +
-        `?user_email=${userEmail}&user_token=${userToken}`
-
-      const response = await fetch(approvePath, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Set-Cookie'
-        }
-      })
-
-      if (response.status === 200) {
-        refetch({ variables: { slug: organization.slug } })
-      }
-    }
-
-    setLoading(false)
   }
 
   return (
@@ -73,7 +59,7 @@ const OrganizationActionButton = ({ organization, actionType, refetch }) => {
       {actionType === CandidateActionType.REJECT && organization.rejected === null &&
         <button
           className='bg-red-500 text-white rounded'
-          onClick={rejectClickHandler}
+          onClick={() => onClickHandler(actionType)}
           disabled={loading}
         >
           <div className='text-sm px-3 py-1'>
@@ -84,7 +70,7 @@ const OrganizationActionButton = ({ organization, actionType, refetch }) => {
       {actionType === CandidateActionType.APPROVE && organization.rejected === null &&
         <button
           className='bg-dial-meadow text-white rounded'
-          onClick={approveClickHandler}
+          onClick={() => onClickHandler(actionType)}
           disabled={loading}
         >
           <div className='text-sm px-3 py-1'>

@@ -20,7 +20,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     resourceTopics
   )
 
-  test('Should render detail of a opportunity.', async () => {
+  test('Should render detail of a topic page.', async () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockResourceTiles]}>
         <QueryParamContextProvider>

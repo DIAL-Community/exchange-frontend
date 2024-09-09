@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { useApolloClient } from '@apollo/client'
-import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
+import Select from '../form/Select'
 import { SECTOR_SEARCH_QUERY } from '../query/sector'
 
 export const SectorAutocomplete = ({ sectors, setSectors, placeholder }) => {
@@ -23,9 +23,10 @@ export const SectorAutocomplete = ({ sectors, setSectors, placeholder }) => {
 
   const fetchCallback = (data) => (
     data?.sectors.map((sector) => ({
+      name: sector.name,
+      slug: sector.slug,
       label: sector.name,
-      value: sector.id,
-      slug: sector.slug
+      value: sector.id
     }))
   )
 

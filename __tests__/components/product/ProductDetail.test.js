@@ -80,8 +80,12 @@ describe('Unit tests for the product detail page.', () => {
         'aliases': [
           ''
         ],
-        'website': 'administracionelectronica.gob.es/ctt/clienteafirma',
-        'description': 'Description for the product.',
+        'website': 'example.com',
+        'description': `
+          Suite of solutions for digital identities and electronic signatures,
+          aimed at public administrations for the implementation of authentication
+          and electronic signatures in a streamlined and effective manner.
+        `,
         'commercialProduct': false,
         'hostingModel': null,
         'pricingModel': null,

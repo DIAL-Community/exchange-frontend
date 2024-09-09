@@ -13,7 +13,7 @@ const ResourceTopicCard = ({ displayType, index, resourceTopic, dismissHandler }
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[10rem] ${index % 2 === 0 && 'bg-dial-violet'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
-        <div className='w-20 h-20'>
+        <div className='w-20 h-20 shrink-0'>
           {resourceTopic.imageFile.indexOf('placeholder.svg') < 0 &&
             <div className='flex items-center justify-center h-full bg-dial-plum rounded-full'>
               <img

@@ -1,11 +1,11 @@
-import { useApolloClient } from '@apollo/client'
-import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
-import { useCallback, useState } from 'react'
+import { useIntl } from 'react-intl'
+import { useApolloClient } from '@apollo/client'
 import { fetchSelectOptions } from '../../utils/search'
-import { COUNTRY_SEARCH_QUERY } from '../query/country'
 import Select from '../form/Select'
+import { COUNTRY_SEARCH_QUERY } from '../query/country'
 
 export const CountryAutocomplete = ({
   countries,
@@ -29,9 +29,10 @@ export const CountryAutocomplete = ({
 
   const fetchedCountriesCallback = (data) => (
     data.countries.map((country) => ({
-      value: country.id,
+      name: country.name,
+      slug: country.slug,
       label: country.name,
-      slug: country.slug
+      value: country.id
     }))
   )
 

@@ -106,7 +106,7 @@ const HubHeader = ({ isOnAuthPage = false }) => {
             </li>
             <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
-                {format('hub.header.expertNetwork').toUpperCase()}
+                {format('hub.header.adliNetwork').toUpperCase()}
               </Link>
             </li>
             <li className='relative text-right 2xl:text-lg'>

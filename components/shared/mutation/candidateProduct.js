@@ -32,3 +32,28 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
     }
   }
 `
+
+export const CANDIDATE_PRODUCT_ACTION = gql`
+  mutation ApproveRejectCandidateProduct (
+    $slug: String!
+    $action: String!
+  ) {
+    approveRejectCandidateProduct (
+      slug: $slug
+      action: $action
+    ) {
+      candidateProduct {
+        id
+        name
+        slug
+  
+        rejected
+        rejectedDate
+        rejectedBy
+        approvedDate
+        approvedBy
+      }
+      errors
+    }
+  }
+`

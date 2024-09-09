@@ -23,21 +23,6 @@ export const resourceTopic = {
   }
 }
 
-export const resourceTopicResources = {
-  'data': {
-    'resourceTopicResources': [
-      {
-        'id': '4',
-        'name': 'Renegotiating the Faustian Bargain for Data',
-        'slug': 'renegotiating-the-faustian-bargain-for-data',
-        'imageFile': '/assets/resources/resource-placeholder.svg',
-        'parsedDescription': 'Description for the resource.',
-        '__typename': 'Resource'
-      }
-    ]
-  }
-}
-
 export const countriesWithResources = {
   'data': {
     'countries': [

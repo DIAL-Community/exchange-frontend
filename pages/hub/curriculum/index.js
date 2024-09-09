@@ -24,8 +24,8 @@ const HubCurriculumPage = ({ dpiTenants }) => {
         description={format('hub.curriculum.title')}
       />
       <NextSeo
-        title={format('hub.header.expertNetwork')}
-        description={format('hub.expertNetwork.subtitle')}
+        title={format('hub.header.adliNetwork')}
+        description={format('hub.adliNetwork.subtitle')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <HubHeader />

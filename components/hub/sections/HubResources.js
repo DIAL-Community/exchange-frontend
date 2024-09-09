@@ -1,35 +1,29 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { ResourceFilterContext } from '../../context/ResourceFilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import { RESOURCE_TOPIC_RESOURCES_QUERY } from '../../shared/query/resourceTopic'
-import HubResourceTile from '../fragments/HubResourceTile'
+import { Error, Loading } from '../../shared/FetchStatus'
+import { RESOURCE_TOPIC_SEARCH_QUERY } from '../../shared/query/resourceTopic'
+import HubResourceTiles from '../fragments/HubResourceTile'
 
-const HubResources = ({  showWithTopicOnly }) => {
+const HubResources = ({  pageNumber, showWithTopicOnly, onClickHandler }) => {
 
-  const { search, resourceTypes, resourceCountries } = useContext(ResourceFilterContext)
-
-  const { loading, error, data } = useQuery(RESOURCE_TOPIC_RESOURCES_QUERY, {
-    variables: {
-      slug:  showWithTopicOnly ? 'with-topic-only' : 'all',
-      search,
-      countries: resourceCountries.map(r => r.label),
-      resourceTypes: resourceTypes.map(r => r.value)
-    }
+  const { loading, error, data } = useQuery(RESOURCE_TOPIC_SEARCH_QUERY, {
+    variables: { search: '' },
+    skip: !showWithTopicOnly
   })
 
   if (loading) {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.resourceTopicResources) {
-    return <NotFound />
   }
 
-  const { resourceTopicResources } = data
+  const { resourceTopics } = data ?? { resourceTopics: [] }
 
   return (
-    <HubResourceTile resources={resourceTopicResources} />
+    <HubResourceTiles
+      pageNumber={pageNumber}
+      onClickHandler={onClickHandler}
+      resourceTopics={resourceTopics}
+    />
   )
 }
 

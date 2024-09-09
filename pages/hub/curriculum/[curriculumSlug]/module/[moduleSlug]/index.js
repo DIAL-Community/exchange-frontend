@@ -1,10 +1,13 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
+import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { allowedToBrowseAdliPages } from '../../../../../../components/hub/admin/utilities'
 import HubCurriculumModule from '../../../../../../components/hub/sections/HubCurriculumModule'
 import HubFooter from '../../../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../../../components/hub/sections/HubHeader'
+import { Loading, Unauthorized } from '../../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../../lib/ClientOnly'
 
 const HubCurriculumModulePage = ({ dpiTenants }) => {
@@ -14,6 +17,13 @@ const HubCurriculumModulePage = ({ dpiTenants }) => {
   const router = useRouter()
   const { curriculumSlug, moduleSlug } = router.query
 
+  const { data, status } = useSession()
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      void signIn()
+    }
+  }, [status])
+
   return (
     <>
       <NextSeo
@@ -22,7 +32,15 @@ const HubCurriculumModulePage = ({ dpiTenants }) => {
       />
       <ClientOnly clientTenants={dpiTenants}>
         <HubHeader />
-        <HubCurriculumModule curriculumSlug={curriculumSlug} moduleSlug={moduleSlug}/>
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && allowedToBrowseAdliPages(data?.user)
+            ? <HubCurriculumModule
+              curriculumSlug={curriculumSlug}
+              moduleSlug={moduleSlug}
+            />
+            : <Unauthorized />
+        }
         <HubFooter />
       </ClientOnly>
     </>
