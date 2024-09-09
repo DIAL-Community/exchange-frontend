@@ -494,6 +494,14 @@ export const en = {
   'ui.sdgTarget.header': 'SDG Targets',
   'ui.sdgTarget.label': 'SDG Target',
 
+  'ui.extraAttributes.header': 'Local Innovations',
+  'ui.extraAttributes.label': 'Local Innovation',
+  'extraAttributes.ownership': 'Local Ownership',
+  'extraAttributes.funders': 'Funders',
+  'extraAttributes.impact': 'Impact',
+  'extraAttributes.years': 'Years in production',
+  'extraAttributes.type': 'Type',
+
   'useCase.sdgTarget': 'SDG Targets',
   'useCase.workflow': 'Workflows',
   'useCase.noSdgTarget': 'We do not have any SDG Target information for this Use Case.',
@@ -620,6 +628,21 @@ export const en = {
   'product.card.license': 'License',
   'product.card.buildingBlocks': 'Building Blocks',
   'product.card.sdgs': 'SDGs',
+
+
+  'product.noExtraAttributes': 'We do not have any Local Innovation information for this Product.',
+  'product.noCategories': 'We do not have any Software information for this Product.',
+
+  'product.features.facilityScale.detail.label': 'Facility Scale Details',
+  'product.features.details.faq.label': `For more information about facility scales, visit the 
+            <a
+            href='https://health.dial.community/health/faq'
+            target='_blank'
+            rel='noopener'
+            id='translation-link'
+          > 
+          FAQ
+        </a> page`,
 
   'ui.dataset.label': 'Open Data',
   'ui.dataset.website': 'Open Data Website',
@@ -1592,6 +1615,7 @@ export const en = {
   'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
   'validation.min-length': 'Message must be at least {minLength} characters',
   'validation.max-length': 'Message cannot be more than {maxLength} characters',
+  'validation.max-length.text': 'Text cannot be more than {maxLength} characters',
   'validation.unique-email': 'This email is already assigned',
   'validation.organization-domain': 'The email address of the user must match the organization’s domain',
   'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
@@ -2017,16 +2041,11 @@ export const en = {
   'ui.pagination.loadingInfo': 'Loading page information ...',
   'ui.pagination.loadingInfoError': 'Unable to load page information.',
 
-  'ui.sdg.label': 'SDG',
-  'ui.sdg.header': 'SDGs',
   'ui.sdg.longLabel': 'Sustainable Development Goal',
   'ui.sdg.longHeader': 'Sustainable Development Goals',
   'ui.sdg.whatIs': 'What is a Sustainable Development Goal',
   'sdg.hint.title': 'Sustainable Development Goal',
 
-
-  'ui.sdgTarget.label': 'SDG Target',
-  'ui.sdgTarget.header': 'SDG Targets',
   'ui.sdgTarget.target': 'Target',
 
   'ui.sdgTarget.longLabel': 'Sustainable Development Goal Target',
@@ -2077,8 +2096,6 @@ export const en = {
   'ui.origin.label': 'Origin',
   'ui.origin.header': 'Origins',
 
-  'ui.organization.label': 'Organization',
-  'ui.organization.header': 'Organizations',
   'ui.organization.whatIs': 'What is an Organization?',
   'ui.organization.createNew': 'Create a new Organization',
   'organization.hint.title': 'What is an Organization?',
@@ -2087,9 +2104,6 @@ export const en = {
   `,
 
   'ui.endorsingYear.label': 'Endorsing Year',
-
-  'ui.sector.label': 'Sector',
-  'ui.sector.header': 'Sectors',
 
   'ui.user.label': 'User',
   'ui.user.header': 'Users',

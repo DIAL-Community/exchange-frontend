@@ -10,6 +10,7 @@ import Pill from '../../../shared/form/Pill'
 import { fetchSelectOptions } from '../../../utils/search'
 import { UPDATE_PRODUCT_CATEGORIES } from '../../../shared/mutation/product'
 import { CATEGORY_SEARCH_QUERY } from '../../../shared/query/category'
+import Dialog from '../../../shared/Dialog'
 
 const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -92,6 +93,16 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
+  const featureDetails = (input) => {
+
+    return input?.softwareFeatures?.map((feature) => (
+      <>
+        <div className='col-span-3 text-sm'>{feature.name}</div>
+        <div className='col-span-1 text-sm'>{feature.facilityScale}</div>
+      </>
+    ))
+  }
+
   const onSubmit = () => {
     if (user) {
       const { userEmail, userToken } = user
@@ -135,6 +146,12 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
     }))
   }
 
+  const [isFacilityScaleDetailsDialogOpen, setIsFacilityScaleDetailsDialogOpen] = useState(false)
+  const [categoryDetails, setCategoryDetails] = useState()
+
+  const toggleFacilityScaleDetailsDialog = () =>
+    setIsFacilityScaleDetailsDialogOpen(!isFacilityScaleDetailsDialogOpen)
+
   const displayModeBody = categories.length
     ? <div className='flex flex-col gap-y-2'>
       {categories?.map((category, index) =>
@@ -154,7 +171,7 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
-      {format('general.na')}
+      {format('product.noCategories')}
     </div>
 
   const editModeBody =
@@ -178,42 +195,73 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
           />
         </label>
         <div className='flex flex-wrap gap-3'>
-          {categories.map((category, categoryIdx) => (
-            <div className='grid grid-cols-3 w-full' key={`categories-${categoryIdx}`}>
-              <div className='py-4'>
-                <div className='pb-2'>{`${format('ui.category.label')}`}</div>
-                <Pill
-                  label={category.name}
-                  onRemove={() => removeCategory(category)}
-                />
-              </div>
-              <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm col-span-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {`${format('app.searchAndAssign')} ${format('ui.feature.label')}`}
-                  <Select
-                    isSearch
-                    isBorderless
-                    defaultOptions
-                    placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-                    options={featureOptions(category)}
-                    noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.feature.label') })}
-                    onChange={addFeature}
-                    value={null}
+          {categories.map((category, categoryIdx) => {
+            return (
+              <div className='grid grid-cols-3 w-full' key={`categories-${categoryIdx}`}>
+                <div className='py-4'>
+                  <div className="pb-2">{`${format('ui.category.label')}`}
+                    <span className="card-link-text underline cursor-pointer ml-2 float-right"
+                      onClick={() => {
+                        toggleFacilityScaleDetailsDialog()
+                        setCategoryDetails(category)
+                      }}>
+                      Facility Scales
+                    </span>
+                  </div>
+                  <Pill
+                    label={category.name}
+                    onRemove={() => removeCategory(category)}
                   />
-                </label>
-                <div className='flex flex-wrap gap-3'>
-                  {features.filter((feature) => feature.categoryId == category.id).map((feature, featureIdx) => (
-                    <Pill
-                      key={`sectorfeatures-${featureIdx}`}
-                      label={feature.name}
-                      onRemove={() => removeFeature(feature)}
+                </div>
+                <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm col-span-2'>
+                  <label className='flex flex-col gap-y-2'>
+                    {`${format('app.searchAndAssign')} ${format('ui.feature.label')}`}
+                    <Select
+                      isSearch
+                      isBorderless
+                      defaultOptions
+                      placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+                      options={featureOptions(category)}
+                      noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.feature.label') })}
+                      onChange={addFeature}
+                      value={null}
                     />
-                  ))}
+                  </label>
+                  <div className='flex flex-wrap gap-3'>
+                    {features.filter((feature) => feature.categoryId == category.id).map((feature, featureIdx) => (
+                      <Pill
+                        key={`sectorfeatures-${featureIdx}`}
+                        label={feature.name}
+                        onRemove={() => removeFeature(feature)}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          }
+          )}
         </div>
+        <Dialog
+          isOpen={isFacilityScaleDetailsDialogOpen}
+          onClose={toggleFacilityScaleDetailsDialog}
+          closeButton
+        >
+          <div className="flex flex-col w-full">
+            <div className="h4 inline mb-6">{format('product.features.facilityScale.detail.label')}</div>
+            <div className="grid grid-cols-4">
+              <label className="col-span-3">Name</label>
+              <label className="col-span-1">Scale</label>
+              {featureDetails(categoryDetails)}
+            </div>
+            <div
+              className='text-sm mt-8'
+              dangerouslySetInnerHTML={{
+                __html: format('product.features.details.faq.label')
+              }}
+            />
+          </div>
+        </Dialog>
       </div>
     </>
 
