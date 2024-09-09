@@ -144,6 +144,7 @@ export const UPDATE_PRODUCT_CATEGORIES = gql`
             name
             slug
             categoryId
+            facilityScale
           }
         }
         softwareFeatures {
@@ -151,6 +152,7 @@ export const UPDATE_PRODUCT_CATEGORIES = gql`
           name
           slug
           categoryId
+          facilityScale
         }
       }
       errors
