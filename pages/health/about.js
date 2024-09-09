@@ -1,10 +1,10 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import ClientOnly from '../../../lib/ClientOnly'
-import QueryNotification from '../../../components/shared/QueryNotification'
-import HealthHeader from '../../../components/health/sections/HealthHeader'
-import HealthFooter from '../../../components/health/sections/HealthFooter'
+import ClientOnly from '../../lib/ClientOnly'
+import QueryNotification from '../../components/shared/QueryNotification'
+import HealthHeader from '../../components/health/sections/HealthHeader'
+import HealthFooter from '../../components/health/sections/HealthFooter'
 
 const AboutPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
@@ -24,8 +24,16 @@ const AboutPage = ({ defaultTenants }) => {
       <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <HealthHeader />
-        <div>
+        <div className='lg:px-8 xl:px-56 py-8'>
+          <div className='text-3xl leading-tight text-health-blue font-bold'>
+            About the Africa HealthTech Marketplace
+          </div>
+          <div className='py-8 text-xl'>
+            Messaging around DPG inclusion - there are other places that feature DPGs/open source health solutions.
+            Our focus is around entrepreneurs and local innovation. Visibility for new solutions.
+          </div>
         </div>
+
         <HealthFooter />
       </ClientOnly>
     </>
