@@ -16,6 +16,7 @@ import ProductDetailMaturityScores from './ProductDetailMaturityScores'
 import ProductDetailOrganizations from './ProductDetailOrganizations'
 import ProductDetailCategories from './ProductDetailCategories'
 import ProductDetailExtraAttributes from './ProductDetailExtraAttributes'
+import ProductDetailProjects from './ProductDetailProjects'
 
 const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
@@ -29,6 +30,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const extraRef = useRef()
   const pricingRef = useRef()
   const organizationRef = useRef()
+  const projectRef = useRef()
   const countryRef = useRef()
   const categoryRef = useRef()
   const tagRef = useRef()
@@ -43,12 +45,11 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       { value: 'ui.product.extraAttributes', ref: extraRef },
       { value: 'ui.product.pricing.title', ref: pricingRef },
       { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.softwareCategories.header', ref: categoryRef },
       { value: 'ui.country.header', ref: countryRef },
-
+      { value: 'ui.project.header', ref: projectRef },
       { value: 'productRepository.header', ref: productRepositoryRef },
-
       { value: 'ui.maturityScore.header', ref: productMaturityRef },
-
       { value: 'ui.productRepository.header', ref: productRepositoryRef },
       { value: 'ui.tag.header', ref: tagRef },
       { value: 'ui.comment.label', ref: commentsSectionRef }
@@ -128,6 +129,14 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             product={product}
             canEdit={canEdit}
             headerRef={countryRef}
+          />
+        </div>
+        <hr className="border-b border-health-gray my-3"/>
+        <div className="flex flex-col gap-y-3">
+          <ProductDetailProjects
+            product={product}
+            canEdit={canEdit}
+            headerRef={projectRef}
           />
         </div>
         <hr className="border-b border-health-gray my-3"/>
