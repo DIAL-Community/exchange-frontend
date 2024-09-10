@@ -9,15 +9,24 @@ const ProductDetailNav = ({ scrollRef }) => {
   const navOptions = [{
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
-  },{
+  }, {
+    label: format('ui.extraAttributes.header'),
+    value: 'ui.product.extraAttributes'
+  }, {
     label: format('ui.maturityScore.header'),
     value: 'ui.maturityScore.header'
+  }, {
+    label: format('ui.category.header'),
+    value: 'ui.softwareCategories.header'
   }, {
     label: format('ui.organization.header'),
     value: 'ui.organization.header'
   }, {
     label: format('ui.country.header'),
     value: 'ui.country.header'
+  }, {
+    label: format('ui.project.header'),
+    value: 'ui.project.header'
   }, {
     label: format('productRepository.header'),
     value: 'productRepository.header'

@@ -10,6 +10,7 @@ export const CREATE_PROJECT = gql`
     $description: String!
     $productId: Int
     $organizationId: Int
+    $countrySlugs: [String!]!
   ) {
     createProject(
       name: $name
@@ -20,11 +21,18 @@ export const CREATE_PROJECT = gql`
       description: $description
       productId: $productId
       organizationId: $organizationId
+      countrySlugs: $countrySlugs
     ) {
       project {
         id
         name
         slug
+        countries {
+          id
+          name
+          slug
+          code
+        }
       }
       errors
     }

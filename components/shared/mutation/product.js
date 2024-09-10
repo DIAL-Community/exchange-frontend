@@ -225,6 +225,12 @@ export const UPDATE_PRODUCT_PROJECTS = gql`
           origin {
             slug
           }
+          countries {
+            id
+            name
+            slug
+            code
+          }
         }
       }
       errors

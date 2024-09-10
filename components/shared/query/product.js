@@ -253,6 +253,17 @@ export const PRODUCT_DETAIL_QUERY = gql`
         code
         slug
       }
+      projects {
+        id
+        name
+        slug
+        countries {
+          id
+          name
+          slug
+          code
+        }
+      }
       softwareCategories {
         id
         name
