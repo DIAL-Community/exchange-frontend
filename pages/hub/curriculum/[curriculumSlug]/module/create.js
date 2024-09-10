@@ -35,7 +35,7 @@ const HubCurriculumCreateModulePage = ({ dpiTenants }) => {
         <HubHeader />
         { status === 'unauthenticated' || status === 'loading'
           ? <Loading />
-          : status === 'authenticated' && allowedToView(data.user)
+          : status === 'authenticated' && allowedToView(data?.user)
             ? <CreateHubCurriculumModule curriculumSlug={curriculumSlug} />
             : <Unauthorized />
         }

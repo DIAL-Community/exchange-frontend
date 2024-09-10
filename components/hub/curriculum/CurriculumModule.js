@@ -120,7 +120,7 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
                       .map(resource => (
                         <Link
                           key={resource.id}
-                          href={`/dpi-resources/${resource.slug}`}
+                          href={`/hub/resources/${resource.slug}`}
                           target='_blank'
                           rel='noreferrer'
                         >
@@ -269,7 +269,7 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
         : (
           <div className='flex flex-col gap-3 sticky-scroll-offset' ref={scrollRef}>
             <div className='flex flex-wrap gap-3'>
-              <Link href={`${curriculumSlug}/module/${module.slug}`}>
+              <Link href={`/hub/curriculum/${curriculumSlug}/module/${module.slug}`}>
                 <div className={`font-semibold text-2xl flex gap-2 ${module.draft && 'text-dial-sapphire'}`}>
                   {!isNaN(index) && `${format('hub.curriculum.module.label')} ${index + 1}. ${module.name}`}
                   {isNaN(index) && `${module.name}`}

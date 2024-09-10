@@ -12,11 +12,10 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { loading, error, data } = useQuery(PAGINATED_RESOURCES_QUERY, {
     variables: {
       search,
-      compartmentalized: false,
-      tags: resourceTags.map(r => r.value),
-      countries: resourceCountries.map(r => r.label),
-      resourceTypes: resourceTypes.map(r => r.value),
-      resourceTopics: resourceTopics.map(r => r.value),
+      tags: resourceTags.map(r => r.label),
+      countries: resourceCountries.map(r => r.value),
+      resourceTypes: resourceTypes.map(r => r.label),
+      resourceTopics: resourceTopics.map(r => r.label),
       limit: defaultPageSize,
       offset: pageOffset
     }

@@ -21,7 +21,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     countriesWithResources
   )
 
-  test('Should render detail of a opportunity.', async () => {
+  test('Should render country tiles page.', async () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockCountriesWithResources]}>
         <QueryParamContextProvider>

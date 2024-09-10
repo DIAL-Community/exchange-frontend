@@ -6,7 +6,7 @@ export const productDetail = {
       'slug': 'firma',
       'aliases': [],
       'imageFile': '/assets/products/firma.png',
-      'website': 'administracionelectronica.gob.es/ctt/clienteafirma',
+      'website': 'example.com',
       'extraAttributes': {},
       'commercialProduct': false,
       'pricingModel': null,
@@ -44,18 +44,23 @@ export const productDetail = {
       ],
       'haveOwner': false,
       'govStackEntity': false,
+      'productStage': null,
       'productDescription': {
         'id': '24',
-        'description': 'Description for the product.',
+        'description': `
+          Suite of solutions for digital identities and electronic signatures,
+          aimed at public administrations for the implementation of authentication
+          and electronic signatures in a streamlined and effective manner.
+        `,
         'locale': 'en',
         '__typename': 'ProductDescription'
       },
       'countries': [],
       'origins': [
         {
-          'id': '3',
-          'name': 'Digital Public Goods Alliance',
-          'slug': 'dpga',
+          'id': '6',
+          'name': 'Manually Entered',
+          'slug': 'manually-entered',
           '__typename': 'Origin'
         }
       ],
@@ -74,7 +79,7 @@ export const productDetail = {
       'resources': [],
       'currentProjects': [
         {
-          'id': '3304',
+          'id': '3306',
           'name': 'Firma',
           'slug': 'firma',
           'origin': {
@@ -88,7 +93,48 @@ export const productDetail = {
       ],
       'buildingBlocks': [],
       'buildingBlocksMappingStatus': null,
-      'sdgs': [],
+      'sdgs': [
+        {
+          'id': '23',
+          'name': 'Good Health and Well-Being',
+          'slug': 'good-health-and-wellbeing',
+          'imageFile': '/assets/sdgs/good-health-and-wellbeing.png',
+          'number': 3,
+          'sdgTargets': [
+            {
+              'id': '16',
+              '__typename': 'SustainableDevelopmentGoalTarget'
+            },
+            {
+              'id': '17',
+              '__typename': 'SustainableDevelopmentGoalTarget'
+            }
+          ],
+          '__typename': 'SustainableDevelopmentGoal'
+        },
+        {
+          'id': '27',
+          'name': 'Peace, Justice and Strong Institutions',
+          'slug': 'peace-justice-and-strong-institutions',
+          'imageFile': '/assets/sdgs/peace-justice-and-strong-institutions.png',
+          'number': 16,
+          'sdgTargets': [
+            {
+              'id': '139',
+              '__typename': 'SustainableDevelopmentGoalTarget'
+            },
+            {
+              'id': '140',
+              '__typename': 'SustainableDevelopmentGoalTarget'
+            },
+            {
+              'id': '141',
+              '__typename': 'SustainableDevelopmentGoalTarget'
+            }
+          ],
+          '__typename': 'SustainableDevelopmentGoal'
+        }
+      ],
       'sdgsMappingStatus': 'SELF-REPORTED',
       'sectors': [
         {
@@ -98,19 +144,21 @@ export const productDetail = {
           '__typename': 'Sector'
         }
       ],
-      'manualUpdate': true,
+      'manualUpdate': false,
       'mainRepository': {
-        'id': '166',
-        'name': '@firma Repository Information',
+        'id': '198',
+        'name': '@firma Repository',
         'slug': 'firma-repository',
         'license': 'None',
-        'absoluteUrl': 'github.com/ctt-gob-es/clienteafirma',
+        'absoluteUrl': 'example.com',
         '__typename': 'ProductRepository'
       },
       'overallMaturityScore': 65.17,
       'maturityScoreDetails': [],
       'isLinkedWithDpi': false,
       'tags': [],
+      'softwareCategories': [],
+      'softwareFeatures': [],
       '__typename': 'Product'
     }
   }
@@ -134,7 +182,7 @@ export const createProduct = {
         'aliases': [
           ''
         ],
-        'website': 'administracionelectronica.gob.es/ctt/clienteafirma',
+        'website': 'example.com',
         'imageFile': '/assets/products/firma.png',
         'govStackEntity': false,
         'productDescription': {
@@ -143,6 +191,7 @@ export const createProduct = {
           'locale': 'en',
           '__typename': 'ProductDescription'
         },
+        'productStage': 'Some-Product-Stage-Value',
         '__typename': 'Product'
       },
       'errors': [],

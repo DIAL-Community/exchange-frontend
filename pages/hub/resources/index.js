@@ -12,11 +12,10 @@ const HubResourcesPage = ({ dpiTenants }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { curriculumSlug } = router.query
 
   useEffect(() => {
     router.push('/hub/resource-finder')
-  }, [router, curriculumSlug])
+  }, [router])
 
   return (
     <>

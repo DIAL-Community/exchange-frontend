@@ -7,7 +7,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import DeleteButton from '../form/DeleteButton'
 import ConfirmActionDialog from '../form/ConfirmActionDialog'
 
-const DeleteComment = ({ commentId }) => {
+const DeleteComment = ({ commentId, objectId, objectType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -18,7 +18,19 @@ const DeleteComment = ({ commentId }) => {
   const toggleConfirmDialog = () => setIsConfirmDialogOpen(!isConfirmDialogOpen)
 
   const [deleteComment, { called, reset }] = useMutation(DELETE_COMMENT, {
-    refetchQueries: [{ query: COMMENTS_QUERY }, { query: COMMENTS_COUNT_QUERY }],
+    refetchQueries: [{
+      query: COMMENTS_QUERY,
+      variables: {
+        commentObjectId: parseInt(objectId),
+        commentObjectType: objectType
+      }
+    }, {
+      query: COMMENTS_COUNT_QUERY,
+      variables: {
+        commentObjectId: parseInt(objectId),
+        commentObjectType: objectType
+      }
+    }],
     onCompleted: (data) => {
       const { deleteComment: response } = data
       if (response?.errors?.length === 0) {

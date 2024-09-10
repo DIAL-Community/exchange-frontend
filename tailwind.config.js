@@ -204,6 +204,15 @@ module.exports = {
         },
         'button-red': {
           DEFAULT: '#e11d48'
+        },
+        'health-red': {
+          DEFAULT: '#911c39'
+        },
+        'health-gray': {
+          DEFAULT: '#cdd11b'
+        },
+        'health-blue': {
+          DEFAULT: '#2e3192ff'
         }
       },
       maxWidth: {

@@ -125,6 +125,14 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
               <FormattedTime value={user.confirmedAt} />
             </div>
           }
+          {`${user.confirmed}` === 'false' &&
+            <div className='text-xs italic flex'>
+              <div className='bg-red-200'>
+                {format('ui.user.confirmedAt')}:&nbsp;
+                {format('general.na')}
+              </div>
+            </div>
+          }
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>

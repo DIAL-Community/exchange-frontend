@@ -6,7 +6,7 @@ import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
 import ResourceDetailLeft from './ResourceDetailLeft'
 import ResourceDetailRight from './ResourceDetailRight'
 
-const ResourceDetail = ({ slug }) => {
+const ResourceDetail = ({ slug, country }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(RESOURCE_DETAIL_QUERY, {
@@ -25,9 +25,12 @@ const ResourceDetail = ({ slug }) => {
 
   const slugNameMapping = (() => {
     const map = {}
-    map['resources'] = 'resources'
-    map['dpi-resources'] = 'dpi-resources'
     map[resource.slug] = resource.name
+
+    if (country) {
+      map['countries'] = 'hub.breadcrumb.country'
+      map[country.slug] = country.name
+    }
 
     return map
   })()

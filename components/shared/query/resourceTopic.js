@@ -55,60 +55,23 @@ export const PAGINATED_RESOURCE_TOPICS_QUERY = gql`
 `
 
 export const RESOURCE_TOPIC_DETAIL_QUERY = gql`
-  query ResourceTopic(
-    $slug: String!
-  ) {
-    resourceTopic(
-      slug: $slug
-    ) {
+  query ResourceTopic($slug: String!) {
+    resourceTopic(slug: $slug) {
       id
       name
       slug
       imageFile
-      parentTopic {
-        id
-        name
-        slug
-      }
       resourceTopicDescription {
         id
         description
         locale
-      }
-      subtopics {
-        id
-        name
-        slug
       }
       resources {
         id
         name
         slug
         imageFile
-        parsedDescription
       }
-    }
-  }
-`
-
-export const RESOURCE_TOPIC_RESOURCES_QUERY = gql`
-  query ResourceTopicResources(
-    $slug: String!
-    $search: String
-    $countries: [String!]
-    $resourceTypes: [String!]
-  ) {
-    resourceTopicResources(
-      slug: $slug
-      search: $search
-      countries: $countries
-      resourceTypes: $resourceTypes
-    ) {
-      id
-      name
-      slug
-      imageFile
-      parsedDescription
     }
   }
 `

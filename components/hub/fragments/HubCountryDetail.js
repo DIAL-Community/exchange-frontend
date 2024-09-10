@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { FiEdit3 } from 'react-icons/fi'
+import Link from 'next/link'
+import { FiEdit3, FiPlusCircle } from 'react-icons/fi'
 import { FormattedMessage } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
@@ -10,9 +11,8 @@ import HubCountryResources from './HubCountryResources'
 import HubCountryWebsites from './HubCountryWebsites'
 
 const HubCountryDetail = ({ country }) => {
-  const [editing, setEditing] = useState(false)
-
   const { user } = useUser()
+  const [editing, setEditing] = useState(false)
 
   return (
     <div className='flex flex-col'>
@@ -49,6 +49,27 @@ const HubCountryDetail = ({ country }) => {
       <HubCountryWebsites country={country} />
       <HubCountryProducts country={country} />
       <HubCountryResources country={country} />
+      <div className='key-organization-section bg-dial-sapphire'>
+        <div className='px-4 lg:px-8 xl:px-56 flex flex-col text-dial-cotton'>
+          <div className='text-xl font-medium py-6'>
+            <FormattedMessage id='hub.country.organizations' />
+          </div>
+          <div className='text-sm mb-6'>
+            <FormattedMessage id='hub.country.noOrganizations' />
+          </div>
+        </div>
+      </div>
+      <div className='mx-auto text-sm flex justify-center items-center pt-12'>
+        <Link
+          href={`/hub/countries/${country.slug}/resources/suggest`}
+          className='cursor-pointer bg-dial-sapphire px-4 py-2 rounded '
+        >
+          <div className='flex flex-row gap-1 text-dial-cotton'>
+            <FiPlusCircle className='inline my-auto' />
+            <FormattedMessage id='hub.country.suggestResource' />
+          </div>
+        </Link>
+      </div>
     </div>
   )
 }

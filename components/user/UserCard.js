@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { FormattedDate, useIntl } from 'react-intl'
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
+import { FormattedDate, useIntl } from 'react-intl'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
@@ -28,10 +28,20 @@ const UserCard = ({ displayType, index, user, dismissHandler }) => {
               {format('ui.organization.label')}: {user.organization?.name ?? format('general.na')}
             </div>
           </div>
-          <div className='line-clamp-1 text-xs italic text-dial-sapphire'>
-            {format('ui.user.confirmedAt')}:&nbsp;
-            {user.confirmedAt ? <FormattedDate value={user.confirmedAt} /> : format('general.na')}
-          </div>
+          {`${user.confirmed}` === 'true' &&
+            <div className='line-clamp-1 text-xs italic text-dial-sapphire'>
+              {format('ui.user.confirmedAt')}:&nbsp;
+              <FormattedDate value={user.confirmedAt} />
+            </div>
+          }
+          {`${user.confirmed}` === 'false' &&
+            <div className='line-clamp-1 text-xs italic flex'>
+              <div className='bg-red-200 text-dial-stratos'>
+                {format('ui.user.confirmedAt')}:&nbsp;
+                {format('general.na')}
+              </div>
+            </div>
+          }
         </div>
       </div>
     </div>
