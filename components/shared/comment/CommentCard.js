@@ -4,7 +4,7 @@ import parse from 'html-react-parser'
 import { useIntl } from 'react-intl'
 import DeleteComment from './DeleteComment'
 
-const CommentCard = ({ commentId, authorFullName, authorAvatarUrl, text, replies, className }) => {
+const CommentCard = ({ commentId, authorFullName, authorAvatarUrl, text, replies, className, objectId, objectType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,7 +25,7 @@ const CommentCard = ({ commentId, authorFullName, authorAvatarUrl, text, replies
           </div>
         </div>
         <div className='flex ml-auto px-6'>
-          <DeleteComment commentId={commentId} />
+          <DeleteComment commentId={commentId} objectId={objectId} objectType={objectType} />
         </div>
       </div>
       {!!replies?.length && (

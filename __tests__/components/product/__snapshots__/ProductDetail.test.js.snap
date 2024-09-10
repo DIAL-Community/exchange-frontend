@@ -71,14 +71,14 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//administracionelectronica.gob.es/ctt/clienteafirma"
+                      href="//example.com"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        administracionelectronica.gob.es/ctt/clienteafirma
+                        example.com
                       </div>
                     </a>
                      ⧉
@@ -275,7 +275,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               <div
                 class="text-xl text-dial-meadow font-semibold"
               >
-                @firma -- Edited
+                @firma
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
@@ -306,14 +306,14 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//administracionelectronica.gob.es/ctt/clienteafirma"
+                      href="//example.com"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        administracionelectronica.gob.es/ctt/clienteafirma
+                        example.com
                       </div>
                     </a>
                      ⧉
@@ -409,7 +409,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               <div
                 class="text-xl font-semibold"
               >
-                Edit @firma -- Edited
+                Edit @firma
               </div>
               <div
                 class="flex flex-col gap-y-2"
@@ -486,7 +486,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                     class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
                     id="website"
                     placeholder="Website"
-                    value="administracionelectronica.gob.es/ctt/clienteafirma"
+                    value="example.com"
                   />
                 </div>
               </div>
@@ -801,14 +801,14 @@ exports[`Unit tests for the product detail page. Should render unauthorized for 
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//administracionelectronica.gob.es/ctt/clienteafirma"
+                      href="//example.com"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        administracionelectronica.gob.es/ctt/clienteafirma
+                        example.com
                       </div>
                     </a>
                      ⧉

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the opportunity detail page. Should render detail of a opportunity. 1`] = `
+exports[`Unit tests for the opportunity detail page. Should render resource finder page. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -239,7 +239,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             >
               <a
                 class="w-full h-[267px]"
-                href="/hub/resources/co-creating-our-digital-future"
+                href="/hub/resources/stats-sl-open-data-dashboard"
               >
                 <img
                   alt="Logo of Resource."
@@ -249,22 +249,20 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               </a>
             </div>
             <a
-              href="/dpi-resources/co-creating-our-digital-future"
+              href="/hub/resourcesstats-sl-open-data-dashboard"
             >
               <div
                 class="text-lg font-semibold text-dial-stratos"
               >
-                Co-Creating Our Digital Future
+                Stats SL Open Data Dashboard
               </div>
             </a>
             <a
-              href="/dpi-resources/co-creating-our-digital-future"
+              href="/hub/resourcesstats-sl-open-data-dashboard"
             >
               <div
                 class="line-clamp-4 text-dial-stratos text-sm"
-              >
-                Description goes here.
-              </div>
+              />
             </a>
           </div>
         </div>
@@ -283,7 +281,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             >
               <a
                 class="w-full h-[267px]"
-                href="/hub/resources/human-centered-data-governance"
+                href="/hub/resources/sierra-leone-data-portal"
               >
                 <img
                   alt="Logo of Resource."
@@ -293,22 +291,20 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               </a>
             </div>
             <a
-              href="/dpi-resources/human-centered-data-governance"
+              href="/hub/resourcessierra-leone-data-portal"
             >
               <div
                 class="text-lg font-semibold text-dial-stratos"
               >
-                Human-Centered Data Governance
+                Sierra Leone Data Portal
               </div>
             </a>
             <a
-              href="/dpi-resources/human-centered-data-governance"
+              href="/hub/resourcessierra-leone-data-portal"
             >
               <div
                 class="line-clamp-4 text-dial-stratos text-sm"
-              >
-                Description some more.
-              </div>
+              />
             </a>
           </div>
         </div>

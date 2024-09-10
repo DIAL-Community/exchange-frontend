@@ -14,6 +14,8 @@ export const CREATE_PRODUCT = gql`
     $hostingModel: String
     $commercialProduct: Boolean
     $govStackEntity: Boolean
+    $productStage: String
+    $extraAttributes: [ExtraAttributeInput!]!
   ) {
     createProduct(
       name: $name
@@ -28,6 +30,8 @@ export const CREATE_PRODUCT = gql`
       hostingModel: $hostingModel
       commercialProduct: $commercialProduct
       govStackEntity: $govStackEntity
+      productStage: $productStage
+      extraAttributes: $extraAttributes
     ) {
       product {
         id
@@ -37,6 +41,8 @@ export const CREATE_PRODUCT = gql`
         website
         imageFile
         govStackEntity
+        productStage
+        extraAttributes
         productDescription {
           id
           description
@@ -114,6 +120,46 @@ export const UPDATE_PRODUCT_SECTORS = gql`
   }
 `
 
+export const UPDATE_PRODUCT_CATEGORIES = gql`
+  mutation UpdateProductCategories(
+    $slug: String!
+    $categorySlugs: [String!]!
+    $featureSlugs: [String!]!
+  ) {
+    updateProductCategories(
+      slug: $slug
+      categorySlugs: $categorySlugs
+      featureSlugs: $featureSlugs
+    ) {
+      product {
+        id
+        name
+        slug
+        softwareCategories {
+          id
+          name
+          slug
+          softwareFeatures {
+            id
+            name
+            slug
+            categoryId
+            facilityScale
+          }
+        }
+        softwareFeatures {
+          id
+          name
+          slug
+          categoryId
+          facilityScale
+        }
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_PRODUCT_COUNTRIES = gql`
   mutation UpdateProductCountries(
     $slug: String!
@@ -139,6 +185,26 @@ export const UPDATE_PRODUCT_COUNTRIES = gql`
   }
 `
 
+export const UPDATE_PRODUCT_EXTRA_ATTRIBUTES = gql`
+  mutation UpdateProductExtraAttributes(
+    $slug: String!
+     $extraAttributes: [ExtraAttributeInput!]!
+  ) {
+    updateProductExtraAttributes(
+      slug: $slug
+      extraAttributes: $extraAttributes
+    ) {
+      product {
+        id
+        slug
+        name
+        extraAttributes
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_PRODUCT_PROJECTS = gql`
   mutation UpdateProductProjects(
     $slug: String!
@@ -158,6 +224,12 @@ export const UPDATE_PRODUCT_PROJECTS = gql`
           slug
           origin {
             slug
+          }
+          countries {
+            id
+            name
+            slug
+            code
           }
         }
       }

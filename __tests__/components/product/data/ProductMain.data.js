@@ -19,7 +19,8 @@ export const paginatedProducts = {
         'mainRepository': {
           'license': 'AGPL-3.0'
         },
-        'isLinkedWithDpi': false
+        'isLinkedWithDpi': false,
+        'softwareCategories': []
       },
       {
         'id': '755',
@@ -63,7 +64,8 @@ export const paginatedProducts = {
         'mainRepository': {
           'license': 'NA'
         },
-        'isLinkedWithDpi': false
+        'isLinkedWithDpi': false,
+        'softwareCategories': []
       },
       {
         'id': '727',
@@ -100,7 +102,8 @@ export const paginatedProducts = {
         'mainRepository': {
           'license': 'Apache-2.0'
         },
-        'isLinkedWithDpi': false
+        'isLinkedWithDpi': false,
+        'softwareCategories': []
       },
       {
         'id': '639',
@@ -134,7 +137,8 @@ export const paginatedProducts = {
         'mainRepository': {
           'license': 'GPL-3.0'
         },
-        'isLinkedWithDpi': false
+        'isLinkedWithDpi': false,
+        'softwareCategories': []
       }
     ]
   }

@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { useApolloClient } from '@apollo/client'
-import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
+import Select from '../form/Select'
 import { TAG_SEARCH_QUERY } from '../query/tag'
 
 export const TagAutocomplete = ({ tags, setTags, placeholder }) => {
@@ -23,9 +23,10 @@ export const TagAutocomplete = ({ tags, setTags, placeholder }) => {
 
   const fetchCallback = (data) => (
     data?.tags.map((tag) => ({
+      name: tag.name,
+      slug: tag.slug,
       label: tag.name,
-      value: tag.id,
-      slug: tag.slug
+      value: tag.id
     }))
   )
 

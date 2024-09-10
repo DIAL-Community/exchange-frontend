@@ -6,14 +6,17 @@ import { useQuery } from '@apollo/client'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
 import HubPagination from './HubPagination'
 
+export const GOVERNMENT_DOCUMENT = 'Government Document'
 const DEFAULT_PAGE_SIZE = 6
 
-const PolicyCard = ({ resource }) => {
+const PolicyCard = ({ resource, country }) => {
   const displayLargeCard = () =>
-    <div className='rounded-lg min-h-[10rem]'>
+    <div className='rounded-lg min-h-[10rem] group'>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-lg font-medium'>
-          {resource.name}
+        <div className='text-lg font-medium flex'>
+          <span className='border-b border-transparent group-hover:border-dial-cotton'>
+            {resource.name}
+          </span>
         </div>
         <div className='line-clamp-4 text-justify'>
           {resource.parsedDescription && parse(resource.parsedDescription)}
@@ -23,7 +26,7 @@ const PolicyCard = ({ resource }) => {
 
   return (
     <div className='relative'>
-      <Link href={`/hub/resources/${resource.slug}`}>
+      <Link href={`/hub/countries/${country.slug}/resources/${resource.slug}`}>
         {displayLargeCard()}
       </Link>
     </div>
@@ -38,7 +41,7 @@ const PolicyPagination = ({ country, pageNumber, onClickHandler, theme='light' }
     variables: {
       search: '',
       countries: [country.id],
-      resourceTypes: ['Government Document']
+      resourceTypes: [GOVERNMENT_DOCUMENT]
     }
   })
 
@@ -71,7 +74,7 @@ const PolicyList = ({ country, pageNumber }) => {
     variables: {
       search: '',
       countries: [country.id],
-      resourceTypes: ['Government Document'],
+      resourceTypes: [GOVERNMENT_DOCUMENT],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
     }
@@ -92,7 +95,7 @@ const PolicyList = ({ country, pageNumber }) => {
       {resources.map((resource, index) =>
         <div className='flex flex-col gap-y-4' key={index}>
           <hr className='border-b border-gray-300 border-dashed' />
-          <PolicyCard key={index} resource={resource} />
+          <PolicyCard key={index} resource={resource} country={country} />
         </div>
       )}
     </div>

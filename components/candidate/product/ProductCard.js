@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
-import { FormattedDate, useIntl } from 'react-intl'
-import Link from 'next/link'
 import parse from 'html-react-parser'
+import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
-import { DisplayType } from '../../utils/constants'
+import { FormattedDate, useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
+import { DisplayType } from '../../utils/constants'
 import { isValidFn } from '../../utils/utilities'
 
 const ProductCard = ({ displayType, index, product, dismissHandler }) => {
@@ -13,10 +13,14 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
 
   const bgColor = `${product.rejected}`.toLowerCase() === 'true'
     ? 'bg-red-700'
-    : 'bg-green-700'
+    : `${product.rejected}`.toLowerCase() === 'false'
+      ? 'bg-green-700'
+      : 'bg-dial-iris-blue'
   const candidateStatus = `${product.rejected}`.toLowerCase() === 'true'
     ? format('candidate.rejected')
-    : format('candidate.approved')
+    : `${product.rejected}`.toLowerCase() === 'false'
+      ? format('candidate.approved')
+      : format('candidate.inReview')
 
   const { user } = useUser()
   const submitterEmail = user
@@ -33,11 +37,9 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
             className='object-contain w-16 h-16'
           />
         </div>
-        {product.rejected !== null &&
-          <div className={`absolute top-2 right-2 ${bgColor} rounded`}>
-            <div className='text-white text-xs px-2 py-1'>{candidateStatus}</div>
-          </div>
-        }
+        <div className={`absolute top-2 right-2 ${bgColor} rounded`}>
+          <div className='text-white text-xs px-2 py-1'>{candidateStatus}</div>
+        </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-meadow'>
             {product.name}

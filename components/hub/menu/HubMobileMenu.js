@@ -31,7 +31,7 @@ const HubMobileMenu = ({ menuExpanded }) => {
               </li>
               <li className='relative text-right text-lg'>
                 <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
-                  {format('hub.header.expertNetwork').toUpperCase()}
+                  {format('hub.header.adliNetwork').toUpperCase()}
                 </Link>
               </li>
             </ul>

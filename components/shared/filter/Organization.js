@@ -1,10 +1,10 @@
-import { useApolloClient } from '@apollo/client'
+import { useCallback, useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useCallback, useState } from 'react'
-import { ORGANIZATION_SEARCH_QUERY } from '../query/organization'
+import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
+import { ORGANIZATION_SEARCH_QUERY } from '../query/organization'
 
 export const OrganizationAutocomplete = ({
   organizations,
@@ -37,9 +37,10 @@ export const OrganizationAutocomplete = ({
 
     if (response.data && response.data.organizations) {
       return response.data.organizations.map((organization) => ({
+        name: organization.name,
+        slug: organization.slug,
         label: organization.name,
-        value: organization.id,
-        slug: organization.slug
+        value: organization.id
       }))
     }
 

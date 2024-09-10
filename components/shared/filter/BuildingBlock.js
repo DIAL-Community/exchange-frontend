@@ -1,11 +1,11 @@
-import { useApolloClient } from '@apollo/client'
-import { useIntl } from 'react-intl'
+import { useCallback, useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
 import { FaXmark } from 'react-icons/fa6'
-import { useCallback, useState } from 'react'
+import { useIntl } from 'react-intl'
+import { useApolloClient } from '@apollo/client'
 import { fetchSelectOptions } from '../../utils/search'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../query/buildingBlock'
 import Select from '../form/Select'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../query/buildingBlock'
 
 export const BuildingBlockAutocomplete = ({
   buildingBlocks,
@@ -27,9 +27,10 @@ export const BuildingBlockAutocomplete = ({
 
   const fetchedBuildingBlocksCallback = (data) => (
     data.buildingBlocks.map((buildingBlock) => ({
+      name: buildingBlock.name,
+      slug: buildingBlock.slug,
       label: buildingBlock.name,
-      value: buildingBlock.id,
-      slug: buildingBlock.slug
+      value: buildingBlock.id
     }))
   )
 
@@ -80,9 +81,9 @@ export const BuildingBlockActiveFilters = (props) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const removeBuildingBlock = (buildingBlockId) => {
+  const removeBuildingBlock = (buildingBlockSlug) => {
     setBuildingBlocks(buildingBlocks => [
-      ...buildingBlocks.filter(buildingBlock => buildingBlock.value !== buildingBlockId)
+      ...buildingBlocks.filter(buildingBlock => buildingBlock.slug !== buildingBlockSlug)
     ])
   }
 
@@ -97,7 +98,7 @@ export const BuildingBlockActiveFilters = (props) => {
                 ({format('ui.buildingBlock.label')})
               </div>
             </div>
-            <button onClick={() => removeBuildingBlock(buildingBlock.value)}>
+            <button onClick={() => removeBuildingBlock(buildingBlock.slug)}>
               <FaXmark size='1rem' className='text-white' />
             </button>
           </div>

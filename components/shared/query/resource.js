@@ -7,63 +7,15 @@ export const RESOURCE_PAGINATION_ATTRIBUTES_QUERY = gql`
     $countries: [String!]
     $resourceTypes: [String!]
     $resourceTopics: [String!]
-    $compartmentalized: Boolean
   ) {
     paginationAttributeResource(
       search: $search
       countries: $countries
-      compartmentalized: $compartmentalized
       resourceTypes: $resourceTypes
       resourceTopics: $resourceTopics
       tags: $tags
     ) {
       totalCount
-    }
-  }
-`
-
-export const FEATURED_RESOURCES_QUERY = gql`
-  query PaginatedResources(
-    $limit: Int!
-    $offset: Int!
-    $compartmentalized: Boolean
-  ) {
-    featuredResources: paginatedResources(
-      featuredLength: 3
-      featuredOnly: true
-      compartmentalized: $compartmentalized
-      offsetAttributes: { limit: $limit, offset: $offset }
-    ) {
-      id
-      name
-      slug
-      imageFile
-
-      description
-      parsedDescription
-    
-      resourceLink
-      linkDescription
-      resourceType
-    
-      resourceTopics {
-        id
-        name
-        slug
-      }
-    
-      publishedDate
-    
-      products {
-        id
-      }
-    
-      authors {
-        id
-        name
-        slug
-      }
-      tags
     }
   }
 `
@@ -77,13 +29,11 @@ export const PAGINATED_RESOURCES_QUERY = gql`
     $countries: [String!]
     $resourceTypes: [String!]
     $resourceTopics: [String!]
-    $compartmentalized: Boolean
   ) {
     paginatedResources(
       search: $search
       tags: $tags
       countries: $countries
-      compartmentalized: $compartmentalized
       resourceTypes: $resourceTypes
       resourceTopics: $resourceTopics
       offsetAttributes: { limit: $limit, offset: $offset }

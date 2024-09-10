@@ -29,7 +29,7 @@ const FormTextEditor = ({ control, name, placeholder = null, required = false, i
   return (
     <div className='flex flex-col gap-y-2 text-sm'>
       <label className={classNames({ 'required-field': required })}>
-        {format(`dpi.curriculum.${name}`)}
+        {format(`hub.curriculum.${name}`)}
       </label>
       <Controller
         name={name}

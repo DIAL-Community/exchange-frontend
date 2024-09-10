@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { useApolloClient } from '@apollo/client'
-import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
+import Select from '../form/Select'
 import { WORKFLOW_SEARCH_QUERY } from '../query/workflow'
 
 export const WorkflowAutocomplete = ({ workflows, setWorkflows, placeholder }) => {
@@ -23,9 +23,10 @@ export const WorkflowAutocomplete = ({ workflows, setWorkflows, placeholder }) =
 
   const fetchCallback = (data) => (
     data?.workflows.map((workflow) => ({
+      name: workflow.name,
+      slug: workflow.slug,
       label: workflow.name,
-      value: workflow.id,
-      slug: workflow.slug
+      value: workflow.id
     }))
   )
 
