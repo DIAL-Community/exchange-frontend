@@ -268,6 +268,8 @@ export const en = {
   'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
   'ui.product.filter.showDpgaOnly': 'Show only Digital Public Goods',
 
+  'ui.productStage.header': 'Product Stage',
+
   'product.languages': 'Languages',
   'product.website': 'Website',
   'product.description': 'Description',
