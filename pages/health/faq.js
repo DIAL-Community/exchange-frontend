@@ -70,8 +70,8 @@ const FaqPage = ({ defaultTenants }) => {
             Frequently Asked Questions
           </div>
           <div className='py-8 text-xl'>
-            {faqs.map((faq) => {
-              return (<FaqExpander question={faq.question} answer={faq.answer} />)
+            {faqs.map((faq, index) => {
+              return (<FaqExpander key={index} question={faq.question} answer={faq.answer} />)
             })}
           </div>
         </div>
