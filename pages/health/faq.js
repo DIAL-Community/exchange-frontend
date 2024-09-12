@@ -8,11 +8,25 @@ import HealthHeader from '../../components/health/sections/HealthHeader'
 import HealthFooter from '../../components/health/sections/HealthFooter'
 
 const faqs = [
-  { question: 'How do you determine what products are listed in the Marketplace?',
+  { question: 'What are the criteria for listing a product in the HealthTech Marketplace?',
     answer: 'Africa CDC and our Expert Panel have developed a rubric that is used to \
     determine whether a product can be listed. At a minimum, the product must address on \
     or more Africn health use cases and must be deployed and used in at least one place in \
-    the African continent'
+    the African continent. Beyond that, the rubric looks at several other criteria and indicators  \
+    to help provide deep information '
+  },
+  { question:'How are solutions vetted?',
+    answer: 'All products are vetted by a panel of experts from Africa CDC and various digital \
+    health initiatives.'
+  },
+  { question:'How do I find a solution to match my needs?',
+    answer: 'The Marketplace offers the ability to search for health solutions in different \
+    categories. Within each category, you can filter by different software features that your \
+    project requires.'
+  },
+  { question:'How do I get more information about a particular solution?',
+    answer: 'The solution detail page provides a wide range of information. We also list contact \
+    information for the solution provider.'
   },
   { question:'What is a facility scale?',
     answer: 'Facility scales are used to show what features should be available for different \
@@ -30,17 +44,17 @@ const FaqExpander = ({ question, answer }) => {
   }
 
   return (
-    <div className='gap-y-3'>
+    <div className='py-4'>
       <a href='#' onClick={toggleFilter}>
         {showFilter
-          ? <BsDash className='ml-auto text-dial-stratos my-auto inline' />
-          : <BsPlus className='ml-auto text-dial-stratos my-auto inline' />
+          ? <BsDash className='ml-auto text-dial-stratos my-auto inline' size={24} />
+          : <BsPlus className='ml-auto text-dial-stratos my-auto inline' size={24} />
         }
-        <div className='text-dial-stratos text-lg py-2 inline'>
+        <div className='text-dial-stratos text-lg ml-3 inline'>
           {question}
         </div>
       </a>
-      {showFilter && <div className='text-dial-stratos text-lg py-2'>
+      {showFilter && <div className='text-dial-stratos text-lg py-2 ml-9'>
         {answer}
       </div>}
     </div>
