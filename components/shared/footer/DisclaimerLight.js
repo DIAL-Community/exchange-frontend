@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { FaLinkedin } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import ReportIssue from '../../../shared/ReportIssue'
+import ReportIssue from '../ReportIssue'
 
 const Disclaimer = () => {
   const { formatMessage } = useIntl()

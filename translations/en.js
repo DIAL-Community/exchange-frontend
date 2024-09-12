@@ -2631,7 +2631,7 @@ export const en = {
   'hub.adliNetwork.memberCard.alt': 'Photo of the ADLI member',
 
   'health.landing.main.title': 'Africa HealthTech Marketplace',
-  'health.landing.main.subtitle': `Enhancing visibility and trust in digital health solutions`,
+  'health.landing.main.subtitle': `Enhancing visibility and trust in local digital health innovations`,
   'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Alliance',
 
   'health.header.about': 'About',
