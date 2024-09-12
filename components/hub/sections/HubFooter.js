@@ -1,5 +1,5 @@
-import Disclaimer from './footer/Disclaimer'
-import PoweredBy from './footer/PoweredBy'
+import Disclaimer from '../../shared/footer/DisclaimerLight'
+import PoweredBy from '../../shared/footer/PoweredByLight'
 
 const HubFooter = () => {
   return (
