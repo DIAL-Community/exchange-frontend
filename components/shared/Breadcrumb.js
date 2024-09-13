@@ -89,7 +89,7 @@ const Breadcrumb = ({ slugNameMapping }) => {
             - Fallback to slugNameMapping
         */
         const label = slugNameMapping && slugNameMapping[path]
-          ? format(slugNameMapping[path])
+          ? slugNameMapping[path]
           : !candidatePath && basePathMappings[path]
             ? format(basePathMappings[path])
             : candidatePath && candidatePathMappings[path]

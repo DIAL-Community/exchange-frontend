@@ -321,7 +321,7 @@ exports[`Unit tests for the storefront main page. Should render list of storefro
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Create space startups description.
+                          Some parsed description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -396,7 +396,7 @@ exports[`Unit tests for the storefront main page. Should render list of storefro
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Newlogic description.
+                          Some parsed description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -471,7 +471,7 @@ exports[`Unit tests for the storefront main page. Should render list of storefro
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Soldevelo description.
+                          Some parsed description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"
@@ -619,7 +619,7 @@ exports[`Unit tests for the storefront main page. Should render list of storefro
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          Zarttech description
+                          Some parsed description.
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"

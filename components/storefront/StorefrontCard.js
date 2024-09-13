@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import parse from 'html-react-parser'
+import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
@@ -36,7 +36,7 @@ const StorefrontCard = ({ displayType, index, storefront, dismissHandler }) => {
             {storefront.name}
           </div>
           <div className='line-clamp-4 text-dial-stratos'>
-            {storefront?.organizationDescription && parse(storefront?.organizationDescription.description)}
+            {storefront?.parsedDescription && parse(storefront?.parsedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>

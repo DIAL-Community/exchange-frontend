@@ -14,7 +14,7 @@ const ResourceCreate = ({ country }) => {
     }
 
     if (country) {
-      map['countries'] = 'hub.breadcrumb.country'
+      map['countries'] = format('hub.breadcrumb.country')
       map[country.slug] = country.name
     }
 
