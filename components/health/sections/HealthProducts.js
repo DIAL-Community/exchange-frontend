@@ -13,8 +13,9 @@ const HealthProducts = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search, isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
-  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
+  const { useCases, buildingBlocks, sectors, tags, productStage } = useContext(ProductFilterContext)
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const { softwareCategories, softwareFeatures } = useContext(ProductFilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)
@@ -64,7 +65,10 @@ const HealthProducts = () => {
       origins: origins.map(origin => origin.value),
       isLinkedWithDpi,
       showGovStackOnly,
-      showDpgaOnly
+      showDpgaOnly,
+      productStage,
+      softwareCategories: softwareCategories.map(softwareCategory => softwareCategory.id),
+      softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id)
     }
   })
 
