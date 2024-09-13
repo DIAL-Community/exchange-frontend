@@ -8,7 +8,6 @@ const MapFilterContextProvider = ({ children }) => {
   const [operators, setOperators] = useState([])
   const [services, setServices] = useState([])
 
-  const [orgSectors, setOrgSectors] = useState([])
   const [years, setYears] = useState([])
 
   const [sectors, setSectors] = useState([])
@@ -20,7 +19,6 @@ const MapFilterContextProvider = ({ children }) => {
     aggregators,
     operators,
     services,
-    orgSectors,
     years,
     sectors,
     products,
@@ -32,7 +30,6 @@ const MapFilterContextProvider = ({ children }) => {
     setAggregators,
     setOperators,
     setServices,
-    setOrgSectors,
     setYears,
     setSectors,
     setProducts,

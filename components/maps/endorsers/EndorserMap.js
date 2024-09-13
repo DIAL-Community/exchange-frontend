@@ -20,7 +20,7 @@ const DEFAULT_PAGE_SIZE = 1000
 const EndorserMap = () => {
   const [selectedCity, setSelectedCity] = useState('')
   const [organization, setOrganization] = useState()
-  const { orgSectors, years } = useContext(MapFilterContext)
+  const { sectors, years } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -28,7 +28,7 @@ const EndorserMap = () => {
   const { loading, data } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      sectors: orgSectors.map(sector => sector.value),
+      sectors: sectors.map(sector => sector.value),
       years: years.map(year => year.value)
     }
   })
