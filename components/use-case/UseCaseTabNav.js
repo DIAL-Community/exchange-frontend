@@ -21,16 +21,41 @@ const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const useCaseFilters = useContext(UseCaseFilterContext)
+  const activeFilters = useContext(UseCaseFilterContext)
 
   const exportCsvFn = () => {
+    const useCaseFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...useCaseFilters })
     asyncExport(ExportType.EXPORT_AS_CSV, 'use_cases', exportParameters, user.userEmail)
   }
 
   const exportJsonFn = () => {
+    const useCaseFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...useCaseFilters })
     asyncExport(ExportType.EXPORT_AS_JSON, 'use_cases', exportParameters, user.userEmail)
+  }
+
+  const generateExportFilters = (activeFilters) => {
+    return Object
+      .keys(activeFilters)
+      .filter(key => {
+        return [
+          'search',
+          'sdgs',
+          'showBeta',
+          'showGovStackOnly',
+          'count'
+        ].indexOf(key) !== -1
+      })
+      .map(key => ({
+        key,
+        value: activeFilters[key]
+      }))
+      .reduce((accumulator, object) => {
+        accumulator[object.key] = object.value
+
+        return accumulator
+      }, {})
   }
 
   return (

@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useUser } from '../../lib/hooks'
 import { ProductFilterContext } from '../context/ProductFilterContext'
 import TabNav from '../shared/TabNav'
-import { ExportType, asyncExport, convertKeys } from '../utils/export'
-import { useUser } from '../../lib/hooks'
+import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
 const ProductTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
@@ -23,16 +23,49 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const productFilters = useContext(ProductFilterContext)
+  const activeFilters = useContext(ProductFilterContext)
 
   const exportCsvFn = () => {
+    const productFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...productFilters })
     asyncExport(ExportType.EXPORT_AS_CSV, 'products', exportParameters, user.userEmail)
   }
 
   const exportJsonFn = () => {
+    const productFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...productFilters })
     asyncExport(ExportType.EXPORT_AS_JSON, 'products', exportParameters, user.userEmail)
+  }
+
+  const generateExportFilters = (activeFilters) => {
+    return Object
+      .keys(activeFilters)
+      .filter(key => {
+        return [
+          'search',
+          'isLinkedWithDpi',
+          'showGovStackOnly',
+          'showDpgaOnly',
+          'sdgs',
+          'workflows',
+          'buildingBlocks',
+          'useCases',
+          'origins',
+          'sectors',
+          'tags',
+          'countries',
+          'licenseTypes'
+        ].indexOf(key) !== -1
+      })
+      .map(key => ({
+        key,
+        value: activeFilters[key]
+      }))
+      .reduce((accumulator, object) => {
+        accumulator[object.key] = object.value
+
+        return accumulator
+      }, {})
   }
 
   const createCandidateFn = () => {

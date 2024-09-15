@@ -30,6 +30,29 @@ const FilterContextProvider = ({ children }) => {
 
   const [products, setProducts] = useState([])
 
+  const [buildingBlocks, setBuildingBlocks] = useState([])
+  const [showClosed, setShowClosed] = useState(false)
+
+  const [aggregator, setAggregator] = useState(false)
+  const [endorser, setEndorser] = useState(false)
+  const [endorserLevel, setEndorserLevel] = useState('')
+
+  const [specialties, setSpecialties] = useState([])
+  const [certifications, setCertifications] = useState([])
+
+  const [isEndorsed, setIsEndorsed] = useState(false)
+  const [productDeployable, setProductDeployable] = useState(false)
+  const [endorsers, setEndorsers] = useState([])
+  const [licenseTypes, setLicenseTypes] = useState([])
+  const [isLinkedWithDpi, setIsLinkedWithDpi] = useState(false)
+  const [showDpgaOnly, setShowDpgaOnly] = useState(false)
+
+  const [softwareCategories, setSoftwareCategories] = useState([])
+  const [softwareFeatures, setSoftwareFeatures] = useState([])
+  const [comparedProducts, setComparedProducts] = useState([])
+
+  const [showBeta, setShowBeta] = useState(false)
+
   const valueProps = {
     search,
     showFailedOnly,
@@ -53,7 +76,28 @@ const FilterContextProvider = ({ children }) => {
 
     years,
 
-    products
+    products,
+
+    buildingBlocks,
+    showClosed,
+
+    aggregator,
+    endorser,
+    endorserLevel,
+    specialties,
+    certifications,
+
+    isEndorsed,
+    productDeployable,
+    endorsers,
+    licenseTypes,
+    isLinkedWithDpi,
+    showDpgaOnly,
+    softwareCategories,
+    softwareFeatures,
+    comparedProducts,
+
+    showBeta
   }
 
   const dispatchProps = {
@@ -79,7 +123,28 @@ const FilterContextProvider = ({ children }) => {
 
     setYears,
 
-    setProducts
+    setProducts,
+
+    setBuildingBlocks,
+    setShowClosed,
+
+    setAggregator,
+    setEndorser,
+    setEndorserLevel,
+    setSpecialties,
+    setCertifications,
+
+    setIsEndorsed,
+    setProductDeployable,
+    setEndorsers,
+    setLicenseTypes,
+    setIsLinkedWithDpi,
+    setShowDpgaOnly,
+    setSoftwareCategories,
+    setSoftwareFeatures,
+    setComparedProducts,
+
+    setShowBeta
   }
 
   return (
