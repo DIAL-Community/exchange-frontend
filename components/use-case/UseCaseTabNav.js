@@ -43,8 +43,7 @@ const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
           'search',
           'sdgs',
           'showBeta',
-          'showGovStackOnly',
-          'count'
+          'showGovStackOnly'
         ].indexOf(key) !== -1
       })
       .map(key => ({

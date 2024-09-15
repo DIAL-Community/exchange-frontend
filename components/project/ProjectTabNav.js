@@ -42,12 +42,12 @@ const ProjectTabNav = ({ activeTab, setActiveTab }) => {
         return [
           'search',
           'countries',
-          'products',
           'organizations',
-          'sectors',
-          'tags',
+          'origins',
+          'products',
           'sdgs',
-          'origins'
+          'sectors',
+          'tags'
         ].indexOf(key) !== -1
       })
       .map(key => ({

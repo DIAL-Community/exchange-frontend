@@ -14,6 +14,7 @@ import { WorkflowActiveFilters, WorkflowAutocomplete } from '../../shared/filter
 import Checkbox from '../../shared/form/Checkbox'
 
 const COVID_19_LABEL = 'COVID-19'
+const COVID_19_SLUG = 'covid19'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
@@ -42,15 +43,15 @@ const ProductFilter = () => {
     setShowDpgaOnly(!showDpgaOnly)
   }
 
-  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
+  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_SLUG)
 
   const toggleCovid19Tag = () => {
-    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_LABEL)
+    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_SLUG)
     setTags(isCovid19TagActive
       ? tagsWithoutCovid19
       : [
         ...tagsWithoutCovid19,
-        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_LABEL }
+        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_SLUG }
       ]
     )
   }

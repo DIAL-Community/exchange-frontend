@@ -32,6 +32,7 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
   }
 
   const exportJsonFn = () => {
+    console.log('Active filters: ', activeFilters)
     const productFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...productFilters })
     asyncExport(ExportType.EXPORT_AS_JSON, 'products', exportParameters, user.userEmail)
@@ -43,18 +44,18 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
       .filter(key => {
         return [
           'search',
+          'buildingBlocks',
+          'countries',
           'isLinkedWithDpi',
+          'licenseTypes',
+          'origins',
+          'sdgs',
+          'sectors',
           'showGovStackOnly',
           'showDpgaOnly',
-          'sdgs',
-          'workflows',
-          'buildingBlocks',
-          'useCases',
-          'origins',
-          'sectors',
           'tags',
-          'countries',
-          'licenseTypes'
+          'useCases',
+          'workflows'
         ].indexOf(key) !== -1
       })
       .map(key => ({

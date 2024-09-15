@@ -1,20 +1,18 @@
 import { useCallback, useContext, useState } from 'react'
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
-import {
-  ProjectFilterContext,
-  ProjectFilterDispatchContext
-} from '../../context/ProjectFilterContext'
-import Checkbox from '../../shared/form/Checkbox'
-import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
-import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
-import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
-import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
-import { CountryAutocomplete, CountryActiveFilters } from '../../shared/filter/Country'
-import { ProductActiveFilters, ProductAutocomplete } from '../../shared/filter/Product'
+import { ProjectFilterContext, ProjectFilterDispatchContext } from '../../context/ProjectFilterContext'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 import { OrganizationActiveFilters, OrganizationAutocomplete } from '../../shared/filter/Organization'
+import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
+import { ProductActiveFilters, ProductAutocomplete } from '../../shared/filter/Product'
+import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
+import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
+import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import Checkbox from '../../shared/form/Checkbox'
 
 const COVID_19_LABEL = 'COVID-19'
+const COVID_19_SLUG = 'covid19'
 
 const ProjectFilter = () => {
   const { formatMessage } = useIntl()
@@ -28,15 +26,15 @@ const ProjectFilter = () => {
 
   const [expanded, setExpanded] = useState(false)
 
-  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
+  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_SLUG)
 
   const toggleCovid19Tag = () => {
-    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_LABEL)
+    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_SLUG)
     setTags(isCovid19TagActive
       ? tagsWithoutCovid19
       : [
         ...tagsWithoutCovid19,
-        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_LABEL }
+        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_SLUG }
       ]
     )
   }
