@@ -12,6 +12,7 @@ export const SITE_SETTING_QUERY = gql`
         description
         imageUrl
         targetUrl
+        external
       }
       landingPages {
         id
@@ -20,6 +21,7 @@ export const SITE_SETTING_QUERY = gql`
         description
         imageUrl
         targetUrl
+        external
       }
       dropdownMenus {
         id
@@ -31,8 +33,8 @@ export const SITE_SETTING_QUERY = gql`
           type
           slug
           name
+          targetUrl
           external
-          url
         }
       }
     }

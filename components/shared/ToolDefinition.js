@@ -1,10 +1,76 @@
+import { useCallback, useContext } from 'react'
 import Link from 'next/link'
-import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { SiteSettingContext } from '../context/SiteSettingContext'
+
+const ExternalLandingDefinition = ({ landingPageConfiguration }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  return (
+    <a
+      href={landingPageConfiguration.targetUrl}
+      className='rounded-md shadow-lg border'
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      <div className='px-8 pt-6 pb-12'>
+        <div className='flex flex-col gap-6'>
+          <div className='flex flex-row gap-x-3'>
+            <img
+              src={landingPageConfiguration.imageUrl}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              width={50}
+              height={50}
+              className='object-contain'
+            />
+            <div className='text-lg font-light text-dial-ochre my-auto flex-grow'>
+              {landingPageConfiguration.name}
+            </div>
+          </div>
+          <div className='text-sm'>
+            {landingPageConfiguration.description}
+          </div>
+        </div>
+      </div>
+    </a>
+  )
+}
+
+const InternalLandingDefinition = ({ landingPageConfiguration }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  return (
+    <Link href={landingPageConfiguration.targetUrl} className='rounded-md shadow-lg border'>
+      <div className='px-8 pt-6 pb-12'>
+        <div className='flex flex-col gap-6'>
+          <div className='flex flex-row gap-x-3'>
+            <img
+              src={landingPageConfiguration.imageUrl}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              width={50}
+              height={50}
+              className='object-contain'
+            />
+            <div className='text-lg font-light text-dial-ochre my-auto flex-grow'>
+              {landingPageConfiguration.name}
+            </div>
+          </div>
+          <div className='text-sm'>
+            {landingPageConfiguration.description}
+          </div>
+        </div>
+      </div>
+    </Link>
+  )
+}
 
 const ToolDefinition = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { landingPageConfigurations } = useContext(SiteSettingContext)
 
   return (
     <div className='lg:px-8 xl:px-56 text-dial-stratos'>
@@ -79,6 +145,11 @@ const ToolDefinition = () => {
               </div>
             </div>
           </Link>
+          {landingPageConfigurations.map(landingPageConfiguration => {
+            return landingPageConfiguration.external
+              ? <ExternalLandingDefinition landingPageConfiguration={landingPageConfiguration} />
+              : <InternalLandingDefinition landingPageConfiguration={landingPageConfiguration} />
+          })}
         </div>
       </div>
     </div>

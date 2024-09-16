@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Pagination, Navigation } from 'swiper/modules'
-
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { useCallback, useContext } from 'react'
+import Link from 'next/link'
+import { useIntl } from 'react-intl'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { SiteSettingContext } from '../context/SiteSettingContext'
 
 const DigitalExchangeHero = ({ children }) => {
   return (
@@ -45,9 +45,51 @@ const MarketplaceHero = ({ children }) => {
   )
 }
 
+const GenericHero = ({ heroCarouselConfiguration }) => {
+  return (
+    <div
+      className='bg-cover bg-no-repeat'
+      style={{
+        backgroundImage: `url("${heroCarouselConfiguration.imageUrl}")`,
+        height: '400px'
+      }}
+    >
+      <div className='flex flex-col gap-y-6 text-dial-stratos px-8 xl:px-56 py-[6rem] xl:py-[8rem]'>
+        <div className='text-3xl'>
+          {heroCarouselConfiguration.name}
+        </div>
+        <div className='text-base'>
+          {heroCarouselConfiguration.description}
+        </div>
+        <div className='flex text-sm text-dial-stratos'>
+          {heroCarouselConfiguration.external
+            ? <a
+              href={heroCarouselConfiguration.targetUrl}
+              target='_blank'
+              rel='noopener noreferrer'
+              role='menuitem'
+              className='rounded px-5 py-2.5 bg-dial-plum text-white'
+            >
+              {heroCarouselConfiguration.name}
+            </a>
+            : <Link
+              href={heroCarouselConfiguration.targetUrl}
+              className='rounded px-5 py-2.5 bg-dial-plum text-white'
+            >
+              {heroCarouselConfiguration.name}
+            </Link>
+          }
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const HeroCarousel = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { heroCarouselConfigurations } = useContext(SiteSettingContext)
 
   return (
     <div className='h-[345px] xl:h-[400px] intro-start'>
@@ -91,6 +133,11 @@ const HeroCarousel = () => {
             </div>
           </MarketplaceHero>
         </SwiperSlide>
+        {heroCarouselConfigurations.map((heroCarouselConfiguration) => (
+          <SwiperSlide key={heroCarouselConfiguration.slug}>
+            <GenericHero heroCarouselConfiguration={heroCarouselConfiguration} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   )

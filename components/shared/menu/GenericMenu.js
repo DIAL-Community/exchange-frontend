@@ -15,7 +15,7 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
       />
       {currentOpenMenu === slug && (
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-          {menuItems.map(({ type, slug, name, external, url }) => {
+          {menuItems.map(({ type, slug, name, external, targetUrl }) => {
             return type === 'separator'
               ? <div key={slug} className='bg-dial-slate-300 text-dial-stratos font-semibold px-4 py-3'>
                 {name}
@@ -23,7 +23,7 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
               : external
                 ? <a
                   key={slug}
-                  href={url}
+                  href={targetUrl}
                   target='_blank'
                   rel='noopener noreferrer'
                   role='menuitem'
@@ -31,7 +31,7 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
                 >
                   {name}
                 </a>
-                : <Link href={url} role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+                : <Link href={targetUrl} role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
                   {name}
                 </Link>
           })}
