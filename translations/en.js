@@ -496,6 +496,8 @@ export const en = {
   'ui.sdgTarget.header': 'SDG Targets',
   'ui.sdgTarget.label': 'SDG Target',
 
+  'ui.productStage.label': 'Product Stages',
+
   'ui.extraAttributes.header': 'Local Innovations',
   'ui.extraAttributes.label': 'Local Innovation',
   'extraAttributes.ownership': 'Local Ownership',
@@ -634,6 +636,8 @@ export const en = {
 
   'product.noExtraAttributes': 'We do not have any Local Innovation information for this Product.',
   'product.noCategories': 'We do not have any Software information for this Product.',
+  'product.noProductStage': 'We do not have any Product Stage information for this Product.',
+
 
   'product.features.facilityScale.detail.label': 'Facility Scale Details',
   'product.features.details.faq.label': `For more information about facility scales, visit the 
