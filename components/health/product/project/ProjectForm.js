@@ -206,7 +206,7 @@ const ProjectForm = React.memo(({
                 render={({ field }) => (
                   <Select
                     options={fetchedCountriesCallback(dataCountries)}
-                    placeholder={format('app.productStage')}
+                    placeholder={format('ui.country.label')}
                     onChange={(value) => {
                       field.onChange(value.slug)
                       updateCountryValue(value)
