@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useUser } from '../../lib/hooks'
-import { ProjectFilterContext } from '../context/ProjectFilterContext'
+import { FilterContext } from '../context/FilterContext'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -21,7 +21,7 @@ const ProjectTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const activeFilters = useContext(ProjectFilterContext)
+  const activeFilters = useContext(FilterContext)
 
   const exportCsvFn = () => {
     const projectFilters = generateExportFilters(activeFilters)
@@ -63,7 +63,7 @@ const ProjectTabNav = ({ activeTab, setActiveTab }) => {
 
   return (
     <TabNav
-      { ...{ tabNames, activeTab, setActiveTab }}
+      {...{ tabNames, activeTab, setActiveTab }}
       exportCsvFn={exportCsvFn}
       exportJsonFn={exportJsonFn}
     />

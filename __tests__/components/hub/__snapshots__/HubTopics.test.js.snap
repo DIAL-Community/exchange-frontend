@@ -45,7 +45,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a t
         >
           <a
             class="text-dial-cotton"
-            href="/hub/topics/ai--machine-learning"
+            href="/hub/topics/ai-machine-learning"
           >
             <div
               class="bg-dial-deep-purple py-8 lg:py-12 w-52 h-56 relative flex justify-center"

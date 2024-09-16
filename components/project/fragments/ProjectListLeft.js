@@ -1,25 +1,36 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
-import {
-  ProjectFilterContext,
-  ProjectFilterDispatchContext
-} from '../../context/ProjectFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../context/QueryParamContext'
 import ProjectFilter from './ProjectFilter'
 
 const ProjectListLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
-  const { countries, products, organizations, sectors, tags } = useContext(ProjectFilterContext)
-  const { sdgs, origins } = useContext(ProjectFilterContext)
+  const {
+    countries,
+    organizations,
+    origins,
+    products,
+    sdgs,
+    sectors,
+    tags
+  } = useContext(FilterContext)
 
-  const { setCountries, setProducts, setOrganizations, setSectors, setTags } = useContext(ProjectFilterDispatchContext)
-  const { setSdgs, setOrigins } = useContext(ProjectFilterDispatchContext)
+  const {
+    setCountries,
+    setOrganizations,
+    setOrigins,
+    setProducts,
+    setSdgs,
+    setSectors,
+    setTags
+  } = useContext(FilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
@@ -71,9 +82,9 @@ const ProjectListLeft = () => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <ProjectFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <Share />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

@@ -15,7 +15,7 @@ export const CREATE_PRODUCT = gql`
     $commercialProduct: Boolean
     $govStackEntity: Boolean
     $productStage: String
-    $extraAttributes: [ExtraAttributeInput!]!
+    $extraAttributes: [ExtraAttributeInput!]
   ) {
     createProduct(
       name: $name

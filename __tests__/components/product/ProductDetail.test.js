@@ -75,7 +75,7 @@ describe('Unit tests for the product detail page.', () => {
     const mockCreateBuildingBlock = generateMockApolloData(
       CREATE_PRODUCT,
       {
-        'name': '@firma -- Edited',
+        'name': '@firma - Edited',
         'slug': 'firma',
         'aliases': [
           ''
@@ -90,7 +90,9 @@ describe('Unit tests for the product detail page.', () => {
         'hostingModel': null,
         'pricingModel': null,
         'pricingDetails': null,
-        'govStackEntity': false
+        'govStackEntity': false,
+        'productStage': null,
+        'extraAttributes': {}
       },
       null,
       createProduct
@@ -98,14 +100,14 @@ describe('Unit tests for the product detail page.', () => {
 
     const mockProductPaginationAttribute = generateMockApolloData(
       PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
-      { search:'' },
+      { search: '' },
       null,
       productPaginationAttribute
     )
 
     const mockPaginatedProducts = generateMockApolloData(
       PAGINATED_PRODUCTS_QUERY,
-      { search:'', limit: 8, offset: 0 },
+      { search: '', limit: 8, offset: 0 },
       null,
       paginatedProducts
     )
@@ -134,8 +136,8 @@ describe('Unit tests for the product detail page.', () => {
     expect(repositoryNameInput.value).toBe('@firma')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' -- Edited')
-    expect(repositoryNameInput.value).toBe('@firma -- Edited')
+    await user.type(repositoryNameInput, ' - Edited')
+    expect(repositoryNameInput.value).toBe('@firma - Edited')
 
     const repositorySubmitButton = screen.getByText('Submit Product')
     await user.click(repositorySubmitButton)

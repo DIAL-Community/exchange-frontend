@@ -69,7 +69,7 @@ describe('Unit tests for the dataset detail page.', () => {
     const mockCreateBuildingBlock = generateMockApolloData(
       CREATE_DATASET,
       {
-        'name': 'AI Agro -- Edited',
+        'name': 'AI Agro - Edited',
         'slug': 'ai-agro',
         'aliases': [
           ''
@@ -90,14 +90,14 @@ describe('Unit tests for the dataset detail page.', () => {
 
     const mockDatasetPaginationAttribute = generateMockApolloData(
       DATASET_PAGINATION_ATTRIBUTES_QUERY,
-      { search:'' },
+      { search: '' },
       null,
       datasetPaginationAttribute
     )
 
     const mockPaginatedDatasets = generateMockApolloData(
       PAGINATED_DATASETS_QUERY,
-      { search:'', limit: 8, offset: 0 },
+      { search: '', limit: 8, offset: 0 },
       null,
       paginatedDatasets
     )
@@ -125,8 +125,8 @@ describe('Unit tests for the dataset detail page.', () => {
     expect(repositoryNameInput.value).toBe('AI Agro')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' -- Edited')
-    expect(repositoryNameInput.value).toBe('AI Agro -- Edited')
+    await user.type(repositoryNameInput, ' - Edited')
+    expect(repositoryNameInput.value).toBe('AI Agro - Edited')
 
     const repositorySubmitButton = screen.getByText('Submit Dataset')
     await user.click(repositorySubmitButton)

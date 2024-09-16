@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import { useUser } from '../../lib/hooks'
-import { ProductFilterContext } from '../context/ProductFilterContext'
+import { FilterContext } from '../context/FilterContext'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -23,7 +23,7 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const activeFilters = useContext(ProductFilterContext)
+  const activeFilters = useContext(FilterContext)
 
   const exportCsvFn = () => {
     const productFilters = generateExportFilters(activeFilters)
@@ -75,7 +75,7 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
 
   return (
     <TabNav
-      { ...{ tabNames, activeTab, setActiveTab }}
+      {...{ tabNames, activeTab, setActiveTab }}
       createFn={createCandidateFn}
       exportCsvFn={exportCsvFn}
       exportJsonFn={exportJsonFn}

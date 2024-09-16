@@ -1,6 +1,6 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { ProductFilterContext } from '../../../context/ProductFilterContext'
+import { useContext } from 'react'
+import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 import { PAGINATED_PRODUCTS_QUERY } from '../../../shared/query/product'
 import { DisplayType } from '../../../utils/constants'
@@ -8,26 +8,35 @@ import ProductCard from './ProductCard'
 import ProductFilter from './ProductFilter'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(ProductFilterContext)
-
-  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
-  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
-  const { softwareCategories, softwareFeatures } = useContext(ProductFilterContext)
+  const {
+    search,
+    buildingBlocks,
+    countries,
+    licenseTypes,
+    origins,
+    sdgs,
+    sectors,
+    softwareCategories,
+    softwareFeatures,
+    tags,
+    useCases,
+    workflows
+  } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PRODUCTS_QUERY, {
     variables: {
       search,
-      useCases: useCases.map(useCase => useCase.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
-      sectors: sectors.map(sector => sector.value),
-      tags: tags.map(tag => tag.label),
       countries: countries.map(country => country.value),
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
-      sdgs: sdgs.map(sdg => sdg.value),
-      workflows: workflows.map(workflow => workflow.id),
       origins: origins.map(origin => origin.value),
+      sdgs: sdgs.map(sdg => sdg.value),
+      sectors: sectors.map(sector => sector.value),
       softwareCategories: softwareCategories.map(category => category.value),
       softwareFeatures: softwareFeatures.map(feature => feature.value),
+      tags: tags.map(tag => tag.label),
+      useCases: useCases.map(useCase => useCase.value),
+      workflows: workflows.map(workflow => workflow.id),
       limit: defaultPageSize,
       offset: pageOffset
     }

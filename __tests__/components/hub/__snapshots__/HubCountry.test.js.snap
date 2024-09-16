@@ -217,7 +217,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
                 class="relative"
               >
                 <a
-                  href="/hub/countries/zm/resources/sierra-leone-national-innovation--digital-strategy"
+                  href="/hub/countries/zm/resources/sierra-leone-national-innovation-digital-strategy"
                 >
                   <div
                     class="rounded-lg min-h-[10rem] group"

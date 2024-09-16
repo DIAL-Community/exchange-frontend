@@ -68,7 +68,7 @@ describe('Unit tests for the storefront detail page.', () => {
     const mockCreateBuildingBlock = generateMockApolloData(
       CREATE_ORGANIZATION,
       {
-        'name': 'AI4GOV -- Edited',
+        'name': 'AI4GOV - Edited',
         'slug': 'ai4gov',
         'aliases': [''],
         'website': 'www.ai4gov.net',
@@ -116,8 +116,8 @@ describe('Unit tests for the storefront detail page.', () => {
     expect(repositoryNameInput.value).toBe('AI4GOV')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' -- Edited')
-    expect(repositoryNameInput.value).toBe('AI4GOV -- Edited')
+    await user.type(repositoryNameInput, ' - Edited')
+    expect(repositoryNameInput.value).toBe('AI4GOV - Edited')
 
     const repositorySubmitButton = screen.getByText('Submit Storefront')
     await user.click(repositorySubmitButton)

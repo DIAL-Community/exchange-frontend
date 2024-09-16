@@ -1,7 +1,7 @@
-import { useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
+import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
 import { CapabilityAutocomplete } from '../shared/filter/Capability'
 import { EndorsingYearSelect } from '../shared/filter/EndorsingYear'
 import { OperatorAutocomplete } from '../shared/filter/Operator'
@@ -18,22 +18,22 @@ const MapFilter = () => {
   const {
     aggregators,
     operators,
-    services,
-    years,
-    sectors,
     products,
-    tags
-  } = useContext(MapFilterContext)
+    sectors,
+    services,
+    tags,
+    years
+  } = useContext(FilterContext)
 
   const {
     setAggregators,
     setOperators,
-    setServices,
-    setYears,
-    setSectors,
     setProducts,
-    setTags
-  } = useContext(MapFilterDispatchContext)
+    setSectors,
+    setServices,
+    setTags,
+    setYears
+  } = useContext(FilterDispatchContext)
 
   const routeContains = (expectedText) => router.pathname.indexOf(expectedText) >= 0
 

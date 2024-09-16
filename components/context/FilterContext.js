@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 const FilterContext = createContext()
 const FilterDispatchContext = createContext()
 
-const FilterContextProvider = ({ children }) => {
+const FilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
   // Task tracker context only
   const [showFailedOnly, setShowFailedOnly] = useState(false)
@@ -41,7 +41,6 @@ const FilterContextProvider = ({ children }) => {
   const [certifications, setCertifications] = useState([])
 
   const [isEndorsed, setIsEndorsed] = useState(false)
-  const [productDeployable, setProductDeployable] = useState(false)
   const [endorsers, setEndorsers] = useState([])
   const [licenseTypes, setLicenseTypes] = useState([])
   const [isLinkedWithDpi, setIsLinkedWithDpi] = useState(false)
@@ -55,6 +54,7 @@ const FilterContextProvider = ({ children }) => {
 
   const valueProps = {
     search,
+
     showFailedOnly,
     showGovStackOnly,
     showMature,
@@ -88,7 +88,6 @@ const FilterContextProvider = ({ children }) => {
     certifications,
 
     isEndorsed,
-    productDeployable,
     endorsers,
     licenseTypes,
     isLinkedWithDpi,
@@ -135,7 +134,6 @@ const FilterContextProvider = ({ children }) => {
     setCertifications,
 
     setIsEndorsed,
-    setProductDeployable,
     setEndorsers,
     setLicenseTypes,
     setIsLinkedWithDpi,
@@ -156,4 +154,4 @@ const FilterContextProvider = ({ children }) => {
   )
 }
 
-export { FilterContextProvider, FilterContext, FilterDispatchContext }
+export { FilterProvider, FilterContext, FilterDispatchContext }

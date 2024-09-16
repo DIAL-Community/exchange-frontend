@@ -1,23 +1,34 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { DatasetFilterContext, DatasetFilterDispatchContext }
-  from '../../context/DatasetFilterContext'
-import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
-import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
+import { DatasetTypeActiveFilters, DatasetTypeSelect } from '../../shared/filter/DatasetType'
 import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
-import { DatasetTypeActiveFilters, DatasetTypeSelect } from '../../shared/filter/DatasetType'
-import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
+import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
+import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 
 const DatasetFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sectors, tags, sdgs, origins, datasetTypes } = useContext(DatasetFilterContext)
-  const { setSectors, setTags, setSdgs, setOrigins, setDatasetTypes } = useContext(DatasetFilterDispatchContext)
+  const {
+    countries,
+    datasetTypes,
+    origins,
+    sdgs,
+    sectors,
+    tags
+  } = useContext(FilterContext)
 
-  const { countries } = useContext(DatasetFilterContext)
-  const { setCountries } = useContext(DatasetFilterDispatchContext)
+  const {
+    setCountries,
+    setDatasetTypes,
+    setOrigins,
+    setSdgs,
+    setSectors,
+    setTags
+  } = useContext(FilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
@@ -70,17 +81,17 @@ const DatasetFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <OriginAutocomplete origins={origins} setOrigins={setOrigins} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <DatasetTypeSelect datasetTypes={datasetTypes} setDatasetTypes={setDatasetTypes} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <TagAutocomplete tags={tags} setTags={setTags} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <CountryAutocomplete countries={countries} setCountries={setCountries} />
       </div>
     </div>

@@ -1,11 +1,11 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { BuildingBlockFilterContext } from '../../context/BuildingBlockFilterContext'
+import { useIntl } from 'react-intl'
+import { FilterContext } from '../../context/FilterContext'
+import Pagination from '../../shared/Pagination'
 import { BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/buildingBlock'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import Pagination from '../../shared/Pagination'
 import BuildingBlockSearchBar from './BuildingBlockSearchBar'
 import ListStructure from './ListStructure'
 
@@ -13,8 +13,15 @@ const BuildingBlockListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { showMature, showGovStackOnly } = useContext(BuildingBlockFilterContext)
-  const { search, sdgs, useCases, workflows, categoryTypes } = useContext(BuildingBlockFilterContext)
+  const {
+    search,
+    categoryTypes,
+    sdgs,
+    showGovStackOnly,
+    showMature,
+    useCases,
+    workflows
+  } = useContext(FilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)

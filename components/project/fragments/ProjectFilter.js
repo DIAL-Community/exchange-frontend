@@ -1,7 +1,6 @@
 import { useCallback, useContext, useState } from 'react'
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { ProjectFilterContext, ProjectFilterDispatchContext } from '../../context/ProjectFilterContext'
 import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 import { OrganizationActiveFilters, OrganizationAutocomplete } from '../../shared/filter/Organization'
 import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
@@ -10,6 +9,7 @@ import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
 import Checkbox from '../../shared/form/Checkbox'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 
 const COVID_19_LABEL = 'COVID-19'
 const COVID_19_SLUG = 'covid19'
@@ -18,11 +18,25 @@ const ProjectFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { countries, products, organizations, sectors, tags } = useContext(ProjectFilterContext)
-  const { setCountries, setProducts, setOrganizations, setSectors, setTags } = useContext(ProjectFilterDispatchContext)
+  const {
+    countries,
+    organizations,
+    origins,
+    products,
+    sdgs,
+    sectors,
+    tags
+  } = useContext(FilterContext)
 
-  const { sdgs, origins } = useContext(ProjectFilterContext)
-  const { setSdgs, setOrigins } = useContext(ProjectFilterDispatchContext)
+  const {
+    setCountries,
+    setOrganizations,
+    setOrigins,
+    setProducts,
+    setSdgs,
+    setSectors,
+    setTags
+  } = useContext(FilterDispatchContext)
 
   const [expanded, setExpanded] = useState(false)
 
@@ -93,15 +107,15 @@ const ProjectFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <ProductAutocomplete products={products} setProducts={setProducts} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <OrganizationAutocomplete organizations={organizations} setOrganizations={setOrganizations} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <TagAutocomplete tags={tags} setTags={setTags} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
@@ -124,13 +138,13 @@ const ProjectFilter = () => {
                 {format('filter.project.forCovid')}
               </span>
             </label>
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <CountryAutocomplete countries={countries} setCountries={setCountries} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <OriginAutocomplete origins={origins} setOrigins={setOrigins} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
           </>
         }
       </div>

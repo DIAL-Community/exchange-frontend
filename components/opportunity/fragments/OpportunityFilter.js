@@ -1,18 +1,14 @@
 import { useCallback, useContext, useState } from 'react'
+import { FaAngleDown, FaAngleUp, FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { FaAngleUp, FaAngleDown } from 'react-icons/fa6'
-import { FaXmark } from 'react-icons/fa6'
-import {
-  OpportunityFilterContext,
-  OpportunityFilterDispatchContext
-} from '../../context/OpportunityFilterContext'
-import Checkbox from '../../shared/form/Checkbox'
-import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
-import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
-import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { BuildingBlockActiveFilters, BuildingBlockAutocomplete } from '../../shared/filter/BuildingBlock'
-import { OrganizationActiveFilters, OrganizationAutocomplete } from '../../shared/filter/Organization'
 import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
+import { OrganizationActiveFilters, OrganizationAutocomplete } from '../../shared/filter/Organization'
+import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
+import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
+import Checkbox from '../../shared/form/Checkbox'
 
 const OpportunityFilter = () => {
   const { formatMessage } = useIntl()
@@ -27,7 +23,7 @@ const OpportunityFilter = () => {
     tags,
     showClosed,
     showGovStackOnly
-  } = useContext(OpportunityFilterContext)
+  } = useContext(FilterContext)
 
   const {
     setBuildingBlocks,
@@ -38,7 +34,7 @@ const OpportunityFilter = () => {
     setTags,
     setShowClosed,
     setShowGovStackOnly
-  } = useContext(OpportunityFilterDispatchContext)
+  } = useContext(FilterDispatchContext)
 
   const [expanded, setExpanded] = useState(false)
 
@@ -70,7 +66,7 @@ const OpportunityFilter = () => {
       + useCases.length
       + tags.length
       + showClosed ? 1 : 0
-      + showGovStackOnly ? 1 : 0 > 0
+        + showGovStackOnly ? 1 : 0 > 0
   }
 
   return (
@@ -127,15 +123,15 @@ const OpportunityFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <BuildingBlockAutocomplete buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <OrganizationAutocomplete organizations={organizations} setOrganizations={setOrganizations} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
@@ -164,11 +160,11 @@ const OpportunityFilter = () => {
                 {format('ui.opportunity.filter.showGovStackOnly')}
               </span>
             </label>
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <TagAutocomplete tags={tags} setTags={setTags} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <CountryAutocomplete countries={countries} setCountries={setCountries} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
           </>
         }
       </div>

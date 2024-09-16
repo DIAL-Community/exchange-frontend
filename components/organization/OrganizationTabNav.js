@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import { useUser } from '../../lib/hooks'
-import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
+import { FilterContext } from '../context/FilterContext'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -23,7 +23,7 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const activeFilters = useContext(OrganizationFilterContext)
+  const activeFilters = useContext(FilterContext)
 
   const exportCsvFn = () => {
     const { userEmail, userToken } = user
@@ -69,7 +69,7 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
 
   return (
     <TabNav
-      { ...{ tabNames, activeTab, setActiveTab }}
+      {...{ tabNames, activeTab, setActiveTab }}
       createFn={createCandidateFn}
       exportCsvFn={exportCsvFn}
       exportJsonFn={exportJsonFn}

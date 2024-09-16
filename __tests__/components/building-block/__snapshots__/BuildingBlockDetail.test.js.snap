@@ -628,7 +628,7 @@ exports[`Unit tests for the building block detail page. Should render edit page 
               <div
                 class="text-xl text-dial-ochre font-semibold"
               >
-                Analytics and business intelligence -- Edited
+                Analytics and business intelligence - Edited
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
@@ -699,7 +699,7 @@ exports[`Unit tests for the building block detail page. Should render edit page 
               <div
                 class="text-xl font-semibold"
               >
-                Edit Analytics and business intelligence -- Edited
+                Edit Analytics and business intelligence - Edited
               </div>
               <div
                 class="form-field-wrapper"

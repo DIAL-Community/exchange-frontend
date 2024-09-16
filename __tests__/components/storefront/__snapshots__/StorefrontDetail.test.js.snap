@@ -202,7 +202,7 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                AI4GOV -- Edited
+                AI4GOV - Edited
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
@@ -327,7 +327,7 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
               <div
                 class="text-xl font-semibold"
               >
-                Edit AI4GOV -- Edited
+                Edit AI4GOV - Edited
               </div>
               <div
                 class="flex flex-col gap-y-2"

@@ -157,6 +157,7 @@ export const productDetail = {
       'maturityScoreDetails': [],
       'isLinkedWithDpi': false,
       'tags': [],
+      'projects': [],
       'softwareCategories': [],
       'softwareFeatures': [],
       '__typename': 'Product'
@@ -177,21 +178,26 @@ export const createProduct = {
     'createProduct': {
       'product': {
         'id': '46',
-        'name': '@firma -- Edited',
+        'name': '@firma - Edited',
         'slug': 'firma',
         'aliases': [
           ''
         ],
-        'website': 'example.com',
+        'website': 'administracionelectronica.gob.es/ctt/clienteafirma',
         'imageFile': '/assets/products/firma.png',
         'govStackEntity': false,
+        'productStage': null,
+        'extraAttributes': [],
         'productDescription': {
           'id': '24',
-          'description': 'Description for the product.',
+          'description': `
+            Suite of solutions for digital identities and electronic signatures,
+            aimed at public administrations for the implementation of authentication
+            and electronic signatures in a streamlined and effective manner.
+          `,
           'locale': 'en',
           '__typename': 'ProductDescription'
         },
-        'productStage': 'Some-Product-Stage-Value',
         '__typename': 'Product'
       },
       'errors': [],

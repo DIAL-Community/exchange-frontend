@@ -1,25 +1,25 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { signIn } from 'next-auth/react'
-import { FaSpinner } from 'react-icons/fa'
 import { useMutation } from '@apollo/client'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
-import { ToastContext } from '../../../lib/ToastContext'
-import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../../context/PlaybookFilterContext'
-import { APPLY_AS_CONTENT_EDITOR } from '../../shared/mutation/playbook'
-import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { FaSpinner } from 'react-icons/fa'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { APPLY_AS_CONTENT_EDITOR } from '../../shared/mutation/playbook'
 
 const PlaybookFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { user } = useUser()
-  const { locale }  = useRouter()
+  const { locale } = useRouter()
   const [loading, setLoading] = useState(false)
 
-  const { tags, products } = useContext(PlaybookFilterContext)
-  const { setTags, setProducts } = useContext(PlaybookFilterDispatchContext)
+  const { tags, products } = useContext(FilterContext)
+  const { setTags, setProducts } = useContext(FilterDispatchContext)
 
   const { showFailureMessage, showSuccessMessage } = useContext(ToastContext)
 
@@ -96,9 +96,9 @@ const PlaybookFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <TagAutocomplete tags={tags} setTags={setTags} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
       {!user &&
         <div className='text-xs text-dial-sapphire'>

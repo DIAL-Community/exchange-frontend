@@ -61,7 +61,7 @@ export const createDataset = {
       'opportunity': {
         'id': '29',
         'slug': 'market-entry-in-north-macedonia',
-        'name': 'Market entry in North Macedonia -- Edited',
+        'name': 'Market entry in North Macedonia - Edited',
         'tags': [],
         'imageFile': '/assets/opportunities/opportunity-placeholder.png',
         'webAddress': 'app.leverist.de/en/opportunities/market-entry-in-north-macedonia',

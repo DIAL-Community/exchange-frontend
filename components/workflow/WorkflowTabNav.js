@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useUser } from '../../lib/hooks'
-import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
+import { FilterContext } from '../context/FilterContext'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -21,7 +21,7 @@ const WorkflowTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const activeFilters = useContext(WorkflowFilterContext)
+  const activeFilters = useContext(FilterContext)
 
   const exportCsvFn = () => {
     const workflowFilters = generateExportFilters(activeFilters)
@@ -58,7 +58,7 @@ const WorkflowTabNav = ({ activeTab, setActiveTab }) => {
 
   return (
     <TabNav
-      { ...{ tabNames, activeTab, setActiveTab }}
+      {...{ tabNames, activeTab, setActiveTab }}
       exportCsvFn={exportCsvFn}
       exportJsonFn={exportJsonFn}
     />

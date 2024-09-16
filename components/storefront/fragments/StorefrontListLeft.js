@@ -1,14 +1,11 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
-import {
-  OrganizationFilterContext,
-  OrganizationFilterDispatchContext
-} from '../../context/OrganizationFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../context/QueryParamContext'
 import StorefrontFilter from './StorefrontFilter'
 
 const StorefrontListLeft = () => {
@@ -21,7 +18,7 @@ const StorefrontListLeft = () => {
     buildingBlocks,
     specialties,
     certifications
-  } = useContext(OrganizationFilterContext)
+  } = useContext(FilterContext)
 
   const {
     setSectors,
@@ -29,7 +26,7 @@ const StorefrontListLeft = () => {
     setBuildingBlocks,
     setSpecialties,
     setCertifications
-  } = useContext(OrganizationFilterDispatchContext)
+  } = useContext(FilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
@@ -50,8 +47,11 @@ const StorefrontListLeft = () => {
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter,
-      ...certificationFilters, ...specialtyFilters, ...buildingBlockFilters,
-      ...countryFilters, ...sectorFilters
+      ...certificationFilters,
+      ...specialtyFilters,
+      ...buildingBlockFilters,
+      ...countryFilters,
+      ...sectorFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -77,9 +77,9 @@ const StorefrontListLeft = () => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <StorefrontFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <Share />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

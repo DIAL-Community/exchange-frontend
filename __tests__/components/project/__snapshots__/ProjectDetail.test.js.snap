@@ -87,9 +87,18 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                     />
                   </div>
                   <div
-                    class="text-sm text-dial-stratos"
+                    class="flex flex-col gap-y-2"
                   >
-                    N/A
+                    <div>
+                      <div>
+                        Health
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        Digital, Data, and Technology
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -194,7 +203,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                Colombia HMIS -- Edited
+                Colombia HMIS - Edited Again
               </div>
               <div
                 class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
@@ -271,9 +280,18 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                     </div>
                   </div>
                   <div
-                    class="text-sm text-dial-stratos"
+                    class="flex flex-col gap-y-2"
                   >
-                    N/A
+                    <div>
+                      <div>
+                        Health
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        Digital, Data, and Technology
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -311,7 +329,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
               <div
                 class="text-xl font-semibold"
               >
-                Edit Colombia HMIS -- Edited
+                Edit Colombia HMIS - Edited Again
               </div>
               <div
                 class="flex flex-col gap-y-2"
@@ -518,9 +536,18 @@ exports[`Unit tests for the project detail page. Should render unauthorized for 
                     />
                   </div>
                   <div
-                    class="text-sm text-dial-stratos"
+                    class="flex flex-col gap-y-2"
                   >
-                    N/A
+                    <div>
+                      <div>
+                        Health
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        Digital, Data, and Technology
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div

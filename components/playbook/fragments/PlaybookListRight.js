@@ -1,8 +1,8 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PlaybookFilterContext } from '../../context/PlaybookFilterContext'
+import { useRouter } from 'next/router'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useIntl } from 'react-intl'
+import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/playbook'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
@@ -13,10 +13,10 @@ const PlaybookListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, tags } = useContext(PlaybookFilterContext)
+  const { search, tags } = useContext(FilterContext)
 
-  const [ pageNumber, setPageNumber ] = useState(0)
-  const [ pageOffset, setPageOffset ] = useState(0)
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
@@ -31,7 +31,7 @@ const PlaybookListRight = () => {
   }, [page, setPageNumber, setPageOffset])
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
-    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
       { query: { ...query, page: destinationPage + 1 } },
       undefined,
@@ -62,9 +62,9 @@ const PlaybookListRight = () => {
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
       />
-      { loading && format('ui.pagination.loadingInfo') }
-      { error && format('ui.pagination.loadingInfoError') }
-      { data &&
+      {loading && format('ui.pagination.loadingInfo')}
+      {error && format('ui.pagination.loadingInfoError')}
+      {data &&
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributePlaybook.totalCount}

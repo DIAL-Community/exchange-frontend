@@ -1,35 +1,35 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_OPPORTUNITIES_QUERY } from '../../shared/query/opportunity'
-import { OpportunityFilterContext } from '../../context/OpportunityFilterContext'
-import OpportunityCard from '../OpportunityCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_OPPORTUNITIES_QUERY } from '../../shared/query/opportunity'
+import { DisplayType } from '../../utils/constants'
+import OpportunityCard from '../OpportunityCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(OpportunityFilterContext)
   const {
+    search,
     buildingBlocks,
     countries,
     organizations,
     sectors,
-    useCases,
-    tags,
     showClosed,
-    showGovStackOnly
-  } = useContext(OpportunityFilterContext)
+    showGovStackOnly,
+    tags,
+    useCases
+  } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_OPPORTUNITIES_QUERY, {
     variables: {
       search,
-      countries: countries.map(country => country.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
+      countries: countries.map(country => country.value),
       organizations: organizations.map(organization => organization.value),
-      useCases: useCases.map(useCase => useCase.value),
       sectors: sectors.map(sector => sector.value),
-      tags: tags.map(tag => tag.label),
       showClosed,
       showGovStackOnly,
+      tags: tags.map(tag => tag.label),
+      useCases: useCases.map(useCase => useCase.value),
       limit: defaultPageSize,
       offset: pageOffset
     }

@@ -1,14 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_WORKFLOWS_QUERY } from '../../shared/query/workflow'
-import { WorkflowFilterContext } from '../../context/WorkflowFilterContext'
-import WorkflowCard from '../WorkflowCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_WORKFLOWS_QUERY } from '../../shared/query/workflow'
+import { DisplayType } from '../../utils/constants'
+import WorkflowCard from '../WorkflowCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(WorkflowFilterContext)
-  const { sdgs, useCases } = useContext(WorkflowFilterContext)
+  const { search, sdgs, useCases } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_WORKFLOWS_QUERY, {
     variables: {

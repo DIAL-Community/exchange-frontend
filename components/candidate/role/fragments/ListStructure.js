@@ -1,13 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_CANDIDATE_ROLES_QUERY } from '../../../shared/query/candidateRole'
-import RoleCard from '../RoleCard'
-import { DisplayType } from '../../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
-import { RoleFilterContext } from '../../../context/candidate/RoleFilterContext'
+import { PAGINATED_CANDIDATE_ROLES_QUERY } from '../../../shared/query/candidateRole'
+import { DisplayType } from '../../../utils/constants'
+import RoleCard from '../RoleCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(RoleFilterContext)
+  const { search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_CANDIDATE_ROLES_QUERY, {
     variables: {

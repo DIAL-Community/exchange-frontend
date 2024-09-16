@@ -1,7 +1,7 @@
-import { useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
+import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
 import { CapabilityActiveFilters } from '../shared/filter/Capability'
 import { EndorsingYearActiveFilters } from '../shared/filter/EndorsingYear'
 import { OperatorActiveFilters } from '../shared/filter/Operator'
@@ -17,12 +17,24 @@ const MapActiveFilter = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const {
-    aggregators, operators, services, years, sectors, products, tags
-  } = useContext(MapFilterContext)
+    aggregators,
+    operators,
+    products,
+    sectors,
+    services,
+    tags,
+    years
+  } = useContext(FilterContext)
 
   const {
-    setAggregators, setOperators, setServices, setYears, setSectors, setProducts, setTags
-  } = useContext(MapFilterDispatchContext)
+    setAggregators,
+    setOperators,
+    setProducts,
+    setSectors,
+    setServices,
+    setTags,
+    setYears
+  } = useContext(FilterDispatchContext)
 
   const filteringMap = () => {
     if (router.pathname.indexOf('projects') >= 0) {

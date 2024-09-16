@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useUser } from '../../lib/hooks'
-import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
+import { FilterContext } from '../context/FilterContext'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -21,7 +21,7 @@ const BuildingBlockTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const activeFilters = useContext(BuildingBlockFilterContext)
+  const activeFilters = useContext(FilterContext)
 
   const exportCsvFn = () => {
     const buildingBlockFilters = generateExportFilters(activeFilters)
