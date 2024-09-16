@@ -1,12 +1,14 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useActiveTenant, useUser } from '../../lib/hooks'
+import { SiteSettingContext } from '../context/SiteSettingContext'
 import AdminMenu from './menu/AdminMenu'
 import CatalogMenu from './menu/CatalogMenu'
+import GenericMenu from './menu/GenericMenu'
 import HelpMenu from './menu/HelpMenu'
 import LanguageMenu from './menu/LanguageMenu'
 import MarketplaceMenu from './menu/MarketplaceMenu'
@@ -117,6 +119,8 @@ const Header = ({ isOnAuthPage = false }) => {
       </a>
     </li>
 
+  const { menuConfigurations } = useContext(SiteSettingContext)
+
   return (
     <header className='z-50 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
@@ -149,6 +153,15 @@ const Header = ({ isOnAuthPage = false }) => {
           <li className='relative text-right'>
             <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
           </li>
+          {menuConfigurations.map((menuConfiguration) => (
+            <li key={menuConfiguration.slug} className='relative text-right'>
+              <GenericMenu
+                menuConfiguration={menuConfiguration}
+                currentOpenMenu={currentOpenMenu}
+                onToggleDropdown={toggleDropdownSwitcher}
+              />
+            </li>
+          ))}
         </ul>
       </div>
       <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />

@@ -1,20 +1,34 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { DefaultSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
+import { useLazyQuery } from '@apollo/client'
+import { INITIAL_IMAGE_URL_QUERY } from '../components/shared/query/siteSetting'
 
 const CatalogSeo = ({ currentTenant }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const [faviconUrl, setFaviconUrl] = useState()
+  const [openGraphLogoUrl, setOpenGraphLogoUrl] = useState()
+
+  const [updateSeoSettings, { loading, error }] = useLazyQuery(INITIAL_IMAGE_URL_QUERY, {
+    onCompleted: (data) => {
+      setFaviconUrl(data.siteSetting.faviconUrl)
+      setOpenGraphLogoUrl(data.siteSetting.openGraphLogoUrl)
+    }
+  })
+
   const titleForTenant = (tenantName) => {
     return tenantName !== 'dpi' ? format('app.title') : format('hub.title')
   }
 
-  const imageForTenant = (tenantName) => {
-    return tenantName !== 'dpi'
-      ? 'https://exchange.dial.global/images/hero-image/exchange-hero.png'
-      : 'https://exchange.dial.global/images/hero-image/hub-hero.png'
-  }
+  useEffect(() => {
+    if (!openGraphLogoUrl || !faviconUrl) {
+      updateSeoSettings()
+    }
+  }, [faviconUrl, openGraphLogoUrl, updateSeoSettings])
+
+  if (loading || error) return null
 
   return (
     <DefaultSeo
@@ -23,14 +37,14 @@ const CatalogSeo = ({ currentTenant }) => {
       description={format('wizard.getStarted.firstLine')}
       additionalLinkTags={[{
         rel: 'icon',
-        href: '/favicon.ico'
+        href: faviconUrl
       }]}
       openGraph={{
         title: titleForTenant(currentTenant),
         type: 'website',
         images: [
           {
-            url: imageForTenant(currentTenant),
+            url: openGraphLogoUrl,
             width: 700,
             height: 380,
             alt: `Banner of ${titleForTenant(currentTenant)}`
