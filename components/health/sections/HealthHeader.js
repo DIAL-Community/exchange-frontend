@@ -117,13 +117,13 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
         {!isOnAuthPage &&
           <ul className='hidden md:flex items-center ml-auto text-gray gap-x-8'>
             <li className='relative text-right text-lg'>
-              <Link href='/health/about' role='menuitem' className={menuStyles}>
-                {format('health.header.about').toUpperCase()}
+              <Link href='/health/products' role='menuitem' className={menuStyles}>
+                {format('health.header.products').toUpperCase()}
               </Link>
             </li>
             <li className='relative text-right text-lg'>
-              <Link href='/health/products' role='menuitem' className={menuStyles}>
-                {format('health.header.products').toUpperCase()}
+              <Link href='/health/about' role='menuitem' className={menuStyles}>
+                {format('health.header.about').toUpperCase()}
               </Link>
             </li>
             <li className='relative text-right text-lg'>

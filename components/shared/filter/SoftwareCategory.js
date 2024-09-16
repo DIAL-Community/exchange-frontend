@@ -111,7 +111,7 @@ export const SoftwareCategoryActiveFilters =
                 value=''
               />
             </label>
-            <div className='flex flex-wrap gap-3'>
+            <div className='flex flex-wrap flex-col gap-3'>
               {softwareFeatures.filter((feature) => feature.categoryId == category.id).map((feature, featureIdx) => (
                 <div key={featureIdx} className='bg-dial-slate-400 px-2 py-1 rounded'>
                   <div className='flex flex-row gap-1'>

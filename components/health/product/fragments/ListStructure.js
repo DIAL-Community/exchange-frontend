@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { useContext } from 'react'
+import { useQuery } from '@apollo/client'
 import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 import { PAGINATED_PRODUCTS_QUERY } from '../../../shared/query/product'
@@ -14,6 +14,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     countries,
     licenseTypes,
     origins,
+    productStage,
     sdgs,
     sectors,
     softwareCategories,
@@ -38,6 +39,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       useCases: useCases.map(useCase => useCase.value),
       workflows: workflows.map(workflow => workflow.id),
       limit: defaultPageSize,
+      productStage,
       offset: pageOffset
     }
   })

@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
 import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
@@ -19,10 +19,13 @@ const HealthProducts = () => {
     isLinkedWithDpi,
     licenseTypes,
     origins,
+    productStage,
     sdgs,
     sectors,
     showDpgaOnly,
     showGovStackOnly,
+    softwareCategories,
+    softwareFeatures,
     tags,
     useCases,
     workflows
@@ -76,7 +79,10 @@ const HealthProducts = () => {
       origins: origins.map(origin => origin.value),
       isLinkedWithDpi,
       showGovStackOnly,
-      showDpgaOnly
+      showDpgaOnly,
+      productStage,
+      softwareCategories: softwareCategories.map(softwareCategory => softwareCategory.id),
+      softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id)
     }
   })
 

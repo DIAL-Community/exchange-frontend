@@ -1,22 +1,25 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { FilterContext, FilterDispatchContext } from '../../../context/FilterContext'
+import { ProductStageActiveFilters, ProductStageAutocomplete } from '../../../shared/filter/ProductStage'
 import { SoftwareCategoryActiveFilters, SoftwareCategoryAutocomplete } from '../../../shared/filter/SoftwareCategory'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { softwareCategories, softwareFeatures } = useContext(FilterContext)
-  const { setSoftwareCategories, setSoftwareFeatures } = useContext(FilterDispatchContext)
+  const { softwareCategories, softwareFeatures, productStage } = useContext(FilterContext)
+  const { setSoftwareCategories, setSoftwareFeatures, setProductStage } = useContext(FilterDispatchContext)
 
   const clearFilter = () => {
     setSoftwareCategories([])
     setSoftwareFeatures([])
+    setProductStage(null)
   }
 
   const filteringProduct = () => {
-    return (softwareCategories.length || softwareFeatures.length) ? true : null
+    return softwareCategories.length +
+      (productStage == null ? 0 : 1) > 0
   }
 
   return (
@@ -28,6 +31,7 @@ const ProductFilter = () => {
         <hr className='border-b border-dial-slate-200' />
         <SoftwareCategoryAutocomplete softwareCategories={softwareCategories}
           setSoftwareCategories={setSoftwareCategories} />
+        <ProductStageAutocomplete productStage={productStage} setProductStage={setProductStage} />
         <hr className='border-b border-dial-slate-200' />
       </div>
       <div className='flex flex-col gap-y-2'>
@@ -50,7 +54,10 @@ const ProductFilter = () => {
             <SoftwareCategoryActiveFilters softwareCategories={softwareCategories}
               setSoftwareCategories={setSoftwareCategories}
               softwareFeatures={softwareFeatures}
-              setSoftwareFeatures={setSoftwareFeatures} />
+              setSoftwareFeatures={setSoftwareFeatures}/>
+          </div>
+          <div className='flex flex-row flex-wrap gap-1 text-sm'>
+            <ProductStageActiveFilters productStage={productStage} setProductStage={setProductStage}/>
           </div>
         </div>
       }
