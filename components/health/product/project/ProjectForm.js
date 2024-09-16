@@ -196,7 +196,7 @@ const ProjectForm = React.memo(({
               />
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label htmlFor='projectUrl'>
+              <label className='required-field' htmlFor='projectCountry'>
                 {format('ui.country.label')}
               </label>
               <Controller
@@ -206,7 +206,7 @@ const ProjectForm = React.memo(({
                 render={({ field }) => (
                   <Select
                     options={fetchedCountriesCallback(dataCountries)}
-                    placeholder={format('app.productStage')}
+                    placeholder={format('ui.country.label')}
                     onChange={(value) => {
                       field.onChange(value.slug)
                       updateCountryValue(value)
