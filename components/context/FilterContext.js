@@ -56,19 +56,61 @@ const FilterProvider = ({ children }) => {
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url) => {
-      console.log('Transitioning from: ', router.pathname)
-      console.log('Transitioning from: ', router.asPath)
-      console.log('Transitioning to: ', url)
-
+      // Transitioning to other pages (pathname changing).
       if (url.indexOf(router.pathname) < 0) {
+        setSearch('')
+        setShowFailedOnly(false)
+        setShowGovStackOnly(false)
+        setShowMature(false)
+
+        setCategoryTypes([])
+        setSdgs([])
+        setUseCases([])
+        setWorkflows([])
+
+        setOrigins([])
+        setCountries([])
+        setSectors([])
+        setOrganizations([])
+        setTags([])
+        setDatasetTypes([])
+
+        setAggregators([])
+        setOperators([])
+        setServices([])
+
+        setYears([])
+
+        setProducts([])
+
+        setBuildingBlocks([])
+        setShowClosed(false)
+
+        setAggregator(false)
+        setEndorser(false)
+        setEndorserLevel('')
+
+        setSpecialties([])
+        setCertifications([])
+
+        setIsEndorsed(false)
+        setEndorsers([])
+        setLicenseTypes([])
+        setIsLinkedWithDpi(false)
+        setShowDpgaOnly(false)
+
+        setSoftwareCategories([])
+        setSoftwareFeatures([])
+        setComparedProducts([])
+
         setShowBeta(false)
       }
     }
 
-    router.events.on('routeChangeStart', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChange)
 
     return () => {
-      router.events.off('routeChangeStart', handleRouteChange)
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events, router.asPath, router.pathname])
 
