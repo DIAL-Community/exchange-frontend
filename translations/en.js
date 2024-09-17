@@ -2642,6 +2642,7 @@ export const en = {
 
   'health.header.about': 'About',
   'health.header.products': 'Products',
+  'health.header.organizations': 'Organizations',
   'health.header.faq': 'FAQ',
 
   'ui.chatbot.question': 'Question',
