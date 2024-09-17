@@ -20,6 +20,7 @@ const ProductFilterProvider = ({ children }) => {
   const [isLinkedWithDpi, setIsLinkedWithDpi] = useState(false)
   const [showGovStackOnly, setShowGovStackOnly] = useState(false)
   const [showDpgaOnly, setShowDpgaOnly] = useState(false)
+  const [productStage, setProductStage] = useState(null)
 
   const [softwareCategories, setSoftwareCategories] = useState([])
   const [softwareFeatures, setSoftwareFeatures] = useState([])
@@ -47,6 +48,7 @@ const ProductFilterProvider = ({ children }) => {
     isLinkedWithDpi,
     showGovStackOnly,
     showDpgaOnly,
+    productStage,
     softwareCategories,
     softwareFeatures,
     comparedProducts,
@@ -72,6 +74,7 @@ const ProductFilterProvider = ({ children }) => {
     setIsLinkedWithDpi,
     setShowGovStackOnly,
     setShowDpgaOnly,
+    setProductStage,
     setSoftwareCategories,
     setSoftwareFeatures,
     setComparedProducts,
