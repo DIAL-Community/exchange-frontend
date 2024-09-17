@@ -5,7 +5,7 @@ import { SUPPORTING_NAVIGATION_ITEMS, TOOL_NAVIGATION_ITEMS } from '../../utils/
 import { CATALOG_MENU, MenuHeader } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
 
-const CatalogMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
+const CatalogMenu = ({ currentOpenMenu, onToggleDropdown }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -13,7 +13,7 @@ const CatalogMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
     <>
       <MenuHeader
         id={CATALOG_MENU}
-        title={title ? title : 'header.catalog'}
+        titleKey={'header.catalog'}
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 const FilterContext = createContext()
 const FilterDispatchContext = createContext()
@@ -51,6 +52,25 @@ const FilterProvider = ({ children }) => {
   const [comparedProducts, setComparedProducts] = useState([])
 
   const [showBeta, setShowBeta] = useState(false)
+
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      console.log('Transitioning from: ', router.pathname)
+      console.log('Transitioning from: ', router.asPath)
+      console.log('Transitioning to: ', url)
+
+      if (url.indexOf(router.pathname) < 0) {
+        setShowBeta(false)
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router.events, router.asPath, router.pathname])
 
   const valueProps = {
     search,

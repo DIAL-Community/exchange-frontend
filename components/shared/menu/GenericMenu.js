@@ -31,7 +31,12 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
                 >
                   {name}
                 </a>
-                : <Link href={targetUrl} role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+                : <Link
+                  key={slug}
+                  href={targetUrl}
+                  role='menuitem'
+                  className={DEFAULT_DROPDOWN_MENU_STYLES}
+                >
                   {name}
                 </Link>
           })}

@@ -1,8 +1,8 @@
+import { useCallback, useState } from 'react'
+import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
-import Cookies from 'js-cookie'
 import { OVERVIEW_INTRO_KEY } from '../../../lib/intro'
 import ReportIssue from '../ReportIssue'
 import { HELP_MENU, MenuHeader, NONE } from './MenuCommon'
@@ -37,7 +37,7 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
     <>
       <MenuHeader
         id={HELP_MENU}
-        title='header.help'
+        titleKey='header.help'
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

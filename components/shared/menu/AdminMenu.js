@@ -12,7 +12,7 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
     <>
       <MenuHeader
         id={ADMIN_MENU}
-        title='header.admin'
+        titleKey='header.admin'
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

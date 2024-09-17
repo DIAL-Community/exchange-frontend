@@ -147,8 +147,14 @@ const ToolDefinition = () => {
           </Link>
           {landingPageConfigurations.map(landingPageConfiguration => {
             return landingPageConfiguration.external
-              ? <ExternalLandingDefinition landingPageConfiguration={landingPageConfiguration} />
-              : <InternalLandingDefinition landingPageConfiguration={landingPageConfiguration} />
+              ? <ExternalLandingDefinition
+                key={landingPageConfiguration.slug}
+                landingPageConfiguration={landingPageConfiguration}
+              />
+              : <InternalLandingDefinition
+                key={landingPageConfiguration.slug}
+                landingPageConfiguration={landingPageConfiguration}
+              />
           })}
         </div>
       </div>
