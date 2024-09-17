@@ -56,16 +56,16 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
 
   return (
     <div className='flex flex-col border border-dial-orange-light'>
-      <div className='move-header'>
-        <div className='move-animation-base bg-dial-blue-chalk h-14' />
+      <div className='collapse-header'>
+        <div className='collapse-animation-base bg-dial-blue-chalk h-14' />
         <div
           className={classNames(
-            'animated-move',
-            openingDetail ? 'move-header-expanded' : 'move-header-collapsed',
-            'move-animation bg-dial-orange-light h-14'
+            'animated-collapse',
+            openingDetail ? 'header-expanded' : 'header-collapsed',
+            'collapse-animation bg-dial-orange-light h-14'
           )}
         />
-        <div className='flex flex-row flex-wrap gap-3 move-header'>
+        <div className='flex flex-row flex-wrap gap-3 collapse-header'>
           <div className='my-auto cursor-pointer flex-grow' onClick={toggleDetail}>
             <div className='font-semibold px-4 py-4'>
               {subModuleName}
