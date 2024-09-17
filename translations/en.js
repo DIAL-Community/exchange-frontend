@@ -268,6 +268,8 @@ export const en = {
   'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
   'ui.product.filter.showDpgaOnly': 'Show only Digital Public Goods',
 
+  'ui.productStage.header': 'Product Stage',
+
   'product.languages': 'Languages',
   'product.website': 'Website',
   'product.description': 'Description',
@@ -494,6 +496,8 @@ export const en = {
   'ui.sdgTarget.header': 'SDG Targets',
   'ui.sdgTarget.label': 'SDG Target',
 
+  'ui.productStage.label': 'Product Stages',
+
   'ui.extraAttributes.header': 'Local Innovations',
   'ui.extraAttributes.label': 'Local Innovation',
   'extraAttributes.ownership': 'Local Ownership',
@@ -632,6 +636,8 @@ export const en = {
 
   'product.noExtraAttributes': 'We do not have any Local Innovation information for this Product.',
   'product.noCategories': 'We do not have any Software information for this Product.',
+  'product.noProductStage': 'We do not have any Product Stage information for this Product.',
+
 
   'product.features.facilityScale.detail.label': 'Facility Scale Details',
   'product.features.details.faq.label': `For more information about facility scales, visit the 
@@ -2631,7 +2637,7 @@ export const en = {
   'hub.adliNetwork.memberCard.alt': 'Photo of the ADLI member',
 
   'health.landing.main.title': 'Africa HealthTech Marketplace',
-  'health.landing.main.subtitle': `Enhancing visibility and trust in digital health solutions`,
+  'health.landing.main.subtitle': `Enhancing visibility and trust in local digital health innovations`,
   'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Alliance',
 
   'health.header.about': 'About',
