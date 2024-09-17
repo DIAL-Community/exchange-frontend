@@ -6,14 +6,11 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
+import { allowedToBrowseAdliPages } from '../admin/utilities'
 import HubPagination from '../fragments/HubPagination'
 import {
-  FACEBOOK_SOCIAL_MEDIA_TYPE,
-  INSTAGRAM_SOCIAL_MEDIA_TYPE,
-  LINKEDIN_SOCIAL_MEDIA_TYPE,
-  TWITTER_X_SOCIAL_MEDIA_TYPE
+  FACEBOOK_SOCIAL_MEDIA_TYPE, INSTAGRAM_SOCIAL_MEDIA_TYPE, LINKEDIN_SOCIAL_MEDIA_TYPE, TWITTER_X_SOCIAL_MEDIA_TYPE
 } from '../user/constant'
-import { allowedToBrowseAdliPages } from '../admin/utilities'
 
 const HubExpertNetwork = () => {
   const { formatMessage } = useIntl()
@@ -32,7 +29,11 @@ const HubExpertNetwork = () => {
 
   return (
     <div className='flex flex-col gap-6 pb-12 max-w-catalog mx-auto'>
-      <img className='h-32 w-full object-cover' alt='DIAL Resource Hub' src='/images/hero-image/hub-hero.svg' />
+      <img
+        className='h-32 w-full object-cover'
+        alt='DIAL Resource Hub - ADLI Network'
+        src='/images/hero-image/hub-adli-network.svg'
+      />
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-12'>
           <div className='text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray'>

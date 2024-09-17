@@ -9,9 +9,9 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
     class="flex flex-col gap-6 pb-12 max-w-catalog mx-auto"
   >
     <img
-      alt="DIAL Resource Hub"
+      alt="DIAL Resource Hub - Country Profile"
       class="h-32 w-full object-cover"
-      src="/images/hero-image/hub-hero.svg"
+      src="/images/hero-image/hub-country.svg"
     />
     <div
       class="absolute w-full left-1/2 -translate-x-1/2"
