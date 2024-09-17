@@ -2621,6 +2621,7 @@ export const en = {
   'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
   'hub.country.resources': 'Resources, Reports, and Articles',
   'hub.country.candidateResources': 'Suggested Resources, Reports, and Articles',
+  'hub.country.createResource': 'Create a Resource, Report, or Article',
   'hub.country.suggestResource': 'Suggest a Resource, Report, or Article',
   
   'hub.resourceFinder.title': 'Resource Finder',
