@@ -17,6 +17,7 @@ import ProductDetailOrganizations from './ProductDetailOrganizations'
 import ProductDetailCategories from './ProductDetailCategories'
 import ProductDetailExtraAttributes from './ProductDetailExtraAttributes'
 import ProductDetailProjects from './ProductDetailProjects'
+import ProductDetailProductStage from './ProductDetailProductStage'
 
 const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
@@ -90,6 +91,8 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <hr className="border-b border-health-gray my-3"/>
         <ProductDetailExtraAttributes product={product} canEdit={canEdit} headerRef={extraRef} />
         <hr className="border-b border-health-gray my-3"/>
+        <ProductDetailProductStage product={product} canEdit={canEdit} headerRef={extraRef} />
+        <hr className="border-b border-health-gray my-3"/>
         <div className="text-health-blue text-xl font-semibold mt-6" ref={productMaturityRef}>
           {format('ui.maturityScore.header')}
         </div>
@@ -98,9 +101,6 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             className="text-xs text-justify text-health-red highlight-link"
             dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
           />
-        </div>
-        <div className="text-justify text-black margin">
-          {product?.productStage ? `${format('app.productStage')} - ${product.productStage}` : ''}
         </div>
         <ProductDetailMaturityScores
           slug={product.slug}

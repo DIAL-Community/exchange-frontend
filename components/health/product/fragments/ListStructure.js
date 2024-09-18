@@ -12,7 +12,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
 
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
-  const { softwareCategories, softwareFeatures } = useContext(ProductFilterContext)
+  const { softwareCategories, softwareFeatures, productStage } = useContext(ProductFilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PRODUCTS_QUERY, {
     variables: {
@@ -29,6 +29,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       softwareCategories: softwareCategories.map(category => category.value),
       softwareFeatures: softwareFeatures.map(feature => feature.value),
       limit: defaultPageSize,
+      productStage,
       offset: pageOffset
     }
   })

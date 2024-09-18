@@ -8,7 +8,8 @@ import { ToastContext } from '../../../../lib/ToastContext'
 import EditableSection from '../../../shared/EditableSection'
 import { UPDATE_PRODUCT_EXTRA_ATTRIBUTES } from '../../../shared/mutation/product'
 import Input from '../../../shared/form/Input'
-import { ProductExtraAttributeNames } from '../../../utils/constants'
+import { ProductAdditionalExtraAttributeNames, ProductStageType } from '../../../utils/constants'
+import Select from '../../../shared/form/Select'
 
 const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -19,13 +20,18 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
 
   const { control, handleSubmit, reset: VariablesReset } = useForm({
     defaultValues: {
-      extraAttributes: ProductExtraAttributeNames.map(name => ({ name, value: '', type: '' }))
+      extraAttributes: ProductAdditionalExtraAttributeNames.map(name => ({ name, value: '', type: '' }))
     }
   })
 
+  const productStageOptions = Object.keys(ProductStageType).map((key) => ({
+    value: ProductStageType[key],
+    label: ProductStageType[key].charAt(0).toUpperCase() + ProductStageType[key].slice(1)
+  }))
+
   useEffect(() => {
     if (product?.extraAttributes.length) {
-      const formattedExtraAttributes = ProductExtraAttributeNames.map(name => {
+      const formattedExtraAttributes = ProductAdditionalExtraAttributeNames.map(name => {
         const existingAttr = product.extraAttributes.find(attr => attr.name === name)
 
         return existingAttr || { name, value: '', type: '' }
@@ -86,12 +92,15 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
 
   const sectionHeader =
     <div className='text-xl font-semibold text-health-blue' ref={headerRef}>
-      {format('ui.extraAttributes.label')}
+      {product.productStage
+        ? `${format('ui.productStage.header')} -  ${product.productStage}`
+        : format('ui.productStage.header')
+      }
     </div>
 
   const displayModeBody = product?.extraAttributes.length
     ? <div className='flex flex-col gap-y-2'>
-      {initialValues.map((attribute, index) =>
+      {initialValues?.map((attribute, index) =>
         <div key={`extraAttribute-${index}`}>
           <div key={index} className='text-black'>
             {`${attribute.name}: ${attribute.value.length ? attribute.value : format('general.na')}`}
@@ -100,17 +109,17 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
-      {format('product.noExtraAttributes')}
+      {format('product.noProductStage')}
     </div>
 
   const editModeBody =
     <>
       <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
         <form>
-          {ProductExtraAttributeNames.map((name, index) => (
+          {ProductAdditionalExtraAttributeNames.map((name, index) => (
             <div key={name} className="grid grid-cols-4 gap-2 mt-2">
               <label className="col-span-3">{name}</label>
-              <label className="col-span-1">Type</label>
+              <label className="col-span-1">{format('extraAttributes.type')}</label>
               <Controller
                 name={`extraAttributes.${index}.value`}
                 control={control}
@@ -130,14 +139,15 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
                 name={`extraAttributes.${index}.type`}
                 control={control}
                 render={({ field }) => (
-                  <Input
-                    {...field}
+                  <Select
                     className="col-span-1"
+                    options={productStageOptions}
                     placeholder={format('extraAttributes.type')}
-                    onChange={(e) => {
-                      field.onChange(e)
+                    onChange={(value) => {
+                      field.onChange(value.value)
                       setIsDirty(true)
                     }}
+                    value={productStageOptions.find(option => option.value === field.value) || null}
                   />
                 )}
               />

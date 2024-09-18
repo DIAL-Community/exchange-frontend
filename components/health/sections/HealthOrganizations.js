@@ -2,20 +2,17 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { ProductFilterContext } from '../../context/ProductFilterContext'
+import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
 import Pagination from '../../shared/Pagination'
-import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
-import ListStructure from '../product/fragments/ListStructure'
-import ProductSearchBar from '../product/fragments/ProductSearchBar'
+import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
+import ListStructure from '../organization/fragments/ListStructure'
+import OrganizationSearchBar from '../organization/fragments/OrganizationSearchBar'
 
-const HealthProducts = () => {
+const HealthOrganizations = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
-  const { useCases, buildingBlocks, sectors, tags, productStage } = useContext(ProductFilterContext)
-  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
-  const { softwareCategories, softwareFeatures } = useContext(ProductFilterContext)
+  const { search } = useContext(OrganizationFilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)
@@ -51,30 +48,13 @@ const HealthProducts = () => {
     }
   }
 
-  const { loading, error, data } = useQuery(PRODUCT_PAGINATION_ATTRIBUTES_QUERY, {
-    variables: {
-      search,
-      useCases: useCases.map(useCase => useCase.value),
-      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
-      sectors: sectors.map(sector => sector.value),
-      countries: countries.map(country => country.value),
-      tags: tags.map(tag => tag.label),
-      licenseTypes: licenseTypes.map(licenseType => licenseType.value),
-      sdgs: sdgs.map(sdg => sdg.value),
-      workflows: workflows.map(workflow => workflow.id),
-      origins: origins.map(origin => origin.value),
-      isLinkedWithDpi,
-      showGovStackOnly,
-      showDpgaOnly,
-      productStage,
-      softwareCategories: softwareCategories.map(softwareCategory => softwareCategory.id),
-      softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id)
-    }
+  const { loading, error, data } = useQuery(ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
+    variables: { search }
   })
 
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
-      <ProductSearchBar ref={topRef} />
+      <OrganizationSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
@@ -84,7 +64,7 @@ const HealthProducts = () => {
       { data &&
         <Pagination
           pageNumber={pageNumber}
-          totalCount={data.paginationAttributeProduct.totalCount}
+          totalCount={data.paginationAttributeOrganization.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
           onClickHandler={onClickHandler}
         />
@@ -93,4 +73,4 @@ const HealthProducts = () => {
   )
 }
 
-export default HealthProducts
+export default HealthOrganizations
