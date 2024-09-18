@@ -1,6 +1,6 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { useOrganizationOwnerUser, useUser } from '../../../../lib/hooks'
-import CommentsSection from '../../../shared/comment/CommentsSection'
+import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../../shared/common/Bookmark'
 import Share from '../../../shared/common/Share'
 import EditButton from '../../../shared/form/EditButton'
@@ -56,10 +56,11 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
         <div className='text-xl font-semibold text-health-blue py-3' ref={descRef}>
           {organization.name}
         </div>
-        <div className='block'>
+        <div className='block max-w-[50vw]'>
           <HtmlViewer
             initialContent={organization?.organizationDescription?.description}
             editorId='organization-description'
+            extraClassNames='break-words'
           />
         </div>
         <hr className="border-b border-health-gray my-3"/>
