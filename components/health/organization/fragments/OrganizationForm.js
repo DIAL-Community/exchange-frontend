@@ -46,7 +46,7 @@ const OrganizationForm = React.memo(({ organization }) => {
     }],
     onCompleted: (data) => {
       if (data.createOrganization.organization && data.createOrganization.errors.length === 0) {
-        const redirectPath = `/${locale}/organizations/${data.createOrganization.organization.slug}`
+        const redirectPath = `/${locale}/health/organizations/${data.createOrganization.organization.slug}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showSuccessMessage(
@@ -164,7 +164,7 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/organizations/${slug}`)
+    router.push(`/${locale}/health/organizations/${slug}`)
   }
 
   return loadingUserSession
@@ -200,22 +200,18 @@ const OrganizationForm = React.memo(({ organization }) => {
                       placeholder={format('organization.alias')}
                     />
                     {isLastAlias(aliasIdx) && (
-                      <span>
-                        <IconButton
-                          className='bg-dial-meadow'
-                          icon={<FaPlus />}
-                          onClick={() => append({ value: '' })}
-                        />
-                      </span>
+                      <IconButton
+                        className='bg-dial-meadow'
+                        icon={<FaPlus className='text-sm'/>}
+                        onClick={() => append({ value: '' })}
+                      />
                     )}
                     {!isSingleAlias && (
-                      <span>
-                        <IconButton
-                          className='bg-dial-meadow '
-                          icon={<FaMinus />}
-                          onClick={() => remove(aliasIdx)}
-                        />
-                      </span>
+                      <IconButton
+                        className='bg-dial-meadow '
+                        icon={<FaMinus className='text-sm'/>}
+                        onClick={() => remove(aliasIdx)}
+                      />
                     )}
                   </div>
                 ))}

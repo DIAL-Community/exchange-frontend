@@ -36,7 +36,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
               index={index}
               organization={organization}
               displayType={DisplayType.GRID_CARD}
-              urlPrefix='/health'
             />
           </div>
         )}

@@ -1,15 +1,15 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { PRODUCT_DETAIL_QUERY } from '../../../shared/query/product'
+import { ORGANIZATION_DETAIL_QUERY } from '../../../shared/query/organization'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
-import ProductDetailRight from './ProductDetailRight'
-import ProductDetailLeft from './ProductDetailLeft'
+import OrganizationDetailRight from './OrganizationDetailRight'
+import OrganizationDetailLeft from './OrganizationDetailLeft'
 
-const ProductDetail = ({ slug }) => {
+const OrganizationDetail = ({ slug }) => {
   const scrollRef = useRef(null)
 
-  const { loading, error, data } = useQuery(PRODUCT_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
     variables: { slug }
   })
 
@@ -17,15 +17,15 @@ const ProductDetail = ({ slug }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.product) {
+  } else if (!data?.organization) {
     return <NotFound />
   }
 
-  const { product } = data
+  const { organization } = data
 
   const slugNameMapping = (() => {
     const map = {}
-    map[product.slug] = product.name
+    map[organization.slug] = organization.name
 
     return map
   })()
@@ -38,14 +38,14 @@ const ProductDetail = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <ProductDetailLeft scrollRef={scrollRef} product={product}/>
+          <OrganizationDetailLeft scrollRef={scrollRef} organization={organization}/>
         </div>
         <div className='lg:basis-2/3'>
-          <ProductDetailRight ref={scrollRef} product={product}/>
+          <OrganizationDetailRight ref={scrollRef} organization={organization}/>
         </div>
       </div>
     </div>
   )
 }
 
-export default ProductDetail
+export default OrganizationDetail
