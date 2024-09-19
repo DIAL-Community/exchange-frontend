@@ -498,8 +498,8 @@ export const en = {
 
   'ui.productStage.label': 'Product Stages',
 
-  'ui.extraAttributes.header': 'Local Innovations',
-  'ui.extraAttributes.label': 'Local Innovation',
+  'ui.extraAttributes.header': 'Impact on African Health',
+  'ui.extraAttributes.label': 'Impact on African Health',
   'extraAttributes.ownership': 'Local Ownership',
   'extraAttributes.funders': 'Funders',
   'extraAttributes.impact': 'Impact',
@@ -2644,6 +2644,8 @@ export const en = {
   'health.header.products': 'Products',
   'health.header.organizations': 'Organizations',
   'health.header.faq': 'FAQ',
+
+  'health.maturity.description': 'This information is designed to highlight best practices in software development. Data has been provided by the owner of the solution and should be verified by users as needed',
 
   'ui.chatbot.question': 'Question',
   'ui.chatbot.header': 'Ask our Chatbot',
