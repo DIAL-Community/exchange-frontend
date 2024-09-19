@@ -1,13 +1,8 @@
-import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
 import Bookmark from '../../../../shared/common/Bookmark'
 import Share from '../../../../shared/common/Share'
 import { ObjectType } from '../../../../utils/constants'
-import { QueryParamContext } from '../../../../context/QueryParamContext'
 
 const RoleListLeft = () => {
-  const { query } = useRouter()
-  const { interactionDetected } = useContext(QueryParamContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
@@ -18,14 +13,6 @@ const RoleListLeft = () => {
 
     return `${baseUrl}${basePath}?${filterParameters}`
   }
-
-  useEffect(() => {
-    // Only apply this if the use have not interact with the UI and the url is a sharable link
-    const filtered = query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog
-    if (filtered && !interactionDetected) {
-      // Filtering maybe?
-    }
-  })
 
   return (
     <div className='bg-dial-slate-100 h-full'>
