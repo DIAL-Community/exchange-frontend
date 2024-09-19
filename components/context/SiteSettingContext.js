@@ -4,15 +4,16 @@ import { useLazyQuery } from '@apollo/client'
 import { SITE_SETTING_QUERY } from '../shared/query/siteSetting'
 
 const SiteSettingContext = createContext()
+const SiteSettingDispatchContext = createContext()
 
 const SiteSettingProvider = ({ children }) => {
   const { status } = useSession()
   const [updateSiteSettings, { loading, error }] = useLazyQuery(SITE_SETTING_QUERY, {
     onCompleted: (data) => {
       setExchangeLogoUrl(data.siteSetting.exchangeLogoUrl)
-      setMenuConfigurations(data.siteSetting.dropdownMenus)
-      setLandingPageConfigurations(data.siteSetting.landingPages)
       setHeroCarouselConfigurations(data.siteSetting.carousels)
+      setHeroCardConfigurations(data.siteSetting.heroCards)
+      setMenuConfigurations(data.siteSetting.menus)
     }
   })
 
@@ -20,14 +21,21 @@ const SiteSettingProvider = ({ children }) => {
 
   const [exchangeLogoUrl, setExchangeLogoUrl] = useState()
   const [menuConfigurations, setMenuConfigurations] = useState([])
-  const [landingPageConfigurations, setLandingPageConfigurations] = useState([])
+  const [heroCardConfigurations, setHeroCardConfigurations] = useState([])
   const [heroCarouselConfigurations, setHeroCarouselConfigurations] = useState([])
 
   const siteSettingValues = {
     exchangeLogoUrl,
     menuConfigurations,
-    landingPageConfigurations,
+    heroCardConfigurations,
     heroCarouselConfigurations
+  }
+
+  const siteSettingDispatchValues = {
+    setExchangeLogoUrl,
+    setMenuConfigurations,
+    setHeroCardConfigurations,
+    setHeroCarouselConfigurations
   }
 
   useEffect(() => {
@@ -41,12 +49,15 @@ const SiteSettingProvider = ({ children }) => {
 
   return (
     <SiteSettingContext.Provider value={siteSettingValues}>
-      {children}
+      <SiteSettingDispatchContext.Provider value={siteSettingDispatchValues}>
+        {children}
+      </SiteSettingDispatchContext.Provider>
     </SiteSettingContext.Provider>
   )
 }
 
 export {
   SiteSettingProvider,
-  SiteSettingContext
+  SiteSettingContext,
+  SiteSettingDispatchContext
 }

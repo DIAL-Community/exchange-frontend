@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
 import TabNav from '../shared/TabNav'
@@ -32,7 +32,6 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
   }
 
   const exportJsonFn = () => {
-    console.log('Active filters: ', activeFilters)
     const productFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...productFilters })
     asyncExport(ExportType.EXPORT_AS_JSON, 'products', exportParameters, user.userEmail)

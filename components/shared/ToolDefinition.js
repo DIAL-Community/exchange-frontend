@@ -3,13 +3,13 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { SiteSettingContext } from '../context/SiteSettingContext'
 
-const ExternalLandingDefinition = ({ landingPageConfiguration }) => {
+const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <a
-      href={landingPageConfiguration.targetUrl}
+      href={heroCardConfiguration.targetUrl}
       className='rounded-md shadow-lg border'
       target='_blank'
       rel='noopener noreferrer'
@@ -18,18 +18,18 @@ const ExternalLandingDefinition = ({ landingPageConfiguration }) => {
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row gap-x-3'>
             <img
-              src={landingPageConfiguration.imageUrl}
+              src={heroCardConfiguration.imageUrl}
               alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
               width={50}
               height={50}
               className='object-contain'
             />
             <div className='text-lg font-light text-dial-ochre my-auto flex-grow'>
-              {landingPageConfiguration.name}
+              {heroCardConfiguration.name}
             </div>
           </div>
           <div className='text-sm'>
-            {landingPageConfiguration.description}
+            {heroCardConfiguration.description}
           </div>
         </div>
       </div>
@@ -37,28 +37,28 @@ const ExternalLandingDefinition = ({ landingPageConfiguration }) => {
   )
 }
 
-const InternalLandingDefinition = ({ landingPageConfiguration }) => {
+const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <Link href={landingPageConfiguration.targetUrl} className='rounded-md shadow-lg border'>
+    <Link href={heroCardConfiguration.targetUrl} className='rounded-md shadow-lg border'>
       <div className='px-8 pt-6 pb-12'>
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row gap-x-3'>
             <img
-              src={landingPageConfiguration.imageUrl}
+              src={heroCardConfiguration.imageUrl}
               alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
               width={50}
               height={50}
               className='object-contain'
             />
             <div className='text-lg font-light text-dial-ochre my-auto flex-grow'>
-              {landingPageConfiguration.name}
+              {heroCardConfiguration.name}
             </div>
           </div>
           <div className='text-sm'>
-            {landingPageConfiguration.description}
+            {heroCardConfiguration.description}
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ const ToolDefinition = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { landingPageConfigurations } = useContext(SiteSettingContext)
+  const { heroCardConfigurations } = useContext(SiteSettingContext)
 
   return (
     <div className='lg:px-8 xl:px-56 text-dial-stratos'>
@@ -145,15 +145,15 @@ const ToolDefinition = () => {
               </div>
             </div>
           </Link>
-          {landingPageConfigurations.map(landingPageConfiguration => {
-            return landingPageConfiguration.external
-              ? <ExternalLandingDefinition
-                key={landingPageConfiguration.slug}
-                landingPageConfiguration={landingPageConfiguration}
+          {heroCardConfigurations.map(heroCardConfiguration => {
+            return heroCardConfiguration.external
+              ? <ExternalHeroCardDefinition
+                key={heroCardConfiguration.slug}
+                heroCardConfiguration={heroCardConfiguration}
               />
-              : <InternalLandingDefinition
-                key={landingPageConfiguration.slug}
-                landingPageConfiguration={landingPageConfiguration}
+              : <InternalHeroCardDefinition
+                key={heroCardConfiguration.slug}
+                heroCardConfiguration={heroCardConfiguration}
               />
           })}
         </div>

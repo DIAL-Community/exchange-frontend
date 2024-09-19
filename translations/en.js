@@ -2828,4 +2828,11 @@ export const en = {
   'hub.broadcast.messageType.announcement': 'Announcement',
   'hub.broadcast.messageType.email': 'Email',
   'hub.broadcast.messageType.event': 'Event',
+
+  'ui.setting.menu.label': 'Menu Configuration',
+  'ui.setting.menu.header': 'Menu Configurations',
+  'ui.setting.menu.name': 'Menu Title',
+  'ui.setting.menu.targetUrl': 'Target Url',
+  'ui.setting.menu.external': 'External Url Target',
+  'ui.setting.menu.save': 'Save Menu Configuration'
 }

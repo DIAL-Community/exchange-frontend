@@ -14,7 +14,7 @@ export const SITE_SETTING_QUERY = gql`
         targetUrl
         external
       }
-      landingPages {
+      heroCards {
         id
         slug
         name
@@ -23,7 +23,7 @@ export const SITE_SETTING_QUERY = gql`
         targetUrl
         external
       }
-      dropdownMenus {
+      menus {
         id
         type
         slug
