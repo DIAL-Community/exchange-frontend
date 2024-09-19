@@ -73,7 +73,7 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
               <img
                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
                 alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-                className='aspect-auto h-[267px]'
+                className='mx-auto aspect-auto h-[267px]'
               />
             }
           </Link>
