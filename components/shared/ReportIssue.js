@@ -1,8 +1,8 @@
 import { Fragment, useCallback, useState } from 'react'
-import { useIntl } from 'react-intl'
 import { Controller, useForm } from 'react-hook-form'
-import { Dialog, Transition } from '@headlessui/react'
+import { useIntl } from 'react-intl'
 import Select from 'react-select'
+import { Dialog, Transition } from '@headlessui/react'
 import Input from './form/Input'
 
 const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
@@ -19,8 +19,9 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
 
   const options = [
     { label: format('report.positive'), value: 'positive' },
+    { label: format('report.suggest'), value: 'suggestion' },
     { label: format('report.bug'), value: 'bug' },
-    { label: format('report.suggest'), value: 'suggestion' }
+    { label: format('report.abuse'), value: 'abuse' }
   ]
 
   const submitMessage = async (data) => {

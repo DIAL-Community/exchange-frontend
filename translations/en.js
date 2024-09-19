@@ -91,6 +91,7 @@ export const en = {
   'header.SDGFramework': 'SDG Framework',
   'header.help': 'Help',
   'header.about': 'About',
+  'header.coc': 'Code of Conduct',
   'header.documentation': 'Documentation Portal',
   'header.confluence': 'Exchange Wiki Page',
   'header.admin': 'Admin',
@@ -1556,8 +1557,9 @@ export const en = {
   'report.thankyou': 'Thank you for submitting an issue.',
   'report.issueType': 'What kind of feedback are you providing',
   'report.positive': 'Comment on something I liked',
-  'report.bug': 'Report a problem or issue',
   'report.suggest': 'Make a suggestion',
+  'report.bug': 'Report a problem or issue',
+  'report.abuse': 'Report an abuse',
 
   'breadcrumbs.navigating': 'Opening',
 
