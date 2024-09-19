@@ -2644,6 +2644,7 @@ export const en = {
   'health.header.products': 'Products',
   'health.header.organizations': 'Organizations',
   'health.header.faq': 'FAQ',
+  'health.filter.primary.title': 'Filter by: ',
 
   'health.maturity.description': 'This information is designed to highlight best practices in software development. Data has been provided by the owner of the solution and should be verified by users as needed',
 

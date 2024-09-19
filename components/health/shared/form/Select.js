@@ -31,9 +31,9 @@ const Select = React.forwardRef((
   const defaultStyles = {
     dropdownIndicator: (provided) => ({
       ...provided,
-      color: '#FFF',
+      color: '#ffffff',
       '&:hover': {
-        color: '#FFF'
+        color: '#ffffff'
       }
     }),
     group: (provided) => ({
@@ -46,12 +46,12 @@ const Select = React.forwardRef((
       color: '#000542',
       fontSize: '0.8rem',
       padding: '0.75rem 0.5rem 0.75rem 1rem',
-      backgroundColor: '#FFF',
+      backgroundColor: '#ffffff',
       fontWeight: 600
     }),
     indicatorSeparator: (provided) => ({
       ...provided,
-      backgroundColor: '#FFF'
+      backgroundColor: '#ffffff'
     }),
     placeholder: (provided) => ({
       ...provided,

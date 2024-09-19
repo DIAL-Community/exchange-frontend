@@ -30,7 +30,7 @@ export const MenuHeader = ({ id, href, title, onToggleDropdown, currentOpenMenu 
       className='pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine text-lg'
       onClick={onClickHandler}
     >
-      {format(title).toUpperCase()}
+      {format(title)}
       {currentOpenMenu === id
         ? <HiChevronUp className='inline text-xl' id={`svg-up-${id}`} />
         : <HiChevronDown className='inline text-xl' id={`svg-down-${id}`} />
