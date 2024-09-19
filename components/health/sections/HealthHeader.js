@@ -95,14 +95,14 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
     </>
 
   const withoutUser =
-    <li className="text-right intro-overview-signup intro-signup">
+    <li className="text-right intro-overview-signup intro-signup bg-health-red text-white p-1 rounded-md">
       <a
         href="signIn"
         role="menuitem"
         className='px-3 py-2 text-gray text-lg hover:text-white hover:bg-health-red rounded-md fi'
         onClick={signInUser}
       >
-        {format('header.signIn').toUpperCase()}
+        {format('header.signIn')}
       </a>
     </li>
 
@@ -124,22 +124,22 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
           <ul className='hidden md:flex items-center ml-auto text-gray gap-x-8'>
             <li className='relative text-right text-lg'>
               <Link href='/health/products' role='menuitem' className={menuStyles}>
-                {format('health.header.products').toUpperCase()}
+                {format('health.header.products')}
               </Link>
             </li>
             <li className='relative text-right text-lg'>
               <Link href='/health/organizations' role='menuitem' className={menuStyles}>
-                {format('health.header.organizations').toUpperCase()}
+                {format('health.header.organizations')}
               </Link>
             </li>
             <li className='relative text-right text-lg'>
               <Link href='/health/about' role='menuitem' className={menuStyles}>
-                {format('health.header.about').toUpperCase()}
+                {format('health.header.about')}
               </Link>
             </li>
             <li className='relative text-right text-lg'>
               <Link href='/health/faq' role='menuitem' className={menuStyles}>
-                {format('health.header.faq').toUpperCase()}
+                {format('health.header.faq')}
               </Link>
             </li>
             { user ? withUser : withoutUser }

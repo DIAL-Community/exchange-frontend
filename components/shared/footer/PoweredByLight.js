@@ -7,7 +7,7 @@ const PoweredBy = () => {
 
   return (
     <div className='flex flex-col gap-3 py-3 max-w-xl'>
-      <div className='text-dial-cotton font-semibold'>
+      <div className='text-dial-cotton'>
         {format('ui.footer.poweredBy.title')}
       </div>
       <hr className='border-b border-dial-angel'/>
@@ -20,7 +20,7 @@ const PoweredBy = () => {
             className='object-contain'
           />
         </a>
-        <div className='text-sm text-dial-angel'>
+        <div className='text-sm text-dial-angel w-48'>
           {format('ui.footer.poweredBy.subTitle')}
         </div>
       </div>
