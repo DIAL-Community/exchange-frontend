@@ -8,6 +8,7 @@ import { useUser } from '../../../lib/hooks'
 import { NONE } from '../../shared/menu/MenuCommon'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../shared/query/user'
 import HealthMobileMenu from '../menu/HealthMobileMenu'
+import AdminMenu from '../shared/menu/AdminMenu'
 
 const menuStyles = 'py-3 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
 
@@ -15,7 +16,7 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
-  const { user } = useUser()
+  const { user, isAdminUser } = useUser()
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [currentOpenMenu, setCurrentOpenMenu] = useState(NONE)
@@ -83,16 +84,21 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
 
   const withUser =
     <>
-      <li className='relative text-right text-lg text-gray intro-overview-signup'>
-        <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+      <li className="relative text-right">
+        {isAdminUser &&
+          <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher}/>
+        }
+      </li>
+      <li className="relative text-right text-lg text-gray intro-overview-signup">
+        <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher}/>
       </li>
     </>
 
   const withoutUser =
-    <li className='text-right intro-overview-signup intro-signup'>
+    <li className="text-right intro-overview-signup intro-signup">
       <a
-        href='signIn'
-        role='menuitem'
+        href="signIn"
+        role="menuitem"
         className='px-3 py-2 text-gray text-lg hover:text-white hover:bg-health-red rounded-md fi'
         onClick={signInUser}
       >
