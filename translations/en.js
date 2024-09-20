@@ -91,6 +91,7 @@ export const en = {
   'header.SDGFramework': 'SDG Framework',
   'header.help': 'Help',
   'header.about': 'About',
+  'header.coc': 'Code of Conduct',
   'header.documentation': 'Documentation Portal',
   'header.confluence': 'Exchange Wiki Page',
   'header.admin': 'Admin',
@@ -498,8 +499,8 @@ export const en = {
 
   'ui.productStage.label': 'Product Stages',
 
-  'ui.extraAttributes.header': 'Local Innovations',
-  'ui.extraAttributes.label': 'Local Innovation',
+  'ui.extraAttributes.header': 'Impact on African Health',
+  'ui.extraAttributes.label': 'Impact on African Health',
   'extraAttributes.ownership': 'Local Ownership',
   'extraAttributes.funders': 'Funders',
   'extraAttributes.impact': 'Impact',
@@ -1556,8 +1557,9 @@ export const en = {
   'report.thankyou': 'Thank you for submitting an issue.',
   'report.issueType': 'What kind of feedback are you providing',
   'report.positive': 'Comment on something I liked',
-  'report.bug': 'Report a problem or issue',
   'report.suggest': 'Make a suggestion',
+  'report.bug': 'Report a problem or issue',
+  'report.abuse': 'Report an abuse',
 
   'breadcrumbs.navigating': 'Opening',
 
@@ -2621,6 +2623,7 @@ export const en = {
   'hub.country.policies': 'Key Policies, Legal and Regulatory Frameworks',
   'hub.country.resources': 'Resources, Reports, and Articles',
   'hub.country.candidateResources': 'Suggested Resources, Reports, and Articles',
+  'hub.country.createResource': 'Create a Resource, Report, or Article',
   'hub.country.suggestResource': 'Suggest a Resource, Report, or Article',
   
   'hub.resourceFinder.title': 'Resource Finder',
@@ -2642,7 +2645,11 @@ export const en = {
 
   'health.header.about': 'About',
   'health.header.products': 'Products',
+  'health.header.organizations': 'Organizations',
   'health.header.faq': 'FAQ',
+  'health.filter.primary.title': 'Filter by: ',
+
+  'health.maturity.description': 'This information is designed to highlight best practices in software development. Data has been provided by the owner of the solution and should be verified by users as needed',
 
   'ui.chatbot.question': 'Question',
   'ui.chatbot.header': 'Ask our Chatbot',

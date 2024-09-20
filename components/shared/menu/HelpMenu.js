@@ -1,8 +1,8 @@
+import { useCallback, useState } from 'react'
+import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
-import Cookies from 'js-cookie'
 import { OVERVIEW_INTRO_KEY } from '../../../lib/intro'
 import ReportIssue from '../ReportIssue'
 import { HELP_MENU, MenuHeader, NONE } from './MenuCommon'
@@ -55,7 +55,19 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           </a>
           <a
             className={DEFAULT_DROPDOWN_MENU_STYLES}
-            href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}
+            href={
+              '//digital-impact-exchange.atlassian.net/wiki/spaces/SOLUTIONS' +
+              '/pages/541917207/Community+Code+of+Conduct/'
+            }
+            target='_blank'
+            rel='noreferrer'
+            role='menuitem'
+          >
+            {format('header.coc')}
+          </a>
+          <a
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            href={`//docs.dial.community/projects/product-registry/${locale}/latest/`}
             target='_blank'
             rel='noreferrer'
             role='menuitem'

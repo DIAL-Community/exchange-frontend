@@ -6,7 +6,6 @@ import { ProductFilterContext } from '../../context/ProductFilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
 import ListStructure from '../product/fragments/ListStructure'
-import ProductSearchBar from '../product/fragments/ProductSearchBar'
 
 const HealthProducts = () => {
   const { formatMessage } = useIntl()
@@ -73,8 +72,7 @@ const HealthProducts = () => {
   })
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
-      <ProductSearchBar ref={topRef} />
+    <div className='px-4 lg:px-8 xl:px-48 min-h-[70vh] py-8'>
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}

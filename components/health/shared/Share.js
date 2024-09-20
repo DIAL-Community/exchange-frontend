@@ -1,5 +1,9 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { AiFillTwitterCircle } from 'react-icons/ai'
+import { TiSocialLinkedin } from 'react-icons/ti'
+import { CiMail } from 'react-icons/ci'
+import { FaWhatsapp } from 'react-icons/fa'
 
 const Share = () => {
   const { formatMessage } = useIntl()
@@ -10,34 +14,21 @@ const Share = () => {
       <div className='text-black font-semibold'>
         {format('ui.share.title')}
       </div>
-      <div className='flex flex-row gap-3'>
-        <img
-          src='/ui/v1/twitter-icon.svg'
-          alt={format('ui.image.logoAlt', { name: 'Twitter' })}
-          width={40}
-          height={40}
-          className='object-contain'
+      <div className='flex flex-row gap-3 align-center'>
+        <AiFillTwitterCircle
+          className='w-11 h-11 fill-health-red'
         />
-        <img
-          src='/ui/v1/linkedin-icon.svg'
-          alt={format('ui.image.logoAlt', { name: 'LinkedIn' })}
-          width={40}
-          height={40}
-          className='object-contain'
+        <TiSocialLinkedin
+          className='w-10 h-10 bg-health-red fill-white rounded-full'
+          viewBox="-3 -3 30 30"
         />
-        <img
-          src='/ui/v1/email-icon.svg'
-          alt={format('ui.image.logoAlt', { name: 'Email' })}
-          width={40}
-          height={40}
-          className='object-contain'
+        <FaWhatsapp
+          className='w-10 h-10 bg-health-red fill-white rounded-full'
+          viewBox="-80 -80 600 680"
         />
-        <img
-          src='/ui/v1/copy-icon.svg'
-          alt={format('ui.image.logoAlt', { name: 'Copy' })}
-          width={40}
-          height={40}
-          className='object-contain'
+        <CiMail
+          className='w-10 h-10 bg-health-red fill-white rounded-full'
+          viewBox="-6 -6 36 36"
         />
       </div>
     </div>
