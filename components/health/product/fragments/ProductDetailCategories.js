@@ -157,7 +157,7 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
       {categories?.map((category, index) =>
         <div key={`category-${index}`}>
           <div key={index} className='text-health-red'>{category.name}
-            <span className='text-black'>{' - '}</span>
+            <span className='text-black'>{': '}</span>
             {features?.filter((feature) => feature.categoryId == category.id).map((feature, featureIdx, arr) =>
               <span
                 className='text-black'

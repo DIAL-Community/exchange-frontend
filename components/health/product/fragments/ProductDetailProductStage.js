@@ -93,7 +93,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
   const sectionHeader =
     <div className='text-xl font-semibold text-health-blue' ref={headerRef}>
       {product.productStage
-        ? `${format('ui.productStage.header')} -  ${product.productStage}`
+        ? `${format('ui.productStage.header')} -  ${product.productStage.toUpperCase()}`
         : format('ui.productStage.header')
       }
     </div>
@@ -101,10 +101,10 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
   const displayModeBody = product?.extraAttributes.length
     ? <div className='flex flex-col gap-y-2'>
       {initialValues?.map((attribute, index) =>
-        <div key={`extraAttribute-${index}`}>
-          <div key={index} className='text-black'>
-            {`${attribute.name}: ${attribute.value.length ? attribute.value : format('general.na')}`}
-          </div>
+        <div key={`extraAttribute-${index}`} className='text-health-red'>{`${attribute.name}: `}
+          <span key={index} className='text-black'>
+            {`${attribute.value.length ? attribute.value : format('general.na')}`}
+          </span>
         </div>
       )}
     </div>
