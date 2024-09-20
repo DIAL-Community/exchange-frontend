@@ -55,7 +55,19 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           </a>
           <a
             className={DEFAULT_DROPDOWN_MENU_STYLES}
-            href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}
+            href={
+              '//digital-impact-exchange.atlassian.net/wiki/spaces/SOLUTIONS' +
+              '/pages/541917207/Community+Code+of+Conduct/'
+            }
+            target='_blank'
+            rel='noreferrer'
+            role='menuitem'
+          >
+            {format('header.coc')}
+          </a>
+          <a
+            className={DEFAULT_DROPDOWN_MENU_STYLES}
+            href={`//docs.dial.community/projects/product-registry/${locale}/latest/`}
             target='_blank'
             rel='noreferrer'
             role='menuitem'
