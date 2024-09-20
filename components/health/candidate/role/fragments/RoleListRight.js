@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { CANDIDATE_ROLE_PAGINATION_ATTRIBUTES_QUERY } from '../../../../shared/query/candidateRole'
-import { RoleFilterContext } from '../../../../context/candidate/RoleFilterContext'
+import { FilterContext } from '../../../../context/FilterContext'
 import { DEFAULT_PAGE_SIZE } from '../../../../utils/constants'
 import Pagination from '../../../../shared/Pagination'
 import ListStructure from './ListStructure'
@@ -13,7 +13,7 @@ const RoleListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(RoleFilterContext)
+  const { search } = useContext(FilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)
