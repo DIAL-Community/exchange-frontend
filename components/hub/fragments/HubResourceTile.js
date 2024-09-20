@@ -1,6 +1,9 @@
 import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
+import Link from 'next/link'
+import { FiPlusCircle } from 'react-icons/fi'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { useUser } from '../../../lib/hooks'
 import { ResourceFilterContext } from '../../context/ResourceFilterContext'
 import ResourceCard from '../../resources/fragments/ResourceCard'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
@@ -78,9 +81,41 @@ const ResourceTiles = ({ pageNumber, resourceTopics }) => {
 }
 
 const HubResourceTiles = ({ resourceTopics, pageNumber, onClickHandler }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { user } = useUser()
+
+  const generateCreateResourceRoute = () => {
+    return user.isAdminUser || user.isAdliAdminUser || user.isEditorUser
+      ? '/hub/resources/create'
+      : '/hub/resources/suggest'
+  }
+
+  const generateCreateResourceRouteLabel = () => {
+    return user.isAdminUser || user.isAdliAdminUser || user.isEditorUser
+      ? format('hub.country.createResource')
+      : format('hub.country.suggestResource')
+  }
+
   return (
     <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-6'>
       <HubResourceFilter />
+      { user &&
+        <div className='flex mb-6'>
+          <div className='ml-auto text-sm flex'>
+            <Link
+              href={generateCreateResourceRoute()}
+              className='cursor-pointer bg-dial-sapphire px-4 py-2 rounded '
+            >
+              <div className='flex flex-row gap-1 text-dial-cotton'>
+                <FiPlusCircle className='inline my-auto' />
+                <FormattedMessage id={generateCreateResourceRouteLabel()} />
+              </div>
+            </Link>
+          </div>
+        </div>
+      }
       <ResourceTiles
         pageNumber={pageNumber}
         resourceTopics={resourceTopics}

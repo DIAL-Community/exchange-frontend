@@ -41,7 +41,6 @@ const HubResourceFilter = () => {
   return (
     <div className='flex flex-col gap-y-4 mb-6'>
       {filteringWorkflow() &&
-      <div className='grid grid-cols-1 xl:grid-cols-3'>
         <div className='flex flex-col gap-y-3'>
           <div className='flex'>
             <div className='text-sm font-semibold text-dial-sapphire'>
@@ -66,7 +65,6 @@ const HubResourceFilter = () => {
             />
           </div>
         </div>
-      </div>
       }
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
