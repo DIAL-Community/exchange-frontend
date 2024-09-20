@@ -111,10 +111,36 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
       </div>
     </div>
 
+  const displaySmallCard = () =>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
+      <div className='flex flex-row gap-x-3 px-6 h-full'>
+        {product.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='rounded-full my-auto w-10 h-10 min-w-[2.5rem]'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.product.header') })}
+              className='object-contain w-10 h-10 my-auto'
+            />
+          </div>
+        }
+        {product.imageFile.indexOf('placeholder.svg') < 0 &&
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+            alt={format('ui.image.logoAlt', { name: format('ui.product.header') })}
+            className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
+          />
+        }
+        <div className='text-sm font-semibold my-auto text-dial-plum line-clamp-2'>
+          {product.name}
+        </div>
+      </div>
+    </div>
+
   return (
     <div className="relative">
       <Link href={`${urlPrefix ? urlPrefix : ''}/products/${product.slug}`}>
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
+        {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       <div className="absolute top-2 right-2">
         {isValidFn(dismissHandler) &&

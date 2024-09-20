@@ -2,6 +2,7 @@ import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import parse from 'html-react-parser'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
 import HealthHeader from '../../components/health/sections/HealthHeader'
@@ -27,6 +28,14 @@ const faqs = [
   { question:'How do I get more information about a particular solution?',
     answer: 'The solution detail page provides a wide range of information. We also list contact \
     information for the solution provider.'
+  },
+  { question:'How is this different than other lists of health solutions, like Digital Square Global \
+    Goods or the Digital Public Goods Alliance?',
+  answer: 'there are other platforms that feature Digital Public Goods and open source health solutions. \
+  Our focus is around entrepreneurs and local innovation, providing visibility for these solutions. \
+  For a list of open source health solutions vetted by Digital Square, please visit \
+  <a href="https://exchange.dial.global/products?shareCatalog=true&origins=2--Digital%20Square" \
+  target="_blank" rel="noreferrer">this page</a>'
   },
   { question:'What is a facility scale?',
     answer: 'Facility scales are used to show what features should be available for different \
@@ -55,7 +64,7 @@ const FaqExpander = ({ question, answer }) => {
         </div>
       </a>
       {showFilter && <div className='text-dial-stratos text-lg py-2 ml-9'>
-        {answer}
+        {parse(answer)}
       </div>}
     </div>
   )

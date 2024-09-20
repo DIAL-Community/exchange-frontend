@@ -115,10 +115,10 @@ export const ProductStageType = {
 }
 
 export const ProductExtraAttributeNames = [
-  'Local Ownership',
-  'Funders',
+  'Relevance',
   'Impact',
-  'Years in production'
+  'Local Ownership',
+  'Funders'
 ]
 
 export const ProductAdditionalExtraAttributeNames = [
