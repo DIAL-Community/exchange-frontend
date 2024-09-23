@@ -3,7 +3,7 @@ export const DisplayType = {
   SMALL_CARD: 'small-card',
   PINNED_CARD: 'pinned-card',
   FEATURED_CARD: 'featured-card',
-  HUB_CARD: 'dpi-card',
+  HUB_CARD: 'hub-card',
   GRID_CARD: 'grid-card'
 }
 
@@ -82,6 +82,7 @@ export const ObjectType = {
   CANDIDATE_DATASET: 'CANDIDATE_OPEN_DATA',
   CANDIDATE_ORGANIZATION: 'CANDIDATE_ORGANIZATION',
   CANDIDATE_PRODUCT: 'CANDIDATE_PRODUCT',
+  CANDIDATE_RESOURCE: 'CANDIDATE_RESOURCE',
   CANDIDATE_ROLE: 'CANDIDATE_ROLE',
   RESOURCE: 'RESOURCE',
   TAG: 'TAG',
@@ -106,3 +107,26 @@ export const CandidateActionType = {
 }
 
 export const DEFAULT_PAGE_SIZE = 8
+
+export const ProductStageType = {
+  PILOT: 'pilot',
+  SCALING: 'scaling',
+  MATURE: 'mature'
+}
+
+export const ProductExtraAttributeNames = [
+  'Relevance',
+  'Impact',
+  'Local Ownership',
+  'Funders'
+]
+
+export const ProductAdditionalExtraAttributeNames = [
+  'Deployments',
+  'Deployed Countries',
+  'Active Users',
+  'Transactions per month',
+  'Annual Revenue',
+  'Funding Raised',
+  'Implementation support'
+]

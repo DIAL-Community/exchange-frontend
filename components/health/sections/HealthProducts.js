@@ -6,15 +6,15 @@ import { ProductFilterContext } from '../../context/ProductFilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
 import ListStructure from '../product/fragments/ListStructure'
-import ProductSearchBar from '../product/fragments/ProductSearchBar'
 
 const HealthProducts = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search, isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
-  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
+  const { useCases, buildingBlocks, sectors, tags, productStage } = useContext(ProductFilterContext)
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const { softwareCategories, softwareFeatures } = useContext(ProductFilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)
@@ -64,13 +64,15 @@ const HealthProducts = () => {
       origins: origins.map(origin => origin.value),
       isLinkedWithDpi,
       showGovStackOnly,
-      showDpgaOnly
+      showDpgaOnly,
+      productStage,
+      softwareCategories: softwareCategories.map(softwareCategory => softwareCategory.id),
+      softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id)
     }
   })
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
-      <ProductSearchBar ref={topRef} />
+    <div className='px-4 lg:px-8 xl:px-48 min-h-[70vh] py-8'>
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}

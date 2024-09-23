@@ -96,6 +96,14 @@ body {
   color: #fab230;
 }
 
+.title-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 96px;
+}
+
 .dynamic-truncate {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -158,6 +166,10 @@ body {
 .wizard-progress-padding-complete {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
+}
+
+#translation-link {
+  color: blue;
 }
 
 @layer components {

@@ -24,7 +24,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     {
       'search': '',
       'countries': ['15'],
-      'resourceTypes' :['Government Document'],
+      'resourceTypes': ['Government Document'],
       'limit': 6,
       'offset': 0
     },
@@ -67,6 +67,60 @@ describe('Unit tests for the opportunity detail page.', () => {
     websiteResourcePagination
   )
 
+  const mockResources = generateMockApolloData(
+    PAGINATED_RESOURCES_QUERY,
+    {
+      'search': '',
+      'countries': ['15'],
+      'resourceTypes': [
+        'Article',
+        'Blog',
+        'Book',
+        'Case Study',
+        'Essay',
+        'Expert Comment',
+        'Explainer',
+        'Guidance',
+        'Playbook',
+        'Report',
+        'Spotlight',
+        'Unspecified Type',
+        'White Paper',
+        'Working Papers'
+      ],
+      'limit': 6,
+      'offset': 0
+    },
+    null,
+    websiteResources
+  )
+
+  const mockResourcePagination = generateMockApolloData(
+    RESOURCE_PAGINATION_ATTRIBUTES_QUERY,
+    {
+      'search': '',
+      'countries': ['15'],
+      'resourceTypes': [
+        'Article',
+        'Blog',
+        'Book',
+        'Case Study',
+        'Essay',
+        'Expert Comment',
+        'Explainer',
+        'Guidance',
+        'Playbook',
+        'Report',
+        'Spotlight',
+        'Unspecified Type',
+        'White Paper',
+        'Working Papers'
+      ]
+    },
+    null,
+    websiteResourcePagination
+  )
+
   const mockCountry = generateMockApolloData(
     DPI_COUNTRY_DETAIL_QUERY,
     {
@@ -94,7 +148,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     resourceTypes
   )
 
-  test('Should render detail of a opportunity.', async () => {
+  test('Should render detail of a country detail page.', async () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
@@ -104,6 +158,8 @@ describe('Unit tests for the opportunity detail page.', () => {
           mockPolicyResourcePagination,
           mockWebsiteResources,
           mockWebsiteResourcePagination,
+          mockResources,
+          mockResourcePagination,
           mockResourceTypes
         ]}
       >
@@ -119,5 +175,9 @@ describe('Unit tests for the opportunity detail page.', () => {
 
     expect(await screen.findByText('Zambia')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
+
+    expect(await screen.findByText('Key Policies, Legal and Regulatory Frameworks')).toBeInTheDocument()
+    expect(await screen.findByText('Sierra Leone National Cyber Security Strategy (2021-2025)')).toBeInTheDocument()
+    expect(await screen.findByText('Key Government Websites')).toBeInTheDocument()
   })
 })

@@ -9,12 +9,15 @@ import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../../../utils/constants'
 import DeleteProduct from '../../../product/DeleteProduct'
-import ProductRepositoryCard from '../../../product/repository/ProductRepositoryCard'
+import ProductRepositoryCard from '../repository/ProductRepositoryCard'
 import ProductDetailTags from './ProductDetailTags'
 import ProductDetailCountries from './ProductDetailCountries'
 import ProductDetailMaturityScores from './ProductDetailMaturityScores'
 import ProductDetailOrganizations from './ProductDetailOrganizations'
 import ProductDetailCategories from './ProductDetailCategories'
+import ProductDetailExtraAttributes from './ProductDetailExtraAttributes'
+import ProductDetailProjects from './ProductDetailProjects'
+import ProductDetailProductStage from './ProductDetailProductStage'
 
 const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
@@ -28,6 +31,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const extraRef = useRef()
   const pricingRef = useRef()
   const organizationRef = useRef()
+  const projectRef = useRef()
   const countryRef = useRef()
   const categoryRef = useRef()
   const tagRef = useRef()
@@ -42,12 +46,11 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       { value: 'ui.product.extraAttributes', ref: extraRef },
       { value: 'ui.product.pricing.title', ref: pricingRef },
       { value: 'ui.organization.header', ref: organizationRef },
+      { value: 'ui.softwareCategories.header', ref: categoryRef },
       { value: 'ui.country.header', ref: countryRef },
-
+      { value: 'ui.project.header', ref: projectRef },
       { value: 'productRepository.header', ref: productRepositoryRef },
-
       { value: 'ui.maturityScore.header', ref: productMaturityRef },
-
       { value: 'ui.productRepository.header', ref: productRepositoryRef },
       { value: 'ui.tag.header', ref: tagRef },
       { value: 'ui.comment.label', ref: commentsSectionRef }
@@ -66,7 +69,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             {isAdminUser && <DeleteProduct product={product}/>}
           </div>
         )}
-        <div className='flex flex-wrap gap-3'>
+        <div className="flex flex-wrap gap-3">
           {product?.softwareCategories?.map((category, index) =>
             <div
               key={`category-${index}`}
@@ -85,24 +88,10 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             editorId="product-description"
           />
         </div>
-        {product?.extraAttributes.length && (
-          <>
-            <hr className="border-b border-health-gray my-3"/>
-            <div className="flex flex-col gap-y-3">
-              <div className="text-xl font-semibold text-dial-meadow pb-3" ref={extraRef}>
-                {format('ui.product.extraAttributes')}
-              </div>
-              {product.extraAttributes.map((attr, i) => {
-                return (
-                  <div key={i} className="flex flex-row gap-3 text-sm">
-                    {attr.name}: {attr.value}
-                  </div>
-                )
-              }
-              )}
-            </div>
-          </>
-        )}
+        <hr className="border-b border-health-gray my-3"/>
+        <ProductDetailExtraAttributes product={product} canEdit={canEdit} headerRef={extraRef} />
+        <hr className="border-b border-health-gray my-3"/>
+        <ProductDetailProductStage product={product} canEdit={canEdit} headerRef={extraRef} />
         <hr className="border-b border-health-gray my-3"/>
         <div className="text-health-blue text-xl font-semibold mt-6" ref={productMaturityRef}>
           {format('ui.maturityScore.header')}
@@ -110,10 +99,9 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className="text-sm italic">
           <div
             className="text-xs text-justify text-health-red highlight-link"
-            dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
+            dangerouslySetInnerHTML={{ __html: format('health.maturity.description') }}
           />
         </div>
-        <div className="border-b border-transparent my-2"/>
         <ProductDetailMaturityScores
           slug={product.slug}
           overallMaturityScore={product.overallMaturityScore}
@@ -145,6 +133,14 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         </div>
         <hr className="border-b border-health-gray my-3"/>
         <div className="flex flex-col gap-y-3">
+          <ProductDetailProjects
+            product={product}
+            canEdit={canEdit}
+            headerRef={projectRef}
+          />
+        </div>
+        <hr className="border-b border-health-gray my-3"/>
+        <div className="flex flex-col gap-y-3">
           <div className="flex flex-row gap-3">
             <div className="text-health-blue text-lg font-semibold" ref={productRepositoryRef}>
               {format('productRepository.header')}
@@ -154,7 +150,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
                 <CreateButton
                   label={format('app.create')}
                   type="link"
-                  href={`/products/${product.slug}/repositories/create`}
+                  href={`/health/products/${product.slug}/repositories/create`}
                 />
               </div>
             }

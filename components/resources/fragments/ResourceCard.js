@@ -70,22 +70,20 @@ const ResourceCard = ({ displayType, index, resource, dismissHandler }) => {
               />
             }
             {resource.imageFile.indexOf('placeholder.svg') < 0 &&
-              <div className='w-full h-full border border-dashed border-slate-300 flex justify-center items-center'>
-                <img
-                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-                  alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
-                  className='h-24 m-auto'
-                />
-              </div>
+              <img
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                alt={format('ui.image.logoAlt', { name: format('ui.resource.label') })}
+                className='mx-auto aspect-auto h-[267px]'
+              />
             }
           </Link>
         </div>
-        <Link href={`/dpi-resources/${resource.slug}`}>
+        <Link href={`/hub/resources${resource.slug}`}>
           <div className='text-lg font-semibold text-dial-stratos'>
             {resource.name}
           </div>
         </Link>
-        <Link href={`/dpi-resources/${resource.slug}`}>
+        <Link href={`/hub/resources${resource.slug}`}>
           <div className='line-clamp-4 text-dial-stratos text-sm'>
             {resource?.parsedDescription && parse(resource?.parsedDescription)}
           </div>

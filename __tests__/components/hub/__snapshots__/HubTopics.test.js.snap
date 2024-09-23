@@ -1,53 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the opportunity detail page. Should render detail of a opportunity. 1`] = `
+exports[`Unit tests for the opportunity detail page. Should render detail of a topic page. 1`] = `
 <div>
   <div
     class="Toastify"
   />
   <div
-    class="flex flex-col gap-6 pb-12"
+    class="flex flex-col gap-6 pb-12 max-w-catalog"
   >
     <img
-      alt="DIAL DPI Resource Hub"
-      class="h-80 w-full object-cover"
-      src="/images/hero-image/hub-hero.svg"
+      alt="DIAL Resource Hub - Resource Topics"
+      class="h-32 w-full object-cover"
+      src="/images/hero-image/hub-topics.svg"
     />
     <div
-      class="absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]"
+      class="absolute w-full left-1/2 -translate-x-1/2"
     >
       <div
-        class="flex flex-col gap-8 items-center justify-items-center mx-auto py-12 px-4 xl:py-20"
+        class="max-w-catalog mx-auto py-12"
       >
         <div
-          class="md:text-xl 2xl:text-2xl text-center text-dial-cotton max-w-prose"
+          class="text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray"
+        >
+          Browse Resources by Topic
+        </div>
+      </div>
+    </div>
+    <div
+      class="px-4 lg:px-8 xl:px-56 min-h-[60vh] lg:min-h-[65vh]"
+    >
+      <div
+        class="flex flex-col gap-6 z-20"
+      >
+        <div
+          class="max-w-4xl"
         >
           
     Topics showcases a series of knowledge products published by DIAL and its partners
     on key issues surrounding digital public infrastructure.
   
         </div>
-      </div>
-    </div>
-    <div
-      class="px-24 md:px-36 lg:px-56 min-h-[55vh]"
-    >
-      <div
-        class="-mt-[8rem] z-20"
-      >
         <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-xl 2xl:max-w-2xl mx-auto"
+          class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto"
         >
           <a
             class="text-dial-cotton"
             href="/hub/topics/ai--machine-learning"
           >
             <div
-              class="bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-8 lg:py-12 w-52 h-56 relative flex justify-center"
             >
               <img
                 alt="AI + Machine Learning"
-                class="white-filter opacity-40"
+                class="white-filter opacity-50 mb-10 h-16"
                 src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
@@ -62,11 +67,11 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             href="/hub/topics/consent"
           >
             <div
-              class="bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-8 lg:py-12 w-52 h-56 relative flex justify-center"
             >
               <img
                 alt="Consent"
-                class="white-filter opacity-40"
+                class="white-filter opacity-50 mb-10 h-16"
                 src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
@@ -81,11 +86,11 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             href="/hub/topics/data-privacy"
           >
             <div
-              class="bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-8 lg:py-12 w-52 h-56 relative flex justify-center"
             >
               <img
                 alt="Data Privacy"
-                class="white-filter opacity-40"
+                class="white-filter opacity-50 mb-10 h-16"
                 src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div
@@ -100,11 +105,11 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
             href="/hub/topics/data-exchange"
           >
             <div
-              class="bg-dial-deep-purple py-16 lg:py-20 xl:py-24 aspect-square relative flex justify-center"
+              class="bg-dial-deep-purple py-8 lg:py-12 w-52 h-56 relative flex justify-center"
             >
               <img
                 alt="Data Exchange"
-                class="white-filter opacity-40"
+                class="white-filter opacity-50 mb-10 h-16"
                 src="http://localhost:3000//assets/resources/resource-topic-placeholder.svg"
               />
               <div

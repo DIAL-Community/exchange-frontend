@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { useApolloClient } from '@apollo/client'
-import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
+import Select from '../form/Select'
 import { SDG_SEARCH_QUERY } from '../query/sdg'
 
 export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
@@ -23,10 +23,11 @@ export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
 
   const fetchCallback = (data) => (
     data?.sdgs.map((sdg) => ({
+      name: sdg.name,
+      slug: sdg.slug,
       label: `${sdg.number}. ${sdg.name}`,
       value: sdg.id,
-      number: sdg.number,
-      slug: sdg.slug
+      number: sdg.number
     }))
   )
 

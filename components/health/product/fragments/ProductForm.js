@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
@@ -16,7 +16,8 @@ import UrlInput from '../../../shared/form/UrlInput'
 import ValidationError from '../../../shared/form/ValidationError'
 import { CREATE_PRODUCT } from '../../../shared/mutation/product'
 import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/product'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import { DEFAULT_PAGE_SIZE, ProductExtraAttributeNames, ProductStageType } from '../../../utils/constants'
+import Select from '../../../shared/form/Select'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -29,6 +30,19 @@ const ProductForm = React.memo(({ product }) => {
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+
+  const [productStage, setProductStage] = useState(null)
+
+  const updateProductStageValue = (productStage) => setProductStage(productStage)
+
+  const productStageOptions = Object.keys(ProductStageType).map((key) => ({
+    value: ProductStageType[key],
+    label: ProductStageType[key].charAt(0).toUpperCase() + ProductStageType[key].slice(1)
+  }))
+
+  const handleTrimInputOnBlur = (event) => {
+    event.target.value = event.target.value.trim()
+  }
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -69,6 +83,7 @@ const ProductForm = React.memo(({ product }) => {
     handleSubmit,
     register,
     control,
+    reset: resetVariables,
     formState: { errors }
   } = useForm({
     mode: 'onSubmit',
@@ -83,9 +98,23 @@ const ProductForm = React.memo(({ product }) => {
       hostingModel: product?.hostingModel,
       pricingModel: product?.pricingModel,
       pricingDetails: product?.pricingDetails,
-      pricingUrl: product?.pricingUrl
+      pricingUrl: product?.pricingUrl,
+      productStage: product?.productStage ?? null,
+      extraAttributes: ProductExtraAttributeNames.map(name => ({ name, value: '', type: '' }))
     }
   })
+
+  useEffect(() => {
+    // Load existing values when the component mounts
+    if (product?.extraAttributes.length) {
+      const formattedExtraAttributes = ProductExtraAttributeNames.map(name => {
+        const existingAttr = product.extraAttributes.find(attr => attr.name === name)
+
+        return existingAttr || { name, value: '', type: '' }
+      })
+      resetVariables({ extraAttributes: formattedExtraAttributes })
+    }
+  }, [resetVariables, product?.extraAttributes])
 
   const { fields: aliases, append, remove } = useFieldArray({
     control,
@@ -112,7 +141,9 @@ const ProductForm = React.memo(({ product }) => {
         pricingUrl,
         hostingModel,
         pricingModel,
-        pricingDetails
+        pricingDetails,
+        productStage,
+        extraAttributes
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -125,7 +156,9 @@ const ProductForm = React.memo(({ product }) => {
         pricingUrl,
         hostingModel,
         pricingModel,
-        pricingDetails
+        pricingDetails,
+        productStage,
+        extraAttributes
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -145,7 +178,7 @@ const ProductForm = React.memo(({ product }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/products/${slug}`)
+    router.push(`/${locale}/health/products/${slug}`)
   }
 
   return loadingUserSession
@@ -164,12 +197,17 @@ const ProductForm = React.memo(({ product }) => {
                 {format('product.name')}
               </label>
               <Input
-                {...register('name', { required: format('validation.required') })}
+                {...register(
+                  'name',
+                  { required: format('validation.required'),
+                    maxLength: { value: 80, message: format('validation.max-length.text', { maxLength: 80 }) }
+                  })}
                 id='name'
                 placeholder={format('product.name')}
                 isInvalid={errors.name}
+                onBlur={handleTrimInputOnBlur}
               />
-              {errors.name && <ValidationError value={errors.name?.message} />}
+              {errors.name && <ValidationError value={errors.name?.message}/>}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label>{format('product.aliases')}</label>
@@ -182,14 +220,14 @@ const ProductForm = React.memo(({ product }) => {
                   {isLastAlias(aliasIdx) &&
                     <IconButton
                       className='bg-dial-meadow'
-                      icon={<FaPlus className='text-sm' />}
+                      icon={<FaPlus className='text-sm'/>}
                       onClick={() => append({ value: '' })}
                     />
                   }
                   {!isSingleAlias &&
                     <IconButton
                       className='bg-dial-meadow'
-                      icon={<FaMinus className='text-sm' />}
+                      icon={<FaMinus className='text-sm'/>}
                       onClick={() => remove(aliasIdx)}
                     />
                   }
@@ -218,10 +256,57 @@ const ProductForm = React.memo(({ product }) => {
               <label>{format('product.imageFile')}</label>
               <FileUploader {...register('imageFile')} />
             </div>
-            <div className='flex flex-col gap-y-2'>
-              <label className='required-field'>{format('product.description')}</label>
+            <div className="flex flex-col gap-y-2">
+              <label>{format('app.productStage')}</label>
               <Controller
-                name='description'
+                name="productStage"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    options={productStageOptions}
+                    placeholder={format('app.productStage')}
+                    onChange={(value) => {
+                      field.onChange(value.value)
+                      updateProductStageValue(value)
+                    }}
+                    value={productStage}
+                  />
+                )}
+              />
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              {ProductExtraAttributeNames.map((name, index) => (
+                <div key={name} className="grid grid-cols-4 gap-2">
+                  <label className="col-span-3">{name}</label>
+                  <label className="col-span-1">Type</label>
+                  <Controller
+                    name={`extraAttributes.${index}.value`}
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} className="col-span-3" placeholder={name} />
+                    )}
+                  />
+                  <Controller
+                    name={`extraAttributes.${index}.type`}
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} className="col-span-1" placeholder="Type" />
+                    )}
+                  />
+                  <Controller
+                    name={`extraAttributes.${index}.name`}
+                    control={control}
+                    render={({ field }) => (
+                      <input type="hidden" {...field} value={name} />
+                    )}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <label className="required-field">{format('product.description')}</label>
+              <Controller
+                name="description"
                 control={control}
                 render={({ field: { value, onChange } }) => (
                   <HtmlEditor
@@ -234,9 +319,9 @@ const ProductForm = React.memo(({ product }) => {
                 )}
                 rules={{ required: format('validation.required') }}
               />
-              {errors.description && <ValidationError value={errors.description?.message} />}
+              {errors.description && <ValidationError value={errors.description?.message}/>}
             </div>
-            <hr className='border-b border-dashed border-dial-slate-300' />
+            <hr className='border-b border-dashed border-dial-slate-300'/>
             <div className='text-2xl font-semibold pb-4'>
               {format('product.pricingInformation')}
             </div>
@@ -304,7 +389,7 @@ const ProductForm = React.memo(({ product }) => {
                 disabled={mutating || reverting}
               >
                 {`${format('app.submit')} ${format('ui.product.label')}`}
-                {mutating && <FaSpinner className='spinner ml-3' />}
+                {mutating && <FaSpinner className='spinner ml-3'/>}
               </button>
               <button
                 type='button'
@@ -313,13 +398,13 @@ const ProductForm = React.memo(({ product }) => {
                 onClick={cancelForm}
               >
                 {format('app.cancel')}
-                {reverting && <FaSpinner className='spinner ml-3' />}
+                {reverting && <FaSpinner className='spinner ml-3'/>}
               </button>
             </div>
           </div>
         </div>
       </form>
-      : <Unauthorized />
+      : <Unauthorized/>
 })
 
 ProductForm.displayName = 'ProductForm'

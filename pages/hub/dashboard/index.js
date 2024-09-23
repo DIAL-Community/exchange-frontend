@@ -2,7 +2,9 @@ import { useCallback, useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
+import { allowedToBrowseAdliPages } from '../../../components/hub/admin/utilities'
 import HubDashboard from '../../../components/hub/sections/HubDashboard'
+import HubDashboardAdli from '../../../components/hub/sections/HubDashboardAdli'
 import HubFooter from '../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../components/hub/sections/HubHeader'
 import { Loading } from '../../../components/shared/FetchStatus'
@@ -13,7 +15,7 @@ const HubDashboardPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { status } = useSession()
+  const { data, status } = useSession()
   useEffect(() => {
     if (status === 'unauthenticated') {
       void signIn()
@@ -23,14 +25,18 @@ const HubDashboardPage = ({ dpiTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('hub.header.expertNetwork')}
-        description={format('hub.expertNetwork.subtitle')}
+        title={format('hub.header.adliNetwork')}
+        description={format('hub.adliNetwork.subtitle')}
       />
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <HubHeader />
-        { (status === 'unauthenticated' || status === 'loading') && <Loading />}
-        { status === 'authenticated' && <HubDashboard />}
+        { status === 'unauthenticated' || status === 'loading'
+          ? <Loading />
+          : status === 'authenticated' && allowedToBrowseAdliPages(data?.user)
+            ? <HubDashboardAdli />
+            : <HubDashboard />
+        }
         <HubFooter />
       </ClientOnly>
     </>

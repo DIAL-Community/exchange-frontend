@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { BsDash, BsPlus } from 'react-icons/bs'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { useApolloClient } from '@apollo/client'
-import Select from '../form/Select'
 import { fetchSelectOptionsWithMaturity } from '../../utils/search'
+import Select from '../form/Select'
 import { USE_CASE_SEARCH_QUERY } from '../query/useCase'
 
 export const UseCaseAutocomplete = ({ useCases, setUseCases, placeholder }) => {
@@ -23,9 +23,10 @@ export const UseCaseAutocomplete = ({ useCases, setUseCases, placeholder }) => {
 
   const fetchCallback = (data) => (
     data?.useCases.map((useCase) => ({
+      name: useCase.name,
+      slug: useCase.slug,
       label: useCase.name,
-      value: useCase.id,
-      slug: useCase.slug
+      value: useCase.id
     }))
   )
 

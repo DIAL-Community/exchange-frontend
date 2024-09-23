@@ -23,6 +23,9 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
     $showGovStackOnly: Boolean
     $showDpgaOnly: Boolean
     $search: String
+    $productStage: String
+    $softwareCategories: [String!]
+    $softwareFeatures: [String!]
   ) {
     paginationAttributeProduct(
       useCases: $useCases
@@ -38,6 +41,9 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
       showGovStackOnly: $showGovStackOnly
       showDpgaOnly: $showDpgaOnly
       search: $search
+      productStage: $productStage
+      softwareCategories: $softwareCategories
+      softwareFeatures: $softwareFeatures
     ) {
       totalCount
     }
@@ -61,6 +67,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $showGovStackOnly: Boolean
     $showDpgaOnly: Boolean
     $search: String
+    $productStage: String
     $limit: Int!
     $offset: Int!
   ) {
@@ -80,6 +87,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       showGovStackOnly: $showGovStackOnly
       showDpgaOnly: $showDpgaOnly
       search: $search
+      productStage: $productStage
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
@@ -253,6 +261,17 @@ export const PRODUCT_DETAIL_QUERY = gql`
         code
         slug
       }
+      projects {
+        id
+        name
+        slug
+        countries {
+          id
+          name
+          slug
+          code
+        }
+      }
       softwareCategories {
         id
         name
@@ -261,6 +280,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
           id
           name
           slug
+          facilityScale
         }
       }
       softwareFeatures {
@@ -268,6 +288,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         name
         slug
         categoryId
+        facilityScale
       }
     }
   }

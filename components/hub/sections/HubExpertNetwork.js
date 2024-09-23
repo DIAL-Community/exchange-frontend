@@ -6,6 +6,7 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
+import { allowedToBrowseAdliPages } from '../admin/utilities'
 import HubPagination from '../fragments/HubPagination'
 import {
   FACEBOOK_SOCIAL_MEDIA_TYPE, INSTAGRAM_SOCIAL_MEDIA_TYPE, LINKEDIN_SOCIAL_MEDIA_TYPE, TWITTER_X_SOCIAL_MEDIA_TYPE
@@ -26,65 +27,80 @@ const HubExpertNetwork = () => {
     variables: {}
   })
 
-  console.log('Data: ', data)
-
   return (
-    <div className='flex flex-col gap-6 pb-12 max-w-catalog'>
-      <img className='h-72 w-full object-cover' alt='DIAL DPI Resource Hub' src='/images/hero-image/hub-hero.svg' />
-      <div className='absolute w-full left-1/2 -translate-x-1/2 min-h-[20rem]' style={{ top: 'var(--ui-header-height)' }}>
-        <div className='flex flex-col gap-8 justify-center mx-auto py-12 px-4 xl:flex-row xl:py-20'>
-          <div className='md:text-xl 2xl:text-2xl text-center text-dial-cotton lg:max-w-prose line-clamp-6'>
-            <FormattedMessage
-              id='hub.expertNetwork.subtitle'
-              values={{
-                break: () => <br />
-              }}
-            />
-          </div>
-          <div className='flex flex-col ml-auto xl:ml-0 gap-2 text-sm lg:text-base xl:gap-4'>
-            <a
-              target='_blank'
-              rel='noreferrer'
-              href='//dial.global/work/adli/'
-              className='text-dial-cotton border-b border-transparent hover:border-white'
-            >
-              <FormattedMessage id='hub.exportNetwork.learnMore' />
-            </a>
-            {user && (
-              <Link href='/hub/dashboard' className='flex'>
-                <span className='text-dial-cotton border-b border-transparent hover:border-white'>
-                  <FormattedMessage id='hub.exportNetwork.memberDashboard' />
-                </span>
-              </Link>
-            )}
-            {!user && (
-              <Link href='/hub/member-login' onClick={signInUser} className='flex'>
-                <span className='text-dial-cotton border-b border-transparent hover:border-white'>
-                  <FormattedMessage id='hub.exportNetwork.login' />
-                </span>
-              </Link>
-            )}
+    <div className='flex flex-col gap-6 pb-12 max-w-catalog mx-auto'>
+      <img
+        className='h-32 w-full object-cover'
+        alt='DIAL Resource Hub - ADLI Network'
+        src='/images/hero-image/hub-adli-network.svg'
+      />
+      <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
+        <div className='max-w-catalog mx-auto py-12'>
+          <div className='text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray'>
+            ADLI Network
           </div>
         </div>
       </div>
-      <div className='px-4 lg:px-8 xl:px-56  min-h-[40vh] 2xl:min-h-[50vh]'>
-        {loading
-          ? format('general.fetchingData')
-          : error
-            ? format('general.fetchError')
-            : data.hubContacts
-              ? <NetworkMembers
-                members={
-                  data?.hubContacts
-                    .filter(object => {
-                      const consent = object.extendedData.find((data) => data.key === 'consent')
-
-                      return consent?.value.toLowerCase() === 'yes'
-                    })
-                }
+      <div className='px-4 lg:px-8 xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]'>
+        <div className='flex flex-col gap-12'>
+          <div className='flex flex-col 2xl:flex-row gap-6'>
+            <div className='text-justify 2xl:max-w-4xl line-clamp-6'>
+              <FormattedMessage
+                id='hub.adliNetwork.subtitle'
+                values={{
+                  break: () => <br />
+                }}
               />
-              : format('general.noData')
-        }
+            </div>
+            <div className='ml-auto mb-auto flex flex-row align-top gap-4'>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='//dial.global/work/adli/'
+                className='flex border-b border-transparent hover:border-dial-yellow'
+              >
+                <FormattedMessage id='hub.exportNetwork.learnMore' />
+              </a>
+              {user && allowedToBrowseAdliPages(user) && (
+                <>
+                  <div className='border-r border-dial-slate-500' />
+                  <Link href='/hub/dashboard' className='flex'>
+                    <span className='border-b border-transparent hover:border-dial-yellow'>
+                      <FormattedMessage id='hub.exportNetwork.memberDashboard' />
+                    </span>
+                  </Link>
+                </>
+              )}
+              {!user && (
+                <>
+                  <div className='border-r border-dial-slate-500' />
+                  <Link href='/hub/member-login' onClick={signInUser} className='flex'>
+                    <span className='border-b border-transparent hover:border-dial-yellow'>
+                      <FormattedMessage id='hub.exportNetwork.login' />
+                    </span>
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+          {loading
+            ? format('general.fetchingData')
+            : error
+              ? format('general.fetchError')
+              : data.hubContacts
+                ? <NetworkMembers
+                  members={
+                    data?.hubContacts
+                      .filter(object => {
+                        const consent = object.extendedData.find((data) => data.key === 'consent')
+
+                        return consent?.value.toLowerCase() === 'yes'
+                      })
+                  }
+                />
+                : format('general.noData')
+          }
+        </div>
       </div>
     </div>
   )
@@ -132,7 +148,7 @@ const NetworkMemberCard = ({ member }) => {
     <div className='flex items-center gap-4'>
       <div className='h-24 w-24 2xl:h-32 2xl:w-32 shrink-0'>
         <img
-          alt={format('hub.expertNetwork.memberCard.alt')}
+          alt={format('hub.adliNetwork.memberCard.alt')}
           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + member.imageFile}
           className='rounded-full object-cover h-full w-full'
         />

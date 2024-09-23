@@ -24,7 +24,8 @@ module.exports = withBundleAnalyzer(withRemoveImports({
       // Health related images
       'health.dial.community',
       // FAO related images
-      'fao.dial.community'
+      'fao.dial.community',
+      'apps.africacdc.org'
     ]
   }
 }))

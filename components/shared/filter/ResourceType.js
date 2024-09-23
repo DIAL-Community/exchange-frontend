@@ -22,11 +22,10 @@ export const ResourceTypeAutocomplete = ({ resourceTypes, setResourceTypes, plac
 
   const fetchedResourceTypesCallback = (data) => (
     data.resourceTypes?.map((resourceType) => ({
-      id: resourceType.id,
       name: resourceType.name,
       slug: resourceType.slug,
       label: resourceType.name,
-      value: resourceType.name
+      value: resourceType.id
     }))
   )
 
