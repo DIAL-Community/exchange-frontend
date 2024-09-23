@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BsChevronBarDown, BsChevronUp } from 'react-icons/bs'
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { FiEdit3 } from 'react-icons/fi'
 import { FormattedMessage } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
@@ -47,7 +47,7 @@ const MenuConfigurationEditor = ({ menuConfiguration }) => {
               >
                 {openingDetail
                   ? <BsChevronUp className='cursor-pointer p-01 text-dial-stratos' />
-                  : <BsChevronBarDown className='cursor-pointer p-0.5 text-dial-stratos' />
+                  : <BsChevronDown className='cursor-pointer p-0.5 text-dial-stratos' />
                 }
               </button>
             </div>
