@@ -9,7 +9,7 @@ import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../../../utils/constants'
 import DeleteProduct from '../../../product/DeleteProduct'
-import ProductRepositoryCard from '../../../product/repository/ProductRepositoryCard'
+import ProductRepositoryCard from '../repository/ProductRepositoryCard'
 import ProductDetailTags from './ProductDetailTags'
 import ProductDetailCountries from './ProductDetailCountries'
 import ProductDetailMaturityScores from './ProductDetailMaturityScores'
@@ -150,7 +150,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
                 <CreateButton
                   label={format('app.create')}
                   type="link"
-                  href={`/products/${product.slug}/repositories/create`}
+                  href={`/health/products/${product.slug}/repositories/create`}
                 />
               </div>
             }
