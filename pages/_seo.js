@@ -37,14 +37,14 @@ const CatalogSeo = ({ currentTenant }) => {
       description={format('wizard.getStarted.firstLine')}
       additionalLinkTags={[{
         rel: 'icon',
-        href: faviconUrl
+        href: faviconUrl ?? '/favicon.ico'
       }]}
       openGraph={{
         title: titleForTenant(currentTenant),
         type: 'website',
         images: [
           {
-            url: openGraphLogoUrl,
+            url: openGraphLogoUrl ?? '/ui/v1/hero-dx-bg.svg',
             width: 700,
             height: 380,
             alt: `Banner of ${titleForTenant(currentTenant)}`

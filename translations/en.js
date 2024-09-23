@@ -2835,10 +2835,28 @@ export const en = {
   'hub.broadcast.messageType.email': 'Email',
   'hub.broadcast.messageType.event': 'Event',
 
-  'ui.setting.menu.label': 'Menu Configuration',
-  'ui.setting.menu.header': 'Menu Configurations',
-  'ui.setting.menu.name': 'Menu Title',
-  'ui.setting.menu.targetUrl': 'Target Url',
-  'ui.setting.menu.external': 'External Url Target',
-  'ui.setting.menu.save': 'Save Menu Configuration'
+  'ui.admin.header': 'Admin Dashboard',
+
+  'ui.siteSetting.label': 'Site Configuration',
+  'ui.siteSetting.header': 'Site Configurations',
+  'ui.siteSetting.whatIs': 'What is Site Configuration?',
+  'ui.siteSetting.createNew': 'Create a New Site Configuration?',
+
+  'ui.siteSetting.carousel.label': 'Carousel Configuration',
+  'ui.siteSetting.carousel.header': 'Carousel Configurations',
+
+  'ui.siteSetting.heroCard.label': 'Hero Card Configuration',
+  'ui.siteSetting.heroCard.header': 'Hero Card Configurations',
+
+  'ui.siteSetting.menu.label': 'Menu Configuration',
+  'ui.siteSetting.menu.header': 'Menu Configurations',
+  'ui.siteSetting.menu.name': 'Menu Title',
+  'ui.siteSetting.menu.targetUrl': 'Target Url',
+  'ui.siteSetting.menu.external': 'External Url Target',
+  'ui.siteSetting.menu.save': 'Save Menu Configuration',
+
+  'ui.siteSetting.name.label': 'Site Configuration Name',
+  'ui.siteSetting.enableMarketplace.label': 'Enable the marketplace feature.',
+  'ui.siteSetting.defaultSetting.label': 'Set this configuration as the default.',
+  'ui.siteSetting.description.label': 'Site Configuration Description',
 }
