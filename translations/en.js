@@ -2852,7 +2852,7 @@ export const en = {
   'ui.siteSetting.menu.label': 'Menu Configuration',
   'ui.siteSetting.menu.header': 'Menu Configurations',
   'ui.siteSetting.menu.name': 'Menu Title',
-  'ui.siteSetting.menu.destinationUrl': 'Destination Url',
+  'ui.siteSetting.menu.destinationUrl': 'Destination URL',
   'ui.siteSetting.menu.external': 'External Url Target',
   'ui.siteSetting.menu.save': 'Save Menu Configuration',
   'ui.siteSetting.menu.submitted': 'Menu configurations saved.',

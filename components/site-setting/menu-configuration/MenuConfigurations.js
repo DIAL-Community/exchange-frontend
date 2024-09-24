@@ -38,7 +38,7 @@ const MenuConfigurations = ({ slug }) => {
       if (response.errors.length === 0 && response.siteSetting) {
         setMutating(false)
         showSuccessMessage(<FormattedMessage id='ui.siteSetting.menuConfigurations.submitted' />)
-        setMenuConfigurations(response.siteSetting.menuConfigurations)
+        setMenuConfigurations([...response.siteSetting.menuConfigurations])
       } else {
         showFailureMessage(response.errors)
         setMutating(false)
@@ -76,9 +76,12 @@ const MenuConfigurations = ({ slug }) => {
   }
 
   const appendNextMenuItem = (parentMenuSlug) => {
+    // Create copy of the existing menu configurations
     const currentMenuConfigurations = [...menuConfigurations]
     const existingParentIndex = currentMenuConfigurations.findIndex((m) => m.slug === parentMenuSlug)
     const existingParentMenu = currentMenuConfigurations[existingParentIndex]
+    // Create new menu configuration using existing parent menu
+    // and then append the new menu item to the parent menu.
     const currentParentMenu = {
       ...existingParentMenu,
       menuItemConfigurations: [
@@ -91,7 +94,7 @@ const MenuConfigurations = ({ slug }) => {
         }
       ]
     }
-
+    // Replace the previous parent menu (using the index) with the updated parent menu.
     currentMenuConfigurations[existingParentIndex] = currentParentMenu
     setMenuConfigurations([...currentMenuConfigurations])
   }
@@ -147,6 +150,7 @@ const MenuConfigurations = ({ slug }) => {
                 siteSettingSlug={slug}
                 menuConfiguration={menuConfiguration}
                 appendNextMenuItem={appendNextMenuItem}
+                setMenuConfigurations={setMenuConfigurations}
               />
               <div className='ml-8 flex flex-col gap-1'>
                 {menuConfiguration.menuItemConfigurations.map((menuItem, index) => {
@@ -156,6 +160,7 @@ const MenuConfigurations = ({ slug }) => {
                         siteSettingSlug={slug}
                         menuConfiguration={menuItem}
                         parentMenuConfiguration={menuConfiguration}
+                        setMenuConfigurations={setMenuConfigurations}
                       />
                     </div>
                   )

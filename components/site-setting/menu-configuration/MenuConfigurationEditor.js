@@ -14,7 +14,7 @@ import ValidationError from '../../shared/form/ValidationError'
 import { UPDATE_SITE_SETTING_MENU_CONFIGURATION } from '../../shared/mutation/siteSetting'
 import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
 
-const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMenuConfiguration }) => {
+const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMenuConfiguration, setMenuConfigurations }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -40,6 +40,7 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
       if (response.errors.length === 0 && response.siteSetting) {
         setMutating(false)
         showSuccessMessage(format('ui.siteSetting.menu.submitted'))
+        setMenuConfigurations([...response.siteSetting.menuConfigurations])
       } else {
         showFailureMessage(response.errors)
         setMutating(false)

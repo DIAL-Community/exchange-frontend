@@ -5,7 +5,12 @@ import { useUser } from '../../../lib/hooks'
 import MenuConfigurationEditor from './MenuConfigurationEditor'
 import MenuConfigurationViewer from './MenuConfigurationViewer'
 
-const MenuConfiguration = ({ siteSettingSlug, menuConfiguration, parentMenuConfiguration, appendNextMenuItem }) => {
+const MenuConfiguration = (props) => {
+  // Only menu item will have the following properties
+  const { appendNextMenuItem } = props
+  // Common properties coming from the parent component.
+  const { siteSettingSlug, menuConfiguration, parentMenuConfiguration, setMenuConfigurations } = props
+
   const [editing, setEditing] = useState('saved' in menuConfiguration)
   const [expanded, setExpanded] = useState('saved' in menuConfiguration)
 
@@ -81,12 +86,9 @@ const MenuConfiguration = ({ siteSettingSlug, menuConfiguration, parentMenuConfi
             siteSettingSlug={siteSettingSlug}
             menuConfiguration={menuConfiguration}
             parentMenuConfiguration={parentMenuConfiguration}
+            setMenuConfigurations={setMenuConfigurations}
           />
-          : <MenuConfigurationViewer
-            siteSettingSlug={siteSettingSlug}
-            menuConfiguration={menuConfiguration}
-            parentMenuConfiguration={parentMenuConfiguration}
-          />
+          : <MenuConfigurationViewer menuConfiguration={menuConfiguration} />
         }
       </div>
     </div>
