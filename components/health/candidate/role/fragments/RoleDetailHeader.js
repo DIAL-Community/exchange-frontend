@@ -10,7 +10,7 @@ const RoleDetailHeader = ({ role }) => {
       <div className='text-xl text-dial-meadow font-semibold'>
         {role.name}
       </div>
-      <div className='flex justify-center items-center py-16 bg-white rounded border-health-red border-4'>
+      <div className='flex justify-center items-center py-16 bg-white rounded border-health-green border-4'>
         <div className='w-20 h-20'>
           <img
             src='/ui/v1/role-header.svg'

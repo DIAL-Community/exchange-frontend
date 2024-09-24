@@ -16,18 +16,18 @@ const Share = () => {
       </div>
       <div className='flex flex-row gap-3 align-center'>
         <AiFillTwitterCircle
-          className='w-11 h-11 fill-health-red'
+          className='w-11 h-11 fill-health-blue'
         />
         <TiSocialLinkedin
-          className='w-10 h-10 bg-health-red fill-white rounded-full'
+          className='w-10 h-10 bg-health-blue fill-white rounded-full'
           viewBox="-3 -3 30 30"
         />
         <FaWhatsapp
-          className='w-10 h-10 bg-health-red fill-white rounded-full'
+          className='w-10 h-10 bg-health-blue fill-white rounded-full'
           viewBox="-80 -80 600 680"
         />
         <CiMail
-          className='w-10 h-10 bg-health-red fill-white rounded-full'
+          className='w-10 h-10 bg-health-blue fill-white rounded-full'
           viewBox="-6 -6 36 36"
         />
       </div>

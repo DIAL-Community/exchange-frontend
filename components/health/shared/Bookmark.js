@@ -60,7 +60,7 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
       </div>
       <button type='button' onClick={bookmarkThis} className='group flex flex-row gap-x-3'>
         <FaRegBookmark
-          className='w-10 h-10 bg-health-red fill-white rounded-full rotate-45'
+          className='w-10 h-10 bg-health-blue fill-white rounded-full rotate-45'
           viewBox="-200 -200 800 900"
         />
         <div className='my-auto border-b border-transparent group-hover:border-dial-slate-500'>
