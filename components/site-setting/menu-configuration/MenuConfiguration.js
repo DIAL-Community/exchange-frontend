@@ -2,14 +2,16 @@ import { useState } from 'react'
 import { FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
+import DeleteMenuConfiguration from './DeleteMenuConfiguration'
 import MenuConfigurationEditor from './MenuConfigurationEditor'
 import MenuConfigurationViewer from './MenuConfigurationViewer'
 
 const MenuConfiguration = (props) => {
   // Only menu item will have the following properties
-  const { appendNextMenuItem } = props
+  const { appendMenuItem } = props
   // Common properties coming from the parent component.
-  const { siteSettingSlug, menuConfiguration, parentMenuConfiguration, setMenuConfigurations } = props
+  const { siteSettingSlug, menuConfiguration, parentMenuConfiguration } = props
+  const { menuConfigurations, setMenuConfigurations } = props
 
   const [editing, setEditing] = useState('saved' in menuConfiguration)
   const [expanded, setExpanded] = useState('saved' in menuConfiguration)
@@ -42,11 +44,11 @@ const MenuConfiguration = (props) => {
           </div>
           <div className='ml-auto my-auto px-4'>
             <div className='flex gap-2'>
-              {appendNextMenuItem &&
+              {allowedToEdit() && appendMenuItem &&
                 <button
                   type='button'
                   className='bg-white px-2 py-1 rounded'
-                  onClick={() => appendNextMenuItem(menuConfiguration.slug)}
+                  onClick={() => appendMenuItem(menuConfiguration.slug)}
                 >
                   <div className='text-sm flex gap-1 text-dial-stratos'>
                     <FormattedMessage id='ui.siteSetting.menu.appendMenuItem' />
@@ -65,6 +67,14 @@ const MenuConfiguration = (props) => {
                     {!editing ? <FormattedMessage id='app.modify' /> : <FormattedMessage id='app.cancel' />}
                   </div>
                 </button>
+              }
+              {allowedToEdit() &&
+                <DeleteMenuConfiguration
+                  siteSettingSlug={siteSettingSlug}
+                  menuConfiguration={menuConfiguration}
+                  menuConfigurations={menuConfigurations}
+                  setMenuConfigurations={setMenuConfigurations}
+                />
               }
               <button
                 type='button'

@@ -2858,6 +2858,15 @@ export const en = {
   'ui.siteSetting.menu.submitted': 'Menu configurations saved.',
   'ui.siteSetting.menu.dropdown': 'Dropdown Menu',
 
+  'ui.siteSetting.menu.deleteMenu': 'Deleting Menu Configuration',
+  'ui.siteSetting.menu.deleteMenuDescription': `
+    Are you sure you want to delete this menu?
+  `,
+  'ui.siteSetting.menu.deleteMenuItem': 'Deleting Menu Item Configuration',
+  'ui.siteSetting.menu.deleteMenuItemDescription': `
+    Are you sure you want to delete this menu item?
+  `,
+
   'ui.siteSetting.menu.appendMenu': 'Append Menu',
   'ui.siteSetting.menu.appendMenuItem': 'Append Menu Item',
   'ui.siteSetting.menuConfigurations.save': 'Bulk Save Menu Configuration',

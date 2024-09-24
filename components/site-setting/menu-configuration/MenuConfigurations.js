@@ -62,7 +62,7 @@ const MenuConfigurations = ({ slug }) => {
     saved: false
   })
 
-  const appendNextMenu = () => {
+  const appendMenu = () => {
     setMenuConfigurations([
       ...menuConfigurations,
       {
@@ -75,7 +75,7 @@ const MenuConfigurations = ({ slug }) => {
     ])
   }
 
-  const appendNextMenuItem = (parentMenuSlug) => {
+  const appendMenuItem = (parentMenuSlug) => {
     // Create copy of the existing menu configurations
     const currentMenuConfigurations = [...menuConfigurations]
     const existingParentIndex = currentMenuConfigurations.findIndex((m) => m.slug === parentMenuSlug)
@@ -136,7 +136,7 @@ const MenuConfigurations = ({ slug }) => {
       </div>
       <div className='flex flex-col gap-1 py-4'>
         <div className='flex ml-auto mb-3'>
-          <button type='button' className='submit-button' onClick={appendNextMenu}>
+          <button type='button' className='submit-button' onClick={appendMenu}>
             <div className='flex gap-1 text-sm'>
               <FormattedMessage id='ui.siteSetting.menu.appendMenu' />
               <FaPlus className='my-auto' />
@@ -149,8 +149,9 @@ const MenuConfigurations = ({ slug }) => {
               <MenuConfiguration
                 siteSettingSlug={slug}
                 menuConfiguration={menuConfiguration}
-                appendNextMenuItem={appendNextMenuItem}
+                menuConfigurations={menuConfigurations}
                 setMenuConfigurations={setMenuConfigurations}
+                appendMenuItem={appendMenuItem}
               />
               <div className='ml-8 flex flex-col gap-1'>
                 {menuConfiguration.menuItemConfigurations.map((menuItem, index) => {
@@ -159,8 +160,9 @@ const MenuConfigurations = ({ slug }) => {
                       <MenuConfiguration
                         siteSettingSlug={slug}
                         menuConfiguration={menuItem}
-                        parentMenuConfiguration={menuConfiguration}
+                        menuConfigurations={menuConfigurations}
                         setMenuConfigurations={setMenuConfigurations}
+                        parentMenuConfiguration={menuConfiguration}
                       />
                     </div>
                   )
