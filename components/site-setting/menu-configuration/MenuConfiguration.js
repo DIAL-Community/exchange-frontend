@@ -1,72 +1,96 @@
 import { useState } from 'react'
-import { FaPlus } from 'react-icons/fa6'
-import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
+import { FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
+import { FormattedMessage } from 'react-intl'
+import { useUser } from '../../../lib/hooks'
 import MenuConfigurationEditor from './MenuConfigurationEditor'
+import MenuConfigurationViewer from './MenuConfigurationViewer'
 
-const MenuConfigurations = ({ slug }) => {
-  const [menuConfigurations, setMenuConfigurations] = useState([])
+const MenuConfiguration = ({ siteSettingSlug, menuConfiguration, parentMenuConfiguration, appendNextMenuItem }) => {
+  const [editing, setEditing] = useState('saved' in menuConfiguration)
+  const [expanded, setExpanded] = useState('saved' in menuConfiguration)
 
-  const { loading, error, data } = useQuery(SITE_SETTING_DETAIL_QUERY, {
-    variables: { slug },
-    onCompleted: (data) => {
-      setMenuConfigurations(data.siteSetting.menuConfigurations)
+  const [modified] = useState('saved' in menuConfiguration)
+
+  const toggleEditing = () => {
+    if (!editing) {
+      setExpanded(true)
     }
-  })
 
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    return <Error />
-  } else if (!data?.siteSetting) {
-    return <NotFound />
+    setEditing(!editing)
   }
 
-  const appendParentMenuConfiguration = () => {
-    setMenuConfigurations([
-      ...menuConfigurations,
-      {
-        slug: 'new-menu',
-        name: 'New Menu',
-        type: 'menu',
-        menuItems: []
-      }
-    ])
-  }
+  const toggleExpanded = () => setExpanded(!expanded)
+
+  const { user } = useUser()
+  const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
 
   return (
-    <div className='lg:px-8 xl:px-56 py-4 min-h-[75vh]'>
-      <div className='flex flex-col gap-1'>
-        <div className='flex ml-auto mb-3'>
-          <button type='button' className='submit-button' onClick={appendParentMenuConfiguration}>
-            <div className='flex gap-1'>
-              Add Menu
-              <FaPlus className='my-auto' size='1rem' />
+    <div className='flex flex-col'>
+      <div className='collapse-header'>
+        <div className='collapse-animation-base bg-dial-blue-chalk h-14' />
+        <div className='flex flex-row flex-wrap gap-3 collapse-header'>
+          <div className='my-auto cursor-pointer flex-grow' onClick={toggleExpanded}>
+            <div className='font-semibold px-4 py-4 flex gap-1'>
+              {menuConfiguration.name}
+              {modified && <span className='text-sm text-dial-stratos'>*</span>}
             </div>
-          </button>
+          </div>
+          <div className='ml-auto my-auto px-4'>
+            <div className='flex gap-2'>
+              {appendNextMenuItem &&
+                <button
+                  type='button'
+                  className='bg-white px-2 py-1 rounded'
+                  onClick={() => appendNextMenuItem(menuConfiguration.slug)}
+                >
+                  <div className='text-sm flex gap-1 text-dial-stratos'>
+                    <FormattedMessage id='ui.siteSetting.menu.appendMenuItem' />
+                    <FaPlus className='my-auto' />
+                  </div>
+                </button>
+              }
+              {allowedToEdit() &&
+                <button
+                  type='button'
+                  onClick={toggleEditing}
+                  className='bg-white px-2 py-1 rounded'
+                >
+                  <div className='text-sm flex gap-1 text-dial-stratos'>
+                    {!editing ? <FaPencil className='my-auto' /> : <FaXmark className='my-auto' />}
+                    {!editing ? <FormattedMessage id='app.modify' /> : <FormattedMessage id='app.cancel' />}
+                  </div>
+                </button>
+              }
+              <button
+                type='button'
+                onClick={toggleExpanded}
+                className='cursor-pointer bg-white px-2 py-1 rounded'
+              >
+                {expanded
+                  ? <FaMinus className='my-auto text-dial-stratos' />
+                  : <FaPlus className='my-auto text-dial-stratos' />
+                }
+              </button>
+            </div>
+          </div>
         </div>
-        {menuConfigurations.map((menuConfiguration) => {
-          return (
-            <div
-              key={menuConfiguration.slug}
-              data-menu={menuConfiguration.slug}
-              className='flex flex-col gap-1'
-            >
-              <MenuConfigurationEditor menuConfiguration={menuConfiguration} />
-              <div className='ml-8 flex flex-col gap-1'>
-                {menuConfiguration.menuItems.map(menuItem => {
-                  return (
-                    <MenuConfigurationEditor key={menuItem.slug} menuConfiguration={menuItem} />
-                  )
-                })}
-              </div>
-            </div>
-          )
-        })
-        }</div>
+      </div>
+      <div className={`${expanded ? 'slide-down' : 'slide-up'} border`}>
+        {editing
+          ? <MenuConfigurationEditor
+            siteSettingSlug={siteSettingSlug}
+            menuConfiguration={menuConfiguration}
+            parentMenuConfiguration={parentMenuConfiguration}
+          />
+          : <MenuConfigurationViewer
+            siteSettingSlug={siteSettingSlug}
+            menuConfiguration={menuConfiguration}
+            parentMenuConfiguration={parentMenuConfiguration}
+          />
+        }
+      </div>
     </div>
   )
 }
 
-export default MenuConfigurations
+export default MenuConfiguration

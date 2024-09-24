@@ -1,74 +1,164 @@
-import { useState } from 'react'
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
-import { FiEdit3 } from 'react-icons/fi'
-import { FormattedMessage } from 'react-intl'
+import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
+import { Controller, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import MenuConfigurationEditorForm from './MenuConfigurationEditorForm'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading } from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
+import Input from '../../shared/form/Input'
+import UrlInput from '../../shared/form/UrlInput'
+import ValidationError from '../../shared/form/ValidationError'
+import { UPDATE_SITE_SETTING_MENU_CONFIGURATION } from '../../shared/mutation/siteSetting'
+import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
 
-const MenuConfigurationEditor = ({ menuConfiguration }) => {
-  const [editing, setEditing] = useState(false)
-  const [openingDetail, setOpeningDetail] = useState(false)
+const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMenuConfiguration }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const toggleEditing = () => setEditing(!editing)
-  const toggleDetail = () => setOpeningDetail(!openingDetail)
+  const [mutating, setMutating] = useState(false)
+  const { user, loadingUserSession } = useUser()
 
-  const { user } = useUser()
-  const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
-  return (
-    <div className='flex flex-col'>
-      <div className='collapse-header'>
-        <div className='collapse-animation-base bg-dial-blue-chalk h-14' />
-        <div className='flex flex-row flex-wrap gap-3 collapse-header'>
-          <div className='my-auto cursor-pointer flex-grow' onClick={toggleDetail}>
-            <div className='font-semibold px-4 py-4'>
-              {menuConfiguration.name}
-            </div>
+  const { locale } = useRouter()
+  const [updateExchangeMenu, { reset }] = useMutation(UPDATE_SITE_SETTING_MENU_CONFIGURATION, {
+    refetchQueries: [{
+      query: SITE_SETTING_DETAIL_QUERY,
+      variables: { slug: siteSettingSlug }
+    }],
+    onError: (error) => {
+      showFailureMessage(error?.message)
+      setMutating(false)
+      reset()
+    },
+    onCompleted: (data) => {
+      setMutating(false)
+      const { updateSiteSettingMenuConfiguration: response } = data
+      if (response.errors.length === 0 && response.siteSetting) {
+        setMutating(false)
+        showSuccessMessage(format('ui.siteSetting.menu.submitted'))
+      } else {
+        showFailureMessage(response.errors)
+        setMutating(false)
+        reset()
+      }
+    }
+  })
+
+  const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      name: menuConfiguration?.name,
+      type: menuConfiguration?.type,
+      external: menuConfiguration?.external ?? false,
+      targetUrl: menuConfiguration?.targetUrl ?? 'n/a'
+    }
+  })
+
+  const isExternalTarget = watch('external')
+
+  const doUpsert = async (data) => {
+    if (user) {
+      // Set the loading indicator.
+      setMutating(true)
+      // Pull all needed data from session and form.
+      const { userEmail, userToken } = user
+      const { name, external, targetUrl } = data
+      // Send graph query to the backend. Set the base variables needed to perform update.
+      const variables = {
+        name,
+        siteSettingSlug,
+        external: external ?? false,
+        targetUrl: targetUrl ?? 'n/a',
+        slug: menuConfiguration?.slug ?? 'n/a',
+        type: parentMenuConfiguration ? 'menu-item': 'menu',
+        parentSlug: parentMenuConfiguration?.parentSlug ?? 'n/a'
+      }
+
+      updateExchangeMenu({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
+  return loadingUserSession
+    ? <Loading />
+    : <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-8 py-6'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {menuConfiguration && format('app.editEntity', { entity: menuConfiguration.name })}
+            {!menuConfiguration && `${format('app.createNew')} ${format('ui.siteSetting.menu.label')}`}
           </div>
-          <div className='ml-auto my-auto px-4'>
-            <div className='flex gap-2 pb-3 lg:pb-0'>
-              {allowedToEdit() &&
-                <button
-                  type='button'
-                  onClick={toggleEditing}
-                  className='cursor-pointer bg-white px-2 py-0.5 rounded'
-                >
-                  {!editing && <FiEdit3 className='inline pb-0.5 text-dial-stratos ' />}
-                  <span className='text-sm px-1 text-dial-stratos'>
-                    {!editing && <FormattedMessage id='app.edit' />}
-                    {editing && <FormattedMessage id='app.cancel' />}
-                  </span>
-                </button>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='name'>
+              {format('ui.siteSetting.menu.name')}
+            </label>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              id='name'
+              placeholder={format('ui.siteSetting.menu.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          {menuConfiguration.type === 'menu-item' &&
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='targetUrl'>
+                {format('ui.siteSetting.menu.targetUrl')}
+              </label>
+              <div>{isExternalTarget}</div>
+              {isExternalTarget
+                ? <Controller
+                  name='targetUrl'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <UrlInput
+                      value={value}
+                      onChange={onChange}
+                      id='targetUrl'
+                      isInvalid={errors.targetUrl}
+                      placeholder={format('ui.siteSetting.menu.targetUrl')}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
+                />
+                : <Input
+                  {...register('targetUrl', { required: format('validation.required') })}
+                  id='targetUrl'
+                  placeholder={format('ui.siteSetting.menu.targetUrl')}
+                  isInvalid={errors.targetUrl}
+                />
               }
-              <button
-                type='button'
-                onClick={toggleDetail}
-                className='cursor-pointer bg-white px-2 py-1.5 rounded'
-              >
-                {openingDetail
-                  ? <BsChevronUp className='cursor-pointer p-01 text-dial-stratos' />
-                  : <BsChevronDown className='cursor-pointer p-0.5 text-dial-stratos' />
-                }
-              </button>
+              {errors.targetUrl && <ValidationError value={errors.targetUrl?.message} />}
             </div>
+          }
+          {menuConfiguration.type === 'menu-item' &&
+            <label className='flex gap-x-2 mb-2 items-center self-start'>
+              <Checkbox {...register('external')} />
+              {format('ui.siteSetting.menu.external')}
+            </label>
+          }
+          <div className='flex flex-wrap text-sm gap-3'>
+            <button type='submit' className='submit-button' disabled={mutating}>
+              {format('ui.siteSetting.menu.save')}
+              {mutating && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
           </div>
         </div>
       </div>
-      <div className={`${openingDetail ? 'slide-down' : 'slide-up'} border`}>
-        {editing
-          ? <MenuConfigurationEditorForm menuConfiguration={menuConfiguration} toggleEditing={toggleEditing} />
-          : <div className='px-4 py-4'>
-            Nulla quis tortor non mi auctor hendrerit. Aenean venenatis sit amet enim a fringilla.
-            Sed vitae ante felis. Ut dolor dolor, semper at feugiat vel, fringilla mattis metus.
-            Nullam eros nulla, egestas a convallis et, volutpat quis est. Suspendisse eleifend
-            pulvinar sagittis. Morbi leo enim, ultrices vel odio at, tincidunt congue leo.
-            Vestibulum sit amet metus convallis, efficitur est at, suscipit urna. Aenean ultricies
-            nisl in malesuada venenatis. Fusce efficitur dictum turpis eget dapibus.
-          </div>
-        }
-      </div>
-    </div>
-  )
+    </form>
 }
 
 export default MenuConfigurationEditor

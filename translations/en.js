@@ -7,6 +7,7 @@ export const en = {
   // -- end of page view tracking --
   
   'app.edit': 'Edit',
+  'app.modify': 'Modify',
   'app.comment': 'Comments',
   'app.noComment': 'Start a Conversation',
   'app.home': 'Home',
@@ -2854,6 +2855,12 @@ export const en = {
   'ui.siteSetting.menu.targetUrl': 'Target Url',
   'ui.siteSetting.menu.external': 'External Url Target',
   'ui.siteSetting.menu.save': 'Save Menu Configuration',
+  'ui.siteSetting.menu.submitted': 'Menu configurations saved.',
+
+  'ui.siteSetting.menu.appendMenu': 'Append Menu',
+  'ui.siteSetting.menu.appendMenuItem': 'Append Menu Item',
+  'ui.siteSetting.menuConfigurations.save': 'Bulk Save Menu Configuration',
+  'ui.siteSetting.menuConfigurations.submitted': 'All menu configurations saved.',
 
   'ui.siteSetting.name.label': 'Site Configuration Name',
   'ui.siteSetting.enableMarketplace.label': 'Enable the marketplace feature.',

@@ -6,7 +6,7 @@ import { Tooltip } from 'react-tooltip'
 import Footer from '../../../../../components/shared/Footer'
 import Header from '../../../../../components/shared/Header'
 import QueryNotification from '../../../../../components/shared/QueryNotification'
-import MenuConfigurations from '../../../../../components/site-setting/menu-configuration/MenuConfiguration'
+import MenuConfigurations from '../../../../../components/site-setting/menu-configuration/MenuConfigurations'
 import ClientOnly from '../../../../../lib/ClientOnly'
 
 const MenuConfigurationsPage = ({ defaultTenants }) => {

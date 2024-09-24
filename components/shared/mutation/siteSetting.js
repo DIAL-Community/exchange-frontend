@@ -66,16 +66,16 @@ export const UPDATE_SITE_SETTING_MENU_CONFIGURATIONS = gql`
 `
 
 export const UPDATE_SITE_SETTING_MENU_CONFIGURATION = gql`
-  mutation UpdateSiteSettingMenuConfigurations(
+  mutation UpdateSiteSettingMenuConfiguration(
     $siteSettingSlug: String!
-    $slug:  String!
+    $slug:  String
     $name: String!
     $type: String!
-    $external: Boolean!
-    $targetUrl: String!
-    $parentSlug: String!
+    $external: Boolean
+    $targetUrl: String
+    $parentSlug: String
   ) {
-    updateSiteSettingMenuConfigurations(
+    updateSiteSettingMenuConfiguration(
       siteSettingSlug: $siteSettingSlug
       slug: $slug
       name: $name
