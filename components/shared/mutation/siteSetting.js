@@ -72,7 +72,7 @@ export const UPDATE_SITE_SETTING_MENU_CONFIGURATION = gql`
     $name: String!
     $type: String!
     $external: Boolean
-    $targetUrl: String
+    $destinationUrl: String
     $parentSlug: String
   ) {
     updateSiteSettingMenuConfiguration(
@@ -81,7 +81,7 @@ export const UPDATE_SITE_SETTING_MENU_CONFIGURATION = gql`
       name: $name
       type: $type
       external: $external
-      targetUrl: $targetUrl
+      destinationUrl: $destinationUrl
       parentSlug: $parentSlug
     ) {
       siteSetting {

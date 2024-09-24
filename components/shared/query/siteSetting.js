@@ -23,6 +23,9 @@ export const SITE_SETTINGS_QUERY = gql`
       id
       name
       description
+      carouselConfigurations
+      heroCardConfigurations
+      menuConfigurations
     }
   }
 `
@@ -59,6 +62,9 @@ export const PAGINATED_SITE_SETTINGS_QUERY = gql`
       name
       slug
       description
+      carouselConfigurations
+      heroCardConfigurations
+      menuConfigurations
     }
   }
 `

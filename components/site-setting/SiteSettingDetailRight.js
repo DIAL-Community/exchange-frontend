@@ -44,7 +44,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
             {isAdminUser && <DeleteSiteSetting siteSetting={siteSetting} />}
           </div>
         )}
-        <div className='text-xl font-semibold py-3' ref={descRef}>
+        <div className='text-base font-semibold py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
         <div className='block'>
@@ -53,9 +53,9 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
             editorId='siteSetting-description'
           />
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold pb-3' ref={carouselConfigurationsRef}>
+          <div className='text-base font-semibold pb-3' ref={carouselConfigurationsRef}>
             {format('ui.siteSetting.carousel.header')}
           </div>
           <div className='flex flex-col gap-y-4'>
@@ -74,10 +74,10 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
             )}
           </div>
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold pb-3' ref={heroCardConfigurationsRef}>
-            {format('ui.siteSetting.carousel.header')}
+          <div className='text-base font-semibold pb-3' ref={heroCardConfigurationsRef}>
+            {format('ui.siteSetting.heroCard.header')}
           </div>
           <div className='flex flex-col gap-y-4'>
             {siteSetting?.carouselConfigurations.length <= 0 &&
@@ -95,12 +95,19 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
             )}
           </div>
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3'/>
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold pb-3' ref={menuConfigurationsRef}>
-            {format('ui.siteSetting.menu.header')}
+          <div className='flex pb-3' ref={menuConfigurationsRef}>
+            <div className='text-base font-semibold'>
+              {format('ui.siteSetting.menu.header')}
+            </div>
+            <div className='flex gap-x-2 ml-auto'>
+              {canEdit &&
+                <EditButton type='link' href={`${siteSetting.slug}/menu-configurations`} />
+              }
+            </div>
           </div>
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col gap-4'>
             {siteSetting?.menuConfigurations.length <= 0 &&
               <div className='text-sm text-dial-stratos'>
                 {format('ui.common.detail.noData', {
@@ -109,19 +116,39 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
                 })}
               </div>
             }
-            {siteSetting?.menuConfigurations?.map((menuConfiguration, index) =>
-              <div key={`project-${index}`}>
-                {menuConfiguration.name}
-              </div>
-            )}
+            <div className='flex flex-col gap-1 text-sm'>
+              {siteSetting?.menuConfigurations?.map((menuConfiguration, index) =>
+                <div key={index} className='flex flex-col gap-1'>
+                  <div className='border shadow px-4 py-3'>
+                    {menuConfiguration.name}
+                    {menuConfiguration.menuItemConfigurations.length <= 0
+                      ? <span className='inline my-auto text-xs text-dial-stratos'>
+                        {` (${format('ui.siteSetting.menu.destinationUrl')}: ${menuConfiguration.destinationUrl})`}
+                      </span>
+                      : <span className='inline my-auto text-xs text-dial-stratos'>
+                        {` (${format('ui.siteSetting.menu.dropdown')})`}
+                      </span>
+                    }
+                  </div>
+                  {menuConfiguration.menuItemConfigurations.map((menuItemConfiguration, index) => (
+                    <div key={index} className='ml-4 border shadow px-4 py-3'>
+                      {menuItemConfiguration.name}
+                      <span className='inline my-auto text-xs text-dial-stratos'>
+                        {` (${format('ui.siteSetting.menu.destinationUrl')}: ${menuItemConfiguration.destinationUrl})`}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='lg:hidden flex flex-col gap-y-3'>
+        <div className='lg:hidden flex flex-col gap-3'>
           <Bookmark object={siteSetting} objectType={ObjectType.SITE_SETTING} />
-          <hr className='border-b border-dial-slate-200'/>
+          <hr className='border-b border-dial-slate-200' />
           <Share />
-          <hr className='border-b border-dial-slate-200'/>
+          <hr className='border-b border-dial-slate-200' />
         </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}

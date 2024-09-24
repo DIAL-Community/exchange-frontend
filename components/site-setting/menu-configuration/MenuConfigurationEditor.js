@@ -55,7 +55,7 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
     defaultValues: {
       name: menuConfiguration?.name,
       external: menuConfiguration?.external,
-      targetUrl: menuConfiguration?.targetUrl
+      destinationUrl: menuConfiguration?.destinationUrl
     }
   })
 
@@ -67,16 +67,16 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, external, targetUrl } = data
+      const { name, external, destinationUrl } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         siteSettingSlug,
         name,
         external,
-        targetUrl,
+        destinationUrl,
         slug: menuConfiguration?.slug,
         type: menuConfiguration?.type,
-        parentSlug: parentMenuConfiguration ? parentMenuConfiguration.slug : menuConfiguration?.parentSlug
+        parentSlug: parentMenuConfiguration?.slug ?? 'n/a'
       }
 
       updateExchangeMenu({
@@ -113,33 +113,33 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field' htmlFor='targetUrl'>
-              {format('ui.siteSetting.menu.targetUrl')}
+            <label className='required-field' htmlFor='destinationUrl'>
+              {format('ui.siteSetting.menu.destinationUrl')}
             </label>
             <div>{isExternalTarget}</div>
             {isExternalTarget
               ? <Controller
-                name='targetUrl'
+                name='destinationUrl'
                 control={control}
                 render={({ field: { value, onChange } }) => (
                   <UrlInput
                     value={value}
                     onChange={onChange}
-                    id='targetUrl'
-                    isInvalid={errors.targetUrl}
-                    placeholder={format('ui.siteSetting.menu.targetUrl')}
+                    id='destinationUrl'
+                    isInvalid={errors.destinationUrl}
+                    placeholder={format('ui.siteSetting.menu.destinationUrl')}
                   />
                 )}
                 rules={{ required: format('validation.required') }}
               />
               : <Input
-                {...register('targetUrl', { required: format('validation.required') })}
-                id='targetUrl'
-                placeholder={format('ui.siteSetting.menu.targetUrl')}
-                isInvalid={errors.targetUrl}
+                {...register('destinationUrl', { required: format('validation.required') })}
+                id='destinationUrl'
+                placeholder={format('ui.siteSetting.menu.destinationUrl')}
+                isInvalid={errors.destinationUrl}
               />
             }
-            {errors.targetUrl && <ValidationError value={errors.targetUrl?.message} />}
+            {errors.destinationUrl && <ValidationError value={errors.destinationUrl?.message} />}
           </div>
           <label className='flex gap-x-2 mb-2 items-center self-start'>
             <Checkbox {...register('external')} />

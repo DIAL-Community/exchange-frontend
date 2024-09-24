@@ -64,7 +64,7 @@ const GenericHero = ({ heroCarouselConfiguration }) => {
         <div className='flex text-sm text-dial-stratos'>
           {heroCarouselConfiguration.external
             ? <a
-              href={heroCarouselConfiguration.targetUrl}
+              href={heroCarouselConfiguration.destinationUrl}
               target='_blank'
               rel='noopener noreferrer'
               role='menuitem'
@@ -73,7 +73,7 @@ const GenericHero = ({ heroCarouselConfiguration }) => {
               {heroCarouselConfiguration.name}
             </a>
             : <Link
-              href={heroCarouselConfiguration.targetUrl}
+              href={heroCarouselConfiguration.destinationUrl}
               className='rounded px-5 py-2.5 bg-dial-plum text-white'
             >
               {heroCarouselConfiguration.name}

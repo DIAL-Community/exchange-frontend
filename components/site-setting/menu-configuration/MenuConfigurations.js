@@ -57,7 +57,7 @@ const MenuConfigurations = ({ slug }) => {
 
   const buildCommonConfiguration = () => ({
     external: false,
-    targetUrl: '/',
+    destinationUrl: '/',
     parentSlug: 'n/a',
     saved: false
   })

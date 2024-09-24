@@ -6,7 +6,7 @@ const SEPARATOR_STYLES = 'bg-dial-slate-300 text-dial-stratos font-semibold px-4
 const SINGLE_MENU_STYLES = 'pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
 
 const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) => {
-  const { slug, name, targetUrl, external, menuItemConfigurations } = menuConfiguration
+  const { slug, name, destinationUrl, external, menuItemConfigurations } = menuConfiguration
 
   const separatorRenderer = (name, styles) => (
     <div key={slug} className={styles} role='separator'>
@@ -14,10 +14,10 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
     </div>
   )
 
-  const externalLinkRenderer = (slug, name, targetUrl, styles) => (
+  const externalLinkRenderer = (slug, name, destinationUrl, styles) => (
     <a
       key={slug}
-      href={targetUrl}
+      href={`//${destinationUrl}`}
       role='menu-item'
       target='_blank'
       rel='noopener noreferrer'
@@ -27,8 +27,8 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
     </a>
   )
 
-  const internalLinkRenderer = (slug, name, targetUrl, styles) => (
-    <Link key={slug} href={targetUrl} role='menu-item' className={styles}>
+  const internalLinkRenderer = (slug, name, destinationUrl, styles) => (
+    <Link key={slug} href={destinationUrl} role='menu-item' className={styles}>
       {name}
     </Link>
   )
@@ -43,12 +43,12 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
       />
       {currentOpenMenu === slug && (
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-          {menuItemConfigurations.map(({ type, slug, name, external, targetUrl }) => {
+          {menuItemConfigurations.map(({ type, slug, name, external, destinationUrl }) => {
             return type === 'separator'
               ? separatorRenderer(name, SEPARATOR_STYLES)
               : external
-                ? externalLinkRenderer(slug, name, targetUrl, DEFAULT_DROPDOWN_MENU_STYLES)
-                : internalLinkRenderer(slug, name, targetUrl, DEFAULT_DROPDOWN_MENU_STYLES)
+                ? externalLinkRenderer(slug, name, destinationUrl, DEFAULT_DROPDOWN_MENU_STYLES)
+                : internalLinkRenderer(slug, name, destinationUrl, DEFAULT_DROPDOWN_MENU_STYLES)
           })}
         </div>
       )}
@@ -57,8 +57,8 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
 
   const singleMenuRenderer = () => (
     external
-      ? externalLinkRenderer(slug, name, targetUrl, SINGLE_MENU_STYLES)
-      : internalLinkRenderer(slug, name, targetUrl, SINGLE_MENU_STYLES)
+      ? externalLinkRenderer(slug, name, destinationUrl, SINGLE_MENU_STYLES)
+      : internalLinkRenderer(slug, name, destinationUrl, SINGLE_MENU_STYLES)
   )
 
   return menuConfiguration.menuItemConfigurations.length > 0

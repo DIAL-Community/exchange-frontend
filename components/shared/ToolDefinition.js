@@ -9,7 +9,7 @@ const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
 
   return (
     <a
-      href={heroCardConfiguration.targetUrl}
+      href={heroCardConfiguration.destinationUrl}
       className='rounded-md shadow-lg border'
       target='_blank'
       rel='noopener noreferrer'
@@ -42,7 +42,7 @@ const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <Link href={heroCardConfiguration.targetUrl} className='rounded-md shadow-lg border'>
+    <Link href={heroCardConfiguration.destinationUrl} className='rounded-md shadow-lg border'>
       <div className='px-8 pt-6 pb-12'>
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row gap-x-3'>
