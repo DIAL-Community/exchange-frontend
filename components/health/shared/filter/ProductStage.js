@@ -24,7 +24,7 @@ export const ProductStageAutocomplete = ({ productStage, setProductStage }) => {
         isBorderless
         options={productStageOptions}
         placeholder={format('ui.productStage.header') }
-        className='rounded text-sm text-white bg-health-red my-auto'
+        className='rounded text-sm text-white bg-health-blue my-auto'
         onChange={(value) => {
           updateProductStageValue(value.value)
           setSelectedOption(value)

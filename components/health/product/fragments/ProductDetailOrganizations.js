@@ -120,7 +120,7 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
     </div>
 
   const sectionDisclaimer =
-    <div className='text-xs text-justify italic text-health-red mb-2'>
+    <div className='text-xs text-justify italic text-health-green mb-2'>
       {format('ui.product.overview.organization')}
     </div>
 

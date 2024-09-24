@@ -80,7 +80,7 @@ const Select = React.forwardRef((
       cursor: 'pointer',
       borderRadius: '0.375rem',
       border: 0,
-      backgroundColor: '#911c39'
+      backgroundColor: '#2e3192ff'
     }),
     option: (provided, { isFocused, isSelected }) => ({
       ...provided,

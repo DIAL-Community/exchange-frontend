@@ -95,11 +95,11 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
     </>
 
   const withoutUser =
-    <li className="text-right intro-overview-signup intro-signup bg-health-red text-white p-1 rounded-md">
+    <li className="text-right intro-overview-signup intro-signup bg-health-blue text-white p-1 rounded-md">
       <a
         href="signIn"
         role="menuitem"
-        className='px-3 py-2 text-gray text-lg hover:text-white hover:bg-health-red rounded-md fi'
+        className='px-3 py-2 text-gray text-lg hover:text-white hover:bg-health-blue rounded-md fi'
         onClick={signInUser}
       >
         {format('header.signIn')}
