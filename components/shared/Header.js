@@ -108,7 +108,7 @@ const Header = ({ isOnAuthPage = false }) => {
     </>
 
   const withoutUser =
-    <li className='text-right intro-overview-signup intro-signup'>
+    <li className='text-right intro-signup'>
       <a
         href='signIn'
         role='menuitem'

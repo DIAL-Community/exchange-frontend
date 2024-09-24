@@ -54,9 +54,8 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
     shouldUnregister: true,
     defaultValues: {
       name: menuConfiguration?.name,
-      type: menuConfiguration?.type,
-      external: menuConfiguration?.external ?? false,
-      targetUrl: menuConfiguration?.targetUrl ?? 'n/a'
+      external: menuConfiguration?.external,
+      targetUrl: menuConfiguration?.targetUrl
     }
   })
 
@@ -71,13 +70,13 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
       const { name, external, targetUrl } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
-        name,
         siteSettingSlug,
-        external: external ?? false,
-        targetUrl: targetUrl ?? 'n/a',
-        slug: menuConfiguration?.slug ?? 'n/a',
-        type: parentMenuConfiguration ? 'menu-item': 'menu',
-        parentSlug: parentMenuConfiguration?.parentSlug ?? 'n/a'
+        name,
+        external,
+        targetUrl,
+        slug: menuConfiguration?.slug,
+        type: menuConfiguration?.type,
+        parentSlug: parentMenuConfiguration ? parentMenuConfiguration.slug : menuConfiguration?.parentSlug
       }
 
       updateExchangeMenu({
@@ -113,43 +112,39 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
             />
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
-          {menuConfiguration.type === 'menu-item' &&
-            <div className='flex flex-col gap-y-2'>
-              <label className='required-field' htmlFor='targetUrl'>
-                {format('ui.siteSetting.menu.targetUrl')}
-              </label>
-              <div>{isExternalTarget}</div>
-              {isExternalTarget
-                ? <Controller
-                  name='targetUrl'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <UrlInput
-                      value={value}
-                      onChange={onChange}
-                      id='targetUrl'
-                      isInvalid={errors.targetUrl}
-                      placeholder={format('ui.siteSetting.menu.targetUrl')}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                : <Input
-                  {...register('targetUrl', { required: format('validation.required') })}
-                  id='targetUrl'
-                  placeholder={format('ui.siteSetting.menu.targetUrl')}
-                  isInvalid={errors.targetUrl}
-                />
-              }
-              {errors.targetUrl && <ValidationError value={errors.targetUrl?.message} />}
-            </div>
-          }
-          {menuConfiguration.type === 'menu-item' &&
-            <label className='flex gap-x-2 mb-2 items-center self-start'>
-              <Checkbox {...register('external')} />
-              {format('ui.siteSetting.menu.external')}
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='targetUrl'>
+              {format('ui.siteSetting.menu.targetUrl')}
             </label>
-          }
+            <div>{isExternalTarget}</div>
+            {isExternalTarget
+              ? <Controller
+                name='targetUrl'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <UrlInput
+                    value={value}
+                    onChange={onChange}
+                    id='targetUrl'
+                    isInvalid={errors.targetUrl}
+                    placeholder={format('ui.siteSetting.menu.targetUrl')}
+                  />
+                )}
+                rules={{ required: format('validation.required') }}
+              />
+              : <Input
+                {...register('targetUrl', { required: format('validation.required') })}
+                id='targetUrl'
+                placeholder={format('ui.siteSetting.menu.targetUrl')}
+                isInvalid={errors.targetUrl}
+              />
+            }
+            {errors.targetUrl && <ValidationError value={errors.targetUrl?.message} />}
+          </div>
+          <label className='flex gap-x-2 mb-2 items-center self-start'>
+            <Checkbox {...register('external')} />
+            {format('ui.siteSetting.menu.external')}
+          </label>
           <div className='flex flex-wrap text-sm gap-3'>
             <button type='submit' className='submit-button' disabled={mutating}>
               {format('ui.siteSetting.menu.save')}

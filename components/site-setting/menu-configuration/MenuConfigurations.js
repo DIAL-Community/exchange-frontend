@@ -55,28 +55,45 @@ const MenuConfigurations = ({ slug }) => {
     return <NotFound />
   }
 
+  const buildCommonConfiguration = () => ({
+    external: false,
+    targetUrl: '/',
+    parentSlug: 'n/a',
+    saved: false
+  })
+
   const appendNextMenu = () => {
     setMenuConfigurations([
       ...menuConfigurations,
       {
-        slug: `next-menu-${menuConfigurations.length + 1}`,
-        name: 'Next Menu',
+        ...buildCommonConfiguration(),
         type: 'menu',
-        menuItemConfigurations: [],
-        saved: false
+        name: `Next Menu ${menuConfigurations.length + 1}`,
+        slug: `next-menu-${menuConfigurations.length + 1}`,
+        menuItemConfigurations: []
       }
     ])
   }
 
   const appendNextMenuItem = (parentMenuSlug) => {
-    const parentMenu = menuConfigurations.find((menuConfiguration) => menuConfiguration.slug === parentMenuSlug)
-    parentMenu.menuItemConfigurations.push({
-      slug: `next-menu-item-${parentMenu.menuItemConfigurations.length + 1}`,
-      name: 'Next Menu Item',
-      type: 'menu-item',
-      saved: false
-    })
-    setMenuConfigurations([...menuConfigurations])
+    const currentMenuConfigurations = [...menuConfigurations]
+    const existingParentIndex = currentMenuConfigurations.findIndex((m) => m.slug === parentMenuSlug)
+    const existingParentMenu = currentMenuConfigurations[existingParentIndex]
+    const currentParentMenu = {
+      ...existingParentMenu,
+      menuItemConfigurations: [
+        ...existingParentMenu.menuItemConfigurations,
+        {
+          ...buildCommonConfiguration(),
+          type: 'menu-item',
+          name: `Next Menu Item ${existingParentMenu.menuItemConfigurations.length + 1}`,
+          slug: `next-menu-item-${existingParentMenu.menuItemConfigurations.length + 1}`
+        }
+      ]
+    }
+
+    currentMenuConfigurations[existingParentIndex] = currentParentMenu
+    setMenuConfigurations([...currentMenuConfigurations])
   }
 
   const executeBulkUpdate = () => {
@@ -112,7 +129,7 @@ const MenuConfigurations = ({ slug }) => {
   return (
     <div className='lg:px-8 xl:px-56 min-h-[75vh]'>
       <div className='px-4 lg:px-6 py-4 bg-dial-violet text-dial-stratos ribbon-detail z-40'>
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='flex flex-col gap-1 py-4'>
         <div className='flex ml-auto mb-3'>
