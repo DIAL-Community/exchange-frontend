@@ -7,13 +7,10 @@ import { useQuery } from '@apollo/client'
 import { useActiveTenant, useUser } from '../../lib/hooks'
 import { SiteSettingContext } from '../context/SiteSettingContext'
 import AdminMenu from './menu/AdminMenu'
-import CatalogMenu from './menu/CatalogMenu'
 import GenericMenu from './menu/GenericMenu'
 import HelpMenu from './menu/HelpMenu'
 import LanguageMenu from './menu/LanguageMenu'
-import MarketplaceMenu from './menu/MarketplaceMenu'
 import { NONE } from './menu/MenuCommon'
-import ResourceMenu from './menu/ResourceMenu'
 import UserMenu from './menu/UserMenu'
 import MobileMenu from './MobileMenu'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from './query/user'
@@ -132,37 +129,37 @@ const Header = ({ isOnAuthPage = false }) => {
           />
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
-        <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
-          {!isOnAuthPage &&
-            <>
-              <li className='relative text-right intro-marketplace'>
-                <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-              </li>
-              <li className='relative text-right intro-tools'>
-                <CatalogMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-              </li>
-              <li className='relative text-right intro-resource'>
-                <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-              </li>
-              { user ? withUser : withoutUser }
-              <li className='relative text-right'>
-                <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-              </li>
-            </>
-          }
-          <li className='relative text-right'>
-            <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-          </li>
-          {menuConfigurations.map((menuConfiguration) => (
-            <li key={menuConfiguration.slug} className='relative text-right'>
-              <GenericMenu
-                menuConfiguration={menuConfiguration}
-                currentOpenMenu={currentOpenMenu}
-                onToggleDropdown={toggleDropdownSwitcher}
-              />
-            </li>
-          ))}
-        </ul>
+        {!isOnAuthPage &&
+          <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
+            {menuConfigurations.map((menuConfiguration) => {
+              if (menuConfiguration.type === 'menu' || menuConfiguration.type === 'menu-item') {
+                return (
+                  <li key={menuConfiguration.id} className='relative text-right'>
+                    <GenericMenu
+                      menuConfiguration={menuConfiguration}
+                      currentOpenMenu={currentOpenMenu}
+                      onToggleDropdown={toggleDropdownSwitcher}
+                    />
+                  </li>
+                )
+              } else if (menuConfiguration.type === 'locked-user-menu') {
+                return user ? withUser : withoutUser
+              } else if (menuConfiguration.type === 'locked-language-menu') {
+                return (
+                  <li key={menuConfiguration.id} className='relative text-right'>
+                    <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                  </li>
+                )
+              } else if (menuConfiguration.type === 'locked-help-menu') {
+                return (
+                  <li key={menuConfiguration.id} className='relative text-right'>
+                    <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                  </li>
+                )
+              }
+            })}
+          </ul>
+        }
       </div>
       <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
     </header>

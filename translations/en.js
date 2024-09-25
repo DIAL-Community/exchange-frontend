@@ -2857,6 +2857,8 @@ export const en = {
   'ui.siteSetting.menu.save': 'Save Menu Configuration',
   'ui.siteSetting.menu.submitted': 'Menu configuration saved.',
   'ui.siteSetting.menu.dropdown': 'Dropdown Menu',
+  'ui.siteSetting.menu.separator': 'Separator',
+  'ui.siteSetting.menu.locked': 'Locked Default',
 
   'ui.siteSetting.menu.deleteMenu': 'Deleting Menu Configuration',
   'ui.siteSetting.menu.deleteMenuDescription': `

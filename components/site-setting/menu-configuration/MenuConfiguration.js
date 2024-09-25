@@ -1,14 +1,13 @@
-import { useCallback, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
-import { FormattedMessage, useIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import DeleteMenuConfiguration from './DeleteMenuConfiguration'
 import MenuConfigurationEditor from './MenuConfigurationEditor'
 import MenuConfigurationViewer from './MenuConfigurationViewer'
+import { generateHeaderText } from './utilities'
 
 const MenuConfiguration = (props) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   // Only menu item will have the following properties
   const { appendMenuItem } = props
   // Common properties coming from the parent component.
@@ -18,7 +17,7 @@ const MenuConfiguration = (props) => {
   const [editing, setEditing] = useState('saved' in menuConfiguration)
   const [expanded, setExpanded] = useState('saved' in menuConfiguration)
 
-  const [modified] = useState('saved' in menuConfiguration)
+  const [modified, setModified] = useState('saved' in menuConfiguration)
 
   const toggleEditing = () => {
     if (!editing) {
@@ -28,10 +27,17 @@ const MenuConfiguration = (props) => {
     setEditing(!editing)
   }
 
+  useEffect(() => {
+    if (typeof menuConfiguration.saved === 'undefined') {
+      setModified(false)
+    }
+  }, [menuConfiguration])
+
   const toggleExpanded = () => setExpanded(!expanded)
 
   const { user } = useUser()
   const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
+  const editable = () => ['menu', 'menu-item', 'separator'].indexOf(menuConfiguration.type) >= 0
 
   return (
     <div className='flex flex-col'>
@@ -41,27 +47,15 @@ const MenuConfiguration = (props) => {
           <div className='my-auto cursor-pointer flex-grow' onClick={toggleExpanded}>
             <div className='font-semibold px-4 py-4 flex gap-1'>
               {menuConfiguration.name}
-              {menuConfiguration.type === 'menu'
-                // Rendering destination url for type = 'menu' without menu items.
-                ? menuConfiguration.menuItemConfigurations.length <= 0
-                  ? <span className='text-sm font-normal my-auto'>
-                    {`(${format('ui.siteSetting.menu.destinationUrl')}: ${menuConfiguration.destinationUrl})`}
-                  </span>
-                  // Rendering drop down menu text for type = 'menu' with menu items.
-                  : <span className='text-sm font-normal my-auto'>
-                    ({format('ui.siteSetting.menu.dropdown')})
-                  </span>
-                // Rendering destination url for type = 'menu-item'.
-                : <span className='text-sm font-normal my-auto'>
-                  {`(${format('ui.siteSetting.menu.destinationUrl')}: ${menuConfiguration.destinationUrl})`}
-                </span>
-              }
+              <span className='text-xs font-normal my-auto'>
+                ({generateHeaderText(menuConfiguration)})
+              </span>
               {modified && <span className='text-sm text-dial-stratos'>*</span>}
             </div>
           </div>
           <div className='ml-auto my-auto px-4'>
             <div className='flex gap-2'>
-              {allowedToEdit() && appendMenuItem &&
+              {allowedToEdit() && editable() && appendMenuItem &&
                 <button
                   type='button'
                   className='bg-white px-2 py-1 rounded'
@@ -73,7 +67,7 @@ const MenuConfiguration = (props) => {
                   </div>
                 </button>
               }
-              {allowedToEdit() &&
+              {allowedToEdit() && editable() &&
                 <button
                   type='button'
                   onClick={toggleEditing}
@@ -85,7 +79,7 @@ const MenuConfiguration = (props) => {
                   </div>
                 </button>
               }
-              {allowedToEdit() &&
+              {allowedToEdit() && editable() &&
                 <DeleteMenuConfiguration
                   siteSettingSlug={siteSettingSlug}
                   menuConfiguration={menuConfiguration}

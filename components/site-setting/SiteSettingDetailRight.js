@@ -8,6 +8,7 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
 import DeleteSiteSetting from './DeleteSiteSetting'
+import { generateHeaderText } from './menu-configuration/utilities'
 
 const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
   const { formatMessage } = useIntl()
@@ -119,22 +120,17 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
             <div className='flex flex-col gap-1 text-sm'>
               {siteSetting?.menuConfigurations?.map((menuConfiguration, index) =>
                 <div key={index} className='flex flex-col gap-1'>
-                  <div className='border shadow px-4 py-3'>
+                  <div className='border shadow px-4 py-3 flex gap-1'>
                     {menuConfiguration.name}
-                    {menuConfiguration.menuItemConfigurations.length <= 0
-                      ? <span className='inline my-auto text-xs text-dial-stratos'>
-                        {` (${format('ui.siteSetting.menu.destinationUrl')}: ${menuConfiguration.destinationUrl})`}
-                      </span>
-                      : <span className='inline my-auto text-xs text-dial-stratos'>
-                        {` (${format('ui.siteSetting.menu.dropdown')})`}
-                      </span>
-                    }
+                    <span className='text-xs font-normal my-auto'>
+                      ({generateHeaderText(menuConfiguration)})
+                    </span>
                   </div>
                   {menuConfiguration.menuItemConfigurations.map((menuItemConfiguration, index) => (
-                    <div key={index} className='ml-4 border shadow px-4 py-3'>
+                    <div key={index} className='ml-4 border shadow px-4 py-3 flex gap-1'>
                       {menuItemConfiguration.name}
-                      <span className='inline my-auto text-xs text-dial-stratos'>
-                        {` (${format('ui.siteSetting.menu.destinationUrl')}: ${menuItemConfiguration.destinationUrl})`}
+                      <span className='text-xs font-normal my-auto'>
+                        ({generateHeaderText(menuItemConfiguration)})
                       </span>
                     </div>
                   ))}
