@@ -34,7 +34,7 @@ const HealthBody = () => {
           in terms of accessibility, affordability, and quality of care. While inclusion in the Marketplace
           reflects recognition of a solution’s strengths and potential, it does not imply endorsement by Africa CDC.
         </div>
-        <img className='h-120 w-1/2' alt='Africa CDC Health Marketplace' src='ui/health/landing-img1.png' />
+        <img className='h-100 w-1/2' alt='Africa CDC Health Marketplace' src='ui/health/landing-img1.png' />
       </div>
     </>
   )
