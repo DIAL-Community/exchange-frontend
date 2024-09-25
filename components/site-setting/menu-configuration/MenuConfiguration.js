@@ -65,7 +65,7 @@ const MenuConfiguration = (props) => {
                 <button
                   type='button'
                   className='bg-white px-2 py-1 rounded'
-                  onClick={() => appendMenuItem(menuConfiguration.slug)}
+                  onClick={() => appendMenuItem(menuConfiguration.id)}
                 >
                   <div className='text-sm flex gap-1 text-dial-stratos'>
                     <FormattedMessage id='ui.siteSetting.menu.appendMenuItem' />

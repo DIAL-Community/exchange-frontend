@@ -70,16 +70,15 @@ const MenuConfigurations = ({ slug }) => {
         ...buildCommonConfiguration(),
         type: 'menu',
         name: `Next Menu ${menuConfigurations.length + 1}`,
-        slug: `next-menu-${menuConfigurations.length + 1}`,
         menuItemConfigurations: []
       }
     ])
   }
 
-  const appendMenuItem = (parentMenuSlug) => {
+  const appendMenuItem = (parentMenuId) => {
     // Create copy of the existing menu configurations
     const currentMenuConfigurations = [...menuConfigurations]
-    const existingParentIndex = currentMenuConfigurations.findIndex((m) => m.slug === parentMenuSlug)
+    const existingParentIndex = currentMenuConfigurations.findIndex((m) => m.id === parentMenuId)
     const existingParentMenu = currentMenuConfigurations[existingParentIndex]
     // Create new menu configuration using existing parent menu
     // and then append the new menu item to the parent menu.
@@ -90,8 +89,7 @@ const MenuConfigurations = ({ slug }) => {
         {
           ...buildCommonConfiguration(),
           type: 'menu-item',
-          name: `Next Menu Item ${existingParentMenu.menuItemConfigurations.length + 1}`,
-          slug: `next-menu-item-${existingParentMenu.menuItemConfigurations.length + 1}`
+          name: `Next Menu Item ${existingParentMenu.menuItemConfigurations.length + 1}`
         }
       ]
     }
@@ -146,7 +144,7 @@ const MenuConfigurations = ({ slug }) => {
         </div>
         {menuConfigurations.map((menuConfiguration, index) => {
           return (
-            <div key={index} data-menu={menuConfiguration.slug} className='flex flex-col gap-1'>
+            <div key={index} data-menu={menuConfiguration.id} className='flex flex-col gap-1'>
               <MenuConfiguration
                 siteSettingSlug={slug}
                 menuConfiguration={menuConfiguration}
@@ -157,7 +155,7 @@ const MenuConfigurations = ({ slug }) => {
               <div className='ml-8 flex flex-col gap-1'>
                 {menuConfiguration.menuItemConfigurations.map((menuItem, index) => {
                   return (
-                    <div key={index} data-menu-item={menuItem.slug}>
+                    <div key={index} data-menu-item={menuItem.id}>
                       <MenuConfiguration
                         siteSettingSlug={slug}
                         menuConfiguration={menuItem}
