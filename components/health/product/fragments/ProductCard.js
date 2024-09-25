@@ -59,7 +59,7 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
         className='bg-white shadow-lg rounded-xl h-360 border border-dial-gray hover:border-transparent'>
         <div className="flex flex-col h-full">
           <div className="flex justify-center items-center py-12 bg-white rounded-xl
-                          border-health-red border-4 mx-4 my-4 max-h-[180px]"
+                          border-health-green border-4 mx-4 my-4 max-h-[180px]"
           >
             {product.imageFile.indexOf('placeholder.svg') < 0 &&
               <div className="inline my-12 mx-16">
@@ -100,7 +100,7 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
               product?.softwareCategories[0]?.name &&
                 <div className="px-4 flex gap-2 align-end">
                   <span className="mb-3 mx-auto">
-                    <div className="rounded-full bg-health-red uppercase shadow-none px-6 py-1 text-white text-xs">
+                    <div className="rounded-full bg-health-blue uppercase shadow-none px-6 py-1 text-white text-xs">
                       <div className="line-clamp-1">{product?.softwareCategories[0]?.name}</div>
                     </div>
                   </span>

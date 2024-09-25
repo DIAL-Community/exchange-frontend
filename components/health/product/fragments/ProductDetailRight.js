@@ -9,7 +9,7 @@ import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../../../utils/constants'
 import DeleteProduct from '../../../product/DeleteProduct'
-import ProductRepositoryCard from '../../../product/repository/ProductRepositoryCard'
+import ProductRepositoryCard from '../repository/ProductRepositoryCard'
 import ProductDetailTags from './ProductDetailTags'
 import ProductDetailCountries from './ProductDetailCountries'
 import ProductDetailMaturityScores from './ProductDetailMaturityScores'
@@ -73,7 +73,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           {product?.softwareCategories?.map((category, index) =>
             <div
               key={`category-${index}`}
-              className="rounded-full bg-health-red uppercase shadow-none px-6 py-1 text-white text-xs"
+              className="rounded-full bg-health-blue uppercase shadow-none px-6 py-1 text-white text-xs"
             >
               <div key={index} className="line-clamp-1">{category.name}</div>
             </div>
@@ -98,7 +98,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         </div>
         <div className="text-sm italic">
           <div
-            className="text-xs text-justify text-health-red highlight-link"
+            className="text-xs text-justify text-health-blue highlight-link"
             dangerouslySetInnerHTML={{ __html: format('health.maturity.description') }}
           />
         </div>
@@ -150,12 +150,12 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
                 <CreateButton
                   label={format('app.create')}
                   type="link"
-                  href={`/products/${product.slug}/repositories/create`}
+                  href={`/health/products/${product.slug}/repositories/create`}
                 />
               </div>
             }
           </div>
-          <div className="text-xs text-justify italic text-health-red mb-2">
+          <div className="text-xs text-justify italic text-health-blue mb-2">
             {format('ui.product.overview.repository')}
           </div>
           {!product.mainRepository &&
@@ -188,7 +188,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           <div className="text-xl font-semibold text-health-blue pb-3" ref={pricingRef}>
             {format('ui.product.pricing.title')}
           </div>
-          <div className="text-xs text-justify italic text-health-red mb-2">
+          <div className="text-xs text-justify italic text-health-blue mb-2">
             {format('ui.product.overview.pricing')}
           </div>
           <div className="text-sm flex flex-row gap-2">

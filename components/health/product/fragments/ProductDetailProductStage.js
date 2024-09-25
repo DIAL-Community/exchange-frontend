@@ -8,7 +8,7 @@ import { ToastContext } from '../../../../lib/ToastContext'
 import EditableSection from '../../../shared/EditableSection'
 import { UPDATE_PRODUCT_EXTRA_ATTRIBUTES } from '../../../shared/mutation/product'
 import Input from '../../../shared/form/Input'
-import { ProductAdditionalExtraAttributeNames, ProductStageType } from '../../../utils/constants'
+import { ProductMaturityAttributeNames, ProductStageType } from '../../../utils/constants'
 import Select from '../../../shared/form/Select'
 
 const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
@@ -20,7 +20,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
 
   const { control, handleSubmit, reset: VariablesReset } = useForm({
     defaultValues: {
-      extraAttributes: ProductAdditionalExtraAttributeNames.map(name => ({ name, value: '', type: '' }))
+      extraAttributes: ProductMaturityAttributeNames.map(name => ({ name, value: '', type: '' }))
     }
   })
 
@@ -31,7 +31,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
 
   useEffect(() => {
     if (product?.extraAttributes.length) {
-      const formattedExtraAttributes = ProductAdditionalExtraAttributeNames.map(name => {
+      const formattedExtraAttributes = ProductMaturityAttributeNames.map(name => {
         const existingAttr = product.extraAttributes.find(attr => attr.name === name)
 
         return existingAttr || { name, value: '', type: '' }
@@ -101,7 +101,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
   const displayModeBody = product?.extraAttributes.length
     ? <div className='flex flex-col gap-y-2'>
       {initialValues?.map((attribute, index) =>
-        <div key={`extraAttribute-${index}`} className='text-health-red'>{`${attribute.name}: `}
+        <div key={`extraAttribute-${index}`} className='text-health-green'>{`${attribute.name}: `}
           <span key={index} className='text-black'>
             {`${attribute.value.length ? attribute.value : format('general.na')}`}
           </span>
@@ -116,7 +116,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
     <>
       <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-3 text-sm'>
         <form>
-          {ProductAdditionalExtraAttributeNames.map((name, index) => (
+          {ProductMaturityAttributeNames.map((name, index) => (
             <div key={name} className="grid grid-cols-4 gap-2 mt-2">
               <label className="col-span-3">{name}</label>
               <label className="col-span-1">{format('extraAttributes.type')}</label>

@@ -37,6 +37,10 @@ const faqs = [
   <a href="https://exchange.dial.global/products?shareCatalog=true&origins=2--Digital%20Square" \
   target="_blank" rel="noreferrer">this page</a>'
   },
+  { question:'What about DPGs?',
+    answer: 'Facility scales are used to show what features should be available for different \
+    sizes of health facilities.'
+  },
   { question:'What is a facility scale?',
     answer: 'Facility scales are used to show what features should be available for different \
     sizes of health facilities.'
