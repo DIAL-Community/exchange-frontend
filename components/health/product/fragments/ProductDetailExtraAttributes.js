@@ -93,7 +93,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
     ? <div className='flex flex-col gap-y-2'>
       {initialValues.map((attribute, index) =>
         attribute.value.length ?
-          <div key={`extraAttribute-${index}`} className='text-health-red font-semibold'>{`${attribute.name}: `}
+          <div key={`extraAttribute-${index}`} className='text-health-green font-semibold'>{`${attribute.name}: `}
             <div key={index} className='text-black font-normal'>
               {`${attribute.value.length ? attribute.value : format('general.na')}`}
             </div>
