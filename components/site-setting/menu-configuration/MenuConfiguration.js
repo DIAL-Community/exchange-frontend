@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import DeleteMenuConfiguration from './DeleteMenuConfiguration'
 import MenuConfigurationEditor from './MenuConfigurationEditor'
 import MenuConfigurationViewer from './MenuConfigurationViewer'
 
 const MenuConfiguration = (props) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   // Only menu item will have the following properties
   const { appendMenuItem } = props
   // Common properties coming from the parent component.
@@ -39,6 +41,21 @@ const MenuConfiguration = (props) => {
           <div className='my-auto cursor-pointer flex-grow' onClick={toggleExpanded}>
             <div className='font-semibold px-4 py-4 flex gap-1'>
               {menuConfiguration.name}
+              {menuConfiguration.type === 'menu'
+                // Rendering destination url for type = 'menu' without menu items.
+                ? menuConfiguration.menuItemConfigurations.length <= 0
+                  ? <span className='text-sm font-normal my-auto'>
+                    {`(${format('ui.siteSetting.menu.destinationUrl')}: ${menuConfiguration.destinationUrl})`}
+                  </span>
+                  // Rendering drop down menu text for type = 'menu' with menu items.
+                  : <span className='text-sm font-normal my-auto'>
+                    ({format('ui.siteSetting.menu.dropdown')})
+                  </span>
+                // Rendering destination url for type = 'menu-item'.
+                : <span className='text-sm font-normal my-auto'>
+                  {`(${format('ui.siteSetting.menu.destinationUrl')}: ${menuConfiguration.destinationUrl})`}
+                </span>
+              }
               {modified && <span className='text-sm text-dial-stratos'>*</span>}
             </div>
           </div>

@@ -2855,7 +2855,7 @@ export const en = {
   'ui.siteSetting.menu.destinationUrl': 'Destination URL',
   'ui.siteSetting.menu.external': 'External Url Target',
   'ui.siteSetting.menu.save': 'Save Menu Configuration',
-  'ui.siteSetting.menu.submitted': 'Menu configurations saved.',
+  'ui.siteSetting.menu.submitted': 'Menu configuration saved.',
   'ui.siteSetting.menu.dropdown': 'Dropdown Menu',
 
   'ui.siteSetting.menu.deleteMenu': 'Deleting Menu Configuration',
@@ -2869,7 +2869,7 @@ export const en = {
 
   'ui.siteSetting.menu.appendMenu': 'Append Menu',
   'ui.siteSetting.menu.appendMenuItem': 'Append Menu Item',
-  'ui.siteSetting.menuConfigurations.save': 'Bulk Save Menu Configuration',
+  'ui.siteSetting.menuConfigurations.save': 'Bulk Save Menu Configurations',
   'ui.siteSetting.menuConfigurations.submitted': 'All menu configurations saved.',
 
   'ui.siteSetting.name.label': 'Site Configuration Name',

@@ -45,7 +45,8 @@ const basePathMappings = {
   'workflows': 'ui.workflow.header',
   'wizard': 'ui.wizard.header',
   'admin': 'ui.admin.header',
-  'site-settings': 'ui.siteSetting.header'
+  'site-settings': 'ui.siteSetting.header',
+  'menu-configurations': 'ui.siteSetting.menu.header'
 }
 
 const candidatePathMappings = {
