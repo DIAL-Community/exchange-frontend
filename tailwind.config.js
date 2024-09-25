@@ -216,6 +216,9 @@ module.exports = {
         },
         'health-light-gray': {
           DEFAULT: '#f2f2f2'
+        },
+        'health-green': {
+          DEFAULT: '#02814f'
         }
       },
       maxWidth: {

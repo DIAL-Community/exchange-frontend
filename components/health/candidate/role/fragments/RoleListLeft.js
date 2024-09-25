@@ -1,5 +1,5 @@
-import Bookmark from '../../../../shared/common/Bookmark'
-import Share from '../../../../shared/common/Share'
+import Bookmark from '../../../shared/Bookmark'
+import Share from '../../../shared/Share'
 import { ObjectType } from '../../../../utils/constants'
 
 const RoleListLeft = () => {

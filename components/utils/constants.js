@@ -121,7 +121,7 @@ export const ProductExtraAttributeNames = [
   'Funders'
 ]
 
-export const ProductAdditionalExtraAttributeNames = [
+export const ProductMaturityAttributeNames = [
   'Deployments',
   'Deployed Countries',
   'Active Users',

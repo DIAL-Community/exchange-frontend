@@ -42,7 +42,7 @@ const OrganizationCard = ({ displayType, organization, dismissHandler, urlPrefix
         className='bg-white shadow-lg rounded-xl h-[320px] border border-dial-gray hover:border-transparent'>
         <div className="flex flex-col h-full">
           <div className="flex justify-center items-center py-12 bg-white rounded-xl
-                          border-health-red border-4 mx-4 my-4 max-h-[180px]"
+                          border-health-green border-4 mx-4 my-4 max-h-[180px]"
           >
             {organization.imageFile.indexOf('placeholder.svg') < 0 &&
               <div className="inline my-12 mx-16">

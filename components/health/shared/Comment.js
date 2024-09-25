@@ -25,7 +25,7 @@ const Comment = ({ entityKey, scrollRef }) => {
         {format('ui.comment.description', { entity: format(entityKey) })}
       </div>
       <div className='flex text-white'>
-        <div className='bg-health-red rounded-md text-sm'>
+        <div className='bg-health-blue rounded-md text-sm'>
           <button type='button' className='px-5 py-3' onClick={scrollToComment}>
             {format('ui.comment.buttonTitle')}
           </button>
