@@ -9,10 +9,10 @@ const MenuConfigurationViewer = ({ menuConfiguration }) => {
     <div className='px-8 py-6'>
       <div className='flex flex-col gap-3 text-sm'>
         <div className='flex flex-col gap-1'>
-          <div className='font-medium text-sm'>
+          <div className='font-medium'>
             <FormattedMessage id='ui.siteSetting.menu.name' />
           </div>
-          <div className='font-semibold'>
+          <div className='text-base font-semibold'>
             {menuConfiguration.name}
           </div>
         </div>

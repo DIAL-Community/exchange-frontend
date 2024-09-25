@@ -56,6 +56,7 @@ const MenuConfigurations = ({ slug }) => {
   }
 
   const buildCommonConfiguration = () => ({
+    id: crypto.randomUUID(),
     external: false,
     destinationUrl: '/',
     parentSlug: 'n/a',

@@ -75,6 +75,7 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
         name,
         external,
         destinationUrl,
+        id: menuConfiguration?.id,
         slug: menuConfiguration?.slug,
         type: menuConfiguration?.type,
         parentSlug: parentMenuConfiguration?.slug ?? 'n/a'

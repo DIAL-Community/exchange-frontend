@@ -43,10 +43,32 @@ const DeleteMenuConfiguration = (props) => {
 
   const executeBulkUpdate = () => {
     if (user) {
+      const currentMenuConfigurations = [...menuConfigurations]
+      // Try finding the id to be deleted in the top level menu configurations
+      let indexOfMenuConfiguration = menuConfigurations.findIndex(m => m.id === menuConfiguration.id)
+      if (indexOfMenuConfiguration >= 0) {
+        // Remove the menu configuration from the current menu configurations
+        currentMenuConfigurations.splice(indexOfMenuConfiguration, 1)
+      } else {
+        // Try finding the id to be deleted in the menu item configurations
+        indexOfMenuConfiguration = menuConfigurations.findIndex(m => {
+          return m.menuItemConfigurations.findIndex(mi => mi.id === menuConfiguration.id) >= 0
+        })
+        const existingParentMenu = currentMenuConfigurations[indexOfMenuConfiguration]
+        // Rebuild the parent menu configuration without the menu item configuration
+        const currentParentMenu = {
+          ...existingParentMenu,
+          menuItemConfigurations: [
+            ...existingParentMenu.menuItemConfigurations.filter(mi => mi.id !== menuConfiguration.id)
+          ]
+        }
+        currentMenuConfigurations[indexOfMenuConfiguration] = currentParentMenu
+      }
+
       const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug,
-        menuConfigurations
+        menuConfigurations: currentMenuConfigurations
       }
 
       bulkUpdateMenu({

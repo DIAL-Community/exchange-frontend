@@ -67,6 +67,7 @@ export const UPDATE_SITE_SETTING_MENU_CONFIGURATIONS = gql`
 
 export const UPDATE_SITE_SETTING_MENU_CONFIGURATION = gql`
   mutation UpdateSiteSettingMenuConfiguration(
+    $id: String!
     $siteSettingSlug: String!
     $slug:  String
     $name: String!
@@ -77,6 +78,7 @@ export const UPDATE_SITE_SETTING_MENU_CONFIGURATION = gql`
   ) {
     updateSiteSettingMenuConfiguration(
       siteSettingSlug: $siteSettingSlug
+      id: $id
       slug: $slug
       name: $name
       type: $type
