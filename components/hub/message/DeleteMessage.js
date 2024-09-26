@@ -54,8 +54,8 @@ const DeleteMessage = ({ message }) => {
         )
         setIsConfirmDialogOpen(false)
       } else {
-        const [ initialErrorMessage ] = response.errors
-        showFailureMessage(initialErrorMessage)
+        const [ firstErrorMessage ] = response.errors
+        showFailureMessage(firstErrorMessage)
         setIsConfirmDialogOpen(false)
         reset()
       }

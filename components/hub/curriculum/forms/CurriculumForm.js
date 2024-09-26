@@ -86,8 +86,8 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
           () => router.push(`/hub/curriculum/${response.playbook.slug}`)
         )
       } else {
-        const [ initialErrorMessage ] = response.errors
-        showFailureMessage(initialErrorMessage)
+        const [ firstErrorMessage ] = response.errors
+        showFailureMessage(firstErrorMessage)
         setMutating(false)
         reset()
       }

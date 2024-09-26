@@ -10,6 +10,7 @@ import { UPDATE_SITE_SETTING_MENU_CONFIGURATIONS } from '../../shared/mutation/s
 
 const DeleteMenuConfiguration = (props) => {
   const { siteSettingSlug, menuConfiguration, menuConfigurations, setMenuConfigurations } = props
+
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -20,23 +21,28 @@ const DeleteMenuConfiguration = (props) => {
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
 
+  const [mutating, setMutating] = useState(false)
+
   const { locale } = useRouter()
-  const [bulkUpdateMenu, { called, reset }] = useMutation(UPDATE_SITE_SETTING_MENU_CONFIGURATIONS, {
+  const [bulkUpdateMenu, { reset }] = useMutation(UPDATE_SITE_SETTING_MENU_CONFIGURATIONS, {
     onError: (error) => {
-      setDisplayConfirmDialog(false)
       showFailureMessage(error?.message)
+      setDisplayConfirmDialog(false)
+      setMutating(false)
       reset()
     },
     onCompleted: (data) => {
       const { updateSiteSettingMenuConfigurations: response } = data
       if (response.errors.length === 0 && response.siteSetting) {
-        setDisplayConfirmDialog(false)
         showSuccessMessage(<FormattedMessage id='ui.siteSetting.menuConfigurations.submitted' />)
         setMenuConfigurations([...response.siteSetting.menuConfigurations])
-      } else {
         setDisplayConfirmDialog(false)
-        const [ initialErrorMessage ] = response.errors
-        showFailureMessage(initialErrorMessage)
+        setMutating(false)
+      } else {
+        const [ firstErrorMessage ] = response.errors
+        showFailureMessage(firstErrorMessage)
+        setDisplayConfirmDialog(false)
+        setMutating(false)
         reset()
       }
     }
@@ -44,8 +50,9 @@ const DeleteMenuConfiguration = (props) => {
 
   const executeBulkUpdate = () => {
     if (user) {
+      setMutating(true)
       const currentMenuConfigurations = [...menuConfigurations]
-      // Try finding the id to be deleted in the top level menu configurations
+      // Try to find the index in the top level menu configurations
       let indexOfMenuConfiguration = menuConfigurations.findIndex(m => m.id === menuConfiguration.id)
       if (indexOfMenuConfiguration >= 0) {
         // Remove the menu configuration from the current menu configurations
@@ -110,7 +117,7 @@ const DeleteMenuConfiguration = (props) => {
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={executeBulkUpdate}
-        isConfirming={called}
+        isConfirming={mutating}
       />
     </>
   )

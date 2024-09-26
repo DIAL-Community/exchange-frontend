@@ -51,8 +51,8 @@ const MenuConfigurations = ({ slug }) => {
         showSuccessMessage(<FormattedMessage id='ui.siteSetting.menuConfigurations.submitted' />)
         setMenuConfigurations([...response.siteSetting.menuConfigurations])
       } else {
-        const [ initialErrorMessage ] = response.errors
-        showFailureMessage(initialErrorMessage)
+        const [ firstErrorMessage ] = response.errors
+        showFailureMessage(firstErrorMessage)
         setMutating(false)
         reset()
       }

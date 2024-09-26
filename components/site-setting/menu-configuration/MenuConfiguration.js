@@ -107,6 +107,7 @@ const MenuConfiguration = (props) => {
             siteSettingSlug={siteSettingSlug}
             menuConfiguration={menuConfiguration}
             parentMenuConfiguration={parentMenuConfiguration}
+            menuConfigurations={menuConfigurations}
             setMenuConfigurations={setMenuConfigurations}
           />
           : <MenuConfigurationViewer menuConfiguration={menuConfiguration} />

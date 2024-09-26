@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -15,7 +15,10 @@ import ValidationError from '../../shared/form/ValidationError'
 import { UPDATE_SITE_SETTING_MENU_CONFIGURATION } from '../../shared/mutation/siteSetting'
 import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
 
-const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMenuConfiguration, setMenuConfigurations }) => {
+const MenuConfigurationEditor = (props) => {
+  const { menuConfigurations, setMenuConfigurations } = props
+  const { siteSettingSlug, menuConfiguration, parentMenuConfiguration } = props
+
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -43,8 +46,8 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
         showSuccessMessage(format('ui.siteSetting.menu.submitted'))
         setMenuConfigurations([...response.siteSetting.menuConfigurations])
       } else {
-        const [ initialErrorMessage ] = response.errors
-        showFailureMessage(initialErrorMessage)
+        const [ firstErrorMessage ] = response.errors
+        showFailureMessage(firstErrorMessage)
         setMutating(false)
         reset()
       }
@@ -71,6 +74,42 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
       destinationUrl: menuConfiguration?.destinationUrl
     }
   })
+
+  useEffect(() => {
+    const { unsubscribe } = watch((value) => {
+      const { name, type, external, destinationUrl } = value
+      const currentMenuConfiguration = {
+        ...menuConfiguration,
+        name: name ?? menuConfiguration?.name,
+        external: external ?? menuConfiguration?.external,
+        type: type ? type?.value : menuConfiguration?.type,
+        destinationUrl: destinationUrl ?? menuConfiguration?.destinationUrl
+      }
+
+      const currentMenuConfigurations = [...menuConfigurations]
+      // Try to find the index in the top level menu configurations
+      let indexOfMenuConfiguration = menuConfigurations.findIndex(m => m.id === menuConfiguration.id)
+      if (indexOfMenuConfiguration >= 0) {
+        // Update at that index using the current menu configuration.
+        currentMenuConfigurations[indexOfMenuConfiguration] = currentMenuConfiguration
+      } else {
+        // Try to find the index of the parent in the top level menu configurations
+        indexOfMenuConfiguration = menuConfigurations.findIndex(m => {
+          return m.menuItemConfigurations.findIndex(mi => mi.id === menuConfiguration.id) >= 0
+        })
+        const currentParentMenuConfiguration = currentMenuConfigurations[indexOfMenuConfiguration]
+        const indexOfMenuItemConfiguration = currentParentMenuConfiguration
+          .menuItemConfigurations.findIndex(mi => mi.id === menuConfiguration.id)
+
+        currentParentMenuConfiguration[indexOfMenuItemConfiguration] = currentMenuConfiguration
+        currentMenuConfigurations[indexOfMenuConfiguration] = currentParentMenuConfiguration
+      }
+
+      setMenuConfigurations([...currentMenuConfigurations])
+    })
+
+    return () => unsubscribe()
+  }, [watch, menuConfiguration, menuConfigurations, setMenuConfigurations])
 
   // Watch the current external value to toggle between url input and standard text input.
   const currentExternalValue = watch('external')

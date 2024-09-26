@@ -33,8 +33,8 @@ const MessageCard = ({ message }) => {
         setMutating(false)
         showSuccessMessage(format('hub.broadcast.visibility.updated'))
       } else {
-        const [ initialErrorMessage ] = response.errors
-        showFailureMessage(initialErrorMessage)
+        const [ firstErrorMessage ] = response.errors
+        showFailureMessage(firstErrorMessage)
         setMutating(false)
         reset()
       }
