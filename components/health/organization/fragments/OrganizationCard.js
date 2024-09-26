@@ -49,7 +49,7 @@ const OrganizationCard = ({ displayType, organization, dismissHandler, urlPrefix
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
-                  className="object-contain"
+                  className="object-contain" width="160px"
                 />
               </div>
             }
