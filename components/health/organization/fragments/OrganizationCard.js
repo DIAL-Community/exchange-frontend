@@ -45,7 +45,7 @@ const OrganizationCard = ({ displayType, organization, dismissHandler, urlPrefix
                           border-health-green border-4 mx-4 my-4 max-h-[180px]"
           >
             {organization.imageFile.indexOf('placeholder.svg') < 0 &&
-              <div className="inline my-12 mx-16">
+              <div className="inline my-4 mx-6">
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
