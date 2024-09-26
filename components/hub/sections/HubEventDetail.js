@@ -57,7 +57,8 @@ const EventDetail = ({ event }) => {
         setMutating(false)
         showSuccessMessage(format('hub.broadcast.visibility.updated'))
       } else {
-        showFailureMessage(response.errors)
+        const [ initialErrorMessage ] = response.errors
+        showFailureMessage(initialErrorMessage)
         setMutating(false)
         reset()
       }

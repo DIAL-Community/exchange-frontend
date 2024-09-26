@@ -2856,9 +2856,14 @@ export const en = {
   'ui.siteSetting.menu.external': 'External Url Target',
   'ui.siteSetting.menu.save': 'Save Menu Configuration',
   'ui.siteSetting.menu.submitted': 'Menu configuration saved.',
-  'ui.siteSetting.menu.dropdown': 'Dropdown Menu',
-  'ui.siteSetting.menu.separator': 'Separator',
-  'ui.siteSetting.menu.locked': 'Locked Default',
+
+  'ui.siteSetting.menu.type': 'Type of Item',
+
+  'ui.siteSetting.menu.type.menu': 'Menu',
+  'ui.siteSetting.menu.type.menuItem': 'Menu Item',
+  'ui.siteSetting.menu.type.separator': 'Separator',
+  'ui.siteSetting.menu.type.dropdown': 'Dropdown Menu',
+  'ui.siteSetting.menu.type.locked': 'Locked System Menu',
 
   'ui.siteSetting.menu.deleteMenu': 'Deleting Menu Configuration',
   'ui.siteSetting.menu.deleteMenuDescription': `
@@ -2871,7 +2876,8 @@ export const en = {
 
   'ui.siteSetting.menu.appendMenu': 'Append Menu',
   'ui.siteSetting.menu.appendHelpMenu': 'Append Help Menu',
-  'ui.siteSetting.menu.appendUserMenu': 'Append User Menu',
+  'ui.siteSetting.menu.appendAdminMenu': 'Append Admin Menu',
+  'ui.siteSetting.menu.appendLoginMenu': 'Append Login Menu',
   'ui.siteSetting.menu.appendLanguageMenu': 'Append Language Menu',
   'ui.siteSetting.menu.appendMenuItem': 'Append Menu Item',
   'ui.siteSetting.menuConfigurations.save': 'Bulk Save Menu Configurations',

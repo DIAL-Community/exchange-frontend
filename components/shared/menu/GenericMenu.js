@@ -1,16 +1,24 @@
 import Link from 'next/link'
+import { FormattedMessage } from 'react-intl'
 import { MenuHeader } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
 
-const SEPARATOR_STYLES = 'bg-dial-slate-300 text-dial-stratos font-semibold px-4 py-3'
-const SINGLE_MENU_STYLES = 'pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
+const SEPARATOR_STYLES = `
+  px-4 py-3 
+  bg-dial-slate-300 text-dial-stratos font-semibold
+  first:rounded-t-md last:rounded-b-md
+`
+const SINGLE_MENU_STYLES = `
+  pl-1 py-2 cursor-pointer
+  border-b border-transparent hover:border-dial-sunshine
+`
 
 const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) => {
   const { id, name, destinationUrl, external, menuItemConfigurations } = menuConfiguration
 
   const separatorRenderer = (name, styles) => (
     <div key={id} className={styles} role='separator'>
-      {name}
+      <FormattedMessage id={name} defaultMessage={name} />
     </div>
   )
 
@@ -23,13 +31,13 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
       rel='noopener noreferrer'
       className={styles}
     >
-      {name}
+      <FormattedMessage id={name} defaultMessage={name} />
     </a>
   )
 
   const internalLinkRenderer = (id, name, destinationUrl, styles) => (
     <Link key={id} href={destinationUrl} role='menu-item' className={styles}>
-      {name}
+      <FormattedMessage id={name} defaultMessage={name} />
     </Link>
   )
 
@@ -37,7 +45,7 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
     <>
       <MenuHeader
         id={id}
-        title={name}
+        title={<FormattedMessage id={name} defaultMessage={name} />}
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

@@ -9,6 +9,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import { Loading } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
+import Select from '../../shared/form/Select'
 import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
 import { UPDATE_SITE_SETTING_MENU_CONFIGURATION } from '../../shared/mutation/siteSetting'
@@ -42,12 +43,22 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
         showSuccessMessage(format('ui.siteSetting.menu.submitted'))
         setMenuConfigurations([...response.siteSetting.menuConfigurations])
       } else {
-        showFailureMessage(response.errors)
+        const [ initialErrorMessage ] = response.errors
+        showFailureMessage(initialErrorMessage)
         setMutating(false)
         reset()
       }
     }
   })
+
+  const menuTypeOptions = [{
+    label: format('ui.siteSetting.menu.type.menuItem'),
+    value: 'menu-item'
+  },
+  {
+    label: format('ui.siteSetting.menu.type.separator'),
+    value: 'separator'
+  }]
 
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onSubmit',
@@ -55,12 +66,18 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
     shouldUnregister: true,
     defaultValues: {
       name: menuConfiguration?.name,
+      type: menuTypeOptions.find(type => menuConfiguration?.type === type.value),
       external: menuConfiguration?.external,
       destinationUrl: menuConfiguration?.destinationUrl
     }
   })
 
-  const isExternalTarget = watch('external')
+  // Watch the current external value to toggle between url input and standard text input.
+  const currentExternalValue = watch('external')
+  // Watch the current menu type value to toggle destination url:
+  // * Only for menu item. Separator doesn't have destination url.
+  // * Menu without child menu. Menu with child menu will have their destination url ignored.
+  const currentMenuTypeValue = watch('type') ?? { value: menuConfiguration?.type }
 
   const doUpsert = async (data) => {
     if (user) {
@@ -68,16 +85,16 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, external, destinationUrl } = data
+      const { name, external, type, destinationUrl } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         siteSettingSlug,
-        name,
-        external,
-        destinationUrl,
         id: menuConfiguration?.id,
-        type: menuConfiguration?.type,
-        parentId: parentMenuConfiguration?.id ?? 'n/a'
+        name: name ?? menuConfiguration?.name,
+        parentId: parentMenuConfiguration?.id ?? 'n/a',
+        external: external ?? menuConfiguration?.external,
+        type: type ? type?.value : menuConfiguration?.type,
+        destinationUrl: destinationUrl ?? menuConfiguration?.destinationUrl
       }
 
       updateExchangeMenu({
@@ -108,20 +125,48 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
             <Input
               {...register('name', { required: format('validation.required') })}
               id='name'
-              disabled={menuConfiguration.type !== 'menu' && menuConfiguration.type !== 'menu-item'}
+              disabled={
+                currentMenuTypeValue?.value !== 'menu' &&
+                currentMenuTypeValue?.value !== 'menu-item' &&
+                currentMenuTypeValue?.value !== 'separator'
+              }
               placeholder={format('ui.siteSetting.menu.name')}
               isInvalid={errors.name}
             />
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
-          {menuConfiguration.type === 'menu-item' &&
+          {(currentMenuTypeValue?.value === 'menu-item' || currentMenuTypeValue?.value === 'separator') &&
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='type' className='required-field'>
+                {format('ui.siteSetting.menu.type')}
+              </label>
+              <Controller
+                name='type'
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    id='type'
+                    name='type'
+                    isSearch
+                    isBorderless
+                    options={menuTypeOptions}
+                    placeholder={format('ui.siteSetting.menu.type')}
+                    isInvalid={errors.maturity}
+                  />
+                )}
+                rules={{ required: format('validation.required') }}
+              />
+              {errors.maturity && <ValidationError value={errors.maturity?.message} />}
+            </div>
+          }
+          {currentMenuTypeValue?.value === 'menu-item' &&
             <div className='flex flex-col gap-y-2'>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='destinationUrl'>
                   {format('ui.siteSetting.menu.destinationUrl')}
                 </label>
-                <div>{isExternalTarget}</div>
-                {isExternalTarget
+                {currentExternalValue
                   ? <Controller
                     name='destinationUrl'
                     control={control}
@@ -151,14 +196,13 @@ const MenuConfigurationEditor = ({ siteSettingSlug, menuConfiguration, parentMen
               </label>
             </div>
           }
-          {menuConfiguration.type === 'menu' && menuConfiguration.menuItemConfigurations.length <= 0 &&
+          {currentMenuTypeValue?.value === 'menu' && menuConfiguration.menuItemConfigurations.length <= 0 &&
             <div className='flex flex-col gap-y-2'>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='destinationUrl'>
                   {format('ui.siteSetting.menu.destinationUrl')}
                 </label>
-                <div>{isExternalTarget}</div>
-                {isExternalTarget
+                {currentExternalValue
                   ? <Controller
                     name='destinationUrl'
                     control={control}

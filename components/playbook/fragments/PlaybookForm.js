@@ -84,7 +84,8 @@ export const PlaybookForm = React.memo(({ playbook }) => {
           () => router.push(`/${router.locale}/playbooks/${response.playbook.slug}`)
         )
       } else {
-        showFailureMessage(response.errors)
+        const [ initialErrorMessage ] = response.errors
+        showFailureMessage(initialErrorMessage)
         setMutating(false)
         reset()
       }

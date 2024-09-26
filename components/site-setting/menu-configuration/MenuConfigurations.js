@@ -51,7 +51,8 @@ const MenuConfigurations = ({ slug }) => {
         showSuccessMessage(<FormattedMessage id='ui.siteSetting.menuConfigurations.submitted' />)
         setMenuConfigurations([...response.siteSetting.menuConfigurations])
       } else {
-        showFailureMessage(response.errors)
+        const [ initialErrorMessage ] = response.errors
+        showFailureMessage(initialErrorMessage)
         setMutating(false)
         reset()
       }
@@ -168,19 +169,23 @@ const MenuConfigurations = ({ slug }) => {
       </div>
       <div className='flex flex-col gap-1 py-4'>
         <div className='flex gap-1 ml-auto mb-3'>
-          {['user', 'help', 'language'].map((type) => (
-            <button
-              key={type}
-              type='button'
-              className='submit-button'
-              onClick={() => appendDefaultMenu(type)}
-            >
-              <div className='flex gap-1 text-sm'>
-                <FormattedMessage id={`ui.siteSetting.menu.append${toTitleCase(type)}Menu`} />
-                <FaPlus className='my-auto' />
-              </div>
-            </button>
-          ))}
+          {['admin', 'login', 'help', 'language']
+            .filter((type) => {
+              return menuConfigurations.findIndex((m) => m.type === `locked-${type}-menu`) < 0
+            })
+            .map((type) => (
+              <button
+                key={type}
+                type='button'
+                className='submit-button'
+                onClick={() => appendDefaultMenu(type)}
+              >
+                <div className='flex gap-1 text-sm'>
+                  <FormattedMessage id={`ui.siteSetting.menu.append${toTitleCase(type)}Menu`} />
+                  <FaPlus className='my-auto' />
+                </div>
+              </button>
+            ))}
           <button type='button' className='submit-button' onClick={appendMenu}>
             <div className='flex gap-1 text-sm'>
               <FormattedMessage id='ui.siteSetting.menu.appendMenu' />

@@ -7,10 +7,10 @@ export const generateHeaderText = (menuConfiguration) => {
   return menuConfiguration.type === 'menu'
     ? menuConfiguration.menuItemConfigurations.length <= 0
       ? generateDestinationText(menuConfiguration.destinationUrl)
-      : generateStaticText('ui.siteSetting.menu.dropdown')
+      : generateStaticText('ui.siteSetting.menu.type.dropdown')
     : menuConfiguration.type === 'menu-item'
       ? generateDestinationText(menuConfiguration.destinationUrl)
       : menuConfiguration.type === 'separator'
-        ? generateStaticText('ui.siteSetting.menu.separator')
-        : generateStaticText('ui.siteSetting.menu.locked')
+        ? generateStaticText('ui.siteSetting.menu.type.separator')
+        : generateStaticText('ui.siteSetting.menu.type.locked')
 }

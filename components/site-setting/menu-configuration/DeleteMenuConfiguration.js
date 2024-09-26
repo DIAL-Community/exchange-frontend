@@ -35,7 +35,8 @@ const DeleteMenuConfiguration = (props) => {
         setMenuConfigurations([...response.siteSetting.menuConfigurations])
       } else {
         setDisplayConfirmDialog(false)
-        showFailureMessage(response.errors)
+        const [ initialErrorMessage ] = response.errors
+        showFailureMessage(initialErrorMessage)
         reset()
       }
     }

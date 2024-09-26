@@ -27,7 +27,7 @@ const Header = ({ isOnAuthPage = false }) => {
 
   const { tenant } = useActiveTenant()
 
-  const { user, isAdminUser } = useUser()
+  const { user } = useUser()
   const signInUser = (e) => {
     e.preventDefault()
     process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0'
@@ -92,30 +92,6 @@ const Header = ({ isOnAuthPage = false }) => {
     }
   })
 
-  const withUser =
-    <>
-      <li className='relative text-right'>
-        {isAdminUser &&
-          <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-        }
-      </li>
-      <li className='relative text-right intro-overview-signup'>
-        <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-      </li>
-    </>
-
-  const withoutUser =
-    <li className='text-right intro-signup'>
-      <a
-        href='signIn'
-        role='menuitem'
-        className={dropdownMenuStyles}
-        onClick={signInUser}
-      >
-        {format('header.signIn')}
-      </a>
-    </li>
-
   const { menuConfigurations } = useContext(SiteSettingContext)
 
   return (
@@ -132,30 +108,42 @@ const Header = ({ isOnAuthPage = false }) => {
         {!isOnAuthPage &&
           <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
             {menuConfigurations.map((menuConfiguration) => {
-              if (menuConfiguration.type === 'menu' || menuConfiguration.type === 'menu-item') {
-                return (
-                  <li key={menuConfiguration.id} className='relative text-right'>
+              switch (menuConfiguration.type) {
+                case 'menu-item':
+                case 'menu':
+                  return <li key={menuConfiguration.id} className='relative text-right'>
                     <GenericMenu
                       menuConfiguration={menuConfiguration}
                       currentOpenMenu={currentOpenMenu}
                       onToggleDropdown={toggleDropdownSwitcher}
                     />
                   </li>
-                )
-              } else if (menuConfiguration.type === 'locked-user-menu') {
-                return user ? withUser : withoutUser
-              } else if (menuConfiguration.type === 'locked-language-menu') {
-                return (
-                  <li key={menuConfiguration.id} className='relative text-right'>
-                    <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                  </li>
-                )
-              } else if (menuConfiguration.type === 'locked-help-menu') {
-                return (
-                  <li key={menuConfiguration.id} className='relative text-right'>
+                case 'locked-help-menu':
+                  return <li key={menuConfiguration.id} className='relative text-right'>
                     <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                   </li>
-                )
+                case 'locked-language-menu':
+                  return <li key={menuConfiguration.id} className='relative text-right'>
+                    <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                  </li>
+                case 'locked-login-menu':
+                  return user
+                    ? <li key='logged-in-menu' className='relative text-right intro-signup'>
+                      <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                    </li>
+                    : <li key='sign-in-menu' className='text-right intro-signup'>
+                      <a href='signIn' role='menuitem' className={dropdownMenuStyles} onClick={signInUser}>
+                        {format('header.signIn')}
+                      </a>
+                    </li>
+                case 'locked-admin-menu':
+                  return user && user?.isAdminUser
+                    ? <li key='user-admin-menu' className='relative text-right'>
+                      <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                    </li>
+                    : null
+                default:
+                  return null
               }
             })}
           </ul>
