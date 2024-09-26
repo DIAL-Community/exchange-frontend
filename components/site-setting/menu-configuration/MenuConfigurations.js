@@ -15,10 +15,21 @@ const MenuConfigurations = ({ slug }) => {
   const [mutating, setMutating] = useState(false)
   const [menuConfigurations, setMenuConfigurations] = useState([])
 
+  const [menuCounter, setMenuCounter] = useState(0)
+  const [menuItemCounter, setMenuItemCounter] = useState(0)
+
   const { loading, error, data } = useQuery(SITE_SETTING_DETAIL_QUERY, {
     variables: { slug },
     onCompleted: (data) => {
       setMenuConfigurations(data.siteSetting.menuConfigurations)
+      let menuCounter = 0
+      let menuItemCounter = 0
+      data.siteSetting.menuConfigurations.forEach((menuConfiguration) => {
+        menuCounter += 1
+        menuItemCounter += menuConfiguration.menuItemConfigurations.length
+      })
+      setMenuCounter(menuCounter)
+      setMenuItemCounter(menuItemCounter)
     }
   })
 
@@ -69,7 +80,28 @@ const MenuConfigurations = ({ slug }) => {
       {
         ...buildCommonConfiguration(),
         type: 'menu',
-        name: `Next Menu ${menuConfigurations.length + 1}`,
+        name: `Next Menu ${menuCounter + 1}`,
+        menuItemConfigurations: []
+      }
+    ])
+    setMenuCounter(menuCounter + 1)
+  }
+
+  const toTitleCase = (str) => {
+    return str.replace(/\w\S*/g, (txt) => {
+      return txt.slice(0, 1).toUpperCase() + txt.slice(1).toLowerCase()
+    })
+  }
+
+  const appendDefaultMenu = (type) => {
+    const menuType = `locked-${type}-menu`
+    const menuName = `${toTitleCase(type)} Menu`
+    setMenuConfigurations([
+      ...menuConfigurations,
+      {
+        ...buildCommonConfiguration(),
+        type: menuType,
+        name: menuName,
         menuItemConfigurations: []
       }
     ])
@@ -89,13 +121,14 @@ const MenuConfigurations = ({ slug }) => {
         {
           ...buildCommonConfiguration(),
           type: 'menu-item',
-          name: `Next Menu Item ${existingParentMenu.menuItemConfigurations.length + 1}`
+          name: `Next Menu Item ${menuItemCounter + 1}`
         }
       ]
     }
     // Replace the previous parent menu (using the index) with the updated parent menu.
     currentMenuConfigurations[existingParentIndex] = currentParentMenu
     setMenuConfigurations([...currentMenuConfigurations])
+    setMenuItemCounter(menuItemCounter + 1)
   }
 
   const executeBulkUpdate = () => {
@@ -134,7 +167,20 @@ const MenuConfigurations = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='flex flex-col gap-1 py-4'>
-        <div className='flex ml-auto mb-3'>
+        <div className='flex gap-1 ml-auto mb-3'>
+          {['user', 'help', 'language'].map((type) => (
+            <button
+              key={type}
+              type='button'
+              className='submit-button'
+              onClick={() => appendDefaultMenu(type)}
+            >
+              <div className='flex gap-1 text-sm'>
+                <FormattedMessage id={`ui.siteSetting.menu.append${toTitleCase(type)}Menu`} />
+                <FaPlus className='my-auto' />
+              </div>
+            </button>
+          ))}
           <button type='button' className='submit-button' onClick={appendMenu}>
             <div className='flex gap-1 text-sm'>
               <FormattedMessage id='ui.siteSetting.menu.appendMenu' />

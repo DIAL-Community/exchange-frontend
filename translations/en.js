@@ -2870,6 +2870,9 @@ export const en = {
   `,
 
   'ui.siteSetting.menu.appendMenu': 'Append Menu',
+  'ui.siteSetting.menu.appendHelpMenu': 'Append Help Menu',
+  'ui.siteSetting.menu.appendUserMenu': 'Append User Menu',
+  'ui.siteSetting.menu.appendLanguageMenu': 'Append Language Menu',
   'ui.siteSetting.menu.appendMenuItem': 'Append Menu Item',
   'ui.siteSetting.menuConfigurations.save': 'Bulk Save Menu Configurations',
   'ui.siteSetting.menuConfigurations.submitted': 'All menu configurations saved.',
