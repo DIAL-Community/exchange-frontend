@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
+import { FaArrowDown, FaArrowUp, FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import DeleteMenuConfiguration from './DeleteMenuConfiguration'
@@ -38,6 +38,48 @@ const MenuConfiguration = (props) => {
   const { user } = useUser()
   const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
   const editable = () => ['menu', 'menu-item', 'separator'].indexOf(menuConfiguration.type) >= 0
+
+  const moveMenuConfiguration = (direction) => {
+    // Find the index of the current menu configuration.
+    const currentMenuConfigurations = [...menuConfigurations]
+
+    // Index of the current configuration. This could be parent menu or menu item.
+    let currentIndex = -1
+
+    currentIndex = currentMenuConfigurations.findIndex(m => m.id === menuConfiguration.id)
+    if (currentIndex >= 0) {
+      const updatedIndex = currentIndex + direction
+      // Only swapping if the updated index is within the range.
+      if (updatedIndex >= 0 && updatedIndex <= currentMenuConfigurations.length) {
+        const currentMenuConfiguration = currentMenuConfigurations[currentIndex]
+        // Swap the current menu configuration with the updated index.
+        currentMenuConfigurations[currentIndex] = currentMenuConfigurations[updatedIndex]
+        currentMenuConfigurations[updatedIndex] = currentMenuConfiguration
+      }
+    } else {
+      currentIndex = currentMenuConfigurations.findIndex(m => m.id === parentMenuConfiguration.id)
+      const currentParentConfiguration = currentMenuConfigurations[currentIndex]
+      const currentMenuItemConfigurations = [...currentParentConfiguration.menuItemConfigurations]
+      // Find the index of the current menu configuration in the array item configurations.
+      const currentChildIndex = currentMenuItemConfigurations.findIndex(m => m.id === menuConfiguration.id)
+      const updatedChildIndex = currentChildIndex + direction
+      // Only swapping if the updated index is within the range.
+      if (updatedChildIndex >= 0 && updatedChildIndex <= currentMenuItemConfigurations.length) {
+        const currentMenuItemConfiguration = currentMenuItemConfigurations[currentChildIndex]
+        // Swap the current menu item configuration with the updated index.
+        currentMenuItemConfigurations[currentChildIndex] = currentMenuItemConfigurations[updatedChildIndex]
+        currentMenuItemConfigurations[updatedChildIndex] = currentMenuItemConfiguration
+      }
+
+      // Rebuild the parent menu configuration with the updated menu item configurations.
+      currentMenuConfigurations[currentIndex] = {
+        ...currentParentConfiguration,
+        menuItemConfigurations: currentMenuItemConfigurations
+      }
+    }
+
+    setMenuConfigurations(currentMenuConfigurations)
+  }
 
   return (
     <div className='flex flex-col'>
@@ -86,6 +128,24 @@ const MenuConfiguration = (props) => {
                   menuConfigurations={menuConfigurations}
                   setMenuConfigurations={setMenuConfigurations}
                 />
+              }
+              {allowedToEdit() &&
+                <div className='flex gap-1'>
+                  <button
+                    type='button'
+                    onClick={() => moveMenuConfiguration(-1)}
+                    className='cursor-pointer bg-white px-2 py-1 rounded'
+                  >
+                    <FaArrowUp className='my-auto text-dial-stratos' />
+                  </button>
+                  <button
+                    type='button'
+                    onClick={() => moveMenuConfiguration(1)}
+                    className='cursor-pointer bg-white px-2 py-1 rounded'
+                  >
+                    <FaArrowDown className='my-auto text-dial-stratos' />
+                  </button>
+                </div>
               }
               <button
                 type='button'
