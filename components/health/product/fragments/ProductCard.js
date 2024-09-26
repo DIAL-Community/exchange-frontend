@@ -66,7 +66,7 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                  className="object-contain"
+                  className="object-contain" width="160px"
                 />
               </div>
             }
