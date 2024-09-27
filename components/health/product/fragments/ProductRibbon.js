@@ -1,38 +1,25 @@
-import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
 import Breadcrumb from '../../../shared/Breadcrumb'
 
 const ProductRibbon = () => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const titleImage =
-    <img
-      src='/ui/v1/product-header.svg'
-      alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-      width={70}
-      height={70}
-      className='object-contain'
-    />
-
   return (
-    <div className={'bg-health-blue ribbon-outer z-40'}>
-      <div className='flex flex-col items-center gap-y-1'>
-        <div className='mr-auto px-4 lg:px-8 xl:px-56 my-3 text-white'>
-          <Breadcrumb slugNameMapping='product' />
-        </div>
-        <div className='ribbon-inner w-full my-auto'>
-          <div className='flex px-4 lg:px-8 xl:px-56'>
-            <div className='basis-full lg:basis-3/4 flex flex-col gap-4'>
-              <div className='flex gap-4 my-auto'>
-                {titleImage}
-                <div className={'text-2xl font-base text-white my-auto flex-grow'}>
-                  HealthTech Innovations
-                </div>
-              </div>
+    <div className='bg-health-light-gray'>
+      <div className='mr-auto px-4 lg:px-8 xl:px-56 my-3 text-health-blue'>
+        <Breadcrumb slugNameMapping='product' />
+      </div>
+      <div className='w-full flex flex-row gap-2'>
+        <div className='w-1/2 pl-4 lg:pl-8 xl:pl-56 pr-12 py-12 text-health-blue text-lg flex flex-row gap-2'>
+          <div className='flex flex-col gap-2 max-w-prose'>
+            <div className='text-3xl leading-tight font-bold py-3'>
+              Health Innovations
+            </div>
+            <div className='max-w-prose'>
+              Search and find HealthTech Solutions developed by local Innovators across
+              the African continent
             </div>
           </div>
         </div>
+        <img className='h-80 w-1/2 pr-4 lg:pr-8 xl:pr-56' alt='Africa CDC Health Marketplace'
+          src='/ui/health/landing-img1.png' />
       </div>
     </div>
   )
