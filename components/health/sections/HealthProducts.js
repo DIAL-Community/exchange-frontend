@@ -7,14 +7,14 @@ import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
 import ListStructure from '../product/fragments/ListStructure'
 
-const HealthProducts = () => {
+const HealthProducts = ({ onlyFeatured = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search, isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags, productStage } = useContext(ProductFilterContext)
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
-  const { softwareCategories, softwareFeatures } = useContext(ProductFilterContext)
+  const { softwareCategories, softwareFeatures, featured } = useContext(ProductFilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)
@@ -67,7 +67,8 @@ const HealthProducts = () => {
       showDpgaOnly,
       productStage,
       softwareCategories: softwareCategories.map(softwareCategory => softwareCategory.id),
-      softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id)
+      softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id),
+      featured: onlyFeatured
     }
   })
 
@@ -76,6 +77,7 @@ const HealthProducts = () => {
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
+        onlyFeatured={onlyFeatured}
       />
       { loading && format('ui.pagination.loadingInfo') }
       { error && format('ui.pagination.loadingInfoError') }
