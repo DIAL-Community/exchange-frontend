@@ -4,10 +4,12 @@ export const DELETE_SITE_SETTING = gql`
   mutation DeleteSiteSetting($id: ID!) {
     deleteSiteSetting(id: $id) {
       siteSetting {
-       id
-       slug
-       name
-       description
+        id
+        slug
+        name
+        description
+        enableMarketplace
+        defaultSetting
       }
       errors
     }
@@ -40,6 +42,8 @@ export const CREATE_SITE_SETTING = gql`
         name
         slug
         description
+        enableMarketplace
+        defaultSetting
       }
       errors
     }
@@ -67,8 +71,8 @@ export const UPDATE_SITE_SETTING_MENU_CONFIGURATIONS = gql`
 
 export const UPDATE_SITE_SETTING_MENU_CONFIGURATION = gql`
   mutation UpdateSiteSettingMenuConfiguration(
-    $id: String!
     $siteSettingSlug: String!
+    $id: String!
     $name: String!
     $type: String!
     $external: Boolean
@@ -94,19 +98,56 @@ export const UPDATE_SITE_SETTING_MENU_CONFIGURATION = gql`
   }
 `
 
-export const UPDATE_SITE_SETTING_HERO_CARD_CONFIGURATIONS = gql`
-  mutation UpdateSiteSettingHeroCardConfigurations(
+export const UPDATE_SITE_SETTING_HERO_CARD_SECTION = gql`
+  mutation UpdateSiteSettingHeroCardSection(
     $siteSettingSlug: String!
+    $heroCardTitle: String!
+    $heroCardDescription: String!
     $heroCardConfigurations: JSON!
   ) {
     updateSiteSettingHeroCardConfigurations(
       siteSettingSlug: $siteSettingSlug
+      heroCardTitle: $heroCardTitle
+      heroCardDescription: $heroCardDescription
       heroCardConfigurations: $heroCardConfigurations
     ) {
       siteSetting {
         id
         name
         heroCardConfigurations
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_SITE_SETTING_HERO_CARD_CONFIGURATION = gql`
+  mutation UpdateSiteSettingHeroCardConfiguration(
+    $siteSettingSlug: String!
+    $id: String!
+    $name: String!
+    $type: String!
+    $title: String!
+    $imageUrl: String!
+    $external: Boolean!
+    $description: String!
+    $destinationUrl: String!
+  ) {
+    updateSiteSettingHeroCardConfiguration(
+      siteSettingSlug: $siteSettingSlug
+      id: $id
+      name: $name
+      type: $type
+      title: $title
+      imageUrl: $imageUrl
+      external: $external
+      description: $description
+      destinationUrl: $destinationUrl
+    ) {
+      siteSetting {
+        id
+        name
+        menuConfigurations
       }
       errors
     }
@@ -120,12 +161,49 @@ export const UPDATE_SITE_SETTING_CAROUSEL_CONFIGURATIONS = gql`
   ) {
     updateSiteSettingCarouselConfigurations(
       siteSettingSlug: $siteSettingSlug
-      carouseConfigurations: $carouseConfigurations
+      carouselConfigurations: $carouselConfigurations
     ) {
       siteSetting {
         id
         name
-        carouseConfigurations
+        carouselConfigurations
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_SITE_SETTING_CAROUSEL_CONFIGURATION = gql`
+  mutation UpdateSiteSettingCarouselConfiguration(
+    $siteSettingSlug: String!
+    $id: String!
+    $name: String!
+    $type: String!
+    $title: String!
+    $imageUrl: String!
+    $external: Boolean!
+    $description: String!
+    $destinationUrl: String!
+    $calloutTitle: String!
+    $style: String!
+  ) {
+    updateSiteSettingCarouselConfiguration(
+      siteSettingSlug: $siteSettingSlug
+      id: $id
+      name: $name
+      type: $type
+      title: $title
+      imageUrl: $imageUrl
+      external: $external
+      description: $description
+      destinationUrl: $destinationUrl
+      calloutTitle: $calloutTitle
+      style: $style
+    ) {
+      siteSetting {
+        id
+        name
+        menuConfigurations
       }
       errors
     }

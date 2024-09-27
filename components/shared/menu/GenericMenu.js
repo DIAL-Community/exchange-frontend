@@ -26,7 +26,7 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
     <a
       key={id}
       href={`//${destinationUrl}`}
-      role='menu-item'
+      role='menu.item'
       target='_blank'
       rel='noopener noreferrer'
       className={styles}

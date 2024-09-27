@@ -1,5 +1,5 @@
 import { FormattedMessage } from 'react-intl'
-import { generateHeaderText } from './utilities'
+import { generateMenuHeaderText } from '../utilities'
 
 const MenuConfigurationViewer = ({ menuConfiguration }) => {
   return (
@@ -10,11 +10,14 @@ const MenuConfigurationViewer = ({ menuConfiguration }) => {
             <FormattedMessage id='ui.siteSetting.menu.name' />
           </div>
           <div className='text-base font-semibold'>
-            {menuConfiguration.name}
+            <FormattedMessage
+              id={menuConfiguration.name}
+              defaultMessage={menuConfiguration.name}
+            />
           </div>
         </div>
         <span className='text-xs font-normal my-auto'>
-          {generateHeaderText(menuConfiguration)}
+          {generateMenuHeaderText(menuConfiguration)}
         </span>
       </div>
     </div>

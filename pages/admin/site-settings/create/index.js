@@ -7,7 +7,7 @@ import Header from '../../../../components/shared/Header'
 import SiteSettingCreate from '../../../../components/site-setting/SiteSettingCreate'
 import ClientOnly from '../../../../lib/ClientOnly'
 
-const CreateBuildingBlockPage = ({ defaultTenants }) => {
+const CreateSiteSettingPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -40,4 +40,4 @@ export async function getServerSideProps() {
   return { props: { defaultTenants } }
 }
 
-export default CreateBuildingBlockPage
+export default CreateSiteSettingPage

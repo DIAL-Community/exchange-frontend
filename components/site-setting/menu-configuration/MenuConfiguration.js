@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { FaArrowDown, FaArrowUp, FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
+import { generateMenuHeaderText } from '../utilities'
 import DeleteMenuConfiguration from './DeleteMenuConfiguration'
 import MenuConfigurationEditor from './MenuConfigurationEditor'
 import MenuConfigurationViewer from './MenuConfigurationViewer'
-import { generateHeaderText } from './utilities'
 
 const MenuConfiguration = (props) => {
   // Only menu item will have the following properties
@@ -37,7 +37,7 @@ const MenuConfiguration = (props) => {
 
   const { user } = useUser()
   const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
-  const editable = () => ['menu', 'menu-item', 'separator'].indexOf(menuConfiguration.type) >= 0
+  const editable = () => ['menu', 'menu.item', 'separator'].indexOf(menuConfiguration.type) >= 0
 
   const moveMenuConfiguration = (direction) => {
     // Find the index of the current menu configuration.
@@ -58,8 +58,8 @@ const MenuConfiguration = (props) => {
       }
     } else {
       currentIndex = currentMenuConfigurations.findIndex(m => m.id === parentMenuConfiguration.id)
-      const currentParentConfiguration = currentMenuConfigurations[currentIndex]
-      const currentMenuItemConfigurations = [...currentParentConfiguration.menuItemConfigurations]
+      const currentParentMenuConfiguration = currentMenuConfigurations[currentIndex]
+      const currentMenuItemConfigurations = [...currentParentMenuConfiguration.menuItemConfigurations]
       // Find the index of the current menu configuration in the array item configurations.
       const currentChildIndex = currentMenuItemConfigurations.findIndex(m => m.id === menuConfiguration.id)
       const updatedChildIndex = currentChildIndex + direction
@@ -73,7 +73,7 @@ const MenuConfiguration = (props) => {
 
       // Rebuild the parent menu configuration with the updated menu item configurations.
       currentMenuConfigurations[currentIndex] = {
-        ...currentParentConfiguration,
+        ...currentParentMenuConfiguration,
         menuItemConfigurations: currentMenuItemConfigurations
       }
     }
@@ -88,9 +88,12 @@ const MenuConfiguration = (props) => {
         <div className='flex flex-row flex-wrap gap-3 collapse-header'>
           <div className='my-auto cursor-pointer flex-grow' onClick={toggleExpanded}>
             <div className='font-semibold px-4 py-4 flex gap-1'>
-              {menuConfiguration.name}
+              <FormattedMessage
+                id={menuConfiguration.name}
+                defaultMessage={menuConfiguration.name}
+              />
               <span className='text-xs font-normal my-auto'>
-                ({generateHeaderText(menuConfiguration)})
+                ({generateMenuHeaderText(menuConfiguration)})
               </span>
               {modified && <span className='text-sm text-dial-stratos'>*</span>}
             </div>

@@ -8,7 +8,7 @@ import Header from '../../../../components/shared/Header'
 import SiteSettingDetail from '../../../../components/site-setting/SiteSettingDetail'
 import ClientOnly from '../../../../lib/ClientOnly'
 
-const ProjectPage = ({ defaultTenants }) => {
+const SiteSettingPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -43,4 +43,4 @@ export async function getServerSideProps() {
   return { props: { defaultTenants } }
 }
 
-export default ProjectPage
+export default SiteSettingPage

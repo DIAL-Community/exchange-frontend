@@ -1,5 +1,5 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { useIntl } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
@@ -8,7 +8,7 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
 import DeleteSiteSetting from './DeleteSiteSetting'
-import { generateHeaderText } from './menu-configuration/utilities'
+import { generateCarouselHeaderText, generateMenuHeaderText } from './utilities'
 
 const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
   const { formatMessage } = useIntl()
@@ -56,10 +56,17 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-base font-semibold pb-3' ref={carouselConfigurationsRef}>
-            {format('ui.siteSetting.carousel.header')}
+          <div className='flex pb-3' ref={carouselConfigurationsRef}>
+            <div className='text-base font-semibold'>
+              {format('ui.siteSetting.carousel.header')}
+            </div>
+            <div className='flex gap-x-2 ml-auto'>
+              {canEdit &&
+                <EditButton type='link' href={`${siteSetting.slug}/carousel-configurations`} />
+              }
+            </div>
           </div>
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col gap-4'>
             {siteSetting?.carouselConfigurations.length <= 0 &&
               <div className='text-sm text-dial-stratos'>
                 {format('ui.common.detail.noData', {
@@ -68,17 +75,34 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
                 })}
               </div>
             }
-            {siteSetting?.carouselConfigurations?.map((carouselConfiguration, index) =>
-              <div key={`project-${index}`}>
-                {carouselConfiguration.name}
-              </div>
-            )}
+            <div className='flex flex-col gap-1 text-sm'>
+              {siteSetting?.carouselConfigurations?.map((carouselConfiguration, index) =>
+                <div key={index} className='flex flex-col gap-1'>
+                  <div className='border shadow px-4 py-3 flex gap-1'>
+                    <FormattedMessage
+                      id={carouselConfiguration.name}
+                      defaultMessage={carouselConfiguration.name}
+                    />
+                    <span className='text-xs font-normal my-auto'>
+                      ({generateCarouselHeaderText(carouselConfiguration)})
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-base font-semibold pb-3' ref={heroCardConfigurationsRef}>
-            {format('ui.siteSetting.heroCard.header')}
+          <div className='flex pb-3' ref={heroCardConfigurationsRef}>
+            <div className='text-base font-semibold'>
+              {format('ui.siteSetting.heroCard.header')}
+            </div>
+            <div className='flex gap-x-2 ml-auto'>
+              {canEdit &&
+                <EditButton type='link' href={`${siteSetting.slug}/hero-card-configurations`} />
+              }
+            </div>
           </div>
           <div className='flex flex-col gap-y-4'>
             {siteSetting?.carouselConfigurations.length <= 0 &&
@@ -121,16 +145,22 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               {siteSetting?.menuConfigurations?.map((menuConfiguration, index) =>
                 <div key={index} className='flex flex-col gap-1'>
                   <div className='border shadow px-4 py-3 flex gap-1'>
-                    {menuConfiguration.name}
+                    <FormattedMessage
+                      id={menuConfiguration.name}
+                      defaultMessage={menuConfiguration.name}
+                    />
                     <span className='text-xs font-normal my-auto'>
-                      ({generateHeaderText(menuConfiguration)})
+                      ({generateMenuHeaderText(menuConfiguration)})
                     </span>
                   </div>
                   {menuConfiguration.menuItemConfigurations.map((menuItemConfiguration, index) => (
                     <div key={index} className='ml-4 border shadow px-4 py-3 flex gap-1'>
-                      {menuItemConfiguration.name}
+                      <FormattedMessage
+                        id={menuItemConfiguration.name}
+                        defaultMessage={menuItemConfiguration.name}
+                      />
                       <span className='text-xs font-normal my-auto'>
-                        ({generateHeaderText(menuItemConfiguration)})
+                        ({generateMenuHeaderText(menuItemConfiguration)})
                       </span>
                     </div>
                   ))}

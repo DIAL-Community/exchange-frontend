@@ -3,12 +3,13 @@ import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import Footer from '../../../../components/shared/Footer'
-import Header from '../../../../components/shared/Header'
-import SiteSettingEdit from '../../../../components/site-setting/SiteSettingEdit'
-import ClientOnly from '../../../../lib/ClientOnly'
+import Footer from '../../../../../components/shared/Footer'
+import Header from '../../../../../components/shared/Header'
+import QueryNotification from '../../../../../components/shared/QueryNotification'
+import HeroCardConfigurations from '../../../../../components/site-setting/hero-card-configuration/HeroCardConfigurations'
+import ClientOnly from '../../../../../lib/ClientOnly'
 
-const EditSiteSettingPage = ({ defaultTenants }) => {
+const HeroCardConfigurationsPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -17,18 +18,19 @@ const EditSiteSettingPage = ({ defaultTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('ui.workflow.header')}
+        title={format('ui.siteSetting.menu.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.workflow.header')?.toLocaleLowerCase() }
+            { entities: format('ui.siteSetting.menu.header')?.toLocaleLowerCase() }
           )
         }
       />
       <ClientOnly clientTenants={defaultTenants}>
+        <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <SiteSettingEdit slug={slug} />
+        <HeroCardConfigurations slug={slug} />
         <Footer />
       </ClientOnly>
     </>
@@ -43,4 +45,4 @@ export async function getServerSideProps() {
   return { props: { defaultTenants } }
 }
 
-export default EditSiteSettingPage
+export default HeroCardConfigurationsPage

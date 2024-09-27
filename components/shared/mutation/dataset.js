@@ -172,9 +172,9 @@ export const DELETE_DATASET = gql`
   mutation DeleteDataset($id: ID!) {
     deleteDataset(id: $id) {
       dataset {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

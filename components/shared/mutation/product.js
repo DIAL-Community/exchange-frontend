@@ -58,9 +58,9 @@ export const DELETE_PRODUCT = gql`
   mutation DeleteProduct($id: ID!) {
     deleteProduct(id: $id) {
       product {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

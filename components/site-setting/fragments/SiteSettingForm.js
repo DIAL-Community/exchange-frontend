@@ -131,27 +131,27 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='name'>
-                  {format('ui.siteSetting.name.label')}
+                  {format('ui.siteSetting.name')}
                 </label>
                 <Input
                   {...register('name', { required: format('validation.required') })}
                   id='name'
-                  placeholder={format('ui.siteSetting.name.label')}
+                  placeholder={format('ui.siteSetting.name')}
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
               </div>
               <label className='flex gap-x-2 items-center' htmlFor='enableMarketplace'>
                 <Checkbox {...register('enableMarketplace')} id='enableMarketplace' />
-                {format('ui.siteSetting.enableMarketplace.label')}
+                {format('ui.siteSetting.enableMarketplace')}
               </label>
               <label className='flex gap-x-2 items-center' htmlFor='defaultSetting'>
                 <Checkbox {...register('defaultSetting')} id='defaultSetting' />
-                {format('ui.siteSetting.defaultSetting.label')}
+                {format('ui.siteSetting.defaultSetting')}
               </label>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field'>
-                  {format('ui.siteSetting.description.label')}
+                  {format('ui.siteSetting.description')}
                 </label>
                 <Controller
                   name='description'
@@ -161,7 +161,7 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
                       editorId='description-editor'
                       onChange={onChange}
                       initialContent={value}
-                      placeholder={format('ui.siteSetting.description.label')}
+                      placeholder={format('ui.siteSetting.description')}
                       isInvalid={errors.description}
                     />
                   )}

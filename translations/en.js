@@ -2853,11 +2853,15 @@ export const en = {
   'ui.siteSetting.menu.header': 'Menu Configurations',
   'ui.siteSetting.menu.name': 'Menu Title',
   'ui.siteSetting.menu.destinationUrl': 'Destination URL',
-  'ui.siteSetting.menu.external': 'External Url Target',
+  'ui.siteSetting.menu.external': 'External Destination URL',
   'ui.siteSetting.menu.save': 'Save Menu Configuration',
   'ui.siteSetting.menu.submitted': 'Menu configuration saved.',
 
-  'ui.siteSetting.menu.type': 'Type of Item',
+  'ui.siteSetting.menu.type': 'Type of Menu Item',
+  'ui.siteSetting.menu.adminMenu': 'Admin Menu',
+  'ui.siteSetting.menu.helpMenu': 'Help Menu',
+  'ui.siteSetting.menu.loginMenu': 'Login Menu',
+  'ui.siteSetting.menu.languageMenu': 'LanguageMenu',
 
   'ui.siteSetting.menu.type.menu': 'Menu',
   'ui.siteSetting.menu.type.menuItem': 'Menu Item',
@@ -2883,8 +2887,61 @@ export const en = {
   'ui.siteSetting.menuConfigurations.save': 'Bulk Save Menu Configurations',
   'ui.siteSetting.menuConfigurations.submitted': 'All menu configurations saved.',
 
-  'ui.siteSetting.name.label': 'Site Configuration Name',
-  'ui.siteSetting.enableMarketplace.label': 'Enable the marketplace feature.',
-  'ui.siteSetting.defaultSetting.label': 'Set this configuration as the default.',
-  'ui.siteSetting.description.label': 'Site Configuration Description',
+  'ui.siteSetting.carousel.name': 'Carousel Name',
+  'ui.siteSetting.carousel.title': 'Title on the Carousel',
+  'ui.siteSetting.carousel.description': 'Description on the Carousel',
+  'ui.siteSetting.carousel.external': 'External Destination URL',
+  'ui.siteSetting.carousel.destinationUrl': 'Destination URL',
+  'ui.siteSetting.carousel.calloutTitle': 'Callout Title on the Carousel',
+  'ui.siteSetting.carousel.defaultCalloutTitle': 'Explore',
+
+  'ui.siteSetting.carousel.type.locked': 'Locked System Carousel',
+
+  'ui.siteSetting.carousel.deleteCarousel': 'Deleting Carousel Configuration',
+  'ui.siteSetting.carousel.deleteCarouselDescription': `
+    Are you sure you want to delete this menu item?
+  `,
+
+  'ui.siteSetting.carousel.textStyle': 'Text Alignment Style',
+  'ui.siteSetting.carousel.textStyle.centered': 'Center Aligned Text',
+  'ui.siteSetting.carousel.textStyle.rightAligned': 'Right Aligned Text',
+  'ui.siteSetting.carousel.textStyle.leftAligned': 'Left Aligned Text',
+  'ui.siteSetting.carousel.bgStyle': 'Carousel Background Style',
+
+  'ui.siteSetting.carousel.appendCarousel': 'Append Carousel',
+  'ui.siteSetting.carousel.appendExchangeCarousel': 'Append Exchange Carousel',
+  'ui.siteSetting.carousel.appendMarketplaceCarousel': 'Append Marketplace Carousel',
+
+  'ui.siteSetting.carousel.save': 'Save Carousel Configuration',
+  'ui.siteSetting.carousel.submitted': 'Carousel configuration saved.',
+  'ui.siteSetting.carouselConfigurations.save': 'Bulk Save Carousel Configurations',
+  'ui.siteSetting.carouselConfigurations.submitted': 'All carousel configurations saved.',
+
+  'ui.siteSetting.carousel.save': 'Save Carousel Configuration',
+  'ui.siteSetting.carousel.submitted': 'Carousel configuration saved.',
+  'ui.siteSetting.carouselConfigurations.save': 'Bulk Save Carousel Configurations',
+  'ui.siteSetting.carouselConfigurations.submitted': 'All carousel configurations saved.',
+
+  'ui.siteSetting.heroCard.name': 'Carousel Name',
+  'ui.siteSetting.heroCard.title': 'Title on the Card',
+  'ui.siteSetting.heroCard.description': 'Description on the Card',
+  'ui.siteSetting.heroCard.external': 'External Destination URL',
+  'ui.siteSetting.heroCard.destinationUrl': 'Destination URL',
+
+  'ui.siteSetting.heroCard.appendHeroCard': 'Append Card',
+  'ui.siteSetting.heroCard.appendProductHeroCard': 'Append Product Card',
+  'ui.siteSetting.heroCard.appendUseCaseHeroCard': 'Append Use Case Card',
+  'ui.siteSetting.heroCard.appendBuildingBlockHeroCard': 'Append Building Block Card',
+
+  'ui.siteSetting.heroCard.type.locked': 'Locked System Hero Card',
+
+  'ui.siteSetting.heroCard.save': 'Save Hero Card Configuration',
+  'ui.siteSetting.heroCard.submitted': 'Hero card configuration saved.',
+  'ui.siteSetting.heroCardConfigurations.save': 'Bulk Save Hero Card Configurations',
+  'ui.siteSetting.heroCardConfigurations.submitted': 'All hero card configurations saved.',
+
+  'ui.siteSetting.name': 'Site Configuration Name',
+  'ui.siteSetting.enableMarketplace': 'Enable the marketplace feature.',
+  'ui.siteSetting.defaultSetting': 'Set this configuration as the default.',
+  'ui.siteSetting.description': 'Site Configuration Description',
 }

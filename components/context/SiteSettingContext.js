@@ -11,9 +11,10 @@ const SiteSettingProvider = ({ children }) => {
   const [updateSiteSettings, { loading, error }] = useLazyQuery(SITE_SETTING_DETAIL_QUERY, {
     onCompleted: (data) => {
       setExchangeLogoUrl(data.siteSetting.exchangeLogoUrl)
-      setHeroCarouselConfigurations(data.siteSetting.carouselConfigurations)
-      setHeroCardConfigurations(data.siteSetting.heroCardConfigurations)
       setMenuConfigurations(data.siteSetting.menuConfigurations)
+      setCarouselConfigurations(data.siteSetting.carouselConfigurations)
+      setHeroCardSection(data.siteSetting.heroCardSection)
+      setEnableMarketplace(data.siteSetting.enableMarketplace)
     }
   })
 
@@ -21,21 +22,25 @@ const SiteSettingProvider = ({ children }) => {
 
   const [exchangeLogoUrl, setExchangeLogoUrl] = useState()
   const [menuConfigurations, setMenuConfigurations] = useState([])
-  const [heroCardConfigurations, setHeroCardConfigurations] = useState([])
-  const [heroCarouselConfigurations, setHeroCarouselConfigurations] = useState([])
+  const [carouselConfigurations, setCarouselConfigurations] = useState([])
+  const [heroCardSection, setHeroCardSection] = useState([])
+
+  const [enableMarketplace, setEnableMarketplace] = useState(false)
 
   const siteSettingValues = {
     exchangeLogoUrl,
     menuConfigurations,
-    heroCardConfigurations,
-    heroCarouselConfigurations
+    carouselConfigurations,
+    heroCardSection,
+    enableMarketplace
   }
 
   const siteSettingDispatchValues = {
     setExchangeLogoUrl,
     setMenuConfigurations,
-    setHeroCardConfigurations,
-    setHeroCarouselConfigurations
+    setCarouselConfigurations,
+    setHeroCardSection,
+    setEnableMarketplace
   }
 
   useEffect(() => {

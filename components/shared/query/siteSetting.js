@@ -11,8 +11,10 @@ export const SITE_SETTING_DETAIL_QUERY = gql`
       exchangeLogoUrl
       openGraphLogoUrl
       carouselConfigurations
-      heroCardConfigurations
       menuConfigurations
+      heroCardSection
+      enableMarketplace
+      defaultSetting
     }
   }
 `
@@ -24,8 +26,8 @@ export const SITE_SETTINGS_QUERY = gql`
       name
       description
       carouselConfigurations
-      heroCardConfigurations
       menuConfigurations
+      heroCardSection
     }
   }
 `
@@ -63,8 +65,9 @@ export const PAGINATED_SITE_SETTINGS_QUERY = gql`
       slug
       description
       carouselConfigurations
-      heroCardConfigurations
       menuConfigurations
+      heroCardSection
+      defaultSetting
     }
   }
 `

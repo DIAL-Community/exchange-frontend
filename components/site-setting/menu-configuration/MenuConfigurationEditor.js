@@ -56,7 +56,7 @@ const MenuConfigurationEditor = (props) => {
 
   const menuTypeOptions = [{
     label: format('ui.siteSetting.menu.type.menuItem'),
-    value: 'menu-item'
+    value: 'menu.item'
   },
   {
     label: format('ui.siteSetting.menu.type.separator'),
@@ -98,11 +98,15 @@ const MenuConfigurationEditor = (props) => {
           return m.menuItemConfigurations.findIndex(mi => mi.id === menuConfiguration.id) >= 0
         })
         const currentParentMenuConfiguration = currentMenuConfigurations[indexOfMenuConfiguration]
-        const indexOfMenuItemConfiguration = currentParentMenuConfiguration
-          .menuItemConfigurations.findIndex(mi => mi.id === menuConfiguration.id)
-
-        currentParentMenuConfiguration[indexOfMenuItemConfiguration] = currentMenuConfiguration
-        currentMenuConfigurations[indexOfMenuConfiguration] = currentParentMenuConfiguration
+        const currentMenuItemConfigurations = [...currentParentMenuConfiguration.menuItemConfigurations]
+        const indexOfMenuItemConfiguration = currentMenuItemConfigurations.findIndex(mi => mi.id === menuConfiguration.id)
+        // Update at that index using the current menu configuration.
+        currentMenuItemConfigurations[indexOfMenuItemConfiguration] = currentMenuConfiguration
+        // Rebuild the parent menu configuration with the updated menu item configurations.
+        currentMenuConfigurations[indexOfMenuConfiguration] = {
+          ...currentParentMenuConfiguration,
+          menuItemConfigurations: currentMenuItemConfigurations
+        }
       }
 
       setMenuConfigurations([...currentMenuConfigurations])
@@ -166,7 +170,7 @@ const MenuConfigurationEditor = (props) => {
               id='name'
               disabled={
                 currentMenuTypeValue?.value !== 'menu' &&
-                currentMenuTypeValue?.value !== 'menu-item' &&
+                currentMenuTypeValue?.value !== 'menu.item' &&
                 currentMenuTypeValue?.value !== 'separator'
               }
               placeholder={format('ui.siteSetting.menu.name')}
@@ -174,7 +178,7 @@ const MenuConfigurationEditor = (props) => {
             />
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
-          {(currentMenuTypeValue?.value === 'menu-item' || currentMenuTypeValue?.value === 'separator') &&
+          {(currentMenuTypeValue?.value === 'menu.item' || currentMenuTypeValue?.value === 'separator') &&
             <div className='flex flex-col gap-y-2'>
               <label htmlFor='type' className='required-field'>
                 {format('ui.siteSetting.menu.type')}
@@ -191,16 +195,20 @@ const MenuConfigurationEditor = (props) => {
                     isBorderless
                     options={menuTypeOptions}
                     placeholder={format('ui.siteSetting.menu.type')}
-                    isInvalid={errors.maturity}
+                    isInvalid={errors.type}
                   />
                 )}
                 rules={{ required: format('validation.required') }}
               />
-              {errors.maturity && <ValidationError value={errors.maturity?.message} />}
+              {errors.type && <ValidationError value={errors.type?.message} />}
             </div>
           }
-          {currentMenuTypeValue?.value === 'menu-item' &&
+          {currentMenuTypeValue?.value === 'menu.item' &&
             <div className='flex flex-col gap-y-2'>
+              <label className='flex gap-x-2 mb-2 items-center self-start'>
+                <Checkbox {...register('external')} />
+                {format('ui.siteSetting.menu.external')}
+              </label>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='destinationUrl'>
                   {format('ui.siteSetting.menu.destinationUrl')}
@@ -229,14 +237,14 @@ const MenuConfigurationEditor = (props) => {
                 }
                 {errors.destinationUrl && <ValidationError value={errors.destinationUrl?.message} />}
               </div>
-              <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register('external')} />
-                {format('ui.siteSetting.menu.external')}
-              </label>
             </div>
           }
           {currentMenuTypeValue?.value === 'menu' && menuConfiguration.menuItemConfigurations.length <= 0 &&
             <div className='flex flex-col gap-y-2'>
+              <label className='flex gap-x-2 mb-2 items-center self-start'>
+                <Checkbox {...register('external')} />
+                {format('ui.siteSetting.menu.external')}
+              </label>
               <div className='flex flex-col gap-y-2'>
                 <label className='required-field' htmlFor='destinationUrl'>
                   {format('ui.siteSetting.menu.destinationUrl')}
@@ -265,10 +273,6 @@ const MenuConfigurationEditor = (props) => {
                 }
                 {errors.destinationUrl && <ValidationError value={errors.destinationUrl?.message} />}
               </div>
-              <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register('external')} />
-                {format('ui.siteSetting.menu.external')}
-              </label>
             </div>
           }
           <div className='flex flex-wrap text-sm gap-3'>

@@ -15,8 +15,8 @@ const MenuConfigurations = ({ slug }) => {
   const [mutating, setMutating] = useState(false)
   const [menuConfigurations, setMenuConfigurations] = useState([])
 
-  const [menuCounter, setMenuCounter] = useState(0)
-  const [menuItemCounter, setMenuItemCounter] = useState(0)
+  const [menuCounter, setMenuCounter] = useState(1)
+  const [menuItemCounter, setMenuItemCounter] = useState(1)
 
   const { loading, error, data } = useQuery(SITE_SETTING_DETAIL_QUERY, {
     variables: { slug },
@@ -81,7 +81,7 @@ const MenuConfigurations = ({ slug }) => {
       {
         ...buildCommonConfiguration(),
         type: 'menu',
-        name: `Next Menu ${menuCounter + 1}`,
+        name: `Next Menu ${menuCounter}`,
         menuItemConfigurations: []
       }
     ])
@@ -95,7 +95,7 @@ const MenuConfigurations = ({ slug }) => {
   }
 
   const appendDefaultMenu = (type) => {
-    const menuType = `locked-${type}-menu`
+    const menuType = `locked.${type}.menu`
     const menuName = `${toTitleCase(type)} Menu`
     setMenuConfigurations([
       ...menuConfigurations,
@@ -121,8 +121,8 @@ const MenuConfigurations = ({ slug }) => {
         ...existingParentMenu.menuItemConfigurations,
         {
           ...buildCommonConfiguration(),
-          type: 'menu-item',
-          name: `Next Menu Item ${menuItemCounter + 1}`
+          type: 'menu.item',
+          name: `Next Menu Item ${menuItemCounter}`
         }
       ]
     }
@@ -171,7 +171,7 @@ const MenuConfigurations = ({ slug }) => {
         <div className='flex gap-1 ml-auto mb-3'>
           {['admin', 'login', 'help', 'language']
             .filter((type) => {
-              return menuConfigurations.findIndex((m) => m.type === `locked-${type}-menu`) < 0
+              return menuConfigurations.findIndex((m) => m.type === `locked.${type}.menu`) < 0
             })
             .map((type) => (
               <button
