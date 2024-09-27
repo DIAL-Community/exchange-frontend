@@ -62,11 +62,11 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
                           border-health-green border-4 mx-4 my-4 max-h-[180px]"
           >
             {product.imageFile.indexOf('placeholder.svg') < 0 &&
-              <div className="inline my-12 mx-16">
+              <div className="inline my-4 mx-6">
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                  className="object-contain"
+                  className="object-contain" width="160px"
                 />
               </div>
             }

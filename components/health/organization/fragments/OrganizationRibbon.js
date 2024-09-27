@@ -1,38 +1,24 @@
-import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
 import Breadcrumb from '../../../shared/Breadcrumb'
 
 const OrganizationRibbon = () => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const titleImage =
-    <img
-      src='/ui/v1/organization-header.svg'
-      alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
-      width={70}
-      height={70}
-      className='object-contain'
-    />
-
   return (
-    <div className={'bg-dial-spearmint ribbon-outer rounded-b-[32px] z-40'}>
-      <div className='flex flex-col items-center gap-y-1'>
-        <div className='mr-auto px-4 lg:px-8 xl:px-56 my-3'>
-          <Breadcrumb slugNameMapping='organization' />
-        </div>
-        <div className='ribbon-inner w-full my-auto'>
-          <div className='flex px-4 lg:px-8 xl:px-56'>
-            <div className='basis-full lg:basis-3/4 flex flex-col gap-4'>
-              <div className='flex gap-4 my-auto'>
-                {titleImage}
-                <div className={'text-2xl font-base text-dial-meadow my-auto flex-grow'}>
-                  {format('ui.organization.header')}
-                </div>
-              </div>
+    <div className='bg-health-light-gray'>
+      <div className='mr-auto px-4 lg:px-8 xl:px-56 my-3 text-health-blue'>
+        <Breadcrumb slugNameMapping='organization' />
+      </div>
+      <div className='w-full flex flex-row gap-2'>
+        <div className='w-1/2 pl-4 lg:pl-8 xl:pl-56 pr-12 py-12 text-health-blue text-lg flex flex-row gap-2'>
+          <div className='flex flex-col gap-2 max-w-prose'>
+            <div className='text-3xl leading-tight font-bold py-3'>
+              Digital Health Solution Providers
+            </div>
+            <div className='max-w-prose'>
+              These are the organizations that are creating innovative health solutions in Africa.
             </div>
           </div>
         </div>
+        <img className='h-80 w-1/2 pr-4 lg:pr-8 xl:pr-56' alt='Africa CDC Health Marketplace'
+          src='/ui/health/landing-img1.png' />
       </div>
     </div>
   )

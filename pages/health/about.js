@@ -24,15 +24,26 @@ const AboutPage = ({ defaultTenants }) => {
       <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
         <HealthHeader />
+        <div className='relative'>
+          <img className='h-96 w-full' alt='DIAL DPI Resource Hub' src='/images/hero-image/health-cover.png' />
+          <div className='absolute top-1/2 -translate-y-1/2 px-40 md:px-52 lg:px-64 text-dial-cotton'>
+            <div className='flex flex-col gap-2 max-w-prose'>
+              <div className='text-3xl leading-tight font-bold py-3'>
+                About the Africa HealthTech Marketplace
+              </div>
+              <div className='max-w-prose'>
+                The Africa CDC HealthTech Marketplace will showcase and connect digital health solutions
+                that have been developed by African organizations with potential users, investors, and
+                partners across the continent.
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='lg:px-8 xl:px-56 py-8'>
           <div className='text-2xl leading-tight text-health-blue font-semibold'>
-            About the Africa HealthTech Marketplace
+            Why a HealthTech Marketplace?
           </div>
           <div className='py-8 text-xl'>
-            The Africa CDC HealthTech Marketplace will showcase and connect digital health solutions
-            that have been developed by African organizations with potential users, investors, and
-            partners across the continent.
-            <br /><br />
             By creating a hub for innovative health technologies, the marketplace aims to accelerate
             the growth and development of an ecosystem of African digital health solutions and innovators.
             We expect this initiative to significantly boost the visibility of local health tech startups,
