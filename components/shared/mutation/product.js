@@ -16,6 +16,7 @@ export const CREATE_PRODUCT = gql`
     $govStackEntity: Boolean
     $productStage: String
     $extraAttributes: [ExtraAttributeInput!]!
+    $featured: Boolean
   ) {
     createProduct(
       name: $name
@@ -32,6 +33,7 @@ export const CREATE_PRODUCT = gql`
       govStackEntity: $govStackEntity
       productStage: $productStage
       extraAttributes: $extraAttributes
+      featured: $featured
     ) {
       product {
         id
@@ -43,6 +45,7 @@ export const CREATE_PRODUCT = gql`
         govStackEntity
         productStage
         extraAttributes
+        featured
         productDescription {
           id
           description

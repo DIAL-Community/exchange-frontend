@@ -22,7 +22,7 @@ const HealthPage = ({ defaultTenants }) => {
         <QueryNotification />
         <HealthHeader />
         <HealthBody />
-        <HealthProducts />
+        <HealthProducts onlyFeatured={true}/>
         <HealthFooter />
       </ClientOnly>
     </>

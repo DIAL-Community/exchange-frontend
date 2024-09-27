@@ -7,7 +7,7 @@ import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
 import ListStructure from '../product/fragments/ListStructure'
 
-const HealthProducts = () => {
+const HealthProducts = ({ onlyFeatured = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -67,7 +67,8 @@ const HealthProducts = () => {
       showDpgaOnly,
       productStage,
       softwareCategories: softwareCategories.map(softwareCategory => softwareCategory.id),
-      softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id)
+      softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id),
+      featured: onlyFeatured
     }
   })
 
@@ -76,6 +77,7 @@ const HealthProducts = () => {
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
+        onlyFeatured={onlyFeatured}
       />
       { loading && format('ui.pagination.loadingInfo') }
       { error && format('ui.pagination.loadingInfoError') }
