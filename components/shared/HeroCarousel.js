@@ -104,7 +104,7 @@ export const GenericHeroCarousel = ({ carouselConfiguration }) => {
             defaultMessage={carouselConfiguration.description}
           />
         </div>
-        {carouselConfiguration.destinationUrl &&
+        {carouselConfiguration.destinationUrl && carouselConfiguration.calloutTitle &&
           <div className='flex text-sm text-dial-stratos'>
             {carouselConfiguration.external
               ? <a

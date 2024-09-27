@@ -2899,7 +2899,7 @@ export const en = {
 
   'ui.siteSetting.carousel.deleteCarousel': 'Deleting Carousel Configuration',
   'ui.siteSetting.carousel.deleteCarouselDescription': `
-    Are you sure you want to delete this menu item?
+    Are you sure you want to delete this carousel item?
   `,
 
   'ui.siteSetting.carousel.textStyle': 'Text Alignment Style',
@@ -2939,6 +2939,11 @@ export const en = {
   'ui.siteSetting.heroCard.submitted': 'Hero card configuration saved.',
   'ui.siteSetting.heroCardConfigurations.save': 'Bulk Save Hero Card Configurations',
   'ui.siteSetting.heroCardConfigurations.submitted': 'All hero card configurations saved.',
+
+  'ui.siteSetting.heroCard.deleteHeroCard': 'Deleting Hero Card Configuration',
+  'ui.siteSetting.heroCard.deleteHeroCardDescription': `
+    Are you sure you want to delete this hero card item?
+  `,
 
   'ui.siteSetting.name': 'Site Configuration Name',
   'ui.siteSetting.enableMarketplace': 'Enable the marketplace feature.',

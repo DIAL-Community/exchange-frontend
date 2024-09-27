@@ -11,10 +11,10 @@ import { UPDATE_SITE_SETTING_HERO_CARD_SECTION } from '../../shared/mutation/sit
 import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
 import HeroCardConfiguration from './HeroCardConfiguration'
 
-const HeroCardConfigurations = ({ slug }) => {
+const HeroCardSection = ({ slug }) => {
   const [mutating, setMutating] = useState(false)
-  const [heroCardSectionTitle, setHeroCardSectionTitle] = useState()
-  const [heroCardSectionDescription, setHeroCardSectionDescription] = useState()
+  const [title, setTitle] = useState()
+  const [description, setDescription] = useState()
   const [heroCardConfigurations, setHeroCardConfigurations] = useState([])
 
   const [heroCardCounter, setHeroCardCounter] = useState(1)
@@ -25,10 +25,10 @@ const HeroCardConfigurations = ({ slug }) => {
       const { siteSetting } = data
       if (siteSetting) {
         const { heroCardSection } = siteSetting
-        setHeroCardSectionTitle(heroCardSection.heroCardTitle)
-        setHeroCardSectionDescription(heroCardSection.heroCardDescription)
+        setTitle(heroCardSection.title)
+        setDescription(heroCardSection.description)
         // Save the hero configurations to the state
-        setHeroCardConfigurations(heroCardSection.heroCardConfigurations)
+        setHeroCardConfigurations(heroCardSection.heroCardConfigurations ?? [])
       }
     }
   })
@@ -45,14 +45,14 @@ const HeroCardConfigurations = ({ slug }) => {
     },
     onCompleted: (data) => {
       setMutating(false)
-      const { updateSiteSettingHeroCardConfigurations: response } = data
+      const { updateSiteSettingHeroCardSection: response } = data
       if (response.errors.length === 0 && response.siteSetting) {
         setMutating(false)
         showSuccessMessage(<FormattedMessage id='ui.siteSetting.heroCardConfigurations.submitted' />)
         if (response.siteSetting) {
           const { heroCardSection } = response.siteSetting
-          setHeroCardSectionTitle(heroCardSection.heroCardTitle)
-          setHeroCardSectionDescription(heroCardSection.heroCardDescription)
+          setTitle(heroCardSection.title)
+          setDescription(heroCardSection.description)
           // Save the hero configurations to the state
           setHeroCardConfigurations(heroCardSection.heroCardConfigurations)
         }
@@ -86,7 +86,7 @@ const HeroCardConfigurations = ({ slug }) => {
       ...heroCardConfigurations,
       {
         ...buildCommonConfiguration(),
-        type: 'generic-hero-card',
+        type: 'generic-heroCard',
         name: `Next Hero Card ${heroCardCounter}`,
         title: `Hero Card Title ${heroCardCounter}`,
         description: `Hero Card Description ${heroCardCounter}`
@@ -127,8 +127,8 @@ const HeroCardConfigurations = ({ slug }) => {
       const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug: slug,
-        heroCardSectionTitle,
-        heroCardSectionDescription,
+        title,
+        description,
         heroCardConfigurations
       }
 
@@ -222,4 +222,4 @@ const HeroCardConfigurations = ({ slug }) => {
   )
 }
 
-export default HeroCardConfigurations
+export default HeroCardSection

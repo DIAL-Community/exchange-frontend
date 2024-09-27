@@ -6,7 +6,7 @@ import { Tooltip } from 'react-tooltip'
 import Footer from '../../../../../components/shared/Footer'
 import Header from '../../../../../components/shared/Header'
 import QueryNotification from '../../../../../components/shared/QueryNotification'
-import HeroCardConfigurations from '../../../../../components/site-setting/hero-card-configuration/HeroCardConfigurations'
+import HeroCardSection from '../../../../../components/site-setting/hero-card-section/HeroCardSection'
 import ClientOnly from '../../../../../lib/ClientOnly'
 
 const HeroCardConfigurationsPage = ({ defaultTenants }) => {
@@ -30,7 +30,7 @@ const HeroCardConfigurationsPage = ({ defaultTenants }) => {
         <QueryNotification />
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <HeroCardConfigurations slug={slug} />
+        <HeroCardSection slug={slug} />
         <Footer />
       </ClientOnly>
     </>

@@ -215,23 +215,21 @@ const CarouselConfigurationEditor = (props) => {
           {carouselConfiguration?.type !== 'default.exchange.carousel' &&
             <div className='flex flex-col gap-y-2'>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='calloutTitle'>
+                <label htmlFor='calloutTitle'>
                   {format('ui.siteSetting.carousel.calloutTitle')}
                 </label>
                 <Input
-                  {...register('calloutTitle', { required: format('validation.required') })}
+                  {...register('calloutTitle')}
                   id='calloutTitle'
                   placeholder={format('ui.siteSetting.carousel.calloutTitle')}
-                  isInvalid={errors.calloutTitle}
                 />
-                {errors.calloutTitle && <ValidationError value={errors.calloutTitle?.message} />}
               </div>
               <label className='flex gap-x-2 mb-2 items-center self-start'>
                 <Checkbox {...register('external')} />
                 {format('ui.siteSetting.carousel.external')}
               </label>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='destinationUrl'>
+                <label htmlFor='destinationUrl'>
                   {format('ui.siteSetting.carousel.destinationUrl')}
                 </label>
                 {currentExternalValue
@@ -243,20 +241,16 @@ const CarouselConfigurationEditor = (props) => {
                         value={value}
                         onChange={onChange}
                         id='destinationUrl'
-                        isInvalid={errors.destinationUrl}
                         placeholder={format('ui.siteSetting.carousel.destinationUrl')}
                       />
                     )}
-                    rules={{ required: format('validation.required') }}
                   />
                   : <Input
-                    {...register('destinationUrl', { required: format('validation.required') })}
+                    {...register('destinationUrl')}
                     id='destinationUrl'
                     placeholder={format('ui.siteSetting.carousel.destinationUrl')}
-                    isInvalid={errors.destinationUrl}
                   />
                 }
-                {errors.destinationUrl && <ValidationError value={errors.destinationUrl?.message} />}
               </div>
             </div>
           }

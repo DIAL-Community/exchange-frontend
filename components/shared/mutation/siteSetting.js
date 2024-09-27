@@ -101,20 +101,20 @@ export const UPDATE_SITE_SETTING_MENU_CONFIGURATION = gql`
 export const UPDATE_SITE_SETTING_HERO_CARD_SECTION = gql`
   mutation UpdateSiteSettingHeroCardSection(
     $siteSettingSlug: String!
-    $heroCardTitle: String!
-    $heroCardDescription: String!
+    $title: String
+    $description: String
     $heroCardConfigurations: JSON!
   ) {
-    updateSiteSettingHeroCardConfigurations(
+    updateSiteSettingHeroCardSection(
       siteSettingSlug: $siteSettingSlug
-      heroCardTitle: $heroCardTitle
-      heroCardDescription: $heroCardDescription
+      title: $title
+      description: $description
       heroCardConfigurations: $heroCardConfigurations
     ) {
       siteSetting {
         id
         name
-        heroCardConfigurations
+        heroCardSection
       }
       errors
     }

@@ -24,11 +24,11 @@ export const generateCarouselHeaderText = (menuConfiguration) => {
     : generateStaticText('ui.siteSetting.carousel.type.locked')
 }
 
-export const generateHeroCardHeaderText = (menuConfiguration) => {
+export const generateHeroCardHeaderText = (heroCardConfiguration) => {
   const generateDestinationText = (url) => <><FormattedMessage id='ui.siteSetting.heroCard.destinationUrl' />: {url}</>
   const generateStaticText = (id) => <FormattedMessage id={id} />
 
-  return menuConfiguration.type === 'generic-carousel'
-    ? generateDestinationText(menuConfiguration.destinationUrl)
+  return heroCardConfiguration.type === 'generic-heroCard'
+    ? generateDestinationText(heroCardConfiguration.destinationUrl)
     : generateStaticText('ui.siteSetting.heroCard.type.locked')
 }

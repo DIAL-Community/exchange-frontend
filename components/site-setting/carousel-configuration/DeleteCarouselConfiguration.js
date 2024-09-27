@@ -101,8 +101,8 @@ const DeleteCarouselConfiguration = (props) => {
         </div>
       </button>
       <ConfirmActionDialog
-        title='ui.siteSetting.carousel.deleteCarousel'
-        message='ui.siteSetting.carousel.deleteCarouselDescription'
+        title={<FormattedMessage id='ui.siteSetting.carousel.deleteCarousel' />}
+        message={< FormattedMessage id='ui.siteSetting.carousel.deleteCarouselDescription' />}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={executeBulkUpdate}

@@ -69,10 +69,11 @@ const HeroCardConfigurationEditor = (props) => {
 
   useEffect(() => {
     const { unsubscribe } = watch((value) => {
-      const { name, description, external, destinationUrl, imageUrl } = value
+      const { name, title, description, external, destinationUrl, imageUrl } = value
       const currentHeroCardConfiguration = {
         ...heroCardConfiguration,
         name: name ?? heroCardConfiguration?.name,
+        title: title ?? heroCardConfiguration?.title,
         external: external ?? heroCardConfiguration?.external,
         description: description ?? heroCardConfiguration?.description,
         destinationUrl: destinationUrl ?? heroCardConfiguration?.destinationUrl,
@@ -87,7 +88,7 @@ const HeroCardConfigurationEditor = (props) => {
         currentHeroCardConfigurations[indexOfHeroCardConfiguration] = currentHeroCardConfiguration
       }
 
-      setHeroCardConfigurations([...currentHeroCardConfigurations])
+      setHeroCardConfigurations(currentHeroCardConfigurations)
     })
 
     return () => unsubscribe()

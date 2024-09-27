@@ -6,10 +6,10 @@ import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
-import { UPDATE_SITE_SETTING_HERO_CARD_CONFIGURATIONS } from '../../shared/mutation/siteSetting'
+import { UPDATE_SITE_SETTING_HERO_CARD_SECTION } from '../../shared/mutation/siteSetting'
 
 const DeleteHeroCardConfiguration = (props) => {
-  const { siteSettingSlug, heroCardConfiguration, heroCardSection, setHeroCardSection } = props
+  const { siteSettingSlug, heroCardConfiguration, heroCardConfigurations, setHeroCardConfigurations } = props
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -21,7 +21,7 @@ const DeleteHeroCardConfiguration = (props) => {
   const [mutating, setMutating] = useState(false)
 
   const { locale } = useRouter()
-  const [bulkUpdateHeroCard, { reset }] = useMutation(UPDATE_SITE_SETTING_HERO_CARD_CONFIGURATIONS, {
+  const [bulkUpdateHeroCard, { reset }] = useMutation(UPDATE_SITE_SETTING_HERO_CARD_SECTION, {
     onError: (error) => {
       showFailureMessage(error?.message)
       setDisplayConfirmDialog(false)
@@ -29,10 +29,15 @@ const DeleteHeroCardConfiguration = (props) => {
       reset()
     },
     onCompleted: (data) => {
-      const { updateSiteSettingHeroCardConfigurations: response } = data
+      const { updateSiteSettingHeroCardSection: response } = data
       if (response.errors.length === 0 && response.siteSetting) {
         showSuccessMessage(<FormattedMessage id='ui.siteSetting.heroCardConfigurations.submitted' />)
-        setHeroCardSection([...response.siteSetting.heroCardSection])
+        if (response.siteSetting) {
+          const { heroCardSection } = response.siteSetting
+          // Save the hero configurations to the state
+          setHeroCardConfigurations(heroCardSection.heroCardConfigurations)
+        }
+
         setDisplayConfirmDialog(false)
         setMutating(false)
       } else {
@@ -48,7 +53,7 @@ const DeleteHeroCardConfiguration = (props) => {
   const executeBulkUpdate = () => {
     if (user) {
       setMutating(true)
-      const currentHeroCardConfigurations = [...heroCardSection.heroCardConfigurations]
+      const currentHeroCardConfigurations = [...heroCardConfigurations]
       // Try to find the index in the top level heroCard configurations
       let indexOfHeroCardConfiguration = currentHeroCardConfigurations.findIndex(m => m.id === heroCardConfiguration.id)
       if (indexOfHeroCardConfiguration >= 0) {
@@ -59,8 +64,6 @@ const DeleteHeroCardConfiguration = (props) => {
       const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug,
-        heroCardTitle: heroCardConfiguration.title,
-        heroCardDescription: heroCardConfiguration.description,
         heroCardConfigurations: currentHeroCardConfigurations
       }
 
@@ -89,8 +92,8 @@ const DeleteHeroCardConfiguration = (props) => {
         </div>
       </button>
       <ConfirmActionDialog
-        title='ui.siteSetting.heroCard.deleteHeroCard'
-        message='ui.siteSetting.heroCard.deleteHeroCardDescription'
+        title={<FormattedMessage id='ui.siteSetting.heroCard.deleteHeroCard' />}
+        message={<FormattedMessage id='ui.siteSetting.heroCard.deleteHeroCardDescription' />}
         isOpen={displayConfirmDialog}
         onClose={toggleConfirmDialog}
         onConfirm={executeBulkUpdate}

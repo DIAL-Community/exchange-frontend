@@ -104,21 +104,6 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               }
             </div>
           </div>
-          <div className='flex flex-col gap-y-4'>
-            {siteSetting?.carouselConfigurations.length <= 0 &&
-              <div className='text-sm text-dial-stratos'>
-                {format('ui.common.detail.noData', {
-                  entity: format('ui.siteSetting.heroCard.label'),
-                  base: format('ui.siteSetting.label')
-                })}
-              </div>
-            }
-            {siteSetting?.carouselConfigurations?.map((carouselConfiguration, index) =>
-              <div key={`project-${index}`}>
-                {carouselConfiguration.name}
-              </div>
-            )}
-          </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>

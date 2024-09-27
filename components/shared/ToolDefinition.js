@@ -7,9 +7,11 @@ export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { title, description, imageUrl, destinationUrl } = heroCardConfiguration
+
   return (
     <a
-      href={heroCardConfiguration.destinationUrl}
+      href={destinationUrl}
       className='rounded-md shadow-lg border'
       target='_blank'
       rel='noopener noreferrer'
@@ -18,24 +20,18 @@ export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row gap-x-3'>
             <img
-              src={heroCardConfiguration.imageUrl}
+              src={imageUrl}
               alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
               width={50}
               height={50}
               className='object-contain'
             />
             <div className='text-lg font-light text-dial-ochre my-auto flex-grow'>
-              <FormattedMessage
-                id={heroCardConfiguration.name}
-                defaultMessage={heroCardConfiguration.name}
-              />
+              <FormattedMessage id={title} defaultMessage={title} />
             </div>
           </div>
           <div className='text-sm'>
-            <FormattedMessage
-              id={heroCardConfiguration.description}
-              defaultMessage={heroCardConfiguration.description}
-            />
+            <FormattedMessage id={description} defaultMessage={description} />
           </div>
         </div>
       </div>
@@ -47,30 +43,26 @@ export const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { title, description, imageUrl, destinationUrl } = heroCardConfiguration
+
   return (
-    <Link href={heroCardConfiguration.destinationUrl} className='rounded-md shadow-lg border'>
+    <Link href={destinationUrl} className='rounded-md shadow-lg border'>
       <div className='px-8 pt-6 pb-12'>
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row gap-x-3'>
             <img
-              src={heroCardConfiguration.imageUrl}
+              src={imageUrl}
               alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
               width={50}
               height={50}
               className='object-contain'
             />
             <div className='text-lg font-light text-dial-ochre my-auto flex-grow'>
-              <FormattedMessage
-                id={heroCardConfiguration.name}
-                defaultMessage={heroCardConfiguration.name}
-              />
+              <FormattedMessage id={title} defaultMessage={title} />
             </div>
           </div>
           <div className='text-sm'>
-            <FormattedMessage
-              id={heroCardConfiguration.description}
-              defaultMessage={heroCardConfiguration.description}
-            />
+            <FormattedMessage id={description} defaultMessage={description} />
           </div>
         </div>
       </div>
@@ -93,15 +85,11 @@ const ToolDefinition = () => {
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           {heroCardConfigurations.map(heroCardConfiguration => {
-            return heroCardConfiguration.external
-              ? <ExternalHeroCardDefinition
-                key={heroCardConfiguration.slug}
-                heroCardConfiguration={heroCardConfiguration}
-              />
-              : <InternalHeroCardDefinition
-                key={heroCardConfiguration.slug}
-                heroCardConfiguration={heroCardConfiguration}
-              />
+            const { id, external } = heroCardConfiguration
+
+            return external
+              ? <ExternalHeroCardDefinition key={id} heroCardConfiguration={heroCardConfiguration} />
+              : <InternalHeroCardDefinition key={id} heroCardConfiguration={heroCardConfiguration} />
           })}
         </div>
       </div>
