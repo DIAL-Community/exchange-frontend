@@ -14,7 +14,7 @@ const HealthProducts = ({ onlyFeatured = false }) => {
   const { search, isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
   const { useCases, buildingBlocks, sectors, tags, productStage } = useContext(ProductFilterContext)
   const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
-  const { softwareCategories, softwareFeatures, featured } = useContext(ProductFilterContext)
+  const { softwareCategories, softwareFeatures } = useContext(ProductFilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)
