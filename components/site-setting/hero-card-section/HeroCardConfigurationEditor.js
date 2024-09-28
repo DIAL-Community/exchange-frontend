@@ -179,6 +179,18 @@ const HeroCardConfigurationEditor = (props) => {
             />
             {errors.description && <ValidationError value={errors.description?.message} />}
           </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='imageUrl'>
+              {format('ui.siteSetting.heroCard.imageUrl')}
+            </label>
+            <Input
+              {...register('imageUrl', { required: format('validation.required') })}
+              id='imageUrl'
+              placeholder={format('ui.siteSetting.heroCard.imageUrl')}
+              isInvalid={errors.imageUrl}
+            />
+            {errors.imageUrl && <ValidationError value={errors.imageUrl?.message} />}
+          </div>
           <label className='flex gap-x-2 mb-2 items-center self-start'>
             <Checkbox {...register('external')} />
             {format('ui.siteSetting.heroCard.external')}

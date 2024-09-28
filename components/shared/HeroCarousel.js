@@ -83,50 +83,38 @@ export const GenericHeroCarousel = ({ carouselConfiguration }) => {
       ? 'flex-justify items-end'
       : 'flex-justify items-start'
 
+  const { title, description, imageUrl, calloutTitle, external, destinationUrl } = carouselConfiguration
+  const validImageUrl = imageUrl.indexOf('http') >= 0 ? imageUrl : `/ui/carousel/${imageUrl}.svg`
+
   return (
     <div
       className='bg-cover bg-no-repeat'
       style={{
-        backgroundImage: `url("/ui/carousel/${carouselConfiguration.imageUrl}.svg")`,
+        backgroundImage: `url("${validImageUrl}")`,
         height: '400px'
       }}
     >
       <div className={`flex flex-col ${flexAlignment} gap-y-6 px-8 xl:px-56 py-[6rem] xl:py-[8rem]`}>
         <div className='text-3xl text-dial-white-linen'>
-          <FormattedMessage
-            id={carouselConfiguration.title}
-            defaultMessage={carouselConfiguration.title}
-          />
+          {title && <FormattedMessage id={title} defaultMessage={title} />}
         </div>
         <div className='text-base text-dial-white-beech'>
-          <FormattedMessage
-            id={carouselConfiguration.description}
-            defaultMessage={carouselConfiguration.description}
-          />
+          {description && <FormattedMessage id={description} defaultMessage={description} />}
         </div>
-        {carouselConfiguration.destinationUrl && carouselConfiguration.calloutTitle &&
+        {destinationUrl && calloutTitle &&
           <div className='flex text-sm text-dial-stratos'>
-            {carouselConfiguration.external
+            {external
               ? <a
-                href={carouselConfiguration.destinationUrl}
+                href={destinationUrl}
                 target='_blank'
                 rel='noopener noreferrer'
                 role='menuitem'
                 className='rounded px-5 py-2.5 bg-dial-plum text-white'
               >
-                <FormattedMessage
-                  id={carouselConfiguration.calloutTitle}
-                  defaultMessage={carouselConfiguration.calloutTitle}
-                />
+                <FormattedMessage id={calloutTitle} defaultMessage={calloutTitle} />
               </a>
-              : <Link
-                href={carouselConfiguration.destinationUrl}
-                className='rounded px-5 py-2.5 bg-dial-plum text-white'
-              >
-                <FormattedMessage
-                  id={carouselConfiguration.calloutTitle}
-                  defaultMessage={carouselConfiguration.calloutTitle}
-                />
+              : <Link href={destinationUrl} className='rounded px-5 py-2.5 bg-dial-plum text-white'>
+                <FormattedMessage id={calloutTitle} defaultMessage={calloutTitle} />
               </Link>
             }
           </div>

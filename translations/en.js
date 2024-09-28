@@ -2922,11 +2922,12 @@ export const en = {
   'ui.siteSetting.carouselConfigurations.save': 'Bulk Save Carousel Configurations',
   'ui.siteSetting.carouselConfigurations.submitted': 'All carousel configurations saved.',
 
-  'ui.siteSetting.heroCard.name': 'Carousel Name',
+  'ui.siteSetting.heroCard.name': 'Hero Card Name',
   'ui.siteSetting.heroCard.title': 'Title on the Card',
   'ui.siteSetting.heroCard.description': 'Description on the Card',
   'ui.siteSetting.heroCard.external': 'External Destination URL',
   'ui.siteSetting.heroCard.destinationUrl': 'Destination URL',
+  'ui.siteSetting.heroCard.imageUrl': 'Image URL',
 
   'ui.siteSetting.heroCard.appendHeroCard': 'Append Card',
   'ui.siteSetting.heroCard.appendProductHeroCard': 'Append Product Card',
