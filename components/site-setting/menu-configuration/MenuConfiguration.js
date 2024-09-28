@@ -11,8 +11,10 @@ const MenuConfiguration = (props) => {
   // Only menu item will have the following properties
   const { appendMenuItem } = props
   // Common properties coming from the parent component.
-  const { siteSettingSlug, menuConfiguration, parentMenuConfiguration } = props
   const { menuConfigurations, setMenuConfigurations } = props
+  const { siteSettingSlug, menuConfiguration, parentMenuConfiguration } = props
+
+  const { id, type, name, saved } = menuConfiguration
 
   const [editing, setEditing] = useState('saved' in menuConfiguration)
   const [expanded, setExpanded] = useState('saved' in menuConfiguration)
@@ -28,16 +30,16 @@ const MenuConfiguration = (props) => {
   }
 
   useEffect(() => {
-    if (typeof menuConfiguration.saved === 'undefined') {
+    if (typeof saved === 'undefined') {
       setModified(false)
     }
-  }, [menuConfiguration])
+  }, [saved])
 
   const toggleExpanded = () => setExpanded(!expanded)
 
   const { user } = useUser()
   const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
-  const editable = () => ['menu', 'menu.item', 'separator'].indexOf(menuConfiguration.type) >= 0
+  const editable = () => ['menu', 'menu.item', 'separator'].indexOf(type) >= 0
 
   const moveMenuConfiguration = (direction) => {
     // Find the index of the current menu configuration.
@@ -46,7 +48,7 @@ const MenuConfiguration = (props) => {
     // Index of the current configuration. This could be parent menu or menu item.
     let currentIndex = -1
 
-    currentIndex = currentMenuConfigurations.findIndex(m => m.id === menuConfiguration.id)
+    currentIndex = currentMenuConfigurations.findIndex(m => m.id === id)
     if (currentIndex >= 0) {
       const updatedIndex = currentIndex + direction
       // Only swapping if the updated index is within the range.
@@ -61,7 +63,7 @@ const MenuConfiguration = (props) => {
       const currentParentMenuConfiguration = currentMenuConfigurations[currentIndex]
       const currentMenuItemConfigurations = [...currentParentMenuConfiguration.menuItemConfigurations]
       // Find the index of the current menu configuration in the array item configurations.
-      const currentChildIndex = currentMenuItemConfigurations.findIndex(m => m.id === menuConfiguration.id)
+      const currentChildIndex = currentMenuItemConfigurations.findIndex(m => m.id === id)
       const updatedChildIndex = currentChildIndex + direction
       // Only swapping if the updated index is within the range.
       if (updatedChildIndex >= 0 && updatedChildIndex <= currentMenuItemConfigurations.length) {
@@ -88,10 +90,7 @@ const MenuConfiguration = (props) => {
         <div className='flex flex-row flex-wrap gap-3 collapse-header'>
           <div className='my-auto cursor-pointer flex-grow' onClick={toggleExpanded}>
             <div className='font-semibold px-4 py-4 flex gap-1'>
-              <FormattedMessage
-                id={menuConfiguration.name}
-                defaultMessage={menuConfiguration.name}
-              />
+              {name && <FormattedMessage id={name} defaultMessage={name} />}
               <span className='text-xs font-normal my-auto'>
                 ({generateMenuHeaderText(menuConfiguration)})
               </span>
@@ -104,7 +103,7 @@ const MenuConfiguration = (props) => {
                 <button
                   type='button'
                   className='bg-white px-2 py-1 rounded'
-                  onClick={() => appendMenuItem(menuConfiguration.id)}
+                  onClick={() => appendMenuItem(id)}
                 >
                   <div className='text-sm flex gap-1 text-dial-stratos'>
                     <FormattedMessage id='ui.siteSetting.menu.appendMenuItem' />
