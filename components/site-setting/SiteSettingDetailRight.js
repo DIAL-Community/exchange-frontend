@@ -8,7 +8,7 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
 import DeleteSiteSetting from './DeleteSiteSetting'
-import { generateCarouselHeaderText, generateMenuHeaderText } from './utilities'
+import { generateCarouselHeaderText, generateHeroCardHeaderText, generateMenuHeaderText } from './utilities'
 
 const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
   const { formatMessage } = useIntl()
@@ -102,6 +102,31 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               {canEdit &&
                 <EditButton type='link' href={`${siteSetting.slug}/hero-card-configurations`} />
               }
+            </div>
+          </div>
+          <div className='flex flex-col gap-4'>
+            {!siteSetting?.heroCardSection &&
+              <div className='text-sm text-dial-stratos'>
+                {format('ui.common.detail.noData', {
+                  entity: format('ui.siteSetting.heroCard.label'),
+                  base: format('ui.siteSetting.label')
+                })}
+              </div>
+            }
+            <div className='flex flex-col gap-1 text-sm'>
+              {siteSetting?.heroCardSection?.heroCardConfigurations?.map((heroCardConfiguration, index) =>
+                <div key={index} className='flex flex-col gap-1'>
+                  <div className='border shadow px-4 py-3 flex gap-1'>
+                    <FormattedMessage
+                      id={heroCardConfiguration.name}
+                      defaultMessage={heroCardConfiguration.name}
+                    />
+                    <span className='text-xs font-normal my-auto'>
+                      ({generateHeroCardHeaderText(heroCardConfiguration)})
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
