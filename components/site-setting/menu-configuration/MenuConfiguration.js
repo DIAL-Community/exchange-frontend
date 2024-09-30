@@ -30,9 +30,7 @@ const MenuConfiguration = (props) => {
   }
 
   useEffect(() => {
-    if (typeof saved === 'undefined') {
-      setModified(false)
-    }
+    setModified(typeof saved !== 'undefined')
   }, [saved])
 
   const toggleExpanded = () => setExpanded(!expanded)

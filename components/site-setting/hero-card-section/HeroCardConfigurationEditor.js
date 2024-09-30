@@ -77,7 +77,8 @@ const HeroCardConfigurationEditor = (props) => {
         external: external ?? heroCardConfiguration?.external,
         description: description ?? heroCardConfiguration?.description,
         destinationUrl: destinationUrl ?? heroCardConfiguration?.destinationUrl,
-        imageUrl: imageUrl ?? heroCardConfiguration?.imageUrl
+        imageUrl: imageUrl ?? heroCardConfiguration?.imageUrl,
+        saved: false
       }
 
       const currentHeroCardConfigurations = [...heroCardConfigurations]
@@ -131,7 +132,7 @@ const HeroCardConfigurationEditor = (props) => {
 
   return loadingUserSession
     ? <Loading />
-    : <form onSubmit={handleSubmit(doUpsert)}>
+    : <form onSubmit={handleSubmit(doUpsert)} className='border-b border-solid'>
       <div className='px-8 py-6'>
         <div className='flex flex-col gap-y-6 text-sm'>
           <div className='text-xl font-semibold'>

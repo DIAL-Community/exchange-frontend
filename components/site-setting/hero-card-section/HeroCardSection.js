@@ -1,20 +1,155 @@
-import { useContext, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form'
 import { FaPlus, FaSpinner } from 'react-icons/fa6'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import Input from '../../shared/form/Input'
+import ValidationError from '../../shared/form/ValidationError'
 import { UPDATE_SITE_SETTING_HERO_CARD_SECTION } from '../../shared/mutation/siteSetting'
 import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
+import { stripBlanks, toUrlCase, toVariableCase } from '../utilities'
 import HeroCardConfiguration from './HeroCardConfiguration'
 
-const HeroCardSection = ({ slug }) => {
+const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { title, description, heroCardConfigurations } = heroCardSection
+
+  const { locale } = useRouter()
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
+  const [bulkUpdateHeroCard, { reset }] = useMutation(UPDATE_SITE_SETTING_HERO_CARD_SECTION, {
+    onError: (error) => {
+      showFailureMessage(error?.message)
+      setMutating(false)
+      reset()
+    },
+    onCompleted: (data) => {
+      setMutating(false)
+      const { updateSiteSettingHeroCardSection: response } = data
+      if (response.errors.length === 0 && response.siteSetting) {
+        setMutating(false)
+        showSuccessMessage(<FormattedMessage id='ui.siteSetting.heroSection.submitted' />)
+      } else {
+        const [firstErrorMessage] = response.errors
+        showFailureMessage(firstErrorMessage)
+        setMutating(false)
+        reset()
+      }
+    }
+  })
+
+  const { handleSubmit, register, watch, formState: { errors } } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      title,
+      description
+    }
+  })
+
+  const currentTitle = watch('title')
+  const currentDescription = watch('description')
+
   const [mutating, setMutating] = useState(false)
-  const [title, setTitle] = useState()
-  const [description, setDescription] = useState()
+  const { user, loadingUserSession } = useUser()
+
+  const executeBulkUpdate = async (data) => {
+    if (user) {
+      setMutating(true)
+      const { userEmail, userToken } = user
+      const { title, description } = data
+      const variables = {
+        siteSettingSlug,
+        title,
+        description,
+        heroCardConfigurations
+      }
+
+      bulkUpdateHeroCard({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
+  return loadingUserSession
+    ? <Loading />
+    : (
+      <div className='flex flex-col gap-y-6'>
+        <form onSubmit={handleSubmit(executeBulkUpdate)} className='border-b border-solid'>
+          <div className='px-6 py-6'>
+            <div className='flex flex-col gap-y-6 text-sm'>
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' htmlFor='title'>
+                  {format('ui.siteSetting.heroSection.title')}
+                </label>
+                <Input
+                  {...register('title', { required: format('validation.required') })}
+                  id='title'
+                  placeholder={format('ui.siteSetting.heroSection.title')}
+                  isInvalid={errors.title}
+                />
+                {errors.title && <ValidationError value={errors.title?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' htmlFor='description'>
+                  {format('ui.siteSetting.heroSection.description')}
+                </label>
+                <Input
+                  {...register('description', { required: format('validation.required') })}
+                  id='description'
+                  placeholder={format('ui.siteSetting.heroSection.description')}
+                  isInvalid={errors.description}
+                />
+                {errors.description && <ValidationError value={errors.description?.message} />}
+              </div>
+              <div className='flex flex-wrap text-sm gap-3'>
+                <button type='submit' className='submit-button' disabled={mutating}>
+                  {format('ui.siteSetting.heroSection.save')}
+                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
+          <div className='text-2xl font-semibold'>
+            {currentTitle &&
+              <FormattedMessage
+                id={currentTitle}
+                defaultMessage={currentTitle}
+              />
+            }
+          </div>
+          <div className='text-sm max-w-5xl'>
+            {currentDescription &&
+              <FormattedMessage
+                id={currentDescription}
+                defaultMessage={currentDescription}
+              />
+            }
+          </div>
+        </div>
+      </div>
+    )
+}
+
+const HeroCardSection = ({ slug }) => {
+
+  const [mutating, setMutating] = useState(false)
   const [heroCardConfigurations, setHeroCardConfigurations] = useState([])
 
   const [heroCardCounter, setHeroCardCounter] = useState(1)
@@ -25,8 +160,6 @@ const HeroCardSection = ({ slug }) => {
       const { siteSetting } = data
       if (siteSetting) {
         const { heroCardSection } = siteSetting
-        setTitle(heroCardSection.title)
-        setDescription(heroCardSection.description)
         // Save the hero configurations to the state
         setHeroCardConfigurations(heroCardSection.heroCardConfigurations ?? [])
       }
@@ -51,8 +184,6 @@ const HeroCardSection = ({ slug }) => {
         showSuccessMessage(<FormattedMessage id='ui.siteSetting.heroCardConfigurations.submitted' />)
         if (response.siteSetting) {
           const { heroCardSection } = response.siteSetting
-          setTitle(heroCardSection.title)
-          setDescription(heroCardSection.description)
           // Save the hero configurations to the state
           setHeroCardConfigurations(heroCardSection.heroCardConfigurations)
         }
@@ -127,8 +258,6 @@ const HeroCardSection = ({ slug }) => {
       const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug: slug,
-        title,
-        description,
         heroCardConfigurations
       }
 
@@ -153,24 +282,16 @@ const HeroCardSection = ({ slug }) => {
     return map
   })()
 
-  const stripBlanks = (str) => {
-    return str.replace(/\s+/g, '')
-  }
-
-  const toUrlCase = (str) => {
-    return str.replace(/(\s+)/g, '-').toLowerCase()
-  }
-
-  const toVariableCase = (str) => {
-    return str.replace(/(\s+)/g, '').replace(/^./, (str) => str.toLowerCase())
-  }
-
   return (
     <div className='lg:px-8 xl:px-56 min-h-[75vh]'>
       <div className='px-4 lg:px-6 py-4 bg-dial-violet text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='flex flex-col gap-1 py-4'>
+        <HeroCardSectionEditor
+          siteSettingSlug={slug}
+          heroCardSection={siteSetting.heroCardSection}
+        />
         <div className='flex gap-1 ml-auto mb-3'>
           {['Use Case', 'Building Block', 'Product']
             .filter((type) => {

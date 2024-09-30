@@ -12,6 +12,8 @@ const HeroCardConfiguration = (props) => {
   const { siteSettingSlug, heroCardConfiguration } = props
   const { heroCardConfigurations, setHeroCardConfigurations } = props
 
+  const { name, saved } = heroCardConfiguration
+
   const [editing, setEditing] = useState('saved' in heroCardConfiguration)
   const [expanded, setExpanded] = useState('saved' in heroCardConfiguration)
 
@@ -26,10 +28,8 @@ const HeroCardConfiguration = (props) => {
   }
 
   useEffect(() => {
-    if (typeof heroCardConfiguration.saved === 'undefined') {
-      setModified(false)
-    }
-  }, [heroCardConfiguration])
+    setModified(typeof saved !== 'undefined')
+  }, [saved])
 
   const toggleExpanded = () => setExpanded(!expanded)
 
@@ -66,7 +66,7 @@ const HeroCardConfiguration = (props) => {
         <div className='flex flex-row flex-wrap gap-3 collapse-header'>
           <div className='my-auto cursor-pointer flex-grow' onClick={toggleExpanded}>
             <div className='font-semibold px-4 py-4 flex gap-1'>
-              {heroCardConfiguration.name}
+              {name}
               <span className='text-xs font-normal my-auto'>
                 ({generateHeroCardHeaderText(heroCardConfiguration)})
               </span>
@@ -129,14 +129,13 @@ const HeroCardConfiguration = (props) => {
       </div>
       <div className={`${expanded ? 'slide-down' : 'slide-up'} border`}>
         {editing
-          ? <div className='flex flex-col gap-4'>
+          ? <div className='flex flex-col'>
             <HeroCardConfigurationEditor
               siteSettingSlug={siteSettingSlug}
               heroCardConfiguration={heroCardConfiguration}
               heroCardConfigurations={heroCardConfigurations}
               setHeroCardConfigurations={setHeroCardConfigurations}
             />
-            <div className='border border-dashed' />
             <HeroCardConfigurationViewer heroCardConfiguration={heroCardConfiguration} />
           </div>
           : <HeroCardConfigurationViewer heroCardConfiguration={heroCardConfiguration} />

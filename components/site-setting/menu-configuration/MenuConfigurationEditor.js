@@ -83,7 +83,8 @@ const MenuConfigurationEditor = (props) => {
         name: name ?? menuConfiguration?.name,
         external: external ?? menuConfiguration?.external,
         type: type ? type?.value : menuConfiguration?.type,
-        destinationUrl: destinationUrl ?? menuConfiguration?.destinationUrl
+        destinationUrl: destinationUrl ?? menuConfiguration?.destinationUrl,
+        saved: false
       }
 
       const currentMenuConfigurations = [...menuConfigurations]

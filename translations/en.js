@@ -2946,6 +2946,11 @@ export const en = {
     Are you sure you want to delete this hero card item?
   `,
 
+  'ui.siteSetting.heroSection.title': 'Title of the Hero Card Section',
+  'ui.siteSetting.heroSection.description': 'Description of the Hero Card Section',
+  'ui.siteSetting.heroSection.save': 'Save Hero Card Section',
+  'ui.siteSetting.heroSection.submitted': 'Hero card section configurations saved.',
+
   'ui.siteSetting.name': 'Site Configuration Name',
   'ui.siteSetting.enableMarketplace': 'Enable the marketplace feature.',
   'ui.siteSetting.defaultSetting': 'Set this configuration as the default.',

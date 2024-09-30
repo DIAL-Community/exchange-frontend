@@ -109,7 +109,8 @@ const CarouselConfigurationEditor = (props) => {
         destinationUrl: destinationUrl ?? carouselConfiguration?.destinationUrl,
         calloutTitle: calloutTitle ?? carouselConfiguration?.calloutTitle,
         imageUrl: bgStyle?.value ?? carouselConfiguration?.imageUrl,
-        style: textStyle?.value ?? carouselConfiguration?.style
+        style: textStyle?.value ?? carouselConfiguration?.style,
+        saved: false
       }
 
       const currentCarouselConfigurations = [...carouselConfigurations]

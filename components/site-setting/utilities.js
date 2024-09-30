@@ -32,3 +32,15 @@ export const generateHeroCardHeaderText = (heroCardConfiguration) => {
     ? generateDestinationText(heroCardConfiguration.destinationUrl)
     : generateStaticText('ui.siteSetting.heroCard.type.locked')
 }
+
+export const stripBlanks = (str) => {
+  return str.replace(/\s+/g, '')
+}
+
+export const toUrlCase = (str) => {
+  return str.replace(/(\s+)/g, '-').toLowerCase()
+}
+
+export const toVariableCase = (str) => {
+  return str.replace(/(\s+)/g, '').replace(/^./, (str) => str.toLowerCase())
+}

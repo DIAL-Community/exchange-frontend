@@ -12,6 +12,8 @@ const CarouselConfiguration = (props) => {
   const { siteSettingSlug, carouselConfiguration } = props
   const { carouselConfigurations, setCarouselConfigurations } = props
 
+  const { name, saved } = carouselConfiguration
+
   const [editing, setEditing] = useState('saved' in carouselConfiguration)
   const [expanded, setExpanded] = useState('saved' in carouselConfiguration)
 
@@ -26,10 +28,10 @@ const CarouselConfiguration = (props) => {
   }
 
   useEffect(() => {
-    if (typeof carouselConfiguration.saved === 'undefined') {
+    if (typeof saved === 'undefined') {
       setModified(false)
     }
-  }, [carouselConfiguration])
+  }, [saved])
 
   const toggleExpanded = () => setExpanded(!expanded)
 
@@ -66,7 +68,7 @@ const CarouselConfiguration = (props) => {
         <div className='flex flex-row flex-wrap gap-3 collapse-header'>
           <div className='my-auto cursor-pointer flex-grow' onClick={toggleExpanded}>
             <div className='font-semibold px-4 py-4 flex gap-1'>
-              {carouselConfiguration.name}
+              {name}
               <span className='text-xs font-normal my-auto'>
                 ({generateCarouselHeaderText(carouselConfiguration)})
               </span>
