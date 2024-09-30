@@ -100,7 +100,9 @@ const ProductForm = React.memo(({ product }) => {
       pricingDetails: product?.pricingDetails,
       pricingUrl: product?.pricingUrl,
       productStage: product?.productStage ?? null,
-      extraAttributes: ProductExtraAttributeNames.map(name => ({ name, value: '', type: '' }))
+      extraAttributes: ProductExtraAttributeNames.map(name => ({ name, value: '', type: '' })),
+      featured: product?.featured,
+      contact: product?.contact
     }
   })
 
@@ -143,7 +145,9 @@ const ProductForm = React.memo(({ product }) => {
         pricingModel,
         pricingDetails,
         productStage,
-        extraAttributes
+        extraAttributes,
+        featured,
+        contact
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -158,7 +162,9 @@ const ProductForm = React.memo(({ product }) => {
         pricingModel,
         pricingDetails,
         productStage,
-        extraAttributes
+        extraAttributes,
+        featured,
+        contact
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -199,7 +205,8 @@ const ProductForm = React.memo(({ product }) => {
               <Input
                 {...register(
                   'name',
-                  { required: format('validation.required'),
+                  {
+                    required: format('validation.required'),
                     maxLength: { value: 80, message: format('validation.max-length.text', { maxLength: 80 }) }
                   })}
                 id='name'
@@ -253,9 +260,35 @@ const ProductForm = React.memo(({ product }) => {
               />
             </div>
             <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='contact'>
+                {format('product.contact')}
+              </label>
+              <Input
+                {...register(
+                  'contact',
+                  {
+                    required: format('validation.required'),
+                    maxLength: { value: 80, message: format('validation.max-length.text', { maxLength: 80 }) },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'invalid email address'
+                    }
+                  })}
+                id='name'
+                placeholder={format('product.contact')}
+                isInvalid={errors.name}
+                onBlur={handleTrimInputOnBlur}
+              />
+              {errors.contact && <ValidationError value={errors.contact?.message}/>}
+            </div>
+            <div className='flex flex-col gap-y-2'>
               <label>{format('product.imageFile')}</label>
               <FileUploader {...register('imageFile')} />
             </div>
+            <label className='flex gap-x-2 mb-2 items-center self-start'>
+              <Checkbox {...register('featured')} />
+              {format('product.isProductFeatured')}
+            </label>
             <div className="flex flex-col gap-y-2">
               <label>{format('app.productStage')}</label>
               <Controller
@@ -283,21 +316,21 @@ const ProductForm = React.memo(({ product }) => {
                     name={`extraAttributes.${index}.value`}
                     control={control}
                     render={({ field }) => (
-                      <Input {...field} className="col-span-3" placeholder={name} />
+                      <Input {...field} className="col-span-3" placeholder={name}/>
                     )}
                   />
                   <Controller
                     name={`extraAttributes.${index}.type`}
                     control={control}
                     render={({ field }) => (
-                      <Input {...field} className="col-span-1" placeholder="Type" />
+                      <Input {...field} className="col-span-1" placeholder="Type"/>
                     )}
                   />
                   <Controller
                     name={`extraAttributes.${index}.name`}
                     control={control}
                     render={({ field }) => (
-                      <input type="hidden" {...field} value={name} />
+                      <input type="hidden" {...field} value={name}/>
                     )}
                   />
                 </div>
