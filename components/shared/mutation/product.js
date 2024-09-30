@@ -17,6 +17,7 @@ export const CREATE_PRODUCT = gql`
     $productStage: String
     $extraAttributes: [ExtraAttributeInput!]!
     $featured: Boolean
+    $contact: String
   ) {
     createProduct(
       name: $name
@@ -34,6 +35,7 @@ export const CREATE_PRODUCT = gql`
       productStage: $productStage
       extraAttributes: $extraAttributes
       featured: $featured
+      contact: $contact
     ) {
       product {
         id
@@ -46,6 +48,7 @@ export const CREATE_PRODUCT = gql`
         productStage
         extraAttributes
         featured
+        contact
         productDescription {
           id
           description
