@@ -260,7 +260,7 @@ const ProductForm = React.memo(({ product }) => {
               />
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label className='required-field' htmlFor='contact'>
+              <label htmlFor='contact'>
                 {format('product.contact')}
               </label>
               <Input
