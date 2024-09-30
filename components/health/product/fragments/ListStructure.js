@@ -7,7 +7,7 @@ import { DisplayType } from '../../../utils/constants'
 import ProductCard from './ProductCard'
 import ProductFilter from './ProductFilter'
 
-const ListStructure = ({ pageOffset, defaultPageSize }) => {
+const ListStructure = ({ pageOffset, defaultPageSize, onlyFeatured }) => {
   const { search } = useContext(ProductFilterContext)
 
   const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
@@ -30,6 +30,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       softwareFeatures: softwareFeatures.map(feature => feature.value),
       limit: defaultPageSize,
       productStage,
+      featured: onlyFeatured,
       offset: pageOffset
     }
   })

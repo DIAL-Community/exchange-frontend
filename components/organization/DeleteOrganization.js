@@ -38,7 +38,7 @@ const DeleteOrganization = ({ organization }) => {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
           format('toast.delete.success', { entity: format('ui.organization.label') }),
-          () => router.push(`/${locale}/organizations`)
+          () => router.push('/health/organizations')
         )
       } else {
         setDisplayConfirmDialog(false)
