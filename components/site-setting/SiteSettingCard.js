@@ -30,7 +30,7 @@ const SiteSettingCard = ({ displayType, index, siteSetting, dismissHandler }) =>
             </div>
             <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
-              {format('ui.siteSetting.heroCard.header')} ({siteSetting.heroCardConfigurations?.length ?? 0})
+              {format('ui.siteSetting.heroCard.header')} ({siteSetting.heroCardSection?.heroCardConfigurations?.length ?? 0})
             </div>
           </div>
         </div>
