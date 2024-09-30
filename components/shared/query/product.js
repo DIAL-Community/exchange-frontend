@@ -26,6 +26,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
     $productStage: String
     $softwareCategories: [String!]
     $softwareFeatures: [String!]
+    $featured: Boolean
   ) {
     paginationAttributeProduct(
       useCases: $useCases
@@ -44,6 +45,7 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
       productStage: $productStage
       softwareCategories: $softwareCategories
       softwareFeatures: $softwareFeatures
+      featured: $featured
     ) {
       totalCount
     }
@@ -68,6 +70,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
     $showDpgaOnly: Boolean
     $search: String
     $productStage: String
+    $featured: Boolean
     $limit: Int!
     $offset: Int!
   ) {
@@ -88,6 +91,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       showDpgaOnly: $showDpgaOnly
       search: $search
       productStage: $productStage
+      featured: $featured
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
       id
@@ -98,6 +102,7 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       govStackEntity
       overallMaturityScore
       commercialProduct
+      featured
       origins {
         id
         name
@@ -155,6 +160,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       haveOwner
       govStackEntity
       productStage
+      contact
       productDescription {
         id
         description

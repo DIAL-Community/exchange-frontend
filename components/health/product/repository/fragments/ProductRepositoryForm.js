@@ -42,7 +42,7 @@ const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) =
       const { createProductRepository: response } = data
       if (response.productRepository && response.errors.length === 0) {
         setMutating(false)
-        const redirectPath = `/${locale}/health/products/${productSlug}` +
+        const redirectPath = `/health/products/${productSlug}` +
                              `/repositories/${response.productRepository.slug}`
         const redirectHandler = () => router.push(redirectPath)
         showSuccessMessage(
@@ -116,7 +116,7 @@ const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) =
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/health/products/${productSlug}/repositories/${repositorySlug}`)
+    router.push(`/health/products/${productSlug}/${repositorySlug ? 'repositories' : '' }/${repositorySlug}`)
   }
 
   return loadingUserSession

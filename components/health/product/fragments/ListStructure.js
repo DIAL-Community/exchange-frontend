@@ -7,7 +7,7 @@ import { DisplayType } from '../../../utils/constants'
 import ProductCard from './ProductCard'
 import ProductFilter from './ProductFilter'
 
-const ListStructure = ({ pageOffset, defaultPageSize }) => {
+const ListStructure = ({ pageOffset, defaultPageSize, onlyFeatured }) => {
   const {
     search,
     buildingBlocks,
@@ -40,6 +40,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       workflows: workflows.map(workflow => workflow.id),
       limit: defaultPageSize,
       productStage,
+      featured: onlyFeatured,
       offset: pageOffset
     }
   })

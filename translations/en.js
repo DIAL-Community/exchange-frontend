@@ -319,6 +319,8 @@ export const en = {
   'product.aliases': 'Aliases',
   'product.alias': 'Alias',
   'product.website': 'Website',
+  'product.contact': 'Contact',
+  'product.isProductFeatured': 'This product is featured.',
   'product.imageFile': 'Logo',
   'product.mappingStatus': 'Mapping Status',
   'product.submit.success': 'Product submitted successfully',

@@ -65,6 +65,7 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
         noOptionsMessage={() => format('filter.searchFor', { entity: format('location.header') })}
         onChange={setLocation}
         value={value}
+        className='max-w-[48vw]'
       />
   )
 })
