@@ -33,6 +33,10 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
+  const handleTrimInputOnBlur = (event) => {
+    event.target.value = event.target.value.trim()
+  }
+
   const router = useRouter()
   const { locale } = router
 
@@ -184,10 +188,16 @@ const OrganizationForm = React.memo(({ organization }) => {
                   {format('organization.name')}
                 </label>
                 <Input
-                  {...register('name', { required: format('validation.required') })}
+                  {...register(
+                    'name',
+                    {
+                      required: format('validation.required'),
+                      maxLength: { value: 80, message: format('validation.max-length.text', { maxLength: 80 }) }
+                    })}
                   id='name'
                   placeholder={format('organization.name')}
                   isInvalid={errors.name}
+                  onBlur={handleTrimInputOnBlur}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
               </div>

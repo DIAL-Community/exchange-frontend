@@ -134,6 +134,7 @@ const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.label') })}
           onChange={addProduct}
           value={null}
+          className='max-w-[48vw]'
         />
       </label>
       <div className='flex flex-wrap gap-3'>

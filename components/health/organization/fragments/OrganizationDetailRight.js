@@ -53,7 +53,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
             {isAdminUser && <DeleteOrganization organization={organization} />}
           </div>
         )}
-        <div className='text-xl font-semibold text-health-blue py-3' ref={descRef}>
+        <div className="text-xl text-health-blue font-semibold pb-3 pt-1 break-words" ref={descRef}>
           {organization.name}
         </div>
         <div className='block max-w-[50vw]'>
