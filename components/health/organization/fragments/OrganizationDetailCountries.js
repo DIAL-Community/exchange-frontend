@@ -163,6 +163,7 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.country.label') })}
           onChange={addCountry}
           value={null}
+          className='max-w-[48vw]'
         />
       </label>
       <div className='flex flex-wrap gap-3'>
