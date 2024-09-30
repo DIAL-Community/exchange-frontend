@@ -101,7 +101,8 @@ const ProductForm = React.memo(({ product }) => {
       pricingUrl: product?.pricingUrl,
       productStage: product?.productStage ?? null,
       extraAttributes: ProductExtraAttributeNames.map(name => ({ name, value: '', type: '' })),
-      featured: product?.featured
+      featured: product?.featured,
+      contact: product?.contact
     }
   })
 
@@ -145,7 +146,8 @@ const ProductForm = React.memo(({ product }) => {
         pricingDetails,
         productStage,
         extraAttributes,
-        featured
+        featured,
+        contact
       } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -161,7 +163,8 @@ const ProductForm = React.memo(({ product }) => {
         pricingDetails,
         productStage,
         extraAttributes,
-        featured
+        featured,
+        contact
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -255,6 +258,28 @@ const ProductForm = React.memo(({ product }) => {
                   />
                 )}
               />
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label htmlFor='contact'>
+                {format('product.contact')}
+              </label>
+              <Input
+                {...register(
+                  'contact',
+                  {
+                    required: format('validation.required'),
+                    maxLength: { value: 80, message: format('validation.max-length.text', { maxLength: 80 }) },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'invalid email address'
+                    }
+                  })}
+                id='name'
+                placeholder={format('product.contact')}
+                isInvalid={errors.name}
+                onBlur={handleTrimInputOnBlur}
+              />
+              {errors.contact && <ValidationError value={errors.contact?.message}/>}
             </div>
             <div className='flex flex-col gap-y-2'>
               <label>{format('product.imageFile')}</label>

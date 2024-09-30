@@ -160,6 +160,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       haveOwner
       govStackEntity
       productStage
+      contact
       productDescription {
         id
         description
