@@ -13,8 +13,8 @@ const CatalogSeo = ({ currentTenant }) => {
 
   const [updateSeoSettings, { loading, error }] = useLazyQuery(INITIAL_IMAGE_URL_QUERY, {
     onCompleted: (data) => {
-      setFaviconUrl(data.siteSetting.faviconUrl)
-      setOpenGraphLogoUrl(data.siteSetting.openGraphLogoUrl)
+      setFaviconUrl(data.defaultSiteSetting.faviconUrl)
+      setOpenGraphLogoUrl(data.defaultSiteSetting.openGraphLogoUrl)
     }
   })
 

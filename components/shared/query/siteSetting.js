@@ -19,6 +19,25 @@ export const SITE_SETTING_DETAIL_QUERY = gql`
   }
 `
 
+export const DEFAULT_SITE_SETTING_DETAIL_QUERY = gql`
+  query DefaultSiteSetting {
+    defaultSiteSetting {
+      id
+      slug
+      name
+      description
+      faviconUrl
+      exchangeLogoUrl
+      openGraphLogoUrl
+      carouselConfigurations
+      menuConfigurations
+      heroCardSection
+      enableMarketplace
+      defaultSetting
+    }
+  }
+`
+
 export const SITE_SETTINGS_QUERY = gql`
   query SiteSettings {
     siteSettings {
@@ -33,8 +52,8 @@ export const SITE_SETTINGS_QUERY = gql`
 `
 
 export const INITIAL_IMAGE_URL_QUERY = gql`
-  query SiteSetting {
-    siteSetting {
+  query DefaultSiteSetting {
+    defaultSiteSetting {
       id
       faviconUrl
       openGraphLogoUrl

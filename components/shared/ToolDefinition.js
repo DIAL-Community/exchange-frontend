@@ -64,6 +64,7 @@ export const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
 
 const ToolDefinition = () => {
   const { heroCardSection } = useContext(SiteSettingContext)
+  console.log(heroCardSection)
   const { title, description, heroCardConfigurations } = heroCardSection
 
   return (

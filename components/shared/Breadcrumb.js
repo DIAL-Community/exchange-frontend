@@ -46,7 +46,8 @@ const basePathMappings = {
   'wizard': 'ui.wizard.header',
   'admin': 'ui.admin.header',
   'site-settings': 'ui.siteSetting.header',
-  'menu-configurations': 'ui.siteSetting.menu.header'
+  'menu-configurations': 'ui.siteSetting.menu.header',
+  'tenant-settings': 'ui.tenantSetting.header'
 }
 
 const candidatePathMappings = {

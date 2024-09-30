@@ -1,20 +1,20 @@
 import { createContext, useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useLazyQuery } from '@apollo/client'
-import { SITE_SETTING_DETAIL_QUERY } from '../shared/query/siteSetting'
+import { DEFAULT_SITE_SETTING_DETAIL_QUERY } from '../shared/query/siteSetting'
 
 const SiteSettingContext = createContext()
 const SiteSettingDispatchContext = createContext()
 
 const SiteSettingProvider = ({ children }) => {
   const { status } = useSession()
-  const [updateSiteSettings, { loading, error }] = useLazyQuery(SITE_SETTING_DETAIL_QUERY, {
+  const [updateSiteSettings, { loading, error }] = useLazyQuery(DEFAULT_SITE_SETTING_DETAIL_QUERY, {
     onCompleted: (data) => {
-      setExchangeLogoUrl(data.siteSetting.exchangeLogoUrl)
-      setMenuConfigurations(data.siteSetting.menuConfigurations)
-      setCarouselConfigurations(data.siteSetting.carouselConfigurations)
-      setHeroCardSection(data.siteSetting.heroCardSection)
-      setEnableMarketplace(data.siteSetting.enableMarketplace)
+      setExchangeLogoUrl(data.defaultSiteSetting.exchangeLogoUrl)
+      setMenuConfigurations(data.defaultSiteSetting.menuConfigurations)
+      setCarouselConfigurations(data.defaultSiteSetting.carouselConfigurations)
+      setHeroCardSection(data.defaultSiteSetting.heroCardSection)
+      setEnableMarketplace(data.defaultSiteSetting.enableMarketplace)
     }
   })
 
