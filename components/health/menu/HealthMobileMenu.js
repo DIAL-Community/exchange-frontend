@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { signIn, signOut } from 'next-auth/react'
 import { useIntl } from 'react-intl'
@@ -77,10 +77,25 @@ const HealthMobileMenu = ({ menuExpanded, setMenuExpanded }) => {
     setMenuExpanded(false)
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMenuExpanded(false)
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return (
     <>
       {menuExpanded &&
-        <div className='absolute top-16 right-0 w-full max-w-md'>
+        <div className='absolute top-16 right-0 w-full max-w-md hide-mobile-menu'>
           <div className='shadow-lg bg-dial-stratos text-dial-cotton cursor-pointer'>
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-auto gap-4 p-4'>
               {!user &&

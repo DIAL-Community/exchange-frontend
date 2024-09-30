@@ -134,6 +134,12 @@ body {
   }
 }
 
+@media(min-width: 768px) {
+  .hide-mobile-menu {
+    display: none;
+  }
+}
+
 .highlight-link a {
   color: #fab230;
 }

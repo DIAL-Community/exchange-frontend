@@ -63,7 +63,7 @@ const OrganizationCard = ({ displayType, organization, dismissHandler, urlPrefix
               </div>
             }
           </div>
-          <div className="px-6 text-xl text-center font-semibold m-auto text-health-blue title-truncate break-words">
+          <div className="px-6 text-xl text-center font-semibold text-health-blue title-truncate break-words">
             {organization.name}
           </div>
           <div className="text-xs text-dial-stratos font-medium h-full overflow-hidden" ref={textRef}>
