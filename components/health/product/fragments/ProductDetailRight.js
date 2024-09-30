@@ -93,21 +93,6 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <hr className="border-b border-health-gray my-3"/>
         <ProductDetailProductStage product={product} canEdit={canEdit} headerRef={extraRef} />
         <hr className="border-b border-health-gray my-3"/>
-        <div className="text-health-blue text-xl font-semibold mt-6" ref={productMaturityRef}>
-          {format('ui.maturityScore.header')}
-        </div>
-        <div className="text-sm italic">
-          <div
-            className="text-xs text-justify text-health-blue highlight-link"
-            dangerouslySetInnerHTML={{ __html: format('health.maturity.description') }}
-          />
-        </div>
-        <ProductDetailMaturityScores
-          slug={product.slug}
-          overallMaturityScore={product.overallMaturityScore}
-          maturityScoreDetails={product.maturityScoreDetails}
-        />
-        <hr className="border-b border-health-gray my-3"/>
         <div className="flex flex-col gap-y-3">
           <ProductDetailCategories
             product={product}
@@ -131,6 +116,21 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             headerRef={countryRef}
           />
         </div>
+        <hr className="border-b border-health-gray my-3"/>
+        <div className="text-health-blue text-xl font-semibold mt-6" ref={productMaturityRef}>
+          {format('ui.maturityScore.header')}
+        </div>
+        <div className="text-sm italic">
+          <div
+            className="text-xs text-justify text-health-blue highlight-link"
+            dangerouslySetInnerHTML={{ __html: format('health.maturity.description') }}
+          />
+        </div>
+        <ProductDetailMaturityScores
+          slug={product.slug}
+          overallMaturityScore={product.overallMaturityScore}
+          maturityScoreDetails={product.maturityScoreDetails}
+        />
         <hr className="border-b border-health-gray my-3"/>
         <div className="flex flex-col gap-y-3">
           <ProductDetailProjects
