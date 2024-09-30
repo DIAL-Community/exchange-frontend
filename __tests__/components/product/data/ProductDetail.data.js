@@ -5,6 +5,7 @@ export const productDetail = {
       'name': '@firma',
       'slug': 'firma',
       'aliases': [],
+      'contact': null,
       'imageFile': '/assets/products/firma.png',
       'website': 'example.com',
       'extraAttributes': {},
@@ -188,6 +189,8 @@ export const createProduct = {
         'govStackEntity': false,
         'productStage': null,
         'extraAttributes': [],
+        'featured': false,
+        'contact': null,
         'productDescription': {
           'id': '24',
           'description': `
