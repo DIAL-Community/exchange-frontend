@@ -1,7 +1,7 @@
-import { useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
@@ -54,7 +54,7 @@ const DeleteTenantSetting = ({ tenantSetting }) => {
       const { userEmail, userToken } = user
       deleteTenantSetting({
         variables: {
-          id: tenantSetting.id
+          tenantName: tenantSetting.tenantName
         },
         context: {
           headers: {

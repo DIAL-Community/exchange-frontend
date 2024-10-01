@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import * as FetchStatus from '../../shared/FetchStatus'
+import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_TENANT_SETTING } from '../../shared/mutation/tenantSetting'
@@ -32,14 +33,15 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
       variables: {}
     }],
     onCompleted: (data) => {
-      if (data.createTenantSetting.tenantSetting && data.createTenantSetting.errors.length === 0) {
-        const redirectPath = `/admin/tenant-settings/${data.createTenantSetting.tenantSetting.tenantName}`
+      const { createTenantSetting: response } = data
+      if (response.tenantSetting && response.errors.length === 0) {
+        const redirectPath = `/admin/tenant-settings/${response.tenantSetting.tenantName}`
         const redirectHandler = () => router.push(redirectPath)
-        setMutating(false)
         showSuccessMessage(
           format('toast.submit.success', { entity: format('ui.tenantSetting.label') }),
           redirectHandler
         )
+        setMutating(false)
       } else {
         showFailureMessage(format('toast.submit.failure', { entity: format('ui.tenantSetting.label') }))
         setMutating(false)
@@ -58,8 +60,9 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: tenantSetting?.tenantName,
-      domains: tenantSetting?.tenantDomains.map(domain => {
+      tenantName: tenantSetting?.tenantName,
+      allowUnsecureRead: tenantSetting?.allowUnsecureRead ?? true,
+      tenantDomains: (tenantSetting?.tenantDomains ?? ['example.localhost']).map(domain => {
         return {
           domain
         }
@@ -69,17 +72,18 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'domains'
+    name: 'tenantDomains'
   })
 
   const doUpsert = async (data) => {
     if (user) {
+      setMutating(true)
       const { userEmail, userToken } = user
-      const { name, domains } = data
+      const { tenantName, tenantDomains, allowUnsecureRead } = data
       const variables = {
-        tenantName: name,
-        tenantDomains: domains.map(d => d.domain),
-        allowUnsecureRead: tenantSetting?.allowUnsecureRead
+        tenantName,
+        tenantDomains: tenantDomains.map(d => d.domain),
+        allowUnsecureRead
       }
 
       updateTenantSetting({
@@ -112,33 +116,47 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
                   : `${format('app.createNew')} ${format('ui.tenantSetting.label')}`}
               </div>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='name'>
-                  {format('ui.tenantSetting.name')}
+                <label className='required-field' htmlFor='tenantName'>
+                  {format('ui.tenantSetting.tenantName')}
                 </label>
                 <Input
-                  {...register('name', { required: format('validation.required') })}
-                  id='name'
-                  placeholder={format('ui.tenantSetting.name')}
-                  isInvalid={errors.name}
+                  {...register('tenantName', {
+                    required: format('ui.validation.required'),
+                    // pattern: {
+                    //   value: /^[A-Za-z]*$/,
+                    //   message: format('ui.validation.pattern.alphaOnly')
+                    // },
+                    maxLength: {
+                      value: 16,
+                      message: format('ui.validation.maxLength', { maxLength: 16 })
+                    }
+                  })}
+                  id='tenantName'
+                  placeholder={format('ui.tenantSetting.tenantName')}
+                  isInvalid={errors.tenantName}
                 />
-                {errors.name && <ValidationError value={errors.name?.message} />}
+                {errors.tenantName && <ValidationError value={errors.tenantName?.message} />}
               </div>
+              <label className='flex gap-x-2 mb-2 items-center self-start'>
+                <Checkbox {...register('allowUnsecureRead')} />
+                {format('ui.tenantSetting.allowUnsecureRead')}
+              </label>
               <div className='flex flex-col gap-y-3'>
                 <div className='text-sm'>
-                  {format('ui.tenantSetting.domain')}
+                  {format('ui.tenantSetting.tenantDomains')}
                 </div>
                 {fields.map((field, index) => (
                   <div key={field.id} className='flex flex-col gap-y-2'>
-                    <label className='required-field sr-only' htmlFor={`domains-${index}`}>
-                      {format('ui.tenantSetting.domain')}
+                    <label className='required-field sr-only' htmlFor={`tenant-domains-${index}`}>
+                      {format('ui.tenantSetting.tenantDomain')}
                     </label>
                     <div className='flex flex-row gap-x-2'>
                       <Input
-                        {...register(`domains.${index}.domain`, { required: format('validation.required') })}
-                        id={`domains-${index}`}
+                        {...register(`tenantDomains.${index}.domain`, { required: format('validation.required') })}
+                        id={`tenant-domains-${index}`}
                         defaultValue={fields[index].domain}
-                        placeholder={format('ui.tenantSetting.domain')}
-                        isInvalid={errors.domains?.[index]?.domain}
+                        placeholder={format('ui.tenantSetting.tenantDomain')}
+                        isInvalid={errors.tenantDomains?.[index]?.domain}
                       />
                       <button
                         type='button'
@@ -148,8 +166,8 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
                         <FaMinus />
                       </button>
                     </div>
-                    {errors.domains?.[index]?.domain
-                      && <ValidationError value={errors.domains?.[index]?.domain?.message} />
+                    {errors.tenantDomains?.[index]?.domain
+                      && <ValidationError value={errors.tenantDomains?.[index]?.domain?.message} />
                     }
                   </div>
                 )

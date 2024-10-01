@@ -10,7 +10,8 @@ const TenantSettingDetail = ({ tenantName }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(TENANT_SETTING_DETAIL_QUERY, {
-    variables: { tenantName }
+    variables: { tenantName },
+    cache: 'no-cache'
   })
 
   if (loading) {

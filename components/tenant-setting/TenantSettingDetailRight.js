@@ -1,4 +1,5 @@
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
@@ -8,6 +9,8 @@ import { ObjectType } from '../utils/constants'
 import DeleteTenantSetting from './DeleteTenantSetting'
 
 const TenantSettingDetailRight = ({ tenantSetting }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
   const canEdit = isAdminUser || isEditorUser
@@ -26,6 +29,28 @@ const TenantSettingDetailRight = ({ tenantSetting }) => {
           </div>
         )}
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-blueberry pb-3'>
+            {format('ui.tenantSetting.tenantDomains')}
+          </div>
+          {tenantSetting?.tenantDomains.length <= 0 &&
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('ui.tenantSetting.tenantDomain'),
+                base: format('ui.tenantSetting.label')
+              })}
+            </div>
+          }
+          {tenantSetting?.tenantDomains.length > 0 &&
+            <div className='flex flex-col gap-3'>
+              {tenantSetting?.tenantDomains?.map((tenantDomain, index) =>
+                <div key={`tenant-domain-${index}`}>
+                  {tenantDomain}
+                </div>
+              )}
+            </div>
+          }
+        </div>
         <div className='lg:hidden flex flex-col gap-3'>
           <Bookmark object={tenantSetting} objectType={ObjectType.TENANT_SETTING} />
           <hr className='border-b border-dial-slate-200' />

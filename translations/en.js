@@ -2960,6 +2960,15 @@ export const en = {
 
   'ui.tenantSetting.label': 'Tenant Configuration',
   'ui.tenantSetting.header': 'Tenant Configurations',
-  'ui.tenantSetting.name': 'Name of the Tenant',
-  'ui.tenantSetting.domain': 'Registered URLs for the Tenant',
+  'ui.tenantSetting.tenantName': 'Name of the Tenant',
+  'ui.tenantSetting.tenantDomains': 'Registered URLs',
+  'ui.tenantSetting.tenantDomain': 'Registered URL',
+  'ui.tenantSetting.initialized': 'Tenant Initialized & Ready',
+  'ui.tenantSetting.allowUnsecureRead': 'Allow browsing without authenticating.',
+  'ui.tenantSetting.createNew': 'Create a New Tenant Configurations?',
+
+  'ui.validation.required': 'This field is required.',
+  'ui.validation.maxLength': 'This field maximum length is {maxLength}.',
+  'ui.validation.pattern.alphaOnly': 'This field only accept alphabet characters.',
 }
+

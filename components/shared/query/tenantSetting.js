@@ -7,6 +7,7 @@ export const TENANT_SETTING_DETAIL_QUERY = gql`
       tenantName
       tenantDomains
       allowUnsecureRead
+      initialized
     }
   }
 `
@@ -18,6 +19,7 @@ export const TENANT_SETTINGS_QUERY = gql`
       tenantName
       tenantDomains
       allowUnsecureRead
+      initialized
     }
   }
 `

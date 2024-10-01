@@ -18,7 +18,11 @@ const TenantSettingCard = ({ displayType, index, tenantSetting, dismissHandler }
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.tenantSetting.domain')} ({tenantSetting.tenantDomains?.length ?? 0})
+              {format('ui.tenantSetting.tenantDomains')} ({tenantSetting.tenantDomains?.length ?? 0})
+            </div>
+            <div className='border-r border-dial-slate-400' />
+            <div className='text-sm'>
+              {tenantSetting.initialized && format('ui.tenantSetting.initialized')}
             </div>
           </div>
         </div>
