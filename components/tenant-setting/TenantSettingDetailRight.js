@@ -1,4 +1,4 @@
-import { forwardRef, useRef } from 'react'
+import { useRef } from 'react'
 import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
@@ -7,7 +7,7 @@ import EditButton from '../shared/form/EditButton'
 import { ObjectType } from '../utils/constants'
 import DeleteTenantSetting from './DeleteTenantSetting'
 
-const TenantSettingDetailRight = forwardRef(({ tenantSetting }) => {
+const TenantSettingDetailRight = ({ tenantSetting }) => {
 
   const { isAdminUser, isEditorUser } = useUser()
   const canEdit = isAdminUser || isEditorUser
@@ -40,7 +40,7 @@ const TenantSettingDetailRight = forwardRef(({ tenantSetting }) => {
       </div>
     </div>
   )
-})
+}
 
 TenantSettingDetailRight.displayName = 'TenantSettingDetailRight'
 

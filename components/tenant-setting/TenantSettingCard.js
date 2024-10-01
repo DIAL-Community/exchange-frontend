@@ -18,7 +18,7 @@ const TenantSettingCard = ({ displayType, index, tenantSetting, dismissHandler }
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.tenantSetting.tenantDomains.header')} ({tenantSetting.tenantDomains?.length ?? 0})
+              {format('ui.tenantSetting.domain')} ({tenantSetting.tenantDomains?.length ?? 0})
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
-import { FaSpinner } from 'react-icons/fa6'
+import { useFieldArray, useForm } from 'react-hook-form'
+import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
@@ -33,7 +33,7 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
     }],
     onCompleted: (data) => {
       if (data.createTenantSetting.tenantSetting && data.createTenantSetting.errors.length === 0) {
-        const redirectPath = `/admin/tenant-settings/${data.createTenantSetting.tenantSetting.slug}`
+        const redirectPath = `/admin/tenant-settings/${data.createTenantSetting.tenantSetting.tenantName}`
         const redirectHandler = () => router.push(redirectPath)
         setMutating(false)
         showSuccessMessage(
@@ -53,21 +53,33 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
     }
   })
 
-  const { handleSubmit, register, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: tenantSetting?.tenantName
+      name: tenantSetting?.tenantName,
+      domains: tenantSetting?.tenantDomains.map(domain => {
+        return {
+          domain
+        }
+      })
     }
+  })
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'domains'
   })
 
   const doUpsert = async (data) => {
     if (user) {
       const { userEmail, userToken } = user
-      const { name } = data
+      const { name, domains } = data
       const variables = {
-        name
+        tenantName: name,
+        tenantDomains: domains.map(d => d.domain),
+        allowUnsecureRead: tenantSetting?.allowUnsecureRead
       }
 
       updateTenantSetting({
@@ -110,6 +122,50 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-3'>
+                <div className='text-sm'>
+                  {format('ui.tenantSetting.domain')}
+                </div>
+                {fields.map((field, index) => (
+                  <div key={field.id} className='flex flex-col gap-y-2'>
+                    <label className='required-field sr-only' htmlFor={`domains-${index}`}>
+                      {format('ui.tenantSetting.domain')}
+                    </label>
+                    <div className='flex flex-row gap-x-2'>
+                      <Input
+                        {...register(`domains.${index}.domain`, { required: format('validation.required') })}
+                        id={`domains-${index}`}
+                        defaultValue={fields[index].domain}
+                        placeholder={format('ui.tenantSetting.domain')}
+                        isInvalid={errors.domains?.[index]?.domain}
+                      />
+                      <button
+                        type='button'
+                        className='bg-red-500 text-white px-3 rounded shadow'
+                        onClick={() => remove(index)}
+                      >
+                        <FaMinus />
+                      </button>
+                    </div>
+                    {errors.domains?.[index]?.domain
+                      && <ValidationError value={errors.domains?.[index]?.domain?.message} />
+                    }
+                  </div>
+                )
+                )}
+                <div className='flex flex-row gap-x-2'>
+                  <button
+                    type='button'
+                    className='bg-dial-iris-blue text-white px-3 py-3 rounded shadow ml-auto'
+                    onClick={() => append(
+                      { domain: 'replace-with-valid-domain' },
+                      { focusIndex: fields.length }
+                    )}
+                  >
+                    <FaPlus />
+                  </button>
+                </div>
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>
