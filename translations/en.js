@@ -480,8 +480,10 @@ export const en = {
   'ui.contact.snsType.phone': 'Phone',
   'ui.contact.snsType.twitter': 'Twitter',
 
-  'ui.sector.header': 'Sectors',
   'ui.sector.label': 'Sector',
+  'ui.sector.header': 'Sectors',
+  'ui.sector.name': 'Sector Name',
+  'ui.sector.createNew': 'Create a new Sector',
   'sector.parent-sector.label': 'Parent Sector',
   'sector.is-displayable.label': 'Is displayable',
   'sector.delete.confirm.message': 'Are you sure you want to delete this Sector? All associations will also be removed.',

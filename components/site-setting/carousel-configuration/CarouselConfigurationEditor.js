@@ -100,10 +100,11 @@ const CarouselConfigurationEditor = (props) => {
 
   useEffect(() => {
     const { unsubscribe } = watch((value) => {
-      const { name, description, external, destinationUrl, calloutTitle, textStyle, bgStyle } = value
+      const { name, title, description, external, destinationUrl, calloutTitle, textStyle, bgStyle } = value
       const currentCarouselConfiguration = {
         ...carouselConfiguration,
         name: name ?? carouselConfiguration?.name,
+        title: title ?? carouselConfiguration?.title,
         external: external ?? carouselConfiguration?.external,
         description: description ?? carouselConfiguration?.description,
         destinationUrl: destinationUrl ?? carouselConfiguration?.destinationUrl,
