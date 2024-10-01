@@ -128,11 +128,6 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
               </Link>
             </li>
             <li className='relative text-right text-lg'>
-              <Link href='/health/organizations' role='menuitem' className={menuStyles}>
-                {format('health.header.organizations')}
-              </Link>
-            </li>
-            <li className='relative text-right text-lg'>
               <Link href='/health/about' role='menuitem' className={menuStyles}>
                 {format('health.header.about')}
               </Link>
