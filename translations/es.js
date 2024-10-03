@@ -520,6 +520,7 @@ export const es = {
   "map.aggregators.viewAggregator": "Ver agregador",
   "map.endorsers.viewOrganization": "Ver organización",
   "map.projects.viewProject": "Ver proyecto",
+  "map.products.viewProduct": "View Solution",
 
   "useCase.header": "Casos de uso",
   "useCase.label": "Caso de uso",

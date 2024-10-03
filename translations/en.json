@@ -530,6 +530,7 @@
   "map.aggregators.viewAggregator": "View Aggregator",
   "map.endorsers.viewOrganization": "View Organization",
   "map.projects.viewProject": "View Project",
+  "map.products.viewProduct": "View Solution",
 
   "useCase.header": "Use Cases",
   "useCase.label": "Use Case",

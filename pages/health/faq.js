@@ -49,7 +49,7 @@ const faqs = [
   address use cases that they have identified. \
   <br /><br />For a list of open source health solutions vetted by Digital Square, please visit \
   <a href="https://exchange.dial.global/products?shareCatalog=true&origins=2--Digital%20Square" \
-  target="_blank" rel="noreferrer">this page</a>'
+  className="text-health-blue" target="_blank" rel="noreferrer">this page</a>'
   }
 ]
 

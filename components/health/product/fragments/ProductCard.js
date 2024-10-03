@@ -66,7 +66,7 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                  className="object-contain" width="160px"
+                  className="object-contain max-h-[140px]" width="160px"
                 />
               </div>
             }
@@ -138,7 +138,7 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
 
   return (
     <div className="relative">
-      <Link href={`${urlPrefix ? urlPrefix : ''}/health/products/${product.slug}`}>
+      <Link href={`${urlPrefix ? urlPrefix : ''}/products/${product.slug}`}>
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
