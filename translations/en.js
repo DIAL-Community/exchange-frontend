@@ -720,6 +720,7 @@ export const en = {
   'map.aggregators.viewAggregator': 'View Aggregator',
   'map.endorsers.viewOrganization': 'View Organization',
   'map.projects.viewProject': 'View Project',
+  'map.products.viewProduct': 'View Solution',
 
   'useCase.header': 'Use Cases',
   'useCase.label': 'Use Case',
@@ -2652,6 +2653,7 @@ export const en = {
   'health.header.products': 'Products',
   'health.header.organizations': 'Organizations',
   'health.header.faq': 'FAQ',
+  'health.header.map': 'Map',
   'health.filter.primary.title': 'Filter by: ',
 
   'health.maturity.description': 'This information is designed to highlight best practices in software development. Data has been provided by the owner of the solution and should be verified by users as needed',

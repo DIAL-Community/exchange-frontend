@@ -137,6 +137,11 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
                 {format('health.header.faq')}
               </Link>
             </li>
+            <li className='relative text-right text-lg'>
+              <Link href='/health/map' role='menuitem' className={menuStyles}>
+                {format('health.header.map')}
+              </Link>
+            </li>
             { user ? withUser : withoutUser }
           </ul>
         }
