@@ -11,14 +11,26 @@ import HealthFooter from '../../components/health/sections/HealthFooter'
 const faqs = [
   { question: 'What are the criteria for listing a product in the HealthTech Marketplace?',
     answer: 'Africa CDC and our Expert Panel have developed a rubric that is used to \
-    determine whether a product can be listed. At a minimum, the product must address on \
-    or more Africn health use cases and must be deployed and used in at least one place in \
+    determine whether a product can be listed. At a minimum, the product must address one \
+    or more African health use cases and must be deployed and used in at least one place in \
     the African continent. Beyond that, the rubric looks at several other criteria and indicators  \
-    to help provide deep information '
+    to help provide a rich set of information about the solution, including the number of deployments, \
+    number of active users, countries where the solution is deployed. We collect data about the \
+    design, architecture, and security of the solution, as well as collecting data about the \
+    specific features and functionality of the solution.<br /><br />To view the complete rubric, \
+    click on this link: \
+    <a className="text-health-blue" target="_blank" rel="noreferrer" \
+      href="https://docs.google.com/spreadsheets/d/1nvH5ZTRq76Qp3QCOc-KgeW07k46dtztpZa4T6yF5HFc/edit?usp=sharing"> \
+    Africa CDC HealthTech Marketplace Rubric</a>'
   },
-  { question:'How are solutions vetted?',
-    answer: 'All products are vetted by a panel of experts from Africa CDC and various digital \
-    health initiatives.'
+  { question:'What is the process for vetting digital health solutions?',
+    answer: 'Solutions are invited to apply for participation in the HealthTech Marketplace by a member \
+    of the Expert Panel. Solution providers fill out a detailed form which provides information about their \
+    digital health solution. Solutions which meet the minimum criteria for inclusion are then invited to \
+    a demo and vetting session with expert panel members. Following that session, the Expert Panel \
+    members determine whether the solution is qualified for inclusion based on the evaluation rubric. \
+    <br /><br />If you are a solution provider who would like to be considered for inclusion, send us a message \
+    using the email link at the bottom of this page.'
   },
   { question:'How do I find a solution to match my needs?',
     answer: 'The Marketplace offers the ability to search for health solutions in different \
@@ -29,21 +41,15 @@ const faqs = [
     answer: 'The solution detail page provides a wide range of information. We also list contact \
     information for the solution provider.'
   },
-  { question:'How is this different than other lists of health solutions, like Digital Square Global \
-    Goods or the Digital Public Goods Alliance?',
-  answer: 'there are other platforms that feature Digital Public Goods and open source health solutions. \
-  Our focus is around entrepreneurs and local innovation, providing visibility for these solutions. \
-  For a list of open source health solutions vetted by Digital Square, please visit \
+  { question:'What about other open source health solutions, like Digital Square Global \
+    Goods or DPGs vetted by the Digital Public Goods Alliance?',
+  answer: 'There are many fantastic open source solutions that have been designed to address health use cases. \
+  Many of these solutions have been widely used across the African continent. However, the focus if the HealthTech \
+  Marketplace is to showcase local innovation, and solutions that have been designed by African entrepreneurs to \
+  address use cases that they have identified. \
+  <br /><br />For a list of open source health solutions vetted by Digital Square, please visit \
   <a href="https://exchange.dial.global/products?shareCatalog=true&origins=2--Digital%20Square" \
   target="_blank" rel="noreferrer">this page</a>'
-  },
-  { question:'What about DPGs?',
-    answer: 'Facility scales are used to show what features should be available for different \
-    sizes of health facilities.'
-  },
-  { question:'What is a facility scale?',
-    answer: 'Facility scales are used to show what features should be available for different \
-    sizes of health facilities.'
   }
 ]
 
@@ -63,7 +69,7 @@ const FaqExpander = ({ question, answer }) => {
           ? <BsDash className='ml-auto text-dial-stratos my-auto inline' size={24} />
           : <BsPlus className='ml-auto text-dial-stratos my-auto inline' size={24} />
         }
-        <div className='text-dial-stratos text-lg ml-3 inline'>
+        <div className='text-dial-stratos text-lg font-semibold text-health-blue ml-3 inline'>
           {question}
         </div>
       </a>
@@ -77,6 +83,13 @@ const FaqExpander = ({ question, answer }) => {
 const FaqPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  function obfuscateEmail(email) {
+    return email?.split('').map(char => `&#${char.charCodeAt(0)};`).join('')
+  }
+
+  const decodedEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL
+  const obfuscatedEmail = obfuscateEmail(process.env.NEXT_PUBLIC_CONTACT_EMAIL)
 
   return (
     <>
@@ -114,7 +127,20 @@ const FaqPage = ({ defaultTenants }) => {
             })}
           </div>
         </div>
-
+        <div className='lg:px-8 xl:px-56 py-8'>
+          For more information, please contact us using this link:
+          { decodedEmail && obfuscatedEmail && (
+            <a
+              href={`mailto:${decodedEmail}`}
+              dangerouslySetInnerHTML={{ __html: 'Email Us' }}
+              className='pl-2 text-health-blue'
+              onClick={(e) => {
+                if (!decodedEmail) {
+                  e.preventDefault()
+                }
+              }}/>
+          )}
+        </div>
         <HealthFooter />
       </ClientOnly>
     </>

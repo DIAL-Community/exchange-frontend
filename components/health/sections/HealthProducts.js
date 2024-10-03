@@ -74,6 +74,11 @@ const HealthProducts = ({ onlyFeatured = false }) => {
 
   return (
     <div className='px-4 lg:px-8 xl:px-48 min-h-[70vh] py-8'>
+      { onlyFeatured &&
+        <div className='text-3xl leading-tight font-bold py-3 pl-8 text-health-blue'>
+          Featured Products
+        </div>
+      }
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}

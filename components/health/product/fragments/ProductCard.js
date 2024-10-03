@@ -138,7 +138,7 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
 
   return (
     <div className="relative">
-      <Link href={`${urlPrefix ? urlPrefix : ''}/products/${product.slug}`}>
+      <Link href={`${urlPrefix ? urlPrefix : ''}/health/products/${product.slug}`}>
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>

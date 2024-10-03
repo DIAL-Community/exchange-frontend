@@ -82,10 +82,36 @@ const OrganizationCard = ({ displayType, organization, dismissHandler, urlPrefix
       </div>
     </div>
 
+  const displaySmallCard = () =>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
+      <div className='flex flex-row gap-x-3 px-6 h-full'>
+        {organization.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.organization.header') })}
+              className='object-contain w-10 h-10 my-auto'
+            />
+          </div>
+        }
+        {organization.imageFile.indexOf('placeholder.svg') < 0 &&
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
+            alt={format('ui.image.logoAlt', { name: format('ui.organization.header') })}
+            className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
+          />
+        }
+        <div className='text-sm font-semibold text-dial-plum my-auto line-clamp-2'>
+          {organization.name}
+        </div>
+      </div>
+    </div>
+
   return (
     <div className="relative">
       <Link href={`${urlPrefix ? urlPrefix : ''}/health/organizations/${organization.slug}`}>
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
+        {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       <div className="absolute top-2 right-2">
         {isValidFn(dismissHandler) &&

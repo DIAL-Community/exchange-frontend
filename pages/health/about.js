@@ -1,6 +1,7 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
+import Link from 'next/link'
 import ClientOnly from '../../lib/ClientOnly'
 import QueryNotification from '../../components/shared/QueryNotification'
 import HealthHeader from '../../components/health/sections/HealthHeader'
@@ -43,7 +44,7 @@ const AboutPage = ({ defaultTenants }) => {
           <div className='text-2xl leading-tight text-health-blue font-semibold'>
             Why a HealthTech Marketplace?
           </div>
-          <div className='py-8 text-xl'>
+          <div className='py-8 text-lg'>
             By creating a hub for innovative health technologies, the marketplace aims to accelerate
             the growth and development of an ecosystem of African digital health solutions and innovators.
             We expect this initiative to significantly boost the visibility of local health tech startups,
@@ -55,30 +56,52 @@ const AboutPage = ({ defaultTenants }) => {
           <div className='text-2xl leading-tight text-health-blue font-semibold'>
             Vetting Process
           </div>
-          <div className='py-8 text-xl'>
+          <div className='py-8 text-lg'>
             Africa CDC and a Panel of digital health experts have developed a rubric that is used to
-            determine whether a product can be listed. At a minimum, the product must address on
-            or more Africn health use cases and must be deployed and used in at least one place in
+            determine whether a product can be listed. At a minimum, the product must address one
+            or more African health use cases and must be deployed and used in at least one place in
             the African continent. For more information on the rubric, please see our&nbsp;
-            <a href='https://www.africacdc.org/health-tech-marketplace/rubric' className='text-health-blue'>
+            <Link href='/health/faq' className='text-health-blue'>
               FAQ page
-            </a>.
+            </Link>.
+            <br /><br />
+            Solutions that met these minimum criteria were submitted to the Expert Panel for further
+            review. Each solution met with the Expert Panel for a 30-minute presentation. Based on
+            the information provided, the Expert Panel recommended which solutions met the criteria
+            for inclusion in the HealthTech Marketplace.
           </div>
           <div className='text-2xl leading-tight text-health-blue font-semibold'>
             Health Marketplace Expert Panel
           </div>
-          <div className='py-8 text-xl'>
-            We are thankful for the support of our Expert Panel, who helped establish the criteria and
-            standards for the HealthTech Marketplace. Several of the Expert Panel members also supported
-            the work of vetting solutions
+          <div className='py-8 text-lg'>
+            Africa CDC and the Digital Impact Alliance convened a panel of experts to establish the
+            criteria and standards for the HealthTech Marketplace. Several of these experts also supported
+            the work of vetting solutions and providing feedback on which solution should be included
+            in the Marketplace.
             <br /><br />
-            Expert Panel members include:
+            We would like to thank the Expert Panel for their time and support of this work:
             <br /><br />
             <ul className='list-disc list-inside'>
-              <li>Abimbola</li>
-              <li>Esperance</li>
-              <li>James</li>
-              <li>Olivier</li>
+              <li>Abimbola Adebakin, <a className='text-health-blue'
+                href='https://advantagehealthafrica.com/'>Advantage Health Africa</a></li>
+              <li>Nassar Idris Adam, National Digital Health Program, Chad</li>
+              <li>Fatou Fall, <a className='text-health-blue'
+                href='https://digitalsquare.org/'>Digital Square at Path</a></li>
+              <li>James Fraser, <a className='text-health-blue'
+                href='https://www.madiro.org/'>Madiro</a></li>
+              <li>Olivier Habumugisha, <a className='text-health-blue'
+                href='https://www.jhpiego.org/'>Jhpiego</a></li>
+              <li>Dr. Esperance Luvindao</li>
+              <li>Caroline Mbindyo, <a className='text-health-blue'
+                href='https://amref.org/'>Amref Health Innovations</a></li>
+              <li>Wilfred Ngagi, <a className='text-health-blue'
+                href='https://villgroafrica.org/'>Villgro Africa</a></li>
+              <li>Chris Seegbrets, <a className='text-health-blue'
+                href='https://www.jembi.org/'>Jembi Health Systems</a></li>
+              <li>Mara Hansen Staples, <a className='text-health-blue'
+                href='https://www.salientadvisory.com/'>Salient Advisory</a></li>
+              <li>Sewu-Steve Tawia, <a className='text-health-blue'
+                href='https://jazarift.com/'>Jaza Rift Ventures</a></li>
             </ul>
           </div>
         </div>
