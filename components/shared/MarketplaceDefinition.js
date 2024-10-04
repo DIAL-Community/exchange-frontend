@@ -1,10 +1,17 @@
+import { useCallback, useContext } from 'react'
 import Link from 'next/link'
-import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { SiteSettingContext } from '../context/SiteSettingContext'
 
 const MarketplaceDefinition = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
+
+  const { enableMarketplace } = useContext(SiteSettingContext)
+
+  if (!enableMarketplace) {
+    return null
+  }
 
   return (
     <div className='bg-dial-blueberry'>

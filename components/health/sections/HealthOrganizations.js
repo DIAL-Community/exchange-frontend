@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
+import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
 import ListStructure from '../organization/fragments/ListStructure'
@@ -12,7 +12,7 @@ const HealthOrganizations = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(OrganizationFilterContext)
+  const { search } = useContext(FilterContext)
 
   const [ pageNumber, setPageNumber ] = useState(0)
   const [ pageOffset, setPageOffset ] = useState(0)

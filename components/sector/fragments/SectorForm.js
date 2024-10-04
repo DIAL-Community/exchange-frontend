@@ -123,12 +123,12 @@ const SectorForm = React.memo(({ sector }) => {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <label className='text-dial-sapphire required-field' htmlFor='name'>
-                  {format('sector.name')}
+                  {format('ui.sector.name')}
                 </label>
                 <Input
                   {...register('name', { required: format('validation.required') })}
                   id='name'
-                  placeholder={format('sector.name')}
+                  placeholder={format('ui.sector.name')}
                   isInvalid={errors.name}
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}

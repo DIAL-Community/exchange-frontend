@@ -1,13 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY } from '../../../shared/query/candidateOrganization'
-import OrganizationCard from '../OrganizationCard'
-import { DisplayType } from '../../../utils/constants'
-import { OrganizationFilterContext } from '../../../context/OrganizationFilterContext'
+import { useContext } from 'react'
+import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
+import { PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY } from '../../../shared/query/candidateOrganization'
+import { DisplayType } from '../../../utils/constants'
+import OrganizationCard from '../OrganizationCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(OrganizationFilterContext)
+  const { search } = useContext(FilterContext)
   const { loading, error, data } = useQuery(PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY, {
     variables: {
       search,

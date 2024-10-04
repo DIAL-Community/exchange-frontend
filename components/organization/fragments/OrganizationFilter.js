@@ -1,19 +1,18 @@
 import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
 import { FaXmark } from 'react-icons/fa6'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext }
-  from '../../context/OrganizationFilterContext'
-import Checkbox from '../../shared/form/Checkbox'
+import { useIntl } from 'react-intl'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
+import { EndorsingYearActiveFilters, EndorsingYearSelect } from '../../shared/filter/EndorsingYear'
 import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
-import { CountryAutocomplete, CountryActiveFilters } from '../../shared/filter/Country'
-import { EndorsingYearSelect, EndorsingYearActiveFilters } from '../../shared/filter/EndorsingYear'
+import Checkbox from '../../shared/form/Checkbox'
 
 const OrganizationFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
-  const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(OrganizationFilterDispatchContext)
+  const { aggregator, endorser, sectors, countries, years } = useContext(FilterContext)
+  const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(FilterDispatchContext)
 
   const toggleAggregator = () => {
     setAggregator(!aggregator)
@@ -92,27 +91,27 @@ const OrganizationFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <label className='flex py-2'>
           <Checkbox onChange={toggleAggregator} value={aggregator} />
           <span className='mx-2 my-auto text-sm'>
             {format('filter.organization.aggregatorOnly')}
           </span>
         </label>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <label className='flex py-2'>
           <Checkbox onChange={toggleEndorser} value={endorser} />
           <span className='mx-2 my-auto text-sm'>
             {format('filter.organization.endorserOnly')}
           </span>
         </label>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <CountryAutocomplete countries={countries} setCountries={setCountries} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <EndorsingYearSelect years={years} setYears={setYears} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

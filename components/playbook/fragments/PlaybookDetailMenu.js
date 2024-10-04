@@ -19,9 +19,9 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
 
   const [displayEmbedDialog, setDisplayEmbedDialog] = useState(false)
 
-  const [displayDragable, setDisplayDragable] = useState(false)
-  const onDragableClose = () => {
-    setDisplayDragable(false)
+  const [displayDraggable, setDisplayDraggable] = useState(false)
+  const onDraggableClose = () => {
+    setDisplayDraggable(false)
   }
 
   const generateEditLink = () => {
@@ -68,7 +68,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
             {canEdit &&
               <button
                 type='button'
-                onClick={() => setDisplayDragable(!displayDragable)}
+                onClick={() => setDisplayDraggable(!displayDraggable)}
                 className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
               >
                 <FiMove className='inline pb-0.5' />
@@ -82,8 +82,8 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
           </div>
           <RearrangePlay
             playbook={playbook}
-            displayDragable={displayDragable}
-            onDragableClose={onDragableClose}
+            displayDraggable={displayDraggable}
+            onDraggableClose={onDraggableClose}
           />
         </div>
       </div>

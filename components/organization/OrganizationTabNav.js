@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
-import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
-import TabNav from '../shared/TabNav'
-import { ExportType, asyncExport, convertKeys } from '../utils/export'
 import { useUser } from '../../lib/hooks'
+import { FilterContext } from '../context/FilterContext'
+import TabNav from '../shared/TabNav'
+import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
 const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
@@ -23,18 +23,44 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const organizationFilters = useContext(OrganizationFilterContext)
+  const activeFilters = useContext(FilterContext)
 
   const exportCsvFn = () => {
     const { userEmail, userToken } = user
+    const organizationFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...organizationFilters })
     asyncExport(ExportType.EXPORT_AS_CSV, 'organizations', exportParameters, userEmail, userToken)
   }
 
   const exportJsonFn = () => {
     const { userEmail, userToken } = user
+    const organizationFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...organizationFilters })
     asyncExport(ExportType.EXPORT_AS_JSON, 'organizations', exportParameters, userEmail, userToken)
+  }
+
+  const generateExportFilters = (activeFilters) => {
+    return Object
+      .keys(activeFilters)
+      .filter(key => {
+        return [
+          'search',
+          'aggregator',
+          'endorser',
+          'sectors',
+          'countries',
+          'years'
+        ].indexOf(key) !== -1
+      })
+      .map(key => ({
+        key,
+        value: activeFilters[key]
+      }))
+      .reduce((accumulator, object) => {
+        accumulator[object.key] = object.value
+
+        return accumulator
+      }, {})
   }
 
   const createCandidateFn = () => {
@@ -43,7 +69,7 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
 
   return (
     <TabNav
-      { ...{ tabNames, activeTab, setActiveTab }}
+      {...{ tabNames, activeTab, setActiveTab }}
       createFn={createCandidateFn}
       exportCsvFn={exportCsvFn}
       exportJsonFn={exportJsonFn}

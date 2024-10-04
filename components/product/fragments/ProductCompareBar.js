@@ -1,8 +1,8 @@
-import { useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
+import { useCallback, useContext } from 'react'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../context/ProductFilterContext'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 
 const ProductCompareBar = () => {
   const { formatMessage } = useIntl()
@@ -10,8 +10,8 @@ const ProductCompareBar = () => {
 
   const router = useRouter()
 
-  const { comparedProducts } = useContext(ProductFilterContext)
-  const { setComparedProducts } = useContext(ProductFilterDispatchContext)
+  const { comparedProducts } = useContext(FilterContext)
+  const { setComparedProducts } = useContext(FilterDispatchContext)
 
   const removeFromComparedProducts = (event, product) => {
     event.preventDefault()

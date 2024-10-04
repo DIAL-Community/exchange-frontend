@@ -1,11 +1,11 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { DatasetFilterContext } from '../../context/DatasetFilterContext'
+import { useIntl } from 'react-intl'
+import { FilterContext } from '../../context/FilterContext'
+import Pagination from '../../shared/Pagination'
 import { DATASET_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/dataset'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import Pagination from '../../shared/Pagination'
 import DatasetSearchBar from './DatasetSearchBar'
 import ListStructure from './ListStructure'
 
@@ -13,10 +13,10 @@ const DatasetListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, sectors, sdgs, tags, origins, datasetTypes, countries } = useContext(DatasetFilterContext)
+  const { search, countries, datasetTypes, origins, sdgs, sectors, tags } = useContext(FilterContext)
 
-  const [ pageNumber, setPageNumber ] = useState(0)
-  const [ pageOffset, setPageOffset ] = useState(0)
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
@@ -31,7 +31,7 @@ const DatasetListRight = () => {
   }, [page, setPageNumber, setPageOffset])
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
-    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
       { query: { ...query, page: destinationPage + 1 } },
       undefined,
@@ -66,9 +66,9 @@ const DatasetListRight = () => {
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
       />
-      { loading && format('ui.pagination.loadingInfo') }
-      { error && format('ui.pagination.loadingInfoError') }
-      { data &&
+      {loading && format('ui.pagination.loadingInfo')}
+      {error && format('ui.pagination.loadingInfoError')}
+      {data &&
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeDataset.totalCount}

@@ -1,8 +1,8 @@
-import { useCallback, useContext, useMemo, useState } from 'react'
-import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { MapFilterContext } from '../../context/MapFilterContext'
+import dynamic from 'next/dynamic'
+import { useCallback, useContext, useMemo, useState } from 'react'
+import { useIntl } from 'react-intl'
+import { FilterContext } from '../../context/FilterContext'
 import { COUNTRIES_QUERY, PROJECTS_QUERY } from '../../shared/query/map'
 import CountryInfo from './CountryInfo'
 
@@ -19,7 +19,7 @@ const DEFAULT_PAGE_SIZE = 10000
 
 const ProjectMap = () => {
   const [selectedCountry, setSelectedCountry] = useState('')
-  const { sectors, tags, products } = useContext(MapFilterContext)
+  const { sectors, tags, products } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])

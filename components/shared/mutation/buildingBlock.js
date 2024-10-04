@@ -97,9 +97,9 @@ export const DELETE_BUILDING_BLOCK = gql`
   mutation DeleteBuildingBlock($id: ID!) {
     deleteBuildingBlock(id: $id) {
       buildingBlock {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

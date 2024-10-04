@@ -4,9 +4,9 @@ export const DELETE_CITY = gql`
   mutation DeleteCity($id: ID!) {
     deleteCity(id: $id) {
       country {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

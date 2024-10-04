@@ -1,7 +1,7 @@
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
-import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
+import { useIntl } from 'react-intl'
+import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
 import { CapabilityAutocomplete } from '../shared/filter/Capability'
 import { EndorsingYearSelect } from '../shared/filter/EndorsingYear'
 import { OperatorAutocomplete } from '../shared/filter/Operator'
@@ -18,24 +18,22 @@ const MapFilter = () => {
   const {
     aggregators,
     operators,
-    services,
-    orgSectors,
-    years,
-    sectors,
     products,
-    tags
-  } = useContext(MapFilterContext)
+    sectors,
+    services,
+    tags,
+    years
+  } = useContext(FilterContext)
 
   const {
     setAggregators,
     setOperators,
-    setServices,
-    setOrgSectors,
-    setYears,
-    setSectors,
     setProducts,
-    setTags
-  } = useContext(MapFilterDispatchContext)
+    setSectors,
+    setServices,
+    setTags,
+    setYears
+  } = useContext(FilterDispatchContext)
 
   const routeContains = (expectedText) => router.pathname.indexOf(expectedText) >= 0
 
@@ -58,7 +56,7 @@ const MapFilter = () => {
       {routeContains('endorsers') && (
         <div className='flex flex-col gap-y-2'>
           <hr className='border-b border-dial-slate-200' />
-          <SectorAutocomplete sectors={orgSectors} setSectors={setOrgSectors} />
+          <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
           <hr className='border-b border-dial-slate-200' />
           <EndorsingYearSelect {...{ years, setYears }} />
           <hr className='border-b border-dial-slate-200' />

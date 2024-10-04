@@ -39,7 +39,7 @@ describe('Unit tests for the opportunity detail page.', () => {
       'search': '',
       'countries': [],
       'resourceTypes': [],
-      'resourceTopics':[],
+      'resourceTopics': [],
       'limit': 6,
       'offset': 0
     },
@@ -53,7 +53,7 @@ describe('Unit tests for the opportunity detail page.', () => {
       'search': '',
       'countries': [],
       'resourceTypes': [],
-      'resourceTopics':[]
+      'resourceTopics': []
     },
     null,
     resourcePagination
@@ -71,7 +71,7 @@ describe('Unit tests for the opportunity detail page.', () => {
       >
         <QueryParamContextProvider>
           <ResourceFilterProvider>
-            <HubResources pageNumber={0} onClickHandler={() => {}} />
+            <HubResources pageNumber={0} onClickHandler={() => { }} />
           </ResourceFilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>

@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
-import { ProductFilterContext } from '../context/ProductFilterContext'
-import TabNav from '../shared/TabNav'
-import { ExportType, asyncExport, convertKeys } from '../utils/export'
+import { useRouter } from 'next/router'
 import { useUser } from '../../lib/hooks'
+import { FilterContext } from '../context/FilterContext'
+import TabNav from '../shared/TabNav'
+import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
 const ProductTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
@@ -23,16 +23,49 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
     }
   }, [user])
 
-  const productFilters = useContext(ProductFilterContext)
+  const activeFilters = useContext(FilterContext)
 
   const exportCsvFn = () => {
+    const productFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...productFilters })
     asyncExport(ExportType.EXPORT_AS_CSV, 'products', exportParameters, user.userEmail)
   }
 
   const exportJsonFn = () => {
+    const productFilters = generateExportFilters(activeFilters)
     const exportParameters = convertKeys({ pageSize: -1, ...productFilters })
     asyncExport(ExportType.EXPORT_AS_JSON, 'products', exportParameters, user.userEmail)
+  }
+
+  const generateExportFilters = (activeFilters) => {
+    return Object
+      .keys(activeFilters)
+      .filter(key => {
+        return [
+          'search',
+          'buildingBlocks',
+          'countries',
+          'isLinkedWithDpi',
+          'licenseTypes',
+          'origins',
+          'sdgs',
+          'sectors',
+          'showGovStackOnly',
+          'showDpgaOnly',
+          'tags',
+          'useCases',
+          'workflows'
+        ].indexOf(key) !== -1
+      })
+      .map(key => ({
+        key,
+        value: activeFilters[key]
+      }))
+      .reduce((accumulator, object) => {
+        accumulator[object.key] = object.value
+
+        return accumulator
+      }, {})
   }
 
   const createCandidateFn = () => {
@@ -41,7 +74,7 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
 
   return (
     <TabNav
-      { ...{ tabNames, activeTab, setActiveTab }}
+      {...{ tabNames, activeTab, setActiveTab }}
       createFn={createCandidateFn}
       exportCsvFn={exportCsvFn}
       exportJsonFn={exportJsonFn}

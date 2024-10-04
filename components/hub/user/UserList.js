@@ -1,13 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { UserFilterContext } from '../../context/UserFilterContext'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PAGINATED_DPI_USERS_QUERY } from '../../shared/query/user'
 import { DEFAULT_PAGE_SIZE } from './constant'
 import UserCard from './UserCard'
 
 const UserList = ({ pageNumber }) => {
-  const { search } = useContext(UserFilterContext)
+  const { search } = useContext(FilterContext)
   const { loading, error, data } = useQuery(PAGINATED_DPI_USERS_QUERY, {
     variables: {
       search,

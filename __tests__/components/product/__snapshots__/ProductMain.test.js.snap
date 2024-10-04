@@ -264,13 +264,6 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 class="flex flex-row gap-3"
               >
                 <img
-                  alt="Logo of Twitter."
-                  class="object-contain"
-                  height="40"
-                  src="/ui/v1/twitter-icon.svg"
-                  width="40"
-                />
-                <img
                   alt="Logo of LinkedIn."
                   class="object-contain"
                   height="40"

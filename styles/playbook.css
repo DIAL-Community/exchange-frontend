@@ -82,44 +82,44 @@
 }
 
 /* Styling for the move section and animation. */
-.move-header {
+.collapse-header {
   position: relative;
 }
 
-.move-animation-base {
+.collapse-animation-base {
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
 }
 
-.move-animation {
+.collapse-animation {
   position: absolute;
   width: 5px;
   top: 0;
   left: 0;
 }
 
-.move-header .step {
+.collapse-header .step {
   font-family: sans-serif;
   position: relative;
   z-index: 1;
 }
 
-.move-header .title {
+.collapse-header .title {
   position: relative;
   z-index: 1;
 }
 
-.animated-move {
+.animated-collapse {
   transition: all 0.6s;
 }
 
-.move-header-expanded {
+.header-expanded {
   width: 100%;
 }
 
-.move-header-collapsed {
+.header-collapsed {
   width: 5px;
 }
 

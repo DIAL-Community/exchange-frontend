@@ -26,9 +26,9 @@ const PlayDetailRight = ({ playbook, play, index = 0 }) => {
 
   const { setSlugHeights } = useContext(PlaybookDetailDispatchContext)
 
-  const [displayDragable, setDisplayDragable] = useState(false)
-  const onDragableClose = () => {
-    setDisplayDragable(false)
+  const [displayDraggable, setDisplayDraggable] = useState(false)
+  const onDraggableClose = () => {
+    setDisplayDraggable(false)
   }
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const PlayDetailRight = ({ playbook, play, index = 0 }) => {
           {canEdit && play.playMoves.length > 0 &&
             <button
               type='button'
-              onClick={() => setDisplayDragable(!displayDragable)}
+              onClick={() => setDisplayDraggable(!displayDraggable)}
               className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
             >
               <FiMove className='inline pb-0.5' />
@@ -97,8 +97,8 @@ const PlayDetailRight = ({ playbook, play, index = 0 }) => {
             />
             <RearrangeMoves
               play={play}
-              displayDragable={displayDragable}
-              onDragableClose={onDragableClose}
+              displayDraggable={displayDraggable}
+              onDraggableClose={onDraggableClose}
             />
           </div>
         )}

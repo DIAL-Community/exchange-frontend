@@ -1,10 +1,9 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext }
-  from '../../context/OrganizationFilterContext'
-import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
-import { CountryAutocomplete, CountryActiveFilters } from '../../shared/filter/Country'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { BuildingBlockActiveFilters, BuildingBlockAutocomplete } from '../../shared/filter/BuildingBlock'
+import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
+import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
 
 const StorefrontFilter = () => {
   const { formatMessage } = useIntl()
@@ -16,7 +15,7 @@ const StorefrontFilter = () => {
     buildingBlocks,
     specialties,
     certifications
-  } = useContext(OrganizationFilterContext)
+  } = useContext(FilterContext)
 
   const {
     setSectors,
@@ -24,7 +23,7 @@ const StorefrontFilter = () => {
     setBuildingBlocks,
     setSpecialties,
     setCertifications
-  } = useContext(OrganizationFilterDispatchContext)
+  } = useContext(FilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
@@ -71,13 +70,13 @@ const StorefrontFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <CountryAutocomplete countries={countries} setCountries={setCountries} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <BuildingBlockAutocomplete buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

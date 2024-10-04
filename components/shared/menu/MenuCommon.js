@@ -13,7 +13,7 @@ export const USER_MENU = 'menu-user'
 
 export const NONE = ''
 
-export const MenuHeader = ({ id, href, title, onToggleDropdown, currentOpenMenu }) => {
+export const MenuHeader = ({ id, href, title, titleKey, onToggleDropdown, currentOpenMenu }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -30,7 +30,7 @@ export const MenuHeader = ({ id, href, title, onToggleDropdown, currentOpenMenu 
       className='pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
       onClick={onClickHandler}
     >
-      {format(title)}
+      {titleKey ? format(titleKey) : title}
       {currentOpenMenu === id
         ? <HiChevronUp className='inline text-xl' id={`svg-up-${id}`} />
         : <HiChevronDown className='inline text-xl' id={`svg-down-${id}`} />
