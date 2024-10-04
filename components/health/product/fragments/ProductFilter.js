@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../context/ProductFilterContext'
+import { FilterContext, FilterDispatchContext } from '../../../context/FilterContext'
 import { SoftwareCategoryActiveFilters, SoftwareCategoryAutocomplete } from '../../shared/filter/SoftwareCategory'
 import { ProductStageActiveFilters, ProductStageAutocomplete } from '../../shared/filter/ProductStage'
 import ProductSearchBar from '../../product/fragments/ProductSearchBar'
@@ -9,8 +9,8 @@ const ProductFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { softwareCategories, softwareFeatures, productStage } = useContext(ProductFilterContext)
-  const { setSoftwareCategories, setSoftwareFeatures, setProductStage } = useContext(ProductFilterDispatchContext)
+  const { softwareCategories, softwareFeatures, productStage } = useContext(FilterContext)
+  const { setSoftwareCategories, setSoftwareFeatures, setProductStage } = useContext(FilterDispatchContext)
 
   const clearFilter = () => {
     setSoftwareCategories([])

@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { useCallback } from 'react'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { MARKETPLACE_MENU, MenuHeader } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
@@ -12,7 +12,7 @@ const MarketplaceMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
     <>
       <MenuHeader
         id={MARKETPLACE_MENU}
-        title={title ? title : 'ui.marketplace.label'}
+        titleKey={title ? title : 'ui.marketplace.label'}
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

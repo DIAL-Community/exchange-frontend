@@ -1,15 +1,15 @@
 import { screen } from '@testing-library/dom'
-import { render } from '../../test-utils'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { FilterProvider } from '../../../components/context/FilterContext'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import OrganizationMain from '../../../components/organization/OrganizationMain'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
   ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
   PAGINATED_ORGANIZATIONS_QUERY
 } from '../../../components/shared/query/organization'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
-import { OrganizationFilterProvider } from '../../../components/context/OrganizationFilterContext'
-import { paginatedOrganizations, organizationPaginationAttribute } from './data/OrganizationMain.data'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { organizationPaginationAttribute, paginatedOrganizations } from './data/OrganizationMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
@@ -47,9 +47,9 @@ describe('Unit tests for the organization main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedOrganizations, mockOrganizationPaginationAttribute]}>
         <QueryParamContextProvider>
-          <OrganizationFilterProvider>
+          <FilterProvider>
             <OrganizationMain activeTab={0} />
-          </OrganizationFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

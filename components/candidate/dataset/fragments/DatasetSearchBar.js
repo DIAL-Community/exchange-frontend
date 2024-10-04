@@ -1,11 +1,10 @@
 import { forwardRef, useContext } from 'react'
-import { DatasetFilterContext, DatasetFilterDispatchContext }
-  from '../../../context/DatasetFilterContext'
+import { FilterContext, FilterDispatchContext } from '../../../context/FilterContext'
 import SearchBar from '../../../shared/SearchBar'
 
 const DatasetSearchBar = forwardRef((_, ref) => {
-  const { search } = useContext(DatasetFilterContext)
-  const { setSearch } = useContext(DatasetFilterDispatchContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   return (
     <div ref={ref} className='py-3'>

@@ -54,7 +54,7 @@ export const createBuildingBlock = {
     'createBuildingBlock': {
       'buildingBlock': {
         'id': '25',
-        'name': 'Analytics and business intelligence -- Edited',
+        'name': 'Analytics and business intelligence - Edited',
         'slug': 'analytics-and-business-intelligence',
         'specUrl': null,
         'maturity': 'DRAFT',

@@ -1,17 +1,27 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { ProductFilterContext } from '../../context/ProductFilterContext'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
 import { DisplayType } from '../../utils/constants'
 import ProductCard from '../ProductCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(ProductFilterContext)
-
-  const { isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
-  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
-  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const {
+    search,
+    buildingBlocks,
+    countries,
+    isLinkedWithDpi,
+    licenseTypes,
+    origins,
+    sdgs,
+    sectors,
+    showDpgaOnly,
+    showGovStackOnly,
+    tags,
+    useCases,
+    workflows
+  } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PRODUCTS_QUERY, {
     variables: {

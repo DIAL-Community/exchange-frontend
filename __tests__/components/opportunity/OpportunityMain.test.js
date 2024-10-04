@@ -1,15 +1,15 @@
 import { screen } from '@testing-library/dom'
-import { render } from '../../test-utils'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { FilterProvider } from '../../../components/context/FilterContext'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import OpportunityMain from '../../../components/opportunity/OpportunityMain'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
   OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY,
   PAGINATED_OPPORTUNITIES_QUERY
 } from '../../../components/shared/query/opportunity'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
-import { OpportunityFilterProvider } from '../../../components/context/OpportunityFilterContext'
-import { paginatedOpportunities, opportunityPaginationAttribute } from './data/OpportunityMain.data'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { opportunityPaginationAttribute, paginatedOpportunities } from './data/OpportunityMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
@@ -53,9 +53,9 @@ describe('Unit tests for the opportunity main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedOpportunities, mockOpportunityPaginationAttribute]}>
         <QueryParamContextProvider>
-          <OpportunityFilterProvider>
+          <FilterProvider>
             <OpportunityMain activeTab={0} />
-          </OpportunityFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

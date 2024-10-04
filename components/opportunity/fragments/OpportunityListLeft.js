@@ -1,14 +1,11 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
-import {
-  OpportunityFilterContext,
-  OpportunityFilterDispatchContext
-} from '../../context/OpportunityFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../context/QueryParamContext'
 import OpportunityFilter from './OpportunityFilter'
 
 const OpportunityListLeft = () => {
@@ -20,22 +17,22 @@ const OpportunityListLeft = () => {
     countries,
     organizations,
     sectors,
-    useCases,
-    tags,
     showClosed,
-    showGovStackOnly
-  } = useContext(OpportunityFilterContext)
+    showGovStackOnly,
+    tags,
+    useCases
+  } = useContext(FilterContext)
 
   const {
     setBuildingBlocks,
     setCountries,
     setOrganizations,
     setSectors,
-    setUseCases,
-    setTags,
     setShowClosed,
-    setShowGovStackOnly
-  } = useContext(OpportunityFilterDispatchContext)
+    setShowGovStackOnly,
+    setTags,
+    setUseCases
+  } = useContext(FilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
@@ -56,8 +53,15 @@ const OpportunityListLeft = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, ...countryFilters, ...buildingBlockFilters, ...organizationFilters,
-      ...useCaseFilters, ...sectorFilters, ...tagFilters, showClosedFilter, showGovStackOnlyFilter
+      activeFilter,
+      ...countryFilters,
+      ...buildingBlockFilters,
+      ...organizationFilters,
+      ...useCaseFilters,
+      ...sectorFilters,
+      ...tagFilters,
+      showClosedFilter,
+      showGovStackOnlyFilter
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -83,9 +87,9 @@ const OpportunityListLeft = () => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <OpportunityFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <Share />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

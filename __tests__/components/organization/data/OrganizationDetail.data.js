@@ -85,7 +85,7 @@ export const createOrganization = {
     'createOrganization': {
       'organization': {
         'id': '190',
-        'name': 'AI4GOV -- Edited',
+        'name': 'AI4GOV - Edited',
         'slug': 'ai4gov',
         'aliases': [
           ''

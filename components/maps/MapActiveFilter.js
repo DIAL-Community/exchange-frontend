@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
+import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
+import { CapabilityActiveFilters } from '../shared/filter/Capability'
+import { EndorsingYearActiveFilters } from '../shared/filter/EndorsingYear'
+import { OperatorActiveFilters } from '../shared/filter/Operator'
+import { OrganizationActiveFilters } from '../shared/filter/Organization'
+import { ProductActiveFilters } from '../shared/filter/Product'
 import { SectorActiveFilters } from '../shared/filter/Sector'
 import { TagActiveFilters } from '../shared/filter/Tag'
-import { ProductActiveFilters } from '../shared/filter/Product'
-import { EndorsingYearActiveFilters } from '../shared/filter/EndorsingYear'
-import { OrganizationActiveFilters } from '../shared/filter/Organization'
-import { OperatorActiveFilters } from '../shared/filter/Operator'
-import { CapabilityActiveFilters } from '../shared/filter/Capability'
 
 const MapActiveFilter = () => {
   const router = useRouter()
@@ -17,18 +17,30 @@ const MapActiveFilter = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const {
-    aggregators, operators, services, orgSectors, years, sectors, products, tags
-  } = useContext(MapFilterContext)
+    aggregators,
+    operators,
+    products,
+    sectors,
+    services,
+    tags,
+    years
+  } = useContext(FilterContext)
 
   const {
-    setAggregators, setOperators, setServices, setOrgSectors, setYears, setSectors, setProducts, setTags
-  } = useContext(MapFilterDispatchContext)
+    setAggregators,
+    setOperators,
+    setProducts,
+    setSectors,
+    setServices,
+    setTags,
+    setYears
+  } = useContext(FilterDispatchContext)
 
   const filteringMap = () => {
     if (router.pathname.indexOf('projects') >= 0) {
       return sectors.length + tags.length + products.length > 0
     } else if (router.pathname.indexOf('endorsers') >= 0) {
-      return orgSectors.length + years.length > 0
+      return sectors.length + years.length > 0
     } else if (router.pathname.indexOf('aggregators') >= 0) {
       return aggregators.length + operators.length + services.length > 0
     }
@@ -43,7 +55,7 @@ const MapActiveFilter = () => {
       setTags([])
       setProducts([])
     } else if (router.pathname.indexOf('endorsers') >= 0) {
-      setOrgSectors([])
+      setSectors([])
       setYears([])
     } else if (router.pathname.indexOf('aggregators') >= 0) {
       setAggregators([])
@@ -78,7 +90,7 @@ const MapActiveFilter = () => {
             }
             {router.pathname.indexOf('endorsers') >= 0 &&
               <>
-                <SectorActiveFilters sectors={orgSectors} setSectors={setOrgSectors} />
+                <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
                 <EndorsingYearActiveFilters {...{ years, setYears }} />
               </>
             }

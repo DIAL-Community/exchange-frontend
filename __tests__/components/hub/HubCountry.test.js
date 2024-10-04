@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/dom'
-import { ProductFilterProvider } from '../../../components/context/ProductFilterContext'
+import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { ResourceFilterProvider } from '../../../components/context/ResourceFilterContext'
 import HubCountry from '../../../components/hub/sections/HubCountry'
@@ -165,9 +165,9 @@ describe('Unit tests for the opportunity detail page.', () => {
       >
         <QueryParamContextProvider>
           <ResourceFilterProvider>
-            <ProductFilterProvider>
+            <FilterProvider>
               <HubCountry slug='zambia' />
-            </ProductFilterProvider>
+            </FilterProvider>
           </ResourceFilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>

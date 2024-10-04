@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { MenuHeader, RESOURCE_MENU } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
 
-const ResourceMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
+const ResourceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -12,7 +12,7 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown, title }) => {
     <>
       <MenuHeader
         id={RESOURCE_MENU}
-        title={title ? title : 'header.resources'}
+        titleKey={'header.resources'}
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

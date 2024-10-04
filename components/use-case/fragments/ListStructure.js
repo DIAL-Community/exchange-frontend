@@ -1,13 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_USE_CASES_QUERY } from '../../shared/query/useCase'
-import { UseCaseFilterContext } from '../../context/UseCaseFilterContext'
-import UseCaseCard from '../UseCaseCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_USE_CASES_QUERY } from '../../shared/query/useCase'
+import { DisplayType } from '../../utils/constants'
+import UseCaseCard from '../UseCaseCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { sdgs, showBeta, showGovStackOnly, search } = useContext(UseCaseFilterContext)
+  const { sdgs, showBeta, showGovStackOnly, search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_USE_CASES_QUERY, {
     variables: {

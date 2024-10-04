@@ -209,7 +209,7 @@ export const policyResources = {
       {
         'id': '134',
         'name': 'Sierra Leone National Innovation \u0026 Digital Strategy',
-        'slug': 'sierra-leone-national-innovation--digital-strategy',
+        'slug': 'sierra-leone-national-innovation-digital-strategy',
         'imageFile': '/assets/resources/resource-placeholder.svg',
         'description': 'Some description',
         'parsedDescription': 'Some parsed description',
@@ -230,7 +230,7 @@ export const policyResources = {
           {
             'id': '82',
             'name': 'Directorate of Science Technology \u0026 Innovation',
-            'slug': 'directorate-of-science-technology--innovation',
+            'slug': 'directorate-of-science-technology-innovation',
             '__typename': 'Author'
           }
         ],
