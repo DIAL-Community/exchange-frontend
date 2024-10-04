@@ -1,24 +1,15 @@
-import { act } from 'react';
-import { screen } from '@testing-library/dom';
-import { FilterProvider } from '../../../components/context/FilterContext';
+import { act } from 'react'
+import { screen } from '@testing-library/dom'
+import { FilterProvider } from '../../../components/context/FilterContext'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import OrganizationMain from '../../../components/organization/OrganizationMain'
 import {
-  QueryParamContextProvider,
-} from '../../../components/context/QueryParamContext';
-import OrganizationMain
-  from '../../../components/organization/OrganizationMain';
-import {
-  ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY,
-} from '../../../components/shared/query/organization';
-import { render } from '../../test-utils';
-import CustomMockedProvider, {
-  generateMockApolloData,
-} from '../../utils/CustomMockedProvider';
-import {
-  mockNextUseRouter, mockTenantApi,
-} from '../../utils/nextMockImplementation';
-import {
-  organizationPaginationAttribute, paginatedOrganizations,
-} from './data/OrganizationMain.data';
+  ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY
+} from '../../../components/shared/query/organization'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { organizationPaginationAttribute, paginatedOrganizations } from './data/OrganizationMain.data'
 
 mockTenantApi()
 mockNextUseRouter()

@@ -1,24 +1,15 @@
-import { act } from 'react';
-import { screen } from '@testing-library/dom';
-import BuildingBlockMain
-  from '../../../components/building-block/BuildingBlockMain';
-import { FilterProvider } from '../../../components/context/FilterContext';
+import { act } from 'react'
+import { screen } from '@testing-library/dom'
+import BuildingBlockMain from '../../../components/building-block/BuildingBlockMain'
+import { FilterProvider } from '../../../components/context/FilterContext'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import {
-  QueryParamContextProvider,
-} from '../../../components/context/QueryParamContext';
-import {
-  BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY,
-} from '../../../components/shared/query/buildingBlock';
-import { render } from '../../test-utils';
-import CustomMockedProvider, {
-  generateMockApolloData,
-} from '../../utils/CustomMockedProvider';
-import {
-  mockNextUseRouter, mockTenantApi,
-} from '../../utils/nextMockImplementation';
-import {
-  buildingBlockPaginationAttribute, paginatedBuildingBlocks,
-} from './data/BuildingBlockMain.data';
+  BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY
+} from '../../../components/shared/query/buildingBlock'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { buildingBlockPaginationAttribute, paginatedBuildingBlocks } from './data/BuildingBlockMain.data'
 
 mockTenantApi()
 mockNextUseRouter()

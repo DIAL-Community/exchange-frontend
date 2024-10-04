@@ -1,23 +1,13 @@
-import { act } from 'react';
-import { screen } from '@testing-library/dom';
-import { FilterProvider } from '../../../components/context/FilterContext';
-import {
-  QueryParamContextProvider,
-} from '../../../components/context/QueryParamContext';
-import DatasetMain from '../../../components/dataset/DatasetMain';
-import {
-  DATASET_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_DATASETS_QUERY,
-} from '../../../components/shared/query/dataset';
-import { render } from '../../test-utils';
-import CustomMockedProvider, {
-  generateMockApolloData,
-} from '../../utils/CustomMockedProvider';
-import {
-  mockNextUseRouter, mockTenantApi,
-} from '../../utils/nextMockImplementation';
-import {
-  datasetPaginationAttribute, paginatedDatasets,
-} from './data/DatasetMain.data';
+import { act } from 'react'
+import { screen } from '@testing-library/dom'
+import { FilterProvider } from '../../../components/context/FilterContext'
+import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import DatasetMain from '../../../components/dataset/DatasetMain'
+import { DATASET_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_DATASETS_QUERY } from '../../../components/shared/query/dataset'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { datasetPaginationAttribute, paginatedDatasets } from './data/DatasetMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
