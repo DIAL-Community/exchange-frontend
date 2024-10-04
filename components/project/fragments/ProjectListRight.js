@@ -1,23 +1,31 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { ProjectFilterContext } from '../../context/ProjectFilterContext'
+import { useIntl } from 'react-intl'
+import { FilterContext } from '../../context/FilterContext'
+import Pagination from '../../shared/Pagination'
 import { PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/project'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import Pagination from '../../shared/Pagination'
-import ProjectSearchBar from './ProjectSearchBar'
 import ListStructure from './ListStructure'
+import ProjectSearchBar from './ProjectSearchBar'
 
 const ProjectListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, sdgs, origins } = useContext(ProjectFilterContext)
-  const { countries, products, organizations, sectors, tags } = useContext(ProjectFilterContext)
+  const {
+    search,
+    countries,
+    organizations,
+    origins,
+    products,
+    sdgs,
+    sectors,
+    tags
+  } = useContext(FilterContext)
 
-  const [ pageNumber, setPageNumber ] = useState(0)
-  const [ pageOffset, setPageOffset ] = useState(0)
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
@@ -32,7 +40,7 @@ const ProjectListRight = () => {
   }, [page, setPageNumber, setPageOffset])
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
-    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
       { query: { ...query, page: destinationPage + 1 } },
       undefined,
@@ -68,9 +76,9 @@ const ProjectListRight = () => {
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
       />
-      { loading && format('ui.pagination.loadingInfo') }
-      { error && format('ui.pagination.loadingInfoError') }
-      { data &&
+      {loading && format('ui.pagination.loadingInfo')}
+      {error && format('ui.pagination.loadingInfoError')}
+      {data &&
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeProject.totalCount}

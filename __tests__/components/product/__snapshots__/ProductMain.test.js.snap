@@ -57,7 +57,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
                       />
                     </svg>
                   </a>
@@ -88,7 +88,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
                       />
                     </svg>
                   </a>
@@ -119,7 +119,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
                       />
                     </svg>
                   </a>
@@ -150,7 +150,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
                       />
                     </svg>
                   </a>
@@ -205,7 +205,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                            d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
                           />
                         </svg>
                       </div>
@@ -263,13 +263,6 @@ exports[`Unit tests for the product main page. Should render list of products. 1
               <div
                 class="flex flex-row gap-3"
               >
-                <img
-                  alt="Logo of Twitter."
-                  class="object-contain"
-                  height="40"
-                  src="/ui/v1/twitter-icon.svg"
-                  width="40"
-                />
                 <img
                   alt="Logo of LinkedIn."
                   class="object-contain"
@@ -363,7 +356,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                       fill="none"
                     />
                     <path
-                      d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
                     />
                   </svg>
                 </label>

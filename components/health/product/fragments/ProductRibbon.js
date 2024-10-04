@@ -19,7 +19,7 @@ const ProductRibbon = () => {
           </div>
         </div>
         <img className='h-80 w-1/2 pr-4 lg:pr-8 xl:pr-56' alt='Africa CDC Health Marketplace'
-          src='/ui/health/landing-img1.png' />
+          src='/ui/health/landing-img2.png' />
       </div>
     </div>
   )

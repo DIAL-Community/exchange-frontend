@@ -1,12 +1,11 @@
 import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
 import { FaXmark } from 'react-icons/fa6'
-import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
-  from '../../context/BuildingBlockFilterContext'
+import { useIntl } from 'react-intl'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { CategoryTypeActiveFilters, CategoryTypeAutocomplete } from '../../shared/filter/CategoryType'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
 import { WorkflowActiveFilters, WorkflowAutocomplete } from '../../shared/filter/Workflow'
-import { CategoryTypeActiveFilters, CategoryTypeAutocomplete } from '../../shared/filter/CategoryType'
 import Checkbox from '../../shared/form/Checkbox'
 
 const BuildingBlockFilter = () => {
@@ -20,7 +19,7 @@ const BuildingBlockFilter = () => {
     categoryTypes,
     showMature,
     showGovStackOnly
-  } = useContext(BuildingBlockFilterContext)
+  } = useContext(FilterContext)
 
   const {
     setSdgs,
@@ -29,7 +28,7 @@ const BuildingBlockFilter = () => {
     setCategoryTypes,
     setShowMature,
     setShowGovStackOnly
-  } = useContext(BuildingBlockFilterDispatchContext)
+  } = useContext(FilterDispatchContext)
 
   const clearFilter = () => {
     setSdgs([])

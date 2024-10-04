@@ -4,9 +4,9 @@ export const DELETE_CATEGORY = gql`
   mutation DeleteCategory($id: ID!) {
     deleteCategory(id: $id) {
       category {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

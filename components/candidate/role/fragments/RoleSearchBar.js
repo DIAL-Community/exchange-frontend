@@ -1,10 +1,10 @@
 import { forwardRef, useContext } from 'react'
+import { FilterContext, FilterDispatchContext } from '../../../context/FilterContext'
 import SearchBar from '../../../shared/SearchBar'
-import { RoleFilterContext, RoleFilterDispatchContext } from '../../../context/candidate/RoleFilterContext'
 
 const RoleSearchBar = forwardRef((_, ref) => {
-  const { search } = useContext(RoleFilterContext)
-  const { setSearch } = useContext(RoleFilterDispatchContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   return (
     <div ref={ref} className='py-3'>

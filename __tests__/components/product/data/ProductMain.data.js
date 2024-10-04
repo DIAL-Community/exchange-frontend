@@ -10,6 +10,7 @@ export const paginatedProducts = {
         'imageFile': '/assets/products/aidr.png',
         'overallMaturityScore': 75.63,
         'commercialProduct': false,
+        'featured': false,
         'origins': [],
         'buildingBlocks': [],
         'sdgs': [],
@@ -31,6 +32,7 @@ export const paginatedProducts = {
         'imageFile': '/assets/products/product_placeholder.svg',
         'overallMaturityScore': 45.75,
         'commercialProduct': false,
+        'featured': false,
         'origins': [
           {
             'id': '6',
@@ -76,6 +78,7 @@ export const paginatedProducts = {
         'imageFile': '/assets/products/aajeevika.png',
         'overallMaturityScore': 58.21,
         'commercialProduct': false,
+        'featured': false,
         'origins': [
           {
             'id': '3',
@@ -114,6 +117,7 @@ export const paginatedProducts = {
         'imageFile': '/assets/products/accessmod.png',
         'overallMaturityScore': 58.13,
         'commercialProduct': false,
+        'featured': false,
         'origins': [
           {
             'id': '3',

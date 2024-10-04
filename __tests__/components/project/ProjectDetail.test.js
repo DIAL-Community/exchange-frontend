@@ -68,10 +68,11 @@ describe('Unit tests for the project detail page.', () => {
     const mockCreateBuildingBlock = generateMockApolloData(
       CREATE_PROJECT,
       {
-        'name': 'Colombia HMIS -- Edited',
+        'name': 'Colombia HMIS - Edited Again',
         'slug': 'colombia-hmis',
         'projectUrl': 'digitalhealthatlas.org/en/-/projects/1047/published',
-        'description': 'MoH implementation of DHIS2'
+        'description': 'eMoH implementation of DHIS2.',
+        'countrySlugs': ['co']
       },
       null,
       createProject
@@ -114,8 +115,12 @@ describe('Unit tests for the project detail page.', () => {
     expect(repositoryNameInput.value).toBe('Colombia HMIS')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' -- Edited')
-    expect(repositoryNameInput.value).toBe('Colombia HMIS -- Edited')
+    await user.type(repositoryNameInput, ' - Edited')
+    expect(repositoryNameInput.value).toBe('Colombia HMIS - Edited')
+
+    await user.clear(repositoryNameInput)
+    await user.type(repositoryNameInput, 'Colombia HMIS - Edited Again')
+    expect(repositoryNameInput.value).toBe('Colombia HMIS - Edited Again')
 
     const repositorySubmitButton = screen.getByText('Submit Project')
     await user.click(repositorySubmitButton)

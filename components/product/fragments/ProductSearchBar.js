@@ -1,19 +1,18 @@
 import { forwardRef, useContext } from 'react'
-import { ProductFilterContext, ProductFilterDispatchContext }
-  from '../../context/ProductFilterContext'
-import SearchBar from '../../shared/SearchBar'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import MobileFilter from '../../shared/MobileFilter'
+import SearchBar from '../../shared/SearchBar'
 import ProductFilter from './ProductFilter'
 
 const ProductSearchBar = forwardRef((_, ref) => {
-  const { search } = useContext(ProductFilterContext)
-  const { setSearch } = useContext(ProductFilterDispatchContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   const mobileFilter =
     <MobileFilter
       bgColor='bg-dial-spearmint'
       iconColor='text-dial-meadow'
-      entityFilter={<ProductFilter/>}
+      entityFilter={<ProductFilter />}
     />
 
   return (

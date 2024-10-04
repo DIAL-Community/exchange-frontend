@@ -1,9 +1,9 @@
-import { useCallback, useContext } from 'react'
 import parse from 'html-react-parser'
 import Link from 'next/link'
+import { useCallback, useContext } from 'react'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
+import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
 import Checkbox from '../shared/form/Checkbox'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
@@ -12,8 +12,8 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { comparedProducts } = useContext(ProductFilterContext)
-  const { setComparedProducts } = useContext(ProductFilterDispatchContext)
+  const { comparedProducts } = useContext(FilterContext)
+  const { setComparedProducts } = useContext(FilterDispatchContext)
 
   const isInComparedProducts = () => {
     return comparedProducts.filter(p => p.id === product.id).length > 0

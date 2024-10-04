@@ -213,7 +213,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                   Sector
                 </label>
                 <div
-                  class=" css-1uaxf62-container"
+                  class="css-1uaxf62-container"
                   id="use-case-sector"
                 >
                   <span
@@ -231,7 +231,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                     class="react-select__control css-afrqkl-control"
                   >
                     <div
-                      class="react-select__value-container css-17t7gkf-ValueContainer"
+                      class="react-select__value-container css-1y35tn4"
                     >
                       <div
                         class="react-select__placeholder css-5rjclb-placeholder"
@@ -240,7 +240,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                         Sector
                       </div>
                       <div
-                        class="react-select__input-container css-qbdosj-Input"
+                        class="react-select__input-container css-19bb58m"
                         data-value=""
                       >
                         <input
@@ -264,7 +264,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                       </div>
                     </div>
                     <div
-                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      class="react-select__indicators css-1wy0on6"
                     >
                       <span
                         class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
@@ -310,7 +310,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                   Maturity
                 </label>
                 <div
-                  class=" css-1uaxf62-container"
+                  class="css-1uaxf62-container"
                   id="use-case-maturity"
                 >
                   <span
@@ -328,7 +328,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                     class="react-select__control css-afrqkl-control"
                   >
                     <div
-                      class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
+                      class="react-select__value-container react-select__value-container--has-value css-1y35tn4"
                     >
                       <div
                         class="react-select__single-value css-1dimb5e-singleValue"
@@ -336,7 +336,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                         Published
                       </div>
                       <div
-                        class="react-select__input-container css-qbdosj-Input"
+                        class="react-select__input-container css-19bb58m"
                         data-value=""
                       >
                         <input
@@ -359,7 +359,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                       </div>
                     </div>
                     <div
-                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      class="react-select__indicators css-1wy0on6"
                     >
                       <span
                         class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"

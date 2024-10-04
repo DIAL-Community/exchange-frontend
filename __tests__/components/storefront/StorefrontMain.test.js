@@ -1,15 +1,23 @@
-import { act } from 'react'
-import { screen } from '@testing-library/dom'
-import { OrganizationFilterProvider } from '../../../components/context/OrganizationFilterContext'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import { act } from 'react';
+import { screen } from '@testing-library/dom';
+import { FilterProvider } from '../../../components/context/FilterContext';
 import {
-  PAGINATED_STOREFRONTS_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY
-} from '../../../components/shared/query/organization'
-import StorefrontMain from '../../../components/storefront/StorefrontMain'
-import { render } from '../../test-utils'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import { paginatedStorefronts, storefrontPaginationAttribute } from './data/StorefrontMain.data'
+  QueryParamContextProvider,
+} from '../../../components/context/QueryParamContext';
+import {
+  PAGINATED_STOREFRONTS_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY,
+} from '../../../components/shared/query/organization';
+import StorefrontMain from '../../../components/storefront/StorefrontMain';
+import { render } from '../../test-utils';
+import CustomMockedProvider, {
+  generateMockApolloData,
+} from '../../utils/CustomMockedProvider';
+import {
+  mockNextUseRouter, mockTenantApi,
+} from '../../utils/nextMockImplementation';
+import {
+  paginatedStorefronts, storefrontPaginationAttribute,
+} from './data/StorefrontMain.data';
 
 mockTenantApi()
 mockNextUseRouter()
@@ -47,9 +55,9 @@ describe('Unit tests for the storefront main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedStorefronts, mockStorefrontPaginationAttribute]}>
         <QueryParamContextProvider>
-          <OrganizationFilterProvider>
+          <FilterProvider>
             <StorefrontMain activeTab={0} />
-          </OrganizationFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

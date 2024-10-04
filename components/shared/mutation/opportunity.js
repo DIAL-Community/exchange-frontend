@@ -4,9 +4,9 @@ export const DELETE_OPPORTUNITY = gql`
   mutation DeleteOpportunity($id: ID!) {
     deleteOpportunity(id: $id) {
       opportunity {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

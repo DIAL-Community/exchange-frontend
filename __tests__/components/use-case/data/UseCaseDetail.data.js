@@ -64,7 +64,7 @@ export const createUseCase = {
       'useCase': {
         'id': '19',
         'slug': 'remote-learning',
-        'name': 'Remote Learning -- Edited',
+        'name': 'Remote Learning - Edited',
         'maturity': 'PUBLISHED',
         'govStackEntity': false,
         'useCaseDescription': {

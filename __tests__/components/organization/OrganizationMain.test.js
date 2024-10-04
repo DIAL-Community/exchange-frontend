@@ -1,15 +1,24 @@
-import { act } from 'react'
-import { screen } from '@testing-library/dom'
-import { OrganizationFilterProvider } from '../../../components/context/OrganizationFilterContext'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
-import OrganizationMain from '../../../components/organization/OrganizationMain'
+import { act } from 'react';
+import { screen } from '@testing-library/dom';
+import { FilterProvider } from '../../../components/context/FilterContext';
 import {
-  ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY
-} from '../../../components/shared/query/organization'
-import { render } from '../../test-utils'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import { organizationPaginationAttribute, paginatedOrganizations } from './data/OrganizationMain.data'
+  QueryParamContextProvider,
+} from '../../../components/context/QueryParamContext';
+import OrganizationMain
+  from '../../../components/organization/OrganizationMain';
+import {
+  ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY,
+} from '../../../components/shared/query/organization';
+import { render } from '../../test-utils';
+import CustomMockedProvider, {
+  generateMockApolloData,
+} from '../../utils/CustomMockedProvider';
+import {
+  mockNextUseRouter, mockTenantApi,
+} from '../../utils/nextMockImplementation';
+import {
+  organizationPaginationAttribute, paginatedOrganizations,
+} from './data/OrganizationMain.data';
 
 mockTenantApi()
 mockNextUseRouter()
@@ -47,9 +56,9 @@ describe('Unit tests for the organization main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedOrganizations, mockOrganizationPaginationAttribute]}>
         <QueryParamContextProvider>
-          <OrganizationFilterProvider>
+          <FilterProvider>
             <OrganizationMain activeTab={0} />
-          </OrganizationFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

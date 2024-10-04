@@ -1,13 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { SDG_LIST_QUERY } from '../../shared/query/sdg'
-import { SDGFilterContext } from '../../context/SDGFilterContext'
-import SdgCard from '../SdgCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { SDG_LIST_QUERY } from '../../shared/query/sdg'
+import { DisplayType } from '../../utils/constants'
+import SdgCard from '../SdgCard'
 
 const ListStructure = () => {
-  const { search } = useContext(SDGFilterContext)
+  const { search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(SDG_LIST_QUERY, {
     variables: { search }

@@ -6,8 +6,7 @@ const SectorTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.sector.header',
-    'ui.sector.whatIs'
+    'ui.sector.header'
   ])
 
   useEffect(() => {

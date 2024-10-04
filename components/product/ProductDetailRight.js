@@ -11,11 +11,11 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteProduct from './DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
+import ProductDetailCategories from './fragments/ProductDetailCategories'
 import ProductDetailCountries from './fragments/ProductDetailCountries'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
 import ProductDetailResources from './fragments/ProductDetailResources'
-import ProductDetailCategories from './fragments/ProductDetailCategories'
 import ProductDetailSdgs from './fragments/ProductDetailSdgs'
 import ProductDetailTags from './fragments/ProductDetailTags'
 import ProductCard from './ProductCard'
@@ -250,7 +250,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             editorId='product-description'
           />
         </div>
-        {product?.extraAttributes.length && (
+        {product?.extraAttributes.length > 0 && (
           <>
             <hr className='border-b border-dial-blue-chalk my-3' />
             <div className='flex flex-col gap-y-3'>

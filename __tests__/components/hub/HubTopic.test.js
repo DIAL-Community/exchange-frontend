@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/dom'
-import { FilterContextProvider } from '../../../components/context/FilterContext'
+import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { ResourceFilterProvider } from '../../../components/context/ResourceFilterContext'
 import HubTopic from '../../../components/hub/sections/HubTopic'
@@ -51,7 +51,7 @@ describe('Unit tests for the opportunity detail page.', () => {
       'search': '',
       'countries': [],
       'resourceTypes': [],
-      'resourceTopics':['Data Privacy'],
+      'resourceTopics': ['Data Privacy'],
       'limit': 6,
       'offset': 0
     },
@@ -65,7 +65,7 @@ describe('Unit tests for the opportunity detail page.', () => {
       'search': '',
       'countries': [],
       'resourceTypes': [],
-      'resourceTopics':['Data Privacy']
+      'resourceTopics': ['Data Privacy']
     },
     null,
     resourcePagination
@@ -83,11 +83,11 @@ describe('Unit tests for the opportunity detail page.', () => {
         ]}
       >
         <QueryParamContextProvider>
-          <FilterContextProvider>
-            <ResourceFilterProvider>
-              <HubTopic slug='data-privacy' pageNumber={0} onClickHandler={() => {}} />
-            </ResourceFilterProvider>
-          </FilterContextProvider>
+          <ResourceFilterProvider>
+            <FilterProvider>
+              <HubTopic slug='data-privacy' pageNumber={0} onClickHandler={() => { }} />
+            </FilterProvider>
+          </ResourceFilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

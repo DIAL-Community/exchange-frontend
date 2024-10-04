@@ -12,13 +12,6 @@ const Share = () => {
       </div>
       <div className='flex flex-row gap-3'>
         <img
-          src='/ui/v1/twitter-icon.svg'
-          alt={format('ui.image.logoAlt', { name: 'Twitter' })}
-          width={40}
-          height={40}
-          className='object-contain'
-        />
-        <img
           src='/ui/v1/linkedin-icon.svg'
           alt={format('ui.image.logoAlt', { name: 'LinkedIn' })}
           width={40}

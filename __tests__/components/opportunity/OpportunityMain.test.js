@@ -1,15 +1,23 @@
-import { act } from 'react'
-import { screen } from '@testing-library/dom'
-import { OpportunityFilterProvider } from '../../../components/context/OpportunityFilterContext'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
-import OpportunityMain from '../../../components/opportunity/OpportunityMain'
+import { act } from 'react';
+import { screen } from '@testing-library/dom';
+import { FilterProvider } from '../../../components/context/FilterContext';
 import {
-  OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_OPPORTUNITIES_QUERY
-} from '../../../components/shared/query/opportunity'
-import { render } from '../../test-utils'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import { opportunityPaginationAttribute, paginatedOpportunities } from './data/OpportunityMain.data'
+  QueryParamContextProvider,
+} from '../../../components/context/QueryParamContext';
+import OpportunityMain from '../../../components/opportunity/OpportunityMain';
+import {
+  OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_OPPORTUNITIES_QUERY,
+} from '../../../components/shared/query/opportunity';
+import { render } from '../../test-utils';
+import CustomMockedProvider, {
+  generateMockApolloData,
+} from '../../utils/CustomMockedProvider';
+import {
+  mockNextUseRouter, mockTenantApi,
+} from '../../utils/nextMockImplementation';
+import {
+  opportunityPaginationAttribute, paginatedOpportunities,
+} from './data/OpportunityMain.data';
 
 mockTenantApi()
 mockNextUseRouter()
@@ -53,9 +61,9 @@ describe('Unit tests for the opportunity main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedOpportunities, mockOpportunityPaginationAttribute]}>
         <QueryParamContextProvider>
-          <OpportunityFilterProvider>
+          <FilterProvider>
             <OpportunityMain activeTab={0} />
-          </OpportunityFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

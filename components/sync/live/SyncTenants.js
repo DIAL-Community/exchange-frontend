@@ -3,13 +3,15 @@ import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { SYNC_TENANTS } from '../../shared/mutation/sync'
+import { TENANT_SETTINGS_QUERY } from '../../shared/query/tenantSetting'
+import { fetchSelectOptions } from '../../utils/search'
 import SyncBuildingBlocks from './SyncBuildingBlocks'
 import SyncDatasets from './SyncDatasets'
 import SyncProducts from './SyncProducts'
@@ -19,6 +21,8 @@ import SyncUseCases from './SyncUseCases'
 const SyncTenants = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const client = useApolloClient()
 
   const [buildingBlocks, setBuildingBlocks] = useState([])
   const [datasets, setDatasets] = useState([])
@@ -94,11 +98,19 @@ const SyncTenants = () => {
     }
   }
 
-  const generateTenants = (format) => [
-    { label: format('ui.tenants.default'), value: 'public' },
-    { label: format('ui.tenants.fao'), value: 'fao' },
-    { label: format('ui.tenants.health'), value: 'health' }
-  ]
+  const fetchCallback = (data) => {
+    const tenantOptions = [{
+      label: 'public',
+      value: 'public'
+    }]
+
+    const tenantSettingOptions = data?.tenantSettings.map((tenantSetting) => ({
+      label: tenantSetting.tenantName,
+      value: tenantSetting.tenantName
+    }))
+
+    return tenantOptions.concat(tenantSettingOptions)
+  }
 
   return loadingUserSession
     ? <Loading />
@@ -119,13 +131,19 @@ const SyncTenants = () => {
                     <Controller
                       name='sourceTenant'
                       control={control}
-                      render={({ field }) => (
+                      render={({ field: { value, onChange } }) => (
                         <Select
-                          {...field}
-                          isSearch
-                          options={generateTenants(format)}
-                          placeholder={format('ui.syncTenant.sourceTenants')}
-                          isInvalid={errors.sourceTenant}
+                          async
+                          isBorderless
+                          aria-label={format('filter.byEntity', { entity: format('ui.sector.label') })}
+                          className='rounded text-sm text-dial-gray-dark my-auto'
+                          cacheOptions
+                          defaultOptions
+                          loadOptions={(input) => fetchSelectOptions(client, input, TENANT_SETTINGS_QUERY, fetchCallback)}
+                          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.tenant.label') })}
+                          onChange={onChange}
+                          placeholder='Source Tenant'
+                          value={value}
                         />
                       )}
                       rules={{ required: format('validation.required') }}
@@ -141,13 +159,19 @@ const SyncTenants = () => {
                     <Controller
                       name='destinationTenant'
                       control={control}
-                      render={({ field }) => (
+                      render={({ field: { value, onChange } }) => (
                         <Select
-                          {...field}
-                          isSearch
-                          options={generateTenants(format)}
-                          placeholder={format('ui.syncTenant.destinationTenants')}
-                          isInvalid={errors.destinationTenant}
+                          async
+                          isBorderless
+                          aria-label={format('filter.byEntity', { entity: format('ui.sector.label') })}
+                          className='rounded text-sm text-dial-gray-dark my-auto'
+                          cacheOptions
+                          defaultOptions
+                          loadOptions={(input) => fetchSelectOptions(client, input, TENANT_SETTINGS_QUERY, fetchCallback)}
+                          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.tenant.label') })}
+                          onChange={onChange}
+                          placeholder='Destination Tenant'
+                          value={value}
                         />
                       )}
                       rules={{ required: format('validation.required') }}

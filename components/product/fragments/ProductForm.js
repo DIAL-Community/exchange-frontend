@@ -23,6 +23,8 @@ const ProductForm = React.memo(({ product }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const slug = product?.slug ?? ''
+  const productStage = product?.productStage ?? null
+  const extraAttributes = product?.extraAttributes ?? []
 
   const { isProductOwner } = useProductOwnerUser(product)
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
@@ -128,7 +130,9 @@ const ProductForm = React.memo(({ product }) => {
         hostingModel,
         pricingModel,
         pricingDetails,
-        govStackEntity
+        govStackEntity,
+        productStage,
+        extraAttributes
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]

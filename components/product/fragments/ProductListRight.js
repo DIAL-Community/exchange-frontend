@@ -1,8 +1,8 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { ProductFilterContext } from '../../context/ProductFilterContext'
+import { useRouter } from 'next/router'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useIntl } from 'react-intl'
+import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
@@ -13,12 +13,24 @@ const ProductListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
-  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
-  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
+  const {
+    search,
+    buildingBlocks,
+    countries,
+    isLinkedWithDpi,
+    licenseTypes,
+    origins,
+    sdgs,
+    sectors,
+    showDpgaOnly,
+    showGovStackOnly,
+    tags,
+    useCases,
+    workflows
+  } = useContext(FilterContext)
 
-  const [ pageNumber, setPageNumber ] = useState(0)
-  const [ pageOffset, setPageOffset ] = useState(0)
+  const [pageNumber, setPageNumber] = useState(0)
+  const [pageOffset, setPageOffset] = useState(0)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
@@ -33,7 +45,7 @@ const ProductListRight = () => {
   }, [page, setPageNumber, setPageOffset])
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
-    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
       { query: { ...query, page: destinationPage + 1 } },
       undefined,
@@ -74,9 +86,9 @@ const ProductListRight = () => {
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}
       />
-      { loading && format('ui.pagination.loadingInfo') }
-      { error && format('ui.pagination.loadingInfoError') }
-      { data &&
+      {loading && format('ui.pagination.loadingInfo')}
+      {error && format('ui.pagination.loadingInfoError')}
+      {data &&
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeProduct.totalCount}

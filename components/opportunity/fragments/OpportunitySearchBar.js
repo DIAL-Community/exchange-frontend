@@ -1,19 +1,18 @@
 import { forwardRef, useContext } from 'react'
-import { OpportunityFilterContext, OpportunityFilterDispatchContext }
-  from '../../context/OpportunityFilterContext'
-import SearchBar from '../../shared/SearchBar'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import MobileFilter from '../../shared/MobileFilter'
+import SearchBar from '../../shared/SearchBar'
 import OpportunityFilter from './OpportunityFilter'
 
 const OpportunitySearchBar = forwardRef((_, ref) => {
-  const { search } = useContext(OpportunityFilterContext)
-  const { setSearch } = useContext(OpportunityFilterDispatchContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   const mobileFilter =
     <MobileFilter
       bgColor='bg-dial-spearmint'
       iconColor='text-dial-plum'
-      entityFilter={<OpportunityFilter/>}
+      entityFilter={<OpportunityFilter />}
     />
 
   return (

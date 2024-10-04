@@ -1,27 +1,33 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_PROJECTS_QUERY } from '../../shared/query/project'
-import { ProjectFilterContext } from '../../context/ProjectFilterContext'
-import ProjectCard from '../ProjectCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_PROJECTS_QUERY } from '../../shared/query/project'
+import { DisplayType } from '../../utils/constants'
+import ProjectCard from '../ProjectCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(ProjectFilterContext)
-
-  const { countries, products, organizations, sectors, tags } = useContext(ProjectFilterContext)
-  const { sdgs, origins } = useContext(ProjectFilterContext)
+  const {
+    search,
+    countries,
+    organizations,
+    origins,
+    products,
+    sdgs,
+    sectors,
+    tags
+  } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PROJECTS_QUERY, {
     variables: {
       search,
       countries: countries.map(country => country.value),
-      products: products.map(product => product.value),
       organizations: organizations.map(organization => organization.value),
+      origins: origins.map(origin => origin.value),
+      products: products.map(product => product.value),
+      sdgs: sdgs.map(sdg => sdg.value),
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
-      sdgs: sdgs.map(sdg => sdg.value),
-      origins: origins.map(origin => origin.value),
       limit: defaultPageSize,
       offset: pageOffset
     }

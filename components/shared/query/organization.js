@@ -130,6 +130,7 @@ export const PAGINATED_STOREFRONTS_QUERY = gql`
       name
       slug
       imageFile
+      parsedDescription
       organizationDescription {
         id
         description

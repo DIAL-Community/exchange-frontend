@@ -4,7 +4,7 @@ export const resourceTopics = {
       {
         'id': '16',
         'name': 'AI + Machine Learning',
-        'slug': 'ai--machine-learning',
+        'slug': 'ai-machine-learning',
         'imageFile': '/assets/resources/resource-topic-placeholder.svg',
         'resourceTopicDescription': null,
         'subtopics': [],

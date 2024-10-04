@@ -1,15 +1,24 @@
-import { act } from 'react'
-import { screen } from '@testing-library/dom'
-import BuildingBlockMain from '../../../components/building-block/BuildingBlockMain'
-import { BuildingBlockFilterProvider } from '../../../components/context/BuildingBlockFilterContext'
-import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import { act } from 'react';
+import { screen } from '@testing-library/dom';
+import BuildingBlockMain
+  from '../../../components/building-block/BuildingBlockMain';
+import { FilterProvider } from '../../../components/context/FilterContext';
 import {
-  BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY
-} from '../../../components/shared/query/buildingBlock'
-import { render } from '../../test-utils'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import { buildingBlockPaginationAttribute, paginatedBuildingBlocks } from './data/BuildingBlockMain.data'
+  QueryParamContextProvider,
+} from '../../../components/context/QueryParamContext';
+import {
+  BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY,
+} from '../../../components/shared/query/buildingBlock';
+import { render } from '../../test-utils';
+import CustomMockedProvider, {
+  generateMockApolloData,
+} from '../../utils/CustomMockedProvider';
+import {
+  mockNextUseRouter, mockTenantApi,
+} from '../../utils/nextMockImplementation';
+import {
+  buildingBlockPaginationAttribute, paginatedBuildingBlocks,
+} from './data/BuildingBlockMain.data';
 
 mockTenantApi()
 mockNextUseRouter()
@@ -23,7 +32,7 @@ describe('Unit tests for the building block main page.', () => {
         useCases: [],
         workflows: [],
         categoryTypes: [],
-        showMature:false,
+        showMature: false,
         showGovStackOnly: false
       },
       null,
@@ -37,7 +46,7 @@ describe('Unit tests for the building block main page.', () => {
         useCases: [],
         workflows: [],
         categoryTypes: [],
-        showMature:false,
+        showMature: false,
         showGovStackOnly: false,
         limit: 8,
         offset: 0
@@ -49,9 +58,9 @@ describe('Unit tests for the building block main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedBuildingBlocks, mockBuildingBlockPaginationAttribute]}>
         <QueryParamContextProvider>
-          <BuildingBlockFilterProvider>
+          <FilterProvider>
             <BuildingBlockMain activeTab={0} />
-          </BuildingBlockFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

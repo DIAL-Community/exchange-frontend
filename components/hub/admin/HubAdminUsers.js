@@ -1,9 +1,9 @@
-import { useCallback, useContext, useRef, useState } from 'react'
 import Link from 'next/link'
+import { useCallback, useContext, useRef, useState } from 'react'
 import { FiPlusCircle } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
-import { UserFilterContext } from '../../context/UserFilterContext'
+import { FilterContext } from '../../context/FilterContext'
 import UserSearchBar from '../../user/fragments/UserSearchBar'
 import UserList from '../user/UserList'
 import UserPagination from '../user/UserPagination'
@@ -14,14 +14,14 @@ const HubAdminUsers = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { user } = useUser()
-  const { search } = useContext(UserFilterContext)
+  const { search } = useContext(FilterContext)
 
-  const [ pageNumber, setPageNumber ] = useState(0)
+  const [pageNumber, setPageNumber] = useState(0)
 
   const topRef = useRef(null)
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
-    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     setPageNumber(destinationPage)
   }
 

@@ -1,6 +1,6 @@
 import { act } from 'react'
 import { screen } from '@testing-library/dom'
-import { ProductFilterProvider } from '../../../components/context/ProductFilterContext'
+import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import ProductMain from '../../../components/product/ProductMain'
 import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../../components/shared/query/product'
@@ -59,9 +59,9 @@ describe('Unit tests for the product main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedProducts, mockProductPaginationAttribute]}>
         <QueryParamContextProvider>
-          <ProductFilterProvider>
+          <FilterProvider>
             <ProductMain activeTab={0} />
-          </ProductFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
