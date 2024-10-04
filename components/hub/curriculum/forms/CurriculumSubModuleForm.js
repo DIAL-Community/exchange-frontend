@@ -271,7 +271,8 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
           () => router.push(`/hub/curriculum/${curriculum.slug}`)
         )
       } else {
-        showFailureMessage(response.errors)
+        const [ firstErrorMessage ] = response.errors
+        showFailureMessage(firstErrorMessage)
         setMutating(false)
         reset()
       }

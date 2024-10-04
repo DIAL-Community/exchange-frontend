@@ -1,14 +1,14 @@
 import { screen } from '@testing-library/dom'
-import { render } from '../../test-utils'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
-import ProjectMain from '../../../components/project/ProjectMain'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  PROJECT_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_PROJECTS_QUERY
-} from '../../../components/shared/query/project'
+import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
-import { ProjectFilterProvider } from '../../../components/context/ProjectFilterContext'
+import ProjectMain from '../../../components/project/ProjectMain'
+import {
+  PAGINATED_PROJECTS_QUERY,
+  PROJECT_PAGINATION_ATTRIBUTES_QUERY
+} from '../../../components/shared/query/project'
+import { render } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import { paginatedProjects, projectPaginationAttribute } from './data/ProjectMain.data'
 
 mockTenantApi()
@@ -51,9 +51,9 @@ describe('Unit tests for the project main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockPaginatedProjects, mockProjectPaginationAttribute]}>
         <QueryParamContextProvider>
-          <ProjectFilterProvider>
+          <FilterProvider>
             <ProjectMain activeTab={0} />
-          </ProjectFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

@@ -20,7 +20,7 @@ const OpportunityDefinition = () => {
               ul: chunks => <ul className='pl-4 list-outside list-disc flex flex-col gap-y-2'>{chunks}</ul>,
               email: chunks => (
                 <a
-                  class='border-b border-dial-stratos'
+                  className='border-b border-dial-stratos'
                   target='_blank'
                   href={`mailto:${chunks}`}
                 >

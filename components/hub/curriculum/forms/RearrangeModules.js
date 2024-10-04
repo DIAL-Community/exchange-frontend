@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client'
 import { Dialog, Transition } from '@headlessui/react'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
-import { FilterContext } from '../../../context/FilterContext'
+import { FilterContext, FilterDispatchContext } from '../../../context/FilterContext'
 import { SearchInput } from '../../../shared/form/SearchInput'
 import { UPDATE_PLAYBOOK_PLAYS } from '../../../shared/mutation/playbook'
 import { PLAYS_QUERY } from '../../../shared/query/play'
@@ -76,7 +76,8 @@ const ExistingModule = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [showModuleForm, setShowModuleForm] = useState(false)
-  const { search, setSearch } = useContext(FilterContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   const handleChange = (e) => setSearch(e.target.value)
 

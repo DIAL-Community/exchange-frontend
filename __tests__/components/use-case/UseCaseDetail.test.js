@@ -79,7 +79,7 @@ describe('Unit tests for the useCase detail page.', () => {
     const mockCreateBuildingBlock = generateMockApolloData(
       CREATE_USE_CASE,
       {
-        'name': 'Remote Learning -- Edited',
+        'name': 'Remote Learning - Edited',
         'slug': 'remote-learning',
         'sectorSlug': 'education-and-social-development-duplicate-0',
         'maturity': 'PUBLISHED',
@@ -129,8 +129,8 @@ describe('Unit tests for the useCase detail page.', () => {
     expect(repositoryNameInput.value).toBe('Remote Learning')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' -- Edited')
-    expect(repositoryNameInput.value).toBe('Remote Learning -- Edited')
+    await user.type(repositoryNameInput, ' - Edited')
+    expect(repositoryNameInput.value).toBe('Remote Learning - Edited')
 
     const repositorySubmitButton = screen.getByText('Submit Use Case')
     await user.click(repositorySubmitButton)

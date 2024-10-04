@@ -37,7 +37,7 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
     <>
       <MenuHeader
         id={HELP_MENU}
-        title='header.help'
+        titleKey='header.help'
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

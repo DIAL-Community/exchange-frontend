@@ -1,19 +1,18 @@
 import { forwardRef, useContext } from 'react'
-import { DatasetFilterContext, DatasetFilterDispatchContext }
-  from '../../context/DatasetFilterContext'
-import SearchBar from '../../shared/SearchBar'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import MobileFilter from '../../shared/MobileFilter'
+import SearchBar from '../../shared/SearchBar'
 import DatasetFilter from './DatasetFilter'
 
 const DatasetSearchBar = forwardRef((_, ref) => {
-  const { search } = useContext(DatasetFilterContext)
-  const { setSearch } = useContext(DatasetFilterDispatchContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   const mobileFilter =
     <MobileFilter
       bgColor='bg-dial-violet'
       iconColor='text-dial-plum'
-      entityFilter={<DatasetFilter/>}
+      entityFilter={<DatasetFilter />}
     />
 
   return (

@@ -20,6 +20,7 @@ const ProjectForm = React.memo(({ project }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const slug = project?.slug ?? ''
+  const countrySlugs = project?.countries.map(c => c.slug) ?? []
 
   const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
@@ -95,7 +96,8 @@ const ProjectForm = React.memo(({ project }) => {
         name,
         slug,
         projectUrl,
-        description
+        description,
+        countrySlugs
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]

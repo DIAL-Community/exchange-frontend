@@ -49,9 +49,9 @@ export const DELETE_USE_CASE = gql`
   mutation DeleteUseCase($id: ID!) {
     deleteUseCase(id: $id) {
       useCase {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

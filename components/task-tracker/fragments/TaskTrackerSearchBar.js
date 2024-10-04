@@ -1,10 +1,11 @@
 import { forwardRef, useContext } from 'react'
-import { FilterContext }
+import { FilterContext, FilterDispatchContext }
   from '../../context/FilterContext'
 import SearchBar from '../../shared/SearchBar'
 
 const TaskTrackerSearchBar = forwardRef((_, ref) => {
-  const { search, setSearch } = useContext(FilterContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   return (
     <div ref={ref} className='py-3'>

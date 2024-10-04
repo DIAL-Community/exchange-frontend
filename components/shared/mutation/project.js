@@ -187,9 +187,9 @@ export const DELETE_PROJECT = gql`
   mutation DeleteProject($id: ID!) {
     deleteProject(id: $id) {
       project {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

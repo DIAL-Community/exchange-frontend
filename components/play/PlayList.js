@@ -1,8 +1,8 @@
-import { useCallback, useContext } from 'react'
-import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PlayFilterContext } from '../context/PlayFilterContext'
+import { useRouter } from 'next/router'
+import { useCallback, useContext } from 'react'
+import { useIntl } from 'react-intl'
+import { FilterContext } from '../context/FilterContext'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import { PLAYS_QUERY } from '../shared/query/play'
 import { DisplayType } from '../utils/constants'
@@ -19,7 +19,7 @@ const PlayListQuery = () => {
   const { locale } = useRouter()
   const { currentPlays } = useContext(PlayListContext)
 
-  const { search } = useContext(PlayFilterContext)
+  const { search } = useContext(FilterContext)
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
     variables: { search, owner: 'public' },
     context: { headers: { 'Accept-Language': locale } }

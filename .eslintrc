@@ -62,7 +62,8 @@
         "ArrayExpression": 1,
         "ObjectExpression": 1,
         // "offsetTernaryExpressions": true,
-        "ImportDeclaration": 1
+        "ImportDeclaration": 1,
+        "SwitchCase": 1
       }
     ],
     "import/order": [

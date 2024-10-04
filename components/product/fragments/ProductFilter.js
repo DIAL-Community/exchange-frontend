@@ -1,7 +1,7 @@
 import { useCallback, useContext, useState } from 'react'
 import { FaAngleDown, FaAngleUp, FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../context/ProductFilterContext'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { BuildingBlockActiveFilters, BuildingBlockAutocomplete } from '../../shared/filter/BuildingBlock'
 import { CountryActiveFilters, CountryAutocomplete } from '../../shared/filter/Country'
 import { LicenseTypeActiveFilters, LicenseTypeAutocomplete } from '../../shared/filter/LicenseType'
@@ -14,19 +14,41 @@ import { WorkflowActiveFilters, WorkflowAutocomplete } from '../../shared/filter
 import Checkbox from '../../shared/form/Checkbox'
 
 const COVID_19_LABEL = 'COVID-19'
+const COVID_19_SLUG = 'covid19'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { useCases, buildingBlocks, sectors, tags } = useContext(ProductFilterContext)
-  const { setUseCases, setBuildingBlocks, setSectors, setTags } = useContext(ProductFilterDispatchContext)
+  const {
+    buildingBlocks,
+    countries,
+    isLinkedWithDpi,
+    licenseTypes,
+    origins,
+    sdgs,
+    sectors,
+    showDpgaOnly,
+    showGovStackOnly,
+    tags,
+    useCases,
+    workflows
+  } = useContext(FilterContext)
 
-  const { countries, licenseTypes, sdgs, origins, workflows } = useContext(ProductFilterContext)
-  const { setCountries, setLicenseTypes, setSdgs, setOrigins, setWorkflows } = useContext(ProductFilterDispatchContext)
-
-  const { isLinkedWithDpi, showGovStackOnly, showDpgaOnly } = useContext(ProductFilterContext)
-  const { setIsLinkedWithDpi, setShowGovStackOnly, setShowDpgaOnly } = useContext(ProductFilterDispatchContext)
+  const {
+    setBuildingBlocks,
+    setCountries,
+    setIsLinkedWithDpi,
+    setLicenseTypes,
+    setOrigins,
+    setSdgs,
+    setSectors,
+    setShowDpgaOnly,
+    setShowGovStackOnly,
+    setTags,
+    setUseCases,
+    setWorkflows
+  } = useContext(FilterDispatchContext)
 
   const [expanded, setExpanded] = useState(false)
 
@@ -42,15 +64,15 @@ const ProductFilter = () => {
     setShowDpgaOnly(!showDpgaOnly)
   }
 
-  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
+  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_SLUG)
 
   const toggleCovid19Tag = () => {
-    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_LABEL)
+    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_SLUG)
     setTags(isCovid19TagActive
       ? tagsWithoutCovid19
       : [
         ...tagsWithoutCovid19,
-        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_LABEL }
+        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_SLUG }
       ]
     )
   }
@@ -76,16 +98,16 @@ const ProductFilter = () => {
 
     return isLinkedWithDpi ? 1 : 0 +
       showGovStackOnly ? 1 : 0 +
-      showDpgaOnly ? 1 : 0 +
-      sdgs.length +
-      workflows.length +
-      buildingBlocks.length +
-      useCases.length +
-      origins.length +
-      sectors.length +
-      tags.length +
-      countries.length +
-      licenseTypes.length > 0
+        showDpgaOnly ? 1 : 0 +
+        sdgs.length +
+        workflows.length +
+        buildingBlocks.length +
+        useCases.length +
+        origins.length +
+        sectors.length +
+        tags.length +
+        countries.length +
+        licenseTypes.length > 0
   }
 
   return (
@@ -157,22 +179,22 @@ const ProductFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <BuildingBlockAutocomplete buildingBlocks={buildingBlocks} setBuildingBlocks={setBuildingBlocks} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <TagAutocomplete tags={tags} setTags={setTags} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <label className='flex py-2'>
           <Checkbox value={isLinkedWithDpi} onChange={toggleIsLinkedWithDpi} />
           <span className='mx-2 my-auto text-sm'>
             {format('filter.product.linkedWithDpi')}
           </span>
         </label>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
@@ -210,17 +232,17 @@ const ProductFilter = () => {
                 {format('ui.product.filter.showDpgaOnly')}
               </span>
             </label>
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <CountryAutocomplete countries={countries} setCountries={setCountries} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <LicenseTypeAutocomplete licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <WorkflowAutocomplete workflows={workflows} setWorkflows={setWorkflows} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
             <OriginAutocomplete origins={origins} setOrigins={setOrigins} />
-            <hr className='border-b border-dial-slate-200'/>
+            <hr className='border-b border-dial-slate-200' />
           </>
         }
       </div>

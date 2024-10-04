@@ -53,6 +53,10 @@ export const SoftwareCategoryActiveFilters =
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeSoftwareCategory = (categorySlug) => {
+    const currCategory = softwareCategories.filter(({ slug }) => slug === categorySlug)
+    currCategory && currCategory[0].softwareFeatures?.map((currFeature) => {
+      setSoftwareFeatures(softwareFeatures => [...softwareFeatures.filter(feature => feature.slug !== currFeature.slug)])
+    })
     setSoftwareCategories(softwareCategories => [...softwareCategories.filter(category => category.slug !== categorySlug)])
   }
 

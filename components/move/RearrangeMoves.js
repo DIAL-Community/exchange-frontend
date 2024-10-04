@@ -10,16 +10,16 @@ import { UPDATE_PLAY_MOVES } from '../shared/mutation/play'
 import { MoveListContext, MoveListDispatchContext, MoveListProvider } from './context/MoveListContext'
 import MoveListDraggable from './MoveListDraggable'
 
-const RearrangeMoves = ({ displayDragable, onDragableClose, play }) => {
+const RearrangeMoves = ({ displayDraggable, onDraggableClose, play }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <Transition appear show={displayDragable} as={Fragment}>
+    <Transition appear show={displayDraggable} as={Fragment}>
       <Dialog
         as='div'
         className='fixed inset-0 z-100 overflow-y-auto'
-        onClose={onDragableClose}
+        onClose={onDraggableClose}
       >
         <div className='min-h-screen px-4 text-center'>
           <Dialog.Overlay className='fixed inset-0 bg-dial-gray opacity-40' />
@@ -54,7 +54,7 @@ const RearrangeMoves = ({ displayDragable, onDragableClose, play }) => {
               <MoveListProvider>
                 <div className='flex flex-col gap-4 px-4 pt-6'>
                   <MoveListDraggable play={play} />
-                  <RearrangeControls play={play} onClose={onDragableClose} />
+                  <RearrangeControls play={play} onClose={onDraggableClose} />
                 </div>
               </MoveListProvider>
             </div>

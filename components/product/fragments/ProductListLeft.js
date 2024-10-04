@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../context/ProductFilterContext'
+import { useContext, useEffect } from 'react'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
@@ -13,29 +13,42 @@ const ProductListLeft = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const {
-    isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi,
-    showGovStackOnly, showDpgaOnly
-  } = useContext(ProductFilterContext)
+    buildingBlocks,
+    countries,
+    isLinkedWithDpi,
+    licenseTypes,
+    origins,
+    sdgs,
+    sectors,
+    showDpgaOnly,
+    showGovStackOnly,
+    tags,
+    useCases,
+    workflows
+  } = useContext(FilterContext)
 
   const {
-    setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
-    setOrigins, setSdgs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
-    setLicenseTypes, setIsLinkedWithDpi, setShowGovStackOnly, setShowDpgaOnly
-  } = useContext(ProductFilterDispatchContext)
+    setBuildingBlocks,
+    setCountries,
+    setIsLinkedWithDpi,
+    setLicenseTypes,
+    setOrigins,
+    setSdgs,
+    setSectors,
+    setShowDpgaOnly,
+    setShowGovStackOnly,
+    setTags,
+    setUseCases,
+    setWorkflows
+  } = useContext(FilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = '/products'
 
-    const endorsedFilter = isEndorsed ? 'isEndorsed=true' : ''
-    const deployableFilter = productDeployable ? 'productDeployable=true' : ''
     const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const organizationFilters = organizations.map(
-      organization => `organizations=${organization.value}--${organization.label}`
-    )
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
     const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
@@ -43,7 +56,6 @@ const ProductListLeft = () => {
     const buildingBlockFilters = buildingBlocks.map(
       buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
     )
-    const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
     const licenseTypesFilter = licenseTypes.map(
       licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
     )
@@ -53,10 +65,19 @@ const ProductListLeft = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorsedFilter, deployableFilter, ...originFilters,
-      ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
-      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, ...licenseTypesFilter,
-      linkedWithDpiFilter, showGovStackOnlyFilter, showDpgaOnlyFilter
+      activeFilter,
+      ...originFilters,
+      ...countryFilters,
+      ...sectorFilters,
+      ...sdgFilters,
+      ...tagFilters,
+      ...useCaseFilters,
+      ...workflowFilters,
+      ...buildingBlockFilters,
+      ...licenseTypesFilter,
+      linkedWithDpiFilter,
+      showGovStackOnlyFilter,
+      showDpgaOnlyFilter
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -69,22 +90,18 @@ const ProductListLeft = () => {
       Object.getOwnPropertyNames(query).length > 1 &&
       query.shareCatalog && !interactionDetected
     ) {
-      setIsEndorsed(query.isEndorsed === 'true')
       setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
       setShowGovStackOnly(query.showGovStackOnly === 'true')
       setShowDpgaOnly(query.showDpgaOnly === 'true')
-      setProductDeployable(query.productDeployable === 'true')
       parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
       parseQuery(query, 'origins', origins, setOrigins)
       parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
-      parseQuery(query, 'organizations', organizations, setOrganizations)
       parseQuery(query, 'sdgs', sdgs, setSdgs)
       parseQuery(query, 'tags', tags, setTags)
       parseQuery(query, 'useCases', useCases, setUseCases)
       parseQuery(query, 'workflows', workflows, setWorkflows)
       parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
-      parseQuery(query, 'endorsers', endorsers, setEndorsers)
     }
   })
 
@@ -93,9 +110,9 @@ const ProductListLeft = () => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <ProductFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <Share />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

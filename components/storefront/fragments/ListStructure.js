@@ -1,15 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_STOREFRONTS_QUERY } from '../../shared/query/organization'
-import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
-import StorefrontCard from '../StorefrontCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_STOREFRONTS_QUERY } from '../../shared/query/organization'
+import { DisplayType } from '../../utils/constants'
+import StorefrontCard from '../StorefrontCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(OrganizationFilterContext)
-
-  const { buildingBlocks, sectors, countries, specialties, certifications } = useContext(OrganizationFilterContext)
+  const { search, buildingBlocks, countries, sectors, specialties, certifications } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_STOREFRONTS_QUERY, {
     variables: {

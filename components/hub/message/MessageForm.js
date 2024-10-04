@@ -68,7 +68,8 @@ const MessageForm = ({ message }) => {
           }
         )
       } else {
-        showFailureMessage(response.errors)
+        const [ firstErrorMessage ] = response.errors
+        showFailureMessage(firstErrorMessage)
         setMutating(false)
         reset()
       }

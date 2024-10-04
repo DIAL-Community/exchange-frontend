@@ -1,8 +1,8 @@
-import { Dialog, Transition } from '@headlessui/react'
-import classNames from 'classnames'
 import { Fragment, useCallback, useRef } from 'react'
+import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
+import { Dialog, Transition } from '@headlessui/react'
 
 const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isConfirming }) => {
   const { formatMessage } = useIntl()
@@ -27,7 +27,7 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
           >
             <Dialog.Panel
               className={classNames(
-                'inline-block w-4/5 md:w-3/5 xl:w-3/5 xl:w-1/2 p-8 max-w-prose',
+                'inline-block w-4/5 md:w-3/5 xl:w-3/5 p-8 max-w-prose',
                 'transform bg-white shadow-xl rounded-2xl'
               )}
             >

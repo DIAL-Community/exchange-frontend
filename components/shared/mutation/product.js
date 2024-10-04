@@ -15,7 +15,7 @@ export const CREATE_PRODUCT = gql`
     $commercialProduct: Boolean
     $govStackEntity: Boolean
     $productStage: String
-    $extraAttributes: [ExtraAttributeInput!]!
+    $extraAttributes: [ExtraAttributeInput!]
     $featured: Boolean
     $contact: String
   ) {
@@ -64,9 +64,9 @@ export const DELETE_PRODUCT = gql`
   mutation DeleteProduct($id: ID!) {
     deleteProduct(id: $id) {
       product {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

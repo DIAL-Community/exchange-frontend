@@ -8,7 +8,7 @@ export const projectDetail = {
       'projectWebsite': 'digitalhealthatlas.org/en/-/projects/1047/published',
       'projectDescription': {
         'id': '365',
-        'description': 'MoH implementation of DHIS2',
+        'description': 'eMoH implementation of DHIS2.',
         'locale': 'en',
         '__typename': 'ProjectDescription'
       },
@@ -37,7 +37,20 @@ export const projectDetail = {
           '__typename': 'Product'
         }
       ],
-      'sectors': [],
+      'sectors': [
+        {
+          'id': '39',
+          'name': 'Health',
+          'slug': 'health',
+          '__typename': 'Sector'
+        },
+        {
+          'id': '246',
+          'name': 'Digital, Data, and Technology',
+          'slug': 'digital-data-and-technology-duplicate-0',
+          '__typename': 'Sector'
+        }
+      ],
       'sdgs': [],
       'countries': [
         {
@@ -72,8 +85,17 @@ export const createProject = {
     'createProject': {
       'project': {
         'id': '365',
-        'name': 'Colombia HMIS -- Edited',
+        'name': 'Colombia HMIS - Edited Again',
         'slug': 'colombia-hmis',
+        'countries': [
+          {
+            'id': '40',
+            'name': 'Colombia',
+            'slug': 'co',
+            'code': 'CO',
+            '__typename': 'Country'
+          }
+        ],
         '__typename': 'Project'
       },
       'errors': [],

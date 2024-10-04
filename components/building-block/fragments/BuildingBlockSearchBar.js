@@ -1,13 +1,12 @@
 import { forwardRef, useContext } from 'react'
-import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
-  from '../../context/BuildingBlockFilterContext'
-import SearchBar from '../../shared/SearchBar'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import MobileFilter from '../../shared/MobileFilter'
+import SearchBar from '../../shared/SearchBar'
 import BuildingBlockFilter from './BuildingBlockFilter'
 
 const BuildingBlockSearchBar = forwardRef((_, ref) => {
-  const { search } = useContext(BuildingBlockFilterContext)
-  const { setSearch } = useContext(BuildingBlockFilterDispatchContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   const mobileFilter =
     <MobileFilter

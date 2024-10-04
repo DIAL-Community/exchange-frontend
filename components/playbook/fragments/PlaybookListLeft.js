@@ -1,62 +1,28 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
-import {
-  PlaybookFilterContext,
-  PlaybookFilterDispatchContext
-} from '../../context/PlaybookFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../context/QueryParamContext'
 import PlaybookFilter from './PlaybookFilter'
 
 const PlaybookListLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
-  const {
-    isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi
-  } = useContext(PlaybookFilterContext)
-
-  const {
-    setIsEndorsed, setPlaybookDeployable, setSectors, setCountries, setOrganizations,
-    setOrigins, setSdgs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
-    setLicenseTypes, setIsLinkedWithDpi
-  } = useContext(PlaybookFilterDispatchContext)
+  const { tags } = useContext(FilterContext)
+  const { setTags } = useContext(FilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = '/products'
 
-    const endorsedFilter = isEndorsed ? 'isEndorsed=true' : ''
-    const deployableFilter = productDeployable ? 'productDeployable=true' : ''
-    const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
-    const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
-    const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const organizationFilters = organizations.map(
-      organization => `organizations=${organization.value}--${organization.label}`
-    )
-    const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
-    const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
-    const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
-    const buildingBlockFilters = buildingBlocks.map(
-      buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
-    )
-    const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
-    const licenseTypesFilter = licenseTypes.map(
-      licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
-    )
-    const linkedWithDpiFilter = isLinkedWithDpi ? 'isLinkedWithDpi=true' : ''
 
     const activeFilter = 'shareCatalog=true'
-    const filterParameters = [
-      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
-      ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
-      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, linkedWithDpiFilter
-    ].filter(f => f).join('&')
+    const filterParameters = [activeFilter, ...tagFilters].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
   }
@@ -68,20 +34,7 @@ const PlaybookListLeft = () => {
       Object.getOwnPropertyNames(query).length > 1 &&
       query.shareCatalog && !interactionDetected
     ) {
-      setIsEndorsed(query.isEndorsed === 'true')
-      setPlaybookDeployable(query.productDeployable === 'true')
-      parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
-      parseQuery(query, 'origins', origins, setOrigins)
-      parseQuery(query, 'countries', countries, setCountries)
-      parseQuery(query, 'sectors', sectors, setSectors)
-      parseQuery(query, 'organizations', organizations, setOrganizations)
-      parseQuery(query, 'sdgs', sdgs, setSdgs)
       parseQuery(query, 'tags', tags, setTags)
-      parseQuery(query, 'useCases', useCases, setUseCases)
-      parseQuery(query, 'workflows', workflows, setWorkflows)
-      parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
-      parseQuery(query, 'endorsers', endorsers, setEndorsers)
-      setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
     }
   })
 
@@ -90,9 +43,9 @@ const PlaybookListLeft = () => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <PlaybookFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <Share />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

@@ -1,24 +1,22 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/organization'
-import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
-import OrganizationCard from '../OrganizationCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/organization'
+import { DisplayType } from '../../utils/constants'
+import OrganizationCard from '../OrganizationCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(OrganizationFilterContext)
-
-  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
+  const { search, aggregator, countries, endorser, sectors, years } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_ORGANIZATIONS_QUERY, {
     variables: {
       search,
+      aggregatorOnly: aggregator,
       countries: countries.map(country => country.value),
+      endorserOnly: endorser,
       sectors: sectors.map(sector => sector.value),
       years: years.map(year => year.value),
-      aggregatorOnly: aggregator,
-      endorserOnly: endorser,
       limit: defaultPageSize,
       offset: pageOffset
     }

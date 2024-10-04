@@ -1,13 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_CANDIDATE_PRODUCTS_QUERY } from '../../../shared/query/candidateProduct'
-import ProductCard from '../ProductCard'
-import { DisplayType } from '../../../utils/constants'
-import { ProductFilterContext } from '../../../context/ProductFilterContext'
+import { useContext } from 'react'
+import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
+import { PAGINATED_CANDIDATE_PRODUCTS_QUERY } from '../../../shared/query/candidateProduct'
+import { DisplayType } from '../../../utils/constants'
+import ProductCard from '../ProductCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(ProductFilterContext)
+  const { search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_CANDIDATE_PRODUCTS_QUERY, {
     variables: {

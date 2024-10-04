@@ -1,19 +1,18 @@
 import { forwardRef, useContext } from 'react'
-import { PlaybookFilterContext, PlaybookFilterDispatchContext }
-  from '../../context/PlaybookFilterContext'
-import SearchBar from '../../shared/SearchBar'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import MobileFilter from '../../shared/MobileFilter'
+import SearchBar from '../../shared/SearchBar'
 import PlaybookFilter from './PlaybookFilter'
 
 const PlaybookSearchBar = forwardRef((_, ref) => {
-  const { search } = useContext(PlaybookFilterContext)
-  const { setSearch } = useContext(PlaybookFilterDispatchContext)
+  const { search } = useContext(FilterContext)
+  const { setSearch } = useContext(FilterDispatchContext)
 
   const mobileFilter =
     <MobileFilter
       bgColor='bg-dial-spearmint'
       iconColor='text-dial-meadow'
-      entityFilter={<PlaybookFilter/>}
+      entityFilter={<PlaybookFilter />}
     />
 
   return (

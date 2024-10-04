@@ -1,13 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { UserFilterContext } from '../../context/UserFilterContext'
-import UserCard from '../UserCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PAGINATED_USERS_QUERY } from '../../shared/query/user'
+import { DisplayType } from '../../utils/constants'
+import UserCard from '../UserCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(UserFilterContext)
+  const { search } = useContext(FilterContext)
   const { loading, error, data } = useQuery(PAGINATED_USERS_QUERY, {
     variables: {
       search,
