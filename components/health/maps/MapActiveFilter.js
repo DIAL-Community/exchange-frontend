@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { MapFilterContext, MapFilterDispatchContext } from '../../context/MapFilterContext'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { CountryActiveFilters } from '../../shared/filter/Country'
 import { ProductActiveFilters } from '../../shared/filter/Product'
 
@@ -11,11 +11,11 @@ const MapActiveFilter = () => {
 
   const {
     countries, products
-  } = useContext(MapFilterContext)
+  } = useContext(FilterContext)
 
   const {
     setCountries, setProducts
-  } = useContext(MapFilterDispatchContext)
+  } = useContext(FilterDispatchContext)
 
   const filteringMap = () => {
     return countries.length + products.length > 0

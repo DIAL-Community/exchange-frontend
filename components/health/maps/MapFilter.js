@@ -1,6 +1,6 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext } from 'react'
-import { MapFilterContext, MapFilterDispatchContext } from '../../context/MapFilterContext'
+import { useIntl } from 'react-intl'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { CountryAutocomplete } from '../../shared/filter/Country'
 import { ProductAutocomplete } from '../../shared/filter/Product'
 
@@ -11,12 +11,12 @@ const MapFilter = () => {
   const {
     countries,
     products
-  } = useContext(MapFilterContext)
+  } = useContext(FilterContext)
 
   const {
     setCountries,
     setProducts
-  } = useContext(MapFilterDispatchContext)
+  } = useContext(FilterDispatchContext)
 
   return (
     <div className='flex flex-col gap-y-2'>
