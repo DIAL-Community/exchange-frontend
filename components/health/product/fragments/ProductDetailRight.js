@@ -1,5 +1,6 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
+import parse from 'html-react-parser'
 import { useProductOwnerUser, useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../../shared/comment/CommentsSection'
 import Bookmark from '../../../shared/common/Bookmark'
@@ -83,10 +84,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           {product.name}
         </div>
         <div className="block" ref={descRef}>
-          <HtmlViewer
-            initialContent={product?.productDescription?.description}
-            editorId="product-description"
-          />
+          {parse(product?.productDescription?.description)}
         </div>
         <hr className="border-b border-health-gray my-3"/>
         <ProductDetailExtraAttributes product={product} canEdit={canEdit} headerRef={extraRef} />

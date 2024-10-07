@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from 'rea
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
+import parse from 'html-react-parser'
 import { FilterContext, FilterDispatchContext } from '../../../context/FilterContext'
 import Checkbox from '../../../shared/form/Checkbox'
 import { DisplayType } from '../../../utils/constants'
@@ -91,7 +92,7 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
                   WebkitLineClamp: lineClamp
                 }}
               >
-                {product.parsedDescription}
+                {parse(product.parsedDescription)}
               </span>
             </div>
           </div>
