@@ -35,21 +35,25 @@ const faqs = [
   { question:'How do I find a solution to match my needs?',
     answer: 'The Marketplace offers the ability to search for health solutions in different \
     categories. Within each category, you can filter by different software features that your \
-    project requires.'
+    project requires. Use the search bar on the <a className="text-health-blue" \
+    href="/health/products">Products</a> page to search for \
+    solutions by category, or just enter a keyword in the search bar to find a solution.'
   },
   { question:'How do I get more information about a particular solution?',
-    answer: 'The solution detail page provides a wide range of information. We also list contact \
-    information for the solution provider.'
+    answer: 'The solution detail page provides a wide range of information about each digital health innovation, \
+    including information about where the solution has been deployed and detailed information about what the solution \
+    does and its impact on the African health ecosystem. We also list contact \
+    information for the solution provider, allowing users to reach out for additional information or a demot of \
+    the solution .'
   },
-  { question:'What about other open source health solutions, like Digital Square Global \
-    Goods or DPGs vetted by the Digital Public Goods Alliance?',
-  answer: 'There are many fantastic open source solutions that have been designed to address health use cases. \
-  Many of these solutions have been widely used across the African continent. However, the focus if the HealthTech \
-  Marketplace is to showcase local innovation, and solutions that have been designed by African entrepreneurs to \
-  address use cases that they have identified. \
-  <br /><br />For a list of open source health solutions vetted by Digital Square, please visit \
-  <a href="https://exchange.dial.global/products?shareCatalog=true&origins=2--Digital%20Square" \
-  className="text-health-blue" target="_blank" rel="noreferrer">this page</a>'
+  { question:'What about other open source health solutions, like Digital Square Global Goods?',
+    answer: 'There are many fantastic open source solutions that have been designed to address health use cases. \
+    Many of these solutions have been widely used across the African continent. However, the focus if the HealthTech \
+    Marketplace is to showcase local innovation, and solutions that have been designed by African entrepreneurs to \
+    address use cases that they have identified. \
+    <br /><br />For a list of open source health solutions vetted by Digital Square, please visit \
+    <a href="https://exchange.dial.global/products?shareCatalog=true&origins=2--Digital%20Square" \
+    className="text-health-blue" target="_blank" rel="noreferrer">this page</a>'
   }
 ]
 
