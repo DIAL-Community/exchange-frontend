@@ -2974,5 +2974,19 @@ export const en = {
   'ui.validation.required': 'This field is required.',
   'ui.validation.maxLength': 'This field maximum length is {maxLength}.',
   'ui.validation.pattern.alphaOnly': 'This field only accept alphabet characters.',
+
+  'ui.candidateStatus.label': 'Candidate Status',
+  'ui.candidateStatus.header': 'Candidate Statuses',
+  'ui.candidateStatus.createNew': 'Create a new Candidate Statuses?',
+  'ui.candidateStatus.nextCandidateStatus.label': 'Next Candidate Statuses',
+  'ui.candidateStatus.nextCandidateStatus.header': 'Next Candidate Statuses',
+
+  
+  'ui.candidateStatus.name': 'Name',
+  'ui.candidateStatus.description': 'Description',
+  'ui.candidateStatus.initialStatus': 'Candidate status is an initial status.',
+  'ui.candidateStatus.terminalStatus': 'Candidate status is a terminal status.',
+  'ui.candidateStatus.initialStatus.label': 'Initial Status',
+  'ui.candidateStatus.terminalStatus.label': 'Terminal Status',
 }
 

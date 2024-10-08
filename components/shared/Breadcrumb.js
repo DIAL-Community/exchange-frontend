@@ -47,7 +47,8 @@ const basePathMappings = {
   'admin': 'ui.admin.header',
   'site-settings': 'ui.siteSetting.header',
   'menu-configurations': 'ui.siteSetting.menu.header',
-  'tenant-settings': 'ui.tenantSetting.header'
+  'tenant-settings': 'ui.tenantSetting.header',
+  'candidate-statuses': 'ui.candidateStatus.header'
 }
 
 const candidatePathMappings = {
@@ -79,7 +80,10 @@ const Breadcrumb = ({ slugNameMapping }) => {
           return {}
         }
 
-        if (path.indexOf('candidate') >= 0) {
+        if (
+          path.indexOf('candidate') >= 0 &&
+          path.indexOf('candidate-status') < 0
+        ) {
           candidatePath = true
 
           return {}
