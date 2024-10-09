@@ -77,7 +77,7 @@ const ToolDefinition = () => {
           {description && <FormattedMessage id={description} defaultMessage={description} />}
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-          {heroCardConfigurations.map(heroCardConfiguration => {
+          {heroCardConfigurations?.map(heroCardConfiguration => {
             const { id, external } = heroCardConfiguration
 
             return external
