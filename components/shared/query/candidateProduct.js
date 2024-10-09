@@ -51,6 +51,11 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
         name
         slug
         description
+        nextCandidateStatuses {
+          id
+          name
+          slug
+        }
       }
       createdAt
       rejected

@@ -10,6 +10,16 @@ export const CANDIDATE_STATUS_SEARCH_QUERY = gql`
   }
 `
 
+export const INITIAL_CANDIDATE_STATUS_SEARCH_QUERY = gql`
+  query InitialCandidateStatuses($search: String) {
+    initialCandidateStatuses(search: $search) {
+      id
+      slug
+      name
+    }
+  }
+`
+
 export const CANDIDATE_STATUS_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeCandidateStatus($search: String) {
     paginationAttributeCandidateStatus(search: $search) {

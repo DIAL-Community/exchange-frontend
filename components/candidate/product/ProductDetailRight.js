@@ -15,7 +15,7 @@ import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CANDIDATE_PRODUCT_UPDATE_STATUS } from '../../shared/mutation/candidateProduct'
-import { CANDIDATE_STATUS_SEARCH_QUERY } from '../../shared/query/candidateStatus'
+import { INITIAL_CANDIDATE_STATUS_SEARCH_QUERY } from '../../shared/query/candidateStatus'
 import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../../shared/query/comment'
 import { ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
@@ -83,10 +83,7 @@ const CandidateStatusWorkflow = ({ candidate }) => {
   } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
-    shouldUnregister: true,
-    defaultValues: {
-      candidateStatus: { value: candidateStatus.slug, label: candidateStatus.name }
-    }
+    shouldUnregister: true
   })
 
   const doUpsert = async (data) => {
@@ -118,14 +115,27 @@ const CandidateStatusWorkflow = ({ candidate }) => {
   const client = useApolloClient()
 
   const fetchedCandidateStatusesCallback = (data) => (
-    data?.candidateStatuses?.map((c) => ({
+    data?.initialCandidateStatuses?.map((c) => ({
       label: c.name,
       value: c.slug
     }))
   )
 
-  const loadCandidateStatusOptions = (input) =>
-    fetchSelectOptions(client, input, CANDIDATE_STATUS_SEARCH_QUERY, fetchedCandidateStatusesCallback)
+  const loadCandidateStatusOptions = (input) => {
+    if (candidateStatus) {
+      return Promise.resolve(
+        candidateStatus
+          .nextCandidateStatuses
+          .filter(c => input !== null && c.name.indexOf(input) !== -1)
+          .map(c => ({
+            label: c.name,
+            value: c.slug
+          }))
+      )
+    } else {
+      return fetchSelectOptions(client, input, INITIAL_CANDIDATE_STATUS_SEARCH_QUERY, fetchedCandidateStatusesCallback)
+    }
+  }
 
   const editView = () => (
     <form onSubmit={handleSubmit(doUpsert)} className='bg-dial-alice-blue px-6 py-4'>
@@ -135,7 +145,7 @@ const CandidateStatusWorkflow = ({ candidate }) => {
             {format('ui.candidate.candidateStatus.currentCandidateStatus')}
           </div>
           <div className='font-semibold'>
-            {candidateStatus.name}
+            {candidateStatus ? candidateStatus.name : format('ui.candidate.received')}
           </div>
         </div>
         <div className='flex flex-col gap-y-2'>

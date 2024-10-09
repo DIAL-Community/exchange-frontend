@@ -10,6 +10,7 @@
   @apply p-8;
   @apply w-3/4;
   @apply rounded-2xl;
+  @apply min-w-fit;
   @apply max-w-prose;
 
   h2 {
