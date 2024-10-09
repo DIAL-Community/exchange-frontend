@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -8,7 +8,7 @@ import EditButton from '../shared/form/EditButton'
 import { ObjectType } from '../utils/constants'
 import DeleteTenantSetting from './DeleteTenantSetting'
 
-const TenantSettingDetailRight = ({ tenantSetting }) => {
+const TenantSettingDetailRight = forwardRef(({ tenantSetting }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -16,6 +16,7 @@ const TenantSettingDetailRight = ({ tenantSetting }) => {
   const canEdit = isAdminUser || isEditorUser
 
   const commentsSectionRef = useRef()
+  useImperativeHandle(ref, () => [{ value: 'ui.comment.label', ref: commentsSectionRef }], [])
 
   const editPath = `${tenantSetting.tenantName}/edit`
 
@@ -65,7 +66,7 @@ const TenantSettingDetailRight = ({ tenantSetting }) => {
       </div>
     </div>
   )
-}
+})
 
 TenantSettingDetailRight.displayName = 'TenantSettingDetailRight'
 

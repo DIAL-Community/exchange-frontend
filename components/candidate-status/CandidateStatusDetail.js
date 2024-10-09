@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { CANDIDATE_STATUS_DETAIL_QUERY } from '../shared/query/candidateStatus'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import CandidateStatusDetailRight from './CandidateStatusDetailRight'
+import { CANDIDATE_STATUS_DETAIL_QUERY } from '../shared/query/candidateStatus'
 import CandidateStatusDetailLeft from './CandidateStatusDetailLeft'
+import CandidateStatusDetailRight from './CandidateStatusDetailRight'
 
 const CandidateStatusDetail = ({ slug }) => {
   const scrollRef = useRef(null)

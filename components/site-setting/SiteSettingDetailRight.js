@@ -29,7 +29,8 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
       { value: 'ui.common.detail.description', ref: descRef },
       { value: 'ui.siteSetting.carousel.header', ref: carouselConfigurationsRef },
       { value: 'ui.siteSetting.heroCard.header', ref: heroCardConfigurationsRef },
-      { value: 'ui.siteSetting.menu.header', ref: menuConfigurationsRef }
+      { value: 'ui.siteSetting.menu.header', ref: menuConfigurationsRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )

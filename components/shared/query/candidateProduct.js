@@ -42,6 +42,12 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       submitterEmail
       createdAt
 
+      candidateStatus {
+        id
+        name
+        slug
+      }
+
       rejected
       rejectedDate
       rejectedBy

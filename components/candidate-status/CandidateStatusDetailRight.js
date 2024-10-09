@@ -1,5 +1,5 @@
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
-import { useCallback, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -10,7 +10,7 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
 import DeleteCandidateStatus from './DeleteCandidateStatus'
 
-const CandidateStatusDetailRight = ({ candidateStatus }) => {
+const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -18,6 +18,7 @@ const CandidateStatusDetailRight = ({ candidateStatus }) => {
   const canEdit = isAdminUser || isEditorUser
 
   const commentsSectionRef = useRef()
+  useImperativeHandle(ref, () => [{ value: 'ui.comment.label', ref: commentsSectionRef }], [])
 
   const editPath = `${candidateStatus.slug}/edit`
 
@@ -85,7 +86,7 @@ const CandidateStatusDetailRight = ({ candidateStatus }) => {
       </div>
     </div>
   )
-}
+})
 
 CandidateStatusDetailRight.displayName = 'CandidateStatusDetailRight'
 
