@@ -24,6 +24,12 @@ export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
       website
       description
       submitterEmail
+      candidateStatus {
+        id
+        name
+        slug
+        description
+      }
       createdAt
       rejected
     }
@@ -40,14 +46,13 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       repository
       description
       submitterEmail
-      createdAt
-
       candidateStatus {
         id
         name
         slug
+        description
       }
-
+      createdAt
       rejected
       rejectedDate
       rejectedBy

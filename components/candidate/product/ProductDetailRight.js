@@ -1,16 +1,242 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useCallback, useContext, useImperativeHandle, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { Controller, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
 import { FormattedDate, useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CandidateActionType, ObjectType } from '../../utils/constants'
+import Select from '../../shared/form/Select'
+import ValidationError from '../../shared/form/ValidationError'
+import { CANDIDATE_PRODUCT_UPDATE_STATUS } from '../../shared/mutation/candidateProduct'
+import { CANDIDATE_STATUS_SEARCH_QUERY } from '../../shared/query/candidateStatus'
+import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../../shared/query/comment'
+import { ObjectType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 import { prependUrlWithProtocol } from '../../utils/utilities'
-import ProductActionButton from './fragments/ProductActionButton'
 
-const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
+const CandidateStatusWorkflow = ({ candidate }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const [editing, setEditing] = useState(false)
+  const [mutating, setMutating] = useState(false)
+
+  const { user } = useUser()
+  const { locale } = useRouter()
+
+  const { candidateStatus } = candidate
+
+  const toggleEditing = () => {
+    setMutating(true)
+    setEditing(!editing)
+    setMutating(false)
+  }
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+
+  const [updateProduct, { reset }] = useMutation(CANDIDATE_PRODUCT_UPDATE_STATUS, {
+    refetchQueries: [{
+      query: COMMENTS_COUNT_QUERY,
+      variables: {
+        commentObjectId: parseInt(candidate.id),
+        commentObjectType: ObjectType.CANDIDATE_PRODUCT
+      }
+    },
+    {
+      query: COMMENTS_QUERY,
+      variables: {
+        commentObjectId: parseInt(candidate.id),
+        commentObjectType: ObjectType.CANDIDATE_PRODUCT
+      }
+    }],
+    onCompleted: (data) => {
+      const { updateCandidateProductStatus: response } = data
+      if (response.candidateProduct && response.errors.length === 0) {
+        toggleEditing()
+        setMutating(false)
+        showSuccessMessage(format('toast.submit.success', { entity: format('ui.candidateStatus.label') })
+        )
+      } else {
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.candidateStatus.label') }))
+        setMutating(false)
+        reset()
+      }
+    },
+    onError: () => {
+      showFailureMessage(format('toast.submit.failure', { entity: format('ui.candidateStatus.label') }))
+      setMutating(false)
+      reset()
+    }
+  })
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors }
+  } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      candidateStatus: { value: candidateStatus.slug, label: candidateStatus.name }
+    }
+  })
+
+  const doUpsert = async (data) => {
+    if (user) {
+      // Set the loading indicator.
+      setMutating(true)
+      // Pull all needed data from session and form.
+      const { userEmail, userToken } = user
+      const { description, candidateStatus } = data
+      // Send graph query to the backend. Set the base variables needed to perform update.
+      const variables = {
+        slug: candidate.slug,
+        description,
+        candidateStatusSlug: candidateStatus.value
+      }
+
+      updateProduct({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
+  const client = useApolloClient()
+
+  const fetchedCandidateStatusesCallback = (data) => (
+    data?.candidateStatuses?.map((c) => ({
+      label: c.name,
+      value: c.slug
+    }))
+  )
+
+  const loadCandidateStatusOptions = (input) =>
+    fetchSelectOptions(client, input, CANDIDATE_STATUS_SEARCH_QUERY, fetchedCandidateStatusesCallback)
+
+  const editView = () => (
+    <form onSubmit={handleSubmit(doUpsert)} className='bg-dial-alice-blue px-6 py-4'>
+      <div className='flex flex-col gap-y-6 text-sm'>
+        <div className='flex flex-col gap-y-2'>
+          <div className='font-normal'>
+            {format('ui.candidate.candidateStatus.currentCandidateStatus')}
+          </div>
+          <div className='font-semibold'>
+            {candidateStatus.name}
+          </div>
+        </div>
+        <div className='flex flex-col gap-y-2'>
+          <label className='required-field'>
+            {format('ui.candidate.candidateStatus.nextCandidateStatus')}
+          </label>
+          <Controller
+            id='candidateStatus'
+            name='candidateStatus'
+            control={control}
+            render={({ field: { onChange, value } }) =>
+              <Select
+                async
+                isBorderless
+                cacheOptions
+                defaultOptions
+                className='w-full'
+                loadOptions={loadCandidateStatusOptions}
+                onChange={(currentValue) => {
+                  onChange(currentValue)
+                }}
+                value={value}
+              />
+            }
+          />
+          {errors.candidateStatus && <ValidationError value={errors.candidateStatus?.message} />}
+        </div>
+        <div className='flex flex-col gap-y-2'>
+          <label htmlFor='statusUpdateReason'>
+            {format('ui.candidate.candidateStatus.updateReason')}
+          </label>
+          <Controller
+            id='statusUpdateReason'
+            name='description'
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <HtmlEditor
+                editorId='description-editor'
+                onChange={onChange}
+                initialContent={value}
+                placeholder={format('ui.candidate.candidateStatus.updateReason')}
+              />
+            )}
+          />
+        </div>
+        <div className='ml-auto flex flex-wrap gap-3 text-sm'>
+          <button
+            type='submit'
+            className='submit-button'
+            disabled={mutating}
+          >
+            {format('app.submit')}
+            {mutating && <FaSpinner className='spinner ml-3' />}
+          </button>
+          <button type='button'
+            className='cancel-button'
+            disabled={mutating}
+            onClick={toggleEditing}
+          >
+            {format('app.cancel')}
+            {mutating && <FaSpinner className='spinner ml-3' />}
+          </button>
+        </div>
+      </div>
+    </form>
+  )
+
+  const valueView = () => (
+    <div className='flex flex-col gap-y-3'>
+      <div className='flex flex-col lg:flex-row gap-2'>
+        <div className='text-base text-dial-meadow font-semibold'>
+          {format('ui.candidate.candidateStatus')}
+        </div>
+        <div className='ml-auto'>
+          <EditButton type='button' onClick={toggleEditing} />
+        </div>
+      </div>
+      <div className='flex flex-col'>
+        <div className='text-sm'>
+          {candidateStatus ? candidateStatus.name : format('ui.candidate.received')}
+        </div>
+        <div className='text-base'>
+          {candidateStatus
+            ? <HtmlViewer
+              initialContent={candidateStatus.description}
+              extraClassNames='text-xs'
+            />
+            : <HtmlViewer
+              initialContent={format('ui.candidate.received.description')}
+              extraClassNames='text-xs'
+            />
+          }
+        </div>
+      </div>
+    </div>
+  )
+
+  return editing ? editView() : valueView()
+}
+
+const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -29,16 +255,6 @@ const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
-            <ProductActionButton
-              product={product}
-              actionType={CandidateActionType.REJECT}
-              refetch={refetch}
-            />
-            <ProductActionButton
-              product={product}
-              actionType={CandidateActionType.APPROVE}
-              refetch={refetch}
-            />
             <EditButton type='link' href={editPath} />
           </div>
         )}
@@ -93,6 +309,8 @@ const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
             </div>
           </>
         }
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CandidateStatusWorkflow candidate={product} />
         {`${product.rejected}` === 'true' &&
           <>
             <hr className='border-b border-dial-blue-chalk my-3' />
@@ -144,9 +362,9 @@ const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={product} objectType={ObjectType.CANDIDATE_PRODUCT} />
-          <hr className='border-b border-dial-slate-200'/>
+          <hr className='border-b border-dial-slate-200' />
           <Share />
-          <hr className='border-b border-dial-slate-200'/>
+          <hr className='border-b border-dial-slate-200' />
         </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}

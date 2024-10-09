@@ -2996,5 +2996,18 @@ export const en = {
   'ui.share.whatsApp': 'Sharing on WhatsApp. Check out this "{url}".',
 
   'ui.share.copyLink.success': 'Copy Link',
+
+  'ui.candidate.candidateStatus': 'Current Status',
+  'ui.candidate.candidateStatus.updateReason': 'Status Update Reason',
+  'ui.candidate.candidateStatus.nextCandidateStatus': 'Next Candidate Status',
+  'ui.candidate.candidateStatus.currentCandidateStatus': 'Current Candidate Status',
+
+  'ui.candidate.received': 'Candidate Information Received',
+  'ui.candidate.received.description': `
+    <p>
+      Candidate information received from the submitter.
+      Assign a new status to work the candidate through the approval workflow process.
+    </p>
+  `,
 }
 
