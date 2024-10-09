@@ -2978,8 +2978,10 @@ export const en = {
   'ui.candidateStatus.label': 'Candidate Status',
   'ui.candidateStatus.header': 'Candidate Statuses',
   'ui.candidateStatus.createNew': 'Create a new Candidate Statuses?',
-  'ui.candidateStatus.nextCandidateStatus.label': 'Next Candidate Statuses',
+  'ui.candidateStatus.nextCandidateStatus.label': 'Next Candidate Status',
   'ui.candidateStatus.nextCandidateStatus.header': 'Next Candidate Statuses',
+  'ui.candidateStatus.previousCandidateStatus.label': 'Previous Candidate Status',
+  'ui.candidateStatus.previousCandidateStatus.header': 'Previous Candidate Statuses',
 
   
   'ui.candidateStatus.name': 'Name',
@@ -2988,5 +2990,11 @@ export const en = {
   'ui.candidateStatus.terminalStatus': 'Candidate status is a terminal status.',
   'ui.candidateStatus.initialStatus.label': 'Initial Status',
   'ui.candidateStatus.terminalStatus.label': 'Terminal Status',
+
+  'ui.share.email': 'Sharing via Email',
+  'ui.share.linkedIn': 'Sharing on LinkedIn',
+  'ui.share.whatsApp': 'Sharing on WhatsApp. Check out this "{url}".',
+
+  'ui.share.copyLink.success': 'Copy Link',
 }
 

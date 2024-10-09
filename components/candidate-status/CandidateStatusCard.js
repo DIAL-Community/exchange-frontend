@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import parse from 'html-react-parser'
+import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
@@ -33,6 +33,11 @@ const CandidateStatusCard = ({ displayType, index, candidateStatus, dismissHandl
             {candidateStatus?.description && parse(candidateStatus?.description)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
+            <div className='text-sm'>
+              {format('ui.candidateStatus.previousCandidateStatus.header')}&nbsp;
+              ({candidateStatus.previousCandidateStatuses?.length ?? 0})
+            </div>
+            <div className='border-r border-dial-slate-400' />
             <div className='text-sm'>
               {format('ui.candidateStatus.nextCandidateStatus.header')}&nbsp;
               ({candidateStatus.nextCandidateStatuses?.length ?? 0})

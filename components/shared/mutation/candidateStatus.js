@@ -42,6 +42,11 @@ export const CREATE_CANDIDATE_STATUS = gql`
           name
           slug
         }
+        previousCandidateStatuses {
+          id
+          name
+          slug
+        }
       }
       errors
     }

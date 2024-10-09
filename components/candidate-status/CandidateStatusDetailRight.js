@@ -72,6 +72,25 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
             </div>
           </div>
         </div>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-base font-semibold'>
+            {format('ui.candidateStatus.previousCandidateStatus.header')}
+          </div>
+          <div className='flex flex-col gap-4'>
+            {candidateStatus?.previousCandidateStatuses.length <= 0 && format('general.na')}
+            <div className='flex flex-col gap-1 text-sm'>
+              {candidateStatus?.previousCandidateStatuses?.map((previousCandidateStatus, index) =>
+                <div key={index} className='flex flex-col gap-1'>
+                  <div className='border shadow px-4 py-3 flex gap-1'>
+                    <Link href={`/candidate-statuses/${previousCandidateStatus.slug}`}>
+                      {previousCandidateStatus.name}
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
         <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={candidateStatus} objectType={ObjectType.CANDIDATE_STATUS} />
           <hr className='border-b border-dial-slate-200' />

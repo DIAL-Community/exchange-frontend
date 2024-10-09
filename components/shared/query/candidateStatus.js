@@ -37,6 +37,9 @@ export const PAGINATED_CANDIDATE_STATUSES_QUERY = gql`
       nextCandidateStatuses {
         id
       }
+      previousCandidateStatuses {
+        id
+      }
     }
   }
 `
@@ -51,6 +54,14 @@ export const CANDIDATE_STATUS_DETAIL_QUERY = gql`
       initialStatus
       terminalStatus
       nextCandidateStatuses {
+        id
+        name
+        slug
+        description
+        initialStatus
+        terminalStatus
+      }
+      previousCandidateStatuses {
         id
         name
         slug

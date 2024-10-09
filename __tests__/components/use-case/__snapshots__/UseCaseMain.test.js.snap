@@ -156,27 +156,42 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
               <div
                 class="flex flex-row gap-3"
               >
-                <img
-                  alt="Logo of LinkedIn."
-                  class="object-contain"
-                  height="40"
-                  src="/ui/v1/linkedin-icon.svg"
-                  width="40"
-                />
-                <img
-                  alt="Logo of Email."
-                  class="object-contain"
-                  height="40"
-                  src="/ui/v1/email-icon.svg"
-                  width="40"
-                />
-                <img
-                  alt="Logo of Copy."
-                  class="object-contain"
-                  height="40"
-                  src="/ui/v1/copy-icon.svg"
-                  width="40"
-                />
+                <button>
+                  <img
+                    alt="Logo of WhatsApp."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/whatsapp-icon.svg"
+                    width="40"
+                  />
+                </button>
+                <button>
+                  <img
+                    alt="Logo of LinkedIn."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/linkedin-icon.svg"
+                    width="40"
+                  />
+                </button>
+                <button>
+                  <img
+                    alt="Logo of Email."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/email-icon.svg"
+                    width="40"
+                  />
+                </button>
+                <button>
+                  <img
+                    alt="Logo of Copy."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/copy-icon.svg"
+                    width="40"
+                  />
+                </button>
               </div>
             </div>
             <hr

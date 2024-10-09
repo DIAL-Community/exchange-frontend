@@ -80,7 +80,7 @@ const Breadcrumb = ({ slugNameMapping }) => {
           return {}
         }
 
-        if (path.indexOf('candidate') === 0 && i === 0) {
+        if (path.indexOf('candidate') === 0 && path.indexOf('candidate-status') < 0) {
           candidatePath = true
 
           return {}
