@@ -77,8 +77,9 @@ const CandidateStatusWorkflow = ({ candidate }) => {
   })
 
   const {
-    handleSubmit,
     control,
+    handleSubmit,
+    watch,
     formState: { errors }
   } = useForm({
     mode: 'onSubmit',
@@ -86,18 +87,20 @@ const CandidateStatusWorkflow = ({ candidate }) => {
     shouldUnregister: true
   })
 
+  const nextCandidateStatusWatcher = watch('nextCandidateStatus')
+
   const doUpsert = async (data) => {
     if (user) {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { description, candidateStatus } = data
+      const { description, nextCandidateStatus } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         slug: candidate.slug,
         description,
-        candidateStatusSlug: candidateStatus.value
+        candidateStatusSlug: nextCandidateStatus.value
       }
 
       updateProduct({
@@ -117,7 +120,9 @@ const CandidateStatusWorkflow = ({ candidate }) => {
   const fetchedCandidateStatusesCallback = (data) => (
     data?.initialCandidateStatuses?.map((c) => ({
       label: c.name,
-      value: c.slug
+      value: c.slug,
+      initialStatus: c.initialStatus,
+      terminalStatus: c.terminalStatus
     }))
   )
 
@@ -129,7 +134,9 @@ const CandidateStatusWorkflow = ({ candidate }) => {
           .filter(c => input !== null && c.name.indexOf(input) !== -1)
           .map(c => ({
             label: c.name,
-            value: c.slug
+            value: c.slug,
+            initialStatus: c.initialStatus,
+            terminalStatus: c.terminalStatus
           }))
       )
     } else {
@@ -149,12 +156,12 @@ const CandidateStatusWorkflow = ({ candidate }) => {
           </div>
         </div>
         <div className='flex flex-col gap-y-2'>
-          <label className='required-field'>
+          <label htmlFor='next-candidate-status' className='required-field'>
             {format('ui.candidate.candidateStatus.nextCandidateStatus')}
           </label>
           <Controller
-            id='candidateStatus'
-            name='candidateStatus'
+            id='next-candidate-status'
+            name='nextCandidateStatus'
             control={control}
             render={({ field: { onChange, value } }) =>
               <Select
@@ -171,14 +178,17 @@ const CandidateStatusWorkflow = ({ candidate }) => {
               />
             }
           />
-          {errors.candidateStatus && <ValidationError value={errors.candidateStatus?.message} />}
+          {errors.nextCandidateStatus && <ValidationError value={errors.nextCandidateStatus?.message} />}
         </div>
         <div className='flex flex-col gap-y-2'>
-          <label htmlFor='statusUpdateReason'>
-            {format('ui.candidate.candidateStatus.updateReason')}
+          <label
+            htmlFor='status-update-justification'
+            className={nextCandidateStatusWatcher?.terminalStatus ? 'required-field' : undefined}
+          >
+            {format('ui.candidate.candidateStatus.updateJustification')}
           </label>
           <Controller
-            id='statusUpdateReason'
+            id='status-update-justification'
             name='description'
             control={control}
             render={({ field: { value, onChange } }) => (
@@ -186,10 +196,17 @@ const CandidateStatusWorkflow = ({ candidate }) => {
                 editorId='description-editor'
                 onChange={onChange}
                 initialContent={value}
-                placeholder={format('ui.candidate.candidateStatus.updateReason')}
+                placeholder={format('ui.candidate.candidateStatus.updateJustification')}
               />
             )}
+            rules={{
+              required: {
+                value: nextCandidateStatusWatcher?.terminalStatus,
+                message: format('validation.required')
+              }
+            }}
           />
+          {errors.description && <ValidationError value={errors.description?.message} />}
         </div>
         <div className='ml-auto flex flex-wrap gap-3 text-sm'>
           <button

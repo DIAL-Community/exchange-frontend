@@ -16,6 +16,8 @@ export const INITIAL_CANDIDATE_STATUS_SEARCH_QUERY = gql`
       id
       slug
       name
+      initialStatus
+      terminalStatus
     }
   }
 `

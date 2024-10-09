@@ -41,15 +41,6 @@ const Share = () => {
         {format('ui.share.title')}
       </div>
       <div className='flex flex-row gap-3'>
-        <button onClick={shareToWhatsApp}>
-          <img
-            src='/ui/v1/whatsapp-icon.svg'
-            alt={format('ui.image.logoAlt', { name: 'WhatsApp' })}
-            width={40}
-            height={40}
-            className='object-contain'
-          />
-        </button>
         <button onClick={shareToLinkedIn}>
           <img
             src='/ui/v1/linkedin-icon.svg'
@@ -58,6 +49,19 @@ const Share = () => {
             height={40}
             className='object-contain'
           />
+        </button>
+        <button onClick={shareToWhatsApp}>
+          <div className='bg-dial-iris-blue rounded-full w-[40px] h-[40px]'>
+            <div className='flex items-center h-full'>
+              <img
+                src='/ui/v1/whatsapp-icon.svg'
+                alt={format('ui.image.logoAlt', { name: 'WhatsApp' })}
+                width={20}
+                height={20}
+                className='my-auto mx-auto'
+              />
+            </div>
+          </div>
         </button>
         <button onClick={shareToEmail}>
           <img

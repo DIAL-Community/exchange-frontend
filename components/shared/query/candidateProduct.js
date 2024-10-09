@@ -51,10 +51,14 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
         name
         slug
         description
+        initialStatus
+        terminalStatus
         nextCandidateStatuses {
           id
           name
           slug
+          initialStatus
+          terminalStatus
         }
       }
       createdAt

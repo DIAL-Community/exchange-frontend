@@ -2998,7 +2998,7 @@ export const en = {
   'ui.share.copyLink.success': 'Copy Link',
 
   'ui.candidate.candidateStatus': 'Current Status',
-  'ui.candidate.candidateStatus.updateReason': 'Status Update Reason',
+  'ui.candidate.candidateStatus.updateJustification': 'Status Update Justification',
   'ui.candidate.candidateStatus.nextCandidateStatus': 'Next Candidate Status',
   'ui.candidate.candidateStatus.currentCandidateStatus': 'Current Candidate Status',
 
