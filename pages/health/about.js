@@ -84,14 +84,15 @@ const AboutPage = ({ defaultTenants }) => {
             <ul className='list-disc list-inside'>
               <li>Abimbola Adebakin, <a className='text-health-blue'
                 href='https://advantagehealthafrica.com/'>Advantage Health Africa</a></li>
-              <li>Nassar Idris Adam, National Digital Health Program, Chad</li>
+              <li>Nassir Idris ADAM, National Digital Health Program, Chad</li>
               <li>Fatou Fall, <a className='text-health-blue'
                 href='https://digitalsquare.org/'>Digital Square at Path</a></li>
               <li>James Fraser, <a className='text-health-blue'
                 href='https://www.madiro.org/'>Madiro</a></li>
               <li>Olivier Habumugisha, <a className='text-health-blue'
                 href='https://www.jhpiego.org/'>Jhpiego</a></li>
-              <li>Dr. Esperance Luvindao</li>
+              <li>Dr. Esperance Luvindao, <a className='text-health-blue'
+                href='https://osaatafrica.com/'>Osaat Africa Health Foundation</a></li>
               <li>Caroline Mbindyo, <a className='text-health-blue'
                 href='https://amref.org/'>Amref Health Innovations</a></li>
               <li>Wilfred Ngagi, <a className='text-health-blue'
