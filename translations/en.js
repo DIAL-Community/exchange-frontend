@@ -2982,10 +2982,13 @@ export const en = {
   'ui.candidateStatus.nextCandidateStatus.header': 'Next Candidate Statuses',
   'ui.candidateStatus.previousCandidateStatus.label': 'Previous Candidate Status',
   'ui.candidateStatus.previousCandidateStatus.header': 'Previous Candidate Statuses',
+  'ui.candidateStatus.initialCandidateStatus.label': 'Initial Candidate Status',
+  'ui.candidateStatus.initialCandidateStatus.header': 'Initial Candidate Statuses',
 
   
   'ui.candidateStatus.name': 'Name',
   'ui.candidateStatus.description': 'Description',
+  'ui.candidateStatus.notificationTemplate': 'Notification Template',
   'ui.candidateStatus.initialStatus': 'Candidate status is an initial status.',
   'ui.candidateStatus.terminalStatus': 'Candidate status is a terminal status.',
   'ui.candidateStatus.initialStatus.label': 'Initial Status',
@@ -2995,14 +2998,14 @@ export const en = {
   'ui.share.linkedIn': 'Sharing on LinkedIn',
   'ui.share.whatsApp': 'Sharing on WhatsApp. Check out this "{url}".',
 
-  'ui.share.copyLink.success': 'Copy Link',
+  'ui.share.copyLink.success': `Current url copied to clipboard.`,
 
   'ui.candidate.candidateStatus': 'Current Status',
   'ui.candidate.candidateStatus.updateJustification': 'Status Update Justification',
   'ui.candidate.candidateStatus.nextCandidateStatus': 'Next Candidate Status',
   'ui.candidate.candidateStatus.currentCandidateStatus': 'Current Candidate Status',
 
-  'ui.candidate.received': 'Candidate Information Received',
+  'ui.candidate.received': 'New Candidate',
   'ui.candidate.received.description': `
     <p>
       Candidate information received from the submitter.

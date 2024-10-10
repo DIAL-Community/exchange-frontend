@@ -24,6 +24,14 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
     ? product.submitterEmail ?? format('general.na')
     : format('general.hidden')
 
+  const currentCandidateStatus = `${product.rejected}`.toLowerCase() === 'true'
+    ? format('candidate.rejected')
+    : `${product.rejected}`.toLowerCase() === 'false'
+      ? format('candidate.approved')
+      : candidateStatus
+        ? candidateStatus.name
+        : format('ui.candidate.received')
+
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
@@ -36,7 +44,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
         </div>
         <div className={`absolute top-2 right-2 ${bgColor} rounded`}>
           <div className='text-white text-xs px-2 py-1'>
-            {candidateStatus ? candidateStatus.name : format('ui.candidate.received')}
+            {currentCandidateStatus}
           </div>
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>

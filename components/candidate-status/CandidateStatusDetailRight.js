@@ -2,7 +2,6 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
-import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
@@ -21,6 +20,15 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
   useImperativeHandle(ref, () => [{ value: 'ui.comment.label', ref: commentsSectionRef }], [])
 
   const editPath = `${candidateStatus.slug}/edit`
+
+  const notificationTemplate = `
+    <p>
+      Hi {submitter},
+    </p>
+    <p>
+      Your candidate status {submissionLink} has been updated.
+    </p>
+  `
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
@@ -55,16 +63,29 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='text-base font-semibold'>
-            {format('ui.candidateStatus.nextCandidateStatus.header')}
+            {format('ui.candidateStatus.notificationTemplate')}
           </div>
-          <div className='flex flex-col gap-4'>
-            {candidateStatus?.nextCandidateStatuses.length <= 0 && format('general.na')}
-            <div className='flex flex-col gap-1 text-sm'>
-              {candidateStatus?.nextCandidateStatuses?.map((nextCandidateStatus, index) =>
+          <div className='block'>
+            <HtmlViewer
+              initialContent={notificationTemplate}
+              editorId='candidate-status-description'
+              extraClassNames='text-sm'
+            />
+          </div>
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-base font-semibold'>
+            {format('ui.candidateStatus.previousCandidateStatus.header')}
+          </div>
+          <div className='flex flex-col gap-4 text-sm'>
+            {candidateStatus?.previousCandidateStatuses.length <= 0 && format('general.na')}
+            <div className='flex flex-col gap-1'>
+              {candidateStatus?.previousCandidateStatuses?.map((previousCandidateStatus, index) =>
                 <div key={index} className='flex flex-col gap-1'>
                   <div className='border shadow px-4 py-3 flex gap-1'>
-                    <Link href={`/candidate-statuses/${nextCandidateStatus.slug}`}>
-                      {nextCandidateStatus.name}
+                    <Link href={`/candidate-statuses/${previousCandidateStatus.slug}`}>
+                      {previousCandidateStatus.name}
                     </Link>
                   </div>
                 </div>
@@ -72,18 +93,19 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
             </div>
           </div>
         </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='text-base font-semibold'>
-            {format('ui.candidateStatus.previousCandidateStatus.header')}
+            {format('ui.candidateStatus.nextCandidateStatus.header')}
           </div>
-          <div className='flex flex-col gap-4'>
-            {candidateStatus?.previousCandidateStatuses.length <= 0 && format('general.na')}
-            <div className='flex flex-col gap-1 text-sm'>
-              {candidateStatus?.previousCandidateStatuses?.map((previousCandidateStatus, index) =>
+          <div className='flex flex-col gap-4 text-sm'>
+            {candidateStatus?.nextCandidateStatuses.length <= 0 && format('general.na')}
+            <div className='flex flex-col gap-1'>
+              {candidateStatus?.nextCandidateStatuses?.map((nextCandidateStatus, index) =>
                 <div key={index} className='flex flex-col gap-1'>
                   <div className='border shadow px-4 py-3 flex gap-1'>
-                    <Link href={`/candidate-statuses/${previousCandidateStatus.slug}`}>
-                      {previousCandidateStatus.name}
+                    <Link href={`/candidate-statuses/${nextCandidateStatus.slug}`}>
+                      {nextCandidateStatus.name}
                     </Link>
                   </div>
                 </div>
@@ -97,11 +119,6 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
           <Share />
           <hr className='border-b border-dial-slate-200' />
         </div>
-        <CommentsSection
-          commentsSectionRef={commentsSectionRef}
-          objectId={candidateStatus.id}
-          objectType={ObjectType.CANDIDATE_STATUS}
-        />
       </div>
     </div>
   )

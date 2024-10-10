@@ -7,7 +7,7 @@ import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 import DeleteButton from '../shared/form/DeleteButton'
 import { DELETE_CANDIDATE_STATUS } from '../shared/mutation/candidateStatus'
-import { PAGINATED_CANDIDATE_STATUSES_QUERY, CANDIDATE_STATUS_DETAIL_QUERY } from '../shared/query/candidateStatus'
+import { CANDIDATE_STATUS_DETAIL_QUERY, PAGINATED_CANDIDATE_STATUSES_QUERY } from '../shared/query/candidateStatus'
 import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 
 const DeleteCandidateStatus = ({ candidateStatus }) => {
@@ -38,7 +38,7 @@ const DeleteCandidateStatus = ({ candidateStatus }) => {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
           format('toast.delete.success', { entity: format('ui.candidateStatus.label') }),
-          () => router.push(`/${locale}/candidateStatuses`)
+          () => router.push(`/${locale}/candidate-statuses`)
         )
       } else {
         setDisplayConfirmDialog(false)
