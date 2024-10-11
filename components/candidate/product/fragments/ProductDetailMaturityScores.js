@@ -343,10 +343,10 @@ const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityS
                 {format('product.maturity.overallScore')}
               </div>
               <div className='flex mx-auto'>
-                <div className='w-44 h-44 rounded-full overflow-hidden'>
+                <div className='w-40 h-40 rounded-full overflow-hidden'>
                   <div className='bg-gradient-radial from-dial-meadow to-dial-meadow h-full'>
                     <div className='text-center text-white h-full'>
-                      <div className='flex justify-center py-14'>
+                      <div className='flex justify-center py-12'>
                         <div className='text-5xl text-white'>{Math.round(maturityScore)}</div>
                         <div className='text-7xl font-thin text-white'>/</div>
                         <div className='text-xl mt-auto pb-1'>{MAX_MATURITY_SCORE}</div>
