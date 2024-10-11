@@ -2139,8 +2139,8 @@ export const en = {
 
   'ui.endorsingYear.label': 'Endorsing Year',
 
-  'ui.user.label': 'User',
-  'ui.user.header': 'Users',
+  'ui.user.label': 'User Management',
+  'ui.user.header': 'Users Management',
   'ui.user.createNew': 'Create a new User',
   'ui.user.accountDetails': 'Account Details',
   'ui.user.createdAt': 'Created on',
@@ -3005,6 +3005,12 @@ export const en = {
   'ui.candidate.candidateStatus.nextCandidateStatus': 'Next Candidate Status',
   'ui.candidate.candidateStatus.currentCandidateStatus': 'Current Candidate Status',
 
+  'ui.candidateProduct.evaluationRubric': 'Evaluation Rubric',
+  'ui.candidateProduct.evaluationRubricDisclaimer': `
+    Evaluation rubric used to evaluate this candidate product. Every category update will
+    be recorded as a new entry in the comment section.
+  `,
+
   'ui.candidate.received': 'New Candidate',
   'ui.candidate.received.description': `
     <p>
@@ -3012,5 +3018,14 @@ export const en = {
       Assign a new status to work the candidate through the approval workflow process.
     </p>
   `,
+
+  'ui.admin.siteConfiguration.label': 'Site Configuration',
+  'ui.admin.siteConfiguration.header': 'Site Configurations',
+
+  'ui.admin.coreData.label': 'Core Data Configuration',
+  'ui.admin.coreData.header': 'Core Data Configurations',
+
+  'ui.admin.candidate.label': 'Candidate Management Configuration',
+  'ui.admin.candidate.header': 'Candidate Management Configurations',
 }
 

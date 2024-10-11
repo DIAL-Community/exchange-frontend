@@ -114,3 +114,24 @@ export const CANDIDATE_PRODUCT_UPDATE_STATUS = gql`
     }
   }
 `
+
+export const UPDATE_CANDIDATE_PRODUCT_CATEGORY_INDICATORS = gql`
+  mutation UpdateCandidateProductCategoryIndicators(
+    $slug: String!
+    $categoryIndicatorValues: [JSON!]!
+  ) {
+    updateCandidateProductCategoryIndicators(
+      slug: $slug
+      categoryIndicatorValues: $categoryIndicatorValues
+    ) {
+      candidateProduct {
+        id
+        name
+        slug
+        overallMaturityScore
+        maturityScoreDetails
+      }
+      errors
+    }
+  }
+`

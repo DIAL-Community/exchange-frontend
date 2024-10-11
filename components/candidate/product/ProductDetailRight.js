@@ -10,6 +10,7 @@ import { CANDIDATE_PRODUCT_UPDATE_STATUS } from '../../shared/mutation/candidate
 import { ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import CandidateStatusWorkflow from '../CandidateStatusWorkflow'
+import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 
 const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
@@ -84,6 +85,13 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             </div>
           </>
         }
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <ProductDetailMaturityScores
+          id={product.id}
+          slug={product.slug}
+          overallMaturityScore={product.overallMaturityScore}
+          maturityScoreDetails={product.maturityScoreDetails}
+        />
         <hr className='border-b border-dial-blue-chalk my-3' />
         <CandidateStatusWorkflow
           candidate={product}

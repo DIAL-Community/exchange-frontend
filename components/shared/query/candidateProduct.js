@@ -46,6 +46,8 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       repository
       description
       submitterEmail
+      overallMaturityScore
+      maturityScoreDetails
       candidateStatus {
         id
         name
@@ -67,6 +69,46 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       rejectedBy
       approvedDate
       approvedBy
+    }
+  }
+`
+
+export const CANDIDATE_PRODUCT_CATEGORY_INDICATORS_QUERY = gql`
+  query CandidateProduct($slug: String!) {
+    candidateProduct(slug: $slug) {
+      id
+      candidateProductCategoryIndicators {
+        id
+        indicatorValue
+        categoryIndicator {
+          id
+          slug
+          name
+          indicatorType
+          categoryIndicatorDescription {
+            id
+            description
+          }
+          rubricCategory {
+            id
+            name
+          }
+        }
+      }
+      notAssignedCategoryIndicators {
+        id
+        slug
+        name
+        indicatorType
+        categoryIndicatorDescription {
+          id
+          description
+        }
+        rubricCategory {
+          id
+          name
+        }
+      }
     }
   }
 `

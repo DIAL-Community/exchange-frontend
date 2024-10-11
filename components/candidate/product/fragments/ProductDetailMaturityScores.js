@@ -14,10 +14,11 @@ import Dialog from '../../../shared/Dialog'
 import EditableSection from '../../../shared/EditableSection'
 import { Loading } from '../../../shared/FetchStatus'
 import Select from '../../../shared/form/Select'
-import { UPDATE_PRODUCT_CATEGORY_INDICATORS } from '../../../shared/mutation/product'
-import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../../shared/query/product'
+import { UPDATE_CANDIDATE_PRODUCT_CATEGORY_INDICATORS } from '../../../shared/mutation/candidateProduct'
+import { CANDIDATE_PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../../shared/query/candidateProduct'
+import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../../../shared/query/comment'
 import RadarChart from '../../../shared/RadarChart'
-import { CategoryIndicatorType } from '../../../utils/constants'
+import { CategoryIndicatorType, ObjectType } from '../../../utils/constants'
 import {
   getCategoryIndicatorBooleanOptions, getCategoryIndicatorNumericOptions, getCategoryIndicatorScaleOptions
 } from '../../../utils/maturity'
@@ -38,7 +39,7 @@ const MaturityCategory = ({ category }) => {
       <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
         <AccordionItemButton>
           <div className='inline text-xs uppercase font-semibold'>{category.name}</div>
-          <div className='text-xs uppercase my-2 sm:float-right'>
+          <div className='inline text-xs uppercase float-right mt-2'>
             {`
               ${format('product.maturity.categoryScore')}:
               ${Math.round((category.overallScore / category.maximumScore) * MAX_MATURITY_SCORE)} /
@@ -62,7 +63,7 @@ const MaturityCategory = ({ category }) => {
                 <AccordionItemHeading className='bg-dial-spearmint text-dial-stratos hover:bg-dial-mint'>
                   <AccordionItemButton>
                     <div className='inline text-xs uppercase font-semibold'>{indicator.name}</div>
-                    <div className='text-xs uppercase sm:float-right my-2'>
+                    <div className='inline text-xs uppercase float-right mt-2'>
                       {`
                         ${format('product.maturity.indicatorScore')}:
                         ${isNaN(indicatorScore) ? 'N/A' : scoreText}
@@ -87,7 +88,7 @@ const MaturityCategory = ({ category }) => {
   )
 }
 
-const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScoreDetails }) => {
+const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityScoreDetails }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -143,15 +144,15 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
     loading: loadingCategoryIndicators,
     data: categoryIndicatorsData,
     refetch: refetchCategoryIndicators
-  } = useQuery(PRODUCT_CATEGORY_INDICATORS_QUERY, {
+  } = useQuery(CANDIDATE_PRODUCT_CATEGORY_INDICATORS_QUERY, {
     variables: { slug },
     skip: !isAdminUser
   })
 
   const defaultCategoryIndicators = useMemo(() => {
-    if (categoryIndicatorsData?.product) {
+    if (categoryIndicatorsData?.candidateProduct) {
       const assignedIndicators =
-        categoryIndicatorsData.product.productIndicators?.map(
+        categoryIndicatorsData.candidateProduct.candidateProductCategoryIndicators?.map(
           ({
             indicatorValue,
             categoryIndicator: {
@@ -172,7 +173,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
           })
         ) ?? []
       const notAssignedIndicators =
-        categoryIndicatorsData.product.notAssignedCategoryIndicators?.map(
+        categoryIndicatorsData.candidateProduct.notAssignedCategoryIndicators?.map(
           ({
             slug,
             name,
@@ -234,7 +235,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
     }
 
     return []
-  }, [categoryIndicatorsData?.product])
+  }, [categoryIndicatorsData?.candidateProduct])
 
   useEffect(
     () => setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators),
@@ -242,26 +243,39 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
   )
 
   const [updateProductIndicators, { loading: isMutating, reset: resetMutation }] = useMutation(
-    UPDATE_PRODUCT_CATEGORY_INDICATORS,
+    UPDATE_CANDIDATE_PRODUCT_CATEGORY_INDICATORS,
     {
+      refetchQueries:[{
+        query: COMMENTS_COUNT_QUERY,
+        variables: {
+          commentObjectId: parseInt(id),
+          commentObjectType: ObjectType.CANDIDATE_PRODUCT
+        }
+      }, {
+        query: COMMENTS_QUERY,
+        variables: {
+          commentObjectId: parseInt(id),
+          commentObjectType: ObjectType.CANDIDATE_PRODUCT
+        }
+      }],
       onCompleted: (data) => {
-        const { updateProductIndicators: response } = data
-        if (response?.product && response?.errors?.length === 0) {
+        const { updateCandidateProductCategoryIndicators: response } = data
+        if (response?.candidateProduct && response?.errors?.length === 0) {
           refetchCategoryIndicators()
-          setValidMaturityScores(sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails))
-          setMaturityScore(data.updateProductIndicators.product.overallMaturityScore)
-          showSuccessMessage(format('toast.submit.success', { entity: format('categoryIndicator.header') }))
+          setMaturityScore(response.candidateProduct.overallMaturityScore)
+          setValidMaturityScores(sortMaturityScoreDetails(response.candidateProduct.maturityScoreDetails))
+          showSuccessMessage(format('toast.submit.success', { entity: format('ui.categoryIndicator.header') }))
           setIsDirty(false)
         } else {
           setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
-          showFailureMessage(format('toast.submit.failure', { entity: format('categoryIndicator.header') }))
+          showFailureMessage(format('toast.submit.failure', { entity: format('ui.categoryIndicator.header') }))
           setIsDirty(false)
           resetMutation()
         }
       },
       onError: () => {
         setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
-        showFailureMessage(format('toast.submit.failure', { entity: format('categoryIndicator.header') }))
+        showFailureMessage(format('toast.submit.failure', { entity: format('ui.categoryIndicator.header') }))
         setIsDirty(false)
         resetMutation()
       }
@@ -302,7 +316,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
       updateProductIndicators({
         variables: {
           slug,
-          indicatorsData: dirtyIndicators
+          categoryIndicatorValues: dirtyIndicators
         },
         context: {
           headers: {
@@ -329,12 +343,12 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
                 {format('product.maturity.overallScore')}
               </div>
               <div className='flex mx-auto'>
-                <div className='w-48 h-48 rounded-full overflow-hidden'>
-                  <div className='bg-gradient-radial from-dial-mint to-dial-mint-dark h-full'>
-                    <div className='text-center text-dial-sapphire h-full'>
-                      <div className='flex justify-center py-16'>
-                        <div className='text-5xl text-dial-sapphire'>{Math.round(maturityScore)}</div>
-                        <div className='text-7xl font-thin text-dial-slate-400'>/</div>
+                <div className='w-44 h-44 rounded-full overflow-hidden'>
+                  <div className='bg-gradient-radial from-dial-meadow to-dial-meadow h-full'>
+                    <div className='text-center text-white h-full'>
+                      <div className='flex justify-center py-14'>
+                        <div className='text-5xl text-white'>{Math.round(maturityScore)}</div>
+                        <div className='text-7xl font-thin text-white'>/</div>
                         <div className='text-xl mt-auto pb-1'>{MAX_MATURITY_SCORE}</div>
                       </div>
                     </div>
@@ -352,6 +366,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             {validMaturityScores.length <= MIN_RADAR_CHART_CATEGORIES
               ? (
                 <BarChart
+                  fontSize={12}
                   labels={chartLabels}
                   values={chartValues}
                   maxScaleValue={MAX_MATURITY_SCORE}
@@ -360,6 +375,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
               )
               : (
                 <RadarChart
+                  fontSize={12}
                   labels={chartLabels}
                   values={chartValues}
                   maxScaleValue={MAX_MATURITY_SCORE}
@@ -386,7 +402,9 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             </div>
           </Dialog>
         </div>
-        : <div className='text-sm text-dial-stratos'>{format('product.noMaturity')}</div>
+        : <div className='text-sm text-dial-stratos'>
+          {format('ui.candidateProduct.noEvaluationRubric')}
+        </div>
       }
     </>
   )
@@ -407,11 +425,11 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             .map(({ id, indicatorType, name, description }, indicatorIdx) => (
               <div key={indicatorIdx} className='py-4 mx-6 px-6 border-t border-dial-slate-400'>
                 <div className='grid grid-cols-4 gap-8'>
-                  <div className='text-sm col-span-4 sm:col-span-2 md:col-span-3'>
+                  <div className='text-sm col-span-3'>
                     {name}
                     <div className='text-dial-stratos'>{description && parse(description)}</div>
                   </div>
-                  <div className='col-span-4 sm:col-span-2 md:col-span-1'>
+                  <div className='col-span-1'>
                     <Controller
                       name={
                         `${CATEGORY_INDICATORS_FIELD_ARRAY_NAME}.` +
@@ -482,16 +500,30 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
       ))}
     </Accordion>
 
+  const sectionHeader =
+    <div className='text-base font-semibold text-dial-meadow'>
+      {format('ui.candidateProduct.evaluationRubric')}
+    </div>
+
+  const sectionDisclaimer =
+    <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+      {format('ui.candidateProduct.evaluationRubricDisclaimer')}
+    </div>
+
   return (
-    <EditableSection
-      canEdit={isAdminUser}
-      editModeBody={editModeBody}
-      displayModeBody={displayModeBody}
-      isDirty={isDirty}
-      onSubmit={handleSubmit(doUpsert)}
-      onCancel={onCancel}
-      isMutating={isMutating}
-    />
+    <div className='text-sm'>
+      <EditableSection
+        sectionHeader={sectionHeader}
+        sectionDisclaimer={sectionDisclaimer}
+        canEdit={isAdminUser}
+        editModeBody={editModeBody}
+        displayModeBody={displayModeBody}
+        isDirty={isDirty}
+        onSubmit={handleSubmit(doUpsert)}
+        onCancel={onCancel}
+        isMutating={isMutating}
+      />
+    </div>
   )
 }
 
