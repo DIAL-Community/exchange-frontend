@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
-import { QueryParamContext } from '../../context/QueryParamContext'
 
 const RubricCategoryListLeft = () => {
   const { query } = useRouter()
@@ -11,7 +11,7 @@ const RubricCategoryListLeft = () => {
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = '/rubricCategories'
+    const basePath = '/rubric-categories'
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter].filter(f => f).join('&')
