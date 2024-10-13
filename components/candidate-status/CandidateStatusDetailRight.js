@@ -21,15 +21,6 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
 
   const editPath = `${candidateStatus.slug}/edit`
 
-  const notificationTemplate = `
-    <p>
-      Hi {submitter},
-    </p>
-    <p>
-      Your candidate status {submissionLink} has been updated.
-    </p>
-  `
-
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
@@ -58,6 +49,7 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
           <HtmlViewer
             initialContent={candidateStatus?.description}
             editorId='candidate-status-description'
+            extraClassNames='text-sm'
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
@@ -67,7 +59,7 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
           </div>
           <div className='block'>
             <HtmlViewer
-              initialContent={notificationTemplate}
+              initialContent={candidateStatus.notificationTemplate}
               editorId='candidate-status-description'
               extraClassNames='text-sm'
             />

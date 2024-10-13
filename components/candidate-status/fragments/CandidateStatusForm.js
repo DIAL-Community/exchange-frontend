@@ -1,13 +1,14 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import React, { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
@@ -17,7 +18,6 @@ import {
 } from '../../shared/query/candidateStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
 
 const CandidateStatusForm = React.memo(({ candidateStatus }) => {
   const { formatMessage } = useIntl()
@@ -68,6 +68,15 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
     }
   })
 
+  const defaultNotificationTemplate = `
+    <p>
+      Hi {recipientUsername},
+    </p>
+    <p>
+      Your candidate status {submissionLink} has been updated.
+    </p>
+  `
+
   const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -77,6 +86,7 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
       description: candidateStatus?.description,
       initialStatus: candidateStatus?.initialStatus,
       terminalStatus: candidateStatus?.terminalStatus,
+      notificationTemplate: candidateStatus?.notificationTemplate ?? defaultNotificationTemplate,
       nextCandidateStatuses: candidateStatus?.nextCandidateStatuses.map(nextCandidateStatus => {
         return {
           label: nextCandidateStatus.name,
@@ -99,6 +109,7 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
         description,
         initialStatus,
         terminalStatus,
+        notificationTemplate,
         nextCandidateStatuses
       } = data
       const variables = {
@@ -107,7 +118,8 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
         description,
         initialStatus,
         terminalStatus,
-        nextCandidateStatusSlugs: nextCandidateStatuses.map(n => n.value)
+        notificationTemplate,
+        nextCandidateStatusSlugs: nextCandidateStatuses.filter(n => n.value).map(n => n.value)
       }
 
       updateCandidateStatus({
@@ -170,10 +182,11 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
                 {format('ui.candidateStatus.terminalStatus')}
               </label>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field'>
+                <label className='required-field' for='description'>
                   {format('ui.candidateStatus.description')}
                 </label>
                 <Controller
+                  id='description'
                   name='description'
                   control={control}
                   render={({ field: { value, onChange } }) => (
@@ -189,9 +202,22 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
+              <hr className='border-b border-dial-blue-chalk my-3' />
               <div className='flex flex-col gap-y-3'>
-                <div className='text-sm'>
-                  {format('ui.candidateStatus.nextCandidateStatus.header')}
+                <div className='flex flex-row gap-x-2'>
+                  <div className='text-sm'>
+                    {format('ui.candidateStatus.nextCandidateStatus.header')}
+                  </div>
+                  <button
+                    type='button'
+                    className='bg-dial-iris-blue text-white px-3 py-3 rounded shadow ml-auto'
+                    onClick={() => append(
+                      {},
+                      { focusIndex: fields.length }
+                    )}
+                  >
+                    <FaPlus />
+                  </button>
                 </div>
                 {fields.map((f, index) => (
                   <div key={f.id} className='flex flex-col gap-y-2'>
@@ -200,6 +226,7 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
                     </label>
                     <div className='flex flex-row gap-x-2'>
                       <Controller
+                        id={`next-candidate-statuses-${index}`}
                         control={control}
                         name={`nextCandidateStatuses.${index}`}
                         render={({ field: { onChange, value } }) => {
@@ -234,18 +261,28 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
                     }
                   </div>
                 ))}
-                <div className='flex flex-row gap-x-2'>
-                  <button
-                    type='button'
-                    className='bg-dial-iris-blue text-white px-3 py-3 rounded shadow ml-auto'
-                    onClick={() => append(
-                      {},
-                      { focusIndex: fields.length }
-                    )}
-                  >
-                    <FaPlus />
-                  </button>
-                </div>
+              </div>
+              <hr className='border-b border-dial-blue-chalk my-3' />
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' for='notification-template'>
+                  {format('ui.candidateStatus.notificationTemplate')}
+                </label>
+                <Controller
+                  id='notification-template'
+                  name='notificationTemplate'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <HtmlEditor
+                      editorId='notification-template-editor'
+                      onChange={onChange}
+                      initialContent={value}
+                      placeholder={format('ui.candidateStatus.notificationTemplate')}
+                      isInvalid={errors.notificationTemplate}
+                    />
+                  )}
+                  rules={{ required: format('validation.required') }}
+                />
+                {errors.notificationTemplate && <ValidationError value={errors.notificationTemplate?.message} />}
               </div>
               <div className='flex flex-wrap text-base mt-6 gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating || reverting}>

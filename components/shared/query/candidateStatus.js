@@ -46,6 +46,7 @@ export const PAGINATED_CANDIDATE_STATUSES_QUERY = gql`
       description
       initialStatus
       terminalStatus
+      notificationTemplate
       nextCandidateStatuses {
         id
       }
@@ -65,6 +66,7 @@ export const CANDIDATE_STATUS_DETAIL_QUERY = gql`
       description
       initialStatus
       terminalStatus
+      notificationTemplate
       nextCandidateStatuses {
         id
         name

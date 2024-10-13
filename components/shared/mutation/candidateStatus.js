@@ -17,9 +17,10 @@ export const CREATE_CANDIDATE_STATUS = gql`
   mutation CreateCandidateStatus(
     $slug: String!
     $name: String!
-    $description: String
+    $description: String!
     $initialStatus: Boolean
     $terminalStatus: Boolean
+    $notificationTemplate: String!
     $nextCandidateStatusSlugs: [String!]
   ) {
     createCandidateStatus(
@@ -28,6 +29,7 @@ export const CREATE_CANDIDATE_STATUS = gql`
       description: $description
       initialStatus: $initialStatus
       terminalStatus: $terminalStatus
+      notificationTemplate: $notificationTemplate
       nextCandidateStatusSlugs: $nextCandidateStatusSlugs
     ) {
       candidateStatus {
@@ -37,6 +39,7 @@ export const CREATE_CANDIDATE_STATUS = gql`
         description
         initialStatus
         terminalStatus
+        notificationTemplate
         nextCandidateStatuses {
           id
           name
