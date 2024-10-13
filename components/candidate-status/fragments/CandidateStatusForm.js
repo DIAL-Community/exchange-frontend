@@ -70,10 +70,13 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
 
   const defaultNotificationTemplate = `
     <p>
-      Hi {recipientUsername},
+      Hi {{current-user}},
     </p>
     <p>
-      Your candidate status {submissionLink} has been updated.
+      Your candidate's status, '{{candidate-name}}', has been updated.
+    </p>
+    <p>
+      The previous status was '{{previous-status}}' and the current status is '{{current-status}}'.
     </p>
   `
 
