@@ -3007,9 +3007,10 @@ export const en = {
 
   'ui.candidateProduct.evaluationRubric': 'Evaluation Rubric',
   'ui.candidateProduct.evaluationRubricDisclaimer': `
-    Evaluation rubric used to evaluate this candidate product. Every category update will
+    Evaluation rubric used to evaluate this candidate product. Every category changes will
     be recorded as a new entry in the comment section.
   `,
+  'ui.candidateProduct.noEvaluationRubric': 'Evaluation data not available.',
 
   'ui.candidate.received': 'New Candidate',
   'ui.candidate.received.description': `

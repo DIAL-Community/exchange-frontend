@@ -41,9 +41,16 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteSiteSetting siteSetting={siteSetting} />}
+          <div className='flex flex-col lg:flex-row gap-3'>
+            {siteSetting.defaultSetting &&
+              <div className='px-3 py-1 bg-purple-300 rounded'>
+                <span className='text-sm'>Default Site Setting</span>
+              </div>
+            }
+            <div className='flex gap-x-3 ml-auto'>
+              <EditButton type='link' href={editPath} />
+              {isAdminUser && <DeleteSiteSetting siteSetting={siteSetting} />}
+            </div>
           </div>
         )}
         <div className='text-base font-semibold py-3' ref={descRef}>
