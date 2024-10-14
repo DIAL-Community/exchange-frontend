@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { FaPlus, FaSpinner } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
@@ -8,6 +8,8 @@ import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { UPDATE_SITE_SETTING_HERO_CARD_SECTION } from '../../shared/mutation/siteSetting'
@@ -19,7 +21,7 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { title, description, heroCardConfigurations } = heroCardSection
+  const { title, description, wysiwygDescription, heroCardConfigurations } = heroCardSection
 
   const { locale } = useRouter()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -45,18 +47,20 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
     }
   })
 
-  const { handleSubmit, register, watch, formState: { errors } } = useForm({
+  const { handleSubmit, register, watch, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
       title,
-      description
+      description,
+      wysiwygDescription
     }
   })
 
   const currentTitle = watch('title')
   const currentDescription = watch('description')
+  const currentWysiwygDescription = watch('wysiwygDescription')
 
   const [mutating, setMutating] = useState(false)
   const { user, loadingUserSession } = useUser()
@@ -65,11 +69,12 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
     if (user) {
       setMutating(true)
       const { userEmail, userToken } = user
-      const { title, description } = data
+      const { title, description, wysiwygDescription } = data
       const variables = {
         siteSettingSlug,
         title,
         description,
+        wysiwygDescription,
         heroCardConfigurations
       }
 
@@ -116,6 +121,25 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
                 />
                 {errors.description && <ValidationError value={errors.description?.message} />}
               </div>
+              <div className='flex flex-col gap-y-2'>
+                <label for='wysiwyg-description'>
+                  {format('ui.siteSetting.heroSection.wysiwygDescription')}
+                </label>
+                <Controller
+                  name='wysiwygDescription'
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <HtmlEditor
+                      id='wysiwyg-description'
+                      editorId='wysiwyg-description'
+                      onChange={onChange}
+                      initialContent={value}
+                      placeholder={format('ui.siteSetting.heroSection.wysiwygDescription')}
+                      isInvalid={errors.wysiwygDescription}
+                    />
+                  )}
+                />
+              </div>
               <div className='flex flex-wrap text-sm gap-3'>
                 <button type='submit' className='submit-button' disabled={mutating}>
                   {format('ui.siteSetting.heroSection.save')}
@@ -125,24 +149,29 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
             </div>
           </div>
         </form>
-        <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
-          <div className='text-2xl font-semibold'>
-            {currentTitle &&
-              <FormattedMessage
-                id={currentTitle}
-                defaultMessage={currentTitle}
-              />
-            }
+        {currentWysiwygDescription
+          ? <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
+            <HtmlViewer initialContent={currentWysiwygDescription} />
           </div>
-          <div className='text-sm max-w-5xl'>
-            {currentDescription &&
-              <FormattedMessage
-                id={currentDescription}
-                defaultMessage={currentDescription}
-              />
-            }
+          : <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
+            <div className='text-2xl font-semibold'>
+              {currentTitle &&
+                <FormattedMessage
+                  id={currentTitle}
+                  defaultMessage={currentTitle}
+                />
+              }
+            </div>
+            <div className='text-sm max-w-5xl'>
+              {currentDescription &&
+                <FormattedMessage
+                  id={currentDescription}
+                  defaultMessage={currentDescription}
+                />
+              }
+            </div>
           </div>
-        </div>
+        }
       </div>
     )
 }

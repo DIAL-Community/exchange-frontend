@@ -150,10 +150,11 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
                 {format('ui.siteSetting.defaultSetting')}
               </label>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field'>
+                <label className='required-field' htmlFor='description'>
                   {format('ui.siteSetting.description')}
                 </label>
                 <Controller
+                  id='description'
                   name='description'
                   control={control}
                   render={({ field: { value, onChange } }) => (
