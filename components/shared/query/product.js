@@ -296,6 +296,11 @@ export const PRODUCT_DETAIL_QUERY = gql`
         categoryId
         facilityScale
       }
+      approvalStatus {
+        id
+        name
+        slug
+      }
     }
   }
 `

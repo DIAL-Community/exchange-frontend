@@ -2961,6 +2961,7 @@ export const en = {
   'ui.siteSetting.enableMarketplace': 'Enable the marketplace feature.',
   'ui.siteSetting.defaultSetting': 'Set this configuration as the default.',
   'ui.siteSetting.description': 'Site Configuration Description',
+  'ui.siteSetting.currentDefault': 'Currently Active Setting',
 
   'ui.tenantSetting.label': 'Tenant Configuration',
   'ui.tenantSetting.header': 'Tenant Configurations',

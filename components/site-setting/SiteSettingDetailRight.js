@@ -44,7 +44,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
           <div className='flex flex-col lg:flex-row gap-3'>
             {siteSetting.defaultSetting &&
               <div className='px-3 py-1 bg-purple-300 rounded'>
-                <span className='text-sm'>Default Site Setting</span>
+                <span className='text-sm'>{format('ui.siteSetting.currentDefault')}</span>
               </div>
             }
             <div className='flex gap-x-3 ml-auto'>
