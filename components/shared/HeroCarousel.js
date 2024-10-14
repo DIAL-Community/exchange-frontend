@@ -84,7 +84,7 @@ export const GenericHeroCarousel = ({ carouselConfiguration }) => {
       : 'flex-justify items-start'
 
   const { title, description, imageUrl, calloutTitle, external, destinationUrl } = carouselConfiguration
-  const validImageUrl = imageUrl.indexOf('http') >= 0 ? imageUrl : `/ui/carousel/${imageUrl}.svg`
+  const validImageUrl = imageUrl.indexOf('//') >= 0 ? imageUrl : `/ui/carousel/${imageUrl}.svg`
 
   return (
     <div

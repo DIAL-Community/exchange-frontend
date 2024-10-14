@@ -162,6 +162,7 @@ const HeroCardSection = ({ slug }) => {
         const { heroCardSection } = siteSetting
         // Save the hero configurations to the state
         setHeroCardConfigurations(heroCardSection.heroCardConfigurations ?? [])
+        setHeroCardCounter(heroCardSection.heroCardConfigurations?.length ?? 1)
       }
     }
   })
@@ -208,7 +209,7 @@ const HeroCardSection = ({ slug }) => {
     id: crypto.randomUUID(),
     external: false,
     destinationUrl: '/',
-    imageUrl: '/ui/v1/dial-header.svg',
+    imageUrl: '//exchange.dial.global/ui/v1/dial-logo.svg',
     saved: false
   })
 

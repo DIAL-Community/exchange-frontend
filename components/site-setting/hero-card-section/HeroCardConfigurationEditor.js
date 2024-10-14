@@ -63,7 +63,7 @@ const HeroCardConfigurationEditor = (props) => {
       external: heroCardConfiguration?.external,
       description: heroCardConfiguration?.description,
       destinationUrl: heroCardConfiguration?.destinationUrl,
-      imageUrl: heroCardConfiguration?.imageUrl
+      imageUrl: heroCardConfiguration?.imageUrl.replace('//', '')
     }
   })
 
@@ -77,7 +77,7 @@ const HeroCardConfigurationEditor = (props) => {
         external: external ?? heroCardConfiguration?.external,
         description: description ?? heroCardConfiguration?.description,
         destinationUrl: destinationUrl ?? heroCardConfiguration?.destinationUrl,
-        imageUrl: imageUrl ?? heroCardConfiguration?.imageUrl,
+        imageUrl: imageUrl ? `//${imageUrl}` : `//${heroCardConfiguration?.imageUrl}`,
         saved: false
       }
 
@@ -112,7 +112,7 @@ const HeroCardConfigurationEditor = (props) => {
         type: heroCardConfiguration?.type,
         name: name ?? heroCardConfiguration?.name,
         title: title ?? heroCardConfiguration?.title,
-        imageUrl: imageUrl ?? heroCardConfiguration?.imageUrl,
+        imageUrl: imageUrl ? `//${imageUrl}`: `//${heroCardConfiguration?.imageUrl}`,
         external: external ?? heroCardConfiguration?.external,
         description: description ?? heroCardConfiguration?.description,
         destinationUrl: destinationUrl ?? heroCardConfiguration?.destinationUrl
@@ -184,11 +184,19 @@ const HeroCardConfigurationEditor = (props) => {
             <label className='required-field' htmlFor='imageUrl'>
               {format('ui.siteSetting.heroCard.imageUrl')}
             </label>
-            <Input
-              {...register('imageUrl', { required: format('validation.required') })}
-              id='imageUrl'
-              placeholder={format('ui.siteSetting.heroCard.imageUrl')}
-              isInvalid={errors.imageUrl}
+            <Controller
+              id='image-url'
+              name='imageUrl'
+              control={control}
+              rules={{ required: format('validation.required') }}
+              render={({ field: { value, onChange } }) => (
+                <UrlInput
+                  id='image-url'
+                  value={value}
+                  onChange={onChange}
+                  placeholder={format('ui.siteSetting.heroCard.imageUrl')}
+                />
+              )}
             />
             {errors.imageUrl && <ValidationError value={errors.imageUrl?.message} />}
           </div>

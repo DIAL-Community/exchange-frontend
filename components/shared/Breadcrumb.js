@@ -47,6 +47,8 @@ const basePathMappings = {
   'admin': 'ui.admin.header',
   'site-settings': 'ui.siteSetting.header',
   'menu-configurations': 'ui.siteSetting.menu.header',
+  'carousel-configurations': 'ui.siteSetting.carousel.header',
+  'hero-card-configurations': 'ui.siteSetting.heroCard.header',
   'tenant-settings': 'ui.tenantSetting.header',
   'candidate-statuses': 'ui.candidateStatus.header'
 }
