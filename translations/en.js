@@ -1027,6 +1027,8 @@ export const en = {
   'tag.label': 'Tag',
   'tag.header': 'Tags',
   'tag.delete.confirm.message': 'Are you sure you want to delete this Tag?',
+  'tag.name': 'Tag Name',
+  'tag.description': 'Tag Description',
 
   'ui.service.label': 'Service',
   'ui.service.header': 'Services',
@@ -2919,6 +2921,7 @@ export const en = {
   'ui.siteSetting.carousel.textStyle.rightAligned': 'Right Aligned Text',
   'ui.siteSetting.carousel.textStyle.leftAligned': 'Left Aligned Text',
   'ui.siteSetting.carousel.bgStyle': 'Carousel Background Style',
+  'ui.siteSetting.carousel.imageUrl': 'Image URL',
 
   'ui.siteSetting.carousel.appendCarousel': 'Append Carousel',
   'ui.siteSetting.carousel.appendExchangeCarousel': 'Append Exchange Carousel',
@@ -2960,6 +2963,7 @@ export const en = {
 
   'ui.siteSetting.heroSection.title': 'Title of the Hero Card Section',
   'ui.siteSetting.heroSection.description': 'Description of the Hero Card Section',
+  'ui.siteSetting.heroSection.wysiwygDescription': 'Hero Card Section Editor',
   'ui.siteSetting.heroSection.save': 'Save Hero Card Section',
   'ui.siteSetting.heroSection.submitted': 'Hero card section configurations saved.',
 
