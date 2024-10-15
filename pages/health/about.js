@@ -65,13 +65,13 @@ const AboutPage = ({ defaultTenants }) => {
               FAQ page
             </Link>.
             <br /><br />
-            Solutions that met these minimum criteria were submitted to the Expert Panel for further
-            review. Each solution met with the Expert Panel for a 30-minute presentation. Based on
-            the information provided, the Expert Panel recommended which solutions met the criteria
+            Solutions that met these minimum criteria were submitted to the Expert Advisory Group for further
+            review. Each solution met with the Expert Advisory Group for a 30-minute presentation. Based on
+            the information provided, the Expert Advisory Group recommended which solutions met the criteria
             for inclusion in the Africa HealthTech Marketplace.
           </div>
           <div className='text-2xl leading-tight text-health-blue font-semibold'>
-            Health Marketplace Expert Panel
+            Health Marketplace Expert Advisory Group
           </div>
           <div className='py-8 text-lg'>
             Africa CDC and the Digital Impact Alliance convened a panel of experts to establish the
@@ -79,7 +79,7 @@ const AboutPage = ({ defaultTenants }) => {
             the work of vetting solutions and providing feedback on which solution should be included
             in the Marketplace.
             <br /><br />
-            We would like to thank the Expert Panel for their time and support of this work:
+            We would like to thank the Expert Advisory Group for their time and support of this work:
             <br /><br />
             <ul className='list-disc list-inside'>
               <li>Abimbola Adebakin, <a className='text-health-blue' target='_blank' rel='noreferrer'

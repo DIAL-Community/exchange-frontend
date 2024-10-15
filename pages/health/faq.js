@@ -10,7 +10,7 @@ import HealthFooter from '../../components/health/sections/HealthFooter'
 
 const faqs = [
   { question: 'What are the criteria for listing a product in the Africa HealthTech Marketplace?',
-    answer: 'Africa CDC and our Expert Panel have developed a rubric that is used to \
+    answer: 'Africa CDC and our Expert Advisory Group have developed a rubric that is used to \
     determine whether a product can be listed. At a minimum, the product must address one \
     or more African health use cases and must be deployed and used in at least one place in \
     the African continent. Beyond that, the rubric looks at several other criteria and indicators  \
@@ -25,9 +25,9 @@ const faqs = [
   },
   { question:'What is the process for vetting digital health solutions?',
     answer: 'Solutions are invited to apply for participation in the Africa HealthTech Marketplace by a member \
-    of the Expert Panel. Solution providers fill out a detailed form which provides information about their \
+    of the Expert Advisory Group. Solution providers fill out a detailed form which provides information about their \
     digital health solution. Solutions which meet the minimum criteria for inclusion are then invited to \
-    a demo and vetting session with expert panel members. Following that session, the Expert Panel \
+    a demo and vetting session with advisory group members. Following that session, the Expert Advisory Group \
     members determine whether the solution is qualified for inclusion based on the evaluation rubric. \
     <br /><br />If you are a solution provider who would like to be considered for inclusion, send us a message \
     using the email link at the bottom of this page.'
