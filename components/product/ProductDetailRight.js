@@ -236,9 +236,16 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteProduct product={product} />}
+          <div className='flex flex-col lg:flex-row gap-3'>
+            {product.approvalStatus &&
+              <div className='px-3 py-1 bg-purple-300 rounded'>
+                <span className='text-sm'>{product.approvalStatus.name}</span>
+              </div>
+            }
+            <div className='flex gap-x-3 ml-auto'>
+              <EditButton type='link' href={editPath} />
+              {isAdminUser && <DeleteProduct product={product} />}
+            </div>
           </div>
         )}
         <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>

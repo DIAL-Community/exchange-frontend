@@ -18,7 +18,7 @@ const CommentCard = ({ commentId, authorFullName, authorAvatarUrl, text, replies
               alt={format('image.alt.logoFor', { name: authorFullName })}
               src={authorAvatarUrl}
             />
-            {authorFullName}
+            {authorFullName} ---
           </div>
           <div className='flex-1 text-justify'>
             {text && parse(text)}

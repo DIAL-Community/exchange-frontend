@@ -24,6 +24,12 @@ export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
       website
       description
       submitterEmail
+      candidateStatus {
+        id
+        name
+        slug
+        description
+      }
       createdAt
       rejected
     }
@@ -40,13 +46,69 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       repository
       description
       submitterEmail
+      overallMaturityScore
+      maturityScoreDetails
+      candidateStatus {
+        id
+        name
+        slug
+        description
+        initialStatus
+        terminalStatus
+        nextCandidateStatuses {
+          id
+          name
+          slug
+          initialStatus
+          terminalStatus
+        }
+      }
       createdAt
-
       rejected
       rejectedDate
       rejectedBy
       approvedDate
       approvedBy
+    }
+  }
+`
+
+export const CANDIDATE_PRODUCT_CATEGORY_INDICATORS_QUERY = gql`
+  query CandidateProduct($slug: String!) {
+    candidateProduct(slug: $slug) {
+      id
+      candidateProductCategoryIndicators {
+        id
+        indicatorValue
+        categoryIndicator {
+          id
+          slug
+          name
+          indicatorType
+          categoryIndicatorDescription {
+            id
+            description
+          }
+          rubricCategory {
+            id
+            name
+          }
+        }
+      }
+      notAssignedCategoryIndicators {
+        id
+        slug
+        name
+        indicatorType
+        categoryIndicatorDescription {
+          id
+          description
+        }
+        rubricCategory {
+          id
+          name
+        }
+      }
     }
   }
 `

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import { prependUrlWithProtocol } from '../../lib/utilities'
+import { prependUrlWithProtocol } from '../utils/utilities'
 
 const collectionPath = 'Organizations'.replace(/\s+/g, '_').toLowerCase()
 

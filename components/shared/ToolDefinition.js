@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import Link from 'next/link'
 import { FormattedMessage } from 'react-intl'
 import { SiteSettingContext } from '../context/SiteSettingContext'
+import { HtmlViewer } from './form/HtmlViewer'
 
 export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   const { title, description, imageUrl, destinationUrl } = heroCardConfiguration
@@ -64,18 +65,22 @@ export const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
 
 const ToolDefinition = () => {
   const { heroCardSection } = useContext(SiteSettingContext)
-  console.log(heroCardSection)
-  const { title, description, heroCardConfigurations } = heroCardSection
+  const { title, description, wysiwygDescription, heroCardConfigurations } = heroCardSection
 
   return (
     <div className='lg:px-8 xl:px-56 text-dial-stratos'>
       <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
-        <div className='text-2xl font-semibold'>
-          {title && <FormattedMessage id={title} defaultMessage={title} />}
-        </div>
-        <div className='text-sm max-w-5xl'>
-          {description && <FormattedMessage id={description} defaultMessage={description} />}
-        </div>
+        {wysiwygDescription
+          ? <HtmlViewer initialContent={wysiwygDescription} />
+          : <div className='flex flex-col gap-y-8'>
+            <div className='text-2xl font-semibold'>
+              {title && <FormattedMessage id={title} defaultMessage={title} />}
+            </div>
+            <div className='text-sm max-w-5xl'>
+              {description && <FormattedMessage id={description} defaultMessage={description} />}
+            </div>
+          </div>
+        }
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           {heroCardConfigurations?.map(heroCardConfiguration => {
             const { id, external } = heroCardConfiguration
