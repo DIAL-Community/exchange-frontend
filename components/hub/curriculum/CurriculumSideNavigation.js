@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
 import { useIntl } from 'react-intl'
-import { isDebugLoggingEnabled } from '../../../lib/utilities'
+import { isDebugLoggingEnabled } from '../../utils/utilities'
 import { CurriculumContext } from './CurriculumContext'
 
 const CurriculumSideNavigation = ({ moduleRefs }) => {

@@ -42,6 +42,8 @@ export const CREATE_SITE_SETTING = gql`
         name
         slug
         description
+        faviconUrl
+        exchangeLogoUrl
         enableMarketplace
         defaultSetting
       }
@@ -103,12 +105,14 @@ export const UPDATE_SITE_SETTING_HERO_CARD_SECTION = gql`
     $siteSettingSlug: String!
     $title: String
     $description: String
+    $wysiwygDescription: String
     $heroCardConfigurations: JSON!
   ) {
     updateSiteSettingHeroCardSection(
       siteSettingSlug: $siteSettingSlug
       title: $title
       description: $description
+      wysiwygDescription: $wysiwygDescription
       heroCardConfigurations: $heroCardConfigurations
     ) {
       siteSetting {

@@ -37,7 +37,7 @@ export const paginatedProducts = {
           {
             'id': '6',
             'name': 'Manually Entered',
-            'slug': 'manually_entered',
+            'slug': 'manually-entered',
             '__typename': 'Origin'
           }
         ],

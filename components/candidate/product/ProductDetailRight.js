@@ -6,11 +6,13 @@ import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CandidateActionType, ObjectType } from '../../utils/constants'
+import { CANDIDATE_PRODUCT_UPDATE_STATUS } from '../../shared/mutation/candidateProduct'
+import { ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
-import ProductActionButton from './fragments/ProductActionButton'
+import CandidateStatusWorkflow from '../CandidateStatusWorkflow'
+import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 
-const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
+const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -29,16 +31,6 @@ const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
           <div className='flex gap-x-3 ml-auto'>
-            <ProductActionButton
-              product={product}
-              actionType={CandidateActionType.REJECT}
-              refetch={refetch}
-            />
-            <ProductActionButton
-              product={product}
-              actionType={CandidateActionType.APPROVE}
-              refetch={refetch}
-            />
             <EditButton type='link' href={editPath} />
           </div>
         )}
@@ -93,6 +85,19 @@ const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
             </div>
           </>
         }
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <ProductDetailMaturityScores
+          id={product.id}
+          slug={product.slug}
+          overallMaturityScore={product.overallMaturityScore}
+          maturityScoreDetails={product.maturityScoreDetails}
+        />
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <CandidateStatusWorkflow
+          candidate={product}
+          objectType={ObjectType.CANDIDATE_PRODUCT}
+          mutationQuery={CANDIDATE_PRODUCT_UPDATE_STATUS}
+        />
         {`${product.rejected}` === 'true' &&
           <>
             <hr className='border-b border-dial-blue-chalk my-3' />
@@ -144,9 +149,9 @@ const ProductDetailRight = forwardRef(({ product, refetch }, ref) => {
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={product} objectType={ObjectType.CANDIDATE_PRODUCT} />
-          <hr className='border-b border-dial-slate-200'/>
+          <hr className='border-b border-dial-slate-200' />
           <Share />
-          <hr className='border-b border-dial-slate-200'/>
+          <hr className='border-b border-dial-slate-200' />
         </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}

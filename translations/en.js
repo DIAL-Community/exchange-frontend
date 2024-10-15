@@ -1027,6 +1027,8 @@ export const en = {
   'tag.label': 'Tag',
   'tag.header': 'Tags',
   'tag.delete.confirm.message': 'Are you sure you want to delete this Tag?',
+  'tag.name': 'Tag Name',
+  'tag.description': 'Tag Description',
 
   'ui.service.label': 'Service',
   'ui.service.header': 'Services',
@@ -2139,8 +2141,8 @@ export const en = {
 
   'ui.endorsingYear.label': 'Endorsing Year',
 
-  'ui.user.label': 'User',
-  'ui.user.header': 'Users',
+  'ui.user.label': 'User Management',
+  'ui.user.header': 'Users Management',
   'ui.user.createNew': 'Create a new User',
   'ui.user.accountDetails': 'Account Details',
   'ui.user.createdAt': 'Created on',
@@ -2849,6 +2851,12 @@ export const en = {
   'ui.siteSetting.whatIs': 'What is Site Configuration?',
   'ui.siteSetting.createNew': 'Create a New Site Configuration?',
 
+  'ui.siteSetting.faviconUrl': 'Main Site Icon',
+  'ui.siteSetting.logoUrl.placeholder': 'Enter URL for the main favicon.',
+
+  'ui.siteSetting.exchangeLogoUrl': 'Main Site Logo',
+  'ui.siteSetting.exchangeLogoUrl.placeholder': 'Enter URL for the main site logo.',
+
   'ui.siteSetting.carousel.label': 'Carousel Configuration',
   'ui.siteSetting.carousel.header': 'Carousel Configurations',
 
@@ -2913,6 +2921,7 @@ export const en = {
   'ui.siteSetting.carousel.textStyle.rightAligned': 'Right Aligned Text',
   'ui.siteSetting.carousel.textStyle.leftAligned': 'Left Aligned Text',
   'ui.siteSetting.carousel.bgStyle': 'Carousel Background Style',
+  'ui.siteSetting.carousel.imageUrl': 'Image URL',
 
   'ui.siteSetting.carousel.appendCarousel': 'Append Carousel',
   'ui.siteSetting.carousel.appendExchangeCarousel': 'Append Exchange Carousel',
@@ -2954,6 +2963,7 @@ export const en = {
 
   'ui.siteSetting.heroSection.title': 'Title of the Hero Card Section',
   'ui.siteSetting.heroSection.description': 'Description of the Hero Card Section',
+  'ui.siteSetting.heroSection.wysiwygDescription': 'Hero Card Section Editor',
   'ui.siteSetting.heroSection.save': 'Save Hero Card Section',
   'ui.siteSetting.heroSection.submitted': 'Hero card section configurations saved.',
 
@@ -2961,6 +2971,7 @@ export const en = {
   'ui.siteSetting.enableMarketplace': 'Enable the marketplace feature.',
   'ui.siteSetting.defaultSetting': 'Set this configuration as the default.',
   'ui.siteSetting.description': 'Site Configuration Description',
+  'ui.siteSetting.currentDefault': 'Currently Active Setting',
 
   'ui.tenantSetting.label': 'Tenant Configuration',
   'ui.tenantSetting.header': 'Tenant Configurations',
@@ -2974,5 +2985,59 @@ export const en = {
   'ui.validation.required': 'This field is required.',
   'ui.validation.maxLength': 'This field maximum length is {maxLength}.',
   'ui.validation.pattern.alphaOnly': 'This field only accept alphabet characters.',
+
+  'ui.candidateStatus.label': 'Candidate Status',
+  'ui.candidateStatus.header': 'Candidate Statuses',
+  'ui.candidateStatus.createNew': 'Create a new Candidate Statuses?',
+  'ui.candidateStatus.nextCandidateStatus.label': 'Next Candidate Status',
+  'ui.candidateStatus.nextCandidateStatus.header': 'Next Candidate Statuses',
+  'ui.candidateStatus.previousCandidateStatus.label': 'Previous Candidate Status',
+  'ui.candidateStatus.previousCandidateStatus.header': 'Previous Candidate Statuses',
+  'ui.candidateStatus.initialCandidateStatus.label': 'Initial Candidate Status',
+  'ui.candidateStatus.initialCandidateStatus.header': 'Initial Candidate Statuses',
+
+  
+  'ui.candidateStatus.name': 'Name',
+  'ui.candidateStatus.description': 'Description',
+  'ui.candidateStatus.notificationTemplate': 'Notification Template',
+  'ui.candidateStatus.initialStatus': 'Candidate status is an initial status.',
+  'ui.candidateStatus.terminalStatus': 'Candidate status is a terminal status.',
+  'ui.candidateStatus.initialStatus.label': 'Initial Status',
+  'ui.candidateStatus.terminalStatus.label': 'Terminal Status',
+
+  'ui.share.email': 'Sharing via Email',
+  'ui.share.linkedIn': 'Sharing on LinkedIn',
+  'ui.share.whatsApp': 'Sharing on WhatsApp. Check out this "{url}".',
+
+  'ui.share.copyLink.success': `Current url copied to clipboard.`,
+
+  'ui.candidate.candidateStatus': 'Current Status',
+  'ui.candidate.candidateStatus.updateJustification': 'Status Update Justification',
+  'ui.candidate.candidateStatus.nextCandidateStatus': 'Next Candidate Status',
+  'ui.candidate.candidateStatus.currentCandidateStatus': 'Current Candidate Status',
+
+  'ui.candidateProduct.evaluationRubric': 'Evaluation Rubric',
+  'ui.candidateProduct.evaluationRubricDisclaimer': `
+    Evaluation rubric used to evaluate this candidate product. Every category changes will
+    be recorded as a new entry in the comment section.
+  `,
+  'ui.candidateProduct.noEvaluationRubric': 'Evaluation data not available.',
+
+  'ui.candidate.received': 'New Candidate',
+  'ui.candidate.received.description': `
+    <p>
+      Candidate information received from the submitter.
+      Assign a new status to work the candidate through the approval workflow process.
+    </p>
+  `,
+
+  'ui.admin.siteConfiguration.label': 'Site Configuration',
+  'ui.admin.siteConfiguration.header': 'Site Configurations',
+
+  'ui.admin.coreData.label': 'Core Data Configuration',
+  'ui.admin.coreData.header': 'Core Data Configurations',
+
+  'ui.admin.candidate.label': 'Candidate Management Configuration',
+  'ui.admin.candidate.header': 'Candidate Management Configurations',
 }
 

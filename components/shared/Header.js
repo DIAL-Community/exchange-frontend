@@ -4,7 +4,7 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../lib/hooks'
+import { useUser } from '../../lib/hooks'
 import { SiteSettingContext } from '../context/SiteSettingContext'
 import AdminMenu from './menu/AdminMenu'
 import GenericMenu from './menu/GenericMenu'
@@ -24,8 +24,6 @@ const dropdownMenuStyles = classNames(
 const Header = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
-
-  const { tenant } = useActiveTenant()
 
   const { user } = useUser()
   const signInUser = (e) => {
@@ -92,15 +90,15 @@ const Header = ({ isOnAuthPage = false }) => {
     }
   })
 
-  const { menuConfigurations } = useContext(SiteSettingContext)
+  const { exchangeLogoUrl, menuConfigurations } = useContext(SiteSettingContext)
 
   return (
     <header className='z-50 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
           <img
-            className='object-center object-contain'
-            src={tenant === 'fao' ? '/ui/v1/exchange-logo.svg' : '/ui/v1/exchange-logo.svg'}
+            className='object-center object-contain max-h-16 w-auto'
+            src={`//${exchangeLogoUrl}`}
             alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
         </Link>

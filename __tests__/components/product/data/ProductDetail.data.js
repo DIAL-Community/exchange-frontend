@@ -13,6 +13,7 @@ export const productDetail = {
       'pricingModel': null,
       'pricingDetails': null,
       'hostingModel': null,
+      'approvalStatus': null,
       'languages': [
         {
           'node': {

@@ -234,27 +234,50 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                 <div
                   class="flex flex-row gap-3"
                 >
-                  <img
-                    alt="Logo of LinkedIn."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/linkedin-icon.svg"
-                    width="40"
-                  />
-                  <img
-                    alt="Logo of Email."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/email-icon.svg"
-                    width="40"
-                  />
-                  <img
-                    alt="Logo of Copy."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/copy-icon.svg"
-                    width="40"
-                  />
+                  <button>
+                    <img
+                      alt="Logo of LinkedIn."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/linkedin-icon.svg"
+                      width="40"
+                    />
+                  </button>
+                  <button>
+                    <div
+                      class="bg-dial-iris-blue rounded-full w-[40px] h-[40px]"
+                    >
+                      <div
+                        class="flex items-center h-full"
+                      >
+                        <img
+                          alt="Logo of WhatsApp."
+                          class="my-auto mx-auto"
+                          height="20"
+                          src="/ui/v1/whatsapp-icon.svg"
+                          width="20"
+                        />
+                      </div>
+                    </div>
+                  </button>
+                  <button>
+                    <img
+                      alt="Logo of Email."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/email-icon.svg"
+                      width="40"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      alt="Logo of Copy."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/copy-icon.svg"
+                      width="40"
+                    />
+                  </button>
                 </div>
               </div>
               <hr
@@ -532,27 +555,50 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                 <div
                   class="flex flex-row gap-3"
                 >
-                  <img
-                    alt="Logo of LinkedIn."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/linkedin-icon.svg"
-                    width="40"
-                  />
-                  <img
-                    alt="Logo of Email."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/email-icon.svg"
-                    width="40"
-                  />
-                  <img
-                    alt="Logo of Copy."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/copy-icon.svg"
-                    width="40"
-                  />
+                  <button>
+                    <img
+                      alt="Logo of LinkedIn."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/linkedin-icon.svg"
+                      width="40"
+                    />
+                  </button>
+                  <button>
+                    <div
+                      class="bg-dial-iris-blue rounded-full w-[40px] h-[40px]"
+                    >
+                      <div
+                        class="flex items-center h-full"
+                      >
+                        <img
+                          alt="Logo of WhatsApp."
+                          class="my-auto mx-auto"
+                          height="20"
+                          src="/ui/v1/whatsapp-icon.svg"
+                          width="20"
+                        />
+                      </div>
+                    </div>
+                  </button>
+                  <button>
+                    <img
+                      alt="Logo of Email."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/email-icon.svg"
+                      width="40"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      alt="Logo of Copy."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/copy-icon.svg"
+                      width="40"
+                    />
+                  </button>
                 </div>
               </div>
               <hr

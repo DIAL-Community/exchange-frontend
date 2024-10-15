@@ -1,225 +1,72 @@
-import { useCallback, useState } from 'react'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useCallback, useContext, useState } from 'react'
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
-import { useIntl } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
-import { SUPPORTING_NAVIGATION_ITEMS, TOOL_NAVIGATION_ITEMS } from '../utils/header'
-import { HELP_MENU, LANGUAGE_MENU, MARKETPLACE_MENU, NONE, RESOURCE_MENU, USER_MENU } from './menu/MenuCommon'
+import { SiteSettingContext } from '../context/SiteSettingContext'
+import { HELP_MENU, LANGUAGE_MENU, NONE, RESOURCE_MENU, USER_MENU } from './menu/MenuCommon'
 
-const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
+const GenericMenu = ({ menuConfiguration, currentMenu, setCurrentMenu }) => {
+  const { id, name, destinationUrl, external, menuItemConfigurations } = menuConfiguration
+
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
   const toggleSubMenu = () => {
-    setCurrentMenu(currentMenu === MARKETPLACE_MENU ? NONE : MARKETPLACE_MENU)
+    setCurrentMenu(currentMenu === id ? NONE : id)
   }
 
-  const MARKETPLACE_MENU_ITEMS = [{
-    label: 'ui.opportunity.header',
-    link: '/opportunities'
-  }, {
-    label: 'ui.storefront.header',
-    link: '/storefronts'
-  }]
-
-  return (
-    <li>
-      <a
-        href='tool'
-        id={MARKETPLACE_MENU}
-        onClick={(e) => {
-          e.preventDefault()
-          toggleSubMenu()
-        }}
-      >
-        <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          {format('header.marketplace')}
-          {currentMenu === MARKETPLACE_MENU
-            ? <RiArrowUpSLine className='text-base inline my-auto' />
-            : <RiArrowDownSLine className='text-base inline my-auto' />
-          }
+  const internalLinkRenderer = (id, name, destinationUrl) =>
+    <li key={`mobile-nav-${id}`}>
+      <Link href={`/${destinationUrl}`}>
+        <div className='flex flex-row gap-x-2 px-8 py-4'>
+          {format(name)}
         </div>
-      </a>
-      {currentMenu === MARKETPLACE_MENU &&
-        <ul className='px-6'>
-          {MARKETPLACE_MENU_ITEMS.map(({ label, link }) => {
-            return (
-              <li key={`mobile-nav-${label}`}>
-                <Link href={`/${link}`}>
-                  <div className='flex flex-row gap-x-2 px-8 py-4'>
-                    {format(label)}
-                  </div>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      }
+      </Link>
     </li>
-  )
-}
 
-const ToolMenu = ({ currentMenu, setCurrentMenu }) => {
-  const CATALOG_MENU = 'menu-catalog'
-
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
-
-  const toggleSubMenu = () => {
-    setCurrentMenu(currentMenu === CATALOG_MENU ? NONE : CATALOG_MENU)
-  }
-
-  return (
-    <li>
-      <a
-        href='tool'
-        id={CATALOG_MENU}
-        onClick={(e) => {
-          e.preventDefault()
-          toggleSubMenu()
-        }}
-      >
-        <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          {format('header.catalog')}
-          {currentMenu === CATALOG_MENU
-            ? <RiArrowUpSLine className='text-base inline my-auto' />
-            : <RiArrowDownSLine className='text-base inline my-auto' />
-          }
+  const externalLinkRenderer = (id, name, destinationUrl) =>
+    <li key={`mobile-nav-${id}`}>
+      <a href={`//${destinationUrl}`} target='_blank' rel='noopener noreferrer'>
+        <div className='flex flex-row gap-x-2 px-8 py-4'>
+          {format(name)}
         </div>
       </a>
-      {currentMenu === CATALOG_MENU &&
-        <ul className='px-6'>
-          {Object.entries(TOOL_NAVIGATION_ITEMS).map(([key, value]) => {
-            return (
-              <li key={`mobile-nav-${key}`}>
-                <Link href={`/${value}`}>
-                  <div className='flex flex-row gap-x-2 px-8 py-4'>
-                    {format(key)}
-                  </div>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      }
     </li>
-  )
-}
-
-const SupportingMenu = ({ currentMenu, setCurrentMenu }) => {
-  const SUPPORTING_MENU = 'menu-supporting'
-
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
-
-  const toggleSubMenu = () => {
-    setCurrentMenu(currentMenu === SUPPORTING_MENU ? NONE : SUPPORTING_MENU)
-  }
 
   return (
     <li>
       <a
-        href='supporting-tool'
-        id={SUPPORTING_MENU}
+        id={id}
+        href={destinationUrl
+          ? external
+            ? `//${destinationUrl}`
+            : `/${destinationUrl}`
+          : id
+        }
         onClick={(e) => {
           e.preventDefault()
           toggleSubMenu()
         }}
       >
         <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          {format('header.supportingTools')}
-          {currentMenu === SUPPORTING_MENU
-            ? <RiArrowUpSLine className='text-base inline my-auto' />
-            : <RiArrowDownSLine className='text-base inline my-auto' />
-          }
-        </div>
-      </a>
-      {currentMenu === SUPPORTING_MENU &&
-        <ul className='px-6'>
-          {Object.entries(SUPPORTING_NAVIGATION_ITEMS).map(([key, value]) => {
-            return (
-              <li key={`mobile-nav-${key}`}>
-                <Link href={`/${value}`}>
-                  <div className='flex flex-row gap-x-2 px-8 py-4'>
-                    {format(key)}
-                  </div>
-                </Link>
-              </li>
+          {format(name)}
+          {menuItemConfigurations.length > 0 &&
+            (currentMenu === id
+              ? <RiArrowUpSLine className='text-base inline my-auto' />
+              : <RiArrowDownSLine className='text-base inline my-auto' />
             )
-          })}
-        </ul>
-      }
-    </li>
-  )
-}
-
-const ResourceMenu = ({ currentMenu, setCurrentMenu }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
-
-  const toggleSubMenu = () => {
-    setCurrentMenu(currentMenu === RESOURCE_MENU ? NONE : RESOURCE_MENU)
-  }
-
-  const RESOURCES_MENU_ITEMS = [{
-    label: 'header.playbooks',
-    link: '/playbooks'
-  },{
-    label: 'header.wizard',
-    link: '/wizard'
-  },{
-    label: 'header.covidResources',
-    link: '/covid-19-resources'
-  }, {
-    label: 'header.dialResourcesPortal',
-    link: '//resources.dial.community/',
-    external: true
-  }, {
-    label: 'header.SDGFramework',
-    link: '//digitalimpactalliance.org/research/sdg-digital-investment-framework/',
-    external: true
-  }, {
-    label: 'header.insights',
-    link: '/resources'
-  }]
-
-  return (
-    <li>
-      <a
-        href='access-resource'
-        id={RESOURCE_MENU}
-        onClick={(e) => {
-          e.preventDefault()
-          toggleSubMenu()
-        }}
-      >
-        <div className='flex flex-row gap-x-2 mx-8 py-4'>
-          {format('header.resources')}
-          {currentMenu === RESOURCE_MENU
-            ? <RiArrowUpSLine className='text-base inline my-auto' />
-            : <RiArrowDownSLine className='text-base inline my-auto' />
           }
         </div>
       </a>
-      {currentMenu === RESOURCE_MENU &&
+      {currentMenu === id && menuItemConfigurations.length > 0 &&
         <ul className='px-6'>
-          {RESOURCES_MENU_ITEMS.map(({ label, link, external }) => {
-            return <li key={`mobile-nav-${label}`}>
-              { external
-                ? <a href={link} target='_blank' rel='noreferrer'>
-                  <div className='flex flex-row gap-x-2 px-8 py-4'>
-                    {format(label)}
-                  </div>
-                </a>
-                : <Link href={`/${link}`}>
-                  <div className='flex flex-row gap-x-2 px-8 py-4'>
-                    {format(label)}
-                  </div>
-                </Link>
-              }
-            </li>
+          {menuItemConfigurations.map(({ id, name, external, destinationUrl }) => {
+            return external
+              ? externalLinkRenderer(id, name, destinationUrl)
+              : internalLinkRenderer(id, name, destinationUrl)
           })}
         </ul>
       }
@@ -298,6 +145,10 @@ const HelpMenu = ({ currentMenu, setCurrentMenu }) => {
     label: 'header.about',
     link: '/about'
   }, {
+    label: 'header.coc',
+    link: '//digital-impact-exchange.atlassian.net/wiki/spaces/SOLUTIONS' +
+          '/pages/541917207/Community+Code+of+Conduct/'
+  }, {
     label: 'header.documentation',
     link: `https://docs.dial.community/projects/product-registry/${locale}/latest/`,
     external: true
@@ -333,7 +184,7 @@ const HelpMenu = ({ currentMenu, setCurrentMenu }) => {
         <ul className='px-6'>
           {RESOURCES_MENU_ITEMS.map(({ label, link, external }) => {
             return <li key={`mobile-nav-${label}`}>
-              { external
+              {external
                 ? <a href={link} target='_blank' rel='noreferrer'>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(label)}
@@ -414,7 +265,12 @@ const LanguageMenu = ({ currentMenu, setCurrentMenu }) => {
         <ul className='px-6'>
           {LANGUAGE_MENU_ITEMS.map(({ label, locale }) => {
             return <li key={`mobile-nav-${locale}`}>
-              <a onClick={(e) => switchLanguage(e, locale)} >
+              <a
+                onClick={(e) => {
+                  e.preventDefault()
+                  switchLanguage(e, locale)
+                }}
+              >
                 <div className='flex flex-row gap-x-2 px-8 py-4'>
                   {format(label)}
                 </div>
@@ -427,14 +283,11 @@ const LanguageMenu = ({ currentMenu, setCurrentMenu }) => {
   )
 }
 
-const MobileMenu = ({ menuExpanded, setMenuExpanded }) => {
-  const [currentMenu, setCurrentMenu] = useState(NONE)
-
+const MobileMenu = ({ menuExpanded }) => {
   const { user } = useUser()
+  const { menuConfigurations } = useContext(SiteSettingContext)
 
-  const hideMenu = () => {
-    setMenuExpanded(false)
-  }
+  const [currentMenu, setCurrentMenu] = useState(NONE)
 
   return (
     <>
@@ -442,20 +295,43 @@ const MobileMenu = ({ menuExpanded, setMenuExpanded }) => {
         <div className='absolute top-16 right-0 w-full max-w-md'>
           <div className='shadow-lg bg-dial-iris-blue text-white cursor-pointer'>
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-auto py-4'>
-              {!user &&
-                <div className='mx-8 my-4'>
-                  <button type='button' className='border border-white rounded-md w-full' onClick={signIn}>
-                    <div className='py-2.5'>Login</div>
-                  </button>
-                </div>
-              }
-              <MarketplaceMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
-              <ToolMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
-              <SupportingMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
-              <ResourceMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
-              <UserMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
-              <HelpMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
-              <LanguageMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
+              {menuConfigurations.map((menuConfiguration) => {
+                switch (menuConfiguration.type) {
+                  case 'menu.item':
+                  case 'menu':
+                    return (
+                      <GenericMenu
+                        menuConfiguration={menuConfiguration}
+                        currentMenu={currentMenu}
+                        setCurrentMenu={setCurrentMenu}
+                      />
+                    )
+                  case 'locked.help.menu':
+                    return <HelpMenu currentMenu={currentMenu} setCurrentMenu={setCurrentMenu} />
+                  case 'locked.language.menu':
+                    return <LanguageMenu currentMenu={currentMenu} setCurrentMenu={setCurrentMenu} />
+                  case 'locked.login.menu':
+                    return user
+                      ? (
+                        <li key='logged-in-menu' className='relative text-right intro-signup'>
+                          <UserMenu currentOpenMenu={currentMenu} setCurrentMenu={setCurrentMenu} />
+                        </li>
+                      )
+                      : (
+                        <li key='sign-in-menu' className='text-right px-3'>
+                          <button type='button' className='border border-white rounded-md w-full' onClick={signIn}>
+                            <div className='py-2.5'>
+                              <FormattedMessage id='header.signIn' />
+                            </div>
+                          </button>
+                        </li>
+                      )
+                  case 'locked.admin.menu':
+                    return null
+                  default:
+                    return null
+                }
+              })}
             </ul>
           </div>
         </div>
