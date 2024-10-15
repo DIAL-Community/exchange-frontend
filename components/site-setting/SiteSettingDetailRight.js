@@ -63,6 +63,23 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex gap-1 text-sm'>
+          <span className='font-semibold whitespace-nowrap'>{format('ui.siteSetting.exchangeLogoUrl')}:</span>
+          <a href={`//${siteSetting.exchangeLogoUrl}`} target='_blank' rel='noreferrer'>
+            <span className='text-dial-iris-blue break-all line-clamp-1'>
+              {`//${siteSetting.exchangeLogoUrl}`}
+            </span>
+          </a>
+        </div>
+        <div className='flex gap-1 text-sm'>
+          <span className='font-semibold whitespace-nowrap'>{format('ui.siteSetting.faviconUrl')}:</span>
+          <a href={`//${siteSetting.faviconUrl}`} target='_blank' rel='noreferrer'>
+            <span className='text-dial-iris-blue break-all line-clamp-1'>
+              {`//${siteSetting.faviconUrl}`}
+            </span>
+          </a>
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='flex pb-3' ref={carouselConfigurationsRef}>
             <div className='text-base font-semibold'>

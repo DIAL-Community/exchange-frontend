@@ -2849,6 +2849,12 @@ export const en = {
   'ui.siteSetting.whatIs': 'What is Site Configuration?',
   'ui.siteSetting.createNew': 'Create a New Site Configuration?',
 
+  'ui.siteSetting.faviconUrl': 'Main Site Favicon',
+  'ui.siteSetting.logoUrl.placeholder': 'Enter URL for the main favicon.',
+
+  'ui.siteSetting.exchangeLogoUrl': 'Main Site Logo',
+  'ui.siteSetting.exchangeLogoUrl.placeholder': 'Enter URL for the main site logo.',
+
   'ui.siteSetting.carousel.label': 'Carousel Configuration',
   'ui.siteSetting.carousel.header': 'Carousel Configurations',
 
