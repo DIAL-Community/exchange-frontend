@@ -2849,7 +2849,7 @@ export const en = {
   'ui.siteSetting.whatIs': 'What is Site Configuration?',
   'ui.siteSetting.createNew': 'Create a New Site Configuration?',
 
-  'ui.siteSetting.faviconUrl': 'Main Site Favicon',
+  'ui.siteSetting.faviconUrl': 'Main Site Icon',
   'ui.siteSetting.logoUrl.placeholder': 'Enter URL for the main favicon.',
 
   'ui.siteSetting.exchangeLogoUrl': 'Main Site Logo',

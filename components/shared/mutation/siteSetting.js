@@ -42,6 +42,8 @@ export const CREATE_SITE_SETTING = gql`
         name
         slug
         description
+        faviconUrl
+        exchangeLogoUrl
         enableMarketplace
         defaultSetting
       }
