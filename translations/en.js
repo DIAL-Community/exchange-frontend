@@ -721,6 +721,7 @@ export const en = {
   'map.endorsers.viewOrganization': 'View Organization',
   'map.projects.viewProject': 'View Project',
   'map.products.viewProduct': 'View Solution',
+  'ui.maps.header': 'Maps',
 
   'useCase.header': 'Use Cases',
   'useCase.label': 'Use Case',

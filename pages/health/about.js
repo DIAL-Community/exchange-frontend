@@ -33,7 +33,7 @@ const AboutPage = ({ defaultTenants }) => {
                 About the Africa HealthTech Marketplace
               </div>
               <div className='max-w-prose'>
-                The Africa CDC HealthTech Marketplace will showcase and connect digital health solutions
+                The Africa HealthTech Marketplace will showcase and connect digital health solutions
                 that have been developed by African organizations with potential users, investors, and
                 partners across the continent.
               </div>
@@ -42,7 +42,7 @@ const AboutPage = ({ defaultTenants }) => {
         </div>
         <div className='lg:px-8 xl:px-56 py-8'>
           <div className='text-2xl leading-tight text-health-blue font-semibold'>
-            Why a HealthTech Marketplace?
+            Why an Africa HealthTech Marketplace?
           </div>
           <div className='py-8 text-lg'>
             By creating a hub for innovative health technologies, the marketplace aims to accelerate
@@ -68,14 +68,14 @@ const AboutPage = ({ defaultTenants }) => {
             Solutions that met these minimum criteria were submitted to the Expert Panel for further
             review. Each solution met with the Expert Panel for a 30-minute presentation. Based on
             the information provided, the Expert Panel recommended which solutions met the criteria
-            for inclusion in the HealthTech Marketplace.
+            for inclusion in the Africa HealthTech Marketplace.
           </div>
           <div className='text-2xl leading-tight text-health-blue font-semibold'>
             Health Marketplace Expert Panel
           </div>
           <div className='py-8 text-lg'>
             Africa CDC and the Digital Impact Alliance convened a panel of experts to establish the
-            criteria and standards for the HealthTech Marketplace. Several of these experts also supported
+            criteria and standards for the Africa HealthTech Marketplace. Several of these experts also supported
             the work of vetting solutions and providing feedback on which solution should be included
             in the Marketplace.
             <br /><br />

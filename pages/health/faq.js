@@ -9,7 +9,7 @@ import HealthHeader from '../../components/health/sections/HealthHeader'
 import HealthFooter from '../../components/health/sections/HealthFooter'
 
 const faqs = [
-  { question: 'What are the criteria for listing a product in the HealthTech Marketplace?',
+  { question: 'What are the criteria for listing a product in the Africa HealthTech Marketplace?',
     answer: 'Africa CDC and our Expert Panel have developed a rubric that is used to \
     determine whether a product can be listed. At a minimum, the product must address one \
     or more African health use cases and must be deployed and used in at least one place in \
@@ -21,10 +21,10 @@ const faqs = [
     click on this link: \
     <a className="text-health-blue" target="_blank" rel="noreferrer" \
       href="https://docs.google.com/spreadsheets/d/1nvH5ZTRq76Qp3QCOc-KgeW07k46dtztpZa4T6yF5HFc/edit?usp=sharing"> \
-    Africa CDC HealthTech Marketplace Rubric</a>'
+    Africa HealthTech Marketplace Rubric</a>'
   },
   { question:'What is the process for vetting digital health solutions?',
-    answer: 'Solutions are invited to apply for participation in the HealthTech Marketplace by a member \
+    answer: 'Solutions are invited to apply for participation in the Africa HealthTech Marketplace by a member \
     of the Expert Panel. Solution providers fill out a detailed form which provides information about their \
     digital health solution. Solutions which meet the minimum criteria for inclusion are then invited to \
     a demo and vetting session with expert panel members. Following that session, the Expert Panel \
@@ -117,7 +117,7 @@ const FaqPage = ({ defaultTenants }) => {
                 Frequently Asked Questions
               </div>
               <div className='max-w-prose'>
-                The Africa CDC HealthTech Marketplace will showcase and connect digital health solutions
+                The Africa HealthTech Marketplace will showcase and connect digital health solutions
                 that have been developed by African organizations with potential users, investors, and
                 partners across the continent.
               </div>

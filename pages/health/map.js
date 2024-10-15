@@ -4,6 +4,7 @@ import { useCallback } from 'react'
 import HealthHeader from '../../components/health/sections/HealthHeader'
 import HealthFooter from '../../components/health/sections/HealthFooter'
 import ClientOnly from '../../lib/ClientOnly'
+import MapRibbon from '../../components/health/maps/MapRibbon'
 import MapContainer from '../../components/health/maps/MapContainer'
 
 const ProjectMapPage = ({ defaultTenants }) => {
@@ -17,6 +18,7 @@ const ProjectMapPage = ({ defaultTenants }) => {
         description={format('seo.description.maps')}
       />
       <HealthHeader />
+      <MapRibbon />
       <ClientOnly clientTenants={defaultTenants}>
         <MapContainer />
       </ClientOnly>
