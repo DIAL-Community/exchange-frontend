@@ -82,26 +82,26 @@ const AboutPage = ({ defaultTenants }) => {
             We would like to thank the Expert Panel for their time and support of this work:
             <br /><br />
             <ul className='list-disc list-inside'>
-              <li>Abimbola Adebakin, <a className='text-health-blue'
-                href='https://advantagehealthafrica.com/'>Advantage Health Africa</a></li>
-              <li>Nassir Idris ADAM, National Digital Health Program, Chad</li>
-              <li>Fatou Fall, <a className='text-health-blue'
+              <li>Abimbola Adebakin, <a className='text-health-blue' target='_blank' rel='noreferrer'
+                href='https://advantagehealthafrica.com/' >Advantage Health Africa</a></li>
+              <li>Nassir Idriss ADAM, National Digital Health Program, Chad</li>
+              <li>Fatou Fall, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://digitalsquare.org/'>Digital Square at Path</a></li>
-              <li>James Fraser, <a className='text-health-blue'
+              <li>James Fraser, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://www.madiro.org/'>Madiro</a></li>
-              <li>Olivier Habumugisha, <a className='text-health-blue'
+              <li>Olivier Habumugisha, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://www.jhpiego.org/'>Jhpiego</a></li>
-              <li>Dr. Esperance Luvindao, <a className='text-health-blue'
+              <li>Dr. Esperance Luvindao, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://osaatafrica.com/'>Osaat Africa Health Foundation</a></li>
-              <li>Caroline Mbindyo, <a className='text-health-blue'
+              <li>Caroline Mbindyo, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://amref.org/'>Amref Health Innovations</a></li>
-              <li>Wilfred Ngagi, <a className='text-health-blue'
+              <li>Wilfred Ngagi, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://villgroafrica.org/'>Villgro Africa</a></li>
-              <li>Chris Seegbrets, <a className='text-health-blue'
+              <li>Chris Seegbrets, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://www.jembi.org/'>Jembi Health Systems</a></li>
-              <li>Mara Hansen Staples, <a className='text-health-blue'
+              <li>Mara Hansen Staples, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://www.salientadvisory.com/'>Salient Advisory</a></li>
-              <li>Sewu-Steve Tawia, <a className='text-health-blue'
+              <li>Sewu-Steve Tawia, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://jazarift.com/'>Jaza Rift Ventures</a></li>
             </ul>
           </div>

@@ -2064,7 +2064,9 @@ export const en = {
   'ui.footer.poweredBy.subTitle': `
     The Digital Impact Exchange is a project of the Digital Impact Alliance
   `,
-
+  'ui.footer.poweredByLight.subTitle': `The Digital Impact Exchange is a project of the 
+    <a href='https://dial.global' class='text-dial-cotton' target='_blank' rel='noreferrer'>
+    Digital Impact Alliance</a> – a leading global resource on people-centered digital transformation.`,
   'ui.footer.partner.title': 'Our partners and supporters',
 
   'ui.ribbon.nav.ariaLabel': 'Current active navigation',
@@ -2647,7 +2649,7 @@ export const en = {
 
   'health.landing.main.title': 'Africa HealthTech Marketplace',
   'health.landing.main.subtitle': `Enhancing visibility and trust in local digital health innovations`,
-  'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Alliance',
+  'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Exchange',
 
   'health.header.about': 'About',
   'health.header.products': 'Products',
