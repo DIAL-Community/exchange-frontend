@@ -97,7 +97,7 @@ const AboutPage = ({ defaultTenants }) => {
                 href='https://amref.org/'>Amref Health Innovations</a></li>
               <li>Wilfred Ngagi, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://villgroafrica.org/'>Villgro Africa</a></li>
-              <li>Chris Seegbrets, <a className='text-health-blue' target='_blank' rel='noreferrer'
+              <li>Chris Seebregts, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://www.jembi.org/'>Jembi Health Systems</a></li>
               <li>Mara Hansen Staples, <a className='text-health-blue' target='_blank' rel='noreferrer'
                 href='https://www.salientadvisory.com/'>Salient Advisory</a></li>
