@@ -27,6 +27,24 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
         slug
         website
         description
+        candidateStatus {
+          id
+          name
+          slug
+          description
+          nextCandidateStatuses {
+            id
+            name
+            slug
+            description
+          }
+          previousCandidateStatuses {
+            id
+            name
+            slug
+            description
+          }
+        }
       }
       errors
     }
@@ -52,6 +70,66 @@ export const CANDIDATE_PRODUCT_ACTION = gql`
         rejectedBy
         approvedDate
         approvedBy
+      }
+      errors
+    }
+  }
+`
+
+export const CANDIDATE_PRODUCT_UPDATE_STATUS = gql`
+  mutation UpdateCandidateProductStatus (
+    $slug: String!
+    $description: String
+    $candidateStatusSlug: String!
+  ) {
+    updateCandidateProductStatus (
+      slug: $slug
+      description: $description
+      candidateStatusSlug: $candidateStatusSlug
+    ) {
+      candidateProduct {
+        id
+        name
+        slug
+        candidateStatus {
+          id
+          name
+          slug
+          description
+          nextCandidateStatuses {
+            id
+            name
+            slug
+            description
+          }
+          previousCandidateStatuses {
+            id
+            name
+            slug
+            description
+          }
+        }
+      }
+      errors
+    }
+  }
+`
+
+export const UPDATE_CANDIDATE_PRODUCT_CATEGORY_INDICATORS = gql`
+  mutation UpdateCandidateProductCategoryIndicators(
+    $slug: String!
+    $categoryIndicatorValues: [JSON!]!
+  ) {
+    updateCandidateProductCategoryIndicators(
+      slug: $slug
+      categoryIndicatorValues: $categoryIndicatorValues
+    ) {
+      candidateProduct {
+        id
+        name
+        slug
+        overallMaturityScore
+        maturityScoreDetails
       }
       errors
     }

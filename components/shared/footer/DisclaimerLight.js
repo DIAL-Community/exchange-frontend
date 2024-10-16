@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react'
-import { FaLinkedin } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import ReportIssue from '../ReportIssue'
 
@@ -17,17 +16,6 @@ const Disclaimer = () => {
 
   return (
     <div className='flex flex-col gap-y-2 py-3'>
-      <div className='flex flex-row'>
-        <div className='flex gap-2 ml-auto'>
-          <a
-            href='//www.linkedin.com/company/digital-impact-alliance/'
-            target='_blank'
-            rel='noreferrer'
-          >
-            <FaLinkedin size='2rem' className='text-dial-cotton'/>
-          </a>
-        </div>
-      </div>
       <a
         href='/privacy-policy'
         target='_blank'

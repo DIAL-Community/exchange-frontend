@@ -90,7 +90,7 @@ const HealthMobileMenu = ({ menuExpanded, setMenuExpanded }) => {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [setMenuExpanded])
 
   return (
     <>

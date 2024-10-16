@@ -170,8 +170,7 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
                       && <ValidationError value={errors.tenantDomains?.[index]?.domain?.message} />
                     }
                   </div>
-                )
-                )}
+                ))}
                 <div className='flex flex-row gap-x-2'>
                   <button
                     type='button'

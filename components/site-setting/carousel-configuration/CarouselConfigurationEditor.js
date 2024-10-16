@@ -94,22 +94,23 @@ const CarouselConfigurationEditor = (props) => {
       destinationUrl: carouselConfiguration?.destinationUrl,
       calloutTitle: carouselConfiguration?.calloutTitle,
       textStyle: textStyleSelections.find(option => option.value === carouselConfiguration?.style),
-      bgStyle: bgStyleSelections.find(option => option.value === carouselConfiguration?.imageUrl)
+      bgStyle: bgStyleSelections.find(option => option.value === carouselConfiguration?.imageUrl),
+      imageUrl: carouselConfiguration?.imageUrl.indexOf('/') >= 0 ? carouselConfiguration?.imageUrl : null
     }
   })
 
   useEffect(() => {
     const { unsubscribe } = watch((value) => {
-      const { name, title, description, external, destinationUrl, calloutTitle, textStyle, bgStyle } = value
+      const { name, title, external, description, calloutTitle, destinationUrl, textStyle, bgStyle, imageUrl } = value
       const currentCarouselConfiguration = {
         ...carouselConfiguration,
         name: name ?? carouselConfiguration?.name,
         title: title ?? carouselConfiguration?.title,
         external: external ?? carouselConfiguration?.external,
         description: description ?? carouselConfiguration?.description,
-        destinationUrl: destinationUrl ?? carouselConfiguration?.destinationUrl,
         calloutTitle: calloutTitle ?? carouselConfiguration?.calloutTitle,
-        imageUrl: bgStyle?.value ?? carouselConfiguration?.imageUrl,
+        destinationUrl: destinationUrl ?? carouselConfiguration?.destinationUrl,
+        imageUrl: imageUrl ? `//${imageUrl}` : bgStyle?.value ?? carouselConfiguration?.imageUrl,
         style: textStyle?.value ?? carouselConfiguration?.style,
         saved: false
       }
@@ -130,6 +131,7 @@ const CarouselConfigurationEditor = (props) => {
 
   // Watch the current external value to toggle between url input and standard text input.
   const currentExternalValue = watch('external')
+  const currentImageUrlValue = watch('imageUrl')
 
   const doUpsert = async (data) => {
     if (user) {
@@ -137,7 +139,7 @@ const CarouselConfigurationEditor = (props) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, title, description, external, destinationUrl, calloutTitle, textStyle, bgStyle } = data
+      const { name, title, external, description, destinationUrl, calloutTitle, textStyle, bgStyle, imageUrl } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         siteSettingSlug,
@@ -145,11 +147,11 @@ const CarouselConfigurationEditor = (props) => {
         type: carouselConfiguration?.type,
         name: name ?? carouselConfiguration?.name,
         title: title ?? carouselConfiguration?.title,
-        imageUrl: bgStyle ? bgStyle?.value : carouselConfiguration?.imageUrl,
         external: external ?? carouselConfiguration?.external,
         description: description ?? carouselConfiguration?.description,
-        destinationUrl: destinationUrl ?? carouselConfiguration?.destinationUrl,
         calloutTitle: calloutTitle ?? carouselConfiguration?.calloutTitle,
+        destinationUrl: destinationUrl ?? carouselConfiguration?.destinationUrl,
+        imageUrl: imageUrl ? `//${imageUrl}` : bgStyle?.value ?? carouselConfiguration?.imageUrl,
         style: textStyle ? textStyle?.value : carouselConfiguration?.style
       }
 
@@ -256,8 +258,7 @@ const CarouselConfigurationEditor = (props) => {
               </div>
             </div>
           }
-          {
-            carouselConfiguration?.type !== 'default.exchange.carousel' &&
+          {carouselConfiguration?.type !== 'default.exchange.carousel' &&
             carouselConfiguration?.type !== 'default.marketplace.carousel' &&
             <div className='flex flex-col lg:flex-row gap-2'>
               <div className='flex flex-col gap-y-2 basis-1/2 flex-shrink-0'>
@@ -284,7 +285,7 @@ const CarouselConfigurationEditor = (props) => {
                 {errors.textStyle && <ValidationError value={errors.textStyle?.message} />}
               </div>
               <div className='flex flex-col gap-y-2 basis-1/2 flex-shrink-0'>
-                <label htmlFor='bgStyle' className='required-field'>
+                <label htmlFor='bgStyle' className={`${!currentImageUrlValue ? 'required-field' : null}`}>
                   {format('ui.siteSetting.carousel.bgStyle')}
                 </label>
                 <Controller
@@ -302,12 +303,35 @@ const CarouselConfigurationEditor = (props) => {
                       isInvalid={errors.bgStyle}
                     />
                   )}
-                  rules={{ required: format('validation.required') }}
+                  rules={{
+                    required: {
+                      value: !currentImageUrlValue,
+                      message: format('validation.required')
+                    }
+                  }}
                 />
                 {errors.bgStyle && <ValidationError value={errors.bgStyle?.message} />}
               </div>
             </div>
           }
+          <div className='flex flex-col gap-y-2'>
+            <label htmlFor='image-url'>
+              {format('ui.siteSetting.carousel.imageUrl')}
+            </label>
+            <Controller
+              id='image-url'
+              name='imageUrl'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <UrlInput
+                  id='image-url'
+                  value={value}
+                  onChange={onChange}
+                  placeholder={format('ui.siteSetting.carousel.imageUrl')}
+                />
+              )}
+            />
+          </div>
           <div className='flex flex-wrap text-sm gap-3'>
             <button type='submit' className='submit-button' disabled={mutating}>
               {format('ui.siteSetting.carousel.save')}
