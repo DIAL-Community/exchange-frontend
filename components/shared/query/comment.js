@@ -33,6 +33,7 @@ export const COMMENTS_QUERY = gql`
         avatarUrl
         text
       }
+      timestamp
     }
   }
 `

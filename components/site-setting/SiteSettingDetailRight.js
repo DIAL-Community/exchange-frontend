@@ -29,7 +29,8 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
       { value: 'ui.common.detail.description', ref: descRef },
       { value: 'ui.siteSetting.carousel.header', ref: carouselConfigurationsRef },
       { value: 'ui.siteSetting.heroCard.header', ref: heroCardConfigurationsRef },
-      { value: 'ui.siteSetting.menu.header', ref: menuConfigurationsRef }
+      { value: 'ui.siteSetting.menu.header', ref: menuConfigurationsRef },
+      { value: 'ui.comment.label', ref: commentsSectionRef }
     ],
     []
   )
@@ -40,9 +41,16 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteSiteSetting siteSetting={siteSetting} />}
+          <div className='flex flex-col lg:flex-row gap-3'>
+            {siteSetting.defaultSetting &&
+              <div className='px-3 py-1 bg-purple-300 rounded'>
+                <span className='text-sm'>{format('ui.siteSetting.currentDefault')}</span>
+              </div>
+            }
+            <div className='flex gap-x-3 ml-auto'>
+              <EditButton type='link' href={editPath} />
+              {isAdminUser && <DeleteSiteSetting siteSetting={siteSetting} />}
+            </div>
           </div>
         )}
         <div className='text-base font-semibold py-3' ref={descRef}>
@@ -53,6 +61,23 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
             initialContent={siteSetting?.description}
             editorId='siteSetting-description'
           />
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex gap-1 text-sm'>
+          <span className='font-semibold whitespace-nowrap'>{format('ui.siteSetting.faviconUrl')}:</span>
+          <a href={`//${siteSetting.faviconUrl}`} target='_blank' rel='noreferrer'>
+            <span className='text-dial-iris-blue break-all line-clamp-1'>
+              {`//${siteSetting.faviconUrl}`}
+            </span>
+          </a>
+        </div>
+        <div className='flex gap-1 text-sm'>
+          <span className='font-semibold whitespace-nowrap'>{format('ui.siteSetting.exchangeLogoUrl')}:</span>
+          <a href={`//${siteSetting.exchangeLogoUrl}`} target='_blank' rel='noreferrer'>
+            <span className='text-dial-iris-blue break-all line-clamp-1'>
+              {`//${siteSetting.exchangeLogoUrl}`}
+            </span>
+          </a>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>

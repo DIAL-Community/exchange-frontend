@@ -79,7 +79,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
   const [defaultTypeOption] = typeOptions
 
   const originOptions = useMemo(() => generateOriginOptions(), [])
-  const [defaultOriginOption] = originOptions.filter(originOption => originOption.value === 'manually_entered')
+  const [defaultOriginOption] = originOptions.filter(originOption => originOption.value === 'manually-entered')
 
   const {
     handleSubmit,

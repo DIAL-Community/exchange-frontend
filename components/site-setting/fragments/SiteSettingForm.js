@@ -10,6 +10,7 @@ import * as FetchStatus from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
+import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_SITE_SETTING } from '../../shared/mutation/siteSetting'
 import { PAGINATED_SITE_SETTINGS_QUERY, SITE_SETTING_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/siteSetting'
@@ -72,8 +73,7 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
       defaultSetting: siteSetting?.defaultSetting,
       enableMarketplace: siteSetting?.enableMarketplace,
       faviconUrl: siteSetting?.faviconUrl,
-      exchangeLogoUrl: siteSetting?.exchangeLogoUrl,
-      openGraphLogoUrl: siteSetting?.openGraphLogoUrl
+      exchangeLogoUrl: siteSetting?.exchangeLogoUrl
     }
   })
 
@@ -86,8 +86,7 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
         defaultSetting,
         enableMarketplace,
         faviconUrl,
-        exchangeLogoUrl,
-        openGraphLogoUrl
+        exchangeLogoUrl
       } = data
       const variables = {
         name,
@@ -97,7 +96,7 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
         enableMarketplace,
         faviconUrl: faviconUrl ?? '/favicon.ico',
         exchangeLogoUrl: exchangeLogoUrl ?? '/ui/v1/hero-dx-bg.svg',
-        openGraphLogoUrl: openGraphLogoUrl ?? '/ui/v1/hero-dx-bg.svg'
+        openGraphLogoUrl: exchangeLogoUrl ?? '/ui/v1/hero-dx-bg.svg'
       }
 
       updateSiteSetting({
@@ -141,6 +140,44 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
                 />
                 {errors.name && <ValidationError value={errors.name?.message} />}
               </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' htmlFor='favicon-url'>
+                  {format('ui.siteSetting.faviconUrl')}
+                </label>
+                <Controller
+                  name='faviconUrl'
+                  control={control}
+                  rules={{ required: format('validation.required') }}
+                  render={({ field: { value, onChange } }) => (
+                    <UrlInput
+                      id='favicon-url'
+                      value={value}
+                      onChange={onChange}
+                      placeholder={format('ui.siteSetting.faviconUrl.placeholder')}
+                    />
+                  )}
+                />
+                {errors.faviconUrl && <ValidationError value={errors.faviconUrl?.message} />}
+              </div>
+              <div className='flex flex-col gap-y-2'>
+                <label className='required-field' htmlFor='exchange-logo-url'>
+                  {format('ui.siteSetting.exchangeLogoUrl')}
+                </label>
+                <Controller
+                  name='exchangeLogoUrl'
+                  control={control}
+                  rules={{ required: format('validation.required') }}
+                  render={({ field: { value, onChange } }) => (
+                    <UrlInput
+                      id='exchange-logo-url'
+                      value={value}
+                      onChange={onChange}
+                      placeholder={format('ui.siteSetting.exchangeLogoUrl.placeholder')}
+                    />
+                  )}
+                />
+                {errors.exchangeLogoUrl && <ValidationError value={errors.exchangeLogoUrl?.message} />}
+              </div>
               <label className='flex gap-x-2 items-center' htmlFor='enableMarketplace'>
                 <Checkbox {...register('enableMarketplace')} id='enableMarketplace' />
                 {format('ui.siteSetting.enableMarketplace')}
@@ -150,10 +187,11 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
                 {format('ui.siteSetting.defaultSetting')}
               </label>
               <div className='flex flex-col gap-y-2'>
-                <label className='required-field'>
+                <label className='required-field' htmlFor='description'>
                   {format('ui.siteSetting.description')}
                 </label>
                 <Controller
+                  id='description'
                   name='description'
                   control={control}
                   render={({ field: { value, onChange } }) => (

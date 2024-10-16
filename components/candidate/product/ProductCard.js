@@ -11,21 +11,26 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { candidateStatus } = product
+
   const bgColor = `${product.rejected}`.toLowerCase() === 'true'
     ? 'bg-red-700'
     : `${product.rejected}`.toLowerCase() === 'false'
       ? 'bg-green-700'
       : 'bg-dial-iris-blue'
-  const candidateStatus = `${product.rejected}`.toLowerCase() === 'true'
-    ? format('candidate.rejected')
-    : `${product.rejected}`.toLowerCase() === 'false'
-      ? format('candidate.approved')
-      : format('candidate.inReview')
 
   const { user } = useUser()
   const submitterEmail = user
     ? product.submitterEmail ?? format('general.na')
     : format('general.hidden')
+
+  const currentCandidateStatus = `${product.rejected}`.toLowerCase() === 'true'
+    ? format('candidate.rejected')
+    : `${product.rejected}`.toLowerCase() === 'false'
+      ? format('candidate.approved')
+      : candidateStatus
+        ? candidateStatus.name
+        : format('ui.candidate.received')
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg min-h-[13.5rem] ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
@@ -38,7 +43,9 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
           />
         </div>
         <div className={`absolute top-2 right-2 ${bgColor} rounded`}>
-          <div className='text-white text-xs px-2 py-1'>{candidateStatus}</div>
+          <div className='text-white text-xs px-2 py-1'>
+            {currentCandidateStatus}
+          </div>
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-meadow'>

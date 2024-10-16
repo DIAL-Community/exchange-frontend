@@ -1,13 +1,13 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
+import { ToastContext } from '../../lib/ToastContext'
+import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
 import { DELETE_CATEGORY_INDICATOR } from '../shared/mutation/categoryIndicator'
 import { CATEGORY_INDICATOR_SEARCH_QUERY } from '../shared/query/categoryIndicator'
-import DeleteButton from '../shared/form/DeleteButton'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 
 const DeleteCategoryIndicator = ({ categoryIndicator }) => {
   const { formatMessage } = useIntl()
@@ -34,7 +34,7 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
           format('toast.delete.success', { entity: format('categoryIndicator.label') }),
-          () => router.push(`/${locale}/categoryIndicators`)
+          () => router.push(`/${locale}/category-indicators`)
         )
       } else {
         setDisplayConfirmDialog(false)
