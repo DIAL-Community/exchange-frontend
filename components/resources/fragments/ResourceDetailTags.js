@@ -60,8 +60,6 @@ const ResourceDetailTags = ({ resource, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateResourceTags({
         variables: {
           slug: resource.slug,
@@ -69,8 +67,7 @@ const ResourceDetailTags = ({ resource, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -47,14 +47,11 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
 
   const onConfirmDelete = () => {
     if (user && (user.isAdminUser || user.isEditorUser)) {
-      const { userEmail, userToken } = user
-
       deletePlayMove({
         variables: { moveSlug, playSlug, owner: 'public' },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

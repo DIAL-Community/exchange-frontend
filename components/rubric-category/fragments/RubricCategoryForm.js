@@ -64,7 +64,6 @@ const RubricCategoryForm = React.memo(({ rubricCategory }) => {
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const { name, description } = data
       const weight = parseFloat(data.weight)
 
@@ -79,8 +78,7 @@ const RubricCategoryForm = React.memo(({ rubricCategory }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

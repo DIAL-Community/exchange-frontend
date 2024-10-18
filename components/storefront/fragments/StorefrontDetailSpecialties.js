@@ -57,8 +57,6 @@ const StorefrontDetailSpecialties = ({ organization, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateSpecialties({
         variables: {
           slug: organization.slug,
@@ -66,8 +64,7 @@ const StorefrontDetailSpecialties = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

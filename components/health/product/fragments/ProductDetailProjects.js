@@ -97,8 +97,6 @@ const ProductDetailProjects = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProductProjects({
         variables: {
           projectSlugs: projects.map(({ slug }) => slug),
@@ -106,8 +104,7 @@ const ProductDetailProjects = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

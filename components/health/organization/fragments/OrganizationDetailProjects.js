@@ -141,8 +141,6 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOrganizationProjects({
         variables: {
           projectSlugs: projects.map(({ slug }) => slug),
@@ -150,8 +148,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -165,8 +162,6 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   const addStarHandler = (project) => {
     if (user) {
-      const { userEmail, userToken } = user
-
       createStarredObject({
         variables: {
           starredObjectType: ObjectType.PROJECT,
@@ -176,8 +171,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -186,8 +180,6 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   const removeStarHandler = (project) => {
     if (user) {
-      const { userEmail, userToken } = user
-
       removeStarredObject({
         variables: {
           starredObjectType: ObjectType.PROJECT,
@@ -197,8 +189,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

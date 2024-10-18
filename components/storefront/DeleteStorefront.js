@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
-import { DELETE_ORGANIZATION } from '../shared/mutation/organization'
-import { PAGINATED_ORGANIZATIONS_QUERY, ORGANIZATION_DETAIL_QUERY } from '../shared/query/organization'
-import DeleteButton from '../shared/form/DeleteButton'
+import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
+import { DELETE_ORGANIZATION } from '../shared/mutation/organization'
+import { ORGANIZATION_DETAIL_QUERY, PAGINATED_ORGANIZATIONS_QUERY } from '../shared/query/organization'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 
 const DeleteStorefront = ({ organization }) => {
   const { formatMessage } = useIntl()
@@ -55,15 +55,13 @@ const DeleteStorefront = ({ organization }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteOrganization({
         variables: {
           id: organization.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

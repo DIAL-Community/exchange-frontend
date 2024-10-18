@@ -75,8 +75,6 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateDatasetCountries({
         variables: {
           countrySlugs: countries.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -106,7 +106,6 @@ const ProductOwner = ({ product }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
       setLoading(true)
 
       applyAsOwner({
@@ -116,8 +115,7 @@ const ProductOwner = ({ product }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

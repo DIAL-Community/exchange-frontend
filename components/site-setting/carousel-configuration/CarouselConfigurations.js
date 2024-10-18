@@ -107,7 +107,6 @@ const CarouselConfigurations = ({ slug }) => {
   const executeBulkUpdate = () => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug: slug,
         carouselConfigurations
@@ -117,8 +116,7 @@ const CarouselConfigurations = ({ slug }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

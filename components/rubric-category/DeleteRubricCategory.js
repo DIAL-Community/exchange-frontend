@@ -51,15 +51,13 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteRubricCategory({
         variables: {
           id: rubricCategory.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

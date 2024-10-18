@@ -34,7 +34,6 @@ const RoleActionButton = ({ role, actionType }) => {
   const onClickHandler = async (actionType) => {
     if (user) {
       setLoading(true)
-      const { userEmail, userToken } = user
       const variables = {
         candidateRoleId: role.id,
         action: actionType === CandidateActionType.REJECT
@@ -46,8 +45,7 @@ const RoleActionButton = ({ role, actionType }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

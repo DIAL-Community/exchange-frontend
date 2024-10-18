@@ -112,8 +112,6 @@ const UserForm = React.memo(({ user }) => {
   const doUpsert = async (data) => {
     if (currentUser) {
       setMutating(true)
-      const { userEmail, userToken } = currentUser
-
       const { email, username, confirmed } = data
       updateUser({
         variables: {
@@ -126,8 +124,7 @@ const UserForm = React.memo(({ user }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

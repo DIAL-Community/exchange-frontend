@@ -95,8 +95,6 @@ const ResourceDetailBuildingBlocks = ({ resource, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateResourceBuildingBlocks({
         variables: {
           slug: resource.slug,
@@ -105,8 +103,7 @@ const ResourceDetailBuildingBlocks = ({ resource, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

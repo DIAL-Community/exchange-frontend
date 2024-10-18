@@ -68,7 +68,6 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
   const executeBulkUpdate = async (data) => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const { title, description, wysiwygDescription } = data
       const variables = {
         siteSettingSlug,
@@ -82,8 +81,7 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -285,7 +283,6 @@ const HeroCardSection = ({ slug }) => {
   const executeBulkUpdate = () => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug: slug,
         heroCardConfigurations
@@ -295,8 +292,7 @@ const HeroCardSection = ({ slug }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

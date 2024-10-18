@@ -73,8 +73,6 @@ const StorefrontDetailSectors = ({ organization, canEdit }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateStorefrontSectors({
         variables: {
           sectorSlugs: sectors.map(({ slug }) => slug),
@@ -82,8 +80,7 @@ const StorefrontDetailSectors = ({ organization, canEdit }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -77,8 +77,6 @@ const ProductDetailResources = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProductResources({
         variables: {
           slug: product.slug,
@@ -86,8 +84,7 @@ const ProductDetailResources = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

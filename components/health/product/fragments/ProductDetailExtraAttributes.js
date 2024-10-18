@@ -61,9 +61,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = (data) => {
     if (user) {
-      const { userEmail, userToken } = user
       const { extraAttributes } = data
-
       updateProductExtraAttributes({
         variables: {
           slug: product?.slug,
@@ -71,8 +69,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

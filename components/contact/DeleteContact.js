@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
-import { DELETE_CONTACT } from '../shared/mutation/contact'
-import { PAGINATED_CONTACTS_QUERY, CONTACT_DETAIL_QUERY } from '../shared/query/contact'
-import DeleteButton from '../shared/form/DeleteButton'
+import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
+import { DELETE_CONTACT } from '../shared/mutation/contact'
+import { CONTACT_DETAIL_QUERY, PAGINATED_CONTACTS_QUERY } from '../shared/query/contact'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 
 const DeleteContact = ({ contact }) => {
   const { formatMessage } = useIntl()
@@ -55,15 +55,13 @@ const DeleteContact = ({ contact }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteContact({
         variables: {
           id: contact.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -82,8 +82,6 @@ const StorefrontDetailContacts = ({ organization, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOrganizationContacts({
         variables: {
           slug: organization.slug,
@@ -91,8 +89,7 @@ const StorefrontDetailContacts = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

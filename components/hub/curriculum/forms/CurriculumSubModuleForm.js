@@ -312,10 +312,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
-
-      const { userEmail, userToken } = user
       const { name, description } = data
-
       createMove({
         variables: {
           name,
@@ -328,8 +325,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
         },
         context: {
           headers: {
-            'Accept-Language': router.locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': router.locale
           }
         }
       })
@@ -347,7 +343,6 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const { name, description } = watch()
       if (!name || !description) {
         // Minimum required fields are name and description.
@@ -371,8 +366,7 @@ const CurriculumSubModuleForm = ({ curriculum, curriculumModule, curriculumSubMo
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

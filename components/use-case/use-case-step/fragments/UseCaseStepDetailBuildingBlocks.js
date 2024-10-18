@@ -75,8 +75,6 @@ const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, header
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateUseCaseStepBuildingBlocks({
         variables: {
           buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, header
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

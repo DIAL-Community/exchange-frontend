@@ -74,7 +74,6 @@ const OrganizationDetailOffices = ({ organization, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
       updateOrganizationOffices({
         variables: {
           slug: organization.slug,
@@ -82,8 +81,7 @@ const OrganizationDetailOffices = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

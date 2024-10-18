@@ -51,15 +51,13 @@ const DeleteTenantSetting = ({ tenantSetting }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteTenantSetting({
         variables: {
           tenantName: tenantSetting.tenantName
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

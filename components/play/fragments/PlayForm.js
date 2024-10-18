@@ -93,7 +93,6 @@ export const PlayForm = ({ playbook, play }) => {
     if (user) {
       setMutating(true)
 
-      const { userEmail, userToken } = user
       const { name, description, published } = data
       const variables = {
         name,
@@ -111,8 +110,7 @@ export const PlayForm = ({ playbook, play }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': router.locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': router.locale
           }
         }
       })
@@ -129,7 +127,6 @@ export const PlayForm = ({ playbook, play }) => {
 
       setMutating(true)
 
-      const { userEmail, userToken } = user
       const { name, description } = watch()
       if (!name || !description) {
         // Minimum required fields are name and description.
@@ -153,8 +150,7 @@ export const PlayForm = ({ playbook, play }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

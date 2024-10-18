@@ -1,23 +1,22 @@
-import React, { useState, useCallback, useContext, useRef } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
-import { Controller, useForm } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { Controller, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
-import Input from '../../../shared/form/Input'
-import ValidationError from '../../../shared/form/ValidationError'
-import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
-import UrlInput from '../../../shared/form/UrlInput'
+import { ToastContext } from '../../../../lib/ToastContext'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import { HtmlEditor } from '../../../shared/form/HtmlEditor'
+import Input from '../../../shared/form/Input'
+import UrlInput from '../../../shared/form/UrlInput'
+import ValidationError from '../../../shared/form/ValidationError'
+import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
 import {
-  CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_CANDIDATE_PRODUCTS_QUERY
+  CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CANDIDATE_PRODUCTS_QUERY
 } from '../../../shared/query/candidateProduct'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -93,7 +92,6 @@ const ProductForm = React.memo(({ product }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const {
         name,
         website,
@@ -116,8 +114,7 @@ const ProductForm = React.memo(({ product }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

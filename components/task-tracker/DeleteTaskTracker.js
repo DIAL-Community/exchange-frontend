@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
+import { ToastContext } from '../../lib/ToastContext'
+import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
 import { DELETE_TASK_TRACKER } from '../shared/mutation/taskTracker'
 import { PAGINATED_TASK_TRACKERS_QUERY, TASK_TRACKER_DETAIL_QUERY } from '../shared/query/taskTracker'
-import DeleteButton from '../shared/form/DeleteButton'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 
 const DeleteTaskTracker = ({ taskTracker }) => {
   const { formatMessage } = useIntl()
@@ -55,15 +55,13 @@ const DeleteTaskTracker = ({ taskTracker }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteTaskTracker({
         variables: {
           id: taskTracker.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

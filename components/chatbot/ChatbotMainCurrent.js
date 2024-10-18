@@ -125,7 +125,6 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
       setMutating(true)
       setShowStarterQuestions(false)
       // Send graph query to the backend. Set the base variables needed to perform update.
-      const { userEmail, userToken } = user
       const variables = {
         sessionIdentifier: currentConversation?.sessionIdentifier ?? existingSessionIdentifier,
         chatbotQuestion: currentQuestion
@@ -135,8 +134,7 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

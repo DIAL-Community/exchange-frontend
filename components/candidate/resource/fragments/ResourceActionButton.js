@@ -34,7 +34,6 @@ const ResourceActionButton = ({ candidateResource, actionType }) => {
   const onClickHandler = async (actionType) => {
     if (user) {
       setLoading(true)
-      const { userEmail, userToken } = user
       const variables = {
         slug: candidateResource.slug,
         action: actionType === CandidateActionType.REJECT
@@ -46,8 +45,7 @@ const ResourceActionButton = ({ candidateResource, actionType }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

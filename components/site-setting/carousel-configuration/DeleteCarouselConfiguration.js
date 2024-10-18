@@ -70,7 +70,6 @@ const DeleteCarouselConfiguration = (props) => {
         currentCarouselConfigurations[indexOfCarouselConfiguration] = currentParentCarousel
       }
 
-      const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug,
         carouselConfigurations: currentCarouselConfigurations
@@ -80,8 +79,7 @@ const DeleteCarouselConfiguration = (props) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

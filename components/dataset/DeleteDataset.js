@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
-import { DELETE_DATASET } from '../shared/mutation/dataset'
-import { PAGINATED_DATASETS_QUERY, DATASET_DETAIL_QUERY } from '../shared/query/dataset'
-import DeleteButton from '../shared/form/DeleteButton'
+import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
+import { DELETE_DATASET } from '../shared/mutation/dataset'
+import { DATASET_DETAIL_QUERY, PAGINATED_DATASETS_QUERY } from '../shared/query/dataset'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 
 const DeleteDataset = ({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -55,15 +55,13 @@ const DeleteDataset = ({ dataset }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteDataset({
         variables: {
           id: dataset.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

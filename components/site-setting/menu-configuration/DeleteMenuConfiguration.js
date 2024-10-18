@@ -73,7 +73,6 @@ const DeleteMenuConfiguration = (props) => {
         currentMenuConfigurations[indexOfMenuConfiguration] = currentParentMenu
       }
 
-      const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug,
         menuConfigurations: currentMenuConfigurations
@@ -83,8 +82,7 @@ const DeleteMenuConfiguration = (props) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

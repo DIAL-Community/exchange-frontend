@@ -95,8 +95,6 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit, headerRef }) =>
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOpportunityBuildingBlocks({
         variables: {
           slug: opportunity.slug,
@@ -105,8 +103,7 @@ const OpportunityDetailBuildingBlocks = ({ opportunity, canEdit, headerRef }) =>
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

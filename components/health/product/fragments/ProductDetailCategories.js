@@ -105,8 +105,6 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProductCategories({
         variables: {
           categorySlugs: categories.map(({ slug }) => slug),
@@ -115,8 +113,7 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

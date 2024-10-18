@@ -75,8 +75,6 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateDatasetOrganizations({
         variables: {
           organizationSlugs: organizations.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

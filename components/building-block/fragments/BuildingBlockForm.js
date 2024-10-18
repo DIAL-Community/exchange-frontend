@@ -88,7 +88,6 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const { name, maturity, category, imageFile, description, specUrl, govStackEntity } = data
       const variables = {
         name,
@@ -108,8 +107,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': router.locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': router.locale
           }
         }
       })

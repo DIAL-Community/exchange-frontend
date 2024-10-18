@@ -75,8 +75,6 @@ const OpportunityDetailOrganizations = ({ opportunity, canEdit, headerRef }) => 
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOpportunityOrganizations({
         variables: {
           organizationSlugs: organizations.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const OpportunityDetailOrganizations = ({ opportunity, canEdit, headerRef }) => 
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

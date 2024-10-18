@@ -95,7 +95,6 @@ const MessageForm = ({ message }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const { name, messageType: { value: messageTypeValue }, messageTemplate, messageDatetime, visible } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
 
@@ -111,8 +110,7 @@ const MessageForm = ({ message }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

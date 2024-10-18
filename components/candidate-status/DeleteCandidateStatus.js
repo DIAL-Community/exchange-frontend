@@ -55,15 +55,13 @@ const DeleteCandidateStatus = ({ candidateStatus }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteCandidateStatus({
         variables: {
           id: candidateStatus.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

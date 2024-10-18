@@ -61,15 +61,13 @@ const DeleteResourceTopic = ({ resourceTopic }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteResourceTopic({
         variables: {
           id: resourceTopic.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

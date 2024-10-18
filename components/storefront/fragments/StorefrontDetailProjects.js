@@ -137,8 +137,6 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOrganizationProjects({
         variables: {
           projectSlugs: projects.map(({ slug }) => slug),
@@ -146,8 +144,7 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -161,8 +158,6 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   const addStarHandler = (project) => {
     if (user) {
-      const { userEmail, userToken } = user
-
       createStarredObject({
         variables: {
           starredObjectType: ObjectType.PROJECT,
@@ -172,8 +167,7 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -182,8 +176,6 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   const removeStarHandler = (project) => {
     if (user) {
-      const { userEmail, userToken } = user
-
       removeStarredObject({
         variables: {
           starredObjectType: ObjectType.PROJECT,
@@ -193,8 +185,7 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

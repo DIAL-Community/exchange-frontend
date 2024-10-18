@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react'
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
-import { CandidateActionType } from '../../../utils/constants'
 import { CANDIDATE_ROLE_ACTION } from '../../../shared/mutation/candidateRole'
+import { CandidateActionType } from '../../../utils/constants'
 
 const RoleActionButton = ({ role, actionType }) => {
   const { formatMessage } = useIntl()
@@ -34,7 +34,6 @@ const RoleActionButton = ({ role, actionType }) => {
   const onClickHandler = async (actionType) => {
     if (user) {
       setLoading(true)
-      const { userEmail, userToken } = user
       const variables = {
         candidateRoleId: role.id,
         action: actionType === CandidateActionType.REJECT
@@ -46,8 +45,7 @@ const RoleActionButton = ({ role, actionType }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

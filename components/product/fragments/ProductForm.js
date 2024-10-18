@@ -104,7 +104,6 @@ const ProductForm = React.memo(({ product }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const {
         name,
         imageFile,
@@ -142,8 +141,7 @@ const ProductForm = React.memo(({ product }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

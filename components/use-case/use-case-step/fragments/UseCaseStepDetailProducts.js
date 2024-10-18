@@ -75,8 +75,6 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateUseCaseStepProducts({
         variables: {
           productSlugs: products.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

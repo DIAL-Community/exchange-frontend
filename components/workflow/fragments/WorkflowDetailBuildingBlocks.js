@@ -95,8 +95,6 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateWorkflowBuildingBlocks({
         variables: {
           slug: workflow.slug,
@@ -105,8 +103,7 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

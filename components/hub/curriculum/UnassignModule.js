@@ -47,8 +47,6 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
 
   const onConfirmDelete = () => {
     if (user?.isAdliAdminUser || user?.isAdminUser || user?.isEditorUser) {
-      const { userEmail, userToken } = user
-
       deleteCurriculumModule({
         variables: {
           playSlug: moduleSlug,
@@ -57,8 +55,7 @@ const UnassignModule = ({ curriculumSlug, moduleSlug }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

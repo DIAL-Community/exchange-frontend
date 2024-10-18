@@ -78,7 +78,6 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const { tenantName, tenantDomains, allowUnsecureRead } = data
       const variables = {
         tenantName,
@@ -90,8 +89,7 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

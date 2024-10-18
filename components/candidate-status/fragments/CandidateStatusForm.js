@@ -106,7 +106,6 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
 
   const doUpsert = async (data) => {
     if (user) {
-      const { userEmail, userToken } = user
       const {
         name,
         description,
@@ -129,8 +128,7 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

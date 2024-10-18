@@ -57,14 +57,12 @@ const PlaybookFilter = () => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
       setLoading(true)
 
       applyAsContentEditor({
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

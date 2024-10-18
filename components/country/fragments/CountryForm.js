@@ -72,15 +72,12 @@ const CountryForm = React.memo(({ country }) => {
 
   const doUpsert = async (data) => {
     if (user) {
-      const { userEmail, userToken } = user
       const { name, description } = data
-
       updateCountry({
         variables: { name, slug, description },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

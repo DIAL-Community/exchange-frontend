@@ -83,7 +83,6 @@ const SectorForm = React.memo(({ sector }) => {
 
   const doUpsert = async (data) => {
     if (user) {
-      const { userEmail, userToken } = user
       const { name, locale, isDisplayable } = data
       const variables = {
         name,
@@ -96,8 +95,7 @@ const SectorForm = React.memo(({ sector }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

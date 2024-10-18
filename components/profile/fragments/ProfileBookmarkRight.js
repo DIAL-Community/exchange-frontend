@@ -75,7 +75,6 @@ const ProfileBookmarkRight = () => {
 
   const unbookmarkThis = (object, objectType) => {
     if (user && object && objectType) {
-      const { userEmail, userToken } = user
       removeBookmark({
         variables: {
           data: Object.prototype.hasOwnProperty.call(object, 'id') ? object.id : object,
@@ -83,8 +82,7 @@ const ProfileBookmarkRight = () => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

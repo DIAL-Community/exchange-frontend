@@ -77,7 +77,6 @@ const WorkflowForm = React.memo(({ workflow }) => {
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const { name, imageFile, description } = data
       const variables = {
         name,
@@ -92,8 +91,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -104,8 +104,6 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateDatasetSdgs({
         variables: {
           slug: dataset.slug,
@@ -114,8 +112,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

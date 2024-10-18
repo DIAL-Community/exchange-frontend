@@ -75,8 +75,6 @@ const ResourceDetailUseCases = ({ resource, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateResourceUseCases({
         variables: {
           useCaseSlugs: useCases.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const ResourceDetailUseCases = ({ resource, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

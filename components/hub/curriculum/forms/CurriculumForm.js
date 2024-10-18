@@ -131,7 +131,6 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const { name, cover, author, overview, published } = data
       const [coverFile] = cover
       // Send graph query to the backend. Set the base variables needed to perform update.
@@ -152,8 +151,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -169,7 +167,6 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const { name, author, overview, audience, outcomes } = watch()
 
       if (!name && !overview) {
@@ -196,8 +193,7 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

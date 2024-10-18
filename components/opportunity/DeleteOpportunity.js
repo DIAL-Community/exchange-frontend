@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
-import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
-import { ToastContext } from '../../lib/ToastContext'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../lib/hooks'
-import { DELETE_OPPORTUNITY } from '../shared/mutation/opportunity'
-import { PAGINATED_OPPORTUNITIES_QUERY, OPPORTUNITY_DETAIL_QUERY } from '../shared/query/opportunity'
-import DeleteButton from '../shared/form/DeleteButton'
+import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
+import DeleteButton from '../shared/form/DeleteButton'
+import { DELETE_OPPORTUNITY } from '../shared/mutation/opportunity'
+import { OPPORTUNITY_DETAIL_QUERY, PAGINATED_OPPORTUNITIES_QUERY } from '../shared/query/opportunity'
+import { DEFAULT_PAGE_SIZE } from '../utils/constants'
 
 const DeleteOpportunity = ({ opportunity }) => {
   const { formatMessage } = useIntl()
@@ -55,15 +55,13 @@ const DeleteOpportunity = ({ opportunity }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteOpportunity({
         variables: {
           id: opportunity.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

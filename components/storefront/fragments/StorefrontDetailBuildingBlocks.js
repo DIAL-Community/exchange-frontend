@@ -77,8 +77,6 @@ const StorefrontDetailBuildingBlockCertifications = ({ organization, canEdit, he
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOrganizationCertifications({
         variables: {
           buildingBlockSlugs: certifications.map(({ slug }) => slug),
@@ -86,8 +84,7 @@ const StorefrontDetailBuildingBlockCertifications = ({ organization, canEdit, he
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

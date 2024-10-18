@@ -92,8 +92,6 @@ const UserForm = ({ user }) => {
   const doUpsert = async (data) => {
     if (loggedInUser) {
       setMutating(true)
-      const { userEmail, userToken } = loggedInUser
-
       const { email, username, confirmed } = data
       updateUser({
         variables: {
@@ -104,8 +102,7 @@ const UserForm = ({ user }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

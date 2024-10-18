@@ -1,17 +1,17 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
 import { Controller, useForm } from 'react-hook-form'
-import Input from '../../shared/form/Input'
-import Select from '../../shared/form/Select'
+import { FaSpinner } from 'react-icons/fa'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import ValidationError from '../../shared/form/ValidationError'
 import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import Input from '../../shared/form/Input'
 import { generateCategoryIndicatorTypes } from '../../shared/form/options'
+import Select from '../../shared/form/Select'
+import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CATEGORY_INDICATOR } from '../../shared/mutation/categoryIndicator'
 
 const CategoryIndicatorForm = ({ rubricCategory, categoryIndicator }) => {
@@ -77,7 +77,6 @@ const CategoryIndicatorForm = ({ rubricCategory, categoryIndicator }) => {
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const { name, description, dataSource, scriptName, indicatorType } = data
       const weight = parseFloat(data.weight)
       const rubricCategorySlug = rubricCategory?.slug
@@ -97,8 +96,7 @@ const CategoryIndicatorForm = ({ rubricCategory, categoryIndicator }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

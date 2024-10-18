@@ -75,8 +75,6 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateUseCaseStepDatasets({
         variables: {
           datasetSlugs: datasets.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

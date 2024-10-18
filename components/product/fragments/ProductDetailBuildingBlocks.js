@@ -95,8 +95,6 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProductBuildingBlocks({
         variables: {
           slug: product.slug,
@@ -105,8 +103,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

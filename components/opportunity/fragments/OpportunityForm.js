@@ -119,7 +119,6 @@ const OpportunityForm = React.memo(({ opportunity }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const {
         name,
         imageFile,
@@ -157,8 +156,7 @@ const OpportunityForm = React.memo(({ opportunity }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

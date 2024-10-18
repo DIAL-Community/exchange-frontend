@@ -79,8 +79,6 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProductCountries({
         variables: {
           countrySlugs: countries.map(({ slug }) => slug),
@@ -88,8 +86,7 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

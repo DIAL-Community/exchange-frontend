@@ -75,8 +75,6 @@ const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOrganizationResources({
         variables: {
           resourceSlugs: resources.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

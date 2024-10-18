@@ -73,8 +73,6 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateDatasetSectors({
         variables: {
           sectorSlugs: sectors.map(({ slug }) => slug),
@@ -82,8 +80,7 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

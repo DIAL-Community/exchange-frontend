@@ -73,8 +73,6 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProjectSectors({
         variables: {
           sectorSlugs: sectors.map(({ slug }) => slug),
@@ -82,8 +80,7 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -106,9 +106,7 @@ const OrganizationOwner = ({ organization }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
       setLoading(true)
-
       applyAsOwner({
         variables: {
           entity: ObjectType.ORGANIZATION,
@@ -116,8 +114,7 @@ const OrganizationOwner = ({ organization }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

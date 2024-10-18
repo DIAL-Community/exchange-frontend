@@ -84,7 +84,6 @@ const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) =
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const {
         name,
         absoluteUrl,
@@ -106,8 +105,7 @@ const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) =
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

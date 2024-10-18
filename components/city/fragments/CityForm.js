@@ -1,17 +1,17 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { useForm } from 'react-hook-form'
-import { ToastContext } from '../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_CITY } from '../../shared/mutation/city'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { CITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CITIES_QUERY } from '../../shared/query/city'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const CityForm = React.memo(({ city }) => {
   const { formatMessage } = useIntl()
@@ -75,7 +75,6 @@ const CityForm = React.memo(({ city }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const { cityName, provinceName, countryName } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -89,8 +88,7 @@ const CityForm = React.memo(({ city }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

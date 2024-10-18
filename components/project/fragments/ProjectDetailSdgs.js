@@ -84,8 +84,6 @@ const ProjectDetailSdgs = ({ project, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProjectSdgs({
         variables: {
           slug: project.slug,
@@ -93,8 +91,7 @@ const ProjectDetailSdgs = ({ project, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

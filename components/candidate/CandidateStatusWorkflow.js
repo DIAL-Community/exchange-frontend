@@ -93,7 +93,6 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const { description, nextCandidateStatus } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -106,8 +105,7 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

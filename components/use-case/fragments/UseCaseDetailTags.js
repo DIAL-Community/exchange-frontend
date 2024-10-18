@@ -60,8 +60,6 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateUseCaseTags({
         variables: {
           slug: useCase.slug,
@@ -69,8 +67,7 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

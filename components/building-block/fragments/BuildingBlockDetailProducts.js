@@ -95,8 +95,6 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateBuildingBlockProducts({
         variables: {
           mappingStatus: mappingStatus.value,
@@ -105,8 +103,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

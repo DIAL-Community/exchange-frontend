@@ -78,7 +78,6 @@ const SyncForm = React.memo(({ sync }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const {
         name,
         description,
@@ -100,8 +99,7 @@ const SyncForm = React.memo(({ sync }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

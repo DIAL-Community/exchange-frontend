@@ -60,8 +60,6 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProductTags({
         variables: {
           slug: product.slug,
@@ -69,8 +67,7 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

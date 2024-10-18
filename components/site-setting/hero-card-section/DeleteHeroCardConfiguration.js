@@ -61,7 +61,6 @@ const DeleteHeroCardConfiguration = (props) => {
         currentHeroCardConfigurations.splice(indexOfHeroCardConfiguration, 1)
       }
 
-      const { userEmail, userToken } = user
       const variables = {
         siteSettingSlug,
         heroCardConfigurations: currentHeroCardConfigurations
@@ -71,8 +70,7 @@ const DeleteHeroCardConfiguration = (props) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -114,7 +114,6 @@ const UseCaseForm = React.memo(({ useCase }) => {
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
-      const { userEmail, userToken } = user
       const { name, sector, maturity, imageFile, description, markdownUrl, govStackEntity } = data
       const variables = {
         name,
@@ -133,8 +132,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

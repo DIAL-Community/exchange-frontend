@@ -55,15 +55,13 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteBuildingBlock({
         variables: {
           id: buildingBlock.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

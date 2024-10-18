@@ -55,15 +55,13 @@ const DeleteSiteSetting = ({ siteSetting }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteSiteSetting({
         variables: {
           id: siteSetting.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

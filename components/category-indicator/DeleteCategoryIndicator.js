@@ -51,15 +51,13 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
       deleteCategoryIndicator({
         variables: {
           id: categoryIndicator.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

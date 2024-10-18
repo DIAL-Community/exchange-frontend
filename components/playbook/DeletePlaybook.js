@@ -57,16 +57,13 @@ const DeletePlaybook = ({ playbook }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       deletePlaybook({
         variables: {
           id: playbook.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

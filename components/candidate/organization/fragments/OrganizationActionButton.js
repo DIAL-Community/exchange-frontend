@@ -34,7 +34,6 @@ const OrganizationActionButton = ({ organization, actionType }) => {
   const onClickHandler = async (actionType) => {
     if (user) {
       setLoading(true)
-      const { userEmail, userToken } = user
       const variables = {
         slug: organization.slug,
         action: actionType === CandidateActionType.REJECT
@@ -46,8 +45,7 @@ const OrganizationActionButton = ({ organization, actionType }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

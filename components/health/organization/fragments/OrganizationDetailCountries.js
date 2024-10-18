@@ -79,8 +79,6 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOrganizationCountries({
         variables: {
           countrySlugs: countries.map(({ slug }) => slug),
@@ -88,8 +86,7 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

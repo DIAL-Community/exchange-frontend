@@ -79,7 +79,6 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
 
   const doUpsert = async (data) => {
     if (user) {
-      const { userEmail, userToken } = user
       const {
         name,
         description,
@@ -103,8 +102,7 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

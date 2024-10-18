@@ -74,8 +74,6 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOpportunityUseCases({
         variables: {
           slug: opportunity.slug,
@@ -83,8 +81,7 @@ const OpportunityDetailUseCases = ({ opportunity, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

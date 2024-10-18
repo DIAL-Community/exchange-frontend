@@ -18,8 +18,8 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
 
   const router = useRouter()
 
-  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
-  const canEdit = (isAdminUser || isEditorUser)
+  const { user, loadingUserSession } = useUser()
+  const canEdit = (user?.isAdminUser || user?.isEditorUser)
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -73,7 +73,6 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
 
       const stepNumber = parseInt(data.stepNumber)
 
-      const { userEmail, userToken } = user
       const { name, description } = data
 
       const variables = {
@@ -87,8 +86,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -60,8 +60,6 @@ const DatasetDetailTags = ({ dataset, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateDatasetTags({
         variables: {
           slug: dataset.slug,
@@ -69,8 +67,7 @@ const DatasetDetailTags = ({ dataset, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

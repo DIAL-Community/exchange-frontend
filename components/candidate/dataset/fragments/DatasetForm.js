@@ -1,25 +1,24 @@
-import React, { useState, useCallback, useContext, useMemo, useRef } from 'react'
+import React, { useCallback, useContext, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import {  FaSpinner } from 'react-icons/fa6'
-import { Controller, useForm } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { Controller, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
-import Input from '../../../shared/form/Input'
-import ValidationError from '../../../shared/form/ValidationError'
+import { ToastContext } from '../../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_CANDIDATE_DATASET } from '../../../shared/mutation/candidateDataset'
+import Input from '../../../shared/form/Input'
+import { generateDatasetTypeOptions } from '../../../shared/form/options'
 import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
-import { generateDatasetTypeOptions } from '../../../shared/form/options'
-import { Loading, Unauthorized } from '../../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import ValidationError from '../../../shared/form/ValidationError'
+import { CREATE_CANDIDATE_DATASET } from '../../../shared/mutation/candidateDataset'
 import {
-  CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_CANDIDATE_DATASETS_QUERY
+  CANDIDATE_DATASET_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CANDIDATE_DATASETS_QUERY
 } from '../../../shared/query/candidateDataset'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -98,7 +97,6 @@ const DatasetForm = React.memo(({ dataset }) => {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
       const {
         name,
         website,
@@ -123,8 +121,7 @@ const DatasetForm = React.memo(({ dataset }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

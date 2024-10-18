@@ -97,7 +97,6 @@ const ContactForm = ({ user, contact }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const slug = contact?.slug ?? ''
-      const { userEmail, userToken } = user
       const { name, email, title, biography, sns } = data
 
       const socialNetworkingServices = sns.map(item => {
@@ -124,8 +123,7 @@ const ContactForm = ({ user, contact }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

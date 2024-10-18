@@ -84,8 +84,6 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateUseCaseSdgTargets({
         variables: {
           sdgTargetIds: sdgTargets.map(({ id }) => parseInt(id)),
@@ -93,8 +91,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

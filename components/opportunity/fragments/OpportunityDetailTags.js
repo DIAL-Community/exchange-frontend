@@ -60,8 +60,6 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOpportunityTags({
         variables: {
           slug: opportunity.slug,
@@ -69,8 +67,7 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
