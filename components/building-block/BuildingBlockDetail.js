@@ -1,16 +1,22 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import BuildingBlockDetailRight from './BuildingBlockDetailRight'
+import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
 import BuildingBlockDetailLeft from './BuildingBlockDetailLeft'
+import BuildingBlockDetailRight from './BuildingBlockDetailRight'
 
 const BuildingBlockDetail = ({ slug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {

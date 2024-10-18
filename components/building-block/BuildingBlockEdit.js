@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import BuildingBlockForm from './fragments/BuildingBlockForm'
+import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
 import BuildingBlockEditLeft from './BuildingBlockEditLeft'
+import BuildingBlockForm from './fragments/BuildingBlockForm'
 
 const BuildingBlockEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
