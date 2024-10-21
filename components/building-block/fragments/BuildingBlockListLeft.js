@@ -1,51 +1,59 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
-import {
-  BuildingBlockFilterContext,
-  BuildingBlockFilterDispatchContext
-} from '../../context/BuildingBlockFilterContext'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
-import { parseQuery } from '../../utils/share'
 import { ObjectType } from '../../utils/constants'
+import { parseQuery } from '../../utils/share'
 import BuildingBlockFilter from './BuildingBlockFilter'
 
 const BuildingBlockListLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
-  const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
-  const { setShowMature, setSdgs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
+  const {
+    categoryTypes,
+    sdgs,
+    showGovStackOnly,
+    showMature,
+    useCases,
+    workflows
+  } = useContext(FilterContext)
 
-  const { categoryTypes, showGovStackOnly } = useContext(BuildingBlockFilterContext)
-  const { setCategoryTypes, setShowGovStackOnly } = useContext(BuildingBlockFilterDispatchContext)
+  const {
+    setCategoryTypes,
+    setSdgs,
+    setShowGovStackOnly,
+    setShowMature,
+    setUseCases,
+    setWorkflows
+  } = useContext(FilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = '/building-blocks'
 
-    const showMatureFilter = showMature ? 'showMature=true' : ''
-    const showGovStackOnlyFilter = showGovStackOnly ? 'showGovStackOnly=true' : ''
-    const sdgFilters = sdgs.map((sdg) => `sdgs=${sdg.value}--${sdg.label}`)
-    const useCaseFilters = useCases.map((useCase) => `useCases=${useCase.value}--${useCase.label}`)
-    const workflowFilters = workflows.map((workflow) => `workflows=${workflow.value}--${workflow.label}`)
     const categoryTypeFilters = categoryTypes.map(
       (categoryType) => `categoryTypes=${categoryType.value}--${categoryType.label}`
     )
 
+    const sdgFilters = sdgs.map((sdg) => `sdgs=${sdg.value}--${sdg.label}`)
+    const showGovStackOnlyFilter = showGovStackOnly ? 'showGovStackOnly=true' : ''
+    const showMatureFilter = showMature ? 'showMature=true' : ''
+    const useCaseFilters = useCases.map((useCase) => `useCases=${useCase.value}--${useCase.label}`)
+    const workflowFilters = workflows.map((workflow) => `workflows=${workflow.value}--${workflow.label}`)
+
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter,
-      showMatureFilter,
-      showGovStackOnlyFilter,
+      ...categoryTypeFilters,
       ...sdgFilters,
+      showGovStackOnlyFilter,
+      showMatureFilter,
       ...useCaseFilters,
-      ...workflowFilters,
-      ...categoryTypeFilters
-    ]
-      .filter((f) => f)
-      .join('&')
+      ...workflowFilters
+    ].filter((f) => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
   }
@@ -67,9 +75,9 @@ const BuildingBlockListLeft = () => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <BuildingBlockFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <Share />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

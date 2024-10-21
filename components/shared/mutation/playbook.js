@@ -56,9 +56,9 @@ export const DELETE_PLAYBOOK = gql`
   mutation DeletePlaybook($id: ID!) {
     deletePlaybook(id: $id) {
       playbook {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

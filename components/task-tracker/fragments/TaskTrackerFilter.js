@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { FaXmark } from 'react-icons/fa6'
-import { FilterContext } from '../../context/FilterContext'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import Checkbox from '../../shared/form/Checkbox'
 
 const TaskTrackerFilter = () => {
@@ -9,7 +9,7 @@ const TaskTrackerFilter = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { showFailedOnly } = useContext(FilterContext)
-  const { setShowFailedOnly } = useContext(FilterContext)
+  const { setShowFailedOnly } = useContext(FilterDispatchContext)
 
   const toggleShowFailedOnly = () => {
     setShowFailedOnly(!showFailedOnly)

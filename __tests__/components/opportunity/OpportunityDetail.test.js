@@ -69,7 +69,7 @@ describe('Unit tests for the opportunity detail page.', () => {
     const mockCreateOpportunity = generateMockApolloData(
       CREATE_OPPORTUNITY,
       {
-        'name': 'Market entry in North Macedonia -- Edited',
+        'name': 'Market entry in North Macedonia - Edited',
         'slug': 'market-entry-in-north-macedonia',
         'webAddress': 'app.leverist.de/en/opportunities/market-entry-in-north-macedonia',
         'description': 'Description for the opportunity',
@@ -88,14 +88,14 @@ describe('Unit tests for the opportunity detail page.', () => {
 
     const mockOpportunityPaginationAttribute = generateMockApolloData(
       OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY,
-      { search:'' },
+      { search: '' },
       null,
       opportunityPaginationAttribute
     )
 
     const mockPaginatedOpportunities = generateMockApolloData(
       PAGINATED_OPPORTUNITIES_QUERY,
-      { search:'', limit: 8, offset: 0 },
+      { search: '', limit: 8, offset: 0 },
       null,
       paginatedOpportunities
     )
@@ -123,8 +123,8 @@ describe('Unit tests for the opportunity detail page.', () => {
     expect(repositoryNameInput.value).toBe('Market entry in North Macedonia')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' -- Edited')
-    expect(repositoryNameInput.value).toBe('Market entry in North Macedonia -- Edited')
+    await user.type(repositoryNameInput, ' - Edited')
+    expect(repositoryNameInput.value).toBe('Market entry in North Macedonia - Edited')
 
     const repositorySubmitButton = screen.getByText('Submit RFP')
     await user.click(repositorySubmitButton)

@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
-import OrganizationCard from '../../../organization/OrganizationCard'
+import OrganizationCard from '../../organization/fragments/OrganizationCard'
 import EditableSection from '../../../shared/EditableSection'
 import Pill from '../../../shared/form/Pill'
 import Select from '../../../shared/form/Select'
@@ -120,7 +120,7 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
     </div>
 
   const sectionDisclaimer =
-    <div className='text-xs text-justify italic text-health-red mb-2'>
+    <div className='text-xs text-justify italic text-health-green mb-2'>
       {format('ui.product.overview.organization')}
     </div>
 

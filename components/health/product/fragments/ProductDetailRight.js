@@ -1,5 +1,6 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
+import parse from 'html-react-parser'
 import { useProductOwnerUser, useUser } from '../../../../lib/hooks'
 import CommentsSection from '../../../shared/comment/CommentsSection'
 import Bookmark from '../../../shared/common/Bookmark'
@@ -73,7 +74,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           {product?.softwareCategories?.map((category, index) =>
             <div
               key={`category-${index}`}
-              className="rounded-full bg-health-red uppercase shadow-none px-6 py-1 text-white text-xs"
+              className="rounded-full bg-health-blue uppercase shadow-none px-6 py-1 text-white text-xs"
             >
               <div key={index} className="line-clamp-1">{category.name}</div>
             </div>
@@ -83,30 +84,12 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           {product.name}
         </div>
         <div className="block" ref={descRef}>
-          <HtmlViewer
-            initialContent={product?.productDescription?.description}
-            editorId="product-description"
-          />
+          {parse(product?.productDescription?.description)}
         </div>
         <hr className="border-b border-health-gray my-3"/>
         <ProductDetailExtraAttributes product={product} canEdit={canEdit} headerRef={extraRef} />
         <hr className="border-b border-health-gray my-3"/>
         <ProductDetailProductStage product={product} canEdit={canEdit} headerRef={extraRef} />
-        <hr className="border-b border-health-gray my-3"/>
-        <div className="text-health-blue text-xl font-semibold mt-6" ref={productMaturityRef}>
-          {format('ui.maturityScore.header')}
-        </div>
-        <div className="text-sm italic">
-          <div
-            className="text-xs text-justify text-health-red highlight-link"
-            dangerouslySetInnerHTML={{ __html: format('health.maturity.description') }}
-          />
-        </div>
-        <ProductDetailMaturityScores
-          slug={product.slug}
-          overallMaturityScore={product.overallMaturityScore}
-          maturityScoreDetails={product.maturityScoreDetails}
-        />
         <hr className="border-b border-health-gray my-3"/>
         <div className="flex flex-col gap-y-3">
           <ProductDetailCategories
@@ -132,6 +115,21 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           />
         </div>
         <hr className="border-b border-health-gray my-3"/>
+        <div className="text-health-blue text-xl font-semibold mt-6" ref={productMaturityRef}>
+          {format('ui.maturityScore.header')}
+        </div>
+        <div className="text-sm italic">
+          <div
+            className="text-xs text-justify text-health-blue highlight-link"
+            dangerouslySetInnerHTML={{ __html: format('health.maturity.description') }}
+          />
+        </div>
+        <ProductDetailMaturityScores
+          slug={product.slug}
+          overallMaturityScore={product.overallMaturityScore}
+          maturityScoreDetails={product.maturityScoreDetails}
+        />
+        <hr className="border-b border-health-gray my-3"/>
         <div className="flex flex-col gap-y-3">
           <ProductDetailProjects
             product={product}
@@ -155,7 +153,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
               </div>
             }
           </div>
-          <div className="text-xs text-justify italic text-health-red mb-2">
+          <div className="text-xs text-justify italic text-health-blue mb-2">
             {format('ui.product.overview.repository')}
           </div>
           {!product.mainRepository &&
@@ -188,7 +186,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           <div className="text-xl font-semibold text-health-blue pb-3" ref={pricingRef}>
             {format('ui.product.pricing.title')}
           </div>
-          <div className="text-xs text-justify italic text-health-red mb-2">
+          <div className="text-xs text-justify italic text-health-blue mb-2">
             {format('ui.product.overview.pricing')}
           </div>
           <div className="text-sm flex flex-row gap-2">

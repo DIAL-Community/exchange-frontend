@@ -5,8 +5,9 @@ export const en = {
   // Potentially not need to be translated, used for page view tracking on our analytics
   'app.title': 'Digital Impact Exchange',
   // -- end of page view tracking --
-  
+  'app.add': 'Add',
   'app.edit': 'Edit',
+  'app.modify': 'Modify',
   'app.comment': 'Comments',
   'app.noComment': 'Start a Conversation',
   'app.home': 'Home',
@@ -318,6 +319,8 @@ export const en = {
   'product.aliases': 'Aliases',
   'product.alias': 'Alias',
   'product.website': 'Website',
+  'product.contact': 'Contact',
+  'product.isProductFeatured': 'This product is featured.',
   'product.imageFile': 'Logo',
   'product.mappingStatus': 'Mapping Status',
   'product.submit.success': 'Product submitted successfully',
@@ -477,8 +480,10 @@ export const en = {
   'ui.contact.snsType.phone': 'Phone',
   'ui.contact.snsType.twitter': 'Twitter',
 
-  'ui.sector.header': 'Sectors',
   'ui.sector.label': 'Sector',
+  'ui.sector.header': 'Sectors',
+  'ui.sector.name': 'Sector Name',
+  'ui.sector.createNew': 'Create a new Sector',
   'sector.parent-sector.label': 'Parent Sector',
   'sector.is-displayable.label': 'Is displayable',
   'sector.delete.confirm.message': 'Are you sure you want to delete this Sector? All associations will also be removed.',
@@ -715,6 +720,8 @@ export const en = {
   'map.aggregators.viewAggregator': 'View Aggregator',
   'map.endorsers.viewOrganization': 'View Organization',
   'map.projects.viewProject': 'View Project',
+  'map.products.viewProduct': 'View Solution',
+  'ui.maps.header': 'Maps',
 
   'useCase.header': 'Use Cases',
   'useCase.label': 'Use Case',
@@ -1021,6 +1028,8 @@ export const en = {
   'tag.label': 'Tag',
   'tag.header': 'Tags',
   'tag.delete.confirm.message': 'Are you sure you want to delete this Tag?',
+  'tag.name': 'Tag Name',
+  'tag.description': 'Tag Description',
 
   'ui.service.label': 'Service',
   'ui.service.header': 'Services',
@@ -2058,7 +2067,9 @@ export const en = {
   'ui.footer.poweredBy.subTitle': `
     The Digital Impact Exchange is a project of the Digital Impact Alliance
   `,
-
+  'ui.footer.poweredByLight.subTitle': `The Digital Impact Exchange is a project of the 
+    <a href='https://dial.global' class='text-dial-cotton' target='_blank' rel='noreferrer'>
+    Digital Impact Alliance</a> – a leading global resource on people-centered digital transformation.`,
   'ui.footer.partner.title': 'Our partners and supporters',
 
   'ui.ribbon.nav.ariaLabel': 'Current active navigation',
@@ -2133,8 +2144,8 @@ export const en = {
 
   'ui.endorsingYear.label': 'Endorsing Year',
 
-  'ui.user.label': 'User',
-  'ui.user.header': 'Users',
+  'ui.user.label': 'User Management',
+  'ui.user.header': 'Users Management',
   'ui.user.createNew': 'Create a new User',
   'ui.user.accountDetails': 'Account Details',
   'ui.user.createdAt': 'Created on',
@@ -2641,12 +2652,13 @@ export const en = {
 
   'health.landing.main.title': 'Africa HealthTech Marketplace',
   'health.landing.main.subtitle': `Enhancing visibility and trust in local digital health innovations`,
-  'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Alliance',
+  'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Exchange',
 
   'health.header.about': 'About',
   'health.header.products': 'Products',
   'health.header.organizations': 'Organizations',
   'health.header.faq': 'FAQ',
+  'health.header.map': 'Map',
   'health.filter.primary.title': 'Filter by: ',
 
   'health.maturity.description': 'This information is designed to highlight best practices in software development. Data has been provided by the owner of the solution and should be verified by users as needed',
@@ -2834,4 +2846,201 @@ export const en = {
   'hub.broadcast.messageType.announcement': 'Announcement',
   'hub.broadcast.messageType.email': 'Email',
   'hub.broadcast.messageType.event': 'Event',
+
+  'ui.admin.header': 'Admin Dashboard',
+
+  'ui.siteSetting.label': 'Site Configuration',
+  'ui.siteSetting.header': 'Site Configurations',
+  'ui.siteSetting.whatIs': 'What is Site Configuration?',
+  'ui.siteSetting.createNew': 'Create a New Site Configuration?',
+
+  'ui.siteSetting.faviconUrl': 'Main Site Icon',
+  'ui.siteSetting.logoUrl.placeholder': 'Enter URL for the main favicon.',
+
+  'ui.siteSetting.exchangeLogoUrl': 'Main Site Logo',
+  'ui.siteSetting.exchangeLogoUrl.placeholder': 'Enter URL for the main site logo.',
+
+  'ui.siteSetting.carousel.label': 'Carousel Configuration',
+  'ui.siteSetting.carousel.header': 'Carousel Configurations',
+
+  'ui.siteSetting.heroCard.label': 'Hero Card Configuration',
+  'ui.siteSetting.heroCard.header': 'Hero Card Configurations',
+
+  'ui.siteSetting.menu.label': 'Menu Configuration',
+  'ui.siteSetting.menu.header': 'Menu Configurations',
+  'ui.siteSetting.menu.name': 'Menu Title',
+  'ui.siteSetting.menu.destinationUrl': 'Destination URL',
+  'ui.siteSetting.menu.external': 'External Destination URL',
+  'ui.siteSetting.menu.save': 'Save Menu Configuration',
+  'ui.siteSetting.menu.submitted': 'Menu configuration saved.',
+
+  'ui.siteSetting.menu.type': 'Type of Menu Item',
+  'ui.siteSetting.menu.adminMenu': 'Admin Menu',
+  'ui.siteSetting.menu.helpMenu': 'Help Menu',
+  'ui.siteSetting.menu.loginMenu': 'Login Menu',
+  'ui.siteSetting.menu.languageMenu': 'LanguageMenu',
+
+  'ui.siteSetting.menu.type.menu': 'Menu',
+  'ui.siteSetting.menu.type.menuItem': 'Menu Item',
+  'ui.siteSetting.menu.type.separator': 'Separator',
+  'ui.siteSetting.menu.type.dropdown': 'Dropdown Menu',
+  'ui.siteSetting.menu.type.locked': 'Locked System Menu',
+
+  'ui.siteSetting.menu.deleteMenu': 'Deleting Menu Configuration',
+  'ui.siteSetting.menu.deleteMenuDescription': `
+    Are you sure you want to delete this menu?
+  `,
+  'ui.siteSetting.menu.deleteMenuItem': 'Deleting Menu Item Configuration',
+  'ui.siteSetting.menu.deleteMenuItemDescription': `
+    Are you sure you want to delete this menu item?
+  `,
+
+  'ui.siteSetting.menu.appendMenu': 'Append Menu',
+  'ui.siteSetting.menu.appendHelpMenu': 'Append Help Menu',
+  'ui.siteSetting.menu.appendAdminMenu': 'Append Admin Menu',
+  'ui.siteSetting.menu.appendLoginMenu': 'Append Login Menu',
+  'ui.siteSetting.menu.appendLanguageMenu': 'Append Language Menu',
+  'ui.siteSetting.menu.appendMenuItem': 'Append Menu Item',
+  'ui.siteSetting.menuConfigurations.save': 'Bulk Save Menu Configurations',
+  'ui.siteSetting.menuConfigurations.submitted': 'All menu configurations saved.',
+
+  'ui.siteSetting.carousel.name': 'Carousel Name',
+  'ui.siteSetting.carousel.title': 'Title on the Carousel',
+  'ui.siteSetting.carousel.description': 'Description on the Carousel',
+  'ui.siteSetting.carousel.external': 'External Destination URL',
+  'ui.siteSetting.carousel.destinationUrl': 'Destination URL',
+  'ui.siteSetting.carousel.calloutTitle': 'Callout Title on the Carousel',
+  'ui.siteSetting.carousel.defaultCalloutTitle': 'Explore',
+
+  'ui.siteSetting.carousel.type.locked': 'Locked System Carousel',
+
+  'ui.siteSetting.carousel.deleteCarousel': 'Deleting Carousel Configuration',
+  'ui.siteSetting.carousel.deleteCarouselDescription': `
+    Are you sure you want to delete this carousel item?
+  `,
+
+  'ui.siteSetting.carousel.textStyle': 'Text Alignment Style',
+  'ui.siteSetting.carousel.textStyle.centered': 'Center Aligned Text',
+  'ui.siteSetting.carousel.textStyle.rightAligned': 'Right Aligned Text',
+  'ui.siteSetting.carousel.textStyle.leftAligned': 'Left Aligned Text',
+  'ui.siteSetting.carousel.bgStyle': 'Carousel Background Style',
+  'ui.siteSetting.carousel.imageUrl': 'Image URL',
+
+  'ui.siteSetting.carousel.appendCarousel': 'Append Carousel',
+  'ui.siteSetting.carousel.appendExchangeCarousel': 'Append Exchange Carousel',
+  'ui.siteSetting.carousel.appendMarketplaceCarousel': 'Append Marketplace Carousel',
+
+  'ui.siteSetting.carousel.save': 'Save Carousel Configuration',
+  'ui.siteSetting.carousel.submitted': 'Carousel configuration saved.',
+  'ui.siteSetting.carouselConfigurations.save': 'Bulk Save Carousel Configurations',
+  'ui.siteSetting.carouselConfigurations.submitted': 'All carousel configurations saved.',
+
+  'ui.siteSetting.carousel.save': 'Save Carousel Configuration',
+  'ui.siteSetting.carousel.submitted': 'Carousel configuration saved.',
+  'ui.siteSetting.carouselConfigurations.save': 'Bulk Save Carousel Configurations',
+  'ui.siteSetting.carouselConfigurations.submitted': 'All carousel configurations saved.',
+
+  'ui.siteSetting.heroCard.name': 'Hero Card Name',
+  'ui.siteSetting.heroCard.title': 'Title on the Card',
+  'ui.siteSetting.heroCard.description': 'Description on the Card',
+  'ui.siteSetting.heroCard.external': 'External Destination URL',
+  'ui.siteSetting.heroCard.destinationUrl': 'Destination URL',
+  'ui.siteSetting.heroCard.imageUrl': 'Image URL',
+
+  'ui.siteSetting.heroCard.appendHeroCard': 'Append Card',
+  'ui.siteSetting.heroCard.appendProductHeroCard': 'Append Product Card',
+  'ui.siteSetting.heroCard.appendUseCaseHeroCard': 'Append Use Case Card',
+  'ui.siteSetting.heroCard.appendBuildingBlockHeroCard': 'Append Building Block Card',
+
+  'ui.siteSetting.heroCard.type.locked': 'Locked System Hero Card',
+
+  'ui.siteSetting.heroCard.save': 'Save Hero Card Configuration',
+  'ui.siteSetting.heroCard.submitted': 'Hero card configuration saved.',
+  'ui.siteSetting.heroCardConfigurations.save': 'Bulk Save Hero Card Configurations',
+  'ui.siteSetting.heroCardConfigurations.submitted': 'All hero card configurations saved.',
+
+  'ui.siteSetting.heroCard.deleteHeroCard': 'Deleting Hero Card Configuration',
+  'ui.siteSetting.heroCard.deleteHeroCardDescription': `
+    Are you sure you want to delete this hero card item?
+  `,
+
+  'ui.siteSetting.heroSection.title': 'Title of the Hero Card Section',
+  'ui.siteSetting.heroSection.description': 'Description of the Hero Card Section',
+  'ui.siteSetting.heroSection.wysiwygDescription': 'Hero Card Section Editor',
+  'ui.siteSetting.heroSection.save': 'Save Hero Card Section',
+  'ui.siteSetting.heroSection.submitted': 'Hero card section configurations saved.',
+
+  'ui.siteSetting.name': 'Site Configuration Name',
+  'ui.siteSetting.enableMarketplace': 'Enable the marketplace feature.',
+  'ui.siteSetting.defaultSetting': 'Set this configuration as the default.',
+  'ui.siteSetting.description': 'Site Configuration Description',
+  'ui.siteSetting.currentDefault': 'Currently Active Setting',
+
+  'ui.tenantSetting.label': 'Tenant Configuration',
+  'ui.tenantSetting.header': 'Tenant Configurations',
+  'ui.tenantSetting.tenantName': 'Name of the Tenant',
+  'ui.tenantSetting.tenantDomains': 'Registered URLs',
+  'ui.tenantSetting.tenantDomain': 'Registered URL',
+  'ui.tenantSetting.initialized': 'Tenant Initialized & Ready',
+  'ui.tenantSetting.allowUnsecureRead': 'Allow browsing without authenticating.',
+  'ui.tenantSetting.createNew': 'Create a New Tenant Configurations?',
+
+  'ui.validation.required': 'This field is required.',
+  'ui.validation.maxLength': 'This field maximum length is {maxLength}.',
+  'ui.validation.pattern.alphaOnly': 'This field only accept alphabet characters.',
+
+  'ui.candidateStatus.label': 'Candidate Status',
+  'ui.candidateStatus.header': 'Candidate Statuses',
+  'ui.candidateStatus.createNew': 'Create a new Candidate Statuses?',
+  'ui.candidateStatus.nextCandidateStatus.label': 'Next Candidate Status',
+  'ui.candidateStatus.nextCandidateStatus.header': 'Next Candidate Statuses',
+  'ui.candidateStatus.previousCandidateStatus.label': 'Previous Candidate Status',
+  'ui.candidateStatus.previousCandidateStatus.header': 'Previous Candidate Statuses',
+  'ui.candidateStatus.initialCandidateStatus.label': 'Initial Candidate Status',
+  'ui.candidateStatus.initialCandidateStatus.header': 'Initial Candidate Statuses',
+
+  
+  'ui.candidateStatus.name': 'Name',
+  'ui.candidateStatus.description': 'Description',
+  'ui.candidateStatus.notificationTemplate': 'Notification Template',
+  'ui.candidateStatus.initialStatus': 'Candidate status is an initial status.',
+  'ui.candidateStatus.terminalStatus': 'Candidate status is a terminal status.',
+  'ui.candidateStatus.initialStatus.label': 'Initial Status',
+  'ui.candidateStatus.terminalStatus.label': 'Terminal Status',
+
+  'ui.share.email': 'Sharing via Email',
+  'ui.share.linkedIn': 'Sharing on LinkedIn',
+  'ui.share.whatsApp': 'Sharing on WhatsApp. Check out this "{url}".',
+
+  'ui.share.copyLink.success': `Current url copied to clipboard.`,
+
+  'ui.candidate.candidateStatus': 'Current Status',
+  'ui.candidate.candidateStatus.updateJustification': 'Status Update Justification',
+  'ui.candidate.candidateStatus.nextCandidateStatus': 'Next Candidate Status',
+  'ui.candidate.candidateStatus.currentCandidateStatus': 'Current Candidate Status',
+
+  'ui.candidateProduct.evaluationRubric': 'Evaluation Rubric',
+  'ui.candidateProduct.evaluationRubricDisclaimer': `
+    Evaluation rubric used to evaluate this candidate product. Every category changes will
+    be recorded as a new entry in the comment section.
+  `,
+  'ui.candidateProduct.noEvaluationRubric': 'Evaluation data not available.',
+
+  'ui.candidate.received': 'New Candidate',
+  'ui.candidate.received.description': `
+    <p>
+      Candidate information received from the submitter.
+      Assign a new status to work the candidate through the approval workflow process.
+    </p>
+  `,
+
+  'ui.admin.siteConfiguration.label': 'Site Configuration',
+  'ui.admin.siteConfiguration.header': 'Site Configurations',
+
+  'ui.admin.coreData.label': 'Core Data Configuration',
+  'ui.admin.coreData.header': 'Core Data Configurations',
+
+  'ui.admin.candidate.label': 'Candidate Management Configuration',
+  'ui.admin.candidate.header': 'Candidate Management Configurations',
 }
+

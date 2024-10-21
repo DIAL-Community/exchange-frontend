@@ -21,9 +21,21 @@ export const generateMappingStatusOptions = (format) => [
 ].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateLicenseTypeOptions = (format) => [
-  { label: format('licenseType.allType'), value: LicenseTypeFilter.ALL },
-  { label: format('licenseType.commercialOnly'), value: LicenseTypeFilter.COMMERCIAL },
-  { label: format('licenseType.ossOnly'), value: LicenseTypeFilter.OPEN_SOURCE }
+  {
+    label: format('licenseType.allType'),
+    value: LicenseTypeFilter.ALL,
+    slug: LicenseTypeFilter.ALL
+  },
+  {
+    label: format('licenseType.commercialOnly'),
+    value: LicenseTypeFilter.COMMERCIAL,
+    slug: LicenseTypeFilter.COMMERCIAL
+  },
+  {
+    label: format('licenseType.ossOnly'),
+    value: LicenseTypeFilter.OPEN_SOURCE,
+    slug: LicenseTypeFilter.OPEN_SOURCE
+  }
 ].sort((a, b) => a.label.localeCompare(b.label))
 
 export const generateCategoryTypeOptions = (format) => [

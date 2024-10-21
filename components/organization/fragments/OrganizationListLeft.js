@@ -1,22 +1,19 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
-import {
-  OrganizationFilterContext,
-  OrganizationFilterDispatchContext
-} from '../../context/OrganizationFilterContext'
 import { parseQuery } from '../../utils/share'
-import { QueryParamContext } from '../../context/QueryParamContext'
 import OrganizationFilter from './OrganizationFilter'
 
 const OrganizationListLeft = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
-  const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
-  const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(OrganizationFilterDispatchContext)
+  const { aggregator, endorser, sectors, countries, years } = useContext(FilterContext)
+  const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(FilterDispatchContext)
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
@@ -30,7 +27,12 @@ const OrganizationListLeft = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorserFilter, aggregatorFilter, ...yearFilters, ...countryFilters, ...sectorFilters
+      activeFilter,
+      endorserFilter,
+      aggregatorFilter,
+      ...yearFilters,
+      ...countryFilters,
+      ...sectorFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}${basePath}?${filterParameters}`
@@ -56,9 +58,9 @@ const OrganizationListLeft = () => {
       <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
         <OrganizationFilter />
         <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <Share />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

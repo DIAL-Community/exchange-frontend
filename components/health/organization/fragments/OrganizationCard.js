@@ -42,14 +42,14 @@ const OrganizationCard = ({ displayType, organization, dismissHandler, urlPrefix
         className='bg-white shadow-lg rounded-xl h-[320px] border border-dial-gray hover:border-transparent'>
         <div className="flex flex-col h-full">
           <div className="flex justify-center items-center py-12 bg-white rounded-xl
-                          border-health-red border-4 mx-4 my-4 max-h-[180px]"
+                          border-health-green border-4 mx-4 my-4 max-h-[180px]"
           >
             {organization.imageFile.indexOf('placeholder.svg') < 0 &&
-              <div className="inline my-12 mx-16">
+              <div className="inline my-4 mx-6">
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
-                  className="object-contain"
+                  className="object-contain" width="160px"
                 />
               </div>
             }
@@ -63,7 +63,7 @@ const OrganizationCard = ({ displayType, organization, dismissHandler, urlPrefix
               </div>
             }
           </div>
-          <div className="px-6 text-xl text-center font-semibold m-auto text-health-blue title-truncate">
+          <div className="px-6 text-xl text-center font-semibold text-health-blue title-truncate break-words">
             {organization.name}
           </div>
           <div className="text-xs text-dial-stratos font-medium h-full overflow-hidden" ref={textRef}>
@@ -82,10 +82,36 @@ const OrganizationCard = ({ displayType, organization, dismissHandler, urlPrefix
       </div>
     </div>
 
+  const displaySmallCard = () =>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
+      <div className='flex flex-row gap-x-3 px-6 h-full'>
+        {organization.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='rounded-full bg-dial-plum w-10 h-10 min-w-[2.5rem]'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.organization.header') })}
+              className='object-contain w-10 h-10 my-auto'
+            />
+          </div>
+        }
+        {organization.imageFile.indexOf('placeholder.svg') < 0 &&
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
+            alt={format('ui.image.logoAlt', { name: format('ui.organization.header') })}
+            className='object-contain w-10 h-10 my-auto min-w-[2.5rem]'
+          />
+        }
+        <div className='text-sm font-semibold text-dial-plum my-auto line-clamp-2'>
+          {organization.name}
+        </div>
+      </div>
+    </div>
+
   return (
     <div className="relative">
       <Link href={`${urlPrefix ? urlPrefix : ''}/health/organizations/${organization.slug}`}>
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
+        {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       <div className="absolute top-2 right-2">
         {isValidFn(dismissHandler) &&

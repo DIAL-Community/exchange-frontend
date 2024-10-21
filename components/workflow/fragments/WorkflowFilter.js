@@ -1,9 +1,6 @@
-import { useIntl } from 'react-intl'
 import { useCallback, useContext } from 'react'
-import {
-  WorkflowFilterContext,
-  WorkflowFilterDispatchContext
-} from '../../context/WorkflowFilterContext'
+import { useIntl } from 'react-intl'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
 
@@ -11,8 +8,8 @@ const WorkflowFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, useCases } = useContext(WorkflowFilterContext)
-  const { setSdgs, setUseCases } = useContext(WorkflowFilterDispatchContext)
+  const { sdgs, useCases } = useContext(FilterContext)
+  const { setSdgs, setUseCases } = useContext(FilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
@@ -54,11 +51,11 @@ const WorkflowFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}:
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
     </div>
   )

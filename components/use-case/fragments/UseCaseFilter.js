@@ -1,19 +1,16 @@
 import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
 import { FaXmark } from 'react-icons/fa6'
-import {
-  UseCaseFilterContext,
-  UseCaseFilterDispatchContext
-} from '../../context/UseCaseFilterContext'
-import Checkbox from '../../shared/form/Checkbox'
+import { useIntl } from 'react-intl'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
+import Checkbox from '../../shared/form/Checkbox'
 
 const UseCaseFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, showBeta, showGovStackOnly } = useContext(UseCaseFilterContext)
-  const { setSdgs, setShowBeta, setShowGovStackOnly } = useContext(UseCaseFilterDispatchContext)
+  const { sdgs, showBeta, showGovStackOnly } = useContext(FilterContext)
+  const { setSdgs, setShowBeta, setShowGovStackOnly } = useContext(FilterDispatchContext)
 
   const toggleShowBeta = () => {
     setShowBeta(!showBeta)
@@ -87,9 +84,9 @@ const UseCaseFilter = () => {
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.primary.title')}:
         </div>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
       </div>
       <div className='flex flex-col gap-y-2'>
         <div className='text-sm font-semibold text-dial-sapphire'>
@@ -101,7 +98,7 @@ const UseCaseFilter = () => {
             {format('ui.useCase.filter.showDraft')}
           </span>
         </label>
-        <hr className='border-b border-dial-slate-200'/>
+        <hr className='border-b border-dial-slate-200' />
         <label className='flex py-2'>
           <Checkbox onChange={toggleShowGovStackOnly} value={showGovStackOnly} />
           <span className='mx-2 my-auto text-sm'>

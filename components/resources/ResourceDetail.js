@@ -1,4 +1,5 @@
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import Breadcrumb from '../shared/Breadcrumb'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
@@ -7,6 +8,9 @@ import ResourceDetailLeft from './ResourceDetailLeft'
 import ResourceDetailRight from './ResourceDetailRight'
 
 const ResourceDetail = ({ slug, country }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(RESOURCE_DETAIL_QUERY, {
@@ -28,7 +32,7 @@ const ResourceDetail = ({ slug, country }) => {
     map[resource.slug] = resource.name
 
     if (country) {
-      map['countries'] = 'hub.breadcrumb.country'
+      map['countries'] = format('hub.breadcrumb.country')
       map[country.slug] = country.name
     }
 

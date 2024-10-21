@@ -4,10 +4,10 @@ import { PAGINATED_CANDIDATE_ROLES_QUERY } from '../../../../shared/query/candid
 import RoleCard from '../RoleCard'
 import { DisplayType } from '../../../../utils/constants'
 import { Error, Loading, NotFound } from '../../../../shared/FetchStatus'
-import { RoleFilterContext } from '../../../../context/candidate/RoleFilterContext'
+import { FilterContext } from '../../../../context/FilterContext'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(RoleFilterContext)
+  const { search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_CANDIDATE_ROLES_QUERY, {
     variables: {

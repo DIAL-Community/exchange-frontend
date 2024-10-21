@@ -2,7 +2,8 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from 'rea
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../context/ProductFilterContext'
+import parse from 'html-react-parser'
+import { FilterContext, FilterDispatchContext } from '../../../context/FilterContext'
 import Checkbox from '../../../shared/form/Checkbox'
 import { DisplayType } from '../../../utils/constants'
 import { isValidFn } from '../../../utils/utilities'
@@ -11,8 +12,8 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { comparedProducts } = useContext(ProductFilterContext)
-  const { setComparedProducts } = useContext(ProductFilterDispatchContext)
+  const { comparedProducts } = useContext(FilterContext)
+  const { setComparedProducts } = useContext(FilterDispatchContext)
 
   const textRef = useRef(null)
   const [lineClamp, setLineClamp] = useState(0)
@@ -59,14 +60,14 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
         className='bg-white shadow-lg rounded-xl h-360 border border-dial-gray hover:border-transparent'>
         <div className="flex flex-col h-full">
           <div className="flex justify-center items-center py-12 bg-white rounded-xl
-                          border-health-red border-4 mx-4 my-4 max-h-[180px]"
+                          border-health-green border-4 mx-4 my-4 max-h-[180px]"
           >
             {product.imageFile.indexOf('placeholder.svg') < 0 &&
-              <div className="inline my-12 mx-16">
+              <div className="inline my-4 mx-6">
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                  className="object-contain"
+                  className="object-contain max-h-[140px]" width="160px"
                 />
               </div>
             }
@@ -91,20 +92,20 @@ const ProductCard = ({ displayType, product, dismissHandler, urlPrefix = null })
                   WebkitLineClamp: lineClamp
                 }}
               >
-                {product.parsedDescription}
+                {parse(product.parsedDescription)}
               </span>
             </div>
           </div>
           <div className="text-xs text-dial-stratos font-semibold">
             {
               product?.softwareCategories[0]?.name &&
-                <div className="px-4 flex gap-2 align-end">
-                  <span className="mb-3 mx-auto">
-                    <div className="rounded-full bg-health-red uppercase shadow-none px-6 py-1 text-white text-xs">
-                      <div className="line-clamp-1">{product?.softwareCategories[0]?.name}</div>
-                    </div>
-                  </span>
-                </div>
+              <div className="px-4 flex gap-2 align-end">
+                <span className="mb-3 mx-auto">
+                  <div className="rounded-full bg-health-blue uppercase shadow-none px-6 py-1 text-white text-xs">
+                    <div className="line-clamp-1">{product?.softwareCategories[0]?.name}</div>
+                  </div>
+                </span>
+              </div>
             }
           </div>
         </div>

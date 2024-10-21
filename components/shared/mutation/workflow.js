@@ -59,9 +59,9 @@ export const DELETE_WORKFLOW = gql`
   mutation DeleteWorkflow($id: ID!) {
     deleteWorkflow(id: $id) {
       workflow {
-       id
-       slug
-       name
+        id
+        slug
+        name
       }
       errors
     }

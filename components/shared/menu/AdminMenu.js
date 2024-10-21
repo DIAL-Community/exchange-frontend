@@ -12,17 +12,17 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
     <>
       <MenuHeader
         id={ADMIN_MENU}
-        title='header.admin'
+        titleKey='header.admin'
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />
       {currentOpenMenu === ADMIN_MENU &&
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-          <Link href='/users' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.user.header')}
-          </Link>
           <Link href='/task-trackers' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.taskTracker.header')}
+          </Link>
+          <Link href='/users' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.user.header')}
           </Link>
           <div className='mx-4 border-b border-dial-slate-300' />
           <Link href='/countries' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
@@ -34,12 +34,12 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           <Link href='/sectors' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.sector.header')}
           </Link>
+          <Link href='/tags' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.tag.header')}
+          </Link>
           <div className='mx-4 border-b border-dial-slate-300' />
           <Link href='/resource-topics' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.resourceTopic.header')}
-          </Link>
-          <Link href='/tags' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.tag.header')}
           </Link>
           <div className='mx-4 border-b border-dial-slate-300' />
           <Link href='/candidate/datasets' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>

@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import { useCallback } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { LANGUAGE_MENU, MenuHeader, NONE } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
@@ -33,7 +33,7 @@ const LanguageMenu = ({ currentOpenMenu, onToggleDropdown }) => {
     <>
       <MenuHeader
         id={LANGUAGE_MENU}
-        title={SUPPORTED_LANGUAGES[locale]}
+        titleKey={SUPPORTED_LANGUAGES[locale]}
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

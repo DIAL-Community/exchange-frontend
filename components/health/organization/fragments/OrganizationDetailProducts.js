@@ -101,7 +101,7 @@ const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
     ? <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3'>
       {products?.map((product, index) =>
         <div key={`product-${index}`}>
-          <ProductCard product={product} displayType={DisplayType.SMALL_CARD} />
+          <ProductCard product={product} displayType={DisplayType.SMALL_CARD} urlPrefix='/health' />
         </div>
       )}
     </div>
@@ -134,6 +134,7 @@ const OrganizationDetailProducts = ({ organization, canEdit, headerRef }) => {
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.label') })}
           onChange={addProduct}
           value={null}
+          className='max-w-[48vw]'
         />
       </label>
       <div className='flex flex-wrap gap-3'>

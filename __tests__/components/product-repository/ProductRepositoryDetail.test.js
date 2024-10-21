@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
-import { ProductFilterProvider } from '../../../components/context/ProductFilterContext'
+import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import ProductRepositoryDetail from '../../../components/product/repository/ProductRepositoryDetail'
 import ProductRepositoryEdit from '../../../components/product/repository/ProductRepositoryEdit'
@@ -48,9 +48,9 @@ describe('Unit tests for the product main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockOwnedProducts, mockProductRepositories, mockProductRepositoryDetail]}>
         <QueryParamContextProvider>
-          <ProductFilterProvider>
+          <FilterProvider>
             <ProductRepositoryDetail productSlug={'firma'} repositorySlug={'firma-repository'} />
-          </ProductFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -65,9 +65,9 @@ describe('Unit tests for the product main page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockOwnedProducts, mockProductRepositories, mockProductRepositoryDetail]}>
         <QueryParamContextProvider>
-          <ProductFilterProvider>
+          <FilterProvider>
             <ProductRepositoryEdit productSlug={'firma'} repositorySlug={'firma-repository'} />
-          </ProductFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -84,12 +84,12 @@ describe('Unit tests for the product main page.', () => {
     const mockCreateProductRepository = generateMockApolloData(
       CREATE_PRODUCT_REPOSITORY,
       {
-        'productSlug':'firma',
-        'name':'@firma Repository Information',
-        'slug':'firma-repository',
-        'absoluteUrl':'github.com/ctt-gob-es/clienteafirma',
-        'description':'Repository of @firma.',
-        'mainRepository':true
+        'productSlug': 'firma',
+        'name': '@firma Repository Information',
+        'slug': 'firma-repository',
+        'absoluteUrl': 'github.com/ctt-gob-es/clienteafirma',
+        'description': 'Repository of @firma.',
+        'mainRepository': true
       },
       null,
       createProductRepository
@@ -105,9 +105,9 @@ describe('Unit tests for the product main page.', () => {
         ]}
       >
         <QueryParamContextProvider>
-          <ProductFilterProvider>
+          <FilterProvider>
             <ProductRepositoryEdit productSlug={'firma'} repositorySlug={'firma-repository'} />
-          </ProductFilterProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

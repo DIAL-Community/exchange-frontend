@@ -83,7 +83,7 @@ export const createDataset = {
     'createDataset': {
       'dataset': {
         'id': '61',
-        'name': 'AI Agro -- Edited',
+        'name': 'AI Agro - Edited',
         'slug': 'ai-agro',
         'website': 'rentadrone.cl/developers/ai-agro',
         'datasetDescription': {

@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/dom'
-import { FilterContextProvider } from '../../../components/context/FilterContext'
+import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import HubTopics from '../../../components/hub/sections/HubTopics'
 import { RESOURCE_TOPIC_SEARCH_QUERY } from '../../../components/shared/query/resourceTopic'
@@ -24,9 +24,9 @@ describe('Unit tests for the opportunity detail page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockResourceTiles]}>
         <QueryParamContextProvider>
-          <FilterContextProvider>
+          <FilterProvider>
             <HubTopics />
-          </FilterContextProvider>
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

@@ -1,15 +1,21 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_DATASETS_QUERY } from '../../shared/query/dataset'
-import { DatasetFilterContext } from '../../context/DatasetFilterContext'
-import DatasetCard from '../DatasetCard'
-import { DisplayType } from '../../utils/constants'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { PAGINATED_DATASETS_QUERY } from '../../shared/query/dataset'
+import { DisplayType } from '../../utils/constants'
+import DatasetCard from '../DatasetCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(DatasetFilterContext)
-
-  const { sectors, sdgs, tags, origins, datasetTypes, countries } = useContext(DatasetFilterContext)
+  const {
+    search,
+    countries,
+    datasetTypes,
+    origins,
+    sdgs,
+    sectors,
+    tags
+  } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_DATASETS_QUERY, {
     variables: {

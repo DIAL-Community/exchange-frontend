@@ -102,7 +102,7 @@ const Breadcrumb = ({ slugNameMapping }) => {
   }
 
   return (
-    <div className='whitespace-nowrap text-ellipsis overflow-hidden text-health-red'>
+    <div className='whitespace-nowrap text-ellipsis overflow-hidden text-health-blue'>
       <Link href='/' className='h5'>
         {format('app.home')}
       </Link>

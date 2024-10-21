@@ -1,17 +1,16 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../lib/hooks'
+import { useUser } from '../../lib/hooks'
+import { SiteSettingContext } from '../context/SiteSettingContext'
 import AdminMenu from './menu/AdminMenu'
-import CatalogMenu from './menu/CatalogMenu'
+import GenericMenu from './menu/GenericMenu'
 import HelpMenu from './menu/HelpMenu'
 import LanguageMenu from './menu/LanguageMenu'
-import MarketplaceMenu from './menu/MarketplaceMenu'
 import { NONE } from './menu/MenuCommon'
-import ResourceMenu from './menu/ResourceMenu'
 import UserMenu from './menu/UserMenu'
 import MobileMenu from './MobileMenu'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from './query/user'
@@ -26,9 +25,7 @@ const Header = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
-  const { tenant } = useActiveTenant()
-
-  const { user, isAdminUser } = useUser()
+  const { user } = useUser()
   const signInUser = (e) => {
     e.preventDefault()
     process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0'
@@ -93,63 +90,62 @@ const Header = ({ isOnAuthPage = false }) => {
     }
   })
 
-  const withUser =
-    <>
-      <li className='relative text-right'>
-        {isAdminUser &&
-          <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-        }
-      </li>
-      <li className='relative text-right intro-overview-signup'>
-        <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-      </li>
-    </>
-
-  const withoutUser =
-    <li className='text-right intro-overview-signup intro-signup'>
-      <a
-        href='signIn'
-        role='menuitem'
-        className={dropdownMenuStyles}
-        onClick={signInUser}
-      >
-        {format('header.signIn')}
-      </a>
-    </li>
+  const { exchangeLogoUrl, menuConfigurations } = useContext(SiteSettingContext)
 
   return (
     <header className='z-50 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
           <img
-            className='object-center object-contain'
-            src={tenant === 'fao' ? '/ui/v1/exchange-logo.svg' : '/ui/v1/exchange-logo.svg'}
+            className='object-center object-contain max-h-16 w-auto'
+            src={`//${exchangeLogoUrl}`}
             alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
-        <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
-          {!isOnAuthPage &&
-            <>
-              <li className='relative text-right intro-marketplace'>
-                <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-              </li>
-              <li className='relative text-right intro-tools'>
-                <CatalogMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-              </li>
-              <li className='relative text-right intro-resource'>
-                <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-              </li>
-              { user ? withUser : withoutUser }
-              <li className='relative text-right'>
-                <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-              </li>
-            </>
-          }
-          <li className='relative text-right'>
-            <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-          </li>
-        </ul>
+        {!isOnAuthPage &&
+          <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
+            {menuConfigurations.map((menuConfiguration) => {
+              switch (menuConfiguration.type) {
+                case 'menu.item':
+                case 'menu':
+                  return <li key={menuConfiguration.id} className='relative text-right'>
+                    <GenericMenu
+                      menuConfiguration={menuConfiguration}
+                      currentOpenMenu={currentOpenMenu}
+                      onToggleDropdown={toggleDropdownSwitcher}
+                    />
+                  </li>
+                case 'locked.help.menu':
+                  return <li key={menuConfiguration.id} className='relative text-right'>
+                    <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                  </li>
+                case 'locked.language.menu':
+                  return <li key={menuConfiguration.id} className='relative text-right'>
+                    <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                  </li>
+                case 'locked.login.menu':
+                  return user
+                    ? <li key='logged-in-menu' className='relative text-right intro-signup'>
+                      <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                    </li>
+                    : <li key='sign-in-menu' className='text-right intro-signup'>
+                      <a href='signIn' role='menuitem' className={dropdownMenuStyles} onClick={signInUser}>
+                        {format('header.signIn')}
+                      </a>
+                    </li>
+                case 'locked.admin.menu':
+                  return user && user?.isAdminUser
+                    ? <li key='user-admin-menu' className='relative text-right'>
+                      <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                    </li>
+                    : null
+                default:
+                  return null
+              }
+            })}
+          </ul>
+        }
       </div>
       <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
     </header>

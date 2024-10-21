@@ -279,6 +279,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.project.label') })}
           onChange={addProject}
           value={null}
+          className='max-w-[48vw]'
         />
       </label>
       <div className='flex flex-wrap gap-3'>

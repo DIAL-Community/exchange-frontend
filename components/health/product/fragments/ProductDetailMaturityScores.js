@@ -470,8 +470,6 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
             {!!indicators[ASSIGNED_INDICATORS_ARRAY_NAME].length && (
               <IndicatorsList categoryIdx={categoryIdx} indicators={indicators} />
             )}
-            {!!indicators[ASSIGNED_INDICATORS_ARRAY_NAME].length &&
-              !!indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].length && <hr className='my-5' />}
             {!!indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].length && (
               <IndicatorsList
                 categoryIdx={categoryIdx}

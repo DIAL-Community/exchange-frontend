@@ -2,8 +2,7 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import BuildingBlockDetail from '../../../components/building-block/BuildingBlockDetail'
 import BuildingBlockEdit from '../../../components/building-block/BuildingBlockEdit'
-import { BuildingBlockFilterProvider } from '../../../components/context/BuildingBlockFilterContext'
-import { ProductFilterProvider } from '../../../components/context/ProductFilterContext'
+import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { CREATE_BUILDING_BLOCK } from '../../../components/shared/mutation/buildingBlock'
 import {
@@ -42,11 +41,9 @@ describe('Unit tests for the building block detail page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockBuildingBlock, mockBuildingBlockComments]}>
         <QueryParamContextProvider>
-          <BuildingBlockFilterProvider>
-            <ProductFilterProvider>
-              <BuildingBlockDetail slug='analytics-and-business-intelligence' />
-            </ProductFilterProvider>
-          </BuildingBlockFilterProvider>
+          <FilterProvider>
+            <BuildingBlockDetail slug='analytics-and-business-intelligence' />
+          </FilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -58,13 +55,11 @@ describe('Unit tests for the building block detail page.', () => {
   test('Should render unauthorized for non logged in user.', async () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockBuildingBlock, mockBuildingBlockComments]}>
-        <QueryParamContextProvider>
-          <BuildingBlockFilterProvider>
-            <ProductFilterProvider>
-              <BuildingBlockEdit slug='analytics-and-business-intelligence' />
-            </ProductFilterProvider>
-          </BuildingBlockFilterProvider>
-        </QueryParamContextProvider>
+        <FilterProvider>
+          <QueryParamContextProvider>
+            <BuildingBlockEdit slug='analytics-and-business-intelligence' />
+          </QueryParamContextProvider>
+        </FilterProvider>
       </CustomMockedProvider>
     )
 
@@ -79,7 +74,7 @@ describe('Unit tests for the building block detail page.', () => {
     const mockCreateBuildingBlock = generateMockApolloData(
       CREATE_BUILDING_BLOCK,
       {
-        'name': 'Analytics and business intelligence -- Edited',
+        'name': 'Analytics and business intelligence - Edited',
         'slug': 'analytics-and-business-intelligence',
         'maturity': 'DRAFT',
         'category': null,
@@ -119,13 +114,11 @@ describe('Unit tests for the building block detail page.', () => {
           mockPaginatedBuildingBlocks
         ]}
       >
-        <QueryParamContextProvider>
-          <BuildingBlockFilterProvider>
-            <ProductFilterProvider>
-              <BuildingBlockEdit slug='analytics-and-business-intelligence' />
-            </ProductFilterProvider>
-          </BuildingBlockFilterProvider>
-        </QueryParamContextProvider>
+        <FilterProvider>
+          <QueryParamContextProvider>
+            <BuildingBlockEdit slug='analytics-and-business-intelligence' />
+          </QueryParamContextProvider>
+        </FilterProvider>
       </CustomMockedProvider>
     )
 
@@ -135,8 +128,8 @@ describe('Unit tests for the building block detail page.', () => {
     expect(repositoryNameInput.value).toBe('Analytics and business intelligence')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' -- Edited')
-    expect(repositoryNameInput.value).toBe('Analytics and business intelligence -- Edited')
+    await user.type(repositoryNameInput, ' - Edited')
+    expect(repositoryNameInput.value).toBe('Analytics and business intelligence - Edited')
 
     const repositorySubmitButton = screen.getByText('Submit Building Block')
     await user.click(repositorySubmitButton)

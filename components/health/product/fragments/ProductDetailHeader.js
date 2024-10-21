@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { prependUrlWithProtocol } from '../../../utils/utilities'
+import EmailLink from '../../../shared/LinkEmail'
 
 const ProductDetailHeader = ({ product }) => {
   const { formatMessage } = useIntl()
@@ -8,7 +9,7 @@ const ProductDetailHeader = ({ product }) => {
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
-      <div className='flex justify-center items-center py-16 bg-white rounded border-health-red border-4'>
+      <div className='flex justify-center items-center py-16 bg-white rounded border-health-green border-4'>
         {product.imageFile.indexOf('placeholder.svg') < 0 &&
           <div className='inline'>
             <img
@@ -59,11 +60,19 @@ const ProductDetailHeader = ({ product }) => {
             }
           </div>
         </div>
-        <div className='flex flex-col gap-y-3'>
-          <div className='font-semibold text-black'>
+        <div className="flex flex-col gap-y-3">
+          <div className="font-semibold text-black">
+            {format('product.contact')}
+          </div>
+          <div className="flex text-dial-stratos">
+            <EmailLink product={product}/>
+          </div>
+        </div>
+        <div className="flex flex-col gap-y-3">
+          <div className="font-semibold text-black">
             {format('product.license')}
           </div>
-          <div className='flex text-dial-stratos'>
+          <div className="flex text-dial-stratos">
             {product.commercialProduct
               ? format('product.pricing.commercial').toUpperCase()
               : (product.mainRepository?.license || format('general.na')).toUpperCase()

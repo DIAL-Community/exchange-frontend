@@ -1,6 +1,6 @@
+import { useCallback } from 'react'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { USER_MENU } from './MenuCommon'

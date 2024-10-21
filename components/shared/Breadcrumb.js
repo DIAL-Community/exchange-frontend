@@ -43,7 +43,14 @@ const basePathMappings = {
   'use-case-steps': 'ui.useCaseStep.header',
   'use-cases': 'ui.useCase.header',
   'workflows': 'ui.workflow.header',
-  'wizard': 'ui.wizard.header'
+  'wizard': 'ui.wizard.header',
+  'admin': 'ui.admin.header',
+  'site-settings': 'ui.siteSetting.header',
+  'menu-configurations': 'ui.siteSetting.menu.header',
+  'carousel-configurations': 'ui.siteSetting.carousel.header',
+  'hero-card-configurations': 'ui.siteSetting.heroCard.header',
+  'tenant-settings': 'ui.tenantSetting.header',
+  'candidate-statuses': 'ui.candidateStatus.header'
 }
 
 const candidatePathMappings = {
@@ -75,7 +82,7 @@ const Breadcrumb = ({ slugNameMapping }) => {
           return {}
         }
 
-        if (path.indexOf('candidate') >= 0) {
+        if (path.indexOf('candidate') === 0 && path.indexOf('candidate-') < 0) {
           candidatePath = true
 
           return {}
@@ -89,7 +96,7 @@ const Breadcrumb = ({ slugNameMapping }) => {
             - Fallback to slugNameMapping
         */
         const label = slugNameMapping && slugNameMapping[path]
-          ? format(slugNameMapping[path])
+          ? slugNameMapping[path]
           : !candidatePath && basePathMappings[path]
             ? format(basePathMappings[path])
             : candidatePath && candidatePathMappings[path]

@@ -1,13 +1,13 @@
-import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PlaybookFilterContext } from '../../context/PlaybookFilterContext'
+import { useContext } from 'react'
+import { FilterContext } from '../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
 import { DisplayType } from '../../utils/constants'
 import PlaybookCard from '../PlaybookCard'
 
 const ListStructure = ({ defaultPageSize, pageOffset }) => {
-  const { search, tags, products } = useContext(PlaybookFilterContext)
+  const { search, tags, products } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_PLAYBOOKS_QUERY, {
     variables: {

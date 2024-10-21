@@ -3,9 +3,9 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import UserMenu from '../../shared/menu/UserMenu'
 import { useUser } from '../../../lib/hooks'
 import { NONE } from '../../shared/menu/MenuCommon'
+import UserMenu from '../../shared/menu/UserMenu'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../shared/query/user'
 import HealthMobileMenu from '../menu/HealthMobileMenu'
 import AdminMenu from '../shared/menu/AdminMenu'
@@ -89,17 +89,17 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
           <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher}/>
         }
       </li>
-      <li className="relative text-right text-lg text-gray intro-overview-signup">
+      <li className="relative text-right text-lg text-gray intro-signup">
         <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher}/>
       </li>
     </>
 
   const withoutUser =
-    <li className="text-right intro-overview-signup intro-signup bg-health-red text-white p-1 rounded-md">
+    <li className="text-right intro-signup bg-health-blue text-white p-1 rounded-md">
       <a
         href="signIn"
         role="menuitem"
-        className='px-3 py-2 text-gray text-lg hover:text-white hover:bg-health-red rounded-md fi'
+        className='px-3 py-2 text-gray text-lg hover:text-white hover:bg-health-blue rounded-md fi'
         onClick={signInUser}
       >
         {format('header.signIn')}
@@ -128,11 +128,6 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
               </Link>
             </li>
             <li className='relative text-right text-lg'>
-              <Link href='/health/organizations' role='menuitem' className={menuStyles}>
-                {format('health.header.organizations')}
-              </Link>
-            </li>
-            <li className='relative text-right text-lg'>
               <Link href='/health/about' role='menuitem' className={menuStyles}>
                 {format('health.header.about')}
               </Link>
@@ -140,6 +135,11 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
             <li className='relative text-right text-lg'>
               <Link href='/health/faq' role='menuitem' className={menuStyles}>
                 {format('health.header.faq')}
+              </Link>
+            </li>
+            <li className='relative text-right text-lg'>
+              <Link href='/health/map' role='menuitem' className={menuStyles}>
+                {format('health.header.map')}
               </Link>
             </li>
             { user ? withUser : withoutUser }

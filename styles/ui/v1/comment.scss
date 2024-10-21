@@ -10,6 +10,7 @@
   @apply p-8;
   @apply w-3/4;
   @apply rounded-2xl;
+  @apply min-w-fit;
   @apply max-w-prose;
 
   h2 {
@@ -45,6 +46,10 @@
 
 /* CommentsSection - wrapper */
 #comments-section {
+  .commenttimestamp {
+    @apply my-auto;
+  }
+
   .overlay {
     @apply p-0;
 
@@ -73,8 +78,12 @@
     }
 
     .infoStyle {
-      @apply max-w-[74vw];
+      @apply max-w-[75vw];
       @apply break-words;
+      @apply text-sm;
+      font-weight: 300;
+      font-style: normal;
+      font-family: "Poppins", sans-serif;
     }
 
     /* CommentsSection - no comments */
