@@ -6,7 +6,7 @@ export const TENANT_SETTING_DETAIL_QUERY = gql`
       id
       tenantName
       tenantDomains
-      allowUnsecureRead
+      allowUnsecuredRead
       initialized
     }
   }
@@ -18,7 +18,7 @@ export const TENANT_SETTINGS_QUERY = gql`
       id
       tenantName
       tenantDomains
-      allowUnsecureRead
+      allowUnsecuredRead
       initialized
     }
   }

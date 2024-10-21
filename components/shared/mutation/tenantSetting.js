@@ -17,12 +17,12 @@ export const CREATE_TENANT_SETTING = gql`
   mutation CreateTenantSetting(
     $tenantName: String!
     $tenantDomains: [String!]!
-    $allowUnsecureRead: Boolean!
+    $allowUnsecuredRead: Boolean!
   ) {
     createTenantSetting(
       tenantName: $tenantName
       tenantDomains: $tenantDomains
-      allowUnsecureRead: $allowUnsecureRead
+      allowUnsecuredRead: $allowUnsecuredRead
     ) {
       tenantSetting {
         id

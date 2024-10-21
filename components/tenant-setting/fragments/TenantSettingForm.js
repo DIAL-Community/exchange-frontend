@@ -61,7 +61,7 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
     shouldUnregister: true,
     defaultValues: {
       tenantName: tenantSetting?.tenantName,
-      allowUnsecureRead: tenantSetting?.allowUnsecureRead ?? true,
+      allowUnsecuredRead: tenantSetting?.allowUnsecuredRead ?? true,
       tenantDomains: (tenantSetting?.tenantDomains ?? ['example.localhost']).map(domain => {
         return {
           domain
@@ -78,11 +78,11 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
   const doUpsert = async (data) => {
     if (user) {
       setMutating(true)
-      const { tenantName, tenantDomains, allowUnsecureRead } = data
+      const { tenantName, tenantDomains, allowUnsecuredRead } = data
       const variables = {
         tenantName,
         tenantDomains: tenantDomains.map(d => d.domain),
-        allowUnsecureRead
+        allowUnsecuredRead
       }
 
       updateTenantSetting({
@@ -136,8 +136,8 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
                 {errors.tenantName && <ValidationError value={errors.tenantName?.message} />}
               </div>
               <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register('allowUnsecureRead')} />
-                {format('ui.tenantSetting.allowUnsecureRead')}
+                <Checkbox {...register('allowUnsecuredRead')} />
+                {format('ui.tenantSetting.allowUnsecuredRead')}
               </label>
               <div className='flex flex-col gap-y-3'>
                 <div className='text-sm'>

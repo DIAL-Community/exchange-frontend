@@ -2982,7 +2982,7 @@ export const en = {
   'ui.tenantSetting.tenantDomains': 'Registered URLs',
   'ui.tenantSetting.tenantDomain': 'Registered URL',
   'ui.tenantSetting.initialized': 'Tenant Initialized & Ready',
-  'ui.tenantSetting.allowUnsecureRead': 'Allow browsing without authenticating.',
+  'ui.tenantSetting.allowUnsecuredRead': 'Allow browsing without authenticating.',
   'ui.tenantSetting.createNew': 'Create a New Tenant Configurations?',
 
   'ui.validation.required': 'This field is required.',
