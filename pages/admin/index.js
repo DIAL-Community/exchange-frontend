@@ -1,7 +1,9 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
+import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import { FormattedMessage, useIntl } from 'react-intl'
+import { Loading } from '../../components/shared/FetchStatus'
 import Footer from '../../components/shared/Footer'
 import Header from '../../components/shared/Header'
 import ClientOnly from '../../lib/ClientOnly'
@@ -9,6 +11,13 @@ import ClientOnly from '../../lib/ClientOnly'
 const AdminPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { data, status } = useSession()
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      void signIn()
+    }
+  }, [status])
 
   return (
     <>
@@ -22,7 +31,10 @@ const AdminPage = ({ defaultTenants }) => {
       />
       <ClientOnly clientTenants={defaultTenants}>
         <Header />
-        <AdminLandingPage />
+        {status === 'authenticated' && data?.user.isAdminUser
+          ? <AdminLandingPage />
+          : <Loading />
+        }
         <Footer />
       </ClientOnly>
     </>

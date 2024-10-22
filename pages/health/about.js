@@ -26,8 +26,10 @@ const AboutPage = ({ defaultTenants }) => {
         <QueryNotification />
         <HealthHeader />
         <div className='relative'>
-          <img className='h-96 w-full' alt='DIAL DPI Resource Hub' src='/images/hero-image/health-cover.png' />
-          <div className='absolute top-1/2 -translate-y-1/2 px-40 md:px-52 lg:px-64 text-dial-cotton'>
+          <img className='h-96 w-full hidden md:block' alt='DIAL DPI Resource Hub'
+            src='/images/hero-image/health-cover.png' />
+          <div className='h-96 w-full block md:hidden bg-health-green'></div>
+          <div className='absolute top-1/2 -translate-y-1/2 px-16 md:px-52 lg:px-64 text-dial-cotton'>
             <div className='flex flex-col gap-2 max-w-prose'>
               <div className='text-3xl leading-tight font-bold py-3'>
                 About the Africa HealthTech Marketplace
@@ -40,7 +42,7 @@ const AboutPage = ({ defaultTenants }) => {
             </div>
           </div>
         </div>
-        <div className='lg:px-8 xl:px-56 py-8'>
+        <div className='px-8 xl:px-56 py-8'>
           <div className='text-2xl leading-tight text-health-blue font-semibold'>
             Why an Africa HealthTech Marketplace?
           </div>
