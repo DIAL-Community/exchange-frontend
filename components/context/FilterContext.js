@@ -103,7 +103,7 @@ const FilterProvider = ({ children }) => {
         setSoftwareCategories([])
         setSoftwareFeatures([])
         setComparedProducts([])
-        setProductStage('')
+        setProductStage(null)
 
         setShowBeta(false)
       }
