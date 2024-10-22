@@ -40,7 +40,7 @@ describe('Unit tests for the building block detail page.', () => {
 
   test('Should render detail of a building block.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockBuildingBlock, mockBuildingBlockComments]}>
+      <CustomMockedProvider mocks={[mockBuildingBlock, mockBuildingBlock, mockBuildingBlockComments]}>
         <QueryParamContextProvider>
           <FilterProvider>
             <BuildingBlockDetail slug='analytics-and-business-intelligence' />

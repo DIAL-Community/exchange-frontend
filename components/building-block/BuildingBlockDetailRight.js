@@ -1,20 +1,21 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
+import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
 import { ObjectType } from '../utils/constants'
 import DeleteBuildingBlock from './buttons/DeleteBuildingBlock'
-import EditBuildingBlock from './buttons/EditBuildingBlock'
 import BuildingBlockDetailProducts from './fragments/BuildingBlockDetailProducts'
 import BuildingBlockDetailWorkflows from './fragments/BuildingBlockDetailWorkflows'
 
 const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const editingAllowed = !buildingBlock.markdownUrl
 
   const descRef = useRef()
   const productRef = useRef()
@@ -28,11 +29,26 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
+  let editingAllowed = !buildingBlock.markdownUrl
+  const { error } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
+    variables: { slug: buildingBlock.slug },
+    fetchPolicy: 'network-only',
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (error) {
+    editingAllowed = false
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='flex gap-x-3 ml-auto'>
-          { editingAllowed && <EditBuildingBlock  buildingBlock={buildingBlock} />}
+          { editingAllowed && <EditButton type='link' href={`/building-blocks/${buildingBlock.slug}/edit`} />}
           <DeleteBuildingBlock buildingBlock={buildingBlock} />
         </div>
         <div className='text-xl font-semibold text-dial-ochre py-3' ref={descRef}>
