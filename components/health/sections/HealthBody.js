@@ -8,8 +8,9 @@ const HealthBody = () => {
   return (
     <>
       <div className='relative'>
-        <img className='h-96 w-full' alt='DIAL DPI Resource Hub' src='/images/hero-image/health-cover.png' />
-        <div className='absolute top-1/2 -translate-y-1/2 px-40 md:px-52 lg:px-64 text-dial-cotton'>
+        <img className='h-96 w-full hidden md:block' alt='DIAL DPI Resource Hub' src='/images/hero-image/health-cover.png' />
+        <div className='h-96 w-full block md:hidden bg-health-green'></div>
+        <div className='absolute top-1/2 -translate-y-1/2 px-8 md:px-52 lg:px-64 text-dial-cotton'>
           <div className='flex flex-col gap-2 max-w-prose'>
             <div className='text-3xl leading-tight font-bold py-3'>
               {format('health.landing.main.title')}
@@ -23,8 +24,8 @@ const HealthBody = () => {
           </div>
         </div>
       </div>
-      <div className='bg-health-light-gray flex'>
-        <div className='w-1/2 pl-4 lg:pl-8 xl:pl-56 pr-12 py-12 text-health-blue text-lg'>
+      <div className='bg-health-light-gray flex flex-col md:flex-row'>
+        <div className='md:w-1/2 pl-4 lg:pl-8 xl:pl-56 pr-12 py-12 text-health-blue text-lg'>
           The Africa HealthTech Marketplace showcases innovative digital health solutions that have been
           rigorously vetted by renowned global experts in digital health, including representatives from
           governments, investors, entrepreneurs, and ecosystem builders. These solutions are assessed for
@@ -34,7 +35,7 @@ const HealthBody = () => {
           in terms of accessibility, affordability, and quality of care. While inclusion in the Marketplace
           reflects recognition of a solution’s strengths and potential, it does not imply endorsement by Africa CDC.
         </div>
-        <div className='w-1/2 flex items-center'>
+        <div className='md:w-1/2 flex items-center'>
           <img className='' alt='Africa CDC Health Marketplace' src='ui/health/landing-img1.png' />
         </div>
       </div>
