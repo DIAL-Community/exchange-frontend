@@ -20,7 +20,7 @@ const HealthFooter = () => {
               A specialized technical institution of the African Union supporting public health initiatives of Member States.
             </div>
           </div>
-          <div className='basis-2/5'>
+          <div className='basis-2/5 py-8 lg:py-0'>
             <PoweredBy />
           </div>
           <div className='basis-1/5'>
