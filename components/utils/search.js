@@ -1,3 +1,5 @@
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+
 const MIN_SEARCH_VALUE_CHARACTERS = 2
 
 export const fetchSelectOptions = async (client, input, query, fetchedDataCallback, locale = null) => {
@@ -11,7 +13,15 @@ export const fetchSelectOptions = async (client, input, query, fetchedDataCallba
     variables.locale = locale
   }
 
-  const response = await client.query({ query, variables })
+  const response = await client.query({
+    query,
+    variables,
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   return response.data ? fetchedDataCallback(response.data) : []
 }

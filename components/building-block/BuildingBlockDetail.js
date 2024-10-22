@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
 import BuildingBlockDetailLeft from './BuildingBlockDetailLeft'
 import BuildingBlockDetailRight from './BuildingBlockDetailRight'
@@ -20,11 +20,11 @@ const BuildingBlockDetail = ({ slug }) => {
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.buildingBlock) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { buildingBlock } = data

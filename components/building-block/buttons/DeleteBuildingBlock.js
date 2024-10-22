@@ -1,14 +1,15 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_BUILDING_BLOCK } from '../shared/mutation/buildingBlock'
-import { BUILDING_BLOCK_DETAIL_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY } from '../shared/query/buildingBlock'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_BUILDING_BLOCK } from '../../shared/mutation/buildingBlock'
+import { BUILDING_BLOCK_DETAIL_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY } from '../../shared/query/buildingBlock'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteBuildingBlock = ({ buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -68,7 +69,16 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
     }
   }
 
-  return (
+  const { data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
+    variables: { slug: buildingBlock.slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return data &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -79,7 +89,6 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
-  )
 }
 
 export default DeleteBuildingBlock

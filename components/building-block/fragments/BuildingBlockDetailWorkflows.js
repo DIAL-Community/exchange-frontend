@@ -13,7 +13,7 @@ import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 import WorkflowCard from '../../workflow/WorkflowCard'
 
-const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => {
+const BuildingBlockDetailWorkflows = ({ buildingBlock, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -146,7 +146,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      canEdit={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

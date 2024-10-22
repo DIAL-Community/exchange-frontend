@@ -14,7 +14,7 @@ import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
 import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
+const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -182,7 +182,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      canEdit={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
 import BuildingBlockEditLeft from './BuildingBlockEditLeft'
 import BuildingBlockForm from './fragments/BuildingBlockForm'
@@ -16,11 +16,11 @@ const BuildingBlockEdit = ({ slug }) => {
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.buildingBlock) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { buildingBlock } = data

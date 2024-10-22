@@ -4,6 +4,7 @@ import BuildingBlockDetail from '../../../components/building-block/BuildingBloc
 import BuildingBlockEdit from '../../../components/building-block/BuildingBlockEdit'
 import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_BUILDING_BLOCK } from '../../../components/shared/mutation/buildingBlock'
 import {
   BUILDING_BLOCK_DETAIL_QUERY, BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY
@@ -53,8 +54,50 @@ describe('Unit tests for the building block detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+
+    const buildingBlockQuery = generateMockApolloData(
+      BUILDING_BLOCK_DETAIL_QUERY,
+      {
+        'slug': 'analytics-and-business-intelligence'
+      },
+      null,
+      buildingBlockDetail
+    )
+
+    const buildingBlockPolicyQuery = generateMockApolloData(
+      BUILDING_BLOCK_DETAIL_QUERY,
+      {
+        'slug': 'analytics-and-business-intelligence'
+      },
+      graphQueryErrors,
+      null
+    )
+
     const { container } = render(
-      <CustomMockedProvider mocks={[mockBuildingBlock, mockBuildingBlockComments]}>
+      <CustomMockedProvider
+        mocks={[
+          buildingBlockQuery,
+          buildingBlockPolicyQuery,
+          mockBuildingBlockComments
+        ]}
+      >
         <FilterProvider>
           <QueryParamContextProvider>
             <BuildingBlockEdit slug='analytics-and-business-intelligence' />
@@ -62,9 +105,6 @@ describe('Unit tests for the building block detail page.', () => {
         </FilterProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('Analytics and business intelligence')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
