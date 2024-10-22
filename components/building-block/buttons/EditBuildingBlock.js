@@ -7,9 +7,10 @@ const EditBuildingBlock = ({ buildingBlock }) => {
 
   const { data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
     variables: { slug: buildingBlock.slug },
+    fetchPolicy: 'network-only',
     context: {
       headers: {
-        ...GRAPH_QUERY_CONTEXT.DELETING
+        ...GRAPH_QUERY_CONTEXT.EDITING
       }
     }
   })
