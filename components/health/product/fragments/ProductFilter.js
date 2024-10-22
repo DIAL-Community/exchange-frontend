@@ -25,20 +25,20 @@ const ProductFilter = () => {
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
-      <div className='flex flex-row gap-y-2'>
+      <div className='flex flex-col lg:flex-row gap-y-2'>
         <hr className='border-b border-dial-slate-200'/>
-        <div className='w-1/2 pr-2'>
+        <div className='lg:w-1/2 pr-2'>
           <ProductSearchBar />
         </div>
-        <div className='w-1/2 flex flex-row gap-4 pl-4'>
+        <div className='lg:w-1/2 flex flex-row gap-4 pl-4'>
           <div className='text-sm py-5'>
             {format('health.filter.primary.title')}
           </div>
-          <div className='w-2/5 py-3'>
+          <div className='lg:w-2/5 py-3'>
             <SoftwareCategoryAutocomplete softwareCategories={softwareCategories}
               setSoftwareCategories={setSoftwareCategories} />
           </div>
-          <div className='w-2/5 py-3'>
+          <div className='lg:w-2/5 py-3'>
             <ProductStageAutocomplete productStage={productStage} setProductStage={setProductStage} />
           </div>
         </div>

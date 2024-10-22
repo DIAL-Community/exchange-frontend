@@ -120,6 +120,11 @@ const HealthMobileMenu = ({ menuExpanded, setMenuExpanded }) => {
                   {format('health.header.faq').toUpperCase()}
                 </Link>
               </li>
+              <li className='relative flex gap-x-2 px-8 py-4 text-lg'>
+                <Link href='/health/map' role='menuitem' className={menuStyles}>
+                  {format('health.header.map').toUpperCase()}
+                </Link>
+              </li>
               <UserMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
             </ul>
           </div>
