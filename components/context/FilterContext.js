@@ -50,6 +50,7 @@ const FilterProvider = ({ children }) => {
   const [softwareCategories, setSoftwareCategories] = useState([])
   const [softwareFeatures, setSoftwareFeatures] = useState([])
   const [comparedProducts, setComparedProducts] = useState([])
+  const [productStage, setProductStage] = useState(null)
 
   const [showBeta, setShowBeta] = useState(false)
 
@@ -102,6 +103,7 @@ const FilterProvider = ({ children }) => {
         setSoftwareCategories([])
         setSoftwareFeatures([])
         setComparedProducts([])
+        setProductStage('')
 
         setShowBeta(false)
       }
@@ -157,6 +159,7 @@ const FilterProvider = ({ children }) => {
     softwareCategories,
     softwareFeatures,
     comparedProducts,
+    productStage,
 
     showBeta
   }
@@ -203,6 +206,7 @@ const FilterProvider = ({ children }) => {
     setSoftwareCategories,
     setSoftwareFeatures,
     setComparedProducts,
+    setProductStage,
 
     setShowBeta
   }

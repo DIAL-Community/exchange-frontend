@@ -95,7 +95,9 @@ const CarouselConfigurationEditor = (props) => {
       calloutTitle: carouselConfiguration?.calloutTitle,
       textStyle: textStyleSelections.find(option => option.value === carouselConfiguration?.style),
       bgStyle: bgStyleSelections.find(option => option.value === carouselConfiguration?.imageUrl),
-      imageUrl: carouselConfiguration?.imageUrl.indexOf('/') >= 0 ? carouselConfiguration?.imageUrl : null
+      imageUrl: carouselConfiguration?.imageUrl.indexOf('/') >= 0
+        ? carouselConfiguration?.imageUrl.replace(/\/\//, '')
+        : null
     }
   })
 

@@ -138,7 +138,7 @@ const HeroCarousel = () => {
         modules={[Autoplay, Pagination, Navigation]}
       >
         {carouselConfigurations.map((carouselConfiguration) => (
-          <SwiperSlide key={carouselConfiguration.slug}>
+          <SwiperSlide key={carouselConfiguration.id}>
             {carouselConfiguration.type === 'default.exchange.carousel'
               ? <DigitalExchangeHeroCarousel carouselConfiguration={carouselConfiguration} />
               : carouselConfiguration.type === 'default.marketplace.carousel'
