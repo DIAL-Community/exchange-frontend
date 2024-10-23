@@ -60,12 +60,10 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {editingAllowed &&
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            <DeleteUseCase useCase={useCase} />
-          </div>
-        }
+        <div className='flex gap-x-3 ml-auto'>
+          {editingAllowed && <EditButton type='link' href={editPath} /> }
+          <DeleteUseCase useCase={useCase} />
+        </div>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>

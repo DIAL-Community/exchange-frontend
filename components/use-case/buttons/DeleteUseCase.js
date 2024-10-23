@@ -70,7 +70,7 @@ const DeleteUseCase = ({ useCase }) => {
   }
 
   const { error } = useQuery(USE_CASE_DETAIL_QUERY, {
-    variables: { userId: '' },
+    variables: { slug: '' },
     fetchPolicy: 'no-cache',
     context: {
       headers: {
