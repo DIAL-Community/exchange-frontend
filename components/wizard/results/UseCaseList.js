@@ -1,7 +1,8 @@
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import Pagination from '../../shared/Pagination'
 import { WIZARD_USE_CASES_QUERY } from '../../shared/query/wizard'
 import UseCaseCard from '../../use-case/UseCaseCard'
@@ -30,15 +31,20 @@ const UseCaseList = ({ headerRef }) => {
       useCases: inputUseCases.map(useCase => useCase.value),
       limit: DEFAULT_PAGE_SIZE,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedWizardUseCases && !data?.paginationWizardAttributeUseCase) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const {

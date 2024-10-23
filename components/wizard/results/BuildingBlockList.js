@@ -1,8 +1,9 @@
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import BuildingBlockCard from '../../building-block/BuildingBlockCard'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import Pagination from '../../shared/Pagination'
 import { WIZARD_BUILDING_BLOCKS_QUERY } from '../../shared/query/wizard'
 import { DisplayType } from '../../utils/constants'
@@ -29,15 +30,20 @@ const BuildingBlockList = ({ headerRef }) => {
       filterBlocks,
       limit: DEFAULT_PAGE_SIZE,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedBuildingBlocks && !data.paginationAttributeBuildingBlock) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const {

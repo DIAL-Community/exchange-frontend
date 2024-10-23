@@ -90,15 +90,6 @@ describe('Unit tests for the building block detail page.', () => {
       }]
     }
 
-    const buildingBlockQuery = generateMockApolloData(
-      BUILDING_BLOCK_DETAIL_QUERY,
-      {
-        'slug': 'analytics-and-business-intelligence'
-      },
-      null,
-      buildingBlockDetail
-    )
-
     const buildingBlockPolicyQueryError = generateMockApolloData(
       BUILDING_BLOCK_DETAIL_QUERY,
       {
@@ -111,7 +102,6 @@ describe('Unit tests for the building block detail page.', () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
-          buildingBlockQuery,
           mockBuildingBlockComments,
           buildingBlockPolicyQueryError
         ]}

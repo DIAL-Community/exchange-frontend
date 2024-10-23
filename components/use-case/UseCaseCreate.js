@@ -1,12 +1,31 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
+import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
+import { USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
 import UseCaseForm from './fragments/UseCaseForm'
 import UseCaseSimpleLeft from './fragments/UseCaseSimpleLeft'
 
 const UseCaseCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { loading, error } = useQuery(USE_CASE_DETAIL_QUERY, {
+    variables: { slug: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
+  })
+
+  if (loading) {
+    return handleLoadingQuery()
+  } else if (error) {
+    return handleQueryError(error)
+  }
 
   const slugNameMapping = (() => {
     const map = {

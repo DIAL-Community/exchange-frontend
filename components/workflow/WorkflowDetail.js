@@ -1,24 +1,30 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { WORKFLOW_DETAIL_QUERY } from '../shared/query/workflow'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import WorkflowDetailRight from './WorkflowDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { WORKFLOW_DETAIL_QUERY } from '../shared/query/workflow'
 import WorkflowDetailLeft from './WorkflowDetailLeft'
+import WorkflowDetailRight from './WorkflowDetailRight'
 
 const WorkflowDetail = ({ slug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(WORKFLOW_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.workflow) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { workflow } = data

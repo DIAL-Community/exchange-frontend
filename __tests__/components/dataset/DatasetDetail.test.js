@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import DatasetDetail from '../../../components/dataset/DatasetDetail'
 import DatasetEdit from '../../../components/dataset/DatasetEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_DATASET } from '../../../components/shared/mutation/dataset'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
@@ -59,16 +60,40 @@ describe('Unit tests for the dataset detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+
+    const mockDatasetPolicyQueryError = generateMockApolloData(
+      DATASET_DETAIL_QUERY,
+      {
+        'slug': 'ai-agro'
+      },
+      graphQueryErrors,
+      null
+    )
+
     const { container } = render(
-      <CustomMockedProvider mocks={[mockDataset, mockDatasetComments]}>
+      <CustomMockedProvider mocks={[mockDatasetPolicyQueryError, mockDatasetComments]}>
         <QueryParamContextProvider>
           <DatasetEdit slug='ai-agro' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('AI Agro')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 

@@ -1,24 +1,30 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { USER_DETAIL_QUERY } from '../shared/query/user'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import UserDetailRight from './UserDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { USER_DETAIL_QUERY } from '../shared/query/user'
 import UserDetailLeft from './UserDetailLeft'
+import UserDetailRight from './UserDetailRight'
 
 const UserDetail = ({ userId }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(USER_DETAIL_QUERY, {
-    variables: { userId }
+    variables: { userId },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.user) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { user } = data

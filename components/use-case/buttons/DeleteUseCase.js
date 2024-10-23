@@ -1,14 +1,15 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_USE_CASE } from '../shared/mutation/useCase'
-import { PAGINATED_USE_CASES_QUERY, USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_USE_CASE } from '../../shared/mutation/useCase'
+import { PAGINATED_USE_CASES_QUERY, USE_CASE_DETAIL_QUERY } from '../../shared/query/useCase'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteUseCase = ({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -68,7 +69,16 @@ const DeleteUseCase = ({ useCase }) => {
     }
   }
 
-  return (
+  const { data } = useQuery(USE_CASE_DETAIL_QUERY, {
+    variables: { userId: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return data &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -79,7 +89,6 @@ const DeleteUseCase = ({ useCase }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
-  )
 }
 
 export default DeleteUseCase

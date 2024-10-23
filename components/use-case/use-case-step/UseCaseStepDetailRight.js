@@ -1,12 +1,14 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { useUser } from '../../../lib/hooks'
-import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import EditButton from '../../shared/form/EditButton'
+import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { USE_CASE_STEP_QUERY } from '../../shared/query/useCaseStep'
+import UseCaseStepDetailBuildingBlocks from './fragments/UseCaseStepDetailBuildingBlocks'
 import UseCaseStepDetailDatasets from './fragments/UseCaseStepDetailDatasets'
 import UseCaseStepDetailProducts from './fragments/UseCaseStepDetailProducts'
 import UseCaseStepDetailWorkflows from './fragments/UseCaseStepDetailWorkflows'
-import UseCaseStepDetailBuildingBlocks from './fragments/UseCaseStepDetailBuildingBlocks'
 
 const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   const { formatMessage } = useIntl()
@@ -18,9 +20,6 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   const workflowRef = useRef()
   const buildingBlockRef = useRef()
 
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !useCase.markdownUrl
-
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.description', ref: descRef },
     { value: 'ui.dataset.header', ref: datasetRef },
@@ -29,10 +28,24 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
     { value: 'ui.buildingBlock.header', ref: buildingBlockRef }
   ]), [])
 
+  let editingAllowed = !useCase.markdownUrl
+  const { error } = useQuery(USE_CASE_STEP_QUERY, {
+    variables: { slug: '', stepSlug: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (error) {
+    editingAllowed = false
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit &&
+        {editingAllowed &&
           <div className='flex gap-x-3 ml-auto'>
             <EditButton
               type='link'
@@ -56,7 +69,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailDatasets
             useCaseStep={useCaseStep}
-            canEdit={canEdit}
+            canEdit={editingAllowed}
             headerRef={datasetRef}
           />
         </div>
@@ -64,7 +77,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailProducts
             useCaseStep={useCaseStep}
-            canEdit={canEdit}
+            canEdit={editingAllowed}
             headerRef={productRef}
           />
         </div>
@@ -72,7 +85,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailWorkflows
             useCaseStep={useCaseStep}
-            canEdit={canEdit}
+            canEdit={editingAllowed}
             headerRef={workflowRef}
           />
         </div>
@@ -81,7 +94,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
           <UseCaseStepDetailBuildingBlocks
             useCase={useCase}
             useCaseStep={useCaseStep}
-            canEdit={canEdit}
+            canEdit={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>

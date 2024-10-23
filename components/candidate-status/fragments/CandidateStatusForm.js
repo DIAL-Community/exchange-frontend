@@ -4,9 +4,7 @@ import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
@@ -26,8 +24,6 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
   const slug = candidateStatus?.slug ?? ''
 
   const client = useApolloClient()
-
-  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -105,34 +101,32 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
   })
 
   const doUpsert = async (data) => {
-    if (user) {
-      const {
-        name,
-        description,
-        initialStatus,
-        terminalStatus,
-        notificationTemplate,
-        nextCandidateStatuses
-      } = data
-      const variables = {
-        slug,
-        name,
-        description,
-        initialStatus,
-        terminalStatus,
-        notificationTemplate,
-        nextCandidateStatusSlugs: nextCandidateStatuses.filter(n => n.value).map(n => n.value)
-      }
-
-      updateCandidateStatus({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
-        }
-      })
+    const {
+      name,
+      description,
+      initialStatus,
+      terminalStatus,
+      notificationTemplate,
+      nextCandidateStatuses
+    } = data
+    const variables = {
+      slug,
+      name,
+      description,
+      initialStatus,
+      terminalStatus,
+      notificationTemplate,
+      nextCandidateStatusSlugs: nextCandidateStatuses.filter(n => n.value).map(n => n.value)
     }
+
+    updateCandidateStatus({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const cancelForm = () => {
@@ -150,161 +144,157 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
   const loadCandidateStatusOptions = (input) =>
     fetchSelectOptions(client, input, CANDIDATE_STATUS_SEARCH_QUERY, fetchedCandidateStatusesCallback)
 
-  return loadingUserSession
-    ? <Loading />
-    : isAdminUser || isEditorUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {candidateStatus
-                  ? format('app.editEntity', { entity: candidateStatus.name })
-                  : `${format('app.createNew')} ${format('ui.candidateStatus.label')}`}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='name'>
-                  {format('ui.candidateStatus.name')}
-                </label>
-                <Input
-                  {...register('name', { required: format('validation.required') })}
-                  id='name'
-                  placeholder={format('ui.candidateStatus.name')}
-                  isInvalid={errors.name}
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {candidateStatus
+              ? format('app.editEntity', { entity: candidateStatus.name })
+              : `${format('app.createNew')} ${format('ui.candidateStatus.label')}`}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='name'>
+              {format('ui.candidateStatus.name')}
+            </label>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              id='name'
+              placeholder={format('ui.candidateStatus.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          <label className='flex gap-x-2 mb-2 items-center self-start'>
+            <Checkbox {...register('initialStatus')} />
+            {format('ui.candidateStatus.initialStatus')}
+          </label>
+          <label className='flex gap-x-2 mb-2 items-center self-start'>
+            <Checkbox {...register('terminalStatus')} />
+            {format('ui.candidateStatus.terminalStatus')}
+          </label>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' for='description'>
+              {format('ui.candidateStatus.description')}
+            </label>
+            <Controller
+              id='description'
+              name='description'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <HtmlEditor
+                  editorId='description-editor'
+                  onChange={onChange}
+                  initialContent={value}
+                  placeholder={format('ui.candidateStatus.description')}
+                  isInvalid={errors.description}
                 />
-                {errors.name && <ValidationError value={errors.name?.message} />}
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.description && <ValidationError value={errors.description?.message} />}
+          </div>
+          <hr className='border-b border-dial-blue-chalk my-3' />
+          <div className='flex flex-col gap-y-3'>
+            <div className='flex flex-row gap-x-2'>
+              <div className='text-sm'>
+                {format('ui.candidateStatus.nextCandidateStatus.header')}
               </div>
-              <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register('initialStatus')} />
-                {format('ui.candidateStatus.initialStatus')}
-              </label>
-              <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register('terminalStatus')} />
-                {format('ui.candidateStatus.terminalStatus')}
-              </label>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' for='description'>
-                  {format('ui.candidateStatus.description')}
+              <button
+                type='button'
+                className='bg-dial-iris-blue text-white px-3 py-3 rounded shadow ml-auto'
+                onClick={() => append(
+                  {},
+                  { focusIndex: fields.length }
+                )}
+              >
+                <FaPlus />
+              </button>
+            </div>
+            {fields.map((f, index) => (
+              <div key={f.id} className='flex flex-col gap-y-2'>
+                <label className='required-field sr-only' htmlFor={`next-candidate-statuses-${index}`}>
+                  {format('ui.candidateStatus.nextCandidateStatus.label')}
                 </label>
-                <Controller
-                  id='description'
-                  name='description'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <HtmlEditor
-                      editorId='description-editor'
-                      onChange={onChange}
-                      initialContent={value}
-                      placeholder={format('ui.candidateStatus.description')}
-                      isInvalid={errors.description}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.description && <ValidationError value={errors.description?.message} />}
-              </div>
-              <hr className='border-b border-dial-blue-chalk my-3' />
-              <div className='flex flex-col gap-y-3'>
                 <div className='flex flex-row gap-x-2'>
-                  <div className='text-sm'>
-                    {format('ui.candidateStatus.nextCandidateStatus.header')}
-                  </div>
+                  <Controller
+                    id={`next-candidate-statuses-${index}`}
+                    control={control}
+                    name={`nextCandidateStatuses.${index}`}
+                    render={({ field: { onChange, value } }) => {
+                      const currentValue = value ?? f
+
+                      return (
+                        <Select
+                          async
+                          isBorderless
+                          cacheOptions
+                          defaultOptions
+                          className='w-full'
+                          loadOptions={loadCandidateStatusOptions}
+                          onChange={(currentValue) => {
+                            onChange(currentValue)
+                          }}
+                          value={currentValue}
+                        />
+                      )
+                    }}
+                  />
                   <button
                     type='button'
-                    className='bg-dial-iris-blue text-white px-3 py-3 rounded shadow ml-auto'
-                    onClick={() => append(
-                      {},
-                      { focusIndex: fields.length }
-                    )}
+                    className='bg-red-500 text-white px-3 rounded shadow'
+                    onClick={() => remove(index)}
                   >
-                    <FaPlus />
+                    <FaMinus />
                   </button>
                 </div>
-                {fields.map((f, index) => (
-                  <div key={f.id} className='flex flex-col gap-y-2'>
-                    <label className='required-field sr-only' htmlFor={`next-candidate-statuses-${index}`}>
-                      {format('ui.candidateStatus.nextCandidateStatus.label')}
-                    </label>
-                    <div className='flex flex-row gap-x-2'>
-                      <Controller
-                        id={`next-candidate-statuses-${index}`}
-                        control={control}
-                        name={`nextCandidateStatuses.${index}`}
-                        render={({ field: { onChange, value } }) => {
-                          const currentValue = value ?? f
-
-                          return (
-                            <Select
-                              async
-                              isBorderless
-                              cacheOptions
-                              defaultOptions
-                              className='w-full'
-                              loadOptions={loadCandidateStatusOptions}
-                              onChange={(currentValue) => {
-                                onChange(currentValue)
-                              }}
-                              value={currentValue}
-                            />
-                          )
-                        }}
-                      />
-                      <button
-                        type='button'
-                        className='bg-red-500 text-white px-3 rounded shadow'
-                        onClick={() => remove(index)}
-                      >
-                        <FaMinus />
-                      </button>
-                    </div>
-                    {errors.nextCandidateStatuses?.[index]
-                      && <ValidationError value={errors.nextCandidateStatuses?.[index]?.message} />
-                    }
-                  </div>
-                ))}
+                {errors.nextCandidateStatuses?.[index]
+                  && <ValidationError value={errors.nextCandidateStatuses?.[index]?.message} />
+                }
               </div>
-              <hr className='border-b border-dial-blue-chalk my-3' />
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' for='notification-template'>
-                  {format('ui.candidateStatus.notificationTemplate')}
-                </label>
-                <Controller
-                  id='notification-template'
-                  name='notificationTemplate'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <HtmlEditor
-                      editorId='notification-template-editor'
-                      onChange={onChange}
-                      initialContent={value}
-                      placeholder={format('ui.candidateStatus.notificationTemplate')}
-                      isInvalid={errors.notificationTemplate}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.notificationTemplate && <ValidationError value={errors.notificationTemplate?.message} />}
-              </div>
-              <div className='flex flex-wrap text-base mt-6 gap-3'>
-                <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                  {`${format('app.submit')} ${format('ui.candidateStatus.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3' />}
-                </button>
-              </div>
-            </div>
+            ))}
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <hr className='border-b border-dial-blue-chalk my-3' />
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' for='notification-template'>
+              {format('ui.candidateStatus.notificationTemplate')}
+            </label>
+            <Controller
+              id='notification-template'
+              name='notificationTemplate'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <HtmlEditor
+                  editorId='notification-template-editor'
+                  onChange={onChange}
+                  initialContent={value}
+                  placeholder={format('ui.candidateStatus.notificationTemplate')}
+                  isInvalid={errors.notificationTemplate}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.notificationTemplate && <ValidationError value={errors.notificationTemplate?.message} />}
+          </div>
+          <div className='flex flex-wrap text-base mt-6 gap-3'>
+            <button type='submit' className='submit-button' disabled={mutating || reverting}>
+              {`${format('app.submit')} ${format('ui.candidateStatus.label')}`}
+              {mutating && <FaSpinner className='spinner ml-3' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 })
 
 CandidateStatusForm.displayName = 'CandidateStatusForm'

@@ -3,12 +3,12 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_CITY } from '../shared/mutation/city'
-import { CITY_DETAIL_QUERY, PAGINATED_CITIES_QUERY } from '../shared/query/city'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_CITY } from '../../shared/mutation/city'
+import { CITY_DETAIL_QUERY, PAGINATED_CITIES_QUERY } from '../../shared/query/city'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteCity = ({ city }) => {
   const { formatMessage } = useIntl()

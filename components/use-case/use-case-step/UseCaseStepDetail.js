@@ -1,24 +1,30 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { USE_CASE_STEP_QUERY } from '../../shared/query/useCaseStep'
-import UseCaseStepDetailRight from './UseCaseStepDetailRight'
 import UseCaseStepDetailLeft from './UseCaseStepDetailLeft'
+import UseCaseStepDetailRight from './UseCaseStepDetailRight'
 
 const UseCaseStepDetail = ({ slug, stepSlug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(USE_CASE_STEP_QUERY, {
-    variables: { slug, stepSlug }
+    variables: { slug, stepSlug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.useCase) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { useCase, useCaseStep } = data

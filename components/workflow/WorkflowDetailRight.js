@@ -1,14 +1,16 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { WORKFLOW_DETAIL_QUERY } from '../shared/query/workflow'
 import UseCaseCard from '../use-case/UseCaseCard'
 import { DisplayType, ObjectType } from '../utils/constants'
-import DeleteWorkflow from './DeleteWorkflow'
+import DeleteWorkflow from './buttons/DeleteWorkflow'
 import WorkflowDetailBuildingBlocks from './fragments/WorkflowDetailBuildingBlocks'
 
 const WorkflowUseCases = ({ workflow, headerRef }) => {
@@ -43,9 +45,6 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
-
   const descRef = useRef()
   const useCaseRef = useRef()
   const buildingBlockRef = useRef()
@@ -64,13 +63,27 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
 
   const editPath = `${workflow.slug}/edit`
 
+  let editingAllowed = true
+  const { error } = useQuery(WORKFLOW_DETAIL_QUERY, {
+    variables: { slug: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (error) {
+    editingAllowed = false
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteWorkflow workflow={workflow} />}
+            <DeleteWorkflow workflow={workflow} />
           </div>
         )}
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
@@ -88,7 +101,7 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <WorkflowDetailBuildingBlocks
             workflow={workflow}
-            canEdit={canEdit}
+            canEdit={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>

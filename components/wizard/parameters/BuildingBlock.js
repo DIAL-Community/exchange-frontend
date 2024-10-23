@@ -1,22 +1,29 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Checkbox from '../../shared/form/Checkbox'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
 
 export const BuildingBlockMultiSelect = ({ buildingBlocks, setBuildingBlocks }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data, error, loading } = useQuery(BUILDING_BLOCK_SEARCH_QUERY)
+  const { data, error, loading } = useQuery(BUILDING_BLOCK_SEARCH_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.buildingBlocks) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const toggleBuildingBlock = (id) => {

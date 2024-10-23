@@ -1,21 +1,20 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, FormattedTime, useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import OrganizationCard from '../organization/OrganizationCard'
 import ProductCard from '../product/ProductCard'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
+import { USER_DETAIL_QUERY } from '../shared/query/user'
 import { DisplayType, ObjectType } from '../utils/constants'
-import DeleteUser from './DeleteUser'
+import DeleteUser from './buttons/DeleteUser'
 
 const UserDetailRight = forwardRef(({ user }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const roleRef = useRef()
@@ -37,13 +36,27 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
 
   const editPath = `${user.id}/edit`
 
+  let editingAllowed = true
+  const { error } = useQuery(USER_DETAIL_QUERY, {
+    variables: { userId: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (error) {
+    editingAllowed = false
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteUser user={user} />}
+            <DeleteUser user={user} />
           </div>
         )}
         <div className='text-xl font-semibold text-dial-stratos py-3' ref={descRef}>
