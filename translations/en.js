@@ -3043,10 +3043,12 @@ export const en = {
   'ui.admin.candidate.label': 'Candidate Management Configuration',
   'ui.admin.candidate.header': 'Candidate Management Configurations',
 
-
   'ui.general.processing': 'Processing request ...',
   'ui.general.error.forbidden': 'You are not allowed to view the current page.',
   'ui.general.error.general': 'We are unable to process your request. Please try again later.',
-  'ui.general.error.notFound': 'We are unable to load information for the page. Please try again later.'
+  'ui.general.error.notFound': 'We are unable to load information for the page. Please try again later.',
+
+  'ui.categoryIndicator.label': 'Category Indicator',
+  'ui.categoryIndicator.header': 'Category Indicators',
 }
 
