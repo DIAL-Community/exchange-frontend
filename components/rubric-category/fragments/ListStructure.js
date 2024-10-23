@@ -1,24 +1,30 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { RUBRIC_CATEGORY_SEARCH_QUERY } from '../../shared/query/rubricCategory'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import RubricCategoryCard from '../RubricCategoryCard'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { RUBRIC_CATEGORY_SEARCH_QUERY } from '../../shared/query/rubricCategory'
 import { DisplayType } from '../../utils/constants'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import RubricCategoryCard from '../RubricCategoryCard'
 
 const ListStructure = () => {
   const { search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(RUBRIC_CATEGORY_SEARCH_QUERY, {
-    variables: { search }
+    variables: { search },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.rubricCategories) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { rubricCategories } = data

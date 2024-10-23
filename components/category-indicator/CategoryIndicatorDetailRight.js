@@ -1,20 +1,19 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { CATEGORY_INDICATOR_QUERY } from '../shared/query/categoryIndicator'
 import { ObjectType } from '../utils/constants'
-import DeleteCategoryIndicator from './DeleteCategoryIndicator'
+import DeleteCategoryIndicator from './buttons/DeleteCategoryIndicator'
 
 const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const categoryIndicatorRef = useRef()
@@ -31,13 +30,28 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
 
   const editPath = `${categoryIndicator.slug}/edit`
 
+  let editingAllowed = true
+  const { error } = useQuery(CATEGORY_INDICATOR_QUERY, {
+    variables: { categorySlug: '', indicatorSlug: '' },
+    fetchPolicy: 'network-only',
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (error) {
+    editingAllowed = false
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteCategoryIndicator categoryIndicator={categoryIndicator} />}
+            <DeleteCategoryIndicator categoryIndicator={categoryIndicator} />
           </div>
         )}
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>

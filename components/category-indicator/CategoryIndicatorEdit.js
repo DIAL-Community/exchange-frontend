@@ -1,26 +1,32 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { CATEGORY_INDICATOR_QUERY } from '../shared/query/categoryIndicator'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import CategoryIndicatorForm from './fragments/CategoryIndicatorForm'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { CATEGORY_INDICATOR_QUERY } from '../shared/query/categoryIndicator'
 import CategoryIndicatorEditLeft from './CategoryIndicatorEditLeft'
+import CategoryIndicatorForm from './fragments/CategoryIndicatorForm'
 
 const CategoryIndicatorEdit = ({ categorySlug, indicatorSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(CATEGORY_INDICATOR_QUERY, {
-    variables: { indicatorSlug, categorySlug }
+    variables: { indicatorSlug, categorySlug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.categoryIndicator && !data?.rubricCategory) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { categoryIndicator, rubricCategory } = data

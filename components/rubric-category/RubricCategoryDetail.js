@@ -1,24 +1,30 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import RubricCategoryDetailRight from './RubricCategoryDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
 import RubricCategoryDetailLeft from './RubricCategoryDetailLeft'
+import RubricCategoryDetailRight from './RubricCategoryDetailRight'
 
 const RubricCategoryDetail = ({ categorySlug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { slug: categorySlug }
+    variables: { slug: categorySlug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.rubricCategory) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { rubricCategory } = data
