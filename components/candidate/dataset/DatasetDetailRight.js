@@ -1,11 +1,13 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import DatasetActionButton from './fragments/DatasetActionButton'
@@ -14,9 +16,6 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
-
   const editPath = `${dataset.slug}/edit`
 
   const commentsSectionRef = useRef()
@@ -24,10 +23,25 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
+  let editingAllowed = true
+  const { error } = useQuery(CANDIDATE_DATASET_DETAIL_QUERY, {
+    variables: { slug: dataset.slug },
+    fetchPolicy: 'network-only',
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (error) {
+    editingAllowed = false
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <DatasetActionButton dataset={dataset} actionType={CandidateActionType.REJECT} />
             <DatasetActionButton dataset={dataset} actionType={CandidateActionType.APPROVE} />

@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
 import Breadcrumb from '../../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import DatasetDetailRight from './DatasetDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
 import DatasetDetailLeft from './DatasetDetailLeft'
+import DatasetDetailRight from './DatasetDetailRight'
 
 const DatasetDetail = ({ slug }) => {
   const scrollRef = useRef(null)
@@ -14,11 +14,11 @@ const DatasetDetail = ({ slug }) => {
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.candidateDataset) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { candidateDataset: dataset } = data
