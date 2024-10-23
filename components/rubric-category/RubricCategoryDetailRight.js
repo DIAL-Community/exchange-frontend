@@ -105,7 +105,7 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={rubricCategory.id}
-          objectType={ObjectType.SDG}
+          objectType={ObjectType.RUBRIC_CATEGORY}
         />
       </div>
     </div>

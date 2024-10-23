@@ -101,7 +101,7 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={categoryIndicator.id}
-          objectType={ObjectType.CategoryIndicator}
+          objectType={ObjectType.CATEGORY_INDICATOR}
         />
       </div>
     </div>

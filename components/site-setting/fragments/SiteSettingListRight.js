@@ -47,11 +47,6 @@ const SiteSettingListRight = () => {
     }
   }
 
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
-
   const { loading, error, data } = useQuery(SITE_SETTING_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search

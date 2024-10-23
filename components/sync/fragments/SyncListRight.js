@@ -1,13 +1,13 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
 import { FilterContext } from '../../context/FilterContext'
+import Pagination from '../../shared/Pagination'
 import { SYNC_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/sync'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import Pagination from '../../shared/Pagination'
-import SyncSearchBar from './SyncSearchBar'
 import ListStructure from './ListStructure'
+import SyncSearchBar from './SyncSearchBar'
 
 const SyncListRight = () => {
   const { formatMessage } = useIntl()
@@ -46,11 +46,6 @@ const SyncListRight = () => {
       })
     }
   }
-
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
 
   const { loading, error, data } = useQuery(SYNC_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
