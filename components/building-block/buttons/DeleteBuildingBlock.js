@@ -70,7 +70,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
   }
 
   const { data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
-    variables: { slug: buildingBlock.slug },
+    variables: { slug: '' },
     fetchPolicy: 'network-only',
     context: {
       headers: {

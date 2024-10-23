@@ -38,9 +38,27 @@ describe('Unit tests for the building block detail page.', () => {
     commentsQuery
   )
 
+  const mockBuildingBlockPolicy = generateMockApolloData(
+    BUILDING_BLOCK_DETAIL_QUERY,
+    {
+      'slug': ''
+    },
+    null,
+    { 'data': { 'buildingBlock': null } }
+  )
+
   test('Should render detail of a building block.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockBuildingBlock, mockBuildingBlock, mockBuildingBlockComments]}>
+      <CustomMockedProvider
+        mocks={[
+          mockBuildingBlock,
+          mockBuildingBlock,
+          mockBuildingBlockPolicy,
+          mockBuildingBlockPolicy,
+          mockBuildingBlockPolicy,
+          mockBuildingBlockComments
+        ]}
+      >
         <QueryParamContextProvider>
           <FilterProvider>
             <BuildingBlockDetail slug='analytics-and-business-intelligence' />
@@ -81,7 +99,7 @@ describe('Unit tests for the building block detail page.', () => {
       buildingBlockDetail
     )
 
-    const buildingBlockPolicyQuery = generateMockApolloData(
+    const buildingBlockPolicyQueryError = generateMockApolloData(
       BUILDING_BLOCK_DETAIL_QUERY,
       {
         'slug': 'analytics-and-business-intelligence'
@@ -94,8 +112,8 @@ describe('Unit tests for the building block detail page.', () => {
       <CustomMockedProvider
         mocks={[
           buildingBlockQuery,
-          buildingBlockPolicyQuery,
-          mockBuildingBlockComments
+          mockBuildingBlockComments,
+          buildingBlockPolicyQueryError
         ]}
       >
         <FilterProvider>
@@ -148,10 +166,10 @@ describe('Unit tests for the building block detail page.', () => {
       <CustomMockedProvider
         mocks={[
           mockBuildingBlock,
-          mockBuildingBlockComments,
           mockCreateBuildingBlock,
-          mockBuildingBlockPaginationAttribute,
-          mockPaginatedBuildingBlocks
+          mockBuildingBlockComments,
+          mockPaginatedBuildingBlocks,
+          mockBuildingBlockPaginationAttribute
         ]}
       >
         <FilterProvider>

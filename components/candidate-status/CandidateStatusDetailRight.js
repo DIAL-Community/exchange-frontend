@@ -1,25 +1,39 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { CANDIDATE_STATUS_DETAIL_QUERY } from '../shared/query/candidateStatus'
 import { ObjectType } from '../utils/constants'
-import DeleteCandidateStatus from './DeleteCandidateStatus'
+import DeleteCandidateStatus from './buttons/DeleteCandidateStatus'
 
 const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
-
   const commentsSectionRef = useRef()
   useImperativeHandle(ref, () => [{ value: 'ui.comment.label', ref: commentsSectionRef }], [])
 
   const editPath = `${candidateStatus.slug}/edit`
+
+  let editingAllowed = true
+  const { error } = useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
+    variables: { slug: '' },
+    fetchPolicy: 'network-only',
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (error) {
+    editingAllowed = false
+  }
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
@@ -35,10 +49,10 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
               {format('ui.candidateStatus.initialStatus.label')}
             </span>
           }
-          {canEdit && (
+          {editingAllowed && (
             <div className='flex gap-x-3 ml-auto'>
               <EditButton type='link' href={editPath} />
-              {isAdminUser && <DeleteCandidateStatus candidateStatus={candidateStatus} />}
+              <DeleteCandidateStatus candidateStatus={candidateStatus} />
             </div>
           )}
         </div>

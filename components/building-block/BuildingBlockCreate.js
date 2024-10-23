@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
 import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
 import BuildingBlockForm from './fragments/BuildingBlockForm'
 import BuildingBlockSimpleLeft from './fragments/BuildingBlockSimpleLeft'
@@ -12,7 +12,7 @@ const BuildingBlockCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
+  const { loading, error } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
     variables: { slug: '' },
     context: {
       headers: {
@@ -25,8 +25,6 @@ const BuildingBlockCreate = () => {
     return handleLoadingQuery()
   } else if (error) {
     return handleQueryError(error)
-  } else if (!data?.buildingBlock) {
-    return handleMissingData()
   }
 
   const slugNameMapping = (() => {

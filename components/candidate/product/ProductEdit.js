@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { CANDIDATE_PRODUCT_DETAIL_QUERY } from '../../shared/query/candidateProduct'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import ProductForm from './fragments/ProductForm'
 import ProductEditLeft from './ProductEditLeft'
 
@@ -12,15 +13,20 @@ const ProductEdit = ({ slug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.candidateProduct) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { candidateProduct: product } = data

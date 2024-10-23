@@ -1,12 +1,31 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
+import { handleLoadingQuery, handleQueryError } from '../../shared/GraphQueryHandler'
+import { CANDIDATE_RESOURCE_DETAIL_QUERY } from '../../shared/query/candidateResource'
 import ResourceForm from './fragments/ResourceForm'
 import ResourceSimpleLeft from './fragments/ResourceSimpleLeft'
 
 const ResourceCreate = ({ country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { loading, error } = useQuery(CANDIDATE_RESOURCE_DETAIL_QUERY, {
+    variables: { slug: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
+  })
+
+  if (loading) {
+    return handleLoadingQuery()
+  } else if (error) {
+    return handleQueryError(error)
+  }
 
   const slugNameMapping = (() => {
     const map = {

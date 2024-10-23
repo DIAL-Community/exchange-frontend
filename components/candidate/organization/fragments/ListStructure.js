@@ -1,5 +1,6 @@
-import { useQuery } from '@apollo/client'
 import { useContext } from 'react'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { FilterContext } from '../../../context/FilterContext'
 import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 import { PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY } from '../../../shared/query/candidateOrganization'
@@ -13,7 +14,13 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       search,
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
+
   })
 
   if (loading) {

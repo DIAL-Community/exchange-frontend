@@ -1,10 +1,12 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import RoleActionButton from './fragments/RoleActionButton'
 
@@ -12,17 +14,30 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user } = useUser()
-
   const commentsSectionRef = useRef()
   useImperativeHandle(ref, () => ([
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
+  let editingAllowed = true
+  const { error } = useQuery(CANDIDATE_ROLE_DETAIL_QUERY, {
+    variables: { slug: '' },
+    fetchPolicy: 'network-only',
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (error) {
+    editingAllowed = false
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {user.isAdminUser && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <RoleActionButton role={role} actionType={CandidateActionType.REJECT} />
             <RoleActionButton role={role} actionType={CandidateActionType.APPROVE} />

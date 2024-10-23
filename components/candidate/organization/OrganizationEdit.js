@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { CANDIDATE_ORGANIZATION_DETAIL_QUERY } from '../../shared/query/candidateOrganization'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import OrganizationForm from './fragments/OrganizationForm'
 import OrganizationEditLeft from './OrganizationEditLeft'
 
@@ -12,15 +13,20 @@ const OrganizationEdit = ({ slug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.candidateOrganization) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { candidateOrganization: organization } = data

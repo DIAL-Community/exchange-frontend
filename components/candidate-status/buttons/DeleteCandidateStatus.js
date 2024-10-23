@@ -1,14 +1,15 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_CANDIDATE_STATUS } from '../shared/mutation/candidateStatus'
-import { CANDIDATE_STATUS_DETAIL_QUERY, PAGINATED_CANDIDATE_STATUSES_QUERY } from '../shared/query/candidateStatus'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_CANDIDATE_STATUS } from '../../shared/mutation/candidateStatus'
+import { CANDIDATE_STATUS_DETAIL_QUERY, PAGINATED_CANDIDATE_STATUSES_QUERY } from '../../shared/query/candidateStatus'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteCandidateStatus = ({ candidateStatus }) => {
   const { formatMessage } = useIntl()
@@ -68,7 +69,17 @@ const DeleteCandidateStatus = ({ candidateStatus }) => {
     }
   }
 
-  return (
+  const { data } = useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
+    variables: { slug: '' },
+    fetchPolicy: 'network-only',
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return data &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -79,7 +90,6 @@ const DeleteCandidateStatus = ({ candidateStatus }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
-  )
 }
 
 export default DeleteCandidateStatus

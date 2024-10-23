@@ -1,24 +1,30 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { CANDIDATE_ORGANIZATION_DETAIL_QUERY } from '../../shared/query/candidateOrganization'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import OrganizationDetailRight from './OrganizationDetailRight'
 import OrganizationDetailLeft from './OrganizationDetailLeft'
+import OrganizationDetailRight from './OrganizationDetailRight'
 
 const OrganizationDetail = ({ slug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data, refetch } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.candidateOrganization) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { candidateOrganization: organization } = data

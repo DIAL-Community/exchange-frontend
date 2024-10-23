@@ -71,7 +71,6 @@ const BuildingBlockListRight = () => {
         ...GRAPH_QUERY_CONTEXT.VIEWING
       }
     }
-
   })
 
   return (

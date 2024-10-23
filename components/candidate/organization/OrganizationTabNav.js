@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { CANDIDATE_ORGANIZATION_DETAIL_QUERY } from '../../shared/query/candidateOrganization'
 import TabNav from '../../shared/TabNav'
-import { useUser } from '../../../lib/hooks'
 
 const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
-  const { user } = useUser()
-
   const [tabNames, setTabNames] = useState([
     'ui.candidateOrganization.header'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
+    variables: { slug: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.organization.createNew'),
         'ui.candidateOrganization.createNew'
       ])
     }
-  }, [user])
+  })
 
   return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
 }

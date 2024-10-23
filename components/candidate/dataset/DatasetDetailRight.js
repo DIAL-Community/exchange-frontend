@@ -25,7 +25,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
 
   let editingAllowed = true
   const { error } = useQuery(CANDIDATE_DATASET_DETAIL_QUERY, {
-    variables: { slug: dataset.slug },
+    variables: { slug: '' },
     fetchPolicy: 'network-only',
     context: {
       headers: {

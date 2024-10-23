@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
@@ -10,7 +11,12 @@ const DatasetDetail = ({ slug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(CANDIDATE_DATASET_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
