@@ -65,9 +65,9 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
     }
   }
 
-  const { data } = useQuery(RUBRIC_CATEGORY_QUERY, {
+  const { error } = useQuery(RUBRIC_CATEGORY_QUERY, {
     variables: { slug: '' },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -75,7 +75,7 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
     }
   })
 
-  return data &&
+  return error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

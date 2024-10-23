@@ -66,6 +66,7 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
   let editingAllowed = true
   const { error } = useQuery(WORKFLOW_DETAIL_QUERY, {
     variables: { slug: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

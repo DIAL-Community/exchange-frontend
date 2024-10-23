@@ -69,8 +69,9 @@ const DeleteUser = ({ user }) => {
     }
   }
 
-  const { data } = useQuery(USER_DETAIL_QUERY, {
+  const { error } = useQuery(USER_DETAIL_QUERY, {
     variables: { userId: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -78,7 +79,7 @@ const DeleteUser = ({ user }) => {
     }
   })
 
-  return data &&
+  return error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

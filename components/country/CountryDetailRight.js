@@ -41,6 +41,7 @@ const CountryDetailRight = forwardRef(({ country }, ref) => {
   let editingAllowed = true
   const { error } = useQuery(COUNTRY_DETAIL_QUERY, {
     variables: { slug: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

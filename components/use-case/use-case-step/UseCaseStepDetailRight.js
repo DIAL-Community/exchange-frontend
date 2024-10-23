@@ -31,6 +31,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   let editingAllowed = !useCase.markdownUrl
   const { error } = useQuery(USE_CASE_STEP_QUERY, {
     variables: { slug: '', stepSlug: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

@@ -69,8 +69,9 @@ const DeleteUseCase = ({ useCase }) => {
     }
   }
 
-  const { data } = useQuery(USE_CASE_DETAIL_QUERY, {
+  const { error } = useQuery(USE_CASE_DETAIL_QUERY, {
     variables: { userId: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -78,7 +79,7 @@ const DeleteUseCase = ({ useCase }) => {
     }
   })
 
-  return data &&
+  return error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

@@ -32,7 +32,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
   let editingAllowed = !buildingBlock.markdownUrl
   const { error } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
     variables: { slug: '' },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

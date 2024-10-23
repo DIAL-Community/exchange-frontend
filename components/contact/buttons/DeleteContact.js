@@ -64,8 +64,9 @@ const DeleteContact = ({ contact }) => {
     })
   }
 
-  const { data } = useQuery(CONTACT_DETAIL_QUERY, {
+  const { error } = useQuery(CONTACT_DETAIL_QUERY, {
     variables: { slug: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -73,7 +74,7 @@ const DeleteContact = ({ contact }) => {
     }
   })
 
-  return data &&
+  return error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

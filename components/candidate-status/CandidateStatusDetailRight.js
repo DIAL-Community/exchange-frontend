@@ -23,7 +23,7 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
   let editingAllowed = true
   const { error } = useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
     variables: { slug: '' },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

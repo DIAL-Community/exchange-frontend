@@ -69,9 +69,9 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
     }
   }
 
-  const { data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
+  const { error } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
     variables: { slug: '' },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -79,7 +79,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
     }
   })
 
-  return data &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

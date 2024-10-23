@@ -69,8 +69,9 @@ const DeleteWorkflow = ({ workflow }) => {
     }
   }
 
-  const { data } = useQuery(WORKFLOW_DETAIL_QUERY, {
+  const { error } = useQuery(WORKFLOW_DETAIL_QUERY, {
     variables: { slug: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -78,7 +79,9 @@ const DeleteWorkflow = ({ workflow }) => {
     }
   })
 
-  return data &&
+  console.log(error)
+
+  return error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

@@ -64,8 +64,9 @@ const DeleteDataset = ({ dataset }) => {
     })
   }
 
-  const { data } = useQuery(DATASET_DETAIL_QUERY, {
+  const { error } = useQuery(DATASET_DETAIL_QUERY, {
     variables: { slug: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -73,7 +74,7 @@ const DeleteDataset = ({ dataset }) => {
     }
   })
 
-  return data &&
+  return error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

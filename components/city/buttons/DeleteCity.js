@@ -64,8 +64,9 @@ const DeleteCity = ({ city }) => {
     })
   }
 
-  const { data } = useQuery(CITY_DETAIL_QUERY, {
+  const { error } = useQuery(CITY_DETAIL_QUERY, {
     variables: { slug: '' },
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -73,7 +74,7 @@ const DeleteCity = ({ city }) => {
     }
   })
 
-  return data &&
+  return error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

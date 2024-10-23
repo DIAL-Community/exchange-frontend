@@ -28,7 +28,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   let editingAllowed = true
   const { error } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
     variables: { slug: '' },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

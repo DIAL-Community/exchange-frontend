@@ -69,9 +69,9 @@ const DeleteCandidateStatus = ({ candidateStatus }) => {
     }
   }
 
-  const { data } = useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
+  const { error } = useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
     variables: { slug: '' },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
@@ -79,7 +79,7 @@ const DeleteCandidateStatus = ({ candidateStatus }) => {
     }
   })
 
-  return data &&
+  return error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

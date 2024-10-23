@@ -35,7 +35,7 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
   let editingAllowed = true
   const { error } = useQuery(RUBRIC_CATEGORY_QUERY, {
     variables: { slug: '' },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

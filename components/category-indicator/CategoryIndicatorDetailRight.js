@@ -33,7 +33,7 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
   let editingAllowed = true
   const { error } = useQuery(CATEGORY_INDICATOR_QUERY, {
     variables: { categorySlug: '', indicatorSlug: '' },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING
