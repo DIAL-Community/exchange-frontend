@@ -1,25 +1,25 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation, useQuery } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { useUser } from '../../../../lib/hooks'
-import Input from '../../../shared/form/Input'
-import ValidationError from '../../../shared/form/ValidationError'
+import { ToastContext } from '../../../../lib/ToastContext'
+import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
-import { CREATE_PROJECT } from '../../../shared/mutation/project'
-import UrlInput from '../../../shared/form/UrlInput'
-import { Error, Loading, NotFound, Unauthorized } from '../../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
-import {
-  PAGINATED_PROJECTS_QUERY,
-  PROJECT_PAGINATION_ATTRIBUTES_QUERY,
-  PROJECT_SEARCH_QUERY
-} from '../../../shared/query/project'
+import Input from '../../../shared/form/Input'
 import Select from '../../../shared/form/Select'
+import UrlInput from '../../../shared/form/UrlInput'
+import ValidationError from '../../../shared/form/ValidationError'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../shared/GraphQueryHandler'
+import { CREATE_PROJECT } from '../../../shared/mutation/project'
 import { COUNTRY_SEARCH_QUERY } from '../../../shared/query/country'
+import {
+  PAGINATED_PROJECTS_QUERY, PROJECT_PAGINATION_ATTRIBUTES_QUERY, PROJECT_SEARCH_QUERY
+} from '../../../shared/query/project'
+import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
 const ProjectForm = React.memo(({
   project,
@@ -97,6 +97,11 @@ const ProjectForm = React.memo(({
     useQuery(COUNTRY_SEARCH_QUERY, {
       variables: {
         search: ''
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     })
 
@@ -110,11 +115,11 @@ const ProjectForm = React.memo(({
   )
 
   if (loadingCountries) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (errorCountries) {
-    return <Error />
+    return handleQueryError(errorCountries)
   } else if (!dataCountries?.countries) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const doUpsert = async (data) => {

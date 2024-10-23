@@ -154,6 +154,76 @@ export const AGGREGATORS_QUERY = gql`
   }
 `
 
+export const AGGREGATORS_MAP_QUERY = gql`
+  query SearchOrganizations(
+    $first: Int
+    $aggregatorOnly: Boolean
+    $aggregators: [String!]
+    $capabilities: [String!]
+    $operators: [String!]
+    $services: [String!]
+  ) {
+    searchOrganizations(
+      first: $first
+      aggregatorOnly: $aggregatorOnly
+      aggregators: $aggregators
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        website
+        whenEndorsed
+        countries {
+          id
+          name
+          slug
+          code
+          latitude
+          longitude
+        }
+        offices {
+          id
+          name
+          latitude
+          longitude
+        }
+      }
+    }
+    countries {
+      id
+      name
+      slug
+      latitude
+      longitude
+    }
+    capabilities(
+      capabilities: $capabilities
+      services: $services
+    ) {
+      service
+      capability
+      countryId
+      aggregatorId
+      operatorServiceId
+    }
+    operatorServices(
+      operators: $operators
+    ) {
+      id
+      name
+      countryId
+    }
+  }
+`
+
 export const COUNTRIES_QUERY = gql`
   query Countries($search: String) {
     countries(search: $search) {

@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { CONTACT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/contact'
@@ -50,6 +51,11 @@ const ContactListRight = () => {
   const { loading, error, data } = useQuery(CONTACT_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

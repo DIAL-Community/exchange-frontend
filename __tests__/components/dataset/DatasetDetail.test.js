@@ -36,9 +36,18 @@ describe('Unit tests for the dataset detail page.', () => {
     commentsQuery
   )
 
+  const mockDatasetPolicy = generateMockApolloData(
+    DATASET_DETAIL_QUERY,
+    {
+      'slug': ''
+    },
+    null,
+    { 'data': { 'dataset': null } }
+  )
+
   test('Should render detail of a dataset.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockDataset, mockDatasetComments]}>
+      <CustomMockedProvider mocks={[mockDataset, mockDatasetPolicy, mockDatasetComments]}>
         <QueryParamContextProvider>
           <DatasetDetail slug='ai-agro' />
         </QueryParamContextProvider>

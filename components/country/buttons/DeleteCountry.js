@@ -1,14 +1,14 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_COUNTRY } from '../shared/mutation/country'
-import { COUNTRY_DETAIL_QUERY, PAGINATED_COUNTRIES_QUERY } from '../shared/query/country'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_COUNTRY } from '../../shared/mutation/country'
+import { COUNTRY_DETAIL_QUERY, PAGINATED_COUNTRIES_QUERY } from '../../shared/query/country'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteCountry = ({ country }) => {
   const { formatMessage } = useIntl()
@@ -18,8 +18,6 @@ const DeleteCountry = ({ country }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -54,21 +52,28 @@ const DeleteCountry = ({ country }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteCountry({
-        variables: {
-          id: country.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteCountry({
+      variables: {
+        id: country.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
-  return (
+  const { data } = useQuery(COUNTRY_DETAIL_QUERY, {
+    variables: { slug: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return data &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -79,7 +84,6 @@ const DeleteCountry = ({ country }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
-  )
 }
 
 export default DeleteCountry

@@ -7,6 +7,7 @@ import {
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import BarChart from '../../../shared/BarChart'
@@ -145,6 +146,11 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
     refetch: refetchCategoryIndicators
   } = useQuery(PRODUCT_CATEGORY_INDICATORS_QUERY, {
     variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    },
     skip: !isAdminUser
   })
 

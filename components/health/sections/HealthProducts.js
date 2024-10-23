@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
@@ -83,6 +84,11 @@ const HealthProducts = ({ onlyFeatured = false }) => {
       softwareCategories: softwareCategories.map(softwareCategory => softwareCategory.id),
       softwareFeatures: softwareFeatures.map(softwareFeature => softwareFeature.id),
       featured: onlyFeatured
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

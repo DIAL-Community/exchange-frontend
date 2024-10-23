@@ -3,12 +3,13 @@ import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { useUser } from '../../../../lib/hooks'
+import CommentsList from '../../../shared/comment/CommentsList'
 import { Loading } from '../../../shared/FetchStatus'
 import EditButton from '../../../shared/form/EditButton'
 import { CREATE_COMMENT, DELETE_COMMENT } from '../../../shared/mutation/comment'
 import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../../../shared/query/comment'
-import CommentsList from './../../../shared/comment/CommentsList'
 
 const CommentSection = dynamic(
   () => import('react-comments-section').then((module) => module.CommentSection),
@@ -31,6 +32,11 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     variables: {
       commentObjectId: parseInt(objectId),
       commentObjectType: objectType
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

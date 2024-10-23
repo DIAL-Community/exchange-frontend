@@ -2,19 +2,20 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
+import Dialog, { DialogType } from '../../../shared/Dialog'
 import EditableSection from '../../../shared/EditableSection'
+import CreateButton from '../../../shared/form/CreateButton'
 import Pill from '../../../shared/form/Pill'
 import Select from '../../../shared/form/Select'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../shared/GraphQueryHandler'
 import { UPDATE_PRODUCT_PROJECTS } from '../../../shared/mutation/product'
 import { PROJECT_SEARCH_QUERY } from '../../../shared/query/project'
 import { DisplayType } from '../../../utils/constants'
 import ProjectCard from '../project/ProjectCard'
-import CreateButton from '../../../shared/form/CreateButton'
-import Dialog, { DialogType } from '../../../shared/Dialog'
 import ProjectForm from '../project/ProjectForm'
-import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 
 const ProductDetailProjects = ({ product, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -59,15 +60,20 @@ const ProductDetailProjects = ({ product, canEdit, headerRef }) => {
   const { loading: loadingProjects, error , data: projectData } = useQuery(PROJECT_SEARCH_QUERY, {
     variables: {
       search: projectsInput
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loadingProjects) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!projectData?.projects) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const fetchedProjectsCallback = (data) => (

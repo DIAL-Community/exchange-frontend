@@ -1,8 +1,9 @@
-import { useApolloClient, useMutation, useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { FaCircleChevronDown, FaCircleChevronUp } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import ProjectCard from '../../../project/ProjectCard'
@@ -101,6 +102,11 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
     variables: {
       sourceObjectType: ObjectType.ORGANIZATION,
       sourceObjectValue: organization.id
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     },
     onCompleted: (data) => {
       const { starredObjects } = data

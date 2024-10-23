@@ -1,10 +1,11 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_CANDIDATE_ROLES_QUERY } from '../../../../shared/query/candidateRole'
-import RoleCard from '../RoleCard'
-import { DisplayType } from '../../../../utils/constants'
-import { Error, Loading, NotFound } from '../../../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../../../lib/apolloClient'
 import { FilterContext } from '../../../../context/FilterContext'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../../shared/GraphQueryHandler'
+import { PAGINATED_CANDIDATE_ROLES_QUERY } from '../../../../shared/query/candidateRole'
+import { DisplayType } from '../../../../utils/constants'
+import RoleCard from '../RoleCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(FilterContext)
@@ -14,15 +15,20 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       search,
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedCandidateRoles) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedCandidateRoles: roles } = data

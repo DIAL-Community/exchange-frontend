@@ -1,14 +1,14 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_CONTACT } from '../shared/mutation/contact'
-import { CONTACT_DETAIL_QUERY, PAGINATED_CONTACTS_QUERY } from '../shared/query/contact'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_CONTACT } from '../../shared/mutation/contact'
+import { CONTACT_DETAIL_QUERY, PAGINATED_CONTACTS_QUERY } from '../../shared/query/contact'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteContact = ({ contact }) => {
   const { formatMessage } = useIntl()
@@ -18,8 +18,6 @@ const DeleteContact = ({ contact }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -54,21 +52,28 @@ const DeleteContact = ({ contact }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteContact({
-        variables: {
-          id: contact.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteContact({
+      variables: {
+        id: contact.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
-  return (
+  const { data } = useQuery(CONTACT_DETAIL_QUERY, {
+    variables: { slug: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return data &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -79,7 +84,6 @@ const DeleteContact = ({ contact }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
-  )
 }
 
 export default DeleteContact

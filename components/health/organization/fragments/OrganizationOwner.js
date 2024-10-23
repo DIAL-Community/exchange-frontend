@@ -1,15 +1,16 @@
+import { useCallback, useContext, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
-import { FaSpinner } from 'react-icons/fa'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { useCallback, useContext, useRef, useState } from 'react'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { useOrganizationOwnerUser, useUser } from '../../../../lib/hooks'
-import { ObjectType } from '../../../utils/constants'
-import { OWNER_CANDIDATE_ROLE_DETAIL_QUERY } from '../../../shared/query/candidateRole'
+import { ToastContext } from '../../../../lib/ToastContext'
 import { APPLY_AS_OWNER } from '../../../shared/mutation/user'
+import { OWNER_CANDIDATE_ROLE_DETAIL_QUERY } from '../../../shared/query/candidateRole'
 import { ORGANIZATION_CONTACT_QUERY } from '../../../shared/query/organization'
+import { ObjectType } from '../../../utils/constants'
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
@@ -35,6 +36,11 @@ const OrganizationOwner = ({ organization }) => {
     variables: {
       email: user?.userEmail,
       organizationId: organization.id
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     },
     skip: !user || !user.userEmail,
     onCompleted: (data) => {
