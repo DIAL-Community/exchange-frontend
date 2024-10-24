@@ -80,7 +80,8 @@ export const ObjectType = {
   CONTACT: 'CONTACT',
   URL: 'URL',
   PLAY: 'PLAY',
-  MOVE: 'MOVE'
+  MOVE: 'MOVE',
+  WORKFLOW: 'WORKFLOW'
 }
 
 export const CategoryIndicatorType = {

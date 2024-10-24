@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { CREATING_POLICY_QUERY, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
-import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
+import { BUILDING_BLOCK_POLICY_QUERY } from '../shared/query/buildingBlock'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -17,8 +17,8 @@ const BuildingBlockTabNav = ({ activeTab, setActiveTab }) => {
     'ui.buildingBlock.whatIs'
   ])
 
-  useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
-    variables: { slug: '' },
+  useQuery(BUILDING_BLOCK_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_QUERY },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

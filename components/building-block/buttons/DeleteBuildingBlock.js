@@ -2,13 +2,15 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { DELETING_POLICY_QUERY, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_BUILDING_BLOCK } from '../../shared/mutation/buildingBlock'
-import { BUILDING_BLOCK_DETAIL_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY } from '../../shared/query/buildingBlock'
+import {
+  BUILDING_BLOCK_DETAIL_QUERY, BUILDING_BLOCK_POLICY_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY
+} from '../../shared/query/buildingBlock'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteBuildingBlock = ({ buildingBlock }) => {
@@ -69,8 +71,8 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
     }
   }
 
-  const { error } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
-    variables: { slug: '' },
+  const { error } = useQuery(BUILDING_BLOCK_POLICY_QUERY, {
+    variables: { slug: DELETING_POLICY_QUERY },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

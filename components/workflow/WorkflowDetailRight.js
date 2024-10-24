@@ -1,13 +1,13 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { EDITING_POLICY_QUERY, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { WORKFLOW_DETAIL_QUERY } from '../shared/query/workflow'
+import { WORKFLOW_POLICY_QUERY } from '../shared/query/workflow'
 import UseCaseCard from '../use-case/UseCaseCard'
 import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteWorkflow from './buttons/DeleteWorkflow'
@@ -64,8 +64,8 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
   const editPath = `${workflow.slug}/edit`
 
   let editingAllowed = true
-  const { error } = useQuery(WORKFLOW_DETAIL_QUERY, {
-    variables: { slug: '' },
+  const { error } = useQuery(WORKFLOW_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_QUERY },
     fetchPolicy: 'no-cache',
     context: {
       headers: {
@@ -81,12 +81,10 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {editingAllowed && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            <DeleteWorkflow workflow={workflow} />
-          </div>
-        )}
+        <div className='flex gap-x-3 ml-auto'>
+          {editingAllowed && (<EditButton type='link' href={editPath} />)}
+          <DeleteWorkflow workflow={workflow} />
+        </div>
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>

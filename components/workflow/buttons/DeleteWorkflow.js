@@ -2,13 +2,13 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { DELETING_POLICY_QUERY, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_WORKFLOW } from '../../shared/mutation/workflow'
-import { PAGINATED_WORKFLOWS_QUERY, WORKFLOW_DETAIL_QUERY } from '../../shared/query/workflow'
+import { PAGINATED_WORKFLOWS_QUERY, WORKFLOW_DETAIL_QUERY, WORKFLOW_POLICY_QUERY } from '../../shared/query/workflow'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteWorkflow = ({ workflow }) => {
@@ -69,8 +69,8 @@ const DeleteWorkflow = ({ workflow }) => {
     }
   }
 
-  const { error } = useQuery(WORKFLOW_DETAIL_QUERY, {
-    variables: { slug: '' },
+  const { error } = useQuery(WORKFLOW_POLICY_QUERY, {
+    variables: { slug: DELETING_POLICY_QUERY },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { CREATING_POLICY_QUERY, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
-import { DATASET_DETAIL_QUERY } from '../shared/query/dataset'
+import { WORKFLOW_POLICY_QUERY } from '../shared/query/workflow'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -15,8 +15,8 @@ const WorkflowTabNav = ({ activeTab, setActiveTab }) => {
     'ui.workflow.whatIs'
   ])
 
-  useQuery(DATASET_DETAIL_QUERY, {
-    variables: { slug: '' },
+  useQuery(WORKFLOW_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_QUERY },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { CREATING_POLICY_QUERY, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
-import { WORKFLOW_DETAIL_QUERY } from '../shared/query/workflow'
+import { WORKFLOW_POLICY_QUERY } from '../shared/query/workflow'
 import WorkflowForm from './fragments/WorkflowForm'
 import WorkflowSimpleLeft from './fragments/WorkflowSimpleLeft'
 
@@ -12,8 +12,8 @@ const WorkflowCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(WORKFLOW_DETAIL_QUERY, {
-    variables: { slug: '' },
+  const { loading, error } = useQuery(WORKFLOW_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_QUERY },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

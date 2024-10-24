@@ -1,13 +1,13 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { EDITING_POLICY_QUERY, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
+import { BUILDING_BLOCK_POLICY_QUERY } from '../shared/query/buildingBlock'
 import { ObjectType } from '../utils/constants'
 import DeleteBuildingBlock from './buttons/DeleteBuildingBlock'
 import BuildingBlockDetailProducts from './fragments/BuildingBlockDetailProducts'
@@ -30,8 +30,8 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
   ]), [])
 
   let editingAllowed = !buildingBlock.markdownUrl
-  const { error } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
-    variables: { slug: '' },
+  const { error } = useQuery(BUILDING_BLOCK_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_QUERY },
     fetchPolicy: 'no-cache',
     context: {
       headers: {
