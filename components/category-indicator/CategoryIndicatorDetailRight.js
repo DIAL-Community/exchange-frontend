@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
@@ -32,7 +32,7 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
 
   let editingAllowed = true
   const { error } = useQuery(CATEGORY_INDICATOR_QUERY, {
-    variables: { categorySlug: crypto.randomUUID(), indicatorSlug: crypto.randomUUID() },
+    variables: { categorySlug: EDITING_POLICY_SLUG, indicatorSlug: EDITING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

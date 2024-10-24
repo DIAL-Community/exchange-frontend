@@ -8,7 +8,9 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_CANDIDATE_STATUS } from '../../shared/mutation/candidateStatus'
-import { CANDIDATE_STATUS_DETAIL_QUERY, PAGINATED_CANDIDATE_STATUSES_QUERY } from '../../shared/query/candidateStatus'
+import {
+  CANDIDATE_STATUS_DETAIL_QUERY, CANDIDATE_STATUS_POLICY_QUERY, PAGINATED_CANDIDATE_STATUSES_QUERY
+} from '../../shared/query/candidateStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteCandidateStatus = ({ candidateStatus }) => {
@@ -69,7 +71,7 @@ const DeleteCandidateStatus = ({ candidateStatus }) => {
     }
   }
 
-  const { error } = useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
+  const { error } = useQuery(CANDIDATE_STATUS_POLICY_QUERY, {
     variables: { slug: DELETING_POLICY_SLUG },
     context: {
       headers: {
@@ -78,7 +80,7 @@ const DeleteCandidateStatus = ({ candidateStatus }) => {
     }
   })
 
-  return error &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

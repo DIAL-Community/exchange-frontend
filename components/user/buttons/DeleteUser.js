@@ -8,7 +8,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_USER } from '../../shared/mutation/user'
-import { PAGINATED_USERS_QUERY, USER_DETAIL_QUERY } from '../../shared/query/user'
+import { PAGINATED_USERS_QUERY, USER_DETAIL_QUERY, USER_POLICY_QUERY } from '../../shared/query/user'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteUser = ({ user }) => {
@@ -69,7 +69,7 @@ const DeleteUser = ({ user }) => {
     }
   }
 
-  const { error } = useQuery(USER_DETAIL_QUERY, {
+  const { error } = useQuery(USER_POLICY_QUERY, {
     variables: { userId: DELETING_POLICY_SLUG },
     context: {
       headers: {
@@ -78,7 +78,7 @@ const DeleteUser = ({ user }) => {
     }
   })
 
-  return error &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

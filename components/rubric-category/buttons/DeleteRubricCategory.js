@@ -8,7 +8,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_RUBRIC_CATEGORY } from '../../shared/mutation/rubricCategory'
-import { RUBRIC_CATEGORY_QUERY, RUBRIC_CATEGORY_SEARCH_QUERY } from '../../shared/query/rubricCategory'
+import { RUBRIC_CATEGORY_POLICY_QUERY, RUBRIC_CATEGORY_SEARCH_QUERY } from '../../shared/query/rubricCategory'
 
 const DeleteRubricCategory = ({ rubricCategory }) => {
   const { formatMessage } = useIntl()
@@ -65,7 +65,7 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
     }
   }
 
-  const { error } = useQuery(RUBRIC_CATEGORY_QUERY, {
+  const { error } = useQuery(RUBRIC_CATEGORY_POLICY_QUERY, {
     variables: { slug: DELETING_POLICY_SLUG },
     context: {
       headers: {
@@ -74,7 +74,7 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
     }
   })
 
-  return error &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

@@ -78,9 +78,7 @@ const DeleteWorkflow = ({ workflow }) => {
     }
   })
 
-  console.log(error)
-
-  return error &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

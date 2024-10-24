@@ -7,7 +7,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_CONTACT } from '../../shared/mutation/contact'
-import { CONTACT_DETAIL_QUERY, PAGINATED_CONTACTS_QUERY } from '../../shared/query/contact'
+import { CONTACT_DETAIL_QUERY, CONTACT_POLICY_QUERY, PAGINATED_CONTACTS_QUERY } from '../../shared/query/contact'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteContact = ({ contact }) => {
@@ -64,7 +64,7 @@ const DeleteContact = ({ contact }) => {
     })
   }
 
-  const { error } = useQuery(CONTACT_DETAIL_QUERY, {
+  const { error } = useQuery(CONTACT_POLICY_QUERY, {
     variables: { slug: DELETING_POLICY_SLUG },
     context: {
       headers: {
@@ -73,7 +73,7 @@ const DeleteContact = ({ contact }) => {
     }
   })
 
-  return error &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

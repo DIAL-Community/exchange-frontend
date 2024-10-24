@@ -7,7 +7,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_DATASET } from '../../shared/mutation/dataset'
-import { DATASET_DETAIL_QUERY, PAGINATED_DATASETS_QUERY } from '../../shared/query/dataset'
+import { DATASET_DETAIL_QUERY, DATASET_POLICY_QUERY, PAGINATED_DATASETS_QUERY } from '../../shared/query/dataset'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteDataset = ({ dataset }) => {
@@ -64,7 +64,7 @@ const DeleteDataset = ({ dataset }) => {
     })
   }
 
-  const { error } = useQuery(DATASET_DETAIL_QUERY, {
+  const { error } = useQuery(DATASET_POLICY_QUERY, {
     variables: { slug: DELETING_POLICY_SLUG },
     context: {
       headers: {
@@ -73,7 +73,7 @@ const DeleteDataset = ({ dataset }) => {
     }
   })
 
-  return error &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

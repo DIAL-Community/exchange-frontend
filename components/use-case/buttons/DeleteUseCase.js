@@ -8,7 +8,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_USE_CASE } from '../../shared/mutation/useCase'
-import { PAGINATED_USE_CASES_QUERY, USE_CASE_DETAIL_QUERY } from '../../shared/query/useCase'
+import { PAGINATED_USE_CASES_QUERY, USE_CASE_DETAIL_QUERY, USE_CASE_POLICY_QUERY } from '../../shared/query/useCase'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteUseCase = ({ useCase }) => {
@@ -69,7 +69,7 @@ const DeleteUseCase = ({ useCase }) => {
     }
   }
 
-  const { error } = useQuery(USE_CASE_DETAIL_QUERY, {
+  const { error } = useQuery(USE_CASE_POLICY_QUERY, {
     variables: { slug: DELETING_POLICY_SLUG },
     context: {
       headers: {
@@ -78,7 +78,7 @@ const DeleteUseCase = ({ useCase }) => {
     }
   })
 
-  return error &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

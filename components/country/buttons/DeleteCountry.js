@@ -7,7 +7,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_COUNTRY } from '../../shared/mutation/country'
-import { COUNTRY_DETAIL_QUERY, PAGINATED_COUNTRIES_QUERY } from '../../shared/query/country'
+import { COUNTRY_DETAIL_QUERY, COUNTRY_POLICY_QUERY, PAGINATED_COUNTRIES_QUERY } from '../../shared/query/country'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteCountry = ({ country }) => {
@@ -64,7 +64,7 @@ const DeleteCountry = ({ country }) => {
     })
   }
 
-  const { error } = useQuery(COUNTRY_DETAIL_QUERY, {
+  const { error } = useQuery(COUNTRY_POLICY_QUERY, {
     variables: { slug: DELETING_POLICY_SLUG },
     context: {
       headers: {
@@ -73,7 +73,7 @@ const DeleteCountry = ({ country }) => {
     }
   })
 
-  return error &&
+  return !error &&
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
