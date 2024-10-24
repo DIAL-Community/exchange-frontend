@@ -7,7 +7,7 @@ import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { CANDIDATE_STATUS_DETAIL_QUERY } from '../shared/query/candidateStatus'
+import { CANDIDATE_STATUS_POLICY_QUERY } from '../shared/query/candidateStatus'
 import { ObjectType } from '../utils/constants'
 import DeleteCandidateStatus from './buttons/DeleteCandidateStatus'
 
@@ -20,8 +20,8 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
 
   const editPath = `${candidateStatus.slug}/edit`
 
-  let editingAllowed = true
-  const { error } = useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CANDIDATE_STATUS_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -30,8 +30,8 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

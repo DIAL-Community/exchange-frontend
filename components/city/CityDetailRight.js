@@ -9,7 +9,7 @@ import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
-import { CITY_DETAIL_QUERY } from '../shared/query/city'
+import { CITY_POLICY_QUERY } from '../shared/query/city'
 import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteCity from './buttons/DeleteCity'
 
@@ -37,8 +37,8 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
 
   const editPath = `${city.slug}/edit`
 
-  let editingAllowed = true
-  const { error } = useQuery(CITY_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CITY_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -47,8 +47,8 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

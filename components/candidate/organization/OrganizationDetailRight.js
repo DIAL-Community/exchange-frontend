@@ -8,7 +8,7 @@ import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CANDIDATE_ORGANIZATION_DETAIL_QUERY } from '../../shared/query/candidateOrganization'
+import { CANDIDATE_ORGANIZATION_POLICY_QUERY } from '../../shared/query/candidateOrganization'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import OrganizationActionButton from './fragments/OrganizationActionButton'
 
@@ -24,8 +24,8 @@ const OrganizationDetailRight = forwardRef(({ organization, refetch }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
-  let editingAllowed = true
-  const { error } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CANDIDATE_ORGANIZATION_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -34,8 +34,8 @@ const OrganizationDetailRight = forwardRef(({ organization, refetch }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

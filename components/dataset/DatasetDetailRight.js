@@ -7,7 +7,7 @@ import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { DATASET_DETAIL_QUERY } from '../shared/query/dataset'
+import { DATASET_POLICY_QUERY } from '../shared/query/dataset'
 import { ObjectType } from '../utils/constants'
 import { prependUrlWithProtocol } from '../utils/utilities'
 import DeleteDataset from './buttons/DeleteDataset'
@@ -76,8 +76,8 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
 
   const editPath = `${dataset.slug}/edit`
 
-  let editingAllowed = true
-  const { error } = useQuery(DATASET_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(DATASET_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -86,8 +86,8 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

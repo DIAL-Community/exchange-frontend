@@ -63,7 +63,7 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
 
   const editPath = `${workflow.slug}/edit`
 
-  let editingAllowed = true
+  let editingAllowed = false
   const { error } = useQuery(WORKFLOW_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
@@ -73,8 +73,8 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

@@ -6,7 +6,7 @@ import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
+import { CANDIDATE_ROLE_POLICY_QUERY } from '../../shared/query/candidateRole'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import RoleActionButton from './fragments/RoleActionButton'
 
@@ -19,8 +19,8 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
-  let editingAllowed = true
-  const { error } = useQuery(CANDIDATE_ROLE_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CANDIDATE_ROLE_POLICY_QUERY, {
     variables: { id: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -29,8 +29,8 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

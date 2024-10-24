@@ -7,7 +7,7 @@ import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
+import { CANDIDATE_DATASET_POLICY_QUERY } from '../../shared/query/candidateDataset'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import DatasetActionButton from './fragments/DatasetActionButton'
@@ -23,8 +23,8 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
-  let editingAllowed = true
-  const { error } = useQuery(CANDIDATE_DATASET_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CANDIDATE_DATASET_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -33,8 +33,8 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

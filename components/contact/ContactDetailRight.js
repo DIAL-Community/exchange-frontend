@@ -7,7 +7,7 @@ import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
-import { CONTACT_DETAIL_QUERY } from '../shared/query/contact'
+import { CONTACT_POLICY_QUERY } from '../shared/query/contact'
 import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteContact from './buttons/DeleteContact'
 
@@ -31,8 +31,8 @@ const ContactDetailRight = forwardRef(({ contact }, ref) => {
 
   const editPath = `${contact.slug}/edit`
 
-  let editingAllowed = true
-  const { error } = useQuery(CONTACT_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CONTACT_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -41,8 +41,8 @@ const ContactDetailRight = forwardRef(({ contact }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

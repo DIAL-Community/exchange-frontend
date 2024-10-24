@@ -9,7 +9,7 @@ import Share from '../shared/common/Share'
 import CreateButton from '../shared/form/CreateButton'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
+import { RUBRIC_CATEGORY_POLICY_QUERY } from '../shared/query/rubricCategory'
 import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteRubricCategory from './buttons/DeleteRubricCategory'
 
@@ -32,8 +32,8 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
 
   const editPath = `${rubricCategory.slug}/edit`
 
-  let editingAllowed = true
-  const { error } = useQuery(RUBRIC_CATEGORY_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(RUBRIC_CATEGORY_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -42,8 +42,8 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

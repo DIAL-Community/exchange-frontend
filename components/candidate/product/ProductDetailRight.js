@@ -8,7 +8,7 @@ import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { CANDIDATE_PRODUCT_UPDATE_STATUS } from '../../shared/mutation/candidateProduct'
-import { CANDIDATE_PRODUCT_DETAIL_QUERY } from '../../shared/query/candidateProduct'
+import { CANDIDATE_PRODUCT_POLICY_QUERY } from '../../shared/query/candidateProduct'
 import { ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import CandidateStatusWorkflow from '../CandidateStatusWorkflow'
@@ -25,8 +25,8 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
-  let editingAllowed = true
-  const { error } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CANDIDATE_PRODUCT_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -35,8 +35,8 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

@@ -8,7 +8,7 @@ import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
-import { USER_DETAIL_QUERY } from '../shared/query/user'
+import { USER_POLICY_QUERY } from '../shared/query/user'
 import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteUser from './buttons/DeleteUser'
 
@@ -36,8 +36,8 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
 
   const editPath = `${user.id}/edit`
 
-  let editingAllowed = true
-  const { error } = useQuery(USER_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(USER_POLICY_QUERY, {
     variables: { userId: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -46,8 +46,8 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

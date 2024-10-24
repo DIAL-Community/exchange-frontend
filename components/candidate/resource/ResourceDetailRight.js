@@ -7,7 +7,7 @@ import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CANDIDATE_RESOURCE_DETAIL_QUERY } from '../../shared/query/candidateResource'
+import { CANDIDATE_RESOURCE_POLICY_QUERY } from '../../shared/query/candidateResource'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import ResourceActionButton from './fragments/ResourceActionButton'
 
@@ -22,8 +22,8 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
-  let editingAllowed = true
-  const { error } = useQuery(CANDIDATE_RESOURCE_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CANDIDATE_RESOURCE_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -32,8 +32,8 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

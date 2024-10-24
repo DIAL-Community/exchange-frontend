@@ -3,7 +3,7 @@ import { FormattedDate, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../../../lib/apolloClient'
 import { HtmlViewer } from '../../../../shared/form/HtmlViewer'
-import { CANDIDATE_ROLE_DETAIL_QUERY } from '../../../../shared/query/candidateRole'
+import { CANDIDATE_ROLE_POLICY_QUERY } from '../../../../shared/query/candidateRole'
 import { CandidateActionType, ObjectType } from '../../../../utils/constants'
 import Bookmark from '../../../shared/Bookmark'
 import CommentsSection from '../../../shared/comment/CommentsSection'
@@ -19,8 +19,8 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
-  let editingAllowed = true
-  const { error } = useQuery(CANDIDATE_ROLE_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CANDIDATE_ROLE_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -29,8 +29,8 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

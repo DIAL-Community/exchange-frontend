@@ -18,7 +18,7 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
     { value: 'ui.common.detail.top', ref: descRef }
   ]), [])
 
-  let editingAllowed = true
+  let editingAllowed = false
   const { error } = useQuery(PRODUCT_REPOSITORY_DETAIL_QUERY, {
     variables: { productSlug: '', repositorySlug: '' },
     context: {
@@ -28,8 +28,8 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

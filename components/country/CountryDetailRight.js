@@ -10,7 +10,7 @@ import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { COUNTRY_DETAIL_QUERY } from '../shared/query/country'
+import { COUNTRY_POLICY_QUERY } from '../shared/query/country'
 import { DisplayType, ObjectType } from '../utils/constants'
 import DeleteCountry from './buttons/DeleteCountry'
 
@@ -38,8 +38,8 @@ const CountryDetailRight = forwardRef(({ country }, ref) => {
 
   const editPath = `${country.slug}/edit`
 
-  let editingAllowed = true
-  const { error } = useQuery(COUNTRY_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(COUNTRY_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -48,8 +48,8 @@ const CountryDetailRight = forwardRef(({ country }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

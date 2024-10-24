@@ -7,7 +7,7 @@ import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { CATEGORY_INDICATOR_QUERY } from '../shared/query/categoryIndicator'
+import { CATEGORY_INDICATOR_POLICY_QUERY } from '../shared/query/categoryIndicator'
 import { ObjectType } from '../utils/constants'
 import DeleteCategoryIndicator from './buttons/DeleteCategoryIndicator'
 
@@ -30,8 +30,8 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
 
   const editPath = `${categoryIndicator.slug}/edit`
 
-  let editingAllowed = true
-  const { error } = useQuery(CATEGORY_INDICATOR_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(CATEGORY_INDICATOR_POLICY_QUERY, {
     variables: { categorySlug: EDITING_POLICY_SLUG, indicatorSlug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -40,8 +40,8 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = true
   }
 
   return (

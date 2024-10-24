@@ -10,7 +10,7 @@ import Share from '../shared/common/Share'
 import CreateButton from '../shared/form/CreateButton'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
+import { USE_CASE_POLICY_QUERY } from '../shared/query/useCase'
 import { DisplayType, ObjectType } from '../utils/constants'
 import WorkflowCard from '../workflow/WorkflowCard'
 import DeleteUseCase from './buttons/DeleteUseCase'
@@ -42,8 +42,8 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
 
   const editPath = `${useCase.slug}/edit`
 
-  let editingAllowed = !useCase.markdownUrl
-  const { error } = useQuery(USE_CASE_DETAIL_QUERY, {
+  let editingAllowed = false
+  const { error } = useQuery(USE_CASE_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
@@ -52,8 +52,8 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = !useCase.markdownUrl && true
   }
 
   return (

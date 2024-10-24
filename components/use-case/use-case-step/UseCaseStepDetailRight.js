@@ -28,7 +28,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
     { value: 'ui.buildingBlock.header', ref: buildingBlockRef }
   ]), [])
 
-  let editingAllowed = !useCase.markdownUrl
+  let editingAllowed = false
   const { error } = useQuery(USE_CASE_STEP_QUERY, {
     variables: { slug: '', stepSlug: '' },
     context: {
@@ -38,8 +38,8 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = !useCase.markdownUrl && true
   }
 
   return (

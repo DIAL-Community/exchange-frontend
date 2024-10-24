@@ -29,7 +29,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
-  let editingAllowed = !buildingBlock.markdownUrl
+  let editingAllowed = false
   const { error } = useQuery(BUILDING_BLOCK_POLICY_QUERY, {
     variables: { slug: EDITING_POLICY_SLUG },
     context: {
@@ -39,8 +39,8 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
     }
   })
 
-  if (error) {
-    editingAllowed = false
+  if (!error) {
+    editingAllowed = !buildingBlock.markdownUrl && true
   }
 
   return (
