@@ -73,7 +73,7 @@ const DeleteContact = ({ contact }) => {
     }
   })
 
-  return !error &&
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -84,6 +84,7 @@ const DeleteContact = ({ contact }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
+  )
 }
 
 export default DeleteContact

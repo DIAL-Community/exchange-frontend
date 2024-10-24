@@ -1,19 +1,18 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
+import CountryCard from '../../country/CountryCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
-import { DisplayType } from '../../utils/constants'
+import Select from '../../shared/form/Select'
 import { UPDATE_DATASET_COUNTRIES } from '../../shared/mutation/dataset'
-import CountryCard from '../../country/CountryCard'
 import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
-const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
+const DatasetDetailCountries = ({ dataset, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
   const [countries, setCountries] = useState(dataset.countries)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,19 +72,17 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateDatasetCountries({
-        variables: {
-          countrySlugs: countries.map(({ slug }) => slug),
-          slug: dataset.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateDatasetCountries({
+      variables: {
+        countrySlugs: countries.map(({ slug }) => slug),
+        slug: dataset.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -146,7 +142,7 @@ const DatasetDetailCountries = ({ dataset, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

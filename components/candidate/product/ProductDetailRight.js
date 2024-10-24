@@ -102,6 +102,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <ProductDetailMaturityScores
           id={product.id}
           slug={product.slug}
+          editingAllowed={editingAllowed}
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
@@ -110,6 +111,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           candidate={product}
           objectType={ObjectType.CANDIDATE_PRODUCT}
           mutationQuery={CANDIDATE_PRODUCT_UPDATE_STATUS}
+          editingAllowed={editingAllowed}
         />
         {`${product.rejected}` === 'true' &&
           <>

@@ -1,19 +1,18 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import WorkflowCard from '../../../workflow/WorkflowCard'
-import { DisplayType } from '../../../utils/constants'
-import { fetchSelectOptions } from '../../../utils/search'
+import { useApolloClient, useMutation } from '@apollo/client'
+import { ToastContext } from '../../../../lib/ToastContext'
+import EditableSection from '../../../shared/EditableSection'
 import Pill from '../../../shared/form/Pill'
 import Select from '../../../shared/form/Select'
-import EditableSection from '../../../shared/EditableSection'
-import { WORKFLOW_SEARCH_QUERY } from '../../../shared/query/workflow'
 import { UPDATE_USE_CASE_STEP_WORKFLOWS } from '../../../shared/mutation/useCaseStep'
-import { useUser } from '../../../../lib/hooks'
-import { ToastContext } from '../../../../lib/ToastContext'
+import { WORKFLOW_SEARCH_QUERY } from '../../../shared/query/workflow'
+import { DisplayType } from '../../../utils/constants'
+import { fetchSelectOptions } from '../../../utils/search'
+import WorkflowCard from '../../../workflow/WorkflowCard'
 
-const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
+const UseCaseStepDetailWorkflows = ({ useCaseStep, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
   const [workflows, setWorkflows] = useState(useCaseStep.workflows)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,19 +72,17 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateUseCaseStepWorkflows({
-        variables: {
-          workflowSlugs: workflows.map(({ slug }) => slug),
-          slug: useCaseStep.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateUseCaseStepWorkflows({
+      variables: {
+        workflowSlugs: workflows.map(({ slug }) => slug),
+        slug: useCaseStep.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -146,7 +142,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

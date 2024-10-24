@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
@@ -19,8 +18,6 @@ const DeleteUseCase = ({ useCase }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -55,18 +52,16 @@ const DeleteUseCase = ({ useCase }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteUseCase({
-        variables: {
-          id: useCase.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteUseCase({
+      variables: {
+        id: useCase.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const { error } = useQuery(USE_CASE_POLICY_QUERY, {
@@ -78,7 +73,7 @@ const DeleteUseCase = ({ useCase }) => {
     }
   })
 
-  return !error &&
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -89,6 +84,7 @@ const DeleteUseCase = ({ useCase }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
+  )
 }
 
 export default DeleteUseCase

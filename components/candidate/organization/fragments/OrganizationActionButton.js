@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
 import { CANDIDATE_ORGANIZATION_ACTION } from '../../../shared/mutation/candidateOrganization'
 import { CandidateActionType } from '../../../utils/constants'
 
@@ -11,7 +10,6 @@ const OrganizationActionButton = ({ organization, actionType }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
-  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -32,24 +30,21 @@ const OrganizationActionButton = ({ organization, actionType }) => {
   })
 
   const onClickHandler = async (actionType) => {
-    if (user) {
-      setLoading(true)
-      const variables = {
-        slug: organization.slug,
-        action: actionType === CandidateActionType.REJECT
-          ? CandidateActionType.REJECT
-          : CandidateActionType.APPROVE
-      }
-
-      candidateOrganizationApproval({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
-        }
-      })
+    setLoading(true)
+    const variables = {
+      slug: organization.slug,
+      action: actionType === CandidateActionType.REJECT
+        ? CandidateActionType.REJECT
+        : CandidateActionType.APPROVE
     }
+    candidateOrganizationApproval({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   return (

@@ -156,7 +156,11 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <UseCaseDetailSdgTargets useCase={useCase} canEdit={editingAllowed} headerRef={sdgTargetRef}/>
+          <UseCaseDetailSdgTargets
+            useCase={useCase}
+            editingAllowed={editingAllowed}
+            headerRef={sdgTargetRef}
+          />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
@@ -180,7 +184,11 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <UseCaseDetailTags useCase={useCase} canEdit={editingAllowed} headerRef={tagRef} />
+          <UseCaseDetailTags
+            useCase={useCase}
+            editingAllowed={editingAllowed}
+            headerRef={tagRef}
+          />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>

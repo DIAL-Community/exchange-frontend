@@ -99,7 +99,7 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <WorkflowDetailBuildingBlocks
             workflow={workflow}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>

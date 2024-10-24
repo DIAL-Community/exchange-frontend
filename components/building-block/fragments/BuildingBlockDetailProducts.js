@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ProductCard from '../../product/ProductCard'
 import EditableSection from '../../shared/EditableSection'
@@ -37,7 +36,6 @@ const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, headerRef 
     ) ?? mappingStatusOptions?.[0]
   )
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -94,20 +92,18 @@ const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, headerRef 
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateBuildingBlockProducts({
-        variables: {
-          mappingStatus: mappingStatus.value,
-          productSlugs: products.map(({ slug }) => slug),
-          slug: buildingBlock.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateBuildingBlockProducts({
+      variables: {
+        mappingStatus: mappingStatus.value,
+        productSlugs: products.map(({ slug }) => slug),
+        slug: buildingBlock.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -182,7 +178,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, headerRef 
 
   return (
     <EditableSection
-      canEdit={editingAllowed}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

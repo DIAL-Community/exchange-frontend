@@ -1,6 +1,8 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { DATASET_POLICY_QUERY } from '../../shared/query/dataset'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import DatasetDetailSectors from './DatasetDetailSectors'
 
@@ -8,8 +10,19 @@ const DatasetDetailHeader = ({ dataset }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  let editingAllowed = false
+  const { error } = useQuery(DATASET_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (!error) {
+    editingAllowed = true
+  }
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -54,7 +67,7 @@ const DatasetDetailHeader = ({ dataset }) => {
             &nbsp;⧉
           </div>
         </div>
-        <DatasetDetailSectors dataset={dataset} canEdit={canEdit} />
+        <DatasetDetailSectors dataset={dataset} editingAllowed={editingAllowed} />
       </div>
     </div>
   )

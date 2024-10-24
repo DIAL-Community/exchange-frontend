@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
@@ -44,7 +43,6 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, editingAllowed, headerRef
     }
   })
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,19 +72,17 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, editingAllowed, headerRef
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateBuildingBlockWorkflows({
-        variables: {
-          workflowSlugs: workflows.map(({ slug }) => slug),
-          slug: buildingBlock.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateBuildingBlockWorkflows({
+      variables: {
+        workflowSlugs: workflows.map(({ slug }) => slug),
+        slug: buildingBlock.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -146,7 +142,7 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, editingAllowed, headerRef
 
   return (
     <EditableSection
-      canEdit={editingAllowed}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

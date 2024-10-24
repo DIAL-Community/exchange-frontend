@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
@@ -21,8 +20,6 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -57,18 +54,16 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteBuildingBlock({
-        variables: {
-          id: buildingBlock.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteBuildingBlock({
+      variables: {
+        id: buildingBlock.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const { error } = useQuery(BUILDING_BLOCK_POLICY_QUERY, {
@@ -80,7 +75,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
     }
   })
 
-  return !error &&
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -91,6 +86,7 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
+  )
 }
 
 export default DeleteBuildingBlock

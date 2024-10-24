@@ -73,7 +73,7 @@ const DeleteDataset = ({ dataset }) => {
     }
   })
 
-  return !error &&
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -84,6 +84,7 @@ const DeleteDataset = ({ dataset }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
+  )
 }
 
 export default DeleteDataset

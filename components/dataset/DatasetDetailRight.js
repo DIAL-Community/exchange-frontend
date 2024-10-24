@@ -132,7 +132,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <DatasetDetailSdgs
             dataset={dataset}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={sdgRef}
           />
         </div>
@@ -140,7 +140,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <DatasetDetailOrganizations
             dataset={dataset}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={organizationRef}
           />
         </div>
@@ -148,7 +148,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <DatasetDetailCountries
             dataset={dataset}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
         </div>
@@ -156,7 +156,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <DatasetDetailTags
             dataset={dataset}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={tagRef}
           />
         </div>

@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
@@ -18,8 +17,6 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -51,18 +48,16 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteCategoryIndicator({
-        variables: {
-          id: categoryIndicator.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteCategoryIndicator({
+      variables: {
+        id: categoryIndicator.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const { error } = useQuery(CATEGORY_INDICATOR_POLICY_QUERY, {
@@ -74,7 +69,7 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
     }
   })
 
-  return !error &&
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog
@@ -85,6 +80,7 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
         onConfirm={onConfirmDelete}
         isConfirming={called} />
     </>
+  )
 }
 
 export default DeleteCategoryIndicator

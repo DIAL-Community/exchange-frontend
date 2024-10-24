@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { TENANT_SETTING_DETAIL_QUERY } from '../shared/query/tenantSetting'
 import TenantSettingDetailLeft from './TenantSettingDetailLeft'
 import TenantSettingDetailRight from './TenantSettingDetailRight'
@@ -11,15 +12,20 @@ const TenantSettingDetail = ({ tenantName }) => {
 
   const { loading, error, data } = useQuery(TENANT_SETTING_DETAIL_QUERY, {
     variables: { tenantName },
-    cache: 'no-cache'
+    cache: 'no-cache',
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.tenantSetting) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { tenantSetting } = data

@@ -69,7 +69,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailDatasets
             useCaseStep={useCaseStep}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={datasetRef}
           />
         </div>
@@ -77,7 +77,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailProducts
             useCaseStep={useCaseStep}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={productRef}
           />
         </div>
@@ -85,7 +85,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailWorkflows
             useCaseStep={useCaseStep}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={workflowRef}
           />
         </div>
@@ -94,7 +94,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
           <UseCaseStepDetailBuildingBlocks
             useCase={useCase}
             useCaseStep={useCaseStep}
-            canEdit={editingAllowed}
+            editingAllowed={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>
