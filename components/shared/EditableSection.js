@@ -6,7 +6,6 @@ import EditButton from './form/EditButton'
 
 const EditableSection = ({
   editingAllowed,
-  canEdit,
   sectionHeader,
   sectionDisclaimer,
   editModeBody,
@@ -36,10 +35,10 @@ const EditableSection = ({
       <div className='flex flex-row gap-3'>
         {sectionHeader}
         <div className='flex gap-3 ml-auto'>
-          {(canEdit || editingAllowed) && !isInEditMode &&
+          {editingAllowed && !isInEditMode &&
             <EditButton onClick={() => setIsInEditMode(true)} />
           }
-          {createAction && (canEdit || editingAllowed) && !isInEditMode &&
+          {createAction && editingAllowed && !isInEditMode &&
             <CreateButton label={format('app.createNew')} onClick={createAction} />
           }
         </div>

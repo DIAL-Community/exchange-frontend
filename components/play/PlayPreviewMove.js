@@ -28,7 +28,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
   const { locale } = useRouter()
 
   const { user } = useUser()
-  const canEdit = user?.isAdminUser || user?.isEditorUser
+  const editingAllowed = user?.isAdminUser || user?.isEditorUser
 
   const [loadDetailData, { data, called, loading }] = useLazyQuery(MOVE_PREVIEW_QUERY, {
     variables: { playSlug, slug: moveSlug },
@@ -63,7 +63,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
           </div>
           <div className='ml-auto my-auto px-4'>
             <div className='flex gap-2 pb-3 lg:pb-0'>
-              {canEdit &&
+              {editingAllowed &&
                 <a
                   href={generateEditLink()}
                   className='cursor-pointer bg-white px-2 py-0.5 rounded'
@@ -74,7 +74,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
                   </span>
                 </a>
               }
-              {canEdit &&
+              {editingAllowed &&
                 <UnassignMove
                   playbookSlug={playbookSlug}
                   playSlug={playSlug}

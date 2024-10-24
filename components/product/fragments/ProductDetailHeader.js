@@ -10,7 +10,7 @@ const ProductDetailHeader = ({ product }) => {
 
   const { isAdminUser, isEditorUser } = useUser()
   const { isProductOwner } = useProductOwnerUser(product)
-  const canEdit = isAdminUser || isEditorUser || isProductOwner
+  const editingAllowed = isAdminUser || isEditorUser || isProductOwner
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -76,7 +76,7 @@ const ProductDetailHeader = ({ product }) => {
             }
           </div>
         </div>
-        <ProductDetailSectors product={product} canEdit={canEdit} />
+        <ProductDetailSectors product={product} editingAllowed={editingAllowed} />
       </div>
     </div>
   )

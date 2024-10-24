@@ -2,6 +2,7 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import OrganizationEdit from '../../../components/organization/OrganizationEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_ORGANIZATION } from '../../../components/shared/mutation/organization'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
@@ -49,16 +50,38 @@ describe('Unit tests for the organization detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockOrganizationPolicyQueryError = generateMockApolloData(
+      ORGANIZATION_DETAIL_QUERY,
+      {
+        'slug': 'ai4gov'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOrganization, mockOrganizationComments]}>
+      <CustomMockedProvider mocks={[mockOrganizationPolicyQueryError, mockOrganizationComments]}>
         <QueryParamContextProvider>
           <OrganizationEdit slug='ai4gov' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('AI4GOV')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 

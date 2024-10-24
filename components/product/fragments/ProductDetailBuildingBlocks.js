@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import BuildingBlockCard from '../../building-block/BuildingBlockCard'
 import EditableSection from '../../shared/EditableSection'
@@ -14,7 +13,7 @@ import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
 import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
+const ProductDetailBuildingBlocks = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -37,7 +36,6 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
     ) ?? mappingStatusOptions?.[0]
   )
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -94,20 +92,18 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateProductBuildingBlocks({
-        variables: {
-          slug: product.slug,
-          mappingStatus: mappingStatus.value,
-          buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateProductBuildingBlocks({
+      variables: {
+        slug: product.slug,
+        mappingStatus: mappingStatus.value,
+        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -184,7 +180,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

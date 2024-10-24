@@ -9,7 +9,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const editingAllowed = isAdminUser || isEditorUser
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -64,7 +64,7 @@ const OpportunityDetailHeader = ({ opportunity }) => {
             &nbsp;⧉
           </div>
         </div>
-        <OpportunityDetailSectors opportunity={opportunity} canEdit={canEdit} />
+        <OpportunityDetailSectors opportunity={opportunity} editingAllowed={editingAllowed} />
         <div className='flex flex-row gap-x-3'>
           <div className='flex flex-col gap-y-3 w-full'>
             <div className='font-semibold text-dial-sapphire'>

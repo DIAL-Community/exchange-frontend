@@ -78,7 +78,6 @@ describe('Unit tests for the useCase detail page.', () => {
         }
       }]
     }
-
     const mockUseCasePolicyQueryError = generateMockApolloData(
       USE_CASE_DETAIL_QUERY,
       {
@@ -87,7 +86,6 @@ describe('Unit tests for the useCase detail page.', () => {
       graphQueryErrors,
       null
     )
-
     const { container } = render(
       <CustomMockedProvider mocks={[mockUseCasePolicyQueryError, mockUseCaseComments, mockSectors]}>
         <QueryParamContextProvider>

@@ -1,5 +1,5 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
@@ -13,7 +13,7 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
   const descRef = useRef()
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser)
+  const editingAllowed = (isAdminUser || isEditorUser)
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.top', ref: descRef }
@@ -22,7 +22,7 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit &&
+        {editingAllowed &&
           <div className='flex gap-x-3 ml-auto'>
             <EditButton
               type='link'

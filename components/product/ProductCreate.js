@@ -1,12 +1,31 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
+import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
+import { PRODUCT_POLICY_QUERY } from '../shared/query/product'
 import ProductForm from './fragments/ProductForm'
 import ProductSimpleLeft from './fragments/ProductSimpleLeft'
 
 const ProductCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { loading, error } = useQuery(PRODUCT_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
+  })
+
+  if (loading) {
+    return handleLoadingQuery()
+  } else if (error) {
+    return handleQueryError(error)
+  }
 
   const slugNameMapping = (() => {
     const map = {

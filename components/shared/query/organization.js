@@ -249,6 +249,14 @@ export const ORGANIZATION_DETAIL_QUERY = gql`
   }
 `
 
+export const STOREFRONT_POLICY_QUERY = gql`
+  query Organization($slug: String!) {
+    organization(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const STOREFRONT_DETAIL_QUERY = gql`
   query Organization($slug: String!) {
     organization(slug: $slug) {

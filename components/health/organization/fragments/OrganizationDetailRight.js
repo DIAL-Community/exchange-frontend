@@ -1,12 +1,14 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react'
-import { useOrganizationOwnerUser, useUser } from '../../../../lib/hooks'
-import CommentsSection from '../../shared/comment/CommentsSection'
+import { useQuery } from '@apollo/client'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
+import DeleteOrganization from '../../../organization/buttons/DeleteOrganization'
 import Bookmark from '../../../shared/common/Bookmark'
 import Share from '../../../shared/common/Share'
 import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'
+import { ORGANIZATION_POLICY_QUERY } from '../../../shared/query/organization'
 import { ObjectType } from '../../../utils/constants'
-import DeleteOrganization from '../../../organization/DeleteOrganization'
+import CommentsSection from '../../shared/comment/CommentsSection'
 import OrganizationDetailContacts from './OrganizationDetailContacts'
 import OrganizationDetailCountries from './OrganizationDetailCountries'
 import OrganizationDetailOffices from './OrganizationDetailOffices'
@@ -14,12 +16,6 @@ import OrganizationDetailProducts from './OrganizationDetailProducts'
 import OrganizationDetailProjects from './OrganizationDetailProjects'
 
 const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
-
-  const canEdit = isAdminUser || isEditorUser || isOrganizationOwner
-
   const descRef = useRef()
   const officeRef = useRef()
   const contactRef = useRef()
@@ -44,15 +40,27 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
 
   const editPath = `${organization.slug}/edit`
 
+  let editingAllowed = false
+  const { error } = useQuery(ORGANIZATION_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (!error) {
+    editingAllowed = true
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteOrganization organization={organization} />}
-          </div>
-        )}
+        <div className='flex gap-x-3 ml-auto'>
+          { editingAllowed && <EditButton type='link' href={editPath} /> }
+          <DeleteOrganization organization={organization} />
+        </div>
         <div className="text-xl text-health-blue font-semibold pb-3 pt-1 break-words" ref={descRef}>
           {organization.name}
         </div>
@@ -67,7 +75,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OrganizationDetailOffices
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={officeRef}
           />
         </div>
@@ -75,7 +83,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OrganizationDetailContacts
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={contactRef}
           />
         </div>
@@ -83,7 +91,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OrganizationDetailProjects
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={projectRef}
           />
         </div>
@@ -91,7 +99,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OrganizationDetailProducts
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={productRef}
           />
         </div>
@@ -99,7 +107,7 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OrganizationDetailCountries
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
         </div>

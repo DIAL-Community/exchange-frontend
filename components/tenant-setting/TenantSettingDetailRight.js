@@ -6,9 +6,9 @@ import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
+import { DELETE_TENANT_SETTING } from '../shared/mutation/tenantSetting'
 import { TENANT_SETTING_POLICY_QUERY } from '../shared/query/tenantSetting'
 import { ObjectType } from '../utils/constants'
-import DeleteTenantSetting from './DeleteTenantSetting'
 
 const TenantSettingDetailRight = forwardRef(({ tenantSetting }, ref) => {
   const { formatMessage } = useIntl()
@@ -38,7 +38,7 @@ const TenantSettingDetailRight = forwardRef(({ tenantSetting }, ref) => {
       <div className='flex flex-col gap-y-3'>
         <div className='flex gap-x-3 ml-auto'>
           { editingAllowed && <EditButton type='link' href={editPath} /> }
-          <DeleteTenantSetting tenantSetting={tenantSetting} />
+          <DELETE_TENANT_SETTING tenantSetting={tenantSetting} />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>

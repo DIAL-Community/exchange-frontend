@@ -1,17 +1,17 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useMutation, useQuery } from '@apollo/client'
-import { FaXmark } from 'react-icons/fa6'
 import { useCallback, useContext } from 'react'
+import { useRouter } from 'next/router'
+import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation, useQuery } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
-import { BOOKMARK_DETAIL_QUERY } from '../../shared/query/bookmark'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import { DisplayType, ObjectType } from '../../utils/constants'
-import ProductCard from '../../product/ProductCard'
-import BuildingBlockCard from '../../building-block/BuildingBlockCard'
-import UseCaseCard from '../../use-case/UseCaseCard'
-import { REMOVE_BOOKMARK } from '../../shared/mutation/bookmark'
 import { ToastContext } from '../../../lib/ToastContext'
+import BuildingBlockCard from '../../building-block/BuildingBlockCard'
+import ProductCard from '../../product/ProductCard'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { REMOVE_BOOKMARK } from '../../shared/mutation/bookmark'
+import { BOOKMARK_DETAIL_QUERY } from '../../shared/query/bookmark'
+import UseCaseCard from '../../use-case/UseCaseCard'
+import { DisplayType, ObjectType } from '../../utils/constants'
 import { ProfileBookmarkContext } from './ProfileBookmarkContext'
 
 const UrlCard = ({ url, dismissHandler }) => {
@@ -73,7 +73,7 @@ const ProfileBookmarkRight = () => {
     }
   })
 
-  const unbookmarkThis = (object, objectType) => {
+  const unBookmarkThis = (object, objectType) => {
     if (user && object && objectType) {
       removeBookmark({
         variables: {
@@ -116,7 +116,7 @@ const ProfileBookmarkRight = () => {
                   index={index}
                   useCase={useCase}
                   displayType={DisplayType.SMALL_CARD}
-                  dismissHandler={() => unbookmarkThis(useCase, ObjectType.USE_CASE)}
+                  dismissHandler={() => unBookmarkThis(useCase, ObjectType.USE_CASE)}
                 />
               </div>
             )}
@@ -139,7 +139,7 @@ const ProfileBookmarkRight = () => {
                   index={index}
                   buildingBlock={buildingBlock}
                   displayType={DisplayType.SMALL_CARD}
-                  dismissHandler={() => unbookmarkThis(buildingBlock, ObjectType.BUILDING_BLOCK)}
+                  dismissHandler={() => unBookmarkThis(buildingBlock, ObjectType.BUILDING_BLOCK)}
                 />
               </div>
             )}
@@ -162,7 +162,7 @@ const ProfileBookmarkRight = () => {
                   index={index}
                   product={product}
                   displayType={DisplayType.SMALL_CARD}
-                  dismissHandler={() => unbookmarkThis(product, ObjectType.PRODUCT)}
+                  dismissHandler={() => unBookmarkThis(product, ObjectType.PRODUCT)}
                 />
               </div>
             )}
@@ -183,7 +183,7 @@ const ProfileBookmarkRight = () => {
               <div key={`url-${index}`}>
                 <UrlCard
                   url={url}
-                  dismissHandler={() => unbookmarkThis(url, ObjectType.URL)}
+                  dismissHandler={() => unBookmarkThis(url, ObjectType.URL)}
                 />
               </div>
             )}

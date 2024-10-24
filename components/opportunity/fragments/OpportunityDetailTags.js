@@ -1,17 +1,16 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import Select from '../../shared/form/Select'
-import { fetchSelectOptions } from '../../utils/search'
-import Pill from '../../shared/form/Pill'
-import EditableSection from '../../shared/EditableSection'
-import { UPDATE_OPPORTUNITY_TAGS } from '../../shared/mutation/opportunity'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
+import EditableSection from '../../shared/EditableSection'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import { UPDATE_OPPORTUNITY_TAGS } from '../../shared/mutation/opportunity'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
+import { fetchSelectOptions } from '../../utils/search'
 
-const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
+const OpportunityDetailTags = ({ opportunity, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -20,7 +19,6 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
   const [tags, setTags] = useState(opportunity.tags)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -59,19 +57,17 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateOpportunityTags({
-        variables: {
-          slug: opportunity.slug,
-          tagNames: tags
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateOpportunityTags({
+      variables: {
+        slug: opportunity.slug,
+        tagNames: tags
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -125,7 +121,7 @@ const OpportunityDetailTags = ({ opportunity, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

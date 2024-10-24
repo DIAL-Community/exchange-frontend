@@ -9,7 +9,7 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { TASK_TRACKER_POLICY_QUERY } from '../shared/query/taskTracker'
 import { ObjectType } from '../utils/constants'
-import DeleteTaskTracker from './DeleteTaskTracker'
+import DeleteTaskTracker from './buttons/DeleteTaskTracker'
 
 const TaskTrackerDetailRight = forwardRef(({ taskTracker }, ref) => {
   const { formatMessage } = useIntl()

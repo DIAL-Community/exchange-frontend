@@ -1,19 +1,15 @@
 import { createRef, Fragment, useEffect, useState } from 'react'
-import { Tab } from '@headlessui/react'
-import { useMutation, useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { ContextMenu } from 'handsontable/plugins'
-import { HotTable } from '@handsontable/react'
 import { registerAllModules } from 'handsontable/registry'
-import { useUser } from '../../lib/hooks'
+import { useRouter } from 'next/router'
+import { useMutation, useQuery } from '@apollo/client'
+import { HotTable } from '@handsontable/react'
+import { Tab } from '@headlessui/react'
 import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import { DATASET_SPREADSHEET_QUERY } from '../shared/query/spreadsheet'
 import { CREATE_SPREADSHEET_MUTATION, DELETE_SPREADSHEET_MUTATION } from '../shared/mutation/spreadsheet'
+import { DATASET_SPREADSHEET_QUERY } from '../shared/query/spreadsheet'
 import {
-  COLUMN_SOURCE_KEYS,
-  DEFAULT_SHEET_HEADERS,
-  DEFAULT_SHEET_NAMES,
-  mapSpreadsheetData
+  COLUMN_SOURCE_KEYS, DEFAULT_SHEET_HEADERS, DEFAULT_SHEET_NAMES, mapSpreadsheetData
 } from './DatasetSpreadsheetConfig'
 
 registerAllModules()
@@ -23,7 +19,6 @@ const DatasetSpreadsheet = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const { locale } = useRouter()
-  const { user } = useUser()
 
   const [updateAssocData] = useMutation(CREATE_SPREADSHEET_MUTATION)
   const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, {
@@ -56,13 +51,11 @@ const DatasetSpreadsheet = () => {
       spreadsheetType: 'dataset',
       assoc: COLUMN_SOURCE_KEYS[selectedIndex]
     }
-    const { userEmail, userToken } = user
     mutationFunction.apply(this, [{
       variables,
       context: {
         headers: {
-          'Accept-Language': locale,
-          Authorization: `${userEmail} ${userToken}`
+          'Accept-Language': locale
         }
       },
       onCompleted: () => {

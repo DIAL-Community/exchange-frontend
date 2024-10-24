@@ -18,7 +18,7 @@ import { STARRED_OBJECT_SEARCH_QUERY } from '../../../shared/query/starredObject
 import { DisplayType, ObjectType } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
 
-const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
+const OrganizationDetailProjects = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -292,7 +292,7 @@ const OrganizationDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

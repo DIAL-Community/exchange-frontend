@@ -1,19 +1,19 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import SdgCard from '../../sdg/SdgCard'
-import { DisplayType } from '../../utils/constants'
-import Select from '../../shared/form/Select'
-import { fetchSelectOptions } from '../../utils/search'
-import Pill from '../../shared/form/Pill'
-import EditableSection from '../../shared/EditableSection'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
+import SdgCard from '../../sdg/SdgCard'
+import EditableSection from '../../shared/EditableSection'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
 import { UPDATE_PROJECT_SDGS } from '../../shared/mutation/project'
 import { SDG_SEARCH_QUERY } from '../../shared/query/sdg'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
-const ProjectDetailSdgs = ({ project, canEdit, headerRef }) => {
+const ProjectDetailSdgs = ({ project, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -151,7 +151,7 @@ const ProjectDetailSdgs = ({ project, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

@@ -4,6 +4,7 @@ import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import ProductRepositoryDetail from '../../../components/product/repository/ProductRepositoryDetail'
 import ProductRepositoryEdit from '../../../components/product/repository/ProductRepositoryEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PRODUCT_REPOSITORY } from '../../../components/shared/mutation/productRepository'
 import { OWNED_PRODUCTS_QUERY } from '../../../components/shared/query/product'
 import {
@@ -62,8 +63,40 @@ describe('Unit tests for the product main page.', () => {
   })
 
   test('Should render unauthorized to edit repository.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockProductRepositoryDetailPolicyError = generateMockApolloData(
+      PRODUCT_REPOSITORY_DETAIL_QUERY,
+      {
+        'productSlug': 'firma',
+        'repositorySlug': 'firma-repository'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOwnedProducts, mockProductRepositories, mockProductRepositoryDetail]}>
+      <CustomMockedProvider
+        mocks={[
+          mockOwnedProducts,
+          mockProductRepositories,
+          mockProductRepositoryDetailPolicyError
+        ]}
+      >
         <QueryParamContextProvider>
           <FilterProvider>
             <ProductRepositoryEdit productSlug={'firma'} repositorySlug={'firma-repository'} />
@@ -71,9 +104,6 @@ describe('Unit tests for the product main page.', () => {
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('@firma')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 

@@ -3,13 +3,14 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { ToastContext } from '../../lib/ToastContext'
-import { TASK_TRACKER_POLICY_QUERY } from '../../shared/query/taskTracker'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_TASK_TRACKER } from '../shared/mutation/taskTracker'
-import { PAGINATED_TASK_TRACKERS_QUERY, TASK_TRACKER_DETAIL_QUERY } from '../shared/query/taskTracker'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_TASK_TRACKER } from '../../shared/mutation/taskTracker'
+import {
+  PAGINATED_TASK_TRACKERS_QUERY, TASK_TRACKER_DETAIL_QUERY, TASK_TRACKER_POLICY_QUERY
+} from '../../shared/query/taskTracker'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteTaskTracker = ({ taskTracker }) => {
   const { formatMessage } = useIntl()

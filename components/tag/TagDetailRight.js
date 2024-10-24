@@ -13,7 +13,7 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { TAG_POLICY_QUERY } from '../shared/query/tag'
 import UseCaseCard from '../use-case/UseCaseCard'
 import { DisplayType, ObjectType } from '../utils/constants'
-import DeleteTag from './DeleteTag'
+import DeleteTag from './buttons/DeleteTag'
 
 const TagDetailRight = forwardRef(({ tag }, ref) => {
   const { formatMessage } = useIntl()

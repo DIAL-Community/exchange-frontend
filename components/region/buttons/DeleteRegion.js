@@ -1,14 +1,14 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_REGION } from '../shared/mutation/region'
-import { PAGINATED_REGIONS_QUERY, REGION_DETAIL_QUERY } from '../shared/query/region'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_REGION } from '../../shared/mutation/region'
+import { PAGINATED_REGIONS_QUERY, REGION_DETAIL_QUERY, REGION_POLICY_QUERY } from '../../shared/query/region'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteRegion = ({ region }) => {
   const { formatMessage } = useIntl()
@@ -18,8 +18,6 @@ const DeleteRegion = ({ region }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -54,21 +52,28 @@ const DeleteRegion = ({ region }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteRegion({
-        variables: {
-          id: region.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteRegion({
+      variables: {
+        id: region.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
-  return (
+  const { error } = useQuery(REGION_POLICY_QUERY, {
+    variables: { slug: DELETING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

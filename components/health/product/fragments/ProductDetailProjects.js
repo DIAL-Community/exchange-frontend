@@ -17,7 +17,7 @@ import { DisplayType } from '../../../utils/constants'
 import ProjectCard from '../project/ProjectCard'
 import ProjectForm from '../project/ProjectForm'
 
-const ProductDetailProjects = ({ product, canEdit, headerRef }) => {
+const ProductDetailProjects = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -192,7 +192,7 @@ const ProductDetailProjects = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

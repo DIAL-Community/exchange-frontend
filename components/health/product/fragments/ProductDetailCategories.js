@@ -1,18 +1,18 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
-import Select from '../../../shared/form/Select'
+import Dialog from '../../../shared/Dialog'
 import EditableSection from '../../../shared/EditableSection'
 import Pill from '../../../shared/form/Pill'
-import { fetchSelectOptions } from '../../../utils/search'
+import Select from '../../../shared/form/Select'
 import { UPDATE_PRODUCT_CATEGORIES } from '../../../shared/mutation/product'
 import { CATEGORY_SEARCH_QUERY } from '../../../shared/query/category'
-import Dialog from '../../../shared/Dialog'
+import { fetchSelectOptions } from '../../../utils/search'
 
-const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
+const ProductDetailCategories = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -264,7 +264,7 @@ const ProductDetailCategories = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

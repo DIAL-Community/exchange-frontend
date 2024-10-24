@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
@@ -11,7 +10,7 @@ import { UPDATE_PRODUCT_SECTORS } from '../../shared/mutation/product'
 import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
 import { fetchSelectOptions } from '../../utils/search'
 
-const ProductDetailSectors = ({ product, canEdit }) => {
+const ProductDetailSectors = ({ product, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -20,7 +19,6 @@ const ProductDetailSectors = ({ product, canEdit }) => {
   const [sectors, setSectors] = useState(product.sectors)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -72,19 +70,17 @@ const ProductDetailSectors = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateProductSectors({
-        variables: {
-          sectorSlugs: sectors.map(({ slug }) => slug),
-          slug: product.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateProductSectors({
+      variables: {
+        sectorSlugs: sectors.map(({ slug }) => slug),
+        slug: product.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -141,7 +137,7 @@ const ProductDetailSectors = ({ product, canEdit }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

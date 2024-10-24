@@ -2,13 +2,12 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_SECTOR } from '../shared/mutation/sector'
-import { PAGINATED_SECTORS_QUERY, SECTOR_DETAIL_QUERY } from '../shared/query/sector'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_SECTOR } from '../../shared/mutation/sector'
+import { PAGINATED_SECTORS_QUERY, SECTOR_DETAIL_QUERY } from '../../shared/query/sector'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteSector = ({ sector }) => {
   const { formatMessage } = useIntl()
@@ -18,8 +17,6 @@ const DeleteSector = ({ sector }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -54,18 +51,16 @@ const DeleteSector = ({ sector }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteSector({
-        variables: {
-          id: sector.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteSector({
+      variables: {
+        id: sector.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   return (

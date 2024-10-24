@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/project'
@@ -66,6 +67,11 @@ const ProjectListRight = () => {
       tags: tags.map(tag => tag.label),
       sdgs: sdgs.map(sdg => sdg.value),
       origins: origins.map(origin => origin.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

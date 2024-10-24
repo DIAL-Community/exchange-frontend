@@ -1,13 +1,13 @@
 import { useCallback, useState } from 'react'
 import { FaRegFilePdf } from 'react-icons/fa'
+import { FiMove } from 'react-icons/fi'
 import { ImEmbed } from 'react-icons/im'
 import { useIntl } from 'react-intl'
-import { FiMove } from 'react-icons/fi'
 import { useUser } from '../../../lib/hooks'
+import RearrangePlay from '../../play/RearrangePlay'
 import CreateButton from '../../shared/form/CreateButton'
 import EditButton from '../../shared/form/EditButton'
 import DeletePlaybook from '../DeletePlaybook'
-import RearrangePlay from '../../play/RearrangePlay'
 import PlaybookDetailEmbed from './PlaybookEmbedDetail'
 
 const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
@@ -15,7 +15,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const editingAllowed = isAdminUser || isEditorUser
 
   const [displayEmbedDialog, setDisplayEmbedDialog] = useState(false)
 
@@ -64,8 +64,8 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
             }
           </div>
           <div className='ml-auto flex flex-wrap justify-end gap-2'>
-            {canEdit && <CreateButton label={format('ui.play.add')} type='link' href={generateAddPlayLink()} />}
-            {canEdit &&
+            {editingAllowed && <CreateButton label={format('ui.play.add')} type='link' href={generateAddPlayLink()} />}
+            {editingAllowed &&
               <button
                 type='button'
                 onClick={() => setDisplayDraggable(!displayDraggable)}
@@ -77,7 +77,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
                 </span>
               </button>
             }
-            {canEdit && <EditButton type='link' href={generateEditLink()} />}
+            {editingAllowed && <EditButton type='link' href={generateEditLink()} />}
             {isAdminUser && <DeletePlaybook playbook={playbook} />}
           </div>
           <RearrangePlay

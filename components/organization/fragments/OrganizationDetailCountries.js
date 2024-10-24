@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { FaCircleChevronDown, FaCircleChevronUp } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import CountryCard from '../../country/CountryCard'
 import EditableSection from '../../shared/EditableSection'
@@ -14,7 +13,7 @@ import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
 import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
+const OrganizationDetailCountries = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -26,7 +25,6 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
   const [countries, setCountries] = useState(organization.countries)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -78,19 +76,17 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateOrganizationCountries({
-        variables: {
-          countrySlugs: countries.map(({ slug }) => slug),
-          slug: organization.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateOrganizationCountries({
+      variables: {
+        countrySlugs: countries.map(({ slug }) => slug),
+        slug: organization.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -175,7 +171,7 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

@@ -1,14 +1,14 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_PROJECT } from '../shared/mutation/project'
-import { PAGINATED_PROJECTS_QUERY, PROJECT_DETAIL_QUERY } from '../shared/query/project'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_PROJECT } from '../../shared/mutation/project'
+import { PAGINATED_PROJECTS_QUERY, PROJECT_DETAIL_QUERY, PROJECT_POLICY_QUERY } from '../../shared/query/project'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteProject = ({ project }) => {
   const { formatMessage } = useIntl()
@@ -18,8 +18,6 @@ const DeleteProject = ({ project }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -54,21 +52,28 @@ const DeleteProject = ({ project }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteProject({
-        variables: {
-          id: project.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteProject({
+      variables: {
+        id: project.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
-  return (
+  const { error } = useQuery(PROJECT_POLICY_QUERY, {
+    variables: { slug: DELETING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

@@ -11,7 +11,7 @@ const ResourceDetailHeader = ({ resource }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const editingAllowed = isAdminUser || isEditorUser
 
   const generateResourceUrl = () => {
     let resourceLinkUrl
@@ -114,9 +114,9 @@ const ResourceDetailHeader = ({ resource }) => {
         </>
       }
       <hr className='border-b border-dial-blue-chalk my-3' />
-      <ResourceDetailCountries resource={resource} canEdit={canEdit} />
+      <ResourceDetailCountries resource={resource} editingAllowed={editingAllowed} />
       <hr className='border-b border-dial-blue-chalk my-3' />
-      <ResourceDetailTags resource={resource} canEdit={canEdit} />
+      <ResourceDetailTags resource={resource} editingAllowed={editingAllowed} />
     </div>
   )
 }

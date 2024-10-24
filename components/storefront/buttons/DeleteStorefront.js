@@ -1,14 +1,16 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_ORGANIZATION } from '../shared/mutation/organization'
-import { ORGANIZATION_DETAIL_QUERY, PAGINATED_ORGANIZATIONS_QUERY } from '../shared/query/organization'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_ORGANIZATION } from '../../shared/mutation/organization'
+import {
+  ORGANIZATION_DETAIL_QUERY, PAGINATED_ORGANIZATIONS_QUERY, STOREFRONT_POLICY_QUERY
+} from '../../shared/query/organization'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteStorefront = ({ organization }) => {
   const { formatMessage } = useIntl()
@@ -18,8 +20,6 @@ const DeleteStorefront = ({ organization }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -54,21 +54,28 @@ const DeleteStorefront = ({ organization }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteOrganization({
-        variables: {
-          id: organization.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteOrganization({
+      variables: {
+        id: organization.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
-  return (
+  const { error } = useQuery(STOREFRONT_POLICY_QUERY, {
+    variables: { tenantName: DELETING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

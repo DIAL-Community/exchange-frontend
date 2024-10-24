@@ -1,21 +1,19 @@
-import { useIntl } from 'react-intl'
-import { useState, useCallback, useContext } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
 import { BsPatchCheck } from 'react-icons/bs'
-import { useUser } from '../../../lib/hooks'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
-import Pill from '../../shared/form/Pill'
 import EditableSection from '../../shared/EditableSection'
-import { UPDATE_ORGANIZATION_SPECIALTIES } from '../../shared/mutation/organization'
 import { generateSpecialtyOptions } from '../../shared/form/options'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import { UPDATE_ORGANIZATION_SPECIALTIES } from '../../shared/mutation/organization'
 
-const StorefrontDetailSpecialties = ({ organization, canEdit, headerRef }) => {
+const StorefrontDetailSpecialties = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const [isDirty, setIsDirty] = useState(false)
@@ -56,19 +54,17 @@ const StorefrontDetailSpecialties = ({ organization, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateSpecialties({
-        variables: {
-          slug: organization.slug,
-          specialties
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateSpecialties({
+      variables: {
+        slug: organization.slug,
+        specialties
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -127,7 +123,7 @@ const StorefrontDetailSpecialties = ({ organization, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

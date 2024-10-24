@@ -1,14 +1,16 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { STOREFRONT_POLICY_QUERY } from '../shared/query/organization'
 import { ObjectType } from '../utils/constants'
-import DeleteStorefront from './DeleteStorefront'
+import DeleteStorefront from './buttons/DeleteStorefront'
 import StorefrontDetailBuildingBlockCertifications from './fragments/StorefrontDetailBuildingBlocks'
 import StorefrontDetailContacts from './fragments/StorefrontDetailContacts'
 import StorefrontDetailCountries from './fragments/StorefrontDetailCountries'
@@ -21,11 +23,6 @@ import StorefrontDetailSpecialties from './fragments/StorefrontDetailSpecialties
 const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
-
-  const canEdit = isAdminUser || isEditorUser || isOrganizationOwner
 
   const descRef = useRef()
   const specialtyRef = useRef()
@@ -57,6 +54,20 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
 
   const editPath = `${organization.slug}/edit`
 
+  let editingAllowed = false
+  const { error } = useQuery(STOREFRONT_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (!error) {
+    editingAllowed = true
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-4'>
@@ -71,12 +82,10 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.heroFile}
             />
           }
-          {canEdit && (
-            <div className='absolute right-3 top-3 flex gap-x-3 ml-auto'>
-              <EditButton type='link' href={editPath} />
-              {isAdminUser && <DeleteStorefront organization={organization} />}
-            </div>
-          )}
+          <div className='absolute right-3 top-3 flex gap-x-3 ml-auto'>
+            { editingAllowed && <EditButton type='link' href={editPath} /> }
+            <DeleteStorefront organization={organization} />
+          </div>
           <div className={classNames(
             'w-full absolute bottom-0 left-0 z-10',
             'transform translate-y-1/2 lg:w-auto lg:translate-x-8',
@@ -109,7 +118,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <StorefrontDetailSpecialties
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={specialtyRef}
           />
         </div>
@@ -117,7 +126,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <StorefrontDetailResources
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={resourceRef}
           />
         </div>
@@ -125,7 +134,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <StorefrontDetailProductCertifications
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={productCertificationRef}
           />
         </div>
@@ -133,7 +142,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <StorefrontDetailBuildingBlockCertifications
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={buildingBlockCertificationRef}
           />
         </div>
@@ -141,7 +150,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <StorefrontDetailOffices
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={officeRef}
           />
         </div>
@@ -149,7 +158,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <StorefrontDetailContacts
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={contactRef}
           />
         </div>
@@ -157,7 +166,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <StorefrontDetailProjects
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={projectRef}
           />
         </div>
@@ -165,7 +174,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <StorefrontDetailCountries
             organization={organization}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
         </div>

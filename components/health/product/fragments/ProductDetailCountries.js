@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
-import CountryCard from '../../country/CountryCard'
 import EditableSection from '../../../shared/EditableSection'
 import Pill from '../../../shared/form/Pill'
 import Select from '../../../shared/form/Select'
@@ -14,8 +13,9 @@ import { UPDATE_PRODUCT_COUNTRIES } from '../../../shared/mutation/product'
 import { COUNTRY_SEARCH_QUERY } from '../../../shared/query/country'
 import { DisplayType } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
+import CountryCard from '../../country/CountryCard'
 
-const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
+const ProductDetailCountries = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -191,7 +191,7 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

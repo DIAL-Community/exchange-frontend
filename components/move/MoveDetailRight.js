@@ -9,7 +9,7 @@ const MoveDetailRight = ({ move }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const { user } = useUser()
 
-  const canEdit = () => user && (user.isAdminUser || user.isEditorUser)
+  const editingAllowed = () => user && (user.isAdminUser || user.isEditorUser)
 
   const generateEditLink = () => {
     return `${move.slug}/edit`
@@ -19,7 +19,7 @@ const MoveDetailRight = ({ move }) => {
     <div className='flex flex-col gap-3 pb-8 max-w-screen-lg'>
       <div className='flex mt-4'>
         <div className='ml-auto my-auto'>
-          { canEdit() && <EditButton type='link' href={generateEditLink()} />}
+          { editingAllowed() && <EditButton type='link' href={generateEditLink()} />}
         </div>
       </div>
       <div className='h4 font-bold'>

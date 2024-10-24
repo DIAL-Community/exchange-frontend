@@ -1,13 +1,15 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { PROJECT_POLICY_QUERY } from '../shared/query/project'
 import { ObjectType } from '../utils/constants'
-import DeleteProject from './DeleteProject'
+import DeleteProject from './buttons/DeleteProject'
 import ProjectDetailCountries from './fragments/ProjectDetailCountries'
 import ProjectDetailOrganizations from './fragments/ProjectDetailOrganizations'
 import ProjectDetailProducts from './fragments/ProjectDetailProducts'
@@ -17,9 +19,6 @@ import ProjectDetailTags from './fragments/ProjectDetailTags'
 const ProjectDetailRight = forwardRef(({ project }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const organizationRef = useRef()
@@ -45,15 +44,27 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
 
   const editPath = `${project.slug}/edit`
 
+  let editingAllowed = false
+  const { error } = useQuery(PROJECT_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (!error) {
+    editingAllowed = true
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteProject project={project} />}
-          </div>
-        )}
+        <div className='flex gap-x-3 ml-auto'>
+          { editingAllowed && <EditButton type='link' href={editPath} /> }
+          <DeleteProject project={project} />
+        </div>
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
@@ -67,7 +78,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProjectDetailOrganizations
             project={project}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={organizationRef}
           />
         </div>
@@ -75,7 +86,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProjectDetailProducts
             project={project}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={productRef}
           />
         </div>
@@ -83,7 +94,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProjectDetailCountries
             project={project}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
         </div>
@@ -91,7 +102,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProjectDetailSdgs
             project={project}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={sdgRef}
           />
         </div>
@@ -99,7 +110,7 @@ const ProjectDetailRight = forwardRef(({ project }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProjectDetailTags
             project={project}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={tagRef}
           />
         </div>

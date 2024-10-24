@@ -1,16 +1,16 @@
-import { useMutation } from '@apollo/client'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState, useEffect } from 'react'
-import { useIntl } from 'react-intl'
 import { Controller, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import EditableSection from '../../../shared/EditableSection'
-import { UPDATE_PRODUCT_EXTRA_ATTRIBUTES } from '../../../shared/mutation/product'
 import Input from '../../../shared/form/Input'
+import { UPDATE_PRODUCT_EXTRA_ATTRIBUTES } from '../../../shared/mutation/product'
 import { ProductExtraAttributeNames } from '../../../utils/constants'
 
-const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
+const ProductDetailExtraAttributes = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -154,7 +154,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={handleSubmit(onSubmit)}
       onCancel={onCancel}

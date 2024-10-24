@@ -9,7 +9,7 @@ const StorefrontDetailHeader = ({ organization }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const editingAllowed = isAdminUser || isEditorUser
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -54,7 +54,7 @@ const StorefrontDetailHeader = ({ organization }) => {
             &nbsp;⧉
           </div>
         </div>
-        <StorefrontDetailSectors organization={organization} canEdit={canEdit} />
+        <StorefrontDetailSectors organization={organization} editingAllowed={editingAllowed} />
       </div>
     </div>
   )

@@ -1,13 +1,15 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { OPPORTUNITY_POLICY_QUERY } from '../shared/query/opportunity'
 import { ObjectType } from '../utils/constants'
-import DeleteOpportunity from './DeleteOpportunity'
+import DeleteOpportunity from './buttons/DeleteOpportunity'
 import OpportunityDetailBuildingBlocks from './fragments/OpportunityDetailBuildingBlocks'
 import OpportunityDetailCountries from './fragments/OpportunityDetailCountries'
 import OpportunityDetailOrganizations from './fragments/OpportunityDetailOrganizations'
@@ -17,9 +19,6 @@ import OpportunityDetailUseCases from './fragments/OpportunityDetailUseCases'
 const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const countryRef = useRef()
@@ -45,15 +44,27 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
 
   const editPath = `${opportunity.slug}/edit`
 
+  let editingAllowed = false
+  const { error } = useQuery(OPPORTUNITY_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (!error) {
+    editingAllowed = true
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteOpportunity opportunity={opportunity} />}
-          </div>
-        )}
+        <div className='flex gap-x-3 ml-auto'>
+          { editingAllowed && <EditButton type='link' href={editPath} /> }
+          <DeleteOpportunity opportunity={opportunity} />
+        </div>
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
@@ -67,7 +78,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OpportunityDetailCountries
             opportunity={opportunity}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
         </div>
@@ -75,7 +86,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OpportunityDetailBuildingBlocks
             opportunity={opportunity}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>
@@ -83,7 +94,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OpportunityDetailOrganizations
             opportunity={opportunity}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={organizationRef}
           />
         </div>
@@ -91,7 +102,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OpportunityDetailUseCases
             opportunity={opportunity}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={useCaseRef}
           />
         </div>
@@ -99,7 +110,7 @@ const OpportunityDetailRight = forwardRef(({ opportunity }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <OpportunityDetailTags
             opportunity={opportunity}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={tagRef}
           />
         </div>

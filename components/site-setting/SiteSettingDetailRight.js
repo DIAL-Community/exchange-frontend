@@ -15,7 +15,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const editingAllowed = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const carouselConfigurationsRef = useRef()
@@ -40,7 +40,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex flex-col lg:flex-row gap-3'>
             {siteSetting.defaultSetting &&
               <div className='px-3 py-1 bg-purple-300 rounded'>
@@ -86,7 +86,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               {format('ui.siteSetting.carousel.header')}
             </div>
             <div className='flex gap-x-2 ml-auto'>
-              {canEdit &&
+              {editingAllowed &&
                 <EditButton type='link' href={`${siteSetting.slug}/carousel-configurations`} />
               }
             </div>
@@ -124,7 +124,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               {format('ui.siteSetting.heroCard.header')}
             </div>
             <div className='flex gap-x-2 ml-auto'>
-              {canEdit &&
+              {editingAllowed &&
                 <EditButton type='link' href={`${siteSetting.slug}/hero-card-configurations`} />
               }
             </div>
@@ -162,7 +162,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               {format('ui.siteSetting.menu.header')}
             </div>
             <div className='flex gap-x-2 ml-auto'>
-              {canEdit &&
+              {editingAllowed &&
                 <EditButton type='link' href={`${siteSetting.slug}/menu-configurations`} />
               }
             </div>

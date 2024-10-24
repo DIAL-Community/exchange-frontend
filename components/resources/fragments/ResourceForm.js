@@ -7,7 +7,6 @@ import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
@@ -57,7 +56,7 @@ const ResourceAuthor = ({ authors, setAuthors, mutating, reverting, register, ge
     setAuthors((authors) => ([
       ...[
         ...authors.filter(({ id }) => id !== author.id),
-        { id: author.id, name: author.name, email: author.email, slug: author.slug  }
+        { id: author.id, name: author.name, email: author.email, slug: author.slug }
       ]
     ]))
   }
@@ -337,8 +336,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
 
   const client = useApolloClient()
 
-  const { user, loadingUserSession } = useUser()
-  const canEdit = user?.isAdminUser || user?.isEditorUser || user?.isAdliAdminUser
+  const { user } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -364,7 +362,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const router = useRouter()
   const { locale, asPath } = router
 
-  const [resourceType, setResourceType] = useState({ value: resource?.resourceType, label:  resource?.resourceType })
+  const [resourceType, setResourceType] = useState({ value: resource?.resourceType, label: resource?.resourceType })
   const fetchedResourceTypesCallback = (data) => (
     data.resourceTypes?.map((resourceType) => ({
       value: resourceType.name,
@@ -420,65 +418,63 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   })
 
   const doUpsert = async (data) => {
-    if (user) {
-      // Set the loading indicator.
-      setMutating(true)
-      // Pull all needed data from session and form.
-      const {
-        name,
-        description,
-        showInWizard,
-        showInExchange,
-        publishedDate,
-        featured,
-        resourceLink,
-        linkDescription,
-        imageFile,
-        resourceFile
-      } = data
-      // Send graph query to the backend. Set the base variables needed to perform update.
-      const variables = {
-        name,
-        slug,
-        description,
-        showInWizard,
-        showInExchange,
-        publishedDate,
-        featured,
-        resourceLink,
-        linkDescription,
-        sourceName: sourceStructure?.name,
-        sourceWebsite: sourceStructure?.website,
-        resourceType: resourceType?.value,
-        resourceTopics: resourceTopics?.map(({ name }) => name ),
-        authors: authors?.map(({ name, email }) => ({ name, email }))
-      }
-
-      if (sourceStructure?.logoFile) {
-        variables.sourceLogoFile = sourceStructure.logoFile[0]
-      }
-
-      if (imageFile) {
-        variables.imageFile = imageFile[0]
-      }
-
-      if (resourceFile) {
-        variables.resourceFile = resourceFile[0]
-      }
-
-      if (organization) {
-        variables.organizationSlug = organization.slug
-      }
-
-      updateResource({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
-        }
-      })
+    // Set the loading indicator.
+    setMutating(true)
+    // Pull all needed data from session and form.
+    const {
+      name,
+      description,
+      showInWizard,
+      showInExchange,
+      publishedDate,
+      featured,
+      resourceLink,
+      linkDescription,
+      imageFile,
+      resourceFile
+    } = data
+    // Send graph query to the backend. Set the base variables needed to perform update.
+    const variables = {
+      name,
+      slug,
+      description,
+      showInWizard,
+      showInExchange,
+      publishedDate,
+      featured,
+      resourceLink,
+      linkDescription,
+      sourceName: sourceStructure?.name,
+      sourceWebsite: sourceStructure?.website,
+      resourceType: resourceType?.value,
+      resourceTopics: resourceTopics?.map(({ name }) => name),
+      authors: authors?.map(({ name, email }) => ({ name, email }))
     }
+
+    if (sourceStructure?.logoFile) {
+      variables.sourceLogoFile = sourceStructure.logoFile[0]
+    }
+
+    if (imageFile) {
+      variables.imageFile = imageFile[0]
+    }
+
+    if (resourceFile) {
+      variables.resourceFile = resourceFile[0]
+    }
+
+    if (organization) {
+      variables.organizationSlug = organization.slug
+    }
+
+    updateResource({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const cancelForm = () => {
@@ -508,272 +504,268 @@ const ResourceForm = React.memo(({ resource, organization }) => {
     setResourceTopics((resourceTopics) => ([
       ...[
         ...resourceTopics.filter(({ id }) => id !== resourceTopic.id),
-        { id: resourceTopic.id, name: resourceTopic.name, slug: resourceTopic.slug  }
+        { id: resourceTopic.id, name: resourceTopic.name, slug: resourceTopic.slug }
       ]
     ]))
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : canEdit
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-stratos'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {resource
-                  ? format('app.editEntity', { entity: resource.name })
-                  : `${format('app.createNew')} ${format('ui.resource.label')}`}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='name'>
-                  {format('ui.resource.name')}
-                </label>
-                <Input
-                  {...register('name', { required: format('validation.required') })}
-                  id='name'
-                  placeholder={format('ui.resource.name')}
-                  isInvalid={errors.name}
-                />
-                {errors.name && <ValidationError value={errors.name?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field'>
-                  {format('ui.resource.publishedDate')}
-                </label>
-                <Input
-                  {...register('publishedDate', { required: format('validation.required') })}
-                  type='date'
-                  placeholder={format('ui.resource.publishedDate')}
-                  isInvalid={errors.publishedDate}
-                  defaultValue={new Date().toISOString().substring(0, 10)}
-                />
-                {errors.publishedDate && <ValidationError value={errors.publishedDate?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className=''>
-                  {format('ui.resource.imageFile')}
-                </label>
-                <FileUploader {...register('imageFile')} />
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label htmlFor='resourceTopic'>
-                  {format('ui.resource.resourceType')}
-                </label>
-                <Select
-                  async
-                  isSearch
-                  isBorderless
-                  defaultOptions
-                  cacheOptions
-                  placeholder={format('ui.resource.resourceType')}
-                  loadOptions={(input) =>
-                    fetchSelectOptions(client, input, RESOURCE_TYPE_SEARCH_QUERY, fetchedResourceTypesCallback)
-                  }
-                  noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.resourceTopic') })}
-                  onChange={(value) => setResourceType(value)}
-                  value={resourceType}
-                />
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {format('ui.resource.resourceTopic')}
-                  <Select
-                    async
-                    isSearch
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-                    loadOptions={(input) =>
-                      fetchSelectOptions(client, input, RESOURCE_TOPIC_SEARCH_QUERY, fetchedResourceTopicsCallback)
-                    }
-                    noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.resourceTopic') })}
-                    onChange={addResourceTopic}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-wrap gap-3'>
-                  {resourceTopics.map((resourceTopic, resourceTopicIdx) => (
-                    <Pill
-                      key={`resource-topic-${resourceTopicIdx}`}
-                      label={resourceTopic.name}
-                      onRemove={() => removeResourceTopic(resourceTopic)}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className='flex flex-col'>
-                <ul className="flex flex-wrap gap-x-4 -mb-px">
-                  <li className="me-2">
-                    <a
-                      href='#'
-                      onClick={toggleUsingFile}
-                      className={classNames(
-                        'inline-block py-3 border-b-2',
-                        usingFile ? 'border-dial-sunshine' : 'border-transparent'
-                      )}
-                    >
-                      {format('ui.resource.toggle.resourceFile')}
-                    </a>
-                  </li>
-                  <li className="me-2">
-                    <a
-                      href='#'
-                      onClick={toggleUsingFile}
-                      className={classNames(
-                        'inline-block py-3 border-b-2',
-                        usingFile ? 'border-transparent' : 'border-dial-sunshine'
-                      )}
-                    >
-                      {format('ui.resource.toggle.resourceUrl')}
-                    </a>
-                  </li>
-                </ul>
-                {usingFile &&
-                  <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
-                    <div className='flex flex-col gap-y-2'>
-                      <label htmlFor='resourceFile'>
-                        {format('ui.resource.resourceFile')}
-                      </label>
-                      <FileUploader
-                        {...register('resourceFile')}
-                        fileTypes={['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx']}
-                        fileTypesDisclaimer='resource.supportedFormats'
-                      />
-                    </div>
-                    <div className='flex flex-col gap-y-2'>
-                      <label className='required-field' htmlFor='linkDescription'>
-                        {format('ui.resource.linkDescription')}
-                      </label>
-                      <Input
-                        {...register('linkDescription', { required: format('validation.required') })}
-                        id='linkDescription'
-                        placeholder={format('ui.resource.linkDescription')}
-                        isInvalid={errors.linkDescription}
-                      />
-                      {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
-                    </div>
-                  </div>
-                }
-                {!usingFile &&
-                  <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
-                    <div className='flex flex-col gap-y-2'>
-                      <label htmlFor='resourceLink'>
-                        {format('ui.resource.resourceLink')}
-                      </label>
-                      <Controller
-                        name='resourceLink'
-                        control={control}
-                        render={({ field: { value, onChange } }) => (
-                          <UrlInput
-                            value={value}
-                            onChange={onChange}
-                            id='resourceLink'
-                            placeholder={format('ui.resource.resourceLink')}
-                          />
-                        )}
-                      />
-                    </div>
-                    <div className='flex flex-col gap-y-2'>
-                      <label className='required-field' htmlFor='linkDescription'>
-                        {format('ui.resource.linkDescription')}
-                      </label>
-                      <Input
-                        {...register('linkDescription', { required: format('validation.required') })}
-                        id='linkDescription'
-                        placeholder={format('ui.resource.linkDescription')}
-                        isInvalid={errors.linkDescription}
-                      />
-                      {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
-                    </div>
-                  </div>
-                }
-              </div>
-              <ResourceSourceStructure
-                mutating={mutating}
-                reverting={reverting}
-                sourceStructure={sourceStructure}
-                setSourceStructure={setSourceStructure}
-                register={register}
-                getValues={getValues}
-              />
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field'>
-                  {format('ui.resource.description')}
-                </label>
-                <Controller
-                  name='description'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <HtmlEditor
-                      editorId='description-editor'
-                      onChange={onChange}
-                      initialContent={value}
-                      placeholder={format('ui.resource.description')}
-                      isInvalid={errors.description}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.description && <ValidationError value={errors.description?.message} />}
-              </div>
-              <hr className='h-px border-dashed' />
-              <ResourceAuthor
-                authors={authors}
-                setAuthors={setAuthors}
-                mutating={mutating}
-                reverting={reverting}
-                register={register}
-                getValues={getValues}
-              />
-              {user?.isAdminUser &&
-                <>
-                  <hr className='h-px border-dashed' />
-                  <div className='text-base text-dial-blueberry font-semibold'>
-                    {format('app.adminOnly')}
-                  </div>
-                  <hr className='h-px border-dashed' />
-                  <div className='flex flex-wrap'>
-                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
-                      <Checkbox {...register('showInExchange')} />
-                      {format('ui.resource.showInExchange')}
-                    </label>
-                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
-                      <Checkbox {...register('showInWizard')} />
-                      {format('ui.resource.showInWizard')}
-                    </label>
-                  </div>
-                  <hr className='h-px border-dashed' />
-                  <div className='flex flex-wrap'>
-                    <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
-                      <Checkbox {...register('featured')} />
-                      {format('ui.resource.featured')}
-                    </label>
-                  </div>
-                  <hr className='h-px border-dashed' />
-                </>
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-stratos'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {resource
+              ? format('app.editEntity', { entity: resource.name })
+              : `${format('app.createNew')} ${format('ui.resource.label')}`}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='name'>
+              {format('ui.resource.name')}
+            </label>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              id='name'
+              placeholder={format('ui.resource.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field'>
+              {format('ui.resource.publishedDate')}
+            </label>
+            <Input
+              {...register('publishedDate', { required: format('validation.required') })}
+              type='date'
+              placeholder={format('ui.resource.publishedDate')}
+              isInvalid={errors.publishedDate}
+              defaultValue={new Date().toISOString().substring(0, 10)}
+            />
+            {errors.publishedDate && <ValidationError value={errors.publishedDate?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className=''>
+              {format('ui.resource.imageFile')}
+            </label>
+            <FileUploader {...register('imageFile')} />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label htmlFor='resourceTopic'>
+              {format('ui.resource.resourceType')}
+            </label>
+            <Select
+              async
+              isSearch
+              isBorderless
+              defaultOptions
+              cacheOptions
+              placeholder={format('ui.resource.resourceType')}
+              loadOptions={(input) =>
+                fetchSelectOptions(client, input, RESOURCE_TYPE_SEARCH_QUERY, fetchedResourceTypesCallback)
               }
-              <div className='flex flex-wrap text-base mt-6 gap-3'>
-                <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                  {`${format('app.submit')} ${format('ui.resource.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3' />}
-                </button>
-              </div>
+              noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.resourceTopic') })}
+              onChange={(value) => setResourceType(value)}
+              value={resourceType}
+            />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='flex flex-col gap-y-2'>
+              {format('ui.resource.resourceTopic')}
+              <Select
+                async
+                isSearch
+                isBorderless
+                defaultOptions
+                cacheOptions
+                placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+                loadOptions={(input) =>
+                  fetchSelectOptions(client, input, RESOURCE_TOPIC_SEARCH_QUERY, fetchedResourceTopicsCallback)
+                }
+                noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.resource.resourceTopic') })}
+                onChange={addResourceTopic}
+                value={null}
+              />
+            </label>
+            <div className='flex flex-wrap gap-3'>
+              {resourceTopics.map((resourceTopic, resourceTopicIdx) => (
+                <Pill
+                  key={`resource-topic-${resourceTopicIdx}`}
+                  label={resourceTopic.name}
+                  onRemove={() => removeResourceTopic(resourceTopic)}
+                />
+              ))}
             </div>
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <div className='flex flex-col'>
+            <ul className="flex flex-wrap gap-x-4 -mb-px">
+              <li className="me-2">
+                <a
+                  href='#'
+                  onClick={toggleUsingFile}
+                  className={classNames(
+                    'inline-block py-3 border-b-2',
+                    usingFile ? 'border-dial-sunshine' : 'border-transparent'
+                  )}
+                >
+                  {format('ui.resource.toggle.resourceFile')}
+                </a>
+              </li>
+              <li className="me-2">
+                <a
+                  href='#'
+                  onClick={toggleUsingFile}
+                  className={classNames(
+                    'inline-block py-3 border-b-2',
+                    usingFile ? 'border-transparent' : 'border-dial-sunshine'
+                  )}
+                >
+                  {format('ui.resource.toggle.resourceUrl')}
+                </a>
+              </li>
+            </ul>
+            {usingFile &&
+              <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+                <div className='flex flex-col gap-y-2'>
+                  <label htmlFor='resourceFile'>
+                    {format('ui.resource.resourceFile')}
+                  </label>
+                  <FileUploader
+                    {...register('resourceFile')}
+                    fileTypes={['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx']}
+                    fileTypesDisclaimer='resource.supportedFormats'
+                  />
+                </div>
+                <div className='flex flex-col gap-y-2'>
+                  <label className='required-field' htmlFor='linkDescription'>
+                    {format('ui.resource.linkDescription')}
+                  </label>
+                  <Input
+                    {...register('linkDescription', { required: format('validation.required') })}
+                    id='linkDescription'
+                    placeholder={format('ui.resource.linkDescription')}
+                    isInvalid={errors.linkDescription}
+                  />
+                  {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
+                </div>
+              </div>
+            }
+            {!usingFile &&
+              <div className='flex flex-col gap-y-6 border px-6 pb-6 pt-4'>
+                <div className='flex flex-col gap-y-2'>
+                  <label htmlFor='resourceLink'>
+                    {format('ui.resource.resourceLink')}
+                  </label>
+                  <Controller
+                    name='resourceLink'
+                    control={control}
+                    render={({ field: { value, onChange } }) => (
+                      <UrlInput
+                        value={value}
+                        onChange={onChange}
+                        id='resourceLink'
+                        placeholder={format('ui.resource.resourceLink')}
+                      />
+                    )}
+                  />
+                </div>
+                <div className='flex flex-col gap-y-2'>
+                  <label className='required-field' htmlFor='linkDescription'>
+                    {format('ui.resource.linkDescription')}
+                  </label>
+                  <Input
+                    {...register('linkDescription', { required: format('validation.required') })}
+                    id='linkDescription'
+                    placeholder={format('ui.resource.linkDescription')}
+                    isInvalid={errors.linkDescription}
+                  />
+                  {errors.linkDescription && <ValidationError value={errors.linkDescription?.message} />}
+                </div>
+              </div>
+            }
+          </div>
+          <ResourceSourceStructure
+            mutating={mutating}
+            reverting={reverting}
+            sourceStructure={sourceStructure}
+            setSourceStructure={setSourceStructure}
+            register={register}
+            getValues={getValues}
+          />
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field'>
+              {format('ui.resource.description')}
+            </label>
+            <Controller
+              name='description'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <HtmlEditor
+                  editorId='description-editor'
+                  onChange={onChange}
+                  initialContent={value}
+                  placeholder={format('ui.resource.description')}
+                  isInvalid={errors.description}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.description && <ValidationError value={errors.description?.message} />}
+          </div>
+          <hr className='h-px border-dashed' />
+          <ResourceAuthor
+            authors={authors}
+            setAuthors={setAuthors}
+            mutating={mutating}
+            reverting={reverting}
+            register={register}
+            getValues={getValues}
+          />
+          {user?.isAdminUser &&
+            <>
+              <hr className='h-px border-dashed' />
+              <div className='text-base text-dial-blueberry font-semibold'>
+                {format('app.adminOnly')}
+              </div>
+              <hr className='h-px border-dashed' />
+              <div className='flex flex-wrap'>
+                <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
+                  <Checkbox {...register('showInExchange')} />
+                  {format('ui.resource.showInExchange')}
+                </label>
+                <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
+                  <Checkbox {...register('showInWizard')} />
+                  {format('ui.resource.showInWizard')}
+                </label>
+              </div>
+              <hr className='h-px border-dashed' />
+              <div className='flex flex-wrap'>
+                <label className='flex gap-x-2 items-center self-start basis-1/2 shrink-0'>
+                  <Checkbox {...register('featured')} />
+                  {format('ui.resource.featured')}
+                </label>
+              </div>
+              <hr className='h-px border-dashed' />
+            </>
+          }
+          <div className='flex flex-wrap text-base mt-6 gap-3'>
+            <button type='submit' className='submit-button' disabled={mutating || reverting}>
+              {`${format('app.submit')} ${format('ui.resource.label')}`}
+              {mutating && <FaSpinner className='spinner ml-3' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 })
 
 ResourceForm.displayName = 'ResourceForm'

@@ -1,19 +1,18 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { UPDATE_OPPORTUNITY_ORGANIZATIONS } from '../../shared/mutation/opportunity'
-import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
-import OrganizationCard from '../../organization/OrganizationCard'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
+import OrganizationCard from '../../organization/OrganizationCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
 import Select from '../../shared/form/Select'
+import { UPDATE_OPPORTUNITY_ORGANIZATIONS } from '../../shared/mutation/opportunity'
+import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
 import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
-const OpportunityDetailOrganizations = ({ opportunity, canEdit, headerRef }) => {
+const OpportunityDetailOrganizations = ({ opportunity, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const OpportunityDetailOrganizations = ({ opportunity, canEdit, headerRef }) => 
   const [organizations, setOrganizations] = useState(opportunity.organizations)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,19 +72,17 @@ const OpportunityDetailOrganizations = ({ opportunity, canEdit, headerRef }) => 
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateOpportunityOrganizations({
-        variables: {
-          organizationSlugs: organizations.map(({ slug }) => slug),
-          slug: opportunity.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateOpportunityOrganizations({
+      variables: {
+        organizationSlugs: organizations.map(({ slug }) => slug),
+        slug: opportunity.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -153,7 +149,7 @@ const OpportunityDetailOrganizations = ({ opportunity, canEdit, headerRef }) => 
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

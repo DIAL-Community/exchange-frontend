@@ -22,7 +22,7 @@ const PlayDetailRight = ({ playbook, play, index = 0 }) => {
   const { locale } = useRouter()
 
   const { user } = useUser()
-  const canEdit = user?.isAdminUser || user?.isEditorUser
+  const editingAllowed = user?.isAdminUser || user?.isEditorUser
 
   const { setSlugHeights } = useContext(PlaybookDetailDispatchContext)
 
@@ -57,8 +57,8 @@ const PlayDetailRight = ({ playbook, play, index = 0 }) => {
           {`${format('ui.play.label')} ${index + 1}. ${play.name}`}
         </div>
         <div className='ml-auto my-auto flex gap-2'>
-          {canEdit && <EditButton type='link' href={generateEditLink()} />}
-          {canEdit && <UnassignPlay playbookSlug={playbook.slug} playSlug={play.slug} />}
+          {editingAllowed && <EditButton type='link' href={generateEditLink()} />}
+          {editingAllowed && <UnassignPlay playbookSlug={playbook.slug} playSlug={play.slug} />}
         </div>
       </div>
       <HtmlViewer
@@ -67,14 +67,14 @@ const PlayDetailRight = ({ playbook, play, index = 0 }) => {
       />
       <div className='flex flex-col gap-3'>
         <div className='flex gap-2 ml-auto'>
-          {canEdit &&
+          {editingAllowed &&
             <CreateButton
               label={format('ui.move.add')}
               type='link'
               href={generateAddMoveLink()}
             />
           }
-          {canEdit && play.playMoves.length > 0 &&
+          {editingAllowed && play.playMoves.length > 0 &&
             <button
               type='button'
               onClick={() => setDisplayDraggable(!displayDraggable)}

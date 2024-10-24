@@ -490,7 +490,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
 
   return (
     <EditableSection
-      canEdit={isAdminUser}
+      editingAllowed={isAdminUser}
       editModeBody={editModeBody}
       displayModeBody={displayModeBody}
       isDirty={isDirty}

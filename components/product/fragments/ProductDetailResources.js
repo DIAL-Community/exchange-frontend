@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ResourceCard from '../../resources/fragments/ResourceCard'
 import EditableSection from '../../shared/EditableSection'
@@ -13,7 +12,7 @@ import { RESOURCE_SEARCH_QUERY } from '../../shared/query/resource'
 import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const ProductDetailResources = ({ product, canEdit, headerRef }) => {
+const ProductDetailResources = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const ProductDetailResources = ({ product, canEdit, headerRef }) => {
   const [resources, setResources] = useState(product.resources)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -76,19 +74,17 @@ const ProductDetailResources = ({ product, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateProductResources({
-        variables: {
-          slug: product.slug,
-          resourceSlugs: resources.map(({ slug }) => slug)
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateProductResources({
+      variables: {
+        slug: product.slug,
+        resourceSlugs: resources.map(({ slug }) => slug)
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -149,7 +145,7 @@ const ProductDetailResources = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
@@ -13,7 +12,7 @@ import UseCaseCard from '../../use-case/UseCaseCard'
 import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptionsWithMaturity } from '../../utils/search'
 
-const ResourceDetailUseCases = ({ resource, canEdit, headerRef }) => {
+const ResourceDetailUseCases = ({ resource, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const ResourceDetailUseCases = ({ resource, canEdit, headerRef }) => {
   const [useCases, setUseCases] = useState(resource.useCases)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,19 +72,17 @@ const ResourceDetailUseCases = ({ resource, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      updateResourceUseCases({
-        variables: {
-          useCaseSlugs: useCases.map(({ slug }) => slug),
-          slug: resource.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    updateResourceUseCases({
+      variables: {
+        useCaseSlugs: useCases.map(({ slug }) => slug),
+        slug: resource.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -146,7 +142,7 @@ const ResourceDetailUseCases = ({ resource, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

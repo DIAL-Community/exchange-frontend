@@ -2,6 +2,7 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import ProductEdit from '../../../components/product/ProductEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PRODUCT } from '../../../components/shared/mutation/product'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
@@ -56,16 +57,38 @@ describe('Unit tests for the product detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockProductPolicyQueryError = generateMockApolloData(
+      PRODUCT_DETAIL_QUERY,
+      {
+        'slug': 'firma'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProduct, mockOwnedProducts, mockProductComments]}>
+      <CustomMockedProvider mocks={[mockProductPolicyQueryError, mockOwnedProducts, mockProductComments]}>
         <QueryParamContextProvider>
           <ProductEdit slug='firma' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('@firma')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 

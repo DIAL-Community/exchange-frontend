@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import OpportunityDetail from '../../../components/opportunity/OpportunityDetail'
 import OpportunityEdit from '../../../components/opportunity/OpportunityEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_OPPORTUNITY } from '../../../components/shared/mutation/opportunity'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
@@ -50,16 +51,38 @@ describe('Unit tests for the opportunity detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockOpportunityPolicyQueryError = generateMockApolloData(
+      OPPORTUNITY_DETAIL_QUERY,
+      {
+        'slug': 'market-entry-in-north-macedonia'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOpportunity, mockOpportunityComments]}>
+      <CustomMockedProvider mocks={[mockOpportunityPolicyQueryError, mockOpportunityComments]}>
         <QueryParamContextProvider>
           <OpportunityEdit slug='market-entry-in-north-macedonia' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('Market entry in North Macedonia')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 

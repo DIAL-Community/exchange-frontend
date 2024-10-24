@@ -11,7 +11,7 @@ import { UPDATE_PRODUCT_SECTORS } from '../../../shared/mutation/product'
 import { SECTOR_SEARCH_QUERY } from '../../../shared/query/sector'
 import { fetchSelectOptions } from '../../../utils/search'
 
-const ProductDetailSectors = ({ product, canEdit }) => {
+const ProductDetailSectors = ({ product, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -141,7 +141,7 @@ const ProductDetailSectors = ({ product, canEdit }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

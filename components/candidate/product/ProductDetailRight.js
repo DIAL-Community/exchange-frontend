@@ -100,8 +100,8 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         }
         <hr className='border-b border-dial-blue-chalk my-3' />
         <ProductDetailMaturityScores
-          id={product.id}
           slug={product.slug}
+          productId={product.id}
           editingAllowed={editingAllowed}
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}

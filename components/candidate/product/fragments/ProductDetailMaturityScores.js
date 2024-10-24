@@ -87,7 +87,7 @@ const MaturityCategory = ({ category }) => {
   )
 }
 
-const ProductDetailMaturityScores = ({ id, slug, editingAllowed, overallMaturityScore, maturityScoreDetails }) => {
+const ProductDetailMaturityScores = ({ productId, slug, editingAllowed, overallMaturityScore, maturityScoreDetails }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -244,13 +244,13 @@ const ProductDetailMaturityScores = ({ id, slug, editingAllowed, overallMaturity
       refetchQueries:[{
         query: COMMENTS_COUNT_QUERY,
         variables: {
-          commentObjectId: parseInt(id),
+          commentObjectId: parseInt(productId),
           commentObjectType: ObjectType.CANDIDATE_PRODUCT
         }
       }, {
         query: COMMENTS_QUERY,
         variables: {
-          commentObjectId: parseInt(id),
+          commentObjectId: parseInt(productId),
           commentObjectType: ObjectType.CANDIDATE_PRODUCT
         }
       }],
