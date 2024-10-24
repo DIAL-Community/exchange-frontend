@@ -130,7 +130,7 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
           class="h-[60vh]"
         >
           <div
-            class="flex bg-dial-alice-blue h-full"
+            class="flex h-full"
           >
             <div
               class="text-dial-stratos text-lg w-full my-auto flex flex-col gap-4"
@@ -579,7 +579,7 @@ exports[`Unit tests for the project detail page. Should render unauthorized for 
           class="h-[60vh]"
         >
           <div
-            class="flex bg-dial-alice-blue h-full"
+            class="flex h-full"
           >
             <div
               class="text-dial-stratos text-lg w-full my-auto flex flex-col gap-4"
