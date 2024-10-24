@@ -76,7 +76,7 @@ export const GeneralErrorHandler = () => {
   return (
     <div className='min-h-[75vh] flex items-center justify-center'>
       <div className='flex flex-col gap-y-6'>
-        <FaSpinner size='3em' className='spinner mx-auto' />
+        <FaCircleExclamation size='3em' className='mx-auto' />
         <div className='text-center'>
           <FormattedMessage id='ui.general.error.general' />
         </div>
@@ -99,8 +99,8 @@ export const NotFoundHandler = () => {
 }
 
 export const handleQueryError = (error) => {
-  const { graphQLErrors } = error
-  if (graphQLErrors) {
+  if (error?.graphQLErrors) {
+    const { graphQLErrors } = error
     for (let e of graphQLErrors) {
       switch (e.extensions.code) {
         case QueryErrorCode.UNAUTHORIZED:
