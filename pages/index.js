@@ -1,4 +1,4 @@
-import { Loading } from '../components/shared/FetchStatus'
+import { handleLoadingQuery } from '../components/shared/GraphQueryHandler'
 import { useActiveTenant } from '../lib/hooks'
 import HealthPage from './landing/health'
 import HubPage from './landing/hub'
@@ -10,7 +10,7 @@ const RootPage = ({ dpiTenants, defaultTenants }) => {
   return (
     <>
       { waitingActiveTenant
-        ? <Loading />
+        ? handleLoadingQuery()
         : tenant === 'dpi'
           ? <HubPage dpiTenants={dpiTenants} />
           : tenant === 'health'

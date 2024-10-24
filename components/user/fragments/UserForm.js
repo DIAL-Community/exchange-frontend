@@ -4,15 +4,16 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useEmailValidation } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { ProductActiveFilters, ProductAutocomplete } from '../../shared/filter/Product'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { CREATE_USER } from '../../shared/mutation/user'
 import { USER_FORM_SELECTION_QUERY } from '../../shared/query/user'
 
@@ -94,13 +95,19 @@ const UserForm = React.memo(({ user }) => {
     }
   })
 
-  const { loading, error, data } = useQuery(USER_FORM_SELECTION_QUERY)
+  const { loading, error, data } = useQuery(USER_FORM_SELECTION_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.organizations && !data.userRoles) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { organizations, userRoles } = data

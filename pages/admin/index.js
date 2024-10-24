@@ -3,8 +3,8 @@ import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { Loading } from '../../components/shared/FetchStatus'
 import Footer from '../../components/shared/Footer'
+import { handleLoadingQuery } from '../../components/shared/GraphQueryHandler'
 import Header from '../../components/shared/Header'
 import ClientOnly from '../../lib/ClientOnly'
 
@@ -33,7 +33,7 @@ const AdminPage = ({ defaultTenants }) => {
         <Header />
         {status === 'authenticated' && data?.user.isAdminUser
           ? <AdminLandingPage />
-          : <Loading />
+          : handleLoadingQuery()
         }
         <Footer />
       </ClientOnly>

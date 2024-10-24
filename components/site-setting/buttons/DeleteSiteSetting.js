@@ -1,14 +1,16 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import DeleteButton from '../shared/form/DeleteButton'
-import { DELETE_SITE_SETTING } from '../shared/mutation/siteSetting'
-import { PAGINATED_SITE_SETTINGS_QUERY, SITE_SETTING_DETAIL_QUERY } from '../shared/query/siteSetting'
-import { DEFAULT_PAGE_SIZE } from '../utils/constants'
+import { useMutation, useQuery } from '@apollo/client'
+import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import DeleteButton from '../../shared/form/DeleteButton'
+import { DELETE_SITE_SETTING } from '../../shared/mutation/siteSetting'
+import {
+  PAGINATED_SITE_SETTINGS_QUERY, SITE_SETTING_DETAIL_QUERY, SITE_SETTING_POLICY_QUERY
+} from '../../shared/query/siteSetting'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteSiteSetting = ({ siteSetting }) => {
   const { formatMessage } = useIntl()
@@ -18,8 +20,6 @@ const DeleteSiteSetting = ({ siteSetting }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -54,21 +54,28 @@ const DeleteSiteSetting = ({ siteSetting }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteSiteSetting({
-        variables: {
-          id: siteSetting.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteSiteSetting({
+      variables: {
+        id: siteSetting.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
-  return (
+  const { error } = useQuery(SITE_SETTING_POLICY_QUERY, {
+    variables: { tenantName: DELETING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

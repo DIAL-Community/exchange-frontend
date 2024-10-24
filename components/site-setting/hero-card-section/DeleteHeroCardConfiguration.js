@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import { UPDATE_SITE_SETTING_HERO_CARD_SECTION } from '../../shared/mutation/siteSetting'
@@ -12,8 +11,6 @@ const DeleteHeroCardConfiguration = (props) => {
   const { siteSettingSlug, heroCardConfiguration, heroCardConfigurations, setHeroCardConfigurations } = props
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -51,30 +48,28 @@ const DeleteHeroCardConfiguration = (props) => {
   })
 
   const executeBulkUpdate = () => {
-    if (user) {
-      setMutating(true)
-      const currentHeroCardConfigurations = [...heroCardConfigurations]
-      // Try to find the index in the top level heroCard configurations
-      let indexOfHeroCardConfiguration = currentHeroCardConfigurations.findIndex(m => m.id === heroCardConfiguration.id)
-      if (indexOfHeroCardConfiguration >= 0) {
-        // Remove the heroCard configuration from the current heroCard configurations
-        currentHeroCardConfigurations.splice(indexOfHeroCardConfiguration, 1)
-      }
-
-      const variables = {
-        siteSettingSlug,
-        heroCardConfigurations: currentHeroCardConfigurations
-      }
-
-      bulkUpdateHeroCard({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
-        }
-      })
+    setMutating(true)
+    const currentHeroCardConfigurations = [...heroCardConfigurations]
+    // Try to find the index in the top level heroCard configurations
+    let indexOfHeroCardConfiguration = currentHeroCardConfigurations.findIndex(m => m.id === heroCardConfiguration.id)
+    if (indexOfHeroCardConfiguration >= 0) {
+      // Remove the heroCard configuration from the current heroCard configurations
+      currentHeroCardConfigurations.splice(indexOfHeroCardConfiguration, 1)
     }
+
+    const variables = {
+      siteSettingSlug,
+      heroCardConfigurations: currentHeroCardConfigurations
+    }
+
+    bulkUpdateHeroCard({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   return (

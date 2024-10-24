@@ -5,8 +5,9 @@ import { useRouter } from 'next/router'
 import { FaBookmark, FaRobot, FaSpinner, FaUser } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { CHATBOT_CONVERSATIONS } from '../shared/query/chatbot'
 
 const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ...props }) => {
@@ -25,6 +26,11 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
     variables: {
       currentIdentifier: identifier ?? '',
       sessionIdentifier: sessionIdentifier ?? existingSessionIdentifier
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -53,11 +59,11 @@ const ChatbotMainHistory = ({ existingSessionIdentifier, currentConversation, ..
   }, [currentIndex, setCurrentIndex, setCurrentText, chatbotAnswer])
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.chatbotConversations) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { chatbotConversations } = data

@@ -1,12 +1,31 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
+import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
+import { SITE_SETTING_POLICY_QUERY } from '../shared/query/siteSetting'
 import SiteSettingForm from './fragments/SiteSettingForm'
 import SiteSettingSimpleLeft from './fragments/SiteSettingSimpleLeft'
 
 const SiteSettingCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { loading, error } = useQuery(SITE_SETTING_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
+  })
+
+  if (loading) {
+    return handleLoadingQuery()
+  } else if (error) {
+    return handleQueryError(error)
+  }
 
   const slugNameMapping = (() => {
     const map = {

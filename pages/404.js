@@ -1,7 +1,8 @@
 import HubFooter from '../components/hub/sections/HubFooter'
 import HubHeader from '../components/hub/sections/HubHeader'
-import { Loading, NotFound } from '../components/shared/FetchStatus'
+import { NotFound } from '../components/shared/FetchStatus'
 import Footer from '../components/shared/Footer'
+import { handleLoadingQuery } from '../components/shared/GraphQueryHandler'
 import Header from '../components/shared/Header'
 import { useActiveTenant } from '../lib/hooks'
 
@@ -27,7 +28,7 @@ const Custom404 = () => {
   return (
     <>
       { waitingActiveTenant
-        ? <Loading />
+        ? handleLoadingQuery()
         : tenant === 'dpi'
           ? dpi404
           : default404

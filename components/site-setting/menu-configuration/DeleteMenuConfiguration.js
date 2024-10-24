@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { FaXmark } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import { UPDATE_SITE_SETTING_MENU_CONFIGURATIONS } from '../../shared/mutation/siteSetting'
@@ -15,8 +14,6 @@ const DeleteMenuConfiguration = (props) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -49,44 +46,42 @@ const DeleteMenuConfiguration = (props) => {
   })
 
   const executeBulkUpdate = () => {
-    if (user) {
-      setMutating(true)
-      const currentMenuConfigurations = [...menuConfigurations]
-      // Try to find the index in the top level menu configurations
-      let indexOfMenuConfiguration = menuConfigurations.findIndex(m => m.id === menuConfiguration.id)
-      if (indexOfMenuConfiguration >= 0) {
-        // Remove the menu configuration from the current menu configurations
-        currentMenuConfigurations.splice(indexOfMenuConfiguration, 1)
-      } else {
-        // Try finding the id to be deleted in the menu item configurations
-        indexOfMenuConfiguration = menuConfigurations.findIndex(m => {
-          return m.menuItemConfigurations.findIndex(mi => mi.id === menuConfiguration.id) >= 0
-        })
-        const existingParentMenu = currentMenuConfigurations[indexOfMenuConfiguration]
-        // Rebuild the parent menu configuration without the menu item configuration
-        const currentParentMenu = {
-          ...existingParentMenu,
-          menuItemConfigurations: [
-            ...existingParentMenu.menuItemConfigurations.filter(mi => mi.id !== menuConfiguration.id)
-          ]
-        }
-        currentMenuConfigurations[indexOfMenuConfiguration] = currentParentMenu
-      }
-
-      const variables = {
-        siteSettingSlug,
-        menuConfigurations: currentMenuConfigurations
-      }
-
-      bulkUpdateMenu({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
-        }
+    setMutating(true)
+    const currentMenuConfigurations = [...menuConfigurations]
+    // Try to find the index in the top level menu configurations
+    let indexOfMenuConfiguration = menuConfigurations.findIndex(m => m.id === menuConfiguration.id)
+    if (indexOfMenuConfiguration >= 0) {
+      // Remove the menu configuration from the current menu configurations
+      currentMenuConfigurations.splice(indexOfMenuConfiguration, 1)
+    } else {
+      // Try finding the id to be deleted in the menu item configurations
+      indexOfMenuConfiguration = menuConfigurations.findIndex(m => {
+        return m.menuItemConfigurations.findIndex(mi => mi.id === menuConfiguration.id) >= 0
       })
+      const existingParentMenu = currentMenuConfigurations[indexOfMenuConfiguration]
+      // Rebuild the parent menu configuration without the menu item configuration
+      const currentParentMenu = {
+        ...existingParentMenu,
+        menuItemConfigurations: [
+          ...existingParentMenu.menuItemConfigurations.filter(mi => mi.id !== menuConfiguration.id)
+        ]
+      }
+      currentMenuConfigurations[indexOfMenuConfiguration] = currentParentMenu
     }
+
+    const variables = {
+      siteSettingSlug,
+      menuConfigurations: currentMenuConfigurations
+    }
+
+    bulkUpdateMenu({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const dialogTitle = menuConfiguration.type === 'menu'

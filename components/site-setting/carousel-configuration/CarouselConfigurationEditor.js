@@ -4,9 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
@@ -23,8 +21,6 @@ const CarouselConfigurationEditor = (props) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [mutating, setMutating] = useState(false)
-  const { user, loadingUserSession } = useUser()
-
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const textStyleSelections = [{
@@ -136,40 +132,36 @@ const CarouselConfigurationEditor = (props) => {
   const currentImageUrlValue = watch('imageUrl')
 
   const doUpsert = async (data) => {
-    if (user) {
-      // Set the loading indicator.
-      setMutating(true)
-      // Pull all needed data from session and form.
-      const { name, title, external, description, destinationUrl, calloutTitle, textStyle, bgStyle, imageUrl } = data
-      // Send graph query to the backend. Set the base variables needed to perform update.
-      const variables = {
-        siteSettingSlug,
-        id: carouselConfiguration?.id,
-        type: carouselConfiguration?.type,
-        name: name ?? carouselConfiguration?.name,
-        title: title ?? carouselConfiguration?.title,
-        external: external ?? carouselConfiguration?.external,
-        description: description ?? carouselConfiguration?.description,
-        calloutTitle: calloutTitle ?? carouselConfiguration?.calloutTitle,
-        destinationUrl: destinationUrl ?? carouselConfiguration?.destinationUrl,
-        imageUrl: imageUrl ? `//${imageUrl}` : bgStyle?.value ?? carouselConfiguration?.imageUrl,
-        style: textStyle ? textStyle?.value : carouselConfiguration?.style
-      }
-
-      updateExchangeCarousel({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
-        }
-      })
+    // Set the loading indicator.
+    setMutating(true)
+    // Pull all needed data from session and form.
+    const { name, title, external, description, destinationUrl, calloutTitle, textStyle, bgStyle, imageUrl } = data
+    // Send graph query to the backend. Set the base variables needed to perform update.
+    const variables = {
+      siteSettingSlug,
+      id: carouselConfiguration?.id,
+      type: carouselConfiguration?.type,
+      name: name ?? carouselConfiguration?.name,
+      title: title ?? carouselConfiguration?.title,
+      external: external ?? carouselConfiguration?.external,
+      description: description ?? carouselConfiguration?.description,
+      calloutTitle: calloutTitle ?? carouselConfiguration?.calloutTitle,
+      destinationUrl: destinationUrl ?? carouselConfiguration?.destinationUrl,
+      imageUrl: imageUrl ? `//${imageUrl}` : bgStyle?.value ?? carouselConfiguration?.imageUrl,
+      style: textStyle ? textStyle?.value : carouselConfiguration?.style
     }
+    updateExchangeCarousel({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : <form onSubmit={handleSubmit(doUpsert)}>
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
       <div className='px-8 py-6'>
         <div className='flex flex-col gap-y-6 text-sm'>
           <div className='text-xl font-semibold'>
@@ -341,6 +333,7 @@ const CarouselConfigurationEditor = (props) => {
         </div>
       </div>
     </form>
+  )
 }
 
 export default CarouselConfigurationEditor
