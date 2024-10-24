@@ -1,9 +1,10 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
+import { useMutation, useQuery } from '@apollo/client'
+import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../lib/ToastContext'
+import { TASK_TRACKER_POLICY_QUERY } from '../../shared/query/taskTracker'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 import DeleteButton from '../shared/form/DeleteButton'
 import { DELETE_TASK_TRACKER } from '../shared/mutation/taskTracker'
@@ -18,8 +19,6 @@ const DeleteTaskTracker = ({ taskTracker }) => {
 
   const router = useRouter()
   const { locale } = router
-
-  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
@@ -54,21 +53,28 @@ const DeleteTaskTracker = ({ taskTracker }) => {
   })
 
   const onConfirmDelete = () => {
-    if (user) {
-      deleteTaskTracker({
-        variables: {
-          id: taskTracker.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
+    deleteTaskTracker({
+      variables: {
+        id: taskTracker.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
-  return (
+  const { error } = useQuery(TASK_TRACKER_POLICY_QUERY, {
+    variables: { tenantName: DELETING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

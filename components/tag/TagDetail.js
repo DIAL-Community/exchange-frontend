@@ -1,24 +1,30 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { TAG_DETAIL_QUERY } from '../shared/query/tag'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import TagDetailRight from './TagDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { TAG_DETAIL_QUERY } from '../shared/query/tag'
 import TagDetailLeft from './TagDetailLeft'
+import TagDetailRight from './TagDetailRight'
 
 const TagDetail = ({ slug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(TAG_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.tag) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { tag } = data

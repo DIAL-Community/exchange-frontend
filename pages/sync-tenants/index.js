@@ -1,34 +1,33 @@
+import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
-import { useRouter } from 'next/router'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../components/shared/Header'
-import ClientOnly from '../../../lib/ClientOnly'
-import Footer from '../../../components/shared/Footer'
-import SyncEdit from '../../../components/sync/SyncEdit'
+import Footer from '../../components/shared/Footer'
+import Header from '../../components/shared/Header'
+import SyncTenants from '../../components/sync/live/SyncTenants'
+import ClientOnly from '../../lib/ClientOnly'
 
-const EditSyncPage = ({ defaultTenants }) => {
+const SyncPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
       <NextSeo
-        title={format('ui.sync.header')}
+        title={format('ui.syncTenant.header')}
         description={
           format(
             'shared.metadata.description.listOfKey',
-            { entities: format('ui.sync.header')?.toLocaleLowerCase() }
+            { entities: format('ui.syncTenant.header')?.toLocaleLowerCase() }
           )
         }
       />
       <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <SyncEdit slug={slug} locale={locale} />
+        <div className='lg:px-8 xl:px-56 flex flex-col'>
+          <SyncTenants />
+        </div>
         <Footer />
       </ClientOnly>
     </>
@@ -43,4 +42,4 @@ export async function getServerSideProps() {
   return { props: { defaultTenants } }
 }
 
-export default EditSyncPage
+export default SyncPage

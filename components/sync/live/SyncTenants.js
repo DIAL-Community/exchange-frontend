@@ -31,7 +31,7 @@ const SyncTenants = () => {
   const [useCases, setUseCases] = useState([])
 
   const { user, loadingUserSession } = useUser()
-  const canEdit = user?.isAdminUser || user?.isEditorUser
+  const editingAllowed = user?.isAdminUser || user?.isEditorUser
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -69,7 +69,7 @@ const SyncTenants = () => {
   })
 
   const doUpsert = async (data) => {
-    if (user) {
+    if (editingAllowed) {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
@@ -112,7 +112,7 @@ const SyncTenants = () => {
 
   return loadingUserSession
     ? <Loading />
-    : canEdit
+    : editingAllowed
       ? (
         <form onSubmit={handleSubmit(doUpsert)}>
           <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-stratos'>
@@ -190,7 +190,7 @@ const SyncTenants = () => {
               <SyncProjects projects={projects} setProjects={setProjects} />
               <SyncUseCases useCases={useCases} setUseCases={setUseCases} />
               <div className='flex flex-wrap text-base mt-6 gap-3'>
-                <button type='submit' className='submit-button' disabled={mutating}>
+                <button type='submit' className='submit-button' disabled={mutating || !editingAllowed}>
                   {`${format('app.submit')} ${format('ui.sync.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>

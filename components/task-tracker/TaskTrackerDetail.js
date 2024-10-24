@@ -1,24 +1,30 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { TASK_TRACKER_DETAIL_QUERY } from '../shared/query/taskTracker'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import TaskTrackerDetailRight from './TaskTrackerDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { TASK_TRACKER_DETAIL_QUERY } from '../shared/query/taskTracker'
 import TaskTrackerDetailLeft from './TaskTrackerDetailLeft'
+import TaskTrackerDetailRight from './TaskTrackerDetailRight'
 
 const TaskTrackerDetail = ({ slug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(TASK_TRACKER_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.taskTracker) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { taskTracker } = data
