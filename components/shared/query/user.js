@@ -77,6 +77,14 @@ export const SIMPLE_USER_DETAIL_QUERY = gql`
   }
 `
 
+export const USER_POLICY_QUERY = gql`
+  query User($userId: String!) {
+    user(userId: $userId) {
+      id
+    }
+  }
+`
+
 export const USER_DETAIL_QUERY = gql`
   query User($userId: String!) {
     user(userId: $userId) {

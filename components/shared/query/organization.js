@@ -149,6 +149,14 @@ export const PAGINATED_STOREFRONTS_QUERY = gql`
   }
 `
 
+export const ORGANIZATION_POLICY_QUERY = gql`
+  query Organization($slug: String!) {
+    organization(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const ORGANIZATION_DETAIL_QUERY = gql`
   query Organization($slug: String!) {
     organization(slug: $slug) {

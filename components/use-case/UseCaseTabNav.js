@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
 import { USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
@@ -16,7 +16,7 @@ const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(USE_CASE_DETAIL_QUERY, {
-    variables: { slug: crypto.randomUUID() },
+    variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

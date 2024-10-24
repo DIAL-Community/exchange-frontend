@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client'
 
+export const TENANT_SETTING_POLICY_QUERY = gql`
+  query TenantSetting($tenantName: String) {
+    tenantSetting(tenantName: $tenantName) {
+      id
+    }
+  }
+`
+
 export const TENANT_SETTING_DETAIL_QUERY = gql`
   query TenantSetting($tenantName: String) {
     tenantSetting(tenantName: $tenantName) {

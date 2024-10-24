@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
 import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
@@ -13,7 +13,7 @@ const RubricCategoryCreate = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error } = useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { slug: crypto.randomUUID() },
+    variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

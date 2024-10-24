@@ -39,6 +39,14 @@ export const PAGINATED_CITIES_QUERY = gql`
   }
 `
 
+export const CITY_POLICY_QUERY = gql`
+  query City($slug: String!) {
+    city(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const CITY_DETAIL_QUERY = gql`
   query City($slug: String!) {
     city(slug: $slug) {

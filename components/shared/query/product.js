@@ -142,6 +142,14 @@ export const PRODUCT_COMPARE_QUERY = gql`
   }
 `
 
+export const PRODUCT_POLICY_QUERY = gql`
+  query Product($slug: String!) {
+    product(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const PRODUCT_DETAIL_QUERY = gql`
   query Product($slug: String!) {
     product(slug: $slug) {

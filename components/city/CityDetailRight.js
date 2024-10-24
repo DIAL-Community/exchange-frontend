@@ -2,7 +2,7 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CountryCard from '../country/CountryCard'
 import OrganizationCard from '../organization/OrganizationCard'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -39,8 +39,7 @@ const CityDetailRight = forwardRef(({ city }, ref) => {
 
   let editingAllowed = true
   const { error } = useQuery(CITY_DETAIL_QUERY, {
-    variables: { slug: crypto.randomUUID() },
-    fetchPolicy: 'no-cache',
+    variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

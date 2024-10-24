@@ -43,6 +43,14 @@ export const PAGINATED_CANDIDATE_RESOURCES_QUERY = gql`
   }
 `
 
+export const CANDIDATE_RESOURCE_POLICY_QUERY = gql`
+  query CandidateResource($slug: String!) {
+    candidateResource(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const CANDIDATE_RESOURCE_DETAIL_QUERY = gql`
   query CandidateResource($slug: String!) {
     candidateResource(slug: $slug) {

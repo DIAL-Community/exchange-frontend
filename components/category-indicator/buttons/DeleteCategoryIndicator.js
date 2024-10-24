@@ -67,7 +67,6 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
 
   const { error } = useQuery(CATEGORY_INDICATOR_QUERY, {
     variables: { categorySlug: crypto.randomUUID(), indicatorSlug: crypto.randomUUID() },
-    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING

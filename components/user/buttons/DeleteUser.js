@@ -71,7 +71,6 @@ const DeleteUser = ({ user }) => {
 
   const { error } = useQuery(USER_DETAIL_QUERY, {
     variables: { userId: crypto.randomUUID() },
-    fetchPolicy: 'no-cache',
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING

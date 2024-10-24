@@ -52,6 +52,14 @@ export const PAGINATED_TAGS_QUERY = gql`
   }
 `
 
+export const TAG_POLICY_QUERY = gql`
+  query Tag($slug: String!) {
+    tag(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const TAG_DETAIL_QUERY = gql`
   query Tag($slug: String!) {
     tag(slug: $slug) {

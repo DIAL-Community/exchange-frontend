@@ -2,7 +2,7 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FaCircleCheck, FaRegCircle } from 'react-icons/fa6'
 import { FormattedDate, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
@@ -26,8 +26,7 @@ const OrganizationDetailRight = forwardRef(({ organization, refetch }, ref) => {
 
   let editingAllowed = true
   const { error } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
-    variables: { slug: crypto.randomUUID() },
-    fetchPolicy: 'no-cache',
+    variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

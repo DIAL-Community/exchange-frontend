@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
@@ -31,8 +31,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
 
   let editingAllowed = !buildingBlock.markdownUrl
   const { error } = useQuery(BUILDING_BLOCK_POLICY_QUERY, {
-    variables: { slug: crypto.randomUUID() },
-    fetchPolicy: 'no-cache',
+    variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

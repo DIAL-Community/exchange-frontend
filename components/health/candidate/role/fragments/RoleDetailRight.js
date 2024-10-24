@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../../../../lib/apolloClient'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../../../lib/apolloClient'
 import { HtmlViewer } from '../../../../shared/form/HtmlViewer'
 import { CANDIDATE_ROLE_DETAIL_QUERY } from '../../../../shared/query/candidateRole'
 import { CandidateActionType, ObjectType } from '../../../../utils/constants'
@@ -21,7 +21,7 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
 
   let editingAllowed = true
   const { error } = useQuery(CANDIDATE_ROLE_DETAIL_QUERY, {
-    variables: { slug: crypto.randomUUID() },
+    variables: { slug: EDITING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

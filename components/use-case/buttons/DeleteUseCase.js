@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
@@ -70,8 +70,7 @@ const DeleteUseCase = ({ useCase }) => {
   }
 
   const { error } = useQuery(USE_CASE_DETAIL_QUERY, {
-    variables: { slug: crypto.randomUUID() },
-    fetchPolicy: 'no-cache',
+    variables: { slug: DELETING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING
