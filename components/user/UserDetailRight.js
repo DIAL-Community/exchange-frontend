@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, FormattedTime, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import OrganizationCard from '../organization/OrganizationCard'
 import ProductCard from '../product/ProductCard'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -38,7 +38,7 @@ const UserDetailRight = forwardRef(({ user }, ref) => {
 
   let editingAllowed = true
   const { error } = useQuery(USER_DETAIL_QUERY, {
-    variables: { userId: crypto.randomUUID() },
+    variables: { userId: EDITING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.EDITING

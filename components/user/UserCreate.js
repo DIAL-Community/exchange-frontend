@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
-import { USER_DETAIL_QUERY } from '../shared/query/user'
+import { USER_POLICY_QUERY } from '../shared/query/user'
 import UserForm from './fragments/UserForm'
 import UserSimpleLeft from './fragments/UserSimpleLeft'
 
@@ -12,8 +12,8 @@ const UserCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(USER_DETAIL_QUERY, {
-    variables: { userId: crypto.randomUUID() },
+  const { loading, error } = useQuery(USER_POLICY_QUERY, {
+    variables: { userId: CREATING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

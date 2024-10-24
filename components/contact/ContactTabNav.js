@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
-import { CONTACT_DETAIL_QUERY } from '../shared/query/contact'
+import { CONTACT_POLICY_QUERY } from '../shared/query/contact'
 import TabNav from '../shared/TabNav'
 
 const ContactTabNav = ({ activeTab, setActiveTab }) => {
@@ -9,7 +9,7 @@ const ContactTabNav = ({ activeTab, setActiveTab }) => {
     'ui.contact.header'
   ])
 
-  useQuery(CONTACT_DETAIL_QUERY, {
+  useQuery(CONTACT_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
-import { CITY_DETAIL_QUERY } from '../shared/query/city'
+import { CITY_POLICY_QUERY } from '../shared/query/city'
 import CityForm from './fragments/CityForm'
 import CitySimpleLeft from './fragments/CitySimpleLeft'
 
@@ -12,7 +12,7 @@ const CityCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(CITY_DETAIL_QUERY, {
+  const { loading, error } = useQuery(CITY_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
-import { DATASET_DETAIL_QUERY } from '../shared/query/dataset'
+import { DATASET_POLICY_QUERY } from '../shared/query/dataset'
 import DatasetForm from './fragments/DatasetForm'
 import DatasetSimpleLeft from './fragments/DatasetSimpleLeft'
 
@@ -12,7 +12,7 @@ const DatasetCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(DATASET_DETAIL_QUERY, {
+  const { loading, error } = useQuery(DATASET_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

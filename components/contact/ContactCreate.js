@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
-import { CONTACT_DETAIL_QUERY } from '../shared/query/contact'
+import { CONTACT_POLICY_QUERY } from '../shared/query/contact'
 import ContactForm from './fragments/ContactForm'
 import ContactSimpleLeft from './fragments/ContactSimpleLeft'
 
@@ -12,7 +12,7 @@ const ContactCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(CONTACT_DETAIL_QUERY, {
+  const { loading, error } = useQuery(CONTACT_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

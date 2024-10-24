@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
-import { CITY_DETAIL_QUERY } from '../shared/query/city'
+import { CITY_POLICY_QUERY } from '../shared/query/city'
 import TabNav from '../shared/TabNav'
 
 const CityTabNav = ({ activeTab, setActiveTab }) => {
@@ -9,7 +9,7 @@ const CityTabNav = ({ activeTab, setActiveTab }) => {
     'ui.city.header'
   ])
 
-  useQuery(CITY_DETAIL_QUERY, {
+  useQuery(CITY_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

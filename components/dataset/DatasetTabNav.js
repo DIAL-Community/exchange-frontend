@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
-import { DATASET_DETAIL_QUERY } from '../shared/query/dataset'
+import { DATASET_POLICY_QUERY } from '../shared/query/dataset'
 import TabNav from '../shared/TabNav'
 
 const DatasetTabNav = ({ activeTab, setActiveTab }) => {
@@ -13,7 +13,7 @@ const DatasetTabNav = ({ activeTab, setActiveTab }) => {
     'ui.dataset.whatIs'
   ])
 
-  useQuery(DATASET_DETAIL_QUERY, {
+  useQuery(DATASET_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

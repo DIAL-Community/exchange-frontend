@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
-import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
+import { RUBRIC_CATEGORY_POLICY_QUERY } from '../shared/query/rubricCategory'
 import RubricCategoryForm from './fragments/RubricCategoryForm'
 import RubricCategorySimpleLeft from './fragments/RubricCategorySimpleLeft'
 
@@ -12,7 +12,7 @@ const RubricCategoryCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(RUBRIC_CATEGORY_QUERY, {
+  const { loading, error } = useQuery(RUBRIC_CATEGORY_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
-import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
+import { RUBRIC_CATEGORY_POLICY_QUERY } from '../shared/query/rubricCategory'
 import TabNav from '../shared/TabNav'
 
 const RubricCategoryTabNav = ({ activeTab, setActiveTab }) => {
@@ -9,7 +9,7 @@ const RubricCategoryTabNav = ({ activeTab, setActiveTab }) => {
     'ui.rubricCategory.header'
   ])
 
-  useQuery(RUBRIC_CATEGORY_QUERY, {
+  useQuery(RUBRIC_CATEGORY_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

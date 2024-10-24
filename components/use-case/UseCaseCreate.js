@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
-import { USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
+import { USE_CASE_POLICY_QUERY } from '../shared/query/useCase'
 import UseCaseForm from './fragments/UseCaseForm'
 import UseCaseSimpleLeft from './fragments/UseCaseSimpleLeft'
 
@@ -12,7 +12,7 @@ const UseCaseCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(USE_CASE_DETAIL_QUERY, {
+  const { loading, error } = useQuery(USE_CASE_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

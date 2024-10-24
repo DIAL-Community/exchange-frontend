@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../../shared/GraphQueryHandler'
-import { CANDIDATE_RESOURCE_DETAIL_QUERY } from '../../shared/query/candidateResource'
+import { CANDIDATE_RESOURCE_POLICY_QUERY } from '../../shared/query/candidateResource'
 import ResourceForm from './fragments/ResourceForm'
 import ResourceSimpleLeft from './fragments/ResourceSimpleLeft'
 
@@ -12,7 +12,7 @@ const ResourceCreate = ({ country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(CANDIDATE_RESOURCE_DETAIL_QUERY, {
+  const { loading, error } = useQuery(CANDIDATE_RESOURCE_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

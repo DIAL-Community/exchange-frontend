@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { CANDIDATE_ORGANIZATION_DETAIL_QUERY } from '../../shared/query/candidateOrganization'
+import { CANDIDATE_ORGANIZATION_POLICY_QUERY } from '../../shared/query/candidateOrganization'
 import TabNav from '../../shared/TabNav'
 
 const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
@@ -9,7 +9,7 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
     'ui.candidateOrganization.header'
   ])
 
-  useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
+  useQuery(CANDIDATE_ORGANIZATION_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {

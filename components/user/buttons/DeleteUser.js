@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
@@ -70,7 +70,7 @@ const DeleteUser = ({ user }) => {
   }
 
   const { error } = useQuery(USER_DETAIL_QUERY, {
-    variables: { userId: crypto.randomUUID() },
+    variables: { userId: DELETING_POLICY_SLUG },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.DELETING

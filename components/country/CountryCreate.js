@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
-import { COUNTRY_DETAIL_QUERY } from '../shared/query/country'
+import { COUNTRY_POLICY_QUERY } from '../shared/query/country'
 import CountryForm from './fragments/CountryForm'
 import CountrySimpleLeft from './fragments/CountrySimpleLeft'
 
@@ -12,7 +12,7 @@ const CountryCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error } = useQuery(COUNTRY_DETAIL_QUERY, {
+  const { loading, error } = useQuery(COUNTRY_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG },
     context: {
       headers: {
