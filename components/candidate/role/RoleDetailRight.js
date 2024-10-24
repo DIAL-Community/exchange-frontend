@@ -21,7 +21,7 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
 
   let editingAllowed = true
   const { error } = useQuery(CANDIDATE_ROLE_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

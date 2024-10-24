@@ -66,7 +66,7 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
   }
 
   const { error } = useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

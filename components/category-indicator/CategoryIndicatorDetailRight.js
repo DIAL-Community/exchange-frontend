@@ -32,7 +32,7 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
 
   let editingAllowed = true
   const { error } = useQuery(CATEGORY_INDICATOR_QUERY, {
-    variables: { categorySlug: '', indicatorSlug: '' },
+    variables: { categorySlug: crypto.randomUUID(), indicatorSlug: crypto.randomUUID() },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

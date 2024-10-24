@@ -34,7 +34,7 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory }, ref) => {
 
   let editingAllowed = true
   const { error } = useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

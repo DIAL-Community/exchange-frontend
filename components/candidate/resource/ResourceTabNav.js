@@ -10,7 +10,7 @@ const ResourceTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(CANDIDATE_RESOURCE_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

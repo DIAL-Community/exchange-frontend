@@ -10,7 +10,7 @@ const CandidateStatusTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

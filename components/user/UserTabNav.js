@@ -13,7 +13,7 @@ const UserTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(USER_DETAIL_QUERY, {
-    variables: { userId: '' },
+    variables: { userId: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

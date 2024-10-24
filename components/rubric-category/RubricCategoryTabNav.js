@@ -10,7 +10,7 @@ const RubricCategoryTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

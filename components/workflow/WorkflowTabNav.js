@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { CREATING_POLICY_QUERY, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
 import { WORKFLOW_POLICY_QUERY } from '../shared/query/workflow'
@@ -16,7 +16,7 @@ const WorkflowTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(WORKFLOW_POLICY_QUERY, {
-    variables: { slug: CREATING_POLICY_QUERY },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

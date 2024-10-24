@@ -13,7 +13,7 @@ const RubricCategoryCreate = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error } = useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

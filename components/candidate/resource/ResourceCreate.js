@@ -13,7 +13,7 @@ const ResourceCreate = ({ country }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error } = useQuery(CANDIDATE_RESOURCE_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

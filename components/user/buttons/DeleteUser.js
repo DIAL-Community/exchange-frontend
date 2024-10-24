@@ -70,7 +70,7 @@ const DeleteUser = ({ user }) => {
   }
 
   const { error } = useQuery(USER_DETAIL_QUERY, {
-    variables: { userId: '' },
+    variables: { userId: crypto.randomUUID() },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

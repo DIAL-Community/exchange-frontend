@@ -10,7 +10,7 @@ const CityTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(CITY_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

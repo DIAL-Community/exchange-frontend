@@ -10,7 +10,7 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

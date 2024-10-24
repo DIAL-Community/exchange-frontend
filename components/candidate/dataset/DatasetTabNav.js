@@ -10,7 +10,7 @@ const DatasetTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(CANDIDATE_DATASET_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

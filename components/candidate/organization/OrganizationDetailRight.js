@@ -26,7 +26,7 @@ const OrganizationDetailRight = forwardRef(({ organization, refetch }, ref) => {
 
   let editingAllowed = true
   const { error } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

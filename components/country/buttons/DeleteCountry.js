@@ -65,7 +65,7 @@ const DeleteCountry = ({ country }) => {
   }
 
   const { error } = useQuery(COUNTRY_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

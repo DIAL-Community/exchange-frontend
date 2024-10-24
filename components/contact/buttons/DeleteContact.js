@@ -65,7 +65,7 @@ const DeleteContact = ({ contact }) => {
   }
 
   const { error } = useQuery(CONTACT_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     fetchPolicy: 'no-cache',
     context: {
       headers: {

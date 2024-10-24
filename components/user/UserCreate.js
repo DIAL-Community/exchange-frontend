@@ -13,7 +13,7 @@ const UserCreate = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error } = useQuery(USER_DETAIL_QUERY, {
-    variables: { userId: '' },
+    variables: { userId: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING

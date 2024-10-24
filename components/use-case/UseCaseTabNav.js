@@ -16,7 +16,7 @@ const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
   ])
 
   useQuery(USE_CASE_DETAIL_QUERY, {
-    variables: { slug: '' },
+    variables: { slug: crypto.randomUUID() },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.CREATING
