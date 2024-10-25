@@ -169,6 +169,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       govStackEntity
       productStage
       contact
+      featured
       productDescription {
         id
         description

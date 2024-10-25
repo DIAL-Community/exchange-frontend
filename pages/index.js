@@ -1,8 +1,10 @@
+import dynamic from 'next/dynamic'
 import { handleLoadingQuery } from '../components/shared/GraphQueryHandler'
 import { useActiveTenant } from '../lib/hooks'
-import HealthPage from './landing/health'
-import HubPage from './landing/hub'
-import LandingPage from './landing/index'
+
+const HealthPage = dynamic(() => import('./landing/health'))
+const HubPage = dynamic(() => import('./landing/hub'))
+const LandingPage = dynamic(() => import('./landing/index'))
 
 const RootPage = ({ dpiTenants, defaultTenants }) => {
   const { waitingActiveTenant, tenant } = useActiveTenant()
