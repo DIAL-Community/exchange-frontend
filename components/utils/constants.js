@@ -115,6 +115,5 @@ export const ProductMaturityAttributeNames = [
   'Active Users',
   'Transactions per month',
   'Annual Revenue',
-  'Funding Raised',
-  'Implementation support'
+  'Funding Raised'
 ]
