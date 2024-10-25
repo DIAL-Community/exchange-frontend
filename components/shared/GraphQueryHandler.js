@@ -10,7 +10,7 @@ export const QueryErrorCode = {
   UNAUTHORIZED: 'UNAUTHORIZED'
 }
 
-export const LoadingHandler = () => {
+const LoadingHandler = () => {
   return (
     <div className='min-h-[75vh] flex items-center justify-center'>
       <div className='flex flex-col gap-y-6'>
@@ -23,7 +23,7 @@ export const LoadingHandler = () => {
   )
 }
 
-export const UnauthorizedErrorHandler = () => {
+const UnauthorizedErrorHandler = () => {
   useEffect(() => {
     signIn()
   }, [])
@@ -40,7 +40,7 @@ export const UnauthorizedErrorHandler = () => {
   )
 }
 
-export const BadRequestErrorHandler = () => {
+const BadRequestErrorHandler = () => {
   const router = useRouter()
 
   useEffect(() => {
@@ -59,11 +59,11 @@ export const BadRequestErrorHandler = () => {
   )
 }
 
-export const ForbiddenErrorHandler = () => {
+const ForbiddenErrorHandler = () => {
   return (
     <div className='min-h-[75vh] flex items-center justify-center'>
       <div className='flex flex-col gap-y-6'>
-        <FaCircleExclamation size='3em' className='spinner mx-auto' />
+        <FaCircleExclamation size='3em' className='mx-auto' />
         <div className='text-center'>
           <FormattedMessage id='ui.general.error.forbidden' />
         </div>
@@ -72,7 +72,7 @@ export const ForbiddenErrorHandler = () => {
   )
 }
 
-export const GeneralErrorHandler = () => {
+const GeneralErrorHandler = () => {
   return (
     <div className='min-h-[75vh] flex items-center justify-center'>
       <div className='flex flex-col gap-y-6'>
@@ -85,11 +85,11 @@ export const GeneralErrorHandler = () => {
   )
 }
 
-export const NotFoundHandler = () => {
+const NotFoundHandler = () => {
   return (
     <div className='min-h-[75vh] flex items-center justify-center'>
       <div className='flex flex-col gap-y-6'>
-        <FaSpinner size='3em' className='spinner mx-auto' />
+        <FaCircleExclamation size='3em' className='mx-auto' />
         <div className='text-center'>
           <FormattedMessage id='ui.general.error.notFound' />
         </div>
@@ -106,7 +106,7 @@ export const handleQueryError = (error) => {
         case QueryErrorCode.UNAUTHORIZED:
           return <UnauthorizedErrorHandler />
         case QueryErrorCode.FORBIDDEN:
-          return <UnauthorizedErrorHandler />
+          return <ForbiddenErrorHandler />
         case QueryErrorCode.BAD_REQUEST:
           return <BadRequestErrorHandler />
         default:
