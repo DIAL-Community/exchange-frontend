@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { MESSAGE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/message'
 import HubPagination from '../fragments/HubPagination'
 import { MESSAGE_PAGE_SIZE } from './constant'
@@ -14,6 +15,11 @@ const MessagePagination = ({ search, visibleOnly, messageType, pageNumber, onCli
       search,
       visibleOnly,
       messageType
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { SIMPLE_USER_DETAIL_QUERY } from '../../shared/query/user'
 import UserForm from '../user/UserForm'
 import HubAdminTabs from './HubAdminTabs'
@@ -11,7 +12,12 @@ const HubAdminUserForm = ({ userId }) => {
 
   const { loading, data, error } = useQuery(SIMPLE_USER_DETAIL_QUERY, {
     variables: { userId },
-    skip: !userId
+    skip: !userId,
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (

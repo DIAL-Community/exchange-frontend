@@ -25,6 +25,11 @@ const ResourceTilePagination = ({ pageNumber, onClickHandler, resourceTopics, th
       countries: resourceCountries.map(r => r.value),
       resourceTypes: resourceTypes.map(r => r.name),
       resourceTopics: resourceTopics.map(r => r.name)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

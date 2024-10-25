@@ -23,6 +23,11 @@ const TopicResourcePagination = ({ pageNumber, onClickHandler, resourceTopic, th
       countries: resourceCountries.map(r => r.label),
       resourceTypes: resourceTypes.map(r => r.value),
       resourceTopics: [resourceTopic.name]
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

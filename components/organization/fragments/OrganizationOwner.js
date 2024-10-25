@@ -4,6 +4,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useOrganizationOwnerUser, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { APPLY_AS_OWNER } from '../../shared/mutation/user'
@@ -35,6 +36,11 @@ const OrganizationOwner = ({ organization }) => {
     variables: {
       email: user?.userEmail,
       organizationId: organization.id
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
     },
     skip: !user || !user.userEmail,
     onCompleted: (data) => {

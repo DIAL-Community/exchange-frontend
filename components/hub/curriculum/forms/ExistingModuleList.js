@@ -61,7 +61,7 @@ const ExistingModuleList = () => {
     context: {
       headers: {
         'Accept-Language': locale,
-        ...GRAPH_QUERY_CONTEXT.CREATING
+        ...GRAPH_QUERY_CONTEXT.VIEWING
       }
     }
   })

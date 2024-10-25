@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FaUser } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { NONE } from '../../shared/menu/MenuCommon'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../shared/query/user'
@@ -60,6 +61,11 @@ const HubHeader = ({ isOnAuthPage = false }) => {
     variables: {
       userId: user?.id,
       userAuthenticationToken: user?.userToken
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     },
     skip: !user,
     onCompleted: (data) => {

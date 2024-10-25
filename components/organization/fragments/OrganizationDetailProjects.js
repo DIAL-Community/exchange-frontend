@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FaCircleChevronDown, FaCircleChevronUp } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import ProjectCard from '../../project/ProjectCard'
 import EditableSection from '../../shared/EditableSection'
@@ -106,6 +107,11 @@ const OrganizationDetailProjects = ({ organization, editingAllowed, headerRef })
         ...stars,
         ...starredObjects.map(starredObject => starredObject.starredObjectValue)
       ])
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

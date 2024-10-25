@@ -1,12 +1,13 @@
 import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
+import { DELETING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_SECTOR } from '../../shared/mutation/sector'
-import { PAGINATED_SECTORS_QUERY, SECTOR_DETAIL_QUERY } from '../../shared/query/sector'
+import { PAGINATED_SECTORS_QUERY, SECTOR_DETAIL_QUERY, SECTOR_POLICY_QUERY } from '../../shared/query/sector'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const DeleteSector = ({ sector }) => {
@@ -63,7 +64,16 @@ const DeleteSector = ({ sector }) => {
     })
   }
 
-  return (
+  const { error } = useQuery(SECTOR_POLICY_QUERY, {
+    variables: { tenantName: DELETING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.DELETING
+      }
+    }
+  })
+
+  return !error && (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDialog} />
       <ConfirmActionDialog

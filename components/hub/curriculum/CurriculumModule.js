@@ -185,7 +185,12 @@ const ModuleCommentCount = ({ curriculumSlug, module, locale }) => {
 
   const { data, loading, error } = useQuery(COMMENTS_COUNT_QUERY, {
     variables: { commentObjectType: ObjectType.PLAY, commentObjectId: parseInt(module.id) },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (

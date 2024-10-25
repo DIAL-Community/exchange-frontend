@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { CREATE_CHATBOT_CONVERSATION } from '../shared/mutation/chatbot'
@@ -14,7 +15,13 @@ const ChatbotConversationStarter = ({ setCurrentQuestion, setShowStarterQuestion
 
   const MAX_DISPLAYED_STARTERS = 6
 
-  const { loading, data, error } = useQuery(CHATBOT_CONVERSATION_STARTERS)
+  const { loading, data, error } = useQuery(CHATBOT_CONVERSATION_STARTERS, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   if (loading) {
     return (

@@ -4,8 +4,8 @@ import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import { FormattedMessage, useIntl } from 'react-intl'
 import Footer from '../../components/shared/Footer'
-import { handleLoadingQuery } from '../../components/shared/GraphQueryHandler'
 import Header from '../../components/shared/Header'
+import { handleLoadingSession, handleSessionError } from '../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../lib/ClientOnly'
 
 const AdminPage = ({ defaultTenants }) => {
@@ -31,9 +31,11 @@ const AdminPage = ({ defaultTenants }) => {
       />
       <ClientOnly clientTenants={defaultTenants}>
         <Header />
-        {status === 'authenticated' && data?.user.isAdminUser
-          ? <AdminLandingPage />
-          : handleLoadingQuery()
+        { status === 'unauthenticated' || status === 'loading'
+          ? handleLoadingSession()
+          : status === 'authenticated' && data?.user.isAdminUser
+            ? <AdminLandingPage />
+            : handleSessionError()
         }
         <Footer />
       </ClientOnly>

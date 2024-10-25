@@ -22,6 +22,11 @@ const CarouselConfigurations = ({ slug }) => {
     onCompleted: (data) => {
       setCarouselConfigurations(data.siteSetting.carouselConfigurations)
       setCarouselCounter(data.siteSetting.carouselConfigurations.length)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

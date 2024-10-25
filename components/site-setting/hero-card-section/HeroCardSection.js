@@ -178,6 +178,11 @@ const HeroCardSection = ({ slug }) => {
 
   const { loading, error, data } = useQuery(SITE_SETTING_DETAIL_QUERY, {
     variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    },
     onCompleted: (data) => {
       const { siteSetting } = data
       if (siteSetting) {

@@ -7,6 +7,7 @@ import {
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { ToastContext } from '../../../../lib/ToastContext'
 import BarChart from '../../../shared/BarChart'
 import Dialog from '../../../shared/Dialog'
@@ -142,7 +143,12 @@ const ProductDetailMaturityScores = ({ productId, slug, editingAllowed, overallM
     data: categoryIndicatorsData,
     refetch: refetchCategoryIndicators
   } = useQuery(CANDIDATE_PRODUCT_CATEGORY_INDICATORS_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   const defaultCategoryIndicators = useMemo(() => {

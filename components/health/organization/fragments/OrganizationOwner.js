@@ -39,7 +39,7 @@ const OrganizationOwner = ({ organization }) => {
     },
     context: {
       headers: {
-        ...GRAPH_QUERY_CONTEXT.VIEWING
+        ...GRAPH_QUERY_CONTEXT.CREATING
       }
     },
     skip: !user || !user.userEmail,

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FaLinkedin, FaSquareFacebook, FaSquareInstagram, FaSquareXTwitter } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
 import { allowedToBrowseAdliPages } from '../admin/utilities'
@@ -24,7 +25,12 @@ const HubExpertNetwork = () => {
   }
 
   const { loading, error, data } = useQuery(HUB_CONTACTS_QUERY, {
-    variables: {}
+    variables: {},
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (

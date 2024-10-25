@@ -4,6 +4,7 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { SiteSettingContext } from '../context/SiteSettingContext'
 import AdminMenu from './menu/AdminMenu'
@@ -80,6 +81,11 @@ const Header = ({ isOnAuthPage = false }) => {
     variables: {
       userId: user?.id,
       userAuthenticationToken: user?.userToken
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     },
     skip: !user,
     onCompleted: (data) => {

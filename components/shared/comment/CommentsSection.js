@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { Loading } from '../FetchStatus'
 import EditButton from '../form/EditButton'
@@ -31,6 +32,11 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     variables: {
       commentObjectId: parseInt(objectId),
       commentObjectType: objectType
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
