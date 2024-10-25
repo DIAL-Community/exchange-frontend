@@ -8,7 +8,6 @@ import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
-import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import BarChart from '../../../shared/BarChart'
 import Dialog from '../../../shared/Dialog'
@@ -88,7 +87,7 @@ const MaturityCategory = ({ category }) => {
   )
 }
 
-const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScoreDetails }) => {
+const ProductDetailMaturityScores = ({ slug, editingAllowed, overallMaturityScore, maturityScoreDetails }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -98,8 +97,6 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
   const scaleOptions = useMemo(() => getCategoryIndicatorScaleOptions(format), [format])
   const booleanOptions = useMemo(() => getCategoryIndicatorBooleanOptions(format), [format])
   const numericOptions = useMemo(() => getCategoryIndicatorNumericOptions(), [])
-
-  const { isAdminUser, user } = useUser()
 
   const [maturityScore, setMaturityScore] = useState(overallMaturityScore)
 
@@ -150,8 +147,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
       headers: {
         ...GRAPH_QUERY_CONTEXT.VIEWING
       }
-    },
-    skip: !isAdminUser
+    }
   })
 
   const defaultCategoryIndicators = useMemo(() => {
@@ -275,49 +271,45 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
   )
 
   const doUpsert = async (data) => {
-    if (user) {
-      const { userEmail, userToken } = user
-      const dirtyIndicators = []
-      data.categoryIndicators.forEach(({ indicators }, categoryIdx) => {
-        indicators[ASSIGNED_INDICATORS_ARRAY_NAME].forEach(
-          ({ slug, indicatorValue }, indicatorIdx) => {
-            if (
-              indicatorValue !==
-              defaultCategoryIndicators[categoryIdx].indicators[ASSIGNED_INDICATORS_ARRAY_NAME][
-                indicatorIdx
-              ].indicatorValue
-            ) {
-              dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
-            }
-          }
-        )
-        indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].forEach(
-          ({ slug, indicatorValue }, indicatorIdx) => {
-            if (
-              indicatorValue !==
-              defaultCategoryIndicators[categoryIdx].indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME][
-                indicatorIdx
-              ].indicatorValue
-            ) {
-              dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
-            }
-          }
-        )
-      })
-
-      updateProductIndicators({
-        variables: {
-          slug,
-          indicatorsData: dirtyIndicators
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            'Authorization': `${userEmail} ${userToken}`
+    const dirtyIndicators = []
+    data.categoryIndicators.forEach(({ indicators }, categoryIdx) => {
+      indicators[ASSIGNED_INDICATORS_ARRAY_NAME].forEach(
+        ({ slug, indicatorValue }, indicatorIdx) => {
+          if (
+            indicatorValue !==
+            defaultCategoryIndicators[categoryIdx].indicators[ASSIGNED_INDICATORS_ARRAY_NAME][
+              indicatorIdx
+            ].indicatorValue
+          ) {
+            dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
           }
         }
-      })
-    }
+      )
+      indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].forEach(
+        ({ slug, indicatorValue }, indicatorIdx) => {
+          if (
+            indicatorValue !==
+            defaultCategoryIndicators[categoryIdx].indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME][
+              indicatorIdx
+            ].indicatorValue
+          ) {
+            dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
+          }
+        }
+      )
+    })
+
+    updateProductIndicators({
+      variables: {
+        slug,
+        indicatorsData: dirtyIndicators
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -490,7 +482,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
 
   return (
     <EditableSection
-      editingAllowed={isAdminUser}
+      editingAllowed={editingAllowed}
       editModeBody={editModeBody}
       displayModeBody={displayModeBody}
       isDirty={isDirty}

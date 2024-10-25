@@ -7,7 +7,6 @@ import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
@@ -58,7 +57,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { user, loadingUserSession } = useUser()
+  const { user } = useUser()
 
   const { tenant } = useActiveTenant()
 
@@ -84,7 +83,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
           () => router.push(`/${router.locale}/playbooks/${response.playbook.slug}`)
         )
       } else {
-        const [ firstErrorMessage ] = response.errors
+        const [firstErrorMessage] = response.errors
         showFailureMessage(firstErrorMessage)
         setMutating(false)
         reset()
@@ -128,35 +127,33 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const doUpsert = async (data) => {
-    if (user) {
-      // Set the loading indicator.
-      setMutating(true)
-      // Pull all needed data from session and form.
-      const { name, cover, author, overview, audience, outcomes, published } = data
-      const [coverFile] = cover
-      // Send graph query to the backend. Set the base variables needed to perform update.
-      const variables = {
-        name,
-        slug,
-        owner: 'public',
-        author,
-        overview,
-        audience,
-        outcomes,
-        cover: coverFile,
-        tags: tags.map(tag => tag.label),
-        draft: !published
-      }
-
-      updatePlaybook({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
-        }
-      })
+    // Set the loading indicator.
+    setMutating(true)
+    // Pull all needed data from session and form.
+    const { name, cover, author, overview, audience, outcomes, published } = data
+    const [coverFile] = cover
+    // Send graph query to the backend. Set the base variables needed to perform update.
+    const variables = {
+      name,
+      slug,
+      owner: 'public',
+      author,
+      overview,
+      audience,
+      outcomes,
+      cover: coverFile,
+      tags: tags.map(tag => tag.label),
+      draft: !published
     }
+
+    updatePlaybook({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   useEffect(() => {
@@ -236,113 +233,109 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const loadTagOptions = (input) =>
     fetchSelectOptions(client, input, TAG_SEARCH_QUERY, fetchedTagsCallback)
 
-  return loadingUserSession
-    ? <Loading />
-    : user?.isAdminUser || user?.isEditorUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {playbook && format('app.editEntity', { entity: playbook.name })}
-                {!playbook && `${format('app.createNew')} ${format('ui.playbook.label')}`}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='name'>
-                  {format('ui.playbook.name')}
-                </label>
-                <Input
-                  {...register('name', { required: format('validation.required') })}
-                  id='name'
-                  placeholder={format('ui.playbook.name')}
-                  isInvalid={errors.name}
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {playbook && format('app.editEntity', { entity: playbook.name })}
+            {!playbook && `${format('app.createNew')} ${format('ui.playbook.label')}`}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='name'>
+              {format('ui.playbook.name')}
+            </label>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              id='name'
+              placeholder={format('ui.playbook.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label>
+              {format('ui.playbook.cover')}
+            </label>
+            <FileUploader {...register('cover')} />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label htmlFor='author'>
+              {format('ui.playbook.author')}
+            </label>
+            <Input id='author' {...register('author')} placeholder={format('ui.playbook.author')} />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='flex flex-col gap-y-2'>
+              {format('ui.tag.header')}
+              <Select
+                async
+                isBorderless
+                defaultOptions
+                cacheOptions
+                placeholder={format('ui.tag.header')}
+                loadOptions={loadTagOptions}
+                noOptionsMessage={() =>
+                  format('filter.searchFor', { entity: format('ui.tag.header') })
+                }
+                onChange={addTag}
+                value={null}
+              />
+            </label>
+            <div className='flex flex-wrap gap-3 mt-2'>
+              {tags?.map((tag, tagIdx) => (
+                <Pill
+                  key={tagIdx}
+                  label={tag.label}
+                  onRemove={() => removeTag(tag)}
                 />
-                {errors.name && <ValidationError value={errors.name?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label>
-                  {format('ui.playbook.cover')}
-                </label>
-                <FileUploader {...register('cover')} />
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label htmlFor='author'>
-                  {format('ui.playbook.author')}
-                </label>
-                <Input id='author' {...register('author')} placeholder={format('ui.playbook.author')} />
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {format('ui.tag.header')}
-                  <Select
-                    async
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('ui.tag.header')}
-                    loadOptions={loadTagOptions}
-                    noOptionsMessage={() =>
-                      format('filter.searchFor', { entity: format('ui.tag.header') })
-                    }
-                    onChange={addTag}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-wrap gap-3 mt-2'>
-                  {tags?.map((tag, tagIdx) =>(
-                    <Pill
-                      key={tagIdx}
-                      label={tag.label}
-                      onRemove={() => removeTag(tag)}
-                    />
-                  ))}
-                </div>
-              </div>
-              <FormTextEditor
-                control={control}
-                name='overview'
-                placeholder={format('ui.playbook.overview')}
-                required
-                isInvalid={errors.overview}
-              />
-              <FormTextEditor
-                control={control}
-                name='audience'
-                placeholder={format('ui.playbook.audience')}
-              />
-              <FormTextEditor
-                control={control}
-                name='outcomes'
-                placeholder={format('ui.playbook.outcomes')}
-              />
-              <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
-                {format('ui.playbook.published')}
-              </label>
-              <div className='flex flex-wrap text-base mt-6 gap-3'>
-                <button
-                  type='submit'
-                  className='submit-button'
-                  disabled={mutating || reverting}
-                >
-                  {format(isPublished ? 'ui.playbook.publish' : 'ui.playbook.saveAsDraft')}
-                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-              </div>
+              ))}
             </div>
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <FormTextEditor
+            control={control}
+            name='overview'
+            placeholder={format('ui.playbook.overview')}
+            required
+            isInvalid={errors.overview}
+          />
+          <FormTextEditor
+            control={control}
+            name='audience'
+            placeholder={format('ui.playbook.audience')}
+          />
+          <FormTextEditor
+            control={control}
+            name='outcomes'
+            placeholder={format('ui.playbook.outcomes')}
+          />
+          <label className='flex gap-x-2 mb-2 items-center self-start'>
+            <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
+            {format('ui.playbook.published')}
+          </label>
+          <div className='flex flex-wrap text-base mt-6 gap-3'>
+            <button
+              type='submit'
+              className='submit-button'
+              disabled={mutating || reverting}
+            >
+              {format(isPublished ? 'ui.playbook.publish' : 'ui.playbook.saveAsDraft')}
+              {mutating && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 })
 
 export default PlaybookForm

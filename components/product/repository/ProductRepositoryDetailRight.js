@@ -1,8 +1,10 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { PRODUCT_POLICY_QUERY } from '../../shared/query/product'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import ProductRepositoryStats from './fragments/ProductRepositoryStats'
 
@@ -12,8 +14,19 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
 
   const descRef = useRef()
 
-  const { isAdminUser, isEditorUser } = useUser()
-  const editingAllowed = (isAdminUser || isEditorUser)
+  let editingAllowed = false
+  const { error } = useQuery(PRODUCT_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (!error) {
+    editingAllowed = true
+  }
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.top', ref: descRef }
@@ -59,7 +72,8 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
           &nbsp;⧉
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
-        { productRepository.languageData.data && productRepository.statisticalData.data &&
+        { productRepository.languageData.data &&
+          productRepository.statisticalData.data &&
           <ProductRepositoryStats
             languageData={productRepository.languageData}
             statisticalData={productRepository.statisticalData}

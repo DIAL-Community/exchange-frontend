@@ -1,6 +1,8 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { PROJECT_POLICY_QUERY } from '../../shared/query/project'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import ProjectDetailSectors from './ProjectDetailSectors'
 
@@ -8,8 +10,19 @@ const ProjectDetailHeader = ({ project }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, isEditorUser } = useUser()
-  const editingAllowed = isAdminUser || isEditorUser
+  let editingAllowed = false
+  const { error } = useQuery(PROJECT_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (!error) {
+    editingAllowed = true
+  }
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>

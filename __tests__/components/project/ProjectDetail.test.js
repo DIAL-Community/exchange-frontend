@@ -2,6 +2,7 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import ProjectEdit from '../../../components/project/ProjectEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PROJECT } from '../../../components/shared/mutation/project'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
@@ -49,16 +50,38 @@ describe('Unit tests for the project detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockProjectPolicyQueryError = generateMockApolloData(
+      PROJECT_DETAIL_QUERY,
+      {
+        'slug': 'colombia-hmis'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProject, mockProjectComments]}>
+      <CustomMockedProvider mocks={[mockProjectPolicyQueryError, mockProjectComments]}>
         <QueryParamContextProvider>
           <ProjectEdit slug='colombia-hmis' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('Colombia HMIS')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 

@@ -32,7 +32,12 @@ const DatasetTabNav = ({ activeTab, setActiveTab }) => {
     router.push('/candidate/datasets/create')
   }
 
-  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} createFn={createCandidateFn} />
+  return (
+    <TabNav
+      { ...{ tabNames, activeTab, setActiveTab }}
+      createFn={createCandidateFn}
+    />
+  )
 }
 
 export default DatasetTabNav

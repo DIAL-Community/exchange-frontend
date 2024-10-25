@@ -1,7 +1,9 @@
 import { useCallback } from 'react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { RESOURCE_POLICY_QUERY } from '../../shared/query/resource'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import ResourceDetailCountries from './ResourceDetailCountries'
 import ResourceDetailTags from './ResourceDetailTags'
@@ -10,8 +12,19 @@ const ResourceDetailHeader = ({ resource }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser, isEditorUser } = useUser()
-  const editingAllowed = isAdminUser || isEditorUser
+  let editingAllowed = false
+  const { error } = useQuery(RESOURCE_POLICY_QUERY, {
+    variables: { slug: EDITING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
+
+  if (!error) {
+    editingAllowed = true
+  }
 
   const generateResourceUrl = () => {
     let resourceLinkUrl

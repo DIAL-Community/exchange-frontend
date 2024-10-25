@@ -32,7 +32,12 @@ const StorefrontTabNav = ({ activeTab, setActiveTab }) => {
     router.push('/storefronts/create')
   }
 
-  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} createFn={createCandidateFn} />
+  return (
+    <TabNav
+      { ...{ tabNames, activeTab, setActiveTab }}
+      createFn={createCandidateFn}
+    />
+  )
 }
 
 export default StorefrontTabNav
