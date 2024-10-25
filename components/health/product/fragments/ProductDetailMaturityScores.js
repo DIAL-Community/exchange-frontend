@@ -12,8 +12,8 @@ import { ToastContext } from '../../../../lib/ToastContext'
 import BarChart from '../../../shared/BarChart'
 import Dialog from '../../../shared/Dialog'
 import EditableSection from '../../../shared/EditableSection'
-import { Loading } from '../../../shared/FetchStatus'
 import Select from '../../../shared/form/Select'
+import { handleLoadingQuery } from '../../../shared/GraphQueryHandler'
 import { UPDATE_PRODUCT_CATEGORY_INDICATORS } from '../../../shared/mutation/product'
 import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../../shared/query/product'
 import RadarChart from '../../../shared/RadarChart'
@@ -455,7 +455,7 @@ const ProductDetailMaturityScores = ({ slug, editingAllowed, overallMaturityScor
   }
 
   const editModeBody = loadingCategoryIndicators
-    ? <Loading />
+    ? handleLoadingQuery()
     : <Accordion allowMultipleExpanded allowZeroExpanded>
       {categoryIndicators.map(({ indicators, rubricCategoryName }, categoryIdx) => (
         <AccordionItem key={categoryIdx}>

@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { MOVE_QUERY } from '../shared/query/move'
 import MoveDetailLeft from './MoveDetailLeft'
 import MoveDetailRight from './MoveDetailRight'
@@ -14,17 +15,22 @@ const MoveDetail = ({ moveSlug, playSlug, playbookSlug, locale }) => {
       playbookSlug,
       owner: 'public'
     },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   const scrollRef = useRef(null)
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.play) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { move, play, playbook } = data

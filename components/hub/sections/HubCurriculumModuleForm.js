@@ -2,7 +2,8 @@ import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PLAY_QUERY } from '../../shared/query/play'
 import { DPI_TENANT_NAME } from '../constants'
 import CurriculumModuleForm from '../curriculum/forms/CurriculumModuleForm'
@@ -12,19 +13,24 @@ const EditHubCurriculumModule = ({ curriculumSlug, curriculumModuleSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const router = useRouter()
+  const { locale } = useRouter()
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
     variables: { playSlug: curriculumModuleSlug, playbookSlug: curriculumSlug, owner: DPI_TENANT_NAME },
-    context: { headers: { 'Accept-Language': router.locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.playbook) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { playbook: curriculum, play: curriculumModule } = data
@@ -56,19 +62,24 @@ const CreateHubCurriculumModule = ({ curriculumSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const router = useRouter()
+  const { locale } = useRouter()
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
     variables: { playSlug: '', playbookSlug: curriculumSlug, owner: DPI_TENANT_NAME },
-    context: { headers: { 'Accept-Language': router.locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.playbook) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { playbook: curriculum } = data

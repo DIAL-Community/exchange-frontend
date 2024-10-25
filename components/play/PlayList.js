@@ -1,9 +1,10 @@
-import { useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { FilterContext } from '../context/FilterContext'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PLAYS_QUERY } from '../shared/query/play'
 import { DisplayType } from '../utils/constants'
 import { PlayListContext } from './context/PlayListContext'
@@ -22,15 +23,20 @@ const PlayListQuery = () => {
   const { search } = useContext(FilterContext)
   const { loading, error, data } = useQuery(PLAYS_QUERY, {
     variables: { search, owner: 'public' },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.plays) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { plays } = data

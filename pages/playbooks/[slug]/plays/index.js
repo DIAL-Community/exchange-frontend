@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import Header from '../../../../components/shared/Header'
-import { Loading } from '../../../../components/shared/FetchStatus'
+import { useRouter } from 'next/router'
 import Footer from '../../../../components/shared/Footer'
+import Header from '../../../../components/shared/Header'
+import { handleLoadingSession } from '../../../../components/shared/SessionQueryHandler'
 
 const PlaybookPlays = () => {
   const router = useRouter()
@@ -15,7 +15,7 @@ const PlaybookPlays = () => {
   return (
     <>
       <Header />
-      <Loading />
+      {handleLoadingSession()}
       <Footer />
     </>
   )

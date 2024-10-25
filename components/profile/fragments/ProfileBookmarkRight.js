@@ -3,11 +3,12 @@ import { useRouter } from 'next/router'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import BuildingBlockCard from '../../building-block/BuildingBlockCard'
 import ProductCard from '../../product/ProductCard'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { REMOVE_BOOKMARK } from '../../shared/mutation/bookmark'
 import { BOOKMARK_DETAIL_QUERY } from '../../shared/query/bookmark'
 import UseCaseCard from '../../use-case/UseCaseCard'
@@ -54,7 +55,12 @@ const ProfileBookmarkRight = () => {
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const { loading, error, data } = useQuery(BOOKMARK_DETAIL_QUERY, {
-    variables: { id: user?.id }
+    variables: { id: user?.id },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   const [removeBookmark, { reset }] = useMutation(REMOVE_BOOKMARK, {
@@ -90,11 +96,11 @@ const ProfileBookmarkRight = () => {
   }
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.bookmark) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { bookmark } = data

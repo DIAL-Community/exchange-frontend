@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
 import PlaybookDetailHeader from './fragments/PlaybookDetailHeader'
 import PlaybookDetailLeft from './PlaybookDetailLeft'
@@ -9,17 +10,22 @@ import PlaybookDetailRight from './PlaybookDetailRight'
 const PlaybookDetail = ({ slug, locale }) => {
   const { data, loading, error } = useQuery(PLAYBOOK_DETAIL_QUERY, {
     variables: { slug, owner: 'public' },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   const scrollRef = useRef(null)
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.playbook) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { playbook } = data

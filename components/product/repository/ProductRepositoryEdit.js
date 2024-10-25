@@ -1,9 +1,10 @@
 import { useCallback, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { PRODUCT_REPOSITORY_DETAIL_QUERY } from '../../shared/query/productRepository'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { PRODUCT_REPOSITORY_DETAIL_QUERY } from '../../shared/query/productRepository'
 import ProductRepositoryForm from './fragments/ProductRepositoryForm'
 import ProductRepositoryEditLeft from './ProductRepositoryEditLeft'
 
@@ -14,15 +15,20 @@ const ProductRepositoryEdit = ({ productSlug, repositorySlug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(PRODUCT_REPOSITORY_DETAIL_QUERY, {
-    variables: { productSlug, repositorySlug }
+    variables: { productSlug, repositorySlug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.product) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { product, productRepository } = data

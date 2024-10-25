@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client'
 import { useContext } from 'react'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
 import { DisplayType } from '../../utils/constants'
 import PlaybookCard from '../PlaybookCard'
@@ -17,15 +18,20 @@ const ListStructure = ({ defaultPageSize, pageOffset }) => {
       tags: tags.map(tag => tag.label),
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedPlaybooks) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedPlaybooks: playbooks } = data

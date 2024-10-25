@@ -5,9 +5,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import GeocodeAutocomplete from '../../shared/form/GeocodeAutocomplete'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
@@ -32,8 +30,6 @@ const MessageForm = ({ message }) => {
 
   const messageTypeOptions = generateMessageTypeOptions(format)
   const [defaultMessageType] = messageTypeOptions
-
-  const { user, loadingUserSession } = useUser()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -68,7 +64,7 @@ const MessageForm = ({ message }) => {
           }
         )
       } else {
-        const [ firstErrorMessage ] = response.errors
+        const [firstErrorMessage] = response.errors
         showFailureMessage(firstErrorMessage)
         setMutating(false)
         reset()
@@ -91,30 +87,28 @@ const MessageForm = ({ message }) => {
   const currentMessageType = watch('messageType')
 
   const doUpsert = async (data) => {
-    if (user) {
-      // Set the loading indicator.
-      setMutating(true)
-      // Pull all needed data from session and form.
-      const { name, messageType: { value: messageTypeValue }, messageTemplate, messageDatetime, visible } = data
-      // Send graph query to the backend. Set the base variables needed to perform update.
+    // Set the loading indicator.
+    setMutating(true)
+    // Pull all needed data from session and form.
+    const { name, messageType: { value: messageTypeValue }, messageTemplate, messageDatetime, visible } = data
+    // Send graph query to the backend. Set the base variables needed to perform update.
 
-      const variables = {
-        name,
-        messageType: messageTypeValue,
-        messageTemplate,
-        messageDatetime: messageDatetime.toISOString(),
-        visible
-      }
-
-      createMessage({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale
-          }
-        }
-      })
+    const variables = {
+      name,
+      messageType: messageTypeValue,
+      messageTemplate,
+      messageDatetime: messageDatetime.toISOString(),
+      visible
     }
+
+    createMessage({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const cancelForm = () => {
@@ -129,191 +123,187 @@ const MessageForm = ({ message }) => {
     }
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : user?.isAdminUser || user?.isAdliAdminUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='flex flex-col gap-y-4 md:gap-y-6 text-sm'>
-            <div className='text-lg md:text-xl font-semibold'>
-              {message
-                ? `${format('app.editEntity', { entity: message.name })}`
-                : `${format('app.createNew')} ${currentMessageType.label}`
-              }
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label className='required-field' htmlFor='name'>
-                {format('hub.broadcast.title')}
-              </label>
-              <Input
-                {...register('name', { required: format('validation.required') })}
-                id='name'
-                onClick={() => clearErrors('name')}
-                placeholder={format('hub.broadcast.title')}
-                isInvalid={errors.name}
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='flex flex-col gap-y-4 md:gap-y-6 text-sm'>
+        <div className='text-lg md:text-xl font-semibold'>
+          {message
+            ? `${format('app.editEntity', { entity: message.name })}`
+            : `${format('app.createNew')} ${currentMessageType.label}`
+          }
+        </div>
+        <div className='flex flex-col gap-y-2'>
+          <label className='required-field' htmlFor='name'>
+            {format('hub.broadcast.title')}
+          </label>
+          <Input
+            {...register('name', { required: format('validation.required') })}
+            id='name'
+            onClick={() => clearErrors('name')}
+            placeholder={format('hub.broadcast.title')}
+            isInvalid={errors.name}
+          />
+          {errors.name && <ValidationError value={errors.name?.message} />}
+        </div>
+        <div className='flex flex-col gap-y-2'>
+          <label className='required-field'>
+            {format('hub.broadcast.messageTemplate')}
+          </label>
+          <Controller
+            name='messageTemplate'
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <HtmlEditor
+                editorId='message-template-editor'
+                onChange={onChange}
+                initialContent={value}
+                placeholder={format('hub.broadcast.messageTemplate.placeholder')}
+                isInvalid={errors.description}
+                initInstanceCallback={(editor) => {
+                  editor.on('click', () => {
+                    clearErrors('messageTemplate')
+                  })
+                }}
               />
-              {errors.name && <ValidationError value={errors.name?.message} />}
-            </div>
-            <div className='flex flex-col gap-y-2'>
+            )}
+            rules={{ required: format('validation.required') }}
+          />
+          {errors.messageTemplate && <ValidationError value={errors.messageTemplate?.message} />}
+        </div>
+        <div className='flex flex-col md:flex-row gap-4'>
+          <div className='basis-1/2 form-field-wrapper'>
+            <label className='required-field'>
+              {format('hub.broadcast.messageType')}
+            </label>
+            <Controller
+              name='messageType'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  isSearch
+                  isBorderless
+                  options={messageTypeOptions}
+                  placeholder={format('hub.broadcast.messageType')}
+                  isInvalid={errors.messageType}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.messageType && <ValidationError value={errors.messageType?.message} />}
+          </div>
+          {currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE &&
+            <div className='lg:basis-1/2 flex flex-col gap-2'>
               <label className='required-field'>
-                {format('hub.broadcast.messageTemplate')}
+                {format('hub.broadcast.announcementDatetime')}
               </label>
               <Controller
-                name='messageTemplate'
+                name='messageDatetime'
                 control={control}
-                render={({ field: { value, onChange } }) => (
-                  <HtmlEditor
-                    editorId='message-template-editor'
-                    onChange={onChange}
-                    initialContent={value}
-                    placeholder={format('hub.broadcast.messageTemplate.placeholder')}
-                    isInvalid={errors.description}
-                    initInstanceCallback={(editor) => {
-                      editor.on('click', () => {
-                        clearErrors('messageTemplate')
-                      })
-                    }}
-                  />
-                )}
+                defaultValue={message?.messageDatetime ? new Date(message.messageDatetime) : new Date()}
                 rules={{ required: format('validation.required') }}
-              />
-              {errors.messageTemplate && <ValidationError value={errors.messageTemplate?.message} />}
-            </div>
-            <div className='flex flex-col md:flex-row gap-4'>
-              <div className='basis-1/2 form-field-wrapper'>
-                <label className='required-field'>
-                  {format('hub.broadcast.messageType')}
-                </label>
-                <Controller
-                  name='messageType'
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      isSearch
-                      isBorderless
-                      options={messageTypeOptions}
-                      placeholder={format('hub.broadcast.messageType')}
-                      isInvalid={errors.messageType}
+                render={({ field: { onChange, value, ref, name } }) => {
+                  return (
+                    <DatePicker
+                      ref={(elem) => {
+                        elem && ref(elem.input)
+                      }}
+                      name={name}
+                      className='h-[38px] w-full'
+                      placeholderText={format('hub.broadcast.announcementDatetime')}
+                      onChange={onChange}
+                      onFocus={() => clearErrors(['messageDatetime'])}
+                      selected={value}
+                      isInvalid={errors.messageDatetime}
+                      showTimeSelect
+                      timeFormat="p"
+                      timeIntervals={15}
+                      dateFormat="Pp"
+                      showPopperArrow={false}
                     />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.messageType && <ValidationError value={errors.messageType?.message} />}
-              </div>
-              {currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE &&
-                <div className='lg:basis-1/2 flex flex-col gap-2'>
-                  <label className='required-field'>
-                    {format('hub.broadcast.announcementDatetime')}
-                  </label>
-                  <Controller
-                    name='messageDatetime'
-                    control={control}
-                    defaultValue={message?.messageDatetime ? new Date(message.messageDatetime) : new Date()}
-                    rules={{ required: format('validation.required') }}
-                    render={({ field: { onChange, value, ref, name } }) => {
-                      return (
-                        <DatePicker
-                          ref={(elem) => {
-                            elem && ref(elem.input)
-                          }}
-                          name={name}
-                          className='h-[38px] w-full'
-                          placeholderText={format('hub.broadcast.announcementDatetime')}
-                          onChange={onChange}
-                          onFocus={() => clearErrors(['messageDatetime'])}
-                          selected={value}
-                          isInvalid={errors.messageDatetime}
-                          showTimeSelect
-                          timeFormat="p"
-                          timeIntervals={15}
-                          dateFormat="Pp"
-                          showPopperArrow={false}
-                        />
-                      )
-                    }}
-                  />
-                  {errors.messageDatetime && <ValidationError value={errors.messageDatetime?.message} />}
-                </div>
-              }
-              {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
-                <div className='lg:basis-1/2 flex flex-col gap-y-2'>
-                  <label className='required-field'>
-                    {format('hub.broadcast.eventDatetime')}
-                  </label>
-                  <Controller
-                    name='messageDatetime'
-                    control={control}
-                    defaultValue={message?.messageDatetime ? new Date(message.messageDatetime) : new Date()}
-                    rules={{ required: format('validation.required') }}
-                    render={({ field: { onChange, value, ref, name } }) => {
-                      return (
-                        <DatePicker
-                          ref={(elem) => {
-                            elem && ref(elem.input)
-                          }}
-                          name={name}
-                          className='h-[38px] w-full'
-                          placeholderText={format('hub.broadcast.eventDatetime')}
-                          onChange={onChange}
-                          onFocus={() => clearErrors(['messageDatetime'])}
-                          selected={value}
-                          isInvalid={errors.messageDatetime}
-                          showTimeSelect
-                          timeFormat="p"
-                          timeIntervals={15}
-                          dateFormat="Pp"
-                          showPopperArrow={false}
-                        />
-                      )
-                    }}
-                  />
-                  {errors.messageDatetime && <ValidationError value={errors.messageDatetime?.message} />}
-                </div>
-              }
+                  )
+                }}
+              />
+              {errors.messageDatetime && <ValidationError value={errors.messageDatetime?.message} />}
             </div>
-            {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
-              <label className='flex flex-col gap-y-2 mb-2'>
-                {format('hub.broadcast.eventLocation')}
-                <GeocodeAutocomplete
-                  value={null}
-                  onChange={handleEventLocation}
-                />
+          }
+          {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
+            <div className='lg:basis-1/2 flex flex-col gap-y-2'>
+              <label className='required-field'>
+                {format('hub.broadcast.eventDatetime')}
               </label>
-            }
-            {[DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE].indexOf(currentMessageType.value) >= 0 &&
-              <label className='flex gap-x-2 items-center self-start'>
-                <Checkbox {...register('visible')} />
-                {format('hub.broadcast.visible', {
-                  messageType: currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE
-                    ? format('hub.broadcast.messageType.announcement')
-                    : format('hub.broadcast.messageType.event')
-                })}
-              </label>
-            }
-            <div className='flex flex-wrap text-sm gap-3'>
-              <button
-                type='submit'
-                className='submit-button'
-                disabled={mutating || reverting}
-              >
-                {format('hub.curriculum.save')}
-                {mutating && <FaSpinner className='spinner ml-3 inline' />}
-              </button>
-              <button
-                type='button'
-                className='cancel-button'
-                disabled={mutating || reverting}
-                onClick={cancelForm}
-              >
-                {format('app.cancel')}
-                {reverting && <FaSpinner className='spinner ml-3 inline' />}
-              </button>
+              <Controller
+                name='messageDatetime'
+                control={control}
+                defaultValue={message?.messageDatetime ? new Date(message.messageDatetime) : new Date()}
+                rules={{ required: format('validation.required') }}
+                render={({ field: { onChange, value, ref, name } }) => {
+                  return (
+                    <DatePicker
+                      ref={(elem) => {
+                        elem && ref(elem.input)
+                      }}
+                      name={name}
+                      className='h-[38px] w-full'
+                      placeholderText={format('hub.broadcast.eventDatetime')}
+                      onChange={onChange}
+                      onFocus={() => clearErrors(['messageDatetime'])}
+                      selected={value}
+                      isInvalid={errors.messageDatetime}
+                      showTimeSelect
+                      timeFormat="p"
+                      timeIntervals={15}
+                      dateFormat="Pp"
+                      showPopperArrow={false}
+                    />
+                  )
+                }}
+              />
+              {errors.messageDatetime && <ValidationError value={errors.messageDatetime?.message} />}
             </div>
-          </div>
-        </form>
-      )
-      : <Unauthorized />
+          }
+        </div>
+        {currentMessageType.value === DPI_EVENT_MESSAGE_TYPE &&
+          <label className='flex flex-col gap-y-2 mb-2'>
+            {format('hub.broadcast.eventLocation')}
+            <GeocodeAutocomplete
+              value={null}
+              onChange={handleEventLocation}
+            />
+          </label>
+        }
+        {[DPI_ANNOUNCEMENT_MESSAGE_TYPE, DPI_EVENT_MESSAGE_TYPE].indexOf(currentMessageType.value) >= 0 &&
+          <label className='flex gap-x-2 items-center self-start'>
+            <Checkbox {...register('visible')} />
+            {format('hub.broadcast.visible', {
+              messageType: currentMessageType.value === DPI_ANNOUNCEMENT_MESSAGE_TYPE
+                ? format('hub.broadcast.messageType.announcement')
+                : format('hub.broadcast.messageType.event')
+            })}
+          </label>
+        }
+        <div className='flex flex-wrap text-sm gap-3'>
+          <button
+            type='submit'
+            className='submit-button'
+            disabled={mutating || reverting}
+          >
+            {format('hub.curriculum.save')}
+            {mutating && <FaSpinner className='spinner ml-3 inline' />}
+          </button>
+          <button
+            type='button'
+            className='cancel-button'
+            disabled={mutating || reverting}
+            onClick={cancelForm}
+          >
+            {format('app.cancel')}
+            {reverting && <FaSpinner className='spinner ml-3 inline' />}
+          </button>
+        </div>
+      </div>
+    </form>
+  )
 }
 
 export default MessageForm

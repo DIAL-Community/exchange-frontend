@@ -1,24 +1,30 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PRODUCT_REPOSITORY_DETAIL_QUERY } from '../../shared/query/productRepository'
-import ProductRepositoryDetailRight from './ProductRepositoryDetailRight'
 import ProductRepositoryDetailLeft from './ProductRepositoryDetailLeft'
+import ProductRepositoryDetailRight from './ProductRepositoryDetailRight'
 
 const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
   const scrollRef = useRef(null)
 
   const { loading, error, data } = useQuery(PRODUCT_REPOSITORY_DETAIL_QUERY, {
-    variables: { productSlug, repositorySlug }
+    variables: { productSlug, repositorySlug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.productRepository || !data?.product) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { product, productRepository } = data

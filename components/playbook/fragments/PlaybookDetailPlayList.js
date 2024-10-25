@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import PlayDetailRight from '../../play/PlayDetailRight'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PLAYS_QUERY } from '../../shared/query/play'
 
 const PlaybookDetailPlayList = ({ locale, playbook }) => {
@@ -9,18 +10,21 @@ const PlaybookDetailPlayList = ({ locale, playbook }) => {
       playbookSlug: playbook.slug,
       owner: 'public'
     },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   // Loading and error handler section.
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    if (error.networkError) {
-      return <Error />
-    } else {
-      return <NotFound />
-    }
+    return handleQueryError(error)
+  } else if (data?.plays) {
+    return handleMissingData()
   }
 
   const { plays } = data

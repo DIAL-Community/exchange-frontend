@@ -6,9 +6,9 @@ import { useApolloClient, useMutation, useQuery } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
 import ProjectCard from '../../project/ProjectCard'
 import EditableSection from '../../shared/EditableSection'
-import { Loading } from '../../shared/FetchStatus'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import { handleLoadingQuery } from '../../shared/GraphQueryHandler'
 import { UPDATE_ORGANIZATION_PROJECTS } from '../../shared/mutation/organization'
 import { CREATE_STARRED_OBJECT, REMOVE_STARRED_OBJECT } from '../../shared/mutation/starredObject'
 import { PROJECT_SEARCH_QUERY } from '../../shared/query/project'
@@ -110,7 +110,7 @@ const OrganizationDetailProjects = ({ organization, editingAllowed, headerRef })
   })
 
   if (loadingStarred) {
-    return <Loading />
+    return handleLoadingQuery()
   }
 
   const fetchedProjectsCallback = (data) => (

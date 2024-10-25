@@ -1,8 +1,9 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PLAY_QUERY } from '../shared/query/play'
 import PlayForm from './fragments/PlayForm'
 import PlayEditLeft from './PlayEditLeft'
@@ -13,15 +14,20 @@ const PlayCreate = ({ playbookSlug, locale }) => {
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
     variables: { playSlug: '', playbookSlug, owner: 'public' },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.playbook) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { playbook } = data

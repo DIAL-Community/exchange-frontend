@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import CommentsSection from '../../shared/comment/CommentsSection'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PLAY_BREADCRUMB_QUERY } from '../../shared/query/play'
 import { ObjectType } from '../../utils/constants'
 import { DPI_TENANT_NAME } from '../constants'
@@ -15,15 +16,20 @@ const HubCurriculumModule = ({ curriculumSlug, moduleSlug }) => {
 
   const { loading, data, error } = useQuery(PLAY_BREADCRUMB_QUERY, {
     variables: { playbookSlug: curriculumSlug, playSlug: moduleSlug, owner: DPI_TENANT_NAME },
-    context: { headers: { 'Accept-Language': 'en' } }
+    context: {
+      headers: {
+        'Accept-Language': 'en',
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.playbook || !data?.play) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { playbook: curriculum, play: curriculumModule } = data

@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
@@ -31,7 +30,7 @@ export const PlayForm = ({ playbook, play }) => {
 
   const router = useRouter()
   const { locale } = router
-  const { user, loadingUserSession } = useUser()
+  const { user } = useUser()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [mutating, setMutating] = useState(false)
@@ -90,31 +89,29 @@ export const PlayForm = ({ playbook, play }) => {
   const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
 
   const doUpsert = async (data) => {
-    if (user) {
-      setMutating(true)
+    setMutating(true)
 
-      const { name, description, published } = data
-      const variables = {
-        name,
-        slug,
-        description,
-        owner: 'public',
-        tags: tags.map(tag => tag.label),
-        playbookSlug: playbook.slug,
-        productSlugs: products.map(({ slug }) => slug),
-        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug),
-        draft: !published
-      }
-
-      createPlay({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': router.locale
-          }
-        }
-      })
+    const { name, description, published } = data
+    const variables = {
+      name,
+      slug,
+      description,
+      owner: 'public',
+      tags: tags.map(tag => tag.label),
+      playbookSlug: playbook.slug,
+      productSlugs: products.map(({ slug }) => slug),
+      buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug),
+      draft: !published
     }
+
+    createPlay({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': router.locale
+        }
+      }
+    })
   }
 
   useEffect(() => {
@@ -216,7 +213,7 @@ export const PlayForm = ({ playbook, play }) => {
     }))
   )
 
-  const addBuildingBlock =(buildingBlock) =>
+  const addBuildingBlock = (buildingBlock) =>
     setBuildingBlocks([
       ...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug),
       { name: buildingBlock.label, slug: buildingBlock.slug }
@@ -228,155 +225,151 @@ export const PlayForm = ({ playbook, play }) => {
   const loadBuildingBlockOptions = (input) =>
     fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
 
-  return loadingUserSession
-    ? <Loading />
-    : user?.isAdminUser || user?.isEditorUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {play && format('app.editEntity', { entity: play.name })}
-                {!play && `${format('app.createNew')} ${format('ui.play.label')}`}
-              </div>
-              <label className='flex flex-col gap-y-2'>
-                <p className='required-field'>{format('ui.play.name')}</p>
-                <Input
-                  {...register('name', { required: format('validation.required') })}
-                  placeholder={format('ui.play.name')}
-                  isInvalid={errors.name}
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {play && format('app.editEntity', { entity: play.name })}
+            {!play && `${format('app.createNew')} ${format('ui.play.label')}`}
+          </div>
+          <label className='flex flex-col gap-y-2'>
+            <p className='required-field'>{format('ui.play.name')}</p>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              placeholder={format('ui.play.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </label>
+          <div className='flex flex-col gap-y-2'>
+            <label className='flex flex-col gap-y-2'>
+              {format('ui.tag.header')}
+              <Select
+                async
+                isBorderless
+                defaultOptions
+                cacheOptions
+                placeholder={format('ui.tag.header')}
+                loadOptions={loadTagOptions}
+                noOptionsMessage={() =>
+                  format('filter.searchFor', { entity: format('ui.tag.header') })
+                }
+                onChange={addTag}
+                value={null}
+              />
+            </label>
+            <div className='flex flex-wrap gap-3 mt-2'>
+              {tags?.map((tag, tagIdx) => (
+                <Pill
+                  key={tagIdx}
+                  label={tag.label}
+                  onRemove={() => removeTag(tag)}
                 />
-                {errors.name && <ValidationError value={errors.name?.message} />}
-              </label>
-              <div className='flex flex-col gap-y-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {format('ui.tag.header')}
-                  <Select
-                    async
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('ui.tag.header')}
-                    loadOptions={loadTagOptions}
-                    noOptionsMessage={() =>
-                      format('filter.searchFor', { entity: format('ui.tag.header') })
-                    }
-                    onChange={addTag}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-wrap gap-3 mt-2'>
-                  {tags?.map((tag, tagIdx) =>(
-                    <Pill
-                      key={tagIdx}
-                      label={tag.label}
-                      onRemove={() => removeTag(tag)}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {format('ui.product.header')}
-                  <Select
-                    async
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('ui.product.header')}
-                    loadOptions={loadProductOptions}
-                    noOptionsMessage={() =>
-                      format('filter.searchFor', { entity: format('ui.product.header') })
-                    }
-                    onChange={addProduct}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-wrap gap-3 mt-2'>
-                  {products?.map((product, productIdx) =>(
-                    <Pill
-                      key={productIdx}
-                      label={product.name}
-                      onRemove={() => removeProduct(product)}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire flex flex-col gap-y-2'>
-                  {format('ui.buildingBlock.header')}
-                  <Select
-                    async
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('ui.buildingBlock.header')}
-                    loadOptions={loadBuildingBlockOptions}
-                    noOptionsMessage={() =>
-                      format('filter.searchFor', { entity: format('ui.buildingBlock.header') })
-                    }
-                    onChange={addBuildingBlock}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-wrap gap-3 mt-2'>
-                  {buildingBlocks?.map((buildingBlock, buildingBlockIdx) =>(
-                    <Pill
-                      key={buildingBlockIdx}
-                      label={buildingBlock.name}
-                      onRemove={() => removeBuildingBlock(buildingBlock)}
-                    />
-                  ))}
-                </div>
-              </div>
-              <label className='text-dial-sapphire flex flex-col gap-y-2'>
-                <p className='required-field'> {format('ui.play.description')}</p>
-                <Controller
-                  name='description'
-                  control={control}
-                  rules={{ required: format('validation.required') }}
-                  render={({ field: { value, onChange, onBlur } }) => {
-                    return (
-                      <HtmlEditor
-                        editorId={`${name}-editor`}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        initialContent={value}
-                        isInvalid={errors.description}
-                      />
-                    )
-                  }}
-                />
-                {errors.description && <ValidationError value={errors.description?.message} />}
-              </label>
-              <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
-                {format('ui.play.published')}
-              </label>
-              <div className='flex flex-wrap gap-3'>
-                <button
-                  type='submit'
-                  className='submit-button'
-                  disabled={mutating || reverting}
-                >
-                  {format(isPublished ? 'ui.play.publish' : 'ui.play.saveAsDraft')}
-                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-              </div>
+              ))}
             </div>
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <div className='flex flex-col gap-y-2'>
+            <label className='flex flex-col gap-y-2'>
+              {format('ui.product.header')}
+              <Select
+                async
+                isBorderless
+                defaultOptions
+                cacheOptions
+                placeholder={format('ui.product.header')}
+                loadOptions={loadProductOptions}
+                noOptionsMessage={() =>
+                  format('filter.searchFor', { entity: format('ui.product.header') })
+                }
+                onChange={addProduct}
+                value={null}
+              />
+            </label>
+            <div className='flex flex-wrap gap-3 mt-2'>
+              {products?.map((product, productIdx) => (
+                <Pill
+                  key={productIdx}
+                  label={product.name}
+                  onRemove={() => removeProduct(product)}
+                />
+              ))}
+            </div>
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire flex flex-col gap-y-2'>
+              {format('ui.buildingBlock.header')}
+              <Select
+                async
+                isBorderless
+                defaultOptions
+                cacheOptions
+                placeholder={format('ui.buildingBlock.header')}
+                loadOptions={loadBuildingBlockOptions}
+                noOptionsMessage={() =>
+                  format('filter.searchFor', { entity: format('ui.buildingBlock.header') })
+                }
+                onChange={addBuildingBlock}
+                value={null}
+              />
+            </label>
+            <div className='flex flex-wrap gap-3 mt-2'>
+              {buildingBlocks?.map((buildingBlock, buildingBlockIdx) => (
+                <Pill
+                  key={buildingBlockIdx}
+                  label={buildingBlock.name}
+                  onRemove={() => removeBuildingBlock(buildingBlock)}
+                />
+              ))}
+            </div>
+          </div>
+          <label className='text-dial-sapphire flex flex-col gap-y-2'>
+            <p className='required-field'> {format('ui.play.description')}</p>
+            <Controller
+              name='description'
+              control={control}
+              rules={{ required: format('validation.required') }}
+              render={({ field: { value, onChange, onBlur } }) => {
+                return (
+                  <HtmlEditor
+                    editorId={`${name}-editor`}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    initialContent={value}
+                    isInvalid={errors.description}
+                  />
+                )
+              }}
+            />
+            {errors.description && <ValidationError value={errors.description?.message} />}
+          </label>
+          <label className='flex gap-x-2 mb-2 items-center self-start'>
+            <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
+            {format('ui.play.published')}
+          </label>
+          <div className='flex flex-wrap gap-3'>
+            <button
+              type='submit'
+              className='submit-button'
+              disabled={mutating || reverting}
+            >
+              {format(isPublished ? 'ui.play.publish' : 'ui.play.saveAsDraft')}
+              {mutating && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 }
 
 export default PlayForm

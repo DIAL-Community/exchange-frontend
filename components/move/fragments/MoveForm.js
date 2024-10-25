@@ -5,9 +5,7 @@ import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Select from '../../shared/form/Select'
 import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../shared/mutation/move'
@@ -20,7 +18,6 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user } = useUser()
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
@@ -58,31 +55,26 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   })
 
   const doUpsert = async (data) => {
-    if (user) {
-      setMutating(true)
+    setMutating(true)
+    const { name, resourceDescription, url } = data
 
-      const { userEmail, userToken } = user
-      const { name, resourceDescription, url } = data
-
-      updateResource(index, { name, description: resourceDescription, url })
-      if (moveSlug) {
-        createMoveResource({
-          variables: {
-            playSlug,
-            moveSlug,
-            url,
-            name,
-            description: resourceDescription,
-            index
-          },
-          context: {
-            headers: {
-              'Accept-Language': locale,
-              Authorization: `${userEmail} ${userToken}`
-            }
+    updateResource(index, { name, description: resourceDescription, url })
+    if (moveSlug) {
+      createMoveResource({
+        variables: {
+          playSlug,
+          moveSlug,
+          url,
+          name,
+          description: resourceDescription,
+          index
+        },
+        context: {
+          headers: {
+            'Accept-Language': locale
           }
-        })
-      }
+        }
+      })
     }
   }
 
@@ -100,7 +92,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   return (
     <div className='flex flex-col py-3 px-3'>
       <div className='flex flex-col gap-4 text-sm'>
-        <hr className='border-b border-dial-slate-300'/>
+        <hr className='border-b border-dial-slate-300' />
         <label className='flex flex-col gap-y-2 mb-2'>
           {format('ui.resource.name')}
           <input
@@ -142,7 +134,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
             {format('app.cancel')}
           </button>
         </div>
-        <hr className='border-b border-dial-slate-300'/>
+        <hr className='border-b border-dial-slate-300' />
       </div>
     </div>
   )
@@ -239,7 +231,6 @@ const MoveForm = ({ playbook, play, move }) => {
   const client = useApolloClient()
 
   const router = useRouter()
-  const { user, loadingUserSession } = useUser()
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
@@ -317,33 +308,31 @@ const MoveForm = ({ playbook, play, move }) => {
   })
 
   const doUpsert = async (data) => {
-    if (user) {
-      setMutating(true)
-      const { name, description } = data
-      createMove({
-        variables: {
-          name,
-          moveSlug,
-          playSlug,
-          owner: 'public',
-          description,
-          inlineResources,
-          resourceSlugs: resources.map((resource) => resource.slug)
-        },
-        context: {
-          headers: {
-            'Accept-Language': router.locale
-          }
+    setMutating(true)
+    const { name, description } = data
+    createMove({
+      variables: {
+        name,
+        moveSlug,
+        playSlug,
+        owner: 'public',
+        description,
+        inlineResources,
+        resourceSlugs: resources.map((resource) => resource.slug)
+      },
+      context: {
+        headers: {
+          'Accept-Language': router.locale
         }
-      })
-    }
+      }
+    })
   }
 
   useEffect(() => {
     const doAutoSave = () => {
       const { locale } = router
 
-      if (!user || !watch) {
+      if (!watch) {
         return
       }
 
@@ -384,7 +373,7 @@ const MoveForm = ({ playbook, play, move }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, moveSlug, playSlug, inlineResources, resources, router, watch, autoSaveMove])
+  }, [moveSlug, playSlug, inlineResources, resources, router, watch, autoSaveMove])
 
   const cancelForm = () => {
     setReverting(true)
@@ -437,114 +426,110 @@ const MoveForm = ({ playbook, play, move }) => {
     setResources(inlineResources.filter((r, i) => i !== index && r.name !== resource.name))
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : user?.isAdminUser || user?.isEditorUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {move && format('app.editEntity', { entity: move.name })}
-                {!move && `${format('app.createNew')} ${format('ui.move.label')}`}
-              </div>
-              <label className='flex flex-col gap-y-2'>
-                {format('ui.play.name')}
-                <input
-                  {...register('name', { required: true })}
-                  className='shadow border-1 rounded w-full py-2 px-3'
-                />
-              </label>
-              <FormTextEditor
-                control={control}
-                fieldLabel='ui.move.description'
-                fieldName='description'
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {move && format('app.editEntity', { entity: move.name })}
+            {!move && `${format('app.createNew')} ${format('ui.move.label')}`}
+          </div>
+          <label className='flex flex-col gap-y-2'>
+            {format('ui.play.name')}
+            <input
+              {...register('name', { required: true })}
+              className='shadow border-1 rounded w-full py-2 px-3'
+            />
+          </label>
+          <FormTextEditor
+            control={control}
+            fieldLabel='ui.move.description'
+            fieldName='description'
+          />
+          <div className='flex flex-col gap-y-2'>
+            <label className='flex flex-col gap-y-2'>
+              {format('ui.resource.header')}
+              <Select
+                async
+                isBorderless
+                defaultOptions
+                cacheOptions
+                placeholder={format('ui.resource.header')}
+                loadOptions={loadResourceOptions}
+                noOptionsMessage={() =>
+                  format('filter.searchFor', { entity: format('ui.resource.header') })
+                }
+                onChange={addResource}
+                value={null}
               />
-              <div className='flex flex-col gap-y-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {format('ui.resource.header')}
-                  <Select
-                    async
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('ui.resource.header')}
-                    loadOptions={loadResourceOptions}
-                    noOptionsMessage={() =>
-                      format('filter.searchFor', { entity: format('ui.resource.header') })
-                    }
-                    onChange={addResource}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-col gap-3 mt-2'>
-                  {resources?.map((resource, resourceIdx) =>(
-                    <div
-                      key={resourceIdx}
-                      className='shadow-md flex flex-col gap-1 px-2 py-1 bg-white text-dial-stratos'
-                    >
-                      <div className='flex gap-2'>
-                        <div className='line-clamp-1'>{resource.name}</div>
-                        <button className='ml-auto shrink-0' type='button' onClick={() => removeResource(resource)}>
-                          <FaXmark className='text-dial-stratos' size='1rem' />
-                        </button>
-                      </div>
-                      <div className='text-xs line-clamp-1 text-dial-deep-purple'>{resource.resourceLink}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className='flex flex-col gap-y-3'>
-                <div className='text-sm'>
-                  {format('ui.resource.header')}
-                </div>
-                <div className='text-xs italic text-dial-stratos'>
-                  {format('ui.move.assignedResources')}
-                </div>
-                <div className='flex flex-col gap-y-4'>
-                  {inlineResources && inlineResources.map((resource, i) =>
-                    <ResourceRenderer
-                      key={i}
-                      index={i}
-                      moveSlug={moveSlug}
-                      playSlug={playSlug}
-                      resource={resource}
-                      updateResource={updateInlineResource}
-                      removeResource={removeInlineResource}
-                    />
-                  )}
-                </div>
-              </div>
-              <button type='button' className='flex gap-2 text-dial-iris-blue' onClick={() => addInlineResource({})}>
-                <FaPlusCircle className='my-auto text-dial-iris-blue' />
-                <div className='text-dial-iris-blue'>
-                  {`${format('app.createNew')} ${format('ui.resource.label')}`}
-                </div>
-              </button>
-              <div className='flex flex-row gap-3'>
-                <button
-                  type='submit'
-                  className='submit-button'
-                  disabled={mutating || reverting}
+            </label>
+            <div className='flex flex-col gap-3 mt-2'>
+              {resources?.map((resource, resourceIdx) => (
+                <div
+                  key={resourceIdx}
+                  className='shadow-md flex flex-col gap-1 px-2 py-1 bg-white text-dial-stratos'
                 >
-                  {`${format('app.submit')} ${format('ui.move.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-              </div>
+                  <div className='flex gap-2'>
+                    <div className='line-clamp-1'>{resource.name}</div>
+                    <button className='ml-auto shrink-0' type='button' onClick={() => removeResource(resource)}>
+                      <FaXmark className='text-dial-stratos' size='1rem' />
+                    </button>
+                  </div>
+                  <div className='text-xs line-clamp-1 text-dial-deep-purple'>{resource.resourceLink}</div>
+                </div>
+              ))}
             </div>
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <div className='flex flex-col gap-y-3'>
+            <div className='text-sm'>
+              {format('ui.resource.header')}
+            </div>
+            <div className='text-xs italic text-dial-stratos'>
+              {format('ui.move.assignedResources')}
+            </div>
+            <div className='flex flex-col gap-y-4'>
+              {inlineResources && inlineResources.map((resource, i) =>
+                <ResourceRenderer
+                  key={i}
+                  index={i}
+                  moveSlug={moveSlug}
+                  playSlug={playSlug}
+                  resource={resource}
+                  updateResource={updateInlineResource}
+                  removeResource={removeInlineResource}
+                />
+              )}
+            </div>
+          </div>
+          <button type='button' className='flex gap-2 text-dial-iris-blue' onClick={() => addInlineResource({})}>
+            <FaPlusCircle className='my-auto text-dial-iris-blue' />
+            <div className='text-dial-iris-blue'>
+              {`${format('app.createNew')} ${format('ui.resource.label')}`}
+            </div>
+          </button>
+          <div className='flex flex-row gap-3'>
+            <button
+              type='submit'
+              className='submit-button'
+              disabled={mutating || reverting}
+            >
+              {`${format('app.submit')} ${format('ui.move.label')}`}
+              {mutating && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 }
 
 export default MoveForm

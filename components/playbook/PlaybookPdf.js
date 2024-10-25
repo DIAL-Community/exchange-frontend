@@ -5,7 +5,9 @@ import { HiExternalLink } from 'react-icons/hi'
 import { IntlProvider, useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { Document, Page, PDFDownloadLink, StyleSheet, Text } from '@react-pdf/renderer'
-import { Error, Loading, NotFound, ReadyToDownload } from '../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { ReadyToDownload } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { prependUrlWithProtocol } from '../utils/utilities'
 
 const PLAYBOOK_DETAIL_QUERY = gql`
@@ -225,19 +227,20 @@ const PlaybookPdf = ({ locale }) => {
 
   const { loading, error, data } = useQuery(PLAYBOOK_DETAIL_QUERY, {
     variables: { slug, owner: 'public' },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.playbook) {
-    return <NotFound />
-  }
-
-  if (error) {
-    return <Error />
+    return handleMissingData(data)
   }
 
   return (
@@ -257,7 +260,7 @@ const PlaybookPdf = ({ locale }) => {
       }
       fileName={`${slug}.pdf`}
     >
-      {({ loading }) => (loading ? <Loading /> : <ReadyToDownload />)}
+      {({ loading }) => (loading ? handleLoadingQuery() : <ReadyToDownload />)}
     </PDFDownloadLink>
   )
 }

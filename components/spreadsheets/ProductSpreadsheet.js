@@ -5,7 +5,8 @@ import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
 import { HotTable } from '@handsontable/react'
 import { Tab } from '@headlessui/react'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { CREATE_SPREADSHEET_MUTATION, DELETE_SPREADSHEET_MUTATION } from '../shared/mutation/spreadsheet'
 import { PRODUCT_SPREADSHEET_QUERY } from '../shared/query/spreadsheet'
 import {
@@ -24,7 +25,13 @@ const ProductSpreadsheet = () => {
   const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, { refetchQueries: [PRODUCT_SPREADSHEET_QUERY] })
   const [deleteSpreadsheetData] = useMutation(DELETE_SPREADSHEET_MUTATION, { refetchQueries: [PRODUCT_SPREADSHEET_QUERY] })
 
-  const { loading, error, data } = useQuery(PRODUCT_SPREADSHEET_QUERY)
+  const { loading, error, data } = useQuery(PRODUCT_SPREADSHEET_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
 
   useEffect(() => {
     // Init the list of all handsontable refs element.
@@ -251,15 +258,12 @@ const ProductSpreadsheet = () => {
     return source ? [{}, { ...autoCompleteConfig }] : null
   }
 
-  // Loading and error handler section.
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    if (error.networkError) {
-      return <Error />
-    } else {
-      return <NotFound />
-    }
+    return handleQueryError(error)
+  } else if (!data?.spreadsheetProduct) {
+    return handleMissingData()
   }
 
   const { spreadsheetProduct } = data

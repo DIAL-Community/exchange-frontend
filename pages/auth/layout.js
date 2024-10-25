@@ -3,8 +3,8 @@ import HealthHeader from '../../components/health/sections/HealthHeader'
 import HubFooter from '../../components/hub/sections/HubFooter'
 import HubHeader from '../../components/hub/sections/HubHeader'
 import Footer from '../../components/shared/Footer'
-import { handleLoadingQuery } from '../../components/shared/GraphQueryHandler'
 import Header from '../../components/shared/Header'
+import { handleLoadingSession } from '../../components/shared/SessionQueryHandler'
 import { useActiveTenant } from '../../lib/hooks'
 
 const AuthLayoutPage = ({ isOnAuthPage, children }) => {
@@ -13,7 +13,7 @@ const AuthLayoutPage = ({ isOnAuthPage, children }) => {
   return (
     <>
       { waitingActiveTenant
-        ? handleLoadingQuery()
+        ? handleLoadingSession()
         : tenant === 'dpi'
           ? <>
             <HubHeader isOnAuthPage={isOnAuthPage} />

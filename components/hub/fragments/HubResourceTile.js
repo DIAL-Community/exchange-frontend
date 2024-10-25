@@ -3,10 +3,11 @@ import Link from 'next/link'
 import { FiPlusCircle } from 'react-icons/fi'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ResourceFilterContext } from '../../context/ResourceFilterContext'
 import ResourceCard from '../../resources/fragments/ResourceCard'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
 import { DisplayType } from '../../utils/constants'
 import HubPagination from './HubPagination'
@@ -58,15 +59,20 @@ const ResourceTiles = ({ pageNumber, resourceTopics }) => {
       resourceTopics: resourceTopics.map(r => r.name),
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedResources) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedResources: resources } = data
