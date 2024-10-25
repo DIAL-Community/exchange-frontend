@@ -780,33 +780,29 @@ exports[`Unit tests for the product main page. Should render unauthorized to edi
     class="Toastify"
   />
   <div
-    class="h-[60vh]"
+    class="min-h-[75vh] flex items-center justify-center"
   >
     <div
-      class="flex bg-dial-alice-blue h-full"
+      class="flex flex-col gap-y-6"
     >
-      <div
-        class="text-dial-stratos text-lg w-full my-auto flex flex-col gap-4"
+      <svg
+        class="spinner mx-auto"
+        fill="currentColor"
+        height="3em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 512 512"
+        width="3em"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          class="spinner mx-auto"
-          fill="currentColor"
-          height="3em"
-          stroke="currentColor"
-          stroke-width="0"
-          viewBox="0 0 512 512"
-          width="3em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-          />
-        </svg>
-        <div
-          class="text-center mt-5"
-        >
-          Fetching data ...
-        </div>
+        <path
+          d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
+        />
+      </svg>
+      <div
+        class="text-center"
+      >
+        Processing request ...
       </div>
     </div>
   </div>
