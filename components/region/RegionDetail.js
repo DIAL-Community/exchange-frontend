@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { REGION_DETAIL_QUERY } from '../shared/query/region'
+import { REGION_DETAIL_QUERY, REGION_POLICY_QUERY } from '../shared/query/region'
+import { fetchOperationPolicies } from '../utils/policy'
 import RegionDetailLeft from './RegionDetailLeft'
 import RegionDetailRight from './RegionDetailRight'
 
 const RegionDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    REGION_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(REGION_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +57,12 @@ const RegionDetail = ({ slug }) => {
           <RegionDetailLeft scrollRef={scrollRef} region={region} />
         </div>
         <div className='lg:basis-2/3'>
-          <RegionDetailRight ref={scrollRef} region={region} />
+          <RegionDetailRight
+            ref={scrollRef}
+            region={region}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

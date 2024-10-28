@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { USE_CASE_POLICY_QUERY } from '../../shared/query/useCase'
 import { USE_CASE_STEP_QUERY } from '../../shared/query/useCaseStep'
+import { fetchOperationPolicies } from '../../utils/policy'
 import UseCaseStepDetailLeft from './UseCaseStepDetailLeft'
 import UseCaseStepDetailRight from './UseCaseStepDetailRight'
 
 const UseCaseStepDetail = ({ slug, stepSlug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    USE_CASE_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
 
   const { loading, error, data } = useQuery(USE_CASE_STEP_QUERY, {
     variables: { slug, stepSlug },
@@ -55,6 +66,7 @@ const UseCaseStepDetail = ({ slug, stepSlug }) => {
             ref={scrollRef}
             useCase={useCase}
             useCaseStep={useCaseStep}
+            editingAllowed={editingAllowed}
           />
         </div>
       </div>

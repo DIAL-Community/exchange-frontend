@@ -7,7 +7,7 @@ import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_DATASET } from '../../../components/shared/mutation/dataset'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  DATASET_DETAIL_QUERY, DATASET_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_DATASETS_QUERY
+  DATASET_DETAIL_QUERY, DATASET_PAGINATION_ATTRIBUTES_QUERY, DATASET_POLICY_QUERY, PAGINATED_DATASETS_QUERY
 } from '../../../components/shared/query/dataset'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -18,11 +18,16 @@ import { datasetPaginationAttribute, paginatedDatasets } from './data/DatasetMai
 mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the dataset detail page.', () => {
+  const mockDatasetPolicies = generateMockApolloData(
+    DATASET_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { dataset: null } }
+  )
+
   const mockDataset = generateMockApolloData(
     DATASET_DETAIL_QUERY,
-    {
-      'slug': 'ai-agro'
-    },
+    { 'slug': 'ai-agro' },
     null,
     datasetDetail
   )
@@ -37,18 +42,9 @@ describe('Unit tests for the dataset detail page.', () => {
     commentsQuery
   )
 
-  const mockDatasetPolicy = generateMockApolloData(
-    DATASET_DETAIL_QUERY,
-    {
-      'slug': ''
-    },
-    null,
-    { 'data': { 'dataset': null } }
-  )
-
   test('Should render detail of a dataset.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockDataset, mockDatasetPolicy, mockDatasetComments]}>
+      <CustomMockedProvider mocks={[mockDatasetPolicies, mockDataset, mockDatasetComments]}>
         <QueryParamContextProvider>
           <DatasetDetail slug='ai-agro' />
         </QueryParamContextProvider>
@@ -80,9 +76,7 @@ describe('Unit tests for the dataset detail page.', () => {
 
     const mockDatasetPolicyQueryError = generateMockApolloData(
       DATASET_DETAIL_QUERY,
-      {
-        'slug': 'ai-agro'
-      },
+      { 'slug': 'ai-agro' },
       graphQueryErrors,
       null
     )

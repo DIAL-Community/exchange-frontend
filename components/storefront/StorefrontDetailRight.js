@@ -1,16 +1,13 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { STOREFRONT_POLICY_QUERY } from '../shared/query/organization'
 import { ObjectType } from '../utils/constants'
-import DeleteStorefront from './buttons/DeleteStorefront'
+import DeleteStorefront from './fragments/DeleteStorefront'
 import StorefrontDetailBuildingBlockCertifications from './fragments/StorefrontDetailBuildingBlocks'
 import StorefrontDetailContacts from './fragments/StorefrontDetailContacts'
 import StorefrontDetailCountries from './fragments/StorefrontDetailCountries'
@@ -20,7 +17,7 @@ import StorefrontDetailProjects from './fragments/StorefrontDetailProjects'
 import StorefrontDetailResources from './fragments/StorefrontDetailResources'
 import StorefrontDetailSpecialties from './fragments/StorefrontDetailSpecialties'
 
-const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
+const StorefrontDetailRight = forwardRef(({ organization, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -54,20 +51,6 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
 
   const editPath = `${organization.slug}/edit`
 
-  let editingAllowed = false
-  const { error } = useQuery(STOREFRONT_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
-
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-4'>
@@ -84,7 +67,7 @@ const StorefrontDetailRight = forwardRef(({ organization }, ref) => {
           }
           <div className='absolute right-3 top-3 flex gap-x-3 ml-auto'>
             { editingAllowed && <EditButton type='link' href={editPath} /> }
-            <DeleteStorefront organization={organization} />
+            { deletingAllowed && <DeleteStorefront organization={organization} /> }
           </div>
           <div className={classNames(
             'w-full absolute bottom-0 left-0 z-10',

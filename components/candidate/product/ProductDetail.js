@@ -1,14 +1,24 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
-import { CANDIDATE_PRODUCT_DETAIL_QUERY } from '../../shared/query/candidateProduct'
+import { CANDIDATE_PRODUCT_DETAIL_QUERY, CANDIDATE_PRODUCT_POLICY_QUERY } from '../../shared/query/candidateProduct'
+import { fetchOperationPolicies } from '../../utils/policy'
 import ProductDetailLeft from './ProductDetailLeft'
 import ProductDetailRight from './ProductDetailRight'
 
 const ProductDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    CANDIDATE_PRODUCT_POLICY_QUERY,
+    ['editing']
+  )
+
+  const editingAllowed = policies['editing']
 
   const { loading, error, data, refetch } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +56,12 @@ const ProductDetail = ({ slug }) => {
           <ProductDetailLeft scrollRef={scrollRef} product={product} />
         </div>
         <div className='lg:basis-2/3'>
-          <ProductDetailRight ref={scrollRef} product={product} refetch={refetch} />
+          <ProductDetailRight
+            ref={scrollRef}
+            product={product}
+            refetch={refetch}
+            editingAllowed={editingAllowed}
+          />
         </div>
       </div>
     </div>

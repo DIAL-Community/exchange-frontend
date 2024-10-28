@@ -1,16 +1,13 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CANDIDATE_ROLE_POLICY_QUERY } from '../../shared/query/candidateRole'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import RoleActionButton from './fragments/RoleActionButton'
 
-const RoleDetailRight = forwardRef(({ role }, ref) => {
+const RoleDetailRight = forwardRef(({ role, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -18,20 +15,6 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
   useImperativeHandle(ref, () => ([
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
-
-  let editingAllowed = false
-  const { error } = useQuery(CANDIDATE_ROLE_POLICY_QUERY, {
-    variables: { id: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>

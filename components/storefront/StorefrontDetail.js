@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { STOREFRONT_DETAIL_QUERY } from '../shared/query/organization'
+import { STOREFRONT_DETAIL_QUERY, STOREFRONT_POLICY_QUERY } from '../shared/query/organization'
+import { fetchOperationPolicies } from '../utils/policy'
 import StorefrontDetailLeft from './StorefrontDetailLeft'
 import StorefrontDetailRight from './StorefrontDetailRight'
 
 const StorefrontDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    STOREFRONT_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(STOREFRONT_DETAIL_QUERY, {
     variables: { slug },
@@ -43,10 +54,19 @@ const StorefrontDetail = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <StorefrontDetailLeft scrollRef={scrollRef} organization={organization} />
+          <StorefrontDetailLeft
+            scrollRef={scrollRef}
+            organization={organization}
+            editingAllowed={editingAllowed}
+          />
         </div>
         <div className='lg:basis-2/3'>
-          <StorefrontDetailRight ref={scrollRef} organization={organization} />
+          <StorefrontDetailRight
+            ref={scrollRef}
+            organization={organization}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

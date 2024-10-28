@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { CITY_DETAIL_QUERY } from '../shared/query/city'
+import { CITY_DETAIL_QUERY, CITY_POLICY_QUERY } from '../shared/query/city'
+import { fetchOperationPolicies } from '../utils/policy'
 import CityDetailLeft from './CityDetailLeft'
 import CityDetailRight from './CityDetailRight'
 
 const CityDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    CITY_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(CITY_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +57,12 @@ const CityDetail = ({ slug }) => {
           <CityDetailLeft scrollRef={scrollRef} city={city} />
         </div>
         <div className='lg:basis-2/3'>
-          <CityDetailRight ref={scrollRef} city={city} />
+          <CityDetailRight
+            ref={scrollRef}
+            city={city}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

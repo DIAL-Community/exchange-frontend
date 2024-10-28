@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../shared/GraphQueryHandler'
+import { PRODUCT_POLICY_QUERY } from '../../../shared/query/product'
 import { PRODUCT_REPOSITORY_DETAIL_QUERY } from '../../../shared/query/productRepository'
+import { fetchOperationPolicies } from '../../../utils/policy'
 import Breadcrumb from '../../shared/Breadcrumb'
 import ProductRepositoryDetailLeft from './ProductRepositoryDetailLeft'
 import ProductRepositoryDetailRight from './ProductRepositoryDetailRight'
 
 const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    PRODUCT_POLICY_QUERY,
+    ['editing']
+  )
+
+  const editingAllowed = policies['editing']
 
   const { loading, error, data } = useQuery(PRODUCT_REPOSITORY_DETAIL_QUERY, {
     variables: { productSlug, repositorySlug },
@@ -56,6 +67,7 @@ const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
             ref={scrollRef}
             product={product}
             productRepository={productRepository}
+            editingAllowed={editingAllowed}
           />
         </div>
       </div>

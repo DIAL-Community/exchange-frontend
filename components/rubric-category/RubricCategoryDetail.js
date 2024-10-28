@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
+import { RUBRIC_CATEGORY_POLICY_QUERY, RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
+import { fetchOperationPolicies } from '../utils/policy'
 import RubricCategoryDetailLeft from './RubricCategoryDetailLeft'
 import RubricCategoryDetailRight from './RubricCategoryDetailRight'
 
 const RubricCategoryDetail = ({ categorySlug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    RUBRIC_CATEGORY_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(RUBRIC_CATEGORY_QUERY, {
     variables: { slug: categorySlug },
@@ -43,10 +54,20 @@ const RubricCategoryDetail = ({ categorySlug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <RubricCategoryDetailLeft scrollRef={scrollRef} rubricCategory={rubricCategory} />
+          <RubricCategoryDetailLeft
+            scrollRef={scrollRef}
+            rubricCategory={rubricCategory}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
         <div className='lg:basis-2/3'>
-          <RubricCategoryDetailRight ref={scrollRef} rubricCategory={rubricCategory} />
+          <RubricCategoryDetailRight
+            ref={scrollRef}
+            rubricCategory={rubricCategory}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

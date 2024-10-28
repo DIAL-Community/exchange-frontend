@@ -1,23 +1,20 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { RESOURCE_POLICY_QUERY } from '../shared/query/resource'
 import { ObjectType } from '../utils/constants'
 import { prependUrlWithProtocol } from '../utils/utilities'
-import DeleteResource from './buttons/DeleteResource'
+import DeleteResource from './fragments/DeleteResource'
 import ResourceDetailBuildingBlocks from './fragments/ResourceDetailBuildingBlocks'
 import ResourceDetailProducts from './fragments/ResourceDetailProducts'
 import ResourceDetailUseCases from './fragments/ResourceDetailUseCases'
 import { topicColors } from './utilities/common'
 
-const ResourceDetailRight = forwardRef(({ resource }, ref) => {
+const ResourceDetailRight = forwardRef(({ resource, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -40,20 +37,6 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
   )
 
   const editPath = `${resource.slug}/edit`
-
-  let editingAllowed = false
-  const { error } = useQuery(RESOURCE_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
 
   const generateResourceUrl = () => {
     let resourceLinkUrl
@@ -101,7 +84,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
           </div>
           <div className='flex gap-x-3'>
             { editingAllowed && <EditButton type='link' href={editPath} /> }
-            <DeleteResource resource={resource} />
+            { deletingAllowed && <DeleteResource resource={resource} /> }
           </div>
         </div>
         <div className='text-4xl font-semibold text-dial-stratos py-3' ref={titleRef}>

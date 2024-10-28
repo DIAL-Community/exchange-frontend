@@ -1,17 +1,14 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { CANDIDATE_RESOURCE_POLICY_QUERY } from '../../shared/query/candidateResource'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import ResourceActionButton from './fragments/ResourceActionButton'
 
-const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
+const ResourceDetailRight = forwardRef(({ candidateResource, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -21,20 +18,6 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
   useImperativeHandle(ref, () => ([
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
-
-  let editingAllowed = false
-  const { error } = useQuery(CANDIDATE_RESOURCE_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
@@ -52,8 +35,14 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
                 />
               }
             </div>
-            <ResourceActionButton candidateResource={candidateResource} actionType={CandidateActionType.REJECT} />
-            <ResourceActionButton candidateResource={candidateResource} actionType={CandidateActionType.APPROVE} />
+            <ResourceActionButton
+              candidateResource={candidateResource}
+              actionType={CandidateActionType.REJECT}
+            />
+            <ResourceActionButton
+              candidateResource={candidateResource}
+              actionType={CandidateActionType.APPROVE}
+            />
             <EditButton type='link' href={editPath} />
           </div>
         )}

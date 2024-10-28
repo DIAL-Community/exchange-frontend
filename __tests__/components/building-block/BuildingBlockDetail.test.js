@@ -7,7 +7,8 @@ import { QueryParamContextProvider } from '../../../components/context/QueryPara
 import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_BUILDING_BLOCK } from '../../../components/shared/mutation/buildingBlock'
 import {
-  BUILDING_BLOCK_DETAIL_QUERY, BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY
+  BUILDING_BLOCK_DETAIL_QUERY, BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, BUILDING_BLOCK_POLICY_QUERY,
+  PAGINATED_BUILDING_BLOCKS_QUERY
 } from '../../../components/shared/query/buildingBlock'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import { render } from '../../test-utils'
@@ -19,6 +20,13 @@ import { buildingBlockPaginationAttribute, paginatedBuildingBlocks } from './dat
 mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the building block detail page.', () => {
+  const mockBuildingBlockPolicies = generateMockApolloData(
+    BUILDING_BLOCK_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { buildingBlock: null } }
+  )
+
   const mockBuildingBlock = generateMockApolloData(
     BUILDING_BLOCK_DETAIL_QUERY,
     {
@@ -38,24 +46,12 @@ describe('Unit tests for the building block detail page.', () => {
     commentsQuery
   )
 
-  const mockBuildingBlockPolicy = generateMockApolloData(
-    BUILDING_BLOCK_DETAIL_QUERY,
-    {
-      'slug': ''
-    },
-    null,
-    { 'data': { 'buildingBlock': null } }
-  )
-
   test('Should render detail of a building block.', async () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
+          mockBuildingBlockPolicies,
           mockBuildingBlock,
-          mockBuildingBlock,
-          mockBuildingBlockPolicy,
-          mockBuildingBlockPolicy,
-          mockBuildingBlockPolicy,
           mockBuildingBlockComments
         ]}
       >

@@ -1,14 +1,26 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
-import { CANDIDATE_ORGANIZATION_DETAIL_QUERY } from '../../shared/query/candidateOrganization'
+import {
+  CANDIDATE_ORGANIZATION_DETAIL_QUERY, CANDIDATE_ORGANIZATION_POLICY_QUERY
+} from '../../shared/query/candidateOrganization'
+import { fetchOperationPolicies } from '../../utils/policy'
 import OrganizationDetailLeft from './OrganizationDetailLeft'
 import OrganizationDetailRight from './OrganizationDetailRight'
 
 const OrganizationDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    CANDIDATE_ORGANIZATION_POLICY_QUERY,
+    ['editing']
+  )
+
+  const editingAllowed = policies['editing']
 
   const { loading, error, data, refetch } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
     variables: { slug },
@@ -53,6 +65,7 @@ const OrganizationDetail = ({ slug }) => {
             ref={scrollRef}
             refetch={refetch}
             organization={organization}
+            editingAllowed={editingAllowed}
           />
         </div>
       </div>

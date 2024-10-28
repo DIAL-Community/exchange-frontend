@@ -6,7 +6,7 @@ import ProductRepositoryDetail from '../../../components/product/repository/Prod
 import ProductRepositoryEdit from '../../../components/product/repository/ProductRepositoryEdit'
 import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PRODUCT_REPOSITORY } from '../../../components/shared/mutation/productRepository'
-import { OWNED_PRODUCTS_QUERY } from '../../../components/shared/query/product'
+import { OWNED_PRODUCTS_QUERY, PRODUCT_POLICY_QUERY } from '../../../components/shared/query/product'
 import {
   PRODUCT_REPOSITORIES_QUERY, PRODUCT_REPOSITORY_DETAIL_QUERY
 } from '../../../components/shared/query/productRepository'
@@ -20,6 +20,13 @@ import {
 mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the product main page.', () => {
+  const mockProductPolicies = generateMockApolloData(
+    PRODUCT_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { product: null } }
+  )
+
   const mockProductRepositoryDetail = generateMockApolloData(
     PRODUCT_REPOSITORY_DETAIL_QUERY,
     {
@@ -47,7 +54,14 @@ describe('Unit tests for the product main page.', () => {
   test('Should render the product repository page.', async () => {
 
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOwnedProducts, mockProductRepositories, mockProductRepositoryDetail]}>
+      <CustomMockedProvider
+        mocks={[
+          mockOwnedProducts,
+          mockProductPolicies,
+          mockProductRepositories,
+          mockProductRepositoryDetail
+        ]}
+      >
         <QueryParamContextProvider>
           <FilterProvider>
             <ProductRepositoryDetail productSlug={'firma'} repositorySlug={'firma-repository'} />

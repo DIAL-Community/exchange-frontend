@@ -1,14 +1,24 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
-import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
+import { CANDIDATE_DATASET_DETAIL_QUERY, CANDIDATE_DATASET_POLICY_QUERY } from '../../shared/query/candidateDataset'
+import { fetchOperationPolicies } from '../../utils/policy'
 import DatasetDetailLeft from './DatasetDetailLeft'
 import DatasetDetailRight from './DatasetDetailRight'
 
 const DatasetDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    CANDIDATE_DATASET_POLICY_QUERY,
+    ['editing']
+  )
+
+  const editingAllowed = policies['editing']
 
   const { loading, error, data } = useQuery(CANDIDATE_DATASET_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +56,7 @@ const DatasetDetail = ({ slug }) => {
           <DatasetDetailLeft dataset={dataset} scrollRef={scrollRef} />
         </div>
         <div className='lg:basis-2/3'>
-          <DatasetDetailRight ref={scrollRef} dataset={dataset} />
+          <DatasetDetailRight ref={scrollRef} dataset={dataset} editingAllowed={editingAllowed} />
         </div>
       </div>
     </div>

@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { CONTACT_DETAIL_QUERY } from '../shared/query/contact'
+import { CONTACT_DETAIL_QUERY, CONTACT_POLICY_QUERY } from '../shared/query/contact'
+import { fetchOperationPolicies } from '../utils/policy'
 import ContactDetailLeft from './ContactDetailLeft'
 import ContactDetailRight from './ContactDetailRight'
 
 const ContactDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    CONTACT_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(CONTACT_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +57,12 @@ const ContactDetail = ({ slug }) => {
           <ContactDetailLeft scrollRef={scrollRef} contact={contact} />
         </div>
         <div className='lg:basis-2/3'>
-          <ContactDetailRight ref={scrollRef} contact={contact} />
+          <ContactDetailRight
+            ref={scrollRef}
+            contact={contact}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

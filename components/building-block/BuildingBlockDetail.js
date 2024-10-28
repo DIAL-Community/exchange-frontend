@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { BUILDING_BLOCK_DETAIL_QUERY } from '../shared/query/buildingBlock'
+import { BUILDING_BLOCK_DETAIL_QUERY, BUILDING_BLOCK_POLICY_QUERY } from '../shared/query/buildingBlock'
+import { fetchOperationPolicies } from '../utils/policy'
 import BuildingBlockDetailLeft from './BuildingBlockDetailLeft'
 import BuildingBlockDetailRight from './BuildingBlockDetailRight'
 
 const BuildingBlockDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    BUILDING_BLOCK_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
     variables: { slug },
@@ -52,6 +63,8 @@ const BuildingBlockDetail = ({ slug }) => {
           <BuildingBlockDetailRight
             ref={scrollRef}
             buildingBlock={buildingBlock}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
           />
         </div>
       </div>

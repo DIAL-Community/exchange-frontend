@@ -1,18 +1,15 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { REGION_POLICY_QUERY } from '../shared/query/region'
 import { ObjectType } from '../utils/constants'
-import DeleteRegion from './buttons/DeleteRegion'
+import DeleteRegion from './fragments/DeleteRegion'
 import RegionDetailCountries from './fragments/RegionDetailCountries'
 
-const RegionDetailRight = forwardRef(({ region }, ref) => {
+const RegionDetailRight = forwardRef(({ region, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -32,26 +29,12 @@ const RegionDetailRight = forwardRef(({ region }, ref) => {
 
   const editPath = `${region.slug}/edit`
 
-  let editingAllowed = false
-  const { error } = useQuery(REGION_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
-
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='flex gap-x-3 ml-auto'>
           { editingAllowed && <EditButton type='link' href={editPath} /> }
-          <DeleteRegion region={region} />
+          { deletingAllowed && <DeleteRegion region={region} /> }
         </div>
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}

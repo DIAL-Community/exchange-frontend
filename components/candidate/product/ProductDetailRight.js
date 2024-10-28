@@ -1,20 +1,17 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { CANDIDATE_PRODUCT_UPDATE_STATUS } from '../../shared/mutation/candidateProduct'
-import { CANDIDATE_PRODUCT_POLICY_QUERY } from '../../shared/query/candidateProduct'
 import { ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import CandidateStatusWorkflow from '../CandidateStatusWorkflow'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 
-const ProductDetailRight = forwardRef(({ product }, ref) => {
+const ProductDetailRight = forwardRef(({ product, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -24,20 +21,6 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   useImperativeHandle(ref, () => ([
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
-
-  let editingAllowed = false
-  const { error } = useQuery(CANDIDATE_PRODUCT_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>

@@ -1,17 +1,14 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { CATEGORY_INDICATOR_POLICY_QUERY } from '../shared/query/categoryIndicator'
 import { ObjectType } from '../utils/constants'
-import DeleteCategoryIndicator from './buttons/DeleteCategoryIndicator'
+import DeleteCategoryIndicator from './fragments/DeleteCategoryIndicator'
 
-const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => {
+const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -30,29 +27,13 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator }, ref) => 
 
   const editPath = `${categoryIndicator.slug}/edit`
 
-  let editingAllowed = false
-  const { error } = useQuery(CATEGORY_INDICATOR_POLICY_QUERY, {
-    variables: { categorySlug: EDITING_POLICY_SLUG, indicatorSlug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
-
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {editingAllowed && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            <DeleteCategoryIndicator categoryIndicator={categoryIndicator} />
-          </div>
-        )}
+        <div className='flex gap-x-3 ml-auto'>
+          { editingAllowed && <EditButton type='link' href={editPath} /> }
+          { deletingAllowed && <DeleteCategoryIndicator categoryIndicator={categoryIndicator} /> }
+        </div>
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>

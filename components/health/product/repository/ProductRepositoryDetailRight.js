@@ -1,14 +1,11 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'
-import { PRODUCT_REPOSITORY_DETAIL_QUERY } from '../../../shared/query/productRepository'
 import { prependUrlWithProtocol } from '../../../utils/utilities'
 import ProductRepositoryStats from './fragments/ProductRepositoryStats'
 
-const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) => {
+const ProductRepositoryRight = forwardRef(({ product, productRepository, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -17,20 +14,6 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.top', ref: descRef }
   ]), [])
-
-  let editingAllowed = false
-  const { error } = useQuery(PRODUCT_REPOSITORY_DETAIL_QUERY, {
-    variables: { productSlug: '', repositorySlug: '' },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>

@@ -1,14 +1,24 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
-import { CANDIDATE_RESOURCE_DETAIL_QUERY } from '../../shared/query/candidateResource'
+import { CANDIDATE_RESOURCE_DETAIL_QUERY, CANDIDATE_RESOURCE_POLICY_QUERY } from '../../shared/query/candidateResource'
+import { fetchOperationPolicies } from '../../utils/policy'
 import ResourceDetailLeft from './ResourceDetailLeft'
 import ResourceDetailRight from './ResourceDetailRight'
 
 const ResourceDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    CANDIDATE_RESOURCE_POLICY_QUERY,
+    ['editing']
+  )
+
+  const editingAllowed = policies['editing']
 
   const { loading, error, data } = useQuery(CANDIDATE_RESOURCE_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +56,11 @@ const ResourceDetail = ({ slug }) => {
           <ResourceDetailLeft candidateResource={candidateResource} scrollRef={scrollRef} />
         </div>
         <div className='lg:basis-2/3'>
-          <ResourceDetailRight ref={scrollRef} candidateResource={candidateResource} />
+          <ResourceDetailRight
+            ref={scrollRef}
+            candidateResource={candidateResource}
+            editingAllowed={editingAllowed}
+          />
         </div>
       </div>
     </div>

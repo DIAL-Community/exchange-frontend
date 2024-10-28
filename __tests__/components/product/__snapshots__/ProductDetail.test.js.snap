@@ -71,14 +71,14 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//example.com"
+                      href="//administracionelectronica.gob.es/ctt/clienteafirma"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        example.com
+                        administracionelectronica.gob.es/ctt/clienteafirma
                       </div>
                     </a>
                      ⧉
@@ -221,7 +221,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                     class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
                     id="website"
                     placeholder="Website"
-                    value="example.com"
+                    value="administracionelectronica.gob.es/ctt/clienteafirma"
                   />
                 </div>
               </div>
@@ -660,7 +660,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                     class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
                     id="website"
                     placeholder="Website"
-                    value="example.com"
+                    value="administracionelectronica.gob.es/ctt/clienteafirma"
                   />
                 </div>
               </div>

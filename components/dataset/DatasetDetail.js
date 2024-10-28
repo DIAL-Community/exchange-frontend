@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { DATASET_DETAIL_QUERY } from '../shared/query/dataset'
+import { DATASET_DETAIL_QUERY, DATASET_POLICY_QUERY } from '../shared/query/dataset'
+import { fetchOperationPolicies } from '../utils/policy'
 import DatasetDetailLeft from './DatasetDetailLeft'
 import DatasetDetailRight from './DatasetDetailRight'
 
 const DatasetDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    DATASET_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(DATASET_DETAIL_QUERY, {
     variables: { slug },
@@ -43,10 +54,19 @@ const DatasetDetail = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <DatasetDetailLeft scrollRef={scrollRef} dataset={dataset} />
+          <DatasetDetailLeft
+            scrollRef={scrollRef}
+            dataset={dataset}
+            editingAllowed={editingAllowed}
+          />
         </div>
         <div className='lg:basis-2/3'>
-          <DatasetDetailRight ref={scrollRef} dataset={dataset} />
+          <DatasetDetailRight
+            ref={scrollRef}
+            dataset={dataset}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

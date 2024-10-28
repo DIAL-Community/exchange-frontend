@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { CANDIDATE_STATUS_DETAIL_QUERY } from '../shared/query/candidateStatus'
+import { CANDIDATE_STATUS_DETAIL_QUERY, CANDIDATE_STATUS_POLICY_QUERY } from '../shared/query/candidateStatus'
+import { fetchOperationPolicies } from '../utils/policy'
 import CandidateStatusDetailLeft from './CandidateStatusDetailLeft'
 import CandidateStatusDetailRight from './CandidateStatusDetailRight'
 
 const CandidateStatusDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    CANDIDATE_STATUS_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(CANDIDATE_STATUS_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +57,12 @@ const CandidateStatusDetail = ({ slug }) => {
           <CandidateStatusDetailLeft scrollRef={scrollRef} candidateStatus={candidateStatus} />
         </div>
         <div className='lg:basis-2/3'>
-          <CandidateStatusDetailRight ref={scrollRef} candidateStatus={candidateStatus} />
+          <CandidateStatusDetailRight
+            ref={scrollRef}
+            candidateStatus={candidateStatus}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

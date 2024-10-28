@@ -1,10 +1,11 @@
 import { useCallback, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
+import { RESOURCE_DETAIL_QUERY, RESOURCE_POLICY_QUERY } from '../shared/query/resource'
+import { fetchOperationPolicies } from '../utils/policy'
 import ResourceDetailLeft from './ResourceDetailLeft'
 import ResourceDetailRight from './ResourceDetailRight'
 
@@ -13,6 +14,16 @@ const ResourceDetail = ({ slug, country }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    RESOURCE_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(RESOURCE_DETAIL_QUERY, {
     variables: { slug },
@@ -52,10 +63,19 @@ const ResourceDetail = ({ slug, country }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <ResourceDetailLeft scrollRef={scrollRef} resource={resource} />
+          <ResourceDetailLeft
+            scrollRef={scrollRef}
+            resource={resource}
+            editingAllowed={editingAllowed}
+          />
         </div>
         <div className='lg:basis-2/3'>
-          <ResourceDetailRight ref={scrollRef} resource={resource} />
+          <ResourceDetailRight
+            ref={scrollRef}
+            resource={resource}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

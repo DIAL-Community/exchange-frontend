@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { SITE_SETTING_DETAIL_QUERY } from '../shared/query/siteSetting'
+import { SITE_SETTING_DETAIL_QUERY, SITE_SETTING_POLICY_QUERY } from '../shared/query/siteSetting'
+import { fetchOperationPolicies } from '../utils/policy'
 import SiteSettingDetailLeft from './SiteSettingDetailLeft'
 import SiteSettingDetailRight from './SiteSettingDetailRight'
 
 const SiteSettingDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    SITE_SETTING_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(SITE_SETTING_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +57,12 @@ const SiteSettingDetail = ({ slug }) => {
           <SiteSettingDetailLeft scrollRef={scrollRef} siteSetting={siteSetting} />
         </div>
         <div className='lg:basis-2/3 shrink-0'>
-          <SiteSettingDetailRight ref={scrollRef} siteSetting={siteSetting} />
+          <SiteSettingDetailRight
+            ref={scrollRef}
+            siteSetting={siteSetting}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

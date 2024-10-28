@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { TASK_TRACKER_DETAIL_QUERY } from '../shared/query/taskTracker'
+import { TASK_TRACKER_DETAIL_QUERY, TASK_TRACKER_POLICY_QUERY } from '../shared/query/taskTracker'
+import { fetchOperationPolicies } from '../utils/policy'
 import TaskTrackerDetailLeft from './TaskTrackerDetailLeft'
 import TaskTrackerDetailRight from './TaskTrackerDetailRight'
 
 const TaskTrackerDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    TASK_TRACKER_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(TASK_TRACKER_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +57,12 @@ const TaskTrackerDetail = ({ slug }) => {
           <TaskTrackerDetailLeft scrollRef={scrollRef} taskTracker={taskTracker} />
         </div>
         <div className='lg:basis-2/3'>
-          <TaskTrackerDetailRight ref={scrollRef} taskTracker={taskTracker} />
+          <TaskTrackerDetailRight
+            ref={scrollRef}
+            taskTracker={taskTracker}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

@@ -1,17 +1,14 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { CANDIDATE_STATUS_POLICY_QUERY } from '../shared/query/candidateStatus'
 import { ObjectType } from '../utils/constants'
-import DeleteCandidateStatus from './buttons/DeleteCandidateStatus'
+import DeleteCandidateStatus from './fragments/DeleteCandidateStatus'
 
-const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
+const CandidateStatusDetailRight = forwardRef(({ candidateStatus, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -19,20 +16,6 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
   useImperativeHandle(ref, () => [{ value: 'ui.comment.label', ref: commentsSectionRef }], [])
 
   const editPath = `${candidateStatus.slug}/edit`
-
-  let editingAllowed = false
-  const { error } = useQuery(CANDIDATE_STATUS_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
@@ -48,12 +31,10 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
               {format('ui.candidateStatus.initialStatus.label')}
             </span>
           }
-          {editingAllowed && (
-            <div className='flex gap-x-3 ml-auto'>
-              <EditButton type='link' href={editPath} />
-              <DeleteCandidateStatus candidateStatus={candidateStatus} />
-            </div>
-          )}
+          <div className='flex gap-x-3 ml-auto'>
+            { editingAllowed && <EditButton type='link' href={editPath} /> }
+            { deletingAllowed && <DeleteCandidateStatus candidateStatus={candidateStatus} /> }
+          </div>
         </div>
         <div className='text-base font-semibold py-3'>
           {format('ui.common.detail.description')}

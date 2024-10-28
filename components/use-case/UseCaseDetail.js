@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
+import { USE_CASE_DETAIL_QUERY, USE_CASE_POLICY_QUERY } from '../shared/query/useCase'
+import { fetchOperationPolicies } from '../utils/policy'
 import UseCaseDetailLeft from './UseCaseDetailLeft'
 import UseCaseDetailRight from './UseCaseDetailRight'
 
 const UseCaseDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    USE_CASE_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(USE_CASE_DETAIL_QUERY, {
     variables: { slug },
@@ -46,7 +57,12 @@ const UseCaseDetail = ({ slug }) => {
           <UseCaseDetailLeft scrollRef={scrollRef} useCase={useCase} />
         </div>
         <div className='lg:basis-2/3'>
-          <UseCaseDetailRight ref={scrollRef} useCase={useCase} />
+          <UseCaseDetailRight
+            ref={scrollRef}
+            useCase={useCase}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

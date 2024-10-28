@@ -6,7 +6,8 @@ import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_ORGANIZATION } from '../../../components/shared/mutation/organization'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  ORGANIZATION_DETAIL_QUERY, ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY
+  ORGANIZATION_DETAIL_QUERY, ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, ORGANIZATION_POLICY_QUERY,
+  PAGINATED_ORGANIZATIONS_QUERY
 } from '../../../components/shared/query/organization'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -17,6 +18,13 @@ import { organizationPaginationAttribute, paginatedOrganizations } from './data/
 mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the organization detail page.', () => {
+  const mockOrganizationPolicies = generateMockApolloData(
+    ORGANIZATION_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { organization: null } }
+  )
+
   const mockOrganization = generateMockApolloData(
     ORGANIZATION_DETAIL_QUERY,
     {
@@ -38,7 +46,7 @@ describe('Unit tests for the organization detail page.', () => {
 
   test('Should render detail of a organization.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOrganization, mockOrganizationComments]}>
+      <CustomMockedProvider mocks={[mockOrganizationPolicies, mockOrganization, mockOrganizationComments]}>
         <QueryParamContextProvider>
           <OrganizationEdit slug='ai4gov' />
         </QueryParamContextProvider>

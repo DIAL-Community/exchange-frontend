@@ -1,32 +1,15 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import { PRODUCT_POLICY_QUERY } from '../../shared/query/product'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import ProductRepositoryStats from './fragments/ProductRepositoryStats'
 
-const ProductRepositoryRight = forwardRef(({ product, productRepository }, ref) => {
+const ProductRepositoryRight = forwardRef(({ product, productRepository, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const descRef = useRef()
-
-  let editingAllowed = false
-  const { error } = useQuery(PRODUCT_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.top', ref: descRef }

@@ -1,16 +1,13 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import parse from 'html-react-parser'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
-import DeleteProduct from '../../../product/buttons/DeleteProduct'
+import DeleteProduct from '../../../product/fragments/DeleteProduct'
 import CommentsSection from '../../../shared/comment/CommentsSection'
 import Bookmark from '../../../shared/common/Bookmark'
 import Share from '../../../shared/common/Share'
 import CreateButton from '../../../shared/form/CreateButton'
 import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'
-import { PRODUCT_POLICY_QUERY } from '../../../shared/query/product'
 import { DisplayType, ObjectType } from '../../../utils/constants'
 import ProductRepositoryCard from '../repository/ProductRepositoryCard'
 import ProductDetailCategories from './ProductDetailCategories'
@@ -22,7 +19,7 @@ import ProductDetailProductStage from './ProductDetailProductStage'
 import ProductDetailProjects from './ProductDetailProjects'
 import ProductDetailTags from './ProductDetailTags'
 
-const ProductDetailRight = forwardRef(({ product }, ref) => {
+const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -59,26 +56,12 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
 
   const editPath = `${product.slug}/edit`
 
-  let editingAllowed = false
-  const { error } = useQuery(PRODUCT_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
-
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className="flex flex-col gap-y-3">
         <div className="flex gap-x-3 ml-auto">
           { editingAllowed && <EditButton type="link" href={editPath}/> }
-          <DeleteProduct product={product}/>
+          { deletingAllowed && <DeleteProduct product={product}/> }
         </div>
         <div className="flex flex-wrap gap-3">
           {product?.softwareCategories?.map((category, index) =>

@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { PROJECT_DETAIL_QUERY } from '../shared/query/project'
+import { PROJECT_DETAIL_QUERY, PROJECT_POLICY_QUERY } from '../shared/query/project'
+import { fetchOperationPolicies } from '../utils/policy'
 import ProjectDetailLeft from './ProjectDetailLeft'
 import ProjectDetailRight from './ProjectDetailRight'
 
 const ProjectDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    PROJECT_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(PROJECT_DETAIL_QUERY, {
     variables: { slug },
@@ -43,10 +54,19 @@ const ProjectDetail = ({ slug }) => {
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3'>
-          <ProjectDetailLeft scrollRef={scrollRef} project={project} />
+          <ProjectDetailLeft
+            scrollRef={scrollRef}
+            project={project}
+            editingAllowed={editingAllowed}
+          />
         </div>
         <div className='lg:basis-2/3'>
-          <ProjectDetailRight ref={scrollRef} project={project} />
+          <ProjectDetailRight
+            ref={scrollRef}
+            project={project}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

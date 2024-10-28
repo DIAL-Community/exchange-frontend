@@ -1,14 +1,24 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
-import { CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
+import { CANDIDATE_ROLE_DETAIL_QUERY, CANDIDATE_ROLE_POLICY_QUERY } from '../../shared/query/candidateRole'
+import { fetchOperationPolicies } from '../../utils/policy'
 import RoleDetailLeft from './RoleDetailLeft'
 import RoleDetailRight from './RoleDetailRight'
 
 const RoleDetail = ({ id }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    CANDIDATE_ROLE_POLICY_QUERY,
+    ['editing']
+  )
+
+  const editingAllowed = policies['editing']
 
   const { loading, error, data } = useQuery(CANDIDATE_ROLE_DETAIL_QUERY, {
     variables: { id },
@@ -46,7 +56,7 @@ const RoleDetail = ({ id }) => {
           <RoleDetailLeft scrollRef={scrollRef} role={role} />
         </div>
         <div className='lg:basis-2/3'>
-          <RoleDetailRight ref={scrollRef} role={role} />
+          <RoleDetailRight ref={scrollRef} role={role} editingAllowed={editingAllowed} />
         </div>
       </div>
     </div>

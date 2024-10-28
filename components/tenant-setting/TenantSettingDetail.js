@@ -1,14 +1,25 @@
 import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { TENANT_SETTING_DETAIL_QUERY } from '../shared/query/tenantSetting'
+import { TENANT_SETTING_DETAIL_QUERY, TENANT_SETTING_POLICY_QUERY } from '../shared/query/tenantSetting'
+import { fetchOperationPolicies } from '../utils/policy'
 import TenantSettingDetailLeft from './TenantSettingDetailLeft'
 import TenantSettingDetailRight from './TenantSettingDetailRight'
 
 const TenantSettingDetail = ({ tenantName }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const policies = fetchOperationPolicies(
+    client,
+    TENANT_SETTING_POLICY_QUERY,
+    ['editing', 'deleting']
+  )
+
+  const editingAllowed = policies['editing']
+  const deletingAllowed = policies['deleting']
 
   const { loading, error, data } = useQuery(TENANT_SETTING_DETAIL_QUERY, {
     variables: { tenantName },
@@ -47,7 +58,12 @@ const TenantSettingDetail = ({ tenantName }) => {
           <TenantSettingDetailLeft scrollRef={scrollRef} tenantSetting={tenantSetting} />
         </div>
         <div className='lg:basis-2/3'>
-          <TenantSettingDetailRight ref={scrollRef} tenantSetting={tenantSetting} />
+          <TenantSettingDetailRight
+            ref={scrollRef}
+            tenantSetting={tenantSetting}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

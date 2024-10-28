@@ -345,6 +345,9 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
             class="flex flex-col gap-y-3"
           >
             <div
+              class="flex gap-x-3 ml-auto"
+            />
+            <div
               class="text-xl font-semibold text-dial-plum py-3"
             >
               Description

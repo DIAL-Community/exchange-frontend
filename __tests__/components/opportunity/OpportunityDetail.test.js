@@ -7,7 +7,8 @@ import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_OPPORTUNITY } from '../../../components/shared/mutation/opportunity'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  OPPORTUNITY_DETAIL_QUERY, OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_OPPORTUNITIES_QUERY
+  OPPORTUNITY_DETAIL_QUERY, OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, OPPORTUNITY_POLICY_QUERY,
+  PAGINATED_OPPORTUNITIES_QUERY
 } from '../../../components/shared/query/opportunity'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -18,6 +19,13 @@ import { opportunityPaginationAttribute, paginatedOpportunities } from './data/O
 mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the opportunity detail page.', () => {
+  const mockOpportunityPolicies = generateMockApolloData(
+    OPPORTUNITY_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { opportunity: null } }
+  )
+
   const mockOpportunity = generateMockApolloData(
     OPPORTUNITY_DETAIL_QUERY,
     {
@@ -39,7 +47,7 @@ describe('Unit tests for the opportunity detail page.', () => {
 
   test('Should render detail of a opportunity.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOpportunity, mockOpportunityComments]}>
+      <CustomMockedProvider mocks={[mockOpportunityPolicies, mockOpportunity, mockOpportunityComments]}>
         <QueryParamContextProvider>
           <OpportunityDetail slug='market-entry-in-north-macedonia' />
         </QueryParamContextProvider>

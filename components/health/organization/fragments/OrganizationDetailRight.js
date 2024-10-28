@@ -1,12 +1,9 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react'
-import { useQuery } from '@apollo/client'
-import { EDITING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
-import DeleteOrganization from '../../../organization/buttons/DeleteOrganization'
+import DeleteOrganization from '../../../organization/fragments/DeleteOrganization'
 import Bookmark from '../../../shared/common/Bookmark'
 import Share from '../../../shared/common/Share'
 import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'
-import { ORGANIZATION_POLICY_QUERY } from '../../../shared/query/organization'
 import { ObjectType } from '../../../utils/constants'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import OrganizationDetailContacts from './OrganizationDetailContacts'
@@ -15,7 +12,7 @@ import OrganizationDetailOffices from './OrganizationDetailOffices'
 import OrganizationDetailProducts from './OrganizationDetailProducts'
 import OrganizationDetailProjects from './OrganizationDetailProjects'
 
-const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
+const OrganizationDetailRight = forwardRef(({ organization, editingAllowed, deletingAllowed }, ref) => {
   const descRef = useRef()
   const officeRef = useRef()
   const contactRef = useRef()
@@ -40,26 +37,12 @@ const OrganizationDetailRight = forwardRef(({ organization }, ref) => {
 
   const editPath = `${organization.slug}/edit`
 
-  let editingAllowed = false
-  const { error } = useQuery(ORGANIZATION_POLICY_QUERY, {
-    variables: { slug: EDITING_POLICY_SLUG },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.EDITING
-      }
-    }
-  })
-
-  if (!error) {
-    editingAllowed = true
-  }
-
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='flex gap-x-3 ml-auto'>
           { editingAllowed && <EditButton type='link' href={editPath} /> }
-          <DeleteOrganization organization={organization} />
+          { deletingAllowed && <DeleteOrganization organization={organization} /> }
         </div>
         <div className="text-xl text-health-blue font-semibold pb-3 pt-1 break-words" ref={descRef}>
           {organization.name}

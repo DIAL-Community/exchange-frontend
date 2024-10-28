@@ -6,7 +6,8 @@ import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PRODUCT } from '../../../components/shared/mutation/product'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  OWNED_PRODUCTS_QUERY, PAGINATED_PRODUCTS_QUERY, PRODUCT_DETAIL_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY
+  OWNED_PRODUCTS_QUERY, PAGINATED_PRODUCTS_QUERY, PRODUCT_DETAIL_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
+  PRODUCT_POLICY_QUERY
 } from '../../../components/shared/query/product'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -17,6 +18,13 @@ import { paginatedProducts, productPaginationAttribute } from './data/ProductMai
 mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the product detail page.', () => {
+  const mockProductPolicies = generateMockApolloData(
+    PRODUCT_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { product: null } }
+  )
+
   const mockProduct = generateMockApolloData(
     PRODUCT_DETAIL_QUERY,
     {
@@ -45,7 +53,7 @@ describe('Unit tests for the product detail page.', () => {
 
   test('Should render detail of a product.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProduct, mockOwnedProducts, mockProductComments]}>
+      <CustomMockedProvider mocks={[mockProductPolicies, mockProduct, mockOwnedProducts, mockProductComments]}>
         <QueryParamContextProvider>
           <ProductEdit slug='firma' />
         </QueryParamContextProvider>
@@ -103,11 +111,11 @@ describe('Unit tests for the product detail page.', () => {
         'aliases': [
           ''
         ],
-        'website': 'example.com',
+        'website': 'administracionelectronica.gob.es/ctt/clienteafirma',
         'description': `
-          Suite of solutions for digital identities and electronic signatures,
-          aimed at public administrations for the implementation of authentication
-          and electronic signatures in a streamlined and effective manner.
+          Suite of solutions for digital identities and electronic signatures, aimed at public
+          administrations for the implementation of authentication and electronic signatures in
+          a streamlined and effective manner.
         `,
         'commercialProduct': false,
         'hostingModel': null,
@@ -115,7 +123,7 @@ describe('Unit tests for the product detail page.', () => {
         'pricingDetails': null,
         'govStackEntity': false,
         'productStage': null,
-        'extraAttributes': {}
+        'extraAttributes': []
       },
       null,
       createProduct
