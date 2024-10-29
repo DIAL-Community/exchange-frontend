@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
@@ -25,6 +25,17 @@ const ResourceDetail = ({ slug, country }) => {
     }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      RESOURCE_POLICY_QUERY,
+      ['editing', 'deleting']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -34,15 +45,6 @@ const ResourceDetail = ({ slug, country }) => {
   }
 
   const { resource } = data
-
-  fetchOperationPolicies(
-    client,
-    RESOURCE_POLICY_QUERY,
-    ['editing', 'deleting']
-  ).then(policies => {
-    setEditingAllowed(policies['editing'])
-    setDeletingAllowed(policies['deleting'])
-  })
 
   const slugNameMapping = (() => {
     const map = {}

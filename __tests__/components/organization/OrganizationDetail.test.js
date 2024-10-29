@@ -46,7 +46,7 @@ describe('Unit tests for the organization detail page.', () => {
 
   test('Should render detail of a organization.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOrganizationPolicies, mockOrganization, mockOrganizationComments]}>
+      <CustomMockedProvider mocks={[mockOrganization, mockOrganizationPolicies, mockOrganizationComments]}>
         <QueryParamContextProvider>
           <OrganizationEdit slug='ai4gov' />
         </QueryParamContextProvider>

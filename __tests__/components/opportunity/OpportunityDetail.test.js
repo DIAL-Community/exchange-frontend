@@ -49,9 +49,8 @@ describe('Unit tests for the opportunity detail page.', () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
-          mockOpportunityPolicies,
-          mockOpportunityPolicies,
           mockOpportunity,
+          mockOpportunityPolicies,
           mockOpportunityComments
         ]}
       >

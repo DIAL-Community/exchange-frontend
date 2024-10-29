@@ -51,9 +51,8 @@ describe('Unit tests for the building block detail page.', () => {
       <CustomMockedProvider
         mocks={[
           mockBuildingBlock,
-          mockBuildingBlockComments,
           mockBuildingBlockPolicies,
-          mockBuildingBlockPolicies
+          mockBuildingBlockComments
         ]}
       >
         <QueryParamContextProvider>

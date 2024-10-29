@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT, GRAPH_QUERY_POLICY_SLUG } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -24,6 +24,18 @@ const CategoryIndicatorDetail = ({ categorySlug, indicatorSlug }) => {
     }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      CATEGORY_INDICATOR_POLICY_QUERY,
+      ['editing', 'deleting'],
+      { categorySlug: GRAPH_QUERY_POLICY_SLUG, indicatorSlug: GRAPH_QUERY_POLICY_SLUG }
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -33,16 +45,6 @@ const CategoryIndicatorDetail = ({ categorySlug, indicatorSlug }) => {
   }
 
   const { categoryIndicator, rubricCategory } = data
-
-  fetchOperationPolicies(
-    client,
-    CATEGORY_INDICATOR_POLICY_QUERY,
-    ['editing', 'deleting'],
-    { categorySlug: GRAPH_QUERY_POLICY_SLUG, indicatorSlug: GRAPH_QUERY_POLICY_SLUG }
-  ).then(policies => {
-    setEditingAllowed(policies['editing'])
-    setDeletingAllowed(policies['deleting'])
-  })
 
   const slugNameMapping = (() => {
     const map = {}

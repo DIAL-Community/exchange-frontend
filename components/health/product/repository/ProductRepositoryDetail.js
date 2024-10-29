@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../shared/GraphQueryHandler'
@@ -24,6 +24,16 @@ const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
     }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      PRODUCT_POLICY_QUERY,
+      ['editing']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+    })
+  }, [client])
+
   if (loading) {
     return handleLoadingQuery
   } else if (error) {
@@ -33,14 +43,6 @@ const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
   }
 
   const { product, productRepository } = data
-
-  fetchOperationPolicies(
-    client,
-    PRODUCT_POLICY_QUERY,
-    ['editing']
-  ).then(policies => {
-    setEditingAllowed(policies['editing'])
-  })
 
   const slugNameMapping = (() => {
     const map = {}

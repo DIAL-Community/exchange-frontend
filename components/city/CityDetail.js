@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -24,6 +24,17 @@ const CityDetail = ({ slug }) => {
     }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      CITY_POLICY_QUERY,
+      ['editing', 'deleting']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -33,15 +44,6 @@ const CityDetail = ({ slug }) => {
   }
 
   const { city } = data
-
-  fetchOperationPolicies(
-    client,
-    CITY_POLICY_QUERY,
-    ['editing', 'deleting']
-  ).then(policies => {
-    setEditingAllowed(policies['editing'])
-    setDeletingAllowed(policies['deleting'])
-  })
 
   const slugNameMapping = (() => {
     const map = {}

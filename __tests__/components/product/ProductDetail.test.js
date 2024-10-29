@@ -53,7 +53,7 @@ describe('Unit tests for the product detail page.', () => {
 
   test('Should render detail of a product.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProductPolicies, mockProduct, mockOwnedProducts, mockProductComments]}>
+      <CustomMockedProvider mocks={[mockProduct, mockOwnedProducts, mockProductPolicies, mockProductComments]}>
         <QueryParamContextProvider>
           <ProductEdit slug='firma' />
         </QueryParamContextProvider>
