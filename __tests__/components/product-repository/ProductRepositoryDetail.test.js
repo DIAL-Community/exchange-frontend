@@ -58,6 +58,7 @@ describe('Unit tests for the product main page.', () => {
         mocks={[
           mockOwnedProducts,
           mockProductPolicies,
+          mockProductPolicies,
           mockProductRepositories,
           mockProductRepositoryDetail
         ]}

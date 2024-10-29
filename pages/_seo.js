@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { DefaultSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useLazyQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { INITIAL_IMAGE_URL_QUERY } from '../components/shared/query/siteSetting'
 
 const CatalogSeo = ({ currentTenant }) => {
@@ -11,7 +11,7 @@ const CatalogSeo = ({ currentTenant }) => {
   const [faviconUrl, setFaviconUrl] = useState()
   const [openGraphLogoUrl, setOpenGraphLogoUrl] = useState()
 
-  const [updateSeoSettings, { loading, error }] = useLazyQuery(INITIAL_IMAGE_URL_QUERY, {
+  const { loading, error, refetch } = useQuery(INITIAL_IMAGE_URL_QUERY, {
     onCompleted: (data) => {
       setFaviconUrl(data.defaultSiteSetting.faviconUrl)
       setOpenGraphLogoUrl(data.defaultSiteSetting.openGraphLogoUrl)
@@ -24,9 +24,9 @@ const CatalogSeo = ({ currentTenant }) => {
 
   useEffect(() => {
     if (!openGraphLogoUrl || !faviconUrl) {
-      updateSeoSettings()
+      refetch()
     }
-  }, [faviconUrl, openGraphLogoUrl, updateSeoSettings])
+  }, [faviconUrl, openGraphLogoUrl, refetch])
 
   if (loading || error) return null
 

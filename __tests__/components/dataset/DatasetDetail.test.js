@@ -44,7 +44,14 @@ describe('Unit tests for the dataset detail page.', () => {
 
   test('Should render detail of a dataset.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockDatasetPolicies, mockDataset, mockDatasetComments]}>
+      <CustomMockedProvider
+        mocks={[
+          mockDatasetPolicies,
+          mockDatasetPolicies,
+          mockDataset,
+          mockDatasetComments
+        ]}
+      >
         <QueryParamContextProvider>
           <DatasetDetail slug='ai-agro' />
         </QueryParamContextProvider>

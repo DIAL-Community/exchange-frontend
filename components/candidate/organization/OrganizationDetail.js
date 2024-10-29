@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
@@ -14,13 +14,7 @@ const OrganizationDetail = ({ slug }) => {
   const scrollRef = useRef(null)
   const client = useApolloClient()
 
-  const policies = fetchOperationPolicies(
-    client,
-    CANDIDATE_ORGANIZATION_POLICY_QUERY,
-    ['editing']
-  )
-
-  const editingAllowed = policies['editing']
+  const [editingAllowed, setEditingAllowed] = useState(false)
 
   const { loading, error, data, refetch } = useQuery(CANDIDATE_ORGANIZATION_DETAIL_QUERY, {
     variables: { slug },
@@ -40,6 +34,14 @@ const OrganizationDetail = ({ slug }) => {
   }
 
   const { candidateOrganization: organization } = data
+
+  fetchOperationPolicies(
+    client,
+    CANDIDATE_ORGANIZATION_POLICY_QUERY,
+    ['editing']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+  })
 
   const slugNameMapping = (() => {
     const map = {}

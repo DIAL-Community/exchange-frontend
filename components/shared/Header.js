@@ -104,7 +104,7 @@ const Header = ({ isOnAuthPage = false }) => {
         <Link href='/' className='my-auto'>
           <img
             className='object-center object-contain max-h-16 w-auto'
-            src={`//${exchangeLogoUrl}`}
+            src={exchangeLogoUrl ? `//${exchangeLogoUrl}` : '/ui/v1/exchange-logo.svg'}
             alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
         </Link>

@@ -1,5 +1,5 @@
-import { useCallback, useRef } from 'react'
-import { useIntl } from 'react-intl'
+import { useRef, useState } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -10,20 +10,11 @@ import ResourceDetailLeft from './ResourceDetailLeft'
 import ResourceDetailRight from './ResourceDetailRight'
 
 const ResourceDetail = ({ slug, country }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
   const scrollRef = useRef(null)
   const client = useApolloClient()
 
-  const policies = fetchOperationPolicies(
-    client,
-    RESOURCE_POLICY_QUERY,
-    ['editing', 'deleting']
-  )
-
-  const editingAllowed = policies['editing']
-  const deletingAllowed = policies['deleting']
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(RESOURCE_DETAIL_QUERY, {
     variables: { slug },
@@ -44,12 +35,21 @@ const ResourceDetail = ({ slug, country }) => {
 
   const { resource } = data
 
+  fetchOperationPolicies(
+    client,
+    RESOURCE_POLICY_QUERY,
+    ['editing', 'deleting']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+    setDeletingAllowed(policies['deleting'])
+  })
+
   const slugNameMapping = (() => {
     const map = {}
     map[resource.slug] = resource.name
 
     if (country) {
-      map['countries'] = format('hub.breadcrumb.country')
+      map['countries'] = <FormattedMessage id='hub.breadcrumb.country' />
       map[country.slug] = country.name
     }
 

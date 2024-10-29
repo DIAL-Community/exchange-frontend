@@ -50,9 +50,10 @@ describe('Unit tests for the building block detail page.', () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
-          mockBuildingBlockPolicies,
           mockBuildingBlock,
-          mockBuildingBlockComments
+          mockBuildingBlockComments,
+          mockBuildingBlockPolicies,
+          mockBuildingBlockPolicies
         ]}
       >
         <QueryParamContextProvider>
@@ -114,7 +115,6 @@ describe('Unit tests for the building block detail page.', () => {
 
   test('Should render edit page for logged in user.', async () => {
     mockNextAuthUseSession()
-
     const mockCreateBuildingBlock = generateMockApolloData(
       CREATE_BUILDING_BLOCK,
       {
@@ -129,6 +129,7 @@ describe('Unit tests for the building block detail page.', () => {
       null,
       createBuildingBlock
     )
+
     const mockBuildingBlockPaginationAttribute = generateMockApolloData(
       BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY,
       {
@@ -137,6 +138,7 @@ describe('Unit tests for the building block detail page.', () => {
       null,
       buildingBlockPaginationAttribute
     )
+
     const mockPaginatedBuildingBlocks = generateMockApolloData(
       PAGINATED_BUILDING_BLOCKS_QUERY,
       {
@@ -148,12 +150,21 @@ describe('Unit tests for the building block detail page.', () => {
       paginatedBuildingBlocks
     )
 
+    const mockBuildingBlockPolicies = generateMockApolloData(
+      BUILDING_BLOCK_POLICY_QUERY,
+      { 'slug': 'xchange-graph-query-context-policies' },
+      null,
+      { data: { buildingBlock: null } }
+    )
+
     const { container } = render(
       <CustomMockedProvider
         mocks={[
+          mockBuildingBlockPolicies,
           mockBuildingBlock,
           mockCreateBuildingBlock,
           mockBuildingBlockComments,
+          mockBuildingBlockPolicies,
           mockPaginatedBuildingBlocks,
           mockBuildingBlockPaginationAttribute
         ]}

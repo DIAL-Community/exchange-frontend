@@ -47,7 +47,14 @@ describe('Unit tests for the opportunity detail page.', () => {
 
   test('Should render detail of a opportunity.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOpportunityPolicies, mockOpportunity, mockOpportunityComments]}>
+      <CustomMockedProvider
+        mocks={[
+          mockOpportunityPolicies,
+          mockOpportunityPolicies,
+          mockOpportunity,
+          mockOpportunityComments
+        ]}
+      >
         <QueryParamContextProvider>
           <OpportunityDetail slug='market-entry-in-north-macedonia' />
         </QueryParamContextProvider>

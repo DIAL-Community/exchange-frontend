@@ -56,7 +56,7 @@ export const mockTenantApi = (tenant = 'default', secured = false, hostname = 'd
 /**
  * Default properties of mocked useSession implementation.
  */
-export const sessionDefaultValues = {
+const sessionDefaultValues = {
   data: {
     user: {
       id: 1,
@@ -70,7 +70,7 @@ export const sessionDefaultValues = {
   status: 'authenticated'
 }
 
-export const statuses = {
+const statuses = {
   AUTHENTICATED: 'authenticated',
   LOADING: 'loading',
   UNAUTHENTICATED: 'unauthenticated'

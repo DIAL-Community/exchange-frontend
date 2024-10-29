@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT, GRAPH_QUERY_POLICY_SLUG } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -12,15 +12,8 @@ const CategoryIndicatorDetail = ({ categorySlug, indicatorSlug }) => {
   const scrollRef = useRef(null)
   const client = useApolloClient()
 
-  const policies = fetchOperationPolicies(
-    client,
-    CATEGORY_INDICATOR_POLICY_QUERY,
-    ['editing', 'deleting'],
-    { categorySlug: GRAPH_QUERY_POLICY_SLUG, indicatorSlug: GRAPH_QUERY_POLICY_SLUG }
-  )
-
-  const editingAllowed = policies['editing']
-  const deletingAllowed = policies['deleting']
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(CATEGORY_INDICATOR_QUERY, {
     variables: { categorySlug, indicatorSlug },
@@ -40,6 +33,16 @@ const CategoryIndicatorDetail = ({ categorySlug, indicatorSlug }) => {
   }
 
   const { categoryIndicator, rubricCategory } = data
+
+  fetchOperationPolicies(
+    client,
+    CATEGORY_INDICATOR_POLICY_QUERY,
+    ['editing', 'deleting'],
+    { categorySlug: GRAPH_QUERY_POLICY_SLUG, indicatorSlug: GRAPH_QUERY_POLICY_SLUG }
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+    setDeletingAllowed(policies['deleting'])
+  })
 
   const slugNameMapping = (() => {
     const map = {}
