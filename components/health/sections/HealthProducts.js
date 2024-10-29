@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
+import { Link } from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { FilterContext } from '../../context/FilterContext'
@@ -91,7 +92,9 @@ const HealthProducts = ({ onlyFeatured = false }) => {
       { onlyFeatured &&
         <div className='text-3xl leading-tight font-bold py-3 pl-8 text-health-blue flex flex-row justify-between'>
           Featured Products
-          <div className='inline text-lg flex pr-8 lg:pr-16'><a href='/health.products'>See all solutions</a></div>
+          <div className='inline text-lg flex pr-8 lg:pr-16'>
+            <Link href='/health/products'>See all solutions</Link>
+          </div>
         </div>
       }
       <ListStructure
