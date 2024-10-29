@@ -49,10 +49,10 @@ const ProductRepositoryEdit = ({ productSlug, repositorySlug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <ProductRepositoryEditLeft product={product} scrollRef={scrollRef} />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <ProductRepositoryForm
             ref={scrollRef}
             product={product}

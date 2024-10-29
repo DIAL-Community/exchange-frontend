@@ -56,10 +56,10 @@ const CandidateStatusDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <CandidateStatusDetailLeft scrollRef={scrollRef} candidateStatus={candidateStatus} />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <CandidateStatusDetailRight
             ref={scrollRef}
             candidateStatus={candidateStatus}

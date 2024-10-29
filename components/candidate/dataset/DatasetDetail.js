@@ -54,10 +54,10 @@ const DatasetDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <DatasetDetailLeft dataset={dataset} scrollRef={scrollRef} />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <DatasetDetailRight ref={scrollRef} dataset={dataset} editingAllowed={editingAllowed} />
         </div>
       </div>

@@ -42,10 +42,10 @@ const SdgDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <SdgDetailLeft scrollRef={scrollRef} sdg={sdg} />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <SdgDetailRight ref={scrollRef} sdg={sdg} />
         </div>
       </div>

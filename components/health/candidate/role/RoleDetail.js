@@ -55,10 +55,10 @@ const RoleDetail = ({ id }) => {
         <hr className="border-b border-health-gray my-3" />
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <RoleDetailLeft scrollRef={scrollRef} role={role} />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <RoleDetailRight
             ref={scrollRef}
             role={role}

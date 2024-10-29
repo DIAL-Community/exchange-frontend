@@ -57,14 +57,14 @@ const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
         <hr className="border-b border-health-gray my-3"/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <ProductRepositoryDetailLeft
             scrollRef={scrollRef}
             product={product}
             productRepository={productRepository}
           />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <ProductRepositoryDetailRight
             ref={scrollRef}
             product={product}

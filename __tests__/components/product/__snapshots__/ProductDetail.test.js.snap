@@ -26,7 +26,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
       class="flex flex-col lg:flex-row gap-x-8"
     >
       <div
-        class="lg:basis-1/3"
+        class="lg:basis-1/3 shrink-0"
       >
         <div
           class="bg-dial-slate-100 lg:h-full"
@@ -132,7 +132,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
         </div>
       </div>
       <div
-        class="lg:basis-2/3"
+        class="lg:basis-2/3 shrink-0"
       >
         <form>
           <div
@@ -465,7 +465,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
       class="flex flex-col lg:flex-row gap-x-8"
     >
       <div
-        class="lg:basis-1/3"
+        class="lg:basis-1/3 shrink-0"
       >
         <div
           class="bg-dial-slate-100 lg:h-full"
@@ -571,7 +571,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
         </div>
       </div>
       <div
-        class="lg:basis-2/3"
+        class="lg:basis-2/3 shrink-0"
       >
         <form>
           <div

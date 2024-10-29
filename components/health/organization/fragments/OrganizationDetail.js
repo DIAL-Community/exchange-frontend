@@ -57,13 +57,13 @@ const OrganizationDetail = ({ slug }) => {
         <hr className="border-b border-health-gray my-3"/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <OrganizationDetailLeft
             scrollRef={scrollRef}
             organization={organization}
           />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <OrganizationDetailRight
             ref={scrollRef}
             organization={organization}

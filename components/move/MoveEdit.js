@@ -54,7 +54,7 @@ const MoveEdit = ({ moveSlug, playSlug, playbookSlug, locale }) => {
         <div className='hidden lg:block basis-1/3'>
           <MoveEditLeft move={move} />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <MoveForm playbook={playbook} play={play} move={move} />
         </div>
       </div>

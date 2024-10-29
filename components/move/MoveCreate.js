@@ -53,7 +53,7 @@ const MoveCreate = ({ playSlug, playbookSlug, locale }) => {
         <div className='hidden lg:block basis-1/3'>
           <MoveEditLeft />
         </div>
-        <div className='lg:basis-2/3'>
+        <div className='lg:basis-2/3 shrink-0'>
           <MoveForm play={play} playbook={playbook} />
         </div>
       </div>
