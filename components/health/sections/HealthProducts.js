@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Link } from 'next/link'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { FilterContext } from '../../context/FilterContext'
