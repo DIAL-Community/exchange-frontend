@@ -2,10 +2,10 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
-import { CREATE_ORGANIZATION } from '../../../components/shared/mutation/organization'
+import { CREATE_STOREFRONT } from '../../../components/shared/mutation/organization'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  ORGANIZATION_DETAIL_QUERY, PAGINATED_STOREFRONTS_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY
+  PAGINATED_STOREFRONTS_QUERY, STOREFRONT_DETAIL_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY
 } from '../../../components/shared/query/organization'
 import StorefrontEdit from '../../../components/storefront/StorefrontEdit'
 import { render } from '../../test-utils'
@@ -18,9 +18,9 @@ mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the storefront detail page.', () => {
   const mockStorefront = generateMockApolloData(
-    ORGANIZATION_DETAIL_QUERY,
+    STOREFRONT_DETAIL_QUERY,
     {
-      'slug': 'ai4gov'
+      'slug': 'current-storefront'
     },
     null,
     storefrontDetail
@@ -40,12 +40,12 @@ describe('Unit tests for the storefront detail page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockStorefront, mockStorefrontComments]}>
         <QueryParamContextProvider>
-          <StorefrontEdit slug='ai4gov' />
+          <StorefrontEdit slug='current-storefront' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
 
-    expect(await screen.findByText('AI4GOV')).toBeInTheDocument()
+    expect(await screen.findByText('Current Storefront')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
@@ -68,17 +68,17 @@ describe('Unit tests for the storefront detail page.', () => {
       }]
     }
     const mockStorefrontPolicyQueryError = generateMockApolloData(
-      ORGANIZATION_DETAIL_QUERY,
+      STOREFRONT_DETAIL_QUERY,
       {
-        'slug': 'ai4gov'
+        'slug': 'current-storefront'
       },
       graphQueryErrors,
       null
     )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockStorefrontPolicyQueryError, mockStorefrontComments]}>
+      <CustomMockedProvider mocks={[mockStorefront, mockStorefrontPolicyQueryError, mockStorefrontComments]}>
         <QueryParamContextProvider>
-          <StorefrontEdit slug='ai4gov' />
+          <StorefrontEdit slug='current-storefront' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -89,13 +89,13 @@ describe('Unit tests for the storefront detail page.', () => {
     mockNextAuthUseSession()
 
     const mockCreateBuildingBlock = generateMockApolloData(
-      CREATE_ORGANIZATION,
+      CREATE_STOREFRONT,
       {
-        'name': 'AI4GOV - Edited',
-        'slug': 'ai4gov',
+        'name': 'Current Storefront - Edited',
+        'slug': 'current-storefront',
         'aliases': [''],
-        'website': 'www.ai4gov.net',
-        'description': 'Description for the organization.',
+        'website': 'google.com',
+        'description': '<p>Test storefront. Updating. Test.</p>',
         'hasStorefront': true
       },
       null,
@@ -128,19 +128,19 @@ describe('Unit tests for the storefront detail page.', () => {
         ]}
       >
         <QueryParamContextProvider>
-          <StorefrontEdit slug='ai4gov' />
+          <StorefrontEdit slug='current-storefront' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
 
-    expect(await screen.findByText('AI4GOV')).toBeInTheDocument()
+    expect(await screen.findByText('Current Storefront')).toBeInTheDocument()
 
-    const repositoryNameInput = screen.getByDisplayValue('AI4GOV')
-    expect(repositoryNameInput.value).toBe('AI4GOV')
+    const nameInput = screen.getByDisplayValue('Current Storefront')
+    expect(nameInput.value).toBe('Current Storefront')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' - Edited')
-    expect(repositoryNameInput.value).toBe('AI4GOV - Edited')
+    await user.type(nameInput, ' - Edited')
+    expect(nameInput.value).toBe('Current Storefront - Edited')
 
     const repositorySubmitButton = screen.getByText('Submit Storefront')
     await user.click(repositorySubmitButton)

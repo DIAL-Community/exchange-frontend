@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
-import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/organization'
+import { STOREFRONT_DETAIL_QUERY } from '../shared/query/organization'
 import StorefrontForm from './fragments/StorefrontForm'
 import StorefrontEditLeft from './StorefrontEditLeft'
 
@@ -12,7 +12,7 @@ const StorefrontEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(STOREFRONT_DETAIL_QUERY, {
     variables: { slug },
     context: {
       headers: {

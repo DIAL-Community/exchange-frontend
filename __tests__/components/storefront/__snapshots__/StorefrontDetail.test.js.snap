@@ -40,7 +40,7 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                AI4GOV
+                Current Storefront
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
@@ -51,7 +51,7 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
                   <img
                     alt="Logo of Storefront."
                     class="object-contain w-20 h-20"
-                    src="http://localhost:3000//assets/organizations/ai4gov.png"
+                    src="http://localhost:3000//assets/organizations/organization-placeholder.png"
                   />
                 </div>
               </div>
@@ -71,14 +71,14 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//www.ai4gov.net"
+                      href="//google.com"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        www.ai4gov.net
+                        google.com
                       </div>
                     </a>
                      ⧉
@@ -100,18 +100,9 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
                     />
                   </div>
                   <div
-                    class="flex flex-col gap-y-2"
+                    class="text-sm text-dial-stratos"
                   >
-                    <div>
-                      <div>
-                        Digital, Data, and Technology
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        Education and Social Development
-                      </div>
-                    </div>
+                    N/A
                   </div>
                 </div>
               </div>
@@ -135,7 +126,7 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
               <div
                 class="text-xl font-semibold"
               >
-                Edit AI4GOV
+                Edit Current Storefront
               </div>
               <div
                 class="flex flex-col gap-y-2"
@@ -216,7 +207,7 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
                     class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
                     id="website"
                     placeholder="Website"
-                    value="www.ai4gov.net"
+                    value="google.com"
                   />
                 </div>
               </div>
@@ -372,7 +363,7 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                AI4GOV - Edited
+                Current Storefront
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
@@ -383,7 +374,7 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
                   <img
                     alt="Logo of Storefront."
                     class="object-contain w-20 h-20"
-                    src="http://localhost:3000//assets/organizations/ai4gov.png"
+                    src="http://localhost:3000//assets/organizations/organization-placeholder.png"
                   />
                 </div>
               </div>
@@ -403,14 +394,14 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
                   >
                     <a
                       class="flex border-b border-dial-iris-blue "
-                      href="//www.ai4gov.net"
+                      href="//google.com"
                       rel="noreferrer"
                       target="_blank"
                     >
                       <div
                         class="line-clamp-1 break-all"
                       >
-                        www.ai4gov.net
+                        google.com
                       </div>
                     </a>
                      ⧉
@@ -432,18 +423,9 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
                     />
                   </div>
                   <div
-                    class="flex flex-col gap-y-2"
+                    class="text-sm text-dial-stratos"
                   >
-                    <div>
-                      <div>
-                        Digital, Data, and Technology
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        Education and Social Development
-                      </div>
-                    </div>
+                    N/A
                   </div>
                 </div>
               </div>
@@ -467,7 +449,7 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
               <div
                 class="text-xl font-semibold"
               >
-                Edit AI4GOV - Edited
+                Edit Current Storefront
               </div>
               <div
                 class="flex flex-col gap-y-2"
@@ -548,7 +530,7 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
                     class="url w-full text-sm placeholder-dial-gray border-0 py-0 px-0 focus:outline-0"
                     id="website"
                     placeholder="Website"
-                    value="www.ai4gov.net"
+                    value="google.com"
                   />
                 </div>
               </div>

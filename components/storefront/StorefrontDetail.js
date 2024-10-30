@@ -28,12 +28,13 @@ const StorefrontDetail = ({ slug }) => {
     fetchOperationPolicies(
       client,
       STOREFRONT_POLICY_QUERY,
-      ['editing', 'deleting']
+      ['editing', 'deleting'],
+      { slug }
     ).then(policies => {
       setEditingAllowed(policies['editing'])
       setDeletingAllowed(policies['deleting'])
     })
-  }, [client])
+  }, [client, slug])
 
   if (loading) {
     return handleLoadingQuery()

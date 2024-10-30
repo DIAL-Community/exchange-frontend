@@ -12,7 +12,7 @@ import IconButton from '../../shared/form/IconButton'
 import Input from '../../shared/form/Input'
 import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
-import { CREATE_ORGANIZATION } from '../../shared/mutation/organization'
+import { CREATE_STOREFRONT } from '../../shared/mutation/organization'
 import { PAGINATED_STOREFRONTS_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
@@ -30,7 +30,7 @@ const StorefrontForm = React.memo(({ organization }) => {
   const router = useRouter()
   const { locale } = router
 
-  const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
+  const [updateOrganization, { reset }] = useMutation(CREATE_STOREFRONT, {
     refetchQueries: [{
       query: STOREFRONT_PAGINATION_ATTRIBUTES_QUERY,
       variables: { search: '' },
