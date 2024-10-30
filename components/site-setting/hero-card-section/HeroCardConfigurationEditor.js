@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
@@ -26,7 +27,12 @@ const HeroCardConfigurationEditor = (props) => {
   const [updateExchangeHeroCard, { reset }] = useMutation(UPDATE_SITE_SETTING_HERO_CARD_CONFIGURATION, {
     refetchQueries: [{
       query: SITE_SETTING_DETAIL_QUERY,
-      variables: { slug: siteSettingSlug }
+      variables: { slug: siteSettingSlug },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onError: (error) => {
       showFailureMessage(error?.message)

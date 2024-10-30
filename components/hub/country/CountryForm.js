@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import ValidationError from '../../shared/form/ValidationError'
@@ -29,10 +30,20 @@ const CountryForm = React.memo(({ country, setEditing }) => {
   const [updateCountry, { reset }] = useMutation(CREATE_COUNTRY, {
     refetchQueries: [{
       query: COUNTRY_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_COUNTRIES_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       if (data.createCountry.country && data.createCountry.errors.length === 0) {

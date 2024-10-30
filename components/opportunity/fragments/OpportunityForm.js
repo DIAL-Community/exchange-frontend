@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import Checkbox from '../../shared/form/Checkbox'
@@ -39,10 +40,20 @@ const OpportunityForm = React.memo(({ opportunity }) => {
   const [updateOpportunity, { reset }] = useMutation(CREATE_OPPORTUNITY, {
     refetchQueries: [{
       query: OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_OPPORTUNITIES_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       if (data.createOpportunity.opportunity && data.createOpportunity.errors.length === 0) {

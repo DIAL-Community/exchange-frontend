@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
@@ -28,10 +29,20 @@ const CityForm = React.memo(({ city }) => {
   const [updateCity, { reset }] = useMutation(CREATE_CITY, {
     refetchQueries: [{
       query: CITY_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_CITIES_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       if (data.createCity.city && data.createCity.errors.length === 0) {

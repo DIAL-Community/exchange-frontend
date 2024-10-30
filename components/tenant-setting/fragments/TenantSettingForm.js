@@ -4,6 +4,7 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
@@ -26,7 +27,12 @@ const TenantSettingForm = React.memo(({ tenantSetting }) => {
   const [updateTenantSetting, { reset }] = useMutation(CREATE_TENANT_SETTING, {
     refetchQueries: [{
       query: TENANT_SETTINGS_QUERY,
-      variables: {}
+      variables: {},
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { createTenantSetting: response } = data

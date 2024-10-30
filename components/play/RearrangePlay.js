@@ -1,9 +1,10 @@
-import { useMutation } from '@apollo/client'
-import { Dialog, Transition } from '@headlessui/react'
-import classNames from 'classnames'
 import { Fragment, useCallback, useContext, useState } from 'react'
+import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { Dialog, Transition } from '@headlessui/react'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
@@ -130,7 +131,12 @@ const RearrangeControls = ({ playbook, onClose }) => {
     {
       refetchQueries: [{
         query: PLAYS_QUERY,
-        variables: { playbookSlug: playbook.slug, owner: 'public' }
+        variables: { playbookSlug: playbook.slug, owner: 'public' },
+        context: {
+          headers: {
+            ...GRAPH_QUERY_CONTEXT.VIEWING
+          }
+        }
       }],
       onCompleted: (data) => {
         const { updatePlaybookPlays: response } = data

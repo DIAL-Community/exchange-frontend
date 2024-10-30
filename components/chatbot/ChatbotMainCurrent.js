@@ -104,6 +104,11 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
       variables: {
         currentIdentifier: currentConversation?.identifier ?? '',
         sessionIdentifier: currentConversation?.sessionIdentifier ?? existingSessionIdentifier
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }],
     onCompleted: (data) => {

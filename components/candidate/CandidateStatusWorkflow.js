@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { ToastContext } from '../../lib/ToastContext'
 import EditButton from '../shared/form/EditButton'
 import { HtmlEditor } from '../shared/form/HtmlEditor'
@@ -40,17 +41,32 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery, editing
       variables: {
         commentObjectId: parseInt(candidate.id),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }, {
       query: COMMENTS_QUERY,
       variables: {
         commentObjectId: parseInt(candidate.id),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }, {
       query: CANDIDATE_PRODUCT_DETAIL_QUERY,
       variables: {
         slug: candidate.slug
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }],
     onCompleted: (data) => {

@@ -4,6 +4,7 @@ import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
@@ -32,7 +33,12 @@ const StorefrontForm = React.memo(({ organization }) => {
   const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
     refetchQueries: [{
       query: STOREFRONT_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_STOREFRONTS_QUERY,
       variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }

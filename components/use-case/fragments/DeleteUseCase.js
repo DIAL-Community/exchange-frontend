@@ -25,10 +25,20 @@ const DeleteUseCase = ({ useCase }) => {
   const [deleteUseCase, { called, reset }] = useMutation(DELETE_USE_CASE, {
     refetchQueries: [{
       query: USE_CASE_DETAIL_QUERY,
-      variables: { slug: useCase.slug }
+      variables: { slug: useCase.slug },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_USE_CASES_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { deleteUseCase: response } = data

@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import Checkbox from '../../shared/form/Checkbox'
 import GeocodeAutocomplete from '../../shared/form/GeocodeAutocomplete'
@@ -37,9 +38,20 @@ const MessageForm = ({ message }) => {
   const [createMessage, { reset }] = useMutation(CREATE_MESSAGE, {
     refetchQueries: [{
       query: PAGINATED_MESSAGES_QUERY,
-      variables: { limit: MESSAGE_PAGE_SIZE, offset: 0 }
+      variables: { limit: MESSAGE_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
-      query: MESSAGE_PAGINATION_ATTRIBUTES_QUERY
+      query: MESSAGE_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onError: (error) => {
       showFailureMessage(error?.message)

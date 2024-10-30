@@ -23,10 +23,24 @@ const DatasetSpreadsheet = () => {
 
   const [updateAssocData] = useMutation(CREATE_SPREADSHEET_MUTATION)
   const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, {
-    refetchQueries: [DATASET_SPREADSHEET_QUERY]
+    refetchQueries: [{
+      query: DATASET_SPREADSHEET_QUERY,
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }]
   })
   const [deleteSpreadsheetData] = useMutation(DELETE_SPREADSHEET_MUTATION, {
-    refetchQueries: [DATASET_SPREADSHEET_QUERY]
+    refetchQueries: [{
+      query: DATASET_SPREADSHEET_QUERY,
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }]
   })
 
   const { loading, error, data } = useQuery(DATASET_SPREADSHEET_QUERY, {

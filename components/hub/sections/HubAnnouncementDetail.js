@@ -38,12 +38,22 @@ const AnnouncementDetail = ({ announcement }) => {
         messageType: DPI_ANNOUNCEMENT_MESSAGE_TYPE,
         limit: MESSAGE_PAGE_SIZE,
         offset: 0
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }, {
       query: MESSAGE_PAGINATION_ATTRIBUTES_QUERY,
       variables: {
         visibleOnly: true,
         messageType: DPI_ANNOUNCEMENT_MESSAGE_TYPE
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }],
     onError: (error) => {

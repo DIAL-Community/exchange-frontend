@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { ToastContext } from '../../../../lib/ToastContext'
 import Checkbox from '../../../shared/form/Checkbox'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
@@ -37,10 +38,20 @@ const OrganizationForm = React.memo(({ organization }) => {
   const [updateOrganization, { reset }] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
     refetchQueries: [{
       query: CANDIDATE_ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_CANDIDATE_ORGANIZATIONS_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { createCandidateOrganization: response } = data

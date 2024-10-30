@@ -1,9 +1,9 @@
-import { useMutation } from '@apollo/client'
+import { useCallback, useContext, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
@@ -34,7 +34,6 @@ const PlaybookFilter = () => {
   }
 
   const [applyAsContentEditor, { reset }] = useMutation(APPLY_AS_CONTENT_EDITOR, {
-    refetchQueries: ['CandidateRole'],
     onCompleted: (data) => {
       const { applyAsContentEditor: response } = data
       if (!response?.candidateRole || response?.errors?.length > 0) {

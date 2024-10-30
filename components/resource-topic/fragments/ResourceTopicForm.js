@@ -53,10 +53,20 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
   const [updateResourceTopic, { reset }] = useMutation(CREATE_RESOURCE_TOPIC, {
     refetchQueries: [{
       query: RESOURCE_TOPIC_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_RESOURCE_TOPICS_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       if (data.createResourceTopic.resourceTopic && data.createResourceTopic.errors.length === 0) {

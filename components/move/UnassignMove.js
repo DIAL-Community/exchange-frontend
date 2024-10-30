@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
@@ -25,7 +26,12 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
   const [deletePlayMove, { called, reset }] = useMutation(UNASSIGN_PLAY_MOVE, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: playbookSlug, owner: 'public' }
+      variables: { slug: playbookSlug, owner: 'public' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { deletePlayMove: response } = data

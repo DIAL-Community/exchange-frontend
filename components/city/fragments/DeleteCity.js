@@ -2,6 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
@@ -24,10 +25,20 @@ const DeleteCity = ({ city }) => {
   const [deleteCity, { called, reset }] = useMutation(DELETE_CITY, {
     refetchQueries: [{
       query: CITY_DETAIL_QUERY,
-      variables: { slug: city.slug }
+      variables: { slug: city.slug },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_CITIES_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { deleteCity: response } = data

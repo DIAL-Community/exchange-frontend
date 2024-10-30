@@ -252,12 +252,22 @@ const ProductDetailMaturityScores = ({ productId, slug, editingAllowed, overallM
         variables: {
           commentObjectId: parseInt(productId),
           commentObjectType: ObjectType.CANDIDATE_PRODUCT
+        },
+        context: {
+          headers: {
+            ...GRAPH_QUERY_CONTEXT.VIEWING
+          }
         }
       }, {
         query: COMMENTS_QUERY,
         variables: {
           commentObjectId: parseInt(productId),
           commentObjectType: ObjectType.CANDIDATE_PRODUCT
+        },
+        context: {
+          headers: {
+            ...GRAPH_QUERY_CONTEXT.VIEWING
+          }
         }
       }],
       onCompleted: (data) => {

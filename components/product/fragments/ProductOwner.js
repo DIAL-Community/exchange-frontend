@@ -86,7 +86,18 @@ const ProductOwner = ({ product }) => {
   }
 
   const [applyAsOwner, { reset }] = useMutation(APPLY_AS_OWNER, {
-    refetchQueries: ['CandidateRole'],
+    refetchQueries: [{
+      query: OWNER_CANDIDATE_ROLE_DETAIL_QUERY,
+      variables: {
+        email: user?.userEmail,
+        productId: product.id
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }],
     onCompleted: (data) => {
       const { applyAsOwner: response } = data
       if (!response?.candidateRole || response?.errors?.length > 0) {

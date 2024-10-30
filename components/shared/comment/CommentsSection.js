@@ -46,13 +46,22 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
-    },
-    {
+    }, {
       query: COMMENTS_QUERY,
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }]
   })
@@ -62,13 +71,22 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
-    },
-    {
+    }, {
       query: COMMENTS_QUERY,
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }]
   })

@@ -22,8 +22,26 @@ const ProductSpreadsheet = () => {
   const { locale } = useRouter()
 
   const [updateAssocData] = useMutation(CREATE_SPREADSHEET_MUTATION)
-  const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, { refetchQueries: [PRODUCT_SPREADSHEET_QUERY] })
-  const [deleteSpreadsheetData] = useMutation(DELETE_SPREADSHEET_MUTATION, { refetchQueries: [PRODUCT_SPREADSHEET_QUERY] })
+  const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, {
+    refetchQueries: [{
+      query: PRODUCT_SPREADSHEET_QUERY,
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }]
+  })
+  const [deleteSpreadsheetData] = useMutation(DELETE_SPREADSHEET_MUTATION, {
+    refetchQueries: [{
+      query: PRODUCT_SPREADSHEET_QUERY,
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }]
+  })
 
   const { loading, error, data } = useQuery(PRODUCT_SPREADSHEET_QUERY, {
     context: {

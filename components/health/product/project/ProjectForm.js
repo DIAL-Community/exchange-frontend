@@ -42,15 +42,29 @@ const ProjectForm = React.memo(({
   const [updateProject, { reset }] = useMutation(CREATE_PROJECT, {
     refetchQueries: [{
       query: PROJECT_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_PROJECTS_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
-    },
-    {
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }, {
       query: PROJECT_SEARCH_QUERY,
       variables: {
         search: projectsInput
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }],
     onCompleted: (data) => {

@@ -2,6 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
@@ -23,7 +24,12 @@ const DeleteTenantSetting = ({ tenantSetting }) => {
   const [deleteTenantSetting, { called, reset }] = useMutation(DELETE_TENANT_SETTING, {
     refetchQueries: [{
       query: TENANT_SETTINGS_QUERY,
-      variables: {}
+      variables: {},
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { deleteTenantSetting: response } = data

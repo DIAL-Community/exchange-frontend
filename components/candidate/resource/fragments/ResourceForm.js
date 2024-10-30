@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import Input from '../../../shared/form/Input'
@@ -54,10 +55,20 @@ const ResourceForm = React.memo(({ candidateResource, country }) => {
   const [updateResource, { reset }] = useMutation(CREATE_CANDIDATE_RESOURCE, {
     refetchQueries: [{
       query: CANDIDATE_RESOURCE_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_CANDIDATE_RESOURCES_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { createCandidateResource: response } = data

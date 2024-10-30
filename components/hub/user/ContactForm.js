@@ -4,6 +4,7 @@ import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaPlus, FaSpinner, FaTrash } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
@@ -42,7 +43,12 @@ const ContactForm = ({ user, contact }) => {
   const [updateContact, { reset }] = useMutation(CREATE_CONTACT, {
     refetchQueries: [{
       query: HUB_CONTACT_DETAIL_QUERY,
-      variables: { userId: user?.id, email: user?.email, source: DPI_TENANT_NAME }
+      variables: { userId: user?.id, email: user?.email, source: DPI_TENANT_NAME },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { createContact: response } = data
