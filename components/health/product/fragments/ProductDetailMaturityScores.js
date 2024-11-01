@@ -117,7 +117,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
   const sortMaturityScoreDetails = useCallback(
     (data) =>
       data
-        ?.filter(({ overallScore }) => overallScore > 0)
+        ?.filter(({ overallScore }) => overallScore > -1)
         .sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name)),
     []
   )

@@ -52,7 +52,7 @@ const faqs = [
     Marketplace is to showcase local innovation, and solutions that have been designed by African entrepreneurs to \
     address use cases that they have identified. \
     <br /><br />For a list of open source health solutions vetted by Digital Square, please visit \
-    <a href="https://exchange.dial.global/products?shareCatalog=true&origins=2--Digital%20Square" \
+    <a href="https://globalgoodsguidebook.org/" \
     className="text-health-blue" target="_blank" rel="noreferrer">this page</a>'
   }
 ]
