@@ -1,7 +1,7 @@
-import HubFooter from '../../components/hub/sections/HubFooter'
-import HubHeader from '../../components/hub/sections/HubHeader'
 import HealthFooter from '../../components/health/sections/HealthFooter'
 import HealthHeader from '../../components/health/sections/HealthHeader'
+import HubFooter from '../../components/hub/sections/HubFooter'
+import HubHeader from '../../components/hub/sections/HubHeader'
 import { Loading } from '../../components/shared/FetchStatus'
 import Footer from '../../components/shared/Footer'
 import Header from '../../components/shared/Header'
@@ -12,7 +12,7 @@ const AuthLayoutPage = ({ isOnAuthPage, children }) => {
 
   return (
     <>
-      { waitingActiveTenant
+      { waitingActiveTenant || !tenant
         ? <Loading />
         : tenant === 'dpi'
           ? <>
