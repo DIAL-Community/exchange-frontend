@@ -32,7 +32,7 @@ const ProductListPage = ({ defaultTenants }) => {
         title={format('ui.product.header')}
         description={
           format(
-            'shared.metadata.description.listOfKey',
+            'health.metadata.description.listOfKey',
             { entities: format('ui.product.header')?.toLocaleLowerCase() }
           )
         }
