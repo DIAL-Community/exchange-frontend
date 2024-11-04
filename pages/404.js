@@ -20,18 +20,14 @@ const Custom404 = () => {
   const health404 =
   <>
     <HealthHeader />
-    <div className='min-h-[70vh] bg-dial-alice-blue'>
-      <NotFound />
-    </div>
+    <NotFound />
     <HealthFooter />
   </>
 
   const dpi404 =
     <>
       <HubHeader />
-      <div className='min-h-[70vh] bg-dial-alice-blue'>
-        <NotFound />
-      </div>
+      <NotFound />
       <HubFooter />
     </>
 

@@ -20,18 +20,14 @@ const Custom500 = () => {
   const health500 =
   <>
     <HealthHeader />
-    <div className='min-h-[70vh] bg-dial-alice-blue'>
-      <InternalServerError />
-    </div>
+    <InternalServerError />
     <HealthFooter />
   </>
 
   const dpi500 =
     <>
       <HubHeader />
-      <div className='min-h-[70vh] bg-dial-alice-blue'>
-        <InternalServerError />
-      </div>
+      <InternalServerError />
       <HubFooter />
     </>
 
