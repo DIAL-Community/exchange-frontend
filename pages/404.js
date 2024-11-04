@@ -1,3 +1,5 @@
+import HealthFooter from '../components/health/sections/HealthFooter'
+import HealthHeader from '../components/health/sections/HealthHeader'
 import HubFooter from '../components/hub/sections/HubFooter'
 import HubHeader from '../components/hub/sections/HubHeader'
 import { Loading, NotFound } from '../components/shared/FetchStatus'
@@ -15,6 +17,15 @@ const Custom404 = () => {
       <Footer />
     </>
 
+  const health404 =
+  <>
+    <HealthHeader />
+    <div className='min-h-[70vh] bg-dial-alice-blue'>
+      <NotFound />
+    </div>
+    <HealthFooter />
+  </>
+
   const dpi404 =
     <>
       <HubHeader />
@@ -26,11 +37,13 @@ const Custom404 = () => {
 
   return (
     <>
-      { waitingActiveTenant
+      { waitingActiveTenant || !tenant
         ? <Loading />
         : tenant === 'dpi'
           ? dpi404
-          : default404
+          : tenant === 'health'
+            ? health404
+            : default404
       }
     </>
   )

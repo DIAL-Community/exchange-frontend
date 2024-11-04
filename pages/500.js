@@ -1,3 +1,5 @@
+import HealthFooter from '../components/health/sections/HealthFooter'
+import HealthHeader from '../components/health/sections/HealthHeader'
 import HubFooter from '../components/hub/sections/HubFooter'
 import HubHeader from '../components/hub/sections/HubHeader'
 import { InternalServerError, Loading } from '../components/shared/FetchStatus'
@@ -15,6 +17,15 @@ const Custom500 = () => {
       <Footer />
     </>
 
+  const health500 =
+  <>
+    <HealthHeader />
+    <div className='min-h-[70vh] bg-dial-alice-blue'>
+      <InternalServerError />
+    </div>
+    <HealthFooter />
+  </>
+
   const dpi500 =
     <>
       <HubHeader />
@@ -26,11 +37,13 @@ const Custom500 = () => {
 
   return (
     <>
-      { waitingActiveTenant
+      { waitingActiveTenant || !tenant
         ? <Loading />
         : tenant === 'dpi'
           ? dpi500
-          : default500
+          : tenant === 'health'
+            ? health500
+            : default500
       }
     </>
   )
