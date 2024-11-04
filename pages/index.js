@@ -11,7 +11,7 @@ const RootPage = ({ dpiTenants, defaultTenants }) => {
 
   return (
     <>
-      { waitingActiveTenant
+      { waitingActiveTenant || !tenant
         ? <Loading />
         : tenant === 'dpi'
           ? <HubPage dpiTenants={dpiTenants} />
