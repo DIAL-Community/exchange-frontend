@@ -14,13 +14,8 @@ const AboutPage = ({ defaultTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('ui.product.header')}
-        description={
-          format(
-            'shared.metadata.description.listOfKey',
-            { entities: format('ui.product.header')?.toLocaleLowerCase() }
-          )
-        }
+        title={format('health.title')}
+        description={format('seo.health.description.about')}
       />
       <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
