@@ -19,7 +19,8 @@ const CatalogSeo = ({ currentTenant }) => {
   })
 
   const titleForTenant = (tenantName) => {
-    return tenantName !== 'dpi' ? format('app.title') : format('hub.title')
+    return tenantName === 'dpi' ? format('hub.title') :
+      tenantName === 'health' ? format('health.title') : format('app.title')
   }
 
   useEffect(() => {

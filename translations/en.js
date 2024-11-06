@@ -1637,6 +1637,10 @@ export const en = {
   'shared.categoryIndicator.type.boolean.false': 'false',
   'shared.categoryIndicator.assigned': 'Category Indicators with data',
   'shared.categoryIndicator.notAssigned': 'Category Indicators without data',
+  'health.metadata.description.listOfKey': `
+    List of key {entities} provided by the Africa HealthTech Marketplace, to support users in the discovery of 
+    locally developed HealthTech innovations.
+  `,
 
   'seo.description.about': `
     The Digital Impact Exchange is an interactive online tool providing data and resources for donors, governments,
@@ -1645,6 +1649,10 @@ export const en = {
   'seo.description.maps': `
     Interactive map views showing where specific digital platforms have been implemented
     as well as the countries where various digital development organizations work.
+  `,
+  'seo.health.description.about': `
+    The Africa CDC HealthTech Marketplace is an interactive online tool designed to showcase the best of African
+    HealthTech innovation, which enhances visibility and trust in local digital health innovations.
   `,
 
   'validation.required': 'This field is required',
@@ -2607,6 +2615,7 @@ export const en = {
 
   // Used for page view tracking on our analytics 
   'hub.title': 'Resources for DPI',
+  'health.title': 'HealthTech Marketplace',
   // -- end of page view tracking --
   
   'hub.landing.main.title': 'Resources for DPI',

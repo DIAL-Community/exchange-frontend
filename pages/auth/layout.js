@@ -12,7 +12,7 @@ const AuthLayoutPage = ({ isOnAuthPage, children }) => {
 
   return (
     <>
-      { waitingActiveTenant
+      { waitingActiveTenant || !tenant
         ? handleLoadingSession()
         : tenant === 'dpi'
           ? <>
