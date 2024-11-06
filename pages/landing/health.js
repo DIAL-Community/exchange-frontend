@@ -15,8 +15,8 @@ const HealthPage = ({ defaultTenants }) => {
   return (
     <>
       <NextSeo
-        title={format('app.title')}
-        description={format('seo.description.about')}
+        title={format('health.title')}
+        description={format('seo.health.description.about')}
       />
       <ClientOnly clientTenants={defaultTenants}>
         <QueryNotification />
