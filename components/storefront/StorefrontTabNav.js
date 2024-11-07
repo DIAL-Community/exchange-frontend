@@ -7,6 +7,7 @@ import TabNav from '../shared/TabNav'
 
 const StorefrontTabNav = ({ activeTab, setActiveTab }) => {
   const router = useRouter()
+  const [displayCreateButton, setDisplayCreateButton ] = useState(false)
 
   const [tabNames, setTabNames] = useState([
     'ui.storefront.header',
@@ -21,6 +22,7 @@ const StorefrontTabNav = ({ activeTab, setActiveTab }) => {
       }
     },
     onCompleted: () => {
+      setDisplayCreateButton(true)
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.storefront.createNew'),
         'ui.storefront.createNew'
@@ -35,7 +37,7 @@ const StorefrontTabNav = ({ activeTab, setActiveTab }) => {
   return (
     <TabNav
       { ...{ tabNames, activeTab, setActiveTab }}
-      createFn={createCandidateFn}
+      createFn={displayCreateButton ? createCandidateFn : null}
     />
   )
 }
