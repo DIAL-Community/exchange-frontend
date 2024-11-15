@@ -493,7 +493,7 @@ export const pt = {
   "general.unauthorized": "Não está autorizado a visualizar esta página",
   "general.ready-to-download": "O documento está pronto. Clique para transferir",
 
-  "view.switch.title": "Mudar Vista",
+  "app.toggleDisplayType": "Mudar Vista",
   "search.input.label": "Pesquisar em {entity}",
   "sdg.sdgTarget": "Objetivos SDG",
   "sdg.useCases": "Casos de Utilização",

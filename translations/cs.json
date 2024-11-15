@@ -493,7 +493,7 @@
   "general.unauthorized": "Nejste oprávněni zobrazit tuto stránku",
   "general.ready-to-download": "Váš dokument je připraven. Klikněte pro stažení",
 
-  "view.switch.title": "Přepnutí zobrazení",
+  "app.toggleDisplayType": "Přepnutí zobrazení",
   "search.input.label": "Hledat v {entity}",
   "sdg.sdgTarget": "SDG Cíle",
   "sdg.useCases": "Případy užití",

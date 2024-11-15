@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import classNames from 'classnames'
 import { FaSliders } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 
@@ -31,7 +32,9 @@ const MobileFilter = ({ iconColor, bgColor, entityFilter }) => {
       </div>
       {startFiltering &&
         <div
-          className={`absolute border-2 ${bgColor} z-[10]`}
+          className={classNames(
+            `absolute border-2 ${bgColor} z-[10]`
+          )}
           style={layerStyle}
         >
           <div className='px-6 py-3 flex flex-col'>

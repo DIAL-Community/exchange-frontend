@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/dom'
+import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import { ResourceFilterProvider } from '../../../components/context/ResourceFilterContext'
 import HubResources from '../../../components/hub/sections/HubResources'
@@ -71,7 +72,9 @@ describe('Unit tests for the opportunity detail page.', () => {
       >
         <QueryParamContextProvider>
           <ResourceFilterProvider>
-            <HubResources pageNumber={0} onClickHandler={() => { }} />
+            <FilterProvider>
+              <HubResources pageNumber={0} onClickHandler={() => { }} />
+            </FilterProvider>
           </ResourceFilterProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>

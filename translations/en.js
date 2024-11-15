@@ -682,7 +682,8 @@ export const en = {
   'general.unauthorized': 'You are not authorized to view this page',
   'general.ready-to-download': 'Your document is ready. Click to download',
 
-  'view.switch.title': 'Switch View',
+  'app.toggleDisplayType': 'Switch View',
+  
   'search.input.label': 'Search in {entity}',
   'sdg.sdgTarget': 'SDG Targets',
   'sdg.useCases': 'Use Cases',

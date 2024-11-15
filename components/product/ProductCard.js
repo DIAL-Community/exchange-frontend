@@ -1,6 +1,6 @@
+import { useCallback, useContext } from 'react'
 import parse from 'html-react-parser'
 import Link from 'next/link'
-import { useCallback, useContext } from 'react'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { FilterContext, FilterDispatchContext } from '../context/FilterContext'

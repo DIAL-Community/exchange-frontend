@@ -1,11 +1,15 @@
 import { createContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { MainDisplayType } from '../utils/constants'
 
 const FilterContext = createContext()
 const FilterDispatchContext = createContext()
 
 const FilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
+  const [displayType, setDisplayType] = useState(MainDisplayType.LIST)
+  const [displayFilter, setDisplayFilter] = useState(true)
+
   // Task tracker context only
   const [showFailedOnly, setShowFailedOnly] = useState(false)
   const [showGovStackOnly, setShowGovStackOnly] = useState(false)
@@ -118,6 +122,8 @@ const FilterProvider = ({ children }) => {
 
   const valueProps = {
     search,
+    displayType,
+    displayFilter,
 
     showFailedOnly,
     showGovStackOnly,
@@ -166,6 +172,9 @@ const FilterProvider = ({ children }) => {
 
   const dispatchProps = {
     setSearch,
+    setDisplayType,
+    setDisplayFilter,
+
     setShowFailedOnly,
     setShowGovStackOnly,
     setShowMature,

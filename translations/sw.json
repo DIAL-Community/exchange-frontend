@@ -400,7 +400,7 @@
   "general.unauthorized": "Hujaidhinishwa kutazama ukurasa huu",
   "general.ready-to-download": "Hati yako iko tayari. Bofya ili kupakua",
 
-  "view.switch.title": "Badili Muonekano",
+  "app.toggleDisplayType": "Badili Muonekano",
   "search.input.label": "Ingiza Neno Unalotafuta",
   "sdg.sdgTarget": "Malengo ya SDG",
   "sdg.useCases": "Hali ambapo inaweza kutumiwa",

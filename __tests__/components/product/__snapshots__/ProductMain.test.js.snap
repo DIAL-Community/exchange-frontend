@@ -9,314 +9,318 @@ exports[`Unit tests for the product main page. Should render list of products. 1
     class="px-4 lg:px-8 xl:px-56"
   >
     <div
-      class="grid grid-cols-3 gap-x-8"
+      class="flex gap-x-8"
     >
       <div
-        class="hidden md:block col-span-1"
+        class="hidden md:block basis-1/3 shrink-0 transition-[flex-basis] duration-700 ease-in-out overflow-hidden basis-1/3 shrink-0 basis-1/3 shrink-0"
       >
         <div
-          class="bg-dial-slate-100 h-full"
+          class="bg-dial-slate-100"
         >
           <div
-            class="flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3"
+            class="flex flex-row"
           >
             <div
-              class="flex flex-col gap-y-4 py-3"
+              class="flex-grow flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3"
             >
               <div
-                class="flex flex-col gap-y-2"
+                class="flex flex-col gap-y-4 py-3"
               >
                 <div
-                  class="text-sm font-semibold text-dial-sapphire"
+                  class="flex flex-col gap-y-2"
                 >
-                  Filter your results by
-                </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
-                <div
-                  class="flex flex-col gap-y-3"
-                >
-                  <a
-                    class="flex"
-                    href="#"
+                  <div
+                    class="text-sm font-semibold text-dial-sapphire"
                   >
-                    <div
-                      class="text-dial-stratos text-sm py-2"
-                    >
-                      Use Case
-                    </div>
-                    <svg
-                      class="ml-auto text-dial-stratos my-auto"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 16 16"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
-                <div
-                  class="flex flex-col gap-y-3"
-                >
-                  <a
-                    class="flex"
-                    href="#"
-                  >
-                    <div
-                      class="text-dial-stratos text-sm py-2"
-                    >
-                      Building Block
-                    </div>
-                    <svg
-                      class="ml-auto text-dial-stratos my-auto"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 16 16"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
-                <div
-                  class="flex flex-col gap-y-3"
-                >
-                  <a
-                    class="flex"
-                    href="#"
-                  >
-                    <div
-                      class="text-dial-stratos text-sm py-2"
-                    >
-                      Sector
-                    </div>
-                    <svg
-                      class="ml-auto text-dial-stratos my-auto"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 16 16"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
-                <div
-                  class="flex flex-col gap-y-3"
-                >
-                  <a
-                    class="flex"
-                    href="#"
-                  >
-                    <div
-                      class="text-dial-stratos text-sm py-2"
-                    >
-                      Tag
-                    </div>
-                    <svg
-                      class="ml-auto text-dial-stratos my-auto"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 16 16"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
-                <label
-                  class="flex py-2"
-                >
-                  <input
-                    class="h-5 w-5"
-                    type="checkbox"
+                    Filter your results by
+                  </div>
+                  <hr
+                    class="border-b border-dial-slate-200"
                   />
-                  <span
-                    class="mx-2 my-auto text-sm"
+                  <div
+                    class="flex flex-col gap-y-3"
                   >
-                    Show only linked with DPI
-                  </span>
-                </label>
-                <hr
-                  class="border-b border-dial-slate-200"
-                />
+                    <a
+                      class="flex"
+                      href="#"
+                    >
+                      <div
+                        class="text-dial-stratos text-sm py-2"
+                      >
+                        Use Case
+                      </div>
+                      <svg
+                        class="ml-auto text-dial-stratos my-auto"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 16 16"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <hr
+                    class="border-b border-dial-slate-200"
+                  />
+                  <div
+                    class="flex flex-col gap-y-3"
+                  >
+                    <a
+                      class="flex"
+                      href="#"
+                    >
+                      <div
+                        class="text-dial-stratos text-sm py-2"
+                      >
+                        Building Block
+                      </div>
+                      <svg
+                        class="ml-auto text-dial-stratos my-auto"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 16 16"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <hr
+                    class="border-b border-dial-slate-200"
+                  />
+                  <div
+                    class="flex flex-col gap-y-3"
+                  >
+                    <a
+                      class="flex"
+                      href="#"
+                    >
+                      <div
+                        class="text-dial-stratos text-sm py-2"
+                      >
+                        Sector
+                      </div>
+                      <svg
+                        class="ml-auto text-dial-stratos my-auto"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 16 16"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <hr
+                    class="border-b border-dial-slate-200"
+                  />
+                  <div
+                    class="flex flex-col gap-y-3"
+                  >
+                    <a
+                      class="flex"
+                      href="#"
+                    >
+                      <div
+                        class="text-dial-stratos text-sm py-2"
+                      >
+                        Tag
+                      </div>
+                      <svg
+                        class="ml-auto text-dial-stratos my-auto"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 16 16"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <hr
+                    class="border-b border-dial-slate-200"
+                  />
+                  <label
+                    class="flex py-2"
+                  >
+                    <input
+                      class="h-5 w-5"
+                      type="checkbox"
+                    />
+                    <span
+                      class="mx-2 my-auto text-sm"
+                    >
+                      Show only linked with DPI
+                    </span>
+                  </label>
+                  <hr
+                    class="border-b border-dial-slate-200"
+                  />
+                </div>
+                <div
+                  class="flex flex-col gap-y-2"
+                >
+                  <div
+                    class="text-sm font-semibold text-dial-sapphire"
+                  >
+                    <button
+                      type="button"
+                    >
+                      <div
+                        class="flex text-dial-sapphire gap-3"
+                      >
+                        <div
+                          class="my-auto"
+                        >
+                          Refine with more filters
+                        </div>
+                        <div
+                          class="ml-auto py-2 text-xl"
+                        >
+                          <svg
+                            fill="currentColor"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 448 512"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
               </div>
               <div
-                class="flex flex-col gap-y-2"
+                class="flex flex-col gap-3 py-3"
               >
                 <div
-                  class="text-sm font-semibold text-dial-sapphire"
+                  class="text-dial-sapphire font-semibold"
                 >
-                  <button
-                    type="button"
+                  Bookmark
+                </div>
+                <button
+                  class="group flex flex-row gap-x-3"
+                  type="button"
+                >
+                  <img
+                    alt="Logo of Bookmark."
+                    class="object-contain"
+                    height="40"
+                    src="/ui/v1/bookmark-icon.svg"
+                    width="40"
+                  />
+                  <div
+                    class="my-auto border-b border-transparent group-hover:border-dial-slate-500"
                   >
                     <div
-                      class="flex text-dial-sapphire gap-3"
+                      class="text-sm text-dial-stratos text-left"
+                    >
+                      Bookmark this page.
+                    </div>
+                  </div>
+                </button>
+                <div
+                  class="text-sm text-dial-stratos"
+                >
+                  Your bookmarks can be found in your Account page.
+                </div>
+              </div>
+              <hr
+                class="border-b border-dial-slate-200"
+              />
+              <div
+                class="flex flex-col gap-3 py-3"
+              >
+                <div
+                  class="text-dial-sapphire font-semibold"
+                >
+                  Share
+                </div>
+                <div
+                  class="flex flex-row gap-3"
+                >
+                  <button>
+                    <img
+                      alt="Logo of LinkedIn."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/linkedin-icon.svg"
+                      width="40"
+                    />
+                  </button>
+                  <button>
+                    <div
+                      class="bg-dial-iris-blue rounded-full w-[40px] h-[40px]"
                     >
                       <div
-                        class="my-auto"
+                        class="flex items-center h-full"
                       >
-                        Refine with more filters
-                      </div>
-                      <div
-                        class="ml-auto py-2 text-xl"
-                      >
-                        <svg
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 448 512"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-                          />
-                        </svg>
+                        <img
+                          alt="Logo of WhatsApp."
+                          class="my-auto mx-auto"
+                          height="20"
+                          src="/ui/v1/whatsapp-icon.svg"
+                          width="20"
+                        />
                       </div>
                     </div>
                   </button>
+                  <button>
+                    <img
+                      alt="Logo of Email."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/email-icon.svg"
+                      width="40"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      alt="Logo of Copy."
+                      class="object-contain"
+                      height="40"
+                      src="/ui/v1/copy-icon.svg"
+                      width="40"
+                    />
+                  </button>
                 </div>
               </div>
+              <hr
+                class="border-b border-dial-slate-200"
+              />
             </div>
-            <div
-              class="flex flex-col gap-3 py-3"
-            >
-              <div
-                class="text-dial-sapphire font-semibold"
-              >
-                Bookmark
-              </div>
-              <button
-                class="group flex flex-row gap-x-3"
-                type="button"
-              >
-                <img
-                  alt="Logo of Bookmark."
-                  class="object-contain"
-                  height="40"
-                  src="/ui/v1/bookmark-icon.svg"
-                  width="40"
-                />
-                <div
-                  class="my-auto border-b border-transparent group-hover:border-dial-slate-500"
-                >
-                  <div
-                    class="text-sm text-dial-stratos text-left"
-                  >
-                    Bookmark this page.
-                  </div>
-                </div>
-              </button>
-              <div
-                class="text-sm text-dial-stratos"
-              >
-                Your bookmarks can be found in your Account page.
-              </div>
-            </div>
-            <hr
-              class="border-b border-dial-slate-200"
-            />
-            <div
-              class="flex flex-col gap-3 py-3"
-            >
-              <div
-                class="text-dial-sapphire font-semibold"
-              >
-                Share
-              </div>
-              <div
-                class="flex flex-row gap-3"
-              >
-                <button>
-                  <img
-                    alt="Logo of LinkedIn."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/linkedin-icon.svg"
-                    width="40"
-                  />
-                </button>
-                <button>
-                  <div
-                    class="bg-dial-iris-blue rounded-full w-[40px] h-[40px]"
-                  >
-                    <div
-                      class="flex items-center h-full"
-                    >
-                      <img
-                        alt="Logo of WhatsApp."
-                        class="my-auto mx-auto"
-                        height="20"
-                        src="/ui/v1/whatsapp-icon.svg"
-                        width="20"
-                      />
-                    </div>
-                  </div>
-                </button>
-                <button>
-                  <img
-                    alt="Logo of Email."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/email-icon.svg"
-                    width="40"
-                  />
-                </button>
-                <button>
-                  <img
-                    alt="Logo of Copy."
-                    class="object-contain"
-                    height="40"
-                    src="/ui/v1/copy-icon.svg"
-                    width="40"
-                  />
-                </button>
-              </div>
-            </div>
-            <hr
-              class="border-b border-dial-slate-200"
-            />
           </div>
         </div>
       </div>
       <div
-        class="col-span-3 md:col-span-2"
+        class="flex-grow"
       >
         <div
           class="min-h-[50vh]"
@@ -351,416 +355,435 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </button>
               </div>
               <div
-                class="ml-auto w-full"
+                class="ml-auto w-full flex items-center gap-4"
               >
-                <label
-                  class="relative"
-                  for="search-bar"
+                <button
+                  class="text-sm font-medium text-gray-500 hover:text-gray-700"
                 >
-                  <input
-                    class="w-full border text-sm"
-                    id="search-bar"
-                    placeholder="Search"
-                    type="text"
-                    value=""
-                  />
                   <svg
-                    class="absolute top-1/2 transform -translate-y-1/2 right-2"
+                    class="w-6 h-6"
                     fill="currentColor"
                     height="1em"
                     stroke="currentColor"
                     stroke-width="0"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 512 512"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path
-                      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"
                     />
                   </svg>
-                </label>
+                  <span
+                    class="sr-only"
+                  >
+                    Switch View
+                  </span>
+                </button>
+                <div
+                  class="flex-grow"
+                >
+                  <label
+                    class="relative"
+                    for="search-bar"
+                  >
+                    <input
+                      class="w-full border text-sm"
+                      id="search-bar"
+                      placeholder="Search"
+                      type="text"
+                      value=""
+                    />
+                    <svg
+                      class="absolute top-1/2 transform -translate-y-1/2 right-2"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      />
+                      <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      />
+                    </svg>
+                  </label>
+                </div>
               </div>
             </div>
           </div>
           <div
             class="flex flex-col gap-3"
           >
-            <div>
-              <div
-                class="relative"
+            <div
+              class="relative"
+            >
+              <a
+                href="/products/aidr"
               >
-                <a
-                  href="/products/aidr"
+                <div
+                  class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-spearmint"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-spearmint"
+                    class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="w-20 h-20 mx-auto bg-white border"
+                    >
+                      <img
+                        alt="Logo of Product."
+                        class="object-contain w-16 h-16 mx-auto my-2"
+                        src="http://localhost:3000//assets/products/aidr.png"
+                      />
+                    </div>
+                    <div
+                      class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
                     >
                       <div
-                        class="w-20 h-20 mx-auto bg-white border"
+                        class="text-lg font-semibold text-dial-meadow"
                       >
-                        <img
-                          alt="Logo of Product."
-                          class="object-contain w-16 h-16 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/aidr.png"
-                        />
+                        AIDR
                       </div>
                       <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="line-clamp-4 text-dial-stratos"
+                      />
+                      <div
+                        class="flex gap-x-2 text-dial-stratos"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-meadow"
+                          class="text-sm"
                         >
-                          AIDR
+                          SDGs
+                           (
+                          0
+                          )
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="border-r border-dial-slate-400"
                         />
                         <div
-                          class="flex gap-x-2 text-dial-stratos"
+                          class="text-sm"
                         >
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Building Blocks
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
+                          Building Blocks
+                           (
+                          0
+                          )
                         </div>
                         <div
-                          class="flex gap-2 text-xs text-white"
+                          class="border-r border-dial-slate-400"
                         />
+                        <div
+                          class="text-sm"
+                        >
+                          Countries
+                           (
+                          0
+                          )
+                        </div>
                       </div>
+                      <div
+                        class="flex gap-2 text-xs text-white"
+                      />
                     </div>
                   </div>
-                </a>
-                <div
-                  class="absolute top-2 right-2"
-                >
-                  <label
-                    class="ml-auto flex gap-x-2 text-sm"
-                  >
-                    <input
-                      class="ring-0 focus:ring-0 h-5 w-5"
-                      type="checkbox"
-                    />
-                    Compare
-                  </label>
                 </div>
+              </a>
+              <div
+                class="absolute top-2 right-2"
+              >
+                <label
+                  class="ml-auto flex gap-x-2 text-sm"
+                >
+                  <input
+                    class="ring-0 focus:ring-0 h-5 w-5"
+                    type="checkbox"
+                  />
+                  Compare
+                </label>
               </div>
             </div>
-            <div>
-              <div
-                class="relative"
+            <div
+              class="relative"
+            >
+              <a
+                href="/products/ap_latam"
               >
-                <a
-                  href="/products/ap_latam"
+                <div
+                  class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                    class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="w-20 h-20 mx-auto"
+                    >
+                      <img
+                        alt="Logo of Product."
+                        class="object-contain w-16 h-16"
+                        src="http://localhost:3000//assets/products/product_placeholder.svg"
+                      />
+                    </div>
+                    <div
+                      class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
                     >
                       <div
-                        class="w-20 h-20 mx-auto"
+                        class="text-lg font-semibold text-dial-meadow"
                       >
-                        <img
-                          alt="Logo of Product."
-                          class="object-contain w-16 h-16"
-                          src="http://localhost:3000//assets/products/product_placeholder.svg"
-                        />
+                        AP Latam
                       </div>
                       <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="line-clamp-4 text-dial-stratos"
+                      >
+                        Some parsed description.
+                      </div>
+                      <div
+                        class="flex gap-x-2 text-dial-stratos"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-meadow"
+                          class="text-sm"
                         >
-                          AP Latam
+                          SDGs
+                           (
+                          4
+                          )
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="border-r border-dial-slate-400"
+                        />
+                        <div
+                          class="text-sm"
                         >
-                          Some parsed description.
+                          Building Blocks
+                           (
+                          0
+                          )
                         </div>
                         <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            4
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Building Blocks
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
+                          class="border-r border-dial-slate-400"
+                        />
                         <div
-                          class="flex gap-2 text-xs text-white"
+                          class="text-sm"
                         >
-                          <div
-                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
-                          >
-                            GOVSTACK
-                          </div>
+                          Countries
+                           (
+                          0
+                          )
+                        </div>
+                      </div>
+                      <div
+                        class="flex gap-2 text-xs text-white"
+                      >
+                        <div
+                          class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
+                        >
+                          GOVSTACK
                         </div>
                       </div>
                     </div>
                   </div>
-                </a>
-                <div
-                  class="absolute top-2 right-2"
-                >
-                  <label
-                    class="ml-auto flex gap-x-2 text-sm"
-                  >
-                    <input
-                      class="ring-0 focus:ring-0 h-5 w-5"
-                      type="checkbox"
-                    />
-                    Compare
-                  </label>
                 </div>
+              </a>
+              <div
+                class="absolute top-2 right-2"
+              >
+                <label
+                  class="ml-auto flex gap-x-2 text-sm"
+                >
+                  <input
+                    class="ring-0 focus:ring-0 h-5 w-5"
+                    type="checkbox"
+                  />
+                  Compare
+                </label>
               </div>
             </div>
-            <div>
-              <div
-                class="relative"
+            <div
+              class="relative"
+            >
+              <a
+                href="/products/aajeevika"
               >
-                <a
-                  href="/products/aajeevika"
+                <div
+                  class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-spearmint"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-spearmint"
+                    class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="w-20 h-20 mx-auto bg-white border"
+                    >
+                      <img
+                        alt="Logo of Product."
+                        class="object-contain w-16 h-16 mx-auto my-2"
+                        src="http://localhost:3000//assets/products/aajeevika.png"
+                      />
+                    </div>
+                    <div
+                      class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
                     >
                       <div
-                        class="w-20 h-20 mx-auto bg-white border"
+                        class="text-lg font-semibold text-dial-meadow"
                       >
-                        <img
-                          alt="Logo of Product."
-                          class="object-contain w-16 h-16 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/aajeevika.png"
-                        />
+                        Aajeevika
                       </div>
                       <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="line-clamp-4 text-dial-stratos"
+                      >
+                        Some parsed description.
+                      </div>
+                      <div
+                        class="flex gap-x-2 text-dial-stratos"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-meadow"
+                          class="text-sm"
                         >
-                          Aajeevika
+                          SDGs
+                           (
+                          2
+                          )
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
-                        >
-                          Some parsed description.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            2
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Building Blocks
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
-                        <div
-                          class="flex gap-2 text-xs text-white"
+                          class="border-r border-dial-slate-400"
                         />
+                        <div
+                          class="text-sm"
+                        >
+                          Building Blocks
+                           (
+                          0
+                          )
+                        </div>
+                        <div
+                          class="border-r border-dial-slate-400"
+                        />
+                        <div
+                          class="text-sm"
+                        >
+                          Countries
+                           (
+                          0
+                          )
+                        </div>
                       </div>
+                      <div
+                        class="flex gap-2 text-xs text-white"
+                      />
                     </div>
                   </div>
-                </a>
-                <div
-                  class="absolute top-2 right-2"
-                >
-                  <label
-                    class="ml-auto flex gap-x-2 text-sm"
-                  >
-                    <input
-                      class="ring-0 focus:ring-0 h-5 w-5"
-                      type="checkbox"
-                    />
-                    Compare
-                  </label>
                 </div>
+              </a>
+              <div
+                class="absolute top-2 right-2"
+              >
+                <label
+                  class="ml-auto flex gap-x-2 text-sm"
+                >
+                  <input
+                    class="ring-0 focus:ring-0 h-5 w-5"
+                    type="checkbox"
+                  />
+                  Compare
+                </label>
               </div>
             </div>
-            <div>
-              <div
-                class="relative"
+            <div
+              class="relative"
+            >
+              <a
+                href="/products/accessmod"
               >
-                <a
-                  href="/products/accessmod"
+                <div
+                  class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                    class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="w-20 h-20 mx-auto bg-white border"
+                    >
+                      <img
+                        alt="Logo of Product."
+                        class="object-contain w-16 h-16 mx-auto my-2"
+                        src="http://localhost:3000//assets/products/accessmod.png"
+                      />
+                    </div>
+                    <div
+                      class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
                     >
                       <div
-                        class="w-20 h-20 mx-auto bg-white border"
+                        class="text-lg font-semibold text-dial-meadow"
                       >
-                        <img
-                          alt="Logo of Product."
-                          class="object-contain w-16 h-16 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/accessmod.png"
-                        />
+                        AccessMod
                       </div>
                       <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="line-clamp-4 text-dial-stratos"
+                      >
+                        Some parsed description.
+                      </div>
+                      <div
+                        class="flex gap-x-2 text-dial-stratos"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-meadow"
+                          class="text-sm"
                         >
-                          AccessMod
+                          SDGs
+                           (
+                          1
+                          )
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="border-r border-dial-slate-400"
+                        />
+                        <div
+                          class="text-sm"
                         >
-                          Some parsed description.
+                          Building Blocks
+                           (
+                          0
+                          )
                         </div>
                         <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Building Blocks
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
+                          class="border-r border-dial-slate-400"
+                        />
                         <div
-                          class="flex gap-2 text-xs text-white"
+                          class="text-sm"
                         >
-                          <div
-                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
-                          >
-                            GOVSTACK
-                          </div>
+                          Countries
+                           (
+                          0
+                          )
+                        </div>
+                      </div>
+                      <div
+                        class="flex gap-2 text-xs text-white"
+                      >
+                        <div
+                          class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
+                        >
+                          GOVSTACK
                         </div>
                       </div>
                     </div>
                   </div>
-                </a>
-                <div
-                  class="absolute top-2 right-2"
-                >
-                  <label
-                    class="ml-auto flex gap-x-2 text-sm"
-                  >
-                    <input
-                      class="ring-0 focus:ring-0 h-5 w-5"
-                      type="checkbox"
-                    />
-                    Compare
-                  </label>
                 </div>
+              </a>
+              <div
+                class="absolute top-2 right-2"
+              >
+                <label
+                  class="ml-auto flex gap-x-2 text-sm"
+                >
+                  <input
+                    class="ring-0 focus:ring-0 h-5 w-5"
+                    type="checkbox"
+                  />
+                  Compare
+                </label>
               </div>
             </div>
           </div>

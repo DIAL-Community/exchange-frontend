@@ -485,7 +485,7 @@
   "general.unauthorized": "No está autorizado a ver esta página",
   "general.ready-to-download": "Su documento está listo. Haga clic para descargarlo",
 
-  "view.switch.title": "Cambiar la vista",
+  "app.toggleDisplayType": "Cambiar la vista",
   "search.input.label": "Buscar en {entity}",
   "sdg.sdgTarget": "Metas de los ODS",
   "sdg.useCases": "Casos de uso",

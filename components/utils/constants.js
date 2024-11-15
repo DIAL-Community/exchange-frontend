@@ -7,6 +7,11 @@ export const DisplayType = {
   GRID_CARD: 'grid-card'
 }
 
+export const MainDisplayType = {
+  LIST: 'list',
+  GRID: 'grid'
+}
+
 export const ORIGIN_SLUG_EXPANSIONS = {
   'dial': 'Digital Impact Alliance',
   'digital-government-platform-tracker': 'Digital Government Platform Tracker',

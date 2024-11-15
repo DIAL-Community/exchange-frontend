@@ -5,9 +5,9 @@ const ProductMainLeft = ({ activeTab }) => {
 
   return (
     <>
-      { activeTab === 0 && <ProductListLeft /> }
-      { activeTab === 1 && <ProductSimpleLeft />}
-      { activeTab === 2 && <ProductSimpleLeft /> }
+      {activeTab === 0 && <ProductListLeft />}
+      {activeTab === 1 && <ProductSimpleLeft />}
+      {activeTab === 2 && <ProductSimpleLeft />}
     </>
   )
 }

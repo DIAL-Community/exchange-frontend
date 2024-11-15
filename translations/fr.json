@@ -485,7 +485,7 @@
   "general.unauthorized": "Vous n’êtes pas autorisé à consulter cette page",
   "general.ready-to-download": "Votre document est prêt. Cliquez pour télécharger",
 
-  "view.switch.title": "Changer l’affichage",
+  "app.toggleDisplayType": "Changer l’affichage",
   "search.input.label": "Rechercher dans {entity}",
   "sdg.sdgTarget": "ODD cibles",
   "sdg.useCases": "Cas d’utilisation",

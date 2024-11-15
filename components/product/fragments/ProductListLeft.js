@@ -1,10 +1,11 @@
-import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
 import { QueryParamContext } from '../../context/QueryParamContext'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
-import { ObjectType } from '../../utils/constants'
+import { MainDisplayType, ObjectType } from '../../utils/constants'
 import { parseQuery } from '../../utils/share'
 import ProductFilter from './ProductFilter'
 
@@ -105,14 +106,29 @@ const ProductListLeft = () => {
     }
   })
 
+  const { displayType, displayFilter } = useContext(FilterContext)
+  const { setDisplayFilter } = useContext(FilterDispatchContext)
+
   return (
-    <div className='bg-dial-slate-100 h-full'>
-      <div className='flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
-        <ProductFilter />
-        <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
-        <hr className='border-b border-dial-slate-200' />
-        <Share />
-        <hr className='border-b border-dial-slate-200' />
+    <div className='bg-dial-slate-100'>
+      <div className='flex flex-row'>
+        {displayFilter && (
+          <div className='flex-grow flex flex-col gap-y-3 px-4 lg:px-6 lg:py-3'>
+            <ProductFilter />
+            <Bookmark sharableLink={sharableLink} objectType={ObjectType.URL} />
+            <hr className='border-b border-dial-slate-200' />
+            <Share />
+            <hr className='border-b border-dial-slate-200' />
+          </div>
+        )}
+        {displayType === MainDisplayType.GRID &&
+          <div className='px-2 py-2'>
+            {displayFilter
+              ? <FaAngleLeft onClick={() => setDisplayFilter(!displayFilter)} />
+              : <FaAngleRight onClick={() => setDisplayFilter(!displayFilter)} />
+            }
+          </div>
+        }
       </div>
     </div>
   )

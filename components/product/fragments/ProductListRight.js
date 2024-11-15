@@ -6,7 +6,7 @@ import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { DEFAULT_PAGE_SIZE, MainDisplayType } from '../../utils/constants'
 import ListStructure from './ListStructure'
 import ProductSearchBar from './ProductSearchBar'
 
@@ -16,6 +16,7 @@ const ProductListRight = () => {
 
   const {
     search,
+    displayType,
     buildingBlocks,
     countries,
     isLinkedWithDpi,
@@ -38,12 +39,14 @@ const ProductListRight = () => {
 
   const { page } = query
 
+  const pageSize = displayType === MainDisplayType.GRID ? 16 : DEFAULT_PAGE_SIZE
+
   useEffect(() => {
     if (page) {
       setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+      setPageOffset((parseInt(page) - 1) * pageSize)
     }
-  }, [page, setPageNumber, setPageOffset])
+  }, [page, pageSize, setPageNumber, setPageOffset])
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
@@ -90,7 +93,7 @@ const ProductListRight = () => {
       <ProductSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        defaultPageSize={pageSize}
       />
       {loading && format('ui.pagination.loadingInfo')}
       {error && format('ui.pagination.loadingInfoError')}
@@ -98,7 +101,7 @@ const ProductListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeProduct.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={pageSize}
           onClickHandler={onClickHandler}
         />
       }

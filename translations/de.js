@@ -485,7 +485,7 @@ export const de = {
   "general.unauthorized": "Sie sind nicht autorisiert, diese Seite anzusehen",
   "general.ready-to-download": "Ihr Dokument ist fertig. Klicke zum Herunterladen",
 
-  "view.switch.title": "Ansicht ändern",
+  "app.toggleDisplayType": "Ansicht ändern",
   "search.input.label": "Suche in {entity}",
   "sdg.sdgTarget": "SDG-Ziele",
   "sdg.useCases": "Anwendungsfälle",
