@@ -26,7 +26,7 @@ const ResetPassword = () => {
     event.preventDefault()
     setLoading(true)
 
-    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/reset-password', {
+    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authentication/reset-password', {
       method: 'POST',
       mode: 'cors',
       headers: {
