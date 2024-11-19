@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from 'react'
-import { useIntl } from 'react-intl'
 import { signOut } from 'next-auth/react'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 
@@ -22,7 +22,7 @@ const ProfileMainDetail = () => {
     setPreparingPasswordUpdate(true)
 
     const { userEmail } = user
-    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/reset-password', {
+    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authentication/reset-password', {
       method: 'POST',
       mode: 'cors',
       headers: {
