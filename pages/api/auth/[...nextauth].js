@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
 import Auth0Provider from 'next-auth/providers/auth0'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 // Session expiration in millis
 const TOKEN_EXPIRATION = 24 * 60 * 60 * 1000
@@ -97,7 +97,7 @@ const handler = NextAuth({
         return session
       } else {
         if (!token.expired) {
-          const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
+          const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authentication/invalidate', {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ const handler = NextAuth({
   events: {
     async signOut ({ token }) {
       const response = await fetch(
-        process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate',
+        process.env.NEXT_PUBLIC_AUTH_SERVER + '/authentication/invalidate',
         {
           method: 'DELETE',
           headers: {
