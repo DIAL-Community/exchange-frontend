@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
@@ -39,7 +39,7 @@ const PasswordAction = () => {
   useEffect(
     () => {
       if (resetToken && !tokenValidated) {
-        fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/validate-reset-token', {
+        fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authentication/validate-reset-token', {
           method: 'POST',
           mode: 'cors',
           headers: {
@@ -70,7 +70,7 @@ const PasswordAction = () => {
       }
     }
 
-    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/apply-reset-token', {
+    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authentication/apply-reset-token', {
       method: 'POST',
       mode: 'cors',
       headers: {

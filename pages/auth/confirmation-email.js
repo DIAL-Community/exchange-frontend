@@ -25,7 +25,7 @@ const ConfirmationEmail = () => {
     event.preventDefault()
     setLoading(true)
 
-    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/resend-activation-email', {
+    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authentication/resend-activation-email', {
       method: 'POST',
       mode: 'cors',
       headers: {
