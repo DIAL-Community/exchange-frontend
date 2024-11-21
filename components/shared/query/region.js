@@ -29,6 +29,14 @@ export const PAGINATED_REGIONS_QUERY = gql`
   }
 `
 
+export const REGION_POLICY_QUERY = gql`
+  query Region($slug: String!) {
+    region(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const REGION_DETAIL_QUERY = gql`
   query Region($slug: String!) {
     region(slug: $slug) {

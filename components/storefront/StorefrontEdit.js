@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/organization'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { STOREFRONT_DETAIL_QUERY } from '../shared/query/organization'
 import StorefrontForm from './fragments/StorefrontForm'
 import StorefrontEditLeft from './StorefrontEditLeft'
 
@@ -11,16 +12,21 @@ const StorefrontEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
-    variables: { slug }
+  const { loading, error, data } = useQuery(STOREFRONT_DETAIL_QUERY, {
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.organization) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { organization } = data
@@ -40,7 +46,7 @@ const StorefrontEdit = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <StorefrontEditLeft organization={organization} />
         </div>
         <div className='lg:basis-2/3'>

@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_USE_CASE } from '../../../components/shared/mutation/useCase'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import { SECTOR_SEARCH_QUERY } from '../../../components/shared/query/sector'
@@ -60,16 +61,38 @@ describe('Unit tests for the useCase detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockUseCasePolicyQueryError = generateMockApolloData(
+      USE_CASE_DETAIL_QUERY,
+      {
+        'slug': 'remote-learning'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockUseCase, mockUseCaseComments, mockSectors]}>
+      <CustomMockedProvider mocks={[mockUseCasePolicyQueryError, mockUseCaseComments, mockSectors]}>
         <QueryParamContextProvider>
           <UseCaseEdit slug='remote-learning' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('Remote Learning')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 

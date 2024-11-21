@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { FormattedDate, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { PAGINATED_MESSAGES_QUERY } from '../../shared/query/message'
 import { DPI_EVENT_MESSAGE_TYPE, findMessageTypeLabel, MESSAGE_PAGE_SIZE } from '../message/constant'
 import MessagePagination from '../message/MessagePagination'
@@ -51,6 +52,11 @@ const EventList = ({ pageNumber }) => {
       messageType: DPI_EVENT_MESSAGE_TYPE,
       limit: MESSAGE_PAGE_SIZE,
       offset: pageNumber * MESSAGE_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

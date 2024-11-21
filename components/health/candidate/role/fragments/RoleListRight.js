@@ -1,11 +1,12 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { CANDIDATE_ROLE_PAGINATION_ATTRIBUTES_QUERY } from '../../../../shared/query/candidateRole'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../../lib/apolloClient'
 import { FilterContext } from '../../../../context/FilterContext'
-import { DEFAULT_PAGE_SIZE } from '../../../../utils/constants'
 import Pagination from '../../../../shared/Pagination'
+import { CANDIDATE_ROLE_PAGINATION_ATTRIBUTES_QUERY } from '../../../../shared/query/candidateRole'
+import { DEFAULT_PAGE_SIZE } from '../../../../utils/constants'
 import ListStructure from './ListStructure'
 import RoleSearchBar from './RoleSearchBar'
 
@@ -48,7 +49,12 @@ const RoleListRight = () => {
   }
 
   const { loading, error, data } = useQuery(CANDIDATE_ROLE_PAGINATION_ATTRIBUTES_QUERY, {
-    variables: { search }
+    variables: { search },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (

@@ -1,11 +1,11 @@
+import { useCallback, useEffect } from 'react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import ClientOnly from '../../lib/ClientOnly'
-import Header from '../../components/shared/Header'
-import { Loading } from '../../components/shared/FetchStatus'
 import Footer from '../../components/shared/Footer'
+import Header from '../../components/shared/Header'
+import { handleLoadingSession } from '../../components/shared/SessionQueryHandler'
+import ClientOnly from '../../lib/ClientOnly'
 
 const MapListPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
@@ -30,7 +30,7 @@ const MapListPage = ({ defaultTenants }) => {
       />
       <ClientOnly clientTenants={defaultTenants}>
         <Header />
-        <Loading />
+        {handleLoadingSession()}
         <Footer />
       </ClientOnly>
     </>

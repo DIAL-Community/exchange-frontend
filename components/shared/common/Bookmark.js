@@ -32,7 +32,6 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
 
   const bookmarkThis = () => {
     if (user && objectType) {
-      const { userEmail, userToken } = user
       addBookmark({
         variables: {
           data: object?.id
@@ -44,8 +43,7 @@ const Bookmark = ({ object, sharableLink, objectType }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

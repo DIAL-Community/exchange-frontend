@@ -1,24 +1,47 @@
-import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
-import { ORGANIZATION_DETAIL_QUERY } from '../shared/query/organization'
+import { useEffect, useRef, useState } from 'react'
+import { useApolloClient, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import OrganizationDetailRight from './OrganizationDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { ORGANIZATION_DETAIL_QUERY, ORGANIZATION_POLICY_QUERY } from '../shared/query/organization'
+import { fetchOperationPolicies } from '../utils/policy'
 import OrganizationDetailLeft from './OrganizationDetailLeft'
+import OrganizationDetailRight from './OrganizationDetailRight'
 
 const OrganizationDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      ORGANIZATION_POLICY_QUERY,
+      ['editing', 'deleting'],
+      { slug }
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client, slug])
+
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.organization) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { organization } = data
@@ -36,11 +59,20 @@ const OrganizationDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
-          <OrganizationDetailLeft scrollRef={scrollRef} organization={organization} />
+        <div className='lg:basis-1/3 shrink-0'>
+          <OrganizationDetailLeft
+            scrollRef={scrollRef}
+            organization={organization}
+            editingAllowed={editingAllowed}
+          />
         </div>
         <div className='lg:basis-2/3'>
-          <OrganizationDetailRight ref={scrollRef} organization={organization} />
+          <OrganizationDetailRight
+            ref={scrollRef}
+            organization={organization}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

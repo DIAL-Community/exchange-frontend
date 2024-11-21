@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client'
-import dynamic from 'next/dynamic'
 import { useCallback, useContext, useMemo, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import { ORGANIZATIONS_QUERY } from '../../shared/query/map'
 import EndorserInfo from './EndorserInfo'
@@ -30,6 +31,11 @@ const EndorserMap = () => {
       first: DEFAULT_PAGE_SIZE,
       sectors: sectors.map(sector => sector.value),
       years: years.map(year => year.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

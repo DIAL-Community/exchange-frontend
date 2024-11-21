@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { USER_DETAIL_QUERY } from '../shared/query/user'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { USER_DETAIL_QUERY } from '../shared/query/user'
 import UserForm from './fragments/UserForm'
 import UserEditLeft from './UserEditLeft'
 
@@ -12,15 +13,20 @@ const UserEdit = ({ userId }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(USER_DETAIL_QUERY, {
-    variables: { userId }
+    variables: { userId },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.user) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { user } = data
@@ -40,7 +46,7 @@ const UserEdit = ({ userId }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <UserEditLeft user={user} />
         </div>
         <div className='lg:basis-2/3'>

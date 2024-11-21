@@ -1,7 +1,8 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ResourceFilterContext } from '../../context/ResourceFilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PAGINATED_RESOURCES_QUERY } from '../../shared/query/resource'
 import { DisplayType } from '../../utils/constants'
 import ResourceCard from './ResourceCard'
@@ -18,15 +19,20 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       resourceTopics: resourceTopics.map(r => r.label),
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedResources) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedResources: resources } = data

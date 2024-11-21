@@ -7,7 +7,7 @@ import { allowedToBrowseAdliPages } from '../../../../../../components/hub/admin
 import HubCurriculumModule from '../../../../../../components/hub/sections/HubCurriculumModule'
 import HubFooter from '../../../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../../../components/hub/sections/HubHeader'
-import { Loading, Unauthorized } from '../../../../../../components/shared/FetchStatus'
+import { handleLoadingSession, handleSessionError } from '../../../../../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../../../../../lib/ClientOnly'
 
 const HubCurriculumModulePage = ({ dpiTenants }) => {
@@ -33,13 +33,10 @@ const HubCurriculumModulePage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <HubHeader />
         { status === 'unauthenticated' || status === 'loading'
-          ? <Loading />
+          ? handleLoadingSession()
           : status === 'authenticated' && allowedToBrowseAdliPages(data?.user)
-            ? <HubCurriculumModule
-              curriculumSlug={curriculumSlug}
-              moduleSlug={moduleSlug}
-            />
-            : <Unauthorized />
+            ? <HubCurriculumModule curriculumSlug={curriculumSlug} moduleSlug={moduleSlug} />
+            : handleSessionError()
         }
         <HubFooter />
       </ClientOnly>

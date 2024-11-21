@@ -1,17 +1,16 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
+import Select from '../../shared/form/Select'
 import { UPDATE_ORGANIZATION_SECTORS } from '../../shared/mutation/organization'
 import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
+import { fetchSelectOptions } from '../../utils/search'
 
-const StorefrontDetailSectors = ({ organization, canEdit }) => {
+const StorefrontDetailSectors = ({ organization, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -20,7 +19,6 @@ const StorefrontDetailSectors = ({ organization, canEdit }) => {
   const [sectors, setSectors] = useState(organization.sectors)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -72,22 +70,17 @@ const StorefrontDetailSectors = ({ organization, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateStorefrontSectors({
-        variables: {
-          sectorSlugs: sectors.map(({ slug }) => slug),
-          slug: organization.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateStorefrontSectors({
+      variables: {
+        sectorSlugs: sectors.map(({ slug }) => slug),
+        slug: organization.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -144,7 +137,7 @@ const StorefrontDetailSectors = ({ organization, canEdit }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

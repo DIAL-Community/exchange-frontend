@@ -1,9 +1,10 @@
 import { useCallback, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import Breadcrumb from '../../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../shared/GraphQueryHandler'
 import { PRODUCT_SIMPLE_QUERY } from '../../../shared/query/productRepository'
+import Breadcrumb from '../../shared/Breadcrumb'
 import ProductRepositoryForm from './fragments/ProductRepositoryForm'
 import ProductRepositoryEditLeft from './ProductRepositoryEditLeft'
 
@@ -14,15 +15,20 @@ const ProductRepositoryCreate = ({ productSlug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(PRODUCT_SIMPLE_QUERY, {
-    variables: { productSlug }
+    variables: { productSlug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.product) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { product } = data
@@ -42,7 +48,7 @@ const ProductRepositoryCreate = ({ productSlug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <ProductRepositoryEditLeft product={product} scrollRef={scrollRef}/>
         </div>
         <div className='lg:basis-2/3'>

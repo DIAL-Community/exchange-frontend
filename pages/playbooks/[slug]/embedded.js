@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router'
-import ClientOnly from '../../../lib/ClientOnly'
-import { PlaybookDetailProvider } from '../../../components/playbook/context/PlaybookDetailContext'
-import EmbeddedHeader from '../../../components/shared/EmbeddedHeader'
-import EmbeddedFooter from '../../../components/shared/EmbeddedFooter'
 import PlaybookDetail from '../../../components/playbook/PlaybookDetail'
+import EmbeddedFooter from '../../../components/shared/EmbeddedFooter'
+import EmbeddedHeader from '../../../components/shared/EmbeddedHeader'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const EmbeddedPlaybook = ({ defaultTenants }) => {
   const router = useRouter()
@@ -13,9 +12,7 @@ const EmbeddedPlaybook = ({ defaultTenants }) => {
     <>
       <ClientOnly clientTenants={defaultTenants}>
         <EmbeddedHeader />
-        <PlaybookDetailProvider>
-          <PlaybookDetail slug={slug} locale={locale} />
-        </PlaybookDetailProvider>
+        <PlaybookDetail slug={slug} locale={locale} />
         <EmbeddedFooter />
       </ClientOnly>
     </>

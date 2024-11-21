@@ -3,10 +3,12 @@ import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import OpportunityDetail from '../../../components/opportunity/OpportunityDetail'
 import OpportunityEdit from '../../../components/opportunity/OpportunityEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_OPPORTUNITY } from '../../../components/shared/mutation/opportunity'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  OPPORTUNITY_DETAIL_QUERY, OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_OPPORTUNITIES_QUERY
+  OPPORTUNITY_DETAIL_QUERY, OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, OPPORTUNITY_POLICY_QUERY,
+  PAGINATED_OPPORTUNITIES_QUERY
 } from '../../../components/shared/query/opportunity'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -17,6 +19,13 @@ import { opportunityPaginationAttribute, paginatedOpportunities } from './data/O
 mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the opportunity detail page.', () => {
+  const mockOpportunityPolicies = generateMockApolloData(
+    OPPORTUNITY_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { opportunity: null } }
+  )
+
   const mockOpportunity = generateMockApolloData(
     OPPORTUNITY_DETAIL_QUERY,
     {
@@ -38,7 +47,13 @@ describe('Unit tests for the opportunity detail page.', () => {
 
   test('Should render detail of a opportunity.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOpportunity, mockOpportunityComments]}>
+      <CustomMockedProvider
+        mocks={[
+          mockOpportunity,
+          mockOpportunityPolicies,
+          mockOpportunityComments
+        ]}
+      >
         <QueryParamContextProvider>
           <OpportunityDetail slug='market-entry-in-north-macedonia' />
         </QueryParamContextProvider>
@@ -50,16 +65,38 @@ describe('Unit tests for the opportunity detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockOpportunityPolicyQueryError = generateMockApolloData(
+      OPPORTUNITY_DETAIL_QUERY,
+      {
+        'slug': 'market-entry-in-north-macedonia'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOpportunity, mockOpportunityComments]}>
+      <CustomMockedProvider mocks={[mockOpportunityPolicyQueryError, mockOpportunityComments]}>
         <QueryParamContextProvider>
           <OpportunityEdit slug='market-entry-in-north-macedonia' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('Market entry in North Macedonia')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 

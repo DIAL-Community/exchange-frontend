@@ -1,20 +1,16 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
-import DeleteCandidateStatus from './DeleteCandidateStatus'
+import DeleteCandidateStatus from './fragments/DeleteCandidateStatus'
 
-const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
+const CandidateStatusDetailRight = forwardRef(({ candidateStatus, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const commentsSectionRef = useRef()
   useImperativeHandle(ref, () => [{ value: 'ui.comment.label', ref: commentsSectionRef }], [])
@@ -35,12 +31,10 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus }, ref) => {
               {format('ui.candidateStatus.initialStatus.label')}
             </span>
           }
-          {canEdit && (
-            <div className='flex gap-x-3 ml-auto'>
-              <EditButton type='link' href={editPath} />
-              {isAdminUser && <DeleteCandidateStatus candidateStatus={candidateStatus} />}
-            </div>
-          )}
+          <div className='flex gap-x-3 ml-auto'>
+            { editingAllowed && <EditButton type='link' href={editPath} /> }
+            { deletingAllowed && <DeleteCandidateStatus candidateStatus={candidateStatus} /> }
+          </div>
         </div>
         <div className='text-base font-semibold py-3'>
           {format('ui.common.detail.description')}

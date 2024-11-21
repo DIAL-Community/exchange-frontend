@@ -1,10 +1,10 @@
-import { NextSeo } from 'next-seo'
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
-import { Loading } from '../../../../components/shared/FetchStatus'
-import Header from '../../../../components/shared/Header'
+import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import Footer from '../../../../components/shared/Footer'
+import Header from '../../../../components/shared/Header'
+import { handleLoadingSession } from '../../../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../../../lib/ClientOnly'
 
 const RubricCategoryIndicatorsPage = ({ defaultTenants }) => {
@@ -31,7 +31,7 @@ const RubricCategoryIndicatorsPage = ({ defaultTenants }) => {
       />
       <ClientOnly clientTenants={defaultTenants}>
         <Header />
-        <Loading />
+        {handleLoadingSession()}
         <Footer />
       </ClientOnly>
     </>

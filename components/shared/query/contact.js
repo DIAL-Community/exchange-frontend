@@ -30,6 +30,14 @@ export const PAGINATED_CONTACTS_QUERY = gql`
   }
 `
 
+export const CONTACT_POLICY_QUERY = gql`
+  query Contact($slug: String!) {
+    contact(slug: $slug, source: "exchange") {
+      id
+    }
+  }
+`
+
 export const CONTACT_DETAIL_QUERY = gql`
   query Contact($slug: String!) {
     contact(slug: $slug, source: "exchange") {

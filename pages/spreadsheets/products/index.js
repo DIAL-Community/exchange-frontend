@@ -4,7 +4,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 import { useUser } from '../../../lib/hooks'
 import Header from '../../../components/shared/Header'
 import Footer from '../../../components/shared/Footer'
-import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
+import { handleLoadingSession, handleSessionError } from '../../../components/shared/SessionQueryHandler'
 
 const ProductSpreadsheetWithoutSSR = dynamic(
   () => import('../../../components/spreadsheets/ProductSpreadsheet'),
@@ -20,9 +20,11 @@ const ProductSpreadsheet = ({ defaultTenants }) => {
       <Header />
       <ClientOnly clientTenants={defaultTenants}>
         <div style={{ minHeight: '70vh' }}>
-          {loadingUserSession ?
-            <Loading /> :
-            isAdminUser ? <ProductSpreadsheetWithoutSSR /> : <Unauthorized />
+          {loadingUserSession
+            ? handleLoadingSession()
+            : isAdminUser
+              ? <ProductSpreadsheetWithoutSSR />
+              : handleSessionError()
           }
         </div>
       </ClientOnly>

@@ -2,8 +2,9 @@ import { useCallback, useContext } from 'react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { COUNTRIES_WITH_RESOURCES_SEARCH_QUERY } from '../../shared/query/country'
 
 const HubCountryTile = () => {
@@ -13,17 +14,20 @@ const HubCountryTile = () => {
   const { search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(COUNTRIES_WITH_RESOURCES_SEARCH_QUERY, {
-    variables: {
-      search
+    variables: { search },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.countries) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { countries } = data

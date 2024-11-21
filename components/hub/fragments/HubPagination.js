@@ -23,28 +23,30 @@ const HubPagination = ({ pageNumber, totalCount, defaultPageSize, onClickHandler
             totalRecords: totalCount
           })}
         </div>
-        <ReactPaginate
-          breakLabel='...'
-          nextLabel={format('ui.pagination.nextLabel')}
-          previousLabel={format('ui.pagination.prevLabel')}
-          forcePage={pageNumber}
-          onClick={onClickHandler}
-          pageRangeDisplayed={1}
-          marginPagesDisplayed={1}
-          pageCount={Math.ceil(totalCount / defaultPageSize)}
-          renderOnZeroPageCount={null}
-          disabledClassName='opacity-30'
-          breakClassName='my-auto'
-          // Flex the main container and add gap
-          containerClassName='flex gap-x-3 text-sm'
-          // Each will have rounded border
-          activeClassName={`${theme === 'light' && 'text-dial-cotton'} font-semibold`}
-          // Set the width, height, leading and text center to center text
-          pageLinkClassName='block w-10 h-10 leading-10 text-center'
-          // Previous and next link will have similar treatment
-          previousLinkClassName='block w-10 h-10 leading-10 text-center'
-          nextLinkClassName='block w-10 h-10 leading-10 text-center'
-        />
+        {pageNumber < Math.ceil(totalCount / defaultPageSize) &&
+          <ReactPaginate
+            breakLabel='...'
+            nextLabel={format('ui.pagination.nextLabel')}
+            previousLabel={format('ui.pagination.prevLabel')}
+            forcePage={pageNumber}
+            onClick={onClickHandler}
+            pageRangeDisplayed={1}
+            marginPagesDisplayed={1}
+            pageCount={Math.ceil(totalCount / defaultPageSize)}
+            renderOnZeroPageCount={null}
+            disabledClassName='opacity-30'
+            breakClassName='my-auto'
+            // Flex the main container and add gap
+            containerClassName='flex gap-x-3 text-sm'
+            // Each will have rounded border
+            activeClassName={`${theme === 'light' && 'text-dial-cotton'} font-semibold`}
+            // Set the width, height, leading and text center to center text
+            pageLinkClassName='block w-10 h-10 leading-10 text-center'
+            // Previous and next link will have similar treatment
+            previousLinkClassName='block w-10 h-10 leading-10 text-center'
+            nextLinkClassName='block w-10 h-10 leading-10 text-center'
+          />
+        }
       </div>
       <hr className='border-b border-dial-slate-300'/>
     </div>

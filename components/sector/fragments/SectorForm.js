@@ -4,9 +4,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
 import { generateLanguageOptions } from '../../shared/form/options'
@@ -21,8 +20,6 @@ const SectorForm = React.memo(({ sector }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const slug = sector?.slug ?? ''
-
-  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -43,10 +40,20 @@ const SectorForm = React.memo(({ sector }) => {
   const [updateSector, { reset }] = useMutation(CREATE_SECTOR, {
     refetchQueries: [{
       query: SECTOR_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_SECTORS_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       if (data.createSector.sector && data.createSector.errors.length === 0) {
@@ -82,26 +89,21 @@ const SectorForm = React.memo(({ sector }) => {
   })
 
   const doUpsert = async (data) => {
-    if (user) {
-      const { userEmail, userToken } = user
-      const { name, locale, isDisplayable } = data
-      const variables = {
-        name,
-        slug,
-        locale: locale.value,
-        isDisplayable
-      }
-
-      updateSector({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    const { name, locale, isDisplayable } = data
+    const variables = {
+      name,
+      slug,
+      locale: locale.value,
+      isDisplayable
     }
+    updateSector({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const cancelForm = () => {
@@ -109,77 +111,73 @@ const SectorForm = React.memo(({ sector }) => {
     router.push(`/${locale}/sectors/${slug}`)
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : isAdminUser || isEditorUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {sector
-                  ? format('app.editEntity', { entity: sector.name })
-                  : `${format('app.createNew')} ${format('ui.sector.label')}`}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='name'>
-                  {format('ui.sector.name')}
-                </label>
-                <Input
-                  {...register('name', { required: format('validation.required') })}
-                  id='name'
-                  placeholder={format('ui.sector.name')}
-                  isInvalid={errors.name}
-                />
-                {errors.name && <ValidationError value={errors.name?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2 mb-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='locale'>
-                  {format('locale.label')}
-                </label>
-                <Controller
-                  name='locale'
-                  control={control}
-                  render={({ field: { onChange, ...otherProps } }) => (
-                    <Select
-                      {...otherProps}
-                      onChange={(value) => {
-                        onChange(value)
-                      }}
-                      isSearch
-                      options={localeOptions}
-                      placeholder={format('locale.label')}
-                      isInvalid={errors.locale}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.locale && <ValidationError value={errors.locale?.message} />}
-              </div>
-              <label className='flex gap-x-2 items-center' htmlFor='sector-displayable'>
-                <Checkbox {...register('isDisplayable')} />
-                {format('sector.is-displayable.label')}
-              </label>
-              <div className='flex flex-wrap text-base mt-6 gap-3'>
-                <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                  {`${format('app.submit')} ${format('ui.sector.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3' />}
-                </button>
-              </div>
-            </div>
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {sector
+              ? format('app.editEntity', { entity: sector.name })
+              : `${format('app.createNew')} ${format('ui.sector.label')}`}
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire required-field' htmlFor='name'>
+              {format('ui.sector.name')}
+            </label>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              id='name'
+              placeholder={format('ui.sector.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2 mb-2'>
+            <label className='text-dial-sapphire required-field' htmlFor='locale'>
+              {format('locale.label')}
+            </label>
+            <Controller
+              name='locale'
+              control={control}
+              render={({ field: { onChange, ...otherProps } }) => (
+                <Select
+                  {...otherProps}
+                  onChange={(value) => {
+                    onChange(value)
+                  }}
+                  isSearch
+                  options={localeOptions}
+                  placeholder={format('locale.label')}
+                  isInvalid={errors.locale}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.locale && <ValidationError value={errors.locale?.message} />}
+          </div>
+          <label className='flex gap-x-2 items-center' htmlFor='sector-displayable'>
+            <Checkbox {...register('isDisplayable')} />
+            {format('sector.is-displayable.label')}
+          </label>
+          <div className='flex flex-wrap text-base mt-6 gap-3'>
+            <button type='submit' className='submit-button' disabled={mutating || reverting}>
+              {`${format('app.submit')} ${format('ui.sector.label')}`}
+              {mutating && <FaSpinner className='spinner ml-3' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 })
 
 SectorForm.displayName = 'SectorForm'

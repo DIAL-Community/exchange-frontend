@@ -1,17 +1,16 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import Select from '../../shared/form/Select'
-import { fetchSelectOptions } from '../../utils/search'
-import Pill from '../../shared/form/Pill'
-import EditableSection from '../../shared/EditableSection'
-import { UPDATE_USE_CASE_TAGS } from '../../shared/mutation/useCase'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
+import EditableSection from '../../shared/EditableSection'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
+import { UPDATE_USE_CASE_TAGS } from '../../shared/mutation/useCase'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
+import { fetchSelectOptions } from '../../utils/search'
 
-const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
+const UseCaseDetailTags = ({ useCase, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -20,7 +19,6 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
   const [tags, setTags] = useState(useCase.tags)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -59,22 +57,17 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateUseCaseTags({
-        variables: {
-          slug: useCase.slug,
-          tagNames: tags
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateUseCaseTags({
+      variables: {
+        slug: useCase.slug,
+        tagNames: tags
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -128,7 +121,7 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

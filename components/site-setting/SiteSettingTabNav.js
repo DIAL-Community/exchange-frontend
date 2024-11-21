@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react'
-import { useUser } from '../../lib/hooks'
+import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { SITE_SETTING_POLICY_QUERY } from '../shared/query/siteSetting'
 import TabNav from '../shared/TabNav'
 
 const SiteSettingTabNav = ({ activeTab, setActiveTab }) => {
-  const { user } = useUser()
-
   const [tabNames, setTabNames] = useState([
     'ui.siteSetting.header'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(SITE_SETTING_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.siteSetting.createNew'),
         'ui.siteSetting.createNew'
       ])
     }
-  }, [user])
+  })
 
   return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
 }

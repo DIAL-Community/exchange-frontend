@@ -3,7 +3,6 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import { DisplayType } from '../../utils/constants'
 import { isValidFn } from '../../utils/utilities'
 
@@ -13,11 +12,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissHandler }) 
 
   const [submitter] = organization.contacts
 
-  const { user } = useUser()
-  const submitterEmail = user
-    ? submitter?.email ?? format('general.na')
-    : format('general.hidden')
-
+  const submitterEmail = submitter?.email ?? format('general.na')
   const bgColor = `${organization.rejected}`.toLowerCase() === 'true'
     ? 'bg-red-700'
     : `${organization.rejected}`.toLowerCase() === 'false'

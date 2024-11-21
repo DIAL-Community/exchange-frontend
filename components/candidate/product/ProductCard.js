@@ -3,7 +3,6 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import { DisplayType } from '../../utils/constants'
 import { isValidFn } from '../../utils/utilities'
 
@@ -19,11 +18,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler }) => {
       ? 'bg-green-700'
       : 'bg-dial-iris-blue'
 
-  const { user } = useUser()
-  const submitterEmail = user
-    ? product.submitterEmail ?? format('general.na')
-    : format('general.hidden')
-
+  const submitterEmail = product.submitterEmail ?? format('general.na')
   const currentCandidateStatus = `${product.rejected}`.toLowerCase() === 'true'
     ? format('candidate.rejected')
     : `${product.rejected}`.toLowerCase() === 'false'

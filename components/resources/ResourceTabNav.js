@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react'
-import { useUser } from '../../lib/hooks'
+import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { RESOURCE_POLICY_QUERY } from '../shared/query/resource'
 import TabNav from '../shared/TabNav'
 
 const ResourceTabNav = ({ activeTab, setActiveTab }) => {
-  const { user } = useUser()
-
   const [tabNames, setTabNames] = useState([
     'ui.resource.header'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(RESOURCE_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.resource.createNew'),
         'ui.resource.createNew'
       ])
     }
-  }, [user])
+  })
 
   return (
     <TabNav { ...{ tabNames, activeTab, setActiveTab }} />

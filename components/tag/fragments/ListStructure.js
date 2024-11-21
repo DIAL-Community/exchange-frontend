@@ -1,10 +1,11 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_TAGS_QUERY } from '../../shared/query/tag'
-import TagCard from '../TagCard'
-import { DisplayType } from '../../utils/constants'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { PAGINATED_TAGS_QUERY } from '../../shared/query/tag'
+import { DisplayType } from '../../utils/constants'
+import TagCard from '../TagCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search } = useContext(FilterContext)
@@ -14,15 +15,20 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       search,
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedTags) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedTags: tags } = data

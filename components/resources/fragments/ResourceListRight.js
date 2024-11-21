@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ResourceFilterContext } from '../../context/ResourceFilterContext'
 import Pagination from '../../shared/Pagination'
 import { RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
@@ -53,6 +54,11 @@ const ResourceListRight = () => {
       countries: resourceCountries.map(r => r.value),
       resourceTypes: resourceTypes.map(r => r.label),
       resourceTopics: resourceTopics.map(r => r.label)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

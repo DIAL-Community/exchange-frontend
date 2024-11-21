@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { RUBRIC_CATEGORY_QUERY } from '../shared/query/rubricCategory'
 import RubricCategoryForm from './fragments/RubricCategoryForm'
 import RubricCategoryEditLeft from './RubricCategoryEditLeft'
 
@@ -12,15 +13,20 @@ const RubricCategoryEdit = ({ categorySlug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { slug: categorySlug }
+    variables: { slug: categorySlug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.rubricCategory) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { rubricCategory } = data
@@ -40,7 +46,7 @@ const RubricCategoryEdit = ({ categorySlug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <RubricCategoryEditLeft rubricCategory={rubricCategory} />
         </div>
         <div className='lg:basis-2/3'>

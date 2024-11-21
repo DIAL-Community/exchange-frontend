@@ -1,6 +1,5 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
@@ -12,12 +11,9 @@ import { prependUrlWithProtocol } from '../../utils/utilities'
 import CandidateStatusWorkflow from '../CandidateStatusWorkflow'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 
-const ProductDetailRight = forwardRef(({ product }, ref) => {
+const ProductDetailRight = forwardRef(({ product, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const editPath = `${product.slug}/edit`
 
@@ -29,7 +25,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
           </div>
@@ -87,8 +83,9 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         }
         <hr className='border-b border-dial-blue-chalk my-3' />
         <ProductDetailMaturityScores
-          id={product.id}
           slug={product.slug}
+          productId={product.id}
+          editingAllowed={editingAllowed}
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
@@ -97,6 +94,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           candidate={product}
           objectType={ObjectType.CANDIDATE_PRODUCT}
           mutationQuery={CANDIDATE_PRODUCT_UPDATE_STATUS}
+          editingAllowed={editingAllowed}
         />
         {`${product.rejected}` === 'true' &&
           <>

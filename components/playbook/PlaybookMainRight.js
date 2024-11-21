@@ -1,8 +1,8 @@
 import { useActiveTenant, useUser } from '../../lib/hooks'
 import RequireAuth from '../shared/RequireAuth'
+import PlaybookForm from './forms/PlaybookForm'
 import PlaybookDefinition from './fragments/PlaybookDefinition'
 import PlaybookListRight from './fragments/PlaybookListRight'
-import PlaybookForm from './fragments/PlaybookForm'
 
 const PlaybookMainRight = ({ activeTab }) => {
   const { user } = useUser()

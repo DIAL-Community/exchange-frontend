@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client'
 import { useContext } from 'react'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PAGINATED_USE_CASES_QUERY } from '../../shared/query/useCase'
 import { DisplayType } from '../../utils/constants'
 import UseCaseCard from '../UseCaseCard'
@@ -17,15 +18,20 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       showGovStackOnly,
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedUseCases) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedUseCases: useCases } = data

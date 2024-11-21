@@ -1,52 +1,66 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { PlaybookContextProvider } from '../playbook/fragments/PlaybookContext'
+import PlaybookPlay from '../playbook/fragments/PlaybookPlay'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import { PLAY_QUERY } from '../shared/query/play'
-import PlayDetailLeft from './PlayDetailLeft'
-import PlayDetailRight from './PlayDetailRight'
+import CommentsSection from '../shared/comment/CommentsSection'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { PLAY_BREADCRUMB_QUERY } from '../shared/query/play'
+import { ObjectType } from '../utils/constants'
 
-const PlayDetail = ({ playSlug, playbookSlug, locale }) => {
-  const { data, loading, error } = useQuery(PLAY_QUERY, {
-    variables: { playSlug, playbookSlug, owner: 'public' },
-    context: { headers: { 'Accept-Language': locale } }
+const PlayDetail = ({ playbookSlug, playSlug }) => {
+  const playRefs = useRef({})
+  const commentsSectionRef = useRef()
+
+  const { loading, data, error } = useQuery(PLAY_BREADCRUMB_QUERY, {
+    variables: { playbookSlug, playSlug, owner: 'public' },
+    context: {
+      headers: {
+        'Accept-Language': 'en',
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
-  const scrollRef = useRef(null)
-
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
-  } else if (!data?.play) {
-    return <NotFound />
+    return handleQueryError(error)
+  } else if (!data?.playbook || !data?.play) {
+    return handleMissingData()
   }
 
-  const { play, playbook } = data
+  const { playbook: playbook, play: playbookPlay } = data
 
   const slugNameMapping = (() => {
     const map = {}
-    map[play.slug] = play.name
     map[playbook.slug] = playbook.name
+    map[playbookPlay.slug] = playbookPlay.name
 
     return map
   })()
 
   return (
-    <div className='lg:px-8 xl:px-56 flex flex-col'>
-      <div className='px-4 lg:px-6 py-4 bg-dial-violet text-dial-stratos ribbon-detail z-40'>
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+    <div className='lg:px-8 xl:px-56 flex flex-col min-h-[80vh]'>
+      <div
+        className='py-4 px-6 sticky bg-dial-blue-chalk text-dial-stratos'
+        style={{ top: 'var(--header-height)' }}
+      >
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='hidden lg:block basis-1/3'>
-          <PlayDetailLeft play={play} scrollRef={scrollRef} />
-        </div>
-        <div className='basis-2/3'>
-          <div className='px-4 lg:px-0 py-4 lg:py-6'>
-            <PlayDetailRight playbook={playbook} play={play} ref={scrollRef} />
-          </div>
-        </div>
-      </div>
+      <PlaybookContextProvider>
+        <PlaybookPlay
+          playbookSlug={playbookSlug}
+          playSlug={playSlug}
+          playRefs={playRefs}
+        />
+      </PlaybookContextProvider>
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={playbookPlay.id}
+        objectType={ObjectType.PLAY}
+      />
     </div>
   )
 }

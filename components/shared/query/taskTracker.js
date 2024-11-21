@@ -34,6 +34,14 @@ export const PAGINATED_TASK_TRACKERS_QUERY = gql`
   }
 `
 
+export const TASK_TRACKER_POLICY_QUERY = gql`
+  query TaskTracker($slug: String!) {
+    taskTracker(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const TASK_TRACKER_DETAIL_QUERY = gql`
   query TaskTracker($slug: String!) {
     taskTracker(slug: $slug) {
