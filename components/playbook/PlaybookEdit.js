@@ -5,7 +5,7 @@ import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
-import PlaybookForm from './fragments/PlaybookForm'
+import PlaybookForm from './forms/PlaybookForm'
 import PlaybookEditLeft from './PlaybookEditLeft'
 
 const PlaybookEdit = ({ slug }) => {

@@ -1,15 +1,16 @@
-import { useRef, useCallback, useContext, useEffect } from 'react'
-import { useIntl } from 'react-intl'
+import { useCallback, useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
-import update from 'immutability-helper'
 import { FiMove } from 'react-icons/fi'
-import { MoveListContext, MoveListDispatchContext } from './context/MoveListContext'
+import { useIntl } from 'react-intl'
 
-const DraggableCard = ({ id, move, index, swapMove }) => {
+const DraggableCard = ({ id, entity, index, swapEntity }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const ref = useRef(null)
 
   const [{ handlerId }, drop] = useDrop({
-    accept: 'move',
+    accept: 'entity',
     collect (monitor) {
       return {
         handlerId: monitor.getHandlerId()
@@ -49,7 +50,7 @@ const DraggableCard = ({ id, move, index, swapMove }) => {
       }
 
       // Time to actually perform the action
-      swapMove(dragIndex, hoverIndex)
+      swapEntity(dragIndex, hoverIndex)
       // Note: we're mutating the monitor item here!
       // Generally it's better to avoid mutations,
       // but it's good here for the sake of performance
@@ -59,7 +60,7 @@ const DraggableCard = ({ id, move, index, swapMove }) => {
   })
 
   const [{ opacity }, drag, preview] = useDrag({
-    type: 'move',
+    type: 'entity',
     item: () => {
       return { id, index }
     },
@@ -71,8 +72,8 @@ const DraggableCard = ({ id, move, index, swapMove }) => {
   drag(drop(ref))
 
   const dndBorderStyles = `
-    bg-white cursor-move shadow-md
-    border border-transparent hover:border-dial-sapphire border-opacity-80
+    bg-white cursor-move shadow-md overflow-hidden
+    border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
   `
 
   return (
@@ -80,9 +81,14 @@ const DraggableCard = ({ id, move, index, swapMove }) => {
       <div className='flex gap-3'>
         <div className='py-4 font-semibold w-4'>{index + 1})</div>
         <div ref={preview} className='w-full'>
-          <div ref={ref} className={`${dndBorderStyles} flex flex-nowrap gap-3 px-3 py-4 h-16`}>
-            <div className='font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
-              {move.name}
+          <div ref={ref} className={`${dndBorderStyles} flex flex-row gap-3 px-3 py-4 h-16`}>
+            <div className={`font-semibold my-auto ${entity.draft && 'text-dial-sapphire'}`}>
+              {entity.name}
+              {entity.draft &&
+                <span className='font-bold px-1'>
+                  ({format('ui.play.status.draft')})
+                </span>
+              }
             </div>
             <div className='my-auto ml-auto'>
               <FiMove />
@@ -94,45 +100,4 @@ const DraggableCard = ({ id, move, index, swapMove }) => {
   )
 }
 
-const MoveListDraggable = ({ play }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { currentMoves } = useContext(MoveListContext)
-  const { setCurrentMoves, setDirty } = useContext(MoveListDispatchContext)
-
-  const swapMove = useCallback((dragIndex, hoverIndex) => {
-    setDirty(true)
-    setCurrentMoves((currentMoves) => update(currentMoves, {
-      $splice: [[dragIndex, 1], [hoverIndex, 0, currentMoves[dragIndex]]]
-    }))
-  }, [setCurrentMoves, setDirty])
-
-  const renderCard = useCallback((move, index) => (
-    <DraggableCard key={index} id={move.id} {...{ index, move, swapMove }} />
-  ), [swapMove])
-
-  useEffect(() => {
-    if (play) {
-      setCurrentMoves(play.playMoves)
-    }
-  }, [play, setCurrentMoves])
-
-  const displayNoData = () =>
-    <div className='text-sm font-medium opacity-80'>
-      {format('noResults.entity', { entity: format('ui.move.label').toString().toLowerCase() })}
-    </div>
-
-  const displayRearrangeMoves = () =>
-    <div className='flex flex-col gap-2'>
-      {currentMoves.map((move, index) => renderCard(move, index))}
-    </div>
-
-  return (
-    <div className='flex flex-col gap-2 text-dial-purple-light'>
-      {currentMoves.length > 0 ? displayRearrangeMoves() : displayNoData()}
-    </div>
-  )
-}
-
-export default MoveListDraggable
+export default DraggableCard

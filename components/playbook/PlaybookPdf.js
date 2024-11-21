@@ -11,7 +11,7 @@ import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shar
 import { prependUrlWithProtocol } from '../utils/utilities'
 
 const PLAYBOOK_DETAIL_QUERY = gql`
-  query Playbook($slug: String!) {
+  query PlaybookPdfDetail($slug: String!) {
     playbook(slug: $slug) {
       id
       slug

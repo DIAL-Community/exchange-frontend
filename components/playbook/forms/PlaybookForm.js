@@ -5,7 +5,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../../lib/hooks'
+import { useActiveTenant } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
@@ -57,7 +57,6 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { user } = useUser()
 
   const { tenant } = useActiveTenant()
 
@@ -79,8 +78,9 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       if (response.errors.length === 0 && response.playbook) {
         setMutating(false)
         setSlug(response.playbook.slug)
-        showSuccessMessage(format('ui.playbook.submitted'),
-          () => router.push(`/${router.locale}/playbooks/${response.playbook.slug}`)
+        showSuccessMessage(
+          format('ui.playbook.submitted'),
+          () => router.push(`/playbooks/${response.playbook.slug}`)
         )
       } else {
         const [firstErrorMessage] = response.errors
@@ -113,13 +113,10 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     defaultValues: {
       name: playbook?.name,
       author: playbook?.author,
-      overview: playbook?.playbookDescription.overview,
-      audience: playbook?.playbookDescription.audience,
-      outcomes: playbook?.playbookDescription.outcomes,
-      published: playbook ? !playbook.draft : false
+      published: !playbook?.draft ?? true,
+      overview: playbook?.playbookDescription.overview
     }
   })
-  const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
 
   const [slug, setSlug] = useState(playbook ? playbook.slug : '')
   const [tags, setTags] = useState(playbook?.tags.map(tag => ({ label: tag, value: tag })) ?? [])
@@ -130,7 +127,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     // Set the loading indicator.
     setMutating(true)
     // Pull all needed data from session and form.
-    const { name, cover, author, overview, audience, outcomes, published } = data
+    const { name, cover, author, overview, published } = data
     const [coverFile] = cover
     // Send graph query to the backend. Set the base variables needed to perform update.
     const variables = {
@@ -139,11 +136,11 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       owner: 'public',
       author,
       overview,
-      audience,
-      outcomes,
+      audience: '',
+      outcomes: '',
       cover: coverFile,
-      tags: tags.map(tag => tag.label),
-      draft: !published
+      draft: !published,
+      tags: tags.map(tag => tag.label)
     }
 
     updatePlaybook({
@@ -158,7 +155,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
 
   useEffect(() => {
     const doAutoSave = () => {
-      if (!user || !watch) {
+      if (!watch) {
         return
       }
 
@@ -184,7 +181,8 @@ export const PlaybookForm = React.memo(({ playbook }) => {
         overview,
         audience,
         outcomes,
-        tags: tags.map(tag => tag.label)
+        tags: tags.map(tag => tag.label),
+        draft: false
       }
       autoSavePlaybook({
         variables,
@@ -201,7 +199,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tenant, tags, locale, watch, autoSavePlaybook])
+  }, [slug, tenant, tags, locale, watch, autoSavePlaybook])
 
   const cancelForm = () => {
     setReverting(true)
@@ -235,7 +233,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
 
   return (
     <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+      <div className='px-4 lg:px-0 py-4 lg:py-6'>
         <div className='flex flex-col gap-y-6 text-sm'>
           <div className='text-xl font-semibold'>
             {playbook && format('app.editEntity', { entity: playbook.name })}
@@ -299,27 +297,17 @@ export const PlaybookForm = React.memo(({ playbook }) => {
             required
             isInvalid={errors.overview}
           />
-          <FormTextEditor
-            control={control}
-            name='audience'
-            placeholder={format('ui.playbook.audience')}
-          />
-          <FormTextEditor
-            control={control}
-            name='outcomes'
-            placeholder={format('ui.playbook.outcomes')}
-          />
           <label className='flex gap-x-2 mb-2 items-center self-start'>
             <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
             {format('ui.playbook.published')}
           </label>
-          <div className='flex flex-wrap text-base mt-6 gap-3'>
+          <div className='flex flex-wrap text-sm gap-3'>
             <button
               type='submit'
               className='submit-button'
               disabled={mutating || reverting}
             >
-              {format(isPublished ? 'ui.playbook.publish' : 'ui.playbook.saveAsDraft')}
+              {format('ui.playbook.save')}
               {mutating && <FaSpinner className='spinner ml-3 inline' />}
             </button>
             <button

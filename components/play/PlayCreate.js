@@ -5,7 +5,7 @@ import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PLAY_QUERY } from '../shared/query/play'
-import PlayForm from './fragments/PlayForm'
+import { PlayForm } from './forms/PlayForm'
 import PlayEditLeft from './PlayEditLeft'
 
 const PlayCreate = ({ playbookSlug, locale }) => {
@@ -17,7 +17,7 @@ const PlayCreate = ({ playbookSlug, locale }) => {
     context: {
       headers: {
         'Accept-Language': locale,
-        ...GRAPH_QUERY_CONTEXT.EDITING
+        ...GRAPH_QUERY_CONTEXT.CREATING
       }
     }
   })

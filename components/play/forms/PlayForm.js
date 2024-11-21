@@ -4,7 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../../lib/hooks'
+import { useActiveTenant } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import Checkbox from '../../shared/form/Checkbox'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
@@ -13,8 +13,6 @@ import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { AUTOSAVE_PLAY, CREATE_PLAY } from '../../shared/mutation/play'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
-import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
 import { fetchSelectOptions } from '../../utils/search'
 
@@ -29,8 +27,6 @@ export const PlayForm = ({ playbook, play }) => {
   const { tenant } = useActiveTenant()
 
   const router = useRouter()
-  const { locale } = router
-  const { user } = useUser()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [mutating, setMutating] = useState(false)
@@ -46,7 +42,7 @@ export const PlayForm = ({ playbook, play }) => {
       setMutating(false)
       showSuccessMessage(
         format('ui.play.submitted'),
-        () => router.push(`/${locale}/playbooks/${playbook.slug}`)
+        () => router.push(`/playbooks/${playbook.slug}`)
       )
     }
   })
@@ -67,12 +63,22 @@ export const PlayForm = ({ playbook, play }) => {
   })
 
   const [slug, setSlug] = useState(play?.slug ?? '')
-  const [tags, setTags] = useState(play?.tags.map(tag => ({ label: tag })) ?? [])
-  const [products, setProducts] = useState(
-    play?.products?.map(product => ({ name: product.name, slug: product.slug })) ?? []
+  const [tags, setTags] = useState(
+    play
+      ?.tags
+      ?.map(tag => ({ label: tag }))
+    ?? [])
+  const [products] = useState(
+    play
+      ?.products
+      ?.map(product => ({ name: product.name, slug: product.slug }))
+    ?? []
   )
-  const [buildingBlocks, setBuildingBlocks] = useState(
-    play?.buildingBlocks?.map(buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug })) ?? []
+  const [buildingBlocks] = useState(
+    play
+      ?.buildingBlocks
+      ?.map(buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug }))
+    ?? []
   )
 
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
@@ -81,27 +87,24 @@ export const PlayForm = ({ playbook, play }) => {
     shouldUnregister: true,
     defaultValues: {
       name: play?.name,
-      description: play?.playDescription?.description,
-      published: playbook ? !playbook.draft : false
+      published: !play?.draft ?? true,
+      description: play?.playDescription?.description
     }
   })
 
-  const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
-
   const doUpsert = async (data) => {
     setMutating(true)
-
     const { name, description, published } = data
     const variables = {
       name,
       slug,
       description,
       owner: 'public',
+      draft: !published,
       tags: tags.map(tag => tag.label),
       playbookSlug: playbook.slug,
       productSlugs: products.map(({ slug }) => slug),
-      buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug),
-      draft: !published
+      buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
     }
 
     createPlay({
@@ -118,7 +121,7 @@ export const PlayForm = ({ playbook, play }) => {
     const doAutoSave = () => {
       const { locale } = router
 
-      if (!user || !watch) {
+      if (!watch) {
         return
       }
 
@@ -158,11 +161,16 @@ export const PlayForm = ({ playbook, play }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tenant, tags, products, buildingBlocks, playbook, router, watch, autoSavePlay])
+  }, [slug, tenant, tags, products, buildingBlocks, playbook, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${router.locale}/playbooks/${playbook.slug}`)
+    let route = '/playbooks'
+    if (playbook) {
+      route = `${route}/${playbook.slug}`
+    }
+
+    router.push(route)
   }
 
   const fetchedTagsCallback = (data) => (
@@ -185,49 +193,9 @@ export const PlayForm = ({ playbook, play }) => {
   const loadTagOptions = (input) =>
     fetchSelectOptions(client, input, TAG_SEARCH_QUERY, fetchedTagsCallback)
 
-  const fetchedProductsCallback = (data) => (
-    data?.products?.map((product) => ({
-      value: product.slug,
-      label: product.name,
-      slug: product.slug
-    }))
-  )
-
-  const addProduct = (product) =>
-    setProducts([
-      ...products.filter(({ slug }) => slug !== product.slug),
-      { name: product.label, slug: product.slug }
-    ])
-
-  const removeProduct = (product) =>
-    setProducts([...products.filter(({ slug }) => slug !== product.slug)])
-
-  const loadProductOptions = (input) =>
-    fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)
-
-  const fetchedBuildingBlocksCallback = (data) => (
-    data?.buildingBlocks?.map((buildingBlock) => ({
-      value: buildingBlock.slug,
-      label: buildingBlock.name,
-      slug: buildingBlock.slug
-    }))
-  )
-
-  const addBuildingBlock = (buildingBlock) =>
-    setBuildingBlocks([
-      ...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug),
-      { name: buildingBlock.label, slug: buildingBlock.slug }
-    ])
-
-  const removeBuildingBlock = (buildingBlock) =>
-    setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug)])
-
-  const loadBuildingBlockOptions = (input) =>
-    fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
-
   return (
     <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+      <div className='px-4 lg:px-0 py-4 lg:py-6'>
         <div className='flex flex-col gap-y-6 text-sm'>
           <div className='text-xl font-semibold'>
             {play && format('app.editEntity', { entity: play.name })}
@@ -269,61 +237,7 @@ export const PlayForm = ({ playbook, play }) => {
               ))}
             </div>
           </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='flex flex-col gap-y-2'>
-              {format('ui.product.header')}
-              <Select
-                async
-                isBorderless
-                defaultOptions
-                cacheOptions
-                placeholder={format('ui.product.header')}
-                loadOptions={loadProductOptions}
-                noOptionsMessage={() =>
-                  format('filter.searchFor', { entity: format('ui.product.header') })
-                }
-                onChange={addProduct}
-                value={null}
-              />
-            </label>
-            <div className='flex flex-wrap gap-3 mt-2'>
-              {products?.map((product, productIdx) => (
-                <Pill
-                  key={productIdx}
-                  label={product.name}
-                  onRemove={() => removeProduct(product)}
-                />
-              ))}
-            </div>
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire flex flex-col gap-y-2'>
-              {format('ui.buildingBlock.header')}
-              <Select
-                async
-                isBorderless
-                defaultOptions
-                cacheOptions
-                placeholder={format('ui.buildingBlock.header')}
-                loadOptions={loadBuildingBlockOptions}
-                noOptionsMessage={() =>
-                  format('filter.searchFor', { entity: format('ui.buildingBlock.header') })
-                }
-                onChange={addBuildingBlock}
-                value={null}
-              />
-            </label>
-            <div className='flex flex-wrap gap-3 mt-2'>
-              {buildingBlocks?.map((buildingBlock, buildingBlockIdx) => (
-                <Pill
-                  key={buildingBlockIdx}
-                  label={buildingBlock.name}
-                  onRemove={() => removeBuildingBlock(buildingBlock)}
-                />
-              ))}
-            </div>
-          </div>
-          <label className='text-dial-sapphire flex flex-col gap-y-2'>
+          <label className='flex flex-col gap-y-2'>
             <p className='required-field'> {format('ui.play.description')}</p>
             <Controller
               name='description'
@@ -347,13 +261,13 @@ export const PlayForm = ({ playbook, play }) => {
             <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
             {format('ui.play.published')}
           </label>
-          <div className='flex flex-wrap gap-3'>
+          <div className='flex flex-wrap gap-3 text-sm'>
             <button
               type='submit'
               className='submit-button'
               disabled={mutating || reverting}
             >
-              {format(isPublished ? 'ui.play.publish' : 'ui.play.saveAsDraft')}
+              {`${format('app.save')} ${format('ui.play.label')}`}
               {mutating && <FaSpinner className='spinner ml-3 inline' />}
             </button>
             <button
