@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client'
 
+export const SITE_SETTING_POLICY_QUERY = gql`
+  query SiteSetting($slug: String) {
+    siteSetting(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const SITE_SETTING_DETAIL_QUERY = gql`
   query SiteSetting($slug: String) {
     siteSetting(slug: $slug) {

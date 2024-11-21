@@ -1,29 +1,27 @@
-import { useIntl } from 'react-intl'
-import { useState, useCallback, useContext } from 'react'
-import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { Controller, useForm } from 'react-hook-form'
+import { useCallback, useContext, useState } from 'react'
 import { validate } from 'email-validator'
-import { UPDATE_ORGANIZATION_CONTACTS } from '../../shared/mutation/organization'
-import { DisplayType } from '../../utils/constants'
-import { useUser } from '../../../lib/hooks'
+import { useRouter } from 'next/router'
+import { Controller, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
 import ContactCard from '../../contact/ContactCard'
-import Input from '../../shared/form/Input'
-import ValidationError from '../../shared/form/ValidationError'
 import EditableSection from '../../shared/EditableSection'
+import Input from '../../shared/form/Input'
 import Pill from '../../shared/form/Pill'
+import ValidationError from '../../shared/form/ValidationError'
+import { UPDATE_ORGANIZATION_CONTACTS } from '../../shared/mutation/organization'
+import { DisplayType } from '../../utils/constants'
 
 const inputSectionStyle = 'flex flex-col gap-y-3'
 
-const OrganizationDetailContacts = ({ organization, canEdit, headerRef }) => {
+const OrganizationDetailContacts = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [contacts, setContacts] = useState(organization?.contacts)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -81,22 +79,17 @@ const OrganizationDetailContacts = ({ organization, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateOrganizationContacts({
-        variables: {
-          slug: organization.slug,
-          contacts
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateOrganizationContacts({
+      variables: {
+        slug: organization.slug,
+        contacts
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const displayModeBody = organization && contacts.length > 0
@@ -189,7 +182,7 @@ const OrganizationDetailContacts = ({ organization, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

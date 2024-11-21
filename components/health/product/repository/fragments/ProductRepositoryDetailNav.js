@@ -1,10 +1,11 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import Select from '../../../shared/form/Select'
+import { GRAPH_QUERY_CONTEXT } from '../../../../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../../shared/GraphQueryHandler'
 import { PRODUCT_REPOSITORIES_QUERY } from '../../../../shared/query/productRepository'
-import { Error, Loading, NotFound } from '../../../../shared/FetchStatus'
+import Select from '../../../shared/form/Select'
 
 const ProductRepositoryDetailNav = ({ product, scrollRef }) => {
   const { formatMessage } = useIntl()
@@ -13,15 +14,20 @@ const ProductRepositoryDetailNav = ({ product, scrollRef }) => {
   const router = useRouter()
 
   const { loading, error, data } = useQuery(PRODUCT_REPOSITORIES_QUERY, {
-    variables: { productSlug: product.slug }
+    variables: { productSlug: product.slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.productRepositories) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { productRepositories } = data

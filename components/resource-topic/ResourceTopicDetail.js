@@ -1,24 +1,46 @@
-import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useEffect, useRef, useState } from 'react'
+import { useApolloClient, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import { RESOURCE_TOPIC_DETAIL_QUERY } from '../shared/query/resourceTopic'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { RESOURCE_TOPIC_DETAIL_QUERY, RESOURCE_TOPIC_POLICY_QUERY } from '../shared/query/resourceTopic'
+import { fetchOperationPolicies } from '../utils/policy'
 import ResourceTopicDetailLeft from './ResourceTopicDetailLeft'
 import ResourceTopicDetailRight from './ResourceTopicDetailRight'
 
 const ResourceTopicDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(RESOURCE_TOPIC_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      RESOURCE_TOPIC_POLICY_QUERY,
+      ['editing', 'deleting']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.resourceTopic) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { resourceTopic } = data
@@ -36,11 +58,16 @@ const ResourceTopicDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <ResourceTopicDetailLeft scrollRef={scrollRef} resourceTopic={resourceTopic} />
         </div>
         <div className='lg:basis-2/3'>
-          <ResourceTopicDetailRight ref={scrollRef} resourceTopic={resourceTopic} />
+          <ResourceTopicDetailRight
+            ref={scrollRef}
+            resourceTopic={resourceTopic}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

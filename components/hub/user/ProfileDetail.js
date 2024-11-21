@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { FiEdit3 } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
@@ -52,7 +53,12 @@ const ProfileDetail = ({ user }) => {
   const userEmail = user?.email ? user?.email : user?.userEmail
 
   const { data } = useQuery(HUB_CONTACT_DETAIL_QUERY, {
-    variables: { userId: `${user.id}`, email: userEmail, source: DPI_TENANT_NAME }
+    variables: { userId: `${user.id}`, email: userEmail, source: DPI_TENANT_NAME },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (

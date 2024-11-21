@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
-import OrganizationCard from '../../organization/fragments/OrganizationCard'
 import EditableSection from '../../../shared/EditableSection'
 import Pill from '../../../shared/form/Pill'
 import Select from '../../../shared/form/Select'
@@ -12,8 +11,9 @@ import { UPDATE_PRODUCT_ORGANIZATIONS } from '../../../shared/mutation/product'
 import { ORGANIZATION_SEARCH_QUERY } from '../../../shared/query/organization'
 import { DisplayType } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
+import OrganizationCard from '../../organization/fragments/OrganizationCard'
 
-const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
+const ProductDetailOrganizations = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -75,8 +75,6 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProductOrganizations({
         variables: {
           organizationSlugs: organizations.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -156,7 +153,7 @@ const ProductDetailOrganizations = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

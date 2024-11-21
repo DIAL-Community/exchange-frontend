@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/opportunity'
@@ -68,6 +69,11 @@ const OpportunityListRight = () => {
       tags: tags.map(tag => tag.label),
       showClosed,
       showGovStackOnly
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

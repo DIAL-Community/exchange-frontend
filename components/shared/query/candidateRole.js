@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client'
 
+export const CANDIDATE_ROLE_POLICY_QUERY = gql`
+  query CandidateRole($id: ID) {
+    candidateRole(id: $id) {
+      id
+    }
+  }
+`
+
 export const CANDIDATE_ROLE_DETAIL_QUERY = gql`
   query CandidateRole(
     $id: ID

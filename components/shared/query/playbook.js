@@ -57,8 +57,16 @@ export const PAGINATED_PLAYBOOKS_QUERY = gql`
   }
 `
 
+export const PLAYBOOK_POLICY_QUERY = gql`
+  query PlaybookPolicy($slug: String!, $owner: String!) {
+    playbook(slug: $slug, owner: $owner) {
+      id
+    }
+  }
+`
+
 export const PLAYBOOK_DETAIL_QUERY = gql`
-  query Playbook($slug: String!, $owner: String!) {
+  query PlaybookDetail($slug: String!, $owner: String!) {
     playbook(slug: $slug, owner: $owner) {
       id
       slug

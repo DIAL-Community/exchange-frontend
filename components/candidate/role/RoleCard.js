@@ -1,21 +1,16 @@
 import { useCallback } from 'react'
-import { FormattedDate, useIntl } from 'react-intl'
-import Link from 'next/link'
 import parse from 'html-react-parser'
+import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
+import { FormattedDate, useIntl } from 'react-intl'
 import { DisplayType } from '../../utils/constants'
-import { useUser } from '../../../lib/hooks'
 import { isValidFn } from '../../utils/utilities'
 
 const RoleCard = ({ displayType, index, role, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user } = useUser()
-  const submitterEmail = user
-    ? role.email ?? format('general.na')
-    : format('general.hidden')
-
+  const submitterEmail = role.email ?? format('general.na')
   const bgColor = `${role.rejected}`.toLowerCase() === 'true'
     ? 'bg-red-700'
     : 'bg-green-700'

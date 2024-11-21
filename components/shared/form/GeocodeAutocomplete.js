@@ -3,6 +3,7 @@ import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { geocode, reverseGeocode, suggest } from '@esri/arcgis-rest-geocoding'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useArcGisToken } from '../../../lib/hooks'
 import { COUNTRY_CODES_QUERY } from '../query/country'
 import Select from './Select'
@@ -11,7 +12,14 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRY_CODES_QUERY, { variables: { search: '' } })
+  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRY_CODES_QUERY, {
+    variables: { search: '' },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   const countryCodes = useMemo(
     () => countryData?.countries?.filter(({ codeLonger }) => !!codeLonger)?.map(({ codeLonger }) => codeLonger),

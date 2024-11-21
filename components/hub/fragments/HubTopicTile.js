@@ -1,25 +1,29 @@
 import { useContext } from 'react'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { RESOURCE_TOPIC_SEARCH_QUERY } from '../../shared/query/resourceTopic'
 
 const HubTopicTile = () => {
   const { search } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(RESOURCE_TOPIC_SEARCH_QUERY, {
-    variables: {
-      search
+    variables: { search },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.resourceTopics) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { resourceTopics } = data

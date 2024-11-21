@@ -7,8 +7,8 @@ import { allowedToBrowseAdliPages } from '../../../../components/hub/admin/utili
 import HubCurriculum from '../../../../components/hub/sections/HubCurriculum'
 import HubFooter from '../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../components/hub/sections/HubHeader'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../components/shared/QueryNotification'
+import { handleLoadingSession, handleSessionError } from '../../../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../../../lib/ClientOnly'
 
 const HubCurriculumPage = ({ dpiTenants }) => {
@@ -34,10 +34,10 @@ const HubCurriculumPage = ({ dpiTenants }) => {
         <QueryNotification />
         <HubHeader />
         { (status === 'unauthenticated' || status === 'loading')
-          ? <Loading />
+          ? handleLoadingSession()
           : status === 'authenticated' && allowedToBrowseAdliPages(data?.user)
             ? <HubCurriculum curriculumSlug={curriculumSlug} />
-            : <Unauthorized />
+            : handleSessionError()
         }
         <HubFooter />
       </ClientOnly>

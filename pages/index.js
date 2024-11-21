@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Loading } from '../components/shared/FetchStatus'
+import { handleLoadingSession } from '../components/shared/SessionQueryHandler'
 import { useActiveTenant } from '../lib/hooks'
 
 const HealthPage = dynamic(() => import('./landing/health'))
@@ -12,7 +12,7 @@ const RootPage = ({ dpiTenants, defaultTenants }) => {
   return (
     <>
       { waitingActiveTenant || !tenant
-        ? <Loading />
+        ? handleLoadingSession()
         : tenant === 'dpi'
           ? <HubPage dpiTenants={dpiTenants} />
           : tenant === 'health'

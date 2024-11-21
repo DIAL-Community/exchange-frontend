@@ -1,24 +1,46 @@
-import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
-import { OPPORTUNITY_DETAIL_QUERY } from '../shared/query/opportunity'
+import { useEffect, useRef, useState } from 'react'
+import { useApolloClient, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import OpportunityDetailRight from './OpportunityDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { OPPORTUNITY_DETAIL_QUERY, OPPORTUNITY_POLICY_QUERY } from '../shared/query/opportunity'
+import { fetchOperationPolicies } from '../utils/policy'
 import OpportunityDetailLeft from './OpportunityDetailLeft'
+import OpportunityDetailRight from './OpportunityDetailRight'
 
 const OpportunityDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(OPPORTUNITY_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      OPPORTUNITY_POLICY_QUERY,
+      ['editing', 'deleting']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.opportunity) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { opportunity } = data
@@ -36,11 +58,20 @@ const OpportunityDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
-          <OpportunityDetailLeft scrollRef={scrollRef} opportunity={opportunity} />
+        <div className='lg:basis-1/3 shrink-0'>
+          <OpportunityDetailLeft
+            scrollRef={scrollRef}
+            opportunity={opportunity}
+            editingAllowed={editingAllowed}
+          />
         </div>
         <div className='lg:basis-2/3'>
-          <OpportunityDetailRight ref={scrollRef} opportunity={opportunity} />
+          <OpportunityDetailRight
+            ref={scrollRef}
+            opportunity={opportunity}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

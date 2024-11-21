@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
 import HubPagination from './HubPagination'
 
@@ -42,6 +43,11 @@ const PolicyPagination = ({ country, pageNumber, onClickHandler, theme='light' }
       search: '',
       countries: [country.id],
       resourceTypes: [GOVERNMENT_DOCUMENT]
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -77,6 +83,11 @@ const PolicyList = ({ country, pageNumber }) => {
       resourceTypes: [GOVERNMENT_DOCUMENT],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

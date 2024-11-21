@@ -1,28 +1,47 @@
-import { useCallback, useRef } from 'react'
-import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
+import { useEffect, useRef, useState } from 'react'
+import { FormattedMessage } from 'react-intl'
+import { useApolloClient, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import { RESOURCE_DETAIL_QUERY } from '../shared/query/resource'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { RESOURCE_DETAIL_QUERY, RESOURCE_POLICY_QUERY } from '../shared/query/resource'
+import { fetchOperationPolicies } from '../utils/policy'
 import ResourceDetailLeft from './ResourceDetailLeft'
 import ResourceDetailRight from './ResourceDetailRight'
 
 const ResourceDetail = ({ slug, country }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(RESOURCE_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      RESOURCE_POLICY_QUERY,
+      ['editing', 'deleting']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.resource) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { resource } = data
@@ -32,7 +51,7 @@ const ResourceDetail = ({ slug, country }) => {
     map[resource.slug] = resource.name
 
     if (country) {
-      map['countries'] = format('hub.breadcrumb.country')
+      map['countries'] = <FormattedMessage id='hub.breadcrumb.country' />
       map[country.slug] = country.name
     }
 
@@ -45,11 +64,20 @@ const ResourceDetail = ({ slug, country }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
-          <ResourceDetailLeft scrollRef={scrollRef} resource={resource} />
+        <div className='lg:basis-1/3 shrink-0'>
+          <ResourceDetailLeft
+            scrollRef={scrollRef}
+            resource={resource}
+            editingAllowed={editingAllowed}
+          />
         </div>
         <div className='lg:basis-2/3'>
-          <ResourceDetailRight ref={scrollRef} resource={resource} />
+          <ResourceDetailRight
+            ref={scrollRef}
+            resource={resource}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

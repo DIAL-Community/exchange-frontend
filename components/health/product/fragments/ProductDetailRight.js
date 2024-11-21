@@ -1,7 +1,7 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { useProductOwnerUser, useUser } from '../../../../lib/hooks'
+import { useIntl } from 'react-intl'
+import DeleteProduct from '../../../product/fragments/DeleteProduct'
 import CommentsSection from '../../../shared/comment/CommentsSection'
 import Bookmark from '../../../shared/common/Bookmark'
 import Share from '../../../shared/common/Share'
@@ -9,24 +9,19 @@ import CreateButton from '../../../shared/form/CreateButton'
 import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../../../utils/constants'
-import DeleteProduct from '../../../product/DeleteProduct'
 import ProductRepositoryCard from '../repository/ProductRepositoryCard'
-import ProductDetailTags from './ProductDetailTags'
+import ProductDetailCategories from './ProductDetailCategories'
 import ProductDetailCountries from './ProductDetailCountries'
+import ProductDetailExtraAttributes from './ProductDetailExtraAttributes'
 import ProductDetailMaturityScores from './ProductDetailMaturityScores'
 import ProductDetailOrganizations from './ProductDetailOrganizations'
-import ProductDetailCategories from './ProductDetailCategories'
-import ProductDetailExtraAttributes from './ProductDetailExtraAttributes'
-import ProductDetailProjects from './ProductDetailProjects'
 import ProductDetailProductStage from './ProductDetailProductStage'
+import ProductDetailProjects from './ProductDetailProjects'
+import ProductDetailTags from './ProductDetailTags'
 
-const ProductDetailRight = forwardRef(({ product }, ref) => {
+const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const { isProductOwner } = useProductOwnerUser(product)
-  const canEdit = isAdminUser || isEditorUser || isProductOwner
 
   const descRef = useRef()
   const extraRef = useRef()
@@ -64,12 +59,10 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className="flex flex-col gap-y-3">
-        {canEdit && (
-          <div className="flex gap-x-3 ml-auto">
-            <EditButton type="link" href={editPath}/>
-            {isAdminUser && <DeleteProduct product={product}/>}
-          </div>
-        )}
+        <div className="flex gap-x-3 ml-auto">
+          { editingAllowed && <EditButton type="link" href={editPath}/> }
+          { deletingAllowed && <DeleteProduct product={product}/> }
+        </div>
         <div className="flex flex-wrap gap-3">
           {product?.softwareCategories?.map((category, index) =>
             <div
@@ -87,14 +80,22 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           {parse(product?.productDescription?.description)}
         </div>
         <hr className="border-b border-health-gray my-3"/>
-        <ProductDetailExtraAttributes product={product} canEdit={canEdit} headerRef={extraRef} />
+        <ProductDetailExtraAttributes
+          product={product}
+          editingAllowed={editingAllowed}
+          headerRef={extraRef}
+        />
         <hr className="border-b border-health-gray my-3"/>
-        <ProductDetailProductStage product={product} canEdit={canEdit} headerRef={extraRef} />
+        <ProductDetailProductStage
+          product={product}
+          editingAllowed={editingAllowed}
+          headerRef={extraRef}
+        />
         <hr className="border-b border-health-gray my-3"/>
         <div className="flex flex-col gap-y-3">
           <ProductDetailCategories
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={categoryRef}
           />
         </div>
@@ -102,7 +103,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className="flex flex-col gap-y-3">
           <ProductDetailOrganizations
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={organizationRef}
           />
         </div>
@@ -110,7 +111,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className="flex flex-col gap-y-3">
           <ProductDetailCountries
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
         </div>
@@ -126,6 +127,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         </div>
         <ProductDetailMaturityScores
           slug={product.slug}
+          editingAllowed={editingAllowed}
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
@@ -133,7 +135,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className="flex flex-col gap-y-3">
           <ProductDetailProjects
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={projectRef}
           />
         </div>
@@ -143,7 +145,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             <div className="text-health-blue text-lg font-semibold" ref={productRepositoryRef}>
               {format('productRepository.header')}
             </div>
-            {canEdit &&
+            {editingAllowed &&
               <div className="ml-auto">
                 <CreateButton
                   label={format('app.create')}
@@ -177,7 +179,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className="flex flex-col gap-y-3">
           <ProductDetailTags
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={tagRef}
           />
         </div>

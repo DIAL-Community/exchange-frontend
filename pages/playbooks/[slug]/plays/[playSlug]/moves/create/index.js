@@ -1,11 +1,11 @@
-import { NextSeo } from 'next-seo'
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import Header from '../../../../../../../components/shared/Header'
+import { useIntl } from 'react-intl'
+import MoveCreate from '../../../../../../../components/play-move/MoveCreate'
 import Footer from '../../../../../../../components/shared/Footer'
+import Header from '../../../../../../../components/shared/Header'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
-import MoveCreate from '../../../../../../../components/move/MoveCreate'
 
 const CreateMove = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()

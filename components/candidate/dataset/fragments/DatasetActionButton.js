@@ -1,8 +1,7 @@
 import { useCallback, useState } from 'react'
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
 import { CANDIDATE_DATASET_ACTION } from '../../../shared/mutation/candidateDataset'
 import { CandidateActionType } from '../../../utils/constants'
 
@@ -13,7 +12,6 @@ const DatasetActionButton = ({ dataset, actionType }) => {
   const [loading, setLoading] = useState(false)
 
   const { locale } = useRouter()
-  const { user } = useUser()
 
   const [candidateDatasetApproval, { reset }] = useMutation(CANDIDATE_DATASET_ACTION, {
     onCompleted: (data) => {
@@ -32,26 +30,21 @@ const DatasetActionButton = ({ dataset, actionType }) => {
   })
 
   const onClickHandler = async (actionType) => {
-    if (user) {
-      setLoading(true)
-      const { userEmail, userToken } = user
-      const variables = {
-        slug: dataset.slug,
-        action: actionType === CandidateActionType.REJECT
-          ? CandidateActionType.REJECT
-          : CandidateActionType.APPROVE
-      }
-
-      candidateDatasetApproval({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setLoading(true)
+    const variables = {
+      slug: dataset.slug,
+      action: actionType === CandidateActionType.REJECT
+        ? CandidateActionType.REJECT
+        : CandidateActionType.APPROVE
     }
+    candidateDatasetApproval({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   return (

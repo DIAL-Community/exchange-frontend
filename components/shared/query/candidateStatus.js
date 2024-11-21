@@ -57,6 +57,14 @@ export const PAGINATED_CANDIDATE_STATUSES_QUERY = gql`
   }
 `
 
+export const CANDIDATE_STATUS_POLICY_QUERY = gql`
+  query CandidateStatus($slug: String!) {
+    candidateStatus(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const CANDIDATE_STATUS_DETAIL_QUERY = gql`
   query CandidateStatus($slug: String!) {
     candidateStatus(slug: $slug) {

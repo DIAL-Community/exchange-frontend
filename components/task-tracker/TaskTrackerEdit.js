@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { TASK_TRACKER_DETAIL_QUERY } from '../shared/query/taskTracker'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { TASK_TRACKER_DETAIL_QUERY } from '../shared/query/taskTracker'
 import TaskTrackerForm from './fragments/TaskTrackerForm'
 import TaskTrackerEditLeft from './TaskTrackerEditLeft'
 
@@ -12,15 +13,20 @@ const TaskTrackerEdit = ({ slug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(TASK_TRACKER_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.taskTracker) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { taskTracker } = data
@@ -40,7 +46,7 @@ const TaskTrackerEdit = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <TaskTrackerEditLeft taskTracker={taskTracker} />
         </div>
         <div className='lg:basis-2/3'>

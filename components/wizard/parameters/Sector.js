@@ -1,17 +1,24 @@
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Checkbox from '../../shared/form/Checkbox'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
 
 export const SectorAutocomplete = ({ sectors, setSectors }) => {
-  const { data, error, loading } = useQuery(SECTOR_SEARCH_QUERY)
+  const { data, error, loading } = useQuery(SECTOR_SEARCH_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.sectors) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const toggleSector = (id) => {

@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { Loading } from '../FetchStatus'
 import EditButton from '../form/EditButton'
@@ -31,6 +32,11 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     variables: {
       commentObjectId: parseInt(objectId),
       commentObjectType: objectType
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -40,13 +46,22 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
-    },
-    {
+    }, {
       query: COMMENTS_QUERY,
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }]
   })
@@ -56,21 +71,28 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
-    },
-    {
+    }, {
       query: COMMENTS_QUERY,
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }]
   })
 
   const onCommentUpsertAction = (text, commentId, parentCommentId = null, parentOfRepliedCommentId = null) => {
     if (user) {
-      const { userEmail, userToken } = user
-
       createComment({
         variables: {
           commentId,
@@ -82,8 +104,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -92,14 +113,11 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
 
   const onCommentDeleteAction = (commentId) => {
     if (user) {
-      const { userEmail, userToken } = user
-
       deleteComment({
         variables: { commentId },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

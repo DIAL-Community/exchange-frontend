@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import HubFooter from '../../../../../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../../../../../components/hub/sections/HubHeader'
-import { Loading } from '../../../../../../../../components/shared/FetchStatus'
+import { handleLoadingSession } from '../../../../../../../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../../../../../../../lib/ClientOnly'
 
 const HubCurriculumSubModulePage = ({ dpiTenants }) => {
@@ -26,7 +26,7 @@ const HubCurriculumSubModulePage = ({ dpiTenants }) => {
       />
       <ClientOnly clientTenants={dpiTenants}>
         <HubHeader />
-        <Loading />
+        {handleLoadingSession()}
         <HubFooter />
       </ClientOnly>
     </>

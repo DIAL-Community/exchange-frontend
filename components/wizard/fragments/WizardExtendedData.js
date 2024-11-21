@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import DigitalPrinciple from '../../principles/DigitalPrinciple'
 import ResourceCard from '../../resources/fragments/ResourceCard'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { WIZARD_EXTENDED_DATA_QUERY } from '../../shared/query/wizard'
 import { DisplayType } from '../../utils/constants'
 
@@ -11,14 +12,20 @@ const WizardExtendedData = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data } = useQuery(WIZARD_EXTENDED_DATA_QUERY)
+  const { loading, error, data } = useQuery(WIZARD_EXTENDED_DATA_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.wizard) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { wizard } = data

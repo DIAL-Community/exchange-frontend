@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import {
   PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY, RESOURCE_TYPE_SEARCH_QUERY
 } from '../../shared/query/resource'
@@ -64,6 +65,11 @@ const ResourcePagination = ({ country, pageNumber, resourceTypes, onClickHandler
       search: '',
       countries: [country.id],
       resourceTypes: [...resourceTypes]
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -99,6 +105,11 @@ const ResourceList = ({ country, pageNumber, resourceTypes }) => {
       resourceTypes: [...resourceTypes],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -130,6 +141,11 @@ const HubCountryResources = ({ country }) => {
   const { loading, error, data } = useQuery(RESOURCE_TYPE_SEARCH_QUERY, {
     variables: {
       search: ''
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

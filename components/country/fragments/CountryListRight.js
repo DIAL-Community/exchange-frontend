@@ -1,11 +1,12 @@
-import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
+import Pagination from '../../shared/Pagination'
 import { COUNTRY_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/country'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import Pagination from '../../shared/Pagination'
 import CountrySearchBar from './CountrySearchBar'
 import ListStructure from './ListStructure'
 
@@ -47,14 +48,14 @@ const CountryListRight = () => {
     }
   }
 
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
-
   const { loading, error, data } = useQuery(COUNTRY_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

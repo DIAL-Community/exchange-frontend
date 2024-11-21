@@ -7,8 +7,8 @@ import HubAdminUserDetail from '../../../../../components/hub/admin/HubAdminUser
 import { allowedToView } from '../../../../../components/hub/admin/utilities'
 import HubFooter from '../../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../../components/hub/sections/HubHeader'
-import { Loading, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../../components/shared/QueryNotification'
+import { handleLoadingSession, handleSessionError } from '../../../../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../../../../lib/ClientOnly'
 
 const HubAdminUserDetailPage = ({ dpiTenants }) => {
@@ -35,10 +35,10 @@ const HubAdminUserDetailPage = ({ dpiTenants }) => {
         <QueryNotification />
         <HubHeader />
         { status === 'unauthenticated' || status === 'loading'
-          ? <Loading />
+          ? handleLoadingSession()
           : status === 'authenticated' && allowedToView(data.user)
             ? <HubAdminUserDetail userId={userId} />
-            : <Unauthorized />
+            : handleSessionError()
         }
         <HubFooter />
       </ClientOnly>

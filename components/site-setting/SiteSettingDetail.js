@@ -1,24 +1,46 @@
-import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
+import { useEffect, useRef, useState } from 'react'
+import { useApolloClient, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import { SITE_SETTING_DETAIL_QUERY } from '../shared/query/siteSetting'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { SITE_SETTING_DETAIL_QUERY, SITE_SETTING_POLICY_QUERY } from '../shared/query/siteSetting'
+import { fetchOperationPolicies } from '../utils/policy'
 import SiteSettingDetailLeft from './SiteSettingDetailLeft'
 import SiteSettingDetailRight from './SiteSettingDetailRight'
 
 const SiteSettingDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(SITE_SETTING_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      SITE_SETTING_POLICY_QUERY,
+      ['editing', 'deleting']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.siteSetting) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { siteSetting } = data
@@ -39,8 +61,13 @@ const SiteSettingDetail = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <SiteSettingDetailLeft scrollRef={scrollRef} siteSetting={siteSetting} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
-          <SiteSettingDetailRight ref={scrollRef} siteSetting={siteSetting} />
+        <div className='lg:basis-2/3'>
+          <SiteSettingDetailRight
+            ref={scrollRef}
+            siteSetting={siteSetting}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

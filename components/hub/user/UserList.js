@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client'
 import { useContext } from 'react'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PAGINATED_DPI_USERS_QUERY } from '../../shared/query/user'
 import { DEFAULT_PAGE_SIZE } from './constant'
 import UserCard from './UserCard'
@@ -14,15 +15,20 @@ const UserList = ({ pageNumber }) => {
       roles: ['adli_admin', 'adli_user'],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedUsers) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedUsers: users } = data

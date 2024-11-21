@@ -1,17 +1,17 @@
-import { useMutation } from '@apollo/client'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState, useEffect } from 'react'
-import { useIntl } from 'react-intl'
 import { Controller, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import EditableSection from '../../../shared/EditableSection'
-import { UPDATE_PRODUCT_EXTRA_ATTRIBUTES } from '../../../shared/mutation/product'
 import Input from '../../../shared/form/Input'
-import { ProductMaturityAttributeNames, ProductStageType } from '../../../utils/constants'
 import Select from '../../../shared/form/Select'
+import { UPDATE_PRODUCT_EXTRA_ATTRIBUTES } from '../../../shared/mutation/product'
+import { ProductMaturityAttributeNames, ProductStageType } from '../../../utils/constants'
 
-const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
+const ProductDetailExtraAttributes = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -67,9 +67,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = (data) => {
     if (user) {
-      const { userEmail, userToken } = user
       const { extraAttributes } = data
-
       updateProductExtraAttributes({
         variables: {
           slug: product?.slug,
@@ -77,8 +75,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -166,7 +163,7 @@ const ProductDetailExtraAttributes = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={handleSubmit(onSubmit)}
       onCancel={onCancel}

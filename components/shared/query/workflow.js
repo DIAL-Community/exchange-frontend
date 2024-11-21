@@ -89,3 +89,11 @@ export const WORKFLOW_DETAIL_QUERY = gql`
     }
   }
 `
+
+export const WORKFLOW_POLICY_QUERY = gql`
+  query Workflow($slug: String!) {
+    workflow(slug: $slug) {
+      id
+    }
+  }
+`

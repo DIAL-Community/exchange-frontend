@@ -14,7 +14,7 @@ import { COUNTRY_SEARCH_QUERY } from '../../../shared/query/country'
 import { DisplayType } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
 
-const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
+const OrganizationDetailCountries = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -79,8 +79,6 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateOrganizationCountries({
         variables: {
           countrySlugs: countries.map(({ slug }) => slug),
@@ -88,8 +86,7 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -179,7 +176,7 @@ const OrganizationDetailCountries = ({ organization, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

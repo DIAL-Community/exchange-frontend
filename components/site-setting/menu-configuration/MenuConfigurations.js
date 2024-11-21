@@ -3,10 +3,10 @@ import { useRouter } from 'next/router'
 import { FaPlus, FaSpinner } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import Breadcrumb from '../../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { UPDATE_SITE_SETTING_MENU_CONFIGURATIONS } from '../../shared/mutation/siteSetting'
 import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
 import MenuConfiguration from './MenuConfiguration'
@@ -20,6 +20,11 @@ const MenuConfigurations = ({ slug }) => {
 
   const { loading, error, data } = useQuery(SITE_SETTING_DETAIL_QUERY, {
     variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    },
     onCompleted: (data) => {
       setMenuConfigurations(data.siteSetting.menuConfigurations)
       let menuCounter = 0
@@ -33,7 +38,6 @@ const MenuConfigurations = ({ slug }) => {
     }
   })
 
-  const { user } = useUser()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const { locale } = useRouter()
@@ -56,15 +60,20 @@ const MenuConfigurations = ({ slug }) => {
         setMutating(false)
         reset()
       }
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.siteSetting) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const buildCommonConfiguration = () => ({
@@ -133,24 +142,19 @@ const MenuConfigurations = ({ slug }) => {
   }
 
   const executeBulkUpdate = () => {
-    if (user) {
-      setMutating(true)
-      const { userEmail, userToken } = user
-      const variables = {
-        siteSettingSlug: slug,
-        menuConfigurations
-      }
-
-      bulkUpdateMenu({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setMutating(true)
+    const variables = {
+      siteSettingSlug: slug,
+      menuConfigurations
     }
+    bulkUpdateMenu({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const { siteSetting } = data

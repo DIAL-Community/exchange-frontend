@@ -9,8 +9,8 @@ import Footer from '../../components/shared/Footer'
 import UserRibbon from '../../components/profile/ProfileRibbon'
 import UserTabNav from '../../components/profile/ProfileTabNav'
 import UserMain from '../../components/profile/ProfileMain'
-import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import { useUser } from '../../lib/hooks'
+import { handleLoadingSession, handleSessionError } from '../../components/shared/SessionQueryHandler'
 
 const UserPage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
@@ -48,16 +48,18 @@ const UserPage = ({ defaultTenants }) => {
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         {loadingUserSession
-          ? <Loading />
+          ? handleLoadingSession()
           : !user
-            ? <Unauthorized />
-            : <div className='min-h-[80vh]'>
-              <div className='flex flex-col'>
-                <UserRibbon />
-                <UserTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
-                <UserMain activeTab={activeTab} />
+            ? handleSessionError()
+            : (
+              <div className='min-h-[80vh]'>
+                <div className='flex flex-col'>
+                  <UserRibbon />
+                  <UserTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+                  <UserMain activeTab={activeTab} />
+                </div>
               </div>
-            </div>
+            )
         }
         <Footer />
       </ClientOnly>

@@ -1,15 +1,11 @@
 import { useCallback } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
 
-const OrganizationDetailHeader = ({ organization }) => {
+const OrganizationDetailHeader = ({ organization, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -54,7 +50,7 @@ const OrganizationDetailHeader = ({ organization }) => {
             &nbsp;⧉
           </div>
         </div>
-        <OrganizationDetailSectors organization={organization} canEdit={canEdit} />
+        <OrganizationDetailSectors organization={organization} editingAllowed={editingAllowed} />
         {organization.whenEndorsed &&
           <>
             <hr className='border-b border-dial-slate-200'/>

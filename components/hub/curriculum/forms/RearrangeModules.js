@@ -4,6 +4,7 @@ import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { Dialog, Transition } from '@headlessui/react'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { FilterContext, FilterDispatchContext } from '../../../context/FilterContext'
@@ -128,7 +129,12 @@ const RearrangeControls = ({ curriculum, onClose }) => {
     UPDATE_PLAYBOOK_PLAYS, {
       refetchQueries: [{
         query: PLAYS_QUERY,
-        variables: { playbookSlug: curriculum.slug, owner: DPI_TENANT_NAME }
+        variables: { playbookSlug: curriculum.slug, owner: DPI_TENANT_NAME },
+        context: {
+          headers: {
+            ...GRAPH_QUERY_CONTEXT.VIEWING
+          }
+        }
       }],
       onCompleted: (data) => {
         const { updatePlaybookPlays: response } = data

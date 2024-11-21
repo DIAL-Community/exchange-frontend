@@ -71,6 +71,14 @@ export const PAGINATED_USE_CASES_QUERY = gql`
   }
 `
 
+export const USE_CASE_POLICY_QUERY = gql`
+  query UseCase($slug: String!) {
+    useCase(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const USE_CASE_DETAIL_QUERY = gql`
   query UseCase($slug: String!) {
     useCase(slug: $slug) {

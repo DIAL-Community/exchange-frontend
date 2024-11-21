@@ -1,16 +1,11 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import { useProductOwnerUser, useUser } from '../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import ProductDetailSectors from './ProductDetailSectors'
 
-const ProductDetailHeader = ({ product }) => {
+const ProductDetailHeader = ({ product, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const { isProductOwner } = useProductOwnerUser(product)
-  const canEdit = isAdminUser || isEditorUser || isProductOwner
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
@@ -76,7 +71,7 @@ const ProductDetailHeader = ({ product }) => {
             }
           </div>
         </div>
-        <ProductDetailSectors product={product} canEdit={canEdit} />
+        <ProductDetailSectors product={product} editingAllowed={editingAllowed} />
       </div>
     </div>
   )

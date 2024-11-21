@@ -36,6 +36,14 @@ export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
   }
 `
 
+export const CANDIDATE_PRODUCT_POLICY_QUERY = gql`
+  query CandidateProduct($slug: String!) {
+    candidateProduct(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
   query CandidateProduct($slug: String!) {
     candidateProduct(slug: $slug) {

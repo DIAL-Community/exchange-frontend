@@ -1,17 +1,17 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import Select from '../../../shared/form/Select'
-import { fetchSelectOptions } from '../../../utils/search'
-import Pill from '../../../shared/form/Pill'
-import EditableSection from '../../../shared/EditableSection'
-import { UPDATE_PRODUCT_TAGS } from '../../../shared/mutation/product'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
+import EditableSection from '../../../shared/EditableSection'
+import Pill from '../../../shared/form/Pill'
+import Select from '../../../shared/form/Select'
+import { UPDATE_PRODUCT_TAGS } from '../../../shared/mutation/product'
 import { TAG_SEARCH_QUERY } from '../../../shared/query/tag'
+import { fetchSelectOptions } from '../../../utils/search'
 
-const ProductDetailTags = ({ product, canEdit, headerRef }) => {
+const ProductDetailTags = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -60,8 +60,6 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProductTags({
         variables: {
           slug: product.slug,
@@ -69,8 +67,7 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -128,7 +125,7 @@ const ProductDetailTags = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

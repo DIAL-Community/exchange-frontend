@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ResourceCard from '../../resources/fragments/ResourceCard'
 import EditableSection from '../../shared/EditableSection'
@@ -13,7 +12,7 @@ import { RESOURCE_SEARCH_QUERY } from '../../shared/query/resource'
 import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
+const StorefrontDetailResources = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
   const [resources, setResources] = useState(organization.resources)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,22 +72,17 @@ const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateOrganizationResources({
-        variables: {
-          resourceSlugs: resources.map(({ slug }) => slug),
-          slug: organization.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateOrganizationResources({
+      variables: {
+        resourceSlugs: resources.map(({ slug }) => slug),
+        slug: organization.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -149,7 +142,7 @@ const StorefrontDetailResources = ({ organization, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

@@ -54,6 +54,60 @@ export const CREATE_ORGANIZATION = gql`
   }
 `
 
+export const CREATE_STOREFRONT = gql`
+  mutation CreateStorefront(
+    $name: String!
+    $slug: String!
+    $aliases: JSON
+    $imageFile: Upload
+    $website: String
+    $isEndorser: Boolean
+    $whenEndorsed: ISO8601Date
+    $endorserLevel: String
+    $isMni: Boolean
+    $description: String
+    $hasStorefront: Boolean
+    $heroFile: Upload
+  ) {
+    createOrganization(
+      name: $name
+      slug: $slug
+      aliases: $aliases
+      imageFile: $imageFile
+      website: $website
+      isEndorser: $isEndorser
+      whenEndorsed: $whenEndorsed
+      endorserLevel: $endorserLevel
+      isMni: $isMni
+      description: $description
+      hasStorefront: $hasStorefront
+      heroFile: $heroFile
+    ) {
+      organization {
+        id
+        name
+        slug
+        aliases
+        website
+        isEndorser
+        whenEndorsed
+        endorserLevel
+        isMni
+        imageFile
+        specialties
+        hasStorefront
+        heroFile
+        organizationDescription {
+          id
+          description
+          locale
+        }
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_ORGANIZATION_COUNTRIES = gql`
   mutation UpdateOrganizationCountries(
     $slug: String!

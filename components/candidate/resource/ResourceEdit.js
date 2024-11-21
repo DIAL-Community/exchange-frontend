@@ -1,8 +1,9 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { CANDIDATE_RESOURCE_DETAIL_QUERY } from '../../shared/query/candidateResource'
 import ResourceForm from './fragments/ResourceForm'
 import ResourceEditLeft from './ResourceEditLeft'
@@ -12,15 +13,20 @@ const ResourceEdit = ({ slug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(CANDIDATE_RESOURCE_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.candidateResource) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { candidateResource } = data
@@ -40,7 +46,7 @@ const ResourceEdit = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <ResourceEditLeft candidateResource={candidateResource} />
         </div>
         <div className='lg:basis-2/3'>

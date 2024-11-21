@@ -54,6 +54,14 @@ export const PAGINATED_RESOURCE_TOPICS_QUERY = gql`
   }
 `
 
+export const RESOURCE_TOPIC_POLICY_QUERY = gql`
+  query ResourceTopic($slug: String!) {
+    resourceTopic(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const RESOURCE_TOPIC_DETAIL_QUERY = gql`
   query ResourceTopic($slug: String!) {
     resourceTopic(slug: $slug) {

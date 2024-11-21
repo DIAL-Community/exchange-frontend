@@ -77,6 +77,14 @@ export const PAGINATED_DATASETS_QUERY = gql`
   }
 `
 
+export const DATASET_POLICY_QUERY = gql`
+  query Dataset($slug: String!) {
+    dataset(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const DATASET_DETAIL_QUERY = gql`
   query Dataset($slug: String!) {
     dataset(slug: $slug) {

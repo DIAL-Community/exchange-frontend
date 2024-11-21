@@ -4,9 +4,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useActiveTenant, useUser } from '../../../../lib/hooks'
+import { useActiveTenant } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import Checkbox from '../../../shared/form/Checkbox'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import Input from '../../../shared/form/Input'
@@ -29,7 +28,6 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
   const { tenant } = useActiveTenant()
 
   const router = useRouter()
-  const { user, loadingUserSession } = useUser()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [mutating, setMutating] = useState(false)
@@ -96,46 +94,40 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
   })
 
   const doUpsert = async (data) => {
-    if (user) {
-      setMutating(true)
-
-      const { userEmail, userToken } = user
-      const { name, description, published } = data
-      const variables = {
-        name,
-        slug,
-        description,
-        owner: DPI_TENANT_NAME,
-        draft: !published,
-        tags: tags.map(tag => tag.label),
-        playbookSlug: curriculum.slug,
-        productSlugs: products.map(({ slug }) => slug),
-        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
-      }
-
-      createPlay({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': router.locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setMutating(true)
+    const { name, description, published } = data
+    const variables = {
+      name,
+      slug,
+      description,
+      owner: DPI_TENANT_NAME,
+      draft: !published,
+      tags: tags.map(tag => tag.label),
+      playbookSlug: curriculum.slug,
+      productSlugs: products.map(({ slug }) => slug),
+      buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
     }
+
+    createPlay({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': router.locale
+        }
+      }
+    })
   }
 
   useEffect(() => {
     const doAutoSave = () => {
       const { locale } = router
 
-      if (!user || !watch) {
+      if (!watch) {
         return
       }
 
       setMutating(true)
 
-      const { userEmail, userToken } = user
       const { name, description } = watch()
       if (!name || !description) {
         // Minimum required fields are name and description.
@@ -159,8 +151,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -171,7 +162,7 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tenant, tags, products, buildingBlocks, curriculum, router, watch, autoSavePlay])
+  }, [slug, tenant, tags, products, buildingBlocks, curriculum, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)
@@ -203,101 +194,97 @@ export const CurriculumModuleForm = ({ curriculum, curriculumModule }) => {
   const loadTagOptions = (input) =>
     fetchSelectOptions(client, input, TAG_SEARCH_QUERY, fetchedTagsCallback)
 
-  return loadingUserSession
-    ? <Loading />
-    : user?.isAdminUser || user?.isEditorUser || user?.isAdliAdminUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {curriculumModule && format('app.editEntity', { entity: curriculumModule.name })}
-                {!curriculumModule && `${format('app.createNew')} ${format('hub.curriculum.module.label')}`}
-              </div>
-              <label className='flex flex-col gap-y-2'>
-                <p className='required-field'>{format('ui.play.name')}</p>
-                <Input
-                  {...register('name', { required: format('validation.required') })}
-                  placeholder={format('ui.play.name')}
-                  isInvalid={errors.name}
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {curriculumModule && format('app.editEntity', { entity: curriculumModule.name })}
+            {!curriculumModule && `${format('app.createNew')} ${format('hub.curriculum.module.label')}`}
+          </div>
+          <label className='flex flex-col gap-y-2'>
+            <p className='required-field'>{format('ui.play.name')}</p>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              placeholder={format('ui.play.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </label>
+          <div className='flex flex-col gap-y-2'>
+            <label className='flex flex-col gap-y-2'>
+              {format('ui.tag.header')}
+              <Select
+                async
+                isBorderless
+                defaultOptions
+                cacheOptions
+                placeholder={format('ui.tag.header')}
+                loadOptions={loadTagOptions}
+                noOptionsMessage={() =>
+                  format('filter.searchFor', { entity: format('ui.tag.header') })
+                }
+                onChange={addTag}
+                value={null}
+              />
+            </label>
+            <div className='flex flex-wrap gap-3 mt-2'>
+              {tags?.map((tag, tagIdx) => (
+                <Pill
+                  key={tagIdx}
+                  label={tag.label}
+                  onRemove={() => removeTag(tag)}
                 />
-                {errors.name && <ValidationError value={errors.name?.message} />}
-              </label>
-              <div className='flex flex-col gap-y-2'>
-                <label className='flex flex-col gap-y-2'>
-                  {format('ui.tag.header')}
-                  <Select
-                    async
-                    isBorderless
-                    defaultOptions
-                    cacheOptions
-                    placeholder={format('ui.tag.header')}
-                    loadOptions={loadTagOptions}
-                    noOptionsMessage={() =>
-                      format('filter.searchFor', { entity: format('ui.tag.header') })
-                    }
-                    onChange={addTag}
-                    value={null}
-                  />
-                </label>
-                <div className='flex flex-wrap gap-3 mt-2'>
-                  {tags?.map((tag, tagIdx) =>(
-                    <Pill
-                      key={tagIdx}
-                      label={tag.label}
-                      onRemove={() => removeTag(tag)}
-                    />
-                  ))}
-                </div>
-              </div>
-              <label className='flex flex-col gap-y-2'>
-                <p className='required-field'> {format('ui.play.description')}</p>
-                <Controller
-                  name='description'
-                  control={control}
-                  rules={{ required: format('validation.required') }}
-                  render={({ field: { value, onChange, onBlur } }) => {
-                    return (
-                      <HtmlEditor
-                        editorId={`${name}-editor`}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        initialContent={value}
-                        isInvalid={errors.description}
-                      />
-                    )
-                  }}
-                />
-                {errors.description && <ValidationError value={errors.description?.message} />}
-              </label>
-              <label className='flex gap-x-2 mb-2 items-center self-start'>
-                <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
-                {format('hub.curriculum.published')}
-              </label>
-              <div className='flex flex-wrap gap-3 text-sm'>
-                <button
-                  type='submit'
-                  className='submit-button'
-                  disabled={mutating || reverting}
-                >
-                  {`${format('hub.curriculum.save')} ${format('hub.curriculum.module.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-              </div>
+              ))}
             </div>
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <label className='flex flex-col gap-y-2'>
+            <p className='required-field'> {format('ui.play.description')}</p>
+            <Controller
+              name='description'
+              control={control}
+              rules={{ required: format('validation.required') }}
+              render={({ field: { value, onChange, onBlur } }) => {
+                return (
+                  <HtmlEditor
+                    editorId={`${name}-editor`}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    initialContent={value}
+                    isInvalid={errors.description}
+                  />
+                )
+              }}
+            />
+            {errors.description && <ValidationError value={errors.description?.message} />}
+          </label>
+          <label className='flex gap-x-2 mb-2 items-center self-start'>
+            <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
+            {format('hub.curriculum.published')}
+          </label>
+          <div className='flex flex-wrap gap-3 text-sm'>
+            <button
+              type='submit'
+              className='submit-button'
+              disabled={mutating || reverting}
+            >
+              {`${format('hub.curriculum.save')} ${format('hub.curriculum.module.label')}`}
+              {mutating && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3 inline' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 }
 
 export default CurriculumModuleForm

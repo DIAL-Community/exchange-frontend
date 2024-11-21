@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { STOREFRONT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
@@ -54,6 +55,11 @@ const StorefrontListRight = () => {
       specialties: specialties.map(specialty => specialty.value),
       certifications: certifications.map(certification => certification.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

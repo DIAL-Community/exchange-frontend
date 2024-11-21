@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
@@ -26,7 +27,12 @@ const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
   const [deleteSubmodule, { called, reset }] = useMutation(UNASSIGN_PLAY_MOVE, {
     refetchQueries: [{
       query: PLAYBOOK_DETAIL_QUERY,
-      variables: { slug: curriculumSlug, owner: DPI_TENANT_NAME }
+      variables: { slug: curriculumSlug, owner: DPI_TENANT_NAME },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { deletePlayMove: response } = data
@@ -48,8 +54,6 @@ const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
 
   const onConfirmDelete = () => {
     if (user?.isAdliAdminUser || user?.isAdminUser || user?.isEditorUser) {
-      const { userEmail, userToken } = user
-
       deleteSubmodule({
         variables: {
           playSlug: moduleSlug,
@@ -58,8 +62,7 @@ const UnassignSubModule = ({ curriculumSlug, moduleSlug, subModuleSlug }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

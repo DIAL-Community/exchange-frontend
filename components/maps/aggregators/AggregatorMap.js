@@ -1,14 +1,10 @@
-import { useQuery } from '@apollo/client'
-import dynamic from 'next/dynamic'
 import { useCallback, useContext, useMemo, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import {
-  AGGREGATORS_QUERY,
-  CAPABILITIES_QUERY,
-  COUNTRIES_QUERY,
-  OPERATORS_QUERY
-} from '../../shared/query/map'
+import { AGGREGATORS_QUERY, CAPABILITIES_QUERY, COUNTRIES_QUERY, OPERATORS_QUERY } from '../../shared/query/map'
 import CountryInfo from './CountryInfo'
 
 const CountryMarkersMaps = (props) => {
@@ -48,10 +44,21 @@ const AggregatorMap = () => {
       first: DEFAULT_PAGE_SIZE,
       aggregatorOnly: true,
       aggregators: aggregators.map(a => a.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
-  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY)
+  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   const serviceNames = []
   const capabilityNames = []
@@ -66,14 +73,24 @@ const AggregatorMap = () => {
       services: serviceNames,
       capabilities: capabilityNames
     },
-    skip: skipQuery(operators, services)
+    skip: skipQuery(operators, services),
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   const { loading: loadingOperatorServiceData, data: operatorServiceData } = useQuery(OPERATORS_QUERY, {
     variables: {
       operators: operators.map(o => o.value)
     },
-    skip: skipQuery(operators, services)
+    skip: skipQuery(operators, services),
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   // Group project into map of countries with projects

@@ -1,6 +1,5 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
@@ -8,7 +7,7 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import UseCaseCard from '../use-case/UseCaseCard'
 import { DisplayType, ObjectType } from '../utils/constants'
-import DeleteWorkflow from './DeleteWorkflow'
+import DeleteWorkflow from './fragments/DeleteWorkflow'
 import WorkflowDetailBuildingBlocks from './fragments/WorkflowDetailBuildingBlocks'
 
 const WorkflowUseCases = ({ workflow, headerRef }) => {
@@ -39,12 +38,9 @@ const WorkflowUseCases = ({ workflow, headerRef }) => {
   )
 }
 
-const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
+const WorkflowDetailRight = forwardRef(({ workflow, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const useCaseRef = useRef()
@@ -67,12 +63,10 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteWorkflow workflow={workflow} />}
-          </div>
-        )}
+        <div className='flex gap-x-3 ml-auto'>
+          { editingAllowed && (<EditButton type='link' href={editPath} />) }
+          { deletingAllowed && <DeleteWorkflow workflow={workflow} /> }
+        </div>
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
@@ -88,7 +82,7 @@ const WorkflowDetailRight = forwardRef(({ workflow }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <WorkflowDetailBuildingBlocks
             workflow={workflow}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>

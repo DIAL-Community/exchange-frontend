@@ -1,10 +1,9 @@
 import { useCallback, useState } from 'react'
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
-import { CandidateActionType } from '../../../utils/constants'
 import { CANDIDATE_ROLE_ACTION } from '../../../shared/mutation/candidateRole'
+import { CandidateActionType } from '../../../utils/constants'
 
 const RoleActionButton = ({ role, actionType }) => {
   const { formatMessage } = useIntl()
@@ -13,7 +12,6 @@ const RoleActionButton = ({ role, actionType }) => {
   const [loading, setLoading] = useState(false)
 
   const { locale } = useRouter()
-  const { user } = useUser()
 
   const [candidateRoleApproval, { reset }] = useMutation(CANDIDATE_ROLE_ACTION, {
     onCompleted: (data) => {
@@ -32,26 +30,21 @@ const RoleActionButton = ({ role, actionType }) => {
   })
 
   const onClickHandler = async (actionType) => {
-    if (user) {
-      setLoading(true)
-      const { userEmail, userToken } = user
-      const variables = {
-        candidateRoleId: role.id,
-        action: actionType === CandidateActionType.REJECT
-          ? CandidateActionType.REJECT
-          : CandidateActionType.APPROVE
-      }
-
-      candidateRoleApproval({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setLoading(true)
+    const variables = {
+      candidateRoleId: role.id,
+      action: actionType === CandidateActionType.REJECT
+        ? CandidateActionType.REJECT
+        : CandidateActionType.APPROVE
     }
+    candidateRoleApproval({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   return (

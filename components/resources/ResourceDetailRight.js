@@ -1,7 +1,6 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
@@ -9,18 +8,15 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
 import { prependUrlWithProtocol } from '../utils/utilities'
-import DeleteResource from './DeleteResource'
+import DeleteResource from './fragments/DeleteResource'
 import ResourceDetailBuildingBlocks from './fragments/ResourceDetailBuildingBlocks'
 import ResourceDetailProducts from './fragments/ResourceDetailProducts'
 import ResourceDetailUseCases from './fragments/ResourceDetailUseCases'
 import { topicColors } from './utilities/common'
 
-const ResourceDetailRight = forwardRef(({ resource }, ref) => {
+const ResourceDetailRight = forwardRef(({ resource, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const titleRef = useRef()
   const buildingBlockRef = useRef()
@@ -86,12 +82,10 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
               />
             }
           </div>
-          {canEdit && (
-            <div className='flex gap-x-3'>
-              <EditButton type='link' href={editPath} />
-              {isAdminUser && <DeleteResource resource={resource} />}
-            </div>
-          )}
+          <div className='flex gap-x-3'>
+            { editingAllowed && <EditButton type='link' href={editPath} /> }
+            { deletingAllowed && <DeleteResource resource={resource} /> }
+          </div>
         </div>
         <div className='text-4xl font-semibold text-dial-stratos py-3' ref={titleRef}>
           {resource?.name}
@@ -129,7 +123,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ResourceDetailBuildingBlocks
             resource={resource}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>
@@ -137,7 +131,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ResourceDetailProducts
             resource={resource}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={productRef}
           />
         </div>
@@ -145,7 +139,7 @@ const ResourceDetailRight = forwardRef(({ resource }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ResourceDetailUseCases
             resource={resource}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={useCaseRef}
           />
         </div>

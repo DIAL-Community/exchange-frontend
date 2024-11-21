@@ -603,7 +603,6 @@ export const cs = {
 
   "filter.product.forCovid": "Nástroje COVID-19",
   "filter.product.endorsed": "Zobrazit podporované produkty",
-  "filter.product.launchable": "Produkt může být nasazen a spuštěn.",
   "filter.launchWizard": "Spustit Průvodce doporučeními",
 
   "endorsingYear.label": "Schvalovací rok",
@@ -1099,7 +1098,6 @@ export const cs = {
   "move.autoSaved": "Přesun uložen...",
 
   "resource.submitted": "Zdroj uložen.",
-  "product.launchable": "Produkt spustitelný",
 
   "location.header": "Poloha",
 

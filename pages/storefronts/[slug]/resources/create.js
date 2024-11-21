@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import ResourceForm from '../../../../components/resources/fragments/ResourceForm'
-import { Error, Loading, NotFound } from '../../../../components/shared/FetchStatus'
 import Footer from '../../../../components/shared/Footer'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../../components/shared/GraphQueryHandler'
 import Header from '../../../../components/shared/Header'
 import { ORGANIZATION_DETAIL_QUERY } from '../../../../components/shared/query/organization'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import ClientOnly from '../../../../lib/ClientOnly'
 
 const CreateResource = ({ defaultTenants }) => {
@@ -13,16 +14,21 @@ const CreateResource = ({ defaultTenants }) => {
 
   const { loading, error, data } = useQuery(ORGANIZATION_DETAIL_QUERY, {
     variables: { slug },
-    context: { headers: { 'Accept-Language': locale } },
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    },
     skip: !slug
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.storefront) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   return (

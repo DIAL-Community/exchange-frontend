@@ -1,78 +1,36 @@
 export const storefrontDetail = {
   'data': {
     'organization': {
-      'id': '190',
-      'name': 'AI4GOV',
-      'slug': 'ai4gov',
-      'isMni': false,
-      'website': 'www.ai4gov.net',
-      'aliases': [],
-      'imageFile': '/assets/organizations/ai4gov.png',
-      'isEndorser': true,
-      'whenEndorsed': '',
-      'endorserLevel': 'none',
-      'hasStorefront': false,
-      'haveOwner': false,
+      'id': '1321',
+      'name': 'Current Storefront',
+      'slug': 'current-storefront',
+      'website': 'google.com',
+      'imageFile': '/assets/organizations/organization-placeholder.png',
+      'specialties': [],
+      'hasStorefront': true,
+      'heroFile': null,
       'organizationDescription': {
-        'id': '934',
-        'description': 'Description for the organization.',
+        'id': '273759',
+        'description': '\u003cp\u003eTest storefront. Updating. Test.\u003c/p\u003e',
         'locale': 'en',
         '__typename': 'OrganizationDescription'
       },
-      'offices': [
-        {
-          'id': '201',
-          'name': 'Makati, Metro Manila, PH',
-          'slug': 'makati-metro-manila-ph',
-          'province': {
-            'id': '71',
-            'name': 'Metro Manila',
-            '__typename': 'Province'
-          },
-          'country': {
-            'id': '17',
-            'name': 'Philippines',
-            'code': 'PH',
-            'codeLonger': 'PHL',
-            '__typename': 'Country'
-          },
-          'cityData': {
-            'id': '94',
-            'name': 'Makati',
-            'slug': 'makati',
-            '__typename': 'City'
-          },
-          'latitude': '14.554729',
-          'longitude': '121.0244452',
-          '__typename': 'Office'
-        }
-      ],
-      'sectors': [
-        {
-          'id': '246',
-          'name': 'Digital, Data, and Technology',
-          'slug': 'digital-data-and-technology-duplicate-0',
-          '__typename': 'Sector'
-        },
-        {
-          'id': '198',
-          'name': 'Education and Social Development',
-          'slug': 'education-and-social-development-duplicate-0',
-          '__typename': 'Sector'
-        }
-      ],
+      'offices': [],
+      'buildingBlockCertifications': [],
+      'productCertifications': [],
+      'sectors': [],
       'countries': [
         {
-          'id': '17',
-          'name': 'Philippines',
-          'slug': 'ph',
-          'code': 'PH',
+          'id': '60',
+          'name': 'Algeria',
+          'slug': 'dz',
+          'code': 'DZ',
           '__typename': 'Country'
         }
       ],
-      'products': [],
       'projects': [],
       'contacts': [],
+      'resources': [],
       '__typename': 'Organization'
     }
   }
@@ -84,24 +42,24 @@ export const createStorefront = {
   'data': {
     'createOrganization': {
       'organization': {
-        'id': '190',
-        'name': 'AI4GOV - Edited',
-        'slug': 'ai4gov',
+        'id': '1321',
+        'name': 'Current Storefront',
+        'slug': 'current-storefront',
         'aliases': [
           ''
         ],
-        'website': 'www.ai4gov.net',
-        'isEndorser': true,
-        'whenEndorsed': '',
+        'website': 'google.com',
+        'isEndorser': false,
+        'whenEndorsed': null,
         'endorserLevel': 'none',
         'isMni': false,
-        'imageFile': '/assets/organizations/ai4gov.png',
+        'imageFile': '/assets/organizations/organization-placeholder.png',
         'specialties': [],
-        'hasStorefront': false,
+        'hasStorefront': true,
         'heroFile': null,
         'organizationDescription': {
-          'id': '934',
-          'description': 'Description for the organization.',
+          'id': '273759',
+          'description': '\u003cp\u003eTest storefront. Updating. Test.\u003c/p\u003e',
           'locale': 'en',
           '__typename': 'OrganizationDescription'
         },
