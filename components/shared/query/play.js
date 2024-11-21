@@ -49,7 +49,7 @@ export const REFRESH_PLAY_QUERY =   gql`
 `
 
 export const PLAYBOOK_DETAIL_QUERY = gql`
-  query Playbook($playbookSlug: String!, $owner: String!) {
+  query PlaybookSimpleDetail($playbookSlug: String!, $owner: String!) {
     playbook(slug: $playbookSlug, owner: $owner) {
       id
       name
@@ -59,7 +59,7 @@ export const PLAYBOOK_DETAIL_QUERY = gql`
 `
 
 export const PLAY_BREADCRUMB_QUERY = gql`
-  query Playbook($playbookSlug: String!, $playSlug: String!, $owner: String!) {
+  query PlaybookBreadcrumb($playbookSlug: String!, $playSlug: String!, $owner: String!) {
     play(slug: $playSlug, owner: $owner) {
       id
       name
@@ -74,7 +74,7 @@ export const PLAY_BREADCRUMB_QUERY = gql`
 `
 
 export const MOVE_PREVIEW_QUERY = gql`
-  query Move($playSlug: String!, $slug: String!) {
+  query MovePreview($playSlug: String!, $slug: String!) {
     move(playSlug: $playSlug, slug: $slug) {
       id
       slug
@@ -97,7 +97,7 @@ export const MOVE_PREVIEW_QUERY = gql`
 `
 
 export const PLAY_QUERY = gql`
-  query Play($playbookSlug: String!, $playSlug: String!, $owner: String!) {
+  query PlayDetail($playbookSlug: String!, $playSlug: String!, $owner: String!) {
     play(slug: $playSlug, owner: $owner) {
       id
       name

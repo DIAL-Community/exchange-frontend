@@ -61,7 +61,7 @@ const ContactDetail = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <ContactDetailLeft scrollRef={scrollRef} contact={contact} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <ContactDetailRight
             ref={scrollRef}
             contact={contact}

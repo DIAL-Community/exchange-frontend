@@ -5,7 +5,7 @@ import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PLAY_QUERY } from '../shared/query/play'
-import PlayForm from './fragments/PlayForm'
+import { PlayForm } from './forms/PlayForm'
 import PlayEditLeft from './PlayEditLeft'
 
 const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
@@ -53,7 +53,7 @@ const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
         <div className='hidden lg:block basis-1/3'>
           <PlayEditLeft play={play} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <PlayForm playbook={playbook} play={play} />
         </div>
       </div>

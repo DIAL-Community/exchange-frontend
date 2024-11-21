@@ -64,7 +64,7 @@ const BuildingBlockDetail = ({ slug }) => {
             buildingBlock={buildingBlock}
           />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <BuildingBlockDetailRight
             ref={scrollRef}
             buildingBlock={buildingBlock}

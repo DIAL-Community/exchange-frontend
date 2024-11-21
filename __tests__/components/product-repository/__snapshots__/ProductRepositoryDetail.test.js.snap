@@ -216,7 +216,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
         </div>
       </div>
       <div
-        class="lg:basis-2/3 shrink-0"
+        class="lg:basis-2/3"
       >
         <form>
           <div
@@ -712,7 +712,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
         </div>
       </div>
       <div
-        class="lg:basis-2/3 shrink-0"
+        class="lg:basis-2/3"
       >
         <div
           class="px-4 lg:px-0 py-4 lg:py-6"

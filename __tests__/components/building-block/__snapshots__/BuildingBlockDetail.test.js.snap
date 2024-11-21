@@ -321,7 +321,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
         </div>
       </div>
       <div
-        class="lg:basis-2/3 shrink-0"
+        class="lg:basis-2/3"
       >
         <div
           class="px-4 lg:px-0 py-4 lg:py-6"
@@ -836,7 +836,7 @@ exports[`Unit tests for the building block detail page. Should render edit page 
         </div>
       </div>
       <div
-        class="lg:basis-2/3 shrink-0"
+        class="lg:basis-2/3"
       >
         <form>
           <div

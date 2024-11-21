@@ -49,7 +49,7 @@ const CityEdit = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <CityEditLeft city={city} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <CityForm city={city} />
         </div>
       </div>

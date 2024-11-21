@@ -593,7 +593,6 @@ export const fr = {
 
   "filter.product.forCovid": "Outils COVID-19",
   "filter.product.endorsed": "Afficher les produits approuvés",
-  "filter.product.launchable": "Le produit peut être déployé et lancé",
   "filter.launchWizard": "Lancer l’Assistant Recommandations",
 
   "endorsingYear.label": "Année d’endossement",
@@ -1088,7 +1087,6 @@ export const fr = {
   "ui.move.autoSaved": "Déplacement enregistré…",
 
   "ui.resource.submitted": "Ressource sauvegardée.",
-  "product.launchable": "Produit prêt à être lancé",
 
   "location.header": "Lieu",
 

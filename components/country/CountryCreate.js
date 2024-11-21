@@ -44,7 +44,7 @@ const CountryCreate = () => {
         <div className='lg:basis-1/3 shrink-0'>
           <CountrySimpleLeft />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <CountryForm />
         </div>
       </div>

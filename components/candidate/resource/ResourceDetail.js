@@ -59,7 +59,7 @@ const ResourceDetail = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <ResourceDetailLeft candidateResource={candidateResource} scrollRef={scrollRef} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <ResourceDetailRight
             ref={scrollRef}
             candidateResource={candidateResource}

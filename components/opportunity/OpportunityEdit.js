@@ -49,7 +49,7 @@ const OpportunityEdit = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <OpportunityEditLeft opportunity={opportunity} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <OpportunityForm opportunity={opportunity} />
         </div>
       </div>

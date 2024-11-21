@@ -818,7 +818,6 @@ export const en = {
   'filter.opportunity.forCovid': 'COVID-19 RFP',
 
   'filter.product.endorsed': 'Show endorsed products',
-  'filter.product.launchable': 'Product can be deployed and launched',
   'filter.launchWizard': 'Launch Recommendations Wizard',
 
   'endorsingYear.label': 'Endorsing Year',
@@ -893,6 +892,8 @@ export const en = {
   'ui.play.move.name': 'Move Name',
   'ui.play.status.draft': 'Draft',
   'ui.play.status.published': 'Published',
+
+  'ui.play.commentCount.title': '{commentCount} {commentCount, plural, one {comment} other {comments}}',
 
   'ui.move.name': 'Name',
   'ui.move.name.placeholder': 'Move Name',
@@ -1581,7 +1582,7 @@ export const en = {
   'ui.move.header': 'Moves',
 
   'ui.play.submitAndAssign': 'Submit and Assign',
-  'ui.play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unnassign moves, or add a new move.',
+  'ui.play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unassign moves, or add a new move.',
 
   'ui.playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
   'ui.playbook.autoSaved': 'Playbook saved ...',
@@ -1605,7 +1606,6 @@ export const en = {
   'ui.move.autoSaved': 'Auto saving move.',
 
   'ui.resource.submitted': 'Resource saved.',
-  'product.launchable': 'Product Launchable',
 
   'location.header': 'Location',
 

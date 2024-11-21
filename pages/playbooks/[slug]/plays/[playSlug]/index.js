@@ -1,12 +1,11 @@
-import { NextSeo } from 'next-seo'
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import ClientOnly from '../../../../../lib/ClientOnly'
-import Header from '../../../../../components/shared/Header'
-import Footer from '../../../../../components/shared/Footer'
+import { useIntl } from 'react-intl'
 import PlayDetail from '../../../../../components/play/PlayDetail'
-import { PlaybookDetailProvider } from '../../../../../components/playbook/context/PlaybookDetailContext'
+import Footer from '../../../../../components/shared/Footer'
+import Header from '../../../../../components/shared/Header'
+import ClientOnly from '../../../../../lib/ClientOnly'
 
 const Play = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
@@ -27,9 +26,7 @@ const Play = ({ defaultTenants }) => {
       />
       <ClientOnly clientTenants={defaultTenants}>
         <Header />
-        <PlaybookDetailProvider>
-          <PlayDetail playSlug={playSlug} playbookSlug={slug} locale={locale} />
-        </PlaybookDetailProvider>
+        <PlayDetail playSlug={playSlug} playbookSlug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

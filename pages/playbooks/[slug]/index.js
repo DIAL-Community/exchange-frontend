@@ -1,13 +1,12 @@
-import { NextSeo } from 'next-seo'
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import ClientOnly from '../../../lib/ClientOnly'
-import Header from '../../../components/shared/Header'
-import Footer from '../../../components/shared/Footer'
 import PlaybookDetail from '../../../components/playbook/PlaybookDetail'
-import { PlaybookDetailProvider } from '../../../components/playbook/context/PlaybookDetailContext'
+import Footer from '../../../components/shared/Footer'
+import Header from '../../../components/shared/Header'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const Playbook = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
@@ -29,9 +28,7 @@ const Playbook = ({ defaultTenants }) => {
       <ClientOnly clientTenants={defaultTenants}>
         <Header />
         <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
-        <PlaybookDetailProvider>
-          <PlaybookDetail slug={slug} locale={locale} />
-        </PlaybookDetailProvider>
+        <PlaybookDetail slug={slug} locale={locale} />
         <Footer />
       </ClientOnly>
     </>

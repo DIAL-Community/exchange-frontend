@@ -49,7 +49,7 @@ const StorefrontEdit = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <StorefrontEditLeft organization={organization} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <StorefrontForm organization={organization} />
         </div>
       </div>
