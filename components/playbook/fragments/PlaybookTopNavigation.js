@@ -40,7 +40,7 @@ const PlaybookTopNavigation = ({ playbook, playRefs }) => {
   })()
 
   return (
-    <div className='sticky sticky-under-header bg-dial-lavender'>
+    <div className='sticky sticky-under-header bg-dial-violet'>
       <div className='relative flex flex-col lg:flex-row gap-3 lg:px-4 py-6 overflow-x-auto'>
         <div className='absolute top-2 left-4 lg:left-8'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
