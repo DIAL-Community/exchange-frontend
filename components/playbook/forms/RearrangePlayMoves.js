@@ -4,22 +4,22 @@ import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { Dialog, Transition } from '@headlessui/react'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import { UPDATE_PLAY_MOVES } from '../shared/mutation/play'
-import { MoveListContext, MoveListDispatchContext, MoveListProvider } from './context/MoveListContext'
-import MoveListDraggable from './MoveListDraggable'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { UPDATE_PLAY_MOVES } from '../../shared/mutation/play'
+import { DraggableContext, DraggableContextProvider } from './DraggableContext'
+import DraggablePlayMoves from './DraggablePlayMoves'
 
-const RearrangeMoves = ({ displayDraggable, onDraggableClose, play }) => {
+const RearrangePlayMoves = ({ displayRearrangeDialog, onRearrangeDialogClose, play }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <Transition appear show={displayDraggable} as={Fragment}>
+    <Transition appear show={displayRearrangeDialog} as={Fragment}>
       <Dialog
         as='div'
         className='fixed inset-0 z-100 overflow-y-auto'
-        onClose={onDraggableClose}
+        onClose={onRearrangeDialogClose}
       >
         <div className='min-h-screen px-4 text-center'>
           <Dialog.Overlay className='fixed inset-0 bg-dial-gray opacity-40' />
@@ -45,18 +45,18 @@ const RearrangeMoves = ({ displayDraggable, onDraggableClose, play }) => {
               )}
             >
               <Dialog.Title>
-                <div className='px-4 text-xl text-dial-sapphire font-semibold'>
+                <div className='px-4 text-xl font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
                     {format('ui.move.rearrange')}
                   </div>
                 </div>
               </Dialog.Title>
-              <MoveListProvider>
+              <DraggableContextProvider>
                 <div className='flex flex-col gap-4 px-4 pt-6'>
-                  <MoveListDraggable play={play} />
-                  <RearrangeControls play={play} onClose={onDraggableClose} />
+                  <DraggablePlayMoves play={play} />
+                  <RearrangeControls play={play} onClose={onRearrangeDialogClose} />
                 </div>
-              </MoveListProvider>
+              </DraggableContextProvider>
             </div>
           </Transition.Child>
         </div>
@@ -73,8 +73,7 @@ const RearrangeControls = ({ play, onClose }) => {
 
   const { user } = useUser()
 
-  const { dirty, currentMoves } = useContext(MoveListContext)
-  const { setDirty } = useContext(MoveListDispatchContext)
+  const { dirty, setDirty, currentPlayMoves } = useContext(DraggableContext)
   const { showToast } = useContext(ToastContext)
 
   const [updatePlayMoves, { reset }] = useMutation(
@@ -108,7 +107,7 @@ const RearrangeControls = ({ play, onClose }) => {
       updatePlayMoves({
         variables: {
           slug: play.slug,
-          moveSlugs: currentMoves.map(({ slug }) => slug),
+          moveSlugs: currentPlayMoves.map(({ slug }) => slug),
           owner: 'public'
         },
         context: {
@@ -121,7 +120,7 @@ const RearrangeControls = ({ play, onClose }) => {
   }
 
   return (
-    <div className='flex gap-3 ml-auto'>
+    <div className='flex flex-row gap-3 text-sm ml-auto'>
       <button
         type='button'
         onClick={() => {
@@ -145,4 +144,4 @@ const RearrangeControls = ({ play, onClose }) => {
   )
 }
 
-export default RearrangeMoves
+export default RearrangePlayMoves

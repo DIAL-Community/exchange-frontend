@@ -5,7 +5,7 @@ import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
-import PlaybookForm from './fragments/PlaybookForm'
+import PlaybookForm from './forms/PlaybookForm'
 import PlaybookEditLeft from './PlaybookEditLeft'
 
 const PlaybookEdit = ({ slug }) => {
@@ -49,7 +49,7 @@ const PlaybookEdit = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <PlaybookEditLeft playbook={playbook} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <PlaybookForm playbook={playbook} />
         </div>
       </div>

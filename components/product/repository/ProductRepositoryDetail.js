@@ -65,7 +65,7 @@ const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
             productRepository={productRepository}
           />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <ProductRepositoryDetailRight
             ref={scrollRef}
             product={product}

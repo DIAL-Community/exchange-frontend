@@ -61,7 +61,7 @@ const UseCaseDetail = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <UseCaseDetailLeft scrollRef={scrollRef} useCase={useCase} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <UseCaseDetailRight
             ref={scrollRef}
             useCase={useCase}

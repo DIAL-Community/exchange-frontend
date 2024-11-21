@@ -67,7 +67,7 @@ const CategoryIndicatorDetail = ({ categorySlug, indicatorSlug }) => {
             categoryIndicator={categoryIndicator}
           />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <CategoryIndicatorDetailRight
             ref={scrollRef}
             rubricCategory={rubricCategory}

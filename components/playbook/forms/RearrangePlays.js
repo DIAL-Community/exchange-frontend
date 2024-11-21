@@ -4,27 +4,27 @@ import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { Dialog, Transition } from '@headlessui/react'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
-import { SearchInput } from '../shared/form/SearchInput'
-import { UPDATE_PLAYBOOK_PLAYS } from '../shared/mutation/playbook'
-import { PLAYS_QUERY } from '../shared/query/play'
-import { PlayListContext, PlayListDispatchContext, PlayListProvider } from './context/PlayListContext'
-import PlayListQuery from './PlayList'
-import PlayListDraggable from './PlayListDraggable'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import { FilterContext, FilterDispatchContext } from '../../context/FilterContext'
+import { SearchInput } from '../../shared/form/SearchInput'
+import { UPDATE_PLAYBOOK_PLAYS } from '../../shared/mutation/playbook'
+import { PLAYS_QUERY } from '../../shared/query/play'
+import { DraggableContext, DraggableContextProvider } from './DraggableContext'
+import DraggablePlays from './DraggablePlays'
+import ExistingPlayList from './ExistingPlayList'
 
-const RearrangePlay = ({ displayDraggable, onDraggableClose, playbook }) => {
+const RearrangePlays = ({ displayRearrangeDialog, onRearrangeDialogClose, playbook }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <Transition appear show={displayDraggable} as={Fragment}>
+    <Transition appear show={displayRearrangeDialog} as={Fragment}>
       <Dialog
         as='div'
         className='fixed inset-0 z-100 overflow-y-auto'
-        onClose={onDraggableClose}
+        onClose={onRearrangeDialogClose}
       >
         <div className='min-h-screen px-4 text-center'>
           <Dialog.Overlay className='fixed inset-0 bg-dial-gray opacity-40' />
@@ -50,19 +50,19 @@ const RearrangePlay = ({ displayDraggable, onDraggableClose, playbook }) => {
               )}
             >
               <Dialog.Title>
-                <div className='px-4 text-xl text-dial-sapphire font-semibold'>
+                <div className='px-4 text-xl font-semibold'>
                   <div className='pt-3 pb-5 border-b border-dashed'>
                     {format('ui.play.rearrange')}
                   </div>
                 </div>
               </Dialog.Title>
-              <PlayListProvider>
+              <DraggableContextProvider>
                 <div className='flex flex-col gap-4 px-4 pt-6'>
-                  <PlayListDraggable playbook={playbook} />
-                  <RearrangeControls playbook={playbook} onClose={onDraggableClose} />
+                  <DraggablePlays playbook={playbook} />
+                  <RearrangeControls playbook={playbook} onClose={onRearrangeDialogClose} />
                   <ExistingPlay />
                 </div>
-              </PlayListProvider>
+              </DraggableContextProvider>
             </div>
           </Transition.Child>
         </div>
@@ -76,7 +76,6 @@ const ExistingPlay = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [showPlayForm, setShowPlayForm] = useState(false)
-
   const { search } = useContext(FilterContext)
   const { setSearch } = useContext(FilterDispatchContext)
 
@@ -96,7 +95,7 @@ const ExistingPlay = () => {
             />
           </div>
           <div className='border-b' />
-          <PlayListQuery />
+          <ExistingPlayList />
         </div>
       }
       {!showPlayForm &&
@@ -122,13 +121,11 @@ const RearrangeControls = ({ playbook, onClose }) => {
 
   const { user } = useUser()
 
-  const { dirty, currentPlays } = useContext(PlayListContext)
-  const { setDirty } = useContext(PlayListDispatchContext)
+  const { dirty, setDirty, currentPlays } = useContext(DraggableContext)
   const { showFailureMessage, showSuccessMessage } = useContext(ToastContext)
 
-  const [updatePlayMoves, { reset }] = useMutation(
-    UPDATE_PLAYBOOK_PLAYS,
-    {
+  const [updatePlays, { reset }] = useMutation(
+    UPDATE_PLAYBOOK_PLAYS, {
       refetchQueries: [{
         query: PLAYS_QUERY,
         variables: { playbookSlug: playbook.slug, owner: 'public' },
@@ -164,11 +161,11 @@ const RearrangeControls = ({ playbook, onClose }) => {
     if (user) {
       const { userEmail, userToken } = user
 
-      updatePlayMoves({
+      updatePlays({
         variables: {
           slug: playbook.slug,
-          playSlugs: currentPlays.map(({ slug }) => slug),
-          owner: 'public'
+          owner: 'public',
+          playSlugs: currentPlays.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -204,4 +201,4 @@ const RearrangeControls = ({ playbook, onClose }) => {
   )
 }
 
-export default RearrangePlay
+export default RearrangePlays

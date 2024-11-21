@@ -61,7 +61,7 @@ const CandidateStatusDetail = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <CandidateStatusDetailLeft scrollRef={scrollRef} candidateStatus={candidateStatus} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <CandidateStatusDetailRight
             ref={scrollRef}
             candidateStatus={candidateStatus}

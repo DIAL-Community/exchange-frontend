@@ -65,7 +65,7 @@ const ProductDetail = ({ slug }) => {
             product={product}
           />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <ProductDetailRight
             ref={scrollRef}
             product={product}

@@ -49,7 +49,7 @@ const CandidateStatusEdit = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <CandidateStatusEditLeft candidateStatus={candidateStatus} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <CandidateStatusForm candidateStatus={candidateStatus} />
         </div>
       </div>

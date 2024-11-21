@@ -57,7 +57,6 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   const doUpsert = async (data) => {
     setMutating(true)
     const { name, resourceDescription, url } = data
-
     updateResource(index, { name, description: resourceDescription, url })
     if (moveSlug) {
       createMoveResource({
@@ -118,7 +117,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
         <div className='flex flex-row gap-3'>
           <button
             type='button'
-            className='bg-dial-purple text-white px-3 py-2 rounded disabled:opacity-50'
+            className='bg-dial-purple text-dial-cotton px-3 py-2 rounded disabled:opacity-50'
             disabled={mutating}
             onClick={saveForm}
           >
@@ -127,7 +126,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
           </button>
           <button
             type='button'
-            className='bg-dial-purple-light text-white px-3 py-2 rounded disabled:opacity-50'
+            className='bg-dial-purple-light text-dial-cotton px-3 py-2 rounded disabled:opacity-50'
             disabled={mutating}
             onClick={cancelForm}
           >
@@ -235,7 +234,7 @@ const MoveForm = ({ playbook, play, move }) => {
   const [reverting, setReverting] = useState(false)
 
   const [moveSlug, setMoveSlug] = useState(move ? move.slug : '')
-  const [playSlug] = useState(play ? play.slug : move ? move.play.slug : '')
+  const [playSlug] = useState(play.slug)
   const [inlineResources, setInlineResources] = useState(
     move ? move.inlineResources.map((resource, i) => ({ ...resource, i })) : []
   )
@@ -249,35 +248,27 @@ const MoveForm = ({ playbook, play, move }) => {
     })) ?? []
   )
 
-  const { showToast } = useContext(ToastContext)
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
   const [createMove, { reset }] = useMutation(CREATE_MOVE, {
     onCompleted: (data) => {
       setMutating(false)
-      const { locale } = router
       const { createMove: response } = data
       if (response?.errors.length === 0 && response.move) {
+        setMutating(false)
         showSuccessMessage(
-          format('ui.move.submitted.success'),
-          () => router.push(`/${locale}/playbooks/${playbook.slug}`)
+          format('ui.move.submitted'),
+          () => router.push(`/playbooks/${playbook.slug}`)
         )
       } else {
+        const [firstErrorMessage] = response.errors
+        showFailureMessage(firstErrorMessage)
         setMutating(false)
-        showFailureMessage(
-          <div className='flex flex-col'>
-            <span>{response.errors}</span>
-          </div>
-        )
         reset()
       }
     },
     onError: (error) => {
+      showFailureMessage('Unable to process graph query.', error?.message)
       setMutating(false)
-      showFailureMessage(
-        <div className='flex flex-col'>
-          <span>{error}</span>
-        </div>
-      )
       reset()
     }
   })
@@ -292,7 +283,7 @@ const MoveForm = ({ playbook, play, move }) => {
       if (response.errors.length === 0 && response.move) {
         setMutating(false)
         setMoveSlug(response.move.slug)
-        showToast(format('ui.move.autoSaved'), 'success', 'top-right')
+        showSuccessMessage(format('ui.move.autoSaved'))
       }
     }
   })
@@ -377,7 +368,11 @@ const MoveForm = ({ playbook, play, move }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    const route = `/${router.locale}/playbooks/${playbook.slug}`
+    let route = '/playbooks'
+    if (playbook) {
+      route = `${route}/${playbook.slug}`
+    }
+
     router.push(route)
   }
 
@@ -419,16 +414,16 @@ const MoveForm = ({ playbook, play, move }) => {
       currentResource.url = resource.url
     }
 
-    setResources([...inlineResources])
+    setInlineResources([...inlineResources])
   }
 
   const removeInlineResource = (index, resource) => {
-    setResources(inlineResources.filter((r, i) => i !== index && r.name !== resource.name))
+    setInlineResources(inlineResources.filter((r, i) => i !== index && r.name !== resource.name))
   }
 
   return (
     <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+      <div className='px-4 lg:px-0 py-4 lg:py-6'>
         <div className='flex flex-col gap-y-6 text-sm'>
           <div className='text-xl font-semibold'>
             {move && format('app.editEntity', { entity: move.name })}
@@ -507,7 +502,7 @@ const MoveForm = ({ playbook, play, move }) => {
               {`${format('app.createNew')} ${format('ui.resource.label')}`}
             </div>
           </button>
-          <div className='flex flex-row gap-3'>
+          <div className='flex flex-row gap-3 text-sm'>
             <button
               type='submit'
               className='submit-button'

@@ -3,12 +3,12 @@ import { useRouter } from 'next/router'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
-import { useUser } from '../../lib/hooks'
-import { ToastContext } from '../../lib/ToastContext'
-import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
-import { UNASSIGN_PLAY_MOVE } from '../shared/mutation/move'
-import { PLAYBOOK_DETAIL_QUERY } from '../shared/query/playbook'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
+import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
+import { UNASSIGN_PLAY_MOVE } from '../../shared/mutation/move'
+import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/playbook'
 
 const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
   const { formatMessage } = useIntl()
@@ -21,7 +21,7 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
 
   const { user } = useUser()
 
-  const { showToast } = useContext(ToastContext)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const [deletePlayMove, { called, reset }] = useMutation(UNASSIGN_PLAY_MOVE, {
     refetchQueries: [{
@@ -36,25 +36,29 @@ const UnassignMove = ({ playbookSlug, playSlug, moveSlug }) => {
     onCompleted: (data) => {
       const { deletePlayMove: response } = data
       if (response?.play && response?.errors?.length === 0) {
-        showToast(format('toast.play.unassign.success'), 'success', 'top-center')
+        showSuccessMessage(format('toast.play.unassign.success'))
         setDisplayConfirmDialog(false)
       } else {
-        showToast(format('toast.play.unassign.failure'), 'error', 'top-center')
+        showFailureMessage(format('toast.play.unassign.failure'))
         setDisplayConfirmDialog(false)
         reset()
       }
     },
     onError: () => {
-      showToast(format('toast.play.unassign.failure'), 'error', 'top-center')
+      showFailureMessage(format('toast.play.unassign.failure'))
       setDisplayConfirmDialog(false)
       reset()
     }
   })
 
   const onConfirmDelete = () => {
-    if (user && (user.isAdminUser || user.isEditorUser)) {
+    if (user?.isAdliAdminUser || user?.isAdminUser || user?.isEditorUser) {
       deletePlayMove({
-        variables: { moveSlug, playSlug, owner: 'public' },
+        variables: {
+          playSlug,
+          moveSlug,
+          owner: 'public'
+        },
         context: {
           headers: {
             'Accept-Language': locale

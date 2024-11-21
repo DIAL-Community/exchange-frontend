@@ -506,7 +506,6 @@
 
   "filter.product.forCovid": "Zana za COVID-19",
   "filter.product.withMaturity": "Bidhaa iliyotathminiwi kujua ikiwa iko tayari",
-  "filter.product.launchable": "Bidhaa inaweza kutolewa na kuzinduliwa",
   "filter.launchWizard": "Anzisha Sogora ya Mapendekezo",
 
   "endorsingYear.label": "Mwaka wa Kuidhinisha",
@@ -968,7 +967,6 @@
   "ui.move.autoSaved": "Hamisha iliyohifadhiwa...",
 
   "ui.resource.submitted": "Nyenzo imehifadhiwa.",
-  "product.launchable": "Bidhaa Inaweza Kuzinduliwa",
 
   "location.header": "Mahali",
 

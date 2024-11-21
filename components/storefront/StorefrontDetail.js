@@ -66,7 +66,7 @@ const StorefrontDetail = ({ slug }) => {
             editingAllowed={editingAllowed}
           />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <StorefrontDetailRight
             ref={scrollRef}
             organization={organization}

@@ -1,18 +1,18 @@
 import { useCallback } from 'react'
-import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
+import { FaDownload } from 'react-icons/fa6'
 import { HiExternalLink } from 'react-icons/hi'
-import { IntlProvider, useIntl } from 'react-intl'
+import { FormattedMessage, IntlProvider, useIntl } from 'react-intl'
+import Html from 'react-pdf-html'
 import { gql, useQuery } from '@apollo/client'
 import { Document, Page, PDFDownloadLink, StyleSheet, Text } from '@react-pdf/renderer'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
-import { ReadyToDownload } from '../shared/FetchStatus'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { prependUrlWithProtocol } from '../utils/utilities'
 
 const PLAYBOOK_DETAIL_QUERY = gql`
-  query Playbook($slug: String!) {
-    playbook(slug: $slug) {
+  query PlaybookPdfDetail($slug: String!) {
+    playbook(slug: $slug, owner: "public") {
       id
       slug
       name
@@ -106,10 +106,12 @@ const MoveContent = ({ move, format }) => {
         <div className='px-4 py-4'>
           <div className='fr-view text-dial-gray-dark'>
             <Text style={styles.moveDesc}>
-              {move?.moveDescription && parse(move.moveDescription.description)}
+              <Html>
+                {move.moveDescription.description}
+              </Html>
             </Text>
           </div>
-          {move?.resources && move?.resources.length > 0 &&
+          {move?.inlineResources && move?.inlineResources.length > 0 &&
             <>
               <div className='font-semibold py-2'>
                 <Text style={styles.resourcesHeader}>
@@ -117,7 +119,7 @@ const MoveContent = ({ move, format }) => {
                 </Text>
               </div>
               <div className='flex flex-wrap gap-3'>
-                {move?.resources.map(resource => {
+                {move?.inlineResources.map(resource => {
                   return (
                     <a key={resource.i} target='_blank' rel='noreferrer' href={prependUrlWithProtocol(resource.url)}>
                       <div
@@ -165,7 +167,9 @@ const PlaybookContent = ({ format, data, locale }) => {
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
               <Text style={styles.desc}>
-                {parse(data.playbook.playbookDescription.overview)}
+                <Html>
+                  {data.playbook.playbookDescription.overview}
+                </Html>
               </Text>
             </div>
             <div className='h4'>
@@ -175,7 +179,9 @@ const PlaybookContent = ({ format, data, locale }) => {
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
               <Text style={styles.desc}>
-                {parse(data.playbook.playbookDescription.audience)}
+                <Html>
+                  {data.playbook.playbookDescription.audience}
+                </Html>
               </Text>
             </div>
             <div className='h4'>
@@ -185,7 +191,9 @@ const PlaybookContent = ({ format, data, locale }) => {
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
               <Text style={styles.desc}>
-                {parse(data.playbook.playbookDescription.outcomes)}
+                <Html>
+                  {data.playbook.playbookDescription.outcomes}
+                </Html>
               </Text>
             </div>
             { data.playbook.plays?.map((play, index) => {
@@ -198,7 +206,9 @@ const PlaybookContent = ({ format, data, locale }) => {
                 </div>
                 <div className='fr-view tiny-editor text-dial-gray-dark'>
                   <Text style={styles.desc}>
-                    {parse(play.playDescription.description)}
+                    <Html>
+                      {play.playDescription.description}
+                    </Html>
                   </Text>
                 </div>
                 <div className='flex flex-col gap-3'>
@@ -260,7 +270,19 @@ const PlaybookPdf = ({ locale }) => {
       }
       fileName={`${slug}.pdf`}
     >
-      {({ loading }) => (loading ? handleLoadingQuery() : <ReadyToDownload />)}
+      {({ loading }) => loading
+        ? handleLoadingQuery()
+        : (
+          <div className='min-h-[75vh] flex items-center justify-center'>
+            <div className='flex flex-col gap-y-6'>
+              <FaDownload size='3em' className='mx-auto' />
+              <div className='text-center'>
+                <FormattedMessage id='general.ready-to-download' />
+              </div>
+            </div>
+          </div>
+        )
+      }
     </PDFDownloadLink>
   )
 }

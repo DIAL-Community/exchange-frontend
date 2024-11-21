@@ -44,7 +44,7 @@ const BuildingBlockCreate = () => {
         <div className='lg:basis-1/3 shrink-0'>
           <BuildingBlockSimpleLeft />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <BuildingBlockForm />
         </div>
       </div>

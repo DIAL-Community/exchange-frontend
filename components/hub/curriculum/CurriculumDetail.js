@@ -68,7 +68,7 @@ const CurriculumDetail = ({ curriculum }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <CurriculumSideNavigation curriculum={curriculum} moduleRefs={moduleRefs} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <div className='px-4 lg:px-0 py-4'>
             <div className='flex flex-col gap-y-3'>
               <CurriculumHeader curriculum={curriculum} moduleRefs={moduleRefs} />

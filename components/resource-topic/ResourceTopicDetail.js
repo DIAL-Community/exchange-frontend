@@ -61,7 +61,7 @@ const ResourceTopicDetail = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <ResourceTopicDetailLeft scrollRef={scrollRef} resourceTopic={resourceTopic} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <ResourceTopicDetailRight
             ref={scrollRef}
             resourceTopic={resourceTopic}

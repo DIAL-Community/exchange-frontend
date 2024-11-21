@@ -61,7 +61,7 @@ const CountryDetail = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <CountryDetailLeft scrollRef={scrollRef} country={country} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <CountryDetailRight
             ref={scrollRef}
             country={country}

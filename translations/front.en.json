@@ -593,7 +593,6 @@
 
   "filter.product.forCovid": "COVID-19 Tools",
   "filter.product.endorsed": "Show endorsed products",
-  "filter.product.launchable": "Product can be deployed and launched",
   "filter.launchWizard": "Launch Recommendations Wizard",
 
   "endorsingYear.label": "Endorsing Year",
@@ -1088,7 +1087,6 @@
   "ui.move.autoSaved": "Move saved ...",
 
   "ui.resource.submitted": "Resource saved.",
-  "product.launchable": "Product Launchable",
 
   "location.header": "Location",
 
