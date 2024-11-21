@@ -1,5 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import Footer from '../../../components/shared/Footer'
+import Header from '../../../components/shared/Header'
 import ClientOnly from '../../../lib/ClientOnly'
 
 const PlaybookPdf = dynamic(
@@ -13,7 +15,9 @@ const DownloadPdf = ({ defaultTenants }) => {
 
   return (
     <ClientOnly clientTenants={defaultTenants}>
+      <Header isOnAuthPage={true} />
       <PlaybookPdf locale={locale} />
+      <Footer />
     </ClientOnly>
   )
 }
