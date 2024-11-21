@@ -1,10 +1,13 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
 import { useIntl } from 'react-intl'
+import Bookmark from '../../shared/common/Bookmark'
+import Share from '../../shared/common/Share'
+import { ObjectType } from '../../utils/constants'
 import { isDebugLoggingEnabled } from '../../utils/utilities'
-import { PlaybookContext } from './PlaybookContext'
+import { COMMENTS_SECTION_SLUG_VALUE, PlaybookContext } from './PlaybookContext'
 
-const PlaybookSideNavigation = ({ playRefs }) => {
+const PlaybookSideNavigation = ({ playbook, playRefs }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -72,9 +75,25 @@ const PlaybookSideNavigation = ({ playRefs }) => {
     }
   }, [directAccess, setDirectAccess, plays, playPercentages, setCurrentSlug])
 
+  const scrollToComment = () => {
+    const currentSlug = plays[plays.length - 1].playSlug
+
+    setCurrentSlug(currentSlug)
+    setDirectAccess(true)
+
+    if (playRefs && playRefs.current) {
+      const scrollTargetRef = playRefs.current[COMMENTS_SECTION_SLUG_VALUE]
+      scrollTargetRef?.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest'
+      })
+    }
+  }
+
   return (
     <div className='sticky' style={{ top: 'calc(var(--header-height) + var(--filter-height) + 1.5rem)' }}>
-      <div className=' flex flex-col text-dial-stratos'>
+      <div className='flex flex-col text-dial-stratos'>
         {plays
           .map(play => play.playSlug)
           .map((playSlug, index) => (
@@ -107,6 +126,29 @@ const PlaybookSideNavigation = ({ playRefs }) => {
               </a>
             </div>
           ))}
+        <div className='px-4 lg:px-6 flex flex-col gap-y-3 mt-3'>
+          <hr className='border-b border-dial-slate-200' />
+          <Bookmark object={playbook} objectType={ObjectType.PLAYBOOK} />
+          <hr className='border-b border-dial-slate-200' />
+          <Share />
+          <hr className='border-b border-dial-slate-200' />
+          <div className='flex flex-col gap-3 py-3'>
+            <div className='text-dial-sapphire font-semibold'>
+              {format('ui.comment.label')}
+            </div>
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.comment.description', { entity: format('ui.playbook.label') })}
+            </div>
+            <div className='flex text-white'>
+              <div className='bg-dial-iris-blue rounded-md text-sm'>
+                <button type='button' className='px-5 py-3' onClick={scrollToComment}>
+                  {format('ui.comment.buttonTitle')}
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr className='border-b border-dial-slate-200' />
+        </div>
       </div>
     </div>
   )

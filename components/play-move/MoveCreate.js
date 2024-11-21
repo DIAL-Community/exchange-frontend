@@ -5,8 +5,8 @@ import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PLAY_QUERY } from '../shared/query/play'
-import MoveEditLeft from './MoveEditLeft'
 import MoveForm from './forms/MoveForm'
+import MoveEditLeft from './MoveEditLeft'
 
 const MoveCreate = ({ playSlug, playbookSlug, locale }) => {
   const { formatMessage } = useIntl()
@@ -50,10 +50,10 @@ const MoveCreate = ({ playSlug, playbookSlug, locale }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='hidden lg:block basis-1/3'>
+        <div className='hidden lg:block basis-1/3 shrink-0'>
           <MoveEditLeft />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <MoveForm
             playbook={playbook}
             play={play}

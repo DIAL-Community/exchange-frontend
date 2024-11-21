@@ -65,7 +65,7 @@ const ProjectDetail = ({ slug }) => {
             editingAllowed={editingAllowed}
           />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <ProjectDetailRight
             ref={scrollRef}
             project={project}

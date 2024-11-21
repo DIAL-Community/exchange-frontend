@@ -114,7 +114,7 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
         </div>
       </div>
       <div
-        class="lg:basis-2/3 shrink-0"
+        class="lg:basis-2/3"
       >
         <form>
           <div
@@ -437,7 +437,7 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
         </div>
       </div>
       <div
-        class="lg:basis-2/3 shrink-0"
+        class="lg:basis-2/3"
       >
         <form>
           <div

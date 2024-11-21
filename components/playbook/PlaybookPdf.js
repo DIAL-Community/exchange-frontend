@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
 import { HiExternalLink } from 'react-icons/hi'
 import { IntlProvider, useIntl } from 'react-intl'
+import Html from 'react-pdf-html'
 import { gql, useQuery } from '@apollo/client'
 import { Document, Page, PDFDownloadLink, StyleSheet, Text } from '@react-pdf/renderer'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
@@ -12,7 +13,7 @@ import { prependUrlWithProtocol } from '../utils/utilities'
 
 const PLAYBOOK_DETAIL_QUERY = gql`
   query PlaybookPdfDetail($slug: String!) {
-    playbook(slug: $slug) {
+    playbook(slug: $slug, owner: "public") {
       id
       slug
       name
@@ -165,7 +166,9 @@ const PlaybookContent = ({ format, data, locale }) => {
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
               <Text style={styles.desc}>
-                {parse(data.playbook.playbookDescription.overview)}
+                <Html>
+                  {data.playbook.playbookDescription.overview}
+                </Html>
               </Text>
             </div>
             <div className='h4'>
@@ -175,7 +178,9 @@ const PlaybookContent = ({ format, data, locale }) => {
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
               <Text style={styles.desc}>
-                {parse(data.playbook.playbookDescription.audience)}
+                <Html>
+                  {data.playbook.playbookDescription.audience}
+                </Html>
               </Text>
             </div>
             <div className='h4'>
@@ -185,7 +190,9 @@ const PlaybookContent = ({ format, data, locale }) => {
             </div>
             <div className='fr-view tiny-editor text-dial-gray-dark'>
               <Text style={styles.desc}>
-                {parse(data.playbook.playbookDescription.outcomes)}
+                <Html>
+                  {data.playbook.playbookDescription.outcomes}
+                </Html>
               </Text>
             </div>
             { data.playbook.plays?.map((play, index) => {
@@ -198,7 +205,9 @@ const PlaybookContent = ({ format, data, locale }) => {
                 </div>
                 <div className='fr-view tiny-editor text-dial-gray-dark'>
                   <Text style={styles.desc}>
-                    {parse(play.playDescription.description)}
+                    <Html>
+                      {play.playDescription.description}
+                    </Html>
                   </Text>
                 </div>
                 <div className='flex flex-col gap-3'>

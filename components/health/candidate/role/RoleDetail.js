@@ -60,7 +60,7 @@ const RoleDetail = ({ id }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <RoleDetailLeft scrollRef={scrollRef} role={role} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <RoleDetailRight
             ref={scrollRef}
             role={role}

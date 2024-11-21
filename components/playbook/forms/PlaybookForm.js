@@ -114,7 +114,9 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       name: playbook?.name,
       author: playbook?.author,
       published: !playbook?.draft ?? true,
-      overview: playbook?.playbookDescription.overview
+      overview: playbook?.playbookDescription.overview,
+      audience: playbook?.playbookDescription.audience,
+      outcomes: playbook?.playbookDescription.outcomes
     }
   })
 
@@ -127,7 +129,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     // Set the loading indicator.
     setMutating(true)
     // Pull all needed data from session and form.
-    const { name, cover, author, overview, published } = data
+    const { name, cover, author, overview, audience, outcomes, published } = data
     const [coverFile] = cover
     // Send graph query to the backend. Set the base variables needed to perform update.
     const variables = {
@@ -136,8 +138,8 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       owner: 'public',
       author,
       overview,
-      audience: '',
-      outcomes: '',
+      audience,
+      outcomes,
       cover: coverFile,
       draft: !published,
       tags: tags.map(tag => tag.label)
@@ -297,6 +299,20 @@ export const PlaybookForm = React.memo(({ playbook }) => {
             required
             isInvalid={errors.overview}
           />
+          <FormTextEditor
+            control={control}
+            name='audience'
+            placeholder={format('ui.playbook.audience')}
+            required
+            isInvalid={errors.audience}
+          />
+          <FormTextEditor
+            control={control}
+            name='outcomes'
+            placeholder={format('ui.playbook.outcomes')}
+            required
+            isInvalid={errors.outcomes}
+          />
           <label className='flex gap-x-2 mb-2 items-center self-start'>
             <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
             {format('ui.playbook.published')}
@@ -307,7 +323,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
               className='submit-button'
               disabled={mutating || reverting}
             >
-              {format('ui.playbook.save')}
+              {`${format('app.save')} ${format('ui.playbook.label')}`}
               {mutating && <FaSpinner className='spinner ml-3 inline' />}
             </button>
             <button

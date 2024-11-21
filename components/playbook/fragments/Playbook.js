@@ -1,6 +1,8 @@
 import { useCallback, useContext, useEffect, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import { PlaybookContext, OVERVIEW_SLUG_VALUE } from './PlaybookContext'
+import CommentsSection from '../../shared/comment/CommentsSection'
+import { ObjectType } from '../../utils/constants'
+import { COMMENTS_SECTION_SLUG_VALUE, OVERVIEW_SLUG_VALUE, PlaybookContext } from './PlaybookContext'
 import PlaybookHeader from './PlaybookHeader'
 import PlaybookPlays from './PlaybookPlays'
 import PlaybookSideNavigation from './PlaybookSideNavigation'
@@ -11,12 +13,19 @@ const Playbook = ({ playbook }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const playRefs = useRef({})
+  const commentsSectionRef = useRef(null)
 
   const {
     setPlays,
     setPlayNames,
     setPlayMoveNames
   } = useContext(PlaybookContext)
+
+  useEffect(() => {
+    if (playRefs.current) {
+      playRefs.current[COMMENTS_SECTION_SLUG_VALUE] = commentsSectionRef
+    }
+  }, [commentsSectionRef, playRefs])
 
   useEffect(() => {
     const { plays, playbookPlays } = playbook
@@ -65,14 +74,19 @@ const Playbook = ({ playbook }) => {
     <div className='lg:px-8 xl:px-56 flex flex-col min-h-[80vh]'>
       <PlaybookTopNavigation playbook={playbook} playRefs={playRefs} />
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3 shrink-0'>
+        <div className='lg:basis-1/3 shrink-0 bg-dial-slate-100'>
           <PlaybookSideNavigation playbook={playbook} playRefs={playRefs} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
-          <div className='px-4 lg:px-0 py-4'>
+        <div className='lg:basis-2/3'>
+          <div className='px-4 lg:px-0 py-4 lg:py-0'>
             <div className='flex flex-col gap-y-3'>
               <PlaybookHeader playbook={playbook} playRefs={playRefs} />
               <PlaybookPlays playbook={playbook} playRefs={playRefs} />
+              <CommentsSection
+                commentsSectionRef={commentsSectionRef}
+                objectId={playbook.id}
+                objectType={ObjectType.PLAYBOOK}
+              />
             </div>
           </div>
         </div>

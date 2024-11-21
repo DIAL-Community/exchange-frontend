@@ -46,7 +46,7 @@ const UseCaseStepEdit = ({ slug, stepSlug }) => {
             useCaseStep={useCaseStep}
           />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <UseCaseStepForm
             useCase={useCase}
             useCaseStep={useCaseStep}

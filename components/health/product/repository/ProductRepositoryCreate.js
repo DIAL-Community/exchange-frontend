@@ -51,7 +51,7 @@ const ProductRepositoryCreate = ({ productSlug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <ProductRepositoryEditLeft product={product} scrollRef={scrollRef}/>
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <ProductRepositoryForm product={product} ref={scrollRef} />
         </div>
       </div>

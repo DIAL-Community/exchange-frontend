@@ -49,7 +49,7 @@ const ContactEdit = ({ slug }) => {
         <div className='lg:basis-1/3 shrink-0'>
           <ContactEditLeft contact={contact} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <ContactForm contact={contact} />
         </div>
       </div>

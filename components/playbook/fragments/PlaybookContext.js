@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react'
 
 export const OVERVIEW_SLUG_VALUE = 'base-slug-overview-information'
+export const COMMENTS_SECTION_SLUG_VALUE = 'base-slug-comments-section'
 
 const PlaybookContext = createContext()
 

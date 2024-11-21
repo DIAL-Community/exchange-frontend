@@ -40,15 +40,23 @@ const PlaybookHeader = ({ playbook, playRefs }) => {
           </div>
         </div>
         <HtmlViewer initialContent={playbook?.playbookDescription?.overview} />
+        <div className='h4'>
+          {format('ui.playbook.audience')}
+        </div>
+        <HtmlViewer initialContent={playbook.playbookDescription.audience} />
+        <div className='h4'>
+          {format('ui.playbook.outcomes')}
+        </div>
+        <HtmlViewer initialContent={playbook.playbookDescription.outcomes} />
         {playbook.author &&
-          <div>
+          <div className='flex flex-col gap-3 py-2'>
             <div className='h4'>{format('ui.playbook.author')}</div>
             <div className='text-dial-gray-dark'>{playbook.author}</div>
           </div>
         }
         {playbook.tags.length > 0 &&
-          <div className='flex flex-col gap-3'>
-            <div className='font-semibold'>
+          <div className='flex flex-col gap-3 py-2'>
+            <div className='h4'>
               {format('ui.tag.header')}
             </div>
             <div className='italic text-sm'>

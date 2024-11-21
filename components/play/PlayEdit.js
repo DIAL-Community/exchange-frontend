@@ -53,7 +53,7 @@ const PlayEdit = ({ playSlug, playbookSlug, locale }) => {
         <div className='hidden lg:block basis-1/3'>
           <PlayEditLeft play={play} />
         </div>
-        <div className='lg:basis-2/3 shrink-0'>
+        <div className='lg:basis-2/3'>
           <PlayForm playbook={playbook} play={play} />
         </div>
       </div>
