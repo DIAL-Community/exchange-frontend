@@ -113,6 +113,7 @@ const ProductForm = React.memo(({ product }) => {
       repository,
       description,
       submitterEmail,
+      extraAttributes: [],
       captcha: captchaValue
     }
 

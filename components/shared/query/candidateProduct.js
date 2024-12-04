@@ -54,6 +54,7 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       repository
       description
       submitterEmail
+      extraAttributes
       overallMaturityScore
       maturityScoreDetails
       candidateStatus {
