@@ -1,5 +1,11 @@
 import { gql } from '@apollo/client'
 
+export const CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY = gql`
+  query CandidateProductExtraAttributes {
+    candidateProductExtraAttributes
+  }
+`
+
 export const CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeCandidateProduct($search: String) {
     paginationAttributeCandidateProduct(search: $search) {

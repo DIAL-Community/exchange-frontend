@@ -1,21 +1,80 @@
 import React, { useCallback, useContext, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { Controller, useForm } from 'react-hook-form'
-import { FaSpinner } from 'react-icons/fa6'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaSpinner, FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
 import Input from '../../../shared/form/Input'
+import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
 import ValidationError from '../../../shared/form/ValidationError'
+import { handleLoadingQuery, handleQueryError } from '../../../shared/GraphQueryHandler'
 import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
 import {
-  CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_CANDIDATE_PRODUCTS_QUERY
+  CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY, CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
+  PAGINATED_CANDIDATE_PRODUCTS_QUERY
 } from '../../../shared/query/candidateProduct'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+
+const MaintainerCompositeAttribute = ({ control, register, errors, attributes }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    // TODO: Doesn't support dynamic name. https://www.react-hook-form.com/api/usefieldarray/
+    // If we need more composite type, we need to copy and paste this section of the code.
+    name: 'maintainers'
+  })
+
+  return (
+    <div className='flex flex-col gap-y-6'>
+      {fields.map((item, index) => (
+        <div className='flex flex-col gap-y-6 relative' key={item.id}>
+          {attributes.map(({ name, title, description }) => (
+            <div className='flex flex-col gap-y-2' key={`${index}-${name}`}>
+              <label className='required-field' htmlFor={`maintainers.${index}.${name}`}>
+                {title}
+              </label>
+              <Input
+                id={`maintainers.${index}.${name}`}
+                {...register(`maintainers.${index}.${name}`, { required: format('validation.required') })}
+                placeholder={description}
+                isInvalid={errors[`maintainers.${index}.${name}`]}
+              />
+              {errors[`maintainers.${index}.${name}`] &&
+                <ValidationError value={errors[`maintainers.${index}.${name}`]?.message} />
+              }
+            </div>
+          ))}
+          <div className='absolute top-0 right-0'>
+            <button
+              type="button"
+              className='bg-red-500 text-white px-1 py-1 rounded-md ml-auto'
+              onClick={() => remove(index)}
+            >
+              <FaXmark />
+            </button>
+          </div>
+          <div className='border-t border-dashed' />
+        </div>
+      ))}
+      <div className='flex'>
+        <button
+          type="button"
+          className='bg-dial-meadow text-white px-4 py-2 rounded-md ml-auto'
+          onClick={() => append({ maintainerName: '', maintainerEmail: '' })}
+        >
+          Append
+        </button>
+      </div>
+    </div>
+  )
+}
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -28,6 +87,33 @@ const ProductForm = React.memo(({ product }) => {
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors }
+  } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      name: product?.name ?? '',
+      website: product?.website ?? '',
+      repository: product?.repository ?? '',
+      description: product?.description ?? '',
+      submitterEmail: product?.submitterEmail ?? '',
+      maintainers: product?.extraAttributes.find(attribute => attribute.name === 'maintainers')?.value ?? []
+    }
+  })
+
+  const { loading, data, error } = useQuery(CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -76,23 +162,25 @@ const ProductForm = React.memo(({ product }) => {
     }
   })
 
-  const {
-    handleSubmit,
-    register,
-    control,
-    formState: { errors }
-  } = useForm({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-    shouldUnregister: true,
-    defaultValues: {
-      name: product?.name ?? '',
-      website: product?.website ?? '',
-      repository: product?.repository ?? '',
-      description: product?.description ?? '',
-      submitterEmail: product?.submitterEmail ?? ''
-    }
-  })
+  const resolveDefaultValueByFieldKey = (name) => {
+    const { extraAttributes } = product
+    const extraAttribute = extraAttributes.find(extraAttribute => extraAttribute.name === name)
+
+    return extraAttribute?.value
+  }
+
+  const buildExtraAttributes = (otherFormValues) => {
+    const extraAttributes = []
+    Object.keys(otherFormValues).forEach(fieldKey => {
+      const extraAttribute = {}
+      const fieldValue = otherFormValues[fieldKey]
+      extraAttribute['name'] = fieldKey
+      extraAttribute['value'] = fieldValue
+      extraAttributes.push(extraAttribute)
+    })
+
+    return extraAttributes
+  }
 
   const doUpsert = async (data) => {
     // Set the loading indicator.
@@ -103,8 +191,10 @@ const ProductForm = React.memo(({ product }) => {
       website,
       repository,
       description,
-      submitterEmail
+      submitterEmail,
+      ...otherValues
     } = data
+
     // Send graph query to the backend. Set the base variables needed to perform update.
     const variables = {
       name,
@@ -113,7 +203,7 @@ const ProductForm = React.memo(({ product }) => {
       repository,
       description,
       submitterEmail,
-      extraAttributes: [],
+      extraAttributes: buildExtraAttributes(otherValues),
       captcha: captchaValue
     }
 
@@ -137,6 +227,14 @@ const ProductForm = React.memo(({ product }) => {
       router.push(`/${locale}/candidate/products/${slug}`)
     }
   }
+
+  if (loading) {
+    return handleLoadingQuery()
+  } else if (error) {
+    return handleQueryError(error)
+  }
+
+  const { candidateProductExtraAttributes } = data
 
   return (
     <form onSubmit={handleSubmit(doUpsert)}>
@@ -227,6 +325,100 @@ const ProductForm = React.memo(({ product }) => {
             />
             {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
           </div>
+          <div className='border-t border-dashed' />
+          <div className='text-base font-semibold'>
+            Candidate Product Extra Attributes
+          </div>
+          {candidateProductExtraAttributes.map((extraAttribute) => {
+            const { name, title, description, type, multiple, options } = extraAttribute
+            if (type === 'composite') {
+              const { attributes } = extraAttribute
+
+              return (
+                <div className='flex flex-col gap-y-6' key={name}>
+                  <div className='text-sm font-medium'>
+                    {title}
+                  </div>
+                  <MaintainerCompositeAttribute
+                    errors={errors}
+                    control={control}
+                    register={register}
+                    attributes={attributes}
+                  />
+                </div>
+              )
+            } else if (type === 'text') {
+              return (
+                <div className='flex flex-col gap-y-2' key={name}>
+                  <label className='required-field' htmlFor={name}>
+                    {title}
+                  </label>
+                  <Input
+                    id={name}
+                    {...register(name, { required: format('validation.required') })}
+                    defaultValue={resolveDefaultValueByFieldKey(name)}
+                    placeholder={description}
+                    isInvalid={errors[name]}
+                  />
+                  {errors[name] && <ValidationError value={errors[name]?.message} />}
+                </div>
+              )
+            } else if (type === 'url') {
+              return (
+                <div className='flex flex-col gap-y-2' key={name}>
+                  <label className='required-field' htmlFor={name}>
+                    {title}
+                  </label>
+                  <Controller
+                    id={name}
+                    name={name}
+                    control={control}
+                    defaultValue={resolveDefaultValueByFieldKey(name)}
+                    render={({ field: { value, onChange } }) => (
+                      <UrlInput
+                        id={name}
+                        value={value}
+                        onChange={onChange}
+                        placeholder={description}
+                      />
+                    )}
+                    rules={{ required: format('validation.required') }}
+                  />
+                  {errors[name] && <ValidationError value={errors[name]?.message} />}
+                </div>
+              )
+            } else if (type === 'select') {
+              return (
+                <div className='flex flex-col gap-y-2' key={name}>
+                  <label className='required-field' htmlFor={name}>
+                    {title}
+                  </label>
+                  <Controller
+                    id={name}
+                    name={name}
+                    control={control}
+                    defaultValue={resolveDefaultValueByFieldKey(name)}
+                    rules={{ required: format('validation.required') }}
+                    render={({ field: { value, onChange } }) => (
+                      <Select
+                        id={name}
+                        value={value}
+                        onChange={onChange}
+                        placeholder={description}
+                        options={options.map((option) => ({
+                          label: option,
+                          value: option
+                        }))}
+                        isMulti={multiple}
+                      />
+                    )}
+                  />
+                  {errors[name] && <ValidationError value={errors[name]?.message} />}
+                </div>
+              )
+            }
+          })}
+          <div className='border-t border-dashed' />
           <ReCAPTCHA
             sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
             onChange={updateCaptchaData}
