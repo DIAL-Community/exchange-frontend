@@ -9,7 +9,7 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
     $description: String!
     $submitterEmail: String!
     $commercialProduct: Boolean
-    $extraAttributes: [ExtraAttributeInput!]
+    $extraAttributes: [ExtraAttribute!]
     $captcha: String!
   ) {
     createCandidateProduct(

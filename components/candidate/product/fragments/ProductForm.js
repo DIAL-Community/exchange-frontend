@@ -88,6 +88,16 @@ const ProductForm = React.memo(({ product }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
+  const resolveDefaultValueByFieldKey = (fieldKey) => {
+    let defaultValue
+    if (product?.extraAttributes) {
+      const extraAttribute = product.extraAttributes.find(attribute => attribute.name === fieldKey)
+      defaultValue = extraAttribute?.value
+    }
+
+    return defaultValue
+  }
+
   const {
     handleSubmit,
     register,
@@ -103,7 +113,7 @@ const ProductForm = React.memo(({ product }) => {
       repository: product?.repository ?? '',
       description: product?.description ?? '',
       submitterEmail: product?.submitterEmail ?? '',
-      maintainers: product?.extraAttributes.find(attribute => attribute.name === 'maintainers')?.value ?? []
+      maintainers: resolveDefaultValueByFieldKey('maintainers') ?? []
     }
   })
 
@@ -162,22 +172,20 @@ const ProductForm = React.memo(({ product }) => {
     }
   })
 
-  const resolveDefaultValueByFieldKey = (name) => {
-    const { extraAttributes } = product
-    const extraAttribute = extraAttributes.find(extraAttribute => extraAttribute.name === name)
-
-    return extraAttribute?.value
-  }
-
   const buildExtraAttributes = (otherFormValues) => {
     const extraAttributes = []
-    Object.keys(otherFormValues).forEach(fieldKey => {
-      const extraAttribute = {}
-      const fieldValue = otherFormValues[fieldKey]
-      extraAttribute['name'] = fieldKey
-      extraAttribute['value'] = fieldValue
-      extraAttributes.push(extraAttribute)
-    })
+    if (data.candidateProductExtraAttributes) {
+      const attributeDefinitions = data.candidateProductExtraAttributes
+
+      return attributeDefinitions.map(attributeDefinition => {
+        const extraAttribute = {}
+        extraAttribute['name'] = attributeDefinition.name
+        extraAttribute['value'] = otherFormValues[attributeDefinition.name]
+        extraAttribute['type'] = attributeDefinition.type
+
+        return extraAttribute
+      })
+    }
 
     return extraAttributes
   }
@@ -373,7 +381,7 @@ const ProductForm = React.memo(({ product }) => {
                     id={name}
                     name={name}
                     control={control}
-                    defaultValue={resolveDefaultValueByFieldKey(name)}
+                    defaultValue={resolveDefaultValueByFieldKey(name) ?? ''}
                     render={({ field: { value, onChange } }) => (
                       <UrlInput
                         id={name}
