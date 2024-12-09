@@ -115,22 +115,27 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed }, ref) => {
             </div>
           </>
         }
-        <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='font-semibold text-dial-meadow'>
-          {format('ui.candidateProduct.extraAttributes')}
-        </div>
-        {product.extraAttributes
-          .map((extraAttribute, index) => (
-            <div key={`extra-attribute-${index}`} className='flex flex-col gap-y-1 mb-2'>
-              <div className='text-sm font-medium text-dial-meadow'>
-                {extraAttribute.title}
-              </div>
-              <div className='text-xs italic'>
-                {extraAttribute.description}
-              </div>
-              {renderExtraAttributes(extraAttribute)}
+        {product.extraAttributes && product.extraAttributes.length > 0 &&
+          <>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+            <div className='font-semibold text-dial-meadow'>
+              {format('ui.candidateProduct.extraAttributes')}
             </div>
-          ))}
+            {product.extraAttributes
+              .map((extraAttribute, index) => (
+                <div key={`extra-attribute-${index}`} className='flex flex-col gap-y-1 mb-2'>
+                  <div className='text-sm font-medium text-dial-meadow'>
+                    {extraAttribute.title}
+                  </div>
+                  <div className='text-xs italic'>
+                    {extraAttribute.description}
+                  </div>
+                  {renderExtraAttributes(extraAttribute)}
+                </div>
+              ))
+            }
+          </>
+        }
         {product.submitterEmail &&
           <>
             <hr className='border-b border-dial-blue-chalk my-3' />
