@@ -20,34 +20,49 @@ import {
 } from '../../../shared/query/candidateProduct'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
-const MaintainerCompositeAttribute = ({ control, register, errors, attributes }) => {
+const MaintainerCompositeAttribute = ({ errors, control, register, extraAttribute }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { title, required, attributes } = extraAttribute
   const { fields, append, remove } = useFieldArray({
     control,
     // TODO: Doesn't support dynamic name. https://www.react-hook-form.com/api/usefieldarray/
     // If we need more composite type, we need to copy and paste this section of the code.
-    name: 'maintainers'
+    name: 'maintainers',
+    rules: {
+      required: required ? format('validation.required') : false
+    }
   })
 
   return (
-    <div className='flex flex-col gap-y-6'>
+    <div className='flex flex-col gap-y-6' key={name}>
+      <div className='text-sm font-medium'>
+        {title}
+      </div>
       {fields.map((item, index) => (
         <div className='flex flex-col gap-y-6 relative' key={item.id}>
-          {attributes.map(({ name, title, description }) => (
+          {attributes.map(({ name, title, required, description }) => (
             <div className='flex flex-col gap-y-2' key={`${index}-${name}`}>
-              <label className='required-field' htmlFor={`maintainers.${index}.${name}`}>
+              <label
+                className={required ? 'required-field' : ''}
+                htmlFor={`maintainers.${index}.${name}`}
+              >
                 {title}
               </label>
               <Input
                 id={`maintainers.${index}.${name}`}
-                {...register(`maintainers.${index}.${name}`, { required: format('validation.required') })}
+                {...register(`maintainers.${index}.${name}`, {
+                  required: {
+                    value: required,
+                    message: format('validation.required')
+                  }
+                })}
                 placeholder={description}
                 isInvalid={errors[`maintainers.${index}.${name}`]}
               />
-              {errors[`maintainers.${index}.${name}`] &&
-                <ValidationError value={errors[`maintainers.${index}.${name}`]?.message} />
+              {errors?.maintainers?.[index][name] &&
+                <ValidationError value={errors?.maintainers?.[index][name]?.message} />
               }
             </div>
           ))}
@@ -72,6 +87,9 @@ const MaintainerCompositeAttribute = ({ control, register, errors, attributes })
           Append
         </button>
       </div>
+      {errors.maintainers?.root &&
+        <ValidationError value={errors.maintainers?.root?.message} />
+      }
     </div>
   )
 }
@@ -182,6 +200,9 @@ const ProductForm = React.memo(({ product }) => {
         extraAttribute['name'] = attributeDefinition.name
         extraAttribute['value'] = otherFormValues[attributeDefinition.name]
         extraAttribute['type'] = attributeDefinition.type
+        extraAttribute['index'] = attributeDefinition.index
+        extraAttribute['title'] = attributeDefinition.title
+        extraAttribute['description'] = attributeDefinition.description
 
         return extraAttribute
       })
@@ -236,12 +257,14 @@ const ProductForm = React.memo(({ product }) => {
     }
   }
 
+  // Handle useQuery return values.
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
     return handleQueryError(error)
   }
 
+  // Parse the extra attributes information.
   const { candidateProductExtraAttributes } = data
 
   return (
@@ -335,35 +358,34 @@ const ProductForm = React.memo(({ product }) => {
           </div>
           <div className='border-t border-dashed' />
           <div className='text-base font-semibold'>
-            Candidate Product Extra Attributes
+            {format('ui.candidateProduct.extraAttributes')}
           </div>
           {candidateProductExtraAttributes.map((extraAttribute) => {
-            const { name, title, description, type, multiple, options } = extraAttribute
+            const { name, title, description, type, required, multiple, options } = extraAttribute
             if (type === 'composite') {
-              const { attributes } = extraAttribute
-
               return (
-                <div className='flex flex-col gap-y-6' key={name}>
-                  <div className='text-sm font-medium'>
-                    {title}
-                  </div>
-                  <MaintainerCompositeAttribute
-                    errors={errors}
-                    control={control}
-                    register={register}
-                    attributes={attributes}
-                  />
-                </div>
+                <MaintainerCompositeAttribute
+                  key={name}
+                  errors={errors}
+                  control={control}
+                  register={register}
+                  extraAttribute={extraAttribute}
+                />
               )
             } else if (type === 'text') {
               return (
                 <div className='flex flex-col gap-y-2' key={name}>
-                  <label className='required-field' htmlFor={name}>
+                  <label className={required ? 'required-field' : ''} htmlFor={name}>
                     {title}
                   </label>
                   <Input
                     id={name}
-                    {...register(name, { required: format('validation.required') })}
+                    {...register(name, {
+                      required: {
+                        value: required,
+                        message: format('validation.required')
+                      }
+                    })}
                     defaultValue={resolveDefaultValueByFieldKey(name)}
                     placeholder={description}
                     isInvalid={errors[name]}
@@ -374,7 +396,7 @@ const ProductForm = React.memo(({ product }) => {
             } else if (type === 'url') {
               return (
                 <div className='flex flex-col gap-y-2' key={name}>
-                  <label className='required-field' htmlFor={name}>
+                  <label className={required ? 'required-field' : ''} htmlFor={name}>
                     {title}
                   </label>
                   <Controller
@@ -390,7 +412,12 @@ const ProductForm = React.memo(({ product }) => {
                         placeholder={description}
                       />
                     )}
-                    rules={{ required: format('validation.required') }}
+                    rules={{
+                      required: {
+                        value: required,
+                        message: format('validation.required')
+                      }
+                    }}
                   />
                   {errors[name] && <ValidationError value={errors[name]?.message} />}
                 </div>
@@ -398,7 +425,7 @@ const ProductForm = React.memo(({ product }) => {
             } else if (type === 'select') {
               return (
                 <div className='flex flex-col gap-y-2' key={name}>
-                  <label className='required-field' htmlFor={name}>
+                  <label className={required ? 'required-field' : ''} htmlFor={name}>
                     {title}
                   </label>
                   <Controller
@@ -406,7 +433,12 @@ const ProductForm = React.memo(({ product }) => {
                     name={name}
                     control={control}
                     defaultValue={resolveDefaultValueByFieldKey(name)}
-                    rules={{ required: format('validation.required') }}
+                    rules={{
+                      required: {
+                        value: required,
+                        message: format('validation.required')
+                      }
+                    }}
                     render={({ field: { value, onChange } }) => (
                       <Select
                         id={name}

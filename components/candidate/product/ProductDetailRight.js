@@ -22,6 +22,64 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
+  const renderExtraAttributes = (extraAttribute) => {
+    const { type, value } = extraAttribute
+    if (!value) {
+      return (
+        <div className='text-sm'>
+          {format('general.na')}
+        </div>
+      )
+    }
+
+    switch (type) {
+      case 'url':
+        return (
+          <div className='flex text-sm'>
+            <a
+              className='border-b border-dial-iris-blue line-clamp-1 break-all'
+              href={prependUrlWithProtocol(value)}
+              target='_blank'
+              rel='noreferrer'
+            >
+              {value}
+            </a>
+          </div>
+        )
+      case 'composite':
+        return (
+          <div className='text-sm flex flex-col gap-y-3'>
+            {extraAttribute.value.map((attributeValue, i) => (
+              <div key={`attribute-value-${i}`} className='flex flex-col gap-y-1'>
+                {Object.keys(attributeValue).map(key => (
+                  <div key={`attribute-value-${i}-${key}`} className='text-sm'>
+                    {attributeValue[key] ? attributeValue[key] : format('general.na')}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )
+      case 'text':
+        return (
+          <div className='text-sm'>
+            {extraAttribute.value}
+          </div>
+        )
+      case 'select':
+        return (
+          <div className='text-sm'>
+            {Array.isArray(extraAttribute.value)
+              ? extraAttribute.value.map(e => e.value).join(', ')
+              : extraAttribute.value.value
+            }
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
@@ -57,6 +115,22 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed }, ref) => {
             </div>
           </>
         }
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='font-semibold text-dial-meadow'>
+          {format('ui.candidateProduct.extraAttributes')}
+        </div>
+        {product.extraAttributes
+          .map((extraAttribute, index) => (
+            <div key={`extra-attribute-${index}`} className='flex flex-col gap-y-1 mb-2'>
+              <div className='text-sm font-medium text-dial-meadow'>
+                {extraAttribute.title}
+              </div>
+              <div className='text-xs italic'>
+                {extraAttribute.description}
+              </div>
+              {renderExtraAttributes(extraAttribute)}
+            </div>
+          ))}
         {product.submitterEmail &&
           <>
             <hr className='border-b border-dial-blue-chalk my-3' />

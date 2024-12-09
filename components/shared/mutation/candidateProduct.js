@@ -28,6 +28,7 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
         name
         slug
         website
+        repository
         description
         extraAttributes
         candidateStatus {
