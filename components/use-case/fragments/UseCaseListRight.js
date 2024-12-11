@@ -3,10 +3,9 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { FilterContext } from '../../context/FilterContext'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/useCase'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import ListStructure from './ListStructure'
 import UseCaseSearchBar from './UseCaseSearchBar'
 
@@ -14,7 +13,7 @@ const UseCaseListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, showBeta, showGovStackOnly, search } = useContext(FilterContext)
+  const { collectionDisplayType, sdgs, showBeta, showGovStackOnly, search } = useContext(FilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -27,9 +26,9 @@ const UseCaseListRight = () => {
   useEffect(() => {
     if (page) {
       setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+      setPageOffset((parseInt(page) - 1) * CollectionPageSize[collectionDisplayType])
     }
-  }, [page, setPageNumber, setPageOffset])
+  }, [page, collectionDisplayType, setPageNumber, setPageOffset])
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
@@ -67,7 +66,7 @@ const UseCaseListRight = () => {
       <UseCaseSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        pageSize={CollectionPageSize[collectionDisplayType]}
       />
       {loading && format('ui.pagination.loadingInfo')}
       {error && format('ui.pagination.loadingInfoError')}
@@ -75,7 +74,7 @@ const UseCaseListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeUseCase.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

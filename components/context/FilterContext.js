@@ -4,8 +4,20 @@ import { useRouter } from 'next/router'
 const FilterContext = createContext()
 const FilterDispatchContext = createContext()
 
+export const CollectionDisplayType = {
+  LIST: 'list',
+  GRID: 'grid'
+}
+
+export const CollectionPageSize = {
+  [CollectionDisplayType.LIST]: 8,
+  [CollectionDisplayType.GRID]: 12
+}
+
 const FilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
+  const [collectionDisplayType, setCollectionDisplayType] = useState(CollectionDisplayType.LIST)
+
   // Task tracker context only
   const [showFailedOnly, setShowFailedOnly] = useState(false)
   const [showGovStackOnly, setShowGovStackOnly] = useState(false)
@@ -118,6 +130,7 @@ const FilterProvider = ({ children }) => {
 
   const valueProps = {
     search,
+    collectionDisplayType,
 
     showFailedOnly,
     showGovStackOnly,
@@ -166,6 +179,8 @@ const FilterProvider = ({ children }) => {
 
   const dispatchProps = {
     setSearch,
+    setCollectionDisplayType,
+
     setShowFailedOnly,
     setShowGovStackOnly,
     setShowMature,

@@ -240,7 +240,7 @@ exports[`Unit tests for the storefront main page. Should render list of storefro
             class="py-3"
           >
             <div
-              class="flex flex-row gap-3"
+              class="flex flex-row items-center justify-items-center gap-3"
             >
               <div
                 class="block md:hidden relative"
@@ -261,6 +261,57 @@ exports[`Unit tests for the storefront main page. Should render list of storefro
                   >
                     <path
                       d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                class="flex flex-row gap-1"
+              >
+                <button
+                  class="flex items-center justify-center"
+                >
+                  <svg
+                    class="text-dial-slate-500"
+                    fill="currentColor"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M240 240H32V32h208zm240 0H272V32h208zM240 480H32V272h208zm240 0H272V272h208z"
+                    />
+                  </svg>
+                </button>
+                <button
+                  class="flex items-center justify-center"
+                  disabled=""
+                >
+                  <svg
+                    class="text-dial-slate-300"
+                    fill="currentColor"
+                    height="36"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="36"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M144 144h320M144 256h320M144 368h320"
+                      fill="none"
+                      stroke-linejoin="round"
+                      stroke-width="48"
+                    />
+                    <path
+                      d="M64 128h32v32H64zm0 112h32v32H64zm0 112h32v32H64z"
+                      fill="none"
+                      stroke-linecap="square"
+                      stroke-linejoin="round"
+                      stroke-width="32"
                     />
                   </svg>
                 </button>

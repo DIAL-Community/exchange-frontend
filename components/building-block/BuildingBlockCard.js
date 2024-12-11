@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
+import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { CategoryType, DisplayType, MaturityStatus } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
@@ -121,10 +121,60 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
       </div>
     </div>
 
+  const displayGridCard = () => (
+    <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
+      <div className='bg-white shadow-lg rounded-xl h-[360px]'>
+        <div className="flex flex-col h-full">
+          <div
+            className={
+              classNames(
+                'flex justify-center items-center bg-white',
+                'rounded-xl border-4 border-dial-warm-beech',
+                'py-12 mx-4 my-4 max-h-[180px]'
+              )}
+          >
+            {buildingBlock.imageFile.indexOf('placeholder.svg') < 0 &&
+              <div className="inline my-4 mx-6">
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                  className="object-contain max-h-[80px]" width="80px"
+                />
+              </div>
+            }
+            {buildingBlock.imageFile.indexOf('placeholder.svg') >= 0 &&
+              <div className="w-20 h-20">
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                  className="object-contain"
+                />
+              </div>
+            }
+          </div>
+          <div className="px-6 text-xl text-center font-semibold line-clamp-1">
+            {buildingBlock.name}
+          </div>
+          <div className="px-6 py-2 text-xs text-dial-stratos font-medium">
+            <span className="text-center line-clamp-3">
+              {parse(buildingBlock.parsedDescription)}
+            </span>
+          </div>
+          <div className="my-3 mx-auto text-xs font-medium">
+            <div className="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white">
+              {buildingBlock?.maturity}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div className='relative'>
       <Link href={`/building-blocks/${buildingBlock.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+        {displayType === DisplayType.GRID_CARD && displayGridCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       { isValidFn(dismissHandler) &&
