@@ -173,8 +173,8 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
   return (
     <div className='relative'>
       <Link href={`/building-blocks/${buildingBlock.slug}`}>
-        {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
+        {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       { isValidFn(dismissHandler) &&

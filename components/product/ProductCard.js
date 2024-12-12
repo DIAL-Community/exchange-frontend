@@ -1,6 +1,6 @@
+import { useCallback, useContext } from 'react'
 import parse from 'html-react-parser'
 import Link from 'next/link'
-import { useCallback, useContext } from 'react'
 import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
@@ -188,10 +188,10 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
   return (
     <div className='relative'>
       <Link href={`${urlPrefix ? urlPrefix : ''}/products/${product.slug}`}>
-        {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
-        {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
         {displayType === DisplayType.HUB_CARD && displayDpiCard()}
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
+        {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+        {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       <div className='absolute top-2 right-2'>
         {isValidFn(dismissHandler) &&

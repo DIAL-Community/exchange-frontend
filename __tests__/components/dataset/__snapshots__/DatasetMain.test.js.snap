@@ -553,7 +553,9 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                         <div
                           class="line-clamp-4 text-dial-stratos"
                         >
-                          MOOCs that provide youth with 21st-century skills related to drone technology and data analysis
+                          
+          MOOCs that provide youth with 21st-century skills related to drone technology and data analysis
+        
                         </div>
                         <div
                           class="flex gap-x-2 text-dial-stratos"

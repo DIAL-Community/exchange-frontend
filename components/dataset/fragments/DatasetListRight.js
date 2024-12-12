@@ -3,10 +3,9 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { FilterContext } from '../../context/FilterContext'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { DATASET_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/dataset'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import DatasetSearchBar from './DatasetSearchBar'
 import ListStructure from './ListStructure'
 
@@ -14,7 +13,7 @@ const DatasetListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, countries, datasetTypes, origins, sdgs, sectors, tags } = useContext(FilterContext)
+  const { search, collectionDisplayType, countries, datasetTypes, origins, sdgs, sectors, tags } = useContext(FilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -27,9 +26,9 @@ const DatasetListRight = () => {
   useEffect(() => {
     if (page) {
       setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
+      setPageOffset((parseInt(page) - 1) * CollectionPageSize[collectionDisplayType])
     }
-  }, [page, setPageNumber, setPageOffset])
+  }, [page, collectionDisplayType, setPageNumber, setPageOffset])
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
@@ -70,7 +69,7 @@ const DatasetListRight = () => {
       <DatasetSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        pageSize={CollectionPageSize[collectionDisplayType]}
       />
       {loading && format('ui.pagination.loadingInfo')}
       {error && format('ui.pagination.loadingInfoError')}
@@ -78,7 +77,7 @@ const DatasetListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeDataset.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

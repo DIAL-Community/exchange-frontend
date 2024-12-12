@@ -133,8 +133,8 @@ const UseCaseCard = ({ displayType, index, useCase, dismissHandler }) => {
   return (
     <div className='relative'>
       <Link href={`/use-cases/${useCase.slug}`}>
-        {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
+        {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
       { isValidFn(dismissHandler) &&
