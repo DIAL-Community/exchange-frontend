@@ -18,6 +18,10 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       />
       {currentOpenMenu === ADMIN_MENU &&
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
+          <Link href='/admin' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.admin.header')}
+          </Link>
+          <div className='mx-4 border-b border-dial-slate-300' />
           <Link href='/task-trackers' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.taskTracker.header')}
           </Link>

@@ -9,6 +9,7 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
     $description: String!
     $submitterEmail: String!
     $commercialProduct: Boolean
+    $extraAttributes: [ExtraAttribute!]
     $captcha: String!
   ) {
     createCandidateProduct(
@@ -19,6 +20,7 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
       description: $description
       submitterEmail: $submitterEmail
       commercialProduct: $commercialProduct
+      extraAttributes: $extraAttributes
       captcha: $captcha
     ) {
       candidateProduct {
@@ -26,7 +28,9 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
         name
         slug
         website
+        repository
         description
+        extraAttributes
         candidateStatus {
           id
           name
