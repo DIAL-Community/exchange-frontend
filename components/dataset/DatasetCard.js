@@ -89,7 +89,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissHandler }) => {
             className={
               classNames(
                 'flex justify-center items-center bg-white',
-                'rounded-xl border-4 border-dial-warm-beech',
+                'rounded-xl border-4 border-dial-violet',
                 'py-12 mx-4 my-4 max-h-[180px]'
               )}
           >
@@ -98,7 +98,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissHandler }) => {
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                  className="object-contain max-h-[80px]" width="80px"
+                  className="object-contain h-10" width="80px"
                 />
               </div>
             }
@@ -121,7 +121,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissHandler }) => {
             </span>
           </div>
           <div className="my-3 mx-auto text-xs font-medium">
-            <div className="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white">
+            <div className="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white">
               {dataset?.datasetType}
             </div>
           </div>
