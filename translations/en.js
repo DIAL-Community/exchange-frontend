@@ -1412,6 +1412,7 @@ export const en = {
   'ui.candidateProduct.repository.hint': 'Code repository of the candidate product.',
   'ui.candidateProduct.submit.success': 'Candidate Product submitted successfully',
   'ui.candidateProduct.submit.failure': 'Candidate Product submission failed',
+  'ui.candidateProduct.extraAttributes': 'Extra Attributes',
 
   'ui.candidateOrganization.organizationName': 'Organization Name',
   'ui.candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
