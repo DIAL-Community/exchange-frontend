@@ -100,7 +100,7 @@ const UseCaseDetailRight = forwardRef(({ useCase, editingAllowed, deletingAllowe
                       </div>
                       <div className='border border-r border-dial-slate-300' />
                       <div className='text-sm'>
-                        {format('ui.product.header')} ({useCaseStep.product?.length ?? 0})
+                        {format('ui.product.header')} ({useCaseStep.products?.length ?? 0})
                       </div>
                     </div>
                   </div>
