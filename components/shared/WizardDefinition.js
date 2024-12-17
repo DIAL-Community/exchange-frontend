@@ -12,7 +12,7 @@ const WizardDefinition = () => {
       <div className='absolute top-0 left-0 w-full h-[400px] lg:h-[297px]'>
         <div
           className='bg-cover lg:bg-auto bg-right bg-no-repeat h-[400px] lg:h-[297px]'
-          style={{ backgroundImage: 'url("/ui/v1/wizard-bg.svg")' }}
+          style={{ backgroundImage: 'url("/ui/v1/wizard-bg.png")' }}
         >
           <div className='lg:px-8 xl:px-56'>
             <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-6'>
