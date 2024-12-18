@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { SECTOR_DETAIL_QUERY } from '../shared/query/sector'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { SECTOR_DETAIL_QUERY } from '../shared/query/sector'
 import SectorForm from './fragments/SectorForm'
 import SectorEditLeft from './SectorEditLeft'
 
@@ -12,15 +13,20 @@ const SectorEdit = ({ slug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(SECTOR_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.sector) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { sector } = data
@@ -40,7 +46,7 @@ const SectorEdit = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <SectorEditLeft sector={sector} />
         </div>
         <div className='lg:basis-2/3'>

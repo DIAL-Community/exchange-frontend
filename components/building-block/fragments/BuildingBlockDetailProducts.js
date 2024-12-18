@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ProductCard from '../../product/ProductCard'
 import EditableSection from '../../shared/EditableSection'
@@ -14,7 +13,7 @@ import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
 import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
+const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -37,7 +36,6 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
     ) ?? mappingStatusOptions?.[0]
   )
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -94,23 +92,18 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateBuildingBlockProducts({
-        variables: {
-          mappingStatus: mappingStatus.value,
-          productSlugs: products.map(({ slug }) => slug),
-          slug: buildingBlock.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateBuildingBlockProducts({
+      variables: {
+        mappingStatus: mappingStatus.value,
+        productSlugs: products.map(({ slug }) => slug),
+        slug: buildingBlock.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -185,7 +178,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

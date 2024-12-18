@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { FaCircleChevronDown, FaCircleChevronUp } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import CountryCard from '../../country/CountryCard'
 import EditableSection from '../../shared/EditableSection'
@@ -15,7 +14,7 @@ import { COUNTRY_SEARCH_QUERY } from '../../shared/query/country'
 import { DisplayType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
+const ProductDetailCountries = ({ product, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -26,7 +25,6 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
   const [countries, setCountries] = useState(product.countries)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -78,22 +76,17 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateProductCountries({
-        variables: {
-          countrySlugs: countries.map(({ slug }) => slug),
-          slug: product.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateProductCountries({
+      variables: {
+        countrySlugs: countries.map(({ slug }) => slug),
+        slug: product.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -194,7 +187,7 @@ const ProductDetailCountries = ({ product, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

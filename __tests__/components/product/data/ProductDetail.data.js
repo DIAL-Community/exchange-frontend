@@ -5,15 +5,13 @@ export const productDetail = {
       'name': '@firma',
       'slug': 'firma',
       'aliases': [],
-      'contact': null,
       'imageFile': '/assets/products/firma.png',
-      'website': 'example.com',
-      'extraAttributes': {},
+      'website': 'administracionelectronica.gob.es/ctt/clienteafirma',
+      'extraAttributes': [],
       'commercialProduct': false,
       'pricingModel': null,
       'pricingDetails': null,
       'hostingModel': null,
-      'approvalStatus': null,
       'languages': [
         {
           'node': {
@@ -47,12 +45,14 @@ export const productDetail = {
       'haveOwner': false,
       'govStackEntity': false,
       'productStage': null,
+      'contact': null,
+      'featured': false,
       'productDescription': {
         'id': '24',
         'description': `
-          Suite of solutions for digital identities and electronic signatures,
-          aimed at public administrations for the implementation of authentication
-          and electronic signatures in a streamlined and effective manner.
+          Suite of solutions for digital identities and electronic signatures, aimed at public
+          administrations for the implementation of authentication and electronic signatures in
+          a streamlined and effective manner.
         `,
         'locale': 'en',
         '__typename': 'ProductDescription'
@@ -152,16 +152,33 @@ export const productDetail = {
         'name': '@firma Repository',
         'slug': 'firma-repository',
         'license': 'None',
-        'absoluteUrl': 'example.com',
+        'absoluteUrl': 'github.com/ctt-gob-es/clienteafirma',
         '__typename': 'ProductRepository'
       },
       'overallMaturityScore': 65.17,
       'maturityScoreDetails': [],
       'isLinkedWithDpi': false,
       'tags': [],
-      'projects': [],
+      'projects': [
+        {
+          'id': '3306',
+          'name': 'Firma',
+          'slug': 'firma',
+          'countries': [
+            {
+              'id': '51',
+              'name': 'Spain',
+              'slug': 'es',
+              'code': 'ES',
+              '__typename': 'Country'
+            }
+          ],
+          '__typename': 'Project'
+        }
+      ],
       'softwareCategories': [],
       'softwareFeatures': [],
+      'approvalStatus': null,
       '__typename': 'Product'
     }
   }
@@ -195,9 +212,9 @@ export const createProduct = {
         'productDescription': {
           'id': '24',
           'description': `
-            Suite of solutions for digital identities and electronic signatures,
-            aimed at public administrations for the implementation of authentication
-            and electronic signatures in a streamlined and effective manner.
+            Suite of solutions for digital identities and electronic signatures, aimed at public
+            administrations for the implementation of authentication and electronic signatures in
+            a streamlined and effective manner.
           `,
           'locale': 'en',
           '__typename': 'ProductDescription'

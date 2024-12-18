@@ -64,6 +64,14 @@ export const PAGINATED_COUNTRIES_QUERY = gql`
   }
 `
 
+export const COUNTRY_POLICY_QUERY = gql`
+  query Country($slug: String!) {
+    country(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const COUNTRY_DETAIL_QUERY = gql`
   query Country($slug: String!) {
     country(slug: $slug) {

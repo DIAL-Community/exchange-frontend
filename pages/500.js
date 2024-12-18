@@ -2,8 +2,9 @@ import HealthFooter from '../components/health/sections/HealthFooter'
 import HealthHeader from '../components/health/sections/HealthHeader'
 import HubFooter from '../components/hub/sections/HubFooter'
 import HubHeader from '../components/hub/sections/HubHeader'
-import { InternalServerError, Loading } from '../components/shared/FetchStatus'
+import { InternalServerError } from '../components/shared/FetchStatus'
 import Footer from '../components/shared/Footer'
+import { handleLoadingQuery } from '../components/shared/GraphQueryHandler'
 import Header from '../components/shared/Header'
 import { useActiveTenant } from '../lib/hooks'
 
@@ -34,7 +35,7 @@ const Custom500 = () => {
   return (
     <>
       { waitingActiveTenant || !tenant
-        ? <Loading />
+        ? handleLoadingQuery()
         : tenant === 'dpi'
           ? dpi500
           : tenant === 'health'

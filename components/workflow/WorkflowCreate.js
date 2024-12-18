@@ -1,12 +1,31 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
+import { handleLoadingQuery, handleQueryError } from '../shared/GraphQueryHandler'
+import { WORKFLOW_POLICY_QUERY } from '../shared/query/workflow'
 import WorkflowForm from './fragments/WorkflowForm'
 import WorkflowSimpleLeft from './fragments/WorkflowSimpleLeft'
 
 const WorkflowCreate = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { loading, error } = useQuery(WORKFLOW_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
+  })
+
+  if (loading) {
+    return handleLoadingQuery()
+  } else if (error) {
+    return handleQueryError(error)
+  }
 
   const slugNameMapping = (() => {
     const map = {
@@ -22,7 +41,7 @@ const WorkflowCreate = () => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <WorkflowSimpleLeft />
         </div>
         <div className='lg:basis-2/3'>

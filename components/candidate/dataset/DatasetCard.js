@@ -3,7 +3,6 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import { DisplayType } from '../../utils/constants'
 import { isValidFn } from '../../utils/utilities'
 
@@ -11,11 +10,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user } = useUser()
-  const submitterEmail = user
-    ? dataset.submitterEmail ?? format('general.na')
-    : format('general.hidden')
-
+  const submitterEmail = dataset.submitterEmail ?? format('general.na')
   const bgColor = `${dataset.rejected}`.toLowerCase() === 'true'
     ? 'bg-red-700'
     : `${dataset.rejected}`.toLowerCase() === 'false'

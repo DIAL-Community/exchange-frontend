@@ -1,7 +1,10 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
+import { PRODUCT_POLICY_QUERY } from '../shared/query/product'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -14,14 +17,20 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
     'ui.product.whatIs'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(PRODUCT_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.product.createNew'),
         'ui.product.createNew'
       ])
     }
-  }, [user])
+  })
 
   const activeFilters = useContext(FilterContext)
 

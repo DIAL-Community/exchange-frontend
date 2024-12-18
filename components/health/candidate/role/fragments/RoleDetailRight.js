@@ -1,18 +1,15 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../../../lib/hooks'
-import CommentsSection from '../../../shared/comment/CommentsSection'
-import Bookmark from '../../../shared/Bookmark'
-import Share from '../../../shared/Share'
 import { HtmlViewer } from '../../../../shared/form/HtmlViewer'
 import { CandidateActionType, ObjectType } from '../../../../utils/constants'
+import Bookmark from '../../../shared/Bookmark'
+import CommentsSection from '../../../shared/comment/CommentsSection'
+import Share from '../../../shared/Share'
 import RoleActionButton from './RoleActionButton'
 
-const RoleDetailRight = forwardRef(({ role }, ref) => {
+const RoleDetailRight = forwardRef(({ role, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { user } = useUser()
 
   const commentsSectionRef = useRef()
   useImperativeHandle(ref, () => ([
@@ -22,7 +19,7 @@ const RoleDetailRight = forwardRef(({ role }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {user.isAdminUser && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <RoleActionButton role={role} actionType={CandidateActionType.REJECT} />
             <RoleActionButton role={role} actionType={CandidateActionType.APPROVE} />

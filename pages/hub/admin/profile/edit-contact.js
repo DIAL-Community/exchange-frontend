@@ -6,8 +6,8 @@ import HubAdminContactForm from '../../../../components/hub/admin/HubAdminContac
 import { allowedToView } from '../../../../components/hub/admin/utilities'
 import HubFooter from '../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../components/hub/sections/HubHeader'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../components/shared/QueryNotification'
+import { handleLoadingSession, handleSessionError } from '../../../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../../../lib/ClientOnly'
 
 const HubAdminEditContactPage = ({ dpiTenants }) => {
@@ -32,10 +32,10 @@ const HubAdminEditContactPage = ({ dpiTenants }) => {
         <QueryNotification />
         <HubHeader />
         { status === 'unauthenticated' || status === 'loading'
-          ? <Loading />
+          ? handleLoadingSession()
           : status === 'authenticated' && allowedToView(data.user)
             ? <HubAdminContactForm userId={data?.user.id} userEmail={data?.user.userEmail} />
-            : <Unauthorized />
+            : handleSessionError()
         }
         <HubFooter />
       </ClientOnly>

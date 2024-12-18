@@ -1,24 +1,46 @@
-import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
-import { WORKFLOW_DETAIL_QUERY } from '../shared/query/workflow'
+import { useEffect, useRef, useState } from 'react'
+import { useApolloClient, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import WorkflowDetailRight from './WorkflowDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { WORKFLOW_DETAIL_QUERY, WORKFLOW_POLICY_QUERY } from '../shared/query/workflow'
+import { fetchOperationPolicies } from '../utils/policy'
 import WorkflowDetailLeft from './WorkflowDetailLeft'
+import WorkflowDetailRight from './WorkflowDetailRight'
 
 const WorkflowDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(WORKFLOW_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      WORKFLOW_POLICY_QUERY,
+      ['editing', 'deleting']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.workflow) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { workflow } = data
@@ -36,11 +58,16 @@ const WorkflowDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <WorkflowDetailLeft scrollRef={scrollRef} workflow={workflow} />
         </div>
         <div className='lg:basis-2/3'>
-          <WorkflowDetailRight ref={scrollRef} workflow={workflow} />
+          <WorkflowDetailRight
+            ref={scrollRef}
+            workflow={workflow}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

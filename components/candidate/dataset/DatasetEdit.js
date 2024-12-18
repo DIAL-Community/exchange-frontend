@@ -1,26 +1,32 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { CANDIDATE_DATASET_DETAIL_QUERY } from '../../shared/query/candidateDataset'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
-import DatasetForm from './fragments/DatasetForm'
 import DatasetEditLeft from './DatasetEditLeft'
+import DatasetForm from './fragments/DatasetForm'
 
 const DatasetEdit = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(CANDIDATE_DATASET_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.candidateDataset) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { candidateDataset: dataset } = data
@@ -40,7 +46,7 @@ const DatasetEdit = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <DatasetEditLeft dataset={dataset} />
         </div>
         <div className='lg:basis-2/3'>

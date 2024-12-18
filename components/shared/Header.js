@@ -4,6 +4,7 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { SiteSettingContext } from '../context/SiteSettingContext'
 import AdminMenu from './menu/AdminMenu'
@@ -81,6 +82,11 @@ const Header = ({ isOnAuthPage = false }) => {
       userId: user?.id,
       userAuthenticationToken: user?.userToken
     },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    },
     skip: !user,
     onCompleted: (data) => {
       if (data?.userAuthenticationTokenCheck === false) {
@@ -98,7 +104,7 @@ const Header = ({ isOnAuthPage = false }) => {
         <Link href='/' className='my-auto'>
           <img
             className='object-center object-contain max-h-16 w-auto'
-            src={`//${exchangeLogoUrl}`}
+            src={exchangeLogoUrl ? `//${exchangeLogoUrl}` : '/ui/v1/exchange-logo.svg'}
             alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
         </Link>

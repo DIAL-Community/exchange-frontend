@@ -1,6 +1,9 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
+import { WORKFLOW_POLICY_QUERY } from '../shared/query/workflow'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -12,14 +15,20 @@ const WorkflowTabNav = ({ activeTab, setActiveTab }) => {
     'ui.workflow.whatIs'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(WORKFLOW_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.workflow.createNew'),
         'ui.workflow.createNew'
       ])
     }
-  }, [user])
+  })
 
   const activeFilters = useContext(FilterContext)
 

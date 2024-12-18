@@ -5,7 +5,7 @@ const Contact = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const emailAddress = ''
+  const emailAddress = process.env.NEXT_PUBLIC_ABOUT_CONTACT
 
   return (
     <div className='flex flex-col gap-3 py-3'>

@@ -18,6 +18,14 @@ export const RUBRIC_CATEGORY_SEARCH_QUERY = gql`
   }
 `
 
+export const RUBRIC_CATEGORY_POLICY_QUERY = gql`
+  query RubricCategory ($slug: String!) {
+    rubricCategory (slug: $slug) {
+      id
+    }
+  }
+`
+
 export const RUBRIC_CATEGORY_QUERY = gql`
   query RubricCategory ($slug: String!) {
     rubricCategory (slug: $slug) {

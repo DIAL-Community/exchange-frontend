@@ -603,7 +603,6 @@ export const pt = {
 
   "filter.product.forCovid": "Ferramentas COVID-19",
   "filter.product.endorsed": "Mostrar produtos endossados",
-  "filter.product.launchable": "O produto pode ser implementado e lançado",
   "filter.launchWizard": "Lançar o Assistente de Recomendações",
 
   "endorsingYear.label": "Ano de Patrocínio",
@@ -1099,7 +1098,6 @@ export const pt = {
   "move.autoSaved": "Jogada guardada...",
 
   "resource.submitted": "Recurso guardado.",
-  "product.launchable": "Lançamento de produto",
 
   "location.header": "Localização",
 

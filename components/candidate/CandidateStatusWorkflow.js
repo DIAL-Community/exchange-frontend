@@ -4,7 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../lib/hooks'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { ToastContext } from '../../lib/ToastContext'
 import EditButton from '../shared/form/EditButton'
 import { HtmlEditor } from '../shared/form/HtmlEditor'
@@ -16,14 +16,13 @@ import { INITIAL_CANDIDATE_STATUS_SEARCH_QUERY } from '../shared/query/candidate
 import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../shared/query/comment'
 import { fetchSelectOptions } from '../utils/search'
 
-const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery }) => {
+const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [editing, setEditing] = useState(false)
   const [mutating, setMutating] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { rejected, candidateStatus } = candidate
@@ -42,17 +41,32 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery }) => {
       variables: {
         commentObjectId: parseInt(candidate.id),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }, {
       query: COMMENTS_QUERY,
       variables: {
         commentObjectId: parseInt(candidate.id),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }, {
       query: CANDIDATE_PRODUCT_DETAIL_QUERY,
       variables: {
         slug: candidate.slug
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }],
     onCompleted: (data) => {
@@ -89,29 +103,24 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery }) => {
   const nextCandidateStatusWatcher = watch('nextCandidateStatus')
 
   const doUpsert = async (data) => {
-    if (user) {
-      // Set the loading indicator.
-      setMutating(true)
-      // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
-      const { description, nextCandidateStatus } = data
-      // Send graph query to the backend. Set the base variables needed to perform update.
-      const variables = {
-        slug: candidate.slug,
-        description,
-        candidateStatusSlug: nextCandidateStatus.value
-      }
-
-      updateProduct({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    // Set the loading indicator.
+    setMutating(true)
+    // Pull all needed data from session and form.
+    const { description, nextCandidateStatus } = data
+    // Send graph query to the backend. Set the base variables needed to perform update.
+    const variables = {
+      slug: candidate.slug,
+      description,
+      candidateStatusSlug: nextCandidateStatus.value
     }
+    updateProduct({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const client = useApolloClient()
@@ -260,7 +269,7 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery }) => {
         <div className='text-base text-dial-meadow font-semibold'>
           {format('ui.candidate.candidateStatus')}
         </div>
-        {rejected === null &&
+        {rejected === null && editingAllowed &&
           <div className='ml-auto'>
             <EditButton type='button' onClick={toggleEditing} />
           </div>

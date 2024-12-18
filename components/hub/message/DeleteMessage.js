@@ -2,6 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
@@ -32,12 +33,28 @@ const DeleteMessage = ({ message }) => {
   const [deleteMessage, { called, reset }] = useMutation(DELETE_MESSAGE, {
     refetchQueries: [{
       query: MESSAGE_DETAIL_QUERY,
-      variables: { slug: message.slug, owner: DPI_TENANT_NAME }
+      variables: { slug: message.slug, owner: DPI_TENANT_NAME },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_MESSAGES_QUERY,
-      variables: { limit: MESSAGE_PAGE_SIZE, offset: 0 }
+      variables: { limit: MESSAGE_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
-      query: MESSAGE_PAGINATION_ATTRIBUTES_QUERY
+      query: MESSAGE_PAGINATION_ATTRIBUTES_QUERY,
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { deleteMessage: response } = data
@@ -69,16 +86,13 @@ const DeleteMessage = ({ message }) => {
 
   const onConfirmDelete = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       deleteMessage({
         variables: {
           id: message.id
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { handleLoadingQuery, handleQueryError } from '../../shared/GraphQueryHandler'
 import { RESOURCE_TOPIC_SEARCH_QUERY } from '../../shared/query/resourceTopic'
 import HubResourceTiles from '../fragments/HubResourceTile'
 
@@ -7,13 +8,18 @@ const HubResources = ({  pageNumber, showWithTopicOnly, onClickHandler }) => {
 
   const { loading, error, data } = useQuery(RESOURCE_TOPIC_SEARCH_QUERY, {
     variables: { search: '' },
-    skip: !showWithTopicOnly
+    skip: !showWithTopicOnly,
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   }
 
   const { resourceTopics } = data ?? { resourceTopics: [] }

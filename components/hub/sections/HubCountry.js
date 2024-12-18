@@ -1,7 +1,8 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { DPI_COUNTRY_DETAIL_QUERY } from '../../shared/query/country'
 import HubCountryDetail from '../fragments/HubCountryDetail'
 import HubBreadcrumb from './HubBreadcrumb'
@@ -11,15 +12,20 @@ const HubCountry = ({ slug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(DPI_COUNTRY_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.country) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { country } = data

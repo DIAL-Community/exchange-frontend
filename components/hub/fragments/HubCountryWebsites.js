@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { PAGINATED_RESOURCES_QUERY, RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
 import HubPagination from './HubPagination'
 
@@ -47,6 +48,11 @@ const WebsitePagination = ({ country, pageNumber, onClickHandler, theme='light' 
       search: '',
       resourceTypes: [NATIONAL_WEBSITE],
       countries: [country.id]
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -82,6 +88,11 @@ const WebsiteList = ({ country, pageNumber }) => {
       resourceTypes: [NATIONAL_WEBSITE],
       limit: DEFAULT_PAGE_SIZE,
       offset: pageNumber * DEFAULT_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

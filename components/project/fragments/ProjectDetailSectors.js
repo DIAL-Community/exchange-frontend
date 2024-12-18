@@ -1,17 +1,17 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
+import Select from '../../shared/form/Select'
 import { UPDATE_PROJECT_SECTORS } from '../../shared/mutation/project'
 import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
+import { fetchSelectOptions } from '../../utils/search'
 
-const ProjectDetailSectors = ({ project, canEdit }) => {
+const ProjectDetailSectors = ({ project, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -73,8 +73,6 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProjectSectors({
         variables: {
           sectorSlugs: sectors.map(({ slug }) => slug),
@@ -82,8 +80,7 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -144,7 +141,7 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

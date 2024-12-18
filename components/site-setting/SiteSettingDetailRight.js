@@ -1,21 +1,17 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
-import DeleteSiteSetting from './DeleteSiteSetting'
+import DeleteSiteSetting from './fragments/DeleteSiteSetting'
 import { generateCarouselHeaderText, generateHeroCardHeaderText, generateMenuHeaderText } from './utilities'
 
-const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
+const SiteSettingDetailRight = forwardRef(({ siteSetting, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const descRef = useRef()
   const carouselConfigurationsRef = useRef()
@@ -40,19 +36,17 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex flex-col lg:flex-row gap-3'>
-            {siteSetting.defaultSetting &&
-              <div className='px-3 py-1 bg-purple-300 rounded'>
-                <span className='text-sm'>{format('ui.siteSetting.currentDefault')}</span>
-              </div>
-            }
-            <div className='flex gap-x-3 ml-auto'>
-              <EditButton type='link' href={editPath} />
-              {isAdminUser && <DeleteSiteSetting siteSetting={siteSetting} />}
+        <div className='flex flex-col lg:flex-row gap-3'>
+          {siteSetting.defaultSetting &&
+            <div className='px-3 py-1 bg-purple-300 rounded'>
+              <span className='text-sm'>{format('ui.siteSetting.currentDefault')}</span>
             </div>
+          }
+          <div className='flex gap-x-3 ml-auto'>
+            { editingAllowed && <EditButton type='link' href={editPath} /> }
+            { deletingAllowed && <DeleteSiteSetting siteSetting={siteSetting} /> }
           </div>
-        )}
+        </div>
         <div className='text-base font-semibold py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
@@ -86,7 +80,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               {format('ui.siteSetting.carousel.header')}
             </div>
             <div className='flex gap-x-2 ml-auto'>
-              {canEdit &&
+              {editingAllowed &&
                 <EditButton type='link' href={`${siteSetting.slug}/carousel-configurations`} />
               }
             </div>
@@ -124,7 +118,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               {format('ui.siteSetting.heroCard.header')}
             </div>
             <div className='flex gap-x-2 ml-auto'>
-              {canEdit &&
+              {editingAllowed &&
                 <EditButton type='link' href={`${siteSetting.slug}/hero-card-configurations`} />
               }
             </div>
@@ -162,7 +156,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting }, ref) => {
               {format('ui.siteSetting.menu.header')}
             </div>
             <div className='flex gap-x-2 ml-auto'>
-              {canEdit &&
+              {editingAllowed &&
                 <EditButton type='link' href={`${siteSetting.slug}/menu-configurations`} />
               }
             </div>

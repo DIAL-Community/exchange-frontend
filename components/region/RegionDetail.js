@@ -1,24 +1,46 @@
-import { useRef } from 'react'
-import { useQuery } from '@apollo/client'
-import { REGION_DETAIL_QUERY } from '../shared/query/region'
+import { useEffect, useRef, useState } from 'react'
+import { useApolloClient, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import RegionDetailRight from './RegionDetailRight'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
+import { REGION_DETAIL_QUERY, REGION_POLICY_QUERY } from '../shared/query/region'
+import { fetchOperationPolicies } from '../utils/policy'
 import RegionDetailLeft from './RegionDetailLeft'
+import RegionDetailRight from './RegionDetailRight'
 
 const RegionDetail = ({ slug }) => {
   const scrollRef = useRef(null)
+  const client = useApolloClient()
+
+  const [editingAllowed, setEditingAllowed] = useState(false)
+  const [deletingAllowed, setDeletingAllowed] = useState(false)
 
   const { loading, error, data } = useQuery(REGION_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
+  useEffect(() => {
+    fetchOperationPolicies(
+      client,
+      REGION_POLICY_QUERY,
+      ['editing', 'deleting']
+    ).then(policies => {
+      setEditingAllowed(policies['editing'])
+      setDeletingAllowed(policies['deleting'])
+    })
+  }, [client])
+
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.region) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { region } = data
@@ -36,11 +58,16 @@ const RegionDetail = ({ slug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <RegionDetailLeft scrollRef={scrollRef} region={region} />
         </div>
         <div className='lg:basis-2/3'>
-          <RegionDetailRight ref={scrollRef} region={region} />
+          <RegionDetailRight
+            ref={scrollRef}
+            region={region}
+            editingAllowed={editingAllowed}
+            deletingAllowed={deletingAllowed}
+          />
         </div>
       </div>
     </div>

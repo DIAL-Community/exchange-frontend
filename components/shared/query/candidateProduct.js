@@ -1,5 +1,11 @@
 import { gql } from '@apollo/client'
 
+export const CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY = gql`
+  query CandidateProductExtraAttributes {
+    candidateProductExtraAttributes
+  }
+`
+
 export const CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeCandidateProduct($search: String) {
     paginationAttributeCandidateProduct(search: $search) {
@@ -36,6 +42,14 @@ export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
   }
 `
 
+export const CANDIDATE_PRODUCT_POLICY_QUERY = gql`
+  query CandidateProduct($slug: String!) {
+    candidateProduct(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
   query CandidateProduct($slug: String!) {
     candidateProduct(slug: $slug) {
@@ -46,6 +60,7 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       repository
       description
       submitterEmail
+      extraAttributes
       overallMaturityScore
       maturityScoreDetails
       candidateStatus {

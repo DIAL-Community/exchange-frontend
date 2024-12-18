@@ -1,26 +1,23 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa6'
 import { Controller, useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
-import { useUser } from '../../../lib/hooks'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_TASK_TRACKER } from '../../shared/mutation/taskTracker'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { PAGINATED_TASK_TRACKERS_QUERY, TASK_TRACKER_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/taskTracker'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
 const TaskTrackerForm = React.memo(({ taskTracker }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const slug = taskTracker?.slug ?? ''
-
-  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -33,10 +30,20 @@ const TaskTrackerForm = React.memo(({ taskTracker }) => {
   const [updateTaskTracker, { reset }] = useMutation(CREATE_TASK_TRACKER, {
     refetchQueries: [{
       query: TASK_TRACKER_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_TASK_TRACKERS_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       if (data.createTaskTracker.taskTracker && data.createTaskTracker.errors.length === 0) {
@@ -76,32 +83,28 @@ const TaskTrackerForm = React.memo(({ taskTracker }) => {
   })
 
   const doUpsert = async (data) => {
-    if (user) {
-      // Set the loading indicator.
-      setMutating(true)
-      // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
-      const {
-        name,
-        description
-      } = data
-      // Send graph query to the backend. Set the base variables needed to perform update.
-      const variables = {
-        name,
-        slug,
-        description
-      }
-
-      updateTaskTracker({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            'Authorization': `${userEmail} ${userToken}`
-          }
-        }
-      })
+    // Set the loading indicator.
+    setMutating(true)
+    // Pull all needed data from session and form.
+    const {
+      name,
+      description
+    } = data
+    // Send graph query to the backend. Set the base variables needed to perform update.
+    const variables = {
+      name,
+      slug,
+      description
     }
+
+    updateTaskTracker({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const cancelForm = () => {
@@ -109,70 +112,66 @@ const TaskTrackerForm = React.memo(({ taskTracker }) => {
     router.push(`/${locale}/task-trackers/${slug}`)
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : isAdminUser || isEditorUser
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {taskTracker
-                  ? format('app.editEntity', { entity: taskTracker.name })
-                  : `${format('app.createNew')} ${format('ui.taskTracker.label')}`}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='name'>
-                  {format('taskTracker.name')}
-                </label>
-                <Input
-                  {...register('name', { required: format('validation.required') })}
-                  id='name'
-                  placeholder={format('taskTracker.name')}
-                  isInvalid={errors.name}
-                />
-                {errors.name && <ValidationError value={errors.name?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field'>
-                  {format('taskTracker.description')}
-                </label>
-                <Controller
-                  name='description'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <HtmlEditor
-                      editorId='description-editor'
-                      onChange={onChange}
-                      initialContent={value}
-                      placeholder={format('taskTracker.description')}
-                      isInvalid={errors.description}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.description && <ValidationError value={errors.description?.message} />}
-              </div>
-              <div className='flex flex-wrap text-base mt-6 gap-3'>
-                <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                  {`${format('app.submit')} ${format('ui.taskTracker.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3' />}
-                </button>
-              </div>
-            </div>
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {taskTracker
+              ? format('app.editEntity', { entity: taskTracker.name })
+              : `${format('app.createNew')} ${format('ui.taskTracker.label')}`}
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire required-field' htmlFor='name'>
+              {format('taskTracker.name')}
+            </label>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              id='name'
+              placeholder={format('taskTracker.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire required-field'>
+              {format('taskTracker.description')}
+            </label>
+            <Controller
+              name='description'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <HtmlEditor
+                  editorId='description-editor'
+                  onChange={onChange}
+                  initialContent={value}
+                  placeholder={format('taskTracker.description')}
+                  isInvalid={errors.description}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.description && <ValidationError value={errors.description?.message} />}
+          </div>
+          <div className='flex flex-wrap text-base mt-6 gap-3'>
+            <button type='submit' className='submit-button' disabled={mutating || reverting}>
+              {`${format('app.submit')} ${format('ui.taskTracker.label')}`}
+              {mutating && <FaSpinner className='spinner ml-3' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 })
 
 TaskTrackerForm.displayName = 'TaskTrackerForm'

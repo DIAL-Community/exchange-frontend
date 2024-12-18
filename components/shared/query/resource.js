@@ -93,6 +93,14 @@ export const RESOURCE_TYPE_SEARCH_QUERY = gql`
   }
 `
 
+export const RESOURCE_POLICY_QUERY = gql`
+  query Resource($slug: String!) {
+    resource(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const RESOURCE_DETAIL_QUERY = gql`
   query Resource($slug: String!) {
     resource(slug: $slug) {

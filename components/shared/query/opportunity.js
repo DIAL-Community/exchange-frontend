@@ -77,6 +77,14 @@ export const PAGINATED_OPPORTUNITIES_QUERY = gql`
   }
 `
 
+export const OPPORTUNITY_POLICY_QUERY = gql`
+  query Opportunity($slug: String!) {
+    opportunity(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const OPPORTUNITY_DETAIL_QUERY = gql`
   query Opportunity($slug: String!) {
     opportunity(slug: $slug) {

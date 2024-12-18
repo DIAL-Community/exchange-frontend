@@ -1,20 +1,19 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import SdgCard from '../../sdg/SdgCard'
-import { DisplayType } from '../../utils/constants'
-import Select from '../../shared/form/Select'
-import { fetchSelectOptions } from '../../utils/search'
-import Pill from '../../shared/form/Pill'
-import EditableSection from '../../shared/EditableSection'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
+import SdgCard from '../../sdg/SdgCard'
+import EditableSection from '../../shared/EditableSection'
 import { generateMappingStatusOptions } from '../../shared/form/options'
+import Pill from '../../shared/form/Pill'
+import Select from '../../shared/form/Select'
 import { UPDATE_DATASET_SDGS } from '../../shared/mutation/dataset'
 import { SDG_SEARCH_QUERY } from '../../shared/query/sdg'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
-const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
+const DatasetDetailSdgs = ({ dataset, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -37,7 +36,6 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
     ) ?? mappingStatusOptions?.[0]
   )
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -103,23 +101,18 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateDatasetSdgs({
-        variables: {
-          slug: dataset.slug,
-          sdgSlugs: sdgs.map(({ slug }) => slug),
-          mappingStatus: mappingStatus.value
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateDatasetSdgs({
+      variables: {
+        slug: dataset.slug,
+        sdgSlugs: sdgs.map(({ slug }) => slug),
+        mappingStatus: mappingStatus.value
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -185,7 +178,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

@@ -1,7 +1,10 @@
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
+import { ORGANIZATION_POLICY_QUERY } from '../shared/query/organization'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
@@ -14,14 +17,20 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
     'ui.organization.whatIs'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(ORGANIZATION_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.organization.createNew'),
         'ui.organization.createNew'
       ])
     }
-  }, [user])
+  })
 
   const activeFilters = useContext(FilterContext)
 

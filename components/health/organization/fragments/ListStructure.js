@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_ORGANIZATIONS_QUERY } from '../../../shared/query/organization'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { FilterContext } from '../../../context/FilterContext'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../shared/GraphQueryHandler'
+import { PAGINATED_ORGANIZATIONS_QUERY } from '../../../shared/query/organization'
 import { DisplayType } from '../../../utils/constants'
-import { Error, Loading, NotFound } from '../../../shared/FetchStatus'
 import OrganizationCard from './OrganizationCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
@@ -14,15 +15,20 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       search,
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedOrganizations) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedOrganizations: organizations } = data

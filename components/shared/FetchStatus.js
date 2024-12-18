@@ -40,7 +40,7 @@ export const Unauthorized = () => {
 
   return (
     <div className='h-[60vh]'>
-      <div className='flex bg-dial-alice-blue h-full'>
+      <div className='flex h-full'>
         <div className='text-dial-stratos text-lg w-full my-auto flex flex-col gap-4'>
           <FaCircleExclamation size='3em' className='mx-auto' />
           <div className='text-center mt-5'>{format('general.unauthorized')}</div>

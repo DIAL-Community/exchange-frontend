@@ -1,11 +1,12 @@
-import { useMutation } from '@apollo/client'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../query/comment'
-import { DELETE_COMMENT } from '../mutation/comment'
+import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
-import DeleteButton from '../form/DeleteButton'
 import ConfirmActionDialog from '../form/ConfirmActionDialog'
+import DeleteButton from '../form/DeleteButton'
+import { DELETE_COMMENT } from '../mutation/comment'
+import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../query/comment'
 
 const DeleteComment = ({ commentId, objectId, objectType }) => {
   const { formatMessage } = useIntl()
@@ -23,12 +24,22 @@ const DeleteComment = ({ commentId, objectId, objectType }) => {
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }, {
       query: COMMENTS_COUNT_QUERY,
       variables: {
         commentObjectId: parseInt(objectId),
         commentObjectType: objectType
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }],
     onCompleted: (data) => {

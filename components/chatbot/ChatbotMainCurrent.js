@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { CREATE_CHATBOT_CONVERSATION } from '../shared/mutation/chatbot'
@@ -14,7 +15,13 @@ const ChatbotConversationStarter = ({ setCurrentQuestion, setShowStarterQuestion
 
   const MAX_DISPLAYED_STARTERS = 6
 
-  const { loading, data, error } = useQuery(CHATBOT_CONVERSATION_STARTERS)
+  const { loading, data, error } = useQuery(CHATBOT_CONVERSATION_STARTERS, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   if (loading) {
     return (
@@ -97,6 +104,11 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
       variables: {
         currentIdentifier: currentConversation?.identifier ?? '',
         sessionIdentifier: currentConversation?.sessionIdentifier ?? existingSessionIdentifier
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }],
     onCompleted: (data) => {
@@ -125,7 +137,6 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
       setMutating(true)
       setShowStarterQuestions(false)
       // Send graph query to the backend. Set the base variables needed to perform update.
-      const { userEmail, userToken } = user
       const variables = {
         sessionIdentifier: currentConversation?.sessionIdentifier ?? existingSessionIdentifier,
         chatbotQuestion: currentQuestion
@@ -135,8 +146,7 @@ const ChatbotMainCurrent = ({ existingSessionIdentifier, currentConversation, se
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })

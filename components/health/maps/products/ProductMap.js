@@ -2,6 +2,7 @@ import { useCallback, useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { FilterContext } from '../../../context/FilterContext'
 import { COUNTRIES_QUERY, PRODUCTS_QUERY } from '../../../shared/query/map'
 import CountryInfo from './CountryInfo'
@@ -29,10 +30,21 @@ const ProductMap = () => {
       first: DEFAULT_PAGE_SIZE,
       countries: countries.map(country => country.value),
       products: products.map(product => product.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
-  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY)
+  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   // Group product into map of countries with products
   const countriesWithProducts = (() => {

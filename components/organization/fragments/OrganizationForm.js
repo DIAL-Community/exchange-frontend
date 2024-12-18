@@ -4,9 +4,8 @@ import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useOrganizationOwnerUser, useUser } from '../../../lib/hooks'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
@@ -25,9 +24,6 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const slug = organization?.slug ?? ''
 
-  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
-  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
-
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
@@ -39,10 +35,20 @@ const OrganizationForm = React.memo(({ organization }) => {
   const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
     refetchQueries: [{
       query: ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_ORGANIZATIONS_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       if (data.createOrganization.organization && data.createOrganization.errors.length === 0) {
@@ -116,50 +122,46 @@ const OrganizationForm = React.memo(({ organization }) => {
   const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
 
   const doUpsert = async (data) => {
-    if (user) {
-      // Set the loading indicator.
-      setMutating(true)
-      // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
-      const {
-        name,
-        imageFile,
-        website,
-        isEndorser,
-        whenEndorsed,
-        endorserLevel,
-        isMni,
-        description,
-        aliases,
-        hasStorefront
-      } = data
-      // Send graph query to the backend. Set the base variables needed to perform update.
-      const variables = {
-        name,
-        slug,
-        aliases: aliases.map(({ value }) => value),
-        website,
-        isEndorser,
-        whenEndorsed: whenEndorsed || null,
-        endorserLevel: endorserLevel.value,
-        isMni,
-        description,
-        hasStorefront
-      }
-      if (imageFile) {
-        variables.imageFile = imageFile[0]
-      }
-
-      updateOrganization({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            'Authorization': `${userEmail} ${userToken}`
-          }
-        }
-      })
+    // Set the loading indicator.
+    setMutating(true)
+    // Pull all needed data from session and form.
+    const {
+      name,
+      imageFile,
+      website,
+      isEndorser,
+      whenEndorsed,
+      endorserLevel,
+      isMni,
+      description,
+      aliases,
+      hasStorefront
+    } = data
+    // Send graph query to the backend. Set the base variables needed to perform update.
+    const variables = {
+      name,
+      slug,
+      aliases: aliases.map(({ value }) => value),
+      website,
+      isEndorser,
+      whenEndorsed: whenEndorsed || null,
+      endorserLevel: endorserLevel.value,
+      isMni,
+      description,
+      hasStorefront
     }
+    if (imageFile) {
+      variables.imageFile = imageFile[0]
+    }
+
+    updateOrganization({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const cancelForm = () => {
@@ -167,157 +169,153 @@ const OrganizationForm = React.memo(({ organization }) => {
     router.push(`/${locale}/organizations/${slug}`)
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : isAdminUser || isEditorUser || isOrganizationOwner
-      ? (
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='text-xl font-semibold'>
-                {organization
-                  ? format('app.editEntity', { entity: organization.name })
-                  : `${format('app.createNew')} ${format('ui.organization.label')}`}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='name'>
-                  {format('organization.name')}
-                </label>
-                <Input
-                  {...register('name', { required: format('validation.required') })}
-                  id='name'
-                  placeholder={format('organization.name')}
-                  isInvalid={errors.name}
-                />
-                {errors.name && <ValidationError value={errors.name?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire'>{format('organization.aliases')}</label>
-                {aliases.map((alias, aliasIdx) => (
-                  <div key={alias.id} className='flex gap-x-2'>
-                    <Input
-                      {...register(`aliases.${aliasIdx}.value`)}
-                      placeholder={format('organization.alias')}
-                    />
-                    {isLastAlias(aliasIdx) && (
-                      <span>
-                        <IconButton
-                          className='bg-dial-sapphire'
-                          icon={<FaPlus />}
-                          onClick={() => append({ value: '' })}
-                        />
-                      </span>
-                    )}
-                    {!isSingleAlias && (
-                      <span>
-                        <IconButton
-                          className='bg-dial-sapphire'
-                          icon={<FaMinus />}
-                          onClick={() => remove(aliasIdx)}
-                        />
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field' htmlFor='website'>
-                  {format('organization.website')}
-                </label>
-                <Controller
-                  name='website'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <UrlInput
-                      value={value}
-                      onChange={onChange}
-                      id='website'
-                      isInvalid={errors.website}
-                      placeholder={format('organization.website')}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.website && <ValidationError value={errors.website?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire'>{format('organization.imageFile')}</label>
-                <FileUploader {...register('imageFile')} />
-              </div>
-              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-                <Checkbox {...register('isEndorser')} />
-                {format('organization.isEndorser')}
-              </label>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire'>{format('organization.whenEndorsed')}</label>
-                <Input
-                  {...register('whenEndorsed')}
-                  type='date'
-                  placeholder={format('organization.whenEndorsed')}
-                />
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire'>{format('organization.endorserLevel')}</label>
-                <Controller
-                  name='endorserLevel'
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      options={endorserLevelOptions}
-                      placeholder={format('organization.endorserLevel')}
-                    />
-                  )}
-                />
-              </div>
-              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-                <Checkbox {...register('isMni')} />
-                {format('organization.isMni')}
-              </label>
-              <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
-                <Checkbox {...register('hasStorefront')} />
-                {format('organization.hasStorefront')}
-              </label>
-              <div className='flex flex-col gap-y-2'>
-                <label className='text-dial-sapphire required-field'>
-                  {format('organization.description')}
-                </label>
-                <Controller
-                  name='description'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <HtmlEditor
-                      editorId='description-editor'
-                      onChange={onChange}
-                      initialContent={value}
-                      placeholder={format('organization.description')}
-                      isInvalid={errors.description}
-                    />
-                  )}
-                  rules={{ required: format('validation.required') }}
-                />
-                {errors.description && <ValidationError value={errors.description?.message} />}
-              </div>
-              <div className='flex flex-wrap text-base mt-6 gap-3'>
-                <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                  {`${format('app.submit')} ${format('ui.organization.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3' />}
-                </button>
-                <button
-                  type='button'
-                  className='cancel-button'
-                  disabled={mutating || reverting}
-                  onClick={cancelForm}
-                >
-                  {format('app.cancel')}
-                  {reverting && <FaSpinner className='spinner ml-3' />}
-                </button>
-              </div>
-            </div>
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-plum'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {organization
+              ? format('app.editEntity', { entity: organization.name })
+              : `${format('app.createNew')} ${format('ui.organization.label')}`}
           </div>
-        </form>
-      )
-      : <Unauthorized />
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire required-field' htmlFor='name'>
+              {format('organization.name')}
+            </label>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              id='name'
+              placeholder={format('organization.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire'>{format('organization.aliases')}</label>
+            {aliases.map((alias, aliasIdx) => (
+              <div key={alias.id} className='flex gap-x-2'>
+                <Input
+                  {...register(`aliases.${aliasIdx}.value`)}
+                  placeholder={format('organization.alias')}
+                />
+                {isLastAlias(aliasIdx) && (
+                  <span>
+                    <IconButton
+                      className='bg-dial-sapphire'
+                      icon={<FaPlus />}
+                      onClick={() => append({ value: '' })}
+                    />
+                  </span>
+                )}
+                {!isSingleAlias && (
+                  <span>
+                    <IconButton
+                      className='bg-dial-sapphire'
+                      icon={<FaMinus />}
+                      onClick={() => remove(aliasIdx)}
+                    />
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire required-field' htmlFor='website'>
+              {format('organization.website')}
+            </label>
+            <Controller
+              name='website'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <UrlInput
+                  value={value}
+                  onChange={onChange}
+                  id='website'
+                  isInvalid={errors.website}
+                  placeholder={format('organization.website')}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.website && <ValidationError value={errors.website?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire'>{format('organization.imageFile')}</label>
+            <FileUploader {...register('imageFile')} />
+          </div>
+          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+            <Checkbox {...register('isEndorser')} />
+            {format('organization.isEndorser')}
+          </label>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire'>{format('organization.whenEndorsed')}</label>
+            <Input
+              {...register('whenEndorsed')}
+              type='date'
+              placeholder={format('organization.whenEndorsed')}
+            />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire'>{format('organization.endorserLevel')}</label>
+            <Controller
+              name='endorserLevel'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={endorserLevelOptions}
+                  placeholder={format('organization.endorserLevel')}
+                />
+              )}
+            />
+          </div>
+          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+            <Checkbox {...register('isMni')} />
+            {format('organization.isMni')}
+          </label>
+          <label className='flex gap-x-2 items-center self-start text-dial-sapphire'>
+            <Checkbox {...register('hasStorefront')} />
+            {format('organization.hasStorefront')}
+          </label>
+          <div className='flex flex-col gap-y-2'>
+            <label className='text-dial-sapphire required-field'>
+              {format('organization.description')}
+            </label>
+            <Controller
+              name='description'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <HtmlEditor
+                  editorId='description-editor'
+                  onChange={onChange}
+                  initialContent={value}
+                  placeholder={format('organization.description')}
+                  isInvalid={errors.description}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.description && <ValidationError value={errors.description?.message} />}
+          </div>
+          <div className='flex flex-wrap text-base mt-6 gap-3'>
+            <button type='submit' className='submit-button' disabled={mutating || reverting}>
+              {`${format('app.submit')} ${format('ui.organization.label')}`}
+              {mutating && <FaSpinner className='spinner ml-3' />}
+            </button>
+            <button
+              type='button'
+              className='cancel-button'
+              disabled={mutating || reverting}
+              onClick={cancelForm}
+            >
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3' />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  )
 })
 
 OrganizationForm.displayName = 'OrganizationForm'

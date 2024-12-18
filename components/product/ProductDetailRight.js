@@ -1,7 +1,6 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { BsQuestionCircleFill } from 'react-icons/bs'
 import { useIntl } from 'react-intl'
-import { useProductOwnerUser, useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
@@ -9,7 +8,7 @@ import CreateButton from '../shared/form/CreateButton'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../utils/constants'
-import DeleteProduct from './DeleteProduct'
+import DeleteProduct from './fragments/DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
 import ProductDetailCategories from './fragments/ProductDetailCategories'
 import ProductDetailCountries from './fragments/ProductDetailCountries'
@@ -177,13 +176,9 @@ const ProductIncluded = ({ product, headerRef }) => {
   )
 }
 
-const ProductDetailRight = forwardRef(({ product }, ref) => {
+const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const { isProductOwner } = useProductOwnerUser(product)
-  const canEdit = isAdminUser || isEditorUser || isProductOwner
 
   const descRef = useRef()
   const extraRef = useRef()
@@ -235,19 +230,17 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex flex-col lg:flex-row gap-3'>
-            {product.approvalStatus &&
-              <div className='px-3 py-1 bg-purple-300 rounded'>
-                <span className='text-sm'>{product.approvalStatus.name}</span>
-              </div>
-            }
-            <div className='flex gap-x-3 ml-auto'>
-              <EditButton type='link' href={editPath} />
-              {isAdminUser && <DeleteProduct product={product} />}
+        <div className='flex flex-col lg:flex-row gap-3'>
+          {product.approvalStatus &&
+            <div className='px-3 py-1 bg-purple-300 rounded'>
+              <span className='text-sm'>{product.approvalStatus.name}</span>
             </div>
+          }
+          <div className='flex gap-x-3 ml-auto'>
+            { editingAllowed && <EditButton type='link' href={editPath} /> }
+            { deletingAllowed && <DeleteProduct product={product} /> }
           </div>
-        )}
+        </div>
         <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
@@ -314,7 +307,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailSdgs
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={sdgRef}
           />
         </div>
@@ -322,7 +315,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailBuildingBlocks
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>
@@ -330,7 +323,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailResources
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={resourceRef}
           />
         </div>
@@ -338,7 +331,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailOrganizations
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={organizationRef}
           />
         </div>
@@ -346,7 +339,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailCountries
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
         </div>
@@ -354,7 +347,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailCategories
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={categoryRef}
           />
         </div>
@@ -368,7 +361,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             <div className='text-dial-meadow text-lg font-semibold' ref={productRepositoryRef}>
               {format('productRepository.header')}
             </div>
-            {canEdit &&
+            {editingAllowed &&
               <div className='ml-auto'>
                 <CreateButton
                   label={format('app.create')}
@@ -420,6 +413,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='border-b border-transparent my-2' />
         <ProductDetailMaturityScores
           slug={product.slug}
+          editingAllowed={editingAllowed}
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
@@ -427,7 +421,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailTags
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={tagRef}
           />
         </div>

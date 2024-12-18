@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client'
-import dynamic from 'next/dynamic'
 import { useCallback, useContext, useMemo, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import { COUNTRIES_QUERY, PROJECTS_QUERY } from '../../shared/query/map'
 import CountryInfo from './CountryInfo'
@@ -30,10 +31,21 @@ const ProjectMap = () => {
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
       products: products.map(product => product.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
-  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY)
+  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
+  })
 
   // Group project into map of countries with projects
   const countriesWithProjects = (() => {

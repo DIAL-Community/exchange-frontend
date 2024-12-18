@@ -29,6 +29,14 @@ export const PAGINATED_CANDIDATE_DATASETS_QUERY = gql`
   }
 `
 
+export const CANDIDATE_DATASET_POLICY_QUERY = gql`
+  query CandidateDataset($slug: String!) {
+    candidateDataset(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const CANDIDATE_DATASET_DETAIL_QUERY = gql`
   query CandidateDataset($slug: String!) {
     candidateDataset(slug: $slug) {
