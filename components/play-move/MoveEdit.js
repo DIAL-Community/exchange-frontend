@@ -32,7 +32,7 @@ const MoveEdit = ({ moveSlug, playSlug, playbookSlug, locale }) => {
 
   const { move, play, playbook } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       edit: format('app.create'),
       create: format('app.create')
@@ -43,12 +43,12 @@ const MoveEdit = ({ moveSlug, playSlug, playbookSlug, locale }) => {
     map[playbook?.slug] = playbook?.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className='px-4 lg:px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40'>
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping()}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='hidden lg:block basis-1/3 shrink-0'>

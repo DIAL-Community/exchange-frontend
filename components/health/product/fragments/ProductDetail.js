@@ -45,12 +45,12 @@ const ProductDetail = ({ slug }) => {
 
   const { product } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[product.slug] = product.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>

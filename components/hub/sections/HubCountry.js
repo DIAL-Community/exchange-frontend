@@ -30,12 +30,12 @@ const HubCountry = ({ slug }) => {
 
   const { country } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[country.slug] = country.name
 
     return map
-  })()
+  }
 
   return (
     <div className='flex flex-col gap-6 pb-12 max-w-catalog mx-auto'>

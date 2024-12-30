@@ -43,12 +43,12 @@ const RoleDetail = ({ id }) => {
 
   const { candidateRole: role } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[role.id] = role.email
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>

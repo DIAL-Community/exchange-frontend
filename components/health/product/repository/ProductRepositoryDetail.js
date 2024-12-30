@@ -44,18 +44,18 @@ const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
 
   const { product, productRepository } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[product.slug] = product.name
     map[productRepository.slug] = productRepository.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className="py-6 text-dial-stratos z-40">
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping()}/>
         <hr className="border-b border-health-gray my-3"/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>

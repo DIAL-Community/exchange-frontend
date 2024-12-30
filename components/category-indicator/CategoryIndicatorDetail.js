@@ -46,13 +46,13 @@ const CategoryIndicatorDetail = ({ categorySlug, indicatorSlug }) => {
 
   const { categoryIndicator, rubricCategory } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[rubricCategory.slug] = rubricCategory.name
     map[categoryIndicator.slug] = categoryIndicator.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>

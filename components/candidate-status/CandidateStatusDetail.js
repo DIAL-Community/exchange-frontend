@@ -45,17 +45,17 @@ const CandidateStatusDetail = ({ slug }) => {
 
   const { candidateStatus } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[candidateStatus.slug] = candidateStatus.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className='px-4 lg:px-6 py-4 bg-dial-violet text-dial-stratos ribbon-detail z-40'>
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping()}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3 shrink-0'>

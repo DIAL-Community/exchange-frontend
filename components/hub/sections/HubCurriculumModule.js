@@ -34,13 +34,13 @@ const HubCurriculumModule = ({ curriculumSlug, moduleSlug }) => {
 
   const { playbook: curriculum, play: curriculumModule } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[curriculum.slug] = curriculum.name
     map[curriculumModule.slug] = curriculumModule.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col min-h-[80vh]'>

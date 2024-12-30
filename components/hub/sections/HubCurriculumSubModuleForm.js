@@ -45,7 +45,7 @@ const EditHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug, curr
     move: curriculumSubModule
   } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       edit: format('app.edit')
     }
@@ -54,7 +54,7 @@ const EditHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug, curr
     map[curriculumSubModule.slug] = curriculumSubModule.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
@@ -102,7 +102,7 @@ const CreateHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug }) 
     play: curriculumModule
   } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       edit: format('app.edit')
     }
@@ -110,7 +110,7 @@ const CreateHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug }) 
     map[curriculumModule.slug] = curriculumModule.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
