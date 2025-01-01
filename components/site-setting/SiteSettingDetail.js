@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -24,17 +24,6 @@ const SiteSettingDetail = ({ slug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      SITE_SETTING_POLICY_QUERY,
-      ['editing', 'deleting']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-      setDeletingAllowed(policies['deleting'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -42,6 +31,15 @@ const SiteSettingDetail = ({ slug }) => {
   } else if (!data?.siteSetting) {
     return handleMissingData()
   }
+
+  fetchOperationPolicies(
+    client,
+    SITE_SETTING_POLICY_QUERY,
+    ['editing', 'deleting']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+    setDeletingAllowed(policies['deleting'])
+  })
 
   const { siteSetting } = data
 

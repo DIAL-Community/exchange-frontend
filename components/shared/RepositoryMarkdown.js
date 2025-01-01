@@ -155,7 +155,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, editingAllowed }) => {
     return () => {
       clearTimeout(id)
     }
-  })
+  }, [branchUpdateDates, currentBranch])
 
   useEffect(() => {
     if (currentBranch) {

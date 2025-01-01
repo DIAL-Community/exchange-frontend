@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -24,17 +24,6 @@ const TaskTrackerDetail = ({ slug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      TASK_TRACKER_POLICY_QUERY,
-      ['editing', 'deleting']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-      setDeletingAllowed(policies['deleting'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -42,6 +31,15 @@ const TaskTrackerDetail = ({ slug }) => {
   } else if (!data?.taskTracker) {
     return handleMissingData()
   }
+
+  fetchOperationPolicies(
+    client,
+    TASK_TRACKER_POLICY_QUERY,
+    ['editing', 'deleting']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+    setDeletingAllowed(policies['deleting'])
+  })
 
   const { taskTracker } = data
 

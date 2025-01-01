@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -24,18 +24,6 @@ const ProductDetail = ({ slug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      PRODUCT_POLICY_QUERY,
-      ['editing', 'deleting'],
-      { slug }
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-      setDeletingAllowed(policies['deleting'])
-    })
-  }, [client, slug])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -43,6 +31,16 @@ const ProductDetail = ({ slug }) => {
   } else if (!data?.product) {
     return handleMissingData()
   }
+
+  fetchOperationPolicies(
+    client,
+    PRODUCT_POLICY_QUERY,
+    ['editing', 'deleting'],
+    { slug }
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+    setDeletingAllowed(policies['deleting'])
+  })
 
   const { product } = data
 

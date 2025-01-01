@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -24,17 +24,6 @@ const WorkflowDetail = ({ slug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      WORKFLOW_POLICY_QUERY,
-      ['editing', 'deleting']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-      setDeletingAllowed(policies['deleting'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -42,6 +31,15 @@ const WorkflowDetail = ({ slug }) => {
   } else if (!data?.workflow) {
     return handleMissingData()
   }
+
+  fetchOperationPolicies(
+    client,
+    WORKFLOW_POLICY_QUERY,
+    ['editing', 'deleting']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+    setDeletingAllowed(policies['deleting'])
+  })
 
   const { workflow } = data
 

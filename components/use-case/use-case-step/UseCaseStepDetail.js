@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
@@ -24,16 +24,6 @@ const UseCaseStepDetail = ({ slug, stepSlug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      USE_CASE_POLICY_QUERY,
-      ['editing', 'deleting']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -41,6 +31,14 @@ const UseCaseStepDetail = ({ slug, stepSlug }) => {
   } else if (!data?.useCase) {
     return handleMissingData()
   }
+
+  fetchOperationPolicies(
+    client,
+    USE_CASE_POLICY_QUERY,
+    ['editing', 'deleting']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+  })
 
   const { useCase, useCaseStep } = data
 

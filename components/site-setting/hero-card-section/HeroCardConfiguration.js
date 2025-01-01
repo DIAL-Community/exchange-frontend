@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaArrowDown, FaArrowUp, FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { generateHeroCardHeaderText } from '../utilities'
@@ -16,7 +16,7 @@ const HeroCardConfiguration = (props) => {
   const [editing, setEditing] = useState('saved' in heroCardConfiguration)
   const [expanded, setExpanded] = useState('saved' in heroCardConfiguration)
 
-  const [modified, setModified] = useState('saved' in heroCardConfiguration)
+  const modified = typeof saved !== 'undefined' || 'saved' in heroCardConfiguration
 
   const toggleEditing = () => {
     if (!editing) {
@@ -25,10 +25,6 @@ const HeroCardConfiguration = (props) => {
 
     setEditing(!editing)
   }
-
-  useEffect(() => {
-    setModified(typeof saved !== 'undefined')
-  }, [saved])
 
   const toggleExpanded = () => setExpanded(!expanded)
   const editable = () => ['generic-heroCard'].indexOf(heroCardConfiguration.type) >= 0

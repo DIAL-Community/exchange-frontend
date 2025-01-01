@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
@@ -23,16 +23,6 @@ const DatasetDetail = ({ slug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      CANDIDATE_DATASET_POLICY_QUERY,
-      ['editing']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -40,6 +30,14 @@ const DatasetDetail = ({ slug }) => {
   } else if (!data?.candidateDataset) {
     return handleMissingData()
   }
+
+  fetchOperationPolicies(
+    client,
+    CANDIDATE_DATASET_POLICY_QUERY,
+    ['editing']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+  })
 
   const { candidateDataset: dataset } = data
 

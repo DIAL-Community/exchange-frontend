@@ -12,20 +12,15 @@ import {
 } from '../../../components/shared/query/opportunity'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockPolicyFetching } from '../../utils/mockPolicyFetching'
 import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import { commentsQuery, createOpportunity, opportunityDetail } from './data/OpportunityDetail.data'
 import { opportunityPaginationAttribute, paginatedOpportunities } from './data/OpportunityMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockPolicyFetching()
 describe('Unit tests for the opportunity detail page.', () => {
-  const mockOpportunityPolicies = generateMockApolloData(
-    OPPORTUNITY_POLICY_QUERY,
-    { 'slug': 'xchange-graph-query-context-policies' },
-    null,
-    { data: { opportunity: null } }
-  )
-
   const mockOpportunity = generateMockApolloData(
     OPPORTUNITY_DETAIL_QUERY,
     {
@@ -46,6 +41,13 @@ describe('Unit tests for the opportunity detail page.', () => {
   )
 
   test('Should render detail of a opportunity.', async () => {
+    const mockOpportunityPolicies = generateMockApolloData(
+      OPPORTUNITY_POLICY_QUERY,
+      { 'slug': 'xchange-graph-query-context-policies' },
+      null,
+      { data: { opportunity: null } }
+    )
+
     const { container } = render(
       <CustomMockedProvider
         mocks={[
@@ -82,6 +84,7 @@ describe('Unit tests for the opportunity detail page.', () => {
         }
       }]
     }
+
     const mockOpportunityPolicyQueryError = generateMockApolloData(
       OPPORTUNITY_DETAIL_QUERY,
       {
@@ -90,6 +93,7 @@ describe('Unit tests for the opportunity detail page.', () => {
       graphQueryErrors,
       null
     )
+
     const { container } = render(
       <CustomMockedProvider mocks={[mockOpportunityPolicyQueryError, mockOpportunityComments]}>
         <QueryParamContextProvider>
@@ -141,11 +145,10 @@ describe('Unit tests for the opportunity detail page.', () => {
       <CustomMockedProvider
         mocks={[
           mockOpportunity,
-          mockOpportunityComments,
           mockCreateOpportunity,
-          mockOpportunityPaginationAttribute,
+          mockOpportunityComments,
           mockPaginatedOpportunities,
-          mockOpportunity
+          mockOpportunityPaginationAttribute
         ]}
       >
         <QueryParamContextProvider>

@@ -1,6 +1,6 @@
-import { Octokit } from '@octokit/core'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { Octokit } from '@octokit/core'
 import { EditorContext, EditorContextDispatch } from './EditorContext'
 
 const EditorTimer = () => {
@@ -66,7 +66,7 @@ const EditorTimer = () => {
     return () => {
       clearTimeout(id)
     }
-  })
+  }, [branchTimestamps, currentBranch, format])
 
   const lastUpdatedBody = currentBranch && branchTimestamps[currentBranch.value]
     ? format(

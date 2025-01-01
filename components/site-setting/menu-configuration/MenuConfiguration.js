@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaArrowDown, FaArrowUp, FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { generateMenuHeaderText } from '../utilities'
@@ -17,8 +17,7 @@ const MenuConfiguration = (props) => {
 
   const [editing, setEditing] = useState('saved' in menuConfiguration)
   const [expanded, setExpanded] = useState('saved' in menuConfiguration)
-
-  const [modified, setModified] = useState('saved' in menuConfiguration)
+  const modified = typeof saved !== 'undefined' || 'saved' in menuConfiguration
 
   const toggleEditing = () => {
     if (!editing) {
@@ -27,10 +26,6 @@ const MenuConfiguration = (props) => {
 
     setEditing(!editing)
   }
-
-  useEffect(() => {
-    setModified(typeof saved !== 'undefined')
-  }, [saved])
 
   const toggleExpanded = () => setExpanded(!expanded)
   const editable = () => ['menu', 'menu.item', 'separator'].indexOf(type) >= 0
