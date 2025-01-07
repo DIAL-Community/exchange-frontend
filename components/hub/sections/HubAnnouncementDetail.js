@@ -81,12 +81,12 @@ const AnnouncementDetail = ({ announcement }) => {
     updateMessageVisibility()
   }
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[announcement.slug] = announcement.name
 
     return map
-  })()
+  }
 
   return (
     <div className='relative flex flex-col gap-y-3'>

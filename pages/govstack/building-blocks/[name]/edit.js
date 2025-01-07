@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import ApiEditor from '../../../../components/govstack/ApiEditor'
 import { DEFAULT_COMMITTER_EMAIL, DEFAULT_COMMITTER_NAME, DEFAULT_REPO_OWNER } from '../../../../components/govstack/common'
 import Header from '../../../../components/govstack/Header'
@@ -11,17 +10,7 @@ const GovStackApiEdit = () => {
   const router = useRouter()
   const { query: { name } } = router
 
-  const [userName, setUserName] = useState(DEFAULT_COMMITTER_NAME)
-  const [userEmail, setUserEmail] = useState(DEFAULT_COMMITTER_EMAIL)
-
   const { user } = useUser()
-
-  useEffect(() => {
-    if (user) {
-      setUserName(user.userName)
-      setUserEmail(user.userEmail)
-    }
-  }, [user])
 
   return (
     <>
@@ -30,8 +19,8 @@ const GovStackApiEdit = () => {
         <MetadataContextProvider>
           <EditorContextProvider
             owner={DEFAULT_REPO_OWNER}
-            userEmail={userEmail}
-            userName={userName}
+            userName={user ? user?.userName : DEFAULT_COMMITTER_NAME}
+            userEmail={user ? user?.userEmail : DEFAULT_COMMITTER_EMAIL}
           >
             <ApiEditor repositoryName={name} />
           </EditorContextProvider>

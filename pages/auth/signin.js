@@ -13,20 +13,14 @@ export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [loading, setLoading] = useState(false)
-  const [requireConfirmation, setRequireConfirmation] = useState(false)
-  const [invalidCredentials, setInvalidCredentials] = useState(false)
-
   const router = useRouter()
   const { query } = router
 
-  const { hostname } = useActiveTenant()
+  const [loading, setLoading] = useState(false)
+  const [requireConfirmation, setRequireConfirmation] = useState(query?.error === 'CredentialsSignin')
+  const [invalidCredentials, setInvalidCredentials] = useState(false)
 
-  useEffect(() => {
-    if (query?.error === 'CredentialsSignin') {
-      setRequireConfirmation(true)
-    }
-  }, [query])
+  const { hostname } = useActiveTenant()
 
   const doLogin = async (data) => {
     setLoading(true)

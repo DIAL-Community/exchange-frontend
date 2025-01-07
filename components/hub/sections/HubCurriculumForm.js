@@ -35,14 +35,14 @@ const EditHubCurriculum = ({ curriculumSlug }) => {
 
   const { playbook: curriculum } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       edit: format('app.edit')
     }
     map[curriculum.slug] = curriculum.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
@@ -81,13 +81,13 @@ const CreateHubCurriculum = () => {
     return handleMissingData()
   }
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       create: format('app.create')
     }
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>

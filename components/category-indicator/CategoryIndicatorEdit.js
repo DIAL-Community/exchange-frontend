@@ -31,7 +31,7 @@ const CategoryIndicatorEdit = ({ categorySlug, indicatorSlug }) => {
 
   const { categoryIndicator, rubricCategory } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       edit: format('app.edit')
     }
@@ -39,7 +39,7 @@ const CategoryIndicatorEdit = ({ categorySlug, indicatorSlug }) => {
     map[categoryIndicator.slug] = categoryIndicator.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>

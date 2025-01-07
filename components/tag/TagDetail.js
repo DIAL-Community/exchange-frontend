@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -24,17 +24,6 @@ const TagDetail = ({ slug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      TAG_POLICY_QUERY,
-      ['editing', 'deleting']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-      setDeletingAllowed(policies['deleting'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -43,19 +32,28 @@ const TagDetail = ({ slug }) => {
     return handleMissingData()
   }
 
+  fetchOperationPolicies(
+    client,
+    TAG_POLICY_QUERY,
+    ['editing', 'deleting']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+    setDeletingAllowed(policies['deleting'])
+  })
+
   const { tag } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[tag.slug] = tag.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className='px-4 lg:px-6 py-4 bg-dial-violet text-dial-stratos ribbon-detail z-40'>
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping()}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3 shrink-0'>
