@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Breadcrumb from '../../shared/Breadcrumb'
@@ -25,16 +25,6 @@ const OrganizationDetail = ({ slug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      CANDIDATE_ORGANIZATION_POLICY_QUERY,
-      ['editing']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -43,19 +33,27 @@ const OrganizationDetail = ({ slug }) => {
     return handleMissingData()
   }
 
+  fetchOperationPolicies(
+    client,
+    CANDIDATE_ORGANIZATION_POLICY_QUERY,
+    ['editing']
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+  })
+
   const { candidateOrganization: organization } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[organization.slug] = organization.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col text-dial-stratos '>
       <div className='px-4 lg:px-6 py-4 bg-dial-violet ribbon-detail z-40'>
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping()}/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='lg:basis-1/3 shrink-0'>

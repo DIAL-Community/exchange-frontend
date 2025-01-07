@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../shared/GraphQueryHandler'
@@ -23,16 +23,6 @@ const RoleDetail = ({ id }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      CANDIDATE_ROLE_POLICY_QUERY,
-      ['editing']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery()
   } else if (error) {
@@ -41,14 +31,23 @@ const RoleDetail = ({ id }) => {
     return handleMissingData()
   }
 
+  fetchOperationPolicies(
+    client,
+    CANDIDATE_ROLE_POLICY_QUERY,
+    ['editing'],
+    { id }
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+  })
+
   const { candidateRole: role } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[role.id] = role.email
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>

@@ -1,6 +1,6 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useCallback, useContext, useRef } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
@@ -32,22 +32,14 @@ const HealthProducts = ({ onlyFeatured = false }) => {
     workflows
   } = useContext(FilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
-
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-
   const DEFAULT_PAGE_SIZE = 24
 
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const { page } = query
+  const pageNumber = page ? parseInt(page) - 1 : 0
+  const pageOffset = pageNumber * DEFAULT_PAGE_SIZE
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage

@@ -181,14 +181,8 @@ const ResourceViewer = ({ index, resource, removeResource, setEditing }) => {
 }
 
 const ResourceRenderer = (props) => {
-  const [editing, setEditing] = useState(false)
   const { resource } = props
-
-  useEffect(() => {
-    if (Object.keys(resource).length <= 0) {
-      setEditing(true)
-    }
-  }, [setEditing, resource])
+  const [editing, setEditing] = useState(Object.keys(resource).length <= 0)
 
   return (
     <>

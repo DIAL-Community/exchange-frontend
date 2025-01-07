@@ -33,13 +33,13 @@ const PlayDetail = ({ playbookSlug, playSlug }) => {
 
   const { playbook: playbook, play: playbookPlay } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[playbook.slug] = playbook.name
     map[playbookPlay.slug] = playbookPlay.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col min-h-[80vh]'>

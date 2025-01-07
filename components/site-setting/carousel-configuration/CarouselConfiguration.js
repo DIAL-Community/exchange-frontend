@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaArrowDown, FaArrowUp, FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { generateCarouselHeaderText } from '../utilities'
@@ -16,7 +16,7 @@ const CarouselConfiguration = (props) => {
   const [editing, setEditing] = useState('saved' in carouselConfiguration)
   const [expanded, setExpanded] = useState('saved' in carouselConfiguration)
 
-  const [modified, setModified] = useState('saved' in carouselConfiguration)
+  const modified = typeof saved === 'undefined' || 'saved' in carouselConfiguration
 
   const toggleEditing = () => {
     if (!editing) {
@@ -25,12 +25,6 @@ const CarouselConfiguration = (props) => {
 
     setEditing(!editing)
   }
-
-  useEffect(() => {
-    if (typeof saved === 'undefined') {
-      setModified(false)
-    }
-  }, [saved])
 
   const toggleExpanded = () => setExpanded(!expanded)
   const editable = () => ['generic-carousel'].indexOf(carouselConfiguration.type) >= 0
