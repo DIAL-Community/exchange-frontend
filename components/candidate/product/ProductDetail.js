@@ -34,7 +34,8 @@ const ProductDetail = ({ slug }) => {
   fetchOperationPolicies(
     client,
     CANDIDATE_PRODUCT_POLICY_QUERY,
-    ['editing']
+    ['editing'],
+    { slug }
   ).then(policies => {
     setEditingAllowed(policies['editing'])
   })
