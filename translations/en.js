@@ -83,7 +83,7 @@ export const en = {
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
   'header.resetPassword': 'Reset Password',
-  'header.profile': 'My Profile',
+  'header.profile': 'My Dashboard',
   'header.covidResources': 'COVID-19 Resources',
   'header.resources': 'Resources',
   'header.playbooks': 'Playbooks',
@@ -2164,6 +2164,7 @@ export const en = {
   'ui.profile.title': 'Your account',
   'ui.profile.label': 'Profile',
   'ui.profile.bookmark': 'Your bookmarks',
+  'ui.profile.submission': 'Your submission',
 
   'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.header': 'Building Blocks',

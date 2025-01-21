@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { useSession } from 'next-auth/react'
 import TabNav from '../shared/TabNav'
 
 const ProfileTabNav = ({ activeTab, setActiveTab }) => {
-  const [tabNames] = useState([
+  const { data: { user } } = useSession()
+
+  const tabNames = [
     'ui.profile.label',
     'ui.profile.bookmark'
-  ])
+  ]
+
+  if (user.roles.indexOf('admin') < 0 && user.roles.indexOf('candidate_editor') < 0) {
+    tabNames.push('ui.profile.submission')
+  }
 
   return (
     <TabNav
