@@ -32,12 +32,12 @@ const PlaybookTopNavigation = ({ playbook, playRefs }) => {
     setCurrentSlugIndex(currentIndex)
   }, [currentSlug, plays])
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[playbook.slug] = playbook.name
 
     return map
-  })()
+  }
 
   return (
     <div className='sticky sticky-under-header bg-dial-violet'>

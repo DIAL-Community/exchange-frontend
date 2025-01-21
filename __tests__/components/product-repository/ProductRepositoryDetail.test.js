@@ -12,6 +12,7 @@ import {
 } from '../../../components/shared/query/productRepository'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockPolicyFetching } from '../../utils/mockPolicyFetching'
 import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import {
   createProductRepository, ownedProducts, productRepositories, productRepositoryDetail
@@ -19,6 +20,7 @@ import {
 
 mockTenantApi()
 mockNextUseRouter()
+mockPolicyFetching()
 describe('Unit tests for the product main page.', () => {
   const mockProductPolicies = generateMockApolloData(
     PRODUCT_POLICY_QUERY,

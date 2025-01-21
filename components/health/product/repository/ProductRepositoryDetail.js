@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../shared/GraphQueryHandler'
@@ -24,16 +24,6 @@ const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
     }
   })
 
-  useEffect(() => {
-    fetchOperationPolicies(
-      client,
-      PRODUCT_POLICY_QUERY,
-      ['editing']
-    ).then(policies => {
-      setEditingAllowed(policies['editing'])
-    })
-  }, [client])
-
   if (loading) {
     return handleLoadingQuery
   } else if (error) {
@@ -42,20 +32,29 @@ const ProductRepositoryDetail = ({ productSlug, repositorySlug }) => {
     return handleMissingData()
   }
 
+  fetchOperationPolicies(
+    client,
+    PRODUCT_POLICY_QUERY,
+    ['editing'],
+    { productSlug, repositorySlug }
+  ).then(policies => {
+    setEditingAllowed(policies['editing'])
+  })
+
   const { product, productRepository } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[product.slug] = product.name
     map[productRepository.slug] = productRepository.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className="py-6 text-dial-stratos z-40">
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping()}/>
         <hr className="border-b border-health-gray my-3"/>
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>

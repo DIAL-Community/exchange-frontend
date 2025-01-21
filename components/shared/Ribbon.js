@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useIntl } from 'react-intl'
+import { useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { currentActiveNav, navOptions } from '../utils/header'
-import Select from './form/Select'
 import Breadcrumb from './Breadcrumb'
+import Select from './form/Select'
 
 const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
   const { formatMessage } = useIntl()
@@ -12,7 +12,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
   const router = useRouter()
   const { pathname } = router
 
-  const [currentNav, setCurrentNav] = useState()
+  const currentNav = useMemo(() => currentActiveNav(format, pathname), [format, pathname])
 
   const onNavigationChange = (navigation) => {
     router.push(navigation.value)
@@ -23,10 +23,6 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
   const fetchOptions = async (input) => {
     return options.filter(({ label }) => label.indexOf(input) >= 0)
   }
-
-  useEffect(() => {
-    setCurrentNav(currentActiveNav(format, pathname))
-  }, [pathname, format])
 
   return (
     <div className={`${ribbonBg} ribbon-outer rounded-b-[32px] z-40`}>

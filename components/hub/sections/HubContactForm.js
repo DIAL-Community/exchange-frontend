@@ -20,12 +20,12 @@ const HubContactForm = ({ userId, userEmail }) => {
     }
   })
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map['profile'] = format('hub.dashboard.profile')
 
     return map
-  })()
+  }
 
   return (
     <div className='md:px-4 lg:px-8 xl:px-56 min-h-[80vh]'>

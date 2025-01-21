@@ -197,13 +197,13 @@ const ProductCompare = ({ slugs }) => {
 
   const { compareProducts: { products, intersections: commonValues, similarities } } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       compare: format('app.compare')
     }
 
     return map
-  })()
+  }
 
   const renderValueField = (fieldValue, fieldName) => {
     const commonValue = commonValues[fieldName]
@@ -272,7 +272,7 @@ const ProductCompare = ({ slugs }) => {
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className='px-4 lg:px-6 py-4 bg-dial-spearmint text-dial-stratos ribbon-detail z-40'>
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping()}/>
       </div>
       <div className='flex flex-col py-8'>
         <div className='flex'>

@@ -31,7 +31,7 @@ const CategoryIndicatorCreate = ({ categorySlug }) => {
 
   const { rubricCategory } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       create: format('app.create')
     }
@@ -39,7 +39,7 @@ const CategoryIndicatorCreate = ({ categorySlug }) => {
     map[rubricCategory.slug] = rubricCategory.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>

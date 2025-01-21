@@ -81,12 +81,12 @@ const EventDetail = ({ event }) => {
     updateMessageVisibility()
   }
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[event.slug] = event.name
 
     return map
-  })()
+  }
 
   return (
     <div className='relative flex flex-col gap-y-3'>

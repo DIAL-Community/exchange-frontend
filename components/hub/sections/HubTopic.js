@@ -26,12 +26,12 @@ const HubTopic = ({ slug, pageNumber, onClickHandler }) => {
 
   const { resourceTopic } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[resourceTopic.slug] = resourceTopic.name
 
     return map
-  })()
+  }
 
   return (
     <div className='flex flex-col gap-6 pb-12 max-w-catalog mx-auto'>

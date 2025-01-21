@@ -132,12 +132,12 @@ const CarouselConfigurations = ({ slug }) => {
 
   const { siteSetting } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[siteSetting.slug] = siteSetting.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 min-h-[75vh]'>
