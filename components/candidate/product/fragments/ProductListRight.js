@@ -14,7 +14,7 @@ const ProductListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(FilterContext)
+  const { search, currentUserOnly } = useContext(FilterContext)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
@@ -41,7 +41,7 @@ const ProductListRight = () => {
   }
 
   const { loading, error, data } = useQuery(CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY, {
-    variables: { search },
+    variables: { currentUserOnly, search },
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.VIEWING

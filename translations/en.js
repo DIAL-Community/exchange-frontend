@@ -267,6 +267,7 @@ export const en = {
   'ui.product.comparison.filter': 'Filter comparison',
   'ui.product.comparison.showHighlight': 'Highlight differences',
   
+  'ui.product.filter.currentUserOnly': 'Show only my submissions',
   'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
   'ui.product.filter.showDpgaOnly': 'Show only Digital Public Goods',
 
@@ -2161,10 +2162,11 @@ export const en = {
   'ui.user.confirmedAt': 'Activated on',
 
 
+  'ui.profile.label': 'Your Profile',
+  'ui.profile.header': 'User Profile',
   'ui.profile.title': 'Your account',
-  'ui.profile.label': 'Profile',
   'ui.profile.bookmark': 'Your bookmarks',
-  'ui.profile.submission': 'Your submission',
+  'ui.profile.candidateProducts': 'Candidate Products',
 
   'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.header': 'Building Blocks',

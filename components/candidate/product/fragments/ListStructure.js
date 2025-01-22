@@ -8,11 +8,12 @@ import { DisplayType } from '../../../utils/constants'
 import ProductCard from '../ProductCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search } = useContext(FilterContext)
+  const { search, currentUserOnly } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_CANDIDATE_PRODUCTS_QUERY, {
     variables: {
       search,
+      currentUserOnly,
       limit: defaultPageSize,
       offset: pageOffset
     },
