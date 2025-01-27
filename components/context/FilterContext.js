@@ -6,6 +6,7 @@ const FilterDispatchContext = createContext()
 
 const FilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
+  const [currentUserOnly, setCurrentUserOnly] = useState(false)
   // Task tracker context only
   const [showFailedOnly, setShowFailedOnly] = useState(false)
   const [showGovStackOnly, setShowGovStackOnly] = useState(false)
@@ -60,6 +61,7 @@ const FilterProvider = ({ children }) => {
       // Transitioning to other pages (pathname changing).
       if (url.indexOf(router.pathname) < 0) {
         setSearch('')
+        setCurrentUserOnly(false)
         setShowFailedOnly(false)
         setShowGovStackOnly(false)
         setShowMature(false)
@@ -118,6 +120,7 @@ const FilterProvider = ({ children }) => {
 
   const valueProps = {
     search,
+    currentUserOnly,
 
     showFailedOnly,
     showGovStackOnly,
@@ -166,6 +169,8 @@ const FilterProvider = ({ children }) => {
 
   const dispatchProps = {
     setSearch,
+    setCurrentUserOnly,
+
     setShowFailedOnly,
     setShowGovStackOnly,
     setShowMature,

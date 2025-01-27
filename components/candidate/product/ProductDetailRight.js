@@ -11,7 +11,7 @@ import { prependUrlWithProtocol } from '../../utils/utilities'
 import CandidateStatusWorkflow from '../CandidateStatusWorkflow'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 
-const ProductDetailRight = forwardRef(({ product, editingAllowed }, ref) => {
+const ProductDetailRight = forwardRef(({ product, editingAllowed, approvingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -164,7 +164,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed }, ref) => {
         <ProductDetailMaturityScores
           slug={product.slug}
           productId={product.id}
-          editingAllowed={editingAllowed}
+          editingAllowed={approvingAllowed}
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
@@ -173,7 +173,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed }, ref) => {
           candidate={product}
           objectType={ObjectType.CANDIDATE_PRODUCT}
           mutationQuery={CANDIDATE_PRODUCT_UPDATE_STATUS}
-          editingAllowed={editingAllowed}
+          editingAllowed={approvingAllowed}
         />
         {`${product.rejected}` === 'true' &&
           <>

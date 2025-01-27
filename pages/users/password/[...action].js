@@ -93,7 +93,7 @@ const PasswordAction = () => {
         'top-center',
         3000,
         null,
-        () => router.push('/users/me')
+        () => router.push('/profiles/me')
       )
     }
 
