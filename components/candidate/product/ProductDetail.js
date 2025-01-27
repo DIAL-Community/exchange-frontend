@@ -13,6 +13,7 @@ const ProductDetail = ({ slug }) => {
   const client = useApolloClient()
 
   const [editingAllowed, setEditingAllowed] = useState(false)
+  const [approvingAllowed, setApprovingAllowed] = useState(false)
 
   const { loading, error, data, refetch } = useQuery(CANDIDATE_PRODUCT_DETAIL_QUERY, {
     variables: { slug },
@@ -34,9 +35,11 @@ const ProductDetail = ({ slug }) => {
   fetchOperationPolicies(
     client,
     CANDIDATE_PRODUCT_POLICY_QUERY,
-    ['editing']
+    ['editing', 'approving'],
+    { slug }
   ).then(policies => {
     setEditingAllowed(policies['editing'])
+    setApprovingAllowed(policies['approving'])
   })
 
   const { candidateProduct: product } = data
@@ -62,7 +65,8 @@ const ProductDetail = ({ slug }) => {
             ref={scrollRef}
             product={product}
             refetch={refetch}
-            editingAllowed={editingAllowed}
+            editingAllowed={editingAllowed && product.rejected === null }
+            approvingAllowed={approvingAllowed && product.rejected === null}
           />
         </div>
       </div>

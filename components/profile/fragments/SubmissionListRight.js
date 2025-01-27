@@ -2,15 +2,15 @@ import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
-import { FilterContext } from '../../../context/FilterContext'
-import Pagination from '../../../shared/Pagination'
-import { CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/candidateProduct'
-import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
-import ListStructure from './ListStructure'
-import ProductSearchBar from './ProductSearchBar'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import ListStructure from '../../candidate/product/fragments/ListStructure'
+import ProductSearchBar from '../../candidate/product/fragments/ProductSearchBar'
+import { FilterContext } from '../../context/FilterContext'
+import Pagination from '../../shared/Pagination'
+import { CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/candidateProduct'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const ProductListRight = () => {
+const SubmissionListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -70,4 +70,4 @@ const ProductListRight = () => {
   )
 }
 
-export default ProductListRight
+export default SubmissionListRight

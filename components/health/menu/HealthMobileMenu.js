@@ -1,8 +1,8 @@
-import { useCallback, useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
 import { signIn, signOut } from 'next-auth/react'
-import { useIntl } from 'react-intl'
+import Link from 'next/link'
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
+import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { NONE, USER_MENU } from '../../shared/menu/MenuCommon'
 
@@ -44,7 +44,7 @@ const UserMenu = ({ currentMenu, setCurrentMenu }) => {
           {currentMenu === USER_MENU &&
             <ul className='px-6'>
               <li>
-                <Link href='/users/me'>
+                <Link href='/profiles/me'>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format('header.profile')}
                   </div>
