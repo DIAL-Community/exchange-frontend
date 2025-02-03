@@ -200,6 +200,7 @@ export default function ExcalidrawComponent({ nodeKey, data, width, height }) {
       )}
       {elements.length > 0 && (
         <button
+          type='button'
           ref={buttonRef}
           className={`excalidraw-button ${isSelected ? 'selected' : ''}`}
         >

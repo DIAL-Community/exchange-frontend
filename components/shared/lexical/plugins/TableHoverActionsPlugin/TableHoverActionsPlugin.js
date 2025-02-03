@@ -245,6 +245,7 @@ function TableHoverActionsContainer({ anchorElem }) {
     <>
       {isShownRow && (
         <button
+          type='button'
           className={'PlaygroundEditorTheme__tableAddRows'}
           style={{ ...position }}
           onClick={() => insertAction(true)}
@@ -252,6 +253,7 @@ function TableHoverActionsContainer({ anchorElem }) {
       )}
       {isShownColumn && (
         <button
+          type='button'
           className={'PlaygroundEditorTheme__tableAddColumns'}
           style={{ ...position }}
           onClick={() => insertAction(false)}

@@ -188,10 +188,18 @@ export default function ExcalidrawModal({
             }}
           />
           <div className='ExcalidrawModal__actions'>
-            <button className='action-button' onClick={discard}>
+            <button
+              type='button'
+              className='action-button'
+              onClick={discard}
+            >
               Discard
             </button>
-            <button className='action-button' onClick={save}>
+            <button
+              type='button'
+              className='action-button'
+              onClick={save}
+            >
               Save
             </button>
           </div>

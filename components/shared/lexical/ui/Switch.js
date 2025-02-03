@@ -15,6 +15,7 @@ export default function Switch({ checked, onClick, text, id }) {
     <div className='switch' id={id}>
       <label htmlFor={buttonId}>{text}</label>
       <button
+        type='button'
         role='switch'
         aria-checked={checked}
         id={buttonId}

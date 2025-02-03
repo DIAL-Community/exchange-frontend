@@ -62,9 +62,9 @@ function PortalImpl({ onClose, children, title, closeOnClickOutside }) {
       <div className='Modal__modal' tabIndex={-1} ref={modalRef}>
         <h2 className='Modal__title'>{title}</h2>
         <button
+          type='button'
           className='Modal__closeButton'
           aria-label='Close modal'
-          type='button'
           onClick={onClose}
         >
           X

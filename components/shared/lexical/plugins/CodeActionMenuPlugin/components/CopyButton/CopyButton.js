@@ -48,12 +48,16 @@ export function CopyButton({ editor, getCodeDOMNode }) {
   }
 
   return (
-    <button className='menu-item' onClick={handleClick} aria-label='copy'>
-      {isCopyCompleted ? (
-        <i className='format success' />
-      ) : (
-        <i className='format copy' />
-      )}
+    <button
+      type='button'
+      className='menu-item'
+      onClick={handleClick}
+      aria-label='copy'
+    >
+      {isCopyCompleted
+        ? <i className='format success' />
+        : <i className='format copy' />
+      }
     </button>
   )
 }

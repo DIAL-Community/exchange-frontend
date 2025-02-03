@@ -658,24 +658,24 @@ export default function ToolbarPlugin({
   return (
     <div className='toolbar'>
       <button
+        type='button'
         disabled={!toolbarState.canUndo || !isEditable}
         onClick={() => {
           activeEditor.dispatchCommand(UNDO_COMMAND, undefined)
         }}
         title={IS_APPLE ? 'Undo (⌘Z)' : 'Undo (Ctrl+Z)'}
-        type='button'
         className='toolbar-item spaced'
         aria-label='Undo'
       >
         <i className='format undo' />
       </button>
       <button
+        type='button'
         disabled={!toolbarState.canRedo || !isEditable}
         onClick={() => {
           activeEditor.dispatchCommand(REDO_COMMAND, undefined)
         }}
         title={IS_APPLE ? 'Redo (⇧⌘Z)' : 'Redo (Ctrl+Y)'}
-        type='button'
         className='toolbar-item'
         aria-label='Redo'
       >
@@ -730,6 +730,7 @@ export default function ToolbarPlugin({
           />
           <Divider />
           <button
+            type='button'
             disabled={!isEditable}
             onClick={() => {
               activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
@@ -738,12 +739,12 @@ export default function ToolbarPlugin({
               'toolbar-item spaced ' + (toolbarState.isBold ? 'active' : '')
             }
             title={`Bold (${SHORTCUTS.BOLD})`}
-            type='button'
             aria-label={`Format text as bold. Shortcut: ${SHORTCUTS.BOLD}`}
           >
             <i className='format bold' />
           </button>
           <button
+            type='button'
             disabled={!isEditable}
             onClick={() => {
               activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
@@ -752,12 +753,12 @@ export default function ToolbarPlugin({
               'toolbar-item spaced ' + (toolbarState.isItalic ? 'active' : '')
             }
             title={`Italic (${SHORTCUTS.ITALIC})`}
-            type='button'
             aria-label={`Format text as italics. Shortcut: ${SHORTCUTS.ITALIC}`}
           >
             <i className='format italic' />
           </button>
           <button
+            type='button'
             disabled={!isEditable}
             onClick={() => {
               activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')
@@ -767,13 +768,13 @@ export default function ToolbarPlugin({
               (toolbarState.isUnderline ? 'active' : '')
             }
             title={`Underline (${SHORTCUTS.UNDERLINE})`}
-            type='button'
             aria-label={`Format text to underlined. Shortcut: ${SHORTCUTS.UNDERLINE}`}
           >
             <i className='format underline' />
           </button>
           {canViewerSeeInsertCodeButton && (
             <button
+              type='button'
               disabled={!isEditable}
               onClick={() => {
                 activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code')
@@ -782,13 +783,13 @@ export default function ToolbarPlugin({
                 'toolbar-item spaced ' + (toolbarState.isCode ? 'active' : '')
               }
               title={`Insert code block (${SHORTCUTS.INSERT_CODE_BLOCK})`}
-              type='button'
               aria-label='Insert code block'
             >
               <i className='format code' />
             </button>
           )}
           <button
+            type='button'
             disabled={!isEditable}
             onClick={insertLink}
             className={
@@ -796,7 +797,6 @@ export default function ToolbarPlugin({
             }
             aria-label='Insert link'
             title={`Insert link (${SHORTCUTS.INSERT_LINK})`}
-            type='button'
           >
             <i className='format link' />
           </button>
