@@ -656,7 +656,7 @@ export default function ToolbarPlugin({
   const canViewerSeeInsertCodeButton = !toolbarState.isImageCaption
 
   return (
-    <div className='toolbar flex gap-2'>
+    <div className='toolbar'>
       <button
         disabled={!toolbarState.canUndo || !isEditable}
         onClick={() => {
@@ -1129,7 +1129,6 @@ export default function ToolbarPlugin({
         editor={activeEditor}
         isRTL={toolbarState.isRTL}
       />
-
       {modal}
     </div>
   )

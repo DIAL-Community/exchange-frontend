@@ -193,7 +193,7 @@ function App() {
   const initialConfig = {
     editorState: emptyEditor ? undefined : $prepopulatedRichText,
     html: { import: buildImportMap() },
-    namespace: 'Playground',
+    namespace: 'Exchange Lexical Playground',
     nodes: [...PlaygroundNodes],
     onError: error => {
       throw error
