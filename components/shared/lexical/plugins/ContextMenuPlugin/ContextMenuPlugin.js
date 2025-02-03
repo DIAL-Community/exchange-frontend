@@ -6,9 +6,8 @@
  *
  */
 
-
 import { useCallback, useMemo, useState } from 'react'
-import * as ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 import {
   $getNearestNodeFromDOMNode, $getSelection, $isDecoratorNode, $isNodeSelection, $isRangeSelection, COPY_COMMAND,
   CUT_COMMAND, PASTE_COMMAND
@@ -210,7 +209,7 @@ export default function ContextMenuPlugin() {
         { setMenuRef }
       ) =>
         anchorElementRef.current
-          ? ReactDOM.createPortal(
+          ? createPortal(
             <div
               className='typeahead-popover auto-embed-menu'
               style={{

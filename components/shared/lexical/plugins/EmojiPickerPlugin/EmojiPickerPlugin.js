@@ -6,9 +6,8 @@
  *
  */
 
-
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import * as ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 import { $createTextNode, $getSelection, $isRangeSelection } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import {
@@ -127,7 +126,7 @@ export default function EmojiPickerPlugin() {
         }
 
         return anchorElementRef.current && options.length
-          ? ReactDOM.createPortal(
+          ? createPortal(
             <div className='typeahead-popover emoji-menu'>
               <ul>
                 {options.map((option, index) => (

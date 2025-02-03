@@ -6,7 +6,6 @@
  *
  */
 
-
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   $getNodeByKey, $getSelection, $isNodeSelection, COMMAND_PRIORITY_HIGH, KEY_ESCAPE_COMMAND, SELECTION_CHANGE_COMMAND

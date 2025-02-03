@@ -6,7 +6,6 @@
  *
  */
 
-import './FlashMessage.module.css'
 import { createPortal } from 'react-dom'
 
 export default function FlashMessage({ children }) {

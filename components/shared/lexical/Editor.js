@@ -6,85 +6,64 @@
  *
  */
 
-import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
-import {
-  CharacterLimitPlugin,
-} from '@lexical/react/LexicalCharacterLimitPlugin';
-import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin';
-import { ClearEditorPlugin } from '@lexical/react/LexicalClearEditorPlugin';
-import { ClickableLinkPlugin } from '@lexical/react/LexicalClickableLinkPlugin';
-import {
-  useLexicalComposerContext,
-} from '@lexical/react/LexicalComposerContext';
-import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
-import { HashtagPlugin } from '@lexical/react/LexicalHashtagPlugin';
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
-import {
-  HorizontalRulePlugin,
-} from '@lexical/react/LexicalHorizontalRulePlugin';
-import { ListPlugin } from '@lexical/react/LexicalListPlugin';
-import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
-import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
-import {
-  SelectionAlwaysOnDisplay,
-} from '@lexical/react/LexicalSelectionAlwaysOnDisplay';
-import {
-  TabIndentationPlugin,
-} from '@lexical/react/LexicalTabIndentationPlugin';
-import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
-import { useLexicalEditable } from '@lexical/react/useLexicalEditable';
-import { useSettings } from './context/SettingsContext';
-import { useSharedHistoryContext } from './context/SharedHistoryContext';
-import ActionsPlugin from './plugins/ActionsPlugin/ActionsPlugin';
-import AutocompletePlugin
-  from './plugins/AutocompletePlugin/AutocompletePlugin';
-import AutoEmbedPlugin from './plugins/AutoEmbedPlugin/AutoEmbedPlugin';
-import AutoLinkPlugin from './plugins/AutoLinkPlugin/AutoLinkPlugin';
-import CodeActionMenuPlugin
-  from './plugins/CodeActionMenuPlugin/CodeActionMenuPlugin';
-import CodeHighlightPlugin
-  from './plugins/CodeHighlightPlugin/CodeHighlightPlugin';
-import CollapsiblePlugin from './plugins/CollapsiblePlugin/CollapsiblePlugin';
-import ComponentPickerPlugin
-  from './plugins/ComponentPickerPlugin/ComponentPickerPlugin';
-import ContextMenuPlugin from './plugins/ContextMenuPlugin/ContextMenuPlugin';
-import DragDropPaste from './plugins/DragDropPastePlugin/DragDropPastePlugin';
-import DraggableBlockPlugin
-  from './plugins/DraggableBlockPlugin/DraggableBlockPlugin';
-import EmojiPickerPlugin from './plugins/EmojiPickerPlugin/EmojiPickerPlugin';
-import EmojisPlugin from './plugins/EmojisPlugin/EmojisPlugin';
-import EquationsPlugin from './plugins/EquationsPlugin/EquationsPlugin';
-import FigmaPlugin from './plugins/FigmaPlugin/FigmaPlugin';
-import FloatingLinkEditorPlugin
-  from './plugins/FloatingLinkEditorPlugin/FloatingLinkEditorPlugin';
-import FloatingTextFormatToolbarPlugin
-  from './plugins/FloatingTextFormatToolbarPlugin/FloatingTextFormatToolbarPlugin';
-import KeywordsPlugin from './plugins/KeywordsPlugin/KeywordsPlugin';
-import { LayoutPlugin } from './plugins/LayoutPlugin/LayoutPlugin';
-import LinkPlugin from './plugins/LinkPlugin/LinkPlugin';
-import MarkdownShortcutPlugin
-  from './plugins/MarkdownShortcutPlugin/MarkdownShortcutPlugin';
-import { MaxLengthPlugin } from './plugins/MaxLengthPlugin/MaxLengthPlugin';
-import MentionsPlugin from './plugins/MentionsPlugin/MentionsPlugin';
-import PageBreakPlugin from './plugins/PageBreakPlugin/PageBreakPlugin';
-import PollPlugin from './plugins/PollPlugin/PollPlugin';
-import ShortcutsPlugin from './plugins/ShortcutsPlugin/ShortcutsPlugin';
-import SpecialTextPlugin from './plugins/SpecialTextPlugin/SpecialTextPlugin';
-import TabFocusPlugin from './plugins/TabFocusPlugin/TabFocusPlugin';
-import TableCellActionMenuPlugin
-  from './plugins/TableActionMenuPlugin/TableActionMenuPlugin';
-import TableCellResizer from './plugins/TableCellResizer/TableCellResizer';
-import TableHoverActionsPlugin
-  from './plugins/TableHoverActionsPlugin/TableHoverActionsPlugin';
-import TableOfContentsPlugin
-  from './plugins/TableOfContentsPlugin/TableOfContentsPlugin';
-import ToolbarPlugin from './plugins/ToolbarPlugin/ToolbarPlugin';
-import TreeViewPlugin from './plugins/TreeViewPlugin/TreeViewPlugin';
-import YouTubePlugin from './plugins/YouTubePlugin/YouTubePlugin';
-import { CAN_USE_DOM } from './shared/canUseDOM';
-import ContentEditable from './ui/ContentEditable';
+import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
+import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
+import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin'
+import { ClearEditorPlugin } from '@lexical/react/LexicalClearEditorPlugin'
+import { ClickableLinkPlugin } from '@lexical/react/LexicalClickableLinkPlugin'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
+import { HashtagPlugin } from '@lexical/react/LexicalHashtagPlugin'
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+import { HorizontalRulePlugin } from '@lexical/react/LexicalHorizontalRulePlugin'
+import { ListPlugin } from '@lexical/react/LexicalListPlugin'
+import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin'
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
+import { SelectionAlwaysOnDisplay } from '@lexical/react/LexicalSelectionAlwaysOnDisplay'
+import { TabIndentationPlugin } from '@lexical/react/LexicalTabIndentationPlugin'
+import { TablePlugin } from '@lexical/react/LexicalTablePlugin'
+import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
+import { useSettings } from './context/SettingsContext'
+import { useSharedHistoryContext } from './context/SharedHistoryContext'
+import ActionsPlugin from './plugins/ActionsPlugin/ActionsPlugin'
+import AutocompletePlugin from './plugins/AutocompletePlugin/AutocompletePlugin'
+import AutoEmbedPlugin from './plugins/AutoEmbedPlugin/AutoEmbedPlugin'
+import AutoLinkPlugin from './plugins/AutoLinkPlugin/AutoLinkPlugin'
+import CodeActionMenuPlugin from './plugins/CodeActionMenuPlugin/CodeActionMenuPlugin'
+import CodeHighlightPlugin from './plugins/CodeHighlightPlugin/CodeHighlightPlugin'
+import CollapsiblePlugin from './plugins/CollapsiblePlugin/CollapsiblePlugin'
+import ComponentPickerPlugin from './plugins/ComponentPickerPlugin/ComponentPickerPlugin'
+import ContextMenuPlugin from './plugins/ContextMenuPlugin/ContextMenuPlugin'
+import DragDropPaste from './plugins/DragDropPastePlugin/DragDropPastePlugin'
+import DraggableBlockPlugin from './plugins/DraggableBlockPlugin/DraggableBlockPlugin'
+import EmojiPickerPlugin from './plugins/EmojiPickerPlugin/EmojiPickerPlugin'
+import EmojisPlugin from './plugins/EmojisPlugin/EmojisPlugin'
+import EquationsPlugin from './plugins/EquationsPlugin/EquationsPlugin'
+import FigmaPlugin from './plugins/FigmaPlugin/FigmaPlugin'
+import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin/FloatingLinkEditorPlugin'
+import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormatToolbarPlugin/FloatingTextFormatToolbarPlugin'
+import KeywordsPlugin from './plugins/KeywordsPlugin/KeywordsPlugin'
+import { LayoutPlugin } from './plugins/LayoutPlugin/LayoutPlugin'
+import LinkPlugin from './plugins/LinkPlugin/LinkPlugin'
+import MarkdownShortcutPlugin from './plugins/MarkdownShortcutPlugin/MarkdownShortcutPlugin'
+import { MaxLengthPlugin } from './plugins/MaxLengthPlugin/MaxLengthPlugin'
+import MentionsPlugin from './plugins/MentionsPlugin/MentionsPlugin'
+import PageBreakPlugin from './plugins/PageBreakPlugin/PageBreakPlugin'
+import PollPlugin from './plugins/PollPlugin/PollPlugin'
+import ShortcutsPlugin from './plugins/ShortcutsPlugin/ShortcutsPlugin'
+import SpecialTextPlugin from './plugins/SpecialTextPlugin/SpecialTextPlugin'
+import TabFocusPlugin from './plugins/TabFocusPlugin/TabFocusPlugin'
+import TableCellActionMenuPlugin from './plugins/TableActionMenuPlugin/TableActionMenuPlugin'
+import TableCellResizer from './plugins/TableCellResizer/TableCellResizer'
+import TableHoverActionsPlugin from './plugins/TableHoverActionsPlugin/TableHoverActionsPlugin'
+import TableOfContentsPlugin from './plugins/TableOfContentsPlugin/TableOfContentsPlugin'
+import ToolbarPlugin from './plugins/ToolbarPlugin/ToolbarPlugin'
+import TreeViewPlugin from './plugins/TreeViewPlugin/TreeViewPlugin'
+import YouTubePlugin from './plugins/YouTubePlugin/YouTubePlugin'
+import { CAN_USE_DOM } from './shared/canUseDOM'
+import ContentEditable from './ui/ContentEditable'
 
 const ExcalidrawPlugin = dynamic(
   async () => await import('./plugins/ExcalidrawPlugin/ExcalidrawPlugin'),

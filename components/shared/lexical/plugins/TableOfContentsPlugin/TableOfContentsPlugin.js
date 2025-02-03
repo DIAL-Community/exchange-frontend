@@ -6,8 +6,6 @@
  *
  */
 
-import './TableOfContentsPlugin.module.css'
-
 import { useEffect, useRef, useState } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { TableOfContentsPlugin as LexicalTableOfContentsPlugin } from '@lexical/react/LexicalTableOfContentsPlugin'

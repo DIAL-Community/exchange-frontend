@@ -7,7 +7,6 @@
  */
 
 import 'katex/dist/katex.css'
-
 import { useCallback, useEffect } from 'react'
 import { $createParagraphNode, $insertNodes, $isRootOrShadowRoot, COMMAND_PRIORITY_EDITOR, createCommand } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'

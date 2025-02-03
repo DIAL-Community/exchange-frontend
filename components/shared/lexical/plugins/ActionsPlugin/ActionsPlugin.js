@@ -7,14 +7,12 @@
  */
 
 import { useCallback, useEffect, useState } from 'react'
-import {
-  $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND, CLEAR_HISTORY_COMMAND, COMMAND_PRIORITY_EDITOR
-} from 'lexical'
+import classNames from 'classnames'
+import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND, CLEAR_HISTORY_COMMAND } from 'lexical'
 import { $createCodeNode, $isCodeNode } from '@lexical/code'
 import { useCollaborationContext } from '@lexical/react/LexicalCollaborationContext'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { mergeRegister } from '@lexical/utils'
-import { CONNECTED_COMMAND, TOGGLE_CONNECT_COMMAND } from '@lexical/yjs'
 import { INITIAL_SETTINGS } from '../../appSettings'
 import useFlashMessage from '../../hooks/useFlashMessage'
 import useModal from '../../hooks/useModal'
@@ -76,11 +74,11 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
   const [editor] = useLexicalComposerContext()
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
   const [isSpeechToText, setIsSpeechToText] = useState(false)
-  const [connected, setConnected] = useState(false)
   const [isEditorEmpty, setIsEditorEmpty] = useState(true)
   const [modal, showModal] = useModal()
   const showFlashMessage = useFlashMessage()
   const { isCollabActive } = useCollaborationContext()
+
   useEffect(() => {
     if (INITIAL_SETTINGS.isCollab) {
       return
@@ -93,21 +91,12 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
       }
     })
   }, [editor])
+
   useEffect(() => {
     return mergeRegister(
       editor.registerEditableListener(editable => {
         setIsEditable(editable)
-      }),
-      editor.registerCommand(
-        CONNECTED_COMMAND,
-        payload => {
-          const isConnected = payload
-          setConnected(isConnected)
-
-          return false
-        },
-        COMMAND_PRIORITY_EDITOR
-      )
+      })
     )
   }, [editor])
 
@@ -175,14 +164,15 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
     <div className='actions'>
       {SUPPORT_SPEECH_RECOGNITION && (
         <button
+          type='button'
           onClick={() => {
             editor.dispatchCommand(SPEECH_TO_TEXT_COMMAND, !isSpeechToText)
             setIsSpeechToText(!isSpeechToText)
           }}
-          className={
-            'action-button action-button-mic ' +
+          className={classNames(
+            'action-button action-button-mic',
             (isSpeechToText ? 'active' : '')
-          }
+          )}
           title='Speech To Text'
           aria-label={`${isSpeechToText ? 'Enable' : 'Disable'} speech to text`}
         >
@@ -190,6 +180,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
         </button>
       )}
       <button
+        type='button'
         className='action-button import'
         onClick={() => importFile(editor)}
         title='Import'
@@ -199,6 +190,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
       </button>
 
       <button
+        type='button'
         className='action-button export'
         onClick={() =>
           exportFile(editor, {
@@ -212,6 +204,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
         <i className='export' />
       </button>
       <button
+        type='button'
         className='action-button share'
         disabled={isCollabActive || INITIAL_SETTINGS.isCollab}
         onClick={() =>
@@ -230,6 +223,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
         <i className='share' />
       </button>
       <button
+        type='button'
         className='action-button clear'
         disabled={isEditorEmpty}
         onClick={() => {
@@ -243,6 +237,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
         <i className='clear' />
       </button>
       <button
+        type='button'
         className={`action-button ${!isEditable ? 'unlock' : 'lock'}`}
         onClick={() => {
           // Send latest editor state to commenting validation server
@@ -258,6 +253,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
         <i className={!isEditable ? 'unlock' : 'lock'} />
       </button>
       <button
+        type='button'
         className='action-button'
         onClick={handleMarkdownToggle}
         title='Convert From Markdown'
@@ -265,22 +261,6 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
       >
         <i className='markdown' />
       </button>
-      {isCollabActive && (
-        <button
-          className='action-button connect'
-          onClick={() => {
-            editor.dispatchCommand(TOGGLE_CONNECT_COMMAND, !connected)
-          }}
-          title={`${
-            connected ? 'Disconnect' : 'Connect'
-          } Collaborative Editing`}
-          aria-label={`${
-            connected ? 'Disconnect from' : 'Connect to'
-          } a collaborative editing server`}
-        >
-          <i className={connected ? 'disconnect' : 'connect'} />
-        </button>
-      )}
       {modal}
     </div>
   )

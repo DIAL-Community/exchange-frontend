@@ -6,43 +6,36 @@
  *
  */
 
-import './ImageNode.module.css';
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import {
-  $getNodeByKey, $getSelection, $isNodeSelection, $isRangeSelection,
-  $setSelection, CLICK_COMMAND, COMMAND_PRIORITY_LOW, createCommand,
-  DRAGSTART_COMMAND, KEY_BACKSPACE_COMMAND, KEY_DELETE_COMMAND,
-  KEY_ENTER_COMMAND, KEY_ESCAPE_COMMAND, LineBreakNode, ParagraphNode, RootNode,
-  SELECTION_CHANGE_COMMAND, TextNode,
-} from 'lexical';
-import { HashtagNode } from '@lexical/hashtag';
-import { LinkNode } from '@lexical/link';
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
-import {
-  useLexicalComposerContext,
-} from '@lexical/react/LexicalComposerContext';
-import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
-import { HashtagPlugin } from '@lexical/react/LexicalHashtagPlugin';
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
-import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer';
-import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
-import { useLexicalEditable } from '@lexical/react/useLexicalEditable';
-import {
-  useLexicalNodeSelection,
-} from '@lexical/react/useLexicalNodeSelection';
-import { mergeRegister } from '@lexical/utils';
-import { useSettings } from '../context/SettingsContext';
-import { useSharedHistoryContext } from '../context/SharedHistoryContext';
-import EmojisPlugin from '../plugins/EmojisPlugin/EmojisPlugin';
-import KeywordsPlugin from '../plugins/KeywordsPlugin/KeywordsPlugin';
-import LinkPlugin from '../plugins/LinkPlugin/LinkPlugin';
-import MentionsPlugin from '../plugins/MentionsPlugin/MentionsPlugin';
-import TreeViewPlugin from '../plugins/TreeViewPlugin/TreeViewPlugin';
-import ContentEditable from '../ui/ContentEditable';
-import ImageResizer from '../ui/ImageResizer';
-import { EmojiNode } from './EmojiNode';
-import { $isImageNode } from './ImageNode';
-import { KeywordNode } from './KeywordNode';
+  $getNodeByKey, $getSelection, $isNodeSelection, $isRangeSelection, $setSelection, CLICK_COMMAND, COMMAND_PRIORITY_LOW,
+  createCommand, DRAGSTART_COMMAND, KEY_BACKSPACE_COMMAND, KEY_DELETE_COMMAND, KEY_ENTER_COMMAND, KEY_ESCAPE_COMMAND,
+  LineBreakNode, ParagraphNode, RootNode, SELECTION_CHANGE_COMMAND, TextNode
+} from 'lexical'
+import { HashtagNode } from '@lexical/hashtag'
+import { LinkNode } from '@lexical/link'
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
+import { HashtagPlugin } from '@lexical/react/LexicalHashtagPlugin'
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer'
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
+import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
+import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection'
+import { mergeRegister } from '@lexical/utils'
+import { useSettings } from '../context/SettingsContext'
+import { useSharedHistoryContext } from '../context/SharedHistoryContext'
+import EmojisPlugin from '../plugins/EmojisPlugin/EmojisPlugin'
+import KeywordsPlugin from '../plugins/KeywordsPlugin/KeywordsPlugin'
+import LinkPlugin from '../plugins/LinkPlugin/LinkPlugin'
+import MentionsPlugin from '../plugins/MentionsPlugin/MentionsPlugin'
+import TreeViewPlugin from '../plugins/TreeViewPlugin/TreeViewPlugin'
+import ContentEditable from '../ui/ContentEditable'
+import ImageResizer from '../ui/ImageResizer'
+import { EmojiNode } from './EmojiNode'
+import { $isImageNode } from './ImageNode'
+import { KeywordNode } from './KeywordNode'
 
 const imageCache = new Set()
 

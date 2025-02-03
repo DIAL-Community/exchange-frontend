@@ -6,8 +6,6 @@
  *
  */
 
-import './ColorPicker.module.css'
-
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { calculateZoomLevel } from '@lexical/utils'
 import TextInput from './TextInput'

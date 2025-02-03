@@ -6,9 +6,6 @@
  *
  */
 
-import './Dialog.module.css'
-
-
 export function DialogButtonsList({ children }) {
   return <div className='DialogButtonsList'>{children}</div>
 }

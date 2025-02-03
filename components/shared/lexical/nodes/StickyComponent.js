@@ -6,8 +6,6 @@
  *
  */
 
-import './StickyNode.module.css'
-
 import { useEffect, useRef } from 'react'
 import { $getNodeByKey } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'

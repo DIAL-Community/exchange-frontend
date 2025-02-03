@@ -6,25 +6,21 @@
  *
  */
 
-import {
-  $createParagraphNode, $createTextNode, $getRoot, $isTextNode, TextNode,
-} from 'lexical';
-import { $createLinkNode } from '@lexical/link';
-import { $createListItemNode, $createListNode } from '@lexical/list';
-import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { $createHeadingNode, $createQuoteNode } from '@lexical/rich-text';
-import { FlashMessageContext } from './context/FlashMessageContext';
-import { SettingsContext, useSettings } from './context/SettingsContext';
-import { SharedHistoryContext } from './context/SharedHistoryContext';
-import { ToolbarContext } from './context/ToolbarContext';
-import Editor from './Editor';
-import PlaygroundNodes from './nodes/PlaygroundNodes';
-import { TableContext } from './plugins/TablePlugin';
-import { parseAllowedFontSize } from './plugins/ToolbarPlugin/fontSize';
-import TypingPerfPlugin from './plugins/TypingPerfPlugin/TypingPerfPlugin';
-import Settings from './Settings';
-import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme';
-import { parseAllowedColor } from './ui/ColorPicker';
+import { $createParagraphNode, $createTextNode, $getRoot, $isTextNode, TextNode } from 'lexical'
+import { $createLinkNode } from '@lexical/link'
+import { $createListItemNode, $createListNode } from '@lexical/list'
+import { LexicalComposer } from '@lexical/react/LexicalComposer'
+import { $createHeadingNode, $createQuoteNode } from '@lexical/rich-text'
+import { FlashMessageContext } from './context/FlashMessageContext'
+import { SettingsContext, useSettings } from './context/SettingsContext'
+import { SharedHistoryContext } from './context/SharedHistoryContext'
+import { ToolbarContext } from './context/ToolbarContext'
+import Editor from './Editor'
+import PlaygroundNodes from './nodes/PlaygroundNodes'
+import { TableContext } from './plugins/TablePlugin'
+import { parseAllowedFontSize } from './plugins/ToolbarPlugin/FontSize'
+import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme'
+import { parseAllowedColor } from './ui/ColorPicker'
 
 console.warn(
   `
@@ -191,15 +187,11 @@ function buildImportMap() {
 
 function App() {
   const {
-    settings: { isCollab, emptyEditor, measureTypingPerf }
+    settings: { emptyEditor }
   } = useSettings()
 
   const initialConfig = {
-    editorState: isCollab
-      ? null
-      : emptyEditor
-        ? undefined
-        : $prepopulatedRichText,
+    editorState: emptyEditor ? undefined : $prepopulatedRichText,
     html: { import: buildImportMap() },
     namespace: 'Playground',
     nodes: [...PlaygroundNodes],
@@ -217,8 +209,6 @@ function App() {
             <div className='editor-shell'>
               <Editor />
             </div>
-            <Settings />
-            {measureTypingPerf ? <TypingPerfPlugin /> : null}
           </ToolbarContext>
         </TableContext>
       </SharedHistoryContext>

@@ -6,24 +6,19 @@
  *
  */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 import {
-  $createParagraphNode, $createRangeSelection, $getSelection, $insertNodes,
-  $isNodeSelection, $isRootOrShadowRoot, $setSelection, COMMAND_PRIORITY_EDITOR,
-  COMMAND_PRIORITY_HIGH, COMMAND_PRIORITY_LOW, createCommand, DRAGOVER_COMMAND,
-  DRAGSTART_COMMAND, DROP_COMMAND, getDOMSelectionFromTarget, isHTMLElement,
-} from 'lexical';
-import {
-  useLexicalComposerContext,
-} from '@lexical/react/LexicalComposerContext';
-import { $wrapNodeInElement, mergeRegister } from '@lexical/utils';
-import {
-  $createImageNode, $isImageNode, ImageNode,
-} from '../../nodes/ImageNode';
-import Button from '../../ui/Button';
-import { DialogActions, DialogButtonsList } from '../../ui/Dialog';
-import FileInput from '../../ui/FileInput';
-import TextInput from '../../ui/TextInput';
+  $createParagraphNode, $createRangeSelection, $getSelection, $insertNodes, $isNodeSelection, $isRootOrShadowRoot,
+  $setSelection, COMMAND_PRIORITY_EDITOR, COMMAND_PRIORITY_HIGH, COMMAND_PRIORITY_LOW, createCommand, DRAGOVER_COMMAND,
+  DRAGSTART_COMMAND, DROP_COMMAND, getDOMSelectionFromTarget, isHTMLElement
+} from 'lexical'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { $wrapNodeInElement, mergeRegister } from '@lexical/utils'
+import { $createImageNode, $isImageNode, ImageNode } from '../../nodes/ImageNode'
+import Button from '../../ui/Button'
+import { DialogActions, DialogButtonsList } from '../../ui/Dialog'
+import FileInput from '../../ui/FileInput'
+import TextInput from '../../ui/TextInput'
 
 export const INSERT_IMAGE_COMMAND = createCommand('INSERT_IMAGE_COMMAND')
 

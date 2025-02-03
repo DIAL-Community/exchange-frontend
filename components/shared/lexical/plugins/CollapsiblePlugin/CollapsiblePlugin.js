@@ -6,7 +6,6 @@
  *
  */
 
-import './CollapsiblePlugin.module.css'
 import { useEffect } from 'react'
 import {
   $createParagraphNode, $getSelection, $isRangeSelection, COMMAND_PRIORITY_LOW, createCommand, DELETE_CHARACTER_COMMAND,

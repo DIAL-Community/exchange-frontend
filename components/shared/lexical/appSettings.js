@@ -8,9 +8,9 @@
 
 export const DEFAULT_SETTINGS = {
   disableBeforeInput: false,
-  emptyEditor: false,
+  emptyEditor: true,
   hasLinkAttributes: false,
-  isAutocomplete: false,
+  isAutocomplete: true,
   isCharLimit: false,
   isCharLimitUtf8: false,
   isCollab: false,

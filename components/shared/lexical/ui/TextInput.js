@@ -6,9 +6,6 @@
  *
  */
 
-import './Input.module.css'
-
-
 export default function TextInput({
   label,
   value,

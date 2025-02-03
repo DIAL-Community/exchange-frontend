@@ -6,7 +6,6 @@
  *
  */
 
-
 import ColorPicker from './ColorPicker'
 import DropDown from './DropDown'
 

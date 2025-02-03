@@ -6,7 +6,6 @@
  *
  */
 
-
 import { useEffect, useRef } from 'react'
 import katex from 'katex'
 

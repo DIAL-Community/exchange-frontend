@@ -6,12 +6,10 @@
  *
  */
 
-import './fontSize.module.css'
-
+import { useEffect, useState } from 'react'
 import { MAX_ALLOWED_FONT_SIZE, MIN_ALLOWED_FONT_SIZE } from '../../context/ToolbarContext'
 import { SHORTCUTS } from '../ShortcutsPlugin/ShortcutsUtils'
 import { updateFontSize, updateFontSizeInSelection, UpdateFontSizeType } from './ToolbarUtils'
-import { useEffect, useState } from 'react'
 
 export function parseAllowedFontSize(input) {
   const match = input.match(/^(\d+(?:\.\d+)?)px$/)

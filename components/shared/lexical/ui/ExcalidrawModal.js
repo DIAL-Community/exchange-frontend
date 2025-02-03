@@ -6,12 +6,10 @@
  *
  */
 
-import './ExcalidrawModal.module.css'
-
-import { isDOMNode } from 'lexical'
-import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { isDOMNode } from 'lexical'
+import dynamic from 'next/dynamic'
 import Button from './Button'
 import Modal from './Modal'
 

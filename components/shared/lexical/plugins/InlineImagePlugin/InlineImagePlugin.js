@@ -6,7 +6,6 @@
  *
  */
 
-import './InlineImagePlugin.module.css'
 import { useEffect, useRef, useState } from 'react'
 import {
   $createParagraphNode, $createRangeSelection, $getSelection, $insertNodes, $isNodeSelection, $isRootOrShadowRoot,

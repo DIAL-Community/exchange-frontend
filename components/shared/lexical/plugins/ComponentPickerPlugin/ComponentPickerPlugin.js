@@ -6,46 +6,30 @@
  *
  */
 
-import { useCallback, useMemo, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { useCallback, useMemo, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { $createParagraphNode, $getSelection, $isRangeSelection, FORMAT_ELEMENT_COMMAND } from 'lexical'
+import { $createCodeNode } from '@lexical/code'
+import { INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND } from '@lexical/list'
+import { INSERT_EMBED_COMMAND } from '@lexical/react/LexicalAutoEmbedPlugin'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode'
 import {
-  $createParagraphNode, $getSelection, $isRangeSelection,
-  FORMAT_ELEMENT_COMMAND,
-} from 'lexical';
-import { $createCodeNode } from '@lexical/code';
-import {
-  INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND,
-  INSERT_UNORDERED_LIST_COMMAND,
-} from '@lexical/list';
-import { INSERT_EMBED_COMMAND } from '@lexical/react/LexicalAutoEmbedPlugin';
-import {
-  useLexicalComposerContext,
-} from '@lexical/react/LexicalComposerContext';
-import {
-  INSERT_HORIZONTAL_RULE_COMMAND,
-} from '@lexical/react/LexicalHorizontalRuleNode';
-import {
-  LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch,
-} from '@lexical/react/LexicalTypeaheadMenuPlugin';
-import { $createHeadingNode, $createQuoteNode } from '@lexical/rich-text';
-import { $setBlocksType } from '@lexical/selection';
-import { INSERT_TABLE_COMMAND } from '@lexical/table';
-import useModal from '../../hooks/useModal';
-import { EmbedConfigs } from '../AutoEmbedPlugin/AutoEmbedPlugin';
-import {
-  INSERT_COLLAPSIBLE_COMMAND,
-} from '../CollapsiblePlugin/CollapsiblePlugin';
-import { InsertEquationDialog } from '../EquationsPlugin/EquationsPlugin';
-import {
-  INSERT_EXCALIDRAW_COMMAND,
-} from '../ExcalidrawPlugin/ExcalidrawPlugin';
-import {
-  INSERT_IMAGE_COMMAND, InsertImageDialog,
-} from '../ImagesPlugin/ImagesPlugin';
-import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog';
-import { INSERT_PAGE_BREAK } from '../PageBreakPlugin/PageBreakPlugin';
-import { InsertPollDialog } from '../PollPlugin/PollPlugin';
-import { InsertTableDialog } from '../TablePlugin';
+  LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch
+} from '@lexical/react/LexicalTypeaheadMenuPlugin'
+import { $createHeadingNode, $createQuoteNode } from '@lexical/rich-text'
+import { $setBlocksType } from '@lexical/selection'
+import { INSERT_TABLE_COMMAND } from '@lexical/table'
+import useModal from '../../hooks/useModal'
+import { EmbedConfigs } from '../AutoEmbedPlugin/AutoEmbedPlugin'
+import { INSERT_COLLAPSIBLE_COMMAND } from '../CollapsiblePlugin/CollapsiblePlugin'
+import { InsertEquationDialog } from '../EquationsPlugin/EquationsPlugin'
+import { INSERT_EXCALIDRAW_COMMAND } from '../ExcalidrawPlugin/ExcalidrawPlugin'
+import { INSERT_IMAGE_COMMAND, InsertImageDialog } from '../ImagesPlugin/ImagesPlugin'
+import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog'
+import { INSERT_PAGE_BREAK } from '../PageBreakPlugin/PageBreakPlugin'
+import { InsertPollDialog } from '../PollPlugin/PollPlugin'
+import { InsertTableDialog } from '../TablePlugin'
 
 class ComponentPickerOption extends MenuOption {
   constructor(title, options) {

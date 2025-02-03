@@ -6,9 +6,6 @@
  *
  */
 
-import './Select.module.css'
-
-
 export default function Select({ children, label, className, ...other }) {
   return (
     <div className='Input__wrapper'>

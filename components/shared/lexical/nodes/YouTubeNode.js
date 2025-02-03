@@ -6,7 +6,6 @@
  *
  */
 
-
 import { BlockWithAlignableContents } from '@lexical/react/LexicalBlockWithAlignableContents'
 import { DecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode'
 

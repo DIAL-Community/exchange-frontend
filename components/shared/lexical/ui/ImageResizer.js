@@ -6,7 +6,6 @@
  *
  */
 
-
 import { useRef } from 'react'
 import { calculateZoomLevel } from '@lexical/utils'
 

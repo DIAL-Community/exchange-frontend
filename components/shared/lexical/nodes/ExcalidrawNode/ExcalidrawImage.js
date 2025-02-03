@@ -6,7 +6,6 @@
  *
  */
 
-
 import { useEffect, useState } from 'react'
 import { exportToSvg } from '@excalidraw/excalidraw'
 

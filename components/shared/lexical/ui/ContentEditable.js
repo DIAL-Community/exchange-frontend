@@ -6,8 +6,6 @@
  *
  */
 
-import './ContentEditable.module.css'
-
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 
 export default function LexicalContentEditable({

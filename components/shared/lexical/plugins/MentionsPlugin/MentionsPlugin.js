@@ -6,9 +6,8 @@
  *
  */
 
-
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import * as ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import {
   LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch
@@ -653,7 +652,7 @@ export default function NewMentionsPlugin() {
         { selectedIndex, selectOptionAndCleanUp, setHighlightedIndex }
       ) =>
         anchorElementRef.current && results.length
-          ? ReactDOM.createPortal(
+          ? createPortal(
             <div className='typeahead-popover mentions-menu'>
               <ul>
                 {options.map((option, i) => (

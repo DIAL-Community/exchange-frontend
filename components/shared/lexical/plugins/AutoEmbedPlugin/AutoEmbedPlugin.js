@@ -6,9 +6,8 @@
  *
  */
 
-
 import { useMemo, useState } from 'react'
-import * as ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 import { AutoEmbedOption, LexicalAutoEmbedPlugin, URL_MATCHER } from '@lexical/react/LexicalAutoEmbedPlugin'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import useModal from '../../hooks/useModal'
@@ -246,7 +245,7 @@ export default function AutoEmbedPlugin() {
           }
         ) =>
           anchorElementRef.current
-            ? ReactDOM.createPortal(
+            ? createPortal(
               <div
                 className='typeahead-popover auto-embed-menu'
                 style={{

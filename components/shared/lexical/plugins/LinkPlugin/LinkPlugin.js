@@ -6,7 +6,6 @@
  *
  */
 
-
 import { LinkPlugin as LexicalLinkPlugin } from '@lexical/react/LexicalLinkPlugin'
 import { validateUrl } from '../../utils/url'
 

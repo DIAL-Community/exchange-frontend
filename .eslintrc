@@ -23,8 +23,7 @@
   ],
   "ignorePatterns": [
     "build/",
-    "translations/",
-    "components/shared/lexical"
+    "translations/"
   ],
   "globals": {
     "fetch": false,

@@ -6,8 +6,6 @@
  *
  */
 
-import './Modal.module.css'
-
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { isDOMNode } from 'lexical'

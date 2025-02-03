@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import './PrettierButton.module.css'
+
 import { useState } from 'react'
 import { $getNearestNodeFromDOMNode } from 'lexical'
 import { $isCodeNode } from '@lexical/code'

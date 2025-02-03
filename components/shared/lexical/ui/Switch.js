@@ -6,7 +6,6 @@
  *
  */
 
-
 import { useMemo } from 'react'
 
 export default function Switch({ checked, onClick, text, id }) {

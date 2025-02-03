@@ -6,8 +6,6 @@
  *
  */
 
-import './InlineImageNode.module.css'
-
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import {
   $getNodeByKey, $getSelection, $isNodeSelection, $setSelection, CLICK_COMMAND, COMMAND_PRIORITY_LOW, DRAGSTART_COMMAND,

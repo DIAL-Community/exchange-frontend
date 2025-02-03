@@ -29,7 +29,7 @@ const VOICE_COMMANDS = {
 
 // export const SUPPORT_SPEECH_RECOGNITION =
 //   'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
-
+// TODO: Need to resolve this flag.
 export const SUPPORT_SPEECH_RECOGNITION = true
 
 function SpeechToTextPlugin() {

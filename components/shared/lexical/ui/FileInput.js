@@ -6,9 +6,6 @@
  *
  */
 
-import './Input.module.css'
-
-
 export default function FileInput({
   accept,
   label,

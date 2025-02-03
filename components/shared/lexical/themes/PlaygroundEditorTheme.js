@@ -6,8 +6,6 @@
  *
  */
 
-import './PlaygroundEditorTheme.module.css'
-
 const theme = {
   autocomplete: 'PlaygroundEditorTheme__autocomplete',
   blockCursor: 'PlaygroundEditorTheme__blockCursor',

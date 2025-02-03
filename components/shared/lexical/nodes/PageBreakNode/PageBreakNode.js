@@ -6,8 +6,6 @@
  *
  */
 
-import './PageBreakNode.module.css'
-
 import { useCallback, useEffect } from 'react'
 import {
   $getSelection, $isNodeSelection, CLICK_COMMAND, COMMAND_PRIORITY_HIGH, COMMAND_PRIORITY_LOW, DecoratorNode,

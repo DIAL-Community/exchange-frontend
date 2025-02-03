@@ -1,6 +1,3 @@
-
-import { useState } from 'react'
-import { $getNearestNodeFromDOMNode, $getSelection, $setSelection } from 'lexical'
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -8,6 +5,9 @@ import { $getNearestNodeFromDOMNode, $getSelection, $setSelection } from 'lexica
  * LICENSE file in the root directory of this source tree.
  *
  */
+
+import { useState } from 'react'
+import { $getNearestNodeFromDOMNode, $getSelection, $setSelection } from 'lexical'
 import { $isCodeNode } from '@lexical/code'
 import { useDebounce } from '../../CodeActionMenuUtils'
 

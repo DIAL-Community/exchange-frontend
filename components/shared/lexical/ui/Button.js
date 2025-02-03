@@ -6,8 +6,6 @@
  *
  */
 
-import './Button.module.css'
-
 import joinClasses from '../utils/joinClasses'
 
 export default function Button({

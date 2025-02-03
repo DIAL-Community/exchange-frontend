@@ -21,8 +21,8 @@ import {
   $unmergeCell, getTableElement, getTableObserverFromTableElement, TableCellHeaderStates, TableCellNode
 } from '@lexical/table'
 import { mergeRegister } from '@lexical/utils'
-import invariant from '../../shared/invariant'
 import useModal from '../../hooks/useModal'
+import invariant from '../../shared/invariant'
 import ColorPicker from '../../ui/ColorPicker'
 
 function computeSelectionCount(selection) {

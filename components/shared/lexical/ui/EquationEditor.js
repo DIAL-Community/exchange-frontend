@@ -6,7 +6,6 @@
  *
  */
 
-import './EquationEditor.module.css'
 import { forwardRef } from 'react'
 import { isHTMLElement } from 'lexical'
 

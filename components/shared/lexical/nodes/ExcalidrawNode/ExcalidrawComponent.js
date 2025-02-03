@@ -6,7 +6,6 @@
  *
  */
 
-
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   $getNodeByKey, CLICK_COMMAND, COMMAND_PRIORITY_LOW, isDOMNode, KEY_BACKSPACE_COMMAND, KEY_DELETE_COMMAND
