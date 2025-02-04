@@ -6,9 +6,8 @@
  *
  */
 
-import * as http from 'http'
+import { createServer } from 'http'
 import { $getRoot, $isElementNode } from 'lexical'
-import * as url from 'url'
 import { createHeadlessEditor } from '@lexical/headless'
 import { $isMarkNode, $unwrapMarkNode } from '@lexical/mark'
 import PlaygroundNodes from '../nodes/PlaygroundNodes'
@@ -91,8 +90,8 @@ const validateEditorState = async stringifiedJSON => {
   return success
 }
 
-const server = http.createServer(async (req, res) => {
-  const pathname = url.parse(req.url).pathname
+const server = createServer(async (req, res) => {
+  const pathname = URL.parse(req.url).pathname
   const { method } = req
   res.setHeader('Content-Type', 'application/json')
   res.setHeader('Access-Control-Allow-Origin', '*')
