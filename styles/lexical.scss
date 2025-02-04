@@ -9,7 +9,7 @@
 
 .editor-shell {
   @apply w-full;
-  @apply border-r border-l;
+  @apply border-r border-l border-b;
   margin: 20px auto;
   border-radius: 2px;
   color: #000;
@@ -1330,7 +1330,7 @@ button.action-button:disabled {
   padding: 4px;
   vertical-align: middle;
   overflow: auto;
-  height: 4rem;
+  height: 3rem;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -3212,7 +3212,7 @@ button.font-increment {
   position: relative;
   outline: 0;
   padding: 8px 28px 40px;
-  min-height: 150px;
+  min-height: 15rem;
 }
 @media (max-width: 1025px) {
   .ContentEditable__root {

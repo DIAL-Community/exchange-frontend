@@ -6,6 +6,8 @@
  *
  */
 
+import { isDebugLoggingEnabled } from '../../utils/utilities'
+
 export const DEFAULT_SETTINGS = {
   disableBeforeInput: false,
   emptyEditor: true,
@@ -23,7 +25,7 @@ export const DEFAULT_SETTINGS = {
   shouldUseLexicalContextMenu: false,
   showNestedEditorTreeView: false,
   showTableOfContents: false,
-  showTreeView: true,
+  showTreeView: isDebugLoggingEnabled(),
   tableCellBackgroundColor: true,
   tableCellMerge: true,
   tableHorizontalScroll: true
