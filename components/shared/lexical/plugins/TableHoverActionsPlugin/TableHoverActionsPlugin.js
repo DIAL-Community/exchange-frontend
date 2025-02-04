@@ -107,7 +107,7 @@ function TableHoverActionsContainer({ anchorElem }) {
         if (
           parentElement &&
           parentElement.classList.contains(
-            'PlaygroundEditorTheme__tableScrollableWrapper'
+            'ExchangeLexicalTheme__tableScrollableWrapper'
           )
         ) {
           tableHasScroll = parentElement.scrollWidth > parentElement.clientWidth
@@ -246,7 +246,7 @@ function TableHoverActionsContainer({ anchorElem }) {
       {isShownRow && (
         <button
           type='button'
-          className={'PlaygroundEditorTheme__tableAddRows'}
+          className={'ExchangeLexicalTheme__tableAddRows'}
           style={{ ...position }}
           onClick={() => insertAction(true)}
         />
@@ -254,7 +254,7 @@ function TableHoverActionsContainer({ anchorElem }) {
       {isShownColumn && (
         <button
           type='button'
-          className={'PlaygroundEditorTheme__tableAddColumns'}
+          className={'ExchangeLexicalTheme__tableAddColumns'}
           style={{ ...position }}
           onClick={() => insertAction(false)}
         />
@@ -268,13 +268,13 @@ function getMouseInfo(event) {
 
   if (isHTMLElement(target)) {
     const tableDOMNode = target.closest(
-      'td.PlaygroundEditorTheme__tableCell, th.PlaygroundEditorTheme__tableCell'
+      'td.ExchangeLexicalTheme__tableCell, th.ExchangeLexicalTheme__tableCell'
     )
 
     const isOutside = !(
       tableDOMNode ||
-      target.closest('button.PlaygroundEditorTheme__tableAddRows') ||
-      target.closest('button.PlaygroundEditorTheme__tableAddColumns') ||
+      target.closest('button.ExchangeLexicalTheme__tableAddRows') ||
+      target.closest('button.ExchangeLexicalTheme__tableAddColumns') ||
       target.closest('div.TableCellResizer__resizer')
     )
 

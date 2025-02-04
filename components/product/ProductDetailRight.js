@@ -356,18 +356,18 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
           </div>
           <div className='text-sm flex flex-row gap-2'>
             {format('ui.product.pricing.detailPricing')}:
-            <div className='inline'>
-              {product.pricingDetails
-                ? <HtmlViewer
-                  className='-mb-12'
-                  initialContent={product?.pricingDetails}
-                  editorId='pricing-details'
-                />
-                : <div className='font-semibold inline'>
-                  {format('general.na')}
-                </div>
-              }
-            </div>
+          </div>
+          <div className='inline'>
+            {product.pricingDetails
+              ? <HtmlViewer
+                className='-mb-12'
+                initialContent={product?.pricingDetails}
+                editorId='pricing-details'
+              />
+              : <div className='font-semibold inline'>
+                {format('general.na')}
+              </div>
+            }
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />

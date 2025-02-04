@@ -18,6 +18,26 @@ import { datasetPaginationAttribute, paginatedDatasets } from './data/DatasetMai
 mockTenantApi()
 mockNextUseRouter()
 describe('Unit tests for the dataset detail page.', () => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation(query => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // Deprecated
+      removeListener: jest.fn(), // Deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn()
+    }))
+  })
+
+  global.ResizeObserver = jest.fn().mockImplementation(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+    disconnect: jest.fn()
+  }))
+
   const mockDatasetPolicies = generateMockApolloData(
     DATASET_POLICY_QUERY,
     { 'slug': 'xchange-graph-query-context-policies' },

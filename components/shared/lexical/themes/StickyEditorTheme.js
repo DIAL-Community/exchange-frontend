@@ -6,7 +6,7 @@
  *
  */
 
-import baseTheme from './PlaygroundEditorTheme'
+import baseTheme from './ExchangeLexicalTheme'
 
 const theme = {
   ...baseTheme,

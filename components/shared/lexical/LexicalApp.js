@@ -16,7 +16,7 @@ import LexicalEditor from './LexicalEditor'
 import PlaygroundNodes from './nodes/PlaygroundNodes'
 import { TableContext } from './plugins/TablePlugin'
 import { parseAllowedFontSize } from './plugins/ToolbarPlugin/FontSize'
-import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme'
+import ExchangeLexicalTheme from './themes/ExchangeLexicalTheme'
 import { parseAllowedColor } from './ui/ColorPicker'
 
 console.warn(
@@ -108,7 +108,7 @@ function LexicalInternal({ initialHtml, onHtmlChanged }) {
     onError: error => {
       throw error
     },
-    theme: PlaygroundEditorTheme
+    theme: ExchangeLexicalTheme
   }
 
   return (

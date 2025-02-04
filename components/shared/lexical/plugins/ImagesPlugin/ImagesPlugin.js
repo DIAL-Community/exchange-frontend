@@ -132,6 +132,8 @@ export function InsertImageDialog({ activeEditor, onClose }) {
     <>
       {!mode && (
         <DialogButtonsList>
+          {
+          /*
           <Button
             data-test-id='image-modal-option-sample'
             onClick={() =>
@@ -151,6 +153,8 @@ export function InsertImageDialog({ activeEditor, onClose }) {
           >
             Sample
           </Button>
+          */
+          }
           <Button
             data-test-id='image-modal-option-url'
             onClick={() => setMode('url')}

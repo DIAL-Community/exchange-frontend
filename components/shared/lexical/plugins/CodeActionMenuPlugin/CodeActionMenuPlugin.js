@@ -145,7 +145,7 @@ function getMouseInfo(event) {
   const target = event.target
 
   if (isHTMLElement(target)) {
-    const codeDOMNode = target.closest('code.PlaygroundEditorTheme__code')
+    const codeDOMNode = target.closest('code.ExchangeLexicalTheme__code')
     const isOutside = !(
       codeDOMNode || target.closest('div.code-action-menu-container')
     )

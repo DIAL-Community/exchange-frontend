@@ -8,9 +8,9 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import {
-  $getNodeByKey, $getRoot, $getSelection, $isElementNode, $isRangeSelection, $isRootOrShadowRoot, CAN_REDO_COMMAND,
-  CAN_UNDO_COMMAND, COMMAND_PRIORITY_CRITICAL, FORMAT_ELEMENT_COMMAND, FORMAT_TEXT_COMMAND, INDENT_CONTENT_COMMAND,
-  OUTDENT_CONTENT_COMMAND, REDO_COMMAND, SELECTION_CHANGE_COMMAND, UNDO_COMMAND
+  $getNodeByKey, $getSelection, $isElementNode, $isRangeSelection, $isRootOrShadowRoot, CAN_REDO_COMMAND, CAN_UNDO_COMMAND,
+  COMMAND_PRIORITY_CRITICAL, FORMAT_ELEMENT_COMMAND, FORMAT_TEXT_COMMAND, INDENT_CONTENT_COMMAND, OUTDENT_CONTENT_COMMAND,
+  REDO_COMMAND, SELECTION_CHANGE_COMMAND, UNDO_COMMAND
 } from 'lexical'
 import { $isCodeNode, CODE_LANGUAGE_FRIENDLY_NAME_MAP, CODE_LANGUAGE_MAP, getLanguageFriendlyName } from '@lexical/code'
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
@@ -23,7 +23,6 @@ import { $isTableNode, $isTableSelection } from '@lexical/table'
 import { $findMatchingParent, $getNearestNodeOfType, $isEditorIsNestedEditor, mergeRegister } from '@lexical/utils'
 import { blockTypeToBlockName, useToolbarState } from '../../context/ToolbarContext'
 import useModal from '../../hooks/useModal'
-import { $createStickyNode } from '../../nodes/StickyNode'
 import { IS_APPLE } from '../../shared/environment'
 import DropDown, { DropDownItem } from '../../ui/DropDown'
 import DropdownColorPicker from '../../ui/DropdownColorPicker'
@@ -31,9 +30,7 @@ import { getSelectedNode } from '../../utils/getSelectedNode'
 import { sanitizeUrl } from '../../utils/url'
 import { EmbedConfigs } from '../AutoEmbedPlugin/AutoEmbedPlugin'
 import { INSERT_COLLAPSIBLE_COMMAND } from '../CollapsiblePlugin/CollapsiblePlugin'
-import { InsertEquationDialog } from '../EquationsPlugin/EquationsPlugin'
-import { INSERT_EXCALIDRAW_COMMAND } from '../ExcalidrawPlugin/ExcalidrawPlugin'
-import { INSERT_IMAGE_COMMAND, InsertImageDialog } from '../ImagesPlugin/ImagesPlugin'
+import { InsertImageDialog } from '../ImagesPlugin/ImagesPlugin'
 import { InsertInlineImageDialog } from '../InlineImagePlugin/InlineImagePlugin'
 import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog'
 import { INSERT_PAGE_BREAK } from '../PageBreakPlugin/PageBreakPlugin'
@@ -648,9 +645,12 @@ export default function ToolbarPlugin({
     },
     [activeEditor, selectedElementKey]
   )
+
+  /*
   const insertGifOnClick = payload => {
     activeEditor.dispatchCommand(INSERT_IMAGE_COMMAND, payload)
   }
+  */
 
   const canViewerSeeInsertDropdown = !toolbarState.isImageCaption
   const canViewerSeeInsertCodeButton = !toolbarState.isImageCaption
@@ -1034,6 +1034,8 @@ export default function ToolbarPlugin({
                 <i className='icon image' />
                 <span className='text'>Inline Image</span>
               </DropDownItem>
+              {
+              /*
               <DropDownItem
                 onClick={() =>
                   insertGifOnClick({
@@ -1058,6 +1060,8 @@ export default function ToolbarPlugin({
                 <i className='icon diagram-2' />
                 <span className='text'>Excalidraw</span>
               </DropDownItem>
+              */
+              }
               <DropDownItem
                 onClick={() => {
                   showModal('Insert Table', onClose => (
@@ -1100,7 +1104,8 @@ export default function ToolbarPlugin({
                 <i className='icon columns' />
                 <span className='text'>Columns Layout</span>
               </DropDownItem>
-
+              {
+              /*
               <DropDownItem
                 onClick={() => {
                   showModal('Insert Equation', onClose => (
@@ -1128,6 +1133,8 @@ export default function ToolbarPlugin({
                 <i className='icon sticky' />
                 <span className='text'>Sticky Note</span>
               </DropDownItem>
+              */
+              }
               <DropDownItem
                 onClick={() => {
                   editor.dispatchCommand(
