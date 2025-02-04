@@ -646,12 +646,6 @@ export default function ToolbarPlugin({
     [activeEditor, selectedElementKey]
   )
 
-  /*
-  const insertGifOnClick = payload => {
-    activeEditor.dispatchCommand(INSERT_IMAGE_COMMAND, payload)
-  }
-  */
-
   const canViewerSeeInsertDropdown = !toolbarState.isImageCaption
   const canViewerSeeInsertCodeButton = !toolbarState.isImageCaption
 
@@ -1034,34 +1028,6 @@ export default function ToolbarPlugin({
                 <i className='icon image' />
                 <span className='text'>Inline Image</span>
               </DropDownItem>
-              {
-              /*
-              <DropDownItem
-                onClick={() =>
-                  insertGifOnClick({
-                    altText: 'Cat typing on a laptop',
-                    src: '/lexical/cat-typing.gif'
-                  })
-                }
-                className='item'
-              >
-                <i className='icon gif' />
-                <span className='text'>GIF</span>
-              </DropDownItem>
-              <DropDownItem
-                onClick={() => {
-                  activeEditor.dispatchCommand(
-                    INSERT_EXCALIDRAW_COMMAND,
-                    undefined
-                  )
-                }}
-                className='item'
-              >
-                <i className='icon diagram-2' />
-                <span className='text'>Excalidraw</span>
-              </DropDownItem>
-              */
-              }
               <DropDownItem
                 onClick={() => {
                   showModal('Insert Table', onClose => (
@@ -1104,37 +1070,6 @@ export default function ToolbarPlugin({
                 <i className='icon columns' />
                 <span className='text'>Columns Layout</span>
               </DropDownItem>
-              {
-              /*
-              <DropDownItem
-                onClick={() => {
-                  showModal('Insert Equation', onClose => (
-                    <InsertEquationDialog
-                      activeEditor={activeEditor}
-                      onClose={onClose}
-                    />
-                  ))
-                }}
-                className='item'
-              >
-                <i className='icon equation' />
-                <span className='text'>Equation</span>
-              </DropDownItem>
-              <DropDownItem
-                onClick={() => {
-                  editor.update(() => {
-                    const root = $getRoot()
-                    const stickyNode = $createStickyNode(0, 0)
-                    root.append(stickyNode)
-                  })
-                }}
-                className='item'
-              >
-                <i className='icon sticky' />
-                <span className='text'>Sticky Note</span>
-              </DropDownItem>
-              */
-              }
               <DropDownItem
                 onClick={() => {
                   editor.dispatchCommand(
@@ -1177,5 +1112,9 @@ export default function ToolbarPlugin({
     </div>
   )
 
-  return toolbarState.blockType === 'code' ? codeToolbar : standardToolbar
+  return !editor.isEditable()
+    ? null
+    : toolbarState.blockType === 'code'
+      ? codeToolbar
+      : standardToolbar
 }

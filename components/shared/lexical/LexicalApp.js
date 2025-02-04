@@ -100,8 +100,9 @@ function buildImportMap() {
   return importMap
 }
 
-function LexicalInternal({ initialHtml, onHtmlChanged }) {
+function LexicalInternal({ editable, initialHtml, onHtmlChanged }) {
   const initialConfig = {
+    editable,
     html: { import: buildImportMap() },
     namespace: 'Exchange Lexical Playground',
     nodes: [...PlaygroundNodes],
@@ -117,7 +118,10 @@ function LexicalInternal({ initialHtml, onHtmlChanged }) {
         <TableContext>
           <ToolbarContext>
             <div className='editor-shell'>
-              <LexicalEditor initialHtml={initialHtml} onHtmlChanged={onHtmlChanged} />
+              <LexicalEditor
+                initialHtml={initialHtml}
+                onHtmlChanged={onHtmlChanged}
+              />
             </div>
           </ToolbarContext>
         </TableContext>
@@ -126,11 +130,15 @@ function LexicalInternal({ initialHtml, onHtmlChanged }) {
   )
 }
 
-export default function LexicalApp({ initialHtml, onHtmlChanged }) {
+export default function LexicalApp({ editable, initialHtml, onHtmlChanged }) {
   return (
     <SettingsContext>
       <FlashMessageContext>
-        <LexicalInternal initialHtml={initialHtml} onHtmlChanged={onHtmlChanged} />
+        <LexicalInternal
+          editable={editable}
+          initialHtml={initialHtml}
+          onHtmlChanged={onHtmlChanged}
+        />
       </FlashMessageContext>
     </SettingsContext>
   )

@@ -11,7 +11,6 @@ import classNames from 'classnames'
 import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND } from 'lexical'
 import { $createCodeNode, $isCodeNode } from '@lexical/code'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { mergeRegister } from '@lexical/utils'
 import useModal from '../../hooks/useModal'
 import Button from '../../ui/Button'
 import { PLAYGROUND_TRANSFORMERS } from '../MarkdownTransformers/MarkdownTransformers'
@@ -19,74 +18,15 @@ import { SPEECH_TO_TEXT_COMMAND, SUPPORT_SPEECH_RECOGNITION } from '../SpeechToT
 import { exportFile, importFile } from './LexicalFile'
 import { $convertFromMarkdownString, $convertToMarkdownString } from './LexicalMarkdown'
 
-async function sendEditorState(editor) {
-  const stringifiedEditorState = JSON.stringify(editor.getEditorState())
-  try {
-    await fetch('http://localhost:1235/setEditorState', {
-      body: stringifiedEditorState,
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json'
-      },
-      method: 'POST'
-    })
-  } catch {
-    // NO-OP
-  }
-}
-
-async function validateEditorState(editor) {
-  const stringifiedEditorState = JSON.stringify(editor.getEditorState())
-  let response = null
-  try {
-    response = await fetch('http://localhost:1235/validateEditorState', {
-      body: stringifiedEditorState,
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json'
-      },
-      method: 'POST'
-    })
-  } catch {
-    // NO-OP
-  }
-
-  if (response !== null && response.status === 403) {
-    throw new Error(
-      'Editor state validation failed! Server did not accept changes.'
-    )
-  }
-}
-
 export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
   const [editor] = useLexicalComposerContext()
-  const [isEditable, setIsEditable] = useState(() => editor.isEditable())
   const [isSpeechToText, setIsSpeechToText] = useState(false)
   const [isEditorEmpty, setIsEditorEmpty] = useState(true)
   const [modal, showModal] = useModal()
 
   useEffect(() => {
-    return mergeRegister(
-      editor.registerEditableListener(editable => {
-        setIsEditable(editable)
-      })
-    )
-  }, [editor])
-
-  useEffect(() => {
     return editor.registerUpdateListener(
-      ({ dirtyElements, tags }) => {
-        // If we are in read only mode, send the editor state
-        // to server and ask for validation if possible.
-        if (
-          !isEditable &&
-          dirtyElements.size > 0 &&
-          !tags.has('historic') &&
-          !tags.has('collaboration')
-        ) {
-          validateEditorState(editor)
-        }
-
+      () => {
         editor.getEditorState().read(() => {
           const root = $getRoot()
           const children = root.getChildren()
@@ -104,7 +44,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
         })
       }
     )
-  }, [editor, isEditable])
+  }, [editor])
 
   const handleMarkdownToggle = useCallback(() => {
     editor.update(() => {
@@ -133,11 +73,12 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
     })
   }, [editor, shouldPreserveNewLinesInMarkdown])
 
-  return (
+  const actionButtons = (
     <div className='actions'>
       {SUPPORT_SPEECH_RECOGNITION && (
         <button
           type='button'
+          disabled={!editor.isEditable()}
           onClick={() => {
             editor.dispatchCommand(SPEECH_TO_TEXT_COMMAND, !isSpeechToText)
             setIsSpeechToText(!isSpeechToText)
@@ -179,7 +120,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
       <button
         type='button'
         className='action-button clear'
-        disabled={isEditorEmpty}
+        disabled={isEditorEmpty || !editor.isEditable()}
         onClick={() => {
           showModal('Clear editor', onClose => (
             <ShowClearDialog editor={editor} onClose={onClose} />
@@ -192,22 +133,7 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
       </button>
       <button
         type='button'
-        className={`action-button ${!isEditable ? 'unlock' : 'lock'}`}
-        onClick={() => {
-          // Send latest editor state to commenting validation server
-          if (isEditable) {
-            sendEditorState(editor)
-          }
-
-          editor.setEditable(!editor.isEditable())
-        }}
-        title='Read-Only Mode'
-        aria-label={`${!isEditable ? 'Unlock' : 'Lock'} read-only mode`}
-      >
-        <i className={!isEditable ? 'unlock' : 'lock'} />
-      </button>
-      <button
-        type='button'
+        disabled={!editor.isEditable()}
         className='action-button'
         onClick={handleMarkdownToggle}
         title='Convert From Markdown'
@@ -218,6 +144,8 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
       {modal}
     </div>
   )
+
+  return editor.isEditable() ? actionButtons : null
 }
 
 function ShowClearDialog({ editor, onClose }) {

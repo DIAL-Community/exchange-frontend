@@ -1,14 +1,13 @@
 import React from 'react'
-import classNames from 'classnames'
-import parse from 'html-react-parser'
+import LexicalApp from '../lexical/LexicalApp'
 
-export const HtmlViewer = ({ initialContent, extraClassNames = 'text-base' }) => {
+export const HtmlViewer = ({ initialContent }) => {
+
+  const onChange = (html) => {
+    console.log(html)
+  }
 
   return (
-    <div className='relative'>
-      <div className={classNames('html-react-parser-viewer', extraClassNames)}>
-        {initialContent && parse(initialContent)}
-      </div>
-    </div>
+    <LexicalApp editable={false} initialHtml={initialContent} onHtmlChanged={onChange} />
   )
 }
