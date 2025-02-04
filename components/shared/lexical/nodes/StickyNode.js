@@ -6,230 +6,111 @@
  *
  */
 
-import { useEffect, useRef } from 'react'
-import { $getNodeByKey } from 'lexical'
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
-import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer'
-import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin'
-import { calculateZoomLevel } from '@lexical/utils'
-import { useSharedHistoryContext } from '../context/SharedHistoryContext'
-import useLayoutEffectImpl from '../shared/useLayoutEffect'
-import StickyEditorTheme from '../themes/StickyEditorTheme'
-import ContentEditable from '../ui/ContentEditable'
-import { $isStickyNode } from './StickyNode'
+import { lazy, Suspense } from 'react'
+import { createPortal } from 'react-dom'
+import { $setSelection, createEditor, DecoratorNode } from 'lexical'
 
-function positionSticky(stickyElem, positioning) {
-  const style = stickyElem.style
-  const rootElementRect = positioning.rootElementRect
-  const rectLeft = rootElementRect !== null ? rootElementRect.left : 0
-  const rectTop = rootElementRect !== null ? rootElementRect.top : 0
-  style.top = rectTop + positioning.y + 'px'
-  style.left = rectLeft + positioning.x + 'px'
+const StickyComponent = lazy(() => import('./StickyComponent'))
+
+export class StickyNode extends DecoratorNode {
+  static getType() {
+    return 'sticky'
+  }
+
+  static clone(node) {
+    return new StickyNode(
+      node.__x,
+      node.__y,
+      node.__color,
+      node.__caption,
+      node.__key
+    )
+  }
+  static importJSON(serializedNode) {
+    return new StickyNode(
+      serializedNode.xOffset,
+      serializedNode.yOffset,
+      serializedNode.color
+    ).updateFromJSON(serializedNode)
+  }
+
+  updateFromJSON(serializedNode) {
+    const stickyNode = super.updateFromJSON(serializedNode)
+    const caption = serializedNode.caption
+    const nestedEditor = stickyNode.__caption
+    const editorState = nestedEditor.parseEditorState(caption.editorState)
+    if (!editorState.isEmpty()) {
+      nestedEditor.setEditorState(editorState)
+    }
+
+    return stickyNode
+  }
+
+  constructor(x, y, color, caption, key) {
+    super(key)
+    this.__x = x
+    this.__y = y
+    this.__caption = caption || createEditor()
+    this.__color = color
+  }
+
+  exportJSON() {
+    return {
+      ...super.exportJSON(),
+      caption: this.__caption.toJSON(),
+      color: this.__color,
+      xOffset: this.__x,
+      yOffset: this.__y
+    }
+  }
+
+  createDOM() {
+    const div = document.createElement('div')
+    div.style.display = 'contents'
+
+    return div
+  }
+
+  updateDOM() {
+    return false
+  }
+
+  setPosition(x, y) {
+    const writable = this.getWritable()
+    writable.__x = x
+    writable.__y = y
+    $setSelection(null)
+  }
+
+  toggleColor() {
+    const writable = this.getWritable()
+    writable.__color = writable.__color === 'pink' ? 'yellow' : 'pink'
+  }
+
+  decorate() {
+    return createPortal(
+      <Suspense fallback={null}>
+        <StickyComponent
+          color={this.__color}
+          x={this.__x}
+          y={this.__y}
+          nodeKey={this.getKey()}
+          caption={this.__caption}
+        />
+      </Suspense>,
+      document.body
+    )
+  }
+
+  isIsolated() {
+    return true
+  }
 }
 
-export default function StickyComponent({ x, y, nodeKey, color, caption }) {
-  const [editor] = useLexicalComposerContext()
-  const stickyContainerRef = useRef(null)
-  const positioningRef = useRef({
-    isDragging: false,
-    offsetX: 0,
-    offsetY: 0,
-    rootElementRect: null,
-    x: 0,
-    y: 0
-  })
+export function $isStickyNode(node) {
+  return node instanceof StickyNode
+}
 
-  useEffect(() => {
-    const position = positioningRef.current
-    position.x = x
-    position.y = y
-
-    const stickyContainer = stickyContainerRef.current
-    if (stickyContainer !== null) {
-      positionSticky(stickyContainer, position)
-    }
-  }, [x, y])
-
-  useLayoutEffectImpl(() => {
-    const position = positioningRef.current
-    const resizeObserver = new ResizeObserver(entries => {
-      for (let i = 0; i < entries.length; i++) {
-        const entry = entries[i]
-        const { target } = entry
-        position.rootElementRect = target.getBoundingClientRect()
-        const stickyContainer = stickyContainerRef.current
-        if (stickyContainer !== null) {
-          positionSticky(stickyContainer, position)
-        }
-      }
-    })
-
-    const removeRootListener = editor.registerRootListener(
-      (nextRootElem, prevRootElem) => {
-        if (prevRootElem !== null) {
-          resizeObserver.unobserve(prevRootElem)
-        }
-
-        if (nextRootElem !== null) {
-          resizeObserver.observe(nextRootElem)
-        }
-      }
-    )
-
-    const handleWindowResize = () => {
-      const rootElement = editor.getRootElement()
-      const stickyContainer = stickyContainerRef.current
-      if (rootElement !== null && stickyContainer !== null) {
-        position.rootElementRect = rootElement.getBoundingClientRect()
-        positionSticky(stickyContainer, position)
-      }
-    }
-
-    window.addEventListener('resize', handleWindowResize)
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize)
-      removeRootListener()
-    }
-  }, [editor])
-
-  useEffect(() => {
-    const stickyContainer = stickyContainerRef.current
-    if (stickyContainer !== null) {
-      // Delay adding transition so we don't trigger the
-      // transition on load of the sticky.
-      setTimeout(() => {
-        stickyContainer.style.setProperty(
-          'transition',
-          'top 0.3s ease 0s, left 0.3s ease 0s'
-        )
-      }, 500)
-    }
-  }, [])
-
-  const handlePointerMove = event => {
-    const stickyContainer = stickyContainerRef.current
-    const positioning = positioningRef.current
-    const rootElementRect = positioning.rootElementRect
-    const zoom = calculateZoomLevel(stickyContainer)
-    if (
-      stickyContainer !== null &&
-      positioning.isDragging &&
-      rootElementRect !== null
-    ) {
-      positioning.x =
-        event.pageX / zoom - positioning.offsetX - rootElementRect.left
-      positioning.y =
-        event.pageY / zoom - positioning.offsetY - rootElementRect.top
-      positionSticky(stickyContainer, positioning)
-    }
-  }
-
-  const handlePointerUp = () => {
-    const stickyContainer = stickyContainerRef.current
-    const positioning = positioningRef.current
-    if (stickyContainer !== null) {
-      positioning.isDragging = false
-      stickyContainer.classList.remove('dragging')
-      editor.update(() => {
-        const node = $getNodeByKey(nodeKey)
-        if ($isStickyNode(node)) {
-          node.setPosition(positioning.x, positioning.y)
-        }
-      })
-    }
-
-    document.removeEventListener('pointermove', handlePointerMove)
-    document.removeEventListener('pointerup', handlePointerUp)
-  }
-
-  const handleDelete = () => {
-    editor.update(() => {
-      const node = $getNodeByKey(nodeKey)
-      if ($isStickyNode(node)) {
-        node.remove()
-      }
-    })
-  }
-
-  const handleColorChange = () => {
-    editor.update(() => {
-      const node = $getNodeByKey(nodeKey)
-      if ($isStickyNode(node)) {
-        node.toggleColor()
-      }
-    })
-  }
-
-  const { historyState } = useSharedHistoryContext()
-
-  return (
-    <div ref={stickyContainerRef} className='sticky-note-container'>
-      <div
-        className={`sticky-note ${color}`}
-        onPointerDown={event => {
-          const stickyContainer = stickyContainerRef.current
-          if (
-            stickyContainer == null ||
-            event.button === 2 ||
-            event.target !== stickyContainer.firstChild
-          ) {
-            // Right click or click on editor should not work
-            return
-          }
-
-          const stickContainer = stickyContainer
-          const positioning = positioningRef.current
-          if (stickContainer !== null) {
-            const { top, left } = stickContainer.getBoundingClientRect()
-            const zoom = calculateZoomLevel(stickContainer)
-            positioning.offsetX = event.clientX / zoom - left
-            positioning.offsetY = event.clientY / zoom - top
-            positioning.isDragging = true
-            stickContainer.classList.add('dragging')
-            document.addEventListener('pointermove', handlePointerMove)
-            document.addEventListener('pointerup', handlePointerUp)
-            event.preventDefault()
-          }
-        }}
-      >
-        <button
-          type='button'
-          onClick={handleDelete}
-          className='delete'
-          aria-label='Delete sticky note'
-          title='Delete'
-        >
-          X
-        </button>
-        <button
-          type='button'
-          onClick={handleColorChange}
-          className='color'
-          aria-label='Change sticky note color'
-          title='Color'
-        >
-          <i className='bucket' />
-        </button>
-        <LexicalNestedComposer
-          initialEditor={caption}
-          initialTheme={StickyEditorTheme}
-        >
-          <HistoryPlugin externalHistoryState={historyState} />
-          <PlainTextPlugin
-            contentEditable={
-              <ContentEditable
-                placeholder="What's up?"
-                placeholderClassName='StickyNode__placeholder'
-                className='StickyNode__contentEditable'
-              />
-            }
-            ErrorBoundary={LexicalErrorBoundary}
-          />
-        </LexicalNestedComposer>
-      </div>
-    </div>
-  )
+export function $createStickyNode(xOffset, yOffset) {
+  return new StickyNode(xOffset, yOffset, 'yellow')
 }

@@ -235,7 +235,7 @@ function getBaseOptions(editor, showModal) {
       onSelect: () =>
         editor.dispatchCommand(INSERT_IMAGE_COMMAND, {
           altText: 'Cat typing on a laptop',
-          src: 'lexical/assets/cat-typing.gif'
+          src: '/lexical/cat-typing.gif'
         })
     }),
     new ComponentPickerOption('Image', {

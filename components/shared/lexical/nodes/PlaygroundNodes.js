@@ -32,6 +32,7 @@ import { MentionNode } from './MentionNode'
 import { PageBreakNode } from './PageBreakNode/PageBreakNode'
 import { PollNode } from './PollNode'
 import { SpecialTextNode } from './SpecialTextNode'
+import { StickyNode } from './StickyNode'
 import { YouTubeNode } from './YouTubeNode'
 
 const PlaygroundNodes = [
@@ -49,6 +50,7 @@ const PlaygroundNodes = [
   LinkNode,
   OverflowNode,
   PollNode,
+  StickyNode,
   ImageNode,
   InlineImageNode,
   MentionNode,

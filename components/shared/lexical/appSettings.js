@@ -10,14 +10,11 @@ import { isDebugLoggingEnabled } from '../../utils/utilities'
 
 export const DEFAULT_SETTINGS = {
   disableBeforeInput: false,
-  emptyEditor: true,
   hasLinkAttributes: false,
   isAutocomplete: true,
   isCharLimit: false,
   isCharLimitUtf8: false,
-  isCollab: false,
   isMaxLength: false,
-  isRichText: true,
   measureTypingPerf: false,
   selectionAlwaysOnDisplay: false,
   shouldAllowHighlightingWithBrackets: false,

@@ -8,19 +8,15 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames'
-import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND, CLEAR_HISTORY_COMMAND } from 'lexical'
+import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND } from 'lexical'
 import { $createCodeNode, $isCodeNode } from '@lexical/code'
-import { useCollaborationContext } from '@lexical/react/LexicalCollaborationContext'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { mergeRegister } from '@lexical/utils'
-import { INITIAL_SETTINGS } from '../../appSettings'
-import useFlashMessage from '../../hooks/useFlashMessage'
 import useModal from '../../hooks/useModal'
 import Button from '../../ui/Button'
-import { docFromHash, docToHash } from '../../utils/docSerialization'
 import { PLAYGROUND_TRANSFORMERS } from '../MarkdownTransformers/MarkdownTransformers'
 import { SPEECH_TO_TEXT_COMMAND, SUPPORT_SPEECH_RECOGNITION } from '../SpeechToTextPlugin/SpeechToTextPlugin'
-import { editorStateFromSerializedDocument, exportFile, importFile, serializedDocumentFromEditorState } from './LexicalFile'
+import { exportFile, importFile } from './LexicalFile'
 import { $convertFromMarkdownString, $convertToMarkdownString } from './LexicalMarkdown'
 
 async function sendEditorState(editor) {
@@ -62,35 +58,12 @@ async function validateEditorState(editor) {
   }
 }
 
-async function shareDoc(doc) {
-  const url = new URL(window.location.toString())
-  url.hash = await docToHash(doc)
-  const newUrl = url.toString()
-  window.history.replaceState({}, '', newUrl)
-  await window.navigator.clipboard.writeText(newUrl)
-}
-
 export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
   const [editor] = useLexicalComposerContext()
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
   const [isSpeechToText, setIsSpeechToText] = useState(false)
   const [isEditorEmpty, setIsEditorEmpty] = useState(true)
   const [modal, showModal] = useModal()
-  const showFlashMessage = useFlashMessage()
-  const { isCollabActive } = useCollaborationContext()
-
-  useEffect(() => {
-    if (INITIAL_SETTINGS.isCollab) {
-      return
-    }
-
-    docFromHash(window.location.hash).then(doc => {
-      if (doc && doc.source === 'Playground') {
-        editor.setEditorState(editorStateFromSerializedDocument(editor, doc))
-        editor.dispatchCommand(CLEAR_HISTORY_COMMAND, undefined)
-      }
-    })
-  }, [editor])
 
   useEffect(() => {
     return mergeRegister(
@@ -202,25 +175,6 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
         aria-label='Export editor state to JSON'
       >
         <i className='export' />
-      </button>
-      <button
-        type='button'
-        className='action-button share'
-        disabled={isCollabActive || INITIAL_SETTINGS.isCollab}
-        onClick={() =>
-          shareDoc(
-            serializedDocumentFromEditorState(editor.getEditorState(), {
-              source: 'Playground'
-            })
-          ).then(
-            () => showFlashMessage('URL copied to clipboard'),
-            () => showFlashMessage('URL could not be copied to clipboard')
-          )
-        }
-        title='Share'
-        aria-label='Share Playground link to current editor state'
-      >
-        <i className='share' />
       </button>
       <button
         type='button'

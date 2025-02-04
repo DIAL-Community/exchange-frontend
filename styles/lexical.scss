@@ -403,10 +403,6 @@ i.export {
   background-image: url(/lexical/icons/download.svg);
 }
 
-i.share {
-  background-image: url(/lexical/icons/send.svg);
-}
-
 i.diagram-2 {
   background-image: url(/lexical/icons/diagram-2.svg);
 }
@@ -1514,6 +1510,10 @@ button.toolbar-item.active i {
 }
 
 .sticky-note .delete {
+  @apply px-0 !important;
+  @apply py-0.5 !important;
+  @apply rounded-none !important;
+  @apply text-dial-stratos !important;
   border: 0;
   background: none;
   position: absolute;
@@ -1937,29 +1937,29 @@ button.item.dropdown-item-active i {
 /* StickyNode */
 
 .StickyNode__contentEditable {
-  min-height: 20px;
+  min-height: 2rem;
   border: 0;
-  resize: none;
+  resize: both;
   cursor: text;
-  font-size: 24px;
+  font-size: 1rem;
   caret-color: rgb(5, 5, 5);
   display: block;
   position: relative;
   outline: 0;
-  padding: 10px;
+  padding: 0.5rem;
   user-select: text;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 .StickyNode__placeholder {
-  font-size: 24px;
+  font-size: 1rem;
   color: #999;
   overflow: hidden;
   position: absolute;
   text-overflow: ellipsis;
-  top: 30px;
-  left: 20px;
-  width: 120px;
+  top: 1.75rem;
+  left: 1.25rem;
+  width: 12rem;
   user-select: none;
   white-space: nowrap;
   display: inline-block;
@@ -3092,6 +3092,7 @@ button.font-increment {
 /* Button */
 
 .Button__root {
+  @apply bg-dial-iris-blue !important;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 15px;
@@ -3318,9 +3319,18 @@ button.font-increment {
   z-index: 1;
 }
 .ExcalidrawModal__actions button {
-  background-color: #fff;
+  /* background-color: #fff; */
+  @apply text-sm;
+  @apply bg-dial-slate-500;
   border-radius: 5px;
 }
+
+.ExcalidrawModal__actions button:hover {
+  @apply bg-dial-slate-700;
+  @apply text-dial-slate-100;
+  border-radius: 5px;
+}
+
 .ExcalidrawModal__row {
   position: relative;
   padding: 40px 5px 5px;
@@ -3469,6 +3479,7 @@ button.font-increment {
   border-bottom: 1px solid #ccc;
 }
 .Modal__closeButton {
+  @apply bg-dial-iris-blue !important;
   border: 0px;
   position: absolute;
   right: 20px;
@@ -3501,4 +3512,61 @@ button.font-increment {
   cursor: pointer;
   line-height: 1.4;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
+/* PageBreak */
+
+[type='page-break'] {
+  position: relative;
+  display: block;
+  width: calc(100% + var(--editor-input-padding, 28px) * 2);
+  overflow: unset;
+  margin-left: calc(var(--editor-input-padding, 28px) * -1);
+  margin-top: var(--editor-input-padding, 28px);
+  margin-bottom: var(--editor-input-padding, 28px);
+
+  border: none;
+  border-top: 1px dashed var(--editor-color-secondary, #eeeeee);
+  border-bottom: 1px dashed var(--editor-color-secondary, #eeeeee);
+  background-color: var(--editor-color-secondary, #eeeeee);
+}
+
+[type='page-break']::before {
+  content: '';
+
+  position: absolute;
+  top: 50%;
+  left: calc(var(--editor-input-padding, 28px) + 12px);
+  transform: translateY(-50%);
+  opacity: 0.5;
+
+  background-size: cover;
+  background-image: url(/lexical/icons/scissors.svg);
+  width: 16px;
+  height: 16px;
+}
+
+[type='page-break']::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: block;
+  padding: 2px 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+
+  content: 'PAGE BREAK';
+  font-size: 12px;
+  color: #000;
+  font-weight: 600;
+}
+
+.selected[type='page-break'] {
+  border-color: var(--editor-color-primary, #4766cb);
+}
+
+.selected[type='page-break']::before {
+  opacity: 1;
 }

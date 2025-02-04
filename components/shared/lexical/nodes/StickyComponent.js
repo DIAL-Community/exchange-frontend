@@ -221,7 +221,7 @@ export default function StickyComponent({ x, y, nodeKey, color, caption }) {
           <PlainTextPlugin
             contentEditable={
               <ContentEditable
-                placeholder="What's up?"
+                placeholder="Sticky text?"
                 placeholderClassName='StickyNode__placeholder'
                 className='StickyNode__contentEditable'
               />

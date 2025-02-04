@@ -140,11 +140,11 @@ export function InsertImageDialog({ activeEditor, onClose }) {
                   ? {
                     altText:
                       'Daylight fir trees forest glacier green high ice landscape',
-                    src: 'lexical/landscape.png'
+                    src: '/lexical/landscape.png'
                   }
                   : {
                     altText: 'Yellow flower in tilt shift lens',
-                    src: 'images/yellow-flower.jpg'
+                    src: '/lexical/yellow-flower.jpg'
                   }
               )
             }
