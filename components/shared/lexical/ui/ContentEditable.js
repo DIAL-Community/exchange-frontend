@@ -6,6 +6,8 @@
  *
  */
 
+import classNames from 'classnames'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 
 export default function LexicalContentEditable({
@@ -13,9 +15,15 @@ export default function LexicalContentEditable({
   placeholder,
   placeholderClassName
 }) {
+
+  const [editor] = useLexicalComposerContext()
+
   return (
     <ContentEditable
-      className={className ?? 'ContentEditable__root'}
+      className={classNames(
+        className ?? 'ContentEditable__root',
+        editor.isEditable() ? 'read-write' : 'read-only'
+      )}
       aria-placeholder={placeholder}
       placeholder={
         <div className={placeholderClassName ?? 'ContentEditable__placeholder'}>

@@ -10,12 +10,15 @@ import {
 import StorefrontEdit from '../../../components/storefront/StorefrontEdit'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createStorefront, storefrontDetail } from './data/StorefrontDetail.data'
 import { paginatedStorefronts, storefrontPaginationAttribute } from './data/StorefrontMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the storefront detail page.', () => {
   const mockStorefront = generateMockApolloData(
     STOREFRONT_DETAIL_QUERY,

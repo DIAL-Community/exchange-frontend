@@ -40,7 +40,6 @@ import DraggableBlockPlugin from './plugins/DraggableBlockPlugin/DraggableBlockP
 import EmojiPickerPlugin from './plugins/EmojiPickerPlugin/EmojiPickerPlugin'
 import EmojisPlugin from './plugins/EmojisPlugin/EmojisPlugin'
 import EquationsPlugin from './plugins/EquationsPlugin/EquationsPlugin'
-import FigmaPlugin from './plugins/FigmaPlugin/FigmaPlugin'
 import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin/FloatingLinkEditorPlugin'
 import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormatToolbarPlugin/FloatingTextFormatToolbarPlugin'
 import HtmlWatcherPlugin from './plugins/HtmlWatcherPlugin/HtmlWatcherPlugin'
@@ -49,7 +48,6 @@ import { LayoutPlugin } from './plugins/LayoutPlugin/LayoutPlugin'
 import LinkPlugin from './plugins/LinkPlugin/LinkPlugin'
 import MarkdownShortcutPlugin from './plugins/MarkdownShortcutPlugin/MarkdownShortcutPlugin'
 import { MaxLengthPlugin } from './plugins/MaxLengthPlugin/MaxLengthPlugin'
-import MentionsPlugin from './plugins/MentionsPlugin/MentionsPlugin'
 import PageBreakPlugin from './plugins/PageBreakPlugin/PageBreakPlugin'
 import PollPlugin from './plugins/PollPlugin/PollPlugin'
 import ShortcutsPlugin from './plugins/ShortcutsPlugin/ShortcutsPlugin'
@@ -64,11 +62,6 @@ import TreeViewPlugin from './plugins/TreeViewPlugin/TreeViewPlugin'
 import YouTubePlugin from './plugins/YouTubePlugin/YouTubePlugin'
 import { CAN_USE_DOM } from './shared/canUseDOM'
 import ContentEditable from './ui/ContentEditable'
-
-const ExcalidrawPlugin = dynamic(
-  async () => await import('./plugins/ExcalidrawPlugin/ExcalidrawPlugin'),
-  { ssr: false }
-)
 
 const SpeechToTextPlugin = dynamic(
   async () => await import('./plugins/SpeechToTextPlugin/SpeechToTextPlugin'),
@@ -158,7 +151,6 @@ export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
         <ComponentPickerPlugin />
         <EmojiPickerPlugin />
         <AutoEmbedPlugin />
-        <MentionsPlugin />
         <EmojisPlugin />
         <HashtagPlugin />
         <KeywordsPlugin />
@@ -191,11 +183,9 @@ export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
         <LinkPlugin hasLinkAttributes={hasLinkAttributes} />
         <PollPlugin />
         <YouTubePlugin />
-        <FigmaPlugin />
         <ClickableLinkPlugin disabled={isEditable} />
         <HorizontalRulePlugin />
         <EquationsPlugin />
-        <ExcalidrawPlugin />
         <TabFocusPlugin />
         <TabIndentationPlugin maxIndent={7} />
         <CollapsiblePlugin />

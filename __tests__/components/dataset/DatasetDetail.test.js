@@ -11,33 +11,16 @@ import {
 } from '../../../components/shared/query/dataset'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createDataset, datasetDetail } from './data/DatasetDetail.data'
 import { datasetPaginationAttribute, paginatedDatasets } from './data/DatasetMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the dataset detail page.', () => {
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    value: jest.fn().mockImplementation(query => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: jest.fn(), // Deprecated
-      removeListener: jest.fn(), // Deprecated
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn()
-    }))
-  })
-
-  global.ResizeObserver = jest.fn().mockImplementation(() => ({
-    observe: jest.fn(),
-    unobserve: jest.fn(),
-    disconnect: jest.fn()
-  }))
-
   const mockDatasetPolicies = generateMockApolloData(
     DATASET_POLICY_QUERY,
     { 'slug': 'xchange-graph-query-context-policies' },

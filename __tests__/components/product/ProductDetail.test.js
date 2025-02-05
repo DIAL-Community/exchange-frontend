@@ -11,12 +11,15 @@ import {
 } from '../../../components/shared/query/product'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createProduct, ownedProducts, productDetail } from './data/ProductDetail.data'
 import { paginatedProducts, productPaginationAttribute } from './data/ProductMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the product detail page.', () => {
   const mockProductPolicies = generateMockApolloData(
     PRODUCT_POLICY_QUERY,

@@ -10,12 +10,15 @@ import {
 } from '../../../components/shared/query/project'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createProject, projectDetail } from './data/ProjectDetail.data'
 import { paginatedProjects, projectPaginationAttribute } from './data/ProjectMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the project detail page.', () => {
   const mockProject = generateMockApolloData(
     PROJECT_DETAIL_QUERY,

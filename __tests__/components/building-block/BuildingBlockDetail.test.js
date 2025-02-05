@@ -14,13 +14,16 @@ import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockPolicyFetching } from '../../utils/mockPolicyFetching'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { buildingBlockDetail, commentsQuery, createBuildingBlock } from './data/BuildingBlockDetail.data'
 import { buildingBlockPaginationAttribute, paginatedBuildingBlocks } from './data/BuildingBlockMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
 mockPolicyFetching()
+mockLexicalComponents()
 describe('Unit tests for the building block detail page.', () => {
   const mockBuildingBlockPolicies = generateMockApolloData(
     BUILDING_BLOCK_POLICY_QUERY,

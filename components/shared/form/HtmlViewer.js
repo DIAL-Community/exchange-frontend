@@ -3,11 +3,16 @@ import LexicalApp from '../lexical/LexicalApp'
 
 export const HtmlViewer = ({ initialContent }) => {
 
+  // eslint-disable-next-line
   const onChange = (html) => {
-    console.log(html)
+    // NO-OP
   }
 
   return (
-    <LexicalApp editable={false} initialHtml={initialContent} onHtmlChanged={onChange} />
+    <LexicalApp
+      editable={false}
+      initialHtml={initialContent}
+      onHtmlChanged={onChange}
+    />
   )
 }

@@ -440,12 +440,51 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
               class="block"
             >
               <div
-                class="relative"
+                class="editor-shell read-only"
               >
                 <div
-                  class="html-react-parser-viewer text-base"
+                  class="editor-container "
                 >
-                  Dataset description
+                  <div
+                    class="editor-scroller"
+                  >
+                    <div
+                      class="editor"
+                    >
+                      <div
+                        aria-autocomplete="none"
+                        aria-placeholder="Enter plain text..."
+                        aria-readonly="true"
+                        class="ContentEditable__root read-only"
+                        contenteditable="false"
+                        data-lexical-editor="true"
+                        spellcheck="true"
+                        style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+                      >
+                        <p
+                          class="ExchangeLexicalTheme__paragraph ExchangeLexicalTheme__ltr"
+                          dir="ltr"
+                        >
+                          <span
+                            data-lexical-text="true"
+                          >
+                            Dataset description
+                          </span>
+                        </p>
+                      </div>
+                      <div
+                        draggable="true"
+                      />
+                      <div
+                        class="draggable-block-target-line"
+                      />
+                      <div
+                        class="link-editor"
+                        style="opacity: 0; transform: translate(-10000px, -10000px);"
+                      />
+                    </div>
+                  </div>
+                  <div />
                 </div>
               </div>
             </div>
@@ -1441,7 +1480,7 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                   Description
                 </label>
                 <div
-                  class="editor-shell"
+                  class="editor-shell read-write"
                 >
                   <div
                     class="flex flex-col"
@@ -1688,7 +1727,7 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                       >
                         <div
                           aria-placeholder="Enter plain text..."
-                          class="ContentEditable__root"
+                          class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
                           role="textbox"
@@ -1772,16 +1811,6 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                       >
                         <i
                           class="clear"
-                        />
-                      </button>
-                      <button
-                        aria-label="Lock read-only mode"
-                        class="action-button lock"
-                        title="Read-Only Mode"
-                        type="button"
-                      >
-                        <i
-                          class="lock"
                         />
                       </button>
                       <button

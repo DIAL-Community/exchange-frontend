@@ -21,18 +21,14 @@ import { CollapsibleTitleNode } from '../plugins/CollapsiblePlugin/CollapsibleTi
 import { AutocompleteNode } from './AutocompleteNode'
 import { EmojiNode } from './EmojiNode'
 import { EquationNode } from './EquationNode'
-import { ExcalidrawNode } from './ExcalidrawNode/ExcalidrawNode'
-import { FigmaNode } from './FigmaNode'
 import { ImageNode } from './ImageNode'
 import { InlineImageNode } from './InlineImageNode/InlineImageNode'
 import { KeywordNode } from './KeywordNode'
 import { LayoutContainerNode } from './LayoutContainerNode'
 import { LayoutItemNode } from './LayoutItemNode'
-import { MentionNode } from './MentionNode'
 import { PageBreakNode } from './PageBreakNode/PageBreakNode'
 import { PollNode } from './PollNode'
 import { SpecialTextNode } from './SpecialTextNode'
-import { StickyNode } from './StickyNode'
 import { YouTubeNode } from './YouTubeNode'
 
 const PlaygroundNodes = [
@@ -50,18 +46,14 @@ const PlaygroundNodes = [
   LinkNode,
   OverflowNode,
   PollNode,
-  StickyNode,
   ImageNode,
   InlineImageNode,
-  MentionNode,
   EmojiNode,
-  ExcalidrawNode,
   EquationNode,
   AutocompleteNode,
   KeywordNode,
   HorizontalRuleNode,
   YouTubeNode,
-  FigmaNode,
   MarkNode,
   CollapsibleContainerNode,
   CollapsibleContentNode,

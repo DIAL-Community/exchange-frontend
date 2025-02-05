@@ -14,7 +14,8 @@ const InlineImageComponent = lazy(() => import('./InlineImageComponent'))
 function $convertInlineImageElement(domNode) {
   if (isHTMLElement(domNode) && domNode.nodeName === 'IMG') {
     const { alt: altText, src, width, height } = domNode
-    const node = $createInlineImageNode({ altText, height, src, width })
+    const position = domNode.dataset?.position
+    const node = $createInlineImageNode({ altText, height, src, width, position })
 
     return { node }
   }
@@ -107,6 +108,7 @@ export class InlineImageNode extends DecoratorNode {
     element.setAttribute('alt', this.__altText)
     element.setAttribute('width', this.__width.toString())
     element.setAttribute('height', this.__height.toString())
+    element.setAttribute('data-position', this.__position.toString())
 
     return { element }
   }

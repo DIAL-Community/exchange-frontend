@@ -6,6 +6,7 @@
  *
  */
 
+import classNames from 'classnames'
 import { $isTextNode, TextNode } from 'lexical'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { FlashMessageContext } from './context/FlashMessageContext'
@@ -18,14 +19,6 @@ import { TableContext } from './plugins/TablePlugin'
 import { parseAllowedFontSize } from './plugins/ToolbarPlugin/FontSize'
 import ExchangeLexicalTheme from './themes/ExchangeLexicalTheme'
 import { parseAllowedColor } from './ui/ColorPicker'
-
-console.warn(
-  `
-    If you are profiling the playground app, please ensure you turn off the debug view.
-    You can disable it by pressing on the settings control in the bottom-left of your
-    screen and toggling the debug view setting.
-  `
-)
 
 function getExtraStyles(element) {
   // Parse styles from pasted input, but only if they match exactly the
@@ -117,7 +110,12 @@ function LexicalInternal({ editable, initialHtml, onHtmlChanged }) {
       <SharedHistoryContext>
         <TableContext>
           <ToolbarContext>
-            <div className='editor-shell'>
+            <div
+              className={classNames(
+                'editor-shell',
+                editable ? 'read-write' : 'read-only'
+              )}
+            >
               <LexicalEditor
                 initialHtml={initialHtml}
                 onHtmlChanged={onHtmlChanged}
