@@ -1126,7 +1126,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               <div
                 class="text-xl text-dial-meadow font-semibold"
               >
-                @firma
+                @firma - Edited
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
@@ -1230,7 +1230,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               <div
                 class="text-xl font-semibold"
               >
-                Edit @firma
+                Edit @firma - Edited
               </div>
               <div
                 class="flex flex-col gap-y-2"

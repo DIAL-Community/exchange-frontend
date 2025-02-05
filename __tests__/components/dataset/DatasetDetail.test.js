@@ -101,10 +101,9 @@ describe('Unit tests for the dataset detail page.', () => {
     expect(container).toMatchSnapshot()
   })
 
+  mockNextAuthUseSession()
   test('Should render edit page for logged in user.', async () => {
-    mockNextAuthUseSession()
-
-    const mockCreateBuildingBlock = generateMockApolloData(
+    const mockCreateDataset = generateMockApolloData(
       CREATE_DATASET,
       {
         'name': 'AI Agro - Edited',
@@ -120,7 +119,12 @@ describe('Unit tests for the dataset detail page.', () => {
         'license': 'GPL-3.0',
         'languages': null,
         'dataFormat': null,
-        'description': 'Dataset description'
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Dataset description' +
+            '</span>' +
+          '</p>'
       },
       null,
       createDataset
@@ -144,11 +148,11 @@ describe('Unit tests for the dataset detail page.', () => {
       <CustomMockedProvider
         mocks={[
           mockDataset,
+          mockDataset,
+          mockCreateDataset,
           mockDatasetComments,
-          mockCreateBuildingBlock,
-          mockDatasetPaginationAttribute,
           mockPaginatedDatasets,
-          mockDataset
+          mockDatasetPaginationAttribute
         ]}
       >
         <QueryParamContextProvider>

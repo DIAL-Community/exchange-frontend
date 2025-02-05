@@ -820,7 +820,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                AI4GOV
+                AI4GOV - Edited
               </div>
               <div
                 class="flex justify-center items-center py-8 px-4 bg-white rounded border"
@@ -915,7 +915,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
               <div
                 class="text-xl font-semibold"
               >
-                Edit AI4GOV
+                Edit AI4GOV - Edited
               </div>
               <div
                 class="flex flex-col gap-y-2"

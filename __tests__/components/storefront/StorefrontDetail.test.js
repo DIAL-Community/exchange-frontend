@@ -98,7 +98,12 @@ describe('Unit tests for the storefront detail page.', () => {
         'slug': 'current-storefront',
         'aliases': [''],
         'website': 'google.com',
-        'description': '<p>Test storefront. Updating. Test.</p>',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Test storefront. Updating. Test.' +
+            '</span>' +
+          '</p>',
         'hasStorefront': true
       },
       null,

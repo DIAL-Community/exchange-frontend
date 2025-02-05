@@ -55,6 +55,11 @@ export const mockLexicalComponents = () => {
     }))
   })
 
+  Object.defineProperty(console, 'time', {
+    writable: true,
+    value: jest.fn()
+  })
+
   global.ResizeObserver = jest.fn().mockImplementation(() => ({
     observe: jest.fn(),
     unobserve: jest.fn(),

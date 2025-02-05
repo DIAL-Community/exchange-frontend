@@ -126,7 +126,13 @@ describe('Unit tests for the building block detail page.', () => {
         'slug': 'analytics-and-business-intelligence',
         'maturity': 'DRAFT',
         'category': null,
-        'description': 'Building block description.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Building block description.' +
+            '</span>' +
+          '</p>'
+        ,
         'specUrl': '',
         'govStackEntity': false
       },

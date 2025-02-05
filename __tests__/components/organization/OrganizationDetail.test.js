@@ -112,7 +112,12 @@ describe('Unit tests for the organization detail page.', () => {
         'whenEndorsed': null,
         'endorserLevel': 'none',
         'isMni': false,
-        'description': 'Description for the organization.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Description for the organization.' +
+            '</span>' +
+          '</p>',
         'hasStorefront': false
       },
       null,

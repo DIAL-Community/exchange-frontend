@@ -97,7 +97,12 @@ describe('Unit tests for the project detail page.', () => {
         'name': 'Colombia HMIS - Edited Again',
         'slug': 'colombia-hmis',
         'projectUrl': 'digitalhealthatlas.org/en/-/projects/1047/published',
-        'description': 'eMoH implementation of DHIS2.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'eMoH implementation of DHIS2.' +
+            '</span>' +
+          '</p>',
         'countrySlugs': ['co']
       },
       null,

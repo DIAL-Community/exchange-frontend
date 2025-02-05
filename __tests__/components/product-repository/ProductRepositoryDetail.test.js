@@ -137,7 +137,12 @@ describe('Unit tests for the product main page.', () => {
         'name': '@firma Repository Information',
         'slug': 'firma-repository',
         'absoluteUrl': 'github.com/ctt-gob-es/clienteafirma',
-        'description': 'Repository of @firma.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Repository of @firma.' +
+            '</span>' +
+          '</p>',
         'mainRepository': true
       },
       null,
