@@ -712,26 +712,6 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                         />
                       </button>
                       <button
-                        aria-label="Import editor state from JSON"
-                        class="action-button import"
-                        title="Import"
-                        type="button"
-                      >
-                        <i
-                          class="import"
-                        />
-                      </button>
-                      <button
-                        aria-label="Export editor state to JSON"
-                        class="action-button export"
-                        title="Export"
-                        type="button"
-                      >
-                        <i
-                          class="export"
-                        />
-                      </button>
-                      <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
                         title="Clear"
@@ -739,16 +719,6 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                       >
                         <i
                           class="clear"
-                        />
-                      </button>
-                      <button
-                        aria-label="Convert from markdown"
-                        class="action-button"
-                        title="Convert From Markdown"
-                        type="button"
-                      >
-                        <i
-                          class="markdown"
                         />
                       </button>
                     </div>
@@ -1492,26 +1462,6 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                         />
                       </button>
                       <button
-                        aria-label="Import editor state from JSON"
-                        class="action-button import"
-                        title="Import"
-                        type="button"
-                      >
-                        <i
-                          class="import"
-                        />
-                      </button>
-                      <button
-                        aria-label="Export editor state to JSON"
-                        class="action-button export"
-                        title="Export"
-                        type="button"
-                      >
-                        <i
-                          class="export"
-                        />
-                      </button>
-                      <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
                         title="Clear"
@@ -1519,16 +1469,6 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                       >
                         <i
                           class="clear"
-                        />
-                      </button>
-                      <button
-                        aria-label="Convert from markdown"
-                        class="action-button"
-                        title="Convert From Markdown"
-                        type="button"
-                      >
-                        <i
-                          class="markdown"
                         />
                       </button>
                     </div>

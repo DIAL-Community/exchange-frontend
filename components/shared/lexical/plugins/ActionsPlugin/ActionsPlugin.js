@@ -6,19 +6,15 @@
  *
  */
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import classNames from 'classnames'
-import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND } from 'lexical'
-import { $createCodeNode, $isCodeNode } from '@lexical/code'
+import { $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import useModal from '../../hooks/useModal'
 import Button from '../../ui/Button'
-import { PLAYGROUND_TRANSFORMERS } from '../MarkdownTransformers/MarkdownTransformers'
 import { SPEECH_TO_TEXT_COMMAND, SUPPORT_SPEECH_RECOGNITION } from '../SpeechToTextPlugin/SpeechToTextPlugin'
-import { exportFile, importFile } from './LexicalFile'
-import { $convertFromMarkdownString, $convertToMarkdownString } from './LexicalMarkdown'
 
-export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
+export default function ActionsPlugin() {
   const [editor] = useLexicalComposerContext()
   const [isSpeechToText, setIsSpeechToText] = useState(false)
   const [isEditorEmpty, setIsEditorEmpty] = useState(true)
@@ -46,33 +42,6 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
     )
   }, [editor])
 
-  const handleMarkdownToggle = useCallback(() => {
-    editor.update(() => {
-      const root = $getRoot()
-      const firstChild = root.getFirstChild()
-      if ($isCodeNode(firstChild) && firstChild.getLanguage() === 'markdown') {
-        $convertFromMarkdownString(
-          firstChild.getTextContent(),
-          PLAYGROUND_TRANSFORMERS, // node
-          undefined,
-          shouldPreserveNewLinesInMarkdown
-        )
-      } else {
-        const markdown = $convertToMarkdownString(
-          PLAYGROUND_TRANSFORMERS, //node
-          undefined,
-          shouldPreserveNewLinesInMarkdown
-        )
-        const codeNode = $createCodeNode('markdown')
-        codeNode.append($createTextNode(markdown))
-        root.clear().append(codeNode)
-        if (markdown.length === 0) {
-          codeNode.select()
-        }
-      }
-    })
-  }, [editor, shouldPreserveNewLinesInMarkdown])
-
   const actionButtons = (
     <div className='actions'>
       {SUPPORT_SPEECH_RECOGNITION && (
@@ -95,30 +64,6 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
       )}
       <button
         type='button'
-        className='action-button import'
-        onClick={() => importFile(editor)}
-        title='Import'
-        aria-label='Import editor state from JSON'
-      >
-        <i className='import' />
-      </button>
-
-      <button
-        type='button'
-        className='action-button export'
-        onClick={() =>
-          exportFile(editor, {
-            fileName: `Playground ${new Date().toISOString()}`,
-            source: 'Playground'
-          })
-        }
-        title='Export'
-        aria-label='Export editor state to JSON'
-      >
-        <i className='export' />
-      </button>
-      <button
-        type='button'
         className='action-button clear'
         disabled={isEditorEmpty || !editor.isEditable()}
         onClick={() => {
@@ -130,16 +75,6 @@ export default function ActionsPlugin({ shouldPreserveNewLinesInMarkdown }) {
         aria-label='Clear editor contents'
       >
         <i className='clear' />
-      </button>
-      <button
-        type='button'
-        disabled={!editor.isEditable()}
-        className='action-button'
-        onClick={handleMarkdownToggle}
-        title='Convert From Markdown'
-        aria-label='Convert from markdown'
-      >
-        <i className='markdown' />
       </button>
       {modal}
     </div>

@@ -84,8 +84,7 @@ export const FigmaEmbedConfig = {
 }
 
 export const EmbedConfigs = [
-  YoutubeEmbedConfig,
-  FigmaEmbedConfig
+  YoutubeEmbedConfig
 ]
 
 function AutoEmbedMenuItem({

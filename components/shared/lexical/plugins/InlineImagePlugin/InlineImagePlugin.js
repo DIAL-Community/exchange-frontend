@@ -6,7 +6,7 @@
  *
  */
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   $createParagraphNode, $createRangeSelection, $getSelection, $insertNodes, $isNodeSelection, $isRootOrShadowRoot,
   $setSelection, COMMAND_PRIORITY_EDITOR, COMMAND_PRIORITY_HIGH, COMMAND_PRIORITY_LOW, createCommand, DRAGOVER_COMMAND,
@@ -141,7 +141,7 @@ export default function InlineImagePlugin() {
   const img = document.createElement('img')
   img.src = TRANSPARENT_IMAGE
 
-  function $onDragStart(event) {
+  const $onDragStart = useCallback((event) => {
     const node = $getImageNodeInSelection()
     if (!node) {
       return false
@@ -171,9 +171,9 @@ export default function InlineImagePlugin() {
     )
 
     return true
-  }
+  }, [img])
 
-  function $onDragover(event) {
+  const $onDragover = useCallback((event) => {
     const node = $getImageNodeInSelection()
     if (!node) {
       return false
@@ -184,9 +184,9 @@ export default function InlineImagePlugin() {
     }
 
     return true
-  }
+  }, [])
 
-  function $onDrop(event, editor) {
+  const $onDrop = useCallback((event, editor) => {
     const node = $getImageNodeInSelection()
     if (!node) {
       return false
@@ -211,7 +211,7 @@ export default function InlineImagePlugin() {
     }
 
     return true
-  }
+  }, [])
 
   function $getImageNodeInSelection() {
     const selection = $getSelection()
