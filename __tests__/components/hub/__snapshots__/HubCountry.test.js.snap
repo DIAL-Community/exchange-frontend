@@ -72,12 +72,51 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
             </div>
           </div>
           <div
-            class="relative"
+            class="editor-shell read-only"
           >
             <div
-              class="html-react-parser-viewer text-base"
+              class="editor-container "
             >
-              Some description
+              <div
+                class="editor-scroller"
+              >
+                <div
+                  class="editor"
+                >
+                  <div
+                    aria-autocomplete="none"
+                    aria-placeholder="Enter plain text..."
+                    aria-readonly="true"
+                    class="ContentEditable__root read-only"
+                    contenteditable="false"
+                    data-lexical-editor="true"
+                    spellcheck="true"
+                    style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+                  >
+                    <p
+                      class="ExchangeLexicalTheme__paragraph ExchangeLexicalTheme__ltr"
+                      dir="ltr"
+                    >
+                      <span
+                        data-lexical-text="true"
+                      >
+                        Some description
+                      </span>
+                    </p>
+                  </div>
+                  <div
+                    draggable="true"
+                  />
+                  <div
+                    class="draggable-block-target-line"
+                  />
+                  <div
+                    class="link-editor"
+                    style="opacity: 0; transform: translate(-10000px, -10000px);"
+                  />
+                </div>
+              </div>
+              <div />
             </div>
           </div>
         </div>

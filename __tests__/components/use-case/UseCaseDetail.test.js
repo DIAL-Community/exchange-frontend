@@ -11,12 +11,15 @@ import {
 import UseCaseEdit from '../../../components/use-case/UseCaseEdit'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createUseCase, sectors, useCaseDetail } from './data/UseCaseDetail.data'
 import { paginatedUseCases, useCasePaginationAttribute } from './data/UseCaseMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the useCase detail page.', () => {
   const mockUseCase = generateMockApolloData(
     USE_CASE_DETAIL_QUERY,
