@@ -284,29 +284,320 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                   Description
                 </label>
                 <div
-                  class="relative"
+                  class="editor-shell read-write"
                 >
-                  <svg
-                    class="absolute text-lg inset-x-1/2 top-10 spinner"
-                    fill="currentColor"
-                    height="2em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="2em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-                    />
-                  </svg>
                   <div
-                    class="html-editor"
+                    class="flex flex-col"
                   >
-                    <textarea
-                      id="description-editor"
-                      style="visibility: hidden;"
-                    />
+                    <div
+                      class="toolbar"
+                    >
+                      <button
+                        aria-label="Undo"
+                        class="toolbar-item spaced"
+                        disabled=""
+                        title="Undo (Ctrl+Z)"
+                        type="button"
+                      >
+                        <i
+                          class="format undo"
+                        />
+                      </button>
+                      <button
+                        aria-label="Redo"
+                        class="toolbar-item"
+                        disabled=""
+                        title="Redo (Ctrl+Y)"
+                        type="button"
+                      >
+                        <i
+                          class="format redo"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for text style"
+                        class="toolbar-item block-controls"
+                        type="button"
+                      >
+                        <span
+                          class="icon block-type paragraph"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Normal
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for font family"
+                        class="toolbar-item font-family"
+                        type="button"
+                      >
+                        <span
+                          class="icon block-type font-family"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Arial
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Decrease font size"
+                        class="toolbar-item font-decrement"
+                        title="Decrease font size (Ctrl+Shift+,)"
+                        type="button"
+                      >
+                        <i
+                          class="format minus-icon"
+                        />
+                      </button>
+                      <input
+                        class="toolbar-item font-size-input"
+                        max="72"
+                        min="8"
+                        title="Font size"
+                        type="number"
+                        value="15"
+                      />
+                      <button
+                        aria-label="Increase font size"
+                        class="toolbar-item font-increment"
+                        title="Increase font size (Ctrl+Shift+.)"
+                        type="button"
+                      >
+                        <i
+                          class="format add-icon"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Format text as bold. Shortcut: Ctrl+B"
+                        class="toolbar-item spaced "
+                        title="Bold (Ctrl+B)"
+                        type="button"
+                      >
+                        <i
+                          class="format bold"
+                        />
+                      </button>
+                      <button
+                        aria-label="Format text as italics. Shortcut: Ctrl+I"
+                        class="toolbar-item spaced "
+                        title="Italic (Ctrl+I)"
+                        type="button"
+                      >
+                        <i
+                          class="format italic"
+                        />
+                      </button>
+                      <button
+                        aria-label="Format text to underlined. Shortcut: Ctrl+U"
+                        class="toolbar-item spaced "
+                        title="Underline (Ctrl+U)"
+                        type="button"
+                      >
+                        <i
+                          class="format underline"
+                        />
+                      </button>
+                      <button
+                        aria-label="Insert code block"
+                        class="toolbar-item spaced "
+                        title="Insert code block (Ctrl+Shift+C)"
+                        type="button"
+                      >
+                        <i
+                          class="format code"
+                        />
+                      </button>
+                      <button
+                        aria-label="Insert link"
+                        class="toolbar-item spaced "
+                        title="Insert link (Ctrl+K)"
+                        type="button"
+                      >
+                        <i
+                          class="format link"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      class="toolbar"
+                    >
+                      <button
+                        aria-label="Formatting text color"
+                        class="toolbar-item color-picker"
+                        type="button"
+                      >
+                        <span
+                          class="icon font-color"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <button
+                        aria-label="Formatting background color"
+                        class="toolbar-item color-picker"
+                        type="button"
+                      >
+                        <span
+                          class="icon bg-color"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <button
+                        aria-label="Formatting options for additional text styles"
+                        class="toolbar-item spaced"
+                        type="button"
+                      >
+                        <span
+                          class="icon dropdown-more"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Insert specialized editor node"
+                        class="toolbar-item spaced"
+                        type="button"
+                      >
+                        <span
+                          class="icon plus"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Insert
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for text alignment"
+                        class="toolbar-item spaced alignment"
+                        type="button"
+                      >
+                        <span
+                          class="icon left-align"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Left Align
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="editor-container "
+                  >
+                    <div
+                      class="editor-scroller"
+                    >
+                      <div
+                        class="editor"
+                      >
+                        <div
+                          aria-placeholder="Enter plain text..."
+                          class="ContentEditable__root read-write"
+                          contenteditable="true"
+                          data-lexical-editor="true"
+                          role="textbox"
+                          spellcheck="true"
+                          style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+                        >
+                          <p
+                            class="ExchangeLexicalTheme__paragraph ExchangeLexicalTheme__ltr"
+                            dir="ltr"
+                          >
+                            <span
+                              data-lexical-text="true"
+                            >
+                              Suite of solutions for digital identities and electronic signatures, aimed at public administrations for the implementation of authentication and electronic signatures in a streamlined and effective manner.
+                            </span>
+                          </p>
+                        </div>
+                        <div
+                          draggable="true"
+                        >
+                          <div
+                            class="icon draggable-block-menu"
+                            style="opacity: 0; transform: translate(-10000px, -10000px);"
+                          >
+                            <div
+                              class="icon"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="draggable-block-target-line"
+                        />
+                        <div
+                          class="link-editor"
+                          style="opacity: 1; transform: translate(-5px, 10px);"
+                        />
+                        <div
+                          class="table-cell-action-button-container"
+                        />
+                      </div>
+                    </div>
+                    <div />
+                    <div
+                      class="actions"
+                    >
+                      <button
+                        aria-label="Disable speech to text"
+                        class="action-button action-button-mic"
+                        title="Speech To Text"
+                        type="button"
+                      >
+                        <i
+                          class="mic"
+                        />
+                      </button>
+                      <button
+                        aria-label="Clear editor contents"
+                        class="action-button clear"
+                        title="Clear"
+                        type="button"
+                      >
+                        <i
+                          class="clear"
+                        />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -388,29 +679,325 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                   Pricing Details
                 </label>
                 <div
-                  class="relative"
+                  class="editor-shell read-write"
                 >
-                  <svg
-                    class="absolute text-lg inset-x-1/2 top-10 spinner"
-                    fill="currentColor"
-                    height="2em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="2em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-                    />
-                  </svg>
                   <div
-                    class="html-editor"
+                    class="flex flex-col"
                   >
-                    <textarea
-                      id="pricing-details-editor"
-                      style="visibility: hidden;"
-                    />
+                    <div
+                      class="toolbar"
+                    >
+                      <button
+                        aria-label="Undo"
+                        class="toolbar-item spaced"
+                        disabled=""
+                        title="Undo (Ctrl+Z)"
+                        type="button"
+                      >
+                        <i
+                          class="format undo"
+                        />
+                      </button>
+                      <button
+                        aria-label="Redo"
+                        class="toolbar-item"
+                        disabled=""
+                        title="Redo (Ctrl+Y)"
+                        type="button"
+                      >
+                        <i
+                          class="format redo"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for text style"
+                        class="toolbar-item block-controls"
+                        type="button"
+                      >
+                        <span
+                          class="icon block-type paragraph"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Normal
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for font family"
+                        class="toolbar-item font-family"
+                        type="button"
+                      >
+                        <span
+                          class="icon block-type font-family"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Arial
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Decrease font size"
+                        class="toolbar-item font-decrement"
+                        title="Decrease font size (Ctrl+Shift+,)"
+                        type="button"
+                      >
+                        <i
+                          class="format minus-icon"
+                        />
+                      </button>
+                      <input
+                        class="toolbar-item font-size-input"
+                        max="72"
+                        min="8"
+                        title="Font size"
+                        type="number"
+                        value="15"
+                      />
+                      <button
+                        aria-label="Increase font size"
+                        class="toolbar-item font-increment"
+                        title="Increase font size (Ctrl+Shift+.)"
+                        type="button"
+                      >
+                        <i
+                          class="format add-icon"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Format text as bold. Shortcut: Ctrl+B"
+                        class="toolbar-item spaced "
+                        title="Bold (Ctrl+B)"
+                        type="button"
+                      >
+                        <i
+                          class="format bold"
+                        />
+                      </button>
+                      <button
+                        aria-label="Format text as italics. Shortcut: Ctrl+I"
+                        class="toolbar-item spaced "
+                        title="Italic (Ctrl+I)"
+                        type="button"
+                      >
+                        <i
+                          class="format italic"
+                        />
+                      </button>
+                      <button
+                        aria-label="Format text to underlined. Shortcut: Ctrl+U"
+                        class="toolbar-item spaced "
+                        title="Underline (Ctrl+U)"
+                        type="button"
+                      >
+                        <i
+                          class="format underline"
+                        />
+                      </button>
+                      <button
+                        aria-label="Insert code block"
+                        class="toolbar-item spaced "
+                        title="Insert code block (Ctrl+Shift+C)"
+                        type="button"
+                      >
+                        <i
+                          class="format code"
+                        />
+                      </button>
+                      <button
+                        aria-label="Insert link"
+                        class="toolbar-item spaced "
+                        title="Insert link (Ctrl+K)"
+                        type="button"
+                      >
+                        <i
+                          class="format link"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      class="toolbar"
+                    >
+                      <button
+                        aria-label="Formatting text color"
+                        class="toolbar-item color-picker"
+                        type="button"
+                      >
+                        <span
+                          class="icon font-color"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <button
+                        aria-label="Formatting background color"
+                        class="toolbar-item color-picker"
+                        type="button"
+                      >
+                        <span
+                          class="icon bg-color"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <button
+                        aria-label="Formatting options for additional text styles"
+                        class="toolbar-item spaced"
+                        type="button"
+                      >
+                        <span
+                          class="icon dropdown-more"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Insert specialized editor node"
+                        class="toolbar-item spaced"
+                        type="button"
+                      >
+                        <span
+                          class="icon plus"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Insert
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for text alignment"
+                        class="toolbar-item spaced alignment"
+                        type="button"
+                      >
+                        <span
+                          class="icon left-align"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Left Align
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="editor-container "
+                  >
+                    <div
+                      class="editor-scroller"
+                    >
+                      <div
+                        class="editor"
+                      >
+                        <div
+                          aria-placeholder="Enter plain text..."
+                          class="ContentEditable__root read-write"
+                          contenteditable="true"
+                          data-lexical-editor="true"
+                          role="textbox"
+                          spellcheck="true"
+                          style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+                        >
+                          <p
+                            class="ExchangeLexicalTheme__paragraph"
+                          >
+                            <br />
+                          </p>
+                        </div>
+                        <div
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="ContentEditable__placeholder"
+                          >
+                            Enter plain text...
+                          </div>
+                        </div>
+                        <div
+                          draggable="true"
+                        >
+                          <div
+                            class="icon draggable-block-menu"
+                            style="opacity: 0; transform: translate(-10000px, -10000px);"
+                          >
+                            <div
+                              class="icon"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="draggable-block-target-line"
+                        />
+                        <div
+                          class="link-editor"
+                          style="opacity: 1; transform: translate(-5px, 10px);"
+                        />
+                        <div
+                          class="table-cell-action-button-container"
+                        />
+                      </div>
+                    </div>
+                    <div />
+                    <div
+                      class="actions"
+                    >
+                      <button
+                        aria-label="Disable speech to text"
+                        class="action-button action-button-mic"
+                        title="Speech To Text"
+                        type="button"
+                      >
+                        <i
+                          class="mic"
+                        />
+                      </button>
+                      <button
+                        aria-label="Clear editor contents"
+                        class="action-button clear"
+                        disabled=""
+                        title="Clear"
+                        type="button"
+                      >
+                        <i
+                          class="clear"
+                        />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -733,29 +1320,320 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                   Description
                 </label>
                 <div
-                  class="relative"
+                  class="editor-shell read-write"
                 >
-                  <svg
-                    class="absolute text-lg inset-x-1/2 top-10 spinner"
-                    fill="currentColor"
-                    height="2em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="2em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-                    />
-                  </svg>
                   <div
-                    class="html-editor"
+                    class="flex flex-col"
                   >
-                    <textarea
-                      id="description-editor"
-                      style="visibility: hidden;"
-                    />
+                    <div
+                      class="toolbar"
+                    >
+                      <button
+                        aria-label="Undo"
+                        class="toolbar-item spaced"
+                        disabled=""
+                        title="Undo (Ctrl+Z)"
+                        type="button"
+                      >
+                        <i
+                          class="format undo"
+                        />
+                      </button>
+                      <button
+                        aria-label="Redo"
+                        class="toolbar-item"
+                        disabled=""
+                        title="Redo (Ctrl+Y)"
+                        type="button"
+                      >
+                        <i
+                          class="format redo"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for text style"
+                        class="toolbar-item block-controls"
+                        type="button"
+                      >
+                        <span
+                          class="icon block-type paragraph"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Normal
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for font family"
+                        class="toolbar-item font-family"
+                        type="button"
+                      >
+                        <span
+                          class="icon block-type font-family"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Arial
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Decrease font size"
+                        class="toolbar-item font-decrement"
+                        title="Decrease font size (Ctrl+Shift+,)"
+                        type="button"
+                      >
+                        <i
+                          class="format minus-icon"
+                        />
+                      </button>
+                      <input
+                        class="toolbar-item font-size-input"
+                        max="72"
+                        min="8"
+                        title="Font size"
+                        type="number"
+                        value="15"
+                      />
+                      <button
+                        aria-label="Increase font size"
+                        class="toolbar-item font-increment"
+                        title="Increase font size (Ctrl+Shift+.)"
+                        type="button"
+                      >
+                        <i
+                          class="format add-icon"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Format text as bold. Shortcut: Ctrl+B"
+                        class="toolbar-item spaced "
+                        title="Bold (Ctrl+B)"
+                        type="button"
+                      >
+                        <i
+                          class="format bold"
+                        />
+                      </button>
+                      <button
+                        aria-label="Format text as italics. Shortcut: Ctrl+I"
+                        class="toolbar-item spaced "
+                        title="Italic (Ctrl+I)"
+                        type="button"
+                      >
+                        <i
+                          class="format italic"
+                        />
+                      </button>
+                      <button
+                        aria-label="Format text to underlined. Shortcut: Ctrl+U"
+                        class="toolbar-item spaced "
+                        title="Underline (Ctrl+U)"
+                        type="button"
+                      >
+                        <i
+                          class="format underline"
+                        />
+                      </button>
+                      <button
+                        aria-label="Insert code block"
+                        class="toolbar-item spaced "
+                        title="Insert code block (Ctrl+Shift+C)"
+                        type="button"
+                      >
+                        <i
+                          class="format code"
+                        />
+                      </button>
+                      <button
+                        aria-label="Insert link"
+                        class="toolbar-item spaced "
+                        title="Insert link (Ctrl+K)"
+                        type="button"
+                      >
+                        <i
+                          class="format link"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      class="toolbar"
+                    >
+                      <button
+                        aria-label="Formatting text color"
+                        class="toolbar-item color-picker"
+                        type="button"
+                      >
+                        <span
+                          class="icon font-color"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <button
+                        aria-label="Formatting background color"
+                        class="toolbar-item color-picker"
+                        type="button"
+                      >
+                        <span
+                          class="icon bg-color"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <button
+                        aria-label="Formatting options for additional text styles"
+                        class="toolbar-item spaced"
+                        type="button"
+                      >
+                        <span
+                          class="icon dropdown-more"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Insert specialized editor node"
+                        class="toolbar-item spaced"
+                        type="button"
+                      >
+                        <span
+                          class="icon plus"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Insert
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for text alignment"
+                        class="toolbar-item spaced alignment"
+                        type="button"
+                      >
+                        <span
+                          class="icon left-align"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Left Align
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="editor-container "
+                  >
+                    <div
+                      class="editor-scroller"
+                    >
+                      <div
+                        class="editor"
+                      >
+                        <div
+                          aria-placeholder="Enter plain text..."
+                          class="ContentEditable__root read-write"
+                          contenteditable="true"
+                          data-lexical-editor="true"
+                          role="textbox"
+                          spellcheck="true"
+                          style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+                        >
+                          <p
+                            class="ExchangeLexicalTheme__paragraph ExchangeLexicalTheme__ltr"
+                            dir="ltr"
+                          >
+                            <span
+                              data-lexical-text="true"
+                            >
+                              Suite of solutions for digital identities and electronic signatures, aimed at public administrations for the implementation of authentication and electronic signatures in a streamlined and effective manner.
+                            </span>
+                          </p>
+                        </div>
+                        <div
+                          draggable="true"
+                        >
+                          <div
+                            class="icon draggable-block-menu"
+                            style="opacity: 0; transform: translate(-10000px, -10000px);"
+                          >
+                            <div
+                              class="icon"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="draggable-block-target-line"
+                        />
+                        <div
+                          class="link-editor"
+                          style="opacity: 1; transform: translate(-5px, 10px);"
+                        />
+                        <div
+                          class="table-cell-action-button-container table-cell-action-button-container--inactive"
+                        />
+                      </div>
+                    </div>
+                    <div />
+                    <div
+                      class="actions"
+                    >
+                      <button
+                        aria-label="Disable speech to text"
+                        class="action-button action-button-mic"
+                        title="Speech To Text"
+                        type="button"
+                      >
+                        <i
+                          class="mic"
+                        />
+                      </button>
+                      <button
+                        aria-label="Clear editor contents"
+                        class="action-button clear"
+                        title="Clear"
+                        type="button"
+                      >
+                        <i
+                          class="clear"
+                        />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -837,29 +1715,324 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                   Pricing Details
                 </label>
                 <div
-                  class="relative"
+                  class="editor-shell read-write"
                 >
-                  <svg
-                    class="absolute text-lg inset-x-1/2 top-10 spinner"
-                    fill="currentColor"
-                    height="2em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="2em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-                    />
-                  </svg>
                   <div
-                    class="html-editor"
+                    class="flex flex-col"
                   >
-                    <textarea
-                      id="pricing-details-editor"
-                      style="visibility: hidden;"
-                    />
+                    <div
+                      class="toolbar"
+                    >
+                      <button
+                        aria-label="Undo"
+                        class="toolbar-item spaced"
+                        title="Undo (Ctrl+Z)"
+                        type="button"
+                      >
+                        <i
+                          class="format undo"
+                        />
+                      </button>
+                      <button
+                        aria-label="Redo"
+                        class="toolbar-item"
+                        disabled=""
+                        title="Redo (Ctrl+Y)"
+                        type="button"
+                      >
+                        <i
+                          class="format redo"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for text style"
+                        class="toolbar-item block-controls"
+                        type="button"
+                      >
+                        <span
+                          class="icon block-type paragraph"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Normal
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for font family"
+                        class="toolbar-item font-family"
+                        type="button"
+                      >
+                        <span
+                          class="icon block-type font-family"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Arial
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Decrease font size"
+                        class="toolbar-item font-decrement"
+                        title="Decrease font size (Ctrl+Shift+,)"
+                        type="button"
+                      >
+                        <i
+                          class="format minus-icon"
+                        />
+                      </button>
+                      <input
+                        class="toolbar-item font-size-input"
+                        max="72"
+                        min="8"
+                        title="Font size"
+                        type="number"
+                        value="15"
+                      />
+                      <button
+                        aria-label="Increase font size"
+                        class="toolbar-item font-increment"
+                        title="Increase font size (Ctrl+Shift+.)"
+                        type="button"
+                      >
+                        <i
+                          class="format add-icon"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Format text as bold. Shortcut: Ctrl+B"
+                        class="toolbar-item spaced "
+                        title="Bold (Ctrl+B)"
+                        type="button"
+                      >
+                        <i
+                          class="format bold"
+                        />
+                      </button>
+                      <button
+                        aria-label="Format text as italics. Shortcut: Ctrl+I"
+                        class="toolbar-item spaced "
+                        title="Italic (Ctrl+I)"
+                        type="button"
+                      >
+                        <i
+                          class="format italic"
+                        />
+                      </button>
+                      <button
+                        aria-label="Format text to underlined. Shortcut: Ctrl+U"
+                        class="toolbar-item spaced "
+                        title="Underline (Ctrl+U)"
+                        type="button"
+                      >
+                        <i
+                          class="format underline"
+                        />
+                      </button>
+                      <button
+                        aria-label="Insert code block"
+                        class="toolbar-item spaced "
+                        title="Insert code block (Ctrl+Shift+C)"
+                        type="button"
+                      >
+                        <i
+                          class="format code"
+                        />
+                      </button>
+                      <button
+                        aria-label="Insert link"
+                        class="toolbar-item spaced "
+                        title="Insert link (Ctrl+K)"
+                        type="button"
+                      >
+                        <i
+                          class="format link"
+                        />
+                      </button>
+                    </div>
+                    <div
+                      class="toolbar"
+                    >
+                      <button
+                        aria-label="Formatting text color"
+                        class="toolbar-item color-picker"
+                        type="button"
+                      >
+                        <span
+                          class="icon font-color"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <button
+                        aria-label="Formatting background color"
+                        class="toolbar-item color-picker"
+                        type="button"
+                      >
+                        <span
+                          class="icon bg-color"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <button
+                        aria-label="Formatting options for additional text styles"
+                        class="toolbar-item spaced"
+                        type="button"
+                      >
+                        <span
+                          class="icon dropdown-more"
+                        />
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Insert specialized editor node"
+                        class="toolbar-item spaced"
+                        type="button"
+                      >
+                        <span
+                          class="icon plus"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Insert
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                      <div
+                        class="divider"
+                      />
+                      <button
+                        aria-label="Formatting options for text alignment"
+                        class="toolbar-item spaced alignment"
+                        type="button"
+                      >
+                        <span
+                          class="icon left-align"
+                        />
+                        <span
+                          class="text dropdown-button-text"
+                        >
+                          Left Align
+                        </span>
+                        <i
+                          class="chevron-down"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="editor-container "
+                  >
+                    <div
+                      class="editor-scroller"
+                    >
+                      <div
+                        class="editor"
+                      >
+                        <div
+                          aria-placeholder="Enter plain text..."
+                          class="ContentEditable__root read-write"
+                          contenteditable="true"
+                          data-lexical-editor="true"
+                          role="textbox"
+                          spellcheck="true"
+                          style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+                        >
+                          <p
+                            class="ExchangeLexicalTheme__paragraph"
+                          >
+                            <br />
+                          </p>
+                        </div>
+                        <div
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="ContentEditable__placeholder"
+                          >
+                            Enter plain text...
+                          </div>
+                        </div>
+                        <div
+                          draggable="true"
+                        >
+                          <div
+                            class="icon draggable-block-menu"
+                            style="opacity: 0; transform: translate(-10000px, -10000px);"
+                          >
+                            <div
+                              class="icon"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="draggable-block-target-line"
+                        />
+                        <div
+                          class="link-editor"
+                          style="opacity: 1; transform: translate(-5px, 10px);"
+                        />
+                        <div
+                          class="table-cell-action-button-container table-cell-action-button-container--inactive"
+                        />
+                      </div>
+                    </div>
+                    <div />
+                    <div
+                      class="actions"
+                    >
+                      <button
+                        aria-label="Disable speech to text"
+                        class="action-button action-button-mic"
+                        title="Speech To Text"
+                        type="button"
+                      >
+                        <i
+                          class="mic"
+                        />
+                      </button>
+                      <button
+                        aria-label="Clear editor contents"
+                        class="action-button clear"
+                        disabled=""
+                        title="Clear"
+                        type="button"
+                      >
+                        <i
+                          class="clear"
+                        />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
