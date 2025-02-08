@@ -92,7 +92,8 @@ const HubExpertNetwork = () => {
           {loading
             ? format('general.fetchingData')
             : error
-              ? format('general.fetchError')
+              ? (user && allowedToBrowseAdliPages(user)) ? format('general.fetchError') :
+                format('ui.general.error.forbidden')
               : data.hubContacts
                 ? <NetworkMembers
                   members={
