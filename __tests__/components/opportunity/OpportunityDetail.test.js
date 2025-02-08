@@ -13,13 +13,16 @@ import {
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockPolicyFetching } from '../../utils/mockPolicyFetching'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createOpportunity, opportunityDetail } from './data/OpportunityDetail.data'
 import { opportunityPaginationAttribute, paginatedOpportunities } from './data/OpportunityMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
 mockPolicyFetching()
+mockLexicalComponents()
 describe('Unit tests for the opportunity detail page.', () => {
   const mockOpportunity = generateMockApolloData(
     OPPORTUNITY_DETAIL_QUERY,

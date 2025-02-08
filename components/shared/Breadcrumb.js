@@ -39,6 +39,7 @@ const basePathMappings = {
   'syncs': 'ui.sync.header',
   'tags': 'ui.tag.header',
   'task-trackers': 'ui.taskTracker.header',
+  'profiles': 'ui.profile.header',
   'users': 'ui.user.header',
   'use-case-steps': 'ui.useCaseStep.header',
   'use-cases': 'ui.useCase.header',

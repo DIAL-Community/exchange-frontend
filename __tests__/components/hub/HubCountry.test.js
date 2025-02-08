@@ -9,7 +9,7 @@ import {
 } from '../../../components/shared/query/resource'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { mockLexicalComponents, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
 import {
   countriesWithResources, countryResources, policyResourcePagination, policyResources, websiteResourcePagination,
   websiteResources
@@ -18,6 +18,7 @@ import { resourceTypes } from './data/HubResourceFinder.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the opportunity detail page.', () => {
   const mockPolicyResources = generateMockApolloData(
     PAGINATED_RESOURCES_QUERY,

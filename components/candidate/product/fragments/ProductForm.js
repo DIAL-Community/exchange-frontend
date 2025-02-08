@@ -138,7 +138,7 @@ const ProductForm = React.memo(({ product }) => {
   const { loading, data, error } = useQuery(CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY, {
     context: {
       headers: {
-        ...GRAPH_QUERY_CONTEXT.VIEWING
+        ...(product ? GRAPH_QUERY_CONTEXT.EDITING : GRAPH_QUERY_CONTEXT.CREATING)
       }
     }
   })

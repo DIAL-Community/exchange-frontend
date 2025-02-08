@@ -69,7 +69,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, 
               <div className='flex flex-row gap-x-2'>
                 {createFn &&
                   activeTab == 0 &&
-                  !user?.isAdminUser &&
+                  user && !user?.isAdminUser &&
                   <div className='bg-dial-iris-blue rounded-md'>
                     <a href='#' onClick={createClicked}>
                       <div className='px-5 py-1.5'>

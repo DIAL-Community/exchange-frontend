@@ -1,7 +1,7 @@
+import { useCallback, useContext, useState } from 'react'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useState } from 'react'
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
@@ -110,7 +110,7 @@ const UserMenu = ({ currentMenu, setCurrentMenu }) => {
           {currentMenu === USER_MENU &&
             <ul className='px-6'>
               <li>
-                <Link href='/users/me'>
+                <Link href='/profiles/me'>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format('header.profile')}
                   </div>
