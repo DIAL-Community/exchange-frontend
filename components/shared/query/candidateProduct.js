@@ -1,8 +1,14 @@
 import { gql } from '@apollo/client'
 
+export const CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY = gql`
+  query CandidateProductExtraAttributes {
+    candidateProductExtraAttributes
+  }
+`
+
 export const CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query PaginationAttributeCandidateProduct($search: String) {
-    paginationAttributeCandidateProduct(search: $search) {
+  query PaginationAttributeCandidateProduct($currentUserOnly: Boolean, $search: String) {
+    paginationAttributeCandidateProduct(currentUserOnly: $currentUserOnly, search: $search) {
       totalCount
     }
   }
@@ -10,11 +16,13 @@ export const CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
 
 export const PAGINATED_CANDIDATE_PRODUCTS_QUERY = gql`
   query PaginatedCandidateProducts(
+    $currentUserOnly: Boolean
     $search: String
     $limit: Int!
     $offset: Int!
   ) {
     paginatedCandidateProducts(
+      currentUserOnly: $currentUserOnly
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {
@@ -54,6 +62,7 @@ export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
       repository
       description
       submitterEmail
+      extraAttributes
       overallMaturityScore
       maturityScoreDetails
       candidateStatus {

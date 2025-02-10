@@ -11,12 +11,15 @@ import {
 } from '../../../components/shared/query/dataset'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createDataset, datasetDetail } from './data/DatasetDetail.data'
 import { datasetPaginationAttribute, paginatedDatasets } from './data/DatasetMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the dataset detail page.', () => {
   const mockDatasetPolicies = generateMockApolloData(
     DATASET_POLICY_QUERY,
@@ -98,10 +101,9 @@ describe('Unit tests for the dataset detail page.', () => {
     expect(container).toMatchSnapshot()
   })
 
+  mockNextAuthUseSession()
   test('Should render edit page for logged in user.', async () => {
-    mockNextAuthUseSession()
-
-    const mockCreateBuildingBlock = generateMockApolloData(
+    const mockCreateDataset = generateMockApolloData(
       CREATE_DATASET,
       {
         'name': 'AI Agro - Edited',
@@ -117,7 +119,12 @@ describe('Unit tests for the dataset detail page.', () => {
         'license': 'GPL-3.0',
         'languages': null,
         'dataFormat': null,
-        'description': 'Dataset description'
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Dataset description' +
+            '</span>' +
+          '</p>'
       },
       null,
       createDataset
@@ -141,11 +148,11 @@ describe('Unit tests for the dataset detail page.', () => {
       <CustomMockedProvider
         mocks={[
           mockDataset,
+          mockDataset,
+          mockCreateDataset,
           mockDatasetComments,
-          mockCreateBuildingBlock,
-          mockDatasetPaginationAttribute,
           mockPaginatedDatasets,
-          mockDataset
+          mockDatasetPaginationAttribute
         ]}
       >
         <QueryParamContextProvider>

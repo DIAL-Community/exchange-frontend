@@ -16,6 +16,7 @@ export const CollectionPageSize = {
 
 const FilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
+  const [currentUserOnly, setCurrentUserOnly] = useState(false)
   const [collectionDisplayType, setCollectionDisplayType] = useState(CollectionDisplayType.LIST)
 
   // Task tracker context only
@@ -72,6 +73,7 @@ const FilterProvider = ({ children }) => {
       // Transitioning to other pages (pathname changing).
       if (url.indexOf(router.pathname) < 0) {
         setSearch('')
+        setCurrentUserOnly(false)
         setShowFailedOnly(false)
         setShowGovStackOnly(false)
         setShowMature(false)
@@ -130,6 +132,7 @@ const FilterProvider = ({ children }) => {
 
   const valueProps = {
     search,
+    currentUserOnly,
     collectionDisplayType,
 
     showFailedOnly,
@@ -179,6 +182,8 @@ const FilterProvider = ({ children }) => {
 
   const dispatchProps = {
     setSearch,
+    setCurrentUserOnly,
+
     setCollectionDisplayType,
 
     setShowFailedOnly,

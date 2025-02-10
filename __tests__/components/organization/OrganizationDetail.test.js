@@ -11,12 +11,15 @@ import {
 } from '../../../components/shared/query/organization'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createOrganization, organizationDetail } from './data/OrganizationDetail.data'
 import { organizationPaginationAttribute, paginatedOrganizations } from './data/OrganizationMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the organization detail page.', () => {
   const mockOrganizationPolicies = generateMockApolloData(
     ORGANIZATION_POLICY_QUERY,
@@ -109,7 +112,12 @@ describe('Unit tests for the organization detail page.', () => {
         'whenEndorsed': null,
         'endorserLevel': 'none',
         'isMni': false,
-        'description': 'Description for the organization.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Description for the organization.' +
+            '</span>' +
+          '</p>',
         'hasStorefront': false
       },
       null,

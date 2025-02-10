@@ -12,13 +12,18 @@ import {
 } from '../../../components/shared/query/productRepository'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { mockPolicyFetching } from '../../utils/mockPolicyFetching'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import {
   createProductRepository, ownedProducts, productRepositories, productRepositoryDetail
 } from './data/ProductRepositoryDetail.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockPolicyFetching()
+mockLexicalComponents()
 describe('Unit tests for the product main page.', () => {
   const mockProductPolicies = generateMockApolloData(
     PRODUCT_POLICY_QUERY,
@@ -132,7 +137,12 @@ describe('Unit tests for the product main page.', () => {
         'name': '@firma Repository Information',
         'slug': 'firma-repository',
         'absoluteUrl': 'github.com/ctt-gob-es/clienteafirma',
-        'description': 'Repository of @firma.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Repository of @firma.' +
+            '</span>' +
+          '</p>',
         'mainRepository': true
       },
       null,

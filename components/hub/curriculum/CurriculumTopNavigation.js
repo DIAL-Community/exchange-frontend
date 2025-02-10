@@ -32,12 +32,12 @@ const CurriculumTopNavigation = ({ curriculum, moduleRefs }) => {
     setCurrentSlugIndex(currentIndex)
   }, [currentSlug, modules])
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[curriculum.slug] = curriculum.name
 
     return map
-  })()
+  }
 
   return (
     <div className='sticky sticky-under-header bg-dial-lavender'>

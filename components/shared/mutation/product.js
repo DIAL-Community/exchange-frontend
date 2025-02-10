@@ -15,7 +15,7 @@ export const CREATE_PRODUCT = gql`
     $commercialProduct: Boolean
     $govStackEntity: Boolean
     $productStage: String
-    $extraAttributes: [ExtraAttributeInput!]
+    $extraAttributes: [ExtraAttribute!]
     $featured: Boolean
     $contact: String
   ) {
@@ -194,7 +194,7 @@ export const UPDATE_PRODUCT_COUNTRIES = gql`
 export const UPDATE_PRODUCT_EXTRA_ATTRIBUTES = gql`
   mutation UpdateProductExtraAttributes(
     $slug: String!
-     $extraAttributes: [ExtraAttributeInput!]!
+    $extraAttributes: [ExtraAttribute!]!
   ) {
     updateProductExtraAttributes(
       slug: $slug

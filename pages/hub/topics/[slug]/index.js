@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
@@ -12,16 +12,9 @@ const HubTopicPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [ pageNumber, setPageNumber ] = useState(0)
-
   const { push, query } = useRouter()
   const { page, slug } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-    }
-  }, [page, setPageNumber])
+  const pageNumber = page ? parseInt(page) - 1 : 0
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage

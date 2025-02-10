@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
@@ -30,20 +30,12 @@ const ProductListRight = () => {
     workflows
   } = useContext(FilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
-
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
   const { page } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * CollectionPageSize[collectionDisplayType])
-    }
-  }, [page, collectionDisplayType, setPageNumber, setPageOffset])
+  const pageNumber = page ? parseInt(page) - 1 : 0
+  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage

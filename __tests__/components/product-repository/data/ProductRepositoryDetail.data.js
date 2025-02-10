@@ -114,7 +114,7 @@ export const createProductRepository = {
         'name': '@firma Repository Information',
         'slug': 'firma-repository',
         'absoluteUrl': 'github.com/ctt-gob-es/clienteafirma',
-        'description': '\u003cp\u003eRepository of @firma.\u003c/p\u003e',
+        'description': 'Repository of @firma.',
         '__typename': 'ProductRepository'
       },
       'errors': [],

@@ -13,12 +13,17 @@ import {
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import { mockPolicyFetching } from '../../utils/mockPolicyFetching'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { buildingBlockDetail, commentsQuery, createBuildingBlock } from './data/BuildingBlockDetail.data'
 import { buildingBlockPaginationAttribute, paginatedBuildingBlocks } from './data/BuildingBlockMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockPolicyFetching()
+mockLexicalComponents()
 describe('Unit tests for the building block detail page.', () => {
   const mockBuildingBlockPolicies = generateMockApolloData(
     BUILDING_BLOCK_POLICY_QUERY,
@@ -121,7 +126,13 @@ describe('Unit tests for the building block detail page.', () => {
         'slug': 'analytics-and-business-intelligence',
         'maturity': 'DRAFT',
         'category': null,
-        'description': 'Building block description.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Building block description.' +
+            '</span>' +
+          '</p>'
+        ,
         'specUrl': '',
         'govStackEntity': false
       },

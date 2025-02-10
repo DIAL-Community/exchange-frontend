@@ -18,26 +18,13 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       />
       {currentOpenMenu === ADMIN_MENU &&
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-          <Link href='/task-trackers' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.taskTracker.header')}
-          </Link>
-          <Link href='/users' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.user.header')}
+          <Link href='/admin' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.admin.header')}
           </Link>
           <div className='mx-4 border-b border-dial-slate-300' />
-          <Link href='/countries' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.country.header')}
+          <Link href='/candidate/resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            {format('ui.candidateResource.header')}
           </Link>
-          <Link href='/regions' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.region.header')}
-          </Link>
-          <Link href='/sectors' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.sector.header')}
-          </Link>
-          <Link href='/tags' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.tag.header')}
-          </Link>
-          <div className='mx-4 border-b border-dial-slate-300' />
           <Link href='/resource-topics' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.resourceTopic.header')}
           </Link>
@@ -50,9 +37,6 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           </Link>
           <Link href='/candidate/products' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.candidateProduct.header')}
-          </Link>
-          <Link href='/candidate/resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('ui.candidateResource.header')}
           </Link>
           <Link href='/candidate/roles' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
             {format('ui.candidateRole.header')}

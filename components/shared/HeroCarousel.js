@@ -51,7 +51,7 @@ export const MarketplaceHeroCarousel = ({ carouselConfiguration }) => {
     <div
       className='bg-cover bg-no-repeat'
       style={{
-        backgroundImage: 'url("/ui/v1/wizard-bg.svg")',
+        backgroundImage: 'url("/ui/v1/wizard-bg.png")',
         height: '400px'
       }}
     >
