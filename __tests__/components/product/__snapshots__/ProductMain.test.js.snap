@@ -325,36 +325,43 @@ exports[`Unit tests for the product main page. Should render list of products. 1
             class="py-3"
           >
             <div
-              class="flex flex-row items-center justify-items-center gap-3"
+              class="flex flex-row items-center justify-center gap-1 relative"
             >
               <div
-                class="block md:hidden relative"
+                class="block md:hidden h-full"
               >
                 <button
-                  class="my-auto h-full"
+                  class="mt-[0.5rem]"
                   type="button"
                 >
                   <svg
-                    class="text-2xl text-dial-meadow mx-auto"
+                    class="text-2xl text-dial-slate-500 mx-auto"
                     fill="currentColor"
                     height="1em"
                     stroke="currentColor"
                     stroke-width="0"
-                    viewBox="0 0 512 512"
+                    viewBox="0 0 24 24"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"
+                      d="M13 5h9v2h-9zM2 7h7v2h2V3H9v2H2zm7 10h13v2H9zm10-6h3v2h-3zm-2 4V9.012h-2V11H2v2h13v2zM7 21v-6H5v2H2v2h3v2z"
                     />
                   </svg>
                 </button>
               </div>
               <div
-                class="flex flex-row gap-1"
+                class="flex flex-row gap-2"
               >
+                <div
+                  class="text-sm my-auto"
+                >
+                  View as:
+                </div>
                 <button
-                  class="flex items-center justify-center"
+                  class="text-sm flex gap-1 items-center justify-center"
+                  disabled=""
+                  title="View data as grid"
                 >
                   <svg
                     class="text-dial-slate-500"
@@ -371,9 +378,12 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                     />
                   </svg>
                 </button>
+                <div
+                  class="border-r"
+                />
                 <button
-                  class="flex items-center justify-center"
-                  disabled=""
+                  class="text-sm flex gap-1 items-center justify-center"
+                  title="View data as list"
                 >
                   <svg
                     class="text-dial-slate-300"
@@ -402,7 +412,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </button>
               </div>
               <div
-                class="ml-auto w-full"
+                class="ml-auto max-w-prose"
               >
                 <label
                   class="relative"
@@ -438,7 +448,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
             </div>
           </div>
           <div
-            class="flex flex-col gap-3"
+            class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
           >
             <div>
               <div
@@ -448,85 +458,58 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                   href="/products/aidr"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-spearmint"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-20 h-20 mx-auto bg-white border"
-                      >
-                        <img
-                          alt="Logo of Product."
-                          class="object-contain w-16 h-16 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/aidr.png"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-meadow"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="inline my-4 mx-6"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[5rem] w-[5rem]"
+                              src="http://localhost:3000//assets/products/aidr.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           AIDR
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
-                        />
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
+                        >
+                          <span
+                            class="text-center line-clamp-3"
+                          />
+                        </div>
                         <div
-                          class="flex gap-x-2 text-dial-stratos"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
                             Building Blocks
                              (
                             0
                             )
                           </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
                         </div>
-                        <div
-                          class="flex gap-2 text-xs text-white"
-                        />
                       </div>
                     </div>
                   </div>
                 </a>
                 <div
                   class="absolute top-2 right-2"
-                >
-                  <label
-                    class="ml-auto flex gap-x-2 text-sm"
-                  >
-                    <input
-                      class="ring-0 focus:ring-0 h-5 w-5"
-                      type="checkbox"
-                    />
-                    Compare
-                  </label>
-                </div>
+                />
               </div>
             </div>
             <div>
@@ -537,74 +520,51 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                   href="/products/ap_latam"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-20 h-20 mx-auto"
-                      >
-                        <img
-                          alt="Logo of Product."
-                          class="object-contain w-16 h-16"
-                          src="http://localhost:3000//assets/products/product_placeholder.svg"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-meadow"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="w-20 h-20"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain"
+                              src="http://localhost:3000//assets/products/product_placeholder.svg"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           AP Latam
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
+                          <span
+                            class="text-center line-clamp-3"
+                          >
+                            Some parsed description.
+                          </span>
                         </div>
                         <div
-                          class="flex gap-x-2 text-dial-stratos"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            4
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
                             Building Blocks
                              (
                             0
                             )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
-                        <div
-                          class="flex gap-2 text-xs text-white"
-                        >
-                          <div
-                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
-                          >
-                            GOVSTACK
                           </div>
                         </div>
                       </div>
@@ -613,17 +573,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </a>
                 <div
                   class="absolute top-2 right-2"
-                >
-                  <label
-                    class="ml-auto flex gap-x-2 text-sm"
-                  >
-                    <input
-                      class="ring-0 focus:ring-0 h-5 w-5"
-                      type="checkbox"
-                    />
-                    Compare
-                  </label>
-                </div>
+                />
               </div>
             </div>
             <div>
@@ -634,87 +584,60 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                   href="/products/aajeevika"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-spearmint"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-20 h-20 mx-auto bg-white border"
-                      >
-                        <img
-                          alt="Logo of Product."
-                          class="object-contain w-16 h-16 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/aajeevika.png"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-meadow"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="inline my-4 mx-6"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[5rem] w-[5rem]"
+                              src="http://localhost:3000//assets/products/aajeevika.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           Aajeevika
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
+                          <span
+                            class="text-center line-clamp-3"
+                          >
+                            Some parsed description.
+                          </span>
                         </div>
                         <div
-                          class="flex gap-x-2 text-dial-stratos"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            2
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
                             Building Blocks
                              (
                             0
                             )
                           </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
                         </div>
-                        <div
-                          class="flex gap-2 text-xs text-white"
-                        />
                       </div>
                     </div>
                   </div>
                 </a>
                 <div
                   class="absolute top-2 right-2"
-                >
-                  <label
-                    class="ml-auto flex gap-x-2 text-sm"
-                  >
-                    <input
-                      class="ring-0 focus:ring-0 h-5 w-5"
-                      type="checkbox"
-                    />
-                    Compare
-                  </label>
-                </div>
+                />
               </div>
             </div>
             <div>
@@ -725,74 +648,51 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                   href="/products/accessmod"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-20 h-20 mx-auto bg-white border"
-                      >
-                        <img
-                          alt="Logo of Product."
-                          class="object-contain w-16 h-16 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/accessmod.png"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-meadow"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="inline my-4 mx-6"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[5rem] w-[5rem]"
+                              src="http://localhost:3000//assets/products/accessmod.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           AccessMod
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
+                          <span
+                            class="text-center line-clamp-3"
+                          >
+                            Some parsed description.
+                          </span>
                         </div>
                         <div
-                          class="flex gap-x-2 text-dial-stratos"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
                             Building Blocks
                              (
                             0
                             )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
-                        <div
-                          class="flex gap-2 text-xs text-white"
-                        >
-                          <div
-                            class="border border-dial-iris-blue text-dial-iris-blue rounded px-6 py-1"
-                          >
-                            GOVSTACK
                           </div>
                         </div>
                       </div>
@@ -801,17 +701,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </a>
                 <div
                   class="absolute top-2 right-2"
-                >
-                  <label
-                    class="ml-auto flex gap-x-2 text-sm"
-                  >
-                    <input
-                      class="ring-0 focus:ring-0 h-5 w-5"
-                      type="checkbox"
-                    />
-                    Compare
-                  </label>
-                </div>
+                />
               </div>
             </div>
           </div>
@@ -827,7 +717,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
               <div
                 class="my-auto text-sm font-semibold"
               >
-                Showing 1 - 8 of 23 total
+                Showing 1 - 12 of 23 total
               </div>
               <ul
                 aria-label="Pagination"
@@ -873,18 +763,6 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                     tabindex="0"
                   >
                     2
-                  </a>
-                </li>
-                <li
-                  class="border border-current rounded-md"
-                >
-                  <a
-                    aria-label="Page 3"
-                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
-                    role="button"
-                    tabindex="0"
-                  >
-                    3
                   </a>
                 </li>
                 <li

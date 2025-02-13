@@ -1,8 +1,9 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import Link from 'next/link'
+import classNames from 'classnames'
 import parse from 'html-react-parser'
-import { FaXmark, FaRegStar, FaStar } from 'react-icons/fa6'
+import Link from 'next/link'
+import { FaRegStar, FaStar, FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
@@ -143,7 +144,7 @@ const ProjectCard = (props) => {
             {project.name}
           </div>
         </div>
-        <hr className='border-b border-dial-slate-400'/>
+        <hr className='border-b border-dial-slate-400' />
         <div className='flex flex-row gap-3'>
           {firstProduct &&
             <div className='w-20 h-20 mx-auto bg-white border'>
@@ -186,27 +187,89 @@ const ProjectCard = (props) => {
       </div>
     </div>
 
+  const displayGridCard = () => (
+    <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
+      <div className='bg-white border shadow-lg rounded-xl h-[21rem]'>
+        <div className="flex flex-col h-full">
+          <div
+            className={
+              classNames(
+                'flex justify-center items-center bg-white',
+                'rounded-xl border-4 border-dial-violet',
+                'py-10 mx-4 my-4 max-h-[12rem]'
+              )}
+          >
+            <div className='flex flex-row gap-4 justify-center items-center'>
+              {firstProduct &&
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + firstProduct.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                  className="object-contain max-h-[4rem] w-[4rem]"
+                />
+              }
+              {!firstProduct &&
+                <img
+                  src='/ui/v1/product-header.svg'
+                  alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                  className='object-contain max-h-[4rem] w-[4rem]'
+                />
+              }
+              {firstOrganization &&
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + firstOrganization.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+                  className="object-contain max-h-[4rem] w-[4rem]"
+                />
+              }
+              {!firstOrganization &&
+                <img
+                  src='/ui/v1/organization-header.svg'
+                  alt={format('ui.image.logoAlt', { name: format('ui.organization.label') })}
+                  className='object-contain max-h-[4rem] w-[4rem]'
+                />
+              }
+            </div>
+          </div>
+          <div className="px-6 text-xl text-center font-semibold line-clamp-1">
+            {project.name}
+          </div>
+          <div className="px-6 py-2 text-xs text-dial-stratos font-medium">
+            <span className="text-center line-clamp-3">
+              {project?.parsedDescription && parse(project?.parsedDescription)}
+            </span>
+          </div>
+          <div className="my-3 mx-auto text-xs font-medium">
+            <div className="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white">
+              {format('ui.sdg.header')} ({project.sdgs?.length ?? 0})
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div className='relative'>
       <Link href={`/projects/${project.slug}`}>
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
         {displayType === DisplayType.PINNED_CARD && displayPinnedCard()}
+        {displayType === DisplayType.GRID_CARD && displayGridCard()}
       </Link>
       <div className='absolute top-2 right-2'>
         <div className='flex flex-row gap-2'>
-          { isValidFn(dismissHandler) &&
-            <button type='button'className='text-dial-plum' >
+          {isValidFn(dismissHandler) &&
+            <button type='button' className='text-dial-plum' >
               <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />
             </button>
           }
-          { isValidFn(addStarHandler) && !starred &&
-            <button type='button'className='text-dial-plum'>
+          {isValidFn(addStarHandler) && !starred &&
+            <button type='button' className='text-dial-plum'>
               <FaRegStar size='1rem' className='text-dial-plum' onClick={addStarHandler} />
             </button>
           }
-          { isValidFn(removeStarHandler) && starred &&
-            <button type='button'className='text-dial-plum'>
+          {isValidFn(removeStarHandler) && starred &&
+            <button type='button' className='text-dial-plum'>
               <FaStar size='1rem' className='text-dial-plum' onClick={removeStarHandler} />
             </button>
           }

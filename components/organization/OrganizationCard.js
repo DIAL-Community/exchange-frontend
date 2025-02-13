@@ -83,14 +83,14 @@ const OrganizationCard = ({ displayType, index, organization, dismissHandler }) 
 
   const displayGridCard = () => (
     <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
-      <div className='bg-white shadow-lg rounded-xl h-[360px]'>
+      <div className='bg-white border shadow-lg rounded-xl h-[22rem]'>
         <div className="flex flex-col h-full">
           <div
             className={
               classNames(
                 'flex justify-center items-center bg-white',
                 'rounded-xl border-4 border-dial-warm-beech',
-                'py-12 mx-4 my-4 max-h-[180px]'
+                'py-12 mx-4 my-4 max-h-[10rem]'
               )}
           >
             {organization.imageFile.indexOf('placeholder.svg') < 0 &&
@@ -98,7 +98,7 @@ const OrganizationCard = ({ displayType, index, organization, dismissHandler }) 
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                  className="object-contain max-h-[80px]" width="80px"
+                  className="object-contain max-h-[5rem] w-[5rem]"
                 />
               </div>
             }
@@ -117,12 +117,12 @@ const OrganizationCard = ({ displayType, index, organization, dismissHandler }) 
           </div>
           <div className="px-6 py-2 text-xs text-dial-stratos font-medium">
             <span className="text-center line-clamp-3">
-              {parse(organization.parsedDescription)}
+              {organization.parsedDescription && parse(organization.parsedDescription)}
             </span>
           </div>
           <div className="my-3 mx-auto text-xs font-medium">
             <div className="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white">
-              {organization?.maturity}
+              {format('ui.country.header')} ({organization.countries?.length ?? 0})
             </div>
           </div>
         </div>

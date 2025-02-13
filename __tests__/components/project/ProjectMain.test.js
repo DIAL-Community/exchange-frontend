@@ -2,10 +2,7 @@ import { screen } from '@testing-library/dom'
 import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import ProjectMain from '../../../components/project/ProjectMain'
-import {
-  PAGINATED_PROJECTS_QUERY,
-  PROJECT_PAGINATION_ATTRIBUTES_QUERY
-} from '../../../components/shared/query/project'
+import { PAGINATED_PROJECTS_QUERY, PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../../components/shared/query/project'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
@@ -41,7 +38,7 @@ describe('Unit tests for the project main page.', () => {
         tags: [],
         sdgs: [],
         origins: [],
-        limit: 8,
+        limit: 12,
         offset: 0
       },
       null,

@@ -17,7 +17,7 @@ export const CollectionPageSize = {
 const FilterProvider = ({ children }) => {
   const [search, setSearch] = useState('')
   const [currentUserOnly, setCurrentUserOnly] = useState(false)
-  const [collectionDisplayType, setCollectionDisplayType] = useState(CollectionDisplayType.LIST)
+  const [collectionDisplayType, setCollectionDisplayType] = useState(CollectionDisplayType.GRID)
 
   // Task tracker context only
   const [showFailedOnly, setShowFailedOnly] = useState(false)

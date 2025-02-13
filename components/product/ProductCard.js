@@ -1,4 +1,5 @@
 import { useCallback, useContext } from 'react'
+import classNames from 'classnames'
 import parse from 'html-react-parser'
 import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
@@ -118,72 +119,54 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
       </div>
     </div>
 
-  const displayGridCard = () =>
-    <div className='cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine'>
-      <div
-        className='bg-white shadow-lg rounded-lg h-full border border-dial-gray hover:border-transparent'>
-        <div className='flex flex-col'>
-
-          <div className='flex text-dial-sapphire bg-dial-alice-blue h-20 rounded-t-lg'>
-            <div className='px-4 text-sm text-center font-semibold m-auto'>
-              {product.name}
-            </div>
+  const displayGridCard = () => (
+    <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
+      <div className='bg-white border shadow-lg rounded-xl h-[22rem]'>
+        <div className="flex flex-col h-full">
+          <div
+            className={
+              classNames(
+                'flex justify-center items-center bg-white',
+                'rounded-xl border-4 border-dial-spearmint',
+                'py-12 mx-4 my-4 max-h-[10rem]'
+              )}
+          >
+            {product.imageFile.indexOf('placeholder.svg') < 0 &&
+              <div className="inline my-4 mx-6">
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                  className="object-contain max-h-[5rem] w-[5rem]"
+                />
+              </div>
+            }
+            {product.imageFile.indexOf('placeholder.svg') >= 0 &&
+              <div className="w-20 h-20">
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                  className="object-contain"
+                />
+              </div>
+            }
           </div>
-          <div className='mx-auto py-6'>
-            <img
-              className='object-contain h-20 w-20'
-              layout='fill'
-              alt={format('image.alt.logoFor', { name: product.name })}
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-            />
+          <div className="px-6 text-xl text-center font-semibold line-clamp-1">
+            {product.name}
           </div>
-          <hr />
-          <div className='text-xs text-dial-stratos font-semibold uppercase'>
-            <div className='px-4 py-2 flex gap-2'>
-              <span className='badge-avatar w-7 h-7'>
-                {product.sustainableDevelopmentGoals?.length}
-              </span>
-              <span className='my-auto'>
-                {product.sustainableDevelopmentGoals?.length > 1
-                  ? format('sdg.shortHeader')
-                  : format('sdg.shortLabel')
-                }
-              </span>
-            </div>
+          <div className="px-6 py-2 text-xs text-dial-stratos font-medium">
+            <span className="text-center line-clamp-3">
+              {product.parsedDescription && parse(product.parsedDescription)}
+            </span>
           </div>
-          <hr />
-          <div className='text-xs text-dial-stratos font-semibold uppercase'>
-            <div className='px-4 py-2 flex gap-2'>
-              <span className='badge-avatar w-7 h-7'>
-                {product.buildingBlocks.length}
-              </span>
-              <span className='my-auto'>
-                {product.buildingBlocks.length > 1
-                  ? format('ui.buildingBlock.header')
-                  : format('ui.buildingBlock.label')
-                }
-              </span>
-              {product.linkedWithDpi &&
-                <div className='opacity-50 ml-auto my-auto'>
-                  {format('buildingBlock.category.dpi')}
-                </div>
-              }
-            </div>
-          </div>
-          <hr />
-          <div className='text-xs text-dial-stratos font-semibold uppercase'>
-            <div className='px-4 py-3 flex gap-2'>
-              <span className='my-auto'>
-                {product.commercialProduct
-                  ? format('product.pricing.commercial').toUpperCase()
-                  : product.mainRepository?.license?.toUpperCase() || format('general.na')
-                }
-              </span>
+          <div className="my-3 mx-auto text-xs font-medium">
+            <div className="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white">
+              {format('ui.buildingBlock.header')} ({product.buildingBlocks?.length ?? 0})
             </div>
           </div>
         </div>
       </div>
     </div>
+  )
 
   return (
     <div className='relative'>

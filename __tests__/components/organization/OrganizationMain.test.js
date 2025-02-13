@@ -3,8 +3,7 @@ import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import OrganizationMain from '../../../components/organization/OrganizationMain'
 import {
-  ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_ORGANIZATIONS_QUERY
+  ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY
 } from '../../../components/shared/query/organization'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -37,7 +36,7 @@ describe('Unit tests for the organization main page.', () => {
         years: [],
         aggregatorOnly: false,
         endorserOnly: false,
-        limit: 8,
+        limit: 12,
         offset: 0
       },
       null,

@@ -83,14 +83,14 @@ const DatasetCard = ({ displayType, index, dataset, dismissHandler }) => {
 
   const displayGridCard = () => (
     <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
-      <div className='bg-white shadow-lg rounded-xl h-[360px]'>
+      <div className='bg-white border shadow-lg rounded-xl h-[22rem]'>
         <div className="flex flex-col h-full">
           <div
             className={
               classNames(
                 'flex justify-center items-center bg-white',
                 'rounded-xl border-4 border-dial-violet',
-                'py-12 mx-4 my-4 max-h-[180px]'
+                'py-12 mx-4 my-4 max-h-[10rem]'
               )}
           >
             {dataset.imageFile.indexOf('placeholder.svg') < 0 &&
@@ -98,7 +98,7 @@ const DatasetCard = ({ displayType, index, dataset, dismissHandler }) => {
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                  className="object-contain h-10" width="80px"
+                  className="object-contain h-10 w-[5rem]"
                 />
               </div>
             }

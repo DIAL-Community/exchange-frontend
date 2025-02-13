@@ -1,8 +1,9 @@
 import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import Link from 'next/link'
+import classNames from 'classnames'
 import parse from 'html-react-parser'
+import Link from 'next/link'
 import { FaXmark } from 'react-icons/fa6'
+import { useIntl } from 'react-intl'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
@@ -78,13 +79,63 @@ const WorkflowCard = ({ displayType, index, workflow, dismissHandler }) => {
       </div>
     </div>
 
+  const displayGridCard = () => (
+    <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
+      <div className='bg-white border shadow-lg rounded-xl h-[22rem]'>
+        <div className="flex flex-col h-full">
+          <div
+            className={
+              classNames(
+                'flex justify-center items-center bg-white',
+                'rounded-xl border-4 border-dial-violet',
+                'py-12 mx-4 my-4 max-h-[10rem]'
+              )}
+          >
+            {workflow.imageFile.indexOf('placeholder.svg') < 0 &&
+              <div className="inline my-4 mx-6">
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                  className="object-contain h-10 w-[5rem]"
+                />
+              </div>
+            }
+            {workflow.imageFile.indexOf('placeholder.svg') >= 0 &&
+              <div className="w-20 h-20 flex justify-center items-center">
+                <img
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
+                  alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
+                  className='object-contain w-10 h-10 mx-auto'
+                />
+              </div>
+            }
+          </div>
+          <div className="px-6 text-xl text-center font-semibold line-clamp-1">
+            {workflow.name}
+          </div>
+          <div className="px-6 py-2 text-xs text-dial-stratos font-medium">
+            <span className="text-center line-clamp-3">
+              {workflow?.parsedDescription && parse(workflow?.parsedDescription)}
+            </span>
+          </div>
+          <div className="my-3 mx-auto text-xs font-medium">
+            <div className="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white">
+              {format('ui.useCase.header')} ({workflow.useCases?.length ?? 0})
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div className='relative'>
       <Link href={`/workflows/${workflow.slug}`}>
+        {displayType === DisplayType.GRID_CARD && displayGridCard()}
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
       </Link>
-      { isValidFn(dismissHandler) &&
+      {isValidFn(dismissHandler) &&
         <button type='button' className='absolute top-2 right-2'>
           <FaXmark size='1rem' className='text-dial-plum' onClick={dismissHandler} />
         </button>

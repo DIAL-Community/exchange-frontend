@@ -123,14 +123,14 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
 
   const displayGridCard = () => (
     <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
-      <div className='bg-white shadow-lg rounded-xl h-[360px]'>
+      <div className='bg-white border shadow-lg rounded-xl h-[22rem]'>
         <div className="flex flex-col h-full">
           <div
             className={
               classNames(
                 'flex justify-center items-center bg-white',
                 'rounded-xl border-4 border-dial-warm-beech',
-                'py-12 mx-4 my-4 max-h-[180px]'
+                'py-12 mx-4 my-4 max-h-[10rem]'
               )}
           >
             {buildingBlock.imageFile.indexOf('placeholder.svg') < 0 &&
@@ -138,7 +138,7 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
                 <img
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
                   alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
-                  className="object-contain max-h-[80px]" width="80px"
+                  className="object-contain max-h-[5rem] w-[5rem]"
                 />
               </div>
             }
