@@ -43,7 +43,7 @@ const UserDetailRight = forwardRef(({ user, editingAllowed, deletingAllowed }, r
         <div className='text-xl font-semibold text-dial-stratos py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           {user.email}
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />

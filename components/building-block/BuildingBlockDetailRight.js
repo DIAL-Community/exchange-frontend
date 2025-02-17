@@ -38,7 +38,7 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock, editingAllowed, de
         <div className='text-xl font-semibold text-dial-ochre py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={buildingBlock?.buildingBlockDescription?.description}
             editorId='buildingBlock-description'

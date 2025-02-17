@@ -48,7 +48,7 @@ const SectorDetailRight = forwardRef(({ sector, editingAllowed, deletingAllowed 
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={sector?.sectorDescription?.description}
             editorId='sector-description'

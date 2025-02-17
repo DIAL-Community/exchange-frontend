@@ -39,7 +39,7 @@ const RubricCategoryDetailRight = forwardRef(({ rubricCategory, editingAllowed, 
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={rubricCategory?.rubricCategoryDescription?.description}
             editorId='rubric-category-description'

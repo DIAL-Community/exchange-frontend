@@ -120,11 +120,13 @@ const UseCaseCard = ({ displayType, index, useCase, dismissHandler }) => {
               {parse(useCase.sanitizedDescription)}
             </span>
           </div>
-          <div className="my-3 mx-auto text-xs font-medium">
-            <div className="rounded-full bg-dial-blueberry uppercase shadow-none px-6 py-1 text-white">
-              {useCase?.maturity}
+          {useCase.sector &&
+            <div className="my-3 mx-auto text-xs font-medium">
+              <div className="rounded-full bg-dial-blueberry uppercase shadow-none px-6 py-1 text-white">
+                {useCase.sector?.name}
+              </div>
             </div>
-          </div>
+          }
         </div>
       </div>
     </div>

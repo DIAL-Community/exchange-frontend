@@ -121,8 +121,9 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
 
   const displayGridCard = () => (
     <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
-      <div className='bg-white border shadow-lg rounded-xl h-[22rem]'>
+      <div className='bg-white border shadow-lg rounded-xl h-[24rem]'>
         <div className="flex flex-col h-full">
+          <div className='spacer h-5' />
           <div
             className={
               classNames(
@@ -182,7 +183,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
             <FaXmark size='1rem' className='text-dial-meadow' onClick={dismissHandler} />
           </button>
         }
-        {!isValidFn(dismissHandler) && displayType === DisplayType.LARGE_CARD &&
+        {!isValidFn(dismissHandler) && (displayType === DisplayType.LARGE_CARD || displayType === DisplayType.GRID_CARD) &&
           <label className='ml-auto flex gap-x-2 text-sm'>
             <Checkbox
               value={isInComparedProducts()}

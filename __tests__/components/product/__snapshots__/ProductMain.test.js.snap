@@ -461,11 +461,14 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                     class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
+                      class="bg-white border shadow-lg rounded-xl h-[24rem]"
                     >
                       <div
                         class="flex flex-col h-full"
                       >
+                        <div
+                          class="spacer h-5"
+                        />
                         <div
                           class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
                         >
@@ -509,7 +512,17 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </a>
                 <div
                   class="absolute top-2 right-2"
-                />
+                >
+                  <label
+                    class="ml-auto flex gap-x-2 text-sm"
+                  >
+                    <input
+                      class="ring-0 focus:ring-0 h-5 w-5"
+                      type="checkbox"
+                    />
+                    Compare
+                  </label>
+                </div>
               </div>
             </div>
             <div>
@@ -523,11 +536,14 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                     class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
+                      class="bg-white border shadow-lg rounded-xl h-[24rem]"
                     >
                       <div
                         class="flex flex-col h-full"
                       >
+                        <div
+                          class="spacer h-5"
+                        />
                         <div
                           class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
                         >
@@ -573,7 +589,17 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </a>
                 <div
                   class="absolute top-2 right-2"
-                />
+                >
+                  <label
+                    class="ml-auto flex gap-x-2 text-sm"
+                  >
+                    <input
+                      class="ring-0 focus:ring-0 h-5 w-5"
+                      type="checkbox"
+                    />
+                    Compare
+                  </label>
+                </div>
               </div>
             </div>
             <div>
@@ -587,11 +613,14 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                     class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
+                      class="bg-white border shadow-lg rounded-xl h-[24rem]"
                     >
                       <div
                         class="flex flex-col h-full"
                       >
+                        <div
+                          class="spacer h-5"
+                        />
                         <div
                           class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
                         >
@@ -637,7 +666,17 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </a>
                 <div
                   class="absolute top-2 right-2"
-                />
+                >
+                  <label
+                    class="ml-auto flex gap-x-2 text-sm"
+                  >
+                    <input
+                      class="ring-0 focus:ring-0 h-5 w-5"
+                      type="checkbox"
+                    />
+                    Compare
+                  </label>
+                </div>
               </div>
             </div>
             <div>
@@ -651,11 +690,14 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                     class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
+                      class="bg-white border shadow-lg rounded-xl h-[24rem]"
                     >
                       <div
                         class="flex flex-col h-full"
                       >
+                        <div
+                          class="spacer h-5"
+                        />
                         <div
                           class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
                         >
@@ -701,7 +743,17 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </a>
                 <div
                   class="absolute top-2 right-2"
-                />
+                >
+                  <label
+                    class="ml-auto flex gap-x-2 text-sm"
+                  >
+                    <input
+                      class="ring-0 focus:ring-0 h-5 w-5"
+                      type="checkbox"
+                    />
+                    Compare
+                  </label>
+                </div>
               </div>
             </div>
           </div>

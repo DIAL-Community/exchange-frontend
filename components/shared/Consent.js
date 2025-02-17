@@ -1,7 +1,7 @@
-import { useIntl } from 'react-intl'
-import { useCookieConsentContext } from '@use-cookie-consent/react'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
+import { useIntl } from 'react-intl'
+import { useCookieConsentContext } from '@use-cookie-consent/react'
 
 const Consent = () => {
   const { formatMessage } = useIntl()
@@ -48,7 +48,7 @@ const Consent = () => {
   }
 
   return (
-    <div className='block'>
+    <div className='description-block'>
       {
         typeof consent.firstParty === 'undefined' &&
           <div className='w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80'>

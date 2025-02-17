@@ -392,7 +392,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           <div
                             class="rounded-full bg-dial-blueberry uppercase shadow-none px-6 py-1 text-white"
                           >
-                            PUBLISHED
+                            Infrastructure durable
                           </div>
                         </div>
                       </div>
@@ -450,7 +450,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           <div
                             class="rounded-full bg-dial-blueberry uppercase shadow-none px-6 py-1 text-white"
                           >
-                            PUBLISHED
+                            Environment and Climate
                           </div>
                         </div>
                       </div>
@@ -508,7 +508,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
                           <div
                             class="rounded-full bg-dial-blueberry uppercase shadow-none px-6 py-1 text-white"
                           >
-                            PUBLISHED
+                            Agriculture and Rural Development
                           </div>
                         </div>
                       </div>
