@@ -120,11 +120,13 @@ const DatasetCard = ({ displayType, index, dataset, dismissHandler }) => {
               {dataset?.datasetDescription && parse(dataset?.parsedDescription)}
             </span>
           </div>
-          <div className="my-3 mx-auto text-xs font-medium">
-            <div className="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white">
-              {dataset?.datasetType}
+          {dataset.sector &&
+            <div className="my-3 mx-auto text-xs font-medium">
+              <div className="rounded-full bg-dial-blueberry uppercase shadow-none px-6 py-1 text-white">
+                {dataset.sector?.name}
+              </div>
             </div>
-          </div>
+          }
         </div>
       </div>
     </div>

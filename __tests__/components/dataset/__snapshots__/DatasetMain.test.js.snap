@@ -498,15 +498,6 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                             A free digital training that equips Community Health Workers (CHWs)
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            dataset
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -558,15 +549,6 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
         
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            dataset
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -615,15 +597,6 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                           >
                             Provides open access to picture storybooks.
                           </span>
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            dataset
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -674,15 +647,6 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                             Open Source map of fibre optic infrastructure projects across the African continent.
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            dataset
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -731,15 +695,6 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                           >
                             Africa Research in Sustainable Intensification for the Next Generation (Africa RISING)
                           </span>
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            dataset
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -790,15 +745,6 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                             Open Source Precision Agriculture with Drones leverages a set of machine learning algorithms
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            dataset
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -848,15 +794,6 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                             Adaptive assessments for better learning outcomes
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            dataset
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -905,15 +842,6 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                           >
                              Open source smartphone application that teaches children how to read in Arabic.
                           </span>
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            dataset
-                          </div>
                         </div>
                       </div>
                     </div>

@@ -160,11 +160,13 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
               {parse(buildingBlock.parsedDescription)}
             </span>
           </div>
-          <div className="my-3 mx-auto text-xs font-medium">
-            <div className="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white">
-              {buildingBlock?.maturity}
+          {buildingBlock.category &&
+            <div className="my-3 mx-auto text-xs font-medium">
+              <div className="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white">
+                {buildingBlock.category}
+              </div>
             </div>
-          </div>
+          }
         </div>
       </div>
     </div>

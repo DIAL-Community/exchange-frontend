@@ -482,18 +482,6 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                             Some parsed description.
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -554,18 +542,6 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                           >
                             Some parsed description.
                           </span>
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -628,18 +604,6 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                             Some parsed description.
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -700,18 +664,6 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                           >
                             Some parsed description.
                           </span>
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -774,18 +726,6 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                             Some parsed description.
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -847,18 +787,6 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                             Some parsed description.
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -919,18 +847,6 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                           >
                             Some parsed description.
                           </span>
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
                         </div>
                       </div>
                     </div>

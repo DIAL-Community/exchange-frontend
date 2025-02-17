@@ -235,14 +235,16 @@ const ProjectCard = (props) => {
           </div>
           <div className="px-6 py-2 text-xs text-dial-stratos font-medium">
             <span className="text-center line-clamp-3">
-              {project?.parsedDescription && parse(project?.parsedDescription)}
+              {project.parsedDescription && parse(project.parsedDescription)}
             </span>
           </div>
-          <div className="my-3 mx-auto text-xs font-medium">
-            <div className="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white">
-              {format('ui.sdg.header')} ({project.sdgs?.length ?? 0})
+          {project.sector &&
+            <div className="my-3 mx-auto text-xs font-medium">
+              <div className="rounded-full bg-dial-blueberry uppercase shadow-none px-6 py-1 text-white">
+                {project.sector?.name}
+              </div>
             </div>
-          </div>
+          }
         </div>
       </div>
     </div>

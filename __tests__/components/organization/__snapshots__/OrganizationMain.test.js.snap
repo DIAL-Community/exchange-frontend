@@ -440,18 +440,6 @@ exports[`Unit tests for the organization main page. Should render list of organi
                             Some parsed description.
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -500,18 +488,6 @@ exports[`Unit tests for the organization main page. Should render list of organi
                           >
                             Some parsed description.
                           </span>
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            Countries
-                             (
-                            6
-                            )
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -562,18 +538,6 @@ exports[`Unit tests for the organization main page. Should render list of organi
                             Some parsed description.
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -620,18 +584,6 @@ exports[`Unit tests for the organization main page. Should render list of organi
                           <span
                             class="text-center line-clamp-3"
                           />
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            Countries
-                             (
-                            0
-                            )
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -681,18 +633,6 @@ exports[`Unit tests for the organization main page. Should render list of organi
                           >
                             Some parsed description.
                           </span>
-                        </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            Countries
-                             (
-                            2
-                            )
-                          </div>
                         </div>
                       </div>
                     </div>

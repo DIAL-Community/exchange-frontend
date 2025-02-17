@@ -467,7 +467,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                         class="flex flex-col h-full"
                       >
                         <div
-                          class="spacer h-5"
+                          class="spacer h-6"
                         />
                         <div
                           class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
@@ -488,22 +488,60 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           AIDR
                         </div>
                         <div
-                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]"
                         >
                           <span
                             class="text-center line-clamp-3"
                           />
                         </div>
                         <div
-                          class="my-3 mx-auto text-xs font-medium"
+                          class="px-6 py-2 flex flex-row justify-between"
                         >
                           <div
-                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
+                            class="flex-auto flex flex-col"
                           >
-                            Building Blocks
-                             (
-                            0
-                            )
+                            <div
+                              class="text-xs"
+                            >
+                              License
+                            </div>
+                            <div
+                              class="text-sm font-semibold"
+                            >
+                              AGPL-3.0
+                            </div>
+                          </div>
+                          <div
+                            class="flex-auto flex flex-col"
+                          >
+                            <div
+                              class="text-xs text-center"
+                            >
+                              Maturity
+                            </div>
+                            <div
+                              class="text-sm text-center font-semibold"
+                            >
+                              N/A
+                            </div>
+                          </div>
+                          <div
+                            class="flex-auto flex flex-col"
+                          >
+                            <div
+                              class="text-xs text-right"
+                            >
+                              Sources
+                            </div>
+                            <div
+                              class="flex flex-row justify-end font-semibold"
+                            >
+                              <div
+                                class="text-sm font-semibold"
+                              >
+                                N/A
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -542,7 +580,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                         class="flex flex-col h-full"
                       >
                         <div
-                          class="spacer h-5"
+                          class="spacer h-6"
                         />
                         <div
                           class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
@@ -563,7 +601,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           AP Latam
                         </div>
                         <div
-                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]"
                         >
                           <span
                             class="text-center line-clamp-3"
@@ -572,15 +610,55 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="my-3 mx-auto text-xs font-medium"
+                          class="px-6 py-2 flex flex-row justify-between"
                         >
                           <div
-                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
+                            class="flex-auto flex flex-col"
                           >
-                            Building Blocks
-                             (
-                            0
-                            )
+                            <div
+                              class="text-xs"
+                            >
+                              License
+                            </div>
+                            <div
+                              class="text-sm font-semibold"
+                            >
+                              NA
+                            </div>
+                          </div>
+                          <div
+                            class="flex-auto flex flex-col"
+                          >
+                            <div
+                              class="text-xs text-center"
+                            >
+                              Maturity
+                            </div>
+                            <div
+                              class="text-sm text-center font-semibold"
+                            >
+                              N/A
+                            </div>
+                          </div>
+                          <div
+                            class="flex-auto flex flex-col"
+                          >
+                            <div
+                              class="text-xs text-right"
+                            >
+                              Sources
+                            </div>
+                            <div
+                              class="flex flex-row justify-end font-semibold"
+                            >
+                              <div
+                                class="text-sm"
+                                data-tooltip-content="Origin: Manually Entered"
+                                data-tooltip-id="react-tooltip"
+                              >
+                                MAN
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -619,7 +697,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                         class="flex flex-col h-full"
                       >
                         <div
-                          class="spacer h-5"
+                          class="spacer h-6"
                         />
                         <div
                           class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
@@ -640,7 +718,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           Aajeevika
                         </div>
                         <div
-                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]"
                         >
                           <span
                             class="text-center line-clamp-3"
@@ -649,15 +727,55 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="my-3 mx-auto text-xs font-medium"
+                          class="px-6 py-2 flex flex-row justify-between"
                         >
                           <div
-                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
+                            class="flex-auto flex flex-col"
                           >
-                            Building Blocks
-                             (
-                            0
-                            )
+                            <div
+                              class="text-xs"
+                            >
+                              License
+                            </div>
+                            <div
+                              class="text-sm font-semibold"
+                            >
+                              APACHE-2.0
+                            </div>
+                          </div>
+                          <div
+                            class="flex-auto flex flex-col"
+                          >
+                            <div
+                              class="text-xs text-center"
+                            >
+                              Maturity
+                            </div>
+                            <div
+                              class="text-sm text-center font-semibold"
+                            >
+                              N/A
+                            </div>
+                          </div>
+                          <div
+                            class="flex-auto flex flex-col"
+                          >
+                            <div
+                              class="text-xs text-right"
+                            >
+                              Sources
+                            </div>
+                            <div
+                              class="flex flex-row justify-end font-semibold"
+                            >
+                              <div
+                                class="text-sm"
+                                data-tooltip-content="Origin: Digital Public Goods Alliance (Nominee)"
+                                data-tooltip-id="react-tooltip"
+                              >
+                                DPGA
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -696,7 +814,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                         class="flex flex-col h-full"
                       >
                         <div
-                          class="spacer h-5"
+                          class="spacer h-6"
                         />
                         <div
                           class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-spearmint py-12 mx-4 my-4 max-h-[10rem]"
@@ -717,7 +835,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           AccessMod
                         </div>
                         <div
-                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]"
                         >
                           <span
                             class="text-center line-clamp-3"
@@ -726,15 +844,55 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="my-3 mx-auto text-xs font-medium"
+                          class="px-6 py-2 flex flex-row justify-between"
                         >
                           <div
-                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
+                            class="flex-auto flex flex-col"
                           >
-                            Building Blocks
-                             (
-                            0
-                            )
+                            <div
+                              class="text-xs"
+                            >
+                              License
+                            </div>
+                            <div
+                              class="text-sm font-semibold"
+                            >
+                              GPL-3.0
+                            </div>
+                          </div>
+                          <div
+                            class="flex-auto flex flex-col"
+                          >
+                            <div
+                              class="text-xs text-center"
+                            >
+                              Maturity
+                            </div>
+                            <div
+                              class="text-sm text-center font-semibold"
+                            >
+                              N/A
+                            </div>
+                          </div>
+                          <div
+                            class="flex-auto flex flex-col"
+                          >
+                            <div
+                              class="text-xs text-right"
+                            >
+                              Sources
+                            </div>
+                            <div
+                              class="flex flex-row justify-end font-semibold"
+                            >
+                              <div
+                                class="text-sm"
+                                data-tooltip-content="Origin: Digital Public Goods Alliance (Nominee)"
+                                data-tooltip-id="react-tooltip"
+                              >
+                                DPGA
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>

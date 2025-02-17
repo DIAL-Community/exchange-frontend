@@ -118,11 +118,6 @@ const WorkflowCard = ({ displayType, index, workflow, dismissHandler }) => {
               {workflow?.parsedDescription && parse(workflow?.parsedDescription)}
             </span>
           </div>
-          <div className="my-3 mx-auto text-xs font-medium">
-            <div className="rounded-full bg-dial-plum uppercase shadow-none px-6 py-1 text-white">
-              {format('ui.useCase.header')} ({workflow.useCases?.length ?? 0})
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
 import Checkbox from '../shared/form/Checkbox'
-import { DisplayType } from '../utils/constants'
+import { DisplayType, ORIGIN_SLUG_ACRONYMS, ORIGIN_SLUG_EXPANSIONS } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
 const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = null }) => {
@@ -123,7 +123,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
     <div className='cursor-pointer hover:rounded-lg hover:shadow-lg'>
       <div className='bg-white border shadow-lg rounded-xl h-[24rem]'>
         <div className="flex flex-col h-full">
-          <div className='spacer h-5' />
+          <div className='spacer h-6' />
           <div
             className={
               classNames(
@@ -154,14 +154,81 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
           <div className="px-6 text-xl text-center font-semibold line-clamp-1">
             {product.name}
           </div>
-          <div className="px-6 py-2 text-xs text-dial-stratos font-medium">
+          <div className="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]">
             <span className="text-center line-clamp-3">
               {product.parsedDescription && parse(product.parsedDescription)}
             </span>
           </div>
-          <div className="my-3 mx-auto text-xs font-medium">
-            <div className="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white">
-              {format('ui.buildingBlock.header')} ({product.buildingBlocks?.length ?? 0})
+          <div className='px-6 py-2 flex flex-row justify-between'>
+            <div className='flex-auto flex flex-col'>
+              <div className='text-xs'>
+                {format('product.card.license')}
+              </div>
+              <div className='text-sm font-semibold'>
+                {product.commercialProduct
+                  ? format('product.pricing.commercial').toUpperCase()
+                  : (product.mainRepository?.license || format('general.na')).toUpperCase()
+                }
+              </div>
+            </div>
+            {
+              <div className='flex-auto flex flex-col'>
+                <div className='text-xs text-center'>
+                  {format('product.card.maturityScore')}
+                </div>
+                <div className='text-sm text-center font-semibold'>
+                  {product.maturityScore?.overallScore || format('general.na')}
+                </div>
+              </div>
+            }
+            <div className='flex-auto flex flex-col'>
+              <div className='text-xs text-right'>
+                {format('product.card.sources')}
+              </div>
+              <div className='flex flex-row justify-end font-semibold'>
+                {product.origins.length === 0 &&
+                  <div className='text-sm font-semibold'>
+                    {format('general.na')}
+                  </div>
+                }
+                {product.origins
+                  .filter((_, index) => index <= 2)
+                  .map(origin => {
+                    const nominee =
+                      origin.slug === 'dpga' &&
+                        product.endorsers.length === 0
+                        ? ' ' + format('product.nominee')
+                        : ''
+                    const toolTip = (
+                      product.endorsers &&
+                      product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0)
+                      ? format('product.endorsed-by') + origin.name
+                      : format('tooltip.forEntity', {
+                        entity: format('origin.label'),
+                        name: ORIGIN_SLUG_EXPANSIONS[origin.slug.toLowerCase()]
+                      }) + nominee
+
+                    return (
+                      <div
+                        key={`origin-${origin.slug}`}
+                        className='text-sm'
+                        data-tooltip-id='react-tooltip'
+                        data-tooltip-content={toolTip}
+                      >
+                        {(ORIGIN_SLUG_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
+                      </div>
+                    )
+                  })
+                }
+                {product.origins.length > 3 &&
+                  <div
+                    className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                    data-tip={format('tooltip.ellipsisFor', { entity: format('product.label') })}
+                  >
+                    &hellip;
+                  </div>
+                }
+              </div>
             </div>
           </div>
         </div>

@@ -12,6 +12,7 @@ export const paginatedProducts = {
         'commercialProduct': false,
         'featured': false,
         'origins': [],
+        'endorsers': [],
         'buildingBlocks': [],
         'sdgs': [],
         'govStackEntity': false,
@@ -41,6 +42,7 @@ export const paginatedProducts = {
             '__typename': 'Origin'
           }
         ],
+        'endorsers': [],
         'buildingBlocks': [],
         'sdgs': [
           {
@@ -86,6 +88,7 @@ export const paginatedProducts = {
             'slug': 'dpga'
           }
         ],
+        'endorsers': [],
         'buildingBlocks': [],
         'sdgs': [
           {
@@ -125,6 +128,7 @@ export const paginatedProducts = {
             'slug': 'dpga'
           }
         ],
+        'endorsers': [],
         'buildingBlocks': [],
         'sdgs': [
           {

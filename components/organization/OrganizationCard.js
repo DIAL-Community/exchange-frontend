@@ -120,11 +120,6 @@ const OrganizationCard = ({ displayType, index, organization, dismissHandler }) 
               {organization.parsedDescription && parse(organization.parsedDescription)}
             </span>
           </div>
-          <div className="my-3 mx-auto text-xs font-medium">
-            <div className="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white">
-              {format('ui.country.header')} ({organization.countries?.length ?? 0})
-            </div>
-          </div>
         </div>
       </div>
     </div>

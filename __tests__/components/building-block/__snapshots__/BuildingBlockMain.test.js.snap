@@ -475,15 +475,6 @@ exports[`Unit tests for the building block main page. Should render list of buil
                             Some parsed description.
                           </span>
                         </div>
-                        <div
-                          class="my-3 mx-auto text-xs font-medium"
-                        >
-                          <div
-                            class="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white"
-                          >
-                            DRAFT
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -539,7 +530,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                           <div
                             class="rounded-full bg-dial-orange uppercase shadow-none px-6 py-1 text-white"
                           >
-                            PUBLISHED
+                            DPI
                           </div>
                         </div>
                       </div>
