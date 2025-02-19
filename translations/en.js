@@ -3064,5 +3064,24 @@ export const en = {
 
   'ui.categoryIndicator.label': 'Category Indicator',
   'ui.categoryIndicator.header': 'Category Indicators',
+
+  'landing.widget.hero.carousel': 'Widget Carousel',
+  'landing.widget.hero.card': 'Widget Hero Card',
+  'landing.widget.content.map': 'Widget Map',
+  'landing.widget.content.list': 'Widget List',
+  'landing.widget.text.summary': 'Widget Summary',
+  'landing.widget.text.block': 'Widget Text Block',
+
+  'landing.widget.selected.value': 'Current value',
+
+  'landing.content.list.options': 'List Source Options',
+  'landing.content.list.buildingBlocks': 'Building Block List',
+  'landing.content.list.organizations': 'Organization List',
+  'landing.content.list.products': 'Product List',
+  'landing.content.list.projects': 'Project List',
+  'landing.content.list.useCases': 'Use Case List',
+
+  'landing.content.map.projects': 'Project Map',
+  'landing.content.map.endorsers': 'Endorser Map',
 }
 

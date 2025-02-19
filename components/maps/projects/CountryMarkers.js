@@ -1,6 +1,6 @@
-import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { createRef, useState } from 'react'
+import { LayerGroup, MapContainer, Marker, TileLayer, useMap, useMapEvents } from 'react-leaflet'
 import { createCountryMarkerIcon } from './CountryMarker'
 
 const CountryMarkers = ({ countries, setSelectedCountry }) => {
@@ -72,12 +72,11 @@ const CountryMarkersMaps = (props) => {
   return (
     <MapContainer
       className='w-full'
-      style={{ minHeight: '70vh', zIndex: 18 }}
+      style={{ minHeight: '36vh', zIndex: 18 }}
       center={[0, 0]} zoom={3}
       // maxBounds={[[-90, -180], [90, 180]]}
     >
       <TileLayer
-        noWrap
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
