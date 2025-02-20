@@ -17,7 +17,7 @@ export const DigitalExchangeHeroCarousel = ({ carouselConfiguration }) => {
       className='bg-cover bg-no-repeat'
       style={{
         backgroundImage: 'url("/ui/v1/hero-dx-bg.svg")',
-        height: '400px'
+        height: '480px'
       }}
     >
       <div

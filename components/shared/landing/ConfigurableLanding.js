@@ -235,9 +235,11 @@ const ConfigurableLanding = () => {
     return (
       <div key={item.id}>
         <div className='flex flex-col gap-y-2'>
-          <div className="text-sm font-medium">
-            {item.title}
-          </div>
+          {item.title &&
+            <div className="text-sm font-medium">
+              {item.title}
+            </div>
+          }
           {resolveContent(item)}
           <div className='element-actions absolute top-0 right-0' style={{ zIndex: 50 }}>
             <div className='flex flex-row gap-x-2'>
