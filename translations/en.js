@@ -3065,6 +3065,8 @@ export const en = {
   'ui.categoryIndicator.label': 'Category Indicator',
   'ui.categoryIndicator.header': 'Category Indicators',
 
+  'landing.widget.options.title': 'Item Options',
+
   'landing.widget.hero.carousel': 'Carousel',
   'landing.widget.hero.card': 'Hero Card',
   'landing.widget.content.map': 'Map',

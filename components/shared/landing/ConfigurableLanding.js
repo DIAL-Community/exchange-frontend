@@ -1,9 +1,8 @@
-import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
-import { Dialog, Transition } from '@headlessui/react'
 import { SiteSettingContext } from '../../context/SiteSettingContext'
 import { HtmlEditor } from '../form/HtmlEditor'
 import { HtmlViewer } from '../form/HtmlViewer'
@@ -12,81 +11,8 @@ import Select from '../form/Select'
 import HeroCarousel from '../HeroCarousel'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
 import { ContentListOptions, ContentMapOptions, WidgetTypeOptions } from './constants'
-import { resolveContentListValue, resolveContentMapValue } from './utilities'
-
-const getFromLocalStorage = (localStorageKey) => {
-  console.log(`Reading '${localStorageKey}' data from local storage.`)
-  let localStorage
-  if (global.localStorage) {
-    try {
-      localStorage = JSON.parse(global.localStorage.getItem(localStorageKey))
-    } catch (e) {
-      console.log('Unable to load layout information from local storage.', e)
-    }
-  }
-
-  return localStorage
-}
-
-const saveToLocalStorage = (localStorageKey, value) => {
-  console.log(`Saving '${localStorageKey}' data to local storage.`)
-  if (global.localStorage) {
-    global.localStorage.setItem(localStorageKey, JSON.stringify(value))
-  }
-}
-
-// Dialog for the widget options.
-const ItemOptionsDialog = ({ show, onClose, children }) => {
-  return (
-    <Transition appear show={show} as={Fragment}>
-      <Dialog
-        as='div'
-        className='fixed inset-0 z-100 overflow-y-auto'
-        onClose={() => { }}
-      >
-        <div className='min-h-screen px-4 text-center'>
-          <Dialog.Overlay className='fixed inset-0 bg-dial-gray opacity-40' />
-          <span
-            className='inline-block h-screen align-middle'
-            aria-hidden='true'
-          >
-            &#8203;
-          </span>
-          <Transition.Child
-            as={Fragment}
-            enter='ease-out duration-300'
-            enterFrom='opacity-0 scale-95'
-            enterTo='opacity-100 scale-100'
-            leave='ease-in duration-200'
-            leaveFrom='opacity-100 scale-100'
-            leaveTo='opacity-0 scale-95'
-          >
-            <div
-              className={classNames(
-                'inline-block w-full max-w-3xl px-8 py-6 text-left',
-                'transition-all transform bg-white shadow-xl rounded'
-              )}
-            >
-              <Dialog.Title>
-                <div className='pb-4 font-semibold'>
-                  Editing Item Options
-                </div>
-              </Dialog.Title>
-              <div className='flex flex-col gap-y-3'>
-                {children}
-                <div className='flex justify-end text-xs text-white mt-2'>
-                  <button className='bg-dial-sapphire px-3 py-2 rounded' onClick={onClose}>
-                    <FormattedMessage id='app.save' />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </Transition.Child>
-        </div>
-      </Dialog>
-    </Transition>
-  )
-}
+import ItemOptionsDialog from './ItemOptionsDialog'
+import { getFromLocalStorage, resolveContentListValue, resolveContentMapValue, saveToLocalStorage } from './utilities'
 
 const ConfigurableLanding = () => {
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
@@ -319,9 +245,9 @@ const ConfigurableLanding = () => {
   }
 
   // Remove an item from the grid-layout.
-  const removeItem = (i) => {
-    console.log('Removing item: ', i)
-    const updatedItems = [...items.filter(item => item.id !== i)]
+  const removeItem = (itemId) => {
+    console.log('Removing item: ', itemId)
+    const updatedItems = [...items.filter(item => item.id !== itemId)]
     setItems(updatedItems)
     saveToLocalStorage('exchange-items', updatedItems)
   }
@@ -399,6 +325,7 @@ const ConfigurableLanding = () => {
         </ResponsiveReactGridLayout>
         {activeItem &&
           <ItemOptionsDialog
+            title={<FormattedMessage id='landing.widget.options.title' />}
             show={displayItemOptions}
             onClose={closeItemOptionsDialog}
           >

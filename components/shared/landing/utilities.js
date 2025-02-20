@@ -8,6 +8,27 @@ import ProjectListRight from '../../project/fragments/ProjectListRight'
 import UseCaseListRight from '../../use-case/fragments/UseCaseListRight'
 import { ContentListTypes, ContentMapTypes } from './constants'
 
+export const getFromLocalStorage = (localStorageKey) => {
+  console.log(`Reading '${localStorageKey}' data from local storage.`)
+  let localStorage
+  if (global.localStorage) {
+    try {
+      localStorage = JSON.parse(global.localStorage.getItem(localStorageKey))
+    } catch (e) {
+      console.log('Unable to load layout information from local storage.', e)
+    }
+  }
+
+  return localStorage
+}
+
+export const saveToLocalStorage = (localStorageKey, value) => {
+  console.log(`Saving '${localStorageKey}' data to local storage.`)
+  if (global.localStorage) {
+    global.localStorage.setItem(localStorageKey, JSON.stringify(value))
+  }
+}
+
 // Update rendered components depending on the selected value.
 // This is specific for map widget, we can add more maps in the future.
 export const resolveContentMapValue = (value) => {
