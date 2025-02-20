@@ -213,7 +213,7 @@ const ConfigurableLanding = () => {
   const appendElement = (item) => {
     return (
       <div key={item.id}>
-        <div className='flex flex-col gap-y-2'>
+        <div className='flex flex-col gap-y-2 h-full'>
           {item.title &&
             <div className="text-sm font-medium">
               {item.title}

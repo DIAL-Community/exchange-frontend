@@ -6,31 +6,55 @@ export const PROJECTS_QUERY = gql`
     $sectors: [String!]
     $tags: [String!]
     $products: [String!]
-    ) {
+  ) {
     searchProjects(
       first: $first,
       sectors: $sectors,
       tags: $tags,
       products: $products
     ) {
-      totalCount
-      pageInfo {
-        endCursor
-        startCursor
-        hasPreviousPage
-        hasNextPage
-      }
-      nodes {
+      id
+      name
+      slug
+      countries {
         id
         name
         slug
-        countries {
-          id
-          name
-          slug
-          code
-        }
+        code
       }
+    }
+  }
+`
+
+export const PROJECTS_MAP_QUERY = gql`
+  query ProjectMap(
+    $search: String
+    $sectors: [String!]
+    $tags: [String!]
+    $products: [String!]
+  ) {
+    searchProjects(
+      search: $search,
+      sectors: $sectors,
+      tags: $tags,
+      products: $products
+    ) {
+      id
+      name
+      slug
+      countries {
+        id
+        name
+        slug
+        code
+      }
+    }
+    countries(search: $search) {
+      id
+      name
+      slug
+      latitude
+      longitude
     }
   }
 `
