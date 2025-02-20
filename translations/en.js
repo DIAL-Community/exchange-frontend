@@ -3088,6 +3088,7 @@ export const en = {
   'landing.map.options': 'Map Type Options',
   'landing.map.projects': 'Project Map',
   'landing.map.endorsers': 'Endorser Map',
+  'landing.map.aggregator': 'Aggregator Map',
   'landing.map.missing': 'Missing map type in setting.',
 
   'landing.card.options': 'Card Options',

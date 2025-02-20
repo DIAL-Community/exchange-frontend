@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css'
 import { createRef, useState } from 'react'
 import { createCountryMarkerIcon } from './CountryMarker'
 
-const CountryMarkers = ({ countries, setSelectedCountry }) => {
+const CountryMarkers = ({ countriesWithAggregators, setSelectedCountryId }) => {
   const map = useMap()
   const [zooming, setZooming] = useState(false)
 
@@ -22,7 +22,7 @@ const CountryMarkers = ({ countries, setSelectedCountry }) => {
         : NON_SELECTED_OPACITY
       layer.setOpacity(layerOpacity)
     })
-    setSelectedCountry(countryId)
+    setSelectedCountryId(countryId)
 
     // Zoom to the selected marker
     map.flyTo(e.latlng, MARKER_ZOOM)
@@ -36,7 +36,7 @@ const CountryMarkers = ({ countries, setSelectedCountry }) => {
         countryMarkerGroup.current.eachLayer(layer => {
           layer.setOpacity(SELECTED_OPACITY)
         })
-        setSelectedCountry(undefined)
+        setSelectedCountryId(undefined)
 
         map.flyTo(e.latlng, DEFAULT_ZOOM)
         setZooming(false)
@@ -47,8 +47,8 @@ const CountryMarkers = ({ countries, setSelectedCountry }) => {
   return (
     <LayerGroup ref={countryMarkerGroup}>
       {
-        Object.keys(countries).map((countryId) => {
-          const country = countries[countryId]
+        Object.keys(countriesWithAggregators).map((countryId) => {
+          const country = countriesWithAggregators[countryId]
           if (country.aggregators.length === 0) {
             return <div key={countryId} />
           }
@@ -69,14 +69,15 @@ const CountryMarkers = ({ countries, setSelectedCountry }) => {
   )
 }
 
-const AggregatorLeaflet = (props) => {
-  // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
+const AggregatorLeaflet = ({ initialCountry, containerHeight, ...props }) => {
+  const center = initialCountry ? [initialCountry.latitude, initialCountry.longitude] : [0, 0]
+
   return (
     <MapContainer
       zoom={3}
-      center={[0, 0]}
+      center={center}
       className='w-full'
-      style={{ minHeight: '70vh', zIndex: 18 }}
+      style={{ minHeight: containerHeight, zIndex: 18 }}
       // maxBounds={[[-90, -180], [90, 180]]}
     >
       <TileLayer

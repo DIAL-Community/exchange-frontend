@@ -95,8 +95,8 @@ const ProjectMap = ({ initialCountry }) => {
   const country = countriesWithProjects[selectedCountryName]
 
   return (
-    <div className='w-full h-full' ref={observedElementRef}>
-      <div className='flex flex-row bg-dial-iris-blue rounded-md relative h-full'>
+    <div className='project-map w-full h-full' ref={observedElementRef}>
+      <div className='flex flex-row relative h-full'>
         {loading &&
           <div className='absolute right-3 px-3 py-2 text-sm' style={{ zIndex: 19 }}>
             <div className='text-sm text-dial-stratos'>

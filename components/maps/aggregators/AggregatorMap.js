@@ -1,23 +1,42 @@
 import { useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
-import { useCallback, useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import { AGGREGATORS_MAP_QUERY } from '../../shared/query/map'
 import CountryInfo from './CountryInfo'
 
-const AggregatorMap = () => {
+const AggregatorMap = ({ initialCountry }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [selectedCountry, setSelectedCountry] = useState('')
+  const [selectedCountryId, setSelectedCountryId] = useState('')
   const { aggregators, operators, services } = useContext(FilterContext)
 
   const AggregatorLeaflet = useMemo(() => dynamic(
     () => import('./AggregatorLeaflet'),
     { ssr: false }
   ), [])
+
+  const [containerHeight, setContainerHeight] = useState(0)
+  const observedElementRef = useRef(null)
+
+  useEffect(() => {
+    if (observedElementRef.current) {
+      const observer = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          setContainerHeight(entry.contentRect.height)
+        }
+      })
+
+      observer.observe(observedElementRef.current)
+
+      return () => {
+        observer.disconnect()
+      }
+    }
+  }, [])
 
   const serviceNames = []
   const capabilityNames = []
@@ -107,11 +126,11 @@ const AggregatorMap = () => {
     return countriesWithAggregators
   })()
 
-  const country = countriesWithAggregators[selectedCountry]
+  const country = countriesWithAggregators[selectedCountryId]
 
   return (
-    <div className='min-h-[10vh]'>
-      <div className='flex flex-row bg-dial-iris-blue rounded-md relative'>
+    <div className='aggregator-map w-full h-full' ref={observedElementRef}>
+      <div className='flex flex-row relative h-full'>
         {loading &&
           <div className='absolute right-4 px-3 py-2 rounded-md' style={{ zIndex: 19 }}>
             <div className='text-dial-stratos text-sm'>
@@ -120,8 +139,10 @@ const AggregatorMap = () => {
           </div>
         }
         <AggregatorLeaflet
-          countries={countriesWithAggregators}
-          setSelectedCountry={setSelectedCountry}
+          initialCountry={initialCountry}
+          containerHeight={containerHeight}
+          setSelectedCountryId={setSelectedCountryId}
+          countriesWithAggregators={countriesWithAggregators}
         />
         <CountryInfo country={country} />
       </div>
