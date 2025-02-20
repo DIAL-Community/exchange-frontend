@@ -1,9 +1,9 @@
-import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
-import classNames from 'classnames'
-import { Responsive, WidthProvider } from 'react-grid-layout'
-import { MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
-import { FormattedMessage } from 'react-intl'
 import { Dialog, Transition } from '@headlessui/react'
+import classNames from 'classnames'
+import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
+import { Responsive, WidthProvider } from 'react-grid-layout'
+import { MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
+import { FormattedMessage } from 'react-intl'
 import BuildingBlockListRight from '../../building-block/fragments/BuildingBlockListRight'
 import { SiteSettingContext } from '../../context/SiteSettingContext'
 import EndorserMap from '../../maps/endorsers/EndorserMap'
@@ -13,6 +13,7 @@ import ProductListRight from '../../product/fragments/ProductListRight'
 import ProjectListRight from '../../project/fragments/ProjectListRight'
 import UseCaseListRight from '../../use-case/fragments/UseCaseListRight'
 import { HtmlEditor } from '../form/HtmlEditor'
+import { HtmlViewer } from '../form/HtmlViewer'
 import Input from '../form/Input'
 import Select from '../form/Select'
 import HeroCarousel from '../HeroCarousel'
@@ -98,6 +99,11 @@ const ConfigurableLanding = () => {
 
   const { heroCardSection: { heroCardConfigurations } } = useContext(SiteSettingContext)
 
+  // Toggle whether we are editing the page or not.
+  const [editing, setEditing] = useState(false)
+  const [editingText, setEditingText] = useState(false)
+
+  // Items on the page and the layout settings
   const [items, setItems] = useState([])
   const [layouts, setLayouts] = useState({})
 
@@ -110,8 +116,26 @@ const ConfigurableLanding = () => {
   // Eventually we will move this to the site_settings table.
   useEffect(() => {
     setItems(getFromLocalStorage('exchange-items') ?? [])
-    setLayouts(getFromLocalStorage('exchange-layouts') ?? {})
-  }, [])
+    const savedLayouts = getFromLocalStorage('exchange-layouts') ?? {}
+    const updatedLayouts = {}
+    Object.keys(savedLayouts).map(key => {
+      const processedLayouts = savedLayouts[key].map(currentLayout => {
+        return { ...currentLayout, static: !editing }
+      })
+      updatedLayouts[key] = processedLayouts
+    })
+    setLayouts(updatedLayouts)
+  }, [editing])
+
+  // Toggle the editing context for the current page.
+  const toggleEditing = () => {
+    setEditing(!editing)
+  }
+
+  // Toggle the editing context for the text editor page.
+  const toggleEditingText = () => {
+    setEditingText(!editingText)
+  }
 
   // Save when user make changes to the layout.
   const onLayoutChange = (_layout, layouts) => {
@@ -128,7 +152,11 @@ const ConfigurableLanding = () => {
       case ContentMapTypes.ENDORSER_MAP:
         return <EndorserMap />
       default:
-        return <div className='text-xs italic'>Unknown map value: {value}</div>
+        return (
+          <div className='text-xs italic'>
+            <FormattedMessage id='landing.content.map.missing' />
+          </div>
+        )
     }
   }
 
@@ -147,7 +175,11 @@ const ConfigurableLanding = () => {
       case ContentListTypes.PROJECT_LIST:
         return <ProjectListRight />
       default:
-        return <div className='text-xs italic'>Unknown map value: {value}</div>
+        return (
+          <div className='text-xs italic'>
+            <FormattedMessage id='landing.content.list.missing' />
+          </div>
+        )
     }
   }
 
@@ -233,7 +265,7 @@ const ConfigurableLanding = () => {
         return (
           <div className='flex flex-col gap-y-2 text-sm'>
             <label htmlFor='active-item-value'>
-              <FormattedMessage id='landing.content.list.options' />
+              <FormattedMessage id='landing.content.map.options' />
             </label>
             <Select
               id='active-item-value'
@@ -285,9 +317,11 @@ const ConfigurableLanding = () => {
       case WidgetTypeOptions.CONTENT_LIST:
         return resolveContentListValue(item.value)
       case WidgetTypeOptions.TEXT_SUMMARY:
-        return <div>Item type: {item.type}</div>
+        return <div className='text-xs'>Item type: {item.type}</div>
       case WidgetTypeOptions.TEXT_BLOCK:
-        return <HtmlEditor initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
+        return editingText
+          ? <HtmlEditor initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
+          : <HtmlViewer initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
       default:
         return null
     }
@@ -304,23 +338,25 @@ const ConfigurableLanding = () => {
             </div>
           }
           {resolveContent(item)}
-          <div className='element-actions absolute top-0 right-0' style={{ zIndex: 50 }}>
-            <div className='flex flex-row gap-x-2'>
-              <button
-                className='cursor-pointer'
-                onClick={() => setupItemValue(item)}
-                style={{ cursor: 'pointer' }}
-              >
-                <MdOutlineSettings />
-              </button>
-              <button
-                className='cursor-pointer'
-                onClick={() => removeItem(item.id)}
-              >
-                <MdOutlineDelete />
-              </button>
+          {editing && (
+            <div className='element-actions absolute top-0 right-0' style={{ zIndex: 50 }}>
+              <div className='flex flex-row gap-x-2'>
+                <button
+                  className='cursor-pointer'
+                  onClick={() => setupItemValue(item)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <MdOutlineSettings />
+                </button>
+                <button
+                  className='cursor-pointer'
+                  onClick={() => removeItem(item.id)}
+                >
+                  <MdOutlineDelete />
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     )
@@ -348,52 +384,72 @@ const ConfigurableLanding = () => {
   }
 
   return (
-    <div className='relative flex flex-col gap-y-6 min-h-[70vh]'>
-      <div className='absolute top-2 right-2'>
-        <div className='flex gap-2 text-xs text-white'>
-          {Object.keys(WidgetTypeOptions).map(key => {
-            return (
-              <button
-                key={key}
-                className='bg-dial-sapphire px-3 py-2 rounded'
-                onClick={() => appendItem(WidgetTypeOptions[key])}
-              >
-                <FormattedMessage id={WidgetTypeOptions[key]} />
-              </button>
-            )
-          })}
-        </div>
-      </div>
-      <div className='spacer h-4' />
-      <ResponsiveReactGridLayout
-        draggableCancel='.element-actions'
-        className='exchange-grid-layout'
-        cols={{ lg: 12, md: 6, sm: 2 }}
-        breakpoints={{ lg: 1024, md: 768, sm: 640 }}
-        rowHeight={32}
-        layouts={layouts}
-        onLayoutChange={onLayoutChange}
-      >
-        {items.map(item => appendElement(item))}
-      </ResponsiveReactGridLayout>
-      {activeItem &&
-        <ItemOptionsDialog
-          show={displayItemOptions}
-          onClose={closeItemOptionsDialog}
-        >
-          <div className='form-field-wrapper'>
-            <label htmlFor='active-item-name' className='flex flex-col gap-y-2 text-sm'>
-              <FormattedMessage id='app.name' />
-            </label>
-            <Input
-              id='active-item-name'
-              value={activeItemTitle}
-              onChange={handleChange}
-            />
+    <div className='px-4 lg:px-8 xl:px-56'>
+      <div className='relative flex flex-col min-h-[70vh]'>
+        <div className='absolute top-2 right-0 text-white' style={{ zIndex: 55 }}>
+          <div className='flex flex-row gap-x-1 opacity-30 hover:opacity-100'>
+            <button
+              className='bg-dial-sapphire px-2 py-2 rounded-full'
+              onClick={() => toggleEditing()}
+            >
+              <MdEdit />
+            </button>
+            <button
+              className='bg-dial-sapphire px-2 py-2 rounded-full'
+              onClick={() => toggleEditingText()}
+            >
+              <MdFontDownload />
+            </button>
           </div>
-          {buildItemOptions(activeItem)}
-        </ItemOptionsDialog>
-      }
+        </div>
+        {editing && (
+          <div className='absolute top-2 right-20'>
+            <div className='flex gap-1 text-xs text-white'>
+              {Object.keys(WidgetTypeOptions).map(key => {
+                return (
+                  <button
+                    key={key}
+                    className='bg-dial-sapphire px-3 py-2 rounded'
+                    onClick={() => appendItem(WidgetTypeOptions[key])}
+                  >
+                    <FormattedMessage id={WidgetTypeOptions[key]} />
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+        {editing && <div className='spacer h-10' />}
+        <ResponsiveReactGridLayout
+          draggableCancel='.element-actions'
+          className='exchange-grid-layout'
+          cols={{ lg: 12, md: 6, sm: 2 }}
+          breakpoints={{ lg: 1024, md: 768, sm: 640 }}
+          rowHeight={32}
+          layouts={layouts}
+          onLayoutChange={onLayoutChange}
+        >
+          {items.map(item => appendElement(item))}
+        </ResponsiveReactGridLayout>
+        {activeItem &&
+          <ItemOptionsDialog
+            show={displayItemOptions}
+            onClose={closeItemOptionsDialog}
+          >
+            <div className='form-field-wrapper'>
+              <label htmlFor='active-item-name' className='flex flex-col gap-y-2 text-sm'>
+                <FormattedMessage id='app.name' />
+              </label>
+              <Input
+                id='active-item-name'
+                value={activeItemTitle}
+                onChange={handleChange}
+              />
+            </div>
+            {buildItemOptions(activeItem)}
+          </ItemOptionsDialog>
+        }
+      </div>
     </div>
   )
 }

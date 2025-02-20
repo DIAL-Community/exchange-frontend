@@ -3065,12 +3065,12 @@ export const en = {
   'ui.categoryIndicator.label': 'Category Indicator',
   'ui.categoryIndicator.header': 'Category Indicators',
 
-  'landing.widget.hero.carousel': 'Widget Carousel',
-  'landing.widget.hero.card': 'Widget Hero Card',
-  'landing.widget.content.map': 'Widget Map',
-  'landing.widget.content.list': 'Widget List',
-  'landing.widget.text.summary': 'Widget Summary',
-  'landing.widget.text.block': 'Widget Text Block',
+  'landing.widget.hero.carousel': 'Carousel',
+  'landing.widget.hero.card': 'Hero Card',
+  'landing.widget.content.map': 'Map',
+  'landing.widget.content.list': 'List',
+  'landing.widget.text.summary': 'Summary',
+  'landing.widget.text.block': 'Text',
 
   'landing.widget.selected.value': 'Current value',
 
@@ -3080,8 +3080,11 @@ export const en = {
   'landing.content.list.products': 'Product List',
   'landing.content.list.projects': 'Project List',
   'landing.content.list.useCases': 'Use Case List',
+  'landing.content.list.missing': 'Missing list source value in setting.',
 
+  'landing.content.map.options': 'Map Type Options',
   'landing.content.map.projects': 'Project Map',
   'landing.content.map.endorsers': 'Endorser Map',
+  'landing.content.map.missing': 'Missing map type value in setting.',
 }
 
