@@ -7,28 +7,21 @@ import { FilterContext } from '../../context/FilterContext'
 import { ORGANIZATIONS_QUERY } from '../../shared/query/map'
 import EndorserInfo from './EndorserInfo'
 
-const EndorserMarkerMaps = (props) => {
-  const EndorserMarkerMaps = useMemo(() => dynamic(
-    () => import('./EndorserMarkers'),
-    { ssr: false }
-  ), [])
-
-  return <EndorserMarkerMaps {...props} />
-}
-
-const DEFAULT_PAGE_SIZE = 1000
-
 const EndorserMap = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const [selectedCity, setSelectedCity] = useState('')
   const [organization, setOrganization] = useState()
   const { sectors, years } = useContext(FilterContext)
 
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const EndorserLeaflet = useMemo(() => dynamic(
+    () => import('./EndorserLeaflet'),
+    { ssr: false }
+  ), [])
 
   const { loading, data } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
-      first: DEFAULT_PAGE_SIZE,
       sectors: sectors.map(sector => sector.value),
       years: years.map(year => year.value)
     },
@@ -43,8 +36,8 @@ const EndorserMap = () => {
   const cities = (() => {
     const cities = {}
     if (data) {
-      const { searchOrganizations: { nodes } } = data
-      nodes.forEach(organization => {
+      const { searchOrganizations: organizations } = data
+      organizations.forEach(organization => {
         organization.offices.forEach(office => {
           let currentCity = cities[office.name]
           if (!currentCity) {
@@ -82,7 +75,7 @@ const EndorserMap = () => {
             </div>
           </div>
         }
-        <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization }} />
+        <EndorserLeaflet {...{ cities, organization, setSelectedCity, setOrganization }} />
         <EndorserInfo {...{ city, setOrganization }} />
       </div>
     </div>

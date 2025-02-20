@@ -33,8 +33,8 @@ const ProjectMap = ({ initialCountry }) => {
     }
   }, [])
 
-  const CountryMarkersMaps = useMemo(() => dynamic(
-    () => import('./CountryMarkersMap'),
+  const ProjectLeaflet = useMemo(() => dynamic(
+    () => import('./ProjectLeaflet'),
     { ssr: false }
   ), [])
 
@@ -104,7 +104,7 @@ const ProjectMap = ({ initialCountry }) => {
             </div>
           </div>
         }
-        <CountryMarkersMaps
+        <ProjectLeaflet
           initialCountry={initialCountry}
           containerHeight={containerHeight}
           countriesWithProjects={countriesWithProjects}

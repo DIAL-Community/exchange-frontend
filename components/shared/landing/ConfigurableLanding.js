@@ -125,11 +125,11 @@ const ConfigurableLanding = () => {
   // We will add text editor and calculated widget to display summary (e.g. total number of projects)
   const buildItemOptions = (item) => {
     switch (item?.type) {
-      case WidgetTypeOptions.CONTENT_LIST:
+      case WidgetTypeOptions.LIST:
         return (
           <div className='flex flex-col gap-y-2 text-sm'>
             <label htmlFor='active-item-value'>
-              <FormattedMessage id='landing.content.list.options' />
+              <FormattedMessage id='landing.list.options' />
             </label>
             <Select
               id='active-item-value'
@@ -143,11 +143,11 @@ const ConfigurableLanding = () => {
             </span>
           </div>
         )
-      case WidgetTypeOptions.CONTENT_MAP:
+      case WidgetTypeOptions.MAP:
         return (
           <div className='flex flex-col gap-y-2 text-sm'>
             <label htmlFor='active-item-value'>
-              <FormattedMessage id='landing.content.map.options' />
+              <FormattedMessage id='landing.map.options' />
             </label>
             <Select
               id='active-item-value'
@@ -158,11 +158,11 @@ const ConfigurableLanding = () => {
             />
           </div>
         )
-      case WidgetTypeOptions.HERO_CARD:
+      case WidgetTypeOptions.CARD:
         return (
           <div className='flex flex-col gap-y-2 text-sm'>
             <label htmlFor='active-item-value'>
-              <FormattedMessage id='landing.hero.card.options' />
+              <FormattedMessage id='landing.card.options' />
             </label>
             <Select
               id='active-item-value'
@@ -190,17 +190,19 @@ const ConfigurableLanding = () => {
   // Render the content container for the widget.
   const resolveContent = (item) => {
     switch (item.type) {
-      case WidgetTypeOptions.HERO_CAROUSEL:
+      case WidgetTypeOptions.CAROUSEL:
         return <HeroCarousel />
-      case WidgetTypeOptions.HERO_CARD:
+      case WidgetTypeOptions.CARD:
         return resolveHeroCardValue(item.value)
-      case WidgetTypeOptions.CONTENT_MAP:
+      case WidgetTypeOptions.MAP:
         return resolveContentMapValue(item.value)
-      case WidgetTypeOptions.CONTENT_LIST:
+      case WidgetTypeOptions.LIST:
         return resolveContentListValue(item.value)
-      case WidgetTypeOptions.TEXT_SUMMARY:
+      case WidgetTypeOptions.SUMMARY:
         return <div className='text-xs'>Item type: {item.type}</div>
-      case WidgetTypeOptions.TEXT_BLOCK:
+      case WidgetTypeOptions.SPACER:
+        return <div />
+      case WidgetTypeOptions.BLOCK:
         return editingText
           ? <HtmlEditor initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
           : <HtmlViewer initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
@@ -315,9 +317,11 @@ const ConfigurableLanding = () => {
         <ResponsiveReactGridLayout
           draggableCancel='.element-actions'
           className='exchange-grid-layout'
+          margin={[8, 8]}
+          resizeHandles={['sw', 'se']}
           cols={{ lg: 12, md: 6, sm: 2 }}
           breakpoints={{ lg: 1024, md: 768, sm: 640 }}
-          rowHeight={32}
+          rowHeight={16}
           layouts={layouts}
           onLayoutChange={onLayoutChange}
         >

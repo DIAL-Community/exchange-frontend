@@ -110,7 +110,7 @@ const EndorserMarkers = ({ cities, organization, setSelectedCity, setOrganizatio
   )
 }
 
-const EndorserMarkerMaps = (props) => {
+const EndorserLeaflet = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
   let attribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -140,4 +140,4 @@ const EndorserMarkerMaps = (props) => {
   )
 }
 
-export default EndorserMarkerMaps
+export default EndorserLeaflet

@@ -1,12 +1,13 @@
 import { FormattedMessage } from 'react-intl'
 
 export const WidgetTypeOptions = {
-  HERO_CAROUSEL: 'landing.widget.hero.carousel',
-  HERO_CARD: 'landing.widget.hero.card',
-  CONTENT_MAP: 'landing.widget.content.map',
-  CONTENT_LIST: 'landing.widget.content.list',
-  TEXT_SUMMARY: 'landing.widget.text.summary',
-  TEXT_BLOCK: 'landing.widget.text.block'
+  CARD: 'landing.widget.card',
+  CAROUSEL: 'landing.widget.carousel',
+  LIST: 'landing.widget.list',
+  MAP: 'landing.widget.map',
+  SPACER: 'landing.widget.spacer',
+  SUMMARY: 'landing.widget.summary',
+  TEXT: 'landing.widget.block'
 }
 
 export const ContentListTypes = {
@@ -19,39 +20,44 @@ export const ContentListTypes = {
 
 export const ContentListOptions = [
   {
-    label: <FormattedMessage id='landing.content.list.buildingBlocks' />,
+    label: <FormattedMessage id='landing.list.buildingBlocks' />,
     value: ContentListTypes.BUILDING_BLOCK_LIST
   },
   {
-    label: <FormattedMessage id='landing.content.list.organizations' />,
+    label: <FormattedMessage id='landing.list.organizations' />,
     value: ContentListTypes.ORGANIZATION_LIST
   },
   {
-    label: <FormattedMessage id='landing.content.list.products' />,
+    label: <FormattedMessage id='landing.list.products' />,
     value: ContentListTypes.PRODUCT_LIST
   },
   {
-    label: <FormattedMessage id='landing.content.list.projects' />,
+    label: <FormattedMessage id='landing.list.projects' />,
     value: ContentListTypes.PROJECT_LIST
   },
   {
-    label: <FormattedMessage id='landing.content.list.useCases' />,
+    label: <FormattedMessage id='landing.list.useCases' />,
     value: ContentListTypes.USE_CASE_LIST
   }
 ]
 
 export const ContentMapTypes = {
   PROJECT_MAP: 'project-map',
-  ENDORSER_MAP: 'endorser-map'
+  ENDORSER_MAP: 'endorser-map',
+  AGGREGATOR_MAP: 'aggregator-map'
 }
 
 export const ContentMapOptions = [
   {
-    label: <FormattedMessage id='landing.content.map.projects' />,
-    value: ContentMapTypes.PROJECT_MAP
+    label: <FormattedMessage id='landing.map.aggregator' />,
+    value: ContentMapTypes.AGGREGATOR_MAP
   },
   {
-    label: <FormattedMessage id='landing.content.map.endorsers' />,
+    label: <FormattedMessage id='landing.map.endorsers' />,
     value: ContentMapTypes.ENDORSER_MAP
+  },
+  {
+    label: <FormattedMessage id='landing.map.projects' />,
+    value: ContentMapTypes.PROJECT_MAP
   }
 ]

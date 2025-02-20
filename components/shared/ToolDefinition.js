@@ -15,12 +15,12 @@ export const ExternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) 
   return (
     <a
       href={destinationUrl}
-      className='rounded-md shadow-lg border'
+      className='rounded-md shadow-lg border h-full'
       target='_blank'
       rel='noopener noreferrer'
       onClick={(e) => { if (disabled) e.preventDefault() }}
     >
-      <div className='px-8 pt-6 pb-12'>
+      <div className='px-8 pt-6 pb-12 h-full'>
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row gap-x-3'>
             <img src={imageUrl} alt={imageAltText} width={50} height={50} className='object-contain' />
@@ -28,7 +28,7 @@ export const ExternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) 
               <FormattedMessage id={title} defaultMessage={title} />
             </div>
           </div>
-          <div className='text-sm'>
+          <div className='text-sm flex-grow'>
             <FormattedMessage id={description} defaultMessage={description} />
           </div>
         </div>
@@ -48,18 +48,18 @@ export const InternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) 
   return (
     <Link
       href={destinationUrl}
-      className='rounded-md shadow-lg border'
+      className='rounded-md shadow-lg border h-full'
       onClick={(e) => { if (disabled) e.preventDefault() }}
     >
-      <div className='px-8 pt-6 pb-12'>
-        <div className='flex flex-col gap-6'>
+      <div className='px-8 pt-6 pb-12 h-full'>
+        <div className='flex flex-col gap-6 h-full'>
           <div className='flex flex-row gap-x-3'>
             <img src={imageUrl} alt={imageAltText} width={50} height={50} className='object-contain' />
             <div className='text-lg font-light my-auto flex-grow'>
               {title && <FormattedMessage id={title} defaultMessage={title} />}
             </div>
           </div>
-          <div className='text-sm'>
+          <div className='text-sm flex-grow'>
             {description && <FormattedMessage id={description} defaultMessage={description} />}
           </div>
         </div>

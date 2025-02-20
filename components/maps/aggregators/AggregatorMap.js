@@ -1,64 +1,23 @@
-import { useCallback, useContext, useMemo, useState } from 'react'
-import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import dynamic from 'next/dynamic'
+import { useCallback, useContext, useMemo, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { AGGREGATORS_QUERY, CAPABILITIES_QUERY, COUNTRIES_QUERY, OPERATORS_QUERY } from '../../shared/query/map'
+import { AGGREGATORS_MAP_QUERY } from '../../shared/query/map'
 import CountryInfo from './CountryInfo'
 
-const CountryMarkersMaps = (props) => {
-  const CountryMarkersMaps = useMemo(() => dynamic(
-    () => import('./CountryMarkers'),
-    { ssr: false }
-  ), [])
-
-  return <CountryMarkersMaps {...props} />
-}
-
-const DEFAULT_PAGE_SIZE = 10000
-
-const skipQuery = (operators, services) => {
-  if (!operators && !services) {
-    // skip query if we don't have operators and services parameters available.
-    return true
-  }
-
-  if (operators.length <= 0 && services.length <= 0) {
-    // skip query if operators and services don't have data
-    return true
-  }
-
-  return false
-}
-
 const AggregatorMap = () => {
-  const [selectedCountry, setSelectedCountry] = useState('')
-  const { aggregators, operators, services } = useContext(FilterContext)
-
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading: loadingAggregators, data: aggregatorData } = useQuery(AGGREGATORS_QUERY, {
-    variables: {
-      first: DEFAULT_PAGE_SIZE,
-      aggregatorOnly: true,
-      aggregators: aggregators.map(a => a.value)
-    },
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.VIEWING
-      }
-    }
-  })
+  const [selectedCountry, setSelectedCountry] = useState('')
+  const { aggregators, operators, services } = useContext(FilterContext)
 
-  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY, {
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.VIEWING
-      }
-    }
-  })
+  const AggregatorLeaflet = useMemo(() => dynamic(
+    () => import('./AggregatorLeaflet'),
+    { ssr: false }
+  ), [])
 
   const serviceNames = []
   const capabilityNames = []
@@ -68,24 +27,16 @@ const AggregatorMap = () => {
     capabilityNames.push(capabilityName)
   })
 
-  const { loading: loadingCapabilityData, data: capabilityData } = useQuery(CAPABILITIES_QUERY, {
+  const { loading, data } = useQuery(AGGREGATORS_MAP_QUERY, {
     variables: {
+      search: '',
       services: serviceNames,
-      capabilities: capabilityNames
-    },
-    skip: skipQuery(operators, services),
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.VIEWING
-      }
-    }
-  })
+      capabilities: capabilityNames,
+      operators: operators.map(o => o.value),
+      aggregatorOnly: true,
+      aggregators: aggregators.map(a => a.value)
 
-  const { loading: loadingOperatorServiceData, data: operatorServiceData } = useQuery(OPERATORS_QUERY, {
-    variables: {
-      operators: operators.map(o => o.value)
     },
-    skip: skipQuery(operators, services),
     context: {
       headers: {
         ...GRAPH_QUERY_CONTEXT.VIEWING
@@ -96,8 +47,8 @@ const AggregatorMap = () => {
   // Group project into map of countries with projects
   const countriesWithAggregators = (() => {
     const countriesWithAggregators = {}
-    if (countryData) {
-      const { countries } = countryData
+    if (data) {
+      const { countries } = data
       countries.forEach(country => {
         countriesWithAggregators[country.id] = {
           name: country.name,
@@ -106,24 +57,22 @@ const AggregatorMap = () => {
           aggregators: []
         }
       })
-    }
 
-    if (aggregatorData) {
-      const { searchOrganizations: { nodes } } = aggregatorData
-      if (capabilityData && operatorServiceData) {
+      const { searchOrganizations: organizations, capabilities, operatorServices } = data
+      if (capabilities && operatorServices) {
         // Create map of aggregator to get the aggregator information.
         const aggregatorMap = {}
-        nodes.forEach(aggregator => {
+        organizations.forEach(aggregator => {
           aggregatorMap[aggregator.id] = aggregator
         })
 
         // Make sure all operator ids are unique.
-        const operatorIds = operatorServiceData.operatorServices
+        const operatorIds = operatorServices
           .map(operatorService => operatorService.id)
           .filter((value, index, self) => self.indexOf(value) === index)
 
         // This will be used as base of our markers.
-        const aggregatorCountryList = capabilityData.capabilities
+        const aggregatorCountryList = capabilities
           // Filter using the operator service id above.
           .filter(capability => {
             return operatorIds.indexOf(capability.operatorServiceId.toString()) >= 0
@@ -146,7 +95,7 @@ const AggregatorMap = () => {
           }
         })
       } else {
-        nodes.forEach(aggregator => {
+        organizations.forEach(aggregator => {
           aggregator.countries.forEach(country => {
             const currentCountry = countriesWithAggregators[country.id]
             currentCountry.aggregators.push({ name: aggregator.name, slug: aggregator.slug })
@@ -159,7 +108,6 @@ const AggregatorMap = () => {
   })()
 
   const country = countriesWithAggregators[selectedCountry]
-  const loading = loadingCapabilityData || loadingOperatorServiceData || loadingAggregators || loadingCountries
 
   return (
     <div className='min-h-[10vh]'>
@@ -171,7 +119,7 @@ const AggregatorMap = () => {
             </div>
           </div>
         }
-        <CountryMarkersMaps
+        <AggregatorLeaflet
           countries={countriesWithAggregators}
           setSelectedCountry={setSelectedCountry}
         />

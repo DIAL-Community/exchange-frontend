@@ -67,7 +67,7 @@ const CountryMarkers = ({ countriesWithProjects, setSelectedCountryName }) => {
   )
 }
 
-const CountryMarkersMaps = ({ initialCountry, containerHeight, ...props }) => {
+const ProjectLeaflet = ({ initialCountry, containerHeight, ...props }) => {
   const center = initialCountry ? [initialCountry.latitude, initialCountry.longitude] : [0, 0]
 
   return (
@@ -88,4 +88,4 @@ const CountryMarkersMaps = ({ initialCountry, containerHeight, ...props }) => {
   )
 }
 
-export default CountryMarkersMaps
+export default ProjectLeaflet

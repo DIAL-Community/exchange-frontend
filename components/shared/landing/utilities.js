@@ -1,5 +1,6 @@
 import { FormattedMessage } from 'react-intl'
 import BuildingBlockListRight from '../../building-block/fragments/BuildingBlockListRight'
+import AggregatorMap from '../../maps/aggregators/AggregatorMap'
 import EndorserMap from '../../maps/endorsers/EndorserMap'
 import ProjectMap from '../../maps/projects/ProjectMap'
 import OrganizationListRight from '../../organization/fragments/OrganizationListRight'
@@ -37,10 +38,12 @@ export const resolveContentMapValue = (value) => {
       return <ProjectMap />
     case ContentMapTypes.ENDORSER_MAP:
       return <EndorserMap />
+    case ContentMapTypes.AGGREGATOR_MAP:
+      return <AggregatorMap />
     default:
       return (
         <div className='text-xs italic'>
-          <FormattedMessage id='landing.content.map.missing' />
+          <FormattedMessage id='landing.map.missing' />
         </div>
       )
   }
@@ -63,7 +66,7 @@ export const resolveContentListValue = (value) => {
     default:
       return (
         <div className='text-xs italic'>
-          <FormattedMessage id='landing.content.list.missing' />
+          <FormattedMessage id='landing.list.missing' />
         </div>
       )
   }

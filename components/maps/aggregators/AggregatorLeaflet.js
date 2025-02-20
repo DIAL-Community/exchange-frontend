@@ -69,7 +69,7 @@ const CountryMarkers = ({ countries, setSelectedCountry }) => {
   )
 }
 
-const CountryMarkersMaps = (props) => {
+const AggregatorLeaflet = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
     <MapContainer
@@ -89,4 +89,4 @@ const CountryMarkersMaps = (props) => {
   )
 }
 
-export default CountryMarkersMaps
+export default AggregatorLeaflet

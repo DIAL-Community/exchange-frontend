@@ -3067,28 +3067,29 @@ export const en = {
 
   'landing.widget.options.title': 'Item Options',
 
-  'landing.widget.hero.carousel': 'Carousel',
-  'landing.widget.hero.card': 'Hero Card',
-  'landing.widget.content.map': 'Map',
-  'landing.widget.content.list': 'List',
-  'landing.widget.text.summary': 'Summary',
-  'landing.widget.text.block': 'Text',
+  'landing.widget.carousel': 'Carousel',
+  'landing.widget.card': 'Card',
+  'landing.widget.map': 'Map',
+  'landing.widget.list': 'List',
+  'landing.widget.summary': 'Summary',
+  'landing.widget.block': 'Text',
+  'landing.widget.spacer': 'Spacer',
 
   'landing.widget.selected.value': 'Current value',
 
-  'landing.content.list.options': 'List Source Options',
-  'landing.content.list.buildingBlocks': 'Building Block List',
-  'landing.content.list.organizations': 'Organization List',
-  'landing.content.list.products': 'Product List',
-  'landing.content.list.projects': 'Project List',
-  'landing.content.list.useCases': 'Use Case List',
-  'landing.content.list.missing': 'Missing list source value in setting.',
+  'landing.list.options': 'List Options',
+  'landing.list.buildingBlocks': 'Building Block List',
+  'landing.list.organizations': 'Organization List',
+  'landing.list.products': 'Product List',
+  'landing.list.projects': 'Project List',
+  'landing.list.useCases': 'Use Case List',
+  'landing.list.missing': 'Missing list type in setting.',
 
-  'landing.content.map.options': 'Map Type Options',
-  'landing.content.map.projects': 'Project Map',
-  'landing.content.map.endorsers': 'Endorser Map',
-  'landing.content.map.missing': 'Missing map type value in setting.',
+  'landing.map.options': 'Map Type Options',
+  'landing.map.projects': 'Project Map',
+  'landing.map.endorsers': 'Endorser Map',
+  'landing.map.missing': 'Missing map type in setting.',
 
-  'landing.hero.card.options': 'Hero Card Options',
+  'landing.card.options': 'Card Options',
 }
 
