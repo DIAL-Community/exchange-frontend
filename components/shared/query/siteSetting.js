@@ -59,6 +59,26 @@ export const SITE_SETTINGS_QUERY = gql`
   }
 `
 
+export const SITE_SETTINGS_ITEM_CONFIGURATIONS_QUERY = gql`
+  query SiteSettings {
+    siteSettings {
+      id
+      name
+      itemConfigurations
+    }
+  }
+`
+
+export const SITE_SETTINGS_ITEM_LAYOUTS_QUERY = gql`
+  query SiteSettings {
+    siteSettings {
+      id
+      name
+      itemLayouts
+    }
+  }
+`
+
 export const INITIAL_IMAGE_URL_QUERY = gql`
   query DefaultSiteSetting {
     defaultSiteSetting {

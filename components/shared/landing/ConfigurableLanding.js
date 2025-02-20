@@ -1,24 +1,18 @@
-import { Dialog, Transition } from '@headlessui/react'
-import classNames from 'classnames'
 import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
+import classNames from 'classnames'
 import { Responsive, WidthProvider } from 'react-grid-layout'
-import { MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
+import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
-import BuildingBlockListRight from '../../building-block/fragments/BuildingBlockListRight'
+import { Dialog, Transition } from '@headlessui/react'
 import { SiteSettingContext } from '../../context/SiteSettingContext'
-import EndorserMap from '../../maps/endorsers/EndorserMap'
-import ProjectMap from '../../maps/projects/ProjectMap'
-import OrganizationListRight from '../../organization/fragments/OrganizationListRight'
-import ProductListRight from '../../product/fragments/ProductListRight'
-import ProjectListRight from '../../project/fragments/ProjectListRight'
-import UseCaseListRight from '../../use-case/fragments/UseCaseListRight'
 import { HtmlEditor } from '../form/HtmlEditor'
 import { HtmlViewer } from '../form/HtmlViewer'
 import Input from '../form/Input'
 import Select from '../form/Select'
 import HeroCarousel from '../HeroCarousel'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
-import { ContentListOptions, ContentListTypes, ContentMapOptions, ContentMapTypes, WidgetTypeOptions } from './constants'
+import { ContentListOptions, ContentMapOptions, WidgetTypeOptions } from './constants'
+import { resolveContentListValue, resolveContentMapValue } from './utilities'
 
 const getFromLocalStorage = (localStorageKey) => {
   console.log(`Reading '${localStorageKey}' data from local storage.`)
@@ -144,46 +138,6 @@ const ConfigurableLanding = () => {
   }
 
   // Update rendered components depending on the selected value.
-  // This is specific for map widget, we can add more maps in the future.
-  const resolveContentMapValue = (value) => {
-    switch (value) {
-      case ContentMapTypes.PROJECT_MAP:
-        return <ProjectMap />
-      case ContentMapTypes.ENDORSER_MAP:
-        return <EndorserMap />
-      default:
-        return (
-          <div className='text-xs italic'>
-            <FormattedMessage id='landing.content.map.missing' />
-          </div>
-        )
-    }
-  }
-
-  // Update rendered components depending on the selected value.
-  // This is specific for list widget, we can add more maps in the future.
-  const resolveContentListValue = (value) => {
-    switch (value) {
-      case ContentListTypes.PRODUCT_LIST:
-        return <ProductListRight />
-      case ContentListTypes.ORGANIZATION_LIST:
-        return <OrganizationListRight />
-      case ContentListTypes.USE_CASE_LIST:
-        return <UseCaseListRight />
-      case ContentListTypes.BUILDING_BLOCK_LIST:
-        return <BuildingBlockListRight />
-      case ContentListTypes.PROJECT_LIST:
-        return <ProjectListRight />
-      default:
-        return (
-          <div className='text-xs italic'>
-            <FormattedMessage id='landing.content.list.missing' />
-          </div>
-        )
-    }
-  }
-
-  // Update rendered components depending on the selected value.
   // This is specific for hero card widget. User can add more hero widget from the site settings editor.
   const resolveHeroCardValue = (itemValue) => {
     const heroCardConfiguration = heroCardConfigurations.find((configuration) => configuration.id === itemValue)
@@ -191,10 +145,12 @@ const ConfigurableLanding = () => {
     return heroCardConfiguration
       ? heroCardConfiguration.external
         ? <ExternalHeroCardDefinition
+          disabled={editing}
           key={heroCardConfiguration.slug}
           heroCardConfiguration={heroCardConfiguration}
         />
         : <InternalHeroCardDefinition
+          disabled={editing}
           key={heroCardConfiguration.slug}
           heroCardConfiguration={heroCardConfiguration}
         />
@@ -296,7 +252,7 @@ const ConfigurableLanding = () => {
             />
             <span className='text-xs italic'>
               <FormattedMessage id='landing.widget.selected.value' />:
-              {item.value}
+              {heroCardConfigurations.find(c => c.id === item.value)?.name}
             </span>
           </div>
         )
@@ -339,8 +295,8 @@ const ConfigurableLanding = () => {
           }
           {resolveContent(item)}
           {editing && (
-            <div className='element-actions absolute top-0 right-0' style={{ zIndex: 50 }}>
-              <div className='flex flex-row gap-x-2'>
+            <div className='element-actions absolute top-1 right-1' style={{ zIndex: 50 }}>
+              <div className='flex flex-row gap-x-1'>
                 <button
                   className='cursor-pointer'
                   onClick={() => setupItemValue(item)}
@@ -387,18 +343,24 @@ const ConfigurableLanding = () => {
     <div className='px-4 lg:px-8 xl:px-56'>
       <div className='relative flex flex-col min-h-[70vh]'>
         <div className='absolute top-2 right-0 text-white' style={{ zIndex: 55 }}>
-          <div className='flex flex-row gap-x-1 opacity-30 hover:opacity-100'>
+          <div className='flex flex-row gap-x-1'>
             <button
-              className='bg-dial-sapphire px-2 py-2 rounded-full'
-              onClick={() => toggleEditing()}
-            >
-              <MdEdit />
-            </button>
-            <button
-              className='bg-dial-sapphire px-2 py-2 rounded-full'
+              className={classNames(
+                'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
+                editingText ? 'opacity-80' : 'opacity-30'
+              )}
               onClick={() => toggleEditingText()}
             >
               <MdFontDownload />
+            </button>
+            <button
+              className={classNames(
+                'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
+                editing ? 'opacity-80' : 'opacity-30'
+              )}
+              onClick={() => toggleEditing()}
+            >
+              <MdEdit />
             </button>
           </div>
         </div>
@@ -409,9 +371,13 @@ const ConfigurableLanding = () => {
                 return (
                   <button
                     key={key}
-                    className='bg-dial-sapphire px-3 py-2 rounded'
+                    className={classNames(
+                      'bg-dial-sapphire px-3 py-2 rounded flex gap-1 hover:opacity-100',
+                      editing ? 'opacity-80' : 'opacity-30'
+                    )}
                     onClick={() => appendItem(WidgetTypeOptions[key])}
                   >
+                    <MdAdd className='my-auto' />
                     <FormattedMessage id={WidgetTypeOptions[key]} />
                   </button>
                 )

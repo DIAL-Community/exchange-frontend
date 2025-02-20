@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import { SiteSettingContext } from '../context/SiteSettingContext'
 import { HtmlViewer } from './form/HtmlViewer'
 
-export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
+export const ExternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) => {
   const { title, description, imageUrl, destinationUrl } = heroCardConfiguration
   const heroCardName = title
     ? <FormattedMessage id={title} defaultMessage={title} />
@@ -18,6 +18,7 @@ export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
       className='rounded-md shadow-lg border'
       target='_blank'
       rel='noopener noreferrer'
+      onClick={(e) => { if (disabled) e.preventDefault() }}
     >
       <div className='px-8 pt-6 pb-12'>
         <div className='flex flex-col gap-6'>
@@ -36,7 +37,7 @@ export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   )
 }
 
-export const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
+export const InternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) => {
   const { title, description, imageUrl, destinationUrl } = heroCardConfiguration
   const heroCardName = title
     ? <FormattedMessage id={title} defaultMessage={title} />
@@ -45,7 +46,11 @@ export const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   const imageAltText = <FormattedMessage id='ui.image.logoAlt' values={{ name: heroCardName }} />
 
   return (
-    <Link href={destinationUrl} className='rounded-md shadow-lg border'>
+    <Link
+      href={destinationUrl}
+      className='rounded-md shadow-lg border'
+      onClick={(e) => { if (disabled) e.preventDefault() }}
+    >
       <div className='px-8 pt-6 pb-12'>
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row gap-x-3'>

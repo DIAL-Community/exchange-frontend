@@ -538,15 +538,6 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
                           </p>
                         </div>
                         <div
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="ContentEditable__placeholder"
-                          >
-                            Enter plain text...
-                          </div>
-                        </div>
-                        <div
                           draggable="true"
                         >
                           <div
@@ -566,7 +557,7 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
                           style="opacity: 1; transform: translate(-5px, 10px);"
                         />
                         <div
-                          class="table-cell-action-button-container table-cell-action-button-container--inactive"
+                          class="table-cell-action-button-container"
                         />
                       </div>
                     </div>
@@ -587,7 +578,6 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
                       <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
-                        disabled=""
                         title="Clear"
                         type="button"
                       >

@@ -3086,5 +3086,7 @@ export const en = {
   'landing.content.map.projects': 'Project Map',
   'landing.content.map.endorsers': 'Endorser Map',
   'landing.content.map.missing': 'Missing map type value in setting.',
+
+  'landing.hero.card.options': 'Hero Card Options',
 }
 
