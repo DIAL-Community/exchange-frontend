@@ -3,7 +3,7 @@ import Breadcrumb from '../../../shared/Breadcrumb'
 const ProductRibbon = () => {
   return (
     <div className='bg-health-light-gray'>
-      <div className='mr-auto px-4 lg:px-8 xl:px-56 my-3 text-health-blue'>
+      <div className='mr-auto px-4 lg:px-8 xl:px-24 3xl:px-56 my-3 text-health-blue'>
         <Breadcrumb slugNameMapping='product' />
       </div>
       <div className='w-full flex flex-col md:flex-row gap-2'>

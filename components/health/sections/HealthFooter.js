@@ -5,7 +5,7 @@ const HealthFooter = () => {
   return (
     <div className='bg-health-blue max-w-catalog mx-auto'>
       <img className='w-full' src='/ui/health/footer-img.png' alt='Footer image' />
-      <div className='px-6 lg:px-8 xl:px-56 py-8'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 py-8'>
         <div className='flex flex-col lg:flex-row justify-between gap-x-12'>
           <div className='flex flex-col basis-2/5'>
             <a href='//www.africacdc.org/' target='_blank' rel='noreferrer'>

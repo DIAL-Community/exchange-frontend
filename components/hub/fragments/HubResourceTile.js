@@ -110,7 +110,7 @@ const HubResourceTiles = ({ resourceTopics, pageNumber, onClickHandler }) => {
   }
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-6'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[70vh] py-6'>
       <HubResourceFilter />
       { user &&
         <div className='flex mb-6'>

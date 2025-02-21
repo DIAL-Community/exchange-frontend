@@ -32,7 +32,7 @@ const ProductCompareBar = () => {
     <>
       {comparedProducts.length > 0 &&
         <div className='fixed bottom-0 bg-dial-meadow max-w-catalog w-screen'>
-          <div className='px-4 lg:px-8 xl:px-56 text-dial-stratos text-sm'>
+          <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-stratos text-sm'>
             <div className='flex flex-row items-center'>
               <div className='flex flex-col gap-y-3'>
                 <a href='#' onClick={clearCompareBar} className='flex'>
