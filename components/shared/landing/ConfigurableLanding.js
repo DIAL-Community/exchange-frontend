@@ -1,23 +1,27 @@
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useMutation, useQuery } from '@apollo/client'
 import classNames from 'classnames'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { SiteSettingContext } from '../../context/SiteSettingContext'
 import { HtmlEditor } from '../form/HtmlEditor'
 import { HtmlViewer } from '../form/HtmlViewer'
 import Input from '../form/Input'
 import Select from '../form/Select'
 import HeroCarousel from '../HeroCarousel'
+import { UPDATE_SITE_SETTING_ITEM_CONFIGURATIONS, UPDATE_SITE_SETTING_ITEM_LAYOUTS } from '../mutation/siteSetting'
+import { SITE_SETTINGS_LANDING_QUERY } from '../query/siteSetting'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
 import { ContentListOptions, ContentMapOptions, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
-import { getFromLocalStorage, resolveContentListValue, resolveContentMapValue, saveToLocalStorage } from './utilities'
+import { resolveContentListValue, resolveContentMapValue } from './utilities'
 
 const ConfigurableLanding = () => {
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
 
-  const { heroCardSection: { heroCardConfigurations } } = useContext(SiteSettingContext)
+  const { slug, heroCardSection: { heroCardConfigurations } } = useContext(SiteSettingContext)
 
   // Toggle whether we are editing the page or not.
   const [editing, setEditing] = useState(false)
@@ -32,20 +36,39 @@ const ConfigurableLanding = () => {
 
   const [displayItemOptions, setDisplayItemOptions] = useState(false)
 
-  // Initialize the items and the layouts from local storage.
-  // Eventually we will move this to the site_settings table.
+  // Initialize the layouts and items from database
+  useQuery(SITE_SETTINGS_LANDING_QUERY, {
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    },
+    onCompleted: (data) => {
+      if (data.defaultSiteSetting) {
+        const { defaultSiteSetting: { itemLayouts, itemConfigurations } } = data
+        setLayouts(itemLayouts?.layouts ?? {})
+        setItems(itemConfigurations?.items ?? [])
+      }
+    }
+  })
+
+  // Update static flag for the layouts depending on the editing toggle.
+  // This will also gets triggered the first time after loading data from
+  // the database.
   useEffect(() => {
-    setItems(getFromLocalStorage('exchange-items') ?? [])
-    const savedLayouts = getFromLocalStorage('exchange-layouts') ?? {}
     const updatedLayouts = {}
-    Object.keys(savedLayouts).map(key => {
-      const processedLayouts = savedLayouts[key].map(currentLayout => {
+    Object.keys(layouts).map(key => {
+      const processedLayouts = layouts[key].map(currentLayout => {
         return { ...currentLayout, static: !editing }
       })
       updatedLayouts[key] = processedLayouts
     })
     setLayouts(updatedLayouts)
-  }, [editing])
+  }, [editing, layouts])
+
+  const [saveLayouts] = useMutation(UPDATE_SITE_SETTING_ITEM_LAYOUTS)
+  const [saveItems] = useMutation(UPDATE_SITE_SETTING_ITEM_CONFIGURATIONS)
 
   // Toggle the editing context for the current page.
   const toggleEditing = () => {
@@ -60,7 +83,7 @@ const ConfigurableLanding = () => {
   // Save when user make changes to the layout.
   const onLayoutChange = (_layout, layouts) => {
     console.log('Handling layout change. Saving: ', layouts)
-    saveToLocalStorage('exchange-layouts', layouts)
+    saveLayouts({ variables: { itemLayouts: layouts } })
   }
 
   // Update rendered components depending on the selected value.
@@ -98,7 +121,7 @@ const ConfigurableLanding = () => {
       return item.id === id ? { ...item, title: itemTitle } : item
     })
     setItems(newItems)
-    saveToLocalStorage('exchange-items', newItems)
+    saveItems({ variables: { itemConfigurations: newItems } })
   }
 
   // Update the value of the widget based on the value from the widget setting dialog.
@@ -108,7 +131,7 @@ const ConfigurableLanding = () => {
       return item.id === id ? { ...item, value: itemValue } : item
     })
     setItems(newItems)
-    saveToLocalStorage('exchange-items', newItems)
+    saveItems({ variables: { itemConfigurations: newItems } })
   }
 
   // Prepare the widget settings dialog.
@@ -251,7 +274,7 @@ const ConfigurableLanding = () => {
     console.log('Removing item: ', itemId)
     const updatedItems = [...items.filter(item => item.id !== itemId)]
     setItems(updatedItems)
-    saveToLocalStorage('exchange-items', updatedItems)
+    saveItems({ variables: { itemConfigurations: updatedItems } })
   }
 
   // Append an item to the grid-layout.
@@ -264,7 +287,7 @@ const ConfigurableLanding = () => {
       type: itemType
     }]
     setItems(updatedItems)
-    saveToLocalStorage('exchange-items', updatedItems)
+    saveItems({ variables: { itemConfigurations: updatedItems } })
   }
 
   return (

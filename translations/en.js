@@ -3092,5 +3092,10 @@ export const en = {
   'landing.map.missing': 'Missing map type in setting.',
 
   'landing.card.options': 'Card Options',
+
+  'landing.item.save.success': 'Page item configurations saved.',
+  'landing.item.save.failure': 'Unable to save page item configurations.',
+  'landing.layout.save.success': 'Page item layouts saved.',
+  'landing.layout.save.failure': 'Unable to save page item layouts.',
 }
 

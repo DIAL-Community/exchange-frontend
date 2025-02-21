@@ -51,6 +51,7 @@ export const SITE_SETTINGS_QUERY = gql`
     siteSettings {
       id
       name
+      slug
       description
       carouselConfigurations
       menuConfigurations
@@ -59,22 +60,13 @@ export const SITE_SETTINGS_QUERY = gql`
   }
 `
 
-export const SITE_SETTINGS_ITEM_CONFIGURATIONS_QUERY = gql`
-  query SiteSettings {
-    siteSettings {
+export const SITE_SETTINGS_LANDING_QUERY = gql`
+  query DefaultSiteSettingLanding {
+    defaultSiteSetting {
       id
-      name
-      itemConfigurations
-    }
-  }
-`
-
-export const SITE_SETTINGS_ITEM_LAYOUTS_QUERY = gql`
-  query SiteSettings {
-    siteSettings {
-      id
-      name
+      slug
       itemLayouts
+      itemConfigurations
     }
   }
 `
@@ -83,6 +75,7 @@ export const INITIAL_IMAGE_URL_QUERY = gql`
   query DefaultSiteSetting {
     defaultSiteSetting {
       id
+      slug
       faviconUrl
       openGraphLogoUrl
     }

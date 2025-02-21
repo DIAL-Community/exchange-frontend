@@ -215,18 +215,10 @@ export const UPDATE_SITE_SETTING_CAROUSEL_CONFIGURATION = gql`
 `
 
 export const UPDATE_SITE_SETTING_ITEM_LAYOUTS = gql`
-  mutation UpdateSiteSettingItemLayouts(
-    $siteSettingSlug: String!
-    $itemLayouts: JSON!
-  ) {
-    updateSiteSettingItemLayouts(
-      siteSettingSlug: $siteSettingSlug
-      itemLayouts: $itemLayouts
-    ) {
+  mutation UpdateSiteSettingItemLayouts($itemLayouts: JSON!) {
+    updateSiteSettingItemLayouts(itemLayouts: $itemLayouts) {
       siteSetting {
         id
-        name
-        itemLayouts
       }
       errors
     }
@@ -234,18 +226,10 @@ export const UPDATE_SITE_SETTING_ITEM_LAYOUTS = gql`
 `
 
 export const UPDATE_SITE_SETTING_ITEM_CONFIGURATIONS = gql`
-  mutation UpdateSiteSettingItemConfigurations(
-    $siteSettingSlug: String!
-    $itemConfigurations: JSON!
-  ) {
-    updateSiteSettingItemConfigurations(
-      siteSettingSlug: $siteSettingSlug
-      itemConfigurations: $itemConfigurations
-    ) {
+  mutation UpdateSiteSettingItemConfigurations($itemConfigurations: JSON!) {
+    updateSiteSettingItemConfigurations(itemConfigurations: $itemConfigurations) {
       siteSetting {
         id
-        name
-        itemConfigurations
       }
       errors
     }
