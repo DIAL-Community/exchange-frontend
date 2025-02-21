@@ -3,10 +3,9 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { FilterContext } from '../../context/FilterContext'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/buildingBlock'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import BuildingBlockSearchBar from './BuildingBlockSearchBar'
 import ListStructure from './ListStructure'
 
@@ -16,12 +15,13 @@ const BuildingBlockListRight = () => {
 
   const {
     search,
-    categoryTypes,
+    collectionDisplayType,
     sdgs,
-    showGovStackOnly,
-    showMature,
     useCases,
-    workflows
+    workflows,
+    categoryTypes,
+    showMature,
+    showGovStackOnly
   } = useContext(FilterContext)
 
   const topRef = useRef(null)
@@ -29,7 +29,7 @@ const BuildingBlockListRight = () => {
 
   const { page } = query
   const pageNumber = page ? parseInt(page) - 1 : 0
-  const pageOffset = pageNumber * DEFAULT_PAGE_SIZE
+  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
@@ -70,7 +70,7 @@ const BuildingBlockListRight = () => {
       <BuildingBlockSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        pageSize={CollectionPageSize[collectionDisplayType]}
       />
       { loading && format('ui.pagination.loadingInfo') }
       { error && format('ui.pagination.loadingInfoError') }
@@ -78,7 +78,7 @@ const BuildingBlockListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeBuildingBlock.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

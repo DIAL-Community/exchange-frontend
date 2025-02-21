@@ -11,13 +11,13 @@ const BuildingBlockSearchBar = forwardRef((_, ref) => {
   const mobileFilter =
     <MobileFilter
       bgColor='bg-dial-warm-beech'
-      iconColor='text-dial-ochre'
       entityFilter={<BuildingBlockFilter/>}
     />
 
   return (
     <div ref={ref} className='py-3'>
       <SearchBar
+        multiView
         search={search}
         setSearch={setSearch}
         mobileFilter={mobileFilter}

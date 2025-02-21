@@ -497,7 +497,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               Description
             </div>
             <div
-              class="block"
+              class="description-block"
             >
               <div
                 class="editor-shell read-only"

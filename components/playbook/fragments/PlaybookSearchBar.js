@@ -11,7 +11,6 @@ const PlaybookSearchBar = forwardRef((_, ref) => {
   const mobileFilter =
     <MobileFilter
       bgColor='bg-dial-spearmint'
-      iconColor='text-dial-meadow'
       entityFilter={<PlaybookFilter />}
     />
 

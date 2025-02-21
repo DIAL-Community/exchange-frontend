@@ -114,7 +114,7 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
 
   return (
     <header className='z-50 sticky top-0 bg-white max-w-catalog mx-auto shadow-md'>
-      <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
+      <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-24 3xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
           <div className='flex gap-1 text-dial-cotton'>
             <img

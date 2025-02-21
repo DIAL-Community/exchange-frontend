@@ -42,12 +42,12 @@ const HubExpertNetwork = () => {
       />
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-12'>
-          <div className='text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray'>
+          <div className='text-2xl px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray'>
             ADLI Network
           </div>
         </div>
       </div>
-      <div className='px-4 lg:px-8 xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]'>
         <div className='flex flex-col gap-12'>
           <div className='flex flex-col 2xl:flex-row gap-6'>
             <div className='text-justify 2xl:max-w-4xl line-clamp-6'>

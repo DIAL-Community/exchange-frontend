@@ -61,6 +61,7 @@ export const PAGINATED_DATASETS_QUERY = gql`
       slug
       tags
       imageFile
+      datasetType
       parsedDescription
       datasetDescription {
         id

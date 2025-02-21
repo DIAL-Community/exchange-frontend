@@ -306,7 +306,7 @@ const DatasetSpreadsheet = () => {
   }
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56'>
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
         <Tab.List className='flex bg-dial-meadow'>
           {DEFAULT_SHEET_NAMES.map((name) => (

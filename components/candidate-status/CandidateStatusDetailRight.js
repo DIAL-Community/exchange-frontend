@@ -39,7 +39,7 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus, editingAllowed
         <div className='text-base font-semibold py-3'>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={candidateStatus?.description}
             editorId='candidate-status-description'
@@ -51,7 +51,7 @@ const CandidateStatusDetailRight = forwardRef(({ candidateStatus, editingAllowed
           <div className='text-base font-semibold'>
             {format('ui.candidateStatus.notificationTemplate')}
           </div>
-          <div className='block'>
+          <div className='description-block'>
             <HtmlViewer
               initialContent={candidateStatus.notificationTemplate}
               editorId='candidate-status-description'

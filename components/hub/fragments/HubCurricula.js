@@ -126,7 +126,7 @@ const HubCurricula = ({ stripeIndex }) => {
 
   return (
     <div className={`curriculum-section ${stripeClasses(stripeIndex)}`}>
-      <div className='px-4 lg:px-8 xl:px-56'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56'>
         <div className='text-lg lg:text-2xl pt-8 pb-2 '>
           {format('hub.curriculum.title')}
         </div>

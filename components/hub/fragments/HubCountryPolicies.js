@@ -126,7 +126,7 @@ const HubCountryPolicies = ({ country }) => {
 
   return (
     <div className='policy-section bg-dial-sapphire'>
-      <div className='px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-cotton flex flex-col'>
         <div className='text-xl font-medium py-6'>
           {format('hub.country.policies')}
         </div>

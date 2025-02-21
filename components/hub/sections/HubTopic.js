@@ -42,17 +42,17 @@ const HubTopic = ({ slug, pageNumber, onClickHandler }) => {
       />
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-2'>
-          <div className='px-4 lg:px-8 xl:px-56 text-dial-gray'>
+          <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray'>
             <HubBreadcrumb slugNameMapping={slugNameMapping} />
           </div>
-          <div className='px-4 lg:px-8 xl:px-56 py-8'>
+          <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 py-8'>
             <div className='text-2xl text-dial-cotton uppercase max-w-prose'>
               {resourceTopic.name}
             </div>
           </div>
         </div>
       </div>
-      <div className='px-4 lg:px-8 xl:px-56 min-h-[60vh] lg:min-h-[65vh]'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[60vh] lg:min-h-[65vh]'>
         <div className='flex flex-col gap-y-6'>
           <div className='text-dial-stratos max-w-5xl text-justify'>
             {resourceTopic?.resourceTopicDescription && parse(resourceTopic.resourceTopicDescription?.description)}

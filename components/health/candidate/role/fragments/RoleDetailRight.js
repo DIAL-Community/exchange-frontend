@@ -28,7 +28,7 @@ const RoleDetailRight = forwardRef(({ role, editingAllowed }, ref) => {
         <div className='text-xl font-semibold text-health-blue py-3'>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={role?.description}
             editorId='role-description'

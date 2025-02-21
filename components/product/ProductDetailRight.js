@@ -311,7 +311,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
         <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={product?.productDescription?.description}
             editorId='product-description'

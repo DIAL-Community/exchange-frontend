@@ -14,6 +14,7 @@ export const datasetDetail = {
       'datasetType': 'ai_model',
       'dataFormat': null,
       'tags': [],
+      'parsedDescription': 'Dataset description',
       'datasetDescription': {
         'id': '11265',
         'description': 'Dataset description',

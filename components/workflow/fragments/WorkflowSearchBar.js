@@ -11,13 +11,13 @@ const WorkflowSearchBar = forwardRef((_, ref) => {
   const mobileFilter =
     <MobileFilter
       bgColor='bg-dial-violet'
-      iconColor='text-dial-plum'
       entityFilter={<WorkflowFilter />}
     />
 
   return (
     <div ref={ref} className='py-3'>
       <SearchBar
+        multiView
         search={search}
         setSearch={setSearch}
         mobileFilter={mobileFilter}

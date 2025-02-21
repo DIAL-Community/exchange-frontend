@@ -90,7 +90,7 @@ const ResourceDetailRight = forwardRef(({ resource, editingAllowed, deletingAllo
         <div className='text-4xl font-semibold text-dial-stratos py-3' ref={titleRef}>
           {resource?.name}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={resource?.description}
             editorId='resource-description'

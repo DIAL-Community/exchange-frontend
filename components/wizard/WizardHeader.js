@@ -24,7 +24,7 @@ const WizardProgressBar = () => {
   const updateActiveStep = (selectedStep) => setCurrentStep(selectedStep)
 
   return (
-    <div className='ui-wizard px-4 lg:px-8 xl:px-56 w-full'>
+    <div className='ui-wizard px-4 lg:px-8 xl:px-24 3xl:px-56 w-full'>
       <div className='flex flex-col gap-y-4 text-sm'>
         <ol
           className='flex items-center w-full'
@@ -85,7 +85,7 @@ const WizardStepHeader = () => {
   }
 
   return (
-    <div className='ui-wizard px-4 lg:px-8 xl:px-56 w-full'>
+    <div className='ui-wizard px-4 lg:px-8 xl:px-24 3xl:px-56 w-full'>
       <div className='flex flex-col lg:flex-row gap-6 w-full'>
         <div className='flex flex-col flex-grow gap-y-4'>
           <div className='font-semibold text-2xl text-dial-iris-blue'>
