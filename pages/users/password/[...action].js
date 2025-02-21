@@ -137,6 +137,9 @@ const PasswordAction = () => {
                   />
                   <div className='strength-meter my-2'>
                     <div className={`strength-meter-fill ${strengthColor(password)}`} />
+                    {password.length > 0 && passwordStrength < 3 && (
+                      <div className='p-1 text-sm text-use-case'>{format('signUp.moreSecure')}</div>
+                    )}
                   </div>
                 </div>
                 <div className='mb-4'>
