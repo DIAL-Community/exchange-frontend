@@ -9,7 +9,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
     class="px-4 lg:px-8 xl:px-56"
   >
     <div
-      class="grid grid-cols-3 gap-x-8"
+      class="grid grid-cols-4 gap-x-8"
     >
       <div
         class="hidden md:block col-span-1"
@@ -316,7 +316,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
         </div>
       </div>
       <div
-        class="col-span-3 md:col-span-2"
+        class="col-span-4 md:col-span-3"
       >
         <div
           class="min-h-[50vh]"
@@ -448,7 +448,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
             </div>
           </div>
           <div
-            class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
+            class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4"
           >
             <div>
               <div
@@ -495,53 +495,12 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           />
                         </div>
                         <div
-                          class="px-6 py-2 flex flex-row justify-between"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="flex-auto flex flex-col"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
-                            <div
-                              class="text-xs"
-                            >
-                              License
-                            </div>
-                            <div
-                              class="text-sm font-semibold py-1"
-                            >
-                              AGPL-3.0
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col items-center justify-center"
-                          >
-                            <div
-                              class="text-xs"
-                            >
-                              Maturity
-                            </div>
-                            <div
-                              class="text-sm font-semibold bg-dial-angel px-2 py-1 rounded"
-                            >
-                              75.63
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-right"
-                            >
-                              Sources
-                            </div>
-                            <div
-                              class="flex flex-row justify-end font-semibold py-1"
-                            >
-                              <div
-                                class="text-sm font-semibold"
-                              >
-                                N/A
-                              </div>
-                            </div>
+                            AGPL-3.0
                           </div>
                         </div>
                       </div>
@@ -610,55 +569,12 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="px-6 py-2 flex flex-row justify-between"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="flex-auto flex flex-col"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
-                            <div
-                              class="text-xs"
-                            >
-                              License
-                            </div>
-                            <div
-                              class="text-sm font-semibold py-1"
-                            >
-                              NA
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col items-center justify-center"
-                          >
-                            <div
-                              class="text-xs"
-                            >
-                              Maturity
-                            </div>
-                            <div
-                              class="text-sm font-semibold bg-dial-angel px-2 py-1 rounded"
-                            >
-                              45.75
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-right"
-                            >
-                              Sources
-                            </div>
-                            <div
-                              class="flex flex-row justify-end font-semibold py-1"
-                            >
-                              <div
-                                class="text-sm"
-                                data-tooltip-content="Origin: Manually Entered"
-                                data-tooltip-id="react-tooltip"
-                              >
-                                MAN
-                              </div>
-                            </div>
+                            NA
                           </div>
                         </div>
                       </div>
@@ -727,55 +643,12 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="px-6 py-2 flex flex-row justify-between"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="flex-auto flex flex-col"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
-                            <div
-                              class="text-xs"
-                            >
-                              License
-                            </div>
-                            <div
-                              class="text-sm font-semibold py-1"
-                            >
-                              APACHE-2.0
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col items-center justify-center"
-                          >
-                            <div
-                              class="text-xs"
-                            >
-                              Maturity
-                            </div>
-                            <div
-                              class="text-sm font-semibold bg-dial-angel px-2 py-1 rounded"
-                            >
-                              58.21
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-right"
-                            >
-                              Sources
-                            </div>
-                            <div
-                              class="flex flex-row justify-end font-semibold py-1"
-                            >
-                              <div
-                                class="text-sm"
-                                data-tooltip-content="Origin: Digital Public Goods Alliance (Nominee)"
-                                data-tooltip-id="react-tooltip"
-                              >
-                                DPGA
-                              </div>
-                            </div>
+                            APACHE-2.0
                           </div>
                         </div>
                       </div>
@@ -844,55 +717,12 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="px-6 py-2 flex flex-row justify-between"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="flex-auto flex flex-col"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
-                            <div
-                              class="text-xs"
-                            >
-                              License
-                            </div>
-                            <div
-                              class="text-sm font-semibold py-1"
-                            >
-                              GPL-3.0
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col items-center justify-center"
-                          >
-                            <div
-                              class="text-xs"
-                            >
-                              Maturity
-                            </div>
-                            <div
-                              class="text-sm font-semibold bg-dial-angel px-2 py-1 rounded"
-                            >
-                              58.13
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-right"
-                            >
-                              Sources
-                            </div>
-                            <div
-                              class="flex flex-row justify-end font-semibold py-1"
-                            >
-                              <div
-                                class="text-sm"
-                                data-tooltip-content="Origin: Digital Public Goods Alliance (Nominee)"
-                                data-tooltip-id="react-tooltip"
-                              >
-                                DPGA
-                              </div>
-                            </div>
+                            GPL-3.0
                           </div>
                         </div>
                       </div>

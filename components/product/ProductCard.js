@@ -6,7 +6,7 @@ import { FaXmark } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { FilterContext, FilterDispatchContext } from '../context/FilterContext'
 import Checkbox from '../shared/form/Checkbox'
-import { DisplayType, ORIGIN_SLUG_ACRONYMS, ORIGIN_SLUG_EXPANSIONS } from '../utils/constants'
+import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
 const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = null }) => {
@@ -159,78 +159,16 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
               {product.parsedDescription && parse(product.parsedDescription)}
             </span>
           </div>
-          <div className='px-6 py-2 flex flex-row justify-between'>
-            <div className='flex-auto flex flex-col'>
-              <div className='text-xs'>
-                {format('product.card.license')}
-              </div>
-              <div className='text-sm font-semibold py-1'>
+          {(product.commercialProduct || product.mainRepository?.license) &&
+            <div className="my-3 mx-auto text-xs font-medium">
+              <div className="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white">
                 {product.commercialProduct
                   ? format('product.pricing.commercial').toUpperCase()
-                  : (product.mainRepository?.license || format('general.na')).toUpperCase()
+                  : product.mainRepository?.license.toUpperCase()
                 }
               </div>
             </div>
-            {product.overallMaturityScore &&
-              <div className='flex-auto flex flex-col items-center justify-center'>
-                <div className='text-xs'>
-                  {format('product.card.maturityScore')}
-                </div>
-                <div className='text-sm font-semibold bg-dial-angel px-2 py-1 rounded'>
-                  {product.overallMaturityScore}
-                </div>
-              </div>
-            }
-            <div className='flex-auto flex flex-col'>
-              <div className='text-xs text-right'>
-                {format('product.card.sources')}
-              </div>
-              <div className='flex flex-row justify-end font-semibold py-1'>
-                {product.origins.length === 0 &&
-                  <div className='text-sm font-semibold'>
-                    {format('general.na')}
-                  </div>
-                }
-                {product.origins
-                  .filter((_, index) => index <= 2)
-                  .map(origin => {
-                    const nominee =
-                      origin.slug === 'dpga' &&
-                        product.endorsers.length === 0
-                        ? ' ' + format('product.nominee')
-                        : ''
-                    const toolTip = (
-                      product.endorsers &&
-                      product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0)
-                      ? format('product.endorsed-by') + origin.name
-                      : format('tooltip.forEntity', {
-                        entity: format('origin.label'),
-                        name: ORIGIN_SLUG_EXPANSIONS[origin.slug.toLowerCase()]
-                      }) + nominee
-
-                    return (
-                      <div
-                        key={`origin-${origin.slug}`}
-                        className='text-sm'
-                        data-tooltip-id='react-tooltip'
-                        data-tooltip-content={toolTip}
-                      >
-                        {(ORIGIN_SLUG_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
-                      </div>
-                    )
-                  })
-                }
-                {product.origins.length > 3 &&
-                  <div
-                    className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
-                    data-tip={format('tooltip.ellipsisFor', { entity: format('product.label') })}
-                  >
-                    &hellip;
-                  </div>
-                }
-              </div>
-            </div>
-          </div>
+          }
         </div>
       </div>
     </div>
