@@ -154,7 +154,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
           <div className="px-6 text-xl text-center font-semibold line-clamp-1">
             {product.name}
           </div>
-          <div className="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]">
+          <div className="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[5rem]">
             <span className="text-center line-clamp-3">
               {product.parsedDescription && parse(product.parsedDescription)}
             </span>
@@ -164,20 +164,20 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
               <div className='text-xs'>
                 {format('product.card.license')}
               </div>
-              <div className='text-sm font-semibold'>
+              <div className='text-sm font-semibold py-1'>
                 {product.commercialProduct
                   ? format('product.pricing.commercial').toUpperCase()
                   : (product.mainRepository?.license || format('general.na')).toUpperCase()
                 }
               </div>
             </div>
-            {
-              <div className='flex-auto flex flex-col'>
-                <div className='text-xs text-center'>
+            {product.overallMaturityScore &&
+              <div className='flex-auto flex flex-col items-center justify-center'>
+                <div className='text-xs'>
                   {format('product.card.maturityScore')}
                 </div>
-                <div className='text-sm text-center font-semibold'>
-                  {product.maturityScore?.overallScore || format('general.na')}
+                <div className='text-sm font-semibold bg-dial-angel px-2 py-1 rounded'>
+                  {product.overallMaturityScore}
                 </div>
               </div>
             }
@@ -185,7 +185,7 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
               <div className='text-xs text-right'>
                 {format('product.card.sources')}
               </div>
-              <div className='flex flex-row justify-end font-semibold'>
+              <div className='flex flex-row justify-end font-semibold py-1'>
                 {product.origins.length === 0 &&
                   <div className='text-sm font-semibold'>
                     {format('general.na')}
