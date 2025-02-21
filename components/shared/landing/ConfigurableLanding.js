@@ -1,9 +1,9 @@
-import { useMutation, useQuery } from '@apollo/client'
-import classNames from 'classnames'
 import { useContext, useEffect, useMemo, useState } from 'react'
+import classNames from 'classnames'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
+import { useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
@@ -53,8 +53,20 @@ const ConfigurableLanding = () => {
     onCompleted: (data) => {
       if (data.defaultSiteSetting) {
         const { defaultSiteSetting: { itemLayouts, itemConfigurations } } = data
+        // Initialize item data and layout data in the local storage for editing.
         saveToLocalStorage('exchange-layouts', itemLayouts?.layouts ?? {})
         saveToLocalStorage('exchange-items', itemConfigurations?.items ?? [])
+        // Initialize item data and layout data in the current state for rendering.
+        setItems(itemConfigurations?.items ?? [])
+        const savedLayouts = itemLayouts?.layouts ?? {}
+        const updatedLayouts = {}
+        Object.keys(savedLayouts).map(key => {
+          const processedLayouts = savedLayouts[key].map(currentLayout => {
+            return { ...currentLayout, static: !editing }
+          })
+          updatedLayouts[key] = processedLayouts
+        })
+        setLayouts(updatedLayouts)
       }
     }
   })
@@ -96,8 +108,8 @@ const ConfigurableLanding = () => {
     if (editing) {
       saveItemSettings({
         variables: {
-          itemLayouts: layouts,
-          itemConfigurations: items
+          itemLayouts: getFromLocalStorage('exchange-layouts') ?? {},
+          itemConfigurations: getFromLocalStorage('exchange-items') ?? []
         }
       })
     }
