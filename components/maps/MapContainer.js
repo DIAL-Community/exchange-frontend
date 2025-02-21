@@ -10,7 +10,7 @@ const MapContainer = () => {
   const router = useRouter()
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 mt-3'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 mt-3'>
       <MapTabNav />
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
         <div className='col-span-3 xl:col-span-1 bg-dial-slate-100'>

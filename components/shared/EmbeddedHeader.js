@@ -46,7 +46,7 @@ const EmbeddedHeader = () => {
   }, [currentOpenMenu])
 
   return (
-    <header className='z-70 sticky top-0 bg-white px-4 lg:px-8 xl:px-56'>
+    <header className='z-70 sticky top-0 bg-white px-4 lg:px-8 xl:px-24 3xl:px-56'>
       <div className='flex flex-wrap justify-center border-b-2 items-center border-dial-gray-dark header-min-height'>
         <div className='flex-1 flex my-auto'>
           <a href='' className='text-center mx-auto'>

@@ -6,10 +6,10 @@ exports[`Unit tests for the product main page. Should render list of products. 1
     class="Toastify"
   />
   <div
-    class="px-4 lg:px-8 xl:px-56"
+    class="px-4 lg:px-8 xl:px-24 3xl:px-56"
   >
     <div
-      class="grid grid-cols-3 gap-x-8"
+      class="grid grid-cols-4 gap-x-8"
     >
       <div
         class="hidden md:block col-span-1"
@@ -316,7 +316,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
         </div>
       </div>
       <div
-        class="col-span-3 md:col-span-2"
+        class="col-span-4 md:col-span-3"
       >
         <div
           class="min-h-[50vh]"
@@ -448,7 +448,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
             </div>
           </div>
           <div
-            class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
+            class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4"
           >
             <div>
               <div
@@ -488,60 +488,19 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           AIDR
                         </div>
                         <div
-                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[5rem]"
                         >
                           <span
                             class="text-center line-clamp-3"
                           />
                         </div>
                         <div
-                          class="px-6 py-2 flex flex-row justify-between"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="flex-auto flex flex-col"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
-                            <div
-                              class="text-xs"
-                            >
-                              License
-                            </div>
-                            <div
-                              class="text-sm font-semibold"
-                            >
-                              AGPL-3.0
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-center"
-                            >
-                              Maturity
-                            </div>
-                            <div
-                              class="text-sm text-center font-semibold"
-                            >
-                              N/A
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-right"
-                            >
-                              Sources
-                            </div>
-                            <div
-                              class="flex flex-row justify-end font-semibold"
-                            >
-                              <div
-                                class="text-sm font-semibold"
-                              >
-                                N/A
-                              </div>
-                            </div>
+                            AGPL-3.0
                           </div>
                         </div>
                       </div>
@@ -601,7 +560,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           AP Latam
                         </div>
                         <div
-                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[5rem]"
                         >
                           <span
                             class="text-center line-clamp-3"
@@ -610,55 +569,12 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="px-6 py-2 flex flex-row justify-between"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="flex-auto flex flex-col"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
-                            <div
-                              class="text-xs"
-                            >
-                              License
-                            </div>
-                            <div
-                              class="text-sm font-semibold"
-                            >
-                              NA
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-center"
-                            >
-                              Maturity
-                            </div>
-                            <div
-                              class="text-sm text-center font-semibold"
-                            >
-                              N/A
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-right"
-                            >
-                              Sources
-                            </div>
-                            <div
-                              class="flex flex-row justify-end font-semibold"
-                            >
-                              <div
-                                class="text-sm"
-                                data-tooltip-content="Origin: Manually Entered"
-                                data-tooltip-id="react-tooltip"
-                              >
-                                MAN
-                              </div>
-                            </div>
+                            NA
                           </div>
                         </div>
                       </div>
@@ -718,7 +634,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           Aajeevika
                         </div>
                         <div
-                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[5rem]"
                         >
                           <span
                             class="text-center line-clamp-3"
@@ -727,55 +643,12 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="px-6 py-2 flex flex-row justify-between"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="flex-auto flex flex-col"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
-                            <div
-                              class="text-xs"
-                            >
-                              License
-                            </div>
-                            <div
-                              class="text-sm font-semibold"
-                            >
-                              APACHE-2.0
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-center"
-                            >
-                              Maturity
-                            </div>
-                            <div
-                              class="text-sm text-center font-semibold"
-                            >
-                              N/A
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-right"
-                            >
-                              Sources
-                            </div>
-                            <div
-                              class="flex flex-row justify-end font-semibold"
-                            >
-                              <div
-                                class="text-sm"
-                                data-tooltip-content="Origin: Digital Public Goods Alliance (Nominee)"
-                                data-tooltip-id="react-tooltip"
-                              >
-                                DPGA
-                              </div>
-                            </div>
+                            APACHE-2.0
                           </div>
                         </div>
                       </div>
@@ -835,7 +708,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           AccessMod
                         </div>
                         <div
-                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[4rem]"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium min-h-[5rem]"
                         >
                           <span
                             class="text-center line-clamp-3"
@@ -844,55 +717,12 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                           </span>
                         </div>
                         <div
-                          class="px-6 py-2 flex flex-row justify-between"
+                          class="my-3 mx-auto text-xs font-medium"
                         >
                           <div
-                            class="flex-auto flex flex-col"
+                            class="rounded-full bg-dial-meadow uppercase shadow-none px-6 py-1 text-white"
                           >
-                            <div
-                              class="text-xs"
-                            >
-                              License
-                            </div>
-                            <div
-                              class="text-sm font-semibold"
-                            >
-                              GPL-3.0
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-center"
-                            >
-                              Maturity
-                            </div>
-                            <div
-                              class="text-sm text-center font-semibold"
-                            >
-                              N/A
-                            </div>
-                          </div>
-                          <div
-                            class="flex-auto flex flex-col"
-                          >
-                            <div
-                              class="text-xs text-right"
-                            >
-                              Sources
-                            </div>
-                            <div
-                              class="flex flex-row justify-end font-semibold"
-                            >
-                              <div
-                                class="text-sm"
-                                data-tooltip-content="Origin: Digital Public Goods Alliance (Nominee)"
-                                data-tooltip-id="react-tooltip"
-                              >
-                                DPGA
-                              </div>
-                            </div>
+                            GPL-3.0
                           </div>
                         </div>
                       </div>

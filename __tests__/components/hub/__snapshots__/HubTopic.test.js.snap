@@ -20,7 +20,7 @@ exports[`Unit tests for the opportunity detail page. Should render topic tiles p
         class="max-w-catalog mx-auto py-2"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 text-dial-gray"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray"
         >
           <div
             class="whitespace-nowrap text-ellipsis overflow-hidden text-sm"
@@ -34,7 +34,7 @@ exports[`Unit tests for the opportunity detail page. Should render topic tiles p
           </div>
         </div>
         <div
-          class="px-4 lg:px-8 xl:px-56 py-8"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 py-8"
         >
           <div
             class="text-2xl text-dial-cotton uppercase max-w-prose"
@@ -45,7 +45,7 @@ exports[`Unit tests for the opportunity detail page. Should render topic tiles p
       </div>
     </div>
     <div
-      class="px-4 lg:px-8 xl:px-56 min-h-[60vh] lg:min-h-[65vh]"
+      class="px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[60vh] lg:min-h-[65vh]"
     >
       <div
         class="flex flex-col gap-y-6"

@@ -26,7 +26,7 @@ const HubCountryProducts = ({ country }) => {
 
   return (
     <div className='product-section bg-dial-sapphire'>
-      <div className='px-4 lg:px-8 xl:px-56 flex flex-col'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 flex flex-col'>
         <div className='text-xl font-medium text-center py-6 text-dial-cotton'>
           {format('ui.product.header')}
         </div>

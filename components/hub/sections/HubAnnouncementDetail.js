@@ -164,7 +164,7 @@ const HubAnnouncementDetail = ({ slug }) => {
   })
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[80vh] py-8'>
       {loading
         ? format('general.fetchingData')
         : error
