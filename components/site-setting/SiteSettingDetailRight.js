@@ -50,7 +50,7 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting, editingAllowed, deleti
         <div className='text-base font-semibold py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={siteSetting?.description}
             editorId='siteSetting-description'

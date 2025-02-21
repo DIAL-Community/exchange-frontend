@@ -17,7 +17,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const listDisplayType = () =>
+  const collectionDisplayType = () =>
     <div className={`${containerElementStyle}`}>
       <div className='bg-white border border-dial-gray shadow-lg rounded-md'>
         <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6'>
@@ -137,10 +137,10 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
     listType === 'list'
       ? newTab
         ? <Link href={`/${collectionPath}/${organization.slug}`}>
-          {listDisplayType()}
+          {collectionDisplayType()}
         </Link>
         : <a href={`/${collectionPath}/${organization.slug}`} target='_blank' rel='noreferrer' role='menuitem'>
-          {listDisplayType()}
+          {collectionDisplayType()}
         </a>
       : cardDisplayType()
   )

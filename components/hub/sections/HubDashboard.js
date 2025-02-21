@@ -25,7 +25,7 @@ const HubDashboard = () => {
       <img className='h-32 w-full object-cover' alt='DIAL Resource Hub' src='/images/hero-image/hub-hero.svg' />
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-12'>
-          <div className='text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray'>
+          <div className='text-2xl px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray'>
             <FormattedMessage id='hub.dashboard.title' />
           </div>
         </div>
@@ -41,7 +41,7 @@ const HubDashboard = () => {
       {user &&
         <div className='flex flex-col min-h-[70vh]'>
           {user && (
-            <div className='px-4 lg:px-8 xl:px-56'>
+            <div className='px-4 lg:px-8 xl:px-24 3xl:px-56'>
               <div className='flex flex-col 2xl:flex-row gap-6'>
                 <div className='text-justify 2xl:max-w-4xl line-clamp-6'>
                   <FormattedMessage

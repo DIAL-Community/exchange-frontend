@@ -10,7 +10,7 @@ const WizardRibbon = () => {
       className='bg-cover bg-no-repeat ribbon-outer h-[8.5rem] rounded-b-[32px] z-40'
       style={{ backgroundImage: 'url("/ui/v1/wizard-bg.svg")' }}
     >
-      <div className='ribbon-inner px-4 lg:px-8 xl:px-56 h-full mt-4'>
+      <div className='ribbon-inner px-4 lg:px-8 xl:px-24 3xl:px-56 h-full mt-4'>
         <div className='flex gap-4 h-full items-center'>
           <div className='flex items-center justify-center rounded-full bg-dial-orange h-[70px] w-[70px]'>
             <img

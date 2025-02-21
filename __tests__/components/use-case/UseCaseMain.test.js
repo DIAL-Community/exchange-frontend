@@ -1,10 +1,7 @@
 import { screen } from '@testing-library/dom'
 import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
-import {
-  PAGINATED_USE_CASES_QUERY,
-  USE_CASE_PAGINATION_ATTRIBUTES_QUERY
-} from '../../../components/shared/query/useCase'
+import { PAGINATED_USE_CASES_QUERY, USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../../components/shared/query/useCase'
 import UseCaseMain from '../../../components/use-case/UseCaseMain'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -23,7 +20,7 @@ describe('Unit tests for the use case main page.', () => {
     )
     const mockPaginatedUseCases = generateMockApolloData(
       PAGINATED_USE_CASES_QUERY,
-      { search: '', sdgs: [], showBeta: false, showGovStackOnly: false, limit: 8, offset: 0 },
+      { search: '', sdgs: [], showBeta: false, showGovStackOnly: false, limit: 12, offset: 0 },
       null,
       paginatedUseCases
     )

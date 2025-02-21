@@ -108,6 +108,11 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
         name
         slug
       }
+      endorsers {
+        id
+        name
+        slug
+      }
       buildingBlocks {
         id
       }
@@ -198,6 +203,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         imageFile
         origins {
           id
+          slug
           name
         }
       }

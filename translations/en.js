@@ -639,6 +639,7 @@ export const en = {
   'product.card.license': 'License',
   'product.card.buildingBlocks': 'Building Blocks',
   'product.card.sdgs': 'SDGs',
+  'product.card.sources': 'Sources',
 
 
   'product.noExtraAttributes': 'We do not have any Local Innovation information for this Product.',

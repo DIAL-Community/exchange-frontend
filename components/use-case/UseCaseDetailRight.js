@@ -49,7 +49,7 @@ const UseCaseDetailRight = forwardRef(({ useCase, editingAllowed, deletingAllowe
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='use-case-description-block'>
           <HtmlViewer
             initialContent={useCase?.useCaseDescription?.description}
             editorId='use-case-description'

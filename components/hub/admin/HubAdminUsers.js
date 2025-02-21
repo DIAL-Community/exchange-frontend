@@ -26,7 +26,7 @@ const HubAdminUsers = () => {
   }
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[80vh] py-8'>
       <div className='md:flex md:h-full'>
         <HubAdminTabs />
         <div className="py-6 px-6 md:px-8 text-dial-cotton bg-dial-slate-800 rounded-lg w-full min-h-[70vh]">

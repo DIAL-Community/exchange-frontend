@@ -12,12 +12,12 @@ const HubCountries = () => {
       />
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-12'>
-          <div className='text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray'>
+          <div className='text-2xl px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray'>
             Country Profiles
           </div>
         </div>
       </div>
-      <div className='px-4 lg:px-8 xl:px-56 min-h-[60vh] lg:min-h-[65vh]'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[60vh] lg:min-h-[65vh]'>
         <div className='flex flex-col gap-6'>
           <div className='max-w-4xl'>
             <FormattedMessage id='hub.country.subtitle' />

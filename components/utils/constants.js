@@ -7,6 +7,16 @@ export const DisplayType = {
   GRID_CARD: 'grid-card'
 }
 
+export const ORIGIN_SLUG_ACRONYMS = {
+  'dial': 'dial',
+  'digital-government-platform-tracker': 'dgpt',
+  'digital-health-atlas': 'dha',
+  'digital-square': 'ds',
+  'indiastack': 'is',
+  'unicef-covid': 'uc',
+  'manually-entered': 'man'
+}
+
 export const ORIGIN_SLUG_EXPANSIONS = {
   'dial': 'Digital Impact Alliance',
   'digital-government-platform-tracker': 'Digital Government Platform Tracker',

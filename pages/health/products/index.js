@@ -44,7 +44,7 @@ const ProductListPage = ({ defaultTenants }) => {
         <div className='flex flex-col'>
           <ProductRibbon />
           { user?.isAdminUser &&
-          <div className='px-4 lg:px-8 xl:px-56 pt-8'>
+          <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 pt-8'>
             <div className='bg-dial-iris-blue rounded-md w-24 text-white flex ml-auto'>
               <a href='#' onClick={createClicked}>
                 <div className='px-5 py-1.5 flex align-right'>

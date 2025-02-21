@@ -33,7 +33,7 @@ const DatasetDetailRight = forwardRef(({ dataset, editingAllowed }, ref) => {
         <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={dataset?.description}
             editorId='dataset-description'

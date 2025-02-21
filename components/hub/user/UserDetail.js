@@ -36,7 +36,7 @@ const UserDetail = ({ user }) => {
         <div className='font-semibold'>
           {format('user.email')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           {user.email ?? user.userEmail}
         </div>
       </div>

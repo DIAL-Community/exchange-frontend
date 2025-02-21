@@ -121,9 +121,9 @@ const UseCaseForm = React.memo(({ useCase }) => {
     () =>
       setValue(
         'sector',
-        sectorOptions.find(({ slug }) => slug === useCase?.sector.slug)
+        sectorOptions.find(({ slug }) => slug === useCase?.sector?.slug)
       ),
-    [sectorOptions, setValue, useCase?.sector.slug]
+    [sectorOptions, setValue, useCase?.sector?.slug]
   )
 
   const doUpsert = async (data) => {
@@ -187,7 +187,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
               name='sector'
               control={control}
               rules={{ required: format('validation.required') }}
-              defaultValue={sectorOptions.find(({ slug }) => slug === useCase?.sector.slug)}
+              defaultValue={sectorOptions.find(({ slug }) => slug === useCase?.sector?.slug)}
               render={({ field }) => (
                 <Select
                   id='use-case-sector'

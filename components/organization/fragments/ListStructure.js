@@ -1,14 +1,22 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { FilterContext } from '../../context/FilterContext'
+import { CollectionDisplayType, FilterContext } from '../../context/FilterContext'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PAGINATED_ORGANIZATIONS_QUERY } from '../../shared/query/organization'
 import { DisplayType } from '../../utils/constants'
 import OrganizationCard from '../OrganizationCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
-  const { search, aggregator, countries, endorser, sectors, years } = useContext(FilterContext)
+  const {
+    search,
+    collectionDisplayType,
+    aggregator,
+    countries,
+    endorser,
+    sectors,
+    years
+  } = useContext(FilterContext)
 
   const { loading, error, data } = useQuery(PAGINATED_ORGANIZATIONS_QUERY, {
     variables: {
@@ -36,9 +44,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     return handleMissingData()
   }
 
-  const { paginatedOrganizations: organizations } = data
-
-  return (
+  const listDisplay = (organizations) => (
     <div className='flex flex-col gap-3'>
       {organizations.map((organization, index) =>
         <div key={index}>
@@ -51,6 +57,26 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       )}
     </div>
   )
+
+  const gridDisplay = (organizations) => (
+    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'>
+      {organizations.map((organization, index) =>
+        <div key={index}>
+          <OrganizationCard
+            index={index}
+            organization={organization}
+            displayType={DisplayType.GRID_CARD}
+          />
+        </div>
+      )}
+    </div>
+  )
+
+  const { paginatedOrganizations: organizations } = data
+
+  return collectionDisplayType === CollectionDisplayType.LIST
+    ? listDisplay(organizations)
+    : gridDisplay(organizations)
 }
 
 export default ListStructure

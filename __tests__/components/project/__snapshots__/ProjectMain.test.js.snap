@@ -6,10 +6,10 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
     class="Toastify"
   />
   <div
-    class="px-4 lg:px-8 xl:px-56"
+    class="px-4 lg:px-8 xl:px-24 3xl:px-56"
   >
     <div
-      class="grid grid-cols-3 gap-x-8"
+      class="grid grid-cols-4 gap-x-8"
     >
       <div
         class="hidden md:block col-span-1"
@@ -300,7 +300,7 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
         </div>
       </div>
       <div
-        class="col-span-3 md:col-span-2"
+        class="col-span-4 md:col-span-3"
       >
         <div
           class="min-h-[50vh]"
@@ -309,33 +309,94 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
             class="py-3"
           >
             <div
-              class="flex flex-row gap-3"
+              class="flex flex-row items-center justify-center gap-1 relative"
             >
               <div
-                class="block md:hidden relative"
+                class="block md:hidden h-full"
               >
                 <button
-                  class="my-auto h-full"
+                  class="mt-[0.5rem]"
                   type="button"
                 >
                   <svg
-                    class="text-2xl text-dial-plum mx-auto"
+                    class="text-2xl text-dial-slate-500 mx-auto"
                     fill="currentColor"
                     height="1em"
                     stroke="currentColor"
                     stroke-width="0"
-                    viewBox="0 0 512 512"
+                    viewBox="0 0 24 24"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"
+                      d="M13 5h9v2h-9zM2 7h7v2h2V3H9v2H2zm7 10h13v2H9zm10-6h3v2h-3zm-2 4V9.012h-2V11H2v2h13v2zM7 21v-6H5v2H2v2h3v2z"
                     />
                   </svg>
                 </button>
               </div>
               <div
-                class="ml-auto w-full"
+                class="flex flex-row gap-2"
+              >
+                <div
+                  class="text-sm my-auto"
+                >
+                  View as:
+                </div>
+                <button
+                  class="text-sm flex gap-1 items-center justify-center"
+                  disabled=""
+                  title="View data as grid"
+                >
+                  <svg
+                    class="text-dial-slate-500"
+                    fill="currentColor"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M240 240H32V32h208zm240 0H272V32h208zM240 480H32V272h208zm240 0H272V272h208z"
+                    />
+                  </svg>
+                </button>
+                <div
+                  class="border-r"
+                />
+                <button
+                  class="text-sm flex gap-1 items-center justify-center"
+                  title="View data as list"
+                >
+                  <svg
+                    class="text-dial-slate-300"
+                    fill="currentColor"
+                    height="36"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="36"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M144 144h320M144 256h320M144 368h320"
+                      fill="none"
+                      stroke-linejoin="round"
+                      stroke-width="48"
+                    />
+                    <path
+                      d="M64 128h32v32H64zm0 112h32v32H64zm0 112h32v32H64z"
+                      fill="none"
+                      stroke-linecap="square"
+                      stroke-linejoin="round"
+                      stroke-width="32"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                class="ml-auto max-w-prose"
               >
                 <label
                   class="relative"
@@ -371,7 +432,7 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
             </div>
           </div>
           <div
-            class="flex flex-col gap-3"
+            class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
           >
             <div>
               <div
@@ -381,79 +442,45 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   href="/projects/hellomama"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg bg-dial-violet"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-row gap-x-6"
+                      class="bg-white border shadow-lg rounded-xl h-[21rem]"
                     >
                       <div
-                        class="flex flex-col gap-y-4"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="w-16 h-16 mx-auto rounded-full"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-10 mx-4 my-4 max-h-[12rem]"
                         >
-                          <img
-                            alt="Logo of Product."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="/ui/v1/product-header.svg"
-                          />
+                          <div
+                            class="flex flex-row gap-4 justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="/ui/v1/product-header.svg"
+                            />
+                            <img
+                              alt="Logo of Organization."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/organizations/jhpiego.png"
+                            />
+                          </div>
                         </div>
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
-                        >
-                          <img
-                            alt="Logo of Organization."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/organizations/jhpiego.png"
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl"
-                      >
-                        <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           HelloMAMA
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            Organizations
-                             (
-                            3
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Products
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
+                            Some parsed description.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -476,79 +503,45 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   href="/projects/hoji_mobile_data_collection_and"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-row gap-x-6"
+                      class="bg-white border shadow-lg rounded-xl h-[21rem]"
                     >
                       <div
-                        class="flex flex-col gap-y-4"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="w-16 h-16 mx-auto rounded-full"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-10 mx-4 my-4 max-h-[12rem]"
                         >
-                          <img
-                            alt="Logo of Product."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="/ui/v1/product-header.svg"
-                          />
+                          <div
+                            class="flex flex-row gap-4 justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="/ui/v1/product-header.svg"
+                            />
+                            <img
+                              alt="Logo of Organization."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="/ui/v1/organization-header.svg"
+                            />
+                          </div>
                         </div>
                         <div
-                          class="w-20 h-20 mx-auto bg-dial-blueberry"
-                        >
-                          <img
-                            alt="Logo of Organization."
-                            class="object-contain w-10 h-10 mx-auto mt-4 white-filter"
-                            src="/ui/v1/organization-header.svg"
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl"
-                      >
-                        <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           Hoji Mobile Data Collection and Analysis Platform
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            Organizations
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Products
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
+                            Some parsed description.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -571,79 +564,45 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   href="/projects/usaid_funded__catss_openmrs_elec"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg bg-dial-violet"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-row gap-x-6"
+                      class="bg-white border shadow-lg rounded-xl h-[21rem]"
                     >
                       <div
-                        class="flex flex-col gap-y-4"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-10 mx-4 my-4 max-h-[12rem]"
                         >
-                          <img
-                            alt="Logo of Product."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/products/openmrs.png"
-                          />
+                          <div
+                            class="flex flex-row gap-4 justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/products/openmrs.png"
+                            />
+                            <img
+                              alt="Logo of Organization."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/organizations/management_sciences_for_health.png"
+                            />
+                          </div>
                         </div>
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
-                        >
-                          <img
-                            alt="Logo of Organization."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/organizations/management_sciences_for_health.png"
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl"
-                      >
-                        <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           USAID funded  - CaTSS OpenMRS Electronic Medical Record System for 19  ART Clinics
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            Organizations
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Products
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
+                            Some parsed description.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -666,79 +625,45 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   href="/projects/mtrac"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-row gap-x-6"
+                      class="bg-white border shadow-lg rounded-xl h-[21rem]"
                     >
                       <div
-                        class="flex flex-col gap-y-4"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-10 mx-4 my-4 max-h-[12rem]"
                         >
-                          <img
-                            alt="Logo of Product."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/products/rapidpro.png"
-                          />
+                          <div
+                            class="flex flex-row gap-4 justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/products/rapidpro.png"
+                            />
+                            <img
+                              alt="Logo of Organization."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/organizations/united_nations_childrens_fund_un.png"
+                            />
+                          </div>
                         </div>
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
-                        >
-                          <img
-                            alt="Logo of Organization."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/organizations/united_nations_childrens_fund_un.png"
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl"
-                      >
-                        <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           mTrac
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            Organizations
-                             (
-                            4
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Products
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
+                            Some parsed description.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -761,79 +686,45 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   href="/projects/electronic_integrated_disease_su"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg bg-dial-violet"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-row gap-x-6"
+                      class="bg-white border shadow-lg rounded-xl h-[21rem]"
                     >
                       <div
-                        class="flex flex-col gap-y-4"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-10 mx-4 my-4 max-h-[12rem]"
                         >
-                          <img
-                            alt="Logo of Product."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/products/dhis2.png"
-                          />
+                          <div
+                            class="flex flex-row gap-4 justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/products/dhis2.png"
+                            />
+                            <img
+                              alt="Logo of Organization."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/organizations/giz.png"
+                            />
+                          </div>
                         </div>
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
-                        >
-                          <img
-                            alt="Logo of Organization."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/organizations/giz.png"
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl"
-                      >
-                        <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           electronic Integrated Disease Surveillance and Response (eIDSR)
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            Organizations
-                             (
-                            2
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Products
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
+                            Some parsed description.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -856,79 +747,45 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   href="/projects/ugandaemr_openmrs"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-row gap-x-6"
+                      class="bg-white border shadow-lg rounded-xl h-[21rem]"
                     >
                       <div
-                        class="flex flex-col gap-y-4"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-10 mx-4 my-4 max-h-[12rem]"
                         >
-                          <img
-                            alt="Logo of Product."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/products/openmrs.png"
-                          />
+                          <div
+                            class="flex flex-row gap-4 justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/products/openmrs.png"
+                            />
+                            <img
+                              alt="Logo of Organization."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/organizations/world_health_organization_who.png"
+                            />
+                          </div>
                         </div>
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
-                        >
-                          <img
-                            alt="Logo of Organization."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/organizations/world_health_organization_who.png"
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl"
-                      >
-                        <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           UgandaEMR (OpenMRS)
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            Organizations
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Products
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
+                            Some parsed description.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -951,79 +808,45 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   href="/projects/improving_health_worker_adherenc"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg bg-dial-violet"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-row gap-x-6"
+                      class="bg-white border shadow-lg rounded-xl h-[21rem]"
                     >
                       <div
-                        class="flex flex-col gap-y-4"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="w-16 h-16 mx-auto rounded-full"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-10 mx-4 my-4 max-h-[12rem]"
                         >
-                          <img
-                            alt="Logo of Product."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="/ui/v1/product-header.svg"
-                          />
+                          <div
+                            class="flex flex-row gap-4 justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="/ui/v1/product-header.svg"
+                            />
+                            <img
+                              alt="Logo of Organization."
+                              class="object-contain max-h-[4rem] w-[4rem]"
+                              src="http://localhost:3000//assets/organizations/malaria_consortium.png"
+                            />
+                          </div>
                         </div>
                         <div
-                          class="w-20 h-20 mx-auto bg-white border"
-                        >
-                          <img
-                            alt="Logo of Organization."
-                            class="object-contain w-16 h-16 mx-auto mt-2"
-                            src="http://localhost:3000//assets/organizations/malaria_consortium.png"
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl"
-                      >
-                        <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           Improving health worker adherence to IPTp provision guidelines through sending text messages
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Some parsed description.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            Organizations
-                             (
-                            2
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Products
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            SDGs
-                             (
-                            0
-                            )
-                          </div>
+                            Some parsed description.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -1051,7 +874,7 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
               <div
                 class="my-auto text-sm font-semibold"
               >
-                Showing 1 - 8 of 4262 total
+                Showing 1 - 12 of 4262 total
               </div>
               <ul
                 aria-label="Pagination"
@@ -1150,12 +973,12 @@ exports[`Unit tests for the project main page. Should render list of projects. 1
                   class="border border-current rounded-md"
                 >
                   <a
-                    aria-label="Page 533"
+                    aria-label="Page 356"
                     class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
                     role="button"
                     tabindex="0"
                   >
-                    533
+                    356
                   </a>
                 </li>
                 <li
