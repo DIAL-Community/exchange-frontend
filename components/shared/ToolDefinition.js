@@ -1,5 +1,6 @@
-import { useContext } from 'react'
+import classNames from 'classnames'
 import Link from 'next/link'
+import { useContext } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { SiteSettingContext } from '../context/SiteSettingContext'
 import { HtmlViewer } from './form/HtmlViewer'
@@ -15,10 +16,13 @@ export const ExternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) 
   return (
     <a
       href={destinationUrl}
-      className='rounded-md shadow-lg border h-full'
+      className={classNames(
+        'rounded-md shadow-lg border h-full',
+        disabled || !destinationUrl ? 'cursor-default' : 'cursor-pointer'
+      )}
       target='_blank'
       rel='noopener noreferrer'
-      onClick={(e) => { if (disabled) e.preventDefault() }}
+      onClick={(e) => { if (disabled || !destinationUrl) e.preventDefault() }}
     >
       <div className='px-8 pt-6 pb-12 h-full'>
         <div className='flex flex-col gap-6'>
@@ -48,8 +52,11 @@ export const InternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) 
   return (
     <Link
       href={destinationUrl}
-      className='rounded-md shadow-lg border h-full'
-      onClick={(e) => { if (disabled) e.preventDefault() }}
+      className={classNames(
+        'rounded-md shadow-lg border h-full',
+        disabled || !destinationUrl ? 'cursor-default' : 'cursor-pointer'
+      )}
+      onClick={(e) => { if (disabled || !destinationUrl) e.preventDefault() }}
     >
       <div className='px-8 pt-6 pb-12 h-full'>
         <div className='flex flex-col gap-6 h-full'>

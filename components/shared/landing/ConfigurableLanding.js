@@ -5,6 +5,7 @@ import { Responsive, WidthProvider } from 'react-grid-layout'
 import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { useUser } from '../../../lib/hooks'
 import { SiteSettingContext } from '../../context/SiteSettingContext'
 import { HtmlEditor } from '../form/HtmlEditor'
 import { HtmlViewer } from '../form/HtmlViewer'
@@ -26,6 +27,9 @@ const ConfigurableLanding = () => {
   // Toggle whether we are editing the page or not.
   const [editing, setEditing] = useState(false)
   const [editingText, setEditingText] = useState(false)
+
+  const { isAdminUser } = useUser()
+  const editingAllowed = isAdminUser
 
   // Items on the page and the layout settings
   const [items, setItems] = useState([])
@@ -293,29 +297,31 @@ const ConfigurableLanding = () => {
   return (
     <div className='px-4 lg:px-8 xl:px-56'>
       <div className='relative flex flex-col min-h-[70vh]'>
-        <div className='absolute top-2 right-0 text-white' style={{ zIndex: 55 }}>
-          <div className='flex flex-row gap-x-1'>
-            <button
-              className={classNames(
-                'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
-                editingText ? 'opacity-80' : 'opacity-30'
-              )}
-              onClick={() => toggleEditingText()}
-            >
-              <MdFontDownload />
-            </button>
-            <button
-              className={classNames(
-                'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
-                editing ? 'opacity-80' : 'opacity-30'
-              )}
-              onClick={() => toggleEditing()}
-            >
-              <MdEdit />
-            </button>
+        {editingAllowed &&
+          <div className='absolute top-2 right-0 text-white' style={{ zIndex: 55 }}>
+            <div className='flex flex-row gap-x-1'>
+              <button
+                className={classNames(
+                  'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
+                  editingText ? 'opacity-80' : 'opacity-30'
+                )}
+                onClick={() => toggleEditingText()}
+              >
+                <MdFontDownload />
+              </button>
+              <button
+                className={classNames(
+                  'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
+                  editing ? 'opacity-80' : 'opacity-30'
+                )}
+                onClick={() => toggleEditing()}
+              >
+                <MdEdit />
+              </button>
+            </div>
           </div>
-        </div>
-        {editing && (
+        }
+        {editingAllowed && editing && (
           <div className='absolute top-2 right-20'>
             <div className='flex gap-1 text-xs text-white'>
               {Object.keys(WidgetTypeOptions).map(key => {
