@@ -6,18 +6,20 @@ import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } fro
 import { FormattedMessage } from 'react-intl'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
+import { ToastContext } from '../../../lib/ToastContext'
 import { SiteSettingContext } from '../../context/SiteSettingContext'
+import { isDebugLoggingEnabled } from '../../utils/utilities'
 import { HtmlEditor } from '../form/HtmlEditor'
 import { HtmlViewer } from '../form/HtmlViewer'
 import Input from '../form/Input'
 import Select from '../form/Select'
 import HeroCarousel from '../HeroCarousel'
-import { UPDATE_SITE_SETTING_ITEM_CONFIGURATIONS, UPDATE_SITE_SETTING_ITEM_LAYOUTS } from '../mutation/siteSetting'
+import { UPDATE_SITE_SETTING_ITEM_SETTINGS } from '../mutation/siteSetting'
 import { SITE_SETTINGS_LANDING_QUERY } from '../query/siteSetting'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
 import { ContentListOptions, ContentMapOptions, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
-import { resolveContentListValue, resolveContentMapValue } from './utilities'
+import { getFromLocalStorage, resolveContentListValue, resolveContentMapValue, saveToLocalStorage } from './utilities'
 
 const ConfigurableLanding = () => {
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
@@ -51,43 +53,76 @@ const ConfigurableLanding = () => {
     onCompleted: (data) => {
       if (data.defaultSiteSetting) {
         const { defaultSiteSetting: { itemLayouts, itemConfigurations } } = data
-        setLayouts(itemLayouts?.layouts ?? {})
-        setItems(itemConfigurations?.items ?? [])
+        saveToLocalStorage('exchange-layouts', itemLayouts?.layouts ?? {})
+        saveToLocalStorage('exchange-items', itemConfigurations?.items ?? [])
       }
     }
   })
 
-  // Update static flag for the layouts depending on the editing toggle.
-  // This will also gets triggered the first time after loading data from
-  // the database.
+  // Initialize the items and the layouts from local storage.
+  // Eventually we will move this to the site_settings table.
   useEffect(() => {
+    setItems(getFromLocalStorage('exchange-items') ?? [])
+    const savedLayouts = getFromLocalStorage('exchange-layouts') ?? {}
     const updatedLayouts = {}
-    Object.keys(layouts).map(key => {
-      const processedLayouts = layouts[key].map(currentLayout => {
+    Object.keys(savedLayouts).map(key => {
+      const processedLayouts = savedLayouts[key].map(currentLayout => {
         return { ...currentLayout, static: !editing }
       })
       updatedLayouts[key] = processedLayouts
     })
     setLayouts(updatedLayouts)
-  }, [editing, layouts])
+  }, [editing])
 
-  const [saveLayouts] = useMutation(UPDATE_SITE_SETTING_ITEM_LAYOUTS)
-  const [saveItems] = useMutation(UPDATE_SITE_SETTING_ITEM_CONFIGURATIONS)
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+  const [saveItemSettings, { reset }] = useMutation(UPDATE_SITE_SETTING_ITEM_SETTINGS, {
+    onCompleted: (data) => {
+      const { updateSiteSettingItemSettings: response } = data
+      if (response.siteSetting && response?.errors?.length === 0) {
+        showSuccessMessage(<FormattedMessage id='landing.page.save.success' />)
+      } else {
+        showFailureMessage(<FormattedMessage id='landing.page.save.failure' />)
+      }
+    },
+    onError: () => {
+      showFailureMessage(<FormattedMessage id='landing.page.save.failure' />)
+      reset()
+    }
+  })
 
   // Toggle the editing context for the current page.
   const toggleEditing = () => {
     setEditing(!editing)
+    if (editing) {
+      saveItemSettings({
+        variables: {
+          itemLayouts: layouts,
+          itemConfigurations: items
+        }
+      })
+    }
   }
 
   // Toggle the editing context for the text editor page.
   const toggleEditingText = () => {
     setEditingText(!editingText)
+    if (editingText) {
+      saveItemSettings({
+        variables: {
+          itemLayouts: layouts,
+          itemConfigurations: items
+        }
+      })
+    }
   }
 
   // Save when user make changes to the layout.
   const onLayoutChange = (_layout, layouts) => {
-    console.log('Handling layout change. Saving: ', layouts)
-    saveLayouts({ variables: { itemLayouts: layouts } })
+    if (isDebugLoggingEnabled()) {
+      console.log('Handling layout change from react-grid-layout. Receiving: ', layouts)
+    }
+
+    saveToLocalStorage('exchange-layouts', layouts)
   }
 
   // Update rendered components depending on the selected value.
@@ -125,7 +160,7 @@ const ConfigurableLanding = () => {
       return item.id === id ? { ...item, title: itemTitle } : item
     })
     setItems(newItems)
-    saveItems({ variables: { itemConfigurations: newItems } })
+    saveToLocalStorage('exchange-items', newItems)
   }
 
   // Update the value of the widget based on the value from the widget setting dialog.
@@ -135,7 +170,7 @@ const ConfigurableLanding = () => {
       return item.id === id ? { ...item, value: itemValue } : item
     })
     setItems(newItems)
-    saveItems({ variables: { itemConfigurations: newItems } })
+    saveToLocalStorage('exchange-items', newItems)
   }
 
   // Prepare the widget settings dialog.
@@ -229,7 +264,7 @@ const ConfigurableLanding = () => {
         return <div className='text-xs'>Item type: {item.type}</div>
       case WidgetTypeOptions.SPACER:
         return <div />
-      case WidgetTypeOptions.BLOCK:
+      case WidgetTypeOptions.TEXT:
         return editingText
           ? <HtmlEditor initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
           : <HtmlViewer initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
@@ -275,23 +310,32 @@ const ConfigurableLanding = () => {
 
   // Remove an item from the grid-layout.
   const removeItem = (itemId) => {
-    console.log('Removing item: ', itemId)
+    if (isDebugLoggingEnabled()) {
+      console.log('Removing item with id: ', itemId)
+    }
+
     const updatedItems = [...items.filter(item => item.id !== itemId)]
     setItems(updatedItems)
-    saveItems({ variables: { itemConfigurations: updatedItems } })
+    saveToLocalStorage('exchange-items', updatedItems)
   }
 
   // Append an item to the grid-layout.
+  // After appending the item to the item list, the renderer will update itself
+  // because we updated the state.
   const appendItem = (itemType) => {
     const itemId = crypto.randomUUID()
-    console.log('Appending item: ', itemId)
+
+    if (isDebugLoggingEnabled()) {
+      console.log('Appending new item: ', itemId, ' with type: ', itemType)
+    }
+
     const updatedItems = [...items, {
       id: itemId,
       title: `Item ${items.length + 1}`,
       type: itemType
     }]
     setItems(updatedItems)
-    saveItems({ variables: { itemConfigurations: updatedItems } })
+    saveToLocalStorage('exchange-items', updatedItems)
   }
 
   return (

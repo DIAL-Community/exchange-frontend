@@ -214,22 +214,19 @@ export const UPDATE_SITE_SETTING_CAROUSEL_CONFIGURATION = gql`
   }
 `
 
-export const UPDATE_SITE_SETTING_ITEM_LAYOUTS = gql`
-  mutation UpdateSiteSettingItemLayouts($itemLayouts: JSON!) {
-    updateSiteSettingItemLayouts(itemLayouts: $itemLayouts) {
+export const UPDATE_SITE_SETTING_ITEM_SETTINGS = gql`
+  mutation UpdateSiteSettingItemSettings(
+    $itemLayouts: JSON!
+    $itemConfigurations: JSON!
+  ) {
+    updateSiteSettingItemSettings(
+      itemLayouts: $itemLayouts
+      itemConfigurations: $itemConfigurations
+    ) {
       siteSetting {
         id
-      }
-      errors
-    }
-  }
-`
-
-export const UPDATE_SITE_SETTING_ITEM_CONFIGURATIONS = gql`
-  mutation UpdateSiteSettingItemConfigurations($itemConfigurations: JSON!) {
-    updateSiteSettingItemConfigurations(itemConfigurations: $itemConfigurations) {
-      siteSetting {
-        id
+        itemLayouts
+        itemConfigurations
       }
       errors
     }

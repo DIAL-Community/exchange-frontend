@@ -7,7 +7,7 @@ export const WidgetTypeOptions = {
   MAP: 'landing.widget.map',
   SPACER: 'landing.widget.spacer',
   SUMMARY: 'landing.widget.summary',
-  TEXT: 'landing.widget.block'
+  TEXT: 'landing.widget.text'
 }
 
 export const ContentListTypes = {

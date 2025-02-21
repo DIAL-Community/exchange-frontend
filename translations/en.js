@@ -3072,7 +3072,7 @@ export const en = {
   'landing.widget.map': 'Map',
   'landing.widget.list': 'List',
   'landing.widget.summary': 'Summary',
-  'landing.widget.block': 'Text',
+  'landing.widget.text': 'Text',
   'landing.widget.spacer': 'Spacer',
 
   'landing.widget.selected.value': 'Current value',
@@ -3093,9 +3093,7 @@ export const en = {
 
   'landing.card.options': 'Card Options',
 
-  'landing.item.save.success': 'Page item configurations saved.',
-  'landing.item.save.failure': 'Unable to save page item configurations.',
-  'landing.layout.save.success': 'Page item layouts saved.',
-  'landing.layout.save.failure': 'Unable to save page item layouts.',
+  'landing.page.save.success': 'Page configurations saved.',
+  'landing.page.save.failure': 'Unable to save page configurations.',
 }
 

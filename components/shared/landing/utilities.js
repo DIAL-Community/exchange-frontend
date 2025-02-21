@@ -7,10 +7,14 @@ import OrganizationListRight from '../../organization/fragments/OrganizationList
 import ProductListRight from '../../product/fragments/ProductListRight'
 import ProjectListRight from '../../project/fragments/ProjectListRight'
 import UseCaseListRight from '../../use-case/fragments/UseCaseListRight'
+import { isDebugLoggingEnabled } from '../../utils/utilities'
 import { ContentListTypes, ContentMapTypes } from './constants'
 
 export const getFromLocalStorage = (localStorageKey) => {
-  console.log(`Reading '${localStorageKey}' data from local storage.`)
+  if (isDebugLoggingEnabled()) {
+    console.log(`Reading '${localStorageKey}' data from local storage.`)
+  }
+
   let localStorage
   if (global.localStorage) {
     try {
@@ -24,7 +28,10 @@ export const getFromLocalStorage = (localStorageKey) => {
 }
 
 export const saveToLocalStorage = (localStorageKey, value) => {
-  console.log(`Saving '${localStorageKey}' data to local storage.`)
+  if (isDebugLoggingEnabled()) {
+    console.log(`Saving '${localStorageKey}' data to local storage.`)
+  }
+
   if (global.localStorage) {
     global.localStorage.setItem(localStorageKey, JSON.stringify(value))
   }
