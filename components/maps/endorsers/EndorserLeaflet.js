@@ -110,34 +110,24 @@ const EndorserMarkers = ({ cities, organization, setSelectedCity, setOrganizatio
   )
 }
 
-const EndorserMarkerMaps = (props) => {
-  // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
-  let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-  let attribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-  if (props.defaultMap && props.defaultMap === 'principles') {
-    url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
-    attribution = `
-      Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan,
-      METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012
-    `
-  }
+const EndorserLeaflet = ({ initialCountry, containerHeight, ...props }) => {
+  const center = initialCountry ? [initialCountry.latitude, initialCountry.longitude] : [0, 0]
 
   return (
     <MapContainer
       zoom={3}
-      center={[20, 0]}
+      center={center}
       className='w-full'
-      style={{ minHeight: '70vh', zIndex: 18 }}
+      style={{ minHeight: containerHeight, zIndex: 18 }}
       // maxBounds={[[-90, -180], [90, 180]]}
     >
       <TileLayer
-        noWrap
-        url={url}
-        attribution={attribution}
+        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       <EndorserMarkers {...props} />
     </MapContainer>
   )
 }
 
-export default EndorserMarkerMaps
+export default EndorserLeaflet

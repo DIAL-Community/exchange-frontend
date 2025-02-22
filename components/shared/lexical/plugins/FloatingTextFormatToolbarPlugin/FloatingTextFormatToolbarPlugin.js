@@ -390,7 +390,7 @@ function useFloatingTextFormatToolbar(editor, anchorElem, setIsLinkEditMode) {
     )
   }, [editor, updatePopup])
 
-  if (!isText) {
+  if (!isText || !editor.isEditable()) {
     return null
   }
 

@@ -1,10 +1,11 @@
-import { useContext } from 'react'
+import classNames from 'classnames'
 import Link from 'next/link'
+import { useContext } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { SiteSettingContext } from '../context/SiteSettingContext'
 import { HtmlViewer } from './form/HtmlViewer'
 
-export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
+export const ExternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) => {
   const { title, description, imageUrl, destinationUrl } = heroCardConfiguration
   const heroCardName = title
     ? <FormattedMessage id={title} defaultMessage={title} />
@@ -15,11 +16,15 @@ export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   return (
     <a
       href={destinationUrl}
-      className='rounded-md shadow-lg border'
+      className={classNames(
+        'rounded-md shadow-lg border h-full',
+        disabled || !destinationUrl ? 'cursor-default' : 'cursor-pointer'
+      )}
       target='_blank'
       rel='noopener noreferrer'
+      onClick={(e) => { if (disabled || !destinationUrl) e.preventDefault() }}
     >
-      <div className='px-8 pt-6 pb-12'>
+      <div className='px-8 pt-6 pb-12 h-full'>
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row gap-x-3'>
             <img src={imageUrl} alt={imageAltText} width={50} height={50} className='object-contain' />
@@ -27,7 +32,7 @@ export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
               <FormattedMessage id={title} defaultMessage={title} />
             </div>
           </div>
-          <div className='text-sm'>
+          <div className='text-sm flex-grow'>
             <FormattedMessage id={description} defaultMessage={description} />
           </div>
         </div>
@@ -36,7 +41,7 @@ export const ExternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   )
 }
 
-export const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
+export const InternalHeroCardDefinition = ({ disabled, heroCardConfiguration }) => {
   const { title, description, imageUrl, destinationUrl } = heroCardConfiguration
   const heroCardName = title
     ? <FormattedMessage id={title} defaultMessage={title} />
@@ -45,16 +50,23 @@ export const InternalHeroCardDefinition = ({ heroCardConfiguration }) => {
   const imageAltText = <FormattedMessage id='ui.image.logoAlt' values={{ name: heroCardName }} />
 
   return (
-    <Link href={destinationUrl} className='rounded-md shadow-lg border'>
-      <div className='px-8 pt-6 pb-12'>
-        <div className='flex flex-col gap-6'>
+    <Link
+      href={destinationUrl}
+      className={classNames(
+        'rounded-md shadow-lg border h-full',
+        disabled || !destinationUrl ? 'cursor-default' : 'cursor-pointer'
+      )}
+      onClick={(e) => { if (disabled || !destinationUrl) e.preventDefault() }}
+    >
+      <div className='px-8 pt-6 pb-12 h-full'>
+        <div className='flex flex-col gap-6 h-full'>
           <div className='flex flex-row gap-x-3'>
             <img src={imageUrl} alt={imageAltText} width={50} height={50} className='object-contain' />
             <div className='text-lg font-light my-auto flex-grow'>
               {title && <FormattedMessage id={title} defaultMessage={title} />}
             </div>
           </div>
-          <div className='text-sm'>
+          <div className='text-sm flex-grow'>
             {description && <FormattedMessage id={description} defaultMessage={description} />}
           </div>
         </div>
