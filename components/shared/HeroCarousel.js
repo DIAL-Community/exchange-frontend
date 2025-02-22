@@ -17,7 +17,7 @@ export const DigitalExchangeHeroCarousel = ({ carouselConfiguration }) => {
       className='bg-cover bg-no-repeat'
       style={{
         backgroundImage: 'url("/ui/v1/hero-dx-bg.svg")',
-        height: '400px'
+        height: '480px'
       }}
     >
       <div
@@ -65,7 +65,7 @@ export const MarketplaceHeroCarousel = ({ carouselConfiguration }) => {
         <div className='flex text-sm text-dial-stratos'>
           <Link
             href={carouselDestinationUrl}
-            className='rounded px-5 py-2.5 bg-dial-plum text-white'
+            className='px-5 py-2.5 bg-dial-plum text-white'
           >
             <FormattedMessage id={carouselCalloutTitle} defaultMessage={carouselCalloutTitle} />
           </Link>
@@ -109,11 +109,11 @@ export const GenericHeroCarousel = ({ carouselConfiguration }) => {
                 target='_blank'
                 rel='noopener noreferrer'
                 role='menuitem'
-                className='rounded px-5 py-2.5 bg-dial-plum text-white'
+                className='px-5 py-2.5 bg-dial-plum text-white'
               >
                 <FormattedMessage id={calloutTitle} defaultMessage={calloutTitle} />
               </a>
-              : <Link href={destinationUrl} className='rounded px-5 py-2.5 bg-dial-plum text-white'>
+              : <Link href={destinationUrl} className='px-5 py-2.5 bg-dial-plum text-white'>
                 <FormattedMessage id={calloutTitle} defaultMessage={calloutTitle} />
               </Link>
             }

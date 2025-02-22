@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { handleLoadingSession } from '../components/shared/SessionQueryHandler'
 import { useActiveTenant } from '../lib/hooks'
 
+const GovernmentPage = dynamic(() => import('./landing/government'))
 const HealthPage = dynamic(() => import('./landing/health'))
 const HubPage = dynamic(() => import('./landing/hub'))
 const LandingPage = dynamic(() => import('./landing/index'))
@@ -9,15 +10,24 @@ const LandingPage = dynamic(() => import('./landing/index'))
 const RootPage = ({ dpiTenants, defaultTenants }) => {
   const { waitingActiveTenant, tenant } = useActiveTenant()
 
+  const handleTenantName = (tenant) => {
+    switch (tenant) {
+      case 'government':
+        return <GovernmentPage defaultTenants={defaultTenants} />
+      case 'health':
+        return <HealthPage defaultTenants={defaultTenants} />
+      case 'dpi':
+        return <HubPage dpiTenants={dpiTenants} />
+      default:
+        return <LandingPage defaultTenants={defaultTenants} />
+    }
+  }
+
   return (
     <>
       { waitingActiveTenant || !tenant
         ? handleLoadingSession()
-        : tenant === 'dpi'
-          ? <HubPage dpiTenants={dpiTenants} />
-          : tenant === 'health'
-            ? <HealthPage defaultTenants={defaultTenants} />
-            : <LandingPage defaultTenants={defaultTenants} />
+        : handleTenantName(tenant)
       }
     </>
   )

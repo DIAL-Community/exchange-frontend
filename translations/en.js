@@ -3064,5 +3064,36 @@ export const en = {
 
   'ui.categoryIndicator.label': 'Category Indicator',
   'ui.categoryIndicator.header': 'Category Indicators',
+
+  'landing.widget.options.title': 'Item Options',
+
+  'landing.widget.carousel': 'Carousel',
+  'landing.widget.card': 'Card',
+  'landing.widget.map': 'Map',
+  'landing.widget.list': 'List',
+  'landing.widget.summary': 'Summary',
+  'landing.widget.text': 'Text',
+  'landing.widget.spacer': 'Spacer',
+
+  'landing.widget.selected.value': 'Current value',
+
+  'landing.list.options': 'List Options',
+  'landing.list.buildingBlocks': 'Building Block List',
+  'landing.list.organizations': 'Organization List',
+  'landing.list.products': 'Product List',
+  'landing.list.projects': 'Project List',
+  'landing.list.useCases': 'Use Case List',
+  'landing.list.missing': 'Missing list type in setting.',
+
+  'landing.map.options': 'Map Type Options',
+  'landing.map.projects': 'Project Map',
+  'landing.map.endorsers': 'Endorser Map',
+  'landing.map.aggregator': 'Aggregator Map',
+  'landing.map.missing': 'Missing map type in setting.',
+
+  'landing.card.options': 'Card Options',
+
+  'landing.page.save.success': 'Page configurations saved.',
+  'landing.page.save.failure': 'Unable to save page configurations.',
 }
 
