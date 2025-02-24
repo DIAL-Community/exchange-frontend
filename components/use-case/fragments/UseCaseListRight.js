@@ -18,15 +18,15 @@ const UseCaseListRight = () => {
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
+  const { 'use-case-page': useCasePage } = query
 
-  const pageNumber = page ? parseInt(page) - 1 : 0
+  const pageNumber = useCasePage ? parseInt(useCasePage) - 1 : 0
   const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'use-case-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )
