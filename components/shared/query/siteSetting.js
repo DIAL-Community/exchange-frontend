@@ -60,7 +60,7 @@ export const SITE_SETTINGS_QUERY = gql`
   }
 `
 
-export const SITE_SETTINGS_LANDING_QUERY = gql`
+export const DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY = gql`
   query DefaultSiteSettingLanding {
     defaultSiteSetting {
       id

@@ -39,7 +39,7 @@ export const saveToLocalStorage = (localStorageKey, value) => {
 
 // Update rendered components depending on the selected value.
 // This is specific for map widget, we can add more maps in the future.
-export const resolveContentMapValue = (value) => {
+export const resolveMapValue = (value) => {
   switch (value) {
     case ContentMapTypes.PROJECT_MAP:
       return <ProjectMap />
@@ -58,7 +58,7 @@ export const resolveContentMapValue = (value) => {
 
 // Update rendered components depending on the selected value.
 // This is specific for list widget, we can add more maps in the future.
-export const resolveContentListValue = (value) => {
+export const resolveListValue = (value) => {
   switch (value) {
     case ContentListTypes.PRODUCT_LIST:
       return <ProductListRight />

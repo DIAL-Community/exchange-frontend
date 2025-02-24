@@ -15,11 +15,12 @@ import Input from '../form/Input'
 import Select from '../form/Select'
 import HeroCarousel from '../HeroCarousel'
 import { UPDATE_SITE_SETTING_ITEM_SETTINGS } from '../mutation/siteSetting'
-import { SITE_SETTINGS_LANDING_QUERY } from '../query/siteSetting'
+import { DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY } from '../query/siteSetting'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
-import { ContentListOptions, ContentMapOptions, WidgetTypeOptions } from './constants'
+import { layoutBreakpoints, layoutGridColumns, layoutGridHeight, layoutMargins } from './config'
+import { listOptions, mapOptions, resizeHandles, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
-import { getFromLocalStorage, resolveContentListValue, resolveContentMapValue, saveToLocalStorage } from './utilities'
+import { getFromLocalStorage, resolveListValue, resolveMapValue, saveToLocalStorage } from './utilities'
 
 const ConfigurableLanding = () => {
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
@@ -28,6 +29,7 @@ const ConfigurableLanding = () => {
 
   // Toggle whether we are editing the page or not.
   const [editing, setEditing] = useState(false)
+  // Toggle whether we are editing text or not (to display html editor or html viewer).
   const [editingText, setEditingText] = useState(false)
 
   const { isAdminUser } = useUser()
@@ -37,13 +39,14 @@ const ConfigurableLanding = () => {
   const [items, setItems] = useState([])
   const [layouts, setLayouts] = useState({})
 
+  // Setting changes to be applied to this item.
   const [activeItem, setActiveItem] = useState(null)
   const [activeItemTitle, setActiveItemTitle] = useState(null)
-
+  // Toggle to display the setting dialog box.
   const [displayItemOptions, setDisplayItemOptions] = useState(false)
 
   // Initialize the layouts and items from database
-  useQuery(SITE_SETTINGS_LANDING_QUERY, {
+  useQuery(DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY, {
     variables: { slug },
     context: {
       headers: {
@@ -139,7 +142,7 @@ const ConfigurableLanding = () => {
 
   // Update rendered components depending on the selected value.
   // This is specific for hero card widget. User can add more hero widget from the site settings editor.
-  const resolveHeroCardValue = (itemValue) => {
+  const resolveCardValue = (itemValue) => {
     const heroCardConfiguration = heroCardConfigurations.find((configuration) => configuration.id === itemValue)
 
     return heroCardConfiguration
@@ -209,7 +212,7 @@ const ConfigurableLanding = () => {
               id='active-item-value'
               borderless
               className='text-sm'
-              options={ContentListOptions}
+              options={listOptions}
               onChange={(e) => updateItemValue(item.id, e.value)}
             />
             <span className='text-xs italic'>
@@ -227,7 +230,7 @@ const ConfigurableLanding = () => {
               id='active-item-value'
               borderless
               className='text-sm'
-              options={ContentMapOptions}
+              options={mapOptions}
               onChange={(e) => updateItemValue(item.id, e.value)}
             />
           </div>
@@ -267,11 +270,11 @@ const ConfigurableLanding = () => {
       case WidgetTypeOptions.CAROUSEL:
         return <HeroCarousel />
       case WidgetTypeOptions.CARD:
-        return resolveHeroCardValue(item.value)
+        return resolveCardValue(item.value)
       case WidgetTypeOptions.MAP:
-        return resolveContentMapValue(item.value)
+        return resolveMapValue(item.value)
       case WidgetTypeOptions.LIST:
-        return resolveContentListValue(item.value)
+        return resolveListValue(item.value)
       case WidgetTypeOptions.SUMMARY:
         return <div className='text-xs'>Item type: {item.type}</div>
       case WidgetTypeOptions.SPACER:
@@ -402,15 +405,15 @@ const ConfigurableLanding = () => {
         <ResponsiveReactGridLayout
           draggableCancel='.element-actions'
           className='exchange-grid-layout'
-          margin={[8, 8]}
-          resizeHandles={['sw', 'se']}
-          cols={{ lg: 12, md: 6, sm: 2 }}
-          breakpoints={{ lg: 1024, md: 768, sm: 640 }}
-          rowHeight={16}
+          margin={layoutMargins}
+          cols={layoutGridColumns}
+          rowHeight={layoutGridHeight}
+          resizeHandles={resizeHandles}
+          breakpoints={layoutBreakpoints}
           layouts={layouts}
           onLayoutChange={onLayoutChange}
         >
-          {items.map(item => appendElement(item))}
+          {items.filter(item => !item.hidden).map(item => appendElement(item))}
         </ResponsiveReactGridLayout>
         {activeItem &&
           <ItemOptionsDialog
