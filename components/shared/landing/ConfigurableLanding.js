@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
@@ -20,7 +20,7 @@ import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolD
 import { layoutBreakpoints, layoutGridColumns, layoutGridHeight, layoutMargins } from './config'
 import { listOptions, mapOptions, resizeHandles, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
-import { getFromLocalStorage, resolveListValue, resolveMapValue, saveToLocalStorage } from './utilities'
+import { resolveListValue, resolveMapValue, useWindowWidth } from './utilities'
 
 const ConfigurableLanding = () => {
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
@@ -36,8 +36,11 @@ const ConfigurableLanding = () => {
   const editingAllowed = isAdminUser
 
   // Items on the page and the layout settings
-  const [items, setItems] = useState([])
-  const [layouts, setLayouts] = useState({})
+  const [itemLayouts, setItemLayouts] = useState({})
+  const [itemConfigurations, setItemConfigurations] = useState([])
+
+  const windowWidth = useWindowWidth()
+  const [itemsOnScreen, setItemsOnScreen] = useState([])
 
   // Setting changes to be applied to this item.
   const [activeItem, setActiveItem] = useState(null)
@@ -56,38 +59,19 @@ const ConfigurableLanding = () => {
     onCompleted: (data) => {
       if (data.defaultSiteSetting) {
         const { defaultSiteSetting: { itemLayouts, itemConfigurations } } = data
-        // Initialize item data and layout data in the local storage for editing.
-        saveToLocalStorage('exchange-layouts', itemLayouts?.layouts ?? {})
-        saveToLocalStorage('exchange-items', itemConfigurations?.items ?? [])
+        // Resolve the item layouts and item configurations
+        const currentItemLayouts = itemLayouts?.layouts ?? {}
+        const currentItemConfigurations = itemConfigurations?.items ?? []
+        // Find the current active breakpoint and then find all elements that are on the screen.
+        const currentBreakout = Responsive.utils.getBreakpointFromWidth(layoutBreakpoints, windowWidth)
+        const currentLayout = currentItemLayouts[currentBreakout]
+        setItemsOnScreen(currentLayout.map(layout => layout.i))
         // Initialize item data and layout data in the current state for rendering.
-        setItems(itemConfigurations?.items ?? [])
-        const savedLayouts = itemLayouts?.layouts ?? {}
-        const updatedLayouts = {}
-        Object.keys(savedLayouts).map(key => {
-          const processedLayouts = savedLayouts[key].map(currentLayout => {
-            return { ...currentLayout, static: !editing }
-          })
-          updatedLayouts[key] = processedLayouts
-        })
-        setLayouts(updatedLayouts)
+        setItemLayouts(currentItemLayouts)
+        setItemConfigurations(currentItemConfigurations)
       }
     }
   })
-
-  // Initialize the items and the layouts from local storage.
-  // Eventually we will move this to the site_settings table.
-  useEffect(() => {
-    setItems(getFromLocalStorage('exchange-items') ?? [])
-    const savedLayouts = getFromLocalStorage('exchange-layouts') ?? {}
-    const updatedLayouts = {}
-    Object.keys(savedLayouts).map(key => {
-      const processedLayouts = savedLayouts[key].map(currentLayout => {
-        return { ...currentLayout, static: !editing }
-      })
-      updatedLayouts[key] = processedLayouts
-    })
-    setLayouts(updatedLayouts)
-  }, [editing])
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
   const [saveItemSettings, { reset }] = useMutation(UPDATE_SITE_SETTING_ITEM_SETTINGS, {
@@ -107,12 +91,20 @@ const ConfigurableLanding = () => {
 
   // Toggle the editing context for the current page.
   const toggleEditing = () => {
+    // Toggle the editing flag for the current page.
     setEditing(!editing)
+    // Set the static field of the layouts based on the editing flag
+    const newItemLayouts = {}
+    Object.keys(itemLayouts).forEach(key => {
+      newItemLayouts[key] = itemLayouts[key].map(itemLayout => ({ ...itemLayout, static: editing }))
+    })
+    setItemLayouts(newItemLayouts)
+    // Save the changes to the database.
     if (editing) {
       saveItemSettings({
         variables: {
-          itemLayouts: getFromLocalStorage('exchange-layouts') ?? {},
-          itemConfigurations: getFromLocalStorage('exchange-items') ?? []
+          itemLayouts,
+          itemConfigurations
         }
       })
     }
@@ -121,27 +113,28 @@ const ConfigurableLanding = () => {
   // Toggle the editing context for the text editor page.
   const toggleEditingText = () => {
     setEditingText(!editingText)
+    // Save the changes to the database.
     if (editingText) {
       saveItemSettings({
         variables: {
-          itemLayouts: layouts,
-          itemConfigurations: items
+          itemLayouts,
+          itemConfigurations
         }
       })
     }
   }
 
   // Save when user make changes to the layout.
-  const onLayoutChange = (_layout, layouts) => {
+  const onLayoutChange = (layout, layouts) => {
     if (isDebugLoggingEnabled()) {
       console.log('Handling layout change from react-grid-layout. Receiving: ', layouts)
     }
 
-    saveToLocalStorage('exchange-layouts', layouts)
+    setItemLayouts(layouts)
   }
 
-  // Update rendered components depending on the selected value.
-  // This is specific for hero card widget. User can add more hero widget from the site settings editor.
+  // Update rendered components depending on the selected value. Only for card widget.
+  // User can add more hero widget from the site settings editor.
   const resolveCardValue = (itemValue) => {
     const heroCardConfiguration = heroCardConfigurations.find((configuration) => configuration.id === itemValue)
 
@@ -171,21 +164,19 @@ const ConfigurableLanding = () => {
 
   // Update the title of the widget based on the value from the widget setting dialog.
   const updateItemTitle = (id, itemTitle) => {
-    const newItems = items.map((item) => {
+    const newItemConfigurations = itemConfigurations.map((item) => {
       return item.id === id ? { ...item, title: itemTitle } : item
     })
-    setItems(newItems)
-    saveToLocalStorage('exchange-items', newItems)
+    setItemConfigurations(newItemConfigurations)
   }
 
   // Update the value of the widget based on the value from the widget setting dialog.
   // This will be invoked immediately on the widget setting instead of after closing the dialog.
   const updateItemValue = (id, itemValue) => {
-    const newItems = items.map((item) => {
+    const newItemConfigurations = itemConfigurations.map((item) => {
       return item.id === id ? { ...item, value: itemValue } : item
     })
-    setItems(newItems)
-    saveToLocalStorage('exchange-items', newItems)
+    setItemConfigurations(newItemConfigurations)
   }
 
   // Prepare the widget settings dialog.
@@ -196,9 +187,9 @@ const ConfigurableLanding = () => {
   }
 
   // Render options for each widget type.
-  // Content list will have which entity list should be displayed.
-  // Content map will have which map should be displayed.
-  // Hero card will pull list of hero card from the site settings configuration
+  // - Content list will have which entity list should be displayed.
+  // - Content map will have which map should be displayed.
+  // - Card will pull list of card from the site settings configuration
   // We will add text editor and calculated widget to display summary (e.g. total number of projects)
   const buildItemOptions = (item) => {
     switch (item?.type) {
@@ -329,28 +320,23 @@ const ConfigurableLanding = () => {
       console.log('Removing item with id: ', itemId)
     }
 
-    const updatedItems = [...items.filter(item => item.id !== itemId)]
-    setItems(updatedItems)
-    saveToLocalStorage('exchange-items', updatedItems)
+    setItemsOnScreen([...itemsOnScreen.filter(itemOnScreen => itemOnScreen !== itemId)])
   }
 
-  // Append an item to the grid-layout.
-  // After appending the item to the item list, the renderer will update itself
-  // because we updated the state.
+  // Append an item to the grid-layout. After appending the item to the item list,
+  // the renderer will update itself because we updated the state.
   const appendItem = (itemType) => {
     const itemId = crypto.randomUUID()
-
     if (isDebugLoggingEnabled()) {
       console.log('Appending new item: ', itemId, ' with type: ', itemType)
     }
 
-    const updatedItems = [...items, {
+    setItemsOnScreen([...itemsOnScreen, itemId])
+    setItemConfigurations([...itemConfigurations, {
       id: itemId,
-      title: `Item ${items.length + 1}`,
+      title: `Item ${itemConfigurations.length + 1}`,
       type: itemType
-    }]
-    setItems(updatedItems)
-    saveToLocalStorage('exchange-items', updatedItems)
+    }])
   }
 
   return (
@@ -403,17 +389,21 @@ const ConfigurableLanding = () => {
         )}
         {editing && <div className='spacer h-10' />}
         <ResponsiveReactGridLayout
-          draggableCancel='.element-actions'
-          className='exchange-grid-layout'
+          layouts={itemLayouts}
           margin={layoutMargins}
           cols={layoutGridColumns}
           rowHeight={layoutGridHeight}
           resizeHandles={resizeHandles}
           breakpoints={layoutBreakpoints}
-          layouts={layouts}
           onLayoutChange={onLayoutChange}
+          className='exchange-grid-layout'
+          draggableCancel='.element-actions'
         >
-          {items.filter(item => !item.hidden).map(item => appendElement(item))}
+          {itemsOnScreen.map(itemId => {
+            const itemIndex = itemConfigurations.findIndex(item => item.id === itemId)
+
+            return appendElement(itemConfigurations[itemIndex])
+          })}
         </ResponsiveReactGridLayout>
         {activeItem &&
           <ItemOptionsDialog

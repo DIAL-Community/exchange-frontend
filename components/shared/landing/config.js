@@ -1,3 +1,7 @@
+// Keys for local storage
+export const itemsLocalStorageKey = 'exchange-items'
+export const layoutsLocalStorageKey = 'exchange-layouts'
+
 // Height of a step in the grid in pixel.
 export const layoutGridHeight = 16
 // Margin between items [x, y] in px.

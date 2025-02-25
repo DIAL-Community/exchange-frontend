@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import BuildingBlockListRight from '../../building-block/fragments/BuildingBlockListRight'
 import AggregatorMap from '../../maps/aggregators/AggregatorMap'
@@ -9,6 +10,19 @@ import ProjectListRight from '../../project/fragments/ProjectListRight'
 import UseCaseListRight from '../../use-case/fragments/UseCaseListRight'
 import { isDebugLoggingEnabled } from '../../utils/utilities'
 import { ContentListTypes, ContentMapTypes } from './constants'
+
+export const useWindowWidth = () => {
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return width
+}
 
 export const getFromLocalStorage = (localStorageKey) => {
   if (isDebugLoggingEnabled()) {
