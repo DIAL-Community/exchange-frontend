@@ -17,8 +17,8 @@ import HeroCarousel from '../HeroCarousel'
 import { UPDATE_SITE_SETTING_ITEM_SETTINGS } from '../mutation/siteSetting'
 import { DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY } from '../query/siteSetting'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
-import { layoutBreakpoints, layoutGridColumns, layoutGridHeight, layoutMargins } from './config'
-import { listOptions, mapOptions, resizeHandles, WidgetTypeOptions } from './constants'
+import { layoutBreakpoints, layoutGridColumns, layoutGridHeight, layoutMargins, resizeHandles } from './config'
+import { listOptions, mapOptions, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
 import { resolveListValue, resolveMapValue, useWindowWidth } from './utilities'
 
@@ -69,7 +69,12 @@ const ConfigurableLanding = () => {
         const currentLayout = currentItemLayouts[currentBreakout]
         setCurrentItems(currentLayout.map(layout => layout.i))
         // Initialize item data and layout data in the current state for rendering.
-        setItemLayouts(currentItemLayouts)
+        // Set the static field of the layouts based on the editing flag
+        const newItemLayouts = {}
+        Object.keys(currentItemLayouts).forEach(key => {
+          newItemLayouts[key] = currentItemLayouts[key].map(itemLayout => ({ ...itemLayout, static: !editing }))
+        })
+        setItemLayouts(newItemLayouts)
         setItemConfigurations(currentItemConfigurations)
       }
     }
