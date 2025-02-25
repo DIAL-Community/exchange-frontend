@@ -335,6 +335,9 @@ const ConfigurableLanding = () => {
     }
 
     // If item is only used in the current layout, then remove it from the item configurations.
+    // TODO: Maybe this consolidation / cleanup can be performed in the backend.
+    // Go through each breakpoint's layout and remove items without reference in the layouts
+    // from the item configurations.
     if (itemCounts === 1) {
       setItemConfigurations([...itemConfigurations.filter(item => item.id !== itemId)])
     }
@@ -360,7 +363,7 @@ const ConfigurableLanding = () => {
     <div className='px-4 lg:px-8 xl:px-56'>
       <div className='relative flex flex-col min-h-[70vh]'>
         {editingAllowed &&
-          <div className='absolute top-2 right-0 text-white' style={{ zIndex: 55 }}>
+          <div className='absolute top-2 right-0 text-white' style={{ zIndex: 40 }}>
             <div className='flex flex-row gap-x-1'>
               <button
                 className={classNames(
@@ -404,7 +407,7 @@ const ConfigurableLanding = () => {
             </div>
           </div>
         )}
-        {editing && <div className='spacer h-10' />}
+        {editing && <div className='spacer h-28 md:h-10' />}
         <ResponsiveReactGridLayout
           layouts={itemLayouts}
           margin={layoutMargins}
