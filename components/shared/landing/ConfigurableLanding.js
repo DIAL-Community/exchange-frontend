@@ -35,12 +35,14 @@ const ConfigurableLanding = () => {
   const { isAdminUser } = useUser()
   const editingAllowed = isAdminUser
 
-  // Items on the page and the layout settings
+  // Items configurations across multiple screen breakpoints and the layout settings
   const [itemLayouts, setItemLayouts] = useState({})
   const [itemConfigurations, setItemConfigurations] = useState([])
 
+  // Current screen width, will be used to find the current screen breakpoint.
   const windowWidth = useWindowWidth()
-  const [itemsOnScreen, setItemsOnScreen] = useState([])
+  // List of items on the current layout based on the screen breakpoint (only ids).
+  const [currentItems, setCurrentItems] = useState([])
 
   // Setting changes to be applied to this item.
   const [activeItem, setActiveItem] = useState(null)
@@ -65,7 +67,7 @@ const ConfigurableLanding = () => {
         // Find the current active breakpoint and then find all elements that are on the screen.
         const currentBreakout = Responsive.utils.getBreakpointFromWidth(layoutBreakpoints, windowWidth)
         const currentLayout = currentItemLayouts[currentBreakout]
-        setItemsOnScreen(currentLayout.map(layout => layout.i))
+        setCurrentItems(currentLayout.map(layout => layout.i))
         // Initialize item data and layout data in the current state for rendering.
         setItemLayouts(currentItemLayouts)
         setItemConfigurations(currentItemConfigurations)
@@ -320,7 +322,22 @@ const ConfigurableLanding = () => {
       console.log('Removing item with id: ', itemId)
     }
 
-    setItemsOnScreen([...itemsOnScreen.filter(itemOnScreen => itemOnScreen !== itemId)])
+    setCurrentItems([...currentItems.filter(id => id !== itemId)])
+    let itemCounts = 0
+    Object.keys(itemLayouts).forEach(key => {
+      if (itemLayouts[key].findIndex(layout => layout.i === itemId) !== -1) {
+        itemCounts++
+      }
+    })
+
+    if (isDebugLoggingEnabled()) {
+      console.log('Item with the same id in the layout: ', itemCounts)
+    }
+
+    // If item is only used in the current layout, then remove it from the item configurations.
+    if (itemCounts === 1) {
+      setItemConfigurations([...itemConfigurations.filter(item => item.id !== itemId)])
+    }
   }
 
   // Append an item to the grid-layout. After appending the item to the item list,
@@ -331,7 +348,7 @@ const ConfigurableLanding = () => {
       console.log('Appending new item: ', itemId, ' with type: ', itemType)
     }
 
-    setItemsOnScreen([...itemsOnScreen, itemId])
+    setCurrentItems([...currentItems, itemId])
     setItemConfigurations([...itemConfigurations, {
       id: itemId,
       title: `Item ${itemConfigurations.length + 1}`,
@@ -368,7 +385,7 @@ const ConfigurableLanding = () => {
         }
         {editingAllowed && editing && (
           <div className='absolute top-2 right-20'>
-            <div className='flex gap-1 text-xs text-white'>
+            <div className='flex flex-wrap gap-1 text-xs text-white'>
               {Object.keys(WidgetTypeOptions).map(key => {
                 return (
                   <button
@@ -399,7 +416,7 @@ const ConfigurableLanding = () => {
           className='exchange-grid-layout'
           draggableCancel='.element-actions'
         >
-          {itemsOnScreen.map(itemId => {
+          {currentItems.map(itemId => {
             const itemIndex = itemConfigurations.findIndex(item => item.id === itemId)
 
             return appendElement(itemConfigurations[itemIndex])
