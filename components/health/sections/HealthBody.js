@@ -29,8 +29,8 @@ const HealthBody = () => {
           The Africa HealthTech Marketplace showcases innovative digital health solutions that have been
           rigorously vetted by renowned global experts in digital health, including representatives from
           governments, investors, entrepreneurs, and ecosystem builders. These solutions are assessed for
-          their alignment with African health security priorities, scalability, sustainability, and technical
-          robustness—covering critical factors such as data privacy, interoperability, and operational
+          their alignment with African health security priorities, readiness to scale, sustainability, and technical
+          robustness — covering critical factors such as data privacy, interoperability, and operational
           efficiency. The solutions presented offer the potential to enhance health outcomes, particularly
           in terms of accessibility, affordability, and quality of care. While inclusion in the Marketplace
           reflects recognition of a solution’s strengths and potential, it does not imply endorsement by Africa CDC.
