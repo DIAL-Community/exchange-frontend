@@ -17,11 +17,13 @@ import HeroCarousel from '../HeroCarousel'
 import { UPDATE_SITE_SETTING_ITEM_SETTINGS } from '../mutation/siteSetting'
 import { SITE_SETTINGS_LANDING_QUERY } from '../query/siteSetting'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
+import { useActiveTenant } from '../../../lib/hooks'
 import { ContentListOptions, ContentMapOptions, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
 import { getFromLocalStorage, resolveContentListValue, resolveContentMapValue, saveToLocalStorage } from './utilities'
 
 const ConfigurableLanding = () => {
+  const { country } = useActiveTenant()
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
 
   const { slug, heroCardSection: { heroCardConfigurations } } = useContext(SiteSettingContext)
@@ -269,7 +271,7 @@ const ConfigurableLanding = () => {
       case WidgetTypeOptions.CARD:
         return resolveHeroCardValue(item.value)
       case WidgetTypeOptions.MAP:
-        return resolveContentMapValue(item.value)
+        return resolveContentMapValue(item.value, country)
       case WidgetTypeOptions.LIST:
         return resolveContentListValue(item.value)
       case WidgetTypeOptions.SUMMARY:
