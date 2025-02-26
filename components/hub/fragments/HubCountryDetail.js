@@ -18,7 +18,7 @@ const HubCountryDetail = ({ country }) => {
     <div className='flex flex-col'>
       {!editing &&
         <div className='description-section pb-4'>
-          <div className='px-4 lg:px-8 xl:px-56 text-dial-stratos flex flex-col'>
+          <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-stratos flex flex-col'>
             <div className='flex flex-flex-wrap gap-3'>
               <div className='text-xl font-medium py-6 '>
                 <FormattedMessage id='ui.country.overview' />
@@ -41,7 +41,7 @@ const HubCountryDetail = ({ country }) => {
         </div>
       }
       { editing &&
-          <div className='px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col'>
+          <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-cotton flex flex-col'>
             <CountryForm country={country} setEditing={setEditing} />
           </div>
       }
@@ -50,7 +50,7 @@ const HubCountryDetail = ({ country }) => {
       <HubCountryProducts country={country} />
       <HubCountryResources country={country} />
       <div className='key-organization-section bg-dial-sapphire'>
-        <div className='px-4 lg:px-8 xl:px-56 flex flex-col text-dial-cotton'>
+        <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 flex flex-col text-dial-cotton'>
           <div className='text-xl font-medium py-6'>
             <FormattedMessage id='hub.country.organizations' />
           </div>

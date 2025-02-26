@@ -437,7 +437,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
               Description
             </div>
             <div
-              class="block"
+              class="description-block"
             >
               <div
                 class="editor-shell read-only"

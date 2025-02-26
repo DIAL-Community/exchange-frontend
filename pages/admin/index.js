@@ -48,7 +48,7 @@ const AdminLandingPage = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='min-h-[70vh] px-4 lg:px-8 xl:px-56 py-16'>
+    <div className='min-h-[70vh] px-4 lg:px-8 xl:px-24 3xl:px-56 py-16'>
       <div className='flex flex-col gap-y-8'>
         <div className='text-lg font-semibold lg:col-span-3'>
           {format('ui.admin.siteConfiguration.header')}

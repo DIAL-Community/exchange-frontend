@@ -1,17 +1,18 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { FilterContext } from '../../context/FilterContext'
+import { CollectionDisplayType, FilterContext } from '../../context/FilterContext'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
 import { DisplayType } from '../../utils/constants'
 import ProductCard from '../ProductCard'
 
-const ListStructure = ({ pageOffset, defaultPageSize }) => {
+const ListStructure = ({ pageOffset, pageSize }) => {
   const {
     search,
     buildingBlocks,
     countries,
+    collectionDisplayType,
     isLinkedWithDpi,
     licenseTypes,
     origins,
@@ -27,19 +28,19 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { loading, error, data } = useQuery(PAGINATED_PRODUCTS_QUERY, {
     variables: {
       search,
-      useCases: useCases.map(useCase => useCase.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
-      sectors: sectors.map(sector => sector.value),
-      tags: tags.map(tag => tag.label),
       countries: countries.map(country => country.value),
-      licenseTypes: licenseTypes.map(licenseType => licenseType.value),
-      sdgs: sdgs.map(sdg => sdg.value),
-      workflows: workflows.map(workflow => workflow.id),
-      origins: origins.map(origin => origin.value),
       isLinkedWithDpi,
-      showGovStackOnly,
+      licenseTypes: licenseTypes.map(licenseType => licenseType.value),
+      origins: origins.map(origin => origin.value),
+      sdgs: sdgs.map(sdg => sdg.value),
+      sectors: sectors.map(sector => sector.value),
       showDpgaOnly,
-      limit: defaultPageSize,
+      showGovStackOnly,
+      tags: tags.map(tag => tag.label),
+      useCases: useCases.map(useCase => useCase.value),
+      workflows: workflows.map(workflow => workflow.id),
+      limit: pageSize,
       offset: pageOffset
     },
     context: {
@@ -57,9 +58,7 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     return handleMissingData()
   }
 
-  const { paginatedProducts: products } = data
-
-  return (
+  const listDisplay = (products) => (
     <div className='flex flex-col gap-3'>
       {products.map((product, index) =>
         <div key={index}>
@@ -72,6 +71,26 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       )}
     </div>
   )
+
+  const gridDisplay = (products) => (
+    <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4'>
+      {products.map((product, index) =>
+        <div key={index}>
+          <ProductCard
+            index={index}
+            product={product}
+            displayType={DisplayType.GRID_CARD}
+          />
+        </div>
+      )}
+    </div>
+  )
+
+  const { paginatedProducts: products } = data
+
+  return  collectionDisplayType === CollectionDisplayType.LIST
+    ? listDisplay(products)
+    : gridDisplay(products)
 }
 
 export default ListStructure

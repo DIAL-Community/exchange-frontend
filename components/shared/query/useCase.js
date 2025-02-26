@@ -63,6 +63,10 @@ export const PAGINATED_USE_CASES_QUERY = gql`
         slug
         name
       }
+      sector {
+        id
+        name
+      }
       sdgTargets {
         id
         name

@@ -32,7 +32,7 @@ const ProductRepositoryRight = forwardRef(({ product, productRepository, editing
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={productRepository?.description}
             editorId='use-case-step-description'

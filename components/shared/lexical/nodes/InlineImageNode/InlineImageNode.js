@@ -108,7 +108,7 @@ export class InlineImageNode extends DecoratorNode {
     element.setAttribute('alt', this.__altText)
     element.setAttribute('width', this.__width.toString())
     element.setAttribute('height', this.__height.toString())
-    element.setAttribute('data-position', this.__position.toString())
+    element.setAttribute('data-position', this.__position?.toString())
 
     return { element }
   }

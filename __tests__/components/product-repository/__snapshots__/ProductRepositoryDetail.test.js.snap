@@ -1050,7 +1050,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
               Description
             </div>
             <div
-              class="block"
+              class="description-block"
             >
               <div
                 class="editor-shell read-only"

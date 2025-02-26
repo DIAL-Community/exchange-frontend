@@ -36,7 +36,7 @@ const TaskTrackerDetailRight = forwardRef(({ taskTracker, editingAllowed, deleti
         <div className='text-xl font-semibold text-dial-stratos pb-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={taskTracker?.taskTrackerDescription?.description}
             editorId='taskTracker-description'

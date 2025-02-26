@@ -213,3 +213,22 @@ export const UPDATE_SITE_SETTING_CAROUSEL_CONFIGURATION = gql`
     }
   }
 `
+
+export const UPDATE_SITE_SETTING_ITEM_SETTINGS = gql`
+  mutation UpdateSiteSettingItemSettings(
+    $itemLayouts: JSON!
+    $itemConfigurations: JSON!
+  ) {
+    updateSiteSettingItemSettings(
+      itemLayouts: $itemLayouts
+      itemConfigurations: $itemConfigurations
+    ) {
+      siteSetting {
+        id
+        itemLayouts
+        itemConfigurations
+      }
+      errors
+    }
+  }
+`

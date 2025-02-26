@@ -51,7 +51,7 @@ const HealthOrganizations = () => {
   })
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[70vh] py-8'>
       <OrganizationSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}

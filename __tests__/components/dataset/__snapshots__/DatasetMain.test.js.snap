@@ -6,10 +6,10 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
     class="Toastify"
   />
   <div
-    class="px-4 lg:px-8 xl:px-56"
+    class="px-4 lg:px-8 xl:px-24 3xl:px-56"
   >
     <div
-      class="grid grid-cols-3 gap-x-8"
+      class="grid grid-cols-4 gap-x-8"
     >
       <div
         class="hidden md:block col-span-1"
@@ -321,7 +321,7 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
         </div>
       </div>
       <div
-        class="col-span-3 md:col-span-2"
+        class="col-span-4 md:col-span-3"
       >
         <div
           class="min-h-[50vh]"
@@ -330,33 +330,94 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
             class="py-3"
           >
             <div
-              class="flex flex-row gap-3"
+              class="flex flex-row items-center justify-center gap-1 relative"
             >
               <div
-                class="block md:hidden relative"
+                class="block md:hidden h-full"
               >
                 <button
-                  class="my-auto h-full"
+                  class="mt-[0.5rem]"
                   type="button"
                 >
                   <svg
-                    class="text-2xl text-dial-plum mx-auto"
+                    class="text-2xl text-dial-slate-500 mx-auto"
                     fill="currentColor"
                     height="1em"
                     stroke="currentColor"
                     stroke-width="0"
-                    viewBox="0 0 512 512"
+                    viewBox="0 0 24 24"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"
+                      d="M13 5h9v2h-9zM2 7h7v2h2V3H9v2H2zm7 10h13v2H9zm10-6h3v2h-3zm-2 4V9.012h-2V11H2v2h13v2zM7 21v-6H5v2H2v2h3v2z"
                     />
                   </svg>
                 </button>
               </div>
               <div
-                class="ml-auto w-full"
+                class="flex flex-row gap-2"
+              >
+                <div
+                  class="text-sm my-auto"
+                >
+                  View as:
+                </div>
+                <button
+                  class="text-sm flex gap-1 items-center justify-center"
+                  disabled=""
+                  title="View data as grid"
+                >
+                  <svg
+                    class="text-dial-slate-500"
+                    fill="currentColor"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M240 240H32V32h208zm240 0H272V32h208zM240 480H32V272h208zm240 0H272V272h208z"
+                    />
+                  </svg>
+                </button>
+                <div
+                  class="border-r"
+                />
+                <button
+                  class="text-sm flex gap-1 items-center justify-center"
+                  title="View data as list"
+                >
+                  <svg
+                    class="text-dial-slate-300"
+                    fill="currentColor"
+                    height="36"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="36"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M144 144h320M144 256h320M144 368h320"
+                      fill="none"
+                      stroke-linejoin="round"
+                      stroke-width="48"
+                    />
+                    <path
+                      d="M64 128h32v32H64zm0 112h32v32H64zm0 112h32v32H64z"
+                      fill="none"
+                      stroke-linecap="square"
+                      stroke-linejoin="round"
+                      stroke-width="32"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                class="ml-auto max-w-prose"
               >
                 <label
                   class="relative"
@@ -392,7 +453,7 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
             </div>
           </div>
           <div
-            class="flex flex-col gap-3"
+            class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
           >
             <div>
               <div
@@ -402,66 +463,40 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   href="/datasets/advocacy_training_for_community"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-16 h-16 mx-auto bg-dial-plum rounded-full"
-                      >
-                        <img
-                          alt="Logo of Dataset."
-                          class="object-contain w-10 h-10 white-filter mt-3 mx-auto"
-                          src="http://localhost:3000//assets/datasets/content_placeholder.svg"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="w-20 h-20 flex justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain w-10 h-10 mx-auto"
+                              src="http://localhost:3000//assets/datasets/content_placeholder.svg"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           Advocacy Training for Community Health Workers
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          A free digital training that equips Community Health Workers (CHWs)
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            SDGs
-                             (
-                            2
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Sectors
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Tags
-                             (
-                            0
-                            )
-                          </div>
+                            A free digital training that equips Community Health Workers (CHWs)
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -477,66 +512,42 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   href="/datasets/african_drone_and_data_academy"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-16 h-16 mx-auto bg-dial-plum rounded-full"
-                      >
-                        <img
-                          alt="Logo of Dataset."
-                          class="object-contain w-10 h-10 white-filter mt-3 mx-auto"
-                          src="http://localhost:3000//assets/datasets/content_placeholder.svg"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="w-20 h-20 flex justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain w-10 h-10 mx-auto"
+                              src="http://localhost:3000//assets/datasets/content_placeholder.svg"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           African Drone and Data Academy
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          MOOCs that provide youth with 21st-century skills related to drone technology and data analysis
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            SDGs
-                             (
-                            2
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Sectors
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Tags
-                             (
-                            0
-                            )
-                          </div>
+                            
+          MOOCs that provide youth with 21st-century skills related to drone technology and data analysis
+        
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -552,66 +563,40 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   href="/datasets/african_storybook"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-16 h-16 mx-auto bg-dial-plum rounded-full"
-                      >
-                        <img
-                          alt="Logo of Dataset."
-                          class="object-contain w-10 h-10 white-filter mt-3 mx-auto"
-                          src="http://localhost:3000//assets/datasets/content_placeholder.svg"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="w-20 h-20 flex justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain w-10 h-10 mx-auto"
+                              src="http://localhost:3000//assets/datasets/content_placeholder.svg"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           African Storybook
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Provides open access to picture storybooks.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            SDGs
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Sectors
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Tags
-                             (
-                            0
-                            )
-                          </div>
+                            Provides open access to picture storybooks.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -627,66 +612,40 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   href="/datasets/african_terrestrial_fibre_networ"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-16 h-16 mx-auto bg-dial-plum rounded-full"
-                      >
-                        <img
-                          alt="Logo of Dataset."
-                          class="object-contain w-10 h-10 white-filter mt-3 mx-auto"
-                          src="http://localhost:3000//assets/datasets/dataset_placeholder.svg"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="w-20 h-20 flex justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain w-10 h-10 mx-auto"
+                              src="http://localhost:3000//assets/datasets/dataset_placeholder.svg"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           African Terrestrial Fibre Network Mapping Project
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Open Source map of fibre optic infrastructure projects across the African continent.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            SDGs
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Sectors
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Tags
-                             (
-                            0
-                            )
-                          </div>
+                            Open Source map of fibre optic infrastructure projects across the African continent.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -702,66 +661,40 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   href="/datasets/africarising_dataverse"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-16 h-16 mx-auto bg-white border"
-                      >
-                        <img
-                          alt="Logo of Dataset."
-                          class="object-contain w-10 h-10 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/africarising_dataverse.png"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="inline my-4 mx-6"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain h-10 w-[5rem]"
+                              src="http://localhost:3000//assets/products/africarising_dataverse.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           AfricaRISING Dataverse
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Africa Research in Sustainable Intensification for the Next Generation (Africa RISING)
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            SDGs
-                             (
-                            2
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Sectors
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Tags
-                             (
-                            0
-                            )
-                          </div>
+                            Africa Research in Sustainable Intensification for the Next Generation (Africa RISING)
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -777,66 +710,40 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   href="/datasets/ai_agro"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-16 h-16 mx-auto bg-white border"
-                      >
-                        <img
-                          alt="Logo of Dataset."
-                          class="object-contain w-10 h-10 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/ai_agro.png"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="inline my-4 mx-6"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain h-10 w-[5rem]"
+                              src="http://localhost:3000//assets/products/ai_agro.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           AI Agro
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Open Source Precision Agriculture with Drones leverages a set of machine learning algorithms
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            SDGs
-                             (
-                            3
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Sectors
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Tags
-                             (
-                            0
-                            )
-                          </div>
+                            Open Source Precision Agriculture with Drones leverages a set of machine learning algorithms
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -852,66 +759,40 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   href="/datasets/angaza_elimu"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] bg-dial-violet"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-16 h-16 mx-auto bg-dial-plum rounded-full"
-                      >
-                        <img
-                          alt="Logo of Dataset."
-                          class="object-contain w-10 h-10 white-filter mt-3 mx-auto"
-                          src="http://localhost:3000//assets/datasets/content_placeholder.svg"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="w-20 h-20 flex justify-center items-center"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain w-10 h-10 mx-auto"
+                              src="http://localhost:3000//assets/datasets/content_placeholder.svg"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           Angaza Elimu
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                          Adaptive assessments for better learning outcomes
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            SDGs
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Sectors
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Tags
-                             (
-                            0
-                            )
-                          </div>
+                            Adaptive assessments for better learning outcomes
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -927,66 +808,40 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   href="/datasets/antura_and_the_letters"
                 >
                   <div
-                    class="px-4 py-6 rounded-lg min-h-[13.5rem] false"
+                    class="cursor-pointer hover:rounded-lg hover:shadow-lg"
                   >
                     <div
-                      class="flex flex-col lg:flex-row gap-x-6 gap-y-3"
+                      class="bg-white border shadow-lg rounded-xl h-[22rem]"
                     >
                       <div
-                        class="w-16 h-16 mx-auto bg-white border"
-                      >
-                        <img
-                          alt="Logo of Dataset."
-                          class="object-contain w-10 h-10 mx-auto my-2"
-                          src="http://localhost:3000//assets/products/antura_and_the_letters.png"
-                        />
-                      </div>
-                      <div
-                        class="flex flex-col gap-y-3 max-w-3xl lg:w-10/12"
+                        class="flex flex-col h-full"
                       >
                         <div
-                          class="text-lg font-semibold text-dial-plum"
+                          class="flex justify-center items-center bg-white rounded-xl border-4 border-dial-violet py-12 mx-4 my-4 max-h-[10rem]"
+                        >
+                          <div
+                            class="inline my-4 mx-6"
+                          >
+                            <img
+                              alt="Logo of Product."
+                              class="object-contain h-10 w-[5rem]"
+                              src="http://localhost:3000//assets/products/antura_and_the_letters.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="px-6 text-xl text-center font-semibold line-clamp-1"
                         >
                           Antura and the Letters
                         </div>
                         <div
-                          class="line-clamp-4 text-dial-stratos"
+                          class="px-6 py-2 text-xs text-dial-stratos font-medium"
                         >
-                           Open source smartphone application that teaches children how to read in Arabic.
-                        </div>
-                        <div
-                          class="flex gap-x-2 text-dial-stratos"
-                        >
-                          <div
-                            class="text-sm"
+                          <span
+                            class="text-center line-clamp-3"
                           >
-                            SDGs
-                             (
-                            1
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Sectors
-                             (
-                            0
-                            )
-                          </div>
-                          <div
-                            class="border-r border-dial-slate-400"
-                          />
-                          <div
-                            class="text-sm"
-                          >
-                            Tags
-                             (
-                            0
-                            )
-                          </div>
+                             Open source smartphone application that teaches children how to read in Arabic.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -1007,7 +862,7 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
               <div
                 class="my-auto text-sm font-semibold"
               >
-                Showing 1 - 8 of 165 total
+                Showing 1 - 12 of 165 total
               </div>
               <ul
                 aria-label="Pagination"
@@ -1106,12 +961,12 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                   class="border border-current rounded-md"
                 >
                   <a
-                    aria-label="Page 21"
+                    aria-label="Page 14"
                     class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
                     role="button"
                     tabindex="0"
                   >
-                    21
+                    14
                   </a>
                 </li>
                 <li

@@ -20,14 +20,14 @@ exports[`Unit tests for the opportunity detail page. Should render country tiles
         class="max-w-catalog mx-auto py-12"
       >
         <div
-          class="text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray"
+          class="text-2xl px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray"
         >
           Country Profiles
         </div>
       </div>
     </div>
     <div
-      class="px-4 lg:px-8 xl:px-56 min-h-[60vh] lg:min-h-[65vh]"
+      class="px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[60vh] lg:min-h-[65vh]"
     >
       <div
         class="flex flex-col gap-6"

@@ -60,3 +60,7 @@
     scroll-margin-top: calc(var(--header-height) + var(--filter-height) + 2.5rem);
   }
 }
+
+.react-resizable-handle {
+  z-index: 40;
+}

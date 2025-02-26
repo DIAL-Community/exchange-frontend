@@ -3,10 +3,9 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { FilterContext } from '../../context/FilterContext'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/project'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import ListStructure from './ListStructure'
 import ProjectSearchBar from './ProjectSearchBar'
 
@@ -16,6 +15,7 @@ const ProjectListRight = () => {
 
   const {
     search,
+    collectionDisplayType,
     countries,
     organizations,
     origins,
@@ -30,7 +30,7 @@ const ProjectListRight = () => {
 
   const { page } = query
   const pageNumber = page ? parseInt(page) - 1 : 0
-  const pageOffset = pageNumber * DEFAULT_PAGE_SIZE
+  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
@@ -72,7 +72,7 @@ const ProjectListRight = () => {
       <ProjectSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        defaultPageSize={CollectionPageSize[collectionDisplayType]}
       />
       {loading && format('ui.pagination.loadingInfo')}
       {error && format('ui.pagination.loadingInfoError')}
@@ -80,7 +80,7 @@ const ProjectListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeProject.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

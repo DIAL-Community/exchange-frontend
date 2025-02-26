@@ -13,7 +13,7 @@ const WizardParameterContent = () => {
   const { setUseCases, setSectors, setSdgs } = useContext(WizardDispatchContext)
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56'>
       <div className='flex flex-col gap-y-6'>
         <hr className='border-b border-4 border-dial-blue-chalk' />
         <div className='text-sm pt-3 pb-12'>

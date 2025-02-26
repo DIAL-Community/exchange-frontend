@@ -639,6 +639,7 @@ export const en = {
   'product.card.license': 'License',
   'product.card.buildingBlocks': 'Building Blocks',
   'product.card.sdgs': 'SDGs',
+  'product.card.sources': 'Sources',
 
 
   'product.noExtraAttributes': 'We do not have any Local Innovation information for this Product.',
@@ -2664,7 +2665,7 @@ export const en = {
   'hub.adliNetwork.memberCard.alt': 'Photo of the ADLI member',
 
   'health.landing.main.title': 'Africa HealthTech Marketplace',
-  'health.landing.main.subtitle': `Enhancing visibility and trust in local digital health innovations`,
+  'health.landing.main.subtitle': `Enabling and accelerating the scaling of Africa's homegrown HealthTech innovations`,
   'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Exchange',
 
   'health.header.about': 'About',
@@ -3063,5 +3064,36 @@ export const en = {
 
   'ui.categoryIndicator.label': 'Category Indicator',
   'ui.categoryIndicator.header': 'Category Indicators',
+
+  'landing.widget.options.title': 'Item Options',
+
+  'landing.widget.carousel': 'Carousel',
+  'landing.widget.card': 'Card',
+  'landing.widget.map': 'Map',
+  'landing.widget.list': 'List',
+  'landing.widget.summary': 'Summary',
+  'landing.widget.text': 'Text',
+  'landing.widget.spacer': 'Spacer',
+
+  'landing.widget.selected.value': 'Current value',
+
+  'landing.list.options': 'List Options',
+  'landing.list.buildingBlocks': 'Building Block List',
+  'landing.list.organizations': 'Organization List',
+  'landing.list.products': 'Product List',
+  'landing.list.projects': 'Project List',
+  'landing.list.useCases': 'Use Case List',
+  'landing.list.missing': 'Missing list type in setting.',
+
+  'landing.map.options': 'Map Type Options',
+  'landing.map.projects': 'Project Map',
+  'landing.map.endorsers': 'Endorser Map',
+  'landing.map.aggregator': 'Aggregator Map',
+  'landing.map.missing': 'Missing map type in setting.',
+
+  'landing.card.options': 'Card Options',
+
+  'landing.page.save.success': 'Page configurations saved.',
+  'landing.page.save.failure': 'Unable to save page configurations.',
 }
 

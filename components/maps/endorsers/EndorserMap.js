@@ -1,4 +1,4 @@
-import { useCallback, useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
@@ -7,28 +7,40 @@ import { FilterContext } from '../../context/FilterContext'
 import { ORGANIZATIONS_QUERY } from '../../shared/query/map'
 import EndorserInfo from './EndorserInfo'
 
-const EndorserMarkerMaps = (props) => {
-  const EndorserMarkerMaps = useMemo(() => dynamic(
-    () => import('./EndorserMarkers'),
-    { ssr: false }
-  ), [])
+const EndorserMap = ({ initialCountry }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  return <EndorserMarkerMaps {...props} />
-}
-
-const DEFAULT_PAGE_SIZE = 1000
-
-const EndorserMap = () => {
   const [selectedCity, setSelectedCity] = useState('')
   const [organization, setOrganization] = useState()
   const { sectors, years } = useContext(FilterContext)
 
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const EndorserLeaflet = useMemo(() => dynamic(
+    () => import('./EndorserLeaflet'),
+    { ssr: false }
+  ), [])
+
+  const [containerHeight, setContainerHeight] = useState(0)
+  const observedElementRef = useRef(null)
+
+  useEffect(() => {
+    if (observedElementRef.current) {
+      const observer = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          setContainerHeight(entry.contentRect.height)
+        }
+      })
+
+      observer.observe(observedElementRef.current)
+
+      return () => {
+        observer.disconnect()
+      }
+    }
+  }, [])
 
   const { loading, data } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
-      first: DEFAULT_PAGE_SIZE,
       sectors: sectors.map(sector => sector.value),
       years: years.map(year => year.value)
     },
@@ -43,8 +55,8 @@ const EndorserMap = () => {
   const cities = (() => {
     const cities = {}
     if (data) {
-      const { searchOrganizations: { nodes } } = data
-      nodes.forEach(organization => {
+      const { searchOrganizations: organizations } = data
+      organizations.forEach(organization => {
         organization.offices.forEach(office => {
           let currentCity = cities[office.name]
           if (!currentCity) {
@@ -73,8 +85,8 @@ const EndorserMap = () => {
   const city = cities[selectedCity]
 
   return (
-    <div className='min-h-[10vh]'>
-      <div className='flex flex-row bg-dial-iris-blue rounded-md relative'>
+    <div className='endorser-map w-full h-full' ref={observedElementRef}>
+      <div className='flex flex-row relative h-full'>
         {loading &&
           <div className='absolute right-3 px-3 py-2 text-sm' style={{ zIndex: 19 }}>
             <div className='text-sm text-dial-stratos'>
@@ -82,8 +94,15 @@ const EndorserMap = () => {
             </div>
           </div>
         }
-        <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization }} />
-        <EndorserInfo {...{ city, setOrganization }} />
+        <EndorserLeaflet
+          cities={cities}
+          organization={organization}
+          initialCountry={initialCountry}
+          containerHeight={containerHeight}
+          setSelectedCity={setSelectedCity}
+          setOrganization={setOrganization}
+        />
+        <EndorserInfo city={city} setOrganization={setOrganization} />
       </div>
     </div>
   )

@@ -46,12 +46,12 @@ const HubCountry = ({ slug }) => {
       />
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-2'>
-          <div className='px-4 lg:px-8 xl:px-56 text-dial-gray'>
+          <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray'>
             <HubBreadcrumb slugNameMapping={slugNameMapping} />
           </div>
         </div>
         <div className='max-w-catalog mx-auto py-1'>
-          <div className='flex gap-4 px-4 lg:px-8 xl:px-56'>
+          <div className='flex gap-4 px-4 lg:px-8 xl:px-24 3xl:px-56'>
             <img
               src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
               alt={format('ui.country.logoAlt', { countryName: country.code })}

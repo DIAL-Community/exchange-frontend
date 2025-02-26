@@ -48,7 +48,7 @@ const TagDetailRight = forwardRef(({ tag, editingAllowed, deletingAllowed }, ref
         <div className='text-xl font-semibold text-dial-plum pb-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={tag?.tagDescription?.description}
             editorId='tag-description'
