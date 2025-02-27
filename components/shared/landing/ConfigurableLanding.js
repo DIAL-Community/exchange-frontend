@@ -5,7 +5,7 @@ import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } fro
 import { FormattedMessage } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { useUser } from '../../../lib/hooks'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { SiteSettingContext } from '../../context/SiteSettingContext'
 import { isDebugLoggingEnabled } from '../../utils/utilities'
@@ -23,6 +23,7 @@ import ItemOptionsDialog from './ItemOptionsDialog'
 import { resolveListValue, resolveMapValue, useWindowWidth } from './utilities'
 
 const ConfigurableLanding = () => {
+  const { country } = useActiveTenant()
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
 
   const { slug, heroCardSection: { heroCardConfigurations } } = useContext(SiteSettingContext)
@@ -270,7 +271,7 @@ const ConfigurableLanding = () => {
       case WidgetTypeOptions.CARD:
         return resolveCardValue(item.value)
       case WidgetTypeOptions.MAP:
-        return resolveMapValue(item.value)
+        return resolveMapValue(item.value, country)
       case WidgetTypeOptions.LIST:
         return resolveListValue(item.value)
       case WidgetTypeOptions.SUMMARY:

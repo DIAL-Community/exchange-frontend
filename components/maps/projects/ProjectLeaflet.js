@@ -72,7 +72,7 @@ const ProjectLeaflet = ({ initialCountry, containerHeight, ...props }) => {
 
   return (
     <MapContainer
-      zoom={3}
+      zoom={initialCountry ? 4 : 3}
       center={center}
       className='w-full'
       style={{ minHeight: containerHeight, zIndex: 18 }}
