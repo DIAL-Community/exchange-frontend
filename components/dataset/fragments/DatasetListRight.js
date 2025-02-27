@@ -18,14 +18,14 @@ const DatasetListRight = () => {
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-  const pageNumber = page ? parseInt(page) - 1 : 0
+  const { 'dataset-page': datasetPage } = query
+  const pageNumber = datasetPage ? parseInt(datasetPage) - 1 : 0
   const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'dataset-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )

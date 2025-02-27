@@ -57,9 +57,7 @@ function $search(selection) {
 function useQuery() {
   return useCallback(searchText => {
     const server = new AutocompleteServer()
-    console.time('query')
     const response = server.query(searchText)
-    console.timeEnd('query')
 
     return response
   }, [])
