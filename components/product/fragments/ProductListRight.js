@@ -33,14 +33,14 @@ const ProductListRight = () => {
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-  const pageNumber = page ? parseInt(page) - 1 : 0
+  const { 'product-page': productPage } = query
+  const pageNumber = productPage ? parseInt(productPage) - 1 : 0
   const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'product-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )

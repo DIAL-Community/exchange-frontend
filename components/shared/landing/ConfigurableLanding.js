@@ -1,11 +1,11 @@
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
-import { useUser } from '../../../lib/hooks'
+import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { SiteSettingContext } from '../../context/SiteSettingContext'
 import { isDebugLoggingEnabled } from '../../utils/utilities'
@@ -15,12 +15,12 @@ import Input from '../form/Input'
 import Select from '../form/Select'
 import HeroCarousel from '../HeroCarousel'
 import { UPDATE_SITE_SETTING_ITEM_SETTINGS } from '../mutation/siteSetting'
-import { SITE_SETTINGS_LANDING_QUERY } from '../query/siteSetting'
+import { DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY } from '../query/siteSetting'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
-import { useActiveTenant } from '../../../lib/hooks'
-import { ContentListOptions, ContentMapOptions, WidgetTypeOptions } from './constants'
+import { layoutBreakpoints, layoutGridColumns, layoutGridHeight, layoutMargins, resizeHandles } from './config'
+import { listOptions, mapOptions, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
-import { getFromLocalStorage, resolveContentListValue, resolveContentMapValue, saveToLocalStorage } from './utilities'
+import { resolveListValue, resolveMapValue, useWindowWidth } from './utilities'
 
 const ConfigurableLanding = () => {
   const { country } = useActiveTenant()
@@ -30,22 +30,29 @@ const ConfigurableLanding = () => {
 
   // Toggle whether we are editing the page or not.
   const [editing, setEditing] = useState(false)
+  // Toggle whether we are editing text or not (to display html editor or html viewer).
   const [editingText, setEditingText] = useState(false)
 
   const { isAdminUser } = useUser()
   const editingAllowed = isAdminUser
 
-  // Items on the page and the layout settings
-  const [items, setItems] = useState([])
-  const [layouts, setLayouts] = useState({})
+  // Items configurations across multiple screen breakpoints and the layout settings
+  const [itemLayouts, setItemLayouts] = useState({})
+  const [itemConfigurations, setItemConfigurations] = useState([])
 
+  // Current screen width, will be used to find the current screen breakpoint.
+  const windowWidth = useWindowWidth()
+  // List of items on the current layout based on the screen breakpoint (only ids).
+  const [currentItems, setCurrentItems] = useState([])
+
+  // Setting changes to be applied to this item.
   const [activeItem, setActiveItem] = useState(null)
   const [activeItemTitle, setActiveItemTitle] = useState(null)
-
+  // Toggle to display the setting dialog box.
   const [displayItemOptions, setDisplayItemOptions] = useState(false)
 
   // Initialize the layouts and items from database
-  useQuery(SITE_SETTINGS_LANDING_QUERY, {
+  useQuery(DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY, {
     variables: { slug },
     context: {
       headers: {
@@ -55,38 +62,24 @@ const ConfigurableLanding = () => {
     onCompleted: (data) => {
       if (data.defaultSiteSetting) {
         const { defaultSiteSetting: { itemLayouts, itemConfigurations } } = data
-        // Initialize item data and layout data in the local storage for editing.
-        saveToLocalStorage('exchange-layouts', itemLayouts?.layouts ?? {})
-        saveToLocalStorage('exchange-items', itemConfigurations?.items ?? [])
+        // Resolve the item layouts and item configurations
+        const currentItemLayouts = itemLayouts?.layouts ?? {}
+        const currentItemConfigurations = itemConfigurations?.items ?? []
+        // Find the current active breakpoint and then find all elements that are on the screen.
+        const currentBreakout = Responsive.utils.getBreakpointFromWidth(layoutBreakpoints, windowWidth)
+        const currentLayout = currentItemLayouts[currentBreakout]
+        setCurrentItems(currentLayout.map(layout => layout.i))
         // Initialize item data and layout data in the current state for rendering.
-        setItems(itemConfigurations?.items ?? [])
-        const savedLayouts = itemLayouts?.layouts ?? {}
-        const updatedLayouts = {}
-        Object.keys(savedLayouts).map(key => {
-          const processedLayouts = savedLayouts[key].map(currentLayout => {
-            return { ...currentLayout, static: !editing }
-          })
-          updatedLayouts[key] = processedLayouts
+        // Set the static field of the layouts based on the editing flag
+        const newItemLayouts = {}
+        Object.keys(currentItemLayouts).forEach(key => {
+          newItemLayouts[key] = currentItemLayouts[key].map(itemLayout => ({ ...itemLayout, static: !editing }))
         })
-        setLayouts(updatedLayouts)
+        setItemLayouts(newItemLayouts)
+        setItemConfigurations(currentItemConfigurations)
       }
     }
   })
-
-  // Initialize the items and the layouts from local storage.
-  // Eventually we will move this to the site_settings table.
-  useEffect(() => {
-    setItems(getFromLocalStorage('exchange-items') ?? [])
-    const savedLayouts = getFromLocalStorage('exchange-layouts') ?? {}
-    const updatedLayouts = {}
-    Object.keys(savedLayouts).map(key => {
-      const processedLayouts = savedLayouts[key].map(currentLayout => {
-        return { ...currentLayout, static: !editing }
-      })
-      updatedLayouts[key] = processedLayouts
-    })
-    setLayouts(updatedLayouts)
-  }, [editing])
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
   const [saveItemSettings, { reset }] = useMutation(UPDATE_SITE_SETTING_ITEM_SETTINGS, {
@@ -106,12 +99,20 @@ const ConfigurableLanding = () => {
 
   // Toggle the editing context for the current page.
   const toggleEditing = () => {
+    // Toggle the editing flag for the current page.
     setEditing(!editing)
+    // Set the static field of the layouts based on the editing flag
+    const newItemLayouts = {}
+    Object.keys(itemLayouts).forEach(key => {
+      newItemLayouts[key] = itemLayouts[key].map(itemLayout => ({ ...itemLayout, static: editing }))
+    })
+    setItemLayouts(newItemLayouts)
+    // Save the changes to the database.
     if (editing) {
       saveItemSettings({
         variables: {
-          itemLayouts: getFromLocalStorage('exchange-layouts') ?? {},
-          itemConfigurations: getFromLocalStorage('exchange-items') ?? []
+          itemLayouts,
+          itemConfigurations
         }
       })
     }
@@ -120,28 +121,29 @@ const ConfigurableLanding = () => {
   // Toggle the editing context for the text editor page.
   const toggleEditingText = () => {
     setEditingText(!editingText)
+    // Save the changes to the database.
     if (editingText) {
       saveItemSettings({
         variables: {
-          itemLayouts: layouts,
-          itemConfigurations: items
+          itemLayouts,
+          itemConfigurations
         }
       })
     }
   }
 
   // Save when user make changes to the layout.
-  const onLayoutChange = (_layout, layouts) => {
+  const onLayoutChange = (layout, layouts) => {
     if (isDebugLoggingEnabled()) {
       console.log('Handling layout change from react-grid-layout. Receiving: ', layouts)
     }
 
-    saveToLocalStorage('exchange-layouts', layouts)
+    setItemLayouts(layouts)
   }
 
-  // Update rendered components depending on the selected value.
-  // This is specific for hero card widget. User can add more hero widget from the site settings editor.
-  const resolveHeroCardValue = (itemValue) => {
+  // Update rendered components depending on the selected value. Only for card widget.
+  // User can add more hero widget from the site settings editor.
+  const resolveCardValue = (itemValue) => {
     const heroCardConfiguration = heroCardConfigurations.find((configuration) => configuration.id === itemValue)
 
     return heroCardConfiguration
@@ -170,21 +172,19 @@ const ConfigurableLanding = () => {
 
   // Update the title of the widget based on the value from the widget setting dialog.
   const updateItemTitle = (id, itemTitle) => {
-    const newItems = items.map((item) => {
+    const newItemConfigurations = itemConfigurations.map((item) => {
       return item.id === id ? { ...item, title: itemTitle } : item
     })
-    setItems(newItems)
-    saveToLocalStorage('exchange-items', newItems)
+    setItemConfigurations(newItemConfigurations)
   }
 
   // Update the value of the widget based on the value from the widget setting dialog.
   // This will be invoked immediately on the widget setting instead of after closing the dialog.
   const updateItemValue = (id, itemValue) => {
-    const newItems = items.map((item) => {
+    const newItemConfigurations = itemConfigurations.map((item) => {
       return item.id === id ? { ...item, value: itemValue } : item
     })
-    setItems(newItems)
-    saveToLocalStorage('exchange-items', newItems)
+    setItemConfigurations(newItemConfigurations)
   }
 
   // Prepare the widget settings dialog.
@@ -195,9 +195,9 @@ const ConfigurableLanding = () => {
   }
 
   // Render options for each widget type.
-  // Content list will have which entity list should be displayed.
-  // Content map will have which map should be displayed.
-  // Hero card will pull list of hero card from the site settings configuration
+  // - Content list will have which entity list should be displayed.
+  // - Content map will have which map should be displayed.
+  // - Card will pull list of card from the site settings configuration
   // We will add text editor and calculated widget to display summary (e.g. total number of projects)
   const buildItemOptions = (item) => {
     switch (item?.type) {
@@ -211,7 +211,7 @@ const ConfigurableLanding = () => {
               id='active-item-value'
               borderless
               className='text-sm'
-              options={ContentListOptions}
+              options={listOptions}
               onChange={(e) => updateItemValue(item.id, e.value)}
             />
             <span className='text-xs italic'>
@@ -229,7 +229,7 @@ const ConfigurableLanding = () => {
               id='active-item-value'
               borderless
               className='text-sm'
-              options={ContentMapOptions}
+              options={mapOptions}
               onChange={(e) => updateItemValue(item.id, e.value)}
             />
           </div>
@@ -269,11 +269,11 @@ const ConfigurableLanding = () => {
       case WidgetTypeOptions.CAROUSEL:
         return <HeroCarousel />
       case WidgetTypeOptions.CARD:
-        return resolveHeroCardValue(item.value)
+        return resolveCardValue(item.value)
       case WidgetTypeOptions.MAP:
-        return resolveContentMapValue(item.value, country)
+        return resolveMapValue(item.value, country)
       case WidgetTypeOptions.LIST:
-        return resolveContentListValue(item.value)
+        return resolveListValue(item.value)
       case WidgetTypeOptions.SUMMARY:
         return <div className='text-xs'>Item type: {item.type}</div>
       case WidgetTypeOptions.SPACER:
@@ -328,35 +328,48 @@ const ConfigurableLanding = () => {
       console.log('Removing item with id: ', itemId)
     }
 
-    const updatedItems = [...items.filter(item => item.id !== itemId)]
-    setItems(updatedItems)
-    saveToLocalStorage('exchange-items', updatedItems)
+    setCurrentItems([...currentItems.filter(id => id !== itemId)])
+    let itemCounts = 0
+    Object.keys(itemLayouts).forEach(key => {
+      if (itemLayouts[key].findIndex(layout => layout.i === itemId) !== -1) {
+        itemCounts++
+      }
+    })
+
+    if (isDebugLoggingEnabled()) {
+      console.log('Item with the same id in the layout: ', itemCounts)
+    }
+
+    // If item is only used in the current layout, then remove it from the item configurations.
+    // TODO: Maybe this consolidation / cleanup can be performed in the backend.
+    // Go through each breakpoint's layout and remove items without reference in the layouts
+    // from the item configurations.
+    if (itemCounts === 1) {
+      setItemConfigurations([...itemConfigurations.filter(item => item.id !== itemId)])
+    }
   }
 
-  // Append an item to the grid-layout.
-  // After appending the item to the item list, the renderer will update itself
-  // because we updated the state.
+  // Append an item to the grid-layout. After appending the item to the item list,
+  // the renderer will update itself because we updated the state.
   const appendItem = (itemType) => {
     const itemId = crypto.randomUUID()
-
     if (isDebugLoggingEnabled()) {
       console.log('Appending new item: ', itemId, ' with type: ', itemType)
     }
 
-    const updatedItems = [...items, {
+    setCurrentItems([...currentItems, itemId])
+    setItemConfigurations([...itemConfigurations, {
       id: itemId,
-      title: `Item ${items.length + 1}`,
+      title: `Item ${itemConfigurations.length + 1}`,
       type: itemType
-    }]
-    setItems(updatedItems)
-    saveToLocalStorage('exchange-items', updatedItems)
+    }])
   }
 
   return (
     <div className='px-4 lg:px-8 xl:px-56'>
       <div className='relative flex flex-col min-h-[70vh]'>
         {editingAllowed &&
-          <div className='absolute top-2 right-0 text-white' style={{ zIndex: 55 }}>
+          <div className='absolute top-2 right-0 text-white' style={{ zIndex: 40 }}>
             <div className='flex flex-row gap-x-1'>
               <button
                 className={classNames(
@@ -381,7 +394,7 @@ const ConfigurableLanding = () => {
         }
         {editingAllowed && editing && (
           <div className='absolute top-2 right-20'>
-            <div className='flex gap-1 text-xs text-white'>
+            <div className='flex flex-wrap gap-1 text-xs text-white'>
               {Object.keys(WidgetTypeOptions).map(key => {
                 return (
                   <button
@@ -400,19 +413,23 @@ const ConfigurableLanding = () => {
             </div>
           </div>
         )}
-        {editing && <div className='spacer h-10' />}
+        {editing && <div className='spacer h-28 md:h-10' />}
         <ResponsiveReactGridLayout
-          draggableCancel='.element-actions'
-          className='exchange-grid-layout'
-          margin={[8, 8]}
-          resizeHandles={['sw', 'se']}
-          cols={{ lg: 12, md: 6, sm: 2 }}
-          breakpoints={{ lg: 1024, md: 768, sm: 640 }}
-          rowHeight={16}
-          layouts={layouts}
+          layouts={itemLayouts}
+          margin={layoutMargins}
+          cols={layoutGridColumns}
+          rowHeight={layoutGridHeight}
+          resizeHandles={resizeHandles}
+          breakpoints={layoutBreakpoints}
           onLayoutChange={onLayoutChange}
+          className='exchange-grid-layout'
+          draggableCancel='.element-actions'
         >
-          {items.map(item => appendElement(item))}
+          {currentItems.map(itemId => {
+            const itemIndex = itemConfigurations.findIndex(item => item.id === itemId)
+
+            return appendElement(itemConfigurations[itemIndex])
+          })}
         </ResponsiveReactGridLayout>
         {activeItem &&
           <ItemOptionsDialog
