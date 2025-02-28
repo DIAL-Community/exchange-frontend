@@ -11,8 +11,7 @@ const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.useCase.header',
-    'ui.useCase.whatIs'
+    'ui.useCase.header'
   ])
 
   useQuery(USE_CASE_POLICY_QUERY, {

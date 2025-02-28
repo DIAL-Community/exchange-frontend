@@ -44,7 +44,8 @@ export const ContentListOptions = [
 export const ContentMapTypes = {
   PROJECT_MAP: 'project-map',
   ENDORSER_MAP: 'endorser-map',
-  AGGREGATOR_MAP: 'aggregator-map'
+  AGGREGATOR_MAP: 'aggregator-map',
+  COUNTRY_MAP: 'country-map'
 }
 
 export const ContentMapOptions = [
@@ -59,5 +60,9 @@ export const ContentMapOptions = [
   {
     label: <FormattedMessage id='landing.map.projects' />,
     value: ContentMapTypes.PROJECT_MAP
+  },
+  {
+    label: <FormattedMessage id='landing.map.country' />,
+    value: ContentMapTypes.COUNTRY_MAP
   }
 ]

@@ -57,6 +57,13 @@ const ProjectDetailRight = forwardRef(({ project, editingAllowed, deletingAllowe
             editorId='project-description'
           />
         </div>
+        { project.location && <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
+            {format('project.location')}:
+            <div className='text-base text-dial-stratos pt-3 font-normal'>{project.location}</div>
+          </div>
+        </div>
+        }
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProjectDetailOrganizations

@@ -16,6 +16,9 @@ export const PROJECTS_MAP_QUERY = gql`
       id
       name
       slug
+      location
+      latitude
+      longitude
       countries {
         id
         name
@@ -27,6 +30,31 @@ export const PROJECTS_MAP_QUERY = gql`
       id
       name
       slug
+      latitude
+      longitude
+    }
+  }
+`
+
+export const COUNTRY_PROJECTS_QUERY = gql`
+  query CountryMap(
+    $search: String
+    $sectors: [String!]
+    $tags: [String!]
+    $products: [String!]
+    $country: String!
+  ) {
+    searchCountryProjects(
+      search: $search,
+      sectors: $sectors,
+      tags: $tags,
+      products: $products
+      country: $country
+    ) {
+      id
+      name
+      slug
+      location
       latitude
       longitude
     }

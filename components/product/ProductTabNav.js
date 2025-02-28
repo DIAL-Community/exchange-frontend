@@ -13,8 +13,7 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
   const router = useRouter()
 
   const [tabNames, setTabNames] = useState([
-    'ui.product.header',
-    'ui.product.whatIs'
+    'ui.product.header'
   ])
 
   useQuery(PRODUCT_POLICY_QUERY, {

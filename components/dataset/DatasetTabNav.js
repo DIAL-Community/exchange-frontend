@@ -9,8 +9,7 @@ const DatasetTabNav = ({ activeTab, setActiveTab }) => {
   const router = useRouter()
 
   const [tabNames, setTabNames] = useState([
-    'ui.dataset.header',
-    'ui.dataset.whatIs'
+    'ui.dataset.header'
   ])
 
   useQuery(DATASET_POLICY_QUERY, {
