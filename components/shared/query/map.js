@@ -65,6 +65,51 @@ export const ORGANIZATIONS_QUERY = gql`
   }
 `
 
+export const PRODUCTS_QUERY = gql`
+  query SearchProducts(
+    $first: Int,
+    $countries: [String!]
+    $products: [String!]
+    ) {
+    searchProducts(
+      first: $first,
+      countries: $countries,
+      products: $products
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        countries {
+          id
+          name
+          slug
+          code
+        }
+      }
+    }
+  }
+`
+
+export const COUNTRIES_QUERY = gql`
+  query Countries($search: String) {
+    countries(search: $search) {
+      id
+      name
+      slug
+      latitude
+      longitude
+    }
+  }
+`
+
 export const AGGREGATORS_MAP_QUERY = gql`
   query SearchOrganizations(
     $aggregatorOnly: Boolean
