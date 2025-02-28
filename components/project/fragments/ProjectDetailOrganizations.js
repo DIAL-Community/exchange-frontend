@@ -1,19 +1,19 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { UPDATE_PROJECT_ORGANIZATIONS } from '../../shared/mutation/project'
-import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
-import OrganizationCard from '../../organization/OrganizationCard'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
+import OrganizationCard from '../../organization/OrganizationCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
 import Select from '../../shared/form/Select'
+import { UPDATE_PROJECT_ORGANIZATIONS } from '../../shared/mutation/project'
+import { ORGANIZATION_SEARCH_QUERY } from '../../shared/query/organization'
 import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
-const ProjectDetailOrganizations = ({ project, canEdit, headerRef }) => {
+const ProjectDetailOrganizations = ({ project, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -75,8 +75,6 @@ const ProjectDetailOrganizations = ({ project, canEdit, headerRef }) => {
 
   const onSubmit = () => {
     if (user) {
-      const { userEmail, userToken } = user
-
       updateProjectOrganizations({
         variables: {
           organizationSlugs: organizations.map(({ slug }) => slug),
@@ -84,8 +82,7 @@ const ProjectDetailOrganizations = ({ project, canEdit, headerRef }) => {
         },
         context: {
           headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
+            'Accept-Language': locale
           }
         }
       })
@@ -156,7 +153,7 @@ const ProjectDetailOrganizations = ({ project, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

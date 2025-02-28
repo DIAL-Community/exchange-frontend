@@ -1,6 +1,5 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
@@ -10,12 +9,9 @@ import { CandidateActionType, ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import DatasetActionButton from './fragments/DatasetActionButton'
 
-const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
+const DatasetDetailRight = forwardRef(({ dataset, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const editPath = `${dataset.slug}/edit`
 
@@ -27,7 +23,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <DatasetActionButton dataset={dataset} actionType={CandidateActionType.REJECT} />
             <DatasetActionButton dataset={dataset} actionType={CandidateActionType.APPROVE} />
@@ -37,7 +33,7 @@ const DatasetDetailRight = forwardRef(({ dataset }, ref) => {
         <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={dataset?.description}
             editorId='dataset-description'

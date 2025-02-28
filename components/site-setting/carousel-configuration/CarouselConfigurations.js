@@ -3,10 +3,10 @@ import { useRouter } from 'next/router'
 import { FaPlus, FaSpinner } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import Breadcrumb from '../../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { UPDATE_SITE_SETTING_CAROUSEL_CONFIGURATIONS } from '../../shared/mutation/siteSetting'
 import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
 import CarouselConfiguration from './CarouselConfiguration'
@@ -22,10 +22,14 @@ const CarouselConfigurations = ({ slug }) => {
     onCompleted: (data) => {
       setCarouselConfigurations(data.siteSetting.carouselConfigurations)
       setCarouselCounter(data.siteSetting.carouselConfigurations.length)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
-  const { user } = useUser()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const { locale } = useRouter()
@@ -48,15 +52,20 @@ const CarouselConfigurations = ({ slug }) => {
         setMutating(false)
         reset()
       }
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.siteSetting) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const buildCommonConfiguration = () => ({
@@ -105,34 +114,30 @@ const CarouselConfigurations = ({ slug }) => {
   }
 
   const executeBulkUpdate = () => {
-    if (user) {
-      setMutating(true)
-      const { userEmail, userToken } = user
-      const variables = {
-        siteSettingSlug: slug,
-        carouselConfigurations
-      }
-
-      bulkUpdateCarousel({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setMutating(true)
+    const variables = {
+      siteSettingSlug: slug,
+      carouselConfigurations
     }
+
+    bulkUpdateCarousel({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const { siteSetting } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[siteSetting.slug] = siteSetting.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 min-h-[75vh]'>

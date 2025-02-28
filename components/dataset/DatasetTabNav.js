@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useUser } from '../../lib/hooks'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { DATASET_POLICY_QUERY } from '../shared/query/dataset'
 import TabNav from '../shared/TabNav'
 
 const DatasetTabNav = ({ activeTab, setActiveTab }) => {
-  const { user } = useUser()
   const router = useRouter()
 
   const [tabNames, setTabNames] = useState([
@@ -12,20 +13,31 @@ const DatasetTabNav = ({ activeTab, setActiveTab }) => {
     'ui.dataset.whatIs'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(DATASET_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.dataset.createNew'),
         'ui.dataset.createNew'
       ])
     }
-  }, [user])
+  })
 
   const createCandidateFn = () => {
     router.push('/candidate/datasets/create')
   }
 
-  return <TabNav { ...{ tabNames, activeTab, setActiveTab }} createFn={createCandidateFn} />
+  return (
+    <TabNav
+      { ...{ tabNames, activeTab, setActiveTab }}
+      createFn={createCandidateFn}
+    />
+  )
 }
 
 export default DatasetTabNav

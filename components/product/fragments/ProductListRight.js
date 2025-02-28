@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { FilterContext } from '../../context/FilterContext'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import ListStructure from './ListStructure'
 import ProductSearchBar from './ProductSearchBar'
 
@@ -16,6 +16,7 @@ const ProductListRight = () => {
   const {
     search,
     buildingBlocks,
+    collectionDisplayType,
     countries,
     isLinkedWithDpi,
     licenseTypes,
@@ -29,25 +30,17 @@ const ProductListRight = () => {
     workflows
   } = useContext(FilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
-
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const { 'product-page': productPage } = query
+  const pageNumber = productPage ? parseInt(productPage) - 1 : 0
+  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'product-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )
@@ -64,18 +57,23 @@ const ProductListRight = () => {
   const { loading, error, data } = useQuery(PRODUCT_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
-      useCases: useCases.map(useCase => useCase.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
-      sectors: sectors.map(sector => sector.value),
       countries: countries.map(country => country.value),
-      tags: tags.map(tag => tag.label),
-      licenseTypes: licenseTypes.map(licenseType => licenseType.value),
-      sdgs: sdgs.map(sdg => sdg.value),
-      workflows: workflows.map(workflow => workflow.id),
-      origins: origins.map(origin => origin.value),
       isLinkedWithDpi,
+      licenseTypes: licenseTypes.map(licenseType => licenseType.value),
+      origins: origins.map(origin => origin.value),
+      sdgs: sdgs.map(sdg => sdg.value),
+      sectors: sectors.map(sector => sector.value),
+      showDpgaOnly,
       showGovStackOnly,
-      showDpgaOnly
+      tags: tags.map(tag => tag.label),
+      useCases: useCases.map(useCase => useCase.value),
+      workflows: workflows.map(workflow => workflow.id)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -84,7 +82,7 @@ const ProductListRight = () => {
       <ProductSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        pageSize={CollectionPageSize[collectionDisplayType]}
       />
       {loading && format('ui.pagination.loadingInfo')}
       {error && format('ui.pagination.loadingInfoError')}
@@ -92,7 +90,7 @@ const ProductListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeProduct.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

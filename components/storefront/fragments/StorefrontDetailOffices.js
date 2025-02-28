@@ -1,19 +1,18 @@
 import React, { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { ToastContext } from '../../../lib/ToastContext'
-import Pill from '../../shared/form/Pill'
-import EditableSection from '../../shared/EditableSection'
 import CityCard from '../../city/CityCard'
+import EditableSection from '../../shared/EditableSection'
 import GeocodeAutocomplete from '../../shared/form/GeocodeAutocomplete'
+import Pill from '../../shared/form/Pill'
 import { UPDATE_ORGANIZATION_OFFICES } from '../../shared/mutation/organization'
-import { useUser } from '../../../lib/hooks'
 import { DisplayType } from '../../utils/constants'
 
 const OFFICE_NAME_PARTS_SEPARATOR = ', '
 
-const StorefrontDetailOffices = ({ organization, canEdit, headerRef }) => {
+const StorefrontDetailOffices = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -28,7 +27,6 @@ const StorefrontDetailOffices = ({ organization, canEdit, headerRef }) => {
   const [isDirty, setIsDirty] = useState(false)
   const [offices, setOffices] = useState(organization.offices?.map(mapOfficeCallback))
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -73,21 +71,17 @@ const StorefrontDetailOffices = ({ organization, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-      updateOrganizationOffices({
-        variables: {
-          slug: organization.slug,
-          offices: offices.map(({ name, ...mutationVars }) => mutationVars) // eslint-disable-line
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateOrganizationOffices({
+      variables: {
+        slug: organization.slug,
+        offices: offices.map(({ name, ...mutationVars }) => mutationVars) // eslint-disable-line
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -137,7 +131,7 @@ const StorefrontDetailOffices = ({ organization, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

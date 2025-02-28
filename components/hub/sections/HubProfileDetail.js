@@ -8,7 +8,7 @@ const HubProfileDetail = ({ user }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       'dashboard': allowedToBrowseAdliPages(user)
         ? format('hub.breadcrumb.dashboard.adli')
@@ -16,10 +16,10 @@ const HubProfileDetail = ({ user }) => {
     }
 
     return map
-  })()
+  }
 
   return (
-    <div className='md:px-4 lg:px-8 xl:px-56 min-h-[80vh]'>
+    <div className='md:px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[80vh]'>
       <div
         className='py-4 px-6 sticky bg-dial-blue-chalk text-dial-stratos'
         style={{ top: 'var(--header-height)' }}

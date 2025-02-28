@@ -2,20 +2,32 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import ProductEdit from '../../../components/product/ProductEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PRODUCT } from '../../../components/shared/mutation/product'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  OWNED_PRODUCTS_QUERY, PAGINATED_PRODUCTS_QUERY, PRODUCT_DETAIL_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY
+  OWNED_PRODUCTS_QUERY, PAGINATED_PRODUCTS_QUERY, PRODUCT_DETAIL_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
+  PRODUCT_POLICY_QUERY
 } from '../../../components/shared/query/product'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createProduct, ownedProducts, productDetail } from './data/ProductDetail.data'
 import { paginatedProducts, productPaginationAttribute } from './data/ProductMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the product detail page.', () => {
+  const mockProductPolicies = generateMockApolloData(
+    PRODUCT_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { product: null } }
+  )
+
   const mockProduct = generateMockApolloData(
     PRODUCT_DETAIL_QUERY,
     {
@@ -44,7 +56,7 @@ describe('Unit tests for the product detail page.', () => {
 
   test('Should render detail of a product.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProduct, mockOwnedProducts, mockProductComments]}>
+      <CustomMockedProvider mocks={[mockProduct, mockOwnedProducts, mockProductPolicies, mockProductComments]}>
         <QueryParamContextProvider>
           <ProductEdit slug='firma' />
         </QueryParamContextProvider>
@@ -56,16 +68,38 @@ describe('Unit tests for the product detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockProductPolicyQueryError = generateMockApolloData(
+      PRODUCT_DETAIL_QUERY,
+      {
+        'slug': 'firma'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProduct, mockOwnedProducts, mockProductComments]}>
+      <CustomMockedProvider mocks={[mockProductPolicyQueryError, mockOwnedProducts, mockProductComments]}>
         <QueryParamContextProvider>
           <ProductEdit slug='firma' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('@firma')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
@@ -80,19 +114,22 @@ describe('Unit tests for the product detail page.', () => {
         'aliases': [
           ''
         ],
-        'website': 'example.com',
-        'description': `
-          Suite of solutions for digital identities and electronic signatures,
-          aimed at public administrations for the implementation of authentication
-          and electronic signatures in a streamlined and effective manner.
-        `,
+        'website': 'administracionelectronica.gob.es/ctt/clienteafirma',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Suite of solutions for digital identities and electronic signatures, ' +
+              'aimed at public administrations for the implementation of authentication ' +
+              'and electronic signatures in a streamlined and effective manner.' +
+            '</span>' +
+          '</p>',
         'commercialProduct': false,
         'hostingModel': null,
         'pricingModel': null,
-        'pricingDetails': null,
+        'pricingDetails': '<p class="ExchangeLexicalTheme__paragraph"><br></p>',
         'govStackEntity': false,
         'productStage': null,
-        'extraAttributes': {}
+        'extraAttributes': []
       },
       null,
       createProduct

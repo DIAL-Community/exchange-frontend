@@ -7,6 +7,7 @@ import 'react-responsive-modal/styles.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-tooltip/dist/react-tooltip.css'
+import 'react-grid-layout/css/styles.css'
 import '../styles/accordion.css'
 import '../styles/card.css'
 import '../styles/drawer.css'
@@ -29,6 +30,7 @@ import '../styles/ui/v1/ribbon.css'
 import '../styles/ui/v1/swiper.css'
 import '../styles/ui/v1/wizard.scss'
 import '../styles/view-content.css'
+import '../styles/lexical.scss'
 import { useEffect, useState } from 'react'
 import { SessionProvider } from 'next-auth/react'
 import { Poppins } from 'next/font/google'
@@ -44,7 +46,7 @@ import ErrorBoundary from '../components/shared/ErrorBoundary'
 import { useApollo } from '../lib/apolloClient'
 import CatalogContext from '../lib/CatalogContext'
 import { ToastContextProvider } from '../lib/ToastContext'
-import * as translations from '../translations'
+import * as default_translations from '../translations/en.js'
 import CatalogSeo from './_seo'
 
 const poppins = Poppins({
@@ -81,7 +83,30 @@ const ApplicationDefaultContexts = ({ children }) => {
 const App = ({ Component, pageProps }) => {
   const router = useRouter()
   const { locale } = router
-  const messages = { ...translations.en, ...translations[locale] }
+  const [messages, setMessages] = useState({})
+
+  const loadMessages = (locale) => {
+    switch (locale) {
+      case 'cs':
+        return import('../translations/cs.js')
+      case 'de':
+        return import('../translations/de.js')
+      case 'es':
+        return import('../translations/es.js')
+      case 'fr':
+        return import('../translations/fr.js')
+      case 'pt':
+        return import('../translations/pt.js')
+      case 'sw':
+        return import('../translations/sw.js')
+      default:
+        return import('../translations/en.js')
+    }
+  }
+
+  useEffect(() => {
+    loadMessages(locale).then((data) => {setMessages({ ...default_translations.en, ...data[locale] })})
+  }, [locale])
 
   const client = useApollo(pageProps)
 

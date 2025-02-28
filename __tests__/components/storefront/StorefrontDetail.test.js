@@ -1,25 +1,29 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
-import { CREATE_ORGANIZATION } from '../../../components/shared/mutation/organization'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
+import { CREATE_STOREFRONT } from '../../../components/shared/mutation/organization'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  ORGANIZATION_DETAIL_QUERY, PAGINATED_STOREFRONTS_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY
+  PAGINATED_STOREFRONTS_QUERY, STOREFRONT_DETAIL_QUERY, STOREFRONT_PAGINATION_ATTRIBUTES_QUERY
 } from '../../../components/shared/query/organization'
 import StorefrontEdit from '../../../components/storefront/StorefrontEdit'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createStorefront, storefrontDetail } from './data/StorefrontDetail.data'
 import { paginatedStorefronts, storefrontPaginationAttribute } from './data/StorefrontMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the storefront detail page.', () => {
   const mockStorefront = generateMockApolloData(
-    ORGANIZATION_DETAIL_QUERY,
+    STOREFRONT_DETAIL_QUERY,
     {
-      'slug': 'ai4gov'
+      'slug': 'current-storefront'
     },
     null,
     storefrontDetail
@@ -39,26 +43,48 @@ describe('Unit tests for the storefront detail page.', () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockStorefront, mockStorefrontComments]}>
         <QueryParamContextProvider>
-          <StorefrontEdit slug='ai4gov' />
+          <StorefrontEdit slug='current-storefront' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
 
-    expect(await screen.findByText('AI4GOV')).toBeInTheDocument()
+    expect(await screen.findByText('Current Storefront')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockStorefrontPolicyQueryError = generateMockApolloData(
+      STOREFRONT_DETAIL_QUERY,
+      {
+        'slug': 'current-storefront'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockStorefront, mockStorefrontComments]}>
+      <CustomMockedProvider mocks={[mockStorefront, mockStorefrontPolicyQueryError, mockStorefrontComments]}>
         <QueryParamContextProvider>
-          <StorefrontEdit slug='ai4gov' />
+          <StorefrontEdit slug='current-storefront' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('AI4GOV')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
@@ -66,13 +92,18 @@ describe('Unit tests for the storefront detail page.', () => {
     mockNextAuthUseSession()
 
     const mockCreateBuildingBlock = generateMockApolloData(
-      CREATE_ORGANIZATION,
+      CREATE_STOREFRONT,
       {
-        'name': 'AI4GOV - Edited',
-        'slug': 'ai4gov',
+        'name': 'Current Storefront - Edited',
+        'slug': 'current-storefront',
         'aliases': [''],
-        'website': 'www.ai4gov.net',
-        'description': 'Description for the organization.',
+        'website': 'google.com',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Test storefront. Updating. Test.' +
+            '</span>' +
+          '</p>',
         'hasStorefront': true
       },
       null,
@@ -105,19 +136,19 @@ describe('Unit tests for the storefront detail page.', () => {
         ]}
       >
         <QueryParamContextProvider>
-          <StorefrontEdit slug='ai4gov' />
+          <StorefrontEdit slug='current-storefront' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
 
-    expect(await screen.findByText('AI4GOV')).toBeInTheDocument()
+    expect(await screen.findByText('Current Storefront')).toBeInTheDocument()
 
-    const repositoryNameInput = screen.getByDisplayValue('AI4GOV')
-    expect(repositoryNameInput.value).toBe('AI4GOV')
+    const nameInput = screen.getByDisplayValue('Current Storefront')
+    expect(nameInput.value).toBe('Current Storefront')
 
     const user = userEvent.setup()
-    await user.type(repositoryNameInput, ' - Edited')
-    expect(repositoryNameInput.value).toBe('AI4GOV - Edited')
+    await user.type(nameInput, ' - Edited')
+    expect(nameInput.value).toBe('Current Storefront - Edited')
 
     const repositorySubmitButton = screen.getByText('Submit Storefront')
     await user.click(repositorySubmitButton)

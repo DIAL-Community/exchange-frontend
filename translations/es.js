@@ -594,7 +594,6 @@ export const es = {
 
   "filter.product.forCovid": "Herramientas de COVID-19",
   "filter.product.endorsed": "Mostrar productos avalados",
-  "filter.product.launchable": "El producto puede ser implementado y lanzado",
   "filter.launchWizard": "Iniciar el asistente de recomendaciones",
 
   "endorsingYear.label": "Año de aprobación",
@@ -1089,7 +1088,6 @@ export const es = {
   "ui.move.autoSaved": "Movimiento guardado...",
 
   "ui.resource.submitted": "Recurso guardado.",
-  "product.launchable": "Producto lanzable",
 
   "location.header": "Ubicación",
 

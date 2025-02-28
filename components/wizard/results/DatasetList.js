@@ -1,8 +1,9 @@
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import DatasetCard from '../../dataset/DatasetCard'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import Pagination from '../../shared/Pagination'
 import { WIZARD_DATASETS_QUERY } from '../../shared/query/wizard'
 import { DisplayType } from '../../utils/constants'
@@ -29,15 +30,20 @@ const DatasetList = ({ headerRef }) => {
       tags: tags.map(tag => tag.label),
       limit: DEFAULT_PAGE_SIZE,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedDatasets && data?.paginationAttributeDataset) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const {

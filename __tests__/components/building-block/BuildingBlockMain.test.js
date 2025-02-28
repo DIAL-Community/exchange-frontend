@@ -3,8 +3,7 @@ import BuildingBlockMain from '../../../components/building-block/BuildingBlockM
 import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import {
-  BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_BUILDING_BLOCKS_QUERY
+  BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_BUILDING_BLOCKS_QUERY
 } from '../../../components/shared/query/buildingBlock'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -39,7 +38,7 @@ describe('Unit tests for the building block main page.', () => {
         categoryTypes: [],
         showMature: false,
         showGovStackOnly: false,
-        limit: 8,
+        limit: 12,
         offset: 0
       },
       null,

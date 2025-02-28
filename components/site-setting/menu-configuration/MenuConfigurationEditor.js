@@ -4,9 +4,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
@@ -23,7 +22,6 @@ const MenuConfigurationEditor = (props) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [mutating, setMutating] = useState(false)
-  const { user, loadingUserSession } = useUser()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
@@ -31,7 +29,12 @@ const MenuConfigurationEditor = (props) => {
   const [updateExchangeMenu, { reset }] = useMutation(UPDATE_SITE_SETTING_MENU_CONFIGURATION, {
     refetchQueries: [{
       query: SITE_SETTING_DETAIL_QUERY,
-      variables: { slug: siteSettingSlug }
+      variables: { slug: siteSettingSlug },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onError: (error) => {
       showFailureMessage(error?.message)
@@ -124,38 +127,32 @@ const MenuConfigurationEditor = (props) => {
   const currentMenuTypeValue = watch('type') ?? { value: menuConfiguration?.type }
 
   const doUpsert = async (data) => {
-    if (user) {
-      // Set the loading indicator.
-      setMutating(true)
-      // Pull all needed data from session and form.
-      const { userEmail, userToken } = user
-      const { name, external, type, destinationUrl } = data
-      // Send graph query to the backend. Set the base variables needed to perform update.
-      const variables = {
-        siteSettingSlug,
-        id: menuConfiguration?.id,
-        name: name ?? menuConfiguration?.name,
-        parentId: parentMenuConfiguration?.id ?? 'n/a',
-        external: external ?? menuConfiguration?.external,
-        type: type ? type?.value : menuConfiguration?.type,
-        destinationUrl: destinationUrl ?? menuConfiguration?.destinationUrl
-      }
-
-      updateExchangeMenu({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    // Set the loading indicator.
+    setMutating(true)
+    // Pull all needed data from session and form.
+    const { name, external, type, destinationUrl } = data
+    // Send graph query to the backend. Set the base variables needed to perform update.
+    const variables = {
+      siteSettingSlug,
+      id: menuConfiguration?.id,
+      name: name ?? menuConfiguration?.name,
+      parentId: parentMenuConfiguration?.id ?? 'n/a',
+      external: external ?? menuConfiguration?.external,
+      type: type ? type?.value : menuConfiguration?.type,
+      destinationUrl: destinationUrl ?? menuConfiguration?.destinationUrl
     }
+    updateExchangeMenu({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : <form onSubmit={handleSubmit(doUpsert)}>
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
       <div className='px-8 py-6'>
         <div className='flex flex-col gap-y-6 text-sm'>
           <div className='text-xl font-semibold'>
@@ -285,6 +282,7 @@ const MenuConfigurationEditor = (props) => {
         </div>
       </div>
     </form>
+  )
 }
 
 export default MenuConfigurationEditor

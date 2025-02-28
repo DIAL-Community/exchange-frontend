@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaArrowDown, FaArrowUp, FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import { generateHeroCardHeaderText } from '../utilities'
 import DeleteHeroCardConfiguration from './DeleteHeroCardConfiguration'
 import HeroCardConfigurationEditor from './HeroCardConfigurationEditor'
@@ -17,7 +16,7 @@ const HeroCardConfiguration = (props) => {
   const [editing, setEditing] = useState('saved' in heroCardConfiguration)
   const [expanded, setExpanded] = useState('saved' in heroCardConfiguration)
 
-  const [modified, setModified] = useState('saved' in heroCardConfiguration)
+  const modified = typeof saved !== 'undefined' || 'saved' in heroCardConfiguration
 
   const toggleEditing = () => {
     if (!editing) {
@@ -27,14 +26,7 @@ const HeroCardConfiguration = (props) => {
     setEditing(!editing)
   }
 
-  useEffect(() => {
-    setModified(typeof saved !== 'undefined')
-  }, [saved])
-
   const toggleExpanded = () => setExpanded(!expanded)
-
-  const { user } = useUser()
-  const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
   const editable = () => ['generic-heroCard'].indexOf(heroCardConfiguration.type) >= 0
 
   const moveHeroCardConfiguration = (direction) => {
@@ -75,7 +67,7 @@ const HeroCardConfiguration = (props) => {
           </div>
           <div className='ml-auto my-auto px-4'>
             <div className='flex gap-2'>
-              {allowedToEdit() && editable() &&
+              {editable() &&
                 <button
                   type='button'
                   onClick={toggleEditing}
@@ -87,7 +79,7 @@ const HeroCardConfiguration = (props) => {
                   </div>
                 </button>
               }
-              {allowedToEdit() && editable() &&
+              {editable() &&
                 <DeleteHeroCardConfiguration
                   siteSettingSlug={siteSettingSlug}
                   heroCardConfiguration={heroCardConfiguration}
@@ -95,24 +87,22 @@ const HeroCardConfiguration = (props) => {
                   setHeroCardConfigurations={setHeroCardConfigurations}
                 />
               }
-              {allowedToEdit() &&
-                <div className='flex gap-1'>
-                  <button
-                    type='button'
-                    onClick={() => moveHeroCardConfiguration(-1)}
-                    className='cursor-pointer bg-white px-2 py-1 rounded'
-                  >
-                    <FaArrowUp className='my-auto text-dial-stratos' />
-                  </button>
-                  <button
-                    type='button'
-                    onClick={() => moveHeroCardConfiguration(1)}
-                    className='cursor-pointer bg-white px-2 py-1 rounded'
-                  >
-                    <FaArrowDown className='my-auto text-dial-stratos' />
-                  </button>
-                </div>
-              }
+              <div className='flex gap-1'>
+                <button
+                  type='button'
+                  onClick={() => moveHeroCardConfiguration(-1)}
+                  className='cursor-pointer bg-white px-2 py-1 rounded'
+                >
+                  <FaArrowUp className='my-auto text-dial-stratos' />
+                </button>
+                <button
+                  type='button'
+                  onClick={() => moveHeroCardConfiguration(1)}
+                  className='cursor-pointer bg-white px-2 py-1 rounded'
+                >
+                  <FaArrowDown className='my-auto text-dial-stratos' />
+                </button>
+              </div>
               <button
                 type='button'
                 onClick={toggleExpanded}

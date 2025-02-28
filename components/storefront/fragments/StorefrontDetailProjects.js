@@ -1,22 +1,22 @@
-import { useApolloClient, useMutation, useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
+import ProjectCard from '../../project/ProjectCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
-import { DisplayType, ObjectType } from '../../utils/constants'
+import Select from '../../shared/form/Select'
+import { handleLoadingQuery } from '../../shared/GraphQueryHandler'
 import { UPDATE_ORGANIZATION_PROJECTS } from '../../shared/mutation/organization'
-import ProjectCard from '../../project/ProjectCard'
-import { PROJECT_SEARCH_QUERY } from '../../shared/query/project'
 import { CREATE_STARRED_OBJECT, REMOVE_STARRED_OBJECT } from '../../shared/mutation/starredObject'
+import { PROJECT_SEARCH_QUERY } from '../../shared/query/project'
 import { STARRED_OBJECT_SEARCH_QUERY } from '../../shared/query/starredObject'
-import { Loading } from '../../shared/FetchStatus'
+import { DisplayType, ObjectType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
-const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
+const StorefrontDetailProjects = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -26,7 +26,6 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
   const [projects, setProjects] = useState(organization.projects)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -104,11 +103,16 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
         ...stars,
         ...starredObjects.map(starredObject => starredObject.starredObjectValue)
       ])
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loadingStarred) {
-    return <Loading />
+    return handleLoadingQuery()
   }
 
   const fetchedProjectsCallback = (data) => (
@@ -136,22 +140,17 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateOrganizationProjects({
-        variables: {
-          projectSlugs: projects.map(({ slug }) => slug),
-          slug: organization.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateOrganizationProjects({
+      variables: {
+        projectSlugs: projects.map(({ slug }) => slug),
+        slug: organization.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -160,45 +159,35 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
   }
 
   const addStarHandler = (project) => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      createStarredObject({
-        variables: {
-          starredObjectType: ObjectType.PROJECT,
-          starredObjectValue: project.id,
-          sourceObjectType: ObjectType.ORGANIZATION,
-          sourceObjectValue: organization.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    createStarredObject({
+      variables: {
+        starredObjectType: ObjectType.PROJECT,
+        starredObjectValue: project.id,
+        sourceObjectType: ObjectType.ORGANIZATION,
+        sourceObjectValue: organization.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const removeStarHandler = (project) => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      removeStarredObject({
-        variables: {
-          starredObjectType: ObjectType.PROJECT,
-          starredObjectValue: project.id,
-          sourceObjectType: ObjectType.ORGANIZATION,
-          sourceObjectValue: organization.id
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    removeStarredObject({
+      variables: {
+        starredObjectType: ObjectType.PROJECT,
+        starredObjectValue: project.id,
+        sourceObjectType: ObjectType.ORGANIZATION,
+        sourceObjectValue: organization.id
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const pinnedProjects = projects
@@ -289,7 +278,7 @@ const StorefrontDetailProjects = ({ organization, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

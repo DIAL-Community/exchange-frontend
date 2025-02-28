@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaArrowDown, FaArrowUp, FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import { generateMenuHeaderText } from '../utilities'
 import DeleteMenuConfiguration from './DeleteMenuConfiguration'
 import MenuConfigurationEditor from './MenuConfigurationEditor'
@@ -18,8 +17,7 @@ const MenuConfiguration = (props) => {
 
   const [editing, setEditing] = useState('saved' in menuConfiguration)
   const [expanded, setExpanded] = useState('saved' in menuConfiguration)
-
-  const [modified, setModified] = useState('saved' in menuConfiguration)
+  const modified = typeof saved !== 'undefined' || 'saved' in menuConfiguration
 
   const toggleEditing = () => {
     if (!editing) {
@@ -29,14 +27,7 @@ const MenuConfiguration = (props) => {
     setEditing(!editing)
   }
 
-  useEffect(() => {
-    setModified(typeof saved !== 'undefined')
-  }, [saved])
-
   const toggleExpanded = () => setExpanded(!expanded)
-
-  const { user } = useUser()
-  const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
   const editable = () => ['menu', 'menu.item', 'separator'].indexOf(type) >= 0
 
   const moveMenuConfiguration = (direction) => {
@@ -97,7 +88,7 @@ const MenuConfiguration = (props) => {
           </div>
           <div className='ml-auto my-auto px-4'>
             <div className='flex gap-2'>
-              {allowedToEdit() && editable() && appendMenuItem &&
+              {editable() && appendMenuItem &&
                 <button
                   type='button'
                   className='bg-white px-2 py-1 rounded'
@@ -109,7 +100,7 @@ const MenuConfiguration = (props) => {
                   </div>
                 </button>
               }
-              {allowedToEdit() && editable() &&
+              {editable() &&
                 <button
                   type='button'
                   onClick={toggleEditing}
@@ -121,7 +112,7 @@ const MenuConfiguration = (props) => {
                   </div>
                 </button>
               }
-              {allowedToEdit() && editable() &&
+              {editable() &&
                 <DeleteMenuConfiguration
                   siteSettingSlug={siteSettingSlug}
                   menuConfiguration={menuConfiguration}
@@ -129,24 +120,22 @@ const MenuConfiguration = (props) => {
                   setMenuConfigurations={setMenuConfigurations}
                 />
               }
-              {allowedToEdit() &&
-                <div className='flex gap-1'>
-                  <button
-                    type='button'
-                    onClick={() => moveMenuConfiguration(-1)}
-                    className='cursor-pointer bg-white px-2 py-1 rounded'
-                  >
-                    <FaArrowUp className='my-auto text-dial-stratos' />
-                  </button>
-                  <button
-                    type='button'
-                    onClick={() => moveMenuConfiguration(1)}
-                    className='cursor-pointer bg-white px-2 py-1 rounded'
-                  >
-                    <FaArrowDown className='my-auto text-dial-stratos' />
-                  </button>
-                </div>
-              }
+              <div className='flex gap-1'>
+                <button
+                  type='button'
+                  onClick={() => moveMenuConfiguration(-1)}
+                  className='cursor-pointer bg-white px-2 py-1 rounded'
+                >
+                  <FaArrowUp className='my-auto text-dial-stratos' />
+                </button>
+                <button
+                  type='button'
+                  onClick={() => moveMenuConfiguration(1)}
+                  className='cursor-pointer bg-white px-2 py-1 rounded'
+                >
+                  <FaArrowDown className='my-auto text-dial-stratos' />
+                </button>
+              </div>
               <button
                 type='button'
                 onClick={toggleExpanded}

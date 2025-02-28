@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaArrowDown, FaArrowUp, FaMinus, FaPencil, FaPlus, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import { generateCarouselHeaderText } from '../utilities'
 import CarouselConfigurationEditor from './CarouselConfigurationEditor'
 import CarouselConfigurationViewer from './CarouselConfigurationViewer'
@@ -17,7 +16,7 @@ const CarouselConfiguration = (props) => {
   const [editing, setEditing] = useState('saved' in carouselConfiguration)
   const [expanded, setExpanded] = useState('saved' in carouselConfiguration)
 
-  const [modified, setModified] = useState('saved' in carouselConfiguration)
+  const modified = typeof saved === 'undefined' || 'saved' in carouselConfiguration
 
   const toggleEditing = () => {
     if (!editing) {
@@ -27,16 +26,7 @@ const CarouselConfiguration = (props) => {
     setEditing(!editing)
   }
 
-  useEffect(() => {
-    if (typeof saved === 'undefined') {
-      setModified(false)
-    }
-  }, [saved])
-
   const toggleExpanded = () => setExpanded(!expanded)
-
-  const { user } = useUser()
-  const allowedToEdit = () => user?.isAdminUser || user?.isEditorUser
   const editable = () => ['generic-carousel'].indexOf(carouselConfiguration.type) >= 0
 
   const moveCarouselConfiguration = (direction) => {
@@ -77,7 +67,7 @@ const CarouselConfiguration = (props) => {
           </div>
           <div className='ml-auto my-auto px-4'>
             <div className='flex gap-2'>
-              {allowedToEdit() && editable() &&
+              {editable() &&
                 <button
                   type='button'
                   onClick={toggleEditing}
@@ -89,32 +79,28 @@ const CarouselConfiguration = (props) => {
                   </div>
                 </button>
               }
-              {allowedToEdit() && editable() &&
-                <DeleteCarouselConfiguration
-                  siteSettingSlug={siteSettingSlug}
-                  carouselConfiguration={carouselConfiguration}
-                  carouselConfigurations={carouselConfigurations}
-                  setCarouselConfigurations={setCarouselConfigurations}
-                />
-              }
-              {allowedToEdit() &&
-                <div className='flex gap-1'>
-                  <button
-                    type='button'
-                    onClick={() => moveCarouselConfiguration(-1)}
-                    className='cursor-pointer bg-white px-2 py-1 rounded'
-                  >
-                    <FaArrowUp className='my-auto text-dial-stratos' />
-                  </button>
-                  <button
-                    type='button'
-                    onClick={() => moveCarouselConfiguration(1)}
-                    className='cursor-pointer bg-white px-2 py-1 rounded'
-                  >
-                    <FaArrowDown className='my-auto text-dial-stratos' />
-                  </button>
-                </div>
-              }
+              <DeleteCarouselConfiguration
+                siteSettingSlug={siteSettingSlug}
+                carouselConfiguration={carouselConfiguration}
+                carouselConfigurations={carouselConfigurations}
+                setCarouselConfigurations={setCarouselConfigurations}
+              />
+              <div className='flex gap-1'>
+                <button
+                  type='button'
+                  onClick={() => moveCarouselConfiguration(-1)}
+                  className='cursor-pointer bg-white px-2 py-1 rounded'
+                >
+                  <FaArrowUp className='my-auto text-dial-stratos' />
+                </button>
+                <button
+                  type='button'
+                  onClick={() => moveCarouselConfiguration(1)}
+                  className='cursor-pointer bg-white px-2 py-1 rounded'
+                >
+                  <FaArrowDown className='my-auto text-dial-stratos' />
+                </button>
+              </div>
               <button
                 type='button'
                 onClick={toggleExpanded}

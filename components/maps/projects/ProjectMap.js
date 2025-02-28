@@ -1,45 +1,76 @@
-import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useCallback, useContext, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { COUNTRIES_QUERY, PROJECTS_QUERY } from '../../shared/query/map'
+import { PROJECTS_MAP_QUERY } from '../../shared/query/map'
 import CountryInfo from './CountryInfo'
 
-const CountryMarkersMaps = (props) => {
-  const CountryMarkersMaps = useMemo(() => dynamic(
-    () => import('./CountryMarkers'),
-    { ssr: false }
-  ), [])
-
-  return <CountryMarkersMaps {...props} />
-}
-
-const DEFAULT_PAGE_SIZE = 10000
-
-const ProjectMap = () => {
-  const [selectedCountry, setSelectedCountry] = useState('')
-  const { sectors, tags, products } = useContext(FilterContext)
-
+const ProjectMap = ({ initialCountry }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading: loadingProjects, data: projectData } = useQuery(PROJECTS_QUERY, {
+  const [selectedCountryName, setSelectedCountryName] = useState('')
+  const { sectors, tags, products } = useContext(FilterContext)
+
+  const [containerHeight, setContainerHeight] = useState(0)
+  const observedElementRef = useRef(null)
+
+  useEffect(() => {
+    if (observedElementRef.current) {
+      const observer = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          setContainerHeight(entry.contentRect.height)
+        }
+      })
+
+      observer.observe(observedElementRef.current)
+
+      return () => {
+        observer.disconnect()
+      }
+    }
+  }, [])
+
+  const ProjectLeaflet = useMemo(() => dynamic(
+    () => import('./ProjectLeaflet'),
+    { ssr: false }
+  ), [])
+
+  const { loading, data } = useQuery(PROJECTS_MAP_QUERY, {
     variables: {
-      first: DEFAULT_PAGE_SIZE,
+      search: '',
       sectors: sectors.map(sector => sector.value),
       tags: tags.map(tag => tag.label),
       products: products.map(product => product.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
-  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY)
-
-  // Group project into map of countries with projects
+  // Assign projects to the country. Creating map of countries with projects.
+  // {
+  //   "Afghanistan": {
+  //     "name": "Afghanistan",
+  //     "latitude": 33,
+  //     "longitude": 65,
+  //     "projects": [
+  //       {
+  //         "name": "Project 1",
+  //         "slug": "project-1"
+  //       }
+  //     ]
+  //   },
+  //   ...
+  // }
   const countriesWithProjects = (() => {
     const countriesWithProjects = {}
-    if (countryData) {
-      const { countries } = countryData
+    if (data) {
+      const { countries } = data
       countries.forEach(country => {
         countriesWithProjects[country.name] = {
           name: country.name,
@@ -48,11 +79,9 @@ const ProjectMap = () => {
           projects: []
         }
       })
-    }
 
-    if (projectData) {
-      const { searchProjects: { nodes } } = projectData
-      nodes.forEach(project => {
+      const { searchProjects: projects } = data
+      projects.forEach(project => {
         project.countries.forEach(country => {
           const currentCountry = countriesWithProjects[country.name]
           currentCountry?.projects.push({ name: project.name, slug: project.slug })
@@ -63,12 +92,11 @@ const ProjectMap = () => {
     return countriesWithProjects
   })()
 
-  const country = countriesWithProjects[selectedCountry]
-  const loading = loadingProjects || loadingCountries
+  const country = countriesWithProjects[selectedCountryName]
 
   return (
-    <div className='min-h-[10vh]'>
-      <div className='flex flex-row bg-dial-iris-blue rounded-md relative'>
+    <div className='project-map w-full h-full' ref={observedElementRef}>
+      <div className='flex flex-row relative h-full'>
         {loading &&
           <div className='absolute right-3 px-3 py-2 text-sm' style={{ zIndex: 19 }}>
             <div className='text-sm text-dial-stratos'>
@@ -76,9 +104,11 @@ const ProjectMap = () => {
             </div>
           </div>
         }
-        <CountryMarkersMaps
-          countries={countriesWithProjects}
-          setSelectedCountry={setSelectedCountry}
+        <ProjectLeaflet
+          initialCountry={initialCountry}
+          containerHeight={containerHeight}
+          countriesWithProjects={countriesWithProjects}
+          setSelectedCountryName={setSelectedCountryName}
         />
         <CountryInfo country={country} />
       </div>

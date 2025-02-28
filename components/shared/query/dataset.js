@@ -61,6 +61,7 @@ export const PAGINATED_DATASETS_QUERY = gql`
       slug
       tags
       imageFile
+      datasetType
       parsedDescription
       datasetDescription {
         id
@@ -73,6 +74,14 @@ export const PAGINATED_DATASETS_QUERY = gql`
       sectors {
         id
       }
+    }
+  }
+`
+
+export const DATASET_POLICY_QUERY = gql`
+  query Dataset($slug: String!) {
+    dataset(slug: $slug) {
+      id
     }
   }
 `

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FaLinkedin, FaSquareFacebook, FaSquareInstagram, FaSquareXTwitter } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
 import { allowedToBrowseAdliPages } from '../admin/utilities'
@@ -24,7 +25,12 @@ const HubExpertNetwork = () => {
   }
 
   const { loading, error, data } = useQuery(HUB_CONTACTS_QUERY, {
-    variables: {}
+    variables: {},
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (
@@ -36,12 +42,12 @@ const HubExpertNetwork = () => {
       />
       <div className='absolute w-full left-1/2 -translate-x-1/2' style={{ top: 'var(--ui-header-height)' }}>
         <div className='max-w-catalog mx-auto py-12'>
-          <div className='text-2xl px-4 lg:px-8 xl:px-56 text-dial-gray'>
+          <div className='text-2xl px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray'>
             ADLI Network
           </div>
         </div>
       </div>
-      <div className='px-4 lg:px-8 xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[40vh] 2xl:min-h-[50vh]'>
         <div className='flex flex-col gap-12'>
           <div className='flex flex-col 2xl:flex-row gap-6'>
             <div className='text-justify 2xl:max-w-4xl line-clamp-6'>
@@ -86,7 +92,8 @@ const HubExpertNetwork = () => {
           {loading
             ? format('general.fetchingData')
             : error
-              ? format('general.fetchError')
+              ? (user && allowedToBrowseAdliPages(user)) ? format('general.fetchError') :
+                format('ui.general.error.forbidden')
               : data.hubContacts
                 ? <NetworkMembers
                   members={

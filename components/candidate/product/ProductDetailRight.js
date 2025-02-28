@@ -1,6 +1,5 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
@@ -12,12 +11,9 @@ import { prependUrlWithProtocol } from '../../utils/utilities'
 import CandidateStatusWorkflow from '../CandidateStatusWorkflow'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 
-const ProductDetailRight = forwardRef(({ product }, ref) => {
+const ProductDetailRight = forwardRef(({ product, editingAllowed, approvingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const editPath = `${product.slug}/edit`
 
@@ -26,10 +22,68 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
     { value: 'ui.comment.label', ref: commentsSectionRef }
   ]), [])
 
+  const renderExtraAttributes = (extraAttribute) => {
+    const { type, value } = extraAttribute
+    if (!value) {
+      return (
+        <div className='text-sm'>
+          {format('general.na')}
+        </div>
+      )
+    }
+
+    switch (type) {
+      case 'url':
+        return (
+          <div className='flex text-sm'>
+            <a
+              className='border-b border-dial-iris-blue line-clamp-1 break-all'
+              href={prependUrlWithProtocol(value)}
+              target='_blank'
+              rel='noreferrer'
+            >
+              {value}
+            </a>
+          </div>
+        )
+      case 'composite':
+        return (
+          <div className='text-sm flex flex-col gap-y-3'>
+            {extraAttribute.value.map((attributeValue, i) => (
+              <div key={`attribute-value-${i}`} className='flex flex-col gap-y-1'>
+                {Object.keys(attributeValue).map(key => (
+                  <div key={`attribute-value-${i}-${key}`} className='text-sm'>
+                    {attributeValue[key] ? attributeValue[key] : format('general.na')}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )
+      case 'text':
+        return (
+          <div className='text-sm'>
+            {extraAttribute.value}
+          </div>
+        )
+      case 'select':
+        return (
+          <div className='text-sm'>
+            {Array.isArray(extraAttribute.value)
+              ? extraAttribute.value.map(e => e.value).join(', ')
+              : extraAttribute.value.value
+            }
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <EditButton type='link' href={editPath} />
           </div>
@@ -37,7 +91,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={product?.description}
             editorId='product-description'
@@ -59,6 +113,27 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
                 &nbsp;⧉
               </div>
             </div>
+          </>
+        }
+        {product.extraAttributes && product.extraAttributes.length > 0 &&
+          <>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+            <div className='font-semibold text-dial-meadow'>
+              {format('ui.candidateProduct.extraAttributes')}
+            </div>
+            {product.extraAttributes
+              .map((extraAttribute, index) => (
+                <div key={`extra-attribute-${index}`} className='flex flex-col gap-y-1 mb-2'>
+                  <div className='text-sm font-medium text-dial-meadow'>
+                    {extraAttribute.title}
+                  </div>
+                  <div className='text-xs italic'>
+                    {extraAttribute.description}
+                  </div>
+                  {renderExtraAttributes(extraAttribute)}
+                </div>
+              ))
+            }
           </>
         }
         {product.submitterEmail &&
@@ -87,8 +162,9 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         }
         <hr className='border-b border-dial-blue-chalk my-3' />
         <ProductDetailMaturityScores
-          id={product.id}
           slug={product.slug}
+          productId={product.id}
+          editingAllowed={approvingAllowed}
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
@@ -97,6 +173,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           candidate={product}
           objectType={ObjectType.CANDIDATE_PRODUCT}
           mutationQuery={CANDIDATE_PRODUCT_UPDATE_STATUS}
+          editingAllowed={approvingAllowed}
         />
         {`${product.rejected}` === 'true' &&
           <>

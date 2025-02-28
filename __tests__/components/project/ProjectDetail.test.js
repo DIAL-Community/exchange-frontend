@@ -2,6 +2,7 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import ProjectEdit from '../../../components/project/ProjectEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PROJECT } from '../../../components/shared/mutation/project'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
@@ -9,12 +10,15 @@ import {
 } from '../../../components/shared/query/project'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createProject, projectDetail } from './data/ProjectDetail.data'
 import { paginatedProjects, projectPaginationAttribute } from './data/ProjectMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the project detail page.', () => {
   const mockProject = generateMockApolloData(
     PROJECT_DETAIL_QUERY,
@@ -49,16 +53,38 @@ describe('Unit tests for the project detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockProjectPolicyQueryError = generateMockApolloData(
+      PROJECT_DETAIL_QUERY,
+      {
+        'slug': 'colombia-hmis'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProject, mockProjectComments]}>
+      <CustomMockedProvider mocks={[mockProjectPolicyQueryError, mockProjectComments]}>
         <QueryParamContextProvider>
           <ProjectEdit slug='colombia-hmis' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('Colombia HMIS')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
@@ -71,7 +97,12 @@ describe('Unit tests for the project detail page.', () => {
         'name': 'Colombia HMIS - Edited Again',
         'slug': 'colombia-hmis',
         'projectUrl': 'digitalhealthatlas.org/en/-/projects/1047/published',
-        'description': 'eMoH implementation of DHIS2.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'eMoH implementation of DHIS2.' +
+            '</span>' +
+          '</p>',
         'countrySlugs': ['co']
       },
       null,

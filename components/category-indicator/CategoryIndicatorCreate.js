@@ -1,8 +1,9 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
+import { handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { RUBRIC_CATEGORY_QUERY } from '../shared/query/categoryIndicator'
 import CategoryIndicatorForm from './fragments/CategoryIndicatorForm'
 import CategoryIndicatorSimpleLeft from './fragments/CategoryIndicatorSimpleLeft'
@@ -12,20 +13,25 @@ const CategoryIndicatorCreate = ({ categorySlug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(RUBRIC_CATEGORY_QUERY, {
-    variables: { categorySlug }
+    variables: { categorySlug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleMissingData()
   } else if (error) {
-    return <Error />
-  } else if (!data?.categoryIndicator && !data?.rubricCategory) {
-    return <NotFound />
+    return handleQueryError(error)
+  } else if (!data?.rubricCategory) {
+    return handleMissingData()
   }
 
   const { rubricCategory } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       create: format('app.create')
     }
@@ -33,7 +39,7 @@ const CategoryIndicatorCreate = ({ categorySlug }) => {
     map[rubricCategory.slug] = rubricCategory.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
@@ -41,7 +47,7 @@ const CategoryIndicatorCreate = ({ categorySlug }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='flex flex-col lg:flex-row gap-x-8'>
-        <div className='lg:basis-1/3'>
+        <div className='lg:basis-1/3 shrink-0'>
           <CategoryIndicatorSimpleLeft rubricCategory={rubricCategory} />
         </div>
         <div className='lg:basis-2/3'>

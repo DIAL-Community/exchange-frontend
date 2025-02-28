@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { FilterContext } from '../../context/FilterContext'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/buildingBlock'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import BuildingBlockSearchBar from './BuildingBlockSearchBar'
 import ListStructure from './ListStructure'
 
@@ -15,33 +15,26 @@ const BuildingBlockListRight = () => {
 
   const {
     search,
-    categoryTypes,
+    collectionDisplayType,
     sdgs,
-    showGovStackOnly,
-    showMature,
     useCases,
-    workflows
+    workflows,
+    categoryTypes,
+    showMature,
+    showGovStackOnly
   } = useContext(FilterContext)
-
-  const [ pageNumber, setPageNumber ] = useState(0)
-  const [ pageOffset, setPageOffset ] = useState(0)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const { 'building-block-page': buildingBlockPage } = query
+  const pageNumber = buildingBlockPage ? parseInt(buildingBlockPage) - 1 : 0
+  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'building-block-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )
@@ -64,6 +57,11 @@ const BuildingBlockListRight = () => {
       categoryTypes: categoryTypes.map(categoryType => categoryType.value),
       showMature,
       showGovStackOnly
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -72,7 +70,7 @@ const BuildingBlockListRight = () => {
       <BuildingBlockSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        pageSize={CollectionPageSize[collectionDisplayType]}
       />
       { loading && format('ui.pagination.loadingInfo') }
       { error && format('ui.pagination.loadingInfoError') }
@@ -80,7 +78,7 @@ const BuildingBlockListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeBuildingBlock.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

@@ -1,11 +1,12 @@
-import { useIntl } from 'react-intl'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
+import Pagination from '../../shared/Pagination'
 import { CANDIDATE_STATUS_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/candidateStatus'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
-import Pagination from '../../shared/Pagination'
 import CandidateStatusSearchBar from './CandidateStatusSearchBar'
 import ListStructure from './ListStructure'
 
@@ -15,20 +16,12 @@ const CandidateStatusListRight = () => {
 
   const { search } = useContext(FilterContext)
 
-  const [ pageNumber, setPageNumber ] = useState(0)
-  const [ pageOffset, setPageOffset ] = useState(0)
-
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
   const { page } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const pageNumber = page ? parseInt(page) - 1 : 0
+  const pageOffset = pageNumber * DEFAULT_PAGE_SIZE
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
@@ -47,14 +40,14 @@ const CandidateStatusListRight = () => {
     }
   }
 
-  useEffect(() => {
-    setPageNumber(0)
-    setPageOffset(0)
-  }, [search])
-
   const { loading, error, data } = useQuery(CANDIDATE_STATUS_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

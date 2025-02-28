@@ -27,6 +27,14 @@ export const SDG_LIST_QUERY = gql`
   }
 `
 
+export const SDG_POLICY_QUERY = gql`
+  query SDG($slug: String!) {
+    sdg(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const SDG_DETAIL_QUERY = gql`
   query SDG($slug: String!) {
     sdg(slug: $slug) {

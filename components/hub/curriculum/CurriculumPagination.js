@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/playbook'
 import { DPI_TENANT_NAME } from '../constants'
 import HubPagination from '../fragments/HubPagination'
@@ -11,7 +12,12 @@ const CurriculumPagination = ({ pageNumber, onClickHandler, theme='light' }) => 
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data } = useQuery(PLAYBOOK_PAGINATION_ATTRIBUTES_QUERY, {
-    variables: { owner: DPI_TENANT_NAME }
+    variables: { owner: DPI_TENANT_NAME },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {

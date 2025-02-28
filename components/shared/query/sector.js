@@ -47,6 +47,14 @@ export const PAGINATED_SECTORS_QUERY = gql`
   }
 `
 
+export const SECTOR_POLICY_QUERY = gql`
+  query Sector($slug: String!) {
+    sector(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const SECTOR_DETAIL_QUERY = gql`
   query Sector($slug: String!) {
     sector(slug: $slug) {

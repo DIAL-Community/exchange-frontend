@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { FormattedDate, useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { PAGINATED_MESSAGES_QUERY } from '../../shared/query/message'
 import { DPI_ANNOUNCEMENT_MESSAGE_TYPE, findMessageTypeLabel, MESSAGE_PAGE_SIZE } from '../message/constant'
 import MessagePagination from '../message/MessagePagination'
@@ -51,6 +52,11 @@ const AnnouncementList = ({ pageNumber }) => {
       messageType: DPI_ANNOUNCEMENT_MESSAGE_TYPE,
       limit: MESSAGE_PAGE_SIZE,
       offset: pageNumber * MESSAGE_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -89,7 +95,7 @@ const HubAnnouncements = ({ stripeIndex }) => {
 
   return (
     <div className={`announcement-section ${stripeClasses(stripeIndex)}`}>
-      <div className='px-4 lg:px-8 xl:px-56'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56'>
         <div className='text-2xl py-6'>
           {format('hub.announcement.header')}
         </div>

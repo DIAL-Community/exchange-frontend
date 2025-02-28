@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import TabNav from '../shared/TabNav'
 
 const ProfileTabNav = ({ activeTab, setActiveTab }) => {
-  const [tabNames] = useState([
+  const tabNames = [
     'ui.profile.label',
-    'ui.profile.bookmark'
-  ])
+    'ui.profile.bookmark',
+    'ui.profile.candidateProducts'
+  ]
 
   return (
     <TabNav

@@ -10,11 +10,12 @@ import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useLazyQuery, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import CreateButton from '../../shared/form/CreateButton'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { COMMENTS_COUNT_QUERY } from '../../shared/query/comment'
 import { MOVE_PREVIEW_QUERY, PLAY_QUERY } from '../../shared/query/play'
 import { ObjectType } from '../../utils/constants'
@@ -184,7 +185,12 @@ const ModuleCommentCount = ({ curriculumSlug, module, locale }) => {
 
   const { data, loading, error } = useQuery(COMMENTS_COUNT_QUERY, {
     variables: { commentObjectType: ObjectType.PLAY, commentObjectId: parseInt(module.id) },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (
@@ -212,7 +218,12 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
 
   const { data, loading, error } = useQuery(PLAY_QUERY, {
     variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: DPI_TENANT_NAME },
-    context: { headers: { 'Accept-Language': locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   const { loadingUserSession, user } = useUser()
@@ -244,11 +255,11 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
   }, [scrollRef, moduleRefs, moduleSlug])
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.play) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { play: module } = data

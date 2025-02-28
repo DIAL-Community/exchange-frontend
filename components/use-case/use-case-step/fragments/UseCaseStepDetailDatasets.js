@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import DatasetCard from '../../../dataset/DatasetCard'
 import EditableSection from '../../../shared/EditableSection'
@@ -13,7 +12,7 @@ import { DATASET_SEARCH_QUERY } from '../../../shared/query/dataset'
 import { DisplayType } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
 
-const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
+const UseCaseStepDetailDatasets = ({ useCaseStep, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
   const [datasets, setDatasets] = useState(useCaseStep.datasets)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,22 +72,17 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateUseCaseStepDatasets({
-        variables: {
-          datasetSlugs: datasets.map(({ slug }) => slug),
-          slug: useCaseStep.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateUseCaseStepDatasets({
+      variables: {
+        datasetSlugs: datasets.map(({ slug }) => slug),
+        slug: useCaseStep.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -154,7 +147,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

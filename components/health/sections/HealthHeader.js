@@ -3,6 +3,7 @@ import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { NONE } from '../../shared/menu/MenuCommon'
 import UserMenu from '../../shared/menu/UserMenu'
@@ -73,6 +74,11 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
       userId: user?.id,
       userAuthenticationToken: user?.userToken
     },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    },
     skip: !user,
     onCompleted: (data) => {
       if (data?.userAuthenticationTokenCheck === false) {
@@ -108,7 +114,7 @@ const HealthHeader = ({ isOnAuthPage = false }) => {
 
   return (
     <header className='z-50 sticky top-0 bg-white max-w-catalog mx-auto shadow-md'>
-      <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-56 text-sm'>
+      <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-24 3xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
           <div className='flex gap-1 text-dial-cotton'>
             <img

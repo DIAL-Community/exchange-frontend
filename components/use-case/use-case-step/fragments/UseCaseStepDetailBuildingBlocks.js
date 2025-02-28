@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import EditableSection from '../../../shared/EditableSection'
 import Pill from '../../../shared/form/Pill'
@@ -12,7 +11,7 @@ import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../shared/query/buildingBlock
 import { fetchSelectOptions } from '../../../utils/search'
 import UseCaseBuildingBlockRenderer from '../../custom/BuildingBlockRenderer'
 
-const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, headerRef }) => {
+const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -44,7 +43,6 @@ const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, header
     }
   })
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,22 +72,17 @@ const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, header
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateUseCaseStepBuildingBlocks({
-        variables: {
-          buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug),
-          slug: useCaseStep.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateUseCaseStepBuildingBlocks({
+      variables: {
+        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug),
+        slug: useCaseStep.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -151,7 +144,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCase, useCaseStep, canEdit, header
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

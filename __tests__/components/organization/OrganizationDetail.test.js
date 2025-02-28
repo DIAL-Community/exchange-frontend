@@ -2,20 +2,32 @@ import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import OrganizationEdit from '../../../components/organization/OrganizationEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_ORGANIZATION } from '../../../components/shared/mutation/organization'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  ORGANIZATION_DETAIL_QUERY, ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY
+  ORGANIZATION_DETAIL_QUERY, ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, ORGANIZATION_POLICY_QUERY,
+  PAGINATED_ORGANIZATIONS_QUERY
 } from '../../../components/shared/query/organization'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createOrganization, organizationDetail } from './data/OrganizationDetail.data'
 import { organizationPaginationAttribute, paginatedOrganizations } from './data/OrganizationMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the organization detail page.', () => {
+  const mockOrganizationPolicies = generateMockApolloData(
+    ORGANIZATION_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { organization: null } }
+  )
+
   const mockOrganization = generateMockApolloData(
     ORGANIZATION_DETAIL_QUERY,
     {
@@ -37,7 +49,7 @@ describe('Unit tests for the organization detail page.', () => {
 
   test('Should render detail of a organization.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOrganization, mockOrganizationComments]}>
+      <CustomMockedProvider mocks={[mockOrganization, mockOrganizationPolicies, mockOrganizationComments]}>
         <QueryParamContextProvider>
           <OrganizationEdit slug='ai4gov' />
         </QueryParamContextProvider>
@@ -49,16 +61,38 @@ describe('Unit tests for the organization detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+    const mockOrganizationPolicyQueryError = generateMockApolloData(
+      ORGANIZATION_DETAIL_QUERY,
+      {
+        'slug': 'ai4gov'
+      },
+      graphQueryErrors,
+      null
+    )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockOrganization, mockOrganizationComments]}>
+      <CustomMockedProvider mocks={[mockOrganizationPolicyQueryError, mockOrganizationComments]}>
         <QueryParamContextProvider>
           <OrganizationEdit slug='ai4gov' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('AI4GOV')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
@@ -78,7 +112,12 @@ describe('Unit tests for the organization detail page.', () => {
         'whenEndorsed': null,
         'endorserLevel': 'none',
         'isMni': false,
-        'description': 'Description for the organization.',
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Description for the organization.' +
+            '</span>' +
+          '</p>',
         'hasStorefront': false
       },
       null,

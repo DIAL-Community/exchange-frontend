@@ -12,7 +12,7 @@ const HubBody = () => {
         alt='DIAL Resource Hub - Landing'
         src='/images/hero-image/hub-resource.svg'
       />
-      <div className='absolute top-1/2 -translate-y-1/2 px-4 lg:px-8 xl:px-56 text-dial-cotton'>
+      <div className='absolute top-1/2 -translate-y-1/2 px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-cotton'>
         <div className='flex flex-col gap-2 max-w-prose'>
           <div className='text-3xl leading-tight font-light py-3'>
             {format('hub.landing.main.title')}

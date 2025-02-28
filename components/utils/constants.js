@@ -7,6 +7,16 @@ export const DisplayType = {
   GRID_CARD: 'grid-card'
 }
 
+export const ORIGIN_SLUG_ACRONYMS = {
+  'dial': 'dial',
+  'digital-government-platform-tracker': 'dgpt',
+  'digital-health-atlas': 'dha',
+  'digital-square': 'ds',
+  'indiastack': 'is',
+  'unicef-covid': 'uc',
+  'manually-entered': 'man'
+}
+
 export const ORIGIN_SLUG_EXPANSIONS = {
   'dial': 'Digital Impact Alliance',
   'digital-government-platform-tracker': 'Digital Government Platform Tracker',
@@ -63,24 +73,32 @@ export const ObjectType = {
   PROJECT: 'PROJECT',
   OPPORTUNITY: 'OPPORTUNITY',
   ORGANIZATION: 'ORGANIZATION',
-  CATEGORY_INDICATOR: 'CATEGORY_INDICATOR',
-  RUBRIC_CATEGORY: 'RUBRIC_CATEGORY',
-  PLAYBOOK: 'PLAYBOOK',
   USE_CASE: 'USE_CASE',
+  WORKFLOW: 'WORKFLOW',
+  MOVE: 'MOVE',
+  PLAY: 'PLAY',
+  PLAYBOOK: 'PLAYBOOK',
+  RUBRIC_CATEGORY: 'RUBRIC_CATEGORY',
+  CATEGORY_INDICATOR: 'CATEGORY_INDICATOR',
   CANDIDATE_DATASET: 'CANDIDATE_OPEN_DATA',
   CANDIDATE_ORGANIZATION: 'CANDIDATE_ORGANIZATION',
   CANDIDATE_PRODUCT: 'CANDIDATE_PRODUCT',
   CANDIDATE_RESOURCE: 'CANDIDATE_RESOURCE',
   CANDIDATE_ROLE: 'CANDIDATE_ROLE',
-  RESOURCE: 'RESOURCE',
   TAG: 'TAG',
   SECTOR: 'SECTOR',
-  COUNTRY: 'COUNTRY',
-  CITY: 'CITY',
-  CONTACT: 'CONTACT',
   URL: 'URL',
-  PLAY: 'PLAY',
-  MOVE: 'MOVE'
+  CITY: 'CITY',
+  COUNTRY: 'COUNTRY',
+  REGION: 'REGION',
+  TASK: 'TASK',
+  USER: 'USER',
+  CONTACT: 'CONTACT',
+  RESOURCE: 'RESOURCE',
+  RESOURCE_TOPIC: 'RESOURCE_TOPIC',
+  SITE_SETTING: 'SITE_SETTING',
+  TENANT_SETTING: 'TENANT_SETTING'
+
 }
 
 export const CategoryIndicatorType = {

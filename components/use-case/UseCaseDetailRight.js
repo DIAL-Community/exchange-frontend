@@ -2,7 +2,6 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../lib/hooks'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
@@ -12,16 +11,13 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { DisplayType, ObjectType } from '../utils/constants'
 import WorkflowCard from '../workflow/WorkflowCard'
 import UseCaseBuildingBlockRenderer from './custom/BuildingBlockRenderer'
-import DeleteUseCase from './DeleteUseCase'
+import DeleteUseCase from './fragments/DeleteUseCase'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './fragments/UseCaseDetailTags'
 
-const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
+const UseCaseDetailRight = forwardRef(({ useCase, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !useCase.markdownUrl
 
   const descRef = useRef()
   const stepRef = useRef()
@@ -46,16 +42,14 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {(isAdminUser || isEditorUser) &&
-          <div className='flex gap-x-3 ml-auto'>
-            <EditButton type='link' href={editPath} />
-            {isAdminUser && <DeleteUseCase useCase={useCase} />}
-          </div>
-        }
+        <div className='flex gap-x-3 ml-auto'>
+          { !useCase.markdownUrl && editingAllowed && <EditButton type='link' href={editPath} /> }
+          { deletingAllowed && <DeleteUseCase useCase={useCase} /> }
+        </div>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='use-case-description-block'>
           <HtmlViewer
             initialContent={useCase?.useCaseDescription?.description}
             editorId='use-case-description'
@@ -67,7 +61,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
             <div className='text-xl font-semibold text-dial-blueberry '>
               {format('ui.useCase.detail.steps')}
             </div>
-            {canEdit &&
+            {!useCase.markdownUrl && editingAllowed &&
               <CreateButton
                 type='link'
                 className='ml-auto'
@@ -106,7 +100,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
                       </div>
                       <div className='border border-r border-dial-slate-300' />
                       <div className='text-sm'>
-                        {format('ui.product.header')} ({useCaseStep.product?.length ?? 0})
+                        {format('ui.product.header')} ({useCaseStep.products?.length ?? 0})
                       </div>
                     </div>
                   </div>
@@ -145,7 +139,11 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <UseCaseDetailSdgTargets useCase={useCase} canEdit={canEdit} headerRef={sdgTargetRef}/>
+          <UseCaseDetailSdgTargets
+            useCase={useCase}
+            editingAllowed={!useCase.markdownUrl && editingAllowed}
+            headerRef={sdgTargetRef}
+          />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
@@ -169,7 +167,11 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
         <hr className='border-b border-dial-blue-chalk my-3'/>
         <div className='flex flex-col gap-y-3'>
-          <UseCaseDetailTags useCase={useCase} canEdit={canEdit} headerRef={tagRef} />
+          <UseCaseDetailTags
+            useCase={useCase}
+            editingAllowed={!useCase.markdownUrl && editingAllowed}
+            headerRef={tagRef}
+          />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>

@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useIntl } from 'react-intl'
+import { useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { currentActiveNav, navOptions } from '../utils/header'
-import Select from './form/Select'
 import Breadcrumb from './Breadcrumb'
+import Select from './form/Select'
 
 const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
   const { formatMessage } = useIntl()
@@ -12,7 +12,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
   const router = useRouter()
   const { pathname } = router
 
-  const [currentNav, setCurrentNav] = useState()
+  const currentNav = useMemo(() => currentActiveNav(format, pathname), [format, pathname])
 
   const onNavigationChange = (navigation) => {
     router.push(navigation.value)
@@ -24,18 +24,14 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
     return options.filter(({ label }) => label.indexOf(input) >= 0)
   }
 
-  useEffect(() => {
-    setCurrentNav(currentActiveNav(format, pathname))
-  }, [pathname, format])
-
   return (
     <div className={`${ribbonBg} ribbon-outer rounded-b-[32px] z-40`}>
       <div className='flex flex-col items-center gap-y-1'>
-        <div className='mr-auto px-4 lg:px-8 xl:px-56 my-3'>
+        <div className='mr-auto px-4 lg:px-8 xl:px-24 3xl:px-56 my-3'>
           <Breadcrumb slugNameMapping={breadcrumb} />
         </div>
         <div className='ribbon-inner w-full my-auto'>
-          <div className='flex px-4 lg:px-8 xl:px-56'>
+          <div className='flex px-4 lg:px-8 xl:px-24 3xl:px-56'>
             <div className='basis-full lg:basis-3/4 flex flex-col gap-4'>
               <div className='flex gap-4 my-auto'>
                 {titleImage}

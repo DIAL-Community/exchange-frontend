@@ -4,9 +4,9 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
-import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import Checkbox from '../../shared/form/Checkbox'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
@@ -27,7 +27,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
 
   const slug = buildingBlock?.slug ?? ''
 
-  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
+  const { user } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -43,10 +43,20 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const [updateBuildingBlock, { reset }] = useMutation(CREATE_BUILDING_BLOCK, {
     refetchQueries: [{
       query: BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
+      variables: { search: '' },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }, {
       query: PAGINATED_BUILDING_BLOCKS_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
     }],
     onCompleted: (data) => {
       const { createBuildingBlock: response } = data
@@ -86,34 +96,30 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   })
 
   const doUpsert = async (data) => {
-    if (user) {
-      setMutating(true)
-      const { userEmail, userToken } = user
-      const { name, maturity, category, imageFile, description, specUrl, govStackEntity } = data
-      const variables = {
-        name,
-        slug,
-        maturity: maturity.value,
-        category: category ? category.value : null,
-        description,
-        specUrl,
-        govStackEntity
-      }
-
-      if (imageFile) {
-        variables.imageFile = imageFile[0]
-      }
-
-      updateBuildingBlock({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': router.locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setMutating(true)
+    const { name, maturity, category, imageFile, description, specUrl, govStackEntity } = data
+    const variables = {
+      name,
+      slug,
+      maturity: maturity.value,
+      category: category ? category.value : null,
+      description,
+      specUrl,
+      govStackEntity
     }
+
+    if (imageFile) {
+      variables.imageFile = imageFile[0]
+    }
+
+    updateBuildingBlock({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': router.locale
+        }
+      }
+    })
   }
 
   const cancelForm = () => {
@@ -121,126 +127,124 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
     router.push(`/${locale}/building-blocks/${slug}`)
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : isAdminUser || isEditorUser ?
-      <form onSubmit={handleSubmit(doUpsert)}>
-        <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-ochre'>
-          <div className='flex flex-col gap-y-6 text-sm'>
-            <div className='text-xl font-semibold'>
-              {buildingBlock
-                ? format('app.editEntity', { entity: buildingBlock.name })
-                : `${format('app.createNew')} ${format('ui.buildingBlock.label')}`}
-            </div>
-            <div className='form-field-wrapper'>
-              <label className='required-field' htmlFor='name'>
-                {format('buildingBlock.name')}
-              </label>
-              <Input
-                {...register('name', { required: format('validation.required') })}
-                id='name'
-                placeholder={format('buildingBlock.name')}
-                isInvalid={errors.name}
-              />
-              {errors.name && <ValidationError value={errors.name?.message} />}
-            </div>
-            <div className='form-field-wrapper'>
-              <label className='required-field'>{format('buildingBlock.maturity')}</label>
-              <Controller
-                name='maturity'
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    isSearch
-                    isBorderless
-                    options={maturityOptions}
-                    placeholder={format('buildingBlock.maturity')}
-                    isInvalid={errors.maturity}
-                  />
-                )}
-                rules={{ required: format('validation.required') }}
-              />
-              {errors.maturity && <ValidationError value={errors.maturity?.message} />}
-            </div>
-            <div className='form-field-wrapper'>
-              <label>{format('buildingBlock.category')}</label>
-              <Controller
-                name='category'
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    isSearch
-                    isBorderless
-                    options={categoryOptions}
-                    placeholder={format('buildingBlock.category')}
-                  />
-                )}
-              />
-            </div>
-            <div className='form-field-wrapper'>
-              <label>{format('buildingBlock.imageFile')}</label>
-              <FileUploader {...register('imageFile')} />
-            </div>
-            <div className='form-field-wrapper'>
-              <label>{format('buildingBlock.specUrl')}</label>
-              <Controller
-                name='specUrl'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <UrlInput
-                    value={value}
-                    onChange={onChange}
-                    placeholder={format('buildingBlock.specUrl')}
-                    id='specUrl'
-                  />
-                )}
-              />
-            </div>
-            {isAdminUser &&
-              <label className='flex gap-x-2 items-center self-start'>
-                <Checkbox {...register('govStackEntity')} />
-                {format('ui.buildingBlock.govStackEntity')}
-              </label>
-            }
-            <div className='flex flex-col gap-y-2'>
-              <label className='required-field'>{format('buildingBlock.description')}</label>
-              <Controller
-                name='description'
-                control={control}
-                render={({ field: { value, onChange } }) => (
-                  <HtmlEditor
-                    editorId='description-editor'
-                    onChange={onChange}
-                    initialContent={value}
-                    placeholder={format('buildingBlock.description')}
-                    isInvalid={errors.description}
-                  />
-                )}
-                rules={{ required: format('validation.required') }}
-              />
-              {errors.description && <ValidationError value={errors.description?.message} />}
-            </div>
-            <div className='flex flex-wrap text-base mt-6 gap-3'>
-              <button type='submit' className='submit-button' disabled={mutating || reverting}>
-                {`${format('app.submit')} ${format('ui.buildingBlock.label')}`}
-                {mutating && <FaSpinner className='spinner ml-3' />}
-              </button>
-              <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>
-                {format('app.cancel')}
-                {reverting && <FaSpinner className='spinner ml-3' />}
-              </button>
-            </div>
-            {buildingBlock?.markdownUrl && (
-              <div className='text-sm italic text-red-500 -mt-3'>
-                {format('buildingBlock.markdownWarning')}
-              </div>
-            )}
+  return (
+    <form onSubmit={handleSubmit(doUpsert)}>
+      <div className='px-4 lg:px-0 py-4 lg:py-6 text-dial-ochre'>
+        <div className='flex flex-col gap-y-6 text-sm'>
+          <div className='text-xl font-semibold'>
+            {buildingBlock
+              ? format('app.editEntity', { entity: buildingBlock.name })
+              : `${format('app.createNew')} ${format('ui.buildingBlock.label')}`}
           </div>
+          <div className='form-field-wrapper'>
+            <label className='required-field' htmlFor='name'>
+              {format('buildingBlock.name')}
+            </label>
+            <Input
+              {...register('name', { required: format('validation.required') })}
+              id='name'
+              placeholder={format('buildingBlock.name')}
+              isInvalid={errors.name}
+            />
+            {errors.name && <ValidationError value={errors.name?.message} />}
+          </div>
+          <div className='form-field-wrapper'>
+            <label className='required-field'>{format('buildingBlock.maturity')}</label>
+            <Controller
+              name='maturity'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  isSearch
+                  isBorderless
+                  options={maturityOptions}
+                  placeholder={format('buildingBlock.maturity')}
+                  isInvalid={errors.maturity}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.maturity && <ValidationError value={errors.maturity?.message} />}
+          </div>
+          <div className='form-field-wrapper'>
+            <label>{format('buildingBlock.category')}</label>
+            <Controller
+              name='category'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  isSearch
+                  isBorderless
+                  options={categoryOptions}
+                  placeholder={format('buildingBlock.category')}
+                />
+              )}
+            />
+          </div>
+          <div className='form-field-wrapper'>
+            <label>{format('buildingBlock.imageFile')}</label>
+            <FileUploader {...register('imageFile')} />
+          </div>
+          <div className='form-field-wrapper'>
+            <label>{format('buildingBlock.specUrl')}</label>
+            <Controller
+              name='specUrl'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <UrlInput
+                  value={value}
+                  onChange={onChange}
+                  placeholder={format('buildingBlock.specUrl')}
+                  id='specUrl'
+                />
+              )}
+            />
+          </div>
+          {user?.isAdminUser &&
+            <label className='flex gap-x-2 items-center self-start'>
+              <Checkbox {...register('govStackEntity')} />
+              {format('ui.buildingBlock.govStackEntity')}
+            </label>
+          }
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field'>{format('buildingBlock.description')}</label>
+            <Controller
+              name='description'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <HtmlEditor
+                  editorId='description-editor'
+                  onChange={onChange}
+                  initialContent={value}
+                  placeholder={format('buildingBlock.description')}
+                  isInvalid={errors.description}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
+            />
+            {errors.description && <ValidationError value={errors.description?.message} />}
+          </div>
+          <div className='flex flex-wrap text-base mt-6 gap-3'>
+            <button type='submit' className='submit-button' disabled={mutating || reverting}>
+              {`${format('app.submit')} ${format('ui.buildingBlock.label')}`}
+              {mutating && <FaSpinner className='spinner ml-3' />}
+            </button>
+            <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>
+              {format('app.cancel')}
+              {reverting && <FaSpinner className='spinner ml-3' />}
+            </button>
+          </div>
+          {buildingBlock?.markdownUrl && (
+            <div className='text-sm italic text-red-500 -mt-3'>
+              {format('buildingBlock.markdownWarning')}
+            </div>
+          )}
         </div>
-      </form>
-      : <Unauthorized />
+      </div>
+    </form>
+  )
 })
 
 BuildingBlockForm.displayName = 'BuildingBlockForm'

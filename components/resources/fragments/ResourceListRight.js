@@ -1,7 +1,8 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ResourceFilterContext } from '../../context/ResourceFilterContext'
 import Pagination from '../../shared/Pagination'
 import { RESOURCE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/resource'
@@ -15,20 +16,12 @@ const ResourceListRight = () => {
 
   const { search, resourceTypes, resourceTopics, resourceTags, resourceCountries } = useContext(ResourceFilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
-
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
   const { page } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const pageNumber = page ? parseInt(page) - 1 : 0
+  const pageOffset = pageNumber * DEFAULT_PAGE_SIZE
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
@@ -53,6 +46,11 @@ const ResourceListRight = () => {
       countries: resourceCountries.map(r => r.value),
       resourceTypes: resourceTypes.map(r => r.label),
       resourceTopics: resourceTopics.map(r => r.label)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

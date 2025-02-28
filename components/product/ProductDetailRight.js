@@ -1,15 +1,15 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-import { useIntl } from 'react-intl'
-import { useProductOwnerUser, useUser } from '../../lib/hooks'
+import { FormattedMessage, useIntl } from 'react-intl'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import CreateButton from '../shared/form/CreateButton'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import { DisplayType, ObjectType } from '../utils/constants'
-import DeleteProduct from './DeleteProduct'
+import { DisplayType, ObjectType, ProductExtraAttributeNames } from '../utils/constants'
+import { prependUrlWithProtocol } from '../utils/utilities'
+import DeleteProduct from './fragments/DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
 import ProductDetailCategories from './fragments/ProductDetailCategories'
 import ProductDetailCountries from './fragments/ProductDetailCountries'
@@ -177,13 +177,67 @@ const ProductIncluded = ({ product, headerRef }) => {
   )
 }
 
-const ProductDetailRight = forwardRef(({ product }, ref) => {
+const renderExtraAttributes = (extraAttribute) => {
+  const { type, value } = extraAttribute
+  if (!value) {
+    return (
+      <div className='text-sm'>
+        <FormattedMessage id='general.na' />
+      </div>
+    )
+  }
+
+  switch (type) {
+    case 'url':
+      return (
+        <div className='flex text-sm'>
+          <a
+            className='border-b border-dial-iris-blue line-clamp-1 break-all'
+            href={prependUrlWithProtocol(value)}
+            target='_blank'
+            rel='noreferrer'
+          >
+            {value}
+          </a>
+        </div>
+      )
+    case 'composite':
+      return (
+        <div className='text-sm flex flex-col gap-y-3'>
+          {extraAttribute.value.map((attributeValue, i) => (
+            <div key={`attribute-value-${i}`} className='flex flex-col gap-y-1'>
+              {Object.keys(attributeValue).map(key => (
+                <div key={`attribute-value-${i}-${key}`} className='text-sm'>
+                  {attributeValue[key] ? attributeValue[key] : <FormattedMessage id='general.na' />}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )
+    case 'text':
+      return (
+        <div className='text-sm'>
+          {extraAttribute.value}
+        </div>
+      )
+    case 'select':
+      return (
+        <div className='text-sm'>
+          {Array.isArray(extraAttribute.value)
+            ? extraAttribute.value.map(e => e.value).join(', ')
+            : extraAttribute.value.value
+          }
+        </div>
+      )
+    default:
+      return null
+  }
+}
+
+const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const { isProductOwner } = useProductOwnerUser(product)
-  const canEdit = isAdminUser || isEditorUser || isProductOwner
 
   const descRef = useRef()
   const extraRef = useRef()
@@ -211,7 +265,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       { value: 'ui.product.pricing.title', ref: pricingRef },
       { value: 'ui.sdg.header', ref: sdgRef },
       { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-      { value: 'ui.resource.header', ref:resourceRef },
+      { value: 'ui.resource.header', ref: resourceRef },
       { value: 'ui.organization.header', ref: organizationRef },
 
       { value: 'productRepository.header', ref: productRepositoryRef },
@@ -230,47 +284,53 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
     []
   )
 
+  const extraAttributes = product.extraAttributes
+    ? product.extraAttributes.filter(e => ProductExtraAttributeNames.indexOf(e.name) > -1)
+    : []
+
+  const candidateExtraAttributes = product.extraAttributes
+    ? product.extraAttributes.filter(e => ProductExtraAttributeNames.indexOf(e.name) === -1)
+    : []
+
   const editPath = `${product.slug}/edit`
 
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
-          <div className='flex flex-col lg:flex-row gap-3'>
-            {product.approvalStatus &&
-              <div className='px-3 py-1 bg-purple-300 rounded'>
-                <span className='text-sm'>{product.approvalStatus.name}</span>
-              </div>
-            }
-            <div className='flex gap-x-3 ml-auto'>
-              <EditButton type='link' href={editPath} />
-              {isAdminUser && <DeleteProduct product={product} />}
+        <div className='flex flex-col lg:flex-row gap-3'>
+          {product.approvalStatus &&
+            <div className='px-3 py-1 bg-purple-300 rounded'>
+              <span className='text-sm'>{product.approvalStatus.name}</span>
             </div>
+          }
+          <div className='flex gap-x-3 ml-auto'>
+            {editingAllowed && <EditButton type='link' href={editPath} />}
+            {deletingAllowed && <DeleteProduct product={product} />}
           </div>
-        )}
+        </div>
         <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={product?.productDescription?.description}
             editorId='product-description'
           />
         </div>
-        {product?.extraAttributes.length > 0 && (
+        {extraAttributes.length > 0 && (
           <>
             <hr className='border-b border-dial-blue-chalk my-3' />
             <div className='flex flex-col gap-y-3'>
               <div className='text-xl font-semibold text-dial-meadow pb-3' ref={extraRef}>
                 {format('ui.product.extraAttributes')}
               </div>
-              {product.extraAttributes.map((attr, i) => {
+              {extraAttributes.map((attr, i) => {
                 return (
                   <div key={i} className='flex flex-row gap-3 text-sm'>
                     {attr.name}: {attr.value}
                   </div>
-                )}
-              )}
+                )
+              })}
             </div>
           </>
         )}
@@ -296,25 +356,25 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
           </div>
           <div className='text-sm flex flex-row gap-2'>
             {format('ui.product.pricing.detailPricing')}:
-            <div className='inline'>
-              {product.pricingDetails
-                ? <HtmlViewer
-                  className='-mb-12'
-                  initialContent={product?.pricingDetails}
-                  editorId='pricing-details'
-                />
-                : <div className='font-semibold inline'>
-                  {format('general.na')}
-                </div>
-              }
-            </div>
+          </div>
+          <div className='inline'>
+            {product.pricingDetails
+              ? <HtmlViewer
+                className='-mb-12'
+                initialContent={product?.pricingDetails}
+                editorId='pricing-details'
+              />
+              : <div className='font-semibold inline'>
+                {format('general.na')}
+              </div>
+            }
           </div>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProductDetailSdgs
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={sdgRef}
           />
         </div>
@@ -322,7 +382,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailBuildingBlocks
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>
@@ -330,7 +390,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailResources
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={resourceRef}
           />
         </div>
@@ -338,7 +398,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailOrganizations
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={organizationRef}
           />
         </div>
@@ -346,7 +406,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailCountries
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
         </div>
@@ -354,7 +414,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <ProductDetailCategories
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={categoryRef}
           />
         </div>
@@ -368,7 +428,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             <div className='text-dial-meadow text-lg font-semibold' ref={productRepositoryRef}>
               {format('productRepository.header')}
             </div>
-            {canEdit &&
+            {editingAllowed &&
               <div className='ml-auto'>
                 <CreateButton
                   label={format('app.create')}
@@ -382,12 +442,12 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
             {format('ui.product.overview.repository')}
           </div>
           {!product.mainRepository &&
-          <div className='text-sm text-dial-stratos'>
-            {format( 'ui.common.detail.noData', {
-              entity: format('productRepository.label'),
-              base: format('ui.product.label')
-            })}
-          </div>
+            <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: format('productRepository.label'),
+                base: format('ui.product.label')
+              })}
+            </div>
           }
           {product.mainRepository &&
             <ProductRepositoryCard
@@ -401,7 +461,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='border-b border-transparent my-2' />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
           <ProductSource product={product} headerRef={productSourceRef} />
-          <ProductEndorser product={product} headerRef={productEndorserRef}/>
+          <ProductEndorser product={product} headerRef={productEndorserRef} />
         </div>
         <div className='border-b border-transparent my-2' />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
@@ -420,23 +480,45 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
         <div className='border-b border-transparent my-2' />
         <ProductDetailMaturityScores
           slug={product.slug}
+          editingAllowed={editingAllowed}
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
+        {candidateExtraAttributes.length > 0 &&
+          <>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+            <div className='font-semibold text-dial-meadow'>
+              {format('ui.candidateProduct.extraAttributes')}
+            </div>
+            {candidateExtraAttributes
+              .map((extraAttribute, index) => (
+                <div key={`extra-attribute-${index}`} className='flex flex-col gap-y-1 mb-2'>
+                  <div className='text-sm font-medium text-dial-meadow'>
+                    {extraAttribute.title}
+                  </div>
+                  <div className='text-xs italic'>
+                    {extraAttribute.description}
+                  </div>
+                  {renderExtraAttributes(extraAttribute)}
+                </div>
+              ))
+            }
+          </>
+        }
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProductDetailTags
             product={product}
-            canEdit={canEdit}
+            editingAllowed={editingAllowed}
             headerRef={tagRef}
           />
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={product} objectType={ObjectType.PRODUCT} />
-          <hr className='border-b border-dial-slate-200'/>
+          <hr className='border-b border-dial-slate-200' />
           <Share />
-          <hr className='border-b border-dial-slate-200'/>
+          <hr className='border-b border-dial-slate-200' />
         </div>
         <CommentsSection
           commentsSectionRef={commentsSectionRef}

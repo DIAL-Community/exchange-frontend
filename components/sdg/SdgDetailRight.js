@@ -79,7 +79,7 @@ const SdgDetailRight = forwardRef(({ sdg }, ref) => {
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           {sdg.longTitle}
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />

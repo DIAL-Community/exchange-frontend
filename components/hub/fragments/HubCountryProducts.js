@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ProductCard from '../../product/ProductCard'
 import { DisplayType } from '../../utils/constants'
@@ -11,16 +11,7 @@ const HubCountryProducts = ({ country }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [pageNumber, setPageNumber] = useState(0)
-  const [displayedProducts, setDisplayedProducts] = useState([])
-
-  useEffect(() => {
-    setDisplayedProducts(
-      country.dpiProducts.slice(
-        0,
-        DEFAULT_PAGE_SIZE
-      )
-    )
-  }, [country])
+  const [displayedProducts, setDisplayedProducts] = useState(country.dpiProducts.slice(0, DEFAULT_PAGE_SIZE))
 
   const onClickHandler = useCallback(({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
@@ -35,7 +26,7 @@ const HubCountryProducts = ({ country }) => {
 
   return (
     <div className='product-section bg-dial-sapphire'>
-      <div className='px-4 lg:px-8 xl:px-56 flex flex-col'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 flex flex-col'>
         <div className='text-xl font-medium text-center py-6 text-dial-cotton'>
           {format('ui.product.header')}
         </div>

@@ -8,11 +8,12 @@ import {
 import { FaArrowLeft, FaSliders } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import BarChart from '../shared/BarChart'
 import Breadcrumb from '../shared/Breadcrumb'
 import Dialog from '../shared/Dialog'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import Checkbox from '../shared/form/Checkbox'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { PRODUCT_COMPARE_QUERY } from '../shared/query/product'
 import RadarChart from '../shared/RadarChart'
 
@@ -178,26 +179,31 @@ const ProductCompare = ({ slugs }) => {
   }, {}))
 
   const { loading, error, data } = useQuery(PRODUCT_COMPARE_QUERY, {
-    variables: { slugs }
+    variables: { slugs },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.compareProducts) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { compareProducts: { products, intersections: commonValues, similarities } } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       compare: format('app.compare')
     }
 
     return map
-  })()
+  }
 
   const renderValueField = (fieldValue, fieldName) => {
     const commonValue = commonValues[fieldName]
@@ -266,7 +272,7 @@ const ProductCompare = ({ slugs }) => {
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
       <div className='px-4 lg:px-6 py-4 bg-dial-spearmint text-dial-stratos ribbon-detail z-40'>
-        <Breadcrumb slugNameMapping={slugNameMapping}/>
+        <Breadcrumb slugNameMapping={slugNameMapping()}/>
       </div>
       <div className='flex flex-col py-8'>
         <div className='flex'>

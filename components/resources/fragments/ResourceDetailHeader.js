@@ -1,17 +1,13 @@
 import { useCallback } from 'react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import ResourceDetailCountries from './ResourceDetailCountries'
 import ResourceDetailTags from './ResourceDetailTags'
 
-const ResourceDetailHeader = ({ resource }) => {
+const ResourceDetailHeader = ({ resource, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const generateResourceUrl = () => {
     let resourceLinkUrl
@@ -114,9 +110,9 @@ const ResourceDetailHeader = ({ resource }) => {
         </>
       }
       <hr className='border-b border-dial-blue-chalk my-3' />
-      <ResourceDetailCountries resource={resource} canEdit={canEdit} />
+      <ResourceDetailCountries resource={resource} editingAllowed={editingAllowed} />
       <hr className='border-b border-dial-blue-chalk my-3' />
-      <ResourceDetailTags resource={resource} canEdit={canEdit} />
+      <ResourceDetailTags resource={resource} editingAllowed={editingAllowed} />
     </div>
   )
 }

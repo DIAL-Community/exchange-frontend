@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client'
 
+export const SITE_SETTING_POLICY_QUERY = gql`
+  query SiteSetting($slug: String) {
+    siteSetting(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const SITE_SETTING_DETAIL_QUERY = gql`
   query SiteSetting($slug: String) {
     siteSetting(slug: $slug) {
@@ -43,6 +51,7 @@ export const SITE_SETTINGS_QUERY = gql`
     siteSettings {
       id
       name
+      slug
       description
       carouselConfigurations
       menuConfigurations
@@ -51,10 +60,22 @@ export const SITE_SETTINGS_QUERY = gql`
   }
 `
 
+export const DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY = gql`
+  query DefaultSiteSettingLanding {
+    defaultSiteSetting {
+      id
+      slug
+      itemLayouts
+      itemConfigurations
+    }
+  }
+`
+
 export const INITIAL_IMAGE_URL_QUERY = gql`
   query DefaultSiteSetting {
     defaultSiteSetting {
       id
+      slug
       faviconUrl
       openGraphLogoUrl
     }

@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
 import { CANDIDATE_RESOURCE_ACTION } from '../../../shared/mutation/candidateResource'
 import { CandidateActionType } from '../../../utils/constants'
 
@@ -13,7 +12,6 @@ const ResourceActionButton = ({ candidateResource, actionType }) => {
   const [loading, setLoading] = useState(false)
 
   const { locale } = useRouter()
-  const { user } = useUser()
 
   const [candidateResourceApproval, { reset }] = useMutation(CANDIDATE_RESOURCE_ACTION, {
     onCompleted: (data) => {
@@ -32,26 +30,21 @@ const ResourceActionButton = ({ candidateResource, actionType }) => {
   })
 
   const onClickHandler = async (actionType) => {
-    if (user) {
-      setLoading(true)
-      const { userEmail, userToken } = user
-      const variables = {
-        slug: candidateResource.slug,
-        action: actionType === CandidateActionType.REJECT
-          ? CandidateActionType.REJECT
-          : CandidateActionType.APPROVE
-      }
-
-      candidateResourceApproval({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setLoading(true)
+    const variables = {
+      slug: candidateResource.slug,
+      action: actionType === CandidateActionType.REJECT
+        ? CandidateActionType.REJECT
+        : CandidateActionType.APPROVE
     }
+    candidateResourceApproval({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   return (

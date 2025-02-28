@@ -96,7 +96,7 @@ const MessageDetail = ({ message }) => {
       <div className='lg:text-xl font-semibold'>
         {format('hub.broadcast.messageType')}
       </div>
-      <div className='block'>
+      <div className='description-block'>
         {findMessageTypeLabel(message.messageType, format)}
       </div>
       <hr className='border-b border-dashed border-dial-blue-chalk my-3' />

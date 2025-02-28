@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import Cookies from 'js-cookie'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
@@ -21,11 +21,7 @@ const LandingPage = ({ defaultTenants }) => {
   const STEP_INDEX_START = 0
   const STEP_INDEX_END = OVERVIEW_INTRO_STEPS.length - 1
 
-  const [enableIntro, setEnableIntro] = useState(false)
-  useEffect(() => {
-    const enableIntro = String(Cookies.get(OVERVIEW_INTRO_KEY)) !== 'true'
-    setEnableIntro(enableIntro)
-  }, [setEnableIntro])
+  const enableIntro = String(Cookies.get(OVERVIEW_INTRO_KEY)) !== 'true'
 
   return (
     <>

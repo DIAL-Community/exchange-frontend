@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { FilterContext } from '../../context/FilterContext'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import ListStructure from './ListStructure'
 import OrganizationSearchBar from './OrganizationSearchBar'
 
@@ -13,27 +13,27 @@ const OrganizationListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { aggregator, endorser, sectors, countries, years, search } = useContext(FilterContext)
-
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const {
+    aggregator,
+    collectionDisplayType,
+    endorser,
+    sectors,
+    countries,
+    years,
+    search
+  } = useContext(FilterContext)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const { 'organization-page': organizationPage } = query
+  const pageNumber = organizationPage ? parseInt(organizationPage) - 1 : 0
+  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'organization-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )
@@ -55,6 +55,11 @@ const OrganizationListRight = () => {
       years: years.map(year => year.value),
       aggregatorOnly: aggregator,
       endorserOnly: endorser
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -63,7 +68,7 @@ const OrganizationListRight = () => {
       <OrganizationSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        defaultPageSize={CollectionPageSize[collectionDisplayType]}
       />
       {loading && format('ui.pagination.loadingInfo')}
       {error && format('ui.pagination.loadingInfoError')}
@@ -71,7 +76,7 @@ const OrganizationListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeOrganization.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

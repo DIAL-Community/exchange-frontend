@@ -1,6 +1,6 @@
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
 import { useUser } from '../../lib/hooks'
 
 const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, createFn }) => {
@@ -39,7 +39,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, 
 
   return (
     <div className='sticky-under-ribbon bg-white z-30'>
-      <div className='px-4 lg:px-8 xl:px-56'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56'>
         <div className='flex flex-row gap-3'>
           <ul className='flex flex-row list-none gap-x-1'>
             {tabNames.map((tabName, index) => {
@@ -67,7 +67,9 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, 
           <div className='hidden lg:block ml-auto my-auto'>
             <div className='text-xs text-white font-semibold'>
               <div className='flex flex-row gap-x-2'>
-                {createFn && activeTab == 0 && user && !user.isAdminUser &&
+                {createFn &&
+                  activeTab == 0 &&
+                  user && !user?.isAdminUser &&
                   <div className='bg-dial-iris-blue rounded-md'>
                     <a href='#' onClick={createClicked}>
                       <div className='px-5 py-1.5'>
@@ -76,7 +78,9 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, 
                     </a>
                   </div>
                 }
-                {exportJsonFn && activeTab == 0 && user &&
+                {exportJsonFn &&
+                  activeTab == 0 &&
+                  user &&
                   <div className='bg-dial-iris-blue rounded-md'>
                     <a href='#' onClick={exportJsonClicked}>
                       <div className='px-5 py-1.5'>
@@ -85,7 +89,9 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, 
                     </a>
                   </div>
                 }
-                {exportCsvFn && activeTab == 0 && user &&
+                {exportCsvFn &&
+                  activeTab == 0 &&
+                  user &&
                   <div className='bg-dial-iris-blue rounded-md'>
                     <a href='#' onClick={exportCsvClicked}>
                       <div className='px-5 py-1.5'>
@@ -101,7 +107,8 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn, 
         <div className='shadow-md-lg'>
           <div className='border-b-8 border-dial-slate-500' />
         </div>
-        {activeTab === 0 && user &&
+        {activeTab === 0 &&
+          user &&
           <div className='block lg:hidden ml-auto my-3'>
             <div className='text-xs text-white font-semibold'>
               <div className='flex flex-row gap-x-2'>

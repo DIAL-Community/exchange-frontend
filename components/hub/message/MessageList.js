@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { PAGINATED_MESSAGES_QUERY } from '../../shared/query/message'
 import { MESSAGE_PAGE_SIZE } from './constant'
 import MessageCard from './MessageCard'
@@ -15,6 +16,11 @@ const MessageList = ({ pageNumber, search, messageType }) => {
       messageType,
       limit: MESSAGE_PAGE_SIZE,
       offset: pageNumber * MESSAGE_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

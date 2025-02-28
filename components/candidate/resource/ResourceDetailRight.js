@@ -1,6 +1,5 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
 import CommentsSection from '../../shared/comment/CommentsSection'
 import Bookmark from '../../shared/common/Bookmark'
 import Share from '../../shared/common/Share'
@@ -9,12 +8,9 @@ import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { CandidateActionType, ObjectType } from '../../utils/constants'
 import ResourceActionButton from './fragments/ResourceActionButton'
 
-const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
+const ResourceDetailRight = forwardRef(({ candidateResource, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
 
   const editPath = `${candidateResource.slug}/edit`
 
@@ -26,7 +22,7 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit && (
+        {editingAllowed && (
           <div className='flex gap-x-3 ml-auto'>
             <div className='my-auto'>
               {candidateResource.publishedDate &&
@@ -39,15 +35,21 @@ const ResourceDetailRight = forwardRef(({ candidateResource }, ref) => {
                 />
               }
             </div>
-            <ResourceActionButton candidateResource={candidateResource} actionType={CandidateActionType.REJECT} />
-            <ResourceActionButton candidateResource={candidateResource} actionType={CandidateActionType.APPROVE} />
+            <ResourceActionButton
+              candidateResource={candidateResource}
+              actionType={CandidateActionType.REJECT}
+            />
+            <ResourceActionButton
+              candidateResource={candidateResource}
+              actionType={CandidateActionType.APPROVE}
+            />
             <EditButton type='link' href={editPath} />
           </div>
         )}
         <div className='text-xl font-semibold text-dial-meadow py-3'>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={candidateResource?.description}
             editorId='resource-description'

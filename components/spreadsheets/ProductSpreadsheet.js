@@ -1,20 +1,16 @@
 import { createRef, Fragment, useEffect, useState } from 'react'
-import { Tab } from '@headlessui/react'
-import { useMutation, useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { ContextMenu } from 'handsontable/plugins'
-import { HotTable } from '@handsontable/react'
 import { registerAllModules } from 'handsontable/registry'
-import { useUser } from '../../lib/hooks'
-import { Error, Loading, NotFound } from '../shared/FetchStatus'
-import { PRODUCT_SPREADSHEET_QUERY } from '../shared/query/spreadsheet'
+import { useRouter } from 'next/router'
+import { useMutation, useQuery } from '@apollo/client'
+import { HotTable } from '@handsontable/react'
+import { Tab } from '@headlessui/react'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
 import { CREATE_SPREADSHEET_MUTATION, DELETE_SPREADSHEET_MUTATION } from '../shared/mutation/spreadsheet'
+import { PRODUCT_SPREADSHEET_QUERY } from '../shared/query/spreadsheet'
 import {
-  COLUMN_SOURCE_KEYS,
-  DEFAULT_SHEET_HEADERS,
-  DEFAULT_SHEET_NAMES,
-  PRODUCT_COLUMN_DEFINITION,
-  mapSpreadsheetData
+  COLUMN_SOURCE_KEYS, DEFAULT_SHEET_HEADERS, DEFAULT_SHEET_NAMES, mapSpreadsheetData, PRODUCT_COLUMN_DEFINITION
 } from './ProductSpreadsheetConfig'
 
 registerAllModules()
@@ -24,13 +20,36 @@ const ProductSpreadsheet = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const { locale } = useRouter()
-  const { user } = useUser()
 
   const [updateAssocData] = useMutation(CREATE_SPREADSHEET_MUTATION)
-  const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, { refetchQueries: [PRODUCT_SPREADSHEET_QUERY] })
-  const [deleteSpreadsheetData] = useMutation(DELETE_SPREADSHEET_MUTATION, { refetchQueries: [PRODUCT_SPREADSHEET_QUERY] })
+  const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, {
+    refetchQueries: [{
+      query: PRODUCT_SPREADSHEET_QUERY,
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }]
+  })
+  const [deleteSpreadsheetData] = useMutation(DELETE_SPREADSHEET_MUTATION, {
+    refetchQueries: [{
+      query: PRODUCT_SPREADSHEET_QUERY,
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }]
+  })
 
-  const { loading, error, data } = useQuery(PRODUCT_SPREADSHEET_QUERY)
+  const { loading, error, data } = useQuery(PRODUCT_SPREADSHEET_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
+  })
 
   useEffect(() => {
     // Init the list of all handsontable refs element.
@@ -53,13 +72,11 @@ const ProductSpreadsheet = () => {
       spreadsheetType: 'product',
       assoc: COLUMN_SOURCE_KEYS[selectedIndex]
     }
-    const { userEmail, userToken } = user
     mutationFunction.apply(this, [{
       variables,
       context: {
         headers: {
-          'Accept-Language': locale,
-          Authorization: `${userEmail} ${userToken}`
+          'Accept-Language': locale
         }
       },
       onCompleted: () => {
@@ -259,15 +276,12 @@ const ProductSpreadsheet = () => {
     return source ? [{}, { ...autoCompleteConfig }] : null
   }
 
-  // Loading and error handler section.
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    if (error.networkError) {
-      return <Error />
-    } else {
-      return <NotFound />
-    }
+    return handleQueryError(error)
+  } else if (!data?.spreadsheetProduct) {
+    return handleMissingData()
   }
 
   const { spreadsheetProduct } = data
@@ -305,9 +319,9 @@ const ProductSpreadsheet = () => {
   }
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56'>
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List className='flex flex bg-dial-meadow'>
+        <Tab.List className='flex bg-dial-meadow'>
           {DEFAULT_SHEET_NAMES.map((name) => (
             <Tab key={name} as={Fragment}>
               {({ selected }) => (

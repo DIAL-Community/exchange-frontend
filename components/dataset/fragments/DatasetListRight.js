@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { FilterContext } from '../../context/FilterContext'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { DATASET_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/dataset'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import DatasetSearchBar from './DatasetSearchBar'
 import ListStructure from './ListStructure'
 
@@ -13,27 +13,19 @@ const DatasetListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search, countries, datasetTypes, origins, sdgs, sectors, tags } = useContext(FilterContext)
-
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
+  const { search, collectionDisplayType, countries, datasetTypes, origins, sdgs, sectors, tags } = useContext(FilterContext)
 
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const { 'dataset-page': datasetPage } = query
+  const pageNumber = datasetPage ? parseInt(datasetPage) - 1 : 0
+  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'dataset-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )
@@ -56,6 +48,11 @@ const DatasetListRight = () => {
       tags: tags.map(tag => tag.label),
       datasetTypes: datasetTypes.map(datasetType => datasetType.value),
       countries: countries.map(country => country.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -64,7 +61,7 @@ const DatasetListRight = () => {
       <DatasetSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        pageSize={CollectionPageSize[collectionDisplayType]}
       />
       {loading && format('ui.pagination.loadingInfo')}
       {error && format('ui.pagination.loadingInfoError')}
@@ -72,7 +69,7 @@ const DatasetListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeDataset.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

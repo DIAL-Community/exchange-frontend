@@ -32,31 +32,33 @@ const Pagination = ({ pageNumber, totalCount, defaultPageSize, onClickHandler })
             totalRecords: totalCount
           })}
         </div>
-        <ReactPaginate
-          breakLabel='...'
-          nextLabel={format('ui.pagination.nextLabel')}
-          previousLabel={format('ui.pagination.prevLabel')}
-          forcePage={pageNumber}
-          onClick={onClickHandler}
-          pageRangeDisplayed={pageRange}
-          marginPagesDisplayed={1}
-          pageCount={Math.ceil(totalCount / defaultPageSize)}
-          renderOnZeroPageCount={null}
-          disabledClassName='opacity-30'
-          breakClassName='my-auto'
-          // Flex the main container and add gap
-          containerClassName='flex gap-x-3 text-sm text-dial-slate-300 font-semibold'
-          // Each will have rounded border
-          pageClassName='border border-current rounded-md'
-          activeClassName='text-dial-iris-blue'
-          // Set the width, height, leading and text center to center text
-          pageLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
-          // Previous and next link will have similar treatment
-          previousClassName='border border-current rounded-md'
-          previousLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
-          nextClassName='border border-current rounded-md'
-          nextLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
-        />
+        {pageNumber < Math.ceil(totalCount / defaultPageSize) &&
+          <ReactPaginate
+            breakLabel='...'
+            nextLabel={format('ui.pagination.nextLabel')}
+            previousLabel={format('ui.pagination.prevLabel')}
+            forcePage={pageNumber}
+            onClick={onClickHandler}
+            pageRangeDisplayed={pageRange}
+            marginPagesDisplayed={1}
+            pageCount={Math.ceil(totalCount / defaultPageSize)}
+            renderOnZeroPageCount={null}
+            disabledClassName='opacity-30'
+            breakClassName='my-auto'
+            // Flex the main container and add gap
+            containerClassName='flex gap-x-3 text-sm text-dial-slate-300 font-semibold'
+            // Each will have rounded border
+            pageClassName='border border-current rounded-md'
+            activeClassName='text-dial-iris-blue'
+            // Set the width, height, leading and text center to center text
+            pageLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
+            // Previous and next link will have similar treatment
+            previousClassName='border border-current rounded-md'
+            previousLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
+            nextClassName='border border-current rounded-md'
+            nextLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
+          />
+        }
       </div>
       <hr className='border-b border-dial-slate-300'/>
     </div>

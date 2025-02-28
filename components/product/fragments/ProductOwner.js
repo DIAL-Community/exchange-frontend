@@ -1,15 +1,16 @@
+import { useCallback, useContext, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
-import { FaSpinner } from 'react-icons/fa'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { useCallback, useContext, useRef, useState } from 'react'
-import { ToastContext } from '../../../lib/ToastContext'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useProductOwnerUser, useUser } from '../../../lib/hooks'
-import { ObjectType } from '../../utils/constants'
-import { OWNER_CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
+import { ToastContext } from '../../../lib/ToastContext'
 import { APPLY_AS_OWNER } from '../../shared/mutation/user'
+import { OWNER_CANDIDATE_ROLE_DETAIL_QUERY } from '../../shared/query/candidateRole'
 import { PRODUCT_CONTACT_QUERY } from '../../shared/query/product'
+import { ObjectType } from '../../utils/constants'
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
@@ -17,8 +18,8 @@ const ProductOwner = ({ product }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user, isAdminUser } = useUser()
-  const { isProductOwner } = useProductOwnerUser(product, [], isAdminUser)
+  const { user } = useUser()
+  const { isProductOwner } = useProductOwnerUser(product, [], user?.isAdminUser)
   const captchaRef = useRef()
   const { locale } = useRouter()
 
@@ -35,6 +36,11 @@ const ProductOwner = ({ product }) => {
     variables: {
       email: user?.userEmail,
       productId: product.id
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
     },
     skip: !user || !user.userEmail,
     onCompleted: (data) => {
@@ -65,7 +71,6 @@ const ProductOwner = ({ product }) => {
   })
 
   const updateContactInfo = async (captchaValue) => {
-    const { userEmail, userToken } = user
     revealContact({
       variables: {
         slug: product.slug,
@@ -74,15 +79,25 @@ const ProductOwner = ({ product }) => {
       },
       context: {
         headers: {
-          'Accept-Language': locale,
-          Authorization: `${userEmail} ${userToken}`
+          'Accept-Language': locale
         }
       }
     })
   }
 
   const [applyAsOwner, { reset }] = useMutation(APPLY_AS_OWNER, {
-    refetchQueries: ['CandidateRole'],
+    refetchQueries: [{
+      query: OWNER_CANDIDATE_ROLE_DETAIL_QUERY,
+      variables: {
+        email: user?.userEmail,
+        productId: product.id
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    }],
     onCompleted: (data) => {
       const { applyAsOwner: response } = data
       if (!response?.candidateRole || response?.errors?.length > 0) {
@@ -105,23 +120,18 @@ const ProductOwner = ({ product }) => {
   })
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-      setLoading(true)
-
-      applyAsOwner({
-        variables: {
-          entity: ObjectType.PRODUCT,
-          entityId: parseInt(product.id)
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    setLoading(true)
+    applyAsOwner({
+      variables: {
+        entity: ObjectType.PRODUCT,
+        entityId: parseInt(product.id)
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const ownerInformation = 'https://docs.dial.community/projects/product-registry/' +

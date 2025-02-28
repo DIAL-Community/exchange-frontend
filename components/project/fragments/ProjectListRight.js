@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { FilterContext } from '../../context/FilterContext'
+import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { CollectionPageSize, FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { PROJECT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/project'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import ListStructure from './ListStructure'
 import ProjectSearchBar from './ProjectSearchBar'
 
@@ -15,6 +15,7 @@ const ProjectListRight = () => {
 
   const {
     search,
+    collectionDisplayType,
     countries,
     organizations,
     origins,
@@ -24,25 +25,17 @@ const ProjectListRight = () => {
     tags
   } = useContext(FilterContext)
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const [pageOffset, setPageOffset] = useState(0)
-
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const { 'project-page': projectPage } = query
+  const pageNumber = projectPage ? parseInt(projectPage) - 1 : 0
+  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'project-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )
@@ -66,6 +59,11 @@ const ProjectListRight = () => {
       tags: tags.map(tag => tag.label),
       sdgs: sdgs.map(sdg => sdg.value),
       origins: origins.map(origin => origin.value)
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -74,7 +72,7 @@ const ProjectListRight = () => {
       <ProjectSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
-        defaultPageSize={DEFAULT_PAGE_SIZE}
+        defaultPageSize={CollectionPageSize[collectionDisplayType]}
       />
       {loading && format('ui.pagination.loadingInfo')}
       {error && format('ui.pagination.loadingInfoError')}
@@ -82,7 +80,7 @@ const ProjectListRight = () => {
         <Pagination
           pageNumber={pageNumber}
           totalCount={data.paginationAttributeProject.totalCount}
-          defaultPageSize={DEFAULT_PAGE_SIZE}
+          defaultPageSize={CollectionPageSize[collectionDisplayType]}
           onClickHandler={onClickHandler}
         />
       }

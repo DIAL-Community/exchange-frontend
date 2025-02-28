@@ -18,12 +18,12 @@ const ProfileRibbon = () => {
       className='object-contain'
     />
 
-  const breadcrumb = (() => {
+  const breadcrumb = () => {
     const map = {}
     map['me'] = user?.userName
 
     return map
-  })()
+  }
 
   return (
     <Ribbon

@@ -1,19 +1,18 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
+import BuildingBlockCard from '../../building-block/BuildingBlockCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptionsWithMaturity } from '../../utils/search'
-import { DisplayType } from '../../utils/constants'
+import Select from '../../shared/form/Select'
 import { UPDATE_ORGANIZATION_BUILDING_BLOCK_CERTIFICATIONS } from '../../shared/mutation/organization'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
-import BuildingBlockCard from '../../building-block/BuildingBlockCard'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptionsWithMaturity } from '../../utils/search'
 
-const StorefrontDetailBuildingBlockCertifications = ({ organization, canEdit, headerRef }) => {
+const StorefrontDetailBuildingBlockCertifications = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const StorefrontDetailBuildingBlockCertifications = ({ organization, canEdit, he
   const [certifications, setCertifications] = useState(organization.buildingBlockCertifications)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -76,22 +74,17 @@ const StorefrontDetailBuildingBlockCertifications = ({ organization, canEdit, he
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateOrganizationCertifications({
-        variables: {
-          buildingBlockSlugs: certifications.map(({ slug }) => slug),
-          slug: organization.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateOrganizationCertifications({
+      variables: {
+        buildingBlockSlugs: certifications.map(({ slug }) => slug),
+        slug: organization.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -161,7 +154,7 @@ const StorefrontDetailBuildingBlockCertifications = ({ organization, canEdit, he
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

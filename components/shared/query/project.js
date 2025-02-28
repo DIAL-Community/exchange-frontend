@@ -88,6 +88,14 @@ export const PAGINATED_PROJECTS_QUERY = gql`
   }
 `
 
+export const PROJECT_POLICY_QUERY = gql`
+  query Project($slug: String!) {
+    project(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const PROJECT_DETAIL_QUERY = gql`
   query Project($slug: String!) {
     project(slug: $slug) {

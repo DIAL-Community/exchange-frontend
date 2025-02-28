@@ -5,6 +5,7 @@ import { FaRegEye, FaRegEyeSlash, FaSpinner } from 'react-icons/fa6'
 import { FiEdit3 } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
@@ -37,12 +38,22 @@ const AnnouncementDetail = ({ announcement }) => {
         messageType: DPI_ANNOUNCEMENT_MESSAGE_TYPE,
         limit: MESSAGE_PAGE_SIZE,
         offset: 0
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }, {
       query: MESSAGE_PAGINATION_ATTRIBUTES_QUERY,
       variables: {
         visibleOnly: true,
         messageType: DPI_ANNOUNCEMENT_MESSAGE_TYPE
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
     }],
     onError: (error) => {
@@ -70,12 +81,12 @@ const AnnouncementDetail = ({ announcement }) => {
     updateMessageVisibility()
   }
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[announcement.slug] = announcement.name
 
     return map
-  })()
+  }
 
   return (
     <div className='relative flex flex-col gap-y-3'>
@@ -144,11 +155,16 @@ const HubAnnouncementDetail = ({ slug }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, data, error } = useQuery(MESSAGE_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[80vh] py-8'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[80vh] py-8'>
       {loading
         ? format('general.fetchingData')
         : error

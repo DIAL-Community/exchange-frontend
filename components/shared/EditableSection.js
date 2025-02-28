@@ -1,11 +1,11 @@
-import { useIntl } from 'react-intl'
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa6'
-import EditButton from './form/EditButton'
+import { useIntl } from 'react-intl'
 import CreateButton from './form/CreateButton'
+import EditButton from './form/EditButton'
 
 const EditableSection = ({
-  canEdit,
+  editingAllowed,
   sectionHeader,
   sectionDisclaimer,
   editModeBody,
@@ -35,10 +35,10 @@ const EditableSection = ({
       <div className='flex flex-row gap-3'>
         {sectionHeader}
         <div className='flex gap-3 ml-auto'>
-          {canEdit && !isInEditMode &&
+          {editingAllowed && !isInEditMode &&
             <EditButton onClick={() => setIsInEditMode(true)} />
           }
-          {createAction && canEdit && !isInEditMode &&
+          {createAction && editingAllowed && !isInEditMode &&
             <CreateButton label={format('app.createNew')} onClick={createAction} />
           }
         </div>

@@ -1,6 +1,6 @@
 // Capture and mock the next's router implementation
-const useRouter = jest.spyOn(require('next/router'), 'useRouter')
-const useSession = jest.spyOn(require('next-auth/react'), 'useSession')
+export const mockedUseRouter = jest.spyOn(require('next/router'), 'useRouter')
+export const mockedUseSession = jest.spyOn(require('next-auth/react'), 'useSession')
 
 /**
  * Default properties of mocked useRouter implementation.
@@ -37,7 +37,35 @@ export const mockNextUseRouter = (values = {}) => {
   // Overwrite the nested value with merged values
   mergedValues.events = events
 
-  useRouter.mockImplementation(() => ({ ...mergedValues }))
+  mockedUseRouter.mockImplementation(() => ({ ...mergedValues }))
+}
+
+export const mockLexicalComponents = () => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation(query => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // Deprecated
+      removeListener: jest.fn(), // Deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn()
+    }))
+  })
+
+  Object.defineProperty(console, 'time', {
+    writable: true,
+    value: jest.fn()
+  })
+
+  global.ResizeObserver = jest.fn().mockImplementation(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+    disconnect: jest.fn()
+  }))
+
 }
 
 export const mockTenantApi = (tenant = 'default', secured = false, hostname = 'default') => {
@@ -56,7 +84,7 @@ export const mockTenantApi = (tenant = 'default', secured = false, hostname = 'd
 /**
  * Default properties of mocked useSession implementation.
  */
-export const sessionDefaultValues = {
+const sessionDefaultValues = {
   data: {
     user: {
       id: 1,
@@ -70,7 +98,7 @@ export const sessionDefaultValues = {
   status: 'authenticated'
 }
 
-export const statuses = {
+const statuses = {
   AUTHENTICATED: 'authenticated',
   LOADING: 'loading',
   UNAUTHENTICATED: 'unauthenticated'
@@ -86,9 +114,9 @@ export const mockNextAuthUseSession = (status = statuses.AUTHENTICATED, userProp
 
     mergedSessionValues.data.user = userData
 
-    useSession.mockImplementation(() => ({ ...mergedSessionValues }))
+    mockedUseSession.mockImplementation(() => ({ ...mergedSessionValues }))
   } else {
     // UNAUTHENTICATED and LOADING will not have session data in them.
-    useSession.mockImplementation(() => ({ status }))
+    mockedUseSession.mockImplementation(() => ({ status }))
   }
 }

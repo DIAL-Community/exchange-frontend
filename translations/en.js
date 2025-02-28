@@ -83,7 +83,7 @@ export const en = {
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
   'header.resetPassword': 'Reset Password',
-  'header.profile': 'My Profile',
+  'header.profile': 'My Dashboard',
   'header.covidResources': 'COVID-19 Resources',
   'header.resources': 'Resources',
   'header.playbooks': 'Playbooks',
@@ -267,6 +267,7 @@ export const en = {
   'ui.product.comparison.filter': 'Filter comparison',
   'ui.product.comparison.showHighlight': 'Highlight differences',
   
+  'ui.product.filter.currentUserOnly': 'Show only my submissions',
   'ui.product.filter.showGovStackOnly': 'Show only products from GovStack',
   'ui.product.filter.showDpgaOnly': 'Show only Digital Public Goods',
 
@@ -638,6 +639,7 @@ export const en = {
   'product.card.license': 'License',
   'product.card.buildingBlocks': 'Building Blocks',
   'product.card.sdgs': 'SDGs',
+  'product.card.sources': 'Sources',
 
 
   'product.noExtraAttributes': 'We do not have any Local Innovation information for this Product.',
@@ -818,7 +820,6 @@ export const en = {
   'filter.opportunity.forCovid': 'COVID-19 RFP',
 
   'filter.product.endorsed': 'Show endorsed products',
-  'filter.product.launchable': 'Product can be deployed and launched',
   'filter.launchWizard': 'Launch Recommendations Wizard',
 
   'endorsingYear.label': 'Endorsing Year',
@@ -893,6 +894,8 @@ export const en = {
   'ui.play.move.name': 'Move Name',
   'ui.play.status.draft': 'Draft',
   'ui.play.status.published': 'Published',
+
+  'ui.play.commentCount.title': '{commentCount} {commentCount, plural, one {comment} other {comments}}',
 
   'ui.move.name': 'Name',
   'ui.move.name.placeholder': 'Move Name',
@@ -1411,6 +1414,7 @@ export const en = {
   'ui.candidateProduct.repository.hint': 'Code repository of the candidate product.',
   'ui.candidateProduct.submit.success': 'Candidate Product submitted successfully',
   'ui.candidateProduct.submit.failure': 'Candidate Product submission failed',
+  'ui.candidateProduct.extraAttributes': 'Extra Attributes',
 
   'ui.candidateOrganization.organizationName': 'Organization Name',
   'ui.candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
@@ -1581,7 +1585,7 @@ export const en = {
   'ui.move.header': 'Moves',
 
   'ui.play.submitAndAssign': 'Submit and Assign',
-  'ui.play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unnassign moves, or add a new move.',
+  'ui.play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unassign moves, or add a new move.',
 
   'ui.playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
   'ui.playbook.autoSaved': 'Playbook saved ...',
@@ -1605,7 +1609,6 @@ export const en = {
   'ui.move.autoSaved': 'Auto saving move.',
 
   'ui.resource.submitted': 'Resource saved.',
-  'product.launchable': 'Product Launchable',
 
   'location.header': 'Location',
 
@@ -2160,9 +2163,11 @@ export const en = {
   'ui.user.confirmedAt': 'Activated on',
 
 
+  'ui.profile.label': 'Your Profile',
+  'ui.profile.header': 'User Profile',
   'ui.profile.title': 'Your account',
-  'ui.profile.label': 'Profile',
   'ui.profile.bookmark': 'Your bookmarks',
+  'ui.profile.candidateProducts': 'Candidate Products',
 
   'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.header': 'Building Blocks',
@@ -2660,7 +2665,7 @@ export const en = {
   'hub.adliNetwork.memberCard.alt': 'Photo of the ADLI member',
 
   'health.landing.main.title': 'Africa HealthTech Marketplace',
-  'health.landing.main.subtitle': `Enhancing visibility and trust in local digital health innovations`,
+  'health.landing.main.subtitle': `Enabling and accelerating the scaling of Africa's homegrown HealthTech innovations`,
   'health.landing.main.powered': 'Powered by the Africa CDC and the Digital Impact Exchange',
 
   'health.header.about': 'About',
@@ -2991,7 +2996,7 @@ export const en = {
   'ui.tenantSetting.tenantDomains': 'Registered URLs',
   'ui.tenantSetting.tenantDomain': 'Registered URL',
   'ui.tenantSetting.initialized': 'Tenant Initialized & Ready',
-  'ui.tenantSetting.allowUnsecureRead': 'Allow browsing without authenticating.',
+  'ui.tenantSetting.allowUnsecuredRead': 'Allow browsing without authenticating.',
   'ui.tenantSetting.createNew': 'Create a New Tenant Configurations?',
 
   'ui.validation.required': 'This field is required.',
@@ -3051,5 +3056,44 @@ export const en = {
 
   'ui.admin.candidate.label': 'Candidate Management Configuration',
   'ui.admin.candidate.header': 'Candidate Management Configurations',
+
+  'ui.general.processing': 'Processing request ...',
+  'ui.general.error.forbidden': 'You are not allowed to view the current page.',
+  'ui.general.error.general': 'We are unable to process your request. Please try again later.',
+  'ui.general.error.notFound': 'We are unable to load information for the page. Please try again later.',
+
+  'ui.categoryIndicator.label': 'Category Indicator',
+  'ui.categoryIndicator.header': 'Category Indicators',
+
+  'landing.widget.options.title': 'Item Options',
+
+  'landing.widget.carousel': 'Carousel',
+  'landing.widget.card': 'Card',
+  'landing.widget.map': 'Map',
+  'landing.widget.list': 'List',
+  'landing.widget.summary': 'Summary',
+  'landing.widget.text': 'Text',
+  'landing.widget.spacer': 'Spacer',
+
+  'landing.widget.selected.value': 'Current value',
+
+  'landing.list.options': 'List Options',
+  'landing.list.buildingBlocks': 'Building Block List',
+  'landing.list.organizations': 'Organization List',
+  'landing.list.products': 'Product List',
+  'landing.list.projects': 'Project List',
+  'landing.list.useCases': 'Use Case List',
+  'landing.list.missing': 'Missing list type in setting.',
+
+  'landing.map.options': 'Map Type Options',
+  'landing.map.projects': 'Project Map',
+  'landing.map.endorsers': 'Endorser Map',
+  'landing.map.aggregator': 'Aggregator Map',
+  'landing.map.missing': 'Missing map type in setting.',
+
+  'landing.card.options': 'Card Options',
+
+  'landing.page.save.success': 'Page configurations saved.',
+  'landing.page.save.failure': 'Unable to save page configurations.',
 }
 

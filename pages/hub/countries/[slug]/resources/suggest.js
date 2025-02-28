@@ -7,8 +7,9 @@ import { useQuery } from '@apollo/client'
 import ResourceCreate from '../../../../../components/candidate/resource/ResourceCreate'
 import HubFooter from '../../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../../components/hub/sections/HubHeader'
-import { Error, Loading, NotFound } from '../../../../../components/shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../../../../components/shared/GraphQueryHandler'
 import { COUNTRY_DETAIL_QUERY } from '../../../../../components/shared/query/country'
+import { GRAPH_QUERY_CONTEXT } from '../../../../../lib/apolloClient'
 import ClientOnly from '../../../../../lib/ClientOnly'
 
 const CreateCountryResourcePage = ({ dpiTenants }) => {
@@ -18,15 +19,20 @@ const CreateCountryResourcePage = ({ dpiTenants }) => {
   const { query: { slug } } = useRouter()
 
   const { loading, error, data } = useQuery(COUNTRY_DETAIL_QUERY, {
-    variables: { slug }
+    variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError()
   } else if (!data?.country) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   return (

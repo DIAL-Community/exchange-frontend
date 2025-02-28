@@ -1,7 +1,8 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
 import Pagination from '../../shared/Pagination'
 import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/organization'
@@ -14,22 +15,14 @@ const HealthOrganizations = () => {
 
   const { search } = useContext(FilterContext)
 
-  const [ pageNumber, setPageNumber ] = useState(0)
-  const [ pageOffset, setPageOffset ] = useState(0)
-
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-
   const DEFAULT_PAGE_SIZE = 12
 
-  useEffect(() => {
-    if (page) {
-      setPageNumber(parseInt(page) - 1)
-      setPageOffset((parseInt(page) - 1) * DEFAULT_PAGE_SIZE)
-    }
-  }, [page, setPageNumber, setPageOffset])
+  const { page } = query
+  const pageNumber =  page ? parseInt(page) - 1 : 0
+  const pageOffset = pageNumber * DEFAULT_PAGE_SIZE
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
@@ -49,11 +42,16 @@ const HealthOrganizations = () => {
   }
 
   const { loading, error, data } = useQuery(ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, {
-    variables: { search }
+    variables: { search },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   return (
-    <div className='px-4 lg:px-8 xl:px-56 min-h-[70vh] py-8'>
+    <div className='px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[70vh] py-8'>
       <OrganizationSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}

@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client'
 
+export const PRODUCT_REPOSITORY_POLICY_QUERY = gql`
+  query ProductRepository($productSlug: String!, $repositorySlug: String!) {
+    productRepository(slug: $repositorySlug, productSlug: $productSlug) {
+      id
+    }
+  }
+`
+
 export const PRODUCT_REPOSITORY_DETAIL_QUERY = gql`
   query ProductRepository($productSlug: String!, $repositorySlug: String!) {
     productRepository(slug: $repositorySlug, productSlug: $productSlug) {
@@ -37,7 +45,7 @@ export const PRODUCT_REPOSITORY_DETAIL_QUERY = gql`
 `
 
 export const PRODUCT_SIMPLE_QUERY =  gql`
-query Product($productSlug: String!) {
+  query Product($productSlug: String!) {
     product(slug: $productSlug) {
       id
       name

@@ -1,38 +1,26 @@
 import { useCallback, useState } from 'react'
-import { FaSliders } from 'react-icons/fa6'
+import { BiSlider } from 'react-icons/bi'
 import { useIntl } from 'react-intl'
 
-const MobileFilter = ({ iconColor, bgColor, entityFilter }) => {
+const MobileFilter = ({ bgColor, entityFilter }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [startFiltering, setStartFiltering] = useState(false)
 
   const toggleFiltering = () => setStartFiltering(!startFiltering)
-  const mobileFilterStyle = 'block md:hidden relative'
-
-  const layerStyle = {
-    top: `
-      calc(var(--header-height)
-      + var(--ribbon-inner-height)
-      + var(--tab-height))
-      + var(--spacer-padding)
-      + var(--spacer-padding)
-    `,
-    width: 'calc(100% - var(--search-bar-padding))'
-  }
+  const mobileFilterStyle = 'block md:hidden'
 
   return (
     <>
-      <div className={mobileFilterStyle}>
-        <button type='button' onClick={toggleFiltering} className='my-auto h-full'>
-          <FaSliders className={`text-2xl ${iconColor} mx-auto`} />
+      <div className={`${mobileFilterStyle} h-full`}>
+        <button type='button' onClick={toggleFiltering} className='mt-[0.5rem]'>
+          <BiSlider  className='text-2xl text-dial-slate-500 mx-auto' />
         </button>
       </div>
       {startFiltering &&
         <div
-          className={`absolute border-2 ${bgColor} z-[10]`}
-          style={layerStyle}
+          className={`absolute border-2 ${bgColor} z-[10] w-full top-0`}
         >
           <div className='px-6 py-3 flex flex-col'>
             {entityFilter}

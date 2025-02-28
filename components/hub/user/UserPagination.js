@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import Pagination from '../../shared/Pagination'
 import { USER_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/user'
 import { DEFAULT_PAGE_SIZE } from './constant'
@@ -13,6 +14,11 @@ const UserPagination = ({ pageNumber, search, onClickHandler }) => {
     variables: {
       search,
       roles: ['adli_admin', 'adli_user']
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 

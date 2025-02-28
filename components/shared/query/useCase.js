@@ -63,10 +63,22 @@ export const PAGINATED_USE_CASES_QUERY = gql`
         slug
         name
       }
+      sector {
+        id
+        name
+      }
       sdgTargets {
         id
         name
       }
+    }
+  }
+`
+
+export const USE_CASE_POLICY_QUERY = gql`
+  query UseCase($slug: String!) {
+    useCase(slug: $slug) {
+      id
     }
   }
 `

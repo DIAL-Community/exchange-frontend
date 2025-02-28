@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { CANDIDATE_DATASET_POLICY_QUERY } from '../../shared/query/candidateDataset'
 import TabNav from '../../shared/TabNav'
-import { useUser } from '../../../lib/hooks'
 
 const DatasetTabNav = ({ activeTab, setActiveTab }) => {
-  const { user } = useUser()
-
   const [tabNames, setTabNames] = useState([
     'ui.candidateDataset.header'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(CANDIDATE_DATASET_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.candidateDataset.createNew'),
         'ui.candidateDataset.createNew'
       ])
     }
-  }, [user])
+  })
 
   return <TabNav { ...{ tabNames, activeTab, setActiveTab }} />
 }

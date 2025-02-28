@@ -1,5 +1,16 @@
 import { gql } from '@apollo/client'
 
+export const CATEGORY_INDICATOR_POLICY_QUERY = gql`
+  query CategoryIndicator($categorySlug: String!, $indicatorSlug: String!) {
+    categoryIndicator(slug: $indicatorSlug) {
+      id
+    }
+    rubricCategory(slug: $categorySlug) {
+      id
+    }
+  }
+`
+
 export const CATEGORY_INDICATOR_QUERY = gql`
   query CategoryIndicator($categorySlug: String!, $indicatorSlug: String!) {
     categoryIndicator(slug: $indicatorSlug) {

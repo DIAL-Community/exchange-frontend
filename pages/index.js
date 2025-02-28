@@ -1,23 +1,35 @@
 import dynamic from 'next/dynamic'
-import { Loading } from '../components/shared/FetchStatus'
+import { handleLoadingSession } from '../components/shared/SessionQueryHandler'
 import { useActiveTenant } from '../lib/hooks'
 
+const EditablePage = dynamic(() => import('./landing/editable'))
 const HealthPage = dynamic(() => import('./landing/health'))
 const HubPage = dynamic(() => import('./landing/hub'))
 const LandingPage = dynamic(() => import('./landing/index'))
 
 const RootPage = ({ dpiTenants, defaultTenants }) => {
-  const { waitingActiveTenant, tenant } = useActiveTenant()
+  const { waitingActiveTenant, tenant, editable } = useActiveTenant()
+
+  const handleTenant = (tenant, editable) => {
+    if (editable) {
+      return <EditablePage defaultTenants={defaultTenants} />
+    }
+
+    switch (tenant) {
+      case 'health':
+        return <HealthPage defaultTenants={defaultTenants} />
+      case 'dpi':
+        return <HubPage dpiTenants={dpiTenants} />
+      default:
+        return <LandingPage defaultTenants={defaultTenants} />
+    }
+  }
 
   return (
     <>
       { waitingActiveTenant || !tenant
-        ? <Loading />
-        : tenant === 'dpi'
-          ? <HubPage dpiTenants={dpiTenants} />
-          : tenant === 'health'
-            ? <HealthPage defaultTenants={defaultTenants} />
-            : <LandingPage defaultTenants={defaultTenants} />
+        ? handleLoadingSession()
+        : handleTenant(tenant, editable)
       }
     </>
   )

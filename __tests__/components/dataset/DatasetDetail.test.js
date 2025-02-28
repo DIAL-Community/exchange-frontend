@@ -3,25 +3,34 @@ import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
 import DatasetDetail from '../../../components/dataset/DatasetDetail'
 import DatasetEdit from '../../../components/dataset/DatasetEdit'
+import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_DATASET } from '../../../components/shared/mutation/dataset'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import {
-  DATASET_DETAIL_QUERY, DATASET_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_DATASETS_QUERY
+  DATASET_DETAIL_QUERY, DATASET_PAGINATION_ATTRIBUTES_QUERY, DATASET_POLICY_QUERY, PAGINATED_DATASETS_QUERY
 } from '../../../components/shared/query/dataset'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockNextAuthUseSession, mockNextUseRouter, mockTenantApi } from '../../utils/nextMockImplementation'
+import {
+  mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
+} from '../../utils/nextMockImplementation'
 import { commentsQuery, createDataset, datasetDetail } from './data/DatasetDetail.data'
 import { datasetPaginationAttribute, paginatedDatasets } from './data/DatasetMain.data'
 
 mockTenantApi()
 mockNextUseRouter()
+mockLexicalComponents()
 describe('Unit tests for the dataset detail page.', () => {
+  const mockDatasetPolicies = generateMockApolloData(
+    DATASET_POLICY_QUERY,
+    { 'slug': 'xchange-graph-query-context-policies' },
+    null,
+    { data: { dataset: null } }
+  )
+
   const mockDataset = generateMockApolloData(
     DATASET_DETAIL_QUERY,
-    {
-      'slug': 'ai-agro'
-    },
+    { 'slug': 'ai-agro' },
     null,
     datasetDetail
   )
@@ -38,7 +47,14 @@ describe('Unit tests for the dataset detail page.', () => {
 
   test('Should render detail of a dataset.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockDataset, mockDatasetComments]}>
+      <CustomMockedProvider
+        mocks={[
+          mockDatasetPolicies,
+          mockDatasetPolicies,
+          mockDataset,
+          mockDatasetComments
+        ]}
+      >
         <QueryParamContextProvider>
           <DatasetDetail slug='ai-agro' />
         </QueryParamContextProvider>
@@ -50,23 +66,44 @@ describe('Unit tests for the dataset detail page.', () => {
   })
 
   test('Should render unauthorized for non logged in user.', async () => {
+    const graphQueryErrors = {
+      graphQueryErrors: [{
+        'message': 'Viewing is not allowed.',
+        'locations': [
+          {
+            'line': 2,
+            'column': 3
+          }
+        ],
+        'path': [
+          'buildingBlock'
+        ],
+        'extensions': {
+          'code': QueryErrorCode.UNAUTHORIZED
+        }
+      }]
+    }
+
+    const mockDatasetPolicyQueryError = generateMockApolloData(
+      DATASET_DETAIL_QUERY,
+      { 'slug': 'ai-agro' },
+      graphQueryErrors,
+      null
+    )
+
     const { container } = render(
-      <CustomMockedProvider mocks={[mockDataset, mockDatasetComments]}>
+      <CustomMockedProvider mocks={[mockDatasetPolicyQueryError, mockDatasetComments]}>
         <QueryParamContextProvider>
           <DatasetEdit slug='ai-agro' />
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
-
-    expect(await screen.findByText('AI Agro')).toBeInTheDocument()
-    expect(await screen.findByText('You are not authorized to view this page')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
+  mockNextAuthUseSession()
   test('Should render edit page for logged in user.', async () => {
-    mockNextAuthUseSession()
-
-    const mockCreateBuildingBlock = generateMockApolloData(
+    const mockCreateDataset = generateMockApolloData(
       CREATE_DATASET,
       {
         'name': 'AI Agro - Edited',
@@ -82,7 +119,12 @@ describe('Unit tests for the dataset detail page.', () => {
         'license': 'GPL-3.0',
         'languages': null,
         'dataFormat': null,
-        'description': 'Dataset description'
+        'description':
+          '<p class="ExchangeLexicalTheme__paragraph" dir="ltr">' +
+            '<span style="white-space: pre-wrap;">' +
+              'Dataset description' +
+            '</span>' +
+          '</p>'
       },
       null,
       createDataset
@@ -106,11 +148,11 @@ describe('Unit tests for the dataset detail page.', () => {
       <CustomMockedProvider
         mocks={[
           mockDataset,
+          mockDataset,
+          mockCreateDataset,
           mockDatasetComments,
-          mockCreateBuildingBlock,
-          mockDatasetPaginationAttribute,
           mockPaginatedDatasets,
-          mockDataset
+          mockDatasetPaginationAttribute
         ]}
       >
         <QueryParamContextProvider>

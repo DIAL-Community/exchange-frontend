@@ -20,7 +20,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         class="max-w-catalog mx-auto py-2"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 text-dial-gray"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-gray"
         >
           <div
             class="whitespace-nowrap text-ellipsis overflow-hidden text-sm"
@@ -38,7 +38,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         class="max-w-catalog mx-auto py-1"
       >
         <div
-          class="flex gap-4 px-4 lg:px-8 xl:px-56"
+          class="flex gap-4 px-4 lg:px-8 xl:px-24 3xl:px-56"
         >
           <img
             alt="Flag for country: ZM."
@@ -60,7 +60,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         class="description-section pb-4"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 text-dial-stratos flex flex-col"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-stratos flex flex-col"
         >
           <div
             class="flex flex-flex-wrap gap-3"
@@ -72,12 +72,51 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
             </div>
           </div>
           <div
-            class="relative"
+            class="editor-shell read-only"
           >
             <div
-              class="html-react-parser-viewer text-base"
+              class="editor-container "
             >
-              Some description
+              <div
+                class="editor-scroller"
+              >
+                <div
+                  class="editor"
+                >
+                  <div
+                    aria-autocomplete="none"
+                    aria-placeholder="Enter plain text..."
+                    aria-readonly="true"
+                    class="ContentEditable__root read-only"
+                    contenteditable="false"
+                    data-lexical-editor="true"
+                    spellcheck="true"
+                    style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+                  >
+                    <p
+                      class="ExchangeLexicalTheme__paragraph ExchangeLexicalTheme__ltr"
+                      dir="ltr"
+                    >
+                      <span
+                        data-lexical-text="true"
+                      >
+                        Some description
+                      </span>
+                    </p>
+                  </div>
+                  <div
+                    draggable="true"
+                  />
+                  <div
+                    class="draggable-block-target-line"
+                  />
+                  <div
+                    class="link-editor"
+                    style="opacity: 0; transform: translate(-10000px, -10000px);"
+                  />
+                </div>
+              </div>
+              <div />
             </div>
           </div>
         </div>
@@ -86,7 +125,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         class="policy-section bg-dial-sapphire"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 text-dial-cotton flex flex-col"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-cotton flex flex-col"
         >
           <div
             class="text-xl font-medium py-6"
@@ -318,7 +357,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         class="website-section"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 text-dial-stratos flex flex-col"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 text-dial-stratos flex flex-col"
         >
           <div
             class="text-xl font-medium py-6"
@@ -495,7 +534,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         class="product-section bg-dial-sapphire"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 flex flex-col"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 flex flex-col"
         >
           <div
             class="text-xl font-medium text-center py-6 text-dial-cotton"
@@ -637,7 +676,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         class="resource-section"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 flex flex-col"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 flex flex-col"
         >
           <div
             class="text-xl font-medium py-6"
@@ -652,7 +691,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
         class="key-organization-section bg-dial-sapphire"
       >
         <div
-          class="px-4 lg:px-8 xl:px-56 flex flex-col text-dial-cotton"
+          class="px-4 lg:px-8 xl:px-24 3xl:px-56 flex flex-col text-dial-cotton"
         >
           <div
             class="text-xl font-medium py-6"

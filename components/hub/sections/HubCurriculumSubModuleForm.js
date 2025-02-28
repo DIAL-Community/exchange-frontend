@@ -2,7 +2,8 @@ import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { MOVE_QUERY } from '../../shared/query/move'
 import { PLAY_QUERY } from '../../shared/query/play'
 import { DPI_TENANT_NAME } from '../constants'
@@ -13,7 +14,7 @@ const EditHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug, curr
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const router = useRouter()
+  const { locale } = useRouter()
 
   const { loading, error, data } = useQuery(MOVE_QUERY, {
     variables: {
@@ -22,15 +23,20 @@ const EditHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug, curr
       playbookSlug: curriculumSlug,
       owner: DPI_TENANT_NAME
     },
-    context: { headers: { 'Accept-Language': router.locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.playbook) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const {
@@ -39,7 +45,7 @@ const EditHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug, curr
     move: curriculumSubModule
   } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       edit: format('app.edit')
     }
@@ -48,7 +54,7 @@ const EditHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug, curr
     map[curriculumSubModule.slug] = curriculumSubModule.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>
@@ -71,19 +77,24 @@ const CreateHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug }) 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const router = useRouter()
+  const { locale } = useRouter()
 
   const { loading, error, data } = useQuery(PLAY_QUERY, {
     variables: { playSlug: curriculumModuleSlug, playbookSlug: curriculumSlug, owner: DPI_TENANT_NAME },
-    context: { headers: { 'Accept-Language': router.locale } }
+    context: {
+      headers: {
+        'Accept-Language': locale,
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.playbook) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const {
@@ -91,7 +102,7 @@ const CreateHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug }) 
     play: curriculumModule
   } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {
       edit: format('app.edit')
     }
@@ -99,7 +110,7 @@ const CreateHubCurriculumSubModule = ({ curriculumSlug, curriculumModuleSlug }) 
     map[curriculumModule.slug] = curriculumModule.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 flex flex-col'>

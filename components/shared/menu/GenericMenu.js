@@ -16,7 +16,7 @@ const SINGLE_MENU_STYLES = `
 const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) => {
   const { id, name, destinationUrl, external, menuItemConfigurations } = menuConfiguration
 
-  const separatorRenderer = (name, styles) => (
+  const separatorRenderer = (id, name, styles) => (
     <div key={id} className={styles} role='separator'>
       <FormattedMessage id={name} defaultMessage={name} />
     </div>
@@ -53,7 +53,7 @@ const GenericMenu = ({ menuConfiguration, onToggleDropdown, currentOpenMenu }) =
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
           {menuItemConfigurations.map(({ id, type, name, external, destinationUrl }) => {
             return type === 'separator'
-              ? separatorRenderer(name, SEPARATOR_STYLES)
+              ? separatorRenderer(id, name, SEPARATOR_STYLES)
               : external
                 ? externalLinkRenderer(id, name, destinationUrl, DEFAULT_DROPDOWN_MENU_STYLES)
                 : internalLinkRenderer(id, name, destinationUrl, DEFAULT_DROPDOWN_MENU_STYLES)

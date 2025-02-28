@@ -1,27 +1,36 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { CREATING_POLICY_SLUG, GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import { useUser } from '../../lib/hooks'
 import { FilterContext } from '../context/FilterContext'
+import { BUILDING_BLOCK_POLICY_QUERY } from '../shared/query/buildingBlock'
 import TabNav from '../shared/TabNav'
 import { asyncExport, convertKeys, ExportType } from '../utils/export'
 
 const BuildingBlockTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
+  const activeFilters = useContext(FilterContext)
+
   const [tabNames, setTabNames] = useState([
     'ui.buildingBlock.header',
     'ui.buildingBlock.whatIs'
   ])
 
-  useEffect(() => {
-    if (user?.isAdminUser || user?.isEditorUser) {
+  useQuery(BUILDING_BLOCK_POLICY_QUERY, {
+    variables: { slug: CREATING_POLICY_SLUG },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.CREATING
+      }
+    },
+    onCompleted: () => {
       setTabNames(tabNames => [
         ...tabNames.filter(tabName => tabName !== 'ui.buildingBlock.createNew'),
         'ui.buildingBlock.createNew'
       ])
     }
-  }, [user])
-
-  const activeFilters = useContext(FilterContext)
+  })
 
   const exportCsvFn = () => {
     const buildingBlockFilters = generateExportFilters(activeFilters)

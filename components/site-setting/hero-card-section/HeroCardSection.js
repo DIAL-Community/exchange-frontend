@@ -4,14 +4,14 @@ import { Controller, useForm } from 'react-hook-form'
 import { FaPlus, FaSpinner } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
-import { useUser } from '../../../lib/hooks'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import Breadcrumb from '../../shared/Breadcrumb'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
 import { UPDATE_SITE_SETTING_HERO_CARD_SECTION } from '../../shared/mutation/siteSetting'
 import { SITE_SETTING_DETAIL_QUERY } from '../../shared/query/siteSetting'
 import { stripBlanks, toUrlCase, toVariableCase } from '../utilities'
@@ -63,117 +63,110 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
   const currentWysiwygDescription = watch('wysiwygDescription')
 
   const [mutating, setMutating] = useState(false)
-  const { user, loadingUserSession } = useUser()
 
   const executeBulkUpdate = async (data) => {
-    if (user) {
-      setMutating(true)
-      const { userEmail, userToken } = user
-      const { title, description, wysiwygDescription } = data
-      const variables = {
-        siteSettingSlug,
-        title,
-        description,
-        wysiwygDescription,
-        heroCardConfigurations
-      }
-
-      bulkUpdateHeroCard({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setMutating(true)
+    const { title, description, wysiwygDescription } = data
+    const variables = {
+      siteSettingSlug,
+      title,
+      description,
+      wysiwygDescription,
+      heroCardConfigurations
     }
+
+    bulkUpdateHeroCard({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
-  return loadingUserSession
-    ? <Loading />
-    : (
-      <div className='flex flex-col gap-y-6'>
-        <form onSubmit={handleSubmit(executeBulkUpdate)} className='border-b border-solid'>
-          <div className='px-6 py-6'>
-            <div className='flex flex-col gap-y-6 text-sm'>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='title'>
-                  {format('ui.siteSetting.heroSection.title')}
-                </label>
-                <Input
-                  {...register('title', { required: format('validation.required') })}
-                  id='title'
-                  placeholder={format('ui.siteSetting.heroSection.title')}
-                  isInvalid={errors.title}
-                />
-                {errors.title && <ValidationError value={errors.title?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label className='required-field' htmlFor='description'>
-                  {format('ui.siteSetting.heroSection.description')}
-                </label>
-                <Input
-                  {...register('description', { required: format('validation.required') })}
-                  id='description'
-                  placeholder={format('ui.siteSetting.heroSection.description')}
-                  isInvalid={errors.description}
-                />
-                {errors.description && <ValidationError value={errors.description?.message} />}
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <label for='wysiwyg-description'>
-                  {format('ui.siteSetting.heroSection.wysiwygDescription')}
-                </label>
-                <Controller
-                  name='wysiwygDescription'
-                  control={control}
-                  render={({ field: { value, onChange } }) => (
-                    <HtmlEditor
-                      id='wysiwyg-description'
-                      editorId='wysiwyg-description'
-                      onChange={onChange}
-                      initialContent={value}
-                      placeholder={format('ui.siteSetting.heroSection.wysiwygDescription')}
-                      isInvalid={errors.wysiwygDescription}
-                    />
-                  )}
-                />
-              </div>
-              <div className='flex flex-wrap text-sm gap-3'>
-                <button type='submit' className='submit-button' disabled={mutating}>
-                  {format('ui.siteSetting.heroSection.save')}
-                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-              </div>
+  return (
+    <div className='flex flex-col gap-y-6'>
+      <form onSubmit={handleSubmit(executeBulkUpdate)} className='border-b border-solid'>
+        <div className='px-6 py-6'>
+          <div className='flex flex-col gap-y-6 text-sm'>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='title'>
+                {format('ui.siteSetting.heroSection.title')}
+              </label>
+              <Input
+                {...register('title', { required: format('validation.required') })}
+                id='title'
+                placeholder={format('ui.siteSetting.heroSection.title')}
+                isInvalid={errors.title}
+              />
+              {errors.title && <ValidationError value={errors.title?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field' htmlFor='description'>
+                {format('ui.siteSetting.heroSection.description')}
+              </label>
+              <Input
+                {...register('description', { required: format('validation.required') })}
+                id='description'
+                placeholder={format('ui.siteSetting.heroSection.description')}
+                isInvalid={errors.description}
+              />
+              {errors.description && <ValidationError value={errors.description?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label for='wysiwyg-description'>
+                {format('ui.siteSetting.heroSection.wysiwygDescription')}
+              </label>
+              <Controller
+                name='wysiwygDescription'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <HtmlEditor
+                    id='wysiwyg-description'
+                    editorId='wysiwyg-description'
+                    onChange={onChange}
+                    initialContent={value}
+                    placeholder={format('ui.siteSetting.heroSection.wysiwygDescription')}
+                    isInvalid={errors.wysiwygDescription}
+                  />
+                )}
+              />
+            </div>
+            <div className='flex flex-wrap text-sm gap-3'>
+              <button type='submit' className='submit-button' disabled={mutating}>
+                {format('ui.siteSetting.heroSection.save')}
+                {mutating && <FaSpinner className='spinner ml-3 inline' />}
+              </button>
             </div>
           </div>
-        </form>
-        {currentWysiwygDescription
-          ? <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
-            <HtmlViewer initialContent={currentWysiwygDescription} />
+        </div>
+      </form>
+      {currentWysiwygDescription
+        ? <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
+          <HtmlViewer initialContent={currentWysiwygDescription} />
+        </div>
+        : <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
+          <div className='text-2xl font-semibold'>
+            {currentTitle &&
+              <FormattedMessage
+                id={currentTitle}
+                defaultMessage={currentTitle}
+              />
+            }
           </div>
-          : <div className='px-4 lg:px-6 py-4 flex flex-col gap-y-8'>
-            <div className='text-2xl font-semibold'>
-              {currentTitle &&
-                <FormattedMessage
-                  id={currentTitle}
-                  defaultMessage={currentTitle}
-                />
-              }
-            </div>
-            <div className='text-sm max-w-5xl'>
-              {currentDescription &&
-                <FormattedMessage
-                  id={currentDescription}
-                  defaultMessage={currentDescription}
-                />
-              }
-            </div>
+          <div className='text-sm max-w-5xl'>
+            {currentDescription &&
+              <FormattedMessage
+                id={currentDescription}
+                defaultMessage={currentDescription}
+              />
+            }
           </div>
-        }
-      </div>
-    )
+        </div>
+      }
+    </div>
+  )
 }
 
 const HeroCardSection = ({ slug }) => {
@@ -185,6 +178,11 @@ const HeroCardSection = ({ slug }) => {
 
   const { loading, error, data } = useQuery(SITE_SETTING_DETAIL_QUERY, {
     variables: { slug },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    },
     onCompleted: (data) => {
       const { siteSetting } = data
       if (siteSetting) {
@@ -196,7 +194,6 @@ const HeroCardSection = ({ slug }) => {
     }
   })
 
-  const { user } = useUser()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
 
   const { locale } = useRouter()
@@ -223,15 +220,20 @@ const HeroCardSection = ({ slug }) => {
         setMutating(false)
         reset()
       }
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.EDITING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.siteSetting) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const buildCommonConfiguration = () => ({
@@ -283,34 +285,30 @@ const HeroCardSection = ({ slug }) => {
   }
 
   const executeBulkUpdate = () => {
-    if (user) {
-      setMutating(true)
-      const { userEmail, userToken } = user
-      const variables = {
-        siteSettingSlug: slug,
-        heroCardConfigurations
-      }
-
-      bulkUpdateHeroCard({
-        variables,
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
-        }
-      })
+    setMutating(true)
+    const variables = {
+      siteSettingSlug: slug,
+      heroCardConfigurations
     }
+
+    bulkUpdateHeroCard({
+      variables,
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const { siteSetting } = data
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map[siteSetting.slug] = siteSetting.name
 
     return map
-  })()
+  }
 
   return (
     <div className='lg:px-8 xl:px-56 min-h-[75vh]'>

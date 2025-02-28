@@ -1,19 +1,18 @@
-import { useApolloClient, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useUser } from '../../../lib/hooks'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { ToastContext } from '../../../lib/ToastContext'
-import Select from '../../shared/form/Select'
+import ProductCard from '../../product/ProductCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
-import { fetchSelectOptions } from '../../utils/search'
-import { DisplayType } from '../../utils/constants'
+import Select from '../../shared/form/Select'
 import { UPDATE_ORGANIZATION_PRODUCT_CERTIFICATIONS } from '../../shared/mutation/organization'
 import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
-import ProductCard from '../../product/ProductCard'
+import { DisplayType } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
 
-const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRef }) => {
+const StorefrontDetailProductCertifications = ({ organization, editingAllowed, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -22,7 +21,6 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
   const [certifications, setCertifications] = useState(organization.productCertifications)
   const [isDirty, setIsDirty] = useState(false)
 
-  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -74,22 +72,17 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
   }
 
   const onSubmit = () => {
-    if (user) {
-      const { userEmail, userToken } = user
-
-      updateOrganizationCertifications({
-        variables: {
-          productSlugs: certifications.map(({ slug }) => slug),
-          slug: organization.slug
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            Authorization: `${userEmail} ${userToken}`
-          }
+    updateOrganizationCertifications({
+      variables: {
+        productSlugs: certifications.map(({ slug }) => slug),
+        slug: organization.slug
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
         }
-      })
-    }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -149,7 +142,7 @@ const StorefrontDetailProductCertifications = ({ organization, canEdit, headerRe
 
   return (
     <EditableSection
-      canEdit={canEdit}
+      editingAllowed={editingAllowed}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

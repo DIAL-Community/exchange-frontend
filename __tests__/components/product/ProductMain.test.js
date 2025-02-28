@@ -48,7 +48,7 @@ describe('Unit tests for the product main page.', () => {
         isLinkedWithDpi: false,
         showGovStackOnly: false,
         showDpgaOnly: false,
-        limit: 8,
+        limit: 12,
         offset: 0
       },
       null,

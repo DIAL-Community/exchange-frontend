@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { HUB_CONTACT_DETAIL_QUERY } from '../../shared/query/contact'
 import { DPI_TENANT_NAME } from '../constants'
 import ContactForm from '../user/ContactForm'
@@ -11,18 +12,23 @@ const HubContactForm = ({ userId, userEmail }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, data } = useQuery(HUB_CONTACT_DETAIL_QUERY, {
-    variables: { userId: `${userId}`, email: `${userEmail}`, source: DPI_TENANT_NAME }
+    variables: { userId: `${userId}`, email: `${userEmail}`, source: DPI_TENANT_NAME },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
-  const slugNameMapping = (() => {
+  const slugNameMapping = () => {
     const map = {}
     map['profile'] = format('hub.dashboard.profile')
 
     return map
-  })()
+  }
 
   return (
-    <div className='md:px-4 lg:px-8 xl:px-56 min-h-[80vh]'>
+    <div className='md:px-4 lg:px-8 xl:px-24 3xl:px-56 min-h-[80vh]'>
       <div
         className='py-4 px-6 sticky bg-dial-blue-chalk text-dial-stratos'
         style={{ top: 'var(--header-height)' }}

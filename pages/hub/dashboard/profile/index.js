@@ -5,8 +5,8 @@ import { useIntl } from 'react-intl'
 import HubFooter from '../../../../components/hub/sections/HubFooter'
 import HubHeader from '../../../../components/hub/sections/HubHeader'
 import HubProfileDetail from '../../../../components/hub/sections/HubProfileDetail'
-import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import QueryNotification from '../../../../components/shared/QueryNotification'
+import { handleLoadingSession, handleSessionError } from '../../../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../../../lib/ClientOnly'
 
 const HubDashboardContactPage = ({ dpiTenants }) => {
@@ -30,10 +30,10 @@ const HubDashboardContactPage = ({ dpiTenants }) => {
         <QueryNotification />
         <HubHeader />
         { status === 'unauthenticated' || status === 'loading'
-          ? <Loading />
+          ? handleLoadingSession()
           : status === 'authenticated' && data?.user
             ? <HubProfileDetail user={data?.user} />
-            : <Unauthorized />
+            : handleSessionError()
         }
         <HubFooter />
       </ClientOnly>

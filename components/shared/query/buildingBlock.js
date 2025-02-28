@@ -70,6 +70,14 @@ export const PAGINATED_BUILDING_BLOCKS_QUERY = gql`
   }
 `
 
+export const BUILDING_BLOCK_POLICY_QUERY = gql`
+  query BuildingBlock($slug: String!) {
+    buildingBlock(slug: $slug) {
+      id
+    }
+  }
+`
+
 export const BUILDING_BLOCK_DETAIL_QUERY = gql`
   query BuildingBlock($slug: String!) {
     buildingBlock(slug: $slug) {

@@ -1,14 +1,13 @@
-import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { useUser } from '../../../lib/hooks'
-import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { useIntl } from 'react-intl'
 import EditButton from '../../shared/form/EditButton'
+import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import UseCaseStepDetailBuildingBlocks from './fragments/UseCaseStepDetailBuildingBlocks'
 import UseCaseStepDetailDatasets from './fragments/UseCaseStepDetailDatasets'
 import UseCaseStepDetailProducts from './fragments/UseCaseStepDetailProducts'
 import UseCaseStepDetailWorkflows from './fragments/UseCaseStepDetailWorkflows'
-import UseCaseStepDetailBuildingBlocks from './fragments/UseCaseStepDetailBuildingBlocks'
 
-const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
+const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep, editingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -17,9 +16,6 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   const productRef = useRef()
   const workflowRef = useRef()
   const buildingBlockRef = useRef()
-
-  const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = (isAdminUser || isEditorUser) && !useCase.markdownUrl
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.description', ref: descRef },
@@ -32,7 +28,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   return (
     <div className='px-4 lg:px-0 py-4 lg:py-6'>
       <div className='flex flex-col gap-y-3'>
-        {canEdit &&
+        {!useCase.markdownUrl && editingAllowed &&
           <div className='flex gap-x-3 ml-auto'>
             <EditButton
               type='link'
@@ -46,7 +42,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>
-        <div className='block'>
+        <div className='description-block'>
           <HtmlViewer
             initialContent={useCaseStep?.useCaseStepDescription?.description}
             editorId='use-case-step-description'
@@ -56,7 +52,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailDatasets
             useCaseStep={useCaseStep}
-            canEdit={canEdit}
+            editingAllowed={!useCase.markdownUrl && editingAllowed}
             headerRef={datasetRef}
           />
         </div>
@@ -64,7 +60,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailProducts
             useCaseStep={useCaseStep}
-            canEdit={canEdit}
+            editingAllowed={!useCase.markdownUrl && editingAllowed}
             headerRef={productRef}
           />
         </div>
@@ -72,7 +68,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
         <div className='flex flex-col gap-y-3'>
           <UseCaseStepDetailWorkflows
             useCaseStep={useCaseStep}
-            canEdit={canEdit}
+            editingAllowed={!useCase.markdownUrl && editingAllowed}
             headerRef={workflowRef}
           />
         </div>
@@ -81,7 +77,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
           <UseCaseStepDetailBuildingBlocks
             useCase={useCase}
             useCaseStep={useCaseStep}
-            canEdit={canEdit}
+            editingAllowed={!useCase.markdownUrl && editingAllowed}
             headerRef={buildingBlockRef}
           />
         </div>

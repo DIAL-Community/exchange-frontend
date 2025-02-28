@@ -1,14 +1,14 @@
-import { useIntl } from 'react-intl'
-import { useState, useEffect, useCallback, useMemo, useContext } from 'react'
 import '@uiw/react-md-editor/markdown-editor.css'
 import '@uiw/react-markdown-preview/markdown.css'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Octokit } from '@octokit/core'
 import { MdRefresh } from 'react-icons/md'
+import { useIntl } from 'react-intl'
+import { Octokit } from '@octokit/core'
 import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
-import Select from './Select'
 import EditableSection from './EditableSection'
+import Select from './Select'
 
 const MDEditor = dynamic(
   () => import('@uiw/react-md-editor').then((mod) => mod.default),
@@ -41,7 +41,7 @@ const fetchEntityId = (entity) => {
   return 'NA'
 }
 
-const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
+const RepositoryMarkdown = ({ entityWithMarkdown, editingAllowed }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -155,7 +155,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
     return () => {
       clearTimeout(id)
     }
-  })
+  }, [branchUpdateDates, currentBranch])
 
   useEffect(() => {
     if (currentBranch) {
@@ -330,7 +330,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
   return (
     <div className='-mt-12'>
       <EditableSection
-        canEdit={canEdit}
+        editingAllowed={editingAllowed}
         onSubmit={submitChanges}
         onCancel={onCancel}
         isDirty={isDirty}

@@ -3,9 +3,9 @@ import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { Loading } from '../../components/shared/FetchStatus'
 import Footer from '../../components/shared/Footer'
 import Header from '../../components/shared/Header'
+import { handleLoadingSession, handleSessionError } from '../../components/shared/SessionQueryHandler'
 import ClientOnly from '../../lib/ClientOnly'
 
 const AdminPage = ({ defaultTenants }) => {
@@ -31,9 +31,11 @@ const AdminPage = ({ defaultTenants }) => {
       />
       <ClientOnly clientTenants={defaultTenants}>
         <Header />
-        {status === 'authenticated' && data?.user.isAdminUser
-          ? <AdminLandingPage />
-          : <Loading />
+        { status === 'unauthenticated' || status === 'loading'
+          ? handleLoadingSession()
+          : status === 'authenticated' && data?.user.isAdminUser
+            ? <AdminLandingPage />
+            : handleSessionError()
         }
         <Footer />
       </ClientOnly>
@@ -46,7 +48,7 @@ const AdminLandingPage = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='min-h-[70vh] px-4 lg:px-8 xl:px-56 py-16'>
+    <div className='min-h-[70vh] px-4 lg:px-8 xl:px-24 3xl:px-56 py-16'>
       <div className='flex flex-col gap-y-8'>
         <div className='text-lg font-semibold lg:col-span-3'>
           {format('ui.admin.siteConfiguration.header')}

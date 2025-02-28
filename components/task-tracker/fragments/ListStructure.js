@@ -1,10 +1,11 @@
 import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { PAGINATED_TASK_TRACKERS_QUERY } from '../../shared/query/taskTracker'
-import TaskTrackerCard from '../TaskTrackerCard'
-import { DisplayType } from '../../utils/constants'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { FilterContext } from '../../context/FilterContext'
-import { Error, Loading, NotFound } from '../../shared/FetchStatus'
+import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { PAGINATED_TASK_TRACKERS_QUERY } from '../../shared/query/taskTracker'
+import { DisplayType } from '../../utils/constants'
+import TaskTrackerCard from '../TaskTrackerCard'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { search, showFailedOnly } = useContext(FilterContext)
@@ -15,15 +16,20 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       showFailedOnly,
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
   if (loading) {
-    return <Loading />
+    return handleLoadingQuery()
   } else if (error) {
-    return <Error />
+    return handleQueryError(error)
   } else if (!data?.paginatedTaskTrackers) {
-    return <NotFound />
+    return handleMissingData()
   }
 
   const { paginatedTaskTrackers: taskTrackers } = data

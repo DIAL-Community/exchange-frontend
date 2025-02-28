@@ -7,13 +7,13 @@ import {
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
-import { useUser } from '../../../../lib/hooks'
+import { GRAPH_QUERY_CONTEXT } from '../../../../lib/apolloClient'
 import { ToastContext } from '../../../../lib/ToastContext'
 import BarChart from '../../../shared/BarChart'
 import Dialog from '../../../shared/Dialog'
 import EditableSection from '../../../shared/EditableSection'
-import { Loading } from '../../../shared/FetchStatus'
 import Select from '../../../shared/form/Select'
+import { handleLoadingQuery } from '../../../shared/GraphQueryHandler'
 import { UPDATE_CANDIDATE_PRODUCT_CATEGORY_INDICATORS } from '../../../shared/mutation/candidateProduct'
 import { CANDIDATE_PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../../shared/query/candidateProduct'
 import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../../../shared/query/comment'
@@ -88,7 +88,7 @@ const MaturityCategory = ({ category }) => {
   )
 }
 
-const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityScoreDetails }) => {
+const ProductDetailMaturityScores = ({ productId, slug, editingAllowed, overallMaturityScore, maturityScoreDetails }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -98,8 +98,6 @@ const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityS
   const scaleOptions = useMemo(() => getCategoryIndicatorScaleOptions(format), [format])
   const booleanOptions = useMemo(() => getCategoryIndicatorBooleanOptions(format), [format])
   const numericOptions = useMemo(() => getCategoryIndicatorNumericOptions(), [])
-
-  const { isAdminUser, user } = useUser()
 
   const [maturityScore, setMaturityScore] = useState(overallMaturityScore)
 
@@ -146,7 +144,11 @@ const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityS
     refetch: refetchCategoryIndicators
   } = useQuery(CANDIDATE_PRODUCT_CATEGORY_INDICATORS_QUERY, {
     variables: { slug },
-    skip: !isAdminUser
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    }
   })
 
   const defaultCategoryIndicators = useMemo(() => {
@@ -248,14 +250,24 @@ const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityS
       refetchQueries:[{
         query: COMMENTS_COUNT_QUERY,
         variables: {
-          commentObjectId: parseInt(id),
+          commentObjectId: parseInt(productId),
           commentObjectType: ObjectType.CANDIDATE_PRODUCT
+        },
+        context: {
+          headers: {
+            ...GRAPH_QUERY_CONTEXT.VIEWING
+          }
         }
       }, {
         query: COMMENTS_QUERY,
         variables: {
-          commentObjectId: parseInt(id),
+          commentObjectId: parseInt(productId),
           commentObjectType: ObjectType.CANDIDATE_PRODUCT
+        },
+        context: {
+          headers: {
+            ...GRAPH_QUERY_CONTEXT.VIEWING
+          }
         }
       }],
       onCompleted: (data) => {
@@ -283,49 +295,44 @@ const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityS
   )
 
   const doUpsert = async (data) => {
-    if (user) {
-      const { userEmail, userToken } = user
-      const dirtyIndicators = []
-      data.categoryIndicators.forEach(({ indicators }, categoryIdx) => {
-        indicators[ASSIGNED_INDICATORS_ARRAY_NAME].forEach(
-          ({ slug, indicatorValue }, indicatorIdx) => {
-            if (
-              indicatorValue !==
-              defaultCategoryIndicators[categoryIdx].indicators[ASSIGNED_INDICATORS_ARRAY_NAME][
-                indicatorIdx
-              ].indicatorValue
-            ) {
-              dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
-            }
-          }
-        )
-        indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].forEach(
-          ({ slug, indicatorValue }, indicatorIdx) => {
-            if (
-              indicatorValue !==
-              defaultCategoryIndicators[categoryIdx].indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME][
-                indicatorIdx
-              ].indicatorValue
-            ) {
-              dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
-            }
-          }
-        )
-      })
-
-      updateProductIndicators({
-        variables: {
-          slug,
-          categoryIndicatorValues: dirtyIndicators
-        },
-        context: {
-          headers: {
-            'Accept-Language': locale,
-            'Authorization': `${userEmail} ${userToken}`
+    const dirtyIndicators = []
+    data.categoryIndicators.forEach(({ indicators }, categoryIdx) => {
+      indicators[ASSIGNED_INDICATORS_ARRAY_NAME].forEach(
+        ({ slug, indicatorValue }, indicatorIdx) => {
+          if (
+            indicatorValue !==
+            defaultCategoryIndicators[categoryIdx].indicators[ASSIGNED_INDICATORS_ARRAY_NAME][
+              indicatorIdx
+            ].indicatorValue
+          ) {
+            dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
           }
         }
-      })
-    }
+      )
+      indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].forEach(
+        ({ slug, indicatorValue }, indicatorIdx) => {
+          if (
+            indicatorValue !==
+            defaultCategoryIndicators[categoryIdx].indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME][
+              indicatorIdx
+            ].indicatorValue
+          ) {
+            dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
+          }
+        }
+      )
+    })
+    updateProductIndicators({
+      variables: {
+        slug,
+        categoryIndicatorValues: dirtyIndicators
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale
+        }
+      }
+    })
   }
 
   const onCancel = () => {
@@ -475,7 +482,7 @@ const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityS
   }
 
   const editModeBody = loadingCategoryIndicators
-    ? <Loading />
+    ? handleLoadingQuery()
     : <Accordion allowMultipleExpanded allowZeroExpanded>
       {categoryIndicators.map(({ indicators, rubricCategoryName }, categoryIdx) => (
         <AccordionItem key={categoryIdx}>
@@ -513,9 +520,9 @@ const ProductDetailMaturityScores = ({ id, slug, overallMaturityScore, maturityS
   return (
     <div className='text-sm'>
       <EditableSection
+        editingAllowed={editingAllowed}
         sectionHeader={sectionHeader}
         sectionDisclaimer={sectionDisclaimer}
-        canEdit={isAdminUser}
         editModeBody={editModeBody}
         displayModeBody={displayModeBody}
         isDirty={isDirty}

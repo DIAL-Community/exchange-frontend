@@ -108,6 +108,11 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
         name
         slug
       }
+      endorsers {
+        id
+        name
+        slug
+      }
       buildingBlocks {
         id
       }
@@ -139,6 +144,14 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
 export const PRODUCT_COMPARE_QUERY = gql`
   query CompareProducts($slugs: [String!]!) {
     compareProducts(slugs: $slugs)
+  }
+`
+
+export const PRODUCT_POLICY_QUERY = gql`
+  query Product($slug: String!) {
+    product(slug: $slug) {
+      id
+    }
   }
 `
 
@@ -190,6 +203,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         imageFile
         origins {
           id
+          slug
           name
         }
       }

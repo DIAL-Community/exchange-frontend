@@ -11,13 +11,13 @@ const UseCaseSearchBar = forwardRef((_, ref) => {
   const mobileFilter =
     <MobileFilter
       bgColor='bg-dial-blue-chalk'
-      iconColor='text-dial-blueberry'
       entityFilter={<UseCaseFilter />}
     />
 
   return (
     <div ref={ref} className='py-3'>
       <SearchBar
+        multiView
         search={search}
         setSearch={setSearch}
         mobileFilter={mobileFilter}

@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { PAGINATED_PLAYBOOKS_QUERY } from '../../shared/query/playbook'
 import { DPI_TENANT_NAME } from '../constants'
 import { CURRICULUM_PAGE_SIZE } from '../curriculum/constant'
@@ -82,6 +83,11 @@ const CurriculumList = ({ pageNumber }) => {
       owner: DPI_TENANT_NAME,
       limit: CURRICULUM_PAGE_SIZE,
       offset: pageNumber * CURRICULUM_PAGE_SIZE
+    },
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
     }
   })
 
@@ -120,7 +126,7 @@ const HubCurricula = ({ stripeIndex }) => {
 
   return (
     <div className={`curriculum-section ${stripeClasses(stripeIndex)}`}>
-      <div className='px-4 lg:px-8 xl:px-56'>
+      <div className='px-4 lg:px-8 xl:px-24 3xl:px-56'>
         <div className='text-lg lg:text-2xl pt-8 pb-2 '>
           {format('hub.curriculum.title')}
         </div>
