@@ -8,7 +8,7 @@ import ConfigurableLanding from '../../components/shared/landing/ConfigurableLan
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
-const GovernmentPage = ({ defaultTenants }) => {
+const EditablePage = ({ defaultTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -29,4 +29,4 @@ const GovernmentPage = ({ defaultTenants }) => {
   )
 }
 
-export default GovernmentPage
+export default EditablePage

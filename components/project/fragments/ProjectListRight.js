@@ -28,14 +28,14 @@ const ProjectListRight = () => {
   const topRef = useRef(null)
   const { push, query } = useRouter()
 
-  const { page } = query
-  const pageNumber = page ? parseInt(page) - 1 : 0
+  const { 'project-page': projectPage } = query
+  const pageNumber = projectPage ? parseInt(projectPage) - 1 : 0
   const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     push(
-      { query: { ...query, page: destinationPage + 1 } },
+      { query: { ...query, 'project-page': destinationPage + 1 } },
       undefined,
       { shallow: true }
     )

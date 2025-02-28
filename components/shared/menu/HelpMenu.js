@@ -85,15 +85,6 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             {format('header.confluence')}
           </a>
           <a
-            className={DEFAULT_DROPDOWN_MENU_STYLES}
-            href='//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
-            target='_blank'
-            rel='noreferrer'
-            role='menuitem'
-          >
-            {format('header.newsletter')}
-          </a>
-          <a
             href='reportIssue'
             className={DEFAULT_DROPDOWN_MENU_STYLES}
             onClick={(e) => showFeedbackForm(e)}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import BuildingBlockListRight from '../../building-block/fragments/BuildingBlockListRight'
 import AggregatorMap from '../../maps/aggregators/AggregatorMap'
@@ -9,6 +10,19 @@ import ProjectListRight from '../../project/fragments/ProjectListRight'
 import UseCaseListRight from '../../use-case/fragments/UseCaseListRight'
 import { isDebugLoggingEnabled } from '../../utils/utilities'
 import { ContentListTypes, ContentMapTypes } from './constants'
+
+export const useWindowWidth = () => {
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return width
+}
 
 export const getFromLocalStorage = (localStorageKey) => {
   if (isDebugLoggingEnabled()) {
@@ -39,10 +53,10 @@ export const saveToLocalStorage = (localStorageKey, value) => {
 
 // Update rendered components depending on the selected value.
 // This is specific for map widget, we can add more maps in the future.
-export const resolveContentMapValue = (value) => {
+export const resolveMapValue = (value, country) => {
   switch (value) {
     case ContentMapTypes.PROJECT_MAP:
-      return <ProjectMap />
+      return country ? <ProjectMap initialCountry={country} /> : <ProjectMap />
     case ContentMapTypes.ENDORSER_MAP:
       return <EndorserMap />
     case ContentMapTypes.AGGREGATOR_MAP:
@@ -58,7 +72,7 @@ export const resolveContentMapValue = (value) => {
 
 // Update rendered components depending on the selected value.
 // This is specific for list widget, we can add more maps in the future.
-export const resolveContentListValue = (value) => {
+export const resolveListValue = (value) => {
   switch (value) {
     case ContentListTypes.PRODUCT_LIST:
       return <ProductListRight />
