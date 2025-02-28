@@ -79,14 +79,12 @@ const CarouselConfiguration = (props) => {
                   </div>
                 </button>
               }
-              {editable() &&
-                <DeleteCarouselConfiguration
-                  siteSettingSlug={siteSettingSlug}
-                  carouselConfiguration={carouselConfiguration}
-                  carouselConfigurations={carouselConfigurations}
-                  setCarouselConfigurations={setCarouselConfigurations}
-                />
-              }
+              <DeleteCarouselConfiguration
+                siteSettingSlug={siteSettingSlug}
+                carouselConfiguration={carouselConfiguration}
+                carouselConfigurations={carouselConfigurations}
+                setCarouselConfigurations={setCarouselConfigurations}
+              />
               <div className='flex gap-1'>
                 <button
                   type='button'

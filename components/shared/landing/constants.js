@@ -18,7 +18,7 @@ export const ContentListTypes = {
   PROJECT_LIST: 'project-list'
 }
 
-export const ContentListOptions = [
+export const listOptions = [
   {
     label: <FormattedMessage id='landing.list.buildingBlocks' />,
     value: ContentListTypes.BUILDING_BLOCK_LIST
@@ -48,7 +48,7 @@ export const ContentMapTypes = {
   COUNTRY_MAP: 'country-map'
 }
 
-export const ContentMapOptions = [
+export const mapOptions = [
   {
     label: <FormattedMessage id='landing.map.aggregator' />,
     value: ContentMapTypes.AGGREGATOR_MAP
