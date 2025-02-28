@@ -2990,6 +2990,10 @@ export const en = {
   'ui.siteSetting.defaultSetting': 'Set this configuration as the default.',
   'ui.siteSetting.description': 'Site Configuration Description',
   'ui.siteSetting.currentDefault': 'Currently Active Setting',
+  'ui.siteSetting.siteColors': 'Site Colors',
+  'ui.siteSetting.siteColors.primary': 'Primary (Header)',
+  'ui.siteSetting.siteColors.secondary': 'Secondary (Header Text)',
+  'ui.siteSetting.siteColors.tertiary': 'Tertiary',
 
   'ui.tenantSetting.label': 'Tenant Configuration',
   'ui.tenantSetting.header': 'Tenant Configurations',
