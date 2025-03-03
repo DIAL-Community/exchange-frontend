@@ -13,7 +13,7 @@ const LocationMarkers = ({ countryProjects, setSelectedLocation }) => {
   const NON_SELECTED_OPACITY = 0.3
 
   const MARKER_ZOOM = 5
-  const DEFAULT_ZOOM = 4
+  const DEFAULT_ZOOM = 5
 
   const markerClickHandler = (e, location) => {
     locationMarkerGroup.current.eachLayer(layer => {
@@ -72,7 +72,7 @@ const ProjectLeaflet = ({ initialCountry, containerHeight, ...props }) => {
 
   return (
     <MapContainer
-      zoom={initialCountry ? 4 : 3}
+      zoom={initialCountry ? 5 : 4}
       center={center}
       className='w-full'
       style={{ minHeight: containerHeight, zIndex: 18 }}

@@ -417,7 +417,7 @@ exports[`Unit tests for the dataset main page. Should render list of datasets. 1
                 </button>
               </div>
               <div
-                class="ml-auto max-w-prose"
+                class="ml-auto w-full max-w-prose"
               >
                 <label
                   class="relative"
