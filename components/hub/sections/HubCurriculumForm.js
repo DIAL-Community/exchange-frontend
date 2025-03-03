@@ -63,7 +63,7 @@ const CreateHubCurriculum = () => {
 
   const { locale } = useRouter()
 
-  const { data, loading, error } = useQuery(PLAYBOOK_POLICY_QUERY, {
+  const { loading, error } = useQuery(PLAYBOOK_POLICY_QUERY, {
     variables: { slug: CREATING_POLICY_SLUG, owner: DPI_TENANT_NAME },
     context: {
       headers: {
@@ -77,8 +77,6 @@ const CreateHubCurriculum = () => {
     return handleLoadingQuery()
   } else if (error) {
     return handleQueryError(error)
-  } else if (!data?.playbook) {
-    return handleMissingData()
   }
 
   const slugNameMapping = () => {
