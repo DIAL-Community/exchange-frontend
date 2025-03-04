@@ -6,8 +6,7 @@ import TabNav from '../shared/TabNav'
 
 const OpportunityTabNav = ({ activeTab, setActiveTab }) => {
   const [tabNames, setTabNames] = useState([
-    'ui.opportunity.header',
-    'ui.opportunity.whatIs'
+    'ui.opportunity.header'
   ])
 
   useQuery(OPPORTUNITY_POLICY_QUERY, {

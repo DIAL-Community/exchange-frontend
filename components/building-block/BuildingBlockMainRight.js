@@ -1,6 +1,5 @@
 import { useActiveTenant, useUser } from '../../lib/hooks'
 import RequireAuth from '../shared/RequireAuth'
-import BuildingBlockDefinition from './fragments/BuildingBlockDefinition'
 import BuildingBlockListRight from './fragments/BuildingBlockListRight'
 import BuildingBlockForm from './fragments/BuildingBlockForm'
 
@@ -17,8 +16,7 @@ const BuildingBlockMainRight = ({ activeTab }) => {
   return (
     <div className='min-h-[50vh]'>
       { activeTab === 0 && initialDisplay }
-      { activeTab === 1 && <BuildingBlockDefinition /> }
-      { activeTab === 2 && <BuildingBlockForm /> }
+      { activeTab === 1 && <BuildingBlockForm /> }
     </div>
   )
 }

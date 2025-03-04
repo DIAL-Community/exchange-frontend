@@ -11,8 +11,7 @@ const ProjectTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.project.header',
-    'ui.project.whatIs'
+    'ui.project.header'
   ])
 
   useQuery(PROJECT_POLICY_QUERY, {

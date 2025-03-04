@@ -26,6 +26,7 @@ export const CREATE_SITE_SETTING = gql`
     $faviconUrl: String!
     $exchangeLogoUrl: String!
     $openGraphLogoUrl: String!
+    $siteColors: JSON
   ) {
     createSiteSetting(
       name: $name
@@ -36,6 +37,7 @@ export const CREATE_SITE_SETTING = gql`
       faviconUrl: $faviconUrl
       exchangeLogoUrl: $exchangeLogoUrl
       openGraphLogoUrl: $openGraphLogoUrl
+      siteColors: $siteColors
     ) {
       siteSetting {
         id

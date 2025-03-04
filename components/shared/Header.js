@@ -96,10 +96,11 @@ const Header = ({ isOnAuthPage = false }) => {
     }
   })
 
-  const { exchangeLogoUrl, menuConfigurations } = useContext(SiteSettingContext)
+  const { exchangeLogoUrl, menuConfigurations, siteColors } = useContext(SiteSettingContext)
 
   return (
-    <header className='z-50 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
+    <header className='z-50 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'
+      style={ siteColors && { backgroundColor: siteColors.primary }}>
       <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-24 3xl:px-56 text-sm'>
         <Link href='/' className='my-auto'>
           <img
@@ -110,7 +111,8 @@ const Header = ({ isOnAuthPage = false }) => {
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
         {!isOnAuthPage &&
-          <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'>
+          <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-3'
+            style={ siteColors && { color: siteColors.secondary }}>
             {menuConfigurations.map((menuConfiguration) => {
               switch (menuConfiguration.type) {
                 case 'menu.item':

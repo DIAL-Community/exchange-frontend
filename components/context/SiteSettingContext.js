@@ -14,6 +14,7 @@ const SiteSettingProvider = ({ children }) => {
       setMenuConfigurations(data.defaultSiteSetting.menuConfigurations)
       setCarouselConfigurations(data.defaultSiteSetting.carouselConfigurations)
       setHeroCardSection(data.defaultSiteSetting.heroCardSection)
+      setSiteColors(data.defaultSiteSetting.siteColors)
       setEnableMarketplace(data.defaultSiteSetting.enableMarketplace)
     }
   })
@@ -24,6 +25,7 @@ const SiteSettingProvider = ({ children }) => {
   const [menuConfigurations, setMenuConfigurations] = useState([])
   const [carouselConfigurations, setCarouselConfigurations] = useState([])
   const [heroCardSection, setHeroCardSection] = useState([])
+  const [siteColors, setSiteColors] = useState({})
 
   const [enableMarketplace, setEnableMarketplace] = useState(false)
 
@@ -32,6 +34,7 @@ const SiteSettingProvider = ({ children }) => {
     menuConfigurations,
     carouselConfigurations,
     heroCardSection,
+    siteColors,
     enableMarketplace
   }
 
@@ -40,6 +43,7 @@ const SiteSettingProvider = ({ children }) => {
     setMenuConfigurations,
     setCarouselConfigurations,
     setHeroCardSection,
+    setSiteColors,
     setEnableMarketplace
   }
 

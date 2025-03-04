@@ -11,8 +11,7 @@ const WorkflowTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.workflow.header',
-    'ui.workflow.whatIs'
+    'ui.workflow.header'
   ])
 
   useQuery(WORKFLOW_POLICY_QUERY, {
