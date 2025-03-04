@@ -9,7 +9,7 @@ import Checkbox from '../shared/form/Checkbox'
 import { DisplayType } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
-const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = null }) => {
+const ProductCard = ({ disabled, displayType, index, product, dismissHandler, urlPrefix = null }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -176,7 +176,10 @@ const ProductCard = ({ displayType, index, product, dismissHandler, urlPrefix = 
 
   return (
     <div className='relative'>
-      <Link href={`${urlPrefix ? urlPrefix : ''}/products/${product.slug}`}>
+      <Link
+        href={`${urlPrefix ? urlPrefix : ''}/products/${product.slug}`}
+        onClick={(e) => { if (disabled) e.preventDefault() }}
+      >
         {displayType === DisplayType.HUB_CARD && displayDpiCard()}
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}

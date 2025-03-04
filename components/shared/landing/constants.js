@@ -6,6 +6,7 @@ export const WidgetTypeOptions = {
   CAROUSEL: 'landing.widget.carousel',
   LIST: 'landing.widget.list',
   MAP: 'landing.widget.map',
+  PINNED: 'landing.widget.pinned',
   SPACER: 'landing.widget.spacer',
   // SUMMARY: 'landing.widget.summary',
   TEXT: 'landing.widget.text'
@@ -39,6 +40,37 @@ export const listOptions = [
   {
     label: <FormattedMessage id='landing.list.useCases' />,
     value: ContentListTypes.USE_CASE_LIST
+  }
+]
+
+export const PinnedItemTypes = {
+  PINNED_BUILDING_BLOCK: 'pinned-building-block',
+  PINNED_ORGANIZATION: 'pinned-organization',
+  PINNED_PRODUCT: 'pinned-product',
+  PINNED_PROJECT: 'pinned-project',
+  PINNED_USE_CASE: 'pinned-use-case'
+}
+
+export const pinnedItemOptions = [
+  {
+    label: <FormattedMessage id='landing.pinned.buildingBlock' />,
+    value: PinnedItemTypes.PINNED_BUILDING_BLOCK
+  },
+  {
+    label: <FormattedMessage id='landing.pinned.organization' />,
+    value: PinnedItemTypes.PINNED_ORGANIZATION
+  },
+  {
+    label: <FormattedMessage id='landing.pinned.product' />,
+    value: PinnedItemTypes.PINNED_PRODUCT
+  },
+  {
+    label: <FormattedMessage id='landing.pinned.project' />,
+    value: PinnedItemTypes.PINNED_PROJECT
+  },
+  {
+    label: <FormattedMessage id='landing.pinned.useCase' />,
+    value: PinnedItemTypes.PINNED_USE_CASE
   }
 ]
 

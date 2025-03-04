@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
-import { useMutation, useQuery } from '@apollo/client'
+import { useApolloClient, useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
@@ -19,12 +19,15 @@ import { UPDATE_SITE_SETTING_ITEM_SETTINGS } from '../mutation/siteSetting'
 import { DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY } from '../query/siteSetting'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
 import { layoutBreakpoints, layoutGridColumns, layoutGridHeight, layoutMargins, resizeHandles } from './config'
-import { listOptions, mapOptions, WidgetTypeOptions } from './constants'
+import { listOptions, mapOptions, pinnedItemOptions, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
 import { resolveListValue, resolveMapValue, useWindowWidth } from './utilities'
 import CalloutCard from './widget/CalloutCard'
+import PinnedItem, { renderItemValueOptions } from './widget/PinnedItem'
 
 const ConfigurableLanding = () => {
+  const client = useApolloClient()
+
   const { country } = useActiveTenant()
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
 
@@ -176,13 +179,28 @@ const ConfigurableLanding = () => {
 
   // Update the value of the widget based on the value from the widget setting dialog.
   // This will be invoked immediately on the widget setting instead of after closing the dialog.
+  const updateTextItemValue = (id, itemValue) => {
+    const newItemConfigurations = itemConfigurations.map((item) => {
+      return item.id === id ? { ...item, value: itemValue } : item
+    })
+    setItemConfigurations(newItemConfigurations)
+  }
+
+  // Update the value of the current active item (used in the dialog to update item field value)
   const updateItemValue = (itemValue) => {
     setActiveItem({ ...activeItem, value: itemValue })
   }
 
-  const handleCalloutChange = (e, itemKey) => {
-    const itemValue = e.target ? e.target.value : e
-    setActiveItem({ ...activeItem, extendedData: { ...activeItem.extendedData, [itemKey]: itemValue } })
+  // Using extended data field on the item object to store multiple values
+  const handleExtendedDataChange = (itemKey, itemValue) => {
+    setActiveItem({
+      ...activeItem,
+      // Update the extended data value
+      extendedData: {
+        ...activeItem.extendedData,
+        [itemKey]: itemValue
+      }
+    })
   }
 
   // Prepare the widget settings dialog.
@@ -230,7 +248,8 @@ const ConfigurableLanding = () => {
               onChange={(e) => updateItemValue(e.value)}
             />
             <span className='text-xs italic'>
-              <FormattedMessage id='landing.widget.selected.value' />: {item.value}
+              <FormattedMessage id='landing.widget.selected.value' />
+              {`: ${item.value}`}
             </span>
           </div>
         )
@@ -253,8 +272,8 @@ const ConfigurableLanding = () => {
               onChange={(e) => updateItemValue(e.value)}
             />
             <span className='text-xs italic'>
-              <FormattedMessage id='landing.widget.selected.value' />:
-              {heroCardConfigurations.find(c => c.id === item.value)?.name}
+              <FormattedMessage id='landing.widget.selected.value' />
+              {`: ${heroCardConfigurations.find(c => c.id === item.value)?.name}`}
             </span>
           </div>
         )
@@ -263,44 +282,66 @@ const ConfigurableLanding = () => {
           <div className='flex flex-col gap-y-2 text-sm'>
             <div className='form-field-wrapper'>
               <label htmlFor='callout-title'>
-                <FormattedMessage id='landing.widget.callout.title' />
+                <FormattedMessage id='landing.callout.title' />
               </label>
               <Input
                 id='callout-title'
                 value={item.extendedData?.title}
-                onChange={(e) => handleCalloutChange(e, 'title')}
+                onChange={(e) => handleExtendedDataChange('title', e.target.value)}
               />
             </div>
             <div className='form-field-wrapper'>
               <label htmlFor='callout-description'>
-                <FormattedMessage id='landing.widget.callout.description' />
+                <FormattedMessage id='landing.callout.description' />
               </label>
               <Input
                 id='callout-description'
                 value={item.extendedData?.description}
-                onChange={(e) => handleCalloutChange(e, 'description')}
+                onChange={(e) => handleExtendedDataChange('description', e.target.value)}
               />
             </div>
             <div className='form-field-wrapper'>
               <label htmlFor='callout-text'>
-                <FormattedMessage id='landing.widget.callout.calloutText' />
+                <FormattedMessage id='landing.callout.calloutText' />
               </label>
               <Input
                 id='callout-text'
                 value={item.extendedData?.calloutText}
-                onChange={(e) => handleCalloutChange(e, 'calloutText')}
+                onChange={(e) => handleExtendedDataChange('calloutText', e.target.value)}
               />
             </div>
             <div className='form-field-wrapper'>
               <label htmlFor='callout-destination-url'>
-                <FormattedMessage id='landing.widget.callout.calloutDestinationUrl' />
+                <FormattedMessage id='landing.callout.calloutDestinationUrl' />
               </label>
               <UrlInput
                 id='callout-destination-url'
                 value={item.extendedData?.calloutDestinationUrl}
-                onChange={(e) => handleCalloutChange(e, 'calloutDestinationUrl')}
+                onChange={(e) => handleExtendedDataChange('calloutDestinationUrl', e)}
               />
             </div>
+          </div>
+        )
+      case WidgetTypeOptions.PINNED:
+        return (
+          <div className='flex flex-col gap-y-2 text-sm'>
+            <div className='form-field-wrapper'>
+              <label htmlFor='pinned-item-type'>
+                <FormattedMessage id='landing.pinned.options' />
+              </label>
+              <Select
+                id='pinned-item-type'
+                borderless
+                className='text-sm'
+                options={pinnedItemOptions}
+                onChange={(e) => handleExtendedDataChange('itemType', e.value)}
+              />
+              <span className='text-xs italic'>
+                <FormattedMessage id='landing.widget.selected.value' />
+                {`: ${item.extendedData?.itemType}`}
+              </span>
+            </div>
+            {renderItemValueOptions(client, item, handleExtendedDataChange)}
           </div>
         )
       default:
@@ -325,8 +366,14 @@ const ConfigurableLanding = () => {
         return <div />
       case WidgetTypeOptions.TEXT:
         return editingText
-          ? <HtmlEditor initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
-          : <HtmlViewer initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
+          ? <HtmlEditor
+            initialContent={item.value}
+            onChange={(html) => updateTextItemValue(item.id, html)}
+          />
+          : <HtmlViewer
+            initialContent={item.value}
+            onChange={(html) => updateTextItemValue(item.id, html)}
+          />
       case WidgetTypeOptions.CALLOUT:
         return (
           <CalloutCard
@@ -335,6 +382,14 @@ const ConfigurableLanding = () => {
             description={item.extendedData?.description ?? ''}
             calloutText={item.extendedData?.calloutText ?? ''}
             calloutDestinationUrl={item.extendedData?.calloutDestinationUrl ?? ''}
+          />
+        )
+      case WidgetTypeOptions.PINNED:
+        return (
+          <PinnedItem
+            disabled={editing}
+            itemSlug={item.extendedData?.itemSlug ?? ''}
+            itemType={item.extendedData?.itemType ?? ''}
           />
         )
       default:
@@ -426,17 +481,8 @@ const ConfigurableLanding = () => {
     <div className='px-4 lg:px-8 xl:px-56'>
       <div className='relative flex flex-col min-h-[70vh]'>
         {editingAllowed &&
-          <div className='absolute top-2 right-0 text-white' style={{ zIndex: 40 }}>
+          <div className='sticky top-[5.5rem] text-white' style={{ zIndex: 40 }}>
             <div className='flex flex-row gap-x-1'>
-              <button
-                className={classNames(
-                  'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
-                  editingText ? 'opacity-80' : 'opacity-30'
-                )}
-                onClick={() => toggleEditingText()}
-              >
-                <MdFontDownload />
-              </button>
               <button
                 className={classNames(
                   'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
@@ -446,11 +492,20 @@ const ConfigurableLanding = () => {
               >
                 <MdEdit />
               </button>
+              <button
+                className={classNames(
+                  'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
+                  editingText ? 'opacity-80' : 'opacity-30'
+                )}
+                onClick={() => toggleEditingText()}
+              >
+                <MdFontDownload />
+              </button>
             </div>
           </div>
         }
         {editingAllowed && editing && (
-          <div className='absolute top-2 right-20'>
+          <div className='absolute top-2 right-0'>
             <div className='flex flex-wrap gap-1 text-xs text-white'>
               {Object.keys(WidgetTypeOptions).map(key => {
                 return (
