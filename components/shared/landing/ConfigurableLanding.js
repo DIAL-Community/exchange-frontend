@@ -505,7 +505,7 @@ const ConfigurableLanding = () => {
           </div>
         }
         {editingAllowed && editing && (
-          <div className='absolute top-2 right-0'>
+          <div className='absolute top-2 left-20 md:left-auto md:right-2'>
             <div className='flex flex-wrap gap-1 text-xs text-white'>
               {Object.keys(WidgetTypeOptions).map(key => {
                 return (
@@ -525,7 +525,7 @@ const ConfigurableLanding = () => {
             </div>
           </div>
         )}
-        {editing && <div className='spacer h-28 md:h-10' />}
+        {editing && <div className='spacer h-20 md:h-10' />}
         <ResponsiveReactGridLayout
           layouts={itemLayouts}
           margin={layoutMargins}
