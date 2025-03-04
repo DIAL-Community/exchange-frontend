@@ -13,6 +13,7 @@ import { HtmlEditor } from '../form/HtmlEditor'
 import { HtmlViewer } from '../form/HtmlViewer'
 import Input from '../form/Input'
 import Select from '../form/Select'
+import UrlInput from '../form/UrlInput'
 import HeroCarousel from '../HeroCarousel'
 import { UPDATE_SITE_SETTING_ITEM_SETTINGS } from '../mutation/siteSetting'
 import { DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY } from '../query/siteSetting'
@@ -21,6 +22,7 @@ import { layoutBreakpoints, layoutGridColumns, layoutGridHeight, layoutMargins, 
 import { listOptions, mapOptions, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
 import { resolveListValue, resolveMapValue, useWindowWidth } from './utilities'
+import CalloutCard from './widget/CalloutCard'
 
 const ConfigurableLanding = () => {
   const { country } = useActiveTenant()
@@ -47,7 +49,6 @@ const ConfigurableLanding = () => {
 
   // Setting changes to be applied to this item.
   const [activeItem, setActiveItem] = useState(null)
-  const [activeItemTitle, setActiveItemTitle] = useState(null)
   // Toggle to display the setting dialog box.
   const [displayItemOptions, setDisplayItemOptions] = useState(false)
 
@@ -164,33 +165,28 @@ const ConfigurableLanding = () => {
   // Handler called when user clicks the save button on the widget setting dialog.
   const closeItemOptionsDialog = () => {
     setDisplayItemOptions(false)
-    updateItemTitle(activeItem.id, activeItemTitle)
+    setItemConfigurations([
+      ...itemConfigurations.filter(item => item.id !== activeItem.id),
+      activeItem
+    ])
   }
 
   // Handler for the item title on the widget setting dialog.
-  const handleChange = (e) => setActiveItemTitle(e.target.value)
-
-  // Update the title of the widget based on the value from the widget setting dialog.
-  const updateItemTitle = (id, itemTitle) => {
-    const newItemConfigurations = itemConfigurations.map((item) => {
-      return item.id === id ? { ...item, title: itemTitle } : item
-    })
-    setItemConfigurations(newItemConfigurations)
-  }
+  const handleChange = (e) => setActiveItem({ ...activeItem, title: e.target.value })
 
   // Update the value of the widget based on the value from the widget setting dialog.
   // This will be invoked immediately on the widget setting instead of after closing the dialog.
-  const updateItemValue = (id, itemValue) => {
-    const newItemConfigurations = itemConfigurations.map((item) => {
-      return item.id === id ? { ...item, value: itemValue } : item
-    })
-    setItemConfigurations(newItemConfigurations)
+  const updateItemValue = (itemValue) => {
+    setActiveItem({ ...activeItem, value: itemValue })
+  }
+
+  const handleCalloutChange = (e, itemKey) => {
+    setActiveItem({ ...activeItem, extendedData: { ...activeItem.extendedData, [itemKey]: e.target.value } })
   }
 
   // Prepare the widget settings dialog.
   const setupItemValue = (item) => {
     setActiveItem(item)
-    setActiveItemTitle(item.title)
     setDisplayItemOptions(true)
   }
 
@@ -212,7 +208,7 @@ const ConfigurableLanding = () => {
               borderless
               className='text-sm'
               options={listOptions}
-              onChange={(e) => updateItemValue(item.id, e.value)}
+              onChange={(e) => updateItemValue(e.value)}
             />
             <span className='text-xs italic'>
               <FormattedMessage id='landing.widget.selected.value' />: {item.value}
@@ -230,8 +226,11 @@ const ConfigurableLanding = () => {
               borderless
               className='text-sm'
               options={mapOptions}
-              onChange={(e) => updateItemValue(item.id, e.value)}
+              onChange={(e) => updateItemValue(e.value)}
             />
+            <span className='text-xs italic'>
+              <FormattedMessage id='landing.widget.selected.value' />: {item.value}
+            </span>
           </div>
         )
       case WidgetTypeOptions.CARD:
@@ -250,12 +249,57 @@ const ConfigurableLanding = () => {
                   value: heroCardConfiguration.id
                 }
               })}
-              onChange={(e) => updateItemValue(item.id, e.value)}
+              onChange={(e) => updateItemValue(e.value)}
             />
             <span className='text-xs italic'>
               <FormattedMessage id='landing.widget.selected.value' />:
               {heroCardConfigurations.find(c => c.id === item.value)?.name}
             </span>
+          </div>
+        )
+      case WidgetTypeOptions.CALLOUT:
+        return (
+          <div className='flex flex-col gap-y-2 text-sm'>
+            <div className='form-field-wrapper'>
+              <label htmlFor='callout-title'>
+                <FormattedMessage id='landing.widget.callout.title' />
+              </label>
+              <Input
+                id='callout-title'
+                value={item.extendedData?.title}
+                onChange={(e) => handleCalloutChange(e, 'title')}
+              />
+            </div>
+            <div className='form-field-wrapper'>
+              <label htmlFor='callout-description'>
+                <FormattedMessage id='landing.widget.callout.description' />
+              </label>
+              <Input
+                id='callout-description'
+                value={item.extendedData?.description}
+                onChange={(e) => handleCalloutChange(e, 'description')}
+              />
+            </div>
+            <div className='form-field-wrapper'>
+              <label htmlFor='callout-text'>
+                <FormattedMessage id='landing.widget.callout.calloutText' />
+              </label>
+              <Input
+                id='callout-text'
+                value={item.extendedData?.calloutText}
+                onChange={(e) => handleCalloutChange(e, 'calloutText')}
+              />
+            </div>
+            <div className='form-field-wrapper'>
+              <label htmlFor='callout-destination-url'>
+                <FormattedMessage id='landing.widget.callout.calloutDestinationUrl' />
+              </label>
+              <UrlInput
+                id='callout-destination-url'
+                value={item.extendedData?.calloutDestinationUrl}
+                onChange={(e) => handleCalloutChange(e, 'calloutDestinationUrl')}
+              />
+            </div>
           </div>
         )
       default:
@@ -282,6 +326,16 @@ const ConfigurableLanding = () => {
         return editingText
           ? <HtmlEditor initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
           : <HtmlViewer initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
+      case WidgetTypeOptions.CALLOUT:
+        return (
+          <CalloutCard
+            disabled={editing}
+            title={item.extendedData?.title ?? ''}
+            description={item.extendedData?.description ?? ''}
+            calloutText={item.extendedData?.calloutText ?? ''}
+            calloutDestinationUrl={item.extendedData?.calloutDestinationUrl ?? ''}
+          />
+        )
       default:
         return null
     }
@@ -361,7 +415,9 @@ const ConfigurableLanding = () => {
     setItemConfigurations([...itemConfigurations, {
       id: itemId,
       title: `Item ${itemConfigurations.length + 1}`,
-      type: itemType
+      type: itemType,
+      value: null,
+      extendedData: {}
     }])
   }
 
@@ -437,13 +493,13 @@ const ConfigurableLanding = () => {
             show={displayItemOptions}
             onClose={closeItemOptionsDialog}
           >
-            <div className='form-field-wrapper'>
-              <label htmlFor='active-item-name' className='flex flex-col gap-y-2 text-sm'>
+            <div className='form-field-wrapper text-sm'>
+              <label htmlFor='active-item-name'>
                 <FormattedMessage id='app.name' />
               </label>
               <Input
                 id='active-item-name'
-                value={activeItemTitle}
+                value={activeItem.title}
                 onChange={handleChange}
               />
             </div>

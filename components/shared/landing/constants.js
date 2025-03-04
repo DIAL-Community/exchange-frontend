@@ -1,6 +1,7 @@
 import { FormattedMessage } from 'react-intl'
 
 export const WidgetTypeOptions = {
+  CALLOUT: 'landing.widget.callout',
   CARD: 'landing.widget.card',
   CAROUSEL: 'landing.widget.carousel',
   LIST: 'landing.widget.list',
