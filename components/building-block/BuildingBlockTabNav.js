@@ -13,8 +13,7 @@ const BuildingBlockTabNav = ({ activeTab, setActiveTab }) => {
   const activeFilters = useContext(FilterContext)
 
   const [tabNames, setTabNames] = useState([
-    'ui.buildingBlock.header',
-    'ui.buildingBlock.whatIs'
+    'ui.buildingBlock.header'
   ])
 
   useQuery(BUILDING_BLOCK_POLICY_QUERY, {

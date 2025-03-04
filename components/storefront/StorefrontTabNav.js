@@ -10,8 +10,7 @@ const StorefrontTabNav = ({ activeTab, setActiveTab }) => {
   const [displayCreateButton, setDisplayCreateButton ] = useState(false)
 
   const [tabNames, setTabNames] = useState([
-    'ui.storefront.header',
-    'ui.storefront.whatIs'
+    'ui.storefront.header'
   ])
 
   useQuery(STOREFRONT_POLICY_QUERY, {

@@ -63,7 +63,7 @@ const SearchBar = ({ search, setSearch, mobileFilter, multiView }) => {
           </button>
         </div>
       }
-      <div className='ml-auto max-w-prose'>
+      <div className='ml-auto w-full max-w-prose'>
         <SearchInput
           value={searchTerm}
           onChange={handleChange}

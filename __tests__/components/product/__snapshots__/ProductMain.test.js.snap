@@ -412,7 +412,7 @@ exports[`Unit tests for the product main page. Should render list of products. 1
                 </button>
               </div>
               <div
-                class="ml-auto max-w-prose"
+                class="ml-auto w-full max-w-prose"
               >
                 <label
                   class="relative"

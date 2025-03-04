@@ -354,6 +354,7 @@ export const en = {
   'project.startDate': 'Start Date',
   'project.endDate': 'End Date',
   'project.product': 'Product',
+  'project.location': 'Project Location',
   'project.organization': 'Organization',
   'project.submit.success': 'Project submitted successfully',
   'project.submit.failure': 'Project submission failed',
@@ -2989,6 +2990,10 @@ export const en = {
   'ui.siteSetting.defaultSetting': 'Set this configuration as the default.',
   'ui.siteSetting.description': 'Site Configuration Description',
   'ui.siteSetting.currentDefault': 'Currently Active Setting',
+  'ui.siteSetting.siteColors': 'Site Colors',
+  'ui.siteSetting.siteColors.primary': 'Primary (Header)',
+  'ui.siteSetting.siteColors.secondary': 'Secondary (Header Text)',
+  'ui.siteSetting.siteColors.tertiary': 'Tertiary',
 
   'ui.tenantSetting.label': 'Tenant Configuration',
   'ui.tenantSetting.header': 'Tenant Configurations',
@@ -3089,6 +3094,7 @@ export const en = {
   'landing.map.projects': 'Project Map',
   'landing.map.endorsers': 'Endorser Map',
   'landing.map.aggregator': 'Aggregator Map',
+  'landing.map.country': 'Country Map',
   'landing.map.missing': 'Missing map type in setting.',
 
   'landing.card.options': 'Card Options',

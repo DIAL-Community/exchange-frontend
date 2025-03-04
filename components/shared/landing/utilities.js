@@ -4,6 +4,7 @@ import BuildingBlockListRight from '../../building-block/fragments/BuildingBlock
 import AggregatorMap from '../../maps/aggregators/AggregatorMap'
 import EndorserMap from '../../maps/endorsers/EndorserMap'
 import ProjectMap from '../../maps/projects/ProjectMap'
+import CountryMap from '../../maps/country/CountryMap'
 import OrganizationListRight from '../../organization/fragments/OrganizationListRight'
 import ProductListRight from '../../product/fragments/ProductListRight'
 import ProjectListRight from '../../project/fragments/ProjectListRight'
@@ -61,6 +62,8 @@ export const resolveMapValue = (value, country) => {
       return <EndorserMap />
     case ContentMapTypes.AGGREGATOR_MAP:
       return <AggregatorMap />
+    case ContentMapTypes.COUNTRY_MAP:
+      return country && <CountryMap initialCountry={country} />
     default:
       return (
         <div className='text-xs italic'>
