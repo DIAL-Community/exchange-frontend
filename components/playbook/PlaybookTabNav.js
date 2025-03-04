@@ -6,8 +6,7 @@ const PlaybookTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
   const [tabNames, setTabNames] = useState([
-    'ui.playbook.header',
-    'ui.playbook.whatIs'
+    'ui.playbook.header'
   ])
 
   useEffect(() => {

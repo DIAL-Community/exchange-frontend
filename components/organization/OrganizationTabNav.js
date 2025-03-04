@@ -13,8 +13,7 @@ const OrganizationTabNav = ({ activeTab, setActiveTab }) => {
   const router = useRouter()
 
   const [tabNames, setTabNames] = useState([
-    'ui.organization.header',
-    'ui.organization.whatIs'
+    'ui.organization.header'
   ])
 
   useQuery(ORGANIZATION_POLICY_QUERY, {

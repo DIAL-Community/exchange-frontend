@@ -23,6 +23,7 @@ export const SITE_SETTING_DETAIL_QUERY = gql`
       heroCardSection
       enableMarketplace
       defaultSetting
+      siteColors
     }
   }
 `
@@ -42,6 +43,7 @@ export const DEFAULT_SITE_SETTING_DETAIL_QUERY = gql`
       heroCardSection
       enableMarketplace
       defaultSetting
+      siteColors
     }
   }
 `

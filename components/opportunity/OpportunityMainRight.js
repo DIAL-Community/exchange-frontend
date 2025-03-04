@@ -1,6 +1,5 @@
 import { useActiveTenant, useUser } from '../../lib/hooks'
 import RequireAuth from '../shared/RequireAuth'
-import OpportunityDefinition from './fragments/OpportunityDefinition'
 import OpportunityListRight from './fragments/OpportunityListRight'
 import OpportunityForm from './fragments/OpportunityForm'
 
@@ -17,8 +16,7 @@ const OpportunityMainRight = ({ activeTab }) => {
   return (
     <div className='min-h-[50vh]'>
       { activeTab === 0 && initialDisplay }
-      { activeTab === 1 && <OpportunityDefinition /> }
-      { activeTab === 2 && <OpportunityForm /> }
+      { activeTab === 1 && <OpportunityForm /> }
     </div>
   )
 }
