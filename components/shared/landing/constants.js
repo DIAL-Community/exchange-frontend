@@ -7,7 +7,7 @@ export const WidgetTypeOptions = {
   LIST: 'landing.widget.list',
   MAP: 'landing.widget.map',
   SPACER: 'landing.widget.spacer',
-  SUMMARY: 'landing.widget.summary',
+  // SUMMARY: 'landing.widget.summary',
   TEXT: 'landing.widget.text'
 }
 
