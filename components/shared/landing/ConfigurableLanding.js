@@ -181,7 +181,8 @@ const ConfigurableLanding = () => {
   }
 
   const handleCalloutChange = (e, itemKey) => {
-    setActiveItem({ ...activeItem, extendedData: { ...activeItem.extendedData, [itemKey]: e.target.value } })
+    const itemValue = e.target ? e.target.value : e
+    setActiveItem({ ...activeItem, extendedData: { ...activeItem.extendedData, [itemKey]: itemValue } })
   }
 
   // Prepare the widget settings dialog.

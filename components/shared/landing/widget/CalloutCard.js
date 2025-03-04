@@ -1,8 +1,13 @@
 import classNames from 'classnames'
+import Link from 'next/link'
 import { FormattedMessage } from 'react-intl'
 
 const CalloutCard = ({ disabled, ...props }) => {
   const { title, description, calloutText, calloutDestinationUrl } = props
+
+  const isInternalUrl = (calloutDestinationUrl) => {
+    return calloutDestinationUrl.startsWith('/')
+  }
 
   return (
     <div className='px-8 pt-6 pb-8 h-full rounded-md shadow-lg border '>
@@ -15,20 +20,38 @@ const CalloutCard = ({ disabled, ...props }) => {
         <div className='text-sm flex-grow'>
           {description && <FormattedMessage id={description} defaultMessage={description} />}
         </div>
-        <div className='flex text-sm text-white'>
-          <a
-            target='_blank'
-            rel='noopener noreferrer'
-            href={`//${calloutDestinationUrl}`}
-            className={classNames(
-              'bg-dial-plum px-3 py-2 rounded-md',
-              disabled || !calloutDestinationUrl ? 'cursor-default' : 'cursor-pointer'
-            )}
-            onClick={(e) => { if (disabled || !calloutDestinationUrl) e.preventDefault() }}
-          >
-            {calloutText && <FormattedMessage id={calloutText} defaultMessage={calloutText} />}
-          </a>
-        </div>
+        {calloutDestinationUrl &&
+          <div className='flex text-sm text-white'>
+            {isInternalUrl(calloutDestinationUrl)
+              ? (
+                <Link
+                  href={calloutDestinationUrl}
+                  className={classNames(
+                    'bg-dial-plum px-3 py-2 rounded-md',
+                    disabled || !calloutDestinationUrl ? 'cursor-default' : 'cursor-pointer'
+                  )}
+                  onClick={(e) => { if (disabled || !calloutDestinationUrl) e.preventDefault() }}
+                >
+                  {calloutText && <FormattedMessage id={calloutText} defaultMessage={calloutText} />}
+                </Link>
+              )
+              : (
+                <a
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  href={`//${calloutDestinationUrl}`}
+                  className={classNames(
+                    'bg-dial-plum px-3 py-2 rounded-md',
+                    disabled || !calloutDestinationUrl ? 'cursor-default' : 'cursor-pointer'
+                  )}
+                  onClick={(e) => { if (disabled || !calloutDestinationUrl) e.preventDefault() }}
+                >
+                  {calloutText && <FormattedMessage id={calloutText} defaultMessage={calloutText} />}
+                </a>
+              )
+            }
+          </div>
+        }
       </div>
     </div>
   )
