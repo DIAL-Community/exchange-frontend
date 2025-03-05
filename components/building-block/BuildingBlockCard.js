@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl'
 import { CategoryType, DisplayType, MaturityStatus } from '../utils/constants'
 import { isValidFn } from '../utils/utilities'
 
-const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismissHandler }) => {
+const BuildingBlockCard = ({ disabled, displayType, index, buildingBlock, dismissHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -174,7 +174,10 @@ const BuildingBlockCard = ({ displayType, index, disabled, buildingBlock, dismis
 
   return (
     <div className='relative'>
-      <Link href={`/building-blocks/${buildingBlock.slug}`}>
+      <Link
+        href={`/building-blocks/${buildingBlock.slug}`}
+        onClick={(e) => { if (disabled) e.preventDefault() }}
+      >
         {displayType === DisplayType.GRID_CARD && displayGridCard()}
         {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
         {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
