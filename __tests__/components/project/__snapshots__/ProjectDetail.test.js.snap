@@ -662,7 +662,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                Colombia HMIS
+                Colombia HMIS - Edited Again
               </div>
               <div
                 class="flex flex-col gap-y-8 text-sm pt-6 pb-3"
@@ -758,7 +758,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
               <div
                 class="text-xl font-semibold"
               >
-                Edit Colombia HMIS
+                Edit Colombia HMIS - Edited Again
               </div>
               <div
                 class="flex flex-col gap-y-2"

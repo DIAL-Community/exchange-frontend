@@ -23,10 +23,6 @@ const HubCurriculumPage = ({ dpiTenants }) => {
         title={format('hub.curriculum.label')}
         description={format('hub.curriculum.title')}
       />
-      <NextSeo
-        title={format('hub.header.adliNetwork')}
-        description={format('hub.adliNetwork.subtitle')}
-      />
       <ClientOnly clientTenants={dpiTenants}>
         <HubHeader />
         {handleLoadingSession()}

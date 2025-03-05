@@ -5,6 +5,7 @@ import ProjectEdit from '../../../components/project/ProjectEdit'
 import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PROJECT } from '../../../components/shared/mutation/project'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
+import { COUNTRY_CODES_QUERY } from '../../../components/shared/query/country'
 import {
   PAGINATED_PROJECTS_QUERY, PROJECT_DETAIL_QUERY, PROJECT_PAGINATION_ATTRIBUTES_QUERY
 } from '../../../components/shared/query/project'
@@ -13,7 +14,7 @@ import CustomMockedProvider, { generateMockApolloData } from '../../utils/Custom
 import {
   mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
 } from '../../utils/nextMockImplementation'
-import { commentsQuery, createProject, projectDetail } from './data/ProjectDetail.data'
+import { commentsQuery, countries, createProject, projectDetail } from './data/ProjectDetail.data'
 import { paginatedProjects, projectPaginationAttribute } from './data/ProjectMain.data'
 
 mockTenantApi()
@@ -39,9 +40,16 @@ describe('Unit tests for the project detail page.', () => {
     commentsQuery
   )
 
+  const mockProjectCountries = generateMockApolloData(
+    COUNTRY_CODES_QUERY,
+    { 'search': '' },
+    null,
+    countries
+  )
+
   test('Should render detail of a project.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProject, mockProjectComments]}>
+      <CustomMockedProvider mocks={[mockProject, mockProjectComments, mockProjectCountries]}>
         <QueryParamContextProvider>
           <ProjectEdit slug='colombia-hmis' />
         </QueryParamContextProvider>
@@ -79,7 +87,7 @@ describe('Unit tests for the project detail page.', () => {
       null
     )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProjectPolicyQueryError, mockProjectComments]}>
+      <CustomMockedProvider mocks={[mockProjectPolicyQueryError, mockProjectComments, mockProjectCountries]}>
         <QueryParamContextProvider>
           <ProjectEdit slug='colombia-hmis' />
         </QueryParamContextProvider>
@@ -131,7 +139,8 @@ describe('Unit tests for the project detail page.', () => {
           mockCreateBuildingBlock,
           mockProjectPaginationAttribute,
           mockPaginatedProjects,
-          mockProject
+          mockProject,
+          mockProjectCountries
         ]}
       >
         <QueryParamContextProvider>

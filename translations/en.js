@@ -3072,13 +3072,28 @@ export const en = {
 
   'landing.widget.options.title': 'Item Options',
 
-  'landing.widget.carousel': 'Carousel',
+  'landing.widget.callout': 'Callout',
   'landing.widget.card': 'Card',
-  'landing.widget.map': 'Map',
+  'landing.widget.carousel': 'Carousel',
   'landing.widget.list': 'List',
+  'landing.widget.map': 'Map',
+  'landing.widget.pinned': 'Pinned',
+  'landing.widget.spacer': 'Spacer',
   'landing.widget.summary': 'Summary',
   'landing.widget.text': 'Text',
-  'landing.widget.spacer': 'Spacer',
+
+  'landing.pinned.options': 'Pinned Type',
+
+  'landing.pinned.buildingBlock': 'Building Block',
+  'landing.pinned.organization': 'Organization',
+  'landing.pinned.product': 'Product',
+  'landing.pinned.project': 'Project',
+  'landing.pinned.useCase': 'Use Case',
+
+  'landing.callout.title': 'Callout Title',
+  'landing.callout.description': 'Callout Description',
+  'landing.callout.calloutText': 'Callout Text',
+  'landing.callout.calloutDestinationUrl': 'Callout Destination',
 
   'landing.widget.selected.value': 'Current value',
 
