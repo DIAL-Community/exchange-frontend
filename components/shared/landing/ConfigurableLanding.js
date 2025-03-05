@@ -481,7 +481,7 @@ const ConfigurableLanding = () => {
     <div className='px-4 lg:px-8 xl:px-56'>
       <div className='relative flex flex-col min-h-[70vh]'>
         {editingAllowed &&
-          <div className='sticky top-[5.5rem] text-white' style={{ zIndex: 40 }}>
+          <div className='sticky top-[5.5rem] text-white flex' style={{ zIndex: 20 }}>
             <div className='flex flex-row gap-x-1'>
               <button
                 className={classNames(
@@ -505,7 +505,7 @@ const ConfigurableLanding = () => {
           </div>
         }
         {editingAllowed && editing && (
-          <div className='absolute top-2 left-20 md:left-auto md:right-2'>
+          <div className='absolute top-2 left-20 md:left-auto md:right-2' style={{ zIndex: 22 }}>
             <div className='flex flex-wrap gap-1 text-xs text-white'>
               {Object.keys(WidgetTypeOptions).map(key => {
                 return (

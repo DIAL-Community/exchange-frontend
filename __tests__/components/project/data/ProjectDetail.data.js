@@ -5,6 +5,9 @@ export const projectDetail = {
       'name': 'Colombia HMIS',
       'slug': 'colombia-hmis',
       'tags': [],
+      'latitude': null,
+      'location': null,
+      'longitude': null,
       'projectWebsite': 'digitalhealthatlas.org/en/-/projects/1047/published',
       'projectDescription': {
         'id': '365',
@@ -80,6 +83,19 @@ export const ownedProjects = {
   }
 }
 
+export const countries = {
+  'data': {
+    'countries': [
+      {
+        'codeLonger': 'CO'
+      },
+      {
+        'codeLonger': 'US'
+      }
+    ]
+  }
+}
+
 export const createProject = {
   'data': {
     'createProject': {
@@ -87,6 +103,7 @@ export const createProject = {
         'id': '365',
         'name': 'Colombia HMIS - Edited Again',
         'slug': 'colombia-hmis',
+        'location': null,
         'countries': [
           {
             'id': '40',
