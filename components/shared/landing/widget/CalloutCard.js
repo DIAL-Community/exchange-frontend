@@ -2,8 +2,8 @@ import classNames from 'classnames'
 import Link from 'next/link'
 import { FormattedMessage } from 'react-intl'
 
-const CalloutCard = ({ disabled, ...props }) => {
-  const { title, description, calloutText, calloutDestinationUrl } = props
+const CalloutCard = ({ disabled, item }) => {
+  const { extendedData: { title, description, calloutText, calloutDestinationUrl } } = item
 
   const isInternalUrl = (calloutDestinationUrl) => {
     return calloutDestinationUrl.startsWith('/')

@@ -375,23 +375,9 @@ const ConfigurableLanding = () => {
             onChange={(html) => updateTextItemValue(item.id, html)}
           />
       case WidgetTypeOptions.CALLOUT:
-        return (
-          <CalloutCard
-            disabled={editing}
-            title={item.extendedData?.title ?? ''}
-            description={item.extendedData?.description ?? ''}
-            calloutText={item.extendedData?.calloutText ?? ''}
-            calloutDestinationUrl={item.extendedData?.calloutDestinationUrl ?? ''}
-          />
-        )
+        return <CalloutCard item={item} disabled={editing} />
       case WidgetTypeOptions.PINNED:
-        return (
-          <PinnedItem
-            disabled={editing}
-            itemSlug={item.extendedData?.itemSlug ?? ''}
-            itemType={item.extendedData?.itemType ?? ''}
-          />
-        )
+        return <PinnedItem item={item} disabled={editing} />
       default:
         return null
     }

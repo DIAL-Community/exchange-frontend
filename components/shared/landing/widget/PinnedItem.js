@@ -175,7 +175,8 @@ export const renderItemValueOptions = (client, item, handleExtendedDataChange) =
   }
 }
 
-const PinnedItem = ({ disabled, itemType, itemSlug }) => {
+const PinnedItem = ({ disabled, item }) => {
+  const { extendedData: { itemType, itemSlug } } = item
   const renderItem = (itemType, itemSlug) => {
     switch (itemType) {
       case PinnedItemTypes.PINNED_BUILDING_BLOCK:
