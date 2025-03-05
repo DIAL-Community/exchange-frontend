@@ -43,7 +43,7 @@ const PinnedUseCase = ({ disabled, slug }) => {
             className={
               classNames(
                 'flex justify-center items-center bg-white',
-                'rounded-xl border-4 border-dial-warm-beech',
+                'rounded-xl border-4 border-dial-blue-chalk',
                 'py-12 mx-4 my-4'
               )}
           >
