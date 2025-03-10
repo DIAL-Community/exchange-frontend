@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
-import { FormattedMessage } from 'react-intl'
+import { useRef, useState, useCallback } from 'react'
 import { useApolloClient, useQuery } from '@apollo/client'
+import { useIntl } from 'react-intl'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../shared/GraphQueryHandler'
@@ -12,6 +12,9 @@ import ResourceDetailRight from './ResourceDetailRight'
 const ResourceDetail = ({ slug, country }) => {
   const scrollRef = useRef(null)
   const client = useApolloClient()
+
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [editingAllowed, setEditingAllowed] = useState(false)
   const [deletingAllowed, setDeletingAllowed] = useState(false)
@@ -49,7 +52,7 @@ const ResourceDetail = ({ slug, country }) => {
     map[resource.slug] = resource.name
 
     if (country) {
-      map['countries'] = <FormattedMessage id='hub.breadcrumb.country' />
+      map['countries'] = format('hub.breadcrumb.country')
       map[country.slug] = country.name
     }
 
