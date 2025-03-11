@@ -2,10 +2,10 @@ import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import { Tooltip } from 'react-tooltip'
-import HubFooter from '../../../components/hub/sections/HubFooter'
-import HubHeader from '../../../components/hub/sections/HubHeader'
-import ResourceCreate from '../../../components/resources/ResourceCreate'
-import ClientOnly from '../../../lib/ClientOnly'
+import HubFooter from '../../../../components/hub/sections/HubFooter'
+import HubHeader from '../../../../components/hub/sections/HubHeader'
+import ResourceCreate from '../../../../components/resources/ResourceCreate'
+import ClientOnly from '../../../../lib/ClientOnly'
 
 const EditResourcePage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
