@@ -1,6 +1,6 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-import { FormattedMessage, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
@@ -8,7 +8,6 @@ import CreateButton from '../shared/form/CreateButton'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { DisplayType, ObjectType, ProductExtraAttributeNames } from '../utils/constants'
-import { prependUrlWithProtocol } from '../utils/utilities'
 import DeleteProduct from './fragments/DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
 import ProductDetailCategories from './fragments/ProductDetailCategories'
@@ -18,6 +17,7 @@ import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
 import ProductDetailResources from './fragments/ProductDetailResources'
 import ProductDetailSdgs from './fragments/ProductDetailSdgs'
 import ProductDetailTags from './fragments/ProductDetailTags'
+import ProductExtraAttributes from './fragments/ProductExtraAttributes'
 import ProductCard from './ProductCard'
 import ProductRepositoryCard from './repository/ProductRepositoryCard'
 
@@ -177,64 +177,6 @@ const ProductIncluded = ({ product, headerRef }) => {
   )
 }
 
-const renderExtraAttributes = (extraAttribute) => {
-  const { type, value } = extraAttribute
-  if (!value) {
-    return (
-      <div className='text-sm'>
-        <FormattedMessage id='general.na' />
-      </div>
-    )
-  }
-
-  switch (type) {
-    case 'url':
-      return (
-        <div className='flex text-sm'>
-          <a
-            className='border-b border-dial-iris-blue line-clamp-1 break-all'
-            href={prependUrlWithProtocol(value)}
-            target='_blank'
-            rel='noreferrer'
-          >
-            {value}
-          </a>
-        </div>
-      )
-    case 'composite':
-      return (
-        <div className='text-sm flex flex-col gap-y-3'>
-          {extraAttribute.value.map((attributeValue, i) => (
-            <div key={`attribute-value-${i}`} className='flex flex-col gap-y-1'>
-              {Object.keys(attributeValue).map(key => (
-                <div key={`attribute-value-${i}-${key}`} className='text-sm'>
-                  {attributeValue[key] ? attributeValue[key] : <FormattedMessage id='general.na' />}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      )
-    case 'text':
-      return (
-        <div className='text-sm'>
-          {extraAttribute.value}
-        </div>
-      )
-    case 'select':
-      return (
-        <div className='text-sm'>
-          {Array.isArray(extraAttribute.value)
-            ? extraAttribute.value.map(e => e.value).join(', ')
-            : extraAttribute.value.value
-          }
-        </div>
-      )
-    default:
-      return null
-  }
-}
-
 const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowed }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -248,6 +190,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
   const organizationRef = useRef()
   const countryRef = useRef()
   const categoryRef = useRef()
+  const extraAttributesRef = useRef()
   const tagRef = useRef()
   const commentsSectionRef = useRef()
   const productRepositoryRef = useRef()
@@ -286,10 +229,6 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
 
   const extraAttributes = product.extraAttributes
     ? product.extraAttributes.filter(e => ProductExtraAttributeNames.indexOf(e.name) > -1)
-    : []
-
-  const candidateExtraAttributes = product.extraAttributes
-    ? product.extraAttributes.filter(e => ProductExtraAttributeNames.indexOf(e.name) === -1)
     : []
 
   const editPath = `${product.slug}/edit`
@@ -484,27 +423,12 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
           overallMaturityScore={product.overallMaturityScore}
           maturityScoreDetails={product.maturityScoreDetails}
         />
-        {candidateExtraAttributes.length > 0 &&
-          <>
-            <hr className='border-b border-dial-blue-chalk my-3' />
-            <div className='font-semibold text-dial-meadow'>
-              {format('ui.candidateProduct.extraAttributes')}
-            </div>
-            {candidateExtraAttributes
-              .map((extraAttribute, index) => (
-                <div key={`extra-attribute-${index}`} className='flex flex-col gap-y-1 mb-2'>
-                  <div className='text-sm font-medium text-dial-meadow'>
-                    {extraAttribute.title}
-                  </div>
-                  <div className='text-xs italic'>
-                    {extraAttribute.description}
-                  </div>
-                  {renderExtraAttributes(extraAttribute)}
-                </div>
-              ))
-            }
-          </>
-        }
+        <div className='border-b border-transparent my-2' />
+        <ProductExtraAttributes
+          product={product}
+          editingAllowed={editingAllowed}
+          headerRef={extraAttributesRef}
+        />
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProductDetailTags
