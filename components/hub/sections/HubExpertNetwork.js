@@ -1,9 +1,10 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import classNames from 'classnames'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { FaLinkedin, FaSquareFacebook, FaSquareInstagram, FaSquareXTwitter } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { useQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import { HUB_CONTACTS_QUERY } from '../../shared/query/contact'
@@ -14,27 +15,76 @@ import {
 } from '../user/constant'
 
 const HubExpertNetwork = () => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
   const { user } = useUser()
+
+  const [loadNetworkMembers, { loading, error, data }] = useLazyQuery(HUB_CONTACTS_QUERY)
+
+  const [currentView, setCurrentView] = useState('adli-current')
+  const toggleCurrentView = (view) => {
+    setCurrentView(view)
+    loadNetworkMembers({
+      variables: {
+        type: view
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
+      }
+    })
+  }
 
   const signInUser = (e) => {
     e.preventDefault()
     signIn()
   }
 
-  const { loading, error, data } = useQuery(HUB_CONTACTS_QUERY, {
-    variables: {},
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.VIEWING
+  useEffect(() => {
+    loadNetworkMembers({
+      variables: {
+        type: currentView
+      },
+      context: {
+        headers: {
+          ...GRAPH_QUERY_CONTEXT.VIEWING
+        }
       }
+    })
+  }, [currentView, loadNetworkMembers])
+
+  const renderErrorMessage = () => {
+    return (user && allowedToBrowseAdliPages(user))
+      ? <FormattedMessage id='general.fetchError' />
+      : <FormattedMessage id='ui.general.error.forbidden' />
+  }
+
+  const renderNetworkMembers = () => {
+    return data.hubContacts
+      ? <NetworkMembers
+        members={
+          data?.hubContacts
+            .filter(object => {
+              const consent = object.extendedData.find((data) => data.key === 'consent')
+
+              return consent?.value.toLowerCase() === 'yes'
+            })
+        }
+      />
+      : <FormattedMessage id='ui.general.error.notFound' />
+  }
+
+  const handleGraphQuery = () => {
+    if (loading) {
+      return <FormattedMessage id='general.fetchingData' />
+    } else if (error) {
+      return renderErrorMessage()
+    } else {
+      return renderNetworkMembers()
     }
-  })
+  }
 
   return (
-    <div className='flex flex-col gap-6 pb-12 max-w-catalog mx-auto'>
+    <div className='flex flex-col gap-6 pb-12 max-w-catalog mx-auto  min-h-[80vh]'>
       <img
         className='h-32 w-full object-cover'
         alt='DIAL Resource Hub - ADLI Network'
@@ -89,24 +139,71 @@ const HubExpertNetwork = () => {
               )}
             </div>
           </div>
-          {loading
-            ? format('general.fetchingData')
-            : error
-              ? (user && allowedToBrowseAdliPages(user)) ? format('general.fetchError') :
-                format('ui.general.error.forbidden')
-              : data.hubContacts
-                ? <NetworkMembers
-                  members={
-                    data?.hubContacts
-                      .filter(object => {
-                        const consent = object.extendedData.find((data) => data.key === 'consent')
-
-                        return consent?.value.toLowerCase() === 'yes'
-                      })
-                  }
-                />
-                : format('general.noData')
-          }
+          <div className='mb-4 border-b border-dial-gray-200'>
+            <ul
+              role='tablist'
+              id='default-tab'
+              className='flex flex-wrap items-center justify-center -mb-px font-medium text-center'
+              data-tabs-toggle='#tab-content'
+            >
+              <li className='me-2' role='presentation'>
+                <button
+                  role='tab'
+                  id='adli-current'
+                  className={classNames(
+                    'px-5 py-3',
+                    'inline-block border-b-2 rounded-t-lg',
+                    'text-dial-deep-purple border-dial-deep-purple',
+                    currentView === 'adli-current'
+                      ? 'opacity-100'
+                      : 'opacity-30 hover:opacity-100'
+                  )}
+                  onClick={() => toggleCurrentView('adli-current')}
+                >
+                  ADLI Current
+                </button>
+              </li>
+              <li role='presentation'>
+                <button
+                  role='tab'
+                  id='adli-alumni'
+                  className={classNames(
+                    'px-5 py-3',
+                    'inline-block border-b-2 rounded-t-lg',
+                    'text-dial-deep-purple border-dial-deep-purple',
+                    currentView === 'adli-alumni'
+                      ? 'opacity-100'
+                      : 'opacity-30 hover:opacity-100'
+                  )}
+                  onClick={() => toggleCurrentView('adli-alumni')}
+                >
+                  ADLI Alumni
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div id='tab-content'>
+            {currentView === 'adli-current' &&
+              <div
+                role='tabpanel'
+                id='adli-current'
+                aria-labelledby='adli-current'
+                className='p-4 rounded-lg bg-gray-50'
+              >
+                Current cohort of ADLI
+              </div>
+            }
+            {currentView === 'adli-alumni' &&
+              <div
+                role='tabpanel'
+                id='adli-alumni'
+                aria-labelledby='adli-alumni'
+                className='p-4 rounded-lg bg-gray-50'
+              >
+                {handleGraphQuery()}
+              </div>
+            }
+          </div>
         </div>
       </div>
     </div>
@@ -118,7 +215,7 @@ const NetworkMembers = ({ members }) => {
   const [pageNumber, setPageNumber] = useState(0)
 
   const onClickHandler = useCallback(({ nextSelectedPage, selected }) => {
-    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
+    const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
     setPageNumber(destinationPage)
   }, [])
 
