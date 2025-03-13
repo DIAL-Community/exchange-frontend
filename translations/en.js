@@ -1416,6 +1416,7 @@ export const en = {
   'ui.candidateProduct.submit.success': 'Candidate Product submitted successfully',
   'ui.candidateProduct.submit.failure': 'Candidate Product submission failed',
   'ui.candidateProduct.extraAttributes': 'Extra Attributes',
+  'ui.candidateProduct.extraAttributes.disclaimer': 'Extra attributes are custom attributes added by tenant admin.',
 
   'ui.candidateOrganization.organizationName': 'Organization Name',
   'ui.candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
