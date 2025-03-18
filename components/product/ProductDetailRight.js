@@ -3,9 +3,9 @@ import classNames from 'classnames'
 import { BsQuestionCircleFill } from 'react-icons/bs'
 import { FiEdit3 } from 'react-icons/fi'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { useMutation, useQuery } from '@apollo/client'
-import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { useMutation } from '@apollo/client'
 import { ToastContext } from '../../lib/ToastContext'
+import { SiteSettingContext, SiteSettingDispatchContext } from '../context/SiteSettingContext'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
@@ -14,7 +14,6 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import Toggle from '../shared/form/Toggle'
 import { UPDATE_SITE_SETTING_SECTION_SETTINGS } from '../shared/mutation/siteSetting'
-import { DEFAULT_SITE_SETTING_SECTION_SETTINGS_QUERY } from '../shared/query/siteSetting'
 import { DisplayType, ObjectType, ProductExtraAttributeNames } from '../utils/constants'
 import DeleteProduct from './fragments/DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
@@ -237,44 +236,27 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
 
   // Toggle whether we are editing the page or not.
   const [editingSection, setEditingSection] = useState(false)
-  const [sectionConfigurations, setSectionConfigurations] = useState([])
 
-  // Initialize the layouts and items from database
-  useQuery(DEFAULT_SITE_SETTING_SECTION_SETTINGS_QUERY, {
-    context: {
-      headers: {
-        ...GRAPH_QUERY_CONTEXT.VIEWING
-      }
-    },
-    onCompleted: (data) => {
-      if (data.defaultSiteSetting) {
-        const { defaultSiteSetting } = data
-        setSectionConfigurations(defaultSiteSetting.sectionConfigurations)
-      }
-    }
-  })
+  const { sectionConfigurations } = useContext(SiteSettingContext)
+  const { setSectionConfigurations } = useContext(SiteSettingDispatchContext)
+
+  const [currentSections, setCurrentSections] = useState(sectionConfigurations.product ?? [])
 
   const toggleDisplay = (key) => {
-    const keyIndex = sectionConfigurations.indexOf(key)
+    const keyIndex = currentSections.indexOf(key)
     if (keyIndex === -1) {
-      setSectionConfigurations([...sectionConfigurations, key])
+      setCurrentSections([...currentSections, key])
     } else {
-      setSectionConfigurations(sectionConfigurations.filter((_, index) => index !== keyIndex))
+      setCurrentSections(currentSections.filter((currentKey) => currentKey !== key))
     }
   }
 
+  const sectionChecked = (toggleKey) => {
+    return currentSections.indexOf(toggleKey) !== -1
+  }
+
   const shouldBeDisplayed = (toggleKey) => {
-    if (editingAllowed) {
-      console.log('Editing, need to be displayed.')
-
-      return true
-    }
-
-    if (sectionConfigurations.indexOf(toggleKey) !== -1) {
-      console.log('Key is in the hidden list.')
-
-      return false
-    }
+    return editingAllowed || currentSections.indexOf(toggleKey) === -1
   }
 
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
@@ -282,6 +264,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
     onCompleted: (data) => {
       const { updateSiteSettingSectionSettings: response } = data
       if (response.siteSetting && response?.errors?.length === 0) {
+        setSectionConfigurations(response.siteSetting.sectionConfigurations)
         showSuccessMessage(<FormattedMessage id='ui.section.save.success' />)
       } else {
         showFailureMessage(<FormattedMessage id='ui.section.save.failure' />)
@@ -301,7 +284,10 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
     if (editingSection) {
       saveItemSettings({
         variables: {
-          sectionConfigurations
+          sectionConfigurations: {
+            ...sectionConfigurations,
+            product: [...currentSections]
+          }
         }
       })
     }
@@ -334,7 +320,10 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
               >
                 <FiEdit3 className='inline pb-0.5' />
                 <span className='text-sm px-1'>
-                  Edit Section
+                  {editingSection
+                    ? <FormattedMessage id='ui.section.save' />
+                    : <FormattedMessage id='ui.section.edit' />
+                  }
                 </span>
               </button>
             )}
@@ -352,7 +341,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
                 extraClassNames='ml-auto text-dial-stratos'
                 disabled={!editingSection}
                 displayed={editingAllowed}
-                checked={sectionConfigurations.indexOf('description') !== -1}
+                checked={sectionChecked('description')}
                 label={format('app.hide')}
                 onChange={() => toggleDisplay('description')}
               />

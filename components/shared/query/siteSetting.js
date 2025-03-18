@@ -33,17 +33,14 @@ export const DEFAULT_SITE_SETTING_DETAIL_QUERY = gql`
     defaultSiteSetting {
       id
       slug
-      name
-      description
-      faviconUrl
       exchangeLogoUrl
-      openGraphLogoUrl
-      carouselConfigurations
-      menuConfigurations
       heroCardSection
+      menuConfigurations
+      sectionConfigurations
+      carouselConfigurations
+      siteColors
       enableMarketplace
       defaultSetting
-      siteColors
     }
   }
 `
