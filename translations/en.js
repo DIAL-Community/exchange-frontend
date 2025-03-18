@@ -3117,5 +3117,9 @@ export const en = {
 
   'landing.page.save.success': 'Page configurations saved.',
   'landing.page.save.failure': 'Unable to save page configurations.',
+
+  'ui.section.edit': 'Edit Sections',
+  'ui.section.save.success': 'Section configurations saved.',
+  'ui.section.save.failure': 'Unable to save section configurations.',
 }
 

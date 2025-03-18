@@ -1,12 +1,20 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useCallback, useContext, useImperativeHandle, useRef, useState } from 'react'
+import classNames from 'classnames'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-import { useIntl } from 'react-intl'
+import { FiEdit3 } from 'react-icons/fi'
+import { FormattedMessage, useIntl } from 'react-intl'
+import { useMutation, useQuery } from '@apollo/client'
+import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
+import { ToastContext } from '../../lib/ToastContext'
 import CommentsSection from '../shared/comment/CommentsSection'
 import Bookmark from '../shared/common/Bookmark'
 import Share from '../shared/common/Share'
 import CreateButton from '../shared/form/CreateButton'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import Toggle from '../shared/form/Toggle'
+import { UPDATE_SITE_SETTING_SECTION_SETTINGS } from '../shared/mutation/siteSetting'
+import { DEFAULT_SITE_SETTING_SECTION_SETTINGS_QUERY } from '../shared/query/siteSetting'
 import { DisplayType, ObjectType, ProductExtraAttributeNames } from '../utils/constants'
 import DeleteProduct from './fragments/DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
@@ -227,6 +235,78 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
     []
   )
 
+  // Toggle whether we are editing the page or not.
+  const [editingSection, setEditingSection] = useState(false)
+  const [sectionConfigurations, setSectionConfigurations] = useState([])
+
+  // Initialize the layouts and items from database
+  useQuery(DEFAULT_SITE_SETTING_SECTION_SETTINGS_QUERY, {
+    context: {
+      headers: {
+        ...GRAPH_QUERY_CONTEXT.VIEWING
+      }
+    },
+    onCompleted: (data) => {
+      if (data.defaultSiteSetting) {
+        const { defaultSiteSetting } = data
+        setSectionConfigurations(defaultSiteSetting.sectionConfigurations)
+      }
+    }
+  })
+
+  const toggleDisplay = (key) => {
+    const keyIndex = sectionConfigurations.indexOf(key)
+    if (keyIndex === -1) {
+      setSectionConfigurations([...sectionConfigurations, key])
+    } else {
+      setSectionConfigurations(sectionConfigurations.filter((_, index) => index !== keyIndex))
+    }
+  }
+
+  const shouldBeDisplayed = (toggleKey) => {
+    if (editingAllowed) {
+      console.log('Editing, need to be displayed.')
+
+      return true
+    }
+
+    if (sectionConfigurations.indexOf(toggleKey) !== -1) {
+      console.log('Key is in the hidden list.')
+
+      return false
+    }
+  }
+
+  const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
+  const [saveItemSettings, { reset }] = useMutation(UPDATE_SITE_SETTING_SECTION_SETTINGS, {
+    onCompleted: (data) => {
+      const { updateSiteSettingSectionSettings: response } = data
+      if (response.siteSetting && response?.errors?.length === 0) {
+        showSuccessMessage(<FormattedMessage id='ui.section.save.success' />)
+      } else {
+        showFailureMessage(<FormattedMessage id='ui.section.save.failure' />)
+      }
+    },
+    onError: () => {
+      showFailureMessage(<FormattedMessage id='ui.section.save.failure' />)
+      reset()
+    }
+  })
+
+  // Toggle the editing context for the current page.
+  const toggleEditing = () => {
+    // Toggle the editing flag for the current page.
+    setEditingSection(!editingSection)
+    // Save the changes to the database.
+    if (editingSection) {
+      saveItemSettings({
+        variables: {
+          sectionConfigurations
+        }
+      })
+    }
+  }
+
   const extraAttributes = product.extraAttributes
     ? product.extraAttributes.filter(e => ProductExtraAttributeNames.indexOf(e.name) > -1)
     : []
@@ -243,22 +323,50 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
             </div>
           }
           <div className='flex gap-x-3 ml-auto'>
+            {editingAllowed && (
+              <button
+                type='button'
+                onClick={toggleEditing}
+                className={classNames(
+                  'cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white',
+                  editingSection ? 'opacity-100' : 'opacity-50 hover:opacity-100'
+                )}
+              >
+                <FiEdit3 className='inline pb-0.5' />
+                <span className='text-sm px-1'>
+                  Edit Section
+                </span>
+              </button>
+            )}
             {editingAllowed && <EditButton type='link' href={editPath} />}
             {deletingAllowed && <DeleteProduct product={product} />}
           </div>
         </div>
-        <div className='text-xl font-semibold text-dial-meadow py-3' ref={descRef}>
-          {format('ui.common.detail.description')}
-        </div>
-        <div className='description-block'>
-          <HtmlViewer
-            initialContent={product?.productDescription?.description}
-            editorId='product-description'
-          />
-        </div>
+        {shouldBeDisplayed('description') && (
+          <div className='flex flex-col gap-y-3'>
+            <div className='flex items-center py-3'>
+              <div className='text-xl font-semibold text-dial-meadow' ref={descRef}>
+                {format('ui.common.detail.description')}
+              </div>
+              <Toggle
+                extraClassNames='ml-auto text-dial-stratos'
+                disabled={!editingSection}
+                displayed={editingAllowed}
+                checked={sectionConfigurations.indexOf('description') !== -1}
+                label={format('app.hide')}
+                onChange={() => toggleDisplay('description')}
+              />
+            </div>
+            <div className={`description-block ${shouldBeDisplayed('description') ? 'opacity-100' : 'opacity-50'}`}>
+              <HtmlViewer
+                initialContent={product?.productDescription?.description}
+                editorId='product-description'
+              />
+            </div>
+          </div>
+        )}
         {extraAttributes.length > 0 && (
-          <>
-            <hr className='border-b border-dial-blue-chalk my-3' />
+          <div className='flex flex-col gap-y-3'>
             <div className='flex flex-col gap-y-3'>
               <div className='text-xl font-semibold text-dial-meadow pb-3' ref={extraRef}>
                 {format('ui.product.extraAttributes')}
@@ -271,9 +379,9 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
                 )
               })}
             </div>
-          </>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
         )}
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='text-xl font-semibold text-dial-meadow pb-3' ref={pricingRef}>
             {format('ui.product.pricing.title')}
@@ -308,8 +416,8 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
               </div>
             }
           </div>
+          <hr className='border-b border-dial-blue-chalk my-3' />
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProductDetailSdgs
             product={product}

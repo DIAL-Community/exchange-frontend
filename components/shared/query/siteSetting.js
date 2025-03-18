@@ -73,6 +73,16 @@ export const DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY = gql`
   }
 `
 
+export const DEFAULT_SITE_SETTING_SECTION_SETTINGS_QUERY = gql`
+  query DefaultSiteSettingLanding {
+    defaultSiteSetting {
+      id
+      slug
+      sectionConfigurations
+    }
+  }
+`
+
 export const INITIAL_IMAGE_URL_QUERY = gql`
   query DefaultSiteSetting {
     defaultSiteSetting {
