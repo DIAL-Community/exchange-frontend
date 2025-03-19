@@ -7,12 +7,13 @@ import SdgTargetCard from '../../sdg-target/SdgTargetCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_USE_CASE_SDG_TARGETS } from '../../shared/mutation/useCase'
 import { SDG_TARGET_SEARCH_QUERY } from '../../shared/query/sdgTarget'
-import { DisplayType } from '../../utils/constants'
+import { DisplayType, ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const UseCaseDetailSdgTargets = ({ useCase, editingAllowed, headerRef }) => {
+const UseCaseDetailSdgTargets = ({ useCase, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -155,9 +156,19 @@ const UseCaseDetailSdgTargets = ({ useCase, editingAllowed, headerRef }) => {
       </div>
     </div>
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='sdgTargets'
+      objectType={ObjectType.USE_CASE}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

@@ -1,10 +1,12 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import { SiteSettingProvider } from '../../../components/context/SiteSettingContext'
 import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_USE_CASE } from '../../../components/shared/mutation/useCase'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
 import { SECTOR_SEARCH_QUERY } from '../../../components/shared/query/sector'
+import { DEFAULT_SITE_SETTING_DETAIL_QUERY } from '../../../components/shared/query/siteSetting'
 import {
   PAGINATED_USE_CASES_QUERY, USE_CASE_DETAIL_QUERY, USE_CASE_PAGINATION_ATTRIBUTES_QUERY
 } from '../../../components/shared/query/useCase'
@@ -14,7 +16,7 @@ import CustomMockedProvider, { generateMockApolloData } from '../../utils/Custom
 import {
   mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
 } from '../../utils/nextMockImplementation'
-import { commentsQuery, createUseCase, sectors, useCaseDetail } from './data/UseCaseDetail.data'
+import { commentsQuery, createUseCase, sectors, siteSettings, useCaseDetail } from './data/UseCaseDetail.data'
 import { paginatedUseCases, useCasePaginationAttribute } from './data/UseCaseMain.data'
 
 mockTenantApi()
@@ -50,11 +52,20 @@ describe('Unit tests for the useCase detail page.', () => {
     commentsQuery
   )
 
+  const mockSiteSetting = generateMockApolloData(
+    DEFAULT_SITE_SETTING_DETAIL_QUERY,
+    {},
+    null,
+    siteSettings
+  )
+
   test('Should render detail of a useCase.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockUseCase, mockUseCaseComments, mockSectors]}>
+      <CustomMockedProvider mocks={[mockUseCase, mockSiteSetting, mockUseCaseComments, mockSectors]}>
         <QueryParamContextProvider>
-          <UseCaseEdit slug='remote-learning' />
+          <SiteSettingProvider>
+            <UseCaseEdit slug='remote-learning' />
+          </SiteSettingProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -90,9 +101,11 @@ describe('Unit tests for the useCase detail page.', () => {
       null
     )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockUseCasePolicyQueryError, mockUseCaseComments, mockSectors]}>
+      <CustomMockedProvider mocks={[mockUseCasePolicyQueryError, mockSiteSetting, mockUseCaseComments, mockSectors]}>
         <QueryParamContextProvider>
-          <UseCaseEdit slug='remote-learning' />
+          <SiteSettingProvider>
+            <UseCaseEdit slug='remote-learning' />
+          </SiteSettingProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -134,17 +147,20 @@ describe('Unit tests for the useCase detail page.', () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
-          mockUseCase,
           mockSectors,
+          mockUseCase,
+          mockUseCase,
+          mockSiteSetting,
           mockUseCaseComments,
           mockCreateBuildingBlock,
           mockUseCasePaginationAttribute,
-          mockPaginatedUseCases,
-          mockUseCase
+          mockPaginatedUseCases
         ]}
       >
         <QueryParamContextProvider>
-          <UseCaseEdit slug='remote-learning' />
+          <SiteSettingProvider>
+            <UseCaseEdit slug='remote-learning' />
+          </SiteSettingProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

@@ -6,11 +6,13 @@ import { ToastContext } from '../../../lib/ToastContext'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_PRODUCT_TAGS } from '../../shared/mutation/product'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
+import { ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const ProductDetailTags = ({ product, editingAllowed, headerRef }) => {
+const ProductDetailTags = ({ product, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -119,9 +121,19 @@ const ProductDetailTags = ({ product, editingAllowed, headerRef }) => {
       </div>
     </div>
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='tags'
+      objectType={ObjectType.PRODUCT}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

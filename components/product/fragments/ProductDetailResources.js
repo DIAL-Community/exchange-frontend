@@ -7,12 +7,13 @@ import ResourceCard from '../../resources/fragments/ResourceCard'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_PRODUCT_RESOURCES } from '../../shared/mutation/product'
 import { RESOURCE_SEARCH_QUERY } from '../../shared/query/resource'
-import { DisplayType } from '../../utils/constants'
+import { DisplayType, ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const ProductDetailResources = ({ product, editingAllowed, headerRef }) => {
+const ProductDetailResources = ({ product, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -143,9 +144,19 @@ const ProductDetailResources = ({ product, editingAllowed, headerRef }) => {
       </div>
     </div>
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='resources'
+      objectType={ObjectType.PRODUCT}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

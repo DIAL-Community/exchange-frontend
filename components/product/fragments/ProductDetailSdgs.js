@@ -8,12 +8,13 @@ import EditableSection from '../../shared/EditableSection'
 import { generateMappingStatusOptions } from '../../shared/form/options'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_PRODUCT_SDGS } from '../../shared/mutation/product'
 import { SDG_SEARCH_QUERY } from '../../shared/query/sdg'
-import { DisplayType } from '../../utils/constants'
+import { DisplayType, ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const ProductDetailSdgs = ({ product, editingAllowed, headerRef }) => {
+const ProductDetailSdgs = ({ product, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -181,9 +182,19 @@ const ProductDetailSdgs = ({ product, editingAllowed, headerRef }) => {
       </div>
     </div>
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='sdgs'
+      objectType={ObjectType.PRODUCT}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

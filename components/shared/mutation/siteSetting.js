@@ -234,3 +234,15 @@ export const UPDATE_SITE_SETTING_ITEM_SETTINGS = gql`
     }
   }
 `
+
+export const UPDATE_SITE_SETTING_SECTION_SETTINGS = gql`
+  mutation UpdateSiteSettingSectionSettings($sectionConfigurations: JSON!) {
+    updateSiteSettingSectionSettings(sectionConfigurations: $sectionConfigurations) {
+      siteSetting {
+        id
+        sectionConfigurations
+      }
+      errors
+    }
+  }
+`

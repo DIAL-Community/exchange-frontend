@@ -33,17 +33,14 @@ export const DEFAULT_SITE_SETTING_DETAIL_QUERY = gql`
     defaultSiteSetting {
       id
       slug
-      name
-      description
-      faviconUrl
       exchangeLogoUrl
-      openGraphLogoUrl
-      carouselConfigurations
-      menuConfigurations
       heroCardSection
+      menuConfigurations
+      sectionConfigurations
+      carouselConfigurations
+      siteColors
       enableMarketplace
       defaultSetting
-      siteColors
     }
   }
 `
@@ -69,6 +66,16 @@ export const DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY = gql`
       slug
       itemLayouts
       itemConfigurations
+    }
+  }
+`
+
+export const DEFAULT_SITE_SETTING_SECTION_SETTINGS_QUERY = gql`
+  query DefaultSiteSettingLanding {
+    defaultSiteSetting {
+      id
+      slug
+      sectionConfigurations
     }
   }
 `

@@ -965,39 +965,6 @@ exports[`Unit tests for the product main page. Should render the product reposit
               <hr
                 class="border-b border-dial-slate-200"
               />
-              <div
-                class="flex flex-col gap-3 py-3"
-              >
-                <div
-                  class="text-dial-sapphire font-semibold"
-                >
-                  Comment
-                </div>
-                <div
-                  class="text-sm text-dial-stratos"
-                >
-                  
-    Have a question for the community on this Use Case Step or have some insight you would like to share?
-  
-                </div>
-                <div
-                  class="flex text-white"
-                >
-                  <div
-                    class="bg-dial-iris-blue rounded-md text-sm"
-                  >
-                    <button
-                      class="px-5 py-3"
-                      type="button"
-                    >
-                      Post a comment
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <hr
-                class="border-b border-dial-slate-200"
-              />
             </div>
           </div>
         </div>

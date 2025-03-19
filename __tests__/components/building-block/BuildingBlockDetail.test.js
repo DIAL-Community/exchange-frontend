@@ -4,6 +4,7 @@ import BuildingBlockDetail from '../../../components/building-block/BuildingBloc
 import BuildingBlockEdit from '../../../components/building-block/BuildingBlockEdit'
 import { FilterProvider } from '../../../components/context/FilterContext'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import { SiteSettingProvider } from '../../../components/context/SiteSettingContext'
 import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_BUILDING_BLOCK } from '../../../components/shared/mutation/buildingBlock'
 import {
@@ -11,13 +12,14 @@ import {
   PAGINATED_BUILDING_BLOCKS_QUERY
 } from '../../../components/shared/query/buildingBlock'
 import { COMMENTS_QUERY } from '../../../components/shared/query/comment'
+import { DEFAULT_SITE_SETTING_DETAIL_QUERY } from '../../../components/shared/query/siteSetting'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockPolicyFetching } from '../../utils/mockPolicyFetching'
 import {
   mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
 } from '../../utils/nextMockImplementation'
-import { buildingBlockDetail, commentsQuery, createBuildingBlock } from './data/BuildingBlockDetail.data'
+import { buildingBlockDetail, commentsQuery, createBuildingBlock, siteSettings } from './data/BuildingBlockDetail.data'
 import { buildingBlockPaginationAttribute, paginatedBuildingBlocks } from './data/BuildingBlockMain.data'
 
 mockTenantApi()
@@ -51,19 +53,29 @@ describe('Unit tests for the building block detail page.', () => {
     commentsQuery
   )
 
+  const mockSiteSetting = generateMockApolloData(
+    DEFAULT_SITE_SETTING_DETAIL_QUERY,
+    {},
+    null,
+    siteSettings
+  )
+
   test('Should render detail of a building block.', async () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
+          mockSiteSetting,
           mockBuildingBlock,
           mockBuildingBlockPolicies,
           mockBuildingBlockComments
         ]}
       >
         <QueryParamContextProvider>
-          <FilterProvider>
-            <BuildingBlockDetail slug='analytics-and-business-intelligence' />
-          </FilterProvider>
+          <SiteSettingProvider>
+            <FilterProvider>
+              <BuildingBlockDetail slug='analytics-and-business-intelligence' />
+            </FilterProvider>
+          </SiteSettingProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -103,15 +115,18 @@ describe('Unit tests for the building block detail page.', () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
+          mockSiteSetting,
           mockBuildingBlockComments,
           buildingBlockPolicyQueryError
         ]}
       >
-        <FilterProvider>
-          <QueryParamContextProvider>
-            <BuildingBlockEdit slug='analytics-and-business-intelligence' />
-          </QueryParamContextProvider>
-        </FilterProvider>
+        <SiteSettingProvider>
+          <FilterProvider>
+            <QueryParamContextProvider>
+              <BuildingBlockEdit slug='analytics-and-business-intelligence' />
+            </QueryParamContextProvider>
+          </FilterProvider>
+        </SiteSettingProvider>
       </CustomMockedProvider>
     )
     expect(container).toMatchSnapshot()
@@ -170,20 +185,23 @@ describe('Unit tests for the building block detail page.', () => {
     const { container } = render(
       <CustomMockedProvider
         mocks={[
-          mockBuildingBlockPolicies,
+          mockSiteSetting,
           mockBuildingBlock,
           mockCreateBuildingBlock,
+          mockBuildingBlockPolicies,
           mockBuildingBlockComments,
           mockBuildingBlockPolicies,
           mockPaginatedBuildingBlocks,
           mockBuildingBlockPaginationAttribute
         ]}
       >
-        <FilterProvider>
-          <QueryParamContextProvider>
-            <BuildingBlockEdit slug='analytics-and-business-intelligence' />
-          </QueryParamContextProvider>
-        </FilterProvider>
+        <SiteSettingProvider>
+          <FilterProvider>
+            <QueryParamContextProvider>
+              <BuildingBlockEdit slug='analytics-and-business-intelligence' />
+            </QueryParamContextProvider>
+          </FilterProvider>
+        </SiteSettingProvider>
       </CustomMockedProvider>
     )
 
