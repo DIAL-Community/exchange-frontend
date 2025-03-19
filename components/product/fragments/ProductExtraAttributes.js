@@ -11,9 +11,10 @@ import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
 import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES } from '../../shared/mutation/candidateProduct'
 import { CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY } from '../../shared/query/candidateProduct'
-import { ProductExtraAttributeNames } from '../../utils/constants'
+import { ObjectType, ProductExtraAttributeNames } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 
 const MaintainerCompositeAttribute = ({ errors, control, register, extraAttribute }) => {
@@ -148,7 +149,7 @@ const renderExtraAttributes = (extraAttribute) => {
   }
 }
 
-const ProductExtraAttributes = ({ product, editingAllowed, headerRef }) => {
+const ProductExtraAttributes = ({ product, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -386,9 +387,19 @@ const ProductExtraAttributes = ({ product, editingAllowed, headerRef }) => {
     )
   }
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='attributes'
+      objectType={ObjectType.PRODUCT}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

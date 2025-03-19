@@ -49,6 +49,24 @@ export const buildingBlockDetail = {
 
 export const commentsQuery = { 'data': { 'comments': [] } }
 
+export const siteSettings = {
+  'data': {
+    'defaultSiteSetting': {
+      'id': '1',
+      'slug': 'default-site-settings',
+      'exchangeLogoUrl': 'exchange.dial.global/ui/v1/exchange-logo.svg',
+      'heroCardSection': {},
+      'menuConfigurations': [],
+      'sectionConfigurations': {},
+      'carouselConfigurations': [],
+      'siteColors': {},
+      'enableMarketplace': false,
+      'defaultSetting': true,
+      '__typename': 'SiteSetting'
+    }
+  }
+}
+
 export const createBuildingBlock = {
   'data': {
     'createBuildingBlock': {

@@ -11,9 +11,10 @@ const SiteSettingProvider = ({ children }) => {
   const [updateSiteSettings, { loading, error }] = useLazyQuery(DEFAULT_SITE_SETTING_DETAIL_QUERY, {
     onCompleted: (data) => {
       setExchangeLogoUrl(data.defaultSiteSetting.exchangeLogoUrl)
-      setMenuConfigurations(data.defaultSiteSetting.menuConfigurations)
-      setCarouselConfigurations(data.defaultSiteSetting.carouselConfigurations)
       setHeroCardSection(data.defaultSiteSetting.heroCardSection)
+      setMenuConfigurations(data.defaultSiteSetting.menuConfigurations)
+      setSectionConfigurations(data.defaultSiteSetting.sectionConfigurations)
+      setCarouselConfigurations(data.defaultSiteSetting.carouselConfigurations)
       setSiteColors(data.defaultSiteSetting.siteColors)
       setEnableMarketplace(data.defaultSiteSetting.enableMarketplace)
     }
@@ -22,27 +23,30 @@ const SiteSettingProvider = ({ children }) => {
   const [currentStatus, setCurrentStatus] = useState(status === 'authenticated')
 
   const [exchangeLogoUrl, setExchangeLogoUrl] = useState()
-  const [menuConfigurations, setMenuConfigurations] = useState([])
-  const [carouselConfigurations, setCarouselConfigurations] = useState([])
   const [heroCardSection, setHeroCardSection] = useState([])
-  const [siteColors, setSiteColors] = useState({})
+  const [menuConfigurations, setMenuConfigurations] = useState([])
+  const [sectionConfigurations, setSectionConfigurations] = useState({})
+  const [carouselConfigurations, setCarouselConfigurations] = useState([])
 
+  const [siteColors, setSiteColors] = useState({})
   const [enableMarketplace, setEnableMarketplace] = useState(false)
 
   const siteSettingValues = {
     exchangeLogoUrl,
-    menuConfigurations,
-    carouselConfigurations,
     heroCardSection,
+    menuConfigurations,
+    sectionConfigurations,
+    carouselConfigurations,
     siteColors,
     enableMarketplace
   }
 
   const siteSettingDispatchValues = {
     setExchangeLogoUrl,
-    setMenuConfigurations,
-    setCarouselConfigurations,
     setHeroCardSection,
+    setMenuConfigurations,
+    setSectionConfigurations,
+    setCarouselConfigurations,
     setSiteColors,
     setEnableMarketplace
   }
@@ -66,7 +70,7 @@ const SiteSettingProvider = ({ children }) => {
 }
 
 export {
-  SiteSettingProvider,
   SiteSettingContext,
+  SiteSettingProvider,
   SiteSettingDispatchContext
 }
