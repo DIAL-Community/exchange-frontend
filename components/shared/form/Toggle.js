@@ -22,7 +22,7 @@ const Toggle = ({ displayed, label, checked, disabled, extraClassNames, onChange
         'after:border after:border-gray-300 after:rounded-full'
       )}>
       </div>
-      <span className='ms-3 text-sm font-medium'>
+      <span className='ms-2 text-sm font-medium'>
         {label}
       </span>
     </label >

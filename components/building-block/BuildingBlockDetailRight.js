@@ -124,28 +124,31 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock, editingAllowed, de
                 editorId='buildingBlock-description'
               />
             </div>
+            <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
         )}
         {shouldBeDisplayed('products') && (
           <div className='flex flex-col gap-y-3'>
-            <hr className='border-b border-dial-blue-chalk my-3' />
             <BuildingBlockDetailProducts
               buildingBlock={buildingBlock}
               editingSection={editingSection}
               editingAllowed={!buildingBlock.markdownUrl && editingAllowed}
               headerRef={productRef}
             />
+            <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
         )}
-        <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='flex flex-col gap-y-3'>
-          <BuildingBlockDetailWorkflows
-            buildingBlock={buildingBlock}
-            editingAllowed={!buildingBlock.markdownUrl && editingAllowed}
-            headerRef={workflowRef}
-          />
-        </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
+        {shouldBeDisplayed('workflows') && (
+          <div className='flex flex-col gap-y-3'>
+            <BuildingBlockDetailWorkflows
+              buildingBlock={buildingBlock}
+              editingSection={editingSection}
+              editingAllowed={!buildingBlock.markdownUrl && editingAllowed}
+              headerRef={workflowRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
         <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={buildingBlock} objectType={ObjectType.BUILDING_BLOCK} />
           <hr className='border-b border-dial-slate-200'/>

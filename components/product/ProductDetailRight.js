@@ -426,119 +426,185 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
             <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
         )}
-        <div className='flex flex-col gap-y-3'>
-          <ProductDetailResources
-            product={product}
-            editingAllowed={editingAllowed}
-            headerRef={resourceRef}
-          />
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <ProductDetailOrganizations
-            product={product}
-            editingAllowed={editingAllowed}
-            headerRef={organizationRef}
-          />
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <ProductDetailCountries
-            product={product}
-            editingAllowed={editingAllowed}
-            headerRef={countryRef}
-          />
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <ProductDetailCategories
-            product={product}
-            editingAllowed={editingAllowed}
-            headerRef={categoryRef}
-          />
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <div className='flex flex-row gap-3'>
-            <div className='text-dial-meadow text-lg font-semibold' ref={productRepositoryRef}>
-              {format('productRepository.header')}
+        {shouldBeDisplayed('resources') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductDetailResources
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={resourceRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('organizations') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductDetailOrganizations
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={organizationRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('countries') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductDetailCountries
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={countryRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('categories') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductDetailCategories
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={categoryRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('repositories') && (
+          <div className='flex flex-col gap-y-3'>
+            <div className='flex flex-row gap-3'>
+              <div className='text-dial-meadow text-lg font-semibold' ref={productRepositoryRef}>
+                {format('productRepository.header')}
+              </div>
+              {editingAllowed &&
+                <>
+                  <HidableSection
+                    objectKey='repositories'
+                    objectType={ObjectType.PRODUCT}
+                    disabled={!editingSection}
+                    displayed={editingAllowed}
+                  />
+                  <CreateButton
+                    label={format('app.create')}
+                    type='link'
+                    href={`/products/${product.slug}/repositories/create`}
+                  />
+                </>
+              }
             </div>
-            {editingAllowed &&
-              <div className='ml-auto'>
-                <CreateButton
-                  label={format('app.create')}
-                  type='link'
-                  href={`/products/${product.slug}/repositories/create`}
-                />
+            <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+              {format('ui.product.overview.repository')}
+            </div>
+            {!product.mainRepository &&
+              <div className='text-sm text-dial-stratos'>
+                {format('ui.common.detail.noData', {
+                  entity: format('productRepository.label'),
+                  base: format('ui.product.label')
+                })}
               </div>
             }
+            {product.mainRepository &&
+              <ProductRepositoryCard
+                index={0}
+                product={product}
+                productRepository={product.mainRepository}
+                displayType={DisplayType.LARGE_CARD}
+              />
+            }
+            <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
-          <div className='text-xs text-justify italic text-dial-stratos mb-2'>
-            {format('ui.product.overview.repository')}
-          </div>
-          {!product.mainRepository &&
-            <div className='text-sm text-dial-stratos'>
-              {format('ui.common.detail.noData', {
-                entity: format('productRepository.label'),
-                base: format('ui.product.label')
-              })}
+        )}
+        {shouldBeDisplayed('sources') && (
+          <div className='relative'>
+            <div className='absolute right-0'>
+              <HidableSection
+                objectKey='sources'
+                objectType={ObjectType.PRODUCT}
+                disabled={!editingSection}
+                displayed={editingAllowed}
+              />
             </div>
-          }
-          {product.mainRepository &&
-            <ProductRepositoryCard
-              index={0}
+            <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
+              <ProductSource product={product} headerRef={productSourceRef} />
+              <ProductEndorser product={product} headerRef={productEndorserRef} />
+            </div>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('relationships') && (
+          <div className='relative'>
+            <div className='absolute right-0'>
+              <HidableSection
+                objectKey='relationships'
+                objectType={ObjectType.PRODUCT}
+                disabled={!editingSection}
+                displayed={editingAllowed}
+              />
+            </div>
+            <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
+              <ProductInteroperable product={product} headerRef={productInteroperableRef} />
+              <ProductIncluded product={product} headerRef={productIncludedRef} />
+            </div>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('maturity') && (
+          <div className='flex flex-col gap-y-3'>
+            <div className='flex flex-row gap-3'>
+              <div className='text-dial-meadow text-xl font-semibold' ref={productMaturityRef}>
+                {format('ui.maturityScore.header')}
+              </div>
+              {editingAllowed &&
+                <div className='ml-auto'>
+                  <HidableSection
+                    objectKey='maturity'
+                    objectType={ObjectType.PRODUCT}
+                    disabled={!editingSection}
+                    displayed={editingAllowed}
+                  />
+                </div>
+              }
+            </div>
+            <div className='text-sm italic'>
+              <div
+                className='text-xs text-justify text-dial-gray-dark highlight-link'
+                dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
+              />
+            </div>
+            <div className='border-b border-transparent my-2' />
+            <div className='flex flex-col gap-y-3'>
+              <ProductDetailMaturityScores
+                slug={product.slug}
+                editingAllowed={editingAllowed}
+                overallMaturityScore={product.overallMaturityScore}
+                maturityScoreDetails={product.maturityScoreDetails}
+              />
+              <hr className='border-b border-dial-blue-chalk my-3' />
+            </div>
+          </div>
+        )}
+        {shouldBeDisplayed('attributes') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductExtraAttributes
               product={product}
-              productRepository={product.mainRepository}
-              displayType={DisplayType.LARGE_CARD}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={extraAttributesRef}
             />
-          }
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-          <ProductSource product={product} headerRef={productSourceRef} />
-          <ProductEndorser product={product} headerRef={productEndorserRef} />
-        </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
-          <ProductInteroperable product={product} headerRef={productInteroperableRef} />
-          <ProductIncluded product={product} headerRef={productIncludedRef} />
-        </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='text-dial-meadow text-xl font-semibold' ref={productMaturityRef}>
-          {format('ui.maturityScore.header')}
-        </div>
-        <div className='text-sm italic'>
-          <div
-            className='text-xs text-justify text-dial-gray-dark highlight-link'
-            dangerouslySetInnerHTML={{ __html: format('product.maturity.description') }}
-          />
-        </div>
-        <div className='border-b border-transparent my-2' />
-        <div className='flex flex-col gap-y-3'>
-          <ProductDetailMaturityScores
-            slug={product.slug}
-            editingAllowed={editingAllowed}
-            overallMaturityScore={product.overallMaturityScore}
-            maturityScoreDetails={product.maturityScoreDetails}
-          />
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <ProductExtraAttributes
-            product={product}
-            editingAllowed={editingAllowed}
-            headerRef={extraAttributesRef}
-          />
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <ProductDetailTags
-            product={product}
-            editingAllowed={editingAllowed}
-            headerRef={tagRef}
-          />
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('tags') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductDetailTags
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={tagRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
         <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={product} objectType={ObjectType.PRODUCT} />
           <hr className='border-b border-dial-slate-200' />

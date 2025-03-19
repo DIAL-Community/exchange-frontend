@@ -442,7 +442,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                       class="relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:h-4 after:w-4 after:transition-all after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full"
                     />
                     <span
-                      class="ms-3 text-sm font-medium"
+                      class="ms-2 text-sm font-medium"
                     >
                       Hide
                     </span>
@@ -501,13 +501,13 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   </div>
                 </div>
               </div>
+              <hr
+                class="border-b border-dial-blue-chalk my-3"
+              />
             </div>
             <div
               class="flex flex-col gap-y-3"
             >
-              <hr
-                class="border-b border-dial-blue-chalk my-3"
-              />
               <div
                 class="flex flex-col gap-y-3"
               >
@@ -535,7 +535,7 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                         class="relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:h-4 after:w-4 after:transition-all after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full"
                       />
                       <span
-                        class="ms-3 text-sm font-medium"
+                        class="ms-2 text-sm font-medium"
                       >
                         Hide
                       </span>
@@ -643,10 +643,10 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   </div>
                 </div>
               </div>
+              <hr
+                class="border-b border-dial-blue-chalk my-3"
+              />
             </div>
-            <hr
-              class="border-b border-dial-blue-chalk my-3"
-            />
             <div
               class="flex flex-col gap-y-3"
             >
@@ -664,6 +664,24 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   <div
                     class="flex gap-3 ml-auto"
                   >
+                    <label
+                      class="inline-flex items-center cursor-pointer ml-auto text-dial-stratos opacity-50"
+                    >
+                      <input
+                        class="sr-only peer"
+                        disabled=""
+                        type="checkbox"
+                        value=""
+                      />
+                      <div
+                        class="relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:h-4 after:w-4 after:transition-all after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full"
+                      />
+                      <span
+                        class="ms-2 text-sm font-medium"
+                      >
+                        Hide
+                      </span>
+                    </label>
                     <button
                       class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
                       type="button"
@@ -732,10 +750,10 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   </div>
                 </div>
               </div>
+              <hr
+                class="border-b border-dial-blue-chalk my-3"
+              />
             </div>
-            <hr
-              class="border-b border-dial-blue-chalk my-3"
-            />
             <div
               class="lg:hidden flex flex-col gap-y-3"
             >
