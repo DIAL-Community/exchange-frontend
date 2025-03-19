@@ -1,5 +1,4 @@
 import Bookmark from '../../shared/common/Bookmark'
-import Comment from '../../shared/common/Comment'
 import Share from '../../shared/common/Share'
 import { ObjectType } from '../../utils/constants'
 import ProductDetailHeader from '../fragments/ProductDetailHeader'
@@ -17,8 +16,6 @@ const ProductRepositoryLeft = ({ product, scrollRef }) => {
           <Bookmark object={product} objectType={ObjectType.PRODUCT} />
           <hr className='border-b border-dial-slate-200' />
           <Share />
-          <hr className='border-b border-dial-slate-200' />
-          <Comment entityKey={'ui.useCaseStep.label'} scrollRef={scrollRef} />
           <hr className='border-b border-dial-slate-200' />
         </div>
       </div>

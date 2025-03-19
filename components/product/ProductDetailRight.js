@@ -321,14 +321,12 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
               <div className='text-xl font-semibold text-dial-meadow' ref={descRef}>
                 {format('ui.common.detail.description')}
               </div>
-              <div className='ml-auto'>
-                <HidableSection
-                  objectKey='description'
-                  objectType={ObjectType.PRODUCT}
-                  disabled={!editingSection}
-                  displayed={editingAllowed}
-                />
-              </div>
+              <HidableSection
+                objectKey='description'
+                objectType={ObjectType.PRODUCT}
+                disabled={!editingSection}
+                displayed={editingAllowed}
+              />
             </div>
             <div className={`description-block ${shouldBeDisplayed('description') ? 'opacity-100' : 'opacity-50'}`}>
               <HtmlViewer
@@ -362,14 +360,12 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
               <div className='text-xl font-semibold text-dial-meadow' ref={pricingRef}>
                 {format('ui.product.pricing.title')}
               </div>
-              <div className='ml-auto'>
-                <HidableSection
-                  objectKey='pricing'
-                  objectType={ObjectType.PRODUCT}
-                  disabled={!editingSection}
-                  displayed={editingAllowed}
-                />
-              </div>
+              <HidableSection
+                objectKey='pricing'
+                objectType={ObjectType.PRODUCT}
+                disabled={!editingSection}
+                displayed={editingAllowed}
+              />
             </div>
             <div className='text-xs text-justify italic text-dial-stratos mb-2'>
               {format('ui.product.overview.pricing')}
@@ -555,14 +551,12 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
                 {format('ui.maturityScore.header')}
               </div>
               {editingAllowed &&
-                <div className='ml-auto'>
-                  <HidableSection
-                    objectKey='maturity'
-                    objectType={ObjectType.PRODUCT}
-                    disabled={!editingSection}
-                    displayed={editingAllowed}
-                  />
-                </div>
+                <HidableSection
+                  objectKey='maturity'
+                  objectType={ObjectType.PRODUCT}
+                  disabled={!editingSection}
+                  displayed={editingAllowed}
+                />
               }
             </div>
             <div className='text-sm italic'>
