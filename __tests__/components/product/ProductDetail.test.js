@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { QueryParamContextProvider } from '../../../components/context/QueryParamContext'
+import { SiteSettingProvider } from '../../../components/context/SiteSettingContext'
 import ProductEdit from '../../../components/product/ProductEdit'
 import { QueryErrorCode } from '../../../components/shared/GraphQueryHandler'
 import { CREATE_PRODUCT } from '../../../components/shared/mutation/product'
@@ -9,12 +10,13 @@ import {
   OWNED_PRODUCTS_QUERY, PAGINATED_PRODUCTS_QUERY, PRODUCT_DETAIL_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
   PRODUCT_POLICY_QUERY
 } from '../../../components/shared/query/product'
+import { DEFAULT_SITE_SETTING_DETAIL_QUERY } from '../../../components/shared/query/siteSetting'
 import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import {
   mockLexicalComponents, mockNextAuthUseSession, mockNextUseRouter, mockTenantApi
 } from '../../utils/nextMockImplementation'
-import { commentsQuery, createProduct, ownedProducts, productDetail } from './data/ProductDetail.data'
+import { commentsQuery, createProduct, ownedProducts, productDetail, siteSettings } from './data/ProductDetail.data'
 import { paginatedProducts, productPaginationAttribute } from './data/ProductMain.data'
 
 mockTenantApi()
@@ -54,11 +56,28 @@ describe('Unit tests for the product detail page.', () => {
     commentsQuery
   )
 
+  const mockSiteSetting = generateMockApolloData(
+    DEFAULT_SITE_SETTING_DETAIL_QUERY,
+    {},
+    null,
+    siteSettings
+  )
+
   test('Should render detail of a product.', async () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProduct, mockOwnedProducts, mockProductPolicies, mockProductComments]}>
+      <CustomMockedProvider
+        mocks={[
+          mockProduct,
+          mockSiteSetting,
+          mockOwnedProducts,
+          mockProductPolicies,
+          mockProductComments
+        ]}
+      >
         <QueryParamContextProvider>
-          <ProductEdit slug='firma' />
+          <SiteSettingProvider>
+            <ProductEdit slug='firma' />
+          </SiteSettingProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -94,9 +113,18 @@ describe('Unit tests for the product detail page.', () => {
       null
     )
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProductPolicyQueryError, mockOwnedProducts, mockProductComments]}>
+      <CustomMockedProvider
+        mocks={[
+          mockSiteSetting,
+          mockOwnedProducts,
+          mockProductComments,
+          mockProductPolicyQueryError
+        ]}
+      >
         <QueryParamContextProvider>
-          <ProductEdit slug='firma' />
+          <SiteSettingProvider>
+            <ProductEdit slug='firma' />
+          </SiteSettingProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )
@@ -153,16 +181,19 @@ describe('Unit tests for the product detail page.', () => {
       <CustomMockedProvider
         mocks={[
           mockProduct,
+          mockProduct,
+          mockSiteSetting,
           mockOwnedProducts,
           mockProductComments,
-          mockCreateBuildingBlock,
-          mockProductPaginationAttribute,
           mockPaginatedProducts,
-          mockProduct
+          mockCreateBuildingBlock,
+          mockProductPaginationAttribute
         ]}
       >
         <QueryParamContextProvider>
-          <ProductEdit slug='firma' />
+          <SiteSettingProvider>
+            <ProductEdit slug='firma' />
+          </SiteSettingProvider>
         </QueryParamContextProvider>
       </CustomMockedProvider>
     )

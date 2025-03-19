@@ -12,7 +12,7 @@ import Share from '../shared/common/Share'
 import CreateButton from '../shared/form/CreateButton'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
-import Toggle from '../shared/form/Toggle'
+import HidableSection from '../shared/HidableSection'
 import { UPDATE_SITE_SETTING_SECTION_SETTINGS } from '../shared/mutation/siteSetting'
 import { DisplayType, ObjectType, ProductExtraAttributeNames } from '../utils/constants'
 import DeleteProduct from './fragments/DeleteProduct'
@@ -240,22 +240,9 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
   const { sectionConfigurations } = useContext(SiteSettingContext)
   const { setSectionConfigurations } = useContext(SiteSettingDispatchContext)
 
-  const [currentSections, setCurrentSections] = useState(sectionConfigurations.product ?? [])
-
-  const toggleDisplay = (key) => {
-    const keyIndex = currentSections.indexOf(key)
-    if (keyIndex === -1) {
-      setCurrentSections([...currentSections, key])
-    } else {
-      setCurrentSections(currentSections.filter((currentKey) => currentKey !== key))
-    }
-  }
-
-  const sectionChecked = (toggleKey) => {
-    return currentSections.indexOf(toggleKey) !== -1
-  }
-
   const shouldBeDisplayed = (toggleKey) => {
+    const currentSections = sectionConfigurations[ObjectType.PRODUCT] ?? []
+
     return editingAllowed || currentSections.indexOf(toggleKey) === -1
   }
 
@@ -284,10 +271,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
     if (editingSection) {
       saveItemSettings({
         variables: {
-          sectionConfigurations: {
-            ...sectionConfigurations,
-            product: [...currentSections]
-          }
+          sectionConfigurations
         }
       })
     }
@@ -337,14 +321,14 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
               <div className='text-xl font-semibold text-dial-meadow' ref={descRef}>
                 {format('ui.common.detail.description')}
               </div>
-              <Toggle
-                extraClassNames='ml-auto text-dial-stratos'
-                disabled={!editingSection}
-                displayed={editingAllowed}
-                checked={sectionChecked('description')}
-                label={format('app.hide')}
-                onChange={() => toggleDisplay('description')}
-              />
+              <div className='ml-auto'>
+                <HidableSection
+                  objectKey='description'
+                  objectType={ObjectType.PRODUCT}
+                  disabled={!editingSection}
+                  displayed={editingAllowed}
+                />
+              </div>
             </div>
             <div className={`description-block ${shouldBeDisplayed('description') ? 'opacity-100' : 'opacity-50'}`}>
               <HtmlViewer
@@ -352,6 +336,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
                 editorId='product-description'
               />
             </div>
+            <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
         )}
         {extraAttributes.length > 0 && (
@@ -371,94 +356,108 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
             <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
         )}
-        <div className='flex flex-col gap-y-3'>
-          <div className='text-xl font-semibold text-dial-meadow pb-3' ref={pricingRef}>
-            {format('ui.product.pricing.title')}
-          </div>
-          <div className='text-xs text-justify italic text-dial-stratos mb-2'>
-            {format('ui.product.overview.pricing')}
-          </div>
-          <div className='text-sm flex flex-row gap-2'>
-            {format('ui.product.pricing.hostingModel')}:
-            <div className='font-semibold inline'>
-              {product.hostingModel || format('general.na')}
-            </div>
-          </div>
-          <div className='text-sm flex flex-row gap-2'>
-            {format('ui.product.pricing.pricingModel')}:
-            <div className='font-semibold inline'>
-              {product.pricingModel || format('general.na')}
-            </div>
-          </div>
-          <div className='text-sm flex flex-row gap-2'>
-            {format('ui.product.pricing.detailPricing')}:
-          </div>
-          <div className='inline'>
-            {product.pricingDetails
-              ? <HtmlViewer
-                className='-mb-12'
-                initialContent={product?.pricingDetails}
-                editorId='pricing-details'
-              />
-              : <div className='font-semibold inline'>
-                {format('general.na')}
+        {shouldBeDisplayed('pricing') && (
+          <div className='flex flex-col gap-y-3'>
+            <div className='flex items-center pb-3'>
+              <div className='text-xl font-semibold text-dial-meadow' ref={pricingRef}>
+                {format('ui.product.pricing.title')}
               </div>
-            }
+              <div className='ml-auto'>
+                <HidableSection
+                  objectKey='pricing'
+                  objectType={ObjectType.PRODUCT}
+                  disabled={!editingSection}
+                  displayed={editingAllowed}
+                />
+              </div>
+            </div>
+            <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+              {format('ui.product.overview.pricing')}
+            </div>
+            <div className='text-sm flex flex-row gap-2'>
+              {format('ui.product.pricing.hostingModel')}:
+              <div className='font-semibold inline'>
+                {product.hostingModel || format('general.na')}
+              </div>
+            </div>
+            <div className='text-sm flex flex-row gap-2'>
+              {format('ui.product.pricing.pricingModel')}:
+              <div className='font-semibold inline'>
+                {product.pricingModel || format('general.na')}
+              </div>
+            </div>
+            <div className='text-sm flex flex-row gap-2'>
+              {format('ui.product.pricing.detailPricing')}:
+            </div>
+            <div className='inline'>
+              {product.pricingDetails
+                ? <HtmlViewer
+                  className='-mb-12'
+                  initialContent={product?.pricingDetails}
+                  editorId='pricing-details'
+                />
+                : <div className='font-semibold inline'>
+                  {format('general.na')}
+                </div>
+              }
+            </div>
+            <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
-          <hr className='border-b border-dial-blue-chalk my-3' />
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <ProductDetailSdgs
-            product={product}
-            editingAllowed={editingAllowed}
-            headerRef={sdgRef}
-          />
-        </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='flex flex-col gap-y-3'>
-          <ProductDetailBuildingBlocks
-            product={product}
-            editingAllowed={editingAllowed}
-            headerRef={buildingBlockRef}
-          />
-        </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
+        )}
+        {shouldBeDisplayed('sdgs') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductDetailSdgs
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={sdgRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('buildingBlocks') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductDetailBuildingBlocks
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={buildingBlockRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
         <div className='flex flex-col gap-y-3'>
           <ProductDetailResources
             product={product}
             editingAllowed={editingAllowed}
             headerRef={resourceRef}
           />
+          <hr className='border-b border-dial-blue-chalk my-3' />
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProductDetailOrganizations
             product={product}
             editingAllowed={editingAllowed}
             headerRef={organizationRef}
           />
+          <hr className='border-b border-dial-blue-chalk my-3' />
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProductDetailCountries
             product={product}
             editingAllowed={editingAllowed}
             headerRef={countryRef}
           />
+          <hr className='border-b border-dial-blue-chalk my-3' />
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <ProductDetailCategories
             product={product}
             editingAllowed={editingAllowed}
             headerRef={categoryRef}
           />
+          <hr className='border-b border-dial-blue-chalk my-3' />
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
-        <div className='text-dial-meadow text-xl font-semibold'>
-          {format('ui.product.details')}
-        </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='flex flex-row gap-3'>
             <div className='text-dial-meadow text-lg font-semibold' ref={productRepositoryRef}>
@@ -493,18 +492,19 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
               displayType={DisplayType.LARGE_CARD}
             />
           }
+          <hr className='border-b border-dial-blue-chalk my-3' />
         </div>
-        <div className='border-b border-transparent my-2' />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
           <ProductSource product={product} headerRef={productSourceRef} />
           <ProductEndorser product={product} headerRef={productEndorserRef} />
         </div>
-        <div className='border-b border-transparent my-2' />
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-12 xl:gap-y-0'>
           <ProductInteroperable product={product} headerRef={productInteroperableRef} />
           <ProductIncluded product={product} headerRef={productIncludedRef} />
         </div>
-        <div className='text-dial-meadow text-xl font-semibold mt-6' ref={productMaturityRef}>
+        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='text-dial-meadow text-xl font-semibold' ref={productMaturityRef}>
           {format('ui.maturityScore.header')}
         </div>
         <div className='text-sm italic'>
@@ -514,27 +514,31 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
           />
         </div>
         <div className='border-b border-transparent my-2' />
-        <ProductDetailMaturityScores
-          slug={product.slug}
-          editingAllowed={editingAllowed}
-          overallMaturityScore={product.overallMaturityScore}
-          maturityScoreDetails={product.maturityScoreDetails}
-        />
-        <div className='border-b border-transparent my-2' />
-        <ProductExtraAttributes
-          product={product}
-          editingAllowed={editingAllowed}
-          headerRef={extraAttributesRef}
-        />
-        <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex flex-col gap-y-3'>
+          <ProductDetailMaturityScores
+            slug={product.slug}
+            editingAllowed={editingAllowed}
+            overallMaturityScore={product.overallMaturityScore}
+            maturityScoreDetails={product.maturityScoreDetails}
+          />
+          <hr className='border-b border-dial-blue-chalk my-3' />
+        </div>
+        <div className='flex flex-col gap-y-3'>
+          <ProductExtraAttributes
+            product={product}
+            editingAllowed={editingAllowed}
+            headerRef={extraAttributesRef}
+          />
+          <hr className='border-b border-dial-blue-chalk my-3' />
+        </div>
         <div className='flex flex-col gap-y-3'>
           <ProductDetailTags
             product={product}
             editingAllowed={editingAllowed}
             headerRef={tagRef}
           />
+          <hr className='border-b border-dial-blue-chalk my-3' />
         </div>
-        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>
           <Bookmark object={product} objectType={ObjectType.PRODUCT} />
           <hr className='border-b border-dial-slate-200' />
