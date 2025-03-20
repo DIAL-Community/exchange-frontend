@@ -7,9 +7,9 @@ import { ToastContext } from '../../../lib/ToastContext'
 import ConfirmActionDialog from '../../shared/form/ConfirmActionDialog'
 import DeleteButton from '../../shared/form/DeleteButton'
 import { DELETE_CATEGORY_INDICATOR } from '../../shared/mutation/categoryIndicator'
-import { CATEGORY_INDICATOR_SEARCH_QUERY } from '../../shared/query/categoryIndicator'
+import { RUBRIC_CATEGORY_QUERY } from '../../shared/query/rubricCategory'
 
-const DeleteCategoryIndicator = ({ categoryIndicator }) => {
+const DeleteCategoryIndicator = ({ rubricCategory, categoryIndicator }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -23,8 +23,8 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
 
   const [deleteCategoryIndicator, { called, reset }] = useMutation(DELETE_CATEGORY_INDICATOR, {
     refetchQueries: [{
-      query: CATEGORY_INDICATOR_SEARCH_QUERY,
-      variables: { search: '' },
+      query: RUBRIC_CATEGORY_QUERY,
+      variables: { slug: rubricCategory.slug },
       context: {
         headers: {
           ...GRAPH_QUERY_CONTEXT.VIEWING
@@ -37,7 +37,7 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
           format('toast.delete.success', { entity: format('categoryIndicator.label') }),
-          () => router.push(`/${locale}/category-indicators`)
+          () => router.push(`/${locale}/rubric-categories/${rubricCategory.slug}`)
         )
       } else {
         setDisplayConfirmDialog(false)
