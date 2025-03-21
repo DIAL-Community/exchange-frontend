@@ -6,11 +6,13 @@ import { ToastContext } from '../../../lib/ToastContext'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_USE_CASE_TAGS } from '../../shared/mutation/useCase'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
+import { ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const UseCaseDetailTags = ({ useCase, editingAllowed, headerRef }) => {
+const UseCaseDetailTags = ({ useCase, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -119,9 +121,19 @@ const UseCaseDetailTags = ({ useCase, editingAllowed, headerRef }) => {
       </div>
     </div>
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='tags'
+      objectType={ObjectType.USE_CASE}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

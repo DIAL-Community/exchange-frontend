@@ -8,9 +8,11 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { ObjectType } from '../utils/constants'
 import DeleteCategoryIndicator from './fragments/DeleteCategoryIndicator'
 
-const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator, editingAllowed, deletingAllowed }, ref) => {
+const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator, editingAllowed, deletingAllowed, ...props }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { rubricCategory } = props
 
   const descRef = useRef()
   const categoryIndicatorRef = useRef()
@@ -32,7 +34,12 @@ const CategoryIndicatorDetailRight = forwardRef(({ categoryIndicator, editingAll
       <div className='flex flex-col gap-y-3'>
         <div className='flex gap-x-3 ml-auto'>
           { editingAllowed && <EditButton type='link' href={editPath} /> }
-          { deletingAllowed && <DeleteCategoryIndicator categoryIndicator={categoryIndicator} /> }
+          { deletingAllowed &&
+            <DeleteCategoryIndicator
+              rubricCategory={rubricCategory}
+              categoryIndicator={categoryIndicator}
+            />
+          }
         </div>
         <div className='text-xl font-semibold text-dial-plum py-3' ref={descRef}>
           {format('ui.common.detail.description')}
