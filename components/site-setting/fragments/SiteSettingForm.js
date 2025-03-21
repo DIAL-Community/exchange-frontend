@@ -80,7 +80,10 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
       defaultSetting: siteSetting?.defaultSetting,
       enableMarketplace: siteSetting?.enableMarketplace,
       faviconUrl: siteSetting?.faviconUrl,
-      exchangeLogoUrl: siteSetting?.exchangeLogoUrl
+      exchangeLogoUrl: siteSetting?.exchangeLogoUrl,
+      primary: siteSetting?.siteColors?.primary,
+      secondary: siteSetting?.siteColors?.secondary,
+      tertiary: siteSetting?.siteColors?.tertiary
     }
   })
 
@@ -91,7 +94,10 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
       defaultSetting,
       enableMarketplace,
       faviconUrl,
-      exchangeLogoUrl
+      exchangeLogoUrl,
+      primary,
+      secondary,
+      tertiary
     } = data
     const variables = {
       name,
@@ -101,7 +107,8 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
       enableMarketplace,
       faviconUrl: faviconUrl ?? '/favicon.ico',
       exchangeLogoUrl: exchangeLogoUrl ?? '/ui/v1/hero-dx-bg.svg',
-      openGraphLogoUrl: exchangeLogoUrl ?? '/ui/v1/hero-dx-bg.svg'
+      openGraphLogoUrl: exchangeLogoUrl ?? '/ui/v1/hero-dx-bg.svg',
+      siteColors: { primary, secondary, tertiary }
     }
 
     updateSiteSetting({
@@ -122,7 +129,7 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
   return (
     <form onSubmit={handleSubmit(doUpsert)}>
       <div className='px-4 lg:px-0 py-4 lg:py-6'>
-        <div className='flex flex-col gap-y-6 text-sm'>
+        <div className='flex flex-col gap-y-6 text-sm text-dial-meadow'>
           <div className='text-xl font-semibold'>
             {siteSetting
               ? format('app.editEntity', { entity: siteSetting.name })
@@ -186,6 +193,37 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
             <Checkbox {...register('defaultSetting')} id='defaultSetting' />
             {format('ui.siteSetting.defaultSetting')}
           </label>
+          <div className='flex flex-col gap-y-2 text-lg'>
+            {format('ui.siteSetting.siteColors')}
+          </div>
+          <div className='flex w-full pb-4'>
+            <div className='w-full flex'>
+              <div className='flex items-center pr-2'>
+                {format('ui.siteSetting.siteColors.primary')}:
+              </div>
+              <Input
+                {...register('primary')}
+                id='primary'
+                placeholder={format('ui.siteSetting.siteColors.primary')}
+              />
+              <div className='flex items-center pr-2 pl-4'>
+                {format('ui.siteSetting.siteColors.secondary')}:
+              </div>
+              <Input
+                {...register('secondary')}
+                id='secondary'
+                placeholder={format('ui.siteSetting.siteColors.secondary')}
+              />
+              <div className='flex items-center pr-2 pl-4'>
+                {format('ui.siteSetting.siteColors.tertiary')}:
+              </div>
+              <Input
+                {...register('tertiary')}
+                id='tertiary'
+                placeholder={format('ui.siteSetting.siteColors.tertiary')}
+              />
+            </div>
+          </div>
           <div className='flex flex-col gap-y-2'>
             <label className='required-field' htmlFor='description'>
               {format('ui.siteSetting.description')}

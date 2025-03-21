@@ -8,19 +8,20 @@ import EditableSection from '../../shared/EditableSection'
 import { generateMappingStatusOptions } from '../../shared/form/options'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_BUILDING_BLOCK_PRODUCTS } from '../../shared/mutation/buildingBlock'
 import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
-import { DisplayType } from '../../utils/constants'
+import { DisplayType, ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, headerRef }) => {
+const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [products, setProducts] = useState(buildingBlock.products)
   const [isDirty, setIsDirty] = useState(false)
+  const [products, setProducts] = useState(buildingBlock.products)
 
   const mappingStatusOptions =
     generateMappingStatusOptions(format)
@@ -73,10 +74,8 @@ const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, headerRef 
 
   const addProduct = (product) => {
     setProducts([
-      ...[
-        ...products.filter(({ id }) => id !== product.id),
-        { id: product.id, name: product.name, slug: product.slug  }
-      ]
+      ...products.filter(({ id }) => id !== product.id),
+      { id: product.id, name: product.name, slug: product.slug  }
     ])
     setIsDirty(true)
   }
@@ -176,9 +175,19 @@ const BuildingBlockDetailProducts = ({ buildingBlock, editingAllowed, headerRef 
       </div>
     </div>
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='products'
+      objectType={ObjectType.BUILDING_BLOCK}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

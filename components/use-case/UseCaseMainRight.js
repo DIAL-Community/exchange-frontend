@@ -1,6 +1,5 @@
 import { useActiveTenant, useUser } from '../../lib/hooks'
 import RequireAuth from '../shared/RequireAuth'
-import UseCaseDefinition from './fragments/UseCaseDefinition'
 import UseCaseListRight from './fragments/UseCaseListRight'
 import UseCaseForm from './fragments/UseCaseForm'
 
@@ -17,8 +16,7 @@ const UseCaseMainRight = ({ activeTab }) => {
   return (
     <div className='min-h-[50vh]'>
       { activeTab === 0 && initialDisplay }
-      { activeTab === 1 && <UseCaseDefinition /> }
-      { activeTab === 2 && <UseCaseForm /> }
+      { activeTab === 1 && <UseCaseForm /> }
     </div>
   )
 }

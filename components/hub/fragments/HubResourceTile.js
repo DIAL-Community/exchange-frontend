@@ -92,9 +92,6 @@ const ResourceTiles = ({ pageNumber, resourceTopics }) => {
 }
 
 const HubResourceTiles = ({ resourceTopics, pageNumber, onClickHandler }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
   const { user } = useUser()
 
   const generateCreateResourceRoute = () => {
@@ -105,8 +102,8 @@ const HubResourceTiles = ({ resourceTopics, pageNumber, onClickHandler }) => {
 
   const generateCreateResourceRouteLabel = () => {
     return user.isAdminUser || user.isAdliAdminUser || user.isEditorUser
-      ? format('hub.country.createResource')
-      : format('hub.country.suggestResource')
+      ? 'hub.country.createResource'
+      : 'hub.country.suggestResource'
   }
 
   return (

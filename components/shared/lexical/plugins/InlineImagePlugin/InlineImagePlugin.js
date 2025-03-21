@@ -14,6 +14,7 @@ import {
 } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $wrapNodeInElement, mergeRegister } from '@lexical/utils'
+import { useUser } from '../../../../../lib/hooks'
 import { $createInlineImageNode, $isInlineImageNode, InlineImageNode } from '../../nodes/InlineImageNode/InlineImageNode'
 import Button from '../../ui/Button'
 import { DialogActions } from '../../ui/Dialog'
@@ -26,6 +27,7 @@ export const INSERT_INLINE_IMAGE_COMMAND = createCommand(
 )
 
 export function InsertInlineImageDialog({ activeEditor, onClose }) {
+  const { user } = useUser()
   const hasModifier = useRef(false)
 
   const [src, setSrc] = useState('')
@@ -43,19 +45,32 @@ export function InsertInlineImageDialog({ activeEditor, onClose }) {
     setPosition(e.target.value)
   }
 
-  const loadImage = files => {
-    const reader = new FileReader()
-    reader.onload = function () {
-      if (typeof reader.result === 'string') {
-        setSrc(reader.result)
-      }
+  const loadImage = (files) => {
+    const [file] = files
 
-      return ''
-    }
+    const formData = new FormData()
+    formData.append('file', file)
 
-    if (files !== null) {
-      reader.readAsDataURL(files[0])
-    }
+    const uploadPath = `${process.env.NEXT_PUBLIC_AUTH_SERVER}/entities/process-image`
+    fetch(uploadPath, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Set-Cookie',
+        'X-User-Email': user.userEmail,
+        'X-User-Token': user.userToken
+      },
+      body: formData
+    }).then(
+      response => response.json()
+    ).then(
+      data => setSrc(process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.src)
+    ).catch(
+      error => console.log('Unable to process image. ', error)
+    )
   }
 
   useEffect(() => {

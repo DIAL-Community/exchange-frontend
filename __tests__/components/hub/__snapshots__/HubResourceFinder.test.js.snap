@@ -182,7 +182,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
           class="flex flex-row items-center justify-center gap-1 relative"
         >
           <div
-            class="ml-auto max-w-prose"
+            class="ml-auto w-full max-w-prose"
           >
             <label
               class="relative"

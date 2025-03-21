@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useApolloClient, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../lib/apolloClient'
 import Breadcrumb from '../shared/Breadcrumb'
@@ -12,6 +13,9 @@ const OrganizationDetail = ({ slug }) => {
   const scrollRef = useRef(null)
   const client = useApolloClient()
 
+  const router = useRouter()
+  const { locale } = router
+
   const [editingAllowed, setEditingAllowed] = useState(false)
   const [deletingAllowed, setDeletingAllowed] = useState(false)
 
@@ -19,7 +23,8 @@ const OrganizationDetail = ({ slug }) => {
     variables: { slug },
     context: {
       headers: {
-        ...GRAPH_QUERY_CONTEXT.VIEWING
+        ...GRAPH_QUERY_CONTEXT.VIEWING,
+        'Accept-Language': locale
       }
     }
   })

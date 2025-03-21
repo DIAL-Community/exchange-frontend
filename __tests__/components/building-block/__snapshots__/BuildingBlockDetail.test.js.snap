@@ -332,6 +332,35 @@ exports[`Unit tests for the building block detail page. Should render detail of 
             <div
               class="flex gap-x-3 ml-auto"
             >
+              <button
+                class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white opacity-50 hover:opacity-100"
+                type="button"
+              >
+                <svg
+                  class="inline pb-0.5"
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 20h9"
+                  />
+                  <path
+                    d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                  />
+                </svg>
+                <span
+                  class="text-sm px-1"
+                >
+                  Edit Sections
+                </span>
+              </button>
               <a
                 class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
                 href="/building-blocks/analytics-and-business-intelligence/edit"
@@ -387,65 +416,95 @@ exports[`Unit tests for the building block detail page. Should render detail of 
               </button>
             </div>
             <div
-              class="text-xl font-semibold text-dial-ochre py-3"
-            >
-              Description
-            </div>
-            <div
-              class="description-block"
+              class="flex flex-col gap-y-3"
             >
               <div
-                class="editor-shell read-only"
+                class="flex items-center py-3"
               >
                 <div
-                  class="editor-container "
+                  class="text-xl font-semibold text-dial-ochre py-3"
                 >
-                  <div
-                    class="editor-scroller"
+                  Description
+                </div>
+                <div
+                  class="ml-auto"
+                >
+                  <label
+                    class="inline-flex items-center cursor-pointer ml-auto text-dial-stratos opacity-50"
                   >
+                    <input
+                      class="sr-only peer"
+                      disabled=""
+                      type="checkbox"
+                      value=""
+                    />
                     <div
-                      class="editor"
+                      class="relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:h-4 after:w-4 after:transition-all after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full"
+                    />
+                    <span
+                      class="ms-2 text-sm font-medium"
                     >
-                      <div
-                        aria-autocomplete="none"
-                        aria-placeholder="Enter plain text..."
-                        aria-readonly="true"
-                        class="ContentEditable__root read-only"
-                        contenteditable="false"
-                        data-lexical-editor="true"
-                        spellcheck="true"
-                        style="user-select: text; white-space: pre-wrap; word-break: break-word;"
-                      >
-                        <p
-                          class="ExchangeLexicalTheme__paragraph ExchangeLexicalTheme__ltr"
-                          dir="ltr"
-                        >
-                          <span
-                            data-lexical-text="true"
-                          >
-                            Building block description.
-                          </span>
-                        </p>
-                      </div>
-                      <div
-                        draggable="true"
-                      />
-                      <div
-                        class="draggable-block-target-line"
-                      />
-                      <div
-                        class="link-editor"
-                        style="opacity: 0; transform: translate(-10000px, -10000px);"
-                      />
-                    </div>
-                  </div>
-                  <div />
+                      Hide
+                    </span>
+                  </label>
                 </div>
               </div>
+              <div
+                class="description-block"
+              >
+                <div
+                  class="editor-shell read-only"
+                >
+                  <div
+                    class="editor-container "
+                  >
+                    <div
+                      class="editor-scroller"
+                    >
+                      <div
+                        class="editor"
+                      >
+                        <div
+                          aria-autocomplete="none"
+                          aria-placeholder="Enter plain text..."
+                          aria-readonly="true"
+                          class="ContentEditable__root read-only"
+                          contenteditable="false"
+                          data-lexical-editor="true"
+                          spellcheck="true"
+                          style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+                        >
+                          <p
+                            class="ExchangeLexicalTheme__paragraph ExchangeLexicalTheme__ltr"
+                            dir="ltr"
+                          >
+                            <span
+                              data-lexical-text="true"
+                            >
+                              Building block description.
+                            </span>
+                          </p>
+                        </div>
+                        <div
+                          draggable="true"
+                        />
+                        <div
+                          class="draggable-block-target-line"
+                        />
+                        <div
+                          class="link-editor"
+                          style="opacity: 0; transform: translate(-10000px, -10000px);"
+                        />
+                      </div>
+                    </div>
+                    <div />
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="border-b border-dial-blue-chalk my-3"
+              />
             </div>
-            <hr
-              class="border-b border-dial-blue-chalk my-3"
-            />
             <div
               class="flex flex-col gap-y-3"
             >
@@ -463,6 +522,24 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   <div
                     class="flex gap-3 ml-auto"
                   >
+                    <label
+                      class="inline-flex items-center cursor-pointer ml-auto text-dial-stratos opacity-50"
+                    >
+                      <input
+                        class="sr-only peer"
+                        disabled=""
+                        type="checkbox"
+                        value=""
+                      />
+                      <div
+                        class="relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:h-4 after:w-4 after:transition-all after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full"
+                      />
+                      <span
+                        class="ms-2 text-sm font-medium"
+                      >
+                        Hide
+                      </span>
+                    </label>
                     <button
                       class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
                       type="button"
@@ -566,10 +643,10 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   </div>
                 </div>
               </div>
+              <hr
+                class="border-b border-dial-blue-chalk my-3"
+              />
             </div>
-            <hr
-              class="border-b border-dial-blue-chalk my-3"
-            />
             <div
               class="flex flex-col gap-y-3"
             >
@@ -587,6 +664,24 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   <div
                     class="flex gap-3 ml-auto"
                   >
+                    <label
+                      class="inline-flex items-center cursor-pointer ml-auto text-dial-stratos opacity-50"
+                    >
+                      <input
+                        class="sr-only peer"
+                        disabled=""
+                        type="checkbox"
+                        value=""
+                      />
+                      <div
+                        class="relative w-9 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[""] after:h-4 after:w-4 after:transition-all after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full"
+                      />
+                      <span
+                        class="ms-2 text-sm font-medium"
+                      >
+                        Hide
+                      </span>
+                    </label>
                     <button
                       class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
                       type="button"
@@ -655,10 +750,10 @@ exports[`Unit tests for the building block detail page. Should render detail of 
                   </div>
                 </div>
               </div>
+              <hr
+                class="border-b border-dial-blue-chalk my-3"
+              />
             </div>
-            <hr
-              class="border-b border-dial-blue-chalk my-3"
-            />
             <div
               class="lg:hidden flex flex-col gap-y-3"
             >
@@ -1528,32 +1623,5 @@ exports[`Unit tests for the building block detail page. Should render unauthoriz
   <div
     class="Toastify"
   />
-  <div
-    class="min-h-[75vh] flex items-center justify-center"
-  >
-    <div
-      class="flex flex-col gap-y-6"
-    >
-      <svg
-        class="spinner mx-auto"
-        fill="currentColor"
-        height="3em"
-        stroke="currentColor"
-        stroke-width="0"
-        viewBox="0 0 512 512"
-        width="3em"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-        />
-      </svg>
-      <div
-        class="text-center"
-      >
-        Processing request ...
-      </div>
-    </div>
-  </div>
 </div>
 `;

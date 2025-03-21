@@ -104,6 +104,9 @@ export const PROJECT_DETAIL_QUERY = gql`
       slug
       tags
       projectWebsite
+      location
+      latitude
+      longitude
       projectDescription {
         id
         description

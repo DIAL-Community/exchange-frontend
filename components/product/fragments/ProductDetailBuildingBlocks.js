@@ -8,12 +8,13 @@ import EditableSection from '../../shared/EditableSection'
 import { generateMappingStatusOptions } from '../../shared/form/options'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_PRODUCT_BUILDING_BLOCKS } from '../../shared/mutation/product'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
-import { DisplayType } from '../../utils/constants'
+import { DisplayType, ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const ProductDetailBuildingBlocks = ({ product, editingAllowed, headerRef }) => {
+const ProductDetailBuildingBlocks = ({ product, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -178,9 +179,19 @@ const ProductDetailBuildingBlocks = ({ product, editingAllowed, headerRef }) => 
       </div>
     </div>
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='buildingBlocks'
+      objectType={ObjectType.PRODUCT}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}

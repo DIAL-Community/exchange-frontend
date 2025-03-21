@@ -266,7 +266,7 @@ exports[`Unit tests for the storefront main page. Should render list of storefro
                 </button>
               </div>
               <div
-                class="ml-auto max-w-prose"
+                class="ml-auto w-full max-w-prose"
               >
                 <label
                   class="relative"

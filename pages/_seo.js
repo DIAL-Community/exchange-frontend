@@ -19,8 +19,14 @@ const CatalogSeo = ({ currentTenant }) => {
   })
 
   const titleForTenant = (tenantName) => {
-    return tenantName === 'dpi' ? format('hub.title') :
-      tenantName === 'health' ? format('health.title') : format('app.title')
+    switch (tenantName) {
+      case 'dpi':
+        return format('hub.title')
+      case 'health':
+        return format('health.title')
+      default:
+        return format('app.title')
+    }
   }
 
   useEffect(() => {

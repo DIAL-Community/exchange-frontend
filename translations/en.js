@@ -354,6 +354,7 @@ export const en = {
   'project.startDate': 'Start Date',
   'project.endDate': 'End Date',
   'project.product': 'Product',
+  'project.location': 'Project Location',
   'project.organization': 'Organization',
   'project.submit.success': 'Project submitted successfully',
   'project.submit.failure': 'Project submission failed',
@@ -1415,6 +1416,7 @@ export const en = {
   'ui.candidateProduct.submit.success': 'Candidate Product submitted successfully',
   'ui.candidateProduct.submit.failure': 'Candidate Product submission failed',
   'ui.candidateProduct.extraAttributes': 'Extra Attributes',
+  'ui.candidateProduct.extraAttributes.disclaimer': 'Extra attributes are custom attributes added by tenant admin.',
 
   'ui.candidateOrganization.organizationName': 'Organization Name',
   'ui.candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
@@ -2989,6 +2991,10 @@ export const en = {
   'ui.siteSetting.defaultSetting': 'Set this configuration as the default.',
   'ui.siteSetting.description': 'Site Configuration Description',
   'ui.siteSetting.currentDefault': 'Currently Active Setting',
+  'ui.siteSetting.siteColors': 'Site Colors',
+  'ui.siteSetting.siteColors.primary': 'Primary (Header)',
+  'ui.siteSetting.siteColors.secondary': 'Secondary (Header Text)',
+  'ui.siteSetting.siteColors.tertiary': 'Tertiary',
 
   'ui.tenantSetting.label': 'Tenant Configuration',
   'ui.tenantSetting.header': 'Tenant Configurations',
@@ -3067,13 +3073,28 @@ export const en = {
 
   'landing.widget.options.title': 'Item Options',
 
-  'landing.widget.carousel': 'Carousel',
+  'landing.widget.callout': 'Callout',
   'landing.widget.card': 'Card',
-  'landing.widget.map': 'Map',
+  'landing.widget.carousel': 'Carousel',
   'landing.widget.list': 'List',
+  'landing.widget.map': 'Map',
+  'landing.widget.pinned': 'Pinned',
+  'landing.widget.spacer': 'Spacer',
   'landing.widget.summary': 'Summary',
   'landing.widget.text': 'Text',
-  'landing.widget.spacer': 'Spacer',
+
+  'landing.pinned.options': 'Pinned Type',
+
+  'landing.pinned.buildingBlock': 'Building Block',
+  'landing.pinned.organization': 'Organization',
+  'landing.pinned.product': 'Product',
+  'landing.pinned.project': 'Project',
+  'landing.pinned.useCase': 'Use Case',
+
+  'landing.callout.title': 'Callout Title',
+  'landing.callout.description': 'Callout Description',
+  'landing.callout.calloutText': 'Callout Text',
+  'landing.callout.calloutDestinationUrl': 'Callout Destination',
 
   'landing.widget.selected.value': 'Current value',
 
@@ -3089,11 +3110,17 @@ export const en = {
   'landing.map.projects': 'Project Map',
   'landing.map.endorsers': 'Endorser Map',
   'landing.map.aggregator': 'Aggregator Map',
+  'landing.map.country': 'Country Map',
   'landing.map.missing': 'Missing map type in setting.',
 
   'landing.card.options': 'Card Options',
 
   'landing.page.save.success': 'Page configurations saved.',
   'landing.page.save.failure': 'Unable to save page configurations.',
+
+  'ui.section.edit': 'Edit Sections',
+  'ui.section.save': 'Save Sections',
+  'ui.section.save.success': 'Section configurations saved.',
+  'ui.section.save.failure': 'Unable to save section configurations.',
 }
 

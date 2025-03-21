@@ -6,13 +6,14 @@ import { ToastContext } from '../../../lib/ToastContext'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
+import HidableSection from '../../shared/HidableSection'
 import { UPDATE_BUILDING_BLOCK_WORKFLOWS } from '../../shared/mutation/buildingBlock'
 import { WORKFLOW_SEARCH_QUERY } from '../../shared/query/workflow'
-import { DisplayType } from '../../utils/constants'
+import { DisplayType, ObjectType } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 import WorkflowCard from '../../workflow/WorkflowCard'
 
-const BuildingBlockDetailWorkflows = ({ buildingBlock, editingAllowed, headerRef }) => {
+const BuildingBlockDetailWorkflows = ({ buildingBlock, editingAllowed, editingSection, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -140,9 +141,19 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, editingAllowed, headerRef
       </div>
     </div>
 
+  const hidableSection = (
+    <HidableSection
+      objectKey='workflows'
+      objectType={ObjectType.BUILDING_BLOCK}
+      disabled={!editingSection}
+      displayed={editingAllowed}
+    />
+  )
+
   return (
     <EditableSection
       editingAllowed={editingAllowed}
+      hidableSection={hidableSection}
       sectionHeader={sectionHeader}
       onSubmit={onSubmit}
       onCancel={onCancel}

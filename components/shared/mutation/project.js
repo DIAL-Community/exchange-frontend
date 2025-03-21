@@ -8,6 +8,7 @@ export const CREATE_PROJECT = gql`
     $endDate: ISO8601Date
     $projectUrl: String
     $description: String!
+    $location: JSON
     $productId: Int
     $organizationId: Int
     $countrySlugs: [String!]!
@@ -19,6 +20,7 @@ export const CREATE_PROJECT = gql`
       endDate: $endDate
       projectUrl: $projectUrl
       description: $description
+      location: $location
       productId: $productId
       organizationId: $organizationId
       countrySlugs: $countrySlugs
@@ -27,6 +29,7 @@ export const CREATE_PROJECT = gql`
         id
         name
         slug
+        location
         countries {
           id
           name
