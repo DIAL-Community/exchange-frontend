@@ -139,3 +139,29 @@ export const UPDATE_CANDIDATE_PRODUCT_CATEGORY_INDICATORS = gql`
     }
   }
 `
+
+export const UPDATE_CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES = gql`
+  mutation UpdateCandidateProductExtraAttributes(
+    $slug: String!
+    $extraAttributes: [ExtraAttribute!]!
+  ) {
+    updateCandidateProductExtraAttributes(
+      slug: $slug
+      extraAttributes: $extraAttributes
+    ) {
+      candidateProduct {
+        id
+        name
+        slug
+        extraAttributes
+      }
+      product {
+        id
+        name
+        slug
+        extraAttributes
+      }
+      errors
+    }
+  }
+`

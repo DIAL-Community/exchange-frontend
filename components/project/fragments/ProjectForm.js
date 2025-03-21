@@ -7,6 +7,8 @@ import { useMutation } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
+import GeocodeAutocomplete from '../../shared/form/GeocodeAutocomplete'
+import Pill from '../../shared/form/Pill'
 import Input from '../../shared/form/Input'
 import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
@@ -18,6 +20,9 @@ const ProjectForm = React.memo(({ project }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const [location, setLocation] = useState()
+  const [locationName, setLocationName] = useState(project.location)
+
   const slug = project?.slug ?? ''
   const countrySlugs = project?.countries.map(c => c.slug) ?? []
 
@@ -28,6 +33,28 @@ const ProjectForm = React.memo(({ project }) => {
 
   const router = useRouter()
   const { locale } = router
+
+  const LOCATION_NAME_PARTS_SEPARATOR = ', '
+  const addLocation = (locationToAdd) => {
+    if (locationToAdd) {
+      const { cityName, regionName, countryCode, latitude, longitude } = locationToAdd
+      const location = {
+        name: [cityName, regionName, countryCode].join(LOCATION_NAME_PARTS_SEPARATOR),
+        cityName,
+        regionName,
+        countryCode,
+        latitude,
+        longitude
+      }
+      setLocation(location)
+      setLocationName(location.name)
+    }
+  }
+
+  const removeLocation = () => {
+    setLocation(null)
+    setLocationName('')
+  }
 
   const [updateProject, { reset }] = useMutation(CREATE_PROJECT, {
     refetchQueries: [{
@@ -102,6 +129,7 @@ const ProjectForm = React.memo(({ project }) => {
       slug,
       projectUrl,
       description,
+      location,
       countrySlugs
     }
     if (imageFile) {
@@ -174,6 +202,23 @@ const ProjectForm = React.memo(({ project }) => {
               rules={{ required: format('validation.required') }}
             />
             {errors.description && <ValidationError value={errors.description?.message} />}
+          </div>
+          <div className='flex flex-col gap-y-3'>
+            <label className='flex flex-col gap-y-2 mb-2'>
+              {`${format('app.searchAndAssign')} ${format('project.location')}`}
+              <GeocodeAutocomplete
+                value={null}
+                onChange={addLocation}
+              />
+            </label>
+          </div>
+          <div className='flex flex-wrap gap-3'>
+            { locationName &&
+              <Pill
+                label={locationName}
+                onRemove={() => removeLocation()}
+              />
+            }
           </div>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>

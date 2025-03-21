@@ -8,12 +8,14 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  $createParagraphNode, $createRangeSelection, $getSelection, $insertNodes, $isNodeSelection, $isRootOrShadowRoot,
-  $setSelection, COMMAND_PRIORITY_EDITOR, COMMAND_PRIORITY_HIGH, COMMAND_PRIORITY_LOW, createCommand, DRAGOVER_COMMAND,
-  DRAGSTART_COMMAND, DROP_COMMAND, getDOMSelectionFromTarget, isHTMLElement
+  $createParagraphNode, $createRangeSelection, $getNodeByKey, $getSelection, $insertNodes, $isNodeSelection,
+  $isRootOrShadowRoot, $setSelection, COMMAND_PRIORITY_EDITOR, COMMAND_PRIORITY_HIGH, COMMAND_PRIORITY_LOW, createCommand,
+  DRAGOVER_COMMAND, DRAGSTART_COMMAND, DROP_COMMAND, getDOMSelectionFromTarget, isHTMLElement
 } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $wrapNodeInElement, mergeRegister } from '@lexical/utils'
+import { useUser } from '../../../../../lib/hooks'
+import { isDebugLoggingEnabled } from '../../../../utils/utilities'
 import { $createImageNode, $isImageNode, ImageNode } from '../../nodes/ImageNode'
 import Button from '../../ui/Button'
 import { DialogActions, DialogButtonsList } from '../../ui/Dialog'
@@ -58,24 +60,39 @@ export function InsertImageUriDialogBody({ onClick }) {
 }
 
 export function InsertImageUploadedDialogBody({ onClick }) {
+  const { user } = useUser()
+
   const [src, setSrc] = useState('')
   const [altText, setAltText] = useState('')
 
   const isDisabled = src === ''
 
-  const loadImage = files => {
-    const reader = new FileReader()
-    reader.onload = function () {
-      if (typeof reader.result === 'string') {
-        setSrc(reader.result)
-      }
+  const loadImage = (files) => {
+    const [file] = files
 
-      return ''
-    }
+    const formData = new FormData()
+    formData.append('file', file)
 
-    if (files !== null) {
-      reader.readAsDataURL(files[0])
-    }
+    const uploadPath = `${process.env.NEXT_PUBLIC_AUTH_SERVER}/entities/process-image`
+    fetch(uploadPath, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Set-Cookie',
+        'X-User-Email': user.userEmail,
+        'X-User-Token': user.userToken
+      },
+      body: formData
+    }).then(
+      response => response.json()
+    ).then(
+      data => setSrc(process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.src)
+    ).catch(
+      error => console.log('Unable to process image. ', error)
+    )
   }
 
   return (
@@ -132,17 +149,14 @@ export function InsertImageDialog({ activeEditor, onClose }) {
     <>
       {!mode && (
         <DialogButtonsList>
-          {
-          /*
           <Button
             data-test-id='image-modal-option-sample'
             onClick={() =>
               onClick(
                 hasModifier.current
                   ? {
-                    altText:
-                      'Daylight fir trees forest glacier green high ice landscape',
-                    src: '/lexical/landscape.png'
+                    altText: 'Daylight fir trees forest glacier green high ice landscape',
+                    src: '/lexical/landscape.jpg'
                   }
                   : {
                     altText: 'Yellow flower in tilt shift lens',
@@ -153,8 +167,6 @@ export function InsertImageDialog({ activeEditor, onClose }) {
           >
             Sample
           </Button>
-          */
-          }
           <Button
             data-test-id='image-modal-option-url'
             onClick={() => setMode('url')}
@@ -350,6 +362,26 @@ export default function ImagesPlugin({ captionsEnabled }) {
       )
     )
   }, [captionsEnabled, editor, $onDragStart, $onDragover, $onDrop])
+
+  useEffect(() => {
+    editor.registerMutationListener(
+      ImageNode,
+      (mutatedNodes, payload) => {
+        const { prevEditorState } = payload
+        for (let [nodeKey, mutation] of mutatedNodes) {
+          if (mutation === 'destroyed') {
+            prevEditorState.read(() => {
+              const imageNode = $getNodeByKey(nodeKey)
+              if (imageNode && isDebugLoggingEnabled()) {
+                console.log('Image node removed: ', imageNode)
+              }
+            })
+          }
+        }
+      },
+      { skipInitialization: false }
+    )
+  }, [editor])
 
   return null
 }

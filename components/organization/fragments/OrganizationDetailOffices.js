@@ -16,12 +16,14 @@ const OrganizationDetailOffices = ({ organization, editingAllowed, headerRef }) 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const mapOfficeCallback = ({ name, cityData, country, region }) => ({
+  const mapOfficeCallback = ({ name, cityData, country, province, latitude, longitude }) => ({
     name,
     slug: cityData?.slug,
     cityName: cityData?.name,
-    regionName: region?.name,
-    countryCode: country?.codeLonger
+    regionName: province?.name,
+    countryCode: country?.codeLonger,
+    latitude,
+    longitude
   })
 
   const [isDirty, setIsDirty] = useState(false)
@@ -53,12 +55,14 @@ const OrganizationDetailOffices = ({ organization, editingAllowed, headerRef }) 
 
   const addOffice = (officeToAdd) => {
     if (officeToAdd) {
-      const { cityName, regionName, countryCode } = officeToAdd
+      const { cityName, regionName, countryCode, latitude, longitude } = officeToAdd
       const office = {
         name: [cityName, regionName, countryCode].join(OFFICE_NAME_PARTS_SEPARATOR),
         cityName,
         regionName,
-        countryCode
+        countryCode,
+        latitude,
+        longitude
       }
       setOffices([...offices.filter(({ name }) => name !== office.name), office])
       setIsDirty(true)

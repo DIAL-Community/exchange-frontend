@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import { MdAdd, MdEdit, MdFontDownload, MdOutlineDelete, MdOutlineSettings } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
-import { useMutation, useQuery } from '@apollo/client'
+import { useApolloClient, useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useActiveTenant, useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
@@ -13,16 +13,21 @@ import { HtmlEditor } from '../form/HtmlEditor'
 import { HtmlViewer } from '../form/HtmlViewer'
 import Input from '../form/Input'
 import Select from '../form/Select'
+import UrlInput from '../form/UrlInput'
 import HeroCarousel from '../HeroCarousel'
 import { UPDATE_SITE_SETTING_ITEM_SETTINGS } from '../mutation/siteSetting'
 import { DEFAULT_SITE_SETTING_ITEM_SETTINGS_QUERY } from '../query/siteSetting'
 import { ExternalHeroCardDefinition, InternalHeroCardDefinition } from '../ToolDefinition'
 import { layoutBreakpoints, layoutGridColumns, layoutGridHeight, layoutMargins, resizeHandles } from './config'
-import { listOptions, mapOptions, WidgetTypeOptions } from './constants'
+import { listOptions, mapOptions, pinnedItemOptions, WidgetTypeOptions } from './constants'
 import ItemOptionsDialog from './ItemOptionsDialog'
 import { resolveListValue, resolveMapValue, useWindowWidth } from './utilities'
+import CalloutCard from './widget/CalloutCard'
+import PinnedItem, { renderItemValueOptions } from './widget/PinnedItem'
 
 const ConfigurableLanding = () => {
+  const client = useApolloClient()
+
   const { country } = useActiveTenant()
   const ResponsiveReactGridLayout = useMemo(() => WidthProvider(Responsive), [])
 
@@ -47,7 +52,6 @@ const ConfigurableLanding = () => {
 
   // Setting changes to be applied to this item.
   const [activeItem, setActiveItem] = useState(null)
-  const [activeItemTitle, setActiveItemTitle] = useState(null)
   // Toggle to display the setting dialog box.
   const [displayItemOptions, setDisplayItemOptions] = useState(false)
 
@@ -164,33 +168,44 @@ const ConfigurableLanding = () => {
   // Handler called when user clicks the save button on the widget setting dialog.
   const closeItemOptionsDialog = () => {
     setDisplayItemOptions(false)
-    updateItemTitle(activeItem.id, activeItemTitle)
+    setItemConfigurations([
+      ...itemConfigurations.filter(item => item.id !== activeItem.id),
+      activeItem
+    ])
   }
 
   // Handler for the item title on the widget setting dialog.
-  const handleChange = (e) => setActiveItemTitle(e.target.value)
-
-  // Update the title of the widget based on the value from the widget setting dialog.
-  const updateItemTitle = (id, itemTitle) => {
-    const newItemConfigurations = itemConfigurations.map((item) => {
-      return item.id === id ? { ...item, title: itemTitle } : item
-    })
-    setItemConfigurations(newItemConfigurations)
-  }
+  const handleChange = (e) => setActiveItem({ ...activeItem, title: e.target.value })
 
   // Update the value of the widget based on the value from the widget setting dialog.
   // This will be invoked immediately on the widget setting instead of after closing the dialog.
-  const updateItemValue = (id, itemValue) => {
+  const updateTextItemValue = (id, itemValue) => {
     const newItemConfigurations = itemConfigurations.map((item) => {
       return item.id === id ? { ...item, value: itemValue } : item
     })
     setItemConfigurations(newItemConfigurations)
   }
 
+  // Update the value of the current active item (used in the dialog to update item field value)
+  const updateItemValue = (itemValue) => {
+    setActiveItem({ ...activeItem, value: itemValue })
+  }
+
+  // Using extended data field on the item object to store multiple values
+  const handleExtendedDataChange = (itemKey, itemValue) => {
+    setActiveItem({
+      ...activeItem,
+      // Update the extended data value
+      extendedData: {
+        ...activeItem.extendedData,
+        [itemKey]: itemValue
+      }
+    })
+  }
+
   // Prepare the widget settings dialog.
   const setupItemValue = (item) => {
     setActiveItem(item)
-    setActiveItemTitle(item.title)
     setDisplayItemOptions(true)
   }
 
@@ -212,7 +227,7 @@ const ConfigurableLanding = () => {
               borderless
               className='text-sm'
               options={listOptions}
-              onChange={(e) => updateItemValue(item.id, e.value)}
+              onChange={(e) => updateItemValue(e.value)}
             />
             <span className='text-xs italic'>
               <FormattedMessage id='landing.widget.selected.value' />: {item.value}
@@ -230,8 +245,12 @@ const ConfigurableLanding = () => {
               borderless
               className='text-sm'
               options={mapOptions}
-              onChange={(e) => updateItemValue(item.id, e.value)}
+              onChange={(e) => updateItemValue(e.value)}
             />
+            <span className='text-xs italic'>
+              <FormattedMessage id='landing.widget.selected.value' />
+              {`: ${item.value}`}
+            </span>
           </div>
         )
       case WidgetTypeOptions.CARD:
@@ -250,12 +269,79 @@ const ConfigurableLanding = () => {
                   value: heroCardConfiguration.id
                 }
               })}
-              onChange={(e) => updateItemValue(item.id, e.value)}
+              onChange={(e) => updateItemValue(e.value)}
             />
             <span className='text-xs italic'>
-              <FormattedMessage id='landing.widget.selected.value' />:
-              {heroCardConfigurations.find(c => c.id === item.value)?.name}
+              <FormattedMessage id='landing.widget.selected.value' />
+              {`: ${heroCardConfigurations.find(c => c.id === item.value)?.name}`}
             </span>
+          </div>
+        )
+      case WidgetTypeOptions.CALLOUT:
+        return (
+          <div className='flex flex-col gap-y-2 text-sm'>
+            <div className='form-field-wrapper'>
+              <label htmlFor='callout-title'>
+                <FormattedMessage id='landing.callout.title' />
+              </label>
+              <Input
+                id='callout-title'
+                value={item.extendedData?.title}
+                onChange={(e) => handleExtendedDataChange('title', e.target.value)}
+              />
+            </div>
+            <div className='form-field-wrapper'>
+              <label htmlFor='callout-description'>
+                <FormattedMessage id='landing.callout.description' />
+              </label>
+              <Input
+                id='callout-description'
+                value={item.extendedData?.description}
+                onChange={(e) => handleExtendedDataChange('description', e.target.value)}
+              />
+            </div>
+            <div className='form-field-wrapper'>
+              <label htmlFor='callout-text'>
+                <FormattedMessage id='landing.callout.calloutText' />
+              </label>
+              <Input
+                id='callout-text'
+                value={item.extendedData?.calloutText}
+                onChange={(e) => handleExtendedDataChange('calloutText', e.target.value)}
+              />
+            </div>
+            <div className='form-field-wrapper'>
+              <label htmlFor='callout-destination-url'>
+                <FormattedMessage id='landing.callout.calloutDestinationUrl' />
+              </label>
+              <UrlInput
+                id='callout-destination-url'
+                value={item.extendedData?.calloutDestinationUrl}
+                onChange={(e) => handleExtendedDataChange('calloutDestinationUrl', e)}
+              />
+            </div>
+          </div>
+        )
+      case WidgetTypeOptions.PINNED:
+        return (
+          <div className='flex flex-col gap-y-2 text-sm'>
+            <div className='form-field-wrapper'>
+              <label htmlFor='pinned-item-type'>
+                <FormattedMessage id='landing.pinned.options' />
+              </label>
+              <Select
+                id='pinned-item-type'
+                borderless
+                className='text-sm'
+                options={pinnedItemOptions}
+                onChange={(e) => handleExtendedDataChange('itemType', e.value)}
+              />
+              <span className='text-xs italic'>
+                <FormattedMessage id='landing.widget.selected.value' />
+                {`: ${item.extendedData?.itemType}`}
+              </span>
+            </div>
+            {renderItemValueOptions(client, item, handleExtendedDataChange)}
           </div>
         )
       default:
@@ -280,8 +366,18 @@ const ConfigurableLanding = () => {
         return <div />
       case WidgetTypeOptions.TEXT:
         return editingText
-          ? <HtmlEditor initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
-          : <HtmlViewer initialContent={item.value} onChange={(html) => updateItemValue(item.id, html)} />
+          ? <HtmlEditor
+            initialContent={item.value}
+            onChange={(html) => updateTextItemValue(item.id, html)}
+          />
+          : <HtmlViewer
+            initialContent={item.value}
+            onChange={(html) => updateTextItemValue(item.id, html)}
+          />
+      case WidgetTypeOptions.CALLOUT:
+        return <CalloutCard item={item} disabled={editing} />
+      case WidgetTypeOptions.PINNED:
+        return <PinnedItem item={item} disabled={editing} />
       default:
         return null
     }
@@ -361,7 +457,9 @@ const ConfigurableLanding = () => {
     setItemConfigurations([...itemConfigurations, {
       id: itemId,
       title: `Item ${itemConfigurations.length + 1}`,
-      type: itemType
+      type: itemType,
+      value: null,
+      extendedData: {}
     }])
   }
 
@@ -369,17 +467,8 @@ const ConfigurableLanding = () => {
     <div className='px-4 lg:px-8 xl:px-56'>
       <div className='relative flex flex-col min-h-[70vh]'>
         {editingAllowed &&
-          <div className='absolute top-2 right-0 text-white' style={{ zIndex: 40 }}>
+          <div className='sticky top-[5.5rem] text-white flex' style={{ zIndex: 20 }}>
             <div className='flex flex-row gap-x-1'>
-              <button
-                className={classNames(
-                  'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
-                  editingText ? 'opacity-80' : 'opacity-30'
-                )}
-                onClick={() => toggleEditingText()}
-              >
-                <MdFontDownload />
-              </button>
               <button
                 className={classNames(
                   'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
@@ -389,11 +478,20 @@ const ConfigurableLanding = () => {
               >
                 <MdEdit />
               </button>
+              <button
+                className={classNames(
+                  'bg-dial-sapphire px-2 py-2 rounded-full hover:opacity-100',
+                  editingText ? 'opacity-80' : 'opacity-30'
+                )}
+                onClick={() => toggleEditingText()}
+              >
+                <MdFontDownload />
+              </button>
             </div>
           </div>
         }
         {editingAllowed && editing && (
-          <div className='absolute top-2 right-20'>
+          <div className='absolute top-2 left-20 md:left-auto md:right-2' style={{ zIndex: 22 }}>
             <div className='flex flex-wrap gap-1 text-xs text-white'>
               {Object.keys(WidgetTypeOptions).map(key => {
                 return (
@@ -413,7 +511,7 @@ const ConfigurableLanding = () => {
             </div>
           </div>
         )}
-        {editing && <div className='spacer h-28 md:h-10' />}
+        {editing && <div className='spacer h-20 md:h-10' />}
         <ResponsiveReactGridLayout
           layouts={itemLayouts}
           margin={layoutMargins}
@@ -437,13 +535,13 @@ const ConfigurableLanding = () => {
             show={displayItemOptions}
             onClose={closeItemOptionsDialog}
           >
-            <div className='form-field-wrapper'>
-              <label htmlFor='active-item-name' className='flex flex-col gap-y-2 text-sm'>
+            <div className='form-field-wrapper text-sm'>
+              <label htmlFor='active-item-name'>
                 <FormattedMessage id='app.name' />
               </label>
               <Input
                 id='active-item-name'
-                value={activeItemTitle}
+                value={activeItem.title}
                 onChange={handleChange}
               />
             </div>

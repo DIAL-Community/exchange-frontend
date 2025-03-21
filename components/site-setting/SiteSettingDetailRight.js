@@ -74,6 +74,26 @@ const SiteSettingDetailRight = forwardRef(({ siteSetting, editingAllowed, deleti
           </a>
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
+        <div className='flex gap-1 text-sm'>
+          <span className='font-semibold whitespace-nowrap'>{format('ui.siteSetting.siteColors')}:</span>
+        </div>
+        <div className='text-sm'>
+          <div className='w-full flex'>
+            <div className='flex items-center pr-2'>
+              {format('ui.siteSetting.siteColors.primary')}: {siteSetting.siteColors.primary}
+              <div className='w-4 h-4 ml-2' style={{ 'backgroundColor': `${siteSetting.siteColors.primary}` }} />
+            </div>
+            <div className='flex items-center pr-2'>
+              {format('ui.siteSetting.siteColors.secondary')}: {siteSetting.siteColors.secondary}
+              <div className='w-4 h-4 ml-2' style={{ 'backgroundColor': `${siteSetting.siteColors.secondary}` }} />
+            </div>
+            <div className='flex items-center pr-2'>
+              {format('ui.siteSetting.siteColors.tertiary')}: {siteSetting.siteColors.tertiary}
+              <div className='w-4 h-4 ml-2' style={{ 'backgroundColor': `${siteSetting.siteColors.tertiary}` }} />
+            </div>
+          </div>
+        </div>
+        <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='flex flex-col gap-y-3'>
           <div className='flex pb-3' ref={carouselConfigurationsRef}>
             <div className='text-base font-semibold'>
