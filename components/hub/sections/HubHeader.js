@@ -96,21 +96,6 @@ const HubHeader = ({ isOnAuthPage = false }) => {
         {!isOnAuthPage &&
           <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
             <li className='relative text-right 2xl:text-lg'>
-              <Link href='/hub/topics' role='menuitem' className={menuStyles}>
-                {format('hub.header.topic').toUpperCase()}
-              </Link>
-            </li>
-            <li className='relative text-right 2xl:text-lg'>
-              <Link href='/hub/countries' role='menuitem' className={menuStyles}>
-                {format('hub.header.country').toUpperCase()}
-              </Link>
-            </li>
-            <li className='relative text-right 2xl:text-lg'>
-              <Link href='/hub/resource-finder' role='menuitem' className={menuStyles}>
-                {format('hub.header.resourceFinder').toUpperCase()}
-              </Link>
-            </li>
-            <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
                 {format('hub.header.adliNetwork').toUpperCase()}
               </Link>
