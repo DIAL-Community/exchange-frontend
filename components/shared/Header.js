@@ -138,7 +138,8 @@ const Header = ({ isOnAuthPage = false }) => {
                       <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     : <li key='sign-in-menu' className='text-right intro-signup'>
-                      <a href='signIn' role='menuitem' className={dropdownMenuStyles} onClick={signInUser}>
+                      <a href='signIn' role='menuitem' className={dropdownMenuStyles} onClick={signInUser}
+                        style={ siteColors && { color: siteColors.secondary }}>
                         {format('header.signIn')}
                       </a>
                     </li>
