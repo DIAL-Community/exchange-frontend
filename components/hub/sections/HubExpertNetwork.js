@@ -16,10 +16,14 @@ import {
 
 const HubExpertNetwork = () => {
   const { user } = useUser()
-
-  const [loadNetworkMembers, { loading, error, data }] = useLazyQuery(HUB_CONTACTS_QUERY)
-
   const [currentView, setCurrentView] = useState('adli-current')
+
+  const [loadNetworkMembers, { loading, error, data }] = useLazyQuery(HUB_CONTACTS_QUERY, {
+    variables: {
+      alumni: currentView !== 'adli-current'
+    }
+  })
+
   const toggleCurrentView = (view) => {
     setCurrentView(view)
     loadNetworkMembers({
@@ -42,7 +46,7 @@ const HubExpertNetwork = () => {
   useEffect(() => {
     loadNetworkMembers({
       variables: {
-        type: currentView
+        alumni: currentView !== 'adli-current'
       },
       context: {
         headers: {
@@ -59,17 +63,8 @@ const HubExpertNetwork = () => {
   }
 
   const renderNetworkMembers = () => {
-    return data.hubContacts
-      ? <NetworkMembers
-        members={
-          data?.hubContacts
-            .filter(object => {
-              const consent = object.extendedData.find((data) => data.key === 'consent')
-
-              return consent?.value.toLowerCase() === 'yes'
-            })
-        }
-      />
+    return data?.hubContacts
+      ? <NetworkMembers members={data?.hubContacts} />
       : <FormattedMessage id='ui.general.error.notFound' />
   }
 
@@ -190,7 +185,7 @@ const HubExpertNetwork = () => {
                 aria-labelledby='adli-current'
                 className='p-4 rounded-lg bg-gray-50'
               >
-                Current cohort of ADLI
+                {handleGraphQuery()}
               </div>
             }
             {currentView === 'adli-alumni' &&
@@ -244,9 +239,10 @@ const NetworkMemberCard = ({ member }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const country = member.extendedData.find((data) => data.key === 'country')
-  const countryCode = member.extendedData.find((data) => data.key === 'country-slug')
-  const organization = member.extendedData.find((data) => data.key === 'organization')
+  const country = member.extraAttributes.find((attr) => attr.name === 'country')
+  const countryCode = member.extraAttributes.find((attr) => attr.name === 'country-slug')
+  const organization = member.extraAttributes.find((attr) => attr.name === 'organization')
+  const years = member.extraAttributes.find((attr) => attr.name === 'adli-years')
 
   return (
     <div className='flex items-center gap-4'>
@@ -263,6 +259,7 @@ const NetworkMemberCard = ({ member }) => {
         </div>
         <div className='text-sm'>{member.title}</div>
         <div className='text-sm'>{organization?.value}</div>
+        <div className='text-sm'>{`Cohort: ${years?.value.join(', ')}`}</div>
         {country?.value &&
           <div className='flex gap-1 items-center'>
             {countryCode?.value &&

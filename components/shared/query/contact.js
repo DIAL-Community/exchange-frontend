@@ -78,8 +78,8 @@ export const HUB_CONTACT_DETAIL_QUERY = gql`
 `
 
 export const HUB_CONTACTS_QUERY = gql`
-  query HubContacts($search: String) {
-    hubContacts(search: $search) {
+  query HubContacts($search: String, $alumni: Boolean) {
+    hubContacts(search: $search, alumni: $alumni) {
       id
       name
       slug
@@ -88,7 +88,7 @@ export const HUB_CONTACTS_QUERY = gql`
       biography
       imageFile
       socialNetworkingServices
-      extendedData
+      extraAttributes
     }
   }
 `

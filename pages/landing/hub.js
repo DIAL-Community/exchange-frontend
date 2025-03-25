@@ -21,7 +21,6 @@ const HubPage = ({ dpiTenants }) => {
       <ClientOnly clientTenants={dpiTenants}>
         <QueryNotification />
         <HubHeader />
-        <HubBody />
         <HubExpertNetwork />
         <HubFooter />
       </ClientOnly>
