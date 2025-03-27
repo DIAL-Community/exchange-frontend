@@ -57,9 +57,7 @@ const HubExpertNetwork = () => {
   }, [currentView, loadNetworkMembers])
 
   const renderErrorMessage = () => {
-    return (user && allowedToBrowseAdliPages(user))
-      ? <FormattedMessage id='general.fetchError' />
-      : <FormattedMessage id='ui.general.error.forbidden' />
+    return <FormattedMessage id='general.fetchError' />
   }
 
   const renderNetworkMembers = () => {

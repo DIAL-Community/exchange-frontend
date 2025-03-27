@@ -2608,6 +2608,7 @@ export const en = {
   'hub.header.country': 'Countries',
   'hub.header.resourceFinder': 'Resource Finder',
   'hub.header.adliNetwork': 'ADLI Network',
+  'hub.header.adliMember': 'Member Area',
 
   'hub.exportNetwork.login': 'ADLI Member Login',
   'hub.exportNetwork.learnMore': 'Learn more about ADLI',
@@ -2625,10 +2626,9 @@ export const en = {
   'health.title': 'HealthTech Marketplace',
   // -- end of page view tracking --
   
-  'hub.landing.main.title': 'Resources for DPI',
+  'hub.landing.main.title': 'The Africa Data Leaders Initiative Resource Hub',
   'hub.landing.main.subtitle': `
-    An online resource hub offering data, insights, and tools to help policymakers, 
-    governments and development actors to advance progress on digital public infrastructure.
+    The preeminent peer learning network and exchange network designed by and for Africans.
   `,
   'hub.landing.browseTopics': 'Browse <break></break> Topics',
   'hub.landing.featuredCountries': 'Featured <break></break> Countries',
