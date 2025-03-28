@@ -8,7 +8,7 @@ const HubBody = () => {
   return (
     <div className='relative'>
       <img
-        className='h-96 w-full object-cover'
+        className='h-72 w-full object-cover'
         alt='DIAL Resource Hub - Landing'
         src='/images/hero-image/hub-resource.svg'
       />

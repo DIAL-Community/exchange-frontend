@@ -2610,6 +2610,9 @@ export const en = {
   'hub.header.adliNetwork': 'ADLI Network',
   'hub.header.adliMember': 'Member Area',
 
+  'hub.adli.linkedInTitle': 'Follow ADLI on LinkedIn to stay informed',
+  'hub.adli.articleTitle': 'Read the latest from the ADLI team',
+
   'hub.exportNetwork.login': 'ADLI Member Login',
   'hub.exportNetwork.learnMore': 'Learn more about ADLI',
   'hub.exportNetwork.memberDashboard': 'ADLI Members Access',
