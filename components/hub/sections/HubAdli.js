@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { FormattedMessage } from 'react-intl'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -61,7 +62,7 @@ const AdliArticle = ({ articleId }) => {
       <a href={url} target='_blank' rel='noreferrer'>
         <div className='flex flex-col gap-2'>
           <img src={media} alt={title} className='object-cover h-72' />
-          <div className='text-2xl font-semibold'>
+          <div className='text-xl font-semibold'>
             {title}
           </div>
         </div>
@@ -110,6 +111,18 @@ const HubAdli = () => {
       <div className='flex flex-col gap-4'>
         <div className='pt-8'>
           <HtmlViewer initialContent={subHeader.replace(/\r?\n|\r/g, '')} />
+        </div>
+        <div className='flex flex-col lg:flex-row gap-4 max-w-2xl mx-auto text-dial-white-beech'>
+          <Link href='/hub/expert-network' target='_blank' rel='noreferrer'>
+            <div className='bg-dial-iris-blue rounded-lg px-8 py-6 font-medium text-center'>
+              <FormattedMessage id='hub.adli.adliNetworkTagLine' />
+            </div>
+          </Link>
+          <a href='https://dial.global/work/adli/' target='_blank' rel='noreferrer'>
+            <div className='bg-dial-iris-blue rounded-lg px-8 py-6 font-medium text-center'>
+              <FormattedMessage id='hub.adli.learnMoreTagLine' />
+            </div>
+          </a>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-12 py-8'>
           <div className='flex flex-col gap-8'>

@@ -1,11 +1,13 @@
 import React from 'react'
 import LexicalApp from '../lexical/LexicalApp'
 
-export const HtmlViewer = ({ initialContent }) => {
+export const HtmlViewer = ({ initialContent, handleHtmlChanged }) => {
 
   // eslint-disable-next-line
   const onChange = (html) => {
-    // NO-OP
+    if (handleHtmlChanged) {
+      handleHtmlChanged(html)
+    }
   }
 
   return (

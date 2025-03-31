@@ -2613,6 +2613,9 @@ export const en = {
   'hub.adli.linkedInTitle': 'Follow ADLI on LinkedIn to stay informed',
   'hub.adli.articleTitle': 'Read the latest from the ADLI team',
 
+  'hub.adli.learnMoreTagLine': 'Learn more about the Africa Data Leaders Initiative',
+  'hub.adli.adliNetworkTagLine': 'Meet the network of experts from current and past cohorts',
+
   'hub.exportNetwork.login': 'ADLI Member Login',
   'hub.exportNetwork.learnMore': 'Learn more about ADLI',
   'hub.exportNetwork.memberDashboard': 'ADLI Members Access',
