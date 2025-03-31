@@ -26,11 +26,12 @@ function getTotalVotes(options) {
 }
 
 function PollOptionComponent({
-  option,
   index,
+  option,
   options,
   totalVotes,
-  withPollNode
+  withPollNode,
+  editable
 }) {
   const { clientID } = useCollaborationContext()
   const checkboxRef = useRef(null)
@@ -72,38 +73,43 @@ function PollOptionComponent({
           className='PollNode__optionInput'
           type='text'
           value={text}
+          disabled={!editable}
           onChange={e => {
-            const target = e.target
-            const value = target.value
-            const selectionStart = target.selectionStart
-            const selectionEnd = target.selectionEnd
-            withPollNode(
-              node => {
-                node.setOptionText(option, value)
-              },
-              () => {
-                target.selectionStart = selectionStart
-                target.selectionEnd = selectionEnd
-              }
-            )
+            if (editable) {
+              const target = e.target
+              const value = target.value
+              const selectionStart = target.selectionStart
+              const selectionEnd = target.selectionEnd
+              withPollNode(
+                node => {
+                  node.setOptionText(option, value)
+                },
+                () => {
+                  target.selectionStart = selectionStart
+                  target.selectionEnd = selectionEnd
+                }
+              )
+            }
           }}
           placeholder={`Option ${index + 1}`}
         />
       </div>
-      <button
-        type='button'
-        disabled={options.length < 3}
-        className={joinClasses(
-          'PollNode__optionDelete',
-          options.length < 3 && 'PollNode__optionDeleteDisabled'
-        )}
-        aria-label='Remove'
-        onClick={() => {
-          withPollNode(node => {
-            node.deleteOption(option)
-          })
-        }}
-      />
+      {editable &&
+        <button
+          type='button'
+          disabled={options.length < 3}
+          className={joinClasses(
+            'PollNode__optionDelete',
+            options.length < 3 && 'PollNode__optionDeleteDisabled'
+          )}
+          aria-label='Remove'
+          onClick={() => {
+            withPollNode(node => {
+              node.deleteOption(option)
+            })
+          }}
+        />
+      }
     </div>
   )
 }
@@ -205,19 +211,22 @@ export default function PollComponent({ question, options, nodeKey }) {
           return (
             <PollOptionComponent
               key={key}
-              withPollNode={withPollNode}
-              option={option}
               index={index}
+              option={option}
               options={options}
               totalVotes={totalVotes}
+              withPollNode={withPollNode}
+              editable={editor.isEditable()}
             />
           )
         })}
-        <div className='PollNode__footer'>
-          <Button onClick={addOption} small={true}>
-            Add Option
-          </Button>
-        </div>
+        {editor.isEditable() &&
+          <div className='PollNode__footer'>
+            <Button onClick={addOption} small={true}>
+              Add Option
+            </Button>
+          </div>
+        }
       </div>
     </div>
   )
