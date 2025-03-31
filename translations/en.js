@@ -2597,7 +2597,7 @@ export const en = {
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
 
-  'hub.header.title': 'Resources for DPI',
+  'hub.header.title': 'Resources for ADLI',
   'hub.header.subtitle': 'the Digital Impact Alliance',
   'hub.footer.connect.subtitle': `
     Sign up for our newsletter to learn more about the Digital Public Infrastructure
@@ -2613,7 +2613,7 @@ export const en = {
   'hub.adli.linkedInTitle': 'Follow ADLI on LinkedIn to stay informed',
   'hub.adli.articleTitle': 'Read the latest from the ADLI team',
 
-  'hub.adli.learnMoreTagLine': 'Learn more about the Africa Data Leaders Initiative',
+  'hub.adli.learnMoreTagLine': 'Learn more about the Africa Data Leadership Initiative',
   'hub.adli.adliNetworkTagLine': 'Meet the network of experts from current and past cohorts',
 
   'hub.exportNetwork.login': 'ADLI Member Login',

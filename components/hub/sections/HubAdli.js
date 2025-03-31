@@ -69,14 +69,14 @@ const AdliArticle = ({ articleId }) => {
       </a>
       <div className='flex flex-row gap-1'>
         {authors.map((author, index) => (
-          <>
-            <div key={index} className='text-sm'>
+          <div key={index} className='flex flex-row gap-1'>
+            <div className='text-sm'>
               <a href={`https://dial.global/profile/${author.id}`} target='_blank' rel='noreferrer'>
                 {author.name}
               </a>
             </div>
             {index < authors.length - 1 && <div className='text-sm'>|</div>}
-          </>
+          </div>
         ))}
       </div>
     </div>
@@ -112,14 +112,14 @@ const HubAdli = () => {
         <div className='pt-8'>
           <HtmlViewer initialContent={subHeader.replace(/\r?\n|\r/g, '')} />
         </div>
-        <div className='flex flex-col lg:flex-row gap-4 max-w-2xl mx-auto text-dial-white-beech'>
+        <div className='flex flex-col lg:flex-row gap-4 max-w-2xl mx-auto font-medium text-center text-dial-white-beech'>
           <Link href='/hub/expert-network' target='_blank' rel='noreferrer'>
-            <div className='bg-dial-iris-blue rounded-lg px-8 py-6 font-medium text-center'>
+            <div className='bg-dial-iris-blue rounded-lg px-8 py-6 shadow-dial-iris-blue shadow-2xl'>
               <FormattedMessage id='hub.adli.adliNetworkTagLine' />
             </div>
           </Link>
           <a href='https://dial.global/work/adli/' target='_blank' rel='noreferrer'>
-            <div className='bg-dial-iris-blue rounded-lg px-8 py-6 font-medium text-center'>
+            <div className='bg-dial-iris-blue rounded-lg px-8 py-6 shadow-dial-iris-blue shadow-2xl'>
               <FormattedMessage id='hub.adli.learnMoreTagLine' />
             </div>
           </a>
