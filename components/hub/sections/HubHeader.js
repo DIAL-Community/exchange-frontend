@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { FaUser } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
@@ -94,34 +93,22 @@ const HubHeader = ({ isOnAuthPage = false }) => {
         </Link>
         <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
         {!isOnAuthPage &&
-          <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-8'>
-            <li className='relative text-right 2xl:text-lg'>
-              <Link href='/hub/topics' role='menuitem' className={menuStyles}>
-                {format('hub.header.topic').toUpperCase()}
-              </Link>
-            </li>
-            <li className='relative text-right 2xl:text-lg'>
-              <Link href='/hub/countries' role='menuitem' className={menuStyles}>
-                {format('hub.header.country').toUpperCase()}
-              </Link>
-            </li>
-            <li className='relative text-right 2xl:text-lg'>
-              <Link href='/hub/resource-finder' role='menuitem' className={menuStyles}>
-                {format('hub.header.resourceFinder').toUpperCase()}
-              </Link>
-            </li>
+          <ul className='hidden md:flex items-center ml-auto text-dial-white-beech gap-x-4'>
             <li className='relative text-right 2xl:text-lg'>
               <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
                 {format('hub.header.adliNetwork').toUpperCase()}
               </Link>
             </li>
             <li className='relative text-right 2xl:text-lg'>
+              <div className='border border-white h-full py-4' />
+            </li>
+            <li className='relative text-right 2xl:text-lg'>
               {user
-                ? <Link href='/hub/dashboard' role='menuitem' className='py-3 border-b border-transparent'>
-                  <FaUser />
+                ? <Link href='/hub/dashboard' role='menuitem' className={menuStyles}>
+                  {format('hub.header.adliMember').toUpperCase()}
                 </Link>
-                : <button role='menuitem' className='py-3 border-b border-transparent' onClick={() => signIn()}>
-                  <FaUser />
+                : <button role='menuitem' className={menuStyles} onClick={() => signIn()}>
+                  {format('hub.header.adliMember').toUpperCase()}
                 </button>
               }
             </li>
