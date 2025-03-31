@@ -5,7 +5,7 @@ export const HtmlViewer = ({ initialContent, handleHtmlChanged }) => {
 
   // eslint-disable-next-line
   const onChange = (html) => {
-    if (handleHtmlChanged) {
+    if (html !== initialContent && handleHtmlChanged) {
       handleHtmlChanged(html)
     }
   }
