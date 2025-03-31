@@ -1801,10 +1801,11 @@ button.item.dropdown-item-active i {
   margin-left: 0px;
   margin-top: 0px;
   margin-right: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
   color: #444;
   text-align: center;
-  font-size: 18px;
+  @apply text-base;
+  @apply font-semibold;
 }
 
 .PollNode__optionContainer {
@@ -1829,11 +1830,12 @@ button.item.dropdown-item-active i {
   flex: 1px;
   border: 0px;
   padding: 7px;
-  color: rgb(61, 135, 245);
   background-color: transparent;
-  font-weight: bold;
   outline: 0px;
   z-index: 0;
+  @apply text-sm;
+  @apply font-semibold;
+  @apply text-dial-stratos !important;
 }
 
 .PollNode__optionInput::placeholder {
