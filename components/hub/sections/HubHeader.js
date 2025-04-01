@@ -77,8 +77,8 @@ const HubHeader = ({ isOnAuthPage = false }) => {
 
   return (
     <header className='z-50 sticky top-0 bg-dial-deep-purple max-w-catalog mx-auto'>
-      <div className='flex flex-wrap header-min-height px-4 lg:px-8 xl:px-24 3xl:px-56 text-sm'>
-        <Link href='/' className='my-auto'>
+      <div className='flex header-min-height px-4 lg:px-8 xl:px-24 3xl:px-56 text-sm'>
+        <Link href='/' className='my-auto overflow-hidden'>
           <div className='flex gap-1 text-dial-cotton'>
             <img
               src='/ui/v1/dial-logo-white.svg'
@@ -86,7 +86,7 @@ const HubHeader = ({ isOnAuthPage = false }) => {
               width={128}
               className='object-contain px-4 border-r'
             />
-            <div className='2xl:text-xl w-24 my-auto px-4'>
+            <div className='2xl:text-xl w-[12.5rem] my-auto px-4'>
               {format('hub.header.title')}
             </div>
           </div>

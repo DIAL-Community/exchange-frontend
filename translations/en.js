@@ -2597,7 +2597,7 @@ export const en = {
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
 
-  'hub.header.title': 'Resources for ADLI',
+  'hub.header.title': 'Africa Data Leadership Initiative Hub',
   'hub.header.subtitle': 'the Digital Impact Alliance',
   'hub.footer.connect.subtitle': `
     Sign up for our newsletter to learn more about the Digital Public Infrastructure
@@ -2632,7 +2632,7 @@ export const en = {
   'health.title': 'HealthTech Marketplace',
   // -- end of page view tracking --
   
-  'hub.landing.main.title': 'The Africa Data Leaders Initiative Resource Hub',
+  'hub.landing.main.title': 'The Africa Data Leadership Initiative Resource Hub',
   'hub.landing.main.subtitle': `
     The preeminent peer learning network and exchange network designed by and for Africans.
   `,
