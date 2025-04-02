@@ -15,21 +15,6 @@ const HubMobileMenu = ({ menuExpanded }) => {
           <div className='shadow-lg bg-dial-stratos text-dial-cotton cursor-pointer'>
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-auto gap-4 p-4'>
               <li className='relative text-right text-lg'>
-                <Link href='/hub/topics' role='menuitem' className={menuStyles}>
-                  {format('hub.header.topic').toUpperCase()}
-                </Link>
-              </li>
-              <li className='relative text-right text-lg'>
-                <Link href='/hub/countries' role='menuitem' className={menuStyles}>
-                  {format('hub.header.country').toUpperCase()}
-                </Link>
-              </li>
-              <li className='relative text-right text-lg'>
-                <Link href='/hub/resource-finder' role='menuitem' className={menuStyles}>
-                  {format('hub.header.resourceFinder').toUpperCase()}
-                </Link>
-              </li>
-              <li className='relative text-right text-lg'>
                 <Link href='/hub/expert-network' role='menuitem' className={menuStyles}>
                   {format('hub.header.adliNetwork').toUpperCase()}
                 </Link>

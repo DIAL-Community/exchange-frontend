@@ -34,8 +34,8 @@ const ProductListRight = () => {
   const { push, query } = useRouter()
 
   const { 'product-page': productPage } = query
-  const pageNumber = productPage ? parseInt(productPage) - 1 : 0
-  const pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
+  let pageNumber = productPage ? parseInt(productPage) - 1 : 0
+  let pageOffset = pageNumber * CollectionPageSize[collectionDisplayType]
 
   const onClickHandler = ({ nextSelectedPage, selected }) => {
     const destinationPage = typeof nextSelectedPage === 'undefined' ? selected : nextSelectedPage
@@ -76,6 +76,11 @@ const ProductListRight = () => {
       }
     }
   })
+
+  if (data && data.paginationAttributeProduct.totalCount < pageNumber * CollectionPageSize[collectionDisplayType]) {
+    pageNumber = 0
+    pageOffset = 0
+  }
 
   return (
     <>

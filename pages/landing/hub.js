@@ -1,30 +1,16 @@
 import { useCallback } from 'react'
 import { NextSeo } from 'next-seo'
-import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import HubAdli from '../../components/hub/sections/HubAdli'
 import HubBody from '../../components/hub/sections/HubBody'
 import HubFooter from '../../components/hub/sections/HubFooter'
 import HubHeader from '../../components/hub/sections/HubHeader'
-import HubResources from '../../components/hub/sections/HubResources'
 import QueryNotification from '../../components/shared/QueryNotification'
 import ClientOnly from '../../lib/ClientOnly'
 
 const HubPage = ({ dpiTenants }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { push, query } = useRouter()
-  const { page } = query
-  const pageNumber = page ? parseInt(page) - 1 : 0
-
-  const onClickHandler = ({ nextSelectedPage, selected }) => {
-    const destinationPage = typeof nextSelectedPage  === 'undefined' ? selected : nextSelectedPage
-    push(
-      { query: { ...query, page: destinationPage + 1 } },
-      undefined,
-      { shallow: true }
-    )
-  }
 
   return (
     <>
@@ -36,11 +22,7 @@ const HubPage = ({ dpiTenants }) => {
         <QueryNotification />
         <HubHeader />
         <HubBody />
-        <HubResources
-          showWithTopicOnly
-          pageNumber={pageNumber}
-          onClickHandler={onClickHandler}
-        />
+        <HubAdli />
         <HubFooter />
       </ClientOnly>
     </>
