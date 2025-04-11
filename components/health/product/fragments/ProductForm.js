@@ -337,17 +337,18 @@ const ProductForm = React.memo(({ product }) => {
             ))}
           </div>
           <div className="flex flex-col gap-y-2">
-            <label className="required-field">{format('product.description')}</label>
+            <label id='description' className="required-field">
+              {format('product.description')}
+            </label>
             <Controller
               name="description"
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('product.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}
@@ -400,17 +401,18 @@ const ProductForm = React.memo(({ product }) => {
             />
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label>{format('product.pricing.details')}</label>
+            <label id='pricing-description'>
+              {format('product.pricing.details')}
+            </label>
             <Controller
               name='pricingDetails'
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='pricing-details-editor'
+                  labelledBy='pricing-description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('product.pricing.details')}
-                  isInvalid={errors.pricingDetails}
                 />
               )}
             />

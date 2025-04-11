@@ -187,7 +187,7 @@ const OrganizationForm = React.memo(({ organization }) => {
             {errors.website && <ValidationError value={errors.website?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
+            <label id='description' className='text-dial-sapphire required-field'>
               {format('organization.description')}
             </label>
             <Controller
@@ -195,11 +195,10 @@ const OrganizationForm = React.memo(({ organization }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.candidateOrganization.description.placeholder')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

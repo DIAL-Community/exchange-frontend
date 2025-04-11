@@ -1253,12 +1253,12 @@ exports[`Unit tests for the building block detail page. Should render edit page 
               <div
                 class="flex flex-col gap-y-2"
               >
-                <div
+                <label
                   class="required-field"
                   id="description"
                 >
                   Description
-                </div>
+                </label>
                 <div
                   class="editor-shell read-write"
                 >

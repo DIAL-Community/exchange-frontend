@@ -287,6 +287,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
               >
                 <label
                   class="required-field"
+                  id="description"
                 >
                   Repository Description
                 </label>
@@ -537,6 +538,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
                         class="editor"
                       >
                         <div
+                          aria-labelledby="description"
                           aria-placeholder="Repository Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"

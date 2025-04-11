@@ -209,9 +209,9 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
             </label>
           }
           <div className='flex flex-col gap-y-2'>
-            <div id='description' className='required-field'>
+            <label id='description' className='required-field'>
               {format('buildingBlock.description')}
-            </div>
+            </label>
             <Controller
               name='description'
               control={control}

@@ -280,7 +280,7 @@ const ResourceForm = React.memo(({ candidateResource, country }) => {
             />
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field' htmlFor='description-editor'>
+            <label id='description' className='required-field'>
               {format('ui.candidateResource.description')}
             </label>
             <Controller
@@ -288,11 +288,10 @@ const ResourceForm = React.memo(({ candidateResource, country }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.candidateResource.description.placeholder')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

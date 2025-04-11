@@ -237,26 +237,26 @@ export const PlayForm = ({ playbook, play }) => {
               ))}
             </div>
           </div>
-          <label className='flex flex-col gap-y-2'>
-            <p className='required-field'> {format('ui.play.description')}</p>
+          <div className='flex flex-col gap-y-2'>
+            <label id='description' className='required-field'>
+              {format('ui.play.description')}
+            </label>
             <Controller
               name='description'
               control={control}
               rules={{ required: format('validation.required') }}
-              render={({ field: { value, onChange, onBlur } }) => {
+              render={({ field: { value, onChange } }) => {
                 return (
                   <HtmlEditor
-                    editorId={`${name}-editor`}
-                    onBlur={onBlur}
+                    labelledBy='description'
                     onChange={onChange}
                     initialContent={value}
-                    isInvalid={errors.description}
                   />
                 )
               }}
             />
             {errors.description && <ValidationError value={errors.description?.message} />}
-          </label>
+          </div>
           <label className='flex gap-x-2 mb-2 items-center self-start'>
             <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
             {format('ui.play.published')}

@@ -255,17 +255,18 @@ const UseCaseForm = React.memo(({ useCase }) => {
             </label>
           }
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>{format('useCase.description')}</label>
+            <label id='description' className='text-dial-sapphire required-field'>
+              {format('useCase.description')}
+            </label>
             <Controller
               name='description'
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='use-case-description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('useCase.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

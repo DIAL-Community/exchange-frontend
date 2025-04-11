@@ -158,7 +158,7 @@ const MessageForm = ({ message }) => {
           {errors.name && <ValidationError value={errors.name?.message} />}
         </div>
         <div className='flex flex-col gap-y-2'>
-          <label className='required-field'>
+          <label id='message-template' className='required-field'>
             {format('hub.broadcast.messageTemplate')}
           </label>
           <Controller
@@ -166,16 +166,10 @@ const MessageForm = ({ message }) => {
             control={control}
             render={({ field: { value, onChange } }) => (
               <HtmlEditor
-                editorId='message-template-editor'
+                labelledBy='message-template'
                 onChange={onChange}
                 initialContent={value}
                 placeholder={format('hub.broadcast.messageTemplate.placeholder')}
-                isInvalid={errors.description}
-                initInstanceCallback={(editor) => {
-                  editor.on('click', () => {
-                    clearErrors('messageTemplate')
-                  })
-                }}
               />
             )}
             rules={{ required: format('validation.required') }}

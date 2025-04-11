@@ -27,22 +27,20 @@ const FormTextEditor = ({ control, name, placeholder = null, required = false, i
 
   return (
     <div className='flex flex-col gap-y-2 text-sm'>
-      <label className={classNames({ 'required-field': required })}>
+      <label id={`text-${name}`} className={classNames({ 'required-field': required })}>
         {format(`hub.curriculum.${name}`)}
       </label>
       <Controller
         name={name}
         control={control}
         rules={required && { required: format('validation.required') }}
-        render={({ field: { value, onChange, onBlur } }) => {
+        render={({ field: { value, onChange } }) => {
           return (
             <HtmlEditor
-              editorId={`${name}-editor`}
-              onBlur={onBlur}
+              labelledBy={`text-${name}`}
               onChange={onChange}
               placeholder={placeholder}
               initialContent={value}
-              isInvalid={isInvalid}
             />
           )
         }}
@@ -292,10 +290,10 @@ export const CurriculumForm = React.memo(({ curriculum }) => {
             </div>
           </div>
           <FormTextEditor
+            required
             control={control}
             name='overview'
             placeholder={format('hub.curriculum.overview')}
-            required
             isInvalid={errors.overview}
           />
           <label className='flex gap-x-2 mb-2 items-center self-start'>

@@ -703,7 +703,7 @@ const ResourceForm = React.memo(({ resource, organization }) => {
             getValues={getValues}
           />
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field'>
+            <label id='description' className='required-field'>
               {format('ui.resource.description')}
             </label>
             <Controller
@@ -711,11 +711,10 @@ const ResourceForm = React.memo(({ resource, organization }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.resource.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

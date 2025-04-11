@@ -214,12 +214,12 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery, editing
           {errors.nextCandidateStatus && <ValidationError value={errors.nextCandidateStatus?.message} />}
         </div>
         <div className='flex flex-col gap-y-2'>
-          <div
+          <label
             id='status-update-justification'
             className={nextCandidateStatusWatcher?.terminalStatus ? 'required-field' : undefined}
           >
             {format('ui.candidate.candidateStatus.updateJustification')}
-          </div>
+          </label>
           <Controller
             name='description'
             control={control}

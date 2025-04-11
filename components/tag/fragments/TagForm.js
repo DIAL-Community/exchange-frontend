@@ -133,7 +133,7 @@ const TagForm = React.memo(({ tag }) => {
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
+            <label id='description' className='text-dial-sapphire required-field'>
               {format('tag.description')}
             </label>
             <Controller
@@ -141,11 +141,10 @@ const TagForm = React.memo(({ tag }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('tag.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

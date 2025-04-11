@@ -1687,6 +1687,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
               >
                 <label
                   class="required-field"
+                  id="description"
                 >
                   Description
                 </label>
@@ -1937,6 +1938,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                         class="editor"
                       >
                         <div
+                          aria-labelledby="description"
                           aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
