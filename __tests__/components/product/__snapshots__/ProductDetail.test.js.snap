@@ -973,7 +973,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                           style="opacity: 1; transform: translate(-5px, 10px);"
                         />
                         <div
-                          class="table-cell-action-button-container"
+                          class="table-cell-action-button-container table-cell-action-button-container--inactive"
                         />
                       </div>
                     </div>
@@ -1735,6 +1735,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                       <button
                         aria-label="Undo"
                         class="toolbar-item spaced"
+                        disabled=""
                         title="Undo (Ctrl+Z)"
                         type="button"
                       >

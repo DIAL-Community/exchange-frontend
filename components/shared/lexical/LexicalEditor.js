@@ -8,7 +8,6 @@
 
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
 import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin'
 import { ClearEditorPlugin } from '@lexical/react/LexicalClearEditorPlugin'
@@ -144,7 +143,6 @@ export default function LexicalEditor({ labelledBy, describedBy, placeholder, in
       <div className={`editor-container ${showTreeView ? 'tree-view' : ''}`}>
         {isMaxLength && <MaxLengthPlugin maxLength={30} />}
         <DragDropPaste />
-        <AutoFocusPlugin />
         {selectionAlwaysOnDisplay && <SelectionAlwaysOnDisplay />}
         <ClearEditorPlugin />
         <ComponentPickerPlugin />

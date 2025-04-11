@@ -10,7 +10,7 @@ export const productDetail = {
       'extraAttributes': [],
       'commercialProduct': false,
       'pricingModel': null,
-      'pricingDetails': null,
+      'pricingDetails': '<p class="ExchangeLexicalTheme__paragraph"><br></p>',
       'hostingModel': null,
       'languages': [
         {
