@@ -530,7 +530,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -925,7 +925,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-placeholder="Pricing Details"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -945,7 +945,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                           <div
                             class="ContentEditable__placeholder"
                           >
-                            Enter plain text...
+                            Pricing Details
                           </div>
                         </div>
                         <div
@@ -1566,7 +1566,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -1960,7 +1960,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-placeholder="Pricing Details"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -1980,7 +1980,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                           <div
                             class="ContentEditable__placeholder"
                           >
-                            Enter plain text...
+                            Pricing Details
                           </div>
                         </div>
                         <div

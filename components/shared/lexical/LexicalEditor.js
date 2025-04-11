@@ -78,7 +78,7 @@ const InlineImagePlugin = dynamic(
   { ssr: false }
 )
 
-export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
+export default function LexicalEditor({ labelledBy, describedBy, placeholder, initialHtml, onHtmlChanged }) {
   const { historyState } = useSharedHistoryContext()
   const {
     settings: {
@@ -99,7 +99,6 @@ export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
     }
   } = useSettings()
   const isEditable = useLexicalEditable()
-  const placeholder = 'Enter plain text...'
   const [floatingAnchorElem, setFloatingAnchorElem] = useState(null)
   const [isSmallWidthViewport, setIsSmallWidthViewport] = useState(false)
   const [editor] = useLexicalComposerContext()
@@ -162,7 +161,11 @@ export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
           contentEditable={
             <div className='editor-scroller'>
               <div className='editor' ref={onRef}>
-                <ContentEditable placeholder={placeholder} />
+                <ContentEditable
+                  labelledBy={labelledBy}
+                  describedBy={describedBy}
+                  placeholder={placeholder}
+                />
               </div>
             </div>
           }

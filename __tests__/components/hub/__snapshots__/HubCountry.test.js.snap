@@ -85,7 +85,6 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a c
                 >
                   <div
                     aria-autocomplete="none"
-                    aria-placeholder="Enter plain text..."
                     aria-readonly="true"
                     class="ContentEditable__root read-only"
                     contenteditable="false"

@@ -146,7 +146,7 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                           autocomplete="off"
                           autocorrect="off"
                           class="react-select__input"
-                          id="react-select-id-sector"
+                          id="react-select-sector"
                           role="combobox"
                           spellcheck="false"
                           style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -234,7 +234,7 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                           autocomplete="off"
                           autocorrect="off"
                           class="react-select__input"
-                          id="react-select-id-maturity"
+                          id="react-select-maturity"
                           role="combobox"
                           spellcheck="false"
                           style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -605,7 +605,7 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -847,7 +847,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                           autocomplete="off"
                           autocorrect="off"
                           class="react-select__input"
-                          id="react-select-id-sector"
+                          id="react-select-sector"
                           role="combobox"
                           spellcheck="false"
                           style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -940,7 +940,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                           autocomplete="off"
                           autocorrect="off"
                           class="react-select__input"
-                          id="react-select-id-maturity"
+                          id="react-select-maturity"
                           role="combobox"
                           spellcheck="false"
                           style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -1321,7 +1321,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"

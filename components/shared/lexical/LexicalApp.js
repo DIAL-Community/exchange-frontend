@@ -93,7 +93,14 @@ function buildImportMap() {
   return importMap
 }
 
-function LexicalInternal({ editable, initialHtml, onHtmlChanged }) {
+function LexicalInternal({
+  editable,
+  labelledBy,
+  describedBy,
+  placeholder,
+  initialHtml,
+  onHtmlChanged
+}) {
   const initialConfig = {
     editable,
     html: { import: buildImportMap() },
@@ -117,6 +124,9 @@ function LexicalInternal({ editable, initialHtml, onHtmlChanged }) {
               )}
             >
               <LexicalEditor
+                labelledBy={labelledBy}
+                describedBy={describedBy}
+                placeholder={placeholder}
                 initialHtml={initialHtml}
                 onHtmlChanged={onHtmlChanged}
               />
@@ -128,12 +138,22 @@ function LexicalInternal({ editable, initialHtml, onHtmlChanged }) {
   )
 }
 
-export default function LexicalApp({ editable, initialHtml, onHtmlChanged }) {
+export default function LexicalApp({
+  editable,
+  labelledBy,
+  describedBy,
+  placeholder,
+  initialHtml,
+  onHtmlChanged
+}) {
   return (
     <SettingsContext>
       <FlashMessageContext>
         <LexicalInternal
           editable={editable}
+          labelledBy={labelledBy}
+          describedBy={describedBy}
+          placeholder={placeholder}
           initialHtml={initialHtml}
           onHtmlChanged={onHtmlChanged}
         />

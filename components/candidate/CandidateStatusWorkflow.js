@@ -95,7 +95,7 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery, editing
     watch,
     formState: { errors }
   } = useForm({
-    mode: 'onSubmit',
+    mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true
   })
@@ -189,11 +189,10 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery, editing
           </div>
         </div>
         <div className='flex flex-col gap-y-2'>
-          <label htmlFor='next-candidate-status' className='required-field'>
+          <label htmlFor='async-select-next-candidate-status' className='required-field'>
             {format('ui.candidate.candidateStatus.nextCandidateStatus')}
           </label>
           <Controller
-            id='next-candidate-status'
             name='nextCandidateStatus'
             control={control}
             render={({ field: { onChange, value } }) =>
@@ -203,6 +202,7 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery, editing
                 cacheOptions
                 defaultOptions
                 className='w-full'
+                name='next-candidate-status'
                 loadOptions={loadCandidateStatusOptions}
                 onChange={(currentValue) => {
                   onChange(currentValue)
@@ -214,19 +214,18 @@ const CandidateStatusWorkflow = ({ candidate, objectType, mutationQuery, editing
           {errors.nextCandidateStatus && <ValidationError value={errors.nextCandidateStatus?.message} />}
         </div>
         <div className='flex flex-col gap-y-2'>
-          <label
-            htmlFor='status-update-justification'
+          <div
+            id='status-update-justification'
             className={nextCandidateStatusWatcher?.terminalStatus ? 'required-field' : undefined}
           >
             {format('ui.candidate.candidateStatus.updateJustification')}
-          </label>
+          </div>
           <Controller
-            id='status-update-justification'
             name='description'
             control={control}
             render={({ field: { value, onChange } }) => (
               <HtmlEditor
-                editorId='description-editor'
+                labelledBy='status-update-justification'
                 onChange={onChange}
                 initialContent={value}
                 placeholder={format('ui.candidate.candidateStatus.updateJustification')}

@@ -518,7 +518,7 @@ exports[`Unit tests for the storefront detail page. Should render detail of a st
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -1132,7 +1132,7 @@ exports[`Unit tests for the storefront detail page. Should render edit page for 
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"

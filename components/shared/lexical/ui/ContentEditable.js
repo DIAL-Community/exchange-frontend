@@ -11,6 +11,8 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 
 export default function LexicalContentEditable({
+  labelledBy,
+  describedBy,
   className,
   placeholder,
   placeholderClassName
@@ -20,6 +22,8 @@ export default function LexicalContentEditable({
 
   return (
     <ContentEditable
+      ariaLabelledBy={labelledBy}
+      ariaDescribedBy={describedBy}
       className={classNames(
         className ?? 'ContentEditable__root',
         editor.isEditable() ? 'read-write' : 'read-only'
