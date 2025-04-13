@@ -457,6 +457,15 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                           </p>
                         </div>
                         <div
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="ContentEditable__placeholder"
+                          >
+                            Description
+                          </div>
+                        </div>
+                        <div
                           draggable="true"
                         >
                           <div
@@ -497,6 +506,7 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                       <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
+                        disabled=""
                         title="Clear"
                         type="button"
                       >
@@ -515,87 +525,20 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   Search and Assign Project Location
-                  <div
-                    class="max-w-[48vw] css-sqp82o-container"
+                  <svg
+                    class="spinner"
+                    fill="currentColor"
+                    height="2em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="2em"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <span
-                      class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-:r0:-live-region"
+                    <path
+                      d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
                     />
-                    <span
-                      aria-atomic="false"
-                      aria-live="polite"
-                      aria-relevant="additions text"
-                      class="css-1f43avz-a11yText-A11yText"
-                      role="log"
-                    />
-                    <div
-                      class="react-select__control css-afrqkl-control"
-                    >
-                      <div
-                        class="react-select__value-container css-17t7gkf-ValueContainer"
-                      >
-                        <div
-                          class="react-select__placeholder css-5rjclb-placeholder"
-                          id="react-select-:r0:-placeholder"
-                        >
-                          Type to search...
-                        </div>
-                        <div
-                          class="react-select__input-container css-qbdosj-Input"
-                          data-value=""
-                        >
-                          <input
-                            aria-activedescendant=""
-                            aria-autocomplete="list"
-                            aria-describedby="react-select-:r0:-placeholder"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            autocapitalize="none"
-                            autocomplete="off"
-                            autocorrect="off"
-                            class="react-select__input"
-                            id="async-select-undefined"
-                            role="combobox"
-                            spellcheck="false"
-                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                            tabindex="0"
-                            type="text"
-                            value=""
-                          />
-                        </div>
-                      </div>
-                      <div
-                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                      >
-                        <span
-                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
-                        />
-                        <div
-                          aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
-                        >
-                          <svg
-                            aria-hidden="true"
-                            class="text-lg"
-                            fill="none"
-                            height="1em"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  </svg>
                 </label>
               </div>
               <div
@@ -1146,7 +1089,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-:r1:-live-region"
+                      id="react-select-:r0:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1163,7 +1106,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                       >
                         <div
                           class="react-select__placeholder css-5rjclb-placeholder"
-                          id="react-select-:r1:-placeholder"
+                          id="react-select-:r0:-placeholder"
                         >
                           Type to search...
                         </div>
@@ -1174,7 +1117,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                           <input
                             aria-activedescendant=""
                             aria-autocomplete="list"
-                            aria-describedby="react-select-:r1:-placeholder"
+                            aria-describedby="react-select-:r0:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -1232,12 +1175,28 @@ exports[`Unit tests for the project detail page. Should render edit page for log
               >
                 <button
                   class="submit-button"
+                  disabled=""
                   type="submit"
                 >
                   Submit Project
+                  <svg
+                    class="spinner ml-3"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
+                    />
+                  </svg>
                 </button>
                 <button
                   class="cancel-button"
+                  disabled=""
                   type="button"
                 >
                   Cancel

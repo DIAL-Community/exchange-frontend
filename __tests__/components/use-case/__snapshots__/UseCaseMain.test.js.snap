@@ -518,73 +518,7 @@ exports[`Unit tests for the use case main page. Should render list of use cases.
               </div>
             </div>
           </div>
-          <div
-            class="flex flex-col gap-y-4 my-6"
-          >
-            <hr
-              class="border-b border-dial-slate-300"
-            />
-            <div
-              class="flex flex-col xl:flex-row gap-x-16 gap-y-3"
-            >
-              <div
-                class="my-auto text-sm font-semibold"
-              >
-                Showing 1 - 10 of 10 total
-              </div>
-              <ul
-                aria-label="Pagination"
-                class="flex gap-x-3 text-sm text-dial-slate-300 font-semibold"
-                role="navigation"
-              >
-                <li
-                  class="border border-current rounded-md opacity-30"
-                >
-                  <a
-                    aria-disabled="true"
-                    aria-label="Previous page"
-                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500 "
-                    rel="prev"
-                    role="button"
-                    tabindex="-1"
-                  >
-                    &lt;
-                  </a>
-                </li>
-                <li
-                  class="border border-current rounded-md text-dial-iris-blue"
-                >
-                  <a
-                    aria-current="page"
-                    aria-label="Page 1 is your current page"
-                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
-                    rel="canonical"
-                    role="button"
-                    tabindex="-1"
-                  >
-                    1
-                  </a>
-                </li>
-                <li
-                  class="border border-current rounded-md opacity-30"
-                >
-                  <a
-                    aria-disabled="true"
-                    aria-label="Next page"
-                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500 "
-                    rel="next"
-                    role="button"
-                    tabindex="-1"
-                  >
-                    &gt;
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <hr
-              class="border-b border-dial-slate-300"
-            />
-          </div>
+          Loading page information ...
         </div>
       </div>
     </div>

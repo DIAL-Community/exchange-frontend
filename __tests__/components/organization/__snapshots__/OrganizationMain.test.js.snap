@@ -641,7 +641,7 @@ exports[`Unit tests for the organization main page. Should render list of organi
               </div>
             </div>
           </div>
-          Unable to load page information.
+          Loading page information ...
         </div>
       </div>
     </div>

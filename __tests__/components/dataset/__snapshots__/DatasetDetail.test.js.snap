@@ -97,37 +97,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                     </div>
                     <div
                       class="flex gap-3 ml-auto"
-                    >
-                      <button
-                        class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
-                        type="button"
-                      >
-                        <svg
-                          class="inline pb-0.5"
-                          fill="none"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 20h9"
-                          />
-                          <path
-                            d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                          />
-                        </svg>
-                        <span
-                          class="text-sm px-1"
-                        >
-                          Edit
-                        </span>
-                      </button>
-                    </div>
+                    />
                   </div>
                   <div
                     class="text-sm text-dial-stratos"
@@ -147,83 +117,6 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                 class="font-semibold text-dial-plum"
               >
                 Jump To
-              </div>
-              <div
-                class=" css-1uaxf62-container"
-              >
-                <span
-                  class="css-1f43avz-a11yText-A11yText"
-                  id="react-select-:r0:-live-region"
-                />
-                <span
-                  aria-atomic="false"
-                  aria-live="polite"
-                  aria-relevant="additions text"
-                  class="css-1f43avz-a11yText-A11yText"
-                  role="log"
-                />
-                <div
-                  class="react-select__control css-afrqkl-control"
-                >
-                  <div
-                    class="react-select__value-container css-17t7gkf-ValueContainer"
-                  >
-                    <div
-                      class="react-select__placeholder css-5rjclb-placeholder"
-                      id="react-select-:r0:-placeholder"
-                    >
-                      Select...
-                    </div>
-                    <div
-                      class="react-select__input-container css-qbdosj-Input"
-                      data-value=""
-                    >
-                      <input
-                        aria-activedescendant=""
-                        aria-autocomplete="list"
-                        aria-describedby="react-select-:r0:-placeholder"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                        aria-label="Current active navigation"
-                        autocapitalize="none"
-                        autocomplete="off"
-                        autocorrect="off"
-                        class="react-select__input"
-                        id="async-select-undefined"
-                        role="combobox"
-                        spellcheck="false"
-                        style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                        tabindex="0"
-                        type="text"
-                        value=""
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                  >
-                    <span
-                      class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
-                    />
-                    <div
-                      aria-hidden="true"
-                      class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        class="css-tj5bde-Svg"
-                        focusable="false"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        width="20"
-                      >
-                        <path
-                          d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <hr
@@ -378,61 +271,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
           >
             <div
               class="flex gap-x-3 ml-auto"
-            >
-              <a
-                class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
-                href="ai-agro/edit"
-              >
-                <svg
-                  class="inline pb-0.5"
-                  fill="none"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12 20h9"
-                  />
-                  <path
-                    d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                  />
-                </svg>
-                <span
-                  class="text-sm px-1"
-                >
-                  Edit
-                </span>
-              </a>
-              <button
-                class="delete-button gap-x-1.5"
-                type="button"
-              >
-                <svg
-                  class="text-sm"
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 448 512"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
-                  />
-                </svg>
-                <span
-                  class="text-sm"
-                >
-                  Delete
-                </span>
-              </button>
-            </div>
+            />
             <div
               class="text-xl font-semibold text-dial-plum py-3"
             >
@@ -472,6 +311,13 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                             Dataset description
                           </span>
                         </p>
+                      </div>
+                      <div
+                        aria-hidden="true"
+                      >
+                        <div
+                          class="ContentEditable__placeholder"
+                        />
                       </div>
                       <div
                         draggable="true"
@@ -542,37 +388,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                   </div>
                   <div
                     class="flex gap-3 ml-auto"
-                  >
-                    <button
-                      class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
-                      type="button"
-                    >
-                      <svg
-                        class="inline pb-0.5"
-                        fill="none"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12 20h9"
-                        />
-                        <path
-                          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                        />
-                      </svg>
-                      <span
-                        class="text-sm px-1"
-                      >
-                        Edit
-                      </span>
-                    </button>
-                  </div>
+                  />
                 </div>
                 <div
                   class="text-sm text-dial-stratos"
@@ -600,37 +416,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                   </div>
                   <div
                     class="flex gap-3 ml-auto"
-                  >
-                    <button
-                      class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
-                      type="button"
-                    >
-                      <svg
-                        class="inline pb-0.5"
-                        fill="none"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12 20h9"
-                        />
-                        <path
-                          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                        />
-                      </svg>
-                      <span
-                        class="text-sm px-1"
-                      >
-                        Edit
-                      </span>
-                    </button>
-                  </div>
+                  />
                 </div>
                 <div
                   class="text-sm italic text-dial-stratos"
@@ -690,37 +476,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                   </div>
                   <div
                     class="flex gap-3 ml-auto"
-                  >
-                    <button
-                      class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
-                      type="button"
-                    >
-                      <svg
-                        class="inline pb-0.5"
-                        fill="none"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12 20h9"
-                        />
-                        <path
-                          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                        />
-                      </svg>
-                      <span
-                        class="text-sm px-1"
-                      >
-                        Edit
-                      </span>
-                    </button>
-                  </div>
+                  />
                 </div>
                 <div
                   class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-3"
@@ -859,37 +615,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                   </div>
                   <div
                     class="flex gap-3 ml-auto"
-                  >
-                    <button
-                      class="cursor-pointer bg-dial-iris-blue px-2 py-1 rounded text-white"
-                      type="button"
-                    >
-                      <svg
-                        class="inline pb-0.5"
-                        fill="none"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12 20h9"
-                        />
-                        <path
-                          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                        />
-                      </svg>
-                      <span
-                        class="text-sm px-1"
-                      >
-                        Edit
-                      </span>
-                    </button>
-                  </div>
+                  />
                 </div>
                 <div
                   class="text-sm text-dial-stratos"

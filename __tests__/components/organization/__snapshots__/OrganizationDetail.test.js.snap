@@ -678,6 +678,15 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                           </p>
                         </div>
                         <div
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="ContentEditable__placeholder"
+                          >
+                            Description
+                          </div>
+                        </div>
+                        <div
                           draggable="true"
                         >
                           <div
@@ -718,6 +727,7 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                       <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
+                        disabled=""
                         title="Clear"
                         type="button"
                       >
@@ -794,7 +804,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
               <div
                 class="text-xl text-dial-plum font-semibold"
               >
-                AI4GOV - Edited
+                AI4GOV
               </div>
               <div
                 class="flex justify-center items-center py-8 px-4 bg-white rounded border"
@@ -889,7 +899,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
               <div
                 class="text-xl font-semibold"
               >
-                Edit AI4GOV - Edited
+                Edit AI4GOV
               </div>
               <div
                 class="flex flex-col gap-y-2"
