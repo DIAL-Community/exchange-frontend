@@ -120,6 +120,7 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
                     class="react-select__control css-afrqkl-control"
@@ -138,6 +139,7 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-describedby="react-select-:r0:-placeholder"
                           aria-expanded="false"
@@ -210,6 +212,7 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
                     class="react-select__control css-afrqkl-control"
@@ -227,6 +230,7 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-expanded="false"
                           aria-haspopup="true"
@@ -823,6 +827,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
                     class="react-select__control css-afrqkl-control"
@@ -841,6 +846,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-describedby="react-select-:r2:-placeholder"
                           aria-expanded="false"
@@ -918,6 +924,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
                     class="react-select__control css-afrqkl-control"
@@ -935,6 +942,7 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-expanded="false"
                           aria-haspopup="true"

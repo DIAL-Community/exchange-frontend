@@ -36,6 +36,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
             aria-live="polite"
             aria-relevant="additions text"
             class="css-1f43avz-a11yText-A11yText"
+            role="log"
           />
           <div
             class="react-select__control css-afrqkl-control"
@@ -54,6 +55,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
                 data-value=""
               >
                 <input
+                  aria-activedescendant=""
                   aria-autocomplete="list"
                   aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
@@ -114,6 +116,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
               aria-live="polite"
               aria-relevant="additions text"
               class="css-1f43avz-a11yText-A11yText"
+              role="log"
             />
             <div
               class="react-select__control css-afrqkl-control"
@@ -132,6 +135,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
                   data-value=""
                 >
                   <input
+                    aria-activedescendant=""
                     aria-autocomplete="list"
                     aria-describedby="react-select-:r1:-placeholder"
                     aria-expanded="false"
