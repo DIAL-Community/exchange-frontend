@@ -86,7 +86,7 @@ const HubHeader = ({ isOnAuthPage = false }) => {
               width={128}
               className='object-contain px-4 border-r'
             />
-            <div className='2xl:text-xl w-[12.5rem] my-auto px-4'>
+            <div className='lg:text-base 2xl:text-lg w-[12.5rem] 2xl:w-[16rem] my-auto px-4'>
               {format('hub.header.title')}
             </div>
           </div>
