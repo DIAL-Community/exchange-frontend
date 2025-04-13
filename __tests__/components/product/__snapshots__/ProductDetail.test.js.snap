@@ -2,7 +2,11 @@
 
 exports[`Unit tests for the product detail page. Should render detail of a product. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
   <div
@@ -195,7 +199,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"
                       />
                     </svg>
                   </button>
@@ -552,15 +556,6 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                           </p>
                         </div>
                         <div
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="ContentEditable__placeholder"
-                          >
-                            Description
-                          </div>
-                        </div>
-                        <div
                           draggable="true"
                         >
                           <div
@@ -601,7 +596,6 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                       <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
-                        disabled=""
                         title="Clear"
                         type="button"
                       >
@@ -983,7 +977,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                           style="opacity: 1; transform: translate(-5px, 10px);"
                         />
                         <div
-                          class="table-cell-action-button-container"
+                          class="table-cell-action-button-container table-cell-action-button-container--inactive"
                         />
                       </div>
                     </div>
@@ -1043,9 +1037,73 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
 
 exports[`Unit tests for the product detail page. Should render edit page for logged in user. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
-  />
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+      tabindex="-1"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        data-in="true"
+        id="toastId"
+        role="alert"
+        tabindex="0"
+      >
+        <div
+          class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+        >
+          <svg
+            fill="var(--toastify-icon-color-success)"
+            height="100%"
+            viewBox="0 0 24 24"
+            width="100%"
+          >
+            <path
+              d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm6.927 8.2l-6.845 9.289a1.011 1.011 0 01-1.43.188l-4.888-3.908a1 1 0 111.25-1.562l4.076 3.261 6.227-8.451a1 1 0 111.61 1.183z"
+            />
+          </svg>
+        </div>
+        Product submitted successfully.
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          class="Toastify__progress-bar--wrp"
+          data-hidden="false"
+        >
+          <div
+            class="Toastify__progress-bar--bg Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+          />
+          <div
+            aria-hidden="false"
+            aria-label="notification timer"
+            class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+            role="progressbar"
+            style="animation-duration: 1000ms; animation-play-state: paused;"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
   <div
     class="lg:px-8 xl:px-56 flex flex-col"
   >
@@ -1081,7 +1139,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               <div
                 class="text-xl text-dial-meadow font-semibold"
               >
-                @firma
+                @firma - Edited
               </div>
               <div
                 class="flex justify-center items-center py-16 bg-white rounded border"
@@ -1185,7 +1243,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               <div
                 class="text-xl font-semibold"
               >
-                Edit @firma
+                Edit @firma - Edited
               </div>
               <div
                 class="flex flex-col gap-y-2"
@@ -1236,7 +1294,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"
                       />
                     </svg>
                   </button>
@@ -2062,12 +2120,28 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               >
                 <button
                   class="submit-button"
+                  disabled=""
                   type="submit"
                 >
                   Submit Product
+                  <svg
+                    class="spinner ml-3"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
+                    />
+                  </svg>
                 </button>
                 <button
                   class="cancel-button"
+                  disabled=""
                   type="button"
                 >
                   Cancel
@@ -2084,7 +2158,11 @@ exports[`Unit tests for the product detail page. Should render edit page for log
 
 exports[`Unit tests for the product detail page. Should render unauthorized for non logged in user. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
 </div>

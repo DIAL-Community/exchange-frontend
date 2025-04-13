@@ -2,7 +2,11 @@
 
 exports[`Unit tests for the useCase detail page. Should render detail of a useCase. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
   <div
@@ -631,15 +635,6 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                           </p>
                         </div>
                         <div
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="ContentEditable__placeholder"
-                          >
-                            Description
-                          </div>
-                        </div>
-                        <div
                           draggable="true"
                         >
                           <div
@@ -680,7 +675,6 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                       <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
-                        disabled=""
                         title="Clear"
                         type="button"
                       >
@@ -719,7 +713,11 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
 
 exports[`Unit tests for the useCase detail page. Should render edit page for logged in user. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
   <div
@@ -1441,7 +1439,11 @@ exports[`Unit tests for the useCase detail page. Should render edit page for log
 
 exports[`Unit tests for the useCase detail page. Should render unauthorized for non logged in user. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
 </div>

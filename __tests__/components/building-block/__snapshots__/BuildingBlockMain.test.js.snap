@@ -2,7 +2,11 @@
 
 exports[`Unit tests for the building block main page. Should render list of building blocks. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
   <div
@@ -57,7 +61,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
                       />
                     </svg>
                   </a>
@@ -88,7 +92,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
                       />
                     </svg>
                   </a>
@@ -119,7 +123,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
                       />
                     </svg>
                   </a>
@@ -160,7 +164,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
                       />
                     </svg>
                   </a>
@@ -422,7 +426,7 @@ exports[`Unit tests for the building block main page. Should render list of buil
                       fill="none"
                     />
                     <path
-                      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
                     />
                   </svg>
                 </label>
@@ -540,7 +544,86 @@ exports[`Unit tests for the building block main page. Should render list of buil
               </div>
             </div>
           </div>
-          Loading page information ...
+          <div
+            class="flex flex-col gap-y-4 my-6"
+          >
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+            <div
+              class="flex flex-col xl:flex-row gap-x-16 gap-y-3"
+            >
+              <div
+                class="my-auto text-sm font-semibold"
+              >
+                Showing 1 - 12 of 23 total
+              </div>
+              <ul
+                aria-label="Pagination"
+                class="flex gap-x-3 text-sm text-dial-slate-300 font-semibold"
+                role="navigation"
+              >
+                <li
+                  class="border border-current rounded-md opacity-30"
+                >
+                  <a
+                    aria-disabled="true"
+                    aria-label="Previous page"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500 "
+                    rel="prev"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    &lt;
+                  </a>
+                </li>
+                <li
+                  class="border border-current rounded-md text-dial-iris-blue"
+                >
+                  <a
+                    aria-current="page"
+                    aria-label="Page 1 is your current page"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
+                    rel="canonical"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    1
+                  </a>
+                </li>
+                <li
+                  class="border border-current rounded-md"
+                >
+                  <a
+                    aria-label="Page 2"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
+                    rel="next"
+                    role="button"
+                    tabindex="0"
+                  >
+                    2
+                  </a>
+                </li>
+                <li
+                  class="border border-current rounded-md"
+                >
+                  <a
+                    aria-disabled="false"
+                    aria-label="Next page"
+                    class="block w-10 h-10 leading-10 text-center text-dial-slate-500"
+                    rel="next"
+                    role="button"
+                    tabindex="0"
+                  >
+                    &gt;
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <hr
+              class="border-b border-dial-slate-300"
+            />
+          </div>
         </div>
       </div>
     </div>

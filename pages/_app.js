@@ -1,56 +1,56 @@
-import 'handsontable/dist/handsontable.full.css'
-import 'intro.js/introjs.css'
-import 'intro.js/themes/introjs-modern.css'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-import 'react-comments-section/dist/index.css'
-import 'react-responsive-modal/styles.css'
-import 'react-datepicker/dist/react-datepicker.css'
-import 'react-toastify/dist/ReactToastify.css'
-import 'react-tooltip/dist/react-tooltip.css'
-import 'react-grid-layout/css/styles.css'
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-import '../styles/accordion.css'
-import '../styles/card.css'
-import '../styles/drawer.css'
-import '../styles/editor.css'
-import '../styles/filter.css'
-import '../styles/globals.css'
-import '../styles/infinite.css'
-import '../styles/leaflet.css'
-import '../styles/loading.css'
-import '../styles/overrides.css'
-import '../styles/password.css'
-import '../styles/playbook.css'
-import '../styles/prismjs-highlight.css'
-import '../styles/sticky.css'
-import '../styles/swagger-ui.css'
-import '../styles/tooltip.css'
-import '../styles/ui/v1/comment.scss'
-import '../styles/ui/v1/parser.scss'
-import '../styles/ui/v1/ribbon.css'
-import '../styles/ui/v1/swiper.css'
-import '../styles/ui/v1/wizard.scss'
-import '../styles/view-content.css'
-import '../styles/lexical.scss'
-import { useEffect, useState } from 'react'
-import { SessionProvider } from 'next-auth/react'
-import { Poppins } from 'next/font/google'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { IntlProvider } from 'react-intl'
-import { ApolloProvider } from '@apollo/client'
-import { GoogleAnalytics } from '@next/third-parties/google'
-import { CookieConsentProvider } from '@use-cookie-consent/react'
-import ErrorBoundary from '../components/shared/ErrorBoundary'
-import { useApollo } from '../lib/apolloClient'
-import CatalogContext from '../lib/CatalogContext'
-import { ToastContextProvider } from '../lib/ToastContext'
-import * as default_translations from '../translations/en.js'
-import CatalogSeo from './_seo'
+import 'handsontable/dist/handsontable.full.css';
+import 'intro.js/introjs.css';
+import 'intro.js/themes/introjs-modern.css';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import 'react-comments-section/dist/index.css';
+import 'react-responsive-modal/styles.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-tooltip/dist/react-tooltip.css';
+import 'react-grid-layout/css/styles.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import '../styles/accordion.css';
+import '../styles/card.css';
+import '../styles/drawer.css';
+import '../styles/editor.css';
+import '../styles/filter.css';
+import '../styles/globals.css';
+import '../styles/infinite.css';
+import '../styles/leaflet.css';
+import '../styles/loading.css';
+import '../styles/overrides.css';
+import '../styles/password.css';
+import '../styles/playbook.css';
+import '../styles/prismjs-highlight.css';
+import '../styles/sticky.css';
+import '../styles/swagger-ui.css';
+import '../styles/tooltip.css';
+import '../styles/ui/v1/comment.scss';
+import '../styles/ui/v1/parser.scss';
+import '../styles/ui/v1/ribbon.css';
+import '../styles/ui/v1/swiper.css';
+import '../styles/ui/v1/wizard.scss';
+import '../styles/view-content.css';
+import '../styles/lexical.scss';
+import { useEffect, useState } from 'react';
+import { SessionProvider } from 'next-auth/react';
+import { Poppins } from 'next/font/google';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { IntlProvider } from 'react-intl';
+import { ApolloProvider } from '@apollo/client';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { CookieConsentProvider } from '@use-cookie-consent/react';
+import ErrorBoundary from '../components/shared/ErrorBoundary';
+import { useApollo } from '../lib/apolloClient';
+import CatalogContext from '../lib/CatalogContext';
+import { ToastContextProvider } from '../lib/ToastContext';
+import * as default_translations from '../translations/en.js';
+import CatalogSeo from './_seo';
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700'],

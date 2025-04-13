@@ -2,7 +2,11 @@
 
 exports[`Unit tests for the project detail page. Should render detail of a project. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
   <div
@@ -457,15 +461,6 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                           </p>
                         </div>
                         <div
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="ContentEditable__placeholder"
-                          >
-                            Description
-                          </div>
-                        </div>
-                        <div
                           draggable="true"
                         >
                           <div
@@ -506,7 +501,6 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                       <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
-                        disabled=""
                         title="Clear"
                         type="button"
                       >
@@ -525,20 +519,87 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   Search and Assign Project Location
-                  <svg
-                    class="spinner"
-                    fill="currentColor"
-                    height="2em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="2em"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <div
+                    class="max-w-[48vw] css-sqp82o-container"
                   >
-                    <path
-                      d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r0:-live-region"
                     />
-                  </svg>
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                      role="log"
+                    />
+                    <div
+                      class="react-select__control css-afrqkl-control"
+                    >
+                      <div
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-5rjclb-placeholder"
+                          id="react-select-:r0:-placeholder"
+                        >
+                          Type to search...
+                        </div>
+                        <div
+                          class="react-select__input-container css-qbdosj-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-activedescendant=""
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-:r0:-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="async-select-undefined"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="text-lg"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </label>
               </div>
               <div
@@ -571,9 +632,73 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
 
 exports[`Unit tests for the project detail page. Should render edit page for logged in user. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
-  />
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+      tabindex="-1"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        data-in="true"
+        id="toastId"
+        role="alert"
+        tabindex="0"
+      >
+        <div
+          class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+        >
+          <svg
+            fill="var(--toastify-icon-color-success)"
+            height="100%"
+            viewBox="0 0 24 24"
+            width="100%"
+          >
+            <path
+              d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm6.927 8.2l-6.845 9.289a1.011 1.011 0 01-1.43.188l-4.888-3.908a1 1 0 111.25-1.562l4.076 3.261 6.227-8.451a1 1 0 111.61 1.183z"
+            />
+          </svg>
+        </div>
+        Project submitted successfully.
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          class="Toastify__progress-bar--wrp"
+          data-hidden="false"
+        >
+          <div
+            class="Toastify__progress-bar--bg Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+          />
+          <div
+            aria-hidden="false"
+            aria-label="notification timer"
+            class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+            role="progressbar"
+            style="animation-duration: 1000ms; animation-play-state: paused;"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
   <div
     class="lg:px-8 xl:px-56 flex flex-col"
   >
@@ -1089,7 +1214,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-:r0:-live-region"
+                      id="react-select-:r1:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1106,7 +1231,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                       >
                         <div
                           class="react-select__placeholder css-5rjclb-placeholder"
-                          id="react-select-:r0:-placeholder"
+                          id="react-select-:r1:-placeholder"
                         >
                           Type to search...
                         </div>
@@ -1117,7 +1242,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                           <input
                             aria-activedescendant=""
                             aria-autocomplete="list"
-                            aria-describedby="react-select-:r0:-placeholder"
+                            aria-describedby="react-select-:r1:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -1175,28 +1300,12 @@ exports[`Unit tests for the project detail page. Should render edit page for log
               >
                 <button
                   class="submit-button"
-                  disabled=""
                   type="submit"
                 >
                   Submit Project
-                  <svg
-                    class="spinner ml-3"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-                    />
-                  </svg>
                 </button>
                 <button
                   class="cancel-button"
-                  disabled=""
                   type="button"
                 >
                   Cancel
@@ -1213,7 +1322,11 @@ exports[`Unit tests for the project detail page. Should render edit page for log
 
 exports[`Unit tests for the project detail page. Should render unauthorized for non logged in user. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
   <div
