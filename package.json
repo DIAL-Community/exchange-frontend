@@ -1,6 +1,6 @@
 {
-  "name": "catalog-front",
-  "version": "0.1.0",
+  "name": "exchange-frontend",
+  "version": "0.8.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3002",
@@ -100,8 +100,8 @@
     "cypress": "^14.3.0",
     "cypress-file-upload": "^5.0.8",
     "dotenv": "^16.5.0",
-    "eslint": "^9.24.0",
-    "eslint-config-next": "^14.2.28",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.3.0",
     "eslint-plugin-cypress": "^4.2.1",
     "eslint-plugin-jest": "^28.11.0",
     "jest": "^29.7.0",
