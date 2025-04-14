@@ -82,7 +82,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   })
 
   const { handleSubmit, register, control, formState: { errors } } = useForm({
-    mode: 'onSubmit',
+    mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
@@ -209,17 +209,18 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
             </label>
           }
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field'>{format('buildingBlock.description')}</label>
+            <label id='description' className='required-field'>
+              {format('buildingBlock.description')}
+            </label>
             <Controller
               name='description'
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
-                  onChange={onChange}
                   initialContent={value}
+                  labelledBy='description'
                   placeholder={format('buildingBlock.description')}
-                  isInvalid={errors.description}
+                  onChange={onChange}
                 />
               )}
               rules={{ required: format('validation.required') }}

@@ -134,7 +134,7 @@ const TaskTrackerForm = React.memo(({ taskTracker }) => {
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
+            <label id='description' className='text-dial-sapphire required-field'>
               {format('taskTracker.description')}
             </label>
             <Controller
@@ -142,11 +142,10 @@ const TaskTrackerForm = React.memo(({ taskTracker }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('taskTracker.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

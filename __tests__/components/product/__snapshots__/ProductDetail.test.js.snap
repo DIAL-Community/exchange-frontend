@@ -280,6 +280,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
               >
                 <label
                   class="required-field"
+                  id="description"
                 >
                   Description
                 </label>
@@ -530,7 +531,8 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-labelledby="description"
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -675,7 +677,9 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
               <div
                 class="flex flex-col gap-y-2"
               >
-                <label>
+                <label
+                  id="pricing-description"
+                >
                   Pricing Details
                 </label>
                 <div
@@ -925,7 +929,8 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-labelledby="pricing-description"
+                          aria-placeholder="Pricing Details"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -945,7 +950,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                           <div
                             class="ContentEditable__placeholder"
                           >
-                            Enter plain text...
+                            Pricing Details
                           </div>
                         </div>
                         <div
@@ -968,7 +973,7 @@ exports[`Unit tests for the product detail page. Should render detail of a produ
                           style="opacity: 1; transform: translate(-5px, 10px);"
                         />
                         <div
-                          class="table-cell-action-button-container"
+                          class="table-cell-action-button-container table-cell-action-button-container--inactive"
                         />
                       </div>
                     </div>
@@ -1316,6 +1321,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               >
                 <label
                   class="required-field"
+                  id="description"
                 >
                   Description
                 </label>
@@ -1566,7 +1572,8 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-labelledby="description"
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -1711,7 +1718,9 @@ exports[`Unit tests for the product detail page. Should render edit page for log
               <div
                 class="flex flex-col gap-y-2"
               >
-                <label>
+                <label
+                  id="pricing-description"
+                >
                   Pricing Details
                 </label>
                 <div
@@ -1726,6 +1735,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                       <button
                         aria-label="Undo"
                         class="toolbar-item spaced"
+                        disabled=""
                         title="Undo (Ctrl+Z)"
                         type="button"
                       >
@@ -1960,7 +1970,8 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-labelledby="pricing-description"
+                          aria-placeholder="Pricing Details"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -1980,7 +1991,7 @@ exports[`Unit tests for the product detail page. Should render edit page for log
                           <div
                             class="ContentEditable__placeholder"
                           >
-                            Enter plain text...
+                            Pricing Details
                           </div>
                         </div>
                         <div

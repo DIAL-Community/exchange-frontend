@@ -115,7 +115,7 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
               {errors.description && <ValidationError value={errors.description?.message} />}
             </div>
             <div className='flex flex-col gap-y-2'>
-              <label for='wysiwyg-description'>
+              <label id='wysiwyg-description'>
                 {format('ui.siteSetting.heroSection.wysiwygDescription')}
               </label>
               <Controller
@@ -123,12 +123,10 @@ const HeroCardSectionEditor = ({ siteSettingSlug, heroCardSection }) => {
                 control={control}
                 render={({ field: { value, onChange } }) => (
                   <HtmlEditor
-                    id='wysiwyg-description'
-                    editorId='wysiwyg-description'
+                    labelledBy='wysiwyg-description'
                     onChange={onChange}
                     initialContent={value}
                     placeholder={format('ui.siteSetting.heroSection.wysiwygDescription')}
-                    isInvalid={errors.wysiwygDescription}
                   />
                 )}
               />

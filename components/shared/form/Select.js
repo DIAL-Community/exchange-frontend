@@ -117,7 +117,7 @@ const Select = React.forwardRef((
       ? <AsyncReactSelect
         {...otherProps}
         instanceId={id}
-        inputId={`async-select-id-${name}`}
+        inputId={`async-select-${name}`}
         innerRef={ref}
         value={value}
         placeholder={placeholder}
@@ -132,7 +132,7 @@ const Select = React.forwardRef((
       : <ReactSelect
         {...otherProps}
         instanceId={id}
-        inputId={`react-select-id-${name}`}
+        inputId={`react-select-${name}`}
         innerRef={ref}
         value={value}
         placeholder={placeholder}

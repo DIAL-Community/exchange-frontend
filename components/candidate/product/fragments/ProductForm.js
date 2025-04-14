@@ -319,7 +319,7 @@ const ProductForm = React.memo(({ product }) => {
             />
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field'>
+            <label id='description' className='required-field'>
               {format('ui.candidateProduct.description')}
             </label>
             <Controller
@@ -327,11 +327,10 @@ const ProductForm = React.memo(({ product }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.candidateProduct.description.placeholder')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

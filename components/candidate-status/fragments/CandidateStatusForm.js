@@ -185,20 +185,18 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
             {format('ui.candidateStatus.terminalStatus')}
           </label>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field' for='description'>
+            <label className='required-field' id='description'>
               {format('ui.candidateStatus.description')}
             </label>
             <Controller
-              id='description'
               name='description'
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.candidateStatus.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}
@@ -267,20 +265,18 @@ const CandidateStatusForm = React.memo(({ candidateStatus }) => {
           </div>
           <hr className='border-b border-dial-blue-chalk my-3' />
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field' for='notification-template'>
+            <label id='notification-template' className='required-field'>
               {format('ui.candidateStatus.notificationTemplate')}
             </label>
             <Controller
-              id='notification-template'
               name='notificationTemplate'
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='notification-template-editor'
+                  labelledBy='notification-template'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.candidateStatus.notificationTemplate')}
-                  isInvalid={errors.notificationTemplate}
                 />
               )}
               rules={{ required: format('validation.required') }}

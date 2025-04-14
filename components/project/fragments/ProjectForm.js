@@ -6,10 +6,10 @@ import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
-import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import GeocodeAutocomplete from '../../shared/form/GeocodeAutocomplete'
-import Pill from '../../shared/form/Pill'
+import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import Input from '../../shared/form/Input'
+import Pill from '../../shared/form/Pill'
 import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_PROJECT } from '../../shared/mutation/project'
@@ -186,17 +186,18 @@ const ProjectForm = React.memo(({ project }) => {
             />
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field'>{format('project.description')}</label>
+            <label id='description' className='required-field'>
+              {format('project.description')}
+            </label>
             <Controller
               name='description'
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('project.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

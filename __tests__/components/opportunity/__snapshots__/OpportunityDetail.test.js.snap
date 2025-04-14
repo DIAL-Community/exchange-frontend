@@ -247,7 +247,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                         autocomplete="off"
                         autocorrect="off"
                         class="react-select__input"
-                        id="async-select-id-undefined"
+                        id="async-select-undefined"
                         role="combobox"
                         spellcheck="false"
                         style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -513,7 +513,6 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                     >
                       <div
                         aria-autocomplete="none"
-                        aria-placeholder="Enter plain text..."
                         aria-readonly="true"
                         class="ContentEditable__root read-only"
                         contenteditable="false"
@@ -1389,7 +1388,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                           autocomplete="off"
                           autocorrect="off"
                           class="react-select__input"
-                          id="react-select-id-opportunityStatus"
+                          id="react-select-opportunityStatus"
                           role="combobox"
                           spellcheck="false"
                           style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -1471,7 +1470,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                           autocomplete="off"
                           autocorrect="off"
                           class="react-select__input"
-                          id="react-select-id-opportunityType"
+                          id="react-select-opportunityType"
                           role="combobox"
                           spellcheck="false"
                           style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -1553,7 +1552,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                           autocomplete="off"
                           autocorrect="off"
                           class="react-select__input"
-                          id="react-select-id-opportunityOrigin"
+                          id="react-select-opportunityOrigin"
                           role="combobox"
                           spellcheck="false"
                           style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -1688,6 +1687,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
               >
                 <label
                   class="required-field"
+                  id="description"
                 >
                   Description
                 </label>
@@ -1938,7 +1938,8 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-labelledby="description"
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"

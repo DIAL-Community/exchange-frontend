@@ -175,7 +175,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
                         autocomplete="off"
                         autocorrect="off"
                         class="react-select__input"
-                        id="async-select-id-undefined"
+                        id="async-select-undefined"
                         role="combobox"
                         spellcheck="false"
                         style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -287,6 +287,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
               >
                 <label
                   class="required-field"
+                  id="description"
                 >
                   Repository Description
                 </label>
@@ -537,7 +538,8 @@ exports[`Unit tests for the product main page. Should render the product reposit
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-labelledby="description"
+                          aria-placeholder="Repository Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -824,7 +826,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
                         autocomplete="off"
                         autocorrect="off"
                         class="react-select__input"
-                        id="async-select-id-undefined"
+                        id="async-select-undefined"
                         role="combobox"
                         spellcheck="false"
                         style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -1033,7 +1035,6 @@ exports[`Unit tests for the product main page. Should render the product reposit
                     >
                       <div
                         aria-autocomplete="none"
-                        aria-placeholder="Enter plain text..."
                         aria-readonly="true"
                         class="ContentEditable__root read-only"
                         contenteditable="false"

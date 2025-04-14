@@ -293,24 +293,24 @@ export const PlaybookForm = React.memo(({ playbook }) => {
             </div>
           </div>
           <FormTextEditor
+            required
             control={control}
             name='overview'
             placeholder={format('ui.playbook.overview')}
-            required
             isInvalid={errors.overview}
           />
           <FormTextEditor
+            required
             control={control}
             name='audience'
             placeholder={format('ui.playbook.audience')}
-            required
             isInvalid={errors.audience}
           />
           <FormTextEditor
+            required
             control={control}
             name='outcomes'
             placeholder={format('ui.playbook.outcomes')}
-            required
             isInvalid={errors.outcomes}
           />
           <label className='flex gap-x-2 mb-2 items-center self-start'>

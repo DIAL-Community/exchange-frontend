@@ -225,7 +225,7 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
             </div>
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field' htmlFor='description'>
+            <label id='description' className='required-field' htmlFor='description'>
               {format('ui.siteSetting.description')}
             </label>
             <Controller
@@ -234,11 +234,10 @@ const SiteSettingForm = React.memo(({ siteSetting }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.siteSetting.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

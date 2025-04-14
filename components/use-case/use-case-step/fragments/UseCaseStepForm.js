@@ -131,7 +131,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
             {errors.stepNumber && <ValidationError value={errors.stepNumber?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field text-dial-blueberry'>
+            <label id='description' className='required-field text-dial-blueberry'>
               {format('use-case-step.description')}
             </label>
             <Controller
@@ -139,11 +139,10 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='use-case-step-description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('use-case-step.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

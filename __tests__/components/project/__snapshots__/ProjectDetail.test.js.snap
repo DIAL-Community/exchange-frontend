@@ -185,6 +185,7 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
               >
                 <label
                   class="required-field"
+                  id="description"
                 >
                   Description
                 </label>
@@ -435,7 +436,8 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-labelledby="description"
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -551,7 +553,7 @@ exports[`Unit tests for the project detail page. Should render detail of a proje
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="async-select-id-undefined"
+                            id="async-select-undefined"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -807,6 +809,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
               >
                 <label
                   class="required-field"
+                  id="description"
                 >
                   Description
                 </label>
@@ -1057,7 +1060,8 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                         class="editor"
                       >
                         <div
-                          aria-placeholder="Enter plain text..."
+                          aria-labelledby="description"
+                          aria-placeholder="Description"
                           class="ContentEditable__root read-write"
                           contenteditable="true"
                           data-lexical-editor="true"
@@ -1173,7 +1177,7 @@ exports[`Unit tests for the project detail page. Should render edit page for log
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="async-select-id-undefined"
+                            id="async-select-undefined"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"

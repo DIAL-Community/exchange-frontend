@@ -183,7 +183,7 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
             <FileUploader {...register('imageFile')} id='image-uploader' />
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
+            <label id='description' className='text-dial-sapphire required-field'>
               {format('ui.resourceTopic.description')}
             </label>
             <Controller
@@ -191,11 +191,10 @@ const ResourceTopicForm = React.memo(({ resourceTopic }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.resourceTopic.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

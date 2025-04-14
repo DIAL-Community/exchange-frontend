@@ -2597,7 +2597,7 @@ export const en = {
   'ui.source.website': 'Source Website',
   'ui.source.imageFile': 'Source Logo File',
 
-  'hub.header.title': 'Resources for DPI',
+  'hub.header.title': 'Africa Data Leadership Initiative Hub',
   'hub.header.subtitle': 'the Digital Impact Alliance',
   'hub.footer.connect.subtitle': `
     Sign up for our newsletter to learn more about the Digital Public Infrastructure
@@ -2608,6 +2608,13 @@ export const en = {
   'hub.header.country': 'Countries',
   'hub.header.resourceFinder': 'Resource Finder',
   'hub.header.adliNetwork': 'ADLI Network',
+  'hub.header.adliMember': 'Member Area',
+
+  'hub.adli.linkedInTitle': 'Follow ADLI on LinkedIn to stay informed',
+  'hub.adli.articleTitle': 'Read the latest from the ADLI team',
+
+  'hub.adli.learnMoreTagLine': 'Learn more about the Africa Data Leadership Initiative',
+  'hub.adli.adliNetworkTagLine': 'Meet the network of experts from current and past cohorts',
 
   'hub.exportNetwork.login': 'ADLI Member Login',
   'hub.exportNetwork.learnMore': 'Learn more about ADLI',
@@ -2625,10 +2632,9 @@ export const en = {
   'health.title': 'HealthTech Marketplace',
   // -- end of page view tracking --
   
-  'hub.landing.main.title': 'Resources for DPI',
+  'hub.landing.main.title': 'The Africa Data Leadership Initiative Resource Hub',
   'hub.landing.main.subtitle': `
-    An online resource hub offering data, insights, and tools to help policymakers, 
-    governments and development actors to advance progress on digital public infrastructure.
+    The preeminent peer learning network and exchange network designed by and for Africans.
   `,
   'hub.landing.browseTopics': 'Browse <break></break> Topics',
   'hub.landing.featuredCountries': 'Featured <break></break> Countries',

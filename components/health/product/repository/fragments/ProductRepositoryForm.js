@@ -156,17 +156,18 @@ const ProductRepositoryForm = forwardRef(({ product, productRepository }, ref) =
             {errors.absoluteUrl && <ValidationError value={errors.absoluteUrl?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field'>{format('productRepository.description')}</label>
+            <label id='description' className='required-field'>
+              {format('productRepository.description')}
+            </label>
             <Controller
               name='description'
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('productRepository.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

@@ -284,7 +284,7 @@ const OrganizationForm = React.memo(({ organization }) => {
             {format('organization.hasStorefront')}
           </label>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-meadow required-field'>
+            <label id='description' className='text-dial-meadow required-field'>
               {format('organization.description')}
             </label>
             <Controller
@@ -292,11 +292,10 @@ const OrganizationForm = React.memo(({ organization }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('organization.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

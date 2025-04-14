@@ -8,6 +8,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-tooltip/dist/react-tooltip.css'
 import 'react-grid-layout/css/styles.css'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 import '../styles/accordion.css'
 import '../styles/card.css'
 import '../styles/drawer.css'
@@ -115,7 +118,7 @@ const App = ({ Component, pageProps }) => {
       <Head>
         <meta
           name='viewport'
-          content='width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0'
+          content='width=device-width, initial-scale=1.0'
         />
       </Head>
       <IntlProvider locale={locale} defaultLocale='en' messages={messages}>

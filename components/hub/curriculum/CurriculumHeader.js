@@ -39,7 +39,9 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
             {format('hub.curriculum.overview')}
           </div>
         </div>
-        <HtmlViewer initialContent={curriculum?.playbookDescription?.overview} />
+        <HtmlViewer
+          initialContent={curriculum?.playbookDescription?.overview}
+        />
         {curriculum.author &&
           <div>
             <div className='h4'>{format('hub.curriculum.author')}</div>

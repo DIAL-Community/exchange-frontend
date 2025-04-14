@@ -129,7 +129,7 @@ const RegionForm = React.memo(({ region }) => {
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
+            <label id='description' className='text-dial-sapphire required-field'>
               {format('ui.region.description.label')}
             </label>
             <Controller
@@ -137,11 +137,10 @@ const RegionForm = React.memo(({ region }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('region.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}

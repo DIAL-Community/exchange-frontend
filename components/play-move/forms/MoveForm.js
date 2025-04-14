@@ -202,24 +202,25 @@ const FormTextEditor = ({ control, fieldLabel, fieldName }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <label className='flex flex-col gap-y-2'>
-      {format(fieldLabel)}
+    <div className='flex flex-col gap-y-2'>
+      <label id={`text-${fieldName}`}>
+        {format(fieldLabel)}
+      </label>
       <Controller
         name={fieldName}
         control={control}
         rules={{ required: true }}
-        render={({ field: { value, onChange, onBlur } }) => {
+        render={({ field: { value, onChange } }) => {
           return (
             <HtmlEditor
-              editorId={`${fieldName}-editor`}
-              onBlur={onBlur}
+              labelledBy={`text-${fieldName}`}
               onChange={onChange}
               initialContent={value}
             />
           )
         }}
       />
-    </label>
+    </div>
   )
 }
 

@@ -60,3 +60,28 @@ export const UPDATE_PLAY_MOVES = gql`
     }
   }
 `
+
+export const UPDATE_PLAY_DESCRIPTION = gql`
+  mutation UpdatePlayDescription (
+    $slug: String!
+    $owner: String!
+    $description: String!
+  ) {
+    updatePlayDescription (
+      slug: $slug
+      owner: $owner
+      description: $description
+    ) {
+      play {
+        id
+        name
+        slug
+        playDescription {
+          id
+          description
+        }
+      }
+      errors
+    }
+  }
+`

@@ -190,7 +190,7 @@ const ContactForm = ({ user, contact }) => {
           {errors.title && <ValidationError value={errors.title?.message} />}
         </div>
         <div className='flex flex-col gap-y-2'>
-          <label className='required-field'>
+          <label id='biography' className='required-field'>
             {format('ui.contact.biography.label')}
           </label>
           <Controller
@@ -198,11 +198,10 @@ const ContactForm = ({ user, contact }) => {
             control={control}
             render={({ field: { value, onChange } }) => (
               <HtmlEditor
-                editorId='biography-editor'
+                labelledBy='biography'
                 onChange={onChange}
                 initialContent={value}
                 placeholder={format('ui.contact.biography.placeholder')}
-                isInvalid={errors.biography}
               />
             )}
             rules={{ required: format('validation.required') }}

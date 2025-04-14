@@ -9,13 +9,14 @@ import { FiEdit3, FiMove } from 'react-icons/fi'
 import { HiExternalLink } from 'react-icons/hi'
 import { useInView } from 'react-intersection-observer'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { useLazyQuery, useQuery } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { useUser } from '../../../lib/hooks'
 import CreateButton from '../../shared/form/CreateButton'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { UPDATE_PLAY_DESCRIPTION } from '../../shared/mutation/play'
 import { COMMENTS_COUNT_QUERY } from '../../shared/query/comment'
 import { MOVE_PREVIEW_QUERY, PLAY_QUERY } from '../../shared/query/play'
 import { ObjectType } from '../../utils/constants'
@@ -111,7 +112,9 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
           { called && loading && format('general.loadingData') }
           { data &&
             <div>
-              <HtmlViewer initialContent={data.move?.moveDescription?.description} />
+              <HtmlViewer
+                initialContent={data.move?.moveDescription?.description}
+              />
               {data?.move?.resources && data?.move?.resources.length > 0 &&
                 <div className='text-sm'>
                   <div className='font-semibold py-2'>{format('ui.move.resources.header')}</div>
@@ -226,6 +229,17 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
     }
   })
 
+  const [ updateDescription ] = useMutation(UPDATE_PLAY_DESCRIPTION)
+  const handleHtmlChanged = (html) => {
+    updateDescription({
+      variables: {
+        slug: module.slug,
+        owner: DPI_TENANT_NAME,
+        description: html
+      }
+    })
+  }
+
   const { loadingUserSession, user } = useUser()
   const allowedToEdit = () => user?.isAdliAdminUser || user?.isAdminUser || user?.isEditorUser
 
@@ -303,7 +317,10 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
                 locale={locale}
               />
             }
-            <HtmlViewer initialContent={module?.playDescription?.description} />
+            <HtmlViewer
+              initialContent={module?.playDescription?.description}
+              handleHtmlChanged={handleHtmlChanged}
+            />
             <div className='flex gap-2 ml-auto'>
               {allowedToEdit() &&
                 <CreateButton

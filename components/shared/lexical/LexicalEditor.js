@@ -8,7 +8,6 @@
 
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
 import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin'
 import { ClearEditorPlugin } from '@lexical/react/LexicalClearEditorPlugin'
@@ -78,7 +77,7 @@ const InlineImagePlugin = dynamic(
   { ssr: false }
 )
 
-export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
+export default function LexicalEditor({ labelledBy, describedBy, placeholder, initialHtml, onHtmlChanged }) {
   const { historyState } = useSharedHistoryContext()
   const {
     settings: {
@@ -99,7 +98,6 @@ export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
     }
   } = useSettings()
   const isEditable = useLexicalEditable()
-  const placeholder = 'Enter plain text...'
   const [floatingAnchorElem, setFloatingAnchorElem] = useState(null)
   const [isSmallWidthViewport, setIsSmallWidthViewport] = useState(false)
   const [editor] = useLexicalComposerContext()
@@ -145,7 +143,6 @@ export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
       <div className={`editor-container ${showTreeView ? 'tree-view' : ''}`}>
         {isMaxLength && <MaxLengthPlugin maxLength={30} />}
         <DragDropPaste />
-        <AutoFocusPlugin />
         {selectionAlwaysOnDisplay && <SelectionAlwaysOnDisplay />}
         <ClearEditorPlugin />
         <ComponentPickerPlugin />
@@ -162,7 +159,11 @@ export default function LexicalEditor({ initialHtml, onHtmlChanged }) {
           contentEditable={
             <div className='editor-scroller'>
               <div className='editor' ref={onRef}>
-                <ContentEditable placeholder={placeholder} />
+                <ContentEditable
+                  labelledBy={labelledBy}
+                  describedBy={describedBy}
+                  placeholder={placeholder}
+                />
               </div>
             </div>
           }

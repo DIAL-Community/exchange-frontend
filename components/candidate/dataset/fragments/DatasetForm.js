@@ -84,7 +84,7 @@ const DatasetForm = React.memo(({ dataset }) => {
     control,
     formState: { errors }
   } = useForm({
-    mode: 'onSubmit',
+    mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
@@ -197,7 +197,7 @@ const DatasetForm = React.memo(({ dataset }) => {
             />
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label htmlFor='datasetType'>
+            <label htmlFor='react-select-dataset-type'>
               {format('ui.candidateDataset.datasetType.hint')}
             </label>
             <Controller
@@ -205,7 +205,7 @@ const DatasetForm = React.memo(({ dataset }) => {
               control={control}
               render={({ field }) =>
                 <Select {...field}
-                  id='datasetType'
+                  name='dataset-type'
                   options={datasetTypeOptions}
                   placeholder={format('ui.dataset.datasetType')}
                 />
@@ -213,7 +213,7 @@ const DatasetForm = React.memo(({ dataset }) => {
             />
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field' htmlFor='description-editor'>
+            <label id='description' className='required-field'>
               {format('ui.dataset.description')}
             </label>
             <Controller
@@ -221,11 +221,10 @@ const DatasetForm = React.memo(({ dataset }) => {
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='description-editor'
+                  labelledBy='description'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('ui.dataset.description')}
-                  isInvalid={errors.description}
                 />
               )}
               rules={{ required: format('validation.required') }}
