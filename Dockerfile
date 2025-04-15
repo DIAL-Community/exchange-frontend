@@ -11,6 +11,7 @@ RUN yarn install
 FROM base AS build
 LABEL stage=build
 ENV NODE_ENV=production
+# ENV NODE_OPTIONS=--max-old-space-size=2048
 WORKDIR /app
 COPY --from=base /app/.yarn ./.yarn
 COPY --from=base /app/node_modules ./node_modules
