@@ -9,6 +9,11 @@ module.exports = withBundleAnalyzer(withRemoveImports({
     defaultLocale: 'en',
     localeDetection: false
   },
+  modularizeImports: {
+    'react-icons/?(((\\w*)?/?)*)': {
+      transform: 'react-icons/{{ matches.[1] }}/{{member}}'
+    }
+  },
   images: {
     domains: [
       'localhost',
