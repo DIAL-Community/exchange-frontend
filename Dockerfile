@@ -14,6 +14,7 @@ ENV NODE_ENV=production
 # ENV NODE_OPTIONS=--max-old-space-size=2048
 WORKDIR /app
 COPY --from=base /app/.yarn         ./.yarn
+COPY --from=base /app/.yarnrc.yml   ./.yarnrc.yml
 COPY --from=base /app/node_modules  ./node_modules
 COPY . .
 RUN yarn build
@@ -28,6 +29,7 @@ RUN adduser -S nextjs -u 1001
 # You only need to copy next.config.js if you are NOT using the default configuration
 COPY --from=build --chown=nextjs:nodejs /app/.next            ./.next
 COPY --from=build --chown=nextjs:nodejs /app/.yarn            ./.yarn
+COPY --from=build --chown=nextjs:nodejs /app/.yarnrc.yml      ./.yarnrc.yml
 COPY --from=build --chown=nextjs:nodejs /app/.env.production  ./.env.production
 COPY --from=build --chown=nextjs:nodejs /app/next.config.js   ./next.config.js
 COPY --from=build --chown=nextjs:nodejs /app/public           ./public
