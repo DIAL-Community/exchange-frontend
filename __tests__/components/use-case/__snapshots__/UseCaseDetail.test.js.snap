@@ -635,15 +635,6 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                           </p>
                         </div>
                         <div
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="ContentEditable__placeholder"
-                          >
-                            Description
-                          </div>
-                        </div>
-                        <div
                           draggable="true"
                         >
                           <div
@@ -684,7 +675,6 @@ exports[`Unit tests for the useCase detail page. Should render detail of a useCa
                       <button
                         aria-label="Clear editor contents"
                         class="action-button clear"
-                        disabled=""
                         title="Clear"
                         type="button"
                       >
