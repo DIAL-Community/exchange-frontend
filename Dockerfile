@@ -1,4 +1,4 @@
-FROM node:18.16-alpine AS base
+FROM node:22-alpine AS base
 RUN apk add --no-cache libc6-compat python3 git
 WORKDIR /app
 COPY package.json .yarnrc.yml yarn.lock ./
@@ -17,7 +17,7 @@ COPY . .
 RUN yarn build
 RUN yarn sitemap
 
-FROM node:18.16-alpine AS prod
+FROM node:22-alpine AS prod
 ENV NODE_ENV=production
 WORKDIR /app
 RUN addgroup -g 1001 -S nodejs
