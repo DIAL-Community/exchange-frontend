@@ -16,7 +16,20 @@ WORKDIR /app
 COPY --from=base /app/.yarn         ./.yarn
 COPY --from=base /app/.yarnrc.yml   ./.yarnrc.yml
 COPY --from=base /app/node_modules  ./node_modules
-COPY . .
+
+COPY components                     ./components
+COPY lib                            ./lib
+COPY pages                          ./pages
+COPY public                         ./public
+COPY styles                         ./styles
+COPY translations                   ./translations
+# Environment files
+COPY .env.production                ./.env.production
+COPY next-sitemap.config.js         ./next-sitemap.config.js
+COPY next.config.js                 ./next.config.js
+COPY postcss.config.js              ./postcss.config.js
+COPY tailwind.config.js             ./tailwind.config.js
+
 RUN yarn build
 RUN yarn sitemap
 
@@ -25,6 +38,8 @@ ENV NODE_ENV=production
 WORKDIR /app
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
+
+RUN corepack enable yarn
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 COPY --from=build --chown=nextjs:nodejs /app/.next            ./.next
@@ -35,6 +50,7 @@ COPY --from=build --chown=nextjs:nodejs /app/next.config.js   ./next.config.js
 COPY --from=build --chown=nextjs:nodejs /app/public           ./public
 COPY --from=build --chown=nextjs:nodejs /app/node_modules     ./node_modules
 COPY --from=build --chown=nextjs:nodejs /app/package.json     ./package.json
+COPY --from=base  --chown=nextjs:nodejs /app/yarn.lock        ./yarn.lock
 
 USER nextjs
 
