@@ -157,7 +157,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
               >
                 <span
                   class="css-1f43avz-a11yText-A11yText"
-                  id="react-select-:r0:-live-region"
+                  id="react-select-«r0»-live-region"
                 />
                 <span
                   aria-atomic="false"
@@ -174,7 +174,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                   >
                     <div
                       class="react-select__placeholder css-5rjclb-placeholder"
-                      id="react-select-:r0:-placeholder"
+                      id="react-select-«r0»-placeholder"
                     >
                       Select...
                     </div>
@@ -185,7 +185,7 @@ exports[`Unit tests for the dataset detail page. Should render detail of a datas
                       <input
                         aria-activedescendant=""
                         aria-autocomplete="list"
-                        aria-describedby="react-select-:r0:-placeholder"
+                        aria-describedby="react-select-«r0»-placeholder"
                         aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="Current active navigation"
@@ -1263,7 +1263,6 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                   name="name"
                   placeholder="Open Data Name"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -1282,7 +1281,6 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                     name="aliases.0.value"
                     placeholder="Open Data Other Name"
                     type="text"
-                    value=""
                   />
                   <span>
                     <button
@@ -1364,7 +1362,7 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-:r1:-live-region"
+                    id="react-select-«r1»-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1501,7 +1499,6 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                   name="geographicCoverage"
                   placeholder="Geographic Coverage"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -1519,7 +1516,6 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                   name="timeRange"
                   placeholder="Time Range"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -1537,7 +1533,6 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                   name="license"
                   placeholder="License"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -1555,7 +1550,6 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                   name="languages"
                   placeholder="Languages"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -1573,7 +1567,6 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
                   name="dataFormat"
                   placeholder="Data Format"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -1909,28 +1902,12 @@ exports[`Unit tests for the dataset detail page. Should render edit page for log
               >
                 <button
                   class="submit-button"
-                  disabled=""
                   type="submit"
                 >
                   Submit Dataset
-                  <svg
-                    class="spinner ml-3"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-                    />
-                  </svg>
                 </button>
                 <button
                   class="cancel-button"
-                  disabled=""
                   type="button"
                 >
                   Cancel

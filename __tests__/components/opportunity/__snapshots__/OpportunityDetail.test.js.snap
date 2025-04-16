@@ -217,7 +217,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
               >
                 <span
                   class="css-1f43avz-a11yText-A11yText"
-                  id="react-select-:r0:-live-region"
+                  id="react-select-«r0»-live-region"
                 />
                 <span
                   aria-atomic="false"
@@ -234,7 +234,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                   >
                     <div
                       class="react-select__placeholder css-5rjclb-placeholder"
-                      id="react-select-:r0:-placeholder"
+                      id="react-select-«r0»-placeholder"
                     >
                       Select...
                     </div>
@@ -245,7 +245,7 @@ exports[`Unit tests for the opportunity detail page. Should render detail of a o
                       <input
                         aria-activedescendant=""
                         aria-autocomplete="list"
-                        aria-describedby="react-select-:r0:-placeholder"
+                        aria-describedby="react-select-«r0»-placeholder"
                         aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="Current active navigation"
@@ -1272,7 +1272,6 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                   name="name"
                   placeholder="Name"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -1367,7 +1366,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-:r1:-live-region"
+                    id="react-select-«r1»-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1451,7 +1450,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-:r2:-live-region"
+                    id="react-select-«r2»-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1535,7 +1534,7 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-:r3:-live-region"
+                    id="react-select-«r3»-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1619,7 +1618,6 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                   name="openingDate"
                   placeholder="Opening Date"
                   type="date"
-                  value=""
                 />
               </div>
               <div
@@ -1636,7 +1634,6 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                   name="closingDate"
                   placeholder="Closing Date"
                   type="date"
-                  value=""
                 />
               </div>
               <div
@@ -1657,7 +1654,6 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                   name="contactName"
                   placeholder="Full Name"
                   type="text"
-                  value=""
                 />
                 <p
                   class="text-xs italic text-validation-error"
@@ -1680,7 +1676,6 @@ exports[`Unit tests for the opportunity detail page. Should render edit page for
                   name="contactEmail"
                   placeholder="Email Address"
                   type="text"
-                  value=""
                 />
                 <p
                   class="text-xs italic text-validation-error"

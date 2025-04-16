@@ -33,7 +33,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-:r0:-live-region"
+            id="react-select-«r0»-live-region"
           />
           <span
             aria-atomic="false"
@@ -50,7 +50,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
             >
               <div
                 class="react-select__placeholder css-5rjclb-placeholder"
-                id="react-select-:r0:-placeholder"
+                id="react-select-«r0»-placeholder"
               >
                 Filter by Resource Type
               </div>
@@ -61,7 +61,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
                 <input
                   aria-activedescendant=""
                   aria-autocomplete="list"
-                  aria-describedby="react-select-:r0:-placeholder"
+                  aria-describedby="react-select-«r0»-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   aria-label="Filter by Resource Type"
@@ -113,7 +113,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
           >
             <span
               class="css-1f43avz-a11yText-A11yText"
-              id="react-select-:r1:-live-region"
+              id="react-select-«r1»-live-region"
             />
             <span
               aria-atomic="false"
@@ -130,7 +130,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
               >
                 <div
                   class="react-select__placeholder css-5rjclb-placeholder"
-                  id="react-select-:r1:-placeholder"
+                  id="react-select-«r1»-placeholder"
                 >
                   Filter by Country
                 </div>
@@ -141,7 +141,7 @@ exports[`Unit tests for the opportunity detail page. Should render resource find
                   <input
                     aria-activedescendant=""
                     aria-autocomplete="list"
-                    aria-describedby="react-select-:r1:-placeholder"
+                    aria-describedby="react-select-«r1»-placeholder"
                     aria-expanded="false"
                     aria-haspopup="true"
                     aria-label="Filter by Country"

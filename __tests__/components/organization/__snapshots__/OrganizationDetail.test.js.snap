@@ -156,7 +156,6 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                   name="name"
                   placeholder="Name"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -175,7 +174,6 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                     name="aliases.0.value"
                     placeholder="Alias"
                     type="text"
-                    value=""
                   />
                   <span>
                     <button
@@ -299,7 +297,6 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                   name="whenEndorsed"
                   placeholder="Endorsed Date"
                   type="date"
-                  value=""
                 />
               </div>
               <div
@@ -315,7 +312,7 @@ exports[`Unit tests for the organization detail page. Should render detail of a 
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-:r0:-live-region"
+                    id="react-select-«r0»-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -974,7 +971,6 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                   name="name"
                   placeholder="Name"
                   type="text"
-                  value=""
                 />
               </div>
               <div
@@ -993,7 +989,6 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                     name="aliases.0.value"
                     placeholder="Alias"
                     type="text"
-                    value=""
                   />
                   <span>
                     <button
@@ -1117,7 +1112,6 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                   name="whenEndorsed"
                   placeholder="Endorsed Date"
                   type="date"
-                  value=""
                 />
               </div>
               <div
@@ -1133,7 +1127,7 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-:r1:-live-region"
+                    id="react-select-«r1»-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1556,28 +1550,12 @@ exports[`Unit tests for the organization detail page. Should render edit page fo
               >
                 <button
                   class="submit-button"
-                  disabled=""
                   type="submit"
                 >
                   Submit Organization
-                  <svg
-                    class="spinner ml-3"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-                    />
-                  </svg>
                 </button>
                 <button
                   class="cancel-button"
-                  disabled=""
                   type="button"
                 >
                   Cancel

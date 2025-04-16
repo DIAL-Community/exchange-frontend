@@ -205,7 +205,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
               >
                 <span
                   class="css-1f43avz-a11yText-A11yText"
-                  id="react-select-:r1:-live-region"
+                  id="react-select-«r1»-live-region"
                 />
                 <span
                   aria-atomic="false"
@@ -222,7 +222,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
                   >
                     <div
                       class="react-select__placeholder css-5rjclb-placeholder"
-                      id="react-select-:r1:-placeholder"
+                      id="react-select-«r1»-placeholder"
                     >
                       Select...
                     </div>
@@ -233,7 +233,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
                       <input
                         aria-activedescendant=""
                         aria-autocomplete="list"
-                        aria-describedby="react-select-:r1:-placeholder"
+                        aria-describedby="react-select-«r1»-placeholder"
                         aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="Current active navigation"
@@ -311,7 +311,6 @@ exports[`Unit tests for the product main page. Should render the product reposit
                   name="name"
                   placeholder="Repository Name"
                   type="text"
-                  value=""
                 />
               </div>
               <label
@@ -681,28 +680,12 @@ exports[`Unit tests for the product main page. Should render the product reposit
               >
                 <button
                   class="submit-button"
-                  disabled=""
                   type="submit"
                 >
                   Submit Product
-                  <svg
-                    class="spinner ml-3"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 512 512"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"
-                    />
-                  </svg>
                 </button>
                 <button
                   class="cancel-button"
-                  disabled=""
                   type="button"
                 >
                   Cancel
@@ -862,7 +845,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
               >
                 <span
                   class="css-1f43avz-a11yText-A11yText"
-                  id="react-select-:r0:-live-region"
+                  id="react-select-«r0»-live-region"
                 />
                 <span
                   aria-atomic="false"
@@ -879,7 +862,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
                   >
                     <div
                       class="react-select__placeholder css-5rjclb-placeholder"
-                      id="react-select-:r0:-placeholder"
+                      id="react-select-«r0»-placeholder"
                     >
                       Select...
                     </div>
@@ -890,7 +873,7 @@ exports[`Unit tests for the product main page. Should render the product reposit
                       <input
                         aria-activedescendant=""
                         aria-autocomplete="list"
-                        aria-describedby="react-select-:r0:-placeholder"
+                        aria-describedby="react-select-«r0»-placeholder"
                         aria-expanded="false"
                         aria-haspopup="true"
                         aria-label="Current active navigation"
