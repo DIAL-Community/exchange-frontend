@@ -1,10 +1,10 @@
-import React from 'react'
-import Header from './Header'
+import { Component } from 'react'
 import { InternalServerError } from './FetchStatus'
 import Footer from './Footer'
+import Header from './Header'
 
 // Based on https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
   constructor(props) {
     super(props)
 

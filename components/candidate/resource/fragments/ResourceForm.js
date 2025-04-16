@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef, useState } from 'react'
+import { memo, useCallback, useContext, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
@@ -22,7 +22,7 @@ import { RESOURCE_TYPE_SEARCH_QUERY } from '../../../shared/query/resource'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 import { fetchSelectOptions } from '../../../utils/search'
 
-const ResourceForm = React.memo(({ candidateResource, country }) => {
+const ResourceForm = memo(({ candidateResource, country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import { ApolloLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { MockLink, MockedProvider } from '@apollo/client/testing'

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -17,7 +17,7 @@ import {
 } from '../../shared/query/resourceTopic'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const ResourceTopicForm = React.memo(({ resourceTopic }) => {
+const ResourceTopicForm = memo(({ resourceTopic }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

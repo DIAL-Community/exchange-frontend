@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -20,7 +20,7 @@ import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
 import { PAGINATED_USE_CASES_QUERY, USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/useCase'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const UseCaseForm = React.memo(({ useCase }) => {
+const UseCaseForm = memo(({ useCase }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

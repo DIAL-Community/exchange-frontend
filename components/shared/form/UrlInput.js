@@ -1,4 +1,4 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import classNames from 'classnames'
 
 const URL_PREFIX = 'https://'
@@ -7,7 +7,7 @@ const URL_PROTOCOL_REGEX = /^https?:\/{2}/i
 const TELEPHONY_PREFIX = 'tel:'
 const TELEPHONY_REGEX = /^tel:\d{10}$/i
 
-export const UrlInput = React.forwardRef(
+export const UrlInput = forwardRef(
   ({ value, onChange, isInvalid = false, className, placeholder, isTelephony, ...otherProps }, ref) =>
     <div
       className={classNames(

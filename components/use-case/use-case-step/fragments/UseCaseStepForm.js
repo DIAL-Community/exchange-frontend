@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -10,7 +10,7 @@ import Input from '../../../shared/form/Input'
 import ValidationError from '../../../shared/form/ValidationError'
 import { CREATE_USE_CASE_STEP } from '../../../shared/mutation/useCaseStep'
 
-const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
+const UseCaseStepForm = memo(({ useCaseStep, useCase }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
