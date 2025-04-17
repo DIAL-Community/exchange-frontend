@@ -9,10 +9,9 @@ module.exports = withBundleAnalyzer(withRemoveImports({
     defaultLocale: 'en',
     localeDetection: false
   },
-  modularizeImports: {
-    'react-icons/?(((\\w*)?/?)*)': {
-      transform: 'react-icons/{{ matches.[1] }}/{{member}}'
-    }
+  devIndicators: false,
+  turbopack: {
+    resolveExtensions: ['.jsx', '.js']
   },
   images: {
     domains: [
