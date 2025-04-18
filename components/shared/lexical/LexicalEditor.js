@@ -38,7 +38,6 @@ import DragDropPaste from './plugins/DragDropPastePlugin/DragDropPastePlugin'
 import DraggableBlockPlugin from './plugins/DraggableBlockPlugin/DraggableBlockPlugin'
 import EmojiPickerPlugin from './plugins/EmojiPickerPlugin/EmojiPickerPlugin'
 import EmojisPlugin from './plugins/EmojisPlugin/EmojisPlugin'
-import EquationsPlugin from './plugins/EquationsPlugin/EquationsPlugin'
 import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin/FloatingLinkEditorPlugin'
 import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormatToolbarPlugin/FloatingTextFormatToolbarPlugin'
 import HtmlWatcherPlugin from './plugins/HtmlWatcherPlugin/HtmlWatcherPlugin'
@@ -186,7 +185,6 @@ export default function LexicalEditor({ labelledBy, describedBy, placeholder, in
         <YouTubePlugin />
         <ClickableLinkPlugin disabled={isEditable} />
         <HorizontalRulePlugin />
-        <EquationsPlugin />
         <TabFocusPlugin />
         <TabIndentationPlugin maxIndent={7} />
         <CollapsiblePlugin />

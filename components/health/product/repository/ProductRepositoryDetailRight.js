@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import EditButton from '../../../shared/form/EditButton'
 import { HtmlViewer } from '../../../shared/form/HtmlViewer'

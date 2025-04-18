@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { memo, useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -21,7 +21,7 @@ import { CREATE_OPPORTUNITY } from '../../shared/mutation/opportunity'
 import { OPPORTUNITY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_OPPORTUNITIES_QUERY } from '../../shared/query/opportunity'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const OpportunityForm = React.memo(({ opportunity }) => {
+const OpportunityForm = memo(({ opportunity }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

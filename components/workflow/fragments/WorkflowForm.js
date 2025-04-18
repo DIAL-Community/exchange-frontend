@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -14,7 +14,7 @@ import { CREATE_WORKFLOW } from '../../shared/mutation/workflow'
 import { PAGINATED_WORKFLOWS_QUERY, WORKFLOW_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/workflow'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const WorkflowForm = React.memo(({ workflow }) => {
+const WorkflowForm = memo(({ workflow }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

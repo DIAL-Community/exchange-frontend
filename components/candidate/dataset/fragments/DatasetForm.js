@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useRef, useState } from 'react'
+import { memo, useCallback, useContext, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
@@ -19,7 +19,7 @@ import {
 } from '../../../shared/query/candidateDataset'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
-const DatasetForm = React.memo(({ dataset }) => {
+const DatasetForm = memo(({ dataset }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

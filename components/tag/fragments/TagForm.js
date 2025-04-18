@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -13,7 +13,7 @@ import { CREATE_TAG } from '../../shared/mutation/tag'
 import { PAGINATED_TAGS_QUERY, TAG_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/tag'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const TagForm = React.memo(({ tag }) => {
+const TagForm = memo(({ tag }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

@@ -1,4 +1,4 @@
-import React, { useId } from 'react'
+import { forwardRef, useId } from 'react'
 import classNames from 'classnames'
 import dynamic from 'next/dynamic'
 import { HiOutlineSearch } from 'react-icons/hi'
@@ -9,7 +9,7 @@ import ReactSelect, { components } from 'react-select'
 
 const AsyncReactSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
-const Select = React.forwardRef((
+const Select = forwardRef((
   {
     name,
     value,

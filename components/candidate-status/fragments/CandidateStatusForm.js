@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
@@ -18,7 +18,7 @@ import {
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import { fetchSelectOptions } from '../../utils/search'
 
-const CandidateStatusForm = React.memo(({ candidateStatus }) => {
+const CandidateStatusForm = memo(({ candidateStatus }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

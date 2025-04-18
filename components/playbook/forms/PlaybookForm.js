@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import { memo, useCallback, useContext, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
@@ -52,7 +52,7 @@ const FormTextEditor = ({ control, name, placeholder = null, required = false, i
 }
 
 // eslint-disable-next-line react/display-name
-export const PlaybookForm = React.memo(({ playbook }) => {
+export const PlaybookForm = memo(({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
