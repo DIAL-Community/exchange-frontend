@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef, useState } from 'react'
+import { memo, useCallback, useContext, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
@@ -18,7 +18,7 @@ import {
 } from '../../../shared/query/candidateOrganization'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
-const OrganizationForm = React.memo(({ organization }) => {
+const OrganizationForm = memo(({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

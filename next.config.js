@@ -9,6 +9,10 @@ module.exports = withBundleAnalyzer(withRemoveImports({
     defaultLocale: 'en',
     localeDetection: false
   },
+  devIndicators: false,
+  turbopack: {
+    resolveExtensions: ['.jsx', '.js']
+  },
   images: {
     domains: [
       'localhost',

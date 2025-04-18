@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'

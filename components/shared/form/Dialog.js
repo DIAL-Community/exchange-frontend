@@ -1,8 +1,8 @@
-import { Fragment, useCallback, useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import { Dialog as DialogHeadlessui, Transition } from '@headlessui/react'
+import { Description, Dialog as DialogHeadlessui, Transition, TransitionChild } from '@headlessui/react'
 
 export const DialogType = {
   FORM: 'form',
@@ -26,12 +26,11 @@ const Dialog = ({
   const initialFocusRef = useRef(null)
 
   return (
-    <Transition appear show={isOpen} as={Fragment}>
+    <Transition appear show={isOpen}>
       <DialogHeadlessui initialFocus={initialFocusRef} as='div' className='fixed z-100' onClose={onClose} >
         <div className='fixed inset-0 bg-dial-gray opacity-80' />
         <div className='fixed inset-0 flex items-center justify-center'>
-          <Transition.Child
-            as={Fragment}
+          <TransitionChild
             enter='ease-out duration-300'
             enterFrom='opacity-0 scale-95'
             enterTo='opacity-100 scale-100'
@@ -44,7 +43,7 @@ const Dialog = ({
                 'max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8': dialogType === DialogType.FORM,
                 'w-4/5 sm:w-4/5 md:w-3/5 lg:w-2/5 xl:w-2/6 p-2 sm:p-4': dialogType === DialogType.DETAILS
               }, 'transform bg-white shadow-xl rounded-2xl flex flex-col')}>
-              <DialogHeadlessui.Description
+              <Description
                 as='div'
                 className={classNames({
                   'bg-edit': dialogType === DialogType.FORM,
@@ -91,9 +90,9 @@ const Dialog = ({
                     </button>
                   </div>
                 )}
-              </DialogHeadlessui.Description>
+              </Description>
             </DialogHeadlessui.Panel>
-          </Transition.Child>
+          </TransitionChild>
         </div>
       </DialogHeadlessui>
     </Transition>

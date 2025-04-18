@@ -1,6 +1,6 @@
-import { Octokit } from '@octokit/core'
+import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import { load } from 'js-yaml'
-import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react'
+import { Octokit } from '@octokit/core'
 import { DEFAULT_BRANCH_NAME, DEFAULT_METADATA_REPOSITORY, DEFAULT_REPO_OWNER } from './common'
 
 const MetadataContext = createContext()

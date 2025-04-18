@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -13,7 +13,7 @@ import { CREATE_COUNTRY } from '../../shared/mutation/country'
 import { COUNTRY_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_COUNTRIES_QUERY } from '../../shared/query/country'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const CountryForm = React.memo(({ country }) => {
+const CountryForm = memo(({ country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

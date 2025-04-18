@@ -18,7 +18,6 @@ import {
   $createTableCellNode, $createTableNode, $createTableRowNode, $isTableCellNode, $isTableNode, $isTableRowNode,
   TableCellHeaderStates, TableCellNode, TableNode, TableRowNode
 } from '@lexical/table'
-import { $createEquationNode, $isEquationNode, EquationNode } from '../../nodes/EquationNode'
 import { $createImageNode, $isImageNode, ImageNode } from '../../nodes/ImageNode'
 import emojiList from '../../utils/emoji-list'
 
@@ -79,26 +78,6 @@ export const EMOJI = {
     }
   },
   trigger: ':',
-  type: 'text-match'
-}
-
-export const EQUATION = {
-  dependencies: [EquationNode],
-  export: node => {
-    if (!$isEquationNode(node)) {
-      return null
-    }
-
-    return `$${node.getEquation()}$`
-  },
-  importRegExp: /\$([^$]+?)\$/,
-  regExp: /\$([^$]+?)\$$/,
-  replace: (textNode, match) => {
-    const [, equation] = match
-    const equationNode = $createEquationNode(equation, true)
-    textNode.replace(equationNode)
-  },
-  trigger: '$',
   type: 'text-match'
 }
 
@@ -270,7 +249,6 @@ export const PLAYGROUND_TRANSFORMERS = [
   HR,
   IMAGE,
   EMOJI,
-  EQUATION,
   CHECK_LIST,
   ...ELEMENT_TRANSFORMERS,
   ...MULTILINE_ELEMENT_TRANSFORMERS,

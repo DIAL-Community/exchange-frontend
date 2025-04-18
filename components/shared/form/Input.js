@@ -1,7 +1,7 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import classNames from 'classnames'
 
-export const Input = React.forwardRef(
+export const Input = forwardRef(
   (
     {
       type = 'text',

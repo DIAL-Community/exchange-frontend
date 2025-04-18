@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
@@ -12,7 +12,7 @@ import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_TENANT_SETTING } from '../../shared/mutation/tenantSetting'
 import { TENANT_SETTINGS_QUERY } from '../../shared/query/tenantSetting'
 
-const TenantSettingForm = React.memo(({ tenantSetting }) => {
+const TenantSettingForm = memo(({ tenantSetting }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

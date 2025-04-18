@@ -1,10 +1,4 @@
-import React from 'react'
-import {
-  Chart,
-  CategoryScale,
-  LinearScale,
-  BarElement
-} from 'chart.js'
+import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
 Chart.register(

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
@@ -10,7 +10,7 @@ import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_RUBRIC_CATEGORY } from '../../shared/mutation/rubricCategory'
 
-const RubricCategoryForm = React.memo(({ rubricCategory }) => {
+const RubricCategoryForm = memo(({ rubricCategory }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

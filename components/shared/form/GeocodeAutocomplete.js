@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import { forwardRef, useCallback, useMemo } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
@@ -8,7 +8,7 @@ import { useArcGisToken } from '../../../lib/hooks'
 import { COUNTRY_CODES_QUERY } from '../query/country'
 import Select from './Select'
 
-const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
+const GeocodeAutocomplete = forwardRef(({ value, onChange }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

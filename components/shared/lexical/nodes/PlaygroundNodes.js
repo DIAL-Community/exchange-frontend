@@ -20,7 +20,6 @@ import { CollapsibleContentNode } from '../plugins/CollapsiblePlugin/Collapsible
 import { CollapsibleTitleNode } from '../plugins/CollapsiblePlugin/CollapsibleTitleNode'
 import { AutocompleteNode } from './AutocompleteNode'
 import { EmojiNode } from './EmojiNode'
-import { EquationNode } from './EquationNode'
 import { ImageNode } from './ImageNode'
 import { InlineImageNode } from './InlineImageNode/InlineImageNode'
 import { KeywordNode } from './KeywordNode'
@@ -49,7 +48,6 @@ const PlaygroundNodes = [
   ImageNode,
   InlineImageNode,
   EmojiNode,
-  EquationNode,
   AutocompleteNode,
   KeywordNode,
   HorizontalRuleNode,
