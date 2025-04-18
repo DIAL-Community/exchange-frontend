@@ -1,11 +1,11 @@
-# DIAL Catalog of Digital Solutions
+# DIAL's Digital Impact Exchange
 
-The Catalog of Digital Solutions is an interactive online resource to support donors, 
+The Digital Impact Exchange is an interactive online resource to support donors,
 governments, and procurers in the development and implementation of digital strategies.​
-The catalog aggregates data from a variety of sources (including the Digital Public 
-Goods Alliance, WHO, Digital Square and the DIAL Open Source Center) and allows the 
+The Exchange aggregates data from a variety of sources (including the Digital Public
+Goods Alliance, WHO, Digital Square and the DIAL Open Source Center) and allows the
 user to identify and evaluate digital tools that may be applicable for their use cases
-or projects. 
+or projects.
 
 The catalog supports the [SDG Digital Investment Framework](https://digitalimpactalliance.org/research/sdg-digital-investment-framework/) developed by DIAL and ITU.
 
@@ -14,14 +14,14 @@ Note that this repository contains the code for the front-end for the Catalog. I
 Catalog back-end/API, which can be referenced at: https://gitlab.com/dial/digital-impact-exchange/exchange-backend/-/tree/development
 
 ## Documentation
-Complete documentation is available (including detailed installation and configuration instructions) at [DIAL Online Catalog Documentation](https://docs.dial.community/projects/product-registry/en/latest/)
+Complete documentation is available (including detailed installation and configuration instructions) at [Digital Impact Exchange Documentation](https://docs.dial.community/projects/product-registry/en/latest/)
 
 Please also reference the [Wiki page for the Catalog](https://digital-impact-exchange.atlassian.net/wiki/spaces/SOLUTIONS/overview?homepageId=33072), which contains information about upcoming feature development, releases, and additional documentation.
 
 ## Development environment setup
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 ### Prerequisites
-* `Node.js` (Version 16 or greater)
+* `Node.js` (Version 18 or greater)
 * `yarn`
 
 ### Application configuration for development 
@@ -43,7 +43,7 @@ The application will run on localhost port 3002 by default.
 For information on End to End Tests, refer to [README](cypress/README.md) in the `cypress` directory.
 
 ## Copyright Information
-Copyright © 2023 Digital Impact Alliance. This program is free software: you can 
+Copyright © 2025 Digital Impact Alliance. This program is free software: you can 
 redistribute it and/or modify it under the terms of the GNU Affero General 
 Public License as published by the Free Software Foundation, either version 3 
 of the License, or any later version.
