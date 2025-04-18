@@ -1,7 +1,7 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import classNames from 'classnames'
 
-const Checkbox = React.forwardRef(({ value, onChange, onBlur, className, ...otherProps }, ref) => (
+const Checkbox = forwardRef(({ value, onChange, onBlur, className, ...otherProps }, ref) => (
   <input
     {...otherProps}
     ref={ref}

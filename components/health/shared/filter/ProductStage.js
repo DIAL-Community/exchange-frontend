@@ -1,8 +1,8 @@
-import { useIntl } from 'react-intl'
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaXmark } from 'react-icons/fa6'
-import Select from '../form/Select'
+import { useIntl } from 'react-intl'
 import { ProductStageType } from '../../../utils/constants'
+import Select from '../form/Select'
 
 export const ProductStageAutocomplete = ({ productStage, setProductStage }) => {
 

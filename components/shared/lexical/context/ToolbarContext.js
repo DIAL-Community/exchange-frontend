@@ -6,7 +6,7 @@
  *
  */
 
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 export const MIN_ALLOWED_FONT_SIZE = 8
 export const MAX_ALLOWED_FONT_SIZE = 72

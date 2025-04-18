@@ -2,7 +2,11 @@
 
 exports[`Unit tests for the opportunity detail page. Should render detail of a country detail page. 1`] = `
 <div>
-  <div
+  <section
+    aria-atomic="false"
+    aria-label="Notifications Alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
     class="Toastify"
   />
   <div

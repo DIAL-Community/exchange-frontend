@@ -1,4 +1,3 @@
-import React from 'react'
 import LexicalApp from '../lexical/LexicalApp'
 
 export const HtmlViewer = ({ initialContent, handleHtmlChanged }) => {

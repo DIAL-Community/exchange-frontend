@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -15,7 +15,7 @@ import { CREATE_SITE_SETTING } from '../../shared/mutation/siteSetting'
 import { PAGINATED_SITE_SETTINGS_QUERY, SITE_SETTING_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/siteSetting'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const SiteSettingForm = React.memo(({ siteSetting }) => {
+const SiteSettingForm = memo(({ siteSetting }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

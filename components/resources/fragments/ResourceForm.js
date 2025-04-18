@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
@@ -329,7 +329,7 @@ const ResourceSourceStructure = ({ sourceStructure, setSourceStructure, mutating
   )
 }
 
-const ResourceForm = React.memo(({ resource, organization }) => {
+const ResourceForm = memo(({ resource, organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
