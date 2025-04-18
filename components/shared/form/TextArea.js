@@ -1,7 +1,7 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import classNames from 'classnames'
 
-export const TextArea = React.forwardRef(
+export const TextArea = forwardRef(
   (
     { value, placeholder, onChange, onBlur, isInvalid = false, className, ...otherProps },
     ref

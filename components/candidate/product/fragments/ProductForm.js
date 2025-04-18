@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaSpinner, FaXmark } from 'react-icons/fa6'
@@ -94,7 +94,7 @@ const MaintainerCompositeAttribute = ({ errors, control, register, extraAttribut
   )
 }
 
-const ProductForm = React.memo(({ product }) => {
+const ProductForm = memo(({ product }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

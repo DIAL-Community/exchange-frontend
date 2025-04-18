@@ -1,8 +1,8 @@
-import { Fragment, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import Select from 'react-select'
-import { Dialog, Transition } from '@headlessui/react'
+import { Description, Dialog, DialogTitle, Transition, TransitionChild } from '@headlessui/react'
 import Input from './form/Input'
 
 const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
@@ -55,15 +55,14 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
 
   return (
     <>
-      <Transition appear show={showForm} as={Fragment}>
+      <Transition appear show={showForm}>
         <Dialog
           as='div'
           className='fixed inset-0 z-100 overflow-y-auto'
           onClose={hideFeedbackForm}
         >
           <div className='min-h-screen px-4 text-center'>
-            <Transition.Child
-              as={Fragment}
+            <TransitionChild
               enter='ease-out duration-300'
               enterFrom='opacity-0'
               enterTo='opacity-100'
@@ -71,13 +70,12 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
               leaveFrom='opacity-100'
               leaveTo='opacity-0'
             >
-              <Dialog.Overlay className='fixed inset-0 bg-dial-gray opacity-80' />
-            </Transition.Child>
+              <div className='fixed inset-0 bg-dial-gray opacity-80' />
+            </TransitionChild>
             <span className='inline-block h-screen align-middle' aria-hidden='true'>
               &#8203;
             </span>
-            <Transition.Child
-              as={Fragment}
+            <TransitionChild
               enter='ease-out duration-300'
               enterFrom='opacity-0 scale-95'
               enterTo='opacity-100 scale-100'
@@ -93,14 +91,14 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
                 `}
               >
                 <form onSubmit={handleSubmit(submitMessage)}>
-                  <Dialog.Title>
+                  <DialogTitle>
                     <div className='flex gap-3 px-2'>
                       <div className='font-semibold text-2xl py-3'>
                         {formTitle}
                       </div>
                     </div>
-                  </Dialog.Title>
-                  <Dialog.Description>
+                  </DialogTitle>
+                  <Description>
                     <div
                       id='thankyou'
                       className={`${!thanks && 'hidden'} text-lg text-emerald-500 px-2`}
@@ -153,10 +151,10 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
                         </button>
                       </div>
                     </div>
-                  </Dialog.Description>
+                  </Description>
                 </form>
               </div>
-            </Transition.Child>
+            </TransitionChild>
           </div>
         </Dialog>
       </Transition>

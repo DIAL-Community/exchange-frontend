@@ -1,4 +1,4 @@
-image: node:lts-hydrogen
+image: node:22-alpine
 
 stages:
   - build

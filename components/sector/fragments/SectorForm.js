@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { memo, useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -15,7 +15,7 @@ import { CREATE_SECTOR } from '../../shared/mutation/sector'
 import { PAGINATED_SECTORS_QUERY, SECTOR_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/sector'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
-const SectorForm = React.memo(({ sector }) => {
+const SectorForm = memo(({ sector }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

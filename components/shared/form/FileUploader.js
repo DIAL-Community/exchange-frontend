@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import { ImFilePicture } from 'react-icons/im'
+import { forwardRef, useCallback } from 'react'
 import classNames from 'classnames'
+import { ImFilePicture } from 'react-icons/im'
+import { useIntl } from 'react-intl'
 
-const FileUploader = React.forwardRef(({ onChange, onBlur, isInvalid = false, className, ...otherProps }, ref) => {
+const FileUploader = forwardRef(({ onChange, onBlur, isInvalid = false, className, ...otherProps }, ref) => {
   // https://github.com/react-hook-form/react-hook-form/issues/3025
   const { fileTypes, fileTypesDisclaimer, ...otherPropsWithoutValue } = otherProps
 

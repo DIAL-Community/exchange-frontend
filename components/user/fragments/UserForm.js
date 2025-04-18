@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
@@ -17,7 +17,7 @@ import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../s
 import { CREATE_USER } from '../../shared/mutation/user'
 import { USER_FORM_SELECTION_QUERY } from '../../shared/query/user'
 
-const UserForm = React.memo(({ user }) => {
+const UserForm = memo(({ user }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

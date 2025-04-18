@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { memo, useCallback, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
@@ -18,7 +18,7 @@ import { CREATE_ORGANIZATION } from '../../../shared/mutation/organization'
 import { ORGANIZATION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_ORGANIZATIONS_QUERY } from '../../../shared/query/organization'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
 
-const OrganizationForm = React.memo(({ organization }) => {
+const OrganizationForm = memo(({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

@@ -1,13 +1,11 @@
 version: "3.7"
 
 services:
-  catalog-front:
-    build:
-      context: ./
-      target: prod
+  exchange-frontend:
     working_dir: /app
     user: nextjs
     stdin_open: true
+    restart: always
     ports:
-      - "3002:3002"
+      - 3002:3002
     command: yarn start

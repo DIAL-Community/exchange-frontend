@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
@@ -18,7 +18,7 @@ import { CREATE_PRODUCT } from '../../../shared/mutation/product'
 import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../../shared/query/product'
 import { DEFAULT_PAGE_SIZE, ProductExtraAttributeNames, ProductStageType } from '../../../utils/constants'
 
-const ProductForm = React.memo(({ product }) => {
+const ProductForm = memo(({ product }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 

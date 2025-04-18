@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import parse from 'html-react-parser'
 import { useIntl } from 'react-intl'
 import DeleteProduct from '../../../product/fragments/DeleteProduct'

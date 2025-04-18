@@ -46,6 +46,10 @@
 
 /* CommentsSection - wrapper */
 #comments-section {
+  .rdw-option-wrapper {
+    height: 30px !important;
+  }
+
   .commenttimestamp {
     @apply my-auto;
   }
