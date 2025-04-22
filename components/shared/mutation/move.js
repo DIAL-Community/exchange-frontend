@@ -70,3 +70,24 @@ export const UNASSIGN_PLAY_MOVE = gql`
     }
   }
 `
+
+export const UPDATE_MOVE_DESCRIPTION = gql`
+  mutation UpdateDescriptionEntity (
+    $slug: String!
+    $type: String!
+    $owner: String!
+    $parentSlug: String
+    $description: String!
+  ) {
+    updateDescriptionEntity (
+      slug: $slug
+      type: $type
+      owner: $owner
+      fieldName: "description"
+      parentSlug: $parentSlug
+      description: $description
+    ) {
+      errors
+    }
+  }
+`
