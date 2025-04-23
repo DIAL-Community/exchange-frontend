@@ -62,25 +62,20 @@ export const UPDATE_PLAY_MOVES = gql`
 `
 
 export const UPDATE_PLAY_DESCRIPTION = gql`
-  mutation UpdatePlayDescription (
+  mutation UpdateDescriptionEntity (
     $slug: String!
+    $type: String!
     $owner: String!
     $description: String!
   ) {
-    updatePlayDescription (
+    updateDescriptionEntity (
       slug: $slug
+      type: $type
       owner: $owner
+      fieldName: "description"
+      parentSlug: null
       description: $description
     ) {
-      play {
-        id
-        name
-        slug
-        playDescription {
-          id
-          description
-        }
-      }
       errors
     }
   }
