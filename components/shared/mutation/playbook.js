@@ -128,3 +128,24 @@ export const UPDATE_PLAYBOOK_PLAYS = gql`
     }
   }
 `
+
+export const UPDATE_PLAYBOOK_DESCRIPTION = gql`
+  mutation UpdateDescriptionEntity (
+    $slug: String!
+    $type: String!
+    $owner: String!
+    $fieldName: String!
+    $description: String!
+  ) {
+    updateDescriptionEntity (
+      slug: $slug
+      type: $type
+      owner: $owner
+      fieldName: $fieldName
+      parentSlug: null
+      description: $description
+    ) {
+      errors
+    }
+  }
+`

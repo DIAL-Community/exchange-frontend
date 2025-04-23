@@ -16,6 +16,7 @@ import CreateButton from '../../shared/form/CreateButton'
 import EditButton from '../../shared/form/EditButton'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import { handleLoadingQuery, handleMissingData, handleQueryError } from '../../shared/GraphQueryHandler'
+import { UPDATE_MOVE_DESCRIPTION } from '../../shared/mutation/move'
 import { UPDATE_PLAY_DESCRIPTION } from '../../shared/mutation/play'
 import { COMMENTS_COUNT_QUERY } from '../../shared/query/comment'
 import { MOVE_PREVIEW_QUERY, PLAY_QUERY } from '../../shared/query/play'
@@ -54,6 +55,27 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
       `/module/${moduleSlug}` +
       `/submodule/${subModuleSlug}` +
       '/edit'
+  }
+
+  const [ updateDescription ] = useMutation(UPDATE_MOVE_DESCRIPTION, {
+    refetchQueries: [
+      {
+        query: PLAY_QUERY,
+        variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: DPI_TENANT_NAME }
+      }
+    ]
+  })
+
+  const handleHtmlChanged = (html) => {
+    updateDescription({
+      variables: {
+        slug: subModuleSlug,
+        type: ObjectType.MOVE,
+        owner: DPI_TENANT_NAME,
+        parentSlug: moduleSlug,
+        description: html
+      }
+    })
   }
 
   return (
@@ -114,6 +136,7 @@ const CurriculumSubmodule = ({ subModuleName, subModuleSlug, moduleSlug, curricu
             <div>
               <HtmlViewer
                 initialContent={data.move?.moveDescription?.description}
+                handleHtmlChanged={handleHtmlChanged}
               />
               {data?.move?.resources && data?.move?.resources.length > 0 &&
                 <div className='text-sm'>
@@ -229,11 +252,20 @@ const CurriculumModule = ({ index, moduleSlug, curriculumSlug, locale, moduleRef
     }
   })
 
-  const [ updateDescription ] = useMutation(UPDATE_PLAY_DESCRIPTION)
+  const [ updateDescription ] = useMutation(UPDATE_PLAY_DESCRIPTION, {
+    refetchQueries: [
+      {
+        query: PLAY_QUERY,
+        variables: { playSlug: moduleSlug, playbookSlug: curriculumSlug, owner: DPI_TENANT_NAME }
+      }
+    ]
+  })
+
   const handleHtmlChanged = (html) => {
     updateDescription({
       variables: {
-        slug: module.slug,
+        slug: moduleSlug,
+        type: ObjectType.PLAY,
         owner: DPI_TENANT_NAME,
         description: html
       }

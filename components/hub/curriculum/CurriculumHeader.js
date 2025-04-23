@@ -1,7 +1,12 @@
 import { useCallback, useContext, useEffect, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useIntl } from 'react-intl'
+import { useMutation } from '@apollo/client'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import { UPDATE_PLAYBOOK_DESCRIPTION } from '../../shared/mutation/playbook'
+import { PLAYBOOK_DETAIL_QUERY } from '../../shared/query/playbook'
+import { ObjectType } from '../../utils/constants'
+import { DPI_TENANT_NAME } from '../constants'
 import { CurriculumContext, OVERVIEW_SLUG_VALUE } from './CurriculumContext'
 import CurriculumDetailMenu from './CurriculumDetailMenu'
 
@@ -23,6 +28,27 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
     }
   })
 
+  const [ updateDescription ] = useMutation(UPDATE_PLAYBOOK_DESCRIPTION, {
+    refetchQueries: [
+      {
+        query: PLAYBOOK_DETAIL_QUERY,
+        variables: { slug:curriculum.slug, owner: DPI_TENANT_NAME }
+      }
+    ]
+  })
+
+  const handleHtmlChanged = (html) => {
+    updateDescription({
+      variables: {
+        slug: curriculum.slug,
+        type: ObjectType.PLAYBOOK,
+        owner: DPI_TENANT_NAME,
+        fieldName: 'overview',
+        description: html
+      }
+    })
+  }
+
   const scrollRef = useRef(null)
   useEffect(() => {
     if (moduleRefs.current) {
@@ -41,6 +67,7 @@ const CurriculumHeader = ({ curriculum, moduleRefs }) => {
         </div>
         <HtmlViewer
           initialContent={curriculum?.playbookDescription?.overview}
+          handleHtmlChanged={handleHtmlChanged}
         />
         {curriculum.author &&
           <div>
