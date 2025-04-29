@@ -3128,5 +3128,16 @@ export const en = {
   'ui.section.save': 'Save Sections',
   'ui.section.save.success': 'Section configurations saved.',
   'ui.section.save.failure': 'Unable to save section configurations.',
+
+  'ui.extraAttributeDefinition.label': 'Extra Attribute Definition',
+  'ui.extraAttributeDefinition.header': 'Extra Attribute Definitions',
+  'ui.extraAttributeDefinition.createNew': 'Create New Extra Attribute Definitions',
+
+  'ui.extraAttributeDefinition.name.label': 'Attribute Name',
+  'ui.extraAttributeDefinition.title.label': 'Attribute Title',
+  'ui.extraAttributeDefinition.description.label': 'Description of the Attribute',
+
+  'ui.extraAttributeDefinition.attributeType.label': 'Attribute Type',
+
 }
 
