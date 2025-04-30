@@ -8,12 +8,12 @@ const ExtraAttributeDefinitionDetailHeader = ({ extraAttributeDefinition }) => {
   return (
     <div className='flex flex-col gap-y-4 py-3'>
       <div className='text-xl text-dial-plum font-semibold'>
-        {extraAttributeDefinition.name}
+        {extraAttributeDefinition.title}
       </div>
       <div className='flex justify-center items-center py-16 bg-white rounded border'>
         <div className='w-20 h-20 mx-auto'>
           <img
-            src='/ui/v1/user-header.svg'
+            src='/ui/v1/extra-attribute-definition-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.extraAttributeDefinition.label') })}
             className='object-contain w-16 h-16'
           />

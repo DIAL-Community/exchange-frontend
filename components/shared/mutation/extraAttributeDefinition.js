@@ -22,6 +22,7 @@ export const CREATE_EXTRA_ATTRIBUTE_DEFINITION = gql`
     $entityTypes: [String!]!
     $attributeType: String!
     $attributeRequired: Boolean!
+    $choices: [String!]
   ) {
     createExtraAttributeDefinition(
       slug: $slug
@@ -31,6 +32,7 @@ export const CREATE_EXTRA_ATTRIBUTE_DEFINITION = gql`
       entityTypes: $entityTypes
       attributeType: $attributeType
       attributeRequired: $attributeRequired
+      choices: $choices
     ) {
       extraAttributeDefinition {
         id

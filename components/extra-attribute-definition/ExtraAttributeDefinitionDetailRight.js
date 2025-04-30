@@ -45,10 +45,10 @@ const ExtraAttributeDefinitionDetailRight = forwardRef((
           {format('ui.common.detail.description')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {extraAttributeDefinition.title}
+          {extraAttributeDefinition.description}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {extraAttributeDefinition.description}
+          {extraAttributeDefinition.name} - {format(extraAttributeDefinition.attributeType)}
         </div>
         <hr className='border-b border-dial-blue-chalk my-3' />
         <div className='lg:hidden flex flex-col gap-y-3'>

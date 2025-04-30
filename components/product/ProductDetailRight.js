@@ -24,6 +24,7 @@ import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
 import ProductDetailResources from './fragments/ProductDetailResources'
 import ProductDetailSdgs from './fragments/ProductDetailSdgs'
 import ProductDetailTags from './fragments/ProductDetailTags'
+import ProductExtraAttributeDefinitions from './fragments/ProductExtraAttributeDefinitions'
 import ProductExtraAttributes from './fragments/ProductExtraAttributes'
 import ProductCard from './ProductCard'
 import ProductRepositoryCard from './repository/ProductRepositoryCard'
@@ -580,6 +581,17 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
         {shouldBeDisplayed('attributes') && (
           <div className='flex flex-col gap-y-3'>
             <ProductExtraAttributes
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={extraAttributesRef}
+            />
+            <hr className='border-b border-dial-blue-chalk my-3' />
+          </div>
+        )}
+        {shouldBeDisplayed('attributeDefinitions') && (
+          <div className='flex flex-col gap-y-3'>
+            <ProductExtraAttributeDefinitions
               product={product}
               editingSection={editingSection}
               editingAllowed={editingAllowed}

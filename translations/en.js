@@ -3136,8 +3136,14 @@ export const en = {
   'ui.extraAttributeDefinition.name.label': 'Attribute Name',
   'ui.extraAttributeDefinition.title.label': 'Attribute Title',
   'ui.extraAttributeDefinition.description.label': 'Description of the Attribute',
+  'ui.extraAttributeDefinition.attributeRequired.label': 'Attribute is required.',
+
+  'ui.extraAttributeDefinition.attributeChoices.label': 'Select Choices',
+  'ui.extraAttributeDefinition.attributeChoice.label': 'Choice',
 
   'ui.extraAttributeDefinition.attributeType.label': 'Attribute Type',
-
+  'ui.extraAttributeDefinition.attributeType.select': 'Select',
+  'ui.extraAttributeDefinition.attributeType.text': 'Text',
+  'ui.extraAttributeDefinition.attributeType.url': 'URL',
 }
 

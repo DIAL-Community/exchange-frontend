@@ -14,26 +14,21 @@ const ExtraAttributeDefinitionCard = ({ displayType, index, extraAttributeDefini
       <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         <div className='w-20 h-20 mx-auto'>
           <img
-            src='/ui/v1/user-header.svg'
+            src='/ui/v1/extra-attribute-definition-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.extraAttributeDefinition.label') })}
             className='object-contain w-16 h-16'
           />
         </div>
         <div className='flex flex-col gap-y-3 max-w-3xl lg:w-10/12'>
           <div className='text-lg font-semibold text-dial-plum'>
-            {extraAttributeDefinition.name}
+            {extraAttributeDefinition.title}
           </div>
           <div className='flex flex-col gap-y-1'>
             <div className='text-sm text-dial-stratos'>
-              {extraAttributeDefinition.attributeType ?? format('general.na')}
+              {extraAttributeDefinition.name} - {format(extraAttributeDefinition.attributeType)}
             </div>
             <div className='text-sm text-dial-stratos'>
-              {extraAttributeDefinition.title ?? format('general.na')}
-            </div>
-          </div>
-          <div className='flex gap-x-2 text-dial-stratos'>
-            <div className='text-sm'>
-              {format('ui.organization.header')} ({extraAttributeDefinition.organizations?.length ?? 0})
+              {extraAttributeDefinition.description}
             </div>
           </div>
         </div>
@@ -44,19 +39,19 @@ const ExtraAttributeDefinitionCard = ({ displayType, index, extraAttributeDefini
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-24'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
         <img
-          src='/ui/v1/user-header.svg'
+          src='/ui/v1/extra-attribute-definition-header.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.extraAttributeDefinition.header') })}
           className='object-contain w-10 h-10 my-auto'
         />
         <div className='flex flex-col gap-y-2 py-3 text-dial-stratos'>
           <div className='text-sm font-semibold text-dial-iris-blue'>
+            {extraAttributeDefinition.title}
+          </div>
+          <div className='text-xs line-clamp-1'>
             {extraAttributeDefinition.name}
           </div>
           <div className='text-xs line-clamp-1'>
             {extraAttributeDefinition.attributeType}
-          </div>
-          <div className='text-xs line-clamp-1'>
-            {extraAttributeDefinition.title}
           </div>
         </div>
       </div>

@@ -1,17 +1,18 @@
 import { memo, useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
-import { FaSpinner } from 'react-icons/fa6'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
+import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
+import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_EXTRA_ATTRIBUTE_DEFINITION } from '../../shared/mutation/extraAttributeDefinition'
 import {
-  EXTRA_ATTRIBUTE_DEFINITION_PAGINATION_ATTRIBUTES_QUERY,
-  PAGINATED_EXTRA_ATTRIBUTE_DEFINITIONS_QUERY
+  EXTRA_ATTRIBUTE_DEFINITION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_EXTRA_ATTRIBUTE_DEFINITIONS_QUERY
 } from '../../shared/query/extraAttributeDefinition'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 
@@ -70,7 +71,20 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
     }
   })
 
-  const { handleSubmit, register, formState: { errors } } = useForm({
+  const selectAttributeTypeValue = 'ui.extraAttributeDefinition.attributeType.select'
+
+  const attributeTypes = [{
+    label: format('ui.extraAttributeDefinition.attributeType.select'),
+    value: selectAttributeTypeValue
+  }, {
+    label: format('ui.extraAttributeDefinition.attributeType.text'),
+    value: 'ui.extraAttributeDefinition.attributeType.text'
+  }, {
+    label: format('ui.extraAttributeDefinition.attributeType.url'),
+    value: 'ui.extraAttributeDefinition.attributeType.url'
+  }]
+
+  const { control, handleSubmit, register, watch, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -78,15 +92,24 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
       name: extraAttributeDefinition?.name,
       title: extraAttributeDefinition?.title,
       description: extraAttributeDefinition?.description,
-      attributeType: extraAttributeDefinition?.attributeType
+      attributeType: attributeTypes.find(({ value }) => value === extraAttributeDefinition?.attributeType),
+      attributeRequired: extraAttributeDefinition?.attributeRequired,
+      attributeChoices: extraAttributeDefinition?.choices
     }
+  })
+
+  const attributeTypeWatcher = watch('attributeType')
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'attributeChoices'
   })
 
   const doUpsert = async (data) => {
     // Set the loading indicator.
     setMutating(true)
     // Pull all needed data from session and form.
-    const { name, title, description, attributeType } = data
+    const { name, title, description, attributeType, attributeRequired, attributeChoices } = data
     // Send graph query to the backend. Set the base variables needed to perform update.
     const variables = {
       name,
@@ -94,8 +117,9 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
       title,
       description,
       entityTypes: ['PRODUCT'],
-      attributeType,
-      attributeRequired: false
+      attributeType: attributeType?.value,
+      attributeRequired,
+      choices: attributeType?.value === selectAttributeTypeValue ? attributeChoices : []
     }
 
     updateExtraAttributeDefinition({
@@ -135,14 +159,23 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field' htmlFor='attributeType'>
+            <label className='text-dial-sapphire required-field' htmlFor='react-select-attributeType'>
               {format('ui.extraAttributeDefinition.attributeType.label')}
             </label>
-            <Input
-              {...register('attributeType', { required: format('validation.required') })}
-              id='attributeType'
-              placeholder={format('ui.extraAttributeDefinition.attributeType.label')}
-              isInvalid={errors.attributeType}
+            <Controller
+              name='attributeType'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  isSearch
+                  isBorderless
+                  options={attributeTypes}
+                  placeholder={format('ui.extraAttributeDefinition.attributeType.label')}
+                  isInvalid={errors.attributeType}
+                />
+              )}
+              rules={{ required: format('validation.required') }}
             />
             {errors.attributeType && <ValidationError value={errors.attributeType?.message} />}
           </div>
@@ -165,11 +198,62 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
             <Input
               {...register('description', { required: format('validation.required') })}
               id='description'
-              placeholder={format('ui.extraAttributeDefinition.type.label')}
+              placeholder={format('ui.extraAttributeDefinition.description.label')}
               isInvalid={errors.description}
             />
             {errors.description && <ValidationError value={errors.description?.message} />}
           </div>
+          <div className='flex text-dial-sapphire'>
+            <label className='flex gap-x-2 items-center self-start'>
+              <Checkbox {...register('attributeRequired')} />
+              {format('ui.extraAttributeDefinition.attributeRequired.label')}
+            </label>
+          </div>
+          {attributeTypeWatcher?.value === 'ui.extraAttributeDefinition.attributeType.select' && (
+            <div className='flex flex-col gap-y-3 text-dial-sapphire'>
+              <hr className='border-b border-dial-blue-chalk my-3' />
+              <div className='flex flex-row gap-x-2'>
+                <div className='text-sm'>
+                  {format('ui.extraAttributeDefinition.attributeChoices.label')}
+                </div>
+                <button
+                  type='button'
+                  className='bg-dial-iris-blue text-white px-3 py-3 rounded shadow-lg shadow-dial-iris-blue ml-auto'
+                  onClick={() => append(
+                    '',
+                    { focusIndex: fields.length }
+                  )}
+                >
+                  <FaPlus />
+                </button>
+              </div>
+              {fields.map((field, index) => (
+                <div key={field.id} className='flex flex-col gap-y-2'>
+                  <label className='required-field sr-only' htmlFor={`attribute-choices-${index}`}>
+                    {`${format('ui.extraAttributeDefinition.attributeChoice.label')} - ${index + 1}`}
+                  </label>
+                  <div className='flex flex-row gap-x-2'>
+                    <Input
+                      id={`attribute-choices-${index}`}
+                      {...register(`attributeChoices.${index}`, { required: format('validation.required') })}
+                      placeholder={`${format('ui.extraAttributeDefinition.attributeChoice.label')} - ${index + 1}`}
+                      isInvalid={errors.description}
+                    />
+                    {errors.attributeChoices?.[index]
+                      && <ValidationError value={errors.attributeChoices?.[index]?.message} />
+                    }
+                    <button
+                      type='button'
+                      className='bg-red-500 text-white px-3 rounded shadow-lg shadow-red-300'
+                      onClick={() => remove(index)}
+                    >
+                      <FaMinus />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
           <div className='flex flex-wrap text-base mt-6 gap-3'>
             <button type='submit' className='submit-button' disabled={mutating || reverting}>
               {`${format('app.submit')} ${format('ui.extraAttributeDefinition.label')}`}

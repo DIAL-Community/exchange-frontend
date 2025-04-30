@@ -36,6 +36,22 @@ export const EXTRA_ATTRIBUTE_DEFINITION_POLICY_QUERY = gql`
   }
 `
 
+export const EXTRA_ATTRIBUTE_DEFINITIONS_QUERY = gql`
+  query ExtraAttributeDefinitions {
+    extraAttributeDefinitions {
+      id
+      name
+      slug
+      title
+      description
+      attributeType
+      attributeRequired
+      choices
+      multipleChoice
+    }
+  }
+`
+
 export const EXTRA_ATTRIBUTE_DEFINITION_DETAIL_QUERY = gql`
   query ExtraAttributeDefinition($slug: String!) {
     extraAttributeDefinition(slug: $slug) {
@@ -45,6 +61,9 @@ export const EXTRA_ATTRIBUTE_DEFINITION_DETAIL_QUERY = gql`
       title
       description
       attributeType
+      attributeRequired
+      choices
+      multipleChoice
     }
   }
 `
