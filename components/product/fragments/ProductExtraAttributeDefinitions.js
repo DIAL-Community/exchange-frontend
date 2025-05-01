@@ -298,12 +298,12 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
 
   const sectionHeader =
     <div className='text-xl font-semibold text-dial-meadow' ref={headerRef}>
-      {format('ui.candidateProduct.extraAttributes')}
+      {format('ui.extraAttributeDefinition.extraAttributes.humanized')}
     </div>
 
   const sectionDisclaimer =
     <div className='text-xs text-justify italic text-dial-stratos mb-2'>
-      {format('ui.candidateProduct.extraAttributes.disclaimer')}
+      {format('ui.extraAttributeDefinition.extraAttributes.disclaimer')}
     </div>
 
   const buildEditBody = () => {

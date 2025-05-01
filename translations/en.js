@@ -3130,6 +3130,9 @@ export const en = {
   'ui.section.save.failure': 'Unable to save section configurations.',
 
   'ui.extraAttribute.header': 'Extra Attribute Configurations',
+  'ui.extraAttributeDefinition.extraAttributes.humanized': 'Extra Information',
+  'ui.extraAttributeDefinition.extraAttributes.disclaimer': 'Custom attributes added by product owner or site admin.',
+
 
   'ui.extraAttributeDefinition.label': 'Extra Attribute Definition',
   'ui.extraAttributeDefinition.header': 'Extra Attribute Definitions',
