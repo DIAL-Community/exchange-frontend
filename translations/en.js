@@ -3129,19 +3129,22 @@ export const en = {
   'ui.section.save.success': 'Section configurations saved.',
   'ui.section.save.failure': 'Unable to save section configurations.',
 
+  'ui.extraAttribute.header': 'Extra Attribute Configurations',
+
   'ui.extraAttributeDefinition.label': 'Extra Attribute Definition',
   'ui.extraAttributeDefinition.header': 'Extra Attribute Definitions',
   'ui.extraAttributeDefinition.createNew': 'Create New Extra Attribute Definitions',
 
-  'ui.extraAttributeDefinition.name.label': 'Attribute Name',
-  'ui.extraAttributeDefinition.title.label': 'Attribute Title',
-  'ui.extraAttributeDefinition.description.label': 'Description of the Attribute',
+  'ui.extraAttributeDefinition.name.label': `Attribute's Field Name`,
+  'ui.extraAttributeDefinition.title.label': `Attribute's Field Title`,
+  'ui.extraAttributeDefinition.description.label': 'Description of the attribute',
   'ui.extraAttributeDefinition.attributeRequired.label': 'Attribute is required.',
 
   'ui.extraAttributeDefinition.attributeChoices.label': 'Select Choices',
   'ui.extraAttributeDefinition.attributeChoice.label': 'Choice',
 
-  'ui.extraAttributeDefinition.attributeType.label': 'Attribute Type',
+  'ui.extraAttributeDefinition.attributeType.label': `Attribute's Field Type`,
+  'ui.extraAttributeDefinition.attributeType.composite': 'Composite',
   'ui.extraAttributeDefinition.attributeType.select': 'Select',
   'ui.extraAttributeDefinition.attributeType.text': 'Text',
   'ui.extraAttributeDefinition.attributeType.url': 'URL',

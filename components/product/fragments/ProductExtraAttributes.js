@@ -179,7 +179,7 @@ const ProductExtraAttributes = ({ product, editingAllowed, editingSection, heade
     }
   })
 
-  const resolveDefaultValueByFieldKey = (fieldKey) => {
+  const resolveValueByFieldKey = (fieldKey) => {
     let defaultValue
     if (product?.extraAttributes) {
       const extraAttribute = product.extraAttributes.find(attribute => attribute.name === fieldKey)
@@ -198,8 +198,8 @@ const ProductExtraAttributes = ({ product, editingAllowed, editingSection, heade
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
-    defaultValues: {
-      maintainers: resolveDefaultValueByFieldKey('maintainers') ?? []
+    values: {
+      maintainers: resolveValueByFieldKey('maintainers') ?? []
     }
   })
 
@@ -307,7 +307,7 @@ const ProductExtraAttributes = ({ product, editingAllowed, editingSection, heade
                             message: format('validation.required')
                           }
                         })}
-                        defaultValue={resolveDefaultValueByFieldKey(name)}
+                        value={resolveValueByFieldKey(name)}
                         placeholder={description}
                         isInvalid={errors[name]}
                       />
@@ -324,7 +324,7 @@ const ProductExtraAttributes = ({ product, editingAllowed, editingSection, heade
                         id={name}
                         name={name}
                         control={control}
-                        defaultValue={resolveDefaultValueByFieldKey(name) ?? ''}
+                        value={resolveValueByFieldKey(name) ?? ''}
                         render={({ field: { value, onChange } }) => (
                           <UrlInput
                             id={name}
@@ -353,7 +353,7 @@ const ProductExtraAttributes = ({ product, editingAllowed, editingSection, heade
                         id={name}
                         name={name}
                         control={control}
-                        defaultValue={resolveDefaultValueByFieldKey(name)}
+                        value={resolveValueByFieldKey(name)}
                         rules={{
                           required: {
                             value: required,

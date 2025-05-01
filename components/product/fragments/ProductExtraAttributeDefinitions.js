@@ -1,65 +1,71 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
-import { FaXmark } from 'react-icons/fa6'
+import { FaSpinner, FaXmark } from 'react-icons/fa6'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
-import EditableSection from '../../shared/EditableSection'
+import EditButton from '../../shared/form/EditButton'
 import Input from '../../shared/form/Input'
 import Select from '../../shared/form/Select'
 import UrlInput from '../../shared/form/UrlInput'
 import ValidationError from '../../shared/form/ValidationError'
 import HidableSection from '../../shared/HidableSection'
 import { UPDATE_CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES } from '../../shared/mutation/candidateProduct'
-import { EXTRA_ATTRIBUTE_DEFINITIONS_QUERY } from '../../shared/query/extraAttributeDefinition'
+import { PRODUCT_EXTRA_ATTRIBUTE_DEFINITIONS_QUERY } from '../../shared/query/extraAttributeDefinition'
 import { ObjectType, ProductExtraAttributeNames } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
+import {
+  compositeAttributeType,
+  selectAttributeType,
+  textAttributeType,
+  urlAttributeType
+} from '../../extra-attribute-definition/constants'
 
-const MaintainerCompositeAttribute = ({ errors, control, register, extraAttribute }) => {
+const CompositeAttribute = ({ errors, control, register, extraAttribute }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { title, required, attributes } = extraAttribute
+  const { name: attributeName, title, attributeRequired, compositeAttributes } = extraAttribute
   const { fields, append, remove } = useFieldArray({
     control,
     // TODO: Doesn't support dynamic name. https://www.react-hook-form.com/api/usefieldarray/
     // If we need more composite type, we need to copy and paste this section of the code.
-    name: 'maintainers',
+    name: attributeName,
     rules: {
-      required: required ? format('validation.required') : false
+      required: attributeRequired ? format('validation.required') : false
     }
   })
 
   return (
-    <div className='flex flex-col gap-y-6' key={name}>
+    <div className='flex flex-col gap-y-6' key={attributeName}>
       <div className='text-sm font-medium'>
         {title}
       </div>
       {fields.map((item, index) => (
         <div className='flex flex-col gap-y-6 relative' key={item.id}>
-          {attributes.map(({ name, title, required, description }) => (
+          {compositeAttributes.map(({ name, title, attributeRequired: required, description }) => (
             <div className='flex flex-col gap-y-2' key={`${index}-${name}`}>
               <label
                 className={required ? 'required-field' : ''}
-                htmlFor={`maintainers.${index}.${name}`}
+                htmlFor={`${attributeName}.${index}.${name}`}
               >
                 {title}
               </label>
               <Input
-                id={`maintainers.${index}.${name}`}
-                {...register(`maintainers.${index}.${name}`, {
+                id={`${attributeName}.${index}.${name}`}
+                {...register(`${attributeName}.${index}.${name}`, {
                   required: {
                     value: required,
                     message: format('validation.required')
                   }
                 })}
                 placeholder={description}
-                isInvalid={errors[`maintainers.${index}.${name}`]}
+                isInvalid={errors[attributeName]?.[index]?.[name]}
               />
-              {errors?.maintainers?.[index][name] &&
-                <ValidationError value={errors?.maintainers?.[index][name]?.message} />
+              {errors[attributeName]?.[index]?.[name] &&
+                <ValidationError value={errors[attributeName]?.[index]?.[name]?.message} />
               }
             </div>
           ))}
@@ -79,13 +85,13 @@ const MaintainerCompositeAttribute = ({ errors, control, register, extraAttribut
         <button
           type="button"
           className='bg-dial-meadow text-white px-4 py-2 rounded-md ml-auto'
-          onClick={() => append({ maintainerName: '', maintainerEmail: '' })}
+          onClick={() => append({})}
         >
           Append
         </button>
       </div>
-      {errors.maintainers?.root &&
-        <ValidationError value={errors.maintainers?.root?.message} />
+      {errors[attributeName]?.root &&
+        <ValidationError value={errors[attributeName].root?.message} />
       }
     </div>
   )
@@ -102,7 +108,7 @@ const renderExtraAttributes = (extraAttribute) => {
   }
 
   switch (type) {
-    case 'ui.extraAttributeDefinition.attributeType.url':
+    case urlAttributeType:
       return (
         <div className='flex text-sm'>
           <a
@@ -115,7 +121,7 @@ const renderExtraAttributes = (extraAttribute) => {
           </a>
         </div>
       )
-    case 'composite':
+    case compositeAttributeType:
       return (
         <div className='text-sm flex flex-col gap-y-3'>
           {extraAttribute.value.map((attributeValue, i) => (
@@ -129,13 +135,13 @@ const renderExtraAttributes = (extraAttribute) => {
           ))}
         </div>
       )
-    case 'ui.extraAttributeDefinition.attributeType.text':
+    case textAttributeType:
       return (
         <div className='text-sm'>
           {extraAttribute.value}
         </div>
       )
-    case 'ui.extraAttributeDefinition.attributeType.select':
+    case selectAttributeType:
       return (
         <div className='text-sm'>
           {Array.isArray(extraAttribute.value)
@@ -153,9 +159,12 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const [isInEditMode, setIsInEditMode] = useState(false)
+  const [isSubmitInProgress, setIsSubmitInProgress] = useState(false)
+
   const { locale } = useRouter()
   const { showSuccessMessage, showFailureMessage } = useContext(ToastContext)
-  const { data } = useQuery(EXTRA_ATTRIBUTE_DEFINITIONS_QUERY, {
+  const { data } = useQuery(PRODUCT_EXTRA_ATTRIBUTE_DEFINITIONS_QUERY, {
     context: {
       headers: {
         ...(product ? GRAPH_QUERY_CONTEXT.EDITING : GRAPH_QUERY_CONTEXT.CREATING)
@@ -163,23 +172,27 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
     }
   })
 
-  const [updateExtraAttributes, { loading, reset }] = useMutation(UPDATE_CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES, {
+  const [updateExtraAttributes, { reset }] = useMutation(UPDATE_CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES, {
     onError() {
       showFailureMessage(format('toast.submit.failure', { entity: format('ui.resource.header') }))
+      setIsSubmitInProgress(false)
       reset()
     },
     onCompleted: (data) => {
       const { updateCandidateProductExtraAttributes: response } = data
       if (response?.product && response?.errors?.length === 0) {
         showSuccessMessage(format('toast.submit.success', { entity: format('ui.resource.header') }))
+        setIsSubmitInProgress(false)
+        setIsInEditMode(false)
       } else {
         showFailureMessage(format('toast.submit.failure', { entity: format('ui.resource.header') }))
+        setIsSubmitInProgress(false)
         reset()
       }
     }
   })
 
-  const resolveDefaultValueByFieldKey = (fieldKey) => {
+  const resolveValueByFieldKey = (fieldKey) => {
     let defaultValue
     if (product?.extraAttributes) {
       const extraAttribute = product.extraAttributes.find(attribute => attribute.name === fieldKey)
@@ -189,24 +202,40 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
     return defaultValue
   }
 
+  const buildCompositeValues = (product) => {
+    const defaultValues = {}
+    if (product?.extraAttributes) {
+      product?.extraAttributes
+        .filter(a => a.type === compositeAttributeType)
+        .reduce(
+          (defaultValues, attribute) => {
+            defaultValues[attribute.name] = attribute.value
+
+            return defaultValues
+          },
+          defaultValues
+        )
+    }
+
+    return defaultValues
+  }
+
   const {
+    control,
     handleSubmit,
     register,
-    control,
     formState: { isDirty, errors }
   } = useForm({
     mode: 'onSubmit',
-    reValidateMode: 'onChange',
+    reValidateMode: 'onSubmit',
     shouldUnregister: true,
-    defaultValues: {
-      maintainers: resolveDefaultValueByFieldKey('maintainers') ?? []
-    }
+    values: buildCompositeValues(product)
   })
 
   const buildExtraAttributes = (otherFormValues) => {
     const extraAttributes = []
-    if (data.extraAttributeDefinitions) {
-      const attributeDefinitions = data.extraAttributeDefinitions
+    if (data.productExtraAttributeDefinitions) {
+      const attributeDefinitions = data.productExtraAttributeDefinitions
 
       return attributeDefinitions.map(attributeDefinition => {
         const extraAttribute = {}
@@ -225,6 +254,7 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
   }
 
   const doUpsert = async (data) => {
+    setIsSubmitInProgress(true)
     const { ...otherValues } = data
     updateExtraAttributes({
       variables: {
@@ -280,12 +310,12 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
       <form onSubmit={handleSubmit(doUpsert)}>
         <div className='px-4 py-4 lg:py-6 text-dial-meadow'>
           <div className='flex flex-col gap-y-6 text-sm'>
-            {data?.extraAttributeDefinitions.map((extraAttribute) => {
+            {data?.productExtraAttributeDefinitions.map((extraAttribute) => {
               const { name, title, description, attributeType, attributeRequired, multipleChoice, choices } = extraAttribute
               switch (attributeType) {
-                case 'composite':
+                case compositeAttributeType:
                   return (
-                    <MaintainerCompositeAttribute
+                    <CompositeAttribute
                       key={name}
                       errors={errors}
                       control={control}
@@ -293,7 +323,7 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
                       extraAttribute={extraAttribute}
                     />
                   )
-                case 'ui.extraAttributeDefinition.attributeType.text':
+                case textAttributeType:
                   return (
                     <div className='flex flex-col gap-y-2' key={name}>
                       <label className={attributeRequired ? 'required-field' : ''} htmlFor={name}>
@@ -307,14 +337,14 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
                             message: format('validation.required')
                           }
                         })}
-                        defaultValue={resolveDefaultValueByFieldKey(name)}
+                        value={resolveValueByFieldKey(name)}
                         placeholder={description}
                         isInvalid={errors[name]}
                       />
                       {errors[name] && <ValidationError value={errors[name]?.message} />}
                     </div>
                   )
-                case 'ui.extraAttributeDefinition.attributeType.url':
+                case urlAttributeType:
                   return (
                     <div className='flex flex-col gap-y-2' key={name}>
                       <label className={attributeRequired ? 'required-field' : ''} htmlFor={name}>
@@ -324,7 +354,7 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
                         id={name}
                         name={name}
                         control={control}
-                        defaultValue={resolveDefaultValueByFieldKey(name) ?? ''}
+                        defaultValue={resolveValueByFieldKey(name) ?? ''}
                         render={({ field: { value, onChange } }) => (
                           <UrlInput
                             id={name}
@@ -343,7 +373,7 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
                       {errors[name] && <ValidationError value={errors[name]?.message} />}
                     </div>
                   )
-                case 'ui.extraAttributeDefinition.attributeType.select':
+                case selectAttributeType:
                   return (
                     <div className='flex flex-col gap-y-2' key={name}>
                       <label className={attributeRequired ? 'required-field' : ''} htmlFor={name}>
@@ -353,7 +383,7 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
                         id={name}
                         name={name}
                         control={control}
-                        defaultValue={resolveDefaultValueByFieldKey(name)}
+                        defaultValue={resolveValueByFieldKey(name)}
                         rules={{
                           required: {
                             value: attributeRequired,
@@ -397,18 +427,50 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
   )
 
   return (
-    <EditableSection
-      editingAllowed={editingAllowed}
-      hidableSection={hidableSection}
-      sectionHeader={sectionHeader}
-      sectionDisclaimer={sectionDisclaimer}
-      onSubmit={onSubmit}
-      onCancel={onCancel}
-      isDirty={isDirty}
-      isMutating={loading}
-      displayModeBody={buildDisplayBody()}
-      editModeBody={buildEditBody()}
-    />
+    <div className='flex flex-col gap-y-3'>
+      <div className='flex flex-row gap-3'>
+        {sectionHeader}
+        <div className='flex gap-3 ml-auto'>
+          {hidableSection}
+          {editingAllowed && !isInEditMode &&
+            <EditButton onClick={() => setIsInEditMode(true)} />
+          }
+        </div>
+      </div>
+      {sectionDisclaimer}
+      {isInEditMode
+        ? (
+          <div className='bg-edit text-sm'>
+            {buildEditBody()}
+            <div className='px-4 lg:px-6 py-4 flex justify-end gap-3'>
+              <button
+                type='submit'
+                onClick={() => {
+                  onSubmit()
+                }}
+                className='submit-button'
+                disabled={!isDirty || isSubmitInProgress}
+              >
+                {format(`${isSubmitInProgress ? 'app.submitting' : 'app.submit'}`)}
+                {isSubmitInProgress && <FaSpinner className='spinner ml-3 inline' />}
+              </button>
+              <button
+                type='button'
+                onClick={() => {
+                  onCancel()
+                  setIsInEditMode(false)
+                }}
+                className='cancel-button'
+                disabled={isSubmitInProgress}
+              >
+                {format('app.cancel')}
+              </button>
+            </div>
+          </div>
+        )
+        : buildDisplayBody()
+      }
+    </div>
   )
 }
 

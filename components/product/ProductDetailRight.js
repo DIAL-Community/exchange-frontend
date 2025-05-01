@@ -25,7 +25,6 @@ import ProductDetailResources from './fragments/ProductDetailResources'
 import ProductDetailSdgs from './fragments/ProductDetailSdgs'
 import ProductDetailTags from './fragments/ProductDetailTags'
 import ProductExtraAttributeDefinitions from './fragments/ProductExtraAttributeDefinitions'
-import ProductExtraAttributes from './fragments/ProductExtraAttributes'
 import ProductCard from './ProductCard'
 import ProductRepositoryCard from './repository/ProductRepositoryCard'
 
@@ -355,49 +354,14 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
             <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
         )}
-        {shouldBeDisplayed('pricing') && (
+        {shouldBeDisplayed('attributes') && (
           <div className='flex flex-col gap-y-3'>
-            <div className='flex items-center pb-3'>
-              <div className='text-xl font-semibold text-dial-meadow' ref={pricingRef}>
-                {format('ui.product.pricing.title')}
-              </div>
-              <HidableSection
-                objectKey='pricing'
-                objectType={ObjectType.PRODUCT}
-                disabled={!editingSection}
-                displayed={editingAllowed}
-              />
-            </div>
-            <div className='text-xs text-justify italic text-dial-stratos mb-2'>
-              {format('ui.product.overview.pricing')}
-            </div>
-            <div className='text-sm flex flex-row gap-2'>
-              {format('ui.product.pricing.hostingModel')}:
-              <div className='font-semibold inline'>
-                {product.hostingModel || format('general.na')}
-              </div>
-            </div>
-            <div className='text-sm flex flex-row gap-2'>
-              {format('ui.product.pricing.pricingModel')}:
-              <div className='font-semibold inline'>
-                {product.pricingModel || format('general.na')}
-              </div>
-            </div>
-            <div className='text-sm flex flex-row gap-2'>
-              {format('ui.product.pricing.detailPricing')}:
-            </div>
-            <div className='inline'>
-              {product.pricingDetails
-                ? <HtmlViewer
-                  className='-mb-12'
-                  initialContent={product?.pricingDetails}
-                  editorId='pricing-details'
-                />
-                : <div className='font-semibold inline'>
-                  {format('general.na')}
-                </div>
-              }
-            </div>
+            <ProductExtraAttributeDefinitions
+              product={product}
+              editingSection={editingSection}
+              editingAllowed={editingAllowed}
+              headerRef={extraAttributesRef}
+            />
             <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
         )}
@@ -578,25 +542,49 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, deletingAllowe
             </div>
           </div>
         )}
-        {shouldBeDisplayed('attributes') && (
+        {shouldBeDisplayed('pricing') && (
           <div className='flex flex-col gap-y-3'>
-            <ProductExtraAttributes
-              product={product}
-              editingSection={editingSection}
-              editingAllowed={editingAllowed}
-              headerRef={extraAttributesRef}
-            />
-            <hr className='border-b border-dial-blue-chalk my-3' />
-          </div>
-        )}
-        {shouldBeDisplayed('attributeDefinitions') && (
-          <div className='flex flex-col gap-y-3'>
-            <ProductExtraAttributeDefinitions
-              product={product}
-              editingSection={editingSection}
-              editingAllowed={editingAllowed}
-              headerRef={extraAttributesRef}
-            />
+            <div className='flex items-center pb-3'>
+              <div className='text-xl font-semibold text-dial-meadow' ref={pricingRef}>
+                {format('ui.product.pricing.title')}
+              </div>
+              <HidableSection
+                objectKey='pricing'
+                objectType={ObjectType.PRODUCT}
+                disabled={!editingSection}
+                displayed={editingAllowed}
+              />
+            </div>
+            <div className='text-xs text-justify italic text-dial-stratos mb-2'>
+              {format('ui.product.overview.pricing')}
+            </div>
+            <div className='text-sm flex flex-row gap-2'>
+              {format('ui.product.pricing.hostingModel')}:
+              <div className='font-semibold inline'>
+                {product.hostingModel || format('general.na')}
+              </div>
+            </div>
+            <div className='text-sm flex flex-row gap-2'>
+              {format('ui.product.pricing.pricingModel')}:
+              <div className='font-semibold inline'>
+                {product.pricingModel || format('general.na')}
+              </div>
+            </div>
+            <div className='text-sm flex flex-row gap-2'>
+              {format('ui.product.pricing.detailPricing')}:
+            </div>
+            <div className='inline'>
+              {product.pricingDetails
+                ? <HtmlViewer
+                  className='-mb-12'
+                  initialContent={product?.pricingDetails}
+                  editorId='pricing-details'
+                />
+                : <div className='font-semibold inline'>
+                  {format('general.na')}
+                </div>
+              }
+            </div>
             <hr className='border-b border-dial-blue-chalk my-3' />
           </div>
         )}

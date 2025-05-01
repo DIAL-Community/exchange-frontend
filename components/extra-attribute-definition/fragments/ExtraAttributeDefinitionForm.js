@@ -3,22 +3,28 @@ import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa6'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
+import { useApolloClient, useMutation } from '@apollo/client'
 import { GRAPH_QUERY_CONTEXT } from '../../../lib/apolloClient'
 import { ToastContext } from '../../../lib/ToastContext'
 import Checkbox from '../../shared/form/Checkbox'
 import Input from '../../shared/form/Input'
+import Pill from '../../shared/form/Pill'
 import Select from '../../shared/form/Select'
 import ValidationError from '../../shared/form/ValidationError'
 import { CREATE_EXTRA_ATTRIBUTE_DEFINITION } from '../../shared/mutation/extraAttributeDefinition'
 import {
-  EXTRA_ATTRIBUTE_DEFINITION_PAGINATION_ATTRIBUTES_QUERY, PAGINATED_EXTRA_ATTRIBUTE_DEFINITIONS_QUERY
+  EXTRA_ATTRIBUTE_DEFINITION_PAGINATION_ATTRIBUTES_QUERY, EXTRA_ATTRIBUTE_DEFINITIONS_QUERY,
+  PAGINATED_EXTRA_ATTRIBUTE_DEFINITIONS_QUERY
 } from '../../shared/query/extraAttributeDefinition'
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { fetchSelectOptions } from '../../utils/search'
+import { compositeAttributeType, selectAttributeType, textAttributeType, urlAttributeType } from '../constants'
 
 const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const client = useApolloClient()
 
   const slug = extraAttributeDefinition?.slug ?? ''
 
@@ -71,17 +77,48 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
     }
   })
 
-  const selectAttributeTypeValue = 'ui.extraAttributeDefinition.attributeType.select'
+  const [attributes, setAttributes] = useState(extraAttributeDefinition?.compositeAttributes ?? [])
+
+  const receivedAttributesCallback = (data) => (
+    data.extraAttributeDefinitions?.map((attribute) => (
+      {
+        id: attribute.id,
+        slug: attribute.slug,
+        name: attribute.name,
+        title: attribute.title,
+        label: attribute.title
+      }
+    ))
+  )
+
+  const addAttribute = (attribute) => {
+    setAttributes([
+      ...attributes.filter(({ id }) => id !== attribute.id),
+      {
+        id: attribute.id,
+        slug: attribute.slug,
+        name: attribute.name,
+        title: attribute.title
+      }
+    ])
+  }
+
+  const removeAttribute = (attribute) => {
+    setAttributes([...attributes.filter(({ id }) => id !== attribute.id)])
+  }
 
   const attributeTypes = [{
-    label: format('ui.extraAttributeDefinition.attributeType.select'),
-    value: selectAttributeTypeValue
+    label: format(compositeAttributeType),
+    value: compositeAttributeType
   }, {
-    label: format('ui.extraAttributeDefinition.attributeType.text'),
-    value: 'ui.extraAttributeDefinition.attributeType.text'
+    label: format(selectAttributeType),
+    value: selectAttributeType
   }, {
-    label: format('ui.extraAttributeDefinition.attributeType.url'),
-    value: 'ui.extraAttributeDefinition.attributeType.url'
+    label: format(textAttributeType),
+    value: textAttributeType
+  }, {
+    label: format(urlAttributeType),
+    value: urlAttributeType
   }]
 
   const { control, handleSubmit, register, watch, formState: { errors } } = useForm({
@@ -119,7 +156,9 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
       entityTypes: ['PRODUCT'],
       attributeType: attributeType?.value,
       attributeRequired,
-      choices: attributeType?.value === selectAttributeTypeValue ? attributeChoices : []
+      choices: attributeType?.value === selectAttributeType ? attributeChoices : [],
+      multipleChoice: false,
+      childExtraAttributeNames: attributeType?.value === compositeAttributeType ? attributes.map(({ name }) => name) : []
     }
 
     updateExtraAttributeDefinition({
@@ -144,7 +183,7 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
           <div className='text-xl font-semibold'>
             {extraAttributeDefinition
               ? format('app.editEntity', { entity: extraAttributeDefinition.name })
-              : `${format('app.createNew')} ${format('extraAttributeDefinition.label')}`}
+              : `${format('app.createNew')} ${format('ui.extraAttributeDefinition.label')}`}
           </div>
           <div className='flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field' htmlFor='name'>
@@ -168,7 +207,6 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
               render={({ field }) => (
                 <Select
                   {...field}
-                  isSearch
                   isBorderless
                   options={attributeTypes}
                   placeholder={format('ui.extraAttributeDefinition.attributeType.label')}
@@ -209,7 +247,7 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
               {format('ui.extraAttributeDefinition.attributeRequired.label')}
             </label>
           </div>
-          {attributeTypeWatcher?.value === 'ui.extraAttributeDefinition.attributeType.select' && (
+          {attributeTypeWatcher?.value === selectAttributeType && (
             <div className='flex flex-col gap-y-3 text-dial-sapphire'>
               <hr className='border-b border-dial-blue-chalk my-3' />
               <div className='flex flex-row gap-x-2'>
@@ -252,6 +290,40 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+          {attributeTypeWatcher?.value === compositeAttributeType && (
+            <div className='flex flex-col gap-y-2'>
+              <label className='text-dial-sapphire' htmlFor='react-select-attributes'>
+                {format('ui.extraAttributeDefinition.header')}
+              </label>
+              <Controller
+                name='attributes'
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    async
+                    isSearch
+                    isBorderless
+                    loadOptions={(input) =>
+                      fetchSelectOptions(client, input, EXTRA_ATTRIBUTE_DEFINITIONS_QUERY, receivedAttributesCallback)
+                    }
+                    placeholder={format('ui.extraAttributeDefinition.label')}
+                    onChange={addAttribute}
+                    value={null}
+                  />
+                )}
+              />
+              <div className='flex flex-wrap gap-3'>
+                {attributes.map((attribute, attributeIdx) => (
+                  <Pill
+                    key={`attributes-${attributeIdx}`}
+                    label={attribute.title}
+                    onRemove={() => removeAttribute(attribute)}
+                  />
+                ))}
+              </div>
             </div>
           )}
           <div className='flex flex-wrap text-base mt-6 gap-3'>
