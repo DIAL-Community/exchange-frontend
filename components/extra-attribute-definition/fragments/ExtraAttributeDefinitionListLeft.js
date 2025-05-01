@@ -11,7 +11,7 @@ const ExtraAttributeDefinitionListLeft = () => {
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = '/extraAttributeDefinitions'
+    const basePath = '/extra-attribute-definitions'
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter].filter(f => f).join('&')

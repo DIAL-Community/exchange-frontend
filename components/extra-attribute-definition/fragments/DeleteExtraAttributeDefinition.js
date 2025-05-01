@@ -49,7 +49,7 @@ const DeleteExtraAttributeDefinition = ({ extraAttributeDefinition }) => {
         setDisplayConfirmDialog(false)
         showSuccessMessage(
           format('toast.delete.success', { entity: format('ui.extraAttributeDefinition.label') }),
-          () => router.push(`/${locale}/extraAttributeDefinitions`)
+          () => router.push(`/${locale}/extra-attribute-definitions`)
         )
       } else {
         setDisplayConfirmDialog(false)

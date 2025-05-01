@@ -3139,6 +3139,7 @@ export const en = {
   'ui.extraAttributeDefinition.title.label': `Attribute's Field Title`,
   'ui.extraAttributeDefinition.description.label': 'Description of the attribute',
   'ui.extraAttributeDefinition.attributeRequired.label': 'Attribute is required.',
+  'ui.extraAttributeDefinition.multipleChoice.label': 'Allow selecting multiple answers.',
 
   'ui.extraAttributeDefinition.attributeChoices.label': 'Select Choices',
   'ui.extraAttributeDefinition.attributeChoice.label': 'Choice',

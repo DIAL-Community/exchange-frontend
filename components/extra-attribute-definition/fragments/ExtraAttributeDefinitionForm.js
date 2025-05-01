@@ -122,7 +122,7 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
   }]
 
   const { control, handleSubmit, register, watch, formState: { errors } } = useForm({
-    mode: 'onSubmit',
+    mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
@@ -131,7 +131,8 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
       description: extraAttributeDefinition?.description,
       attributeType: attributeTypes.find(({ value }) => value === extraAttributeDefinition?.attributeType),
       attributeRequired: extraAttributeDefinition?.attributeRequired,
-      attributeChoices: extraAttributeDefinition?.choices
+      attributeChoices: extraAttributeDefinition?.choices,
+      multipleChoice: extraAttributeDefinition?.multipleChoice
     }
   })
 
@@ -146,19 +147,27 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
     // Set the loading indicator.
     setMutating(true)
     // Pull all needed data from session and form.
-    const { name, title, description, attributeType, attributeRequired, attributeChoices } = data
+    const {
+      name,
+      title,
+      description,
+      attributeType: type,
+      attributeRequired,
+      attributeChoices,
+      multipleChoice
+    } = data
     // Send graph query to the backend. Set the base variables needed to perform update.
     const variables = {
       name,
       slug,
       title,
       description,
-      entityTypes: ['PRODUCT'],
-      attributeType: attributeType?.value,
+      multipleChoice,
       attributeRequired,
-      choices: attributeType?.value === selectAttributeType ? attributeChoices : [],
-      multipleChoice: false,
-      childExtraAttributeNames: attributeType?.value === compositeAttributeType ? attributes.map(({ name }) => name) : []
+      entityTypes: ['PRODUCT'],
+      attributeType: type?.value,
+      choices: type?.value === selectAttributeType ? attributeChoices : [],
+      childExtraAttributeNames: type?.value === compositeAttributeType ? attributes.map(({ name }) => name) : []
     }
 
     updateExtraAttributeDefinition({
@@ -173,7 +182,7 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${locale}/extraAttributeDefinitions/${slug}`)
+    router.push(`/${locale}/extra-attribute-definitions/${slug}`)
   }
 
   return (
@@ -290,6 +299,12 @@ const ExtraAttributeDefinitionForm = memo(({ extraAttributeDefinition }) => {
                   </div>
                 </div>
               ))}
+              <div className='flex text-dial-sapphire pt-3'>
+                <label className='flex gap-x-2 items-center self-start'>
+                  <Checkbox {...register('multipleChoice')} />
+                  {format('ui.extraAttributeDefinition.multipleChoice.label')}
+                </label>
+              </div>
             </div>
           )}
           {attributeTypeWatcher?.value === compositeAttributeType && (

@@ -282,6 +282,7 @@ const ProductExtraAttributeDefinitions = ({ product, editingAllowed, editingSect
       : []
 
     return candidateExtraAttributes
+      .sort((a, b) => a.title.localeCompare(b.title))
       .map((extraAttribute, index) => (
         <div key={`extra-attribute-${index}`} className='flex flex-col gap-y-1 mb-2'>
           <div className='text-sm font-medium text-dial-meadow'>
