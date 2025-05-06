@@ -48,12 +48,12 @@ const AdminLandingPage = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='min-h-[70vh] px-4 lg:px-8 xl:px-24 3xl:px-56 py-16'>
-      <div className='flex flex-col gap-y-8'>
-        <div className='text-lg font-semibold lg:col-span-3'>
+    <div className='min-h-[70vh] px-4 lg:px-8 xl:px-24 3xl:px-56 py-8'>
+      <div className='flex flex-col gap-y-4'>
+        <div className='text-lg font-semibold lg:col-span-4'>
           {format('ui.admin.siteConfiguration.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 text-sm'>
+        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 text-sm pb-4'>
           <Link href='/admin/tenant-settings' className='bg-dial-iris-blue rounded-lg p-4 flex'>
             <div className='text-white border-b border-transparent hover: hover:border-white'>
               <FormattedMessage id='ui.tenantSetting.header' />
@@ -75,10 +75,10 @@ const AdminLandingPage = () => {
             </div>
           </Link>
         </div>
-        <div className='text-lg font-semibold lg:col-span-3'>
+        <div className='text-lg font-semibold lg:col-span-4'>
           {format('ui.admin.coreData.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 text-sm'>
+        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 text-sm pb-4'>
           <Link href='/countries' className='bg-dial-iris-blue rounded-lg p-4 flex'>
             <div className='text-white border-b border-transparent hover: hover:border-white'>
               <FormattedMessage id='ui.country.header' />
@@ -100,13 +100,23 @@ const AdminLandingPage = () => {
             </div>
           </Link>
         </div>
-        <div className='text-lg font-semibold lg:col-span-3'>
+        <div className='text-lg font-semibold lg:col-span-4'>
           {format('ui.admin.candidate.header')}
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 text-sm'>
+        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 text-sm pb-4'>
           <Link href='/candidate-statuses' className='bg-dial-iris-blue rounded-lg p-4 flex'>
             <div className='text-white border-b border-transparent hover: hover:border-white'>
               <FormattedMessage id='ui.candidateStatus.header' />
+            </div>
+          </Link>
+        </div>
+        <div className='text-lg font-semibold lg:col-span-4'>
+          {format('ui.extraAttribute.header')}
+        </div>
+        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 text-sm pb-4'>
+          <Link href='/extra-attribute-definitions' className='bg-dial-iris-blue rounded-lg p-4 flex'>
+            <div className='text-white border-b border-transparent hover: hover:border-white'>
+              <FormattedMessage id='ui.extraAttributeDefinition.header' />
             </div>
           </Link>
         </div>

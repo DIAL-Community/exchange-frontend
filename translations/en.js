@@ -3128,5 +3128,29 @@ export const en = {
   'ui.section.save': 'Save Sections',
   'ui.section.save.success': 'Section configurations saved.',
   'ui.section.save.failure': 'Unable to save section configurations.',
+
+  'ui.extraAttribute.header': 'Extra Attribute Configurations',
+  'ui.extraAttributeDefinition.extraAttributes.humanized': 'Extra Information',
+  'ui.extraAttributeDefinition.extraAttributes.disclaimer': 'Custom attributes added by product owner or site admin.',
+
+
+  'ui.extraAttributeDefinition.label': 'Extra Attribute Definition',
+  'ui.extraAttributeDefinition.header': 'Extra Attribute Definitions',
+  'ui.extraAttributeDefinition.createNew': 'Create New Extra Attribute Definitions',
+
+  'ui.extraAttributeDefinition.name.label': `Attribute's Field Name`,
+  'ui.extraAttributeDefinition.title.label': `Attribute's Field Title`,
+  'ui.extraAttributeDefinition.description.label': 'Description of the attribute',
+  'ui.extraAttributeDefinition.attributeRequired.label': 'Attribute is required.',
+  'ui.extraAttributeDefinition.multipleChoice.label': 'Allow selecting multiple answers.',
+
+  'ui.extraAttributeDefinition.attributeChoices.label': 'Select Choices',
+  'ui.extraAttributeDefinition.attributeChoice.label': 'Choice',
+
+  'ui.extraAttributeDefinition.attributeType.label': `Attribute's Field Type`,
+  'ui.extraAttributeDefinition.attributeType.composite': 'Composite',
+  'ui.extraAttributeDefinition.attributeType.select': 'Select',
+  'ui.extraAttributeDefinition.attributeType.text': 'Text',
+  'ui.extraAttributeDefinition.attributeType.url': 'URL',
 }
 

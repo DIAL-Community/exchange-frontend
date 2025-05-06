@@ -51,7 +51,8 @@ const basePathMappings = {
   'carousel-configurations': 'ui.siteSetting.carousel.header',
   'hero-card-configurations': 'ui.siteSetting.heroCard.header',
   'tenant-settings': 'ui.tenantSetting.header',
-  'candidate-statuses': 'ui.candidateStatus.header'
+  'candidate-statuses': 'ui.candidateStatus.header',
+  'extra-attribute-definitions': 'ui.extraAttributeDefinition.header'
 }
 
 const candidatePathMappings = {

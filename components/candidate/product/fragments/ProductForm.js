@@ -13,56 +13,63 @@ import Select from '../../../shared/form/Select'
 import UrlInput from '../../../shared/form/UrlInput'
 import ValidationError from '../../../shared/form/ValidationError'
 import { handleLoadingQuery, handleQueryError } from '../../../shared/GraphQueryHandler'
-import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
 import {
-  CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY, CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
+  CANDIDATE_PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
   PAGINATED_CANDIDATE_PRODUCTS_QUERY
 } from '../../../shared/query/candidateProduct'
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants'
+import { PRODUCT_EXTRA_ATTRIBUTE_DEFINITIONS_QUERY } from '../../../shared/query/extraAttributeDefinition'
+import {
+  compositeAttributeType,
+  selectAttributeType,
+  textAttributeType,
+  urlAttributeType
+} from '../../../extra-attribute-definition/constants'
+import { CREATE_CANDIDATE_PRODUCT } from '../../../shared/mutation/candidateProduct'
 
-const MaintainerCompositeAttribute = ({ errors, control, register, extraAttribute }) => {
+const CompositeAttribute = ({ errors, control, register, extraAttribute }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { title, required, attributes } = extraAttribute
+  const { name: attributeName, title, attributeRequired, compositeAttributes } = extraAttribute
   const { fields, append, remove } = useFieldArray({
     control,
     // TODO: Doesn't support dynamic name. https://www.react-hook-form.com/api/usefieldarray/
     // If we need more composite type, we need to copy and paste this section of the code.
-    name: 'maintainers',
+    name: attributeName,
     rules: {
-      required: required ? format('validation.required') : false
+      required: attributeRequired ? format('validation.required') : false
     }
   })
 
   return (
-    <div className='flex flex-col gap-y-6' key={name}>
+    <div className='flex flex-col gap-y-6' key={attributeName}>
       <div className='text-sm font-medium'>
         {title}
       </div>
       {fields.map((item, index) => (
         <div className='flex flex-col gap-y-6 relative' key={item.id}>
-          {attributes.map(({ name, title, required, description }) => (
+          {compositeAttributes.map(({ name, title, attributeRequired: required, description }) => (
             <div className='flex flex-col gap-y-2' key={`${index}-${name}`}>
               <label
                 className={required ? 'required-field' : ''}
-                htmlFor={`maintainers.${index}.${name}`}
+                htmlFor={`${attributeName}.${index}.${name}`}
               >
                 {title}
               </label>
               <Input
-                id={`maintainers.${index}.${name}`}
-                {...register(`maintainers.${index}.${name}`, {
+                id={`${attributeName}.${index}.${name}`}
+                {...register(`${attributeName}.${index}.${name}`, {
                   required: {
                     value: required,
                     message: format('validation.required')
                   }
                 })}
                 placeholder={description}
-                isInvalid={errors[`maintainers.${index}.${name}`]}
+                isInvalid={errors[attributeName]?.[index]?.[name]}
               />
-              {errors?.maintainers?.[index][name] &&
-                <ValidationError value={errors?.maintainers?.[index][name]?.message} />
+              {errors[attributeName]?.[index]?.[name] &&
+                <ValidationError value={errors[attributeName]?.[index]?.[name]?.message} />
               }
             </div>
           ))}
@@ -82,13 +89,13 @@ const MaintainerCompositeAttribute = ({ errors, control, register, extraAttribut
         <button
           type="button"
           className='bg-dial-meadow text-white px-4 py-2 rounded-md ml-auto'
-          onClick={() => append({ maintainerName: '', maintainerEmail: '' })}
+          onClick={() => append({})}
         >
           Append
         </button>
       </div>
-      {errors.maintainers?.root &&
-        <ValidationError value={errors.maintainers?.root?.message} />
+      {errors[attributeName]?.root &&
+        <ValidationError value={errors[attributeName].root?.message} />
       }
     </div>
   )
@@ -106,7 +113,25 @@ const ProductForm = memo(({ product }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const resolveDefaultValueByFieldKey = (fieldKey) => {
+  const buildCompositeValues = (product) => {
+    const defaultValues = {}
+    if (product?.extraAttributes) {
+      product?.extraAttributes
+        .filter(a => a.type === compositeAttributeType)
+        .reduce(
+          (defaultValues, attribute) => {
+            defaultValues[attribute.name] = attribute.value
+
+            return defaultValues
+          },
+          defaultValues
+        )
+    }
+
+    return defaultValues
+  }
+
+  const resolveValueByFieldKey = (fieldKey) => {
     let defaultValue
     if (product?.extraAttributes) {
       const extraAttribute = product.extraAttributes.find(attribute => attribute.name === fieldKey)
@@ -125,17 +150,17 @@ const ProductForm = memo(({ product }) => {
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
-    defaultValues: {
+    values: {
       name: product?.name ?? '',
       website: product?.website ?? '',
       repository: product?.repository ?? '',
       description: product?.description ?? '',
       submitterEmail: product?.submitterEmail ?? '',
-      maintainers: resolveDefaultValueByFieldKey('maintainers') ?? []
+      ...buildCompositeValues(product)
     }
   })
 
-  const { loading, data, error } = useQuery(CANDIDATE_PRODUCT_EXTRA_ATTRIBUTES_QUERY, {
+  const { loading, data, error } = useQuery(PRODUCT_EXTRA_ATTRIBUTE_DEFINITIONS_QUERY, {
     context: {
       headers: {
         ...(product ? GRAPH_QUERY_CONTEXT.EDITING : GRAPH_QUERY_CONTEXT.CREATING)
@@ -192,14 +217,14 @@ const ProductForm = memo(({ product }) => {
 
   const buildExtraAttributes = (otherFormValues) => {
     const extraAttributes = []
-    if (data.candidateProductExtraAttributes) {
-      const attributeDefinitions = data.candidateProductExtraAttributes
+    if (data.productExtraAttributeDefinitions) {
+      const attributeDefinitions = data.productExtraAttributeDefinitions
 
       return attributeDefinitions.map(attributeDefinition => {
         const extraAttribute = {}
         extraAttribute['name'] = attributeDefinition.name
         extraAttribute['value'] = otherFormValues[attributeDefinition.name]
-        extraAttribute['type'] = attributeDefinition.type
+        extraAttribute['type'] = attributeDefinition.attributeType
         extraAttribute['index'] = attributeDefinition.index
         extraAttribute['title'] = attributeDefinition.title
         extraAttribute['description'] = attributeDefinition.description
@@ -265,7 +290,7 @@ const ProductForm = memo(({ product }) => {
   }
 
   // Parse the extra attributes information.
-  const { candidateProductExtraAttributes } = data
+  const { productExtraAttributeDefinitions } = data
 
   return (
     <form onSubmit={handleSubmit(doUpsert)}>
@@ -359,102 +384,105 @@ const ProductForm = memo(({ product }) => {
           <div className='text-base font-semibold'>
             {format('ui.candidateProduct.extraAttributes')}
           </div>
-          {candidateProductExtraAttributes.map((extraAttribute) => {
-            const { name, title, description, type, required, multiple, options } = extraAttribute
-            if (type === 'composite') {
-              return (
-                <MaintainerCompositeAttribute
-                  key={name}
-                  errors={errors}
-                  control={control}
-                  register={register}
-                  extraAttribute={extraAttribute}
-                />
-              )
-            } else if (type === 'text') {
-              return (
-                <div className='flex flex-col gap-y-2' key={name}>
-                  <label className={required ? 'required-field' : ''} htmlFor={name}>
-                    {title}
-                  </label>
-                  <Input
-                    id={name}
-                    {...register(name, {
-                      required: {
-                        value: required,
-                        message: format('validation.required')
-                      }
-                    })}
-                    defaultValue={resolveDefaultValueByFieldKey(name)}
-                    placeholder={description}
-                    isInvalid={errors[name]}
-                  />
-                  {errors[name] && <ValidationError value={errors[name]?.message} />}
-                </div>
-              )
-            } else if (type === 'url') {
-              return (
-                <div className='flex flex-col gap-y-2' key={name}>
-                  <label className={required ? 'required-field' : ''} htmlFor={name}>
-                    {title}
-                  </label>
-                  <Controller
-                    id={name}
-                    name={name}
+          {productExtraAttributeDefinitions.map((extraAttribute) => {
+            const { name, title, description, attributeType, attributeRequired, multipleChoice, choices } = extraAttribute
+            switch (attributeType) {
+              case compositeAttributeType:
+                return (
+                  <CompositeAttribute
+                    key={name}
+                    errors={errors}
                     control={control}
-                    defaultValue={resolveDefaultValueByFieldKey(name) ?? ''}
-                    render={({ field: { value, onChange } }) => (
-                      <UrlInput
-                        id={name}
-                        value={value}
-                        onChange={onChange}
-                        placeholder={description}
-                      />
-                    )}
-                    rules={{
-                      required: {
-                        value: required,
-                        message: format('validation.required')
-                      }
-                    }}
+                    register={register}
+                    extraAttribute={extraAttribute}
                   />
-                  {errors[name] && <ValidationError value={errors[name]?.message} />}
-                </div>
-              )
-            } else if (type === 'select') {
-              return (
-                <div className='flex flex-col gap-y-2' key={name}>
-                  <label className={required ? 'required-field' : ''} htmlFor={name}>
-                    {title}
-                  </label>
-                  <Controller
-                    id={name}
-                    name={name}
-                    control={control}
-                    defaultValue={resolveDefaultValueByFieldKey(name)}
-                    rules={{
-                      required: {
-                        value: required,
-                        message: format('validation.required')
-                      }
-                    }}
-                    render={({ field: { value, onChange } }) => (
-                      <Select
-                        id={name}
-                        value={value}
-                        onChange={onChange}
-                        placeholder={description}
-                        options={options.map((option) => ({
-                          label: option,
-                          value: option
-                        }))}
-                        isMulti={multiple}
-                      />
-                    )}
-                  />
-                  {errors[name] && <ValidationError value={errors[name]?.message} />}
-                </div>
-              )
+                )
+              case textAttributeType:
+                return (
+                  <div className='flex flex-col gap-y-2' key={name}>
+                    <label className={attributeRequired ? 'required-field' : ''} htmlFor={name}>
+                      {title}
+                    </label>
+                    <Input
+                      id={name}
+                      {...register(name, {
+                        required: {
+                          value: attributeRequired,
+                          message: format('validation.required')
+                        }
+                      })}
+                      value={resolveValueByFieldKey(name)}
+                      placeholder={description}
+                      isInvalid={errors[name]}
+                    />
+                    {errors[name] && <ValidationError value={errors[name]?.message} />}
+                  </div>
+                )
+              case urlAttributeType:
+                return (
+                  <div className='flex flex-col gap-y-2' key={name}>
+                    <label className={attributeRequired ? 'required-field' : ''} htmlFor={name}>
+                      {title}
+                    </label>
+                    <Controller
+                      id={name}
+                      name={name}
+                      control={control}
+                      defaultValue={resolveValueByFieldKey(name) ?? ''}
+                      render={({ field: { value, onChange } }) => (
+                        <UrlInput
+                          id={name}
+                          value={value}
+                          onChange={onChange}
+                          placeholder={description}
+                        />
+                      )}
+                      rules={{
+                        required: {
+                          value: attributeRequired,
+                          message: format('validation.required')
+                        }
+                      }}
+                    />
+                    {errors[name] && <ValidationError value={errors[name]?.message} />}
+                  </div>
+                )
+              case selectAttributeType:
+                return (
+                  <div className='flex flex-col gap-y-2' key={name}>
+                    <label className={attributeRequired ? 'required-field' : ''} htmlFor={name}>
+                      {title}
+                    </label>
+                    <Controller
+                      id={name}
+                      name={name}
+                      control={control}
+                      defaultValue={resolveValueByFieldKey(name)}
+                      rules={{
+                        required: {
+                          value: attributeRequired,
+                          message: format('validation.required')
+                        }
+                      }}
+                      render={({ field: { value, onChange } }) => (
+                        <Select
+                          id={name}
+                          value={value}
+                          onChange={onChange}
+                          placeholder={description}
+                          options={choices.map((option) => ({
+                            label: option,
+                            value: option
+                          }))}
+                          isMulti={multipleChoice}
+                        />
+                      )}
+                    />
+                    {errors[name] && <ValidationError value={errors[name]?.message} />}
+                  </div>
+                )
+              default:
+                return null
             }
           })}
           <div className='border-t border-dashed' />

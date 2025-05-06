@@ -9,6 +9,12 @@ import { CANDIDATE_PRODUCT_UPDATE_STATUS } from '../../shared/mutation/candidate
 import { ObjectType } from '../../utils/constants'
 import { prependUrlWithProtocol } from '../../utils/utilities'
 import CandidateStatusWorkflow from '../CandidateStatusWorkflow'
+import {
+  compositeAttributeType,
+  selectAttributeType,
+  textAttributeType,
+  urlAttributeType
+} from '../../extra-attribute-definition/constants'
 import ProductDetailMaturityScores from './fragments/ProductDetailMaturityScores'
 
 const ProductDetailRight = forwardRef(({ product, editingAllowed, approvingAllowed }, ref) => {
@@ -24,6 +30,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, approvingAllow
 
   const renderExtraAttributes = (extraAttribute) => {
     const { type, value } = extraAttribute
+    console.log('Extra attribute: ', extraAttribute)
     if (!value) {
       return (
         <div className='text-sm'>
@@ -33,7 +40,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, approvingAllow
     }
 
     switch (type) {
-      case 'url':
+      case urlAttributeType:
         return (
           <div className='flex text-sm'>
             <a
@@ -46,7 +53,7 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, approvingAllow
             </a>
           </div>
         )
-      case 'composite':
+      case compositeAttributeType:
         return (
           <div className='text-sm flex flex-col gap-y-3'>
             {extraAttribute.value.map((attributeValue, i) => (
@@ -60,13 +67,13 @@ const ProductDetailRight = forwardRef(({ product, editingAllowed, approvingAllow
             ))}
           </div>
         )
-      case 'text':
+      case textAttributeType:
         return (
           <div className='text-sm'>
             {extraAttribute.value}
           </div>
         )
-      case 'select':
+      case selectAttributeType:
         return (
           <div className='text-sm'>
             {Array.isArray(extraAttribute.value)
