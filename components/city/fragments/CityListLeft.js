@@ -20,7 +20,7 @@ const CityListLeft = () => {
   }
 
   useEffect(() => {
-    // Only apply this if the use have not interact with the UI and the url is a sharable link
+    // Only apply this if the user has not interacted with the UI and the url is a sharable link
     const filtered = query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog
     if ( filtered && !interactionDetected) {
       // Filtering in the future?

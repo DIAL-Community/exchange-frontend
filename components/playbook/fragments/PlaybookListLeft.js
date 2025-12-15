@@ -28,7 +28,7 @@ const PlaybookListLeft = () => {
   }
 
   useEffect(() => {
-    // Only apply this if the use have not interact with the UI and the url is a sharable link
+    // Only apply this if the user has not interacted with the UI and the url is a sharable link
     if (
       query &&
       Object.getOwnPropertyNames(query).length > 1 &&
